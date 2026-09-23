@@ -1,0 +1,109 @@
+
+Two rules keep this clean:
+1. Only `CockpitInteractor` references `IPlayerInput`.
+2. Only `CockpitCommandSource` references `VehicleCommand`.
+
+Consequently `CockpitControl` and `SixDofBody` remain mutually invisible.
+
+### 5.3 Event system
+`CockpitEventBus` is a minimal multicast pub/sub with an allocation-free
+`Raise`. Every control emits a `CockpitEvent` value:
+
+| Field          | Meaning                                          |
+|----------------|--------------------------------------------------|
+| `type`         | `CockpitEventType` (hover, grab, press, toggle…) |
+| `control`      | `ICockpitControl` that emitted it                |
+| `controlId`    | string identifier (survives prefab refactors)    |
+| `value`        | analog magnitude (lever/dial position)           |
+| `state`        | discrete state (button pressed, toggle on)       |
+| `worldPosition`| where the fact happened                          |
+| `timeSeconds`  | `Time.time` at emit                              |
+
+No listener is required for the game to work; HUD, audio, haptics and mission
+scripting subscribe as they please.
+
+### 5.4 Interactor
+`CockpitInteractor` (`DefaultExecutionOrder(-80)`) drives the primary hand:
+
+1. **Hover.** A `Physics.Raycast` from the hand pose, masked to
+   `interactionMask`, length `rayLengthMeters`. The first `CockpitControl` on
+   the hit collider's parent chain receives `HoverEnter`/`HoverExit`.
+2. **Grab.** `PrimaryTrigger ≥ grabThreshold` locks the current hover target.
+   While a grab is active, hover is frozen (`UpdateHover` is skipped); this
+   avoids the panel flickering as the ray sweeps during a drag.
+   `PrimaryTrigger ≤ releaseThreshold` releases.
+3. **Press.** The discrete `PrimaryButtonPressed` / `PrimaryButtonReleased`
+   events are queued into booleans and dispatched inside `Update` *after*
+   hover has resolved, so a control only ever sees a press when it is the
+   current hover target.
+
+All analog thresholds and the ray length are serialized for design tuning.
+`Bind(IPlayerInput)` is exposed for tests, cutscenes and non-XR rigs.
+
+### 5.5 Controls
+| Control          | Interaction          | Output                                         |
+|------------------|----------------------|------------------------------------------------|
+| `CockpitControl` | (abstract base)      | identity, hover, highlight, `Emit`             |
+| `CockpitLever`   | Grab + drag          | `NormalizedValue` in [-1..1] or [0..1]         |
+| `CockpitButton`  | Press or grab        | `Pressed` / `Released` events                  |
+| `CockpitToggle`  | Press or grab        | `IsOn` latch + `Toggled` event                 |
+| `CockpitDial`    | Grab + rotate        | `NormalizedValue` in [0..1], optional detents  |
+
+Lever and dial share the same angle maths: at `GrabBegin` the control captures
+its local hinge axis in world space together with a reference perpendicular
+direction; during the drag it computes `SignedAngle(reference, handProjection,
+axis)` and applies the delta to the angle stored at grab time. Because a
+rotation about an axis leaves that axis invariant in world space, the captured
+hinge does not need re-derivation per tick. Off-centre grabs therefore produce
+the same feel as centre grabs.
+
+Return-to-rest:
+- `CockpitLever.springReturn` springs back to `AngleFromValue(restValue)` when
+  released — the rudder-trim / momentary case.
+- `CockpitButton` runs `MoveTowards(_targetPress, returnSpeed · dt)` so the
+  plunger reads mechanically.
+- `CockpitToggle` animates between `offAngleDeg` and `onAngleDeg` at
+  `animateDegreesPerSecond` and is authored in its neutral (0°) pose.
+
+### 5.6 Command source (bridge to Phase 2)
+`CockpitCommandSource` (`DefaultExecutionOrder(-70)`) implements
+`IVehicleCommandSource`. It rebuilds a `VehicleCommand` from a
+designer-authored table:
+
+- `CockpitAxisBinding[]` — `ControlId` → `CockpitAxis` → `scale` / `bias`,
+  for levers and dials.
+- `CockpitToggleBinding[]` — `ControlId` → `CockpitAxis` → `onValue`, for
+  latching toggles.
+
+Momentary buttons are deliberately *not* routed into `VehicleCommand`; they
+emit events for the HUD, audio and mission scripting. Control-to-thrust
+mapping therefore lives in data, not in the solver, and Phase 2 does not care
+whether the vehicle is driven by a cockpit, an autopilot or a replay driver.
+
+### 5.7 Registration and lifetime
+`CockpitManager` (`DefaultExecutionOrder(-95)`) owns the bus and the control
+registry. Execution order in a scene is therefore:
+
+| Order | System               |
+|-------|----------------------|
+| -100  | `InputProvider`      |
+|  -95  | `CockpitManager`     |
+|  -90  | `InputCommandAdapter`|
+|  -80  | `CockpitInteractor`  |
+|  -70  | `CockpitCommandSource` |
+|    0  | controls / controls' `Awake` → `Register(this)` |
+
+`Find(controlId)` is a linear scan over ≤ 64 controls, which is cheaper and
+allocation-free compared with a dictionary. `persistAcrossScenes` is off by
+default so the bus cannot leak subscribers across a scene change.
+
+### 5.8 Performance budget (Snapdragon XR2)
+- Simulation-free: no cockpit work in `FixedUpdate`; only `Update` (one ray
+  per frame while not grabbed).
+- No per-frame allocations: `CockpitEvent` is a value struct, the bus holds
+  one multicast delegate, control lookup is a linear scan.
+- No material instancing: highlights use a shared `MaterialPropertyBlock`.
+- Grabs are deterministic: hover is frozen and discrete presses are queued,
+  so there is no mid-grab flicker and no order-of-callback ambiguity.
+
+### 5.9 File map (Phase 3, all new)

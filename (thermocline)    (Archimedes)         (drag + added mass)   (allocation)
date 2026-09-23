@@ -1,0 +1,67 @@
+
+`InputCommandAdapter` is the single bridge from Phase 1 into this graph: it
+implements `IVehicleCommandSource` and reads `IPlayerInput`. Nothing else in
+the physics folder references the input layer, so the solver is headless-testable
+and an autopilot / replay driver can be dropped in without touching physics.
+
+### 4.2 Water column & thermocline
+`WaterColumn` is a piecewise-linear depth → density / temperature profile
+authored as knots (default: surface mixed layer, seasonal thermocline at 8–22 m,
+cool near-isopycnal deep layer). Density is sampled *per displaced volume at
+that volume's own depth*, so a vehicle straddling the thermocline gets a
+correct pitching moment "for free".
+
+`DensityGradient(depth)` exposes dRho/dDepth for future flavour systems
+(thermal effect on sound speed, trim warnings) without coupling them to the
+solver.
+
+### 4.3 Buoyancy (Archimedes)
+Each `BuoyancyVolume` is a sphere with a local attach point, a radius, and a
+flood fraction. Non-ballast volumes are sealed flotation points; ballast volumes
+are driven at runtime. For every volume the solver computes:
+
+- the submerged fraction via an exact spherical-cap volume (free surface plane),
+- the effective displaced volume `FullVolume * (1 - flood) * submerged`,
+- the buoyant force `rho(depth) * g * volume`, applied at the volume's world
+  position,
+
+then sums force and `r × F` torque about the body centre of mass. Off-centre
+volumes therefore produce real righting moments; there are no hand-tuned
+"stability" forces.
+
+`ballastCommand` is integrated with a `MoveTowards` slew (`ballastRatePerSecond`)
+so flooding and blowing take time, which is what makes the dive computer read as
+a machine rather than a switch.
+
+### 4.4 Hydrodynamics
+`HydrodynamicsModel` carries three coefficient sets in the hull's local frame:
+
+- **Linear drag** (N per m/s) and **quadratic drag** (N per (m/s)^2), combined as
+  `-c1·v - c2·v·|v|` per axis.
+- **Angular drag** (Nm per rad/s).
+
+**Added mass** models the inertia of the water the hull drags with it: the
+solver estimates the body acceleration from the change in velocity across the
+fixed step and applies `-M_added · a`, where `M_added` is a per-axis fraction of
+the Rigidbody mass (linear) or of the Rigidbody inertia tensor (angular). Gravity
+is applied manually (`useGravity = false`) so gravity, buoyancy and thrust share
+one coherent unit.
+
+### 4.5 Thrusters
+`ThrusterCluster` is an array of `Thruster`s, each with a local position,
+direction, max thrust and a *command allocation weight* per control axis. The
+cluster sums the weighted demand, clamps to [-1..1] and applies
+`direction * demand * maxThrust` at the mount, accumulating torque about the
+centre of mass. Allocation is deliberately linear and allocation-free; the weight
+table is expected to be normalised at author time (weighted demand never exceeds
+1 for a full-scale command), which avoids a saturation mixer on the hot path.
+
+### 4.6 Performance budget (Snapdragon XR2)
+- Fixed timestep only; no `Update` work in the solver.
+- Zero steady-state allocations: no LINQ, no closures, structs by value.
+- O(volumes) + O(thrusters) per step, with trig only inside the spherical-cap
+  fraction. Practical budgets: ≤ 12 volumes, ≤ 8 thrusters.
+- Sampling is branch-light and cache-friendly; `WaterColumn` knots are cloned
+  once at construction, never per frame.
+
+### 4.7 File map (Phase 2, all new)

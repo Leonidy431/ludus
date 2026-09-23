@@ -1,0 +1,10 @@
+
+## 5. Phase 3 — Interactive Cockpit (Event System)
+
+### 5.1 Goals
+Phase 1 gives the rig a *device-agnostic* hand. Phase 2 gives the hull a
+*device-agnostic* command. Phase 3 must connect the hand to physical cockpit
+parts — levers, buttons, toggles, dials — without leaking input APIs into the
+controls and without leaking control types into the solver.
+
+### 5.2 Layering

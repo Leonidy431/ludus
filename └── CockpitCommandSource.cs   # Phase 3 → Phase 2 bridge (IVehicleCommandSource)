@@ -1,0 +1,15 @@
+
+### 5.10 Scene setup checklist
+1. A GameObject with `CockpitManager` (anywhere in the scene).
+2. The rig's `InputProvider` (Phase 1) with head + hand transforms wired.
+3. A GameObject with `CockpitInteractor`; if it is a child of the hand,
+   `searchChildren` finds the input provider; otherwise leave
+   `inputBehaviour` empty and the interactor will fall back to
+   `InputProvider.Current`.
+4. Control prefabs, each with a `CockpitControl`-derived component and a
+   collider on the same or a child GameObject; tag their layer so that
+   `interactionMask` does not collide with the hull.
+5. On the hull: a `CockpitCommandSource` (Phase 3) bound to a `SixDofBody`
+   (Phase 2) via its `commandSourceBehaviour` field.
+6. For the desktop simulator, no extra wiring is needed: the interactor
+   raycasts from the mouse camera's forward direction through the head pose.
