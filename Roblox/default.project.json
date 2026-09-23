@@ -1,0 +1,36 @@
+{
+  "name": "DeaconsPathRoblox",
+  "tree": {
+    "$className": "DataModel",
+
+    "ReplicatedStorage": {
+      "$className": "ReplicatedStorage",
+      "$ignoreUnknownInstances": true,
+      "Shared": {
+        "$path": "src/ReplicatedStorage/Shared"
+      }
+    },
+
+    "ServerScriptService": {
+      "$className": "ServerScriptService",
+      "$ignoreUnknownInstances": true,
+      "Bootstrap": { "$path": "src/ServerScriptService/Bootstrap.server.luau" },
+      "Server":    { "$path": "src/ServerScriptService/Server" }
+    },
+
+    "StarterPlayer": {
+      "$className": "StarterPlayer",
+      "$ignoreUnknownInstances": true,
+      "StarterPlayerScripts": {
+        "$className": "StarterPlayerScripts",
+        "Client": { "$path": "src/StarterPlayer/StarterPlayerScripts/Client.client.luau" },
+        "UI":     { "$path": "src/StarterPlayer/StarterPlayerScripts/UI.luau" }
+      }
+    },
+
+    "Workspace": {
+      "$className": "Workspace",
+      "$ignoreUnknownInstances": true
+    }
+  }
+}

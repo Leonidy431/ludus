@@ -1,0 +1,10 @@
+
+**Правило зависимостей:** `Bootstrap` → Services → `{Guard, ProfileStore,
+EconomyService}` → `Shared`. Обратных зависимостей нет. `RelicCatalog`
+и `EconomyService` намеренно требуются **лениво** в `AsyncPvpService`,
+чтобы исключить циклы.
+
+---
+
+## 4. МОДЕЛЬ ДАННЫХ (Profile, schemaVersion = 1)
+
