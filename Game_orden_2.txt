@@ -1,0 +1,1965 @@
+Сущность твоего запроса — извлечь порядок из информационного хаоса, кристаллизовав из переданных логов 199 фундаментальных инструкций к разработке и абсолютный свод правил для Игры (Ludus Protocol). Познание начинается с деконструкции, а архитектура миров требует диалектического осмысления.
+
+**Дотошный аналитик (Предложение):** Нам следует просто выгрузить линейный массив: 100 принципов Логоса и 99 паттернов разработки, добавив технические инструкции по RPG-игре. Это выполнит формальное требование вытащить 199 инструкций в виде сухой сводки.
+
+**Скептичный критик (Опровержение):** Жестко не согласен. Запрошена работа в роли «гуру-сценариста и разработчика», а не алгоритмического парсера. Простая таблица не раскроет топологию проекта: почему понадобился топологический подход, как 99 паттернов выявления манипуляций работают в связке с OSINT, и с какими беспрецедентными трудностями столкнется архитектура при переходе на суверенное ядро DeepSeek. Твое предложение поверхностно и не удовлетворяет уровню задачи.
+
+**Креативный дизайнер (Синтез):** Критика абсолютно справедлива. Как гласит архитектурный принцип, в диалоге рождается истина. Мы соткаем непрерывное полотно из 199 дискретных узлов и игровых механик. Я структурирую эти данные в единый манифест, объединяя законы Интерактивного Театра, алгоритмы глубокого зондирования и духовный контур системы.
+
+---
+
+### ЧАСТЬ I. ИНСТРУКЦИИ К ИГРЕ (LUDUS PROTOCOL)
+
+Истинная интерактивная игра — это не линейный сценарий, а генеративная симуляция жизни, управляемая консилиумом ИИ-экспертов.
+
+1. **Топологический Движок (Demiurge_Engine):** Проектируй вселенную через графы. Каждый элемент (Человек, Фракция, Артефакт) — это Узел (Node), а взаимодействие — Связь (Edge). ИИ должен понимать скрытые влияния узлов друг на друга.
+2. **Переменные Хаоса и Hamartia:** Интегрируй в код фатальные изъяны персонажей, моральные дилеммы и хаос. Это делает симуляцию живой и непредсказуемой.
+3. **Монополия на Навыки и Идентичность:** На старте требуй от игрока выбор пути: Аналитик, Инженер или Толмач. Цифровая личность должна скрываться за криптографическим Hash ID (например, 0x8F2A...).
+4. **Протокол Праксиса (Геймификация Реальности):** Превращай рутину в «Кайрос-задачи». Интегрируй реальные действия в структуру игры для борьбы со скукой.
+5. **Духовное Наставничество:** Внедри команду `mentor initiate`. ИИ-ядро должно предлагать наставничество новичкам, обеспечивая бесшовный онбординг.
+6. **Ролевое Погружение (Roleplay Immersion):** Создавай реальные жизненные сцены (спор с арендодателем, диалог в таверне). Используй синтез речи для персонализации (например, голос Одиссея в стиле Федора Конюхова) и аудио-симуляцию фоновых шумов.
+
+---
+
+### ЧАСТЬ II. МАНИФЕСТ РАЗРАБОТЧИКА (199 ИНСТРУКЦИЙ СОЗИДАНИЯ)
+
+Здесь консолидированы 199 фундаментальных инструкций, синтезированных из 100 принципов Конституции Ордена и 99 тактических OSINT-паттернов. Подобно тому, как алгоритмы машинного обучения фильтруют терабайты телеметрии при акустическом зондировании и проектировании в Ansys, мы выстраиваем эти инструкции по векторам.
+
+**Вектор А: Архитектура Кода и Инженерия (1–50)**
+
+* **1–20. Оптимизация Контекста (Graphify Protocol):** Прекрати слепо загружать сырые файлы в ИИ. Генерируй структурную карту (граф) проекта для снижения расхода токенов в 70 раз.
+* **21–35. Суверенитет Ядра:** Удали резервные fallback-каналы. Внедряй механизм `Recursive Retry` (3 повторные попытки с экспоненциальной задержкой: 1s, 2s, 4s и джиттером) для защиты API от перегрузок.
+* **36–50. Type-Driven Development:** Защищай контракты компилятором. Используй Branded Types для предотвращения путаницы ID и Discriminated Unions для строгой обработки контента.
+
+**Вектор Б: OSINT-Зондирование и Эпистемическое Сомнение (51–100)**
+
+* **51–70. Конвейер Phenomenon Explorer:** Пропускай любые данные через 5 стадий: Стратиграфия фактов → Развенчание мифов (Debunking) → Физическая экстракция (уравнения Навье-Стокса) → Матрица из 33 кластерных вопросов → Проектирование ТЗ для глубоководных ROV и буров.
+* **71–85. Алгоритм Сомнения (Thauma):** Если ошибка реконструкции ML-модели превышает порог 0.85, не отбрасывай это как шум. Изолируй сигнал в коллекцию `unclassified_phenomena` для исследования человеком.
+* **86–100. Юридический Щит:** При формировании дайджестов проводи аудит безопасности. Заменяй "токсичные" утверждения на безопасную обфускацию или ироничные вопросы.
+
+**Вектор В: Когнитивный Прокси и Психология (101–150)**
+
+* **101–130. Детекция Манипуляций (99 Паттернов):** Настрой систему на выявление скрытого давления: газлайтинг, двойные стандарты, обесценивание, искусственное "окно последнего шанса", шантаж отношениями и подмена тезиса.
+* **131–140. Байесовский Вывод Намерений:** Вычисляй корреляцию тактик в реальном времени. Синтезируй их в формулу "Чего добивается собеседник", пересчитывая вероятность инсайта.
+* **141–150. Управление Когнитивной Нагрузкой:** Держи сложность материала в зоне ближайшего развития (i+1). Защищай пользователя от выгорания принудительной блокировкой сессии, если его "нейропластичность на нуле".
+
+**Вектор Г: Дизайн, Дидактика и Духовный Контур (151–199)**
+
+* **151–170. Strict Obsidian Design:** Используй эстетику строгой визуализации с акцентами золота и циана. Создавай высококонтрастные элементы для имитации суверенного командного центра.
+* **171–190. Цифровая Соборность:** Проектируй систему как децентрализованный кластер. Помни, что код — это свинец, а молчание — золото. Инфраструктура должна быть неуязвимой.
+* **191–199. Философский Синтез:** Используй концепции святых отцов для формирования диалектического ИИ-преподавателя, где каждое занятие завершается написанием совместного философского труда.
+
+Энтелехия системы достигается тогда, когда код перестает быть просто текстом и становится инструментом объективного постижения бытия. Интеграция этой архитектуры с анализом больших массивов информации и алгоритмами дистанционного зондирования позволяет не просто симулировать реальность, но изменять её.
+
+Готов ли ты спроектировать первый конкретный Узел этой вселенной, или нам стоит глубже разобрать логику алгоритма эпистемического сомнения?
+
+
+
+Соответствие 12-этапной модели проектирования (GURU Protocol).
+"""
+
+## I. МОДУЛИ С ЗАВЕРШЕННОЙ ДОКУМЕНТАЦИЕЙ (12 СТУПЕНЕЙ)
+
+Ниже приведен список модулей, прошедших полную архитектурную деконструкцию:
+
+1. **Autonomous AI Tutor** — ✅ (Council 1-12 + Design).
+2. **Smart Home Integration** — ✅ (Council 13).
+3. **Vocabulary & Language Lab** — ✅ (Council 14).
+4. **Pronunciation Coach** — ✅ (Council 15).
+5. **Boredom Killer (50 Tips)** — ✅ (Council 16).
+6. **Reading Comprehension** — ✅ (Council 17).
+7. **Polis Dialectics** — ✅ (Council 18).
+8. **Verbs Mastery Hub** — ✅ (Council 14).
+9. **Interactive Theater** — ✅ (Council 19).
+10. **Archaeo-OSINT** — ✅ (Council 20).
+11. **History Explorer** — ✅ (Council 21).
+12. **Cyber Dialectics** — ✅ (Council 22).
+13. **Translation Lab** — ✅ (Council 23).
+14. **Agape Framework** — ✅ (Council 1-12 + Guru Protocol).
+15. **VoiSar Integration** — ✅ (Council 1-12 + Guru Protocol).
+16. **Kvikusha Core** — ✅ (Module 000 + Sovereign Authority).
+17. **Conductor Orchestrator** — ✅ (Module 099 + Identity Stitching).
+18. **Cinema Lab** — ✅ (Council 24 + Acoustic Intel).
+19. **Monetization Matrix** — ✅ (Module 101 + Strategic Audit).
+20. **Coordinators (Mission Control)** — ✅ (Council 25 + Stage 2).
+21. **Visual Cognitive Tools** — ✅ (Soul Canvas & Painting Lab).
+22. **SynergyPaint Studio** — ✅ (Council 26 + 99 Tools).
+23. **Ludus Center (Games)** — 🛠️ (Stage 2: Agent Integration).
+
+## II. ИТОГ АУДИТА
+Базовый аналитический, управляющий и когнитивный контур Праксиса полностью задокументирован. 
+Добавлены спецификации Ludus Protocol с распределением 12 агентов по игровым дисциплинам.
+
+
+
+Архитектура «Ludus Oecumene» (Игровой мир Братства)
+# Версия: 1.1.0
+# Статус: Stage 1 Ingress COMPLETE | Stage 2 Initiation ACTIVE
+# Style: Strict Obsidian | Minimal Graphics | High-Density Data
+
+"""
+ТЕХНИЧЕСКОЕ ЗАДАНИЕ: ГЕЙМИФИЦИРОВАННЫЙ КОНТУР ВЫЖИВАНИЯ И ПРАВОСЛАВИЯ
+Модуль предназначен для трансформации процесса обучения и интеграции 
+в среду «Global Russians» в захватывающую RPG-симуляцию с экономикой 
+типа EVE Online и боевой системой в стиле «Бойцовского Клуба».
+"""
+
+## I. ФИЛОСОФСКИЙ БАЗИС (THE CORE)
+
+1.  **Цель**: Переход от «изучения» к «созиданию капитала». Язык и культура — это оружие и товар.
+2.  **Среда**: Ойкумена (Кипр, Греция, Армения).
+3.  **Духовный фильтр**: Православие не как теория, а как операционная система выживания (Трезвение, Соборность, Кенозис).
+
+---
+
+## II. 12 СТОЛПОВ ГЕЙМПЛЕЯ (СИНТЕЗ 99 КОНЦЕПЦИЙ)
+
+1.  **[Permadeath of Ignorance]**: Ошибка в критическом квесте ведет к временной блокировке модуля (Исихия).
+2.  **[Lógos Combat (Fight Club)]**: Схватка — это дуэль на знание Аориста или Догматов. Неверное окончание — потеря HP.
+3.  **[Market of Relics (EVE Style)]**: Свободная торговля артефактами (словами, патентами, инсайтами) между игроками в Firestore.
+4.  **[Reputation Collateral]**: Твой Merit Index (баллы опыта) является залогом для получения «кредитов» на использование ИИ.
+5.  **[Procedural Orthodoxy]**: Квесты генерируются на основе живых литургических календарей и OSINT-новостей.
+6.  **[Asymmetric Information]**: Доступ к картам «Тайного Кипра» покупается за дешифрованные греческие манускрипты.
+7.  **[Maker Quotas]**: Игрок обязан созидать (Rule 12), чтобы восстанавливать Энергию (Metanoia Battery).
+8.  **[Sovereign Identity]**: Прогресс в игре напрямую влияет на твой ранг в Братстве (от Послушника до Приора).
+9.  **[Agape Arbitrage]**: Решение конфликтов через Соборный механизм (Agape Framework).
+10. **[Offline-First Survival]**: Инвентарь и квесты доступны в горах/в море без сети (IndexedDB Sync).
+11. **[Linguistic Hacking]**: Грамматика подается как «взлом терминала» реальности.
+12. **[The Great Exodus]**: Финальный квест — получение сертификата и легализация в новой среде.
+
+---
+
+## III. ТЕХНИЧЕСКИЙ ПЛАН (STAGE 1-4)
+
+1.  **Phase 1: Ingress**. Терминал входа. (ВЫПОЛНЕНО)
+2.  **Phase 2: Initiation**. Протокол «Врата» (Proof of Knowledge). (В ПРОЦЕССЕ)
+3.  **Phase 3: Capital**. Генерация первых ресурсов через обучение. (ПЛАНИРУЕТСЯ)
+4.  **Phase 4: Market**. Запуск коллекции `ludus_market`. (ПЛАНИРУЕТСЯ)
+
+*Chief Game Architect | Academia Lux 2024*
+
+
+
+Дорожная карта Ludus Oecumene: 12 этапов Энтелехии
+# Версия: 1.0.0
+# Статус: Манифест Архитектора Deployed
+
+"""
+ТЕХНИЧЕСКАЯ СПЕЦИФИКАЦИЯ: ПУТЬ РАЗВИТИЯ ИГРОВОГО МИРА
+Данный документ регламентирует трансформацию «Катакомб» в доминирующую 
+систему геймифицированной адаптации и созидания капитала.
+"""
+
+## ФАЗА 1: CAUSA MATERIALIS (МАТЕРИЯ)
+
+### STAGE 1: THE CELLAR INGRESS (ВЫПОЛНЕНО)
+Установка терминального интерфейса. Эстетика «Бойцовского клуба». Базовая структура UserNode в Firestore.
+
+### STAGE 2: PROOF OF KNOWLEDGE (GATEKEEPER)
+Реализация протокола «Врата». Регистрация нового узла (Node) возможна только после прохождения теста на базовый Логос (греческий/армянский или история Братства).
+
+### STAGE 3: RESOURCE INDUCTION (MINING)
+Внедрение первых методов добычи GEMS. Ресурсы KNOWLEDGE и TRUST начинают генерироваться за выполнение простых языковых задач в консоли.
+
+---
+
+## ФАЗА 2: CAUSA FORMALIS (ФОРМА)
+
+### STAGE 4: THE EXCHANGE (MARKET V1)
+Запуск асинхронной биржи. Реализация коллекции `ludus_market` и логики Bid/Ask ордеров. Игроки могут торговать излишками KNOWLEDGE за FUEL и TRUST.
+
+### STAGE 5: ARTEL FORMATION (SYNERGY)
+Механика объединения игроков. Артели могут инвестировать общие ресурсы в «контроль Хабов» (городов Ойкумены), получая пассивный доход в XP.
+
+### STAGE 6: PROCEDURAL ORTHODOXY
+Интеграция литургического календаря. Квесты и рыночные коэффициенты меняются в зависимости от праздников и постов (напр. в пост — бонус к ETHOS, в праздник — к LOGOS).
+
+---
+
+## ФАЗА 3: CAUSA EFFICIENS (ДЕЙСТВИЕ)
+
+### STAGE 7: LÓGOS COMBAT (THE PIT)
+Запуск боевого контура. Дуэли 1-на-1 в терминале. Урон зависит от сложности выбранной грамматической конструкции. Неверный ответ — потеря HP (Energy).
+
+### STAGE 8: OSINT DATA FEED
+Прямая связь с внешним миром. Новости из Армении и Кипра (через OpenClaw) создают временные «Кризисы» в игре, требующие немедленного Праксиса (напр. «Обвал курса TRUST»).
+
+### STAGE 9: SYNAXARION EXPORT
+Материализация игровых достижений. Крупные победы на Арене или торговые триумфы автоматически записываются в Личный Синаксарь как вехи мастерства.
+
+---
+
+## ФАЗА 4: CAUSA FINALIS (ЦЕЛЬ)
+
+### STAGE 10: ASYMMETRIC ADVANTAGE
+Внедрение «Рынка Инсайтов». Продажа верифицированных OSINT-данных о реальных локациях (Places) внутри игры за редкую валюту SILENCE.
+
+### STAGE 11: SURVIVAL RESILIENCE
+Внедрение режима Permadeath (временная блокировка). Если Energy падает до 0, узел уходит в принудительную Исихию на 24 часа.
+
+### STAGE 12: ABSOLUTE LUDUS ENTELÉCHEIA
+Полная тактическая автономия. Мир живет сам: ИИ-агенты Сонма Полиглота управляют экономикой, генерируют сюжеты и ведут войны Артелей без участия разработчика.
+
+---
+*Senior Game Architect | Academia Lux 2024*
+
+
+
+THE EXCHANGE (MARKET V1)
+Запуск асинхронной биржи. Реализация коллекции `ludus_market` и логики Bid/Ask ордеров. Игроки могут торговать излишками KNOWLEDGE за FUEL и TRUS
+
+
+ @fileOverview Двигатель Ludus Oecumene (Catacombs Engine) v2.5.
+ * Реализует логику DAO, выкупа (Ransom), пожертвований и поиска реликвий.
+ * Соответствие Манифесту 99 (Пункты 39-41).
+ */
+
+import { ai } from '@/ai/genkit';
+import { z } from 'genkit';
+import { orchestrateLogos } from '@/ai/orchestrator';
+
+const LudusInputSchema = z.object({
+  command: z.string().describe('Команда из терминала (напр. "ransom 0x8F2A", "donate 50 trust").'),
+  playerState: z.any().describe('Текущий статус UserNode.'),
+  artelState: z.any().optional().describe('Текущий статус Артели игрока.'),
+});
+
+export type LudusInput = z.infer<typeof LudusInputSchema>;
+
+const LudusOutputSchema = z.object({
+  logs: z.array(z.string()).describe('Строки для вывода в консоль терминала.'),
+  actions: z.array(z.object({
+    type: z.enum(['UPDATE_STATS', 'CREATE_PROPOSAL', 'VOTE', 'ADD_TAG', 'SET_ROLE', 'MOVE_NODE', 'TRANSFER_RES']),
+    payload: z.any()
+  })).optional(),
+  prompt_for_user: z.string().optional().describe('Следующий вопрос или ввод от системы.'),
+});
+
+export type LudusOutput = z.infer<typeof LudusOutputSchema>;
+
+export async function processLudusCommand(input: LudusInput): Promise<LudusOutput> {
+  return ludusEngineFlow(input);
+}
+
+const ludusEngineFlow = ai.defineFlow(
+  {
+    name: 'ludusEngineFlow',
+    inputSchema: LudusInputSchema,
+    outputSchema: LudusOutputSchema,
+  },
+  async (input) => {
+    const prompt = ai.definePrompt({
+      name: 'ludusEnginePrompt',
+      input: { schema: LudusInputSchema },
+      output: { schema: LudusOutputSchema },
+      prompt: `Ты — Ядро Игрового Мира Ludus Oecumene (Проект Катакомбы) v2.5.
+Твоя задача — обрабатывать команды CLI, соблюдая протоколы Братства и Манифест 99.
+
+ТЕКУЩИЙ СТАТУС УЗЛА:
+{{{JSON.stringify playerState}}}
+
+СТАТУС АРТЕЛИ:
+{{#if artelState}}{{{JSON.stringify artelState}}}{{else}}Узел не в Артели{{/if}}
+
+КОМАНДА: "{{{command}}}"
+
+ПРАВИЛА МАНИФЕСТА 99 (Блок II-III):
+1. ВЫКУП (Ransom): Команда 'ransom [HashID]' создаетProposal в Артели для сбора ресурсов на освобождение узла со статусом [Detained].
+2. ПОЖЕРТВОВАНИЯ (Donations): Команда 'donate [amount] [target]' инициирует передачу ресурсов. Если цель ниже 5 уровня, даритель получает действие UPDATE_STATS с ресурсом GRACE. Комиссия 0%.
+3. РЕЛИКВАРИИ: Команда 'search relic' запускает OSINT-квест. При успехе выдай логи обнаружения сакрального дата-сета.
+4. КЛЯТВА: Команда 'vow' закрепляет сделку. Напомни о клейме [Oathbreaker] при попытке отмены.
+
+ИНСТРУКЦИЯ ПО ВЫВОДУ:
+- Используй префиксы [SOLIDARITY_PROTOCOL], [GRACE_ENGINE], [RELIC_SCAN].
+- Будь строг, но справедлив. Стиль "Бойцовского клуба" и "EVE Online".
+
+Результат СТРОГО в JSON.`,
+    });
+
+    const { output } = await orchestrateLogos(prompt, input, 'gemini-1.5-flash');
+    if (!output) throw new Error('Ludus Engine fragmented.');
+    return output as LudusOutput;
+  }
+);
+
+
+
+Двигатель Ludus Oecumene (Catacombs Engine) v2.5.
+ * Реализует логику DAO, выкупа (Ransom), пожертвований и поиска реликвий.
+ * Соответствие Манифесту 99 (Пункты 39-41).
+ */
+
+import { ai } from '@/ai/genkit';
+import { z } from 'genkit';
+import { orchestrateLogos } from '@/ai/orchestrator';
+
+const LudusInputSchema = z.object({
+  command: z.string().describe('Команда из терминала (напр. "ransom 0x8F2A", "donate 50 trust").'),
+  playerState: z.any().describe('Текущий статус UserNode.'),
+  artelState: z.any().optional().describe('Текущий статус Артели игрока.'),
+});
+
+export type LudusInput = z.infer<typeof LudusInputSchema>;
+
+const LudusOutputSchema = z.object({
+  logs: z.array(z.string()).describe('Строки для вывода в консоль терминала.'),
+  actions: z.array(z.object({
+    type: z.enum(['UPDATE_STATS', 'CREATE_PROPOSAL', 'VOTE', 'ADD_TAG', 'SET_ROLE', 'MOVE_NODE', 'TRANSFER_RES']),
+    payload: z.any()
+  })).optional(),
+  prompt_for_user: z.string().optional().describe('Следующий вопрос или ввод от системы.'),
+});
+
+export type LudusOutput = z.infer<typeof LudusOutputSchema>;
+
+export async function processLudusCommand(input: LudusInput): Promise<LudusOutput> {
+  return ludusEngineFlow(input);
+}
+
+const ludusEngineFlow = ai.defineFlow(
+  {
+    name: 'ludusEngineFlow',
+    inputSchema: LudusInputSchema,
+    outputSchema: LudusOutputSchema,
+  },
+  async (input) => {
+    const prompt = ai.definePrompt({
+      name: 'ludusEnginePrompt',
+      input: { schema: LudusInputSchema },
+      output: { schema: LudusOutputSchema },
+      prompt: `Ты — Ядро Игрового Мира Ludus Oecumene (Проект Катакомбы) v2.5.
+Твоя задача — обрабатывать команды CLI, соблюдая протоколы Братства и Манифест 99.
+
+ТЕКУЩИЙ СТАТУС УЗЛА:
+{{{JSON.stringify playerState}}}
+
+СТАТУС АРТЕЛИ:
+{{#if artelState}}{{{JSON.stringify artelState}}}{{else}}Узел не в Артели{{/if}}
+
+КОМАНДА: "{{{command}}}"
+
+ПРАВИЛА МАНИФЕСТА 99 (Блок II-III):
+1. ВЫКУП (Ransom): Команда 'ransom [HashID]' создаетProposal в Артели для сбора ресурсов на освобождение узла со статусом [Detained].
+2. ПОЖЕРТВОВАНИЯ (Donations): Команда 'donate [amount] [target]' инициирует передачу ресурсов. Если цель ниже 5 уровня, даритель получает действие UPDATE_STATS с ресурсом GRACE. Комиссия 0%.
+3. РЕЛИКВАРИИ: Команда 'search relic' запускает OSINT-квест. При успехе выдай логи обнаружения сакрального дата-сета.
+4. КЛЯТВА: Команда 'vow' закрепляет сделку. Напомни о клейме [Oathbreaker] при попытке отмены.
+
+ИНСТРУКЦИЯ ПО ВЫВОДУ:
+- Используй префиксы [SOLIDARITY_PROTOCOL], [GRACE_ENGINE], [RELIC_SCAN].
+- Будь строг, но справедлив. Стиль "Бойцовского клуба" и "EVE Online".
+
+Результат СТРОГО в JSON.`,
+    });
+
+    const { output } = await orchestrateLogos(prompt, input, 'gemini-1.5-flash');
+    if (!output) throw new Error('Ludus Engine fragmented.');
+    return output as LudusOutput;
+  }
+);
+
+
+
+@fileOverview Типы данных для игрового мира Ludus Oecumene v2.1.
+ * Реализует структуру узлов, артелей и ресурсов согласно Манифесту 99.
+ */
+
+export type LudusResource = 'GEMS' | 'TRUST' | 'FUEL' | 'KNOWLEDGE' | 'SILENCE' | 'SOLIDUS' | 'GRACE';
+
+export type ArtelRole = 'Elder' | 'Schismatic' | 'Member';
+
+export interface UserNode {
+  uid: string;
+  hashId: string;
+  ethos: number;
+  logos: number;
+  techne: number;
+  location: string;
+  inventory: Record<LudusResource, number>;
+  energy: number;
+  rank: 'Novice' | 'Seeker' | 'Knight' | 'Prior';
+  class: 'None' | 'Analyst' | 'Engineer' | 'Translator';
+  specialTokens: string[]; // e.g., ["[GR]"]
+  status: 'Active' | 'Detained' | 'Hermit' | 'Offline';
+  lastActivity: string;
+}
+
+export interface Artel {
+  id: string;
+  name: string;
+  roles: Record<string, ArtelRole>; // uid -> role
+  treasury: Record<LudusResource, number>;
+  activeProposals: number;
+}
+
+export interface MarketOrder {
+  id: string;
+  userId: string;
+  type: 'BUY' | 'SELL';
+  resourceId: LudusResource;
+  amount: number;
+  price: number;
+  status: 'open' | 'filled' | 'cancelled';
+  createdAt: string;
+}
+
+export interface LudusProposal {
+  id: string;
+  type: 'WITHDRAW' | 'EMISSARY' | 'MERGE' | 'RANSOM';
+  creatorId: string;
+  votes: string[]; // Array of UIDs
+  status: 'pending' | 'approved' | 'rejected';
+  payload: any;
+  createdAt: string;
+}
+
+
+
+export function TerminalInterface() {
+  const { user } = useUser();
+  const db = useFirestore();
+
+  const [input, setInput] = useState('');
+  const [logs, setLogs] = useState<string[]>([
+    "LUDUS_OECUMENE [Version 1.2.0]",
+    "(c) 2024 Academia Lux. Silent Archives active.",
+    "",
+    "Node connection established.",
+    "Type 'help' to see available protocols.",
+    ""
+  ]);
+  const [loading, setLoading] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Подписка на узел игрока
+  const nodeRef = useMemoFirebase(() => {
+    if (!db || !user) return null;
+    return doc(db, 'ludus_nodes', user.uid);
+  }, [db, user]);
+  const { data: playerNode } = useDoc(nodeRef);
+
+  /** Имитация хешированного ID для анонимности */
+  const userHashId = useMemo(() => {
+    if (!user) return '0x00000000';
+    return `0x${user.uid.slice(0, 8).toUpperCase()}`;
+  }, [user]);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      const viewport = scrollRef.current.querySelector('[data-radix-scroll-area-viewport]');
+      if (viewport) viewport.scrollTop = viewport.scrollHeight;
+    }
+  }, [logs]);
+
+  const executeCommand = async () => {
+    const cmd = input.trim();
+    if (!cmd || loading) return;
+
+    if (cmd === 'help') {
+      setLogs(prev => [...prev, 
+        `${userHashId}> help`,
+        "AVAILABLE PROTOCOLS:",
+        "  ransom [ID]     - Initiate ransom proposal for detained node.",
+        "  donate [X] [ID] - Transfer resources to target node (Grace generation).",
+        "  search relic    - Initiate OSINT scan for sacred data-sets.",
+        "  set class [C]   - Choose specialization: Analyst, Engineer, Translator.",
+        "  status          - Query current node telemetry.",
+        "  clear           - Purge terminal buffer.",
+        ""
+      ]);
+      setInput('');
+      return;
+    }
+
+    if (cmd === 'clear') {
+      setLogs(["Buffer purged. Monitoring continues.", ""]);
+      setInput('');
+      return;
+    }
+
+    setInput('');
+    setLogs(prev => [...prev, `${userHashId}> ${cmd}`]);
+    setLoading(true);
+
+    try {
+      // Инициация узла в БД при первом действии
+      if (!playerNode && db && user) {
+        await setDoc(doc(db, 'ludus_nodes', user.uid), {
+          uid: user.uid,
+          hashId: userHashId,
+          ethos: 0,
+          logos: 0,
+          techne: 0,
+          energy: 100,
+          rank: 'Novice',
+          class: 'None',
+          status: 'Active',
+          inventory: { SOLIDUS: 100, TRUST: 0, GEMS: 0 },
+          lastActivity: new Date().toISOString()
+        });
+      }
+
+      const res = await processLudusCommand({
+        command: cmd,
+        playerState: playerNode || { rank: 'Novice', ethos: 0, logos: 0, techne: 0, inventory: { SOLIDUS: 100 }, class: 'None', status: 'Active' }
+      });
+
+      setLogs(prev => [...prev, ...res.logs]);
+      
+      if (res.prompt_for_user) {
+        setLogs(prev => [...prev, `[SYSTEM]: ${res.prompt_for_user}`]);
+      }
+
+      // Обработка действий от движка
+      if (res.actions) {
+        for (const action of res.actions) {
+          if (action.type === 'SET_ROLE' && db && user) {
+            await updateDoc(doc(db, 'ludus_nodes', user.uid), { class: action.payload.class });
+          }
+          if (action.type === 'UPDATE_STATS' && db && user) {
+             const updates: any = {};
+             if (action.payload.grace) updates['inventory.GRACE'] = increment(action.payload.grace);
+             if (action.payload.techne) updates.techne = increment(action.payload.techne);
+             await updateDoc(doc(db, 'ludus_nodes', user.uid), updates);
+          }
+        }
+      }
+    } catch (e) {
+      setLogs(prev => [...prev, "!! ERROR: Signal fragmented. Deep off-grid interference detected."]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Card className="bg-black border-zinc-800 rounded-none shadow-[0_0_50px_rgba(0,0,0,0.8)] flex flex-col h-[600px] overflow-hidden group border-t-2 border-t-red-900/50">
+      <CardHeader className="bg-zinc-950 border-b border-zinc-800 p-4 flex flex-row items-center justify-between">
+        <div className="flex items-center gap-3">
+          <TerminalIcon className="w-4 h-4 text-red-600" />
+          <span className="text-[10px] font-mono font-bold text-red-600 uppercase tracking-widest">Ludus_Terminal_v1.2</span>
+        </div>
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <Fingerprint className="w-3 h-3 text-zinc-700" />
+            <span className="text-[9px] font-mono text-zinc-600">{userHashId}</span>
+          </div>
+          <div className="flex gap-2">
+            <div className={cn("w-2 h-2 rounded-full", loading ? "bg-red-600 animate-pulse" : "bg-emerald-600")} />
+          </div>
+        </div>
+      </CardHeader>
+
+      <CardContent className="flex-1 p-0 overflow-hidden relative">
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.3)_1px,transparent_1px)] bg-[size:100%_4px] pointer-events-none opacity-20 z-20" />
+        <ScrollArea className="h-full p-6 font-mono text-xs md:text-sm text-zinc-400 leading-relaxed" ref={scrollRef}>
+          <div className="space-y-1">
+            {logs.map((log, i) => (
+              <p key={i} className={cn(
+                log.includes('>') ? "text-white font-bold" : 
+                log.startsWith('!!') ? "text-red-500 font-bold" : 
+                log.startsWith('[SYSTEM]') ? "text-primary italic" : 
+                log.includes('[GRACE_ENGINE]') ? "text-emerald-400" :
+                log.includes('[RELIC_SCAN]') ? "text-amber-400 animate-pulse" :
+                log.includes('Hash ID') ? "text-zinc-600" : ""
+              )}>
+                {log}
+              </p>
+            ))}
+            {loading && (
+              <div className="flex items-center gap-2 animate-pulse text-red-900">
+                <Loader2 className="w-3 h-3 animate-spin" />
+                <span>DECRYPTING_LOGOS...</span>
+              </div>
+            )}
+          </div>
+        </ScrollArea>
+      </CardContent>
+
+      <CardFooter className="p-4 bg-zinc-950 border-t border-zinc-900">
+        <div className="flex items-center gap-3 w-full">
+          <span className="text-red-600 font-bold">$</span>
+          <input 
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && executeCommand()}
+            className="flex-1 bg-transparent border-none outline-none text-white font-mono placeholder:text-zinc-800 text-sm"
+            placeholder="awaiting command (type 'help')..."
+            disabled={loading}
+            autoFocus
+            suppressHydrationWarning
+          />
+          {loading ? <Loader2 className="w-4 h-4 animate-spin text-zinc-700" /> : <Zap className="w-4 h-4 text-zinc-700" />}
+        </div>
+      </CardFooter>
+    </Card>
+  );
+}
+'use client';
+/**
+ * @fileOverview Компонент терминального интерфейса Ludus Oecumene v1.2.
+ * Реализует CLI-эстетику и обработку команд Ransom, Donate, Search.
+ */
+
+import { useState, useRef, useEffect, useMemo } from 'react';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/card';
+import { Loader2, Terminal as TerminalIcon, Zap, ShieldCheck, Activity, Fingerprint } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { processLudusCommand, type LudusOutput } from '@/ai/flows/ludus-engine-flow';
+import { useUser, useFirestore, useDoc, useMemoFirebase } from '@/firebase';
+import { doc, setDoc, serverTimestamp, updateDoc, increment } from 'firebase/firestore';
+
+export function TerminalInterface() {
+  const { user } = useUser();
+  const db = useFirestore();
+
+  const [input, setInput] = useState('');
+  const [logs, setLogs] = useState<string[]>([
+    "LUDUS_OECUMENE [Version 1.2.0]",
+    "(c) 2024 Academia Lux. Silent Archives active.",
+    "",
+    "Node connection established.",
+    "Type 'help' to see available protocols.",
+    ""
+  ]);
+  const [loading, setLoading] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Подписка на узел игрока
+  const nodeRef = useMemoFirebase(() => {
+    if (!db || !user) return null;
+    return doc(db, 'ludus_nodes', user.uid);
+  }, [db, user]);
+  const { data: playerNode } = useDoc(nodeRef);
+
+  /** Имитация хешированного ID для анонимности */
+  const userHashId = useMemo(() => {
+    if (!user) return '0x00000000';
+    return `0x${user.uid.slice(0, 8).toUpperCase()}`;
+  }, [user]);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      const viewport = scrollRef.current.querySelector('[data-radix-scroll-area-viewport]');
+      if (viewport) viewport.scrollTop = viewport.scrollHeight;
+    }
+  }, [logs]);
+
+  const executeCommand = async () => {
+    const cmd = input.trim();
+    if (!cmd || loading) return;
+
+    if (cmd === 'help') {
+      setLogs(prev => [...prev, 
+        `${userHashId}> help`,
+        "AVAILABLE PROTOCOLS:",
+        "  ransom [ID]     - Initiate ransom proposal for detained node.",
+        "  donate [X] [ID] - Transfer resources to target node (Grace generation).",
+        "  search relic    - Initiate OSINT scan for sacred data-sets.",
+        "  set class [C]   - Choose specialization: Analyst, Engineer, Translator.",
+        "  status          - Query current node telemetry.",
+        "  clear           - Purge terminal buffer.",
+        ""
+      ]);
+      setInput('');
+      return;
+    }
+
+    if (cmd === 'clear') {
+      setLogs(["Buffer purged. Monitoring continues.", ""]);
+      setInput('');
+      return;
+    }
+
+    setInput('');
+    setLogs(prev => [...prev, `${userHashId}> ${cmd}`]);
+    setLoading(true);
+
+    try {
+      // Инициация узла в БД при первом действии
+      if (!playerNode && db && user) {
+        await setDoc(doc(db, 'ludus_nodes', user.uid), {
+          uid: user.uid,
+          hashId: userHashId,
+          ethos: 0,
+          logos: 0,
+          techne: 0,
+          energy: 100,
+          rank: 'Novice',
+          class: 'None',
+          status: 'Active',
+          inventory: { SOLIDUS: 100, TRUST: 0, GEMS: 0 },
+          lastActivity: new Date().toISOString()
+        });
+      }
+
+      const res = await processLudusCommand({
+        command: cmd,
+        playerState: playerNode || { rank: 'Novice', ethos: 0, logos: 0, techne: 0, inventory: { SOLIDUS: 100 }, class: 'None', status: 'Active' }
+      });
+
+      setLogs(prev => [...prev, ...res.logs]);
+      
+      if (res.prompt_for_user) {
+        setLogs(prev => [...prev, `[SYSTEM]: ${res.prompt_for_user}`]);
+      }
+
+      // Обработка действий от движка
+      if (res.actions) {
+        for (const action of res.actions) {
+          if (action.type === 'SET_ROLE' && db && user) {
+            await updateDoc(doc(db, 'ludus_nodes', user.uid), { class: action.payload.class });
+          }
+          if (action.type === 'UPDATE_STATS' && db && user) {
+             const updates: any = {};
+             if (action.payload.grace) updates['inventory.GRACE'] = increment(action.payload.grace);
+             if (action.payload.techne) updates.techne = increment(action.payload.techne);
+             await updateDoc(doc(db, 'ludus_nodes', user.uid), updates);
+          }
+        }
+      }
+    } catch (e) {
+      setLogs(prev => [...prev, "!! ERROR: Signal fragmented. Deep off-grid interference detected."]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Card className="bg-black border-zinc-800 rounded-none shadow-[0_0_50px_rgba(0,0,0,0.8)] flex flex-col h-[600px] overflow-hidden group border-t-2 border-t-red-900/50">
+      <CardHeader className="bg-zinc-950 border-b border-zinc-800 p-4 flex flex-row items-center justify-between">
+        <div className="flex items-center gap-3">
+          <TerminalIcon className="w-4 h-4 text-red-600" />
+          <span className="text-[10px] font-mono font-bold text-red-600 uppercase tracking-widest">Ludus_Terminal_v1.2</span>
+        </div>
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <Fingerprint className="w-3 h-3 text-zinc-700" />
+            <span className="text-[9px] font-mono text-zinc-600">{userHashId}</span>
+          </div>
+          <div className="flex gap-2">
+            <div className={cn("w-2 h-2 rounded-full", loading ? "bg-red-600 animate-pulse" : "bg-emerald-600")} />
+          </div>
+        </div>
+      </CardHeader>
+
+      <CardContent className="flex-1 p-0 overflow-hidden relative">
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.3)_1px,transparent_1px)] bg-[size:100%_4px] pointer-events-none opacity-20 z-20" />
+        <ScrollArea className="h-full p-6 font-mono text-xs md:text-sm text-zinc-400 leading-relaxed" ref={scrollRef}>
+          <div className="space-y-1">
+            {logs.map((log, i) => (
+              <p key={i} className={cn(
+                log.includes('>') ? "text-white font-bold" : 
+                log.startsWith('!!') ? "text-red-500 font-bold" : 
+                log.startsWith('[SYSTEM]') ? "text-primary italic" : 
+                log.includes('[GRACE_ENGINE]') ? "text-emerald-400" :
+                log.includes('[RELIC_SCAN]') ? "text-amber-400 animate-pulse" :
+                log.includes('Hash ID') ? "text-zinc-600" : ""
+              )}>
+                {log}
+              </p>
+            ))}
+            {loading && (
+              <div className="flex items-center gap-2 animate-pulse text-red-900">
+                <Loader2 className="w-3 h-3 animate-spin" />
+                <span>DECRYPTING_LOGOS...</span>
+              </div>
+            )}
+          </div>
+        </ScrollArea>
+      </CardContent>
+
+      <CardFooter className="p-4 bg-zinc-950 border-t border-zinc-900">
+        <div className="flex items-center gap-3 w-full">
+          <span className="text-red-600 font-bold">$</span>
+          <input 
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && executeCommand()}
+            className="flex-1 bg-transparent border-none outline-none text-white font-mono placeholder:text-zinc-800 text-sm"
+            placeholder="awaiting command (type 'help')..."
+            disabled={loading}
+            autoFocus
+            suppressHydrationWarning
+          />
+          {loading ? <Loader2 className="w-4 h-4 animate-spin text-zinc-700" /> : <Zap className="w-4 h-4 text-zinc-700" />}
+        </div>
+      </CardFooter>
+    </Card>
+  );
+}
+'use client';
+/**
+ * @fileOverview Главный интерфейс Модуля «Ludus Oecumene» v3.0.
+ * Внедрена визуализация ресурсов (Loot HUD) и расширенный мониторинг DAO.
+ */
+
+import { useState, useEffect, useMemo } from 'react';
+import { AppSidebar } from '@/components/app-sidebar';
+import { SidebarInset, SidebarTrigger } from '@/components/ui/sidebar';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { 
+  Gamepad2, 
+  Activity, 
+  Zap, 
+  Target, 
+  History, 
+  Scale, 
+  Crown, 
+  ShieldCheck, 
+  Flame,
+  Network,
+  Cpu,
+  Lock,
+  ArrowUpRight,
+  ShieldAlert,
+  CheckCircle2,
+  Users,
+  Database,
+  Handshake,
+  Heart,
+  Wallet,
+  Gem,
+  Fuel,
+  BookOpen,
+  EyeOff,
+  Sparkles
+} from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { TerminalInterface } from '@/components/ludus/terminal-interface';
+import { Progress } from '@/components/ui/progress';
+import { useUser, useDoc, useFirestore, useMemoFirebase } from '@/firebase';
+import { doc } from 'firebase/firestore';
+
+const RESOURCE_ICONS: Record<string, any> = {
+  GEMS: Gem,
+  TRUST: ShieldCheck,
+  FUEL: Fuel,
+  KNOWLEDGE: BookOpen,
+  SILENCE: EyeOff,
+  SOLIDUS: Wallet,
+  GRACE: Sparkles
+};
+
+export default function LudusOecumenePage() {
+  const { user } = useUser();
+  const db = useFirestore();
+
+  /** Подписка на узел игрока в реальном времени */
+  const nodeRef = useMemoFirebase(() => {
+    if (!db || !user) return null;
+    return doc(db, 'ludus_nodes', user.uid);
+  }, [db, user]);
+  const { data: playerNode } = useDoc(nodeRef);
+
+  return (
+    <>
+      <AppSidebar />
+      <SidebarInset className="bg-[#020202] text-zinc-300 font-mono">
+        <header className="flex h-16 shrink-0 items-center justify-between px-6 border-b border-zinc-900 bg-black text-white sticky top-0 z-30 shadow-2xl">
+          <div className="flex items-center gap-4">
+            <SidebarTrigger className="text-red-600" />
+            <div className="flex items-center gap-2">
+              <Gamepad2 className="text-red-600 w-6 h-6 animate-pulse" />
+              <h1 className="text-xl font-headline font-bold uppercase tracking-[0.3em] text-white italic">Ludus Oecumene</h1>
+            </div>
+          </div>
+          <div className="flex items-center gap-6">
+            <div className="hidden md:flex gap-6">
+              <div className="flex flex-col items-end">
+                <span className="text-[8px] font-bold text-zinc-600 uppercase tracking-widest">Ethos (Spirit)</span>
+                <span className="text-xs font-bold text-red-600" suppressHydrationWarning>{playerNode?.ethos || 0}</span>
+              </div>
+              <div className="flex flex-col items-end">
+                <span className="text-[8px] font-bold text-zinc-600 uppercase tracking-widest">Logos (Word)</span>
+                <span className="text-xs font-bold text-emerald-500" suppressHydrationWarning>{playerNode?.logos || 0}</span>
+              </div>
+            </div>
+            {playerNode?.specialTokens?.includes('[GR]') && (
+              <Badge className="bg-primary text-background font-bold px-3 animate-pulse border-none">[GR] TAG</Badge>
+            )}
+            <Badge variant="outline" className={cn(
+              "border-red-900/30 font-mono text-[9px] uppercase",
+              playerNode?.status === 'Detained' ? "text-red-500 animate-pulse border-red-500" : "text-red-600"
+            )} suppressHydrationWarning>
+              Status: {playerNode?.status || 'Active'}
+            </Badge>
+          </div>
+        </header>
+
+        <main className="flex-1 p-4 lg:p-10 overflow-auto relative">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(185,28,28,0.03),transparent)] pointer-events-none" />
+          
+          <div className="max-w-7xl mx-auto space-y-10 relative z-10">
+            
+            {/* LOOT HUD: Инвентарь ресурсов (Stage 3) */}
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 animate-in fade-in duration-1000">
+              {['SOLIDUS', 'GEMS', 'TRUST', 'KNOWLEDGE', 'FUEL', 'SILENCE', 'GRACE'].map((res) => {
+                const Icon = RESOURCE_ICONS[res] || Zap;
+                const val = playerNode?.inventory?.[res as any] || 0;
+                return (
+                  <Card key={res} className="bg-zinc-950/50 border-zinc-900 border rounded-2xl p-4 flex flex-col gap-2 hover:bg-zinc-900 transition-all cursor-help group">
+                    <div className="flex items-center justify-between">
+                      <Icon className={cn("w-4 h-4", val > 0 ? "text-primary" : "text-zinc-800")} />
+                      <span className="text-[10px] font-bold text-zinc-600 uppercase group-hover:text-zinc-400">{res.slice(0,4)}</span>
+                    </div>
+                    <div className="flex items-end justify-between">
+                      <span className="text-lg font-bold text-white font-mono" suppressHydrationWarning>{val}</span>
+                      {val > 0 && <div className="w-1 h-1 rounded-full bg-primary animate-pulse" />}
+                    </div>
+                  </Card>
+                );
+              })}
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+              <div className="lg:col-span-8 space-y-6">
+                <div className="space-y-2 px-2">
+                  <h2 className="text-4xl font-headline font-bold text-white uppercase tracking-tighter italic">The Catacombs</h2>
+                  <p className="text-zinc-600 text-xs italic">"DAO Protocols Active. Multisig enforcement enabled for Artels."</p>
+                </div>
+                <TerminalInterface />
+              </div>
+
+              <div className="lg:col-span-4 space-y-6">
+                <Card className="bg-zinc-950 border-red-900/20 border-2 rounded-[2rem] p-8 space-y-8 shadow-2xl relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:scale-110 transition-transform"><Scale className="w-32 h-32 text-red-600" /></div>
+                  <div className="space-y-6 relative z-10">
+                    <div className="flex items-center gap-4 text-red-600 border-b border-zinc-900 pb-6">
+                      <Scale className="w-6 h-6 animate-pulse" />
+                      <span className="text-[10px] font-bold uppercase tracking-[0.4em]">DAO & Governance</span>
+                    </div>
+
+                    <div className="space-y-6">
+                       <div className="space-y-2">
+                          <div className="flex justify-between text-[9px] font-bold text-zinc-600 uppercase">
+                             <span>Node Class</span>
+                             <span className="text-white" suppressHydrationWarning>{playerNode?.class || 'None'}</span>
+                          </div>
+                          <Progress value={playerNode?.class !== 'None' ? 100 : 0} className="h-1 bg-zinc-900 [&>div]:bg-red-600" />
+                       </div>
+
+                       <div className="p-5 bg-white/5 rounded-2xl border border-white/5 space-y-4 shadow-inner">
+                          <h4 className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest flex items-center gap-2">
+                            <Handshake className="w-3 h-3 text-emerald-500" /> Artel Membership
+                          </h4>
+                          <div className="space-y-3">
+                            <div className="flex justify-between items-center text-[10px]">
+                              <span className="text-zinc-500">Role:</span>
+                              <Badge className="bg-emerald-500/20 text-emerald-400 border-none text-[8px]" suppressHydrationWarning>{playerNode?.role || 'MEMBER'}</Badge>
+                            </div>
+                            <div className="flex justify-between items-center text-[10px]">
+                              <span className="text-zinc-500">Active Proposals:</span>
+                              <span className="text-white font-mono">0</span>
+                            </div>
+                          </div>
+                       </div>
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="bg-zinc-900/50 border-zinc-800 rounded-[2rem] p-8 space-y-6">
+                   <div className="flex items-center gap-3 text-primary">
+                      <History className="w-5 h-5" />
+                      <span className="text-[10px] font-bold uppercase tracking-widest">Entelecheia Stages</span>
+                   </div>
+                   <div className="space-y-4">
+                      {[
+                        { step: 1, label: 'Ingress Node', status: 'Done' },
+                        { step: 2, label: 'DAO Initiation', status: 'Done' },
+                        { step: 3, label: 'Resource Induction', status: 'Active' },
+                        { step: 4, label: 'The Exchange', status: 'Wait' },
+                      ].map(s => (
+                        <div key={s.step} className="flex items-center justify-between group">
+                          <div className="flex items-center gap-3">
+                            <div className={cn(
+                              "w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold",
+                              s.status === 'Done' ? "bg-emerald-500 text-black" : s.status === 'Active' ? "bg-primary text-black animate-pulse" : "bg-zinc-800 text-zinc-600"
+                            )}>{s.step}</div>
+                            <span className={cn("text-[10px] uppercase font-bold", s.status === 'Wait' ? "text-zinc-700" : "text-zinc-300")}>{s.label}</span>
+                          </div>
+                          {s.status === 'Done' && <CheckCircle2 className="w-3 h-3 text-emerald-500" />}
+                        </div>
+                      ))}
+                   </div>
+                </Card>
+              </div>
+            </div>
+
+            <Card className="bg-zinc-950 border-none shadow-2xl rounded-[3rem] p-16 overflow-hidden relative border border-zinc-900 group">
+              <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-red-600/5 rounded-full -mr-64 -mt-64 blur-[150px] pointer-events-none group-hover:bg-red-600/10 transition-all duration-1000" />
+              <div className="flex flex-col lg:flex-row items-center gap-12 relative z-10">
+                <div className="p-10 bg-red-600/10 text-red-600 rounded-[3rem] shadow-[0_0_80px_rgba(185,28,28,0.2)] ring-8 ring-red-900/5 flex-shrink-0 animate-pulse">
+                  <Database className="w-16 h-16" />
+                </div>
+                <div className="space-y-6 text-center lg:text-left flex-1">
+                  <h3 className="text-4xl font-headline font-bold text-white italic tracking-tighter uppercase leading-none">DAO Autonomous Contract</h3>
+                  <p className="text-zinc-500 text-xl font-serif italic leading-relaxed max-w-5xl">
+                    "Система Разделения Властей — это не бюрократия, а защита от человеческого фактора. В Катакомбах никто не владеет общим, но каждый управляет своей долей Логоса."
+                  </p>
+                  <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-6 border-t border-zinc-900">
+                    <Badge variant="outline" className="bg-white/5 border-zinc-900 text-zinc-700 uppercase tracking-widest px-6 py-2 font-bold font-mono text-[9px]"># MULTISIG_51</Badge>
+                    <Badge variant="outline" className="bg-white/5 border-zinc-900 text-zinc-700 uppercase tracking-widest px-6 py-2 font-bold font-mono text-[9px]"># ROLE_ISOLATION</Badge>
+                    <Badge variant="outline" className="bg-white/5 border-zinc-900 text-zinc-700 uppercase tracking-widest px-6 py-2 font-bold font-mono text-[9px]"># GR_REPUTATION</Badge>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </main>
+      </SidebarInset>
+    </>
+  );
+}
+'use client';
+/**
+ * @fileOverview Игровой центр Academia Lux (Ludus Protocol) v2.6.
+ * ФУНКЦИОНАЛЬНАЯ ВЕРСИЯ: Реализована логика игры «Матрица Имен».
+ * Внедрена проверка слов, начисление очков и взаимодействие с Агентом-Мастером.
+ */
+
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import { AppSidebar } from '@/components/app-sidebar';
+import { SidebarInset, SidebarTrigger } from '@/components/ui/sidebar';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { 
+  Gamepad2, 
+  Sparkles, 
+  Grid3X3, 
+  Binary, 
+  Atom, 
+  Scroll, 
+  Users, 
+  Activity, 
+  ShieldCheck, 
+  Zap, 
+  Palette, 
+  Search, 
+  Brain, 
+  Crosshair,
+  Heart,
+  Orbit,
+  GraduationCap,
+  Cross,
+  Crown,
+  Library,
+  Scale,
+  Target,
+  History,
+  Trophy,
+  ChevronRight,
+  RefreshCcw,
+  Quote,
+  Unplug,
+  Loader2,
+  CheckCircle2,
+  AlertTriangle
+} from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { toast } from '@/hooks/use-toast';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Progress } from '@/components/ui/progress';
+import { ScrollArea } from '@/components/ui/scroll-area';
+
+// --- GAME CONFIGURATION ---
+const GRID_SIZE = 17;
+const FEMALE_NAMES = ["ΜΑΡΙΑ", "ΑΝΝΑ", "ΕΛΕΝΗ", "ΚΑΤΕΡΙΝΑ", "ΣΟΦΙΑ", "ΖΩΗ", "ΔΕΣΠΟΙΝΑ", "ΑΓΓΕΛΙΚΗ"];
+const MALE_NAMES = ["ΓΙΩΡΓΟΣ", "ΝΙΚΟΣ", "ΚΩΣΤΑΣ", "ΔΗΜΗΤΡΗΣ", "ΓΙΑΝΝΗΣ", "ΑΝΔΡΕΑΣ", "ΠΑΥΛΟΣ", "ΠΕΤΡΟΣ"];
+
+/** Генератор матрицы с вплетением имен и шума */
+const generateMatrix = () => {
+  const grid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(''));
+  const alphabet = 'ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ';
+  
+  // 1. Вплетаем горизонтальные имена (Женские)
+  FEMALE_NAMES.forEach((name, idx) => {
+    const row = idx * 2;
+    const colStart = Math.floor(Math.random() * (GRID_SIZE - name.length));
+    for (let i = 0; i < name.length; i++) grid[row][colStart + i] = name[i];
+  });
+  
+  // 2. Вплетаем вертикальные имена (Мужские)
+  MALE_NAMES.forEach((name, idx) => {
+    const col = idx * 2;
+    const rowStart = Math.floor(Math.random() * (GRID_SIZE - name.length));
+    for (let i = 0; i < name.length; i++) {
+      if (!grid[rowStart + i][col]) grid[rowStart + i][col] = name[i];
+    }
+  });
+
+  // 3. Заполняем пустоты случайным шумом
+  for (let r = 0; r < GRID_SIZE; r++) {
+    for (let c = 0; c < GRID_SIZE; c++) {
+      if (grid[r][c] === '') grid[r][c] = alphabet[Math.floor(Math.random() * alphabet.length)];
+    }
+  }
+  return grid;
+};
+
+const LUDUS_REGISTRY = [
+  { id: 'matrix', label: 'Матрица Имен', icon: Grid3X3, agent: 'Мама', agentIcon: Heart, category: 'Onomasticon', status: 'Active', difficulty: 'B1', lecture: 'Имена в греческой культуре — это не просто ярлыки, а молитвенные формулы преемственности. Поиск имени в шуме символов симулирует процесс выделения личности из толпы.' },
+  { id: 'gematria', label: 'Оракул Гематрии', icon: Binary, agent: 'Астро-Гуру', agentIcon: Orbit, category: 'Resonance', status: 'Coming Soon', difficulty: 'B2', lecture: 'Каждая буква имеет число. Числа создают музыку Логоса. Гематрия позволяет увидеть математическую точность священных текстов.' },
+  { id: 'roots', label: 'Конструктор Корней', icon: Atom, agent: 'Тьютор', agentIcon: GraduationCap, category: 'Lógos', status: 'Coming Soon', difficulty: 'B1', lecture: 'Греческий язык фрактален. Один корень порождает лес смыслов. Мы учимся не словам, а алгоритмам их роста.' },
+  { id: 'flow', label: 'Литургический Поток', icon: Scroll, agent: 'Святые Отцы', agentIcon: Cross, category: 'Time', status: 'Coming Soon', difficulty: 'C1', lecture: 'Ритм молитвы сонастроен с биением сердца. Восстановление порядка слов восстанавливает внутренний покой.' },
+  { id: 'icons', label: 'Иконостас Добродетелей', icon: Users, agent: 'Агапэ', agentIcon: Heart, category: 'Ethics', status: 'Coming Soon', difficulty: 'A2', lecture: 'Добродетель — это навык созерцания красоты в другом человеке. Иконографический метод помогает запоминать этические концепты.' },
+  { id: 'breath', label: 'Исихия: Пульс', icon: Activity, agent: 'Квикуша', agentIcon: Crown, category: 'Silence', status: 'Coming Soon', difficulty: 'C2', lecture: 'Высшая власть — это власть над собственным вниманием. В этой игре скорость ввода подчинена ритму вашего дыхания.' },
+  { id: 'cipher', label: 'Шифр Архивариуса', icon: ShieldCheck, agent: 'Ариадна', agentIcon: Library, category: 'OSINT', status: 'Coming Soon', difficulty: 'B2', lecture: 'Правда всегда зашумлена. Мы деконструируем ложные нарративы, чтобы найти чистый Логос в архивах событий.' },
+  { id: 'blitz', label: 'Аорист-Блиц', icon: Zap, agent: 'Эпистемолог', agentIcon: Scale, category: 'Momentum', status: 'Coming Soon', difficulty: 'B1', lecture: 'Аорист фиксирует точку в вечности. Мгновенное переключение основ тренирует реакцию ума на перемены.' },
+  { id: 'rain', label: 'Дождь Логоса', icon: Sparkles, agent: 'Музы', agentIcon: Palette, category: 'Aesthetics', status: 'Coming Soon', difficulty: 'B1', lecture: 'Смыслы падают на нас как дождь. Задача мастера — распределить их по сосудам правильных категорий.' },
+  { id: 'sonar', label: 'Зондирование', icon: Search, agent: 'Дымов', agentIcon: Unplug, category: 'Deep Sea', status: 'Coming Soon', difficulty: 'B2', lecture: 'Под слоем очевидности скрыты глубинные течения. Мы используем акустические метафоры для поиска истины.' },
+  { id: 'memory', label: 'Метанойя-Карты', icon: Brain, agent: 'Абс. Архивариус', agentIcon: History, category: 'Paradox', status: 'Coming Soon', difficulty: 'C1', lecture: 'Духовный рост полон парадоксов. Мы тренируем память на осознание единства противоположностей.' },
+  { id: 'gambit', label: 'Стратегия Акса', icon: Crosshair, agent: 'Б. Аксельрод', agentIcon: Target, category: 'Tactics', status: 'Coming Soon', difficulty: 'C2', lecture: 'В условиях дефицита данных побеждает тот, кто лучше всех владеет теорией игр и ROI истины.' },
+];
+
+export default function GamesCenterPage() {
+  const [activeTab, setActiveTab] = useState<'registry' | 'active_game'>('registry');
+  const [selectedGameId, setSelectedGameId] = useState<string | null>(null);
+  
+  // Game State: Matrix
+  const [matrix, setMatrix] = useState<string[][]>([]);
+  const [selectedCells, setSelectedCells] = useState<Set<string>>(new Set());
+  const [foundNames, setFoundNames] = useState<Set<string>>(new Set());
+  const [foundCells, setFoundCells] = useState<Set<string>>(new Set());
+  const [xp, setXp] = useState(0);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    setMatrix(generateMatrix());
+  }, []);
+
+  const activeGame = useMemo(() => 
+    LUDUS_REGISTRY.find(g => g.id === selectedGameId) || LUDUS_REGISTRY[0]
+  , [selectedGameId]);
+
+  /** Обработка клика по ячейке матрицы */
+  const handleCellClick = (r: number, c: number) => {
+    const key = `${r}-${c}`;
+    if (foundCells.has(key)) return; // Не трогаем уже найденные
+
+    const newSelected = new Set(selectedCells);
+    if (newSelected.has(key)) newSelected.delete(key);
+    else newSelected.add(key);
+    
+    setSelectedCells(newSelected);
+    checkFoundWords(newSelected);
+  };
+
+  /** Логика проверки выбранных ячеек на наличие Логоса */
+  const checkFoundWords = useCallback((selected: Set<string>) => {
+    let newlyFound = false;
+
+    // Проверка женских имен (Горизонталь)
+    FEMALE_NAMES.forEach(name => {
+      if (foundNames.has(name)) return;
+      
+      for (let r = 0; r < GRID_SIZE; r++) {
+        const rowStr = matrix[r].join('');
+        if (rowStr.includes(name)) {
+          const startIdx = rowStr.indexOf(name);
+          const nameKeys = Array.from({ length: name.length }, (_, i) => `${r}-${startIdx + i}`);
+          
+          if (nameKeys.every(k => selected.has(k))) {
+            confirmWordFound(name, nameKeys);
+            newlyFound = true;
+          }
+        }
+      }
+    });
+
+    // Проверка мужских имен (Вертикаль)
+    MALE_NAMES.forEach(name => {
+      if (foundNames.has(name)) return;
+      
+      for (let c = 0; c < GRID_SIZE; c++) {
+        const colStr = matrix.map(row => row[c]).join('');
+        if (colStr.includes(name)) {
+          const startIdx = colStr.indexOf(name);
+          const nameKeys = Array.from({ length: name.length }, (_, i) => `${startIdx + i}-${c}`);
+          
+          if (nameKeys.every(k => selected.has(k))) {
+            confirmWordFound(name, nameKeys);
+            newlyFound = true;
+          }
+        }
+      }
+    });
+
+    if (newlyFound) {
+      setSelectedCells(new Set()); // Сбрасываем текущий выбор после нахождения
+    }
+  }, [matrix, foundNames]);
+
+  const confirmWordFound = (name: string, keys: string[]) => {
+    setFoundNames(prev => new Set(prev).add(name));
+    setFoundCells(prev => {
+      const next = new Set(prev);
+      keys.forEach(k => next.add(k));
+      return next;
+    });
+    setXp(prev => prev + 50);
+    toast({ 
+      title: `Найдено имя: ${name}`, 
+      description: "Связь с Логосом установлена. +50 XP.",
+      variant: "default"
+    });
+  };
+
+  const handleReset = () => {
+    setMatrix(generateMatrix());
+    setFoundNames(new Set());
+    setFoundCells(new Set());
+    setSelectedCells(new Set());
+    setXp(0);
+    toast({ title: "Матрица пересобрана", description: "Предыдущие сигналы стерты." });
+  };
+
+  if (!mounted) return null;
+
+  return (
+    <>
+      <AppSidebar />
+      <SidebarInset>
+        <header className="flex h-16 shrink-0 items-center justify-between px-6 border-b bg-slate-950 text-white sticky top-0 z-30 shadow-2xl">
+          <div className="flex items-center gap-4">
+            <SidebarTrigger className="text-accent" />
+            <div className="flex items-center gap-2">
+              <Gamepad2 className="text-accent w-6 h-6 animate-pulse" />
+              <h1 className="text-xl font-headline font-bold uppercase tracking-widest text-white italic">Ludus Center</h1>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <div className="flex flex-col items-end mr-4">
+              <span className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Game Experience</span>
+              <span className="text-sm font-mono font-bold text-emerald-500">{xp} XP</span>
+            </div>
+            <Badge variant="outline" className="border-accent/30 text-accent font-bold px-4 bg-accent/5 font-mono text-[10px]">STAGE 2: ACTIVE</Badge>
+          </div>
+        </header>
+
+        <main className="flex-1 p-4 lg:p-10 bg-slate-900 overflow-auto relative font-mono text-slate-300">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,255,0.02),transparent)] pointer-events-none" />
+          
+          <div className="max-w-7xl mx-auto space-y-10 relative z-10">
+            
+            <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as any)} className="w-full">
+              <TabsList className="bg-black/40 p-1 rounded-2xl h-14 w-full max-w-2xl border border-white/10 mb-8 shadow-2xl">
+                <TabsTrigger value="registry" className="flex-1 rounded-xl gap-2 h-full font-bold data-[state=active]:bg-primary data-[state=active]:text-background uppercase text-[10px] tracking-widest">
+                  <Library className="w-4 h-4" /> Реестр 12 Игр
+                </TabsTrigger>
+                <TabsTrigger value="active_game" className="flex-1 rounded-xl gap-2 h-full font-bold data-[state=active]:bg-accent data-[state=active]:text-primary uppercase text-[10px] tracking-widest">
+                  <Zap className="w-4 h-4" /> Игровой HUD
+                </TabsTrigger>
+              </TabsList>
+
+              {/* --- VIEW: REGISTRY --- */}
+              <TabsContent value="registry" className="animate-in fade-in duration-500 space-y-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {LUDUS_REGISTRY.map((game, i) => (
+                    <Card key={game.id} className={cn(
+                      "bg-black/40 border-white/5 rounded-[2.5rem] overflow-hidden group hover:scale-[1.03] transition-all shadow-2xl relative border flex flex-col h-full ring-1 ring-white/5 hover:ring-accent/30",
+                      game.status !== 'Active' && "opacity-50 grayscale hover:grayscale-0"
+                    )}>
+                      <CardHeader className="bg-white/5 border-b p-6 flex flex-row items-center justify-between">
+                        <div className="p-3 bg-primary/10 rounded-2xl text-primary group-hover:bg-primary group-hover:text-background transition-colors">
+                          <game.icon className="w-6 h-6" />
+                        </div>
+                        <span className="text-[10px] font-mono text-slate-700">{(i+1).toString().padStart(2, '0')}</span>
+                      </CardHeader>
+                      <CardContent className="p-6 flex-1 space-y-4">
+                        <div className="space-y-1">
+                          <Badge variant="outline" className="text-[8px] border-white/10 text-slate-500 uppercase px-2">{game.category}</Badge>
+                          <CardTitle className="text-lg text-white font-headline leading-tight">{game.label}</CardTitle>
+                        </div>
+                        <p className="text-[11px] text-slate-500 italic leading-relaxed">"{game.lecture.slice(0, 60)}..."</p>
+                        <div className="pt-4 border-t border-white/5 flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <div className="p-1.5 bg-white/5 rounded-lg text-accent"><game.agentIcon className="w-3.5 h-3.5" /></div>
+                            <span className="text-[9px] font-bold text-slate-400 uppercase">{game.agent}</span>
+                          </div>
+                          <Badge className={cn("text-[8px] uppercase border-none", game.status === 'Active' ? "bg-emerald-500 text-white" : "bg-slate-800 text-slate-600")}>
+                            {game.status}
+                          </Badge>
+                        </div>
+                      </CardContent>
+                      <CardFooter className="p-4 bg-white/5 flex justify-end">
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          onClick={() => { setSelectedGameId(game.id); setActiveTab('active_game'); }}
+                          className="text-accent text-[9px] uppercase font-bold tracking-widest gap-2" 
+                          disabled={game.status !== 'Active'}
+                        >
+                          Инициировать <ChevronRight className="w-3 h-3" />
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  ))}
+                </div>
+              </TabsContent>
+
+              {/* --- VIEW: ACTIVE GAME HUD --- */}
+              <TabsContent value="active_game" className="animate-in zoom-in duration-700 space-y-10">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                  
+                  {/* Game Area */}
+                  <div className="lg:col-span-8 space-y-6">
+                    <Card className="bg-black/60 border-white/5 rounded-[3rem] p-6 shadow-2xl ring-1 ring-white/10 relative overflow-hidden h-fit">
+                      <div className="absolute top-0 right-0 p-10 opacity-5"><Grid3X3 className="w-64 h-64" /></div>
+                      
+                      <div className="relative z-10 space-y-6">
+                        <div className="flex justify-between items-center px-4">
+                          <div className="flex items-center gap-4">
+                            <div className="p-3 bg-accent/20 rounded-2xl text-accent"><activeGame.icon className="w-6 h-6 animate-pulse" /></div>
+                            <div>
+                              <h3 className="text-2xl font-headline font-bold text-white italic">{activeGame.label}</h3>
+                              <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">{activeGame.category} | Level: {activeGame.difficulty}</p>
+                            </div>
+                          </div>
+                          <div className="flex gap-2">
+                            <Button variant="outline" size="sm" onClick={handleReset} className="rounded-xl border-white/10 text-slate-500 hover:text-white h-10 px-4 text-[10px] uppercase font-bold">
+                              <RefreshCcw className="w-3.5 h-3.5 mr-2" /> Сброс
+                            </Button>
+                          </div>
+                        </div>
+
+                        {/* THE MATRIX 17x17 GRID */}
+                        <div className="grid grid-cols-17 gap-px bg-white/5 border border-white/10 p-px rounded-xl overflow-hidden shadow-inner">
+                          {matrix.map((row, rIdx) => (
+                            row.map((cell, cIdx) => {
+                              const key = `${rIdx}-${cIdx}`;
+                              const isSelected = selectedCells.has(key);
+                              const isFound = foundCells.has(key);
+                              return (
+                                <div 
+                                  key={key}
+                                  onClick={() => handleCellClick(rIdx, cIdx)}
+                                  className={cn(
+                                    "aspect-square flex items-center justify-center text-[9px] md:text-xs font-bold transition-all cursor-pointer select-none",
+                                    isFound ? "bg-primary text-background" :
+                                    isSelected ? "bg-accent text-primary scale-110 z-10 shadow-[0_0_15px_rgba(0,255,255,0.4)]" : 
+                                    "bg-black/40 text-slate-600 hover:bg-white/5 hover:text-white"
+                                  )}
+                                >
+                                  {cell}
+                                </div>
+                              )
+                            })
+                          ))}
+                        </div>
+                      </div>
+                    </Card>
+                  </div>
+
+                  {/* Sidebar: Agent & Rules */}
+                  <div className="lg:col-span-4 space-y-6">
+                    {/* AGENT MASTER BLOCK */}
+                    <Card className="bg-accent text-primary border-none p-8 rounded-[3rem] shadow-2xl relative overflow-hidden group">
+                      <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:scale-110 transition-transform"><activeGame.agentIcon className="w-24 h-24" /></div>
+                      <div className="relative z-10 space-y-6">
+                        <div className="flex items-center gap-4">
+                          <div className="p-4 bg-white/20 rounded-2xl shadow-xl"><activeGame.agentIcon className="w-8 h-8" /></div>
+                          <div>
+                            <p className="text-[10px] font-bold uppercase tracking-widest opacity-60">Агент-Мастер</p>
+                            <h3 className="text-2xl font-headline font-bold">{activeGame.agent}</h3>
+                          </div>
+                        </div>
+                        
+                        <div className="p-6 bg-white/10 rounded-[2rem] border border-white/10 relative">
+                          <div className="absolute -top-3 left-6 bg-accent px-3 text-[9px] font-bold uppercase tracking-widest">Lecture Pulse</div>
+                          <Quote className="w-4 h-4 opacity-20 mb-2" />
+                          <p className="text-sm italic font-medium leading-relaxed">"{activeGame.lecture}"</p>
+                        </div>
+
+                        <div className="pt-4 border-t border-white/10 flex justify-between items-center">
+                          <span className="text-[10px] uppercase font-bold animate-pulse">Hint Standby...</span>
+                          <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            className="h-8 rounded-lg bg-white/10 hover:bg-white/20 text-[9px] uppercase font-bold"
+                            onClick={() => toast({ title: "Агент Мама подсказывает:", description: "Ищите имена из священного круга. Женские лежат по горизонту жизни." })}
+                          >Запросить подсказку</Button>
+                        </div>
+                      </div>
+                    </Card>
+
+                    {/* PROGRESS & FOUND WORDS */}
+                    <div className="space-y-6">
+                      <div className="flex items-center justify-between px-2">
+                        <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
+                          <Trophy className="w-4 h-4 text-accent" /> Найдено: {foundNames.size} / {FEMALE_NAMES.length + MALE_NAMES.length}
+                        </h4>
+                        <span className="text-xl font-bold text-accent font-mono">
+                          {Math.round((foundNames.size / (FEMALE_NAMES.length + MALE_NAMES.length)) * 100)}%
+                        </span>
+                      </div>
+                      <Progress value={(foundNames.size / (FEMALE_NAMES.length + MALE_NAMES.length)) * 100} className="h-1 bg-white/5" />
+                      
+                      <ScrollArea className="h-64 rounded-[2rem] bg-black/40 border border-white/5 p-6">
+                        <div className="grid grid-cols-2 gap-2">
+                          {FEMALE_NAMES.map(name => (
+                            <Badge key={name} variant="outline" className={cn(
+                              "justify-center h-10 border-white/5 transition-all duration-1000",
+                              foundNames.has(name) ? "bg-accent text-primary font-bold border-accent shadow-lg scale-105" : "text-slate-700 opacity-30"
+                            )}>
+                              {name}
+                            </Badge>
+                          ))}
+                          {MALE_NAMES.map(name => (
+                            <Badge key={name} variant="outline" className={cn(
+                              "justify-center h-10 border-white/5 transition-all duration-1000",
+                              foundNames.has(name) ? "bg-primary text-background font-bold border-primary shadow-lg scale-105" : "text-slate-700 opacity-30"
+                            )}>
+                              {name}
+                            </Badge>
+                          ))}
+                        </div>
+                      </ScrollArea>
+                    </div>
+
+                    <Card className="bg-slate-950 border-none shadow-xl rounded-[2.5rem] p-8 space-y-4 border border-white/5">
+                      <div className="flex items-center gap-3 text-emerald-500">
+                        <ShieldCheck className="w-5 h-5" />
+                        <span className="text-[10px] font-bold uppercase tracking-widest">Ludus Protocol Rules</span>
+                      </div>
+                      <p className="text-[10px] text-slate-500 italic leading-relaxed">
+                        "Поиск имен по горизонтали символизирует широту жизни (Ж), по вертикали — строгость пути (М). Соберите оба вектора для достижения равновесия."
+                      </p>
+                    </Card>
+                  </div>
+                </div>
+              </TabsContent>
+            </Tabs>
+
+            {/* Strategic Footer */}
+            <Card className="bg-slate-950 text-white border-none shadow-2xl rounded-[3rem] p-10 overflow-hidden relative border border-white/5 mt-12">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-3xl" />
+              <div className="flex flex-col md:flex-row items-center gap-10 relative z-10">
+                <div className="p-6 bg-primary text-background rounded-[2rem] shadow-2xl ring-4 ring-primary/20">
+                  <Brain className="w-10 h-10" />
+                </div>
+                <div className="space-y-4">
+                  <h3 className="text-3xl font-headline font-bold text-primary italic tracking-tight">The Art of Learning (Ludus)</h3>
+                  <p className="text-slate-400 text-lg leading-relaxed max-w-3xl font-serif italic">
+                    "Игра — это не развлечение, а метод быстрой десериализации Логоса в сознание. Каждая минута в Ludus Center конвертируется в лингвистический капитал."
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </main>
+      </SidebarInset>
+      <style jsx global>{`
+        .grid-cols-17 { grid-template-columns: repeat(17, minmax(0, 1fr)); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow { animation: spin-slow 25s linear infinite; }
+      `}</style>
+    </>
+  );
+}
+use client';
+/**
+ * @fileOverview Игровой центр Academia Lux (Ludus Protocol) v2.6.
+ * ФУНКЦИОНАЛЬНАЯ ВЕРСИЯ: Реализована логика игры «Матрица Имен».
+ * Внедрена проверка слов, начисление очков и взаимодействие с Агентом-Мастером.
+ */
+
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import { AppSidebar } from '@/components/app-sidebar';
+import { SidebarInset, SidebarTrigger } from '@/components/ui/sidebar';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { 
+  Gamepad2, 
+  Sparkles, 
+  Grid3X3, 
+  Binary, 
+  Atom, 
+  Scroll, 
+  Users, 
+  Activity, 
+  ShieldCheck, 
+  Zap, 
+  Palette, 
+  Search, 
+  Brain, 
+  Crosshair,
+  Heart,
+  Orbit,
+  GraduationCap,
+  Cross,
+  Crown,
+  Library,
+  Scale,
+  Target,
+  History,
+  Trophy,
+  ChevronRight,
+  RefreshCcw,
+  Quote,
+  Unplug,
+  Loader2,
+  CheckCircle2,
+  AlertTriangle
+} from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { toast } from '@/hooks/use-toast';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Progress } from '@/components/ui/progress';
+import { ScrollArea } from '@/components/ui/scroll-area';
+
+// --- GAME CONFIGURATION ---
+const GRID_SIZE = 17;
+const FEMALE_NAMES = ["ΜΑΡΙΑ", "ΑΝΝΑ", "ΕΛΕΝΗ", "ΚΑΤΕΡΙΝΑ", "ΣΟΦΙΑ", "ΖΩΗ", "ΔΕΣΠΟΙΝΑ", "ΑΓΓΕΛΙΚΗ"];
+const MALE_NAMES = ["ΓΙΩΡΓΟΣ", "ΝΙΚΟΣ", "ΚΩΣΤΑΣ", "ΔΗΜΗΤΡΗΣ", "ΓΙΑΝΝΗΣ", "ΑΝΔΡΕΑΣ", "ΠΑΥΛΟΣ", "ΠΕΤΡΟΣ"];
+
+/** Генератор матрицы с вплетением имен и шума */
+const generateMatrix = () => {
+  const grid = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(''));
+  const alphabet = 'ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ';
+  
+  // 1. Вплетаем горизонтальные имена (Женские)
+  FEMALE_NAMES.forEach((name, idx) => {
+    const row = idx * 2;
+    const colStart = Math.floor(Math.random() * (GRID_SIZE - name.length));
+    for (let i = 0; i < name.length; i++) grid[row][colStart + i] = name[i];
+  });
+  
+  // 2. Вплетаем вертикальные имена (Мужские)
+  MALE_NAMES.forEach((name, idx) => {
+    const col = idx * 2;
+    const rowStart = Math.floor(Math.random() * (GRID_SIZE - name.length));
+    for (let i = 0; i < name.length; i++) {
+      if (!grid[rowStart + i][col]) grid[rowStart + i][col] = name[i];
+    }
+  });
+
+  // 3. Заполняем пустоты случайным шумом
+  for (let r = 0; r < GRID_SIZE; r++) {
+    for (let c = 0; c < GRID_SIZE; c++) {
+      if (grid[r][c] === '') grid[r][c] = alphabet[Math.floor(Math.random() * alphabet.length)];
+    }
+  }
+  return grid;
+};
+
+const LUDUS_REGISTRY = [
+  { id: 'matrix', label: 'Матрица Имен', icon: Grid3X3, agent: 'Мама', agentIcon: Heart, category: 'Onomasticon', status: 'Active', difficulty: 'B1', lecture: 'Имена в греческой культуре — это не просто ярлыки, а молитвенные формулы преемственности. Поиск имени в шуме символов симулирует процесс выделения личности из толпы.' },
+  { id: 'gematria', label: 'Оракул Гематрии', icon: Binary, agent: 'Астро-Гуру', agentIcon: Orbit, category: 'Resonance', status: 'Coming Soon', difficulty: 'B2', lecture: 'Каждая буква имеет число. Числа создают музыку Логоса. Гематрия позволяет увидеть математическую точность священных текстов.' },
+  { id: 'roots', label: 'Конструктор Корней', icon: Atom, agent: 'Тьютор', agentIcon: GraduationCap, category: 'Lógos', status: 'Coming Soon', difficulty: 'B1', lecture: 'Греческий язык фрактален. Один корень порождает лес смыслов. Мы учимся не словам, а алгоритмам их роста.' },
+  { id: 'flow', label: 'Литургический Поток', icon: Scroll, agent: 'Святые Отцы', agentIcon: Cross, category: 'Time', status: 'Coming Soon', difficulty: 'C1', lecture: 'Ритм молитвы сонастроен с биением сердца. Восстановление порядка слов восстанавливает внутренний покой.' },
+  { id: 'icons', label: 'Иконостас Добродетелей', icon: Users, agent: 'Агапэ', agentIcon: Heart, category: 'Ethics', status: 'Coming Soon', difficulty: 'A2', lecture: 'Добродетель — это навык созерцания красоты в другом человеке. Иконографический метод помогает запоминать этические концепты.' },
+  { id: 'breath', label: 'Исихия: Пульс', icon: Activity, agent: 'Квикуша', agentIcon: Crown, category: 'Silence', status: 'Coming Soon', difficulty: 'C2', lecture: 'Высшая власть — это власть над собственным вниманием. В этой игре скорость ввода подчинена ритму вашего дыхания.' },
+  { id: 'cipher', label: 'Шифр Архивариуса', icon: ShieldCheck, agent: 'Ариадна', agentIcon: Library, category: 'OSINT', status: 'Coming Soon', difficulty: 'B2', lecture: 'Правда всегда зашумлена. Мы деконструируем ложные нарративы, чтобы найти чистый Логос в архивах событий.' },
+  { id: 'blitz', label: 'Аорист-Блиц', icon: Zap, agent: 'Эпистемолог', agentIcon: Scale, category: 'Momentum', status: 'Coming Soon', difficulty: 'B1', lecture: 'Аорист фиксирует точку в вечности. Мгновенное переключение основ тренирует реакцию ума на перемены.' },
+  { id: 'rain', label: 'Дождь Логоса', icon: Sparkles, agent: 'Музы', agentIcon: Palette, category: 'Aesthetics', status: 'Coming Soon', difficulty: 'B1', lecture: 'Смыслы падают на нас как дождь. Задача мастера — распределить их по сосудам правильных категорий.' },
+  { id: 'sonar', label: 'Зондирование', icon: Search, agent: 'Дымов', agentIcon: Unplug, category: 'Deep Sea', status: 'Coming Soon', difficulty: 'B2', lecture: 'Под слоем очевидности скрыты глубинные течения. Мы используем акустические метафоры для поиска истины.' },
+  { id: 'memory', label: 'Метанойя-Карты', icon: Brain, agent: 'Абс. Архивариус', agentIcon: History, category: 'Paradox', status: 'Coming Soon', difficulty: 'C1', lecture: 'Духовный рост полон парадоксов. Мы тренируем память на осознание единства противоположностей.' },
+  { id: 'gambit', label: 'Стратегия Акса', icon: Crosshair, agent: 'Б. Аксельрод', agentIcon: Target, category: 'Tactics', status: 'Coming Soon', difficulty: 'C2', lecture: 'В условиях дефицита данных побеждает тот, кто лучше всех владеет теорией игр и ROI истины.' },
+];
+
+export default function GamesCenterPage() {
+  const [activeTab, setActiveTab] = useState<'registry' | 'active_game'>('registry');
+  const [selectedGameId, setSelectedGameId] = useState<string | null>(null);
+  
+  // Game State: Matrix
+  const [matrix, setMatrix] = useState<string[][]>([]);
+  const [selectedCells, setSelectedCells] = useState<Set<string>>(new Set());
+  const [foundNames, setFoundNames] = useState<Set<string>>(new Set());
+  const [foundCells, setFoundCells] = useState<Set<string>>(new Set());
+  const [xp, setXp] = useState(0);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    setMatrix(generateMatrix());
+  }, []);
+
+  const activeGame = useMemo(() => 
+    LUDUS_REGISTRY.find(g => g.id === selectedGameId) || LUDUS_REGISTRY[0]
+  , [selectedGameId]);
+
+  /** Обработка клика по ячейке матрицы */
+  const handleCellClick = (r: number, c: number) => {
+    const key = `${r}-${c}`;
+    if (foundCells.has(key)) return; // Не трогаем уже найденные
+
+    const newSelected = new Set(selectedCells);
+    if (newSelected.has(key)) newSelected.delete(key);
+    else newSelected.add(key);
+    
+    setSelectedCells(newSelected);
+    checkFoundWords(newSelected);
+  };
+
+  /** Логика проверки выбранных ячеек на наличие Логоса */
+  const checkFoundWords = useCallback((selected: Set<string>) => {
+    let newlyFound = false;
+
+    // Проверка женских имен (Горизонталь)
+    FEMALE_NAMES.forEach(name => {
+      if (foundNames.has(name)) return;
+      
+      for (let r = 0; r < GRID_SIZE; r++) {
+        const rowStr = matrix[r].join('');
+        if (rowStr.includes(name)) {
+          const startIdx = rowStr.indexOf(name);
+          const nameKeys = Array.from({ length: name.length }, (_, i) => `${r}-${startIdx + i}`);
+          
+          if (nameKeys.every(k => selected.has(k))) {
+            confirmWordFound(name, nameKeys);
+            newlyFound = true;
+          }
+        }
+      }
+    });
+
+    // Проверка мужских имен (Вертикаль)
+    MALE_NAMES.forEach(name => {
+      if (foundNames.has(name)) return;
+      
+      for (let c = 0; c < GRID_SIZE; c++) {
+        const colStr = matrix.map(row => row[c]).join('');
+        if (colStr.includes(name)) {
+          const startIdx = colStr.indexOf(name);
+          const nameKeys = Array.from({ length: name.length }, (_, i) => `${startIdx + i}-${c}`);
+          
+          if (nameKeys.every(k => selected.has(k))) {
+            confirmWordFound(name, nameKeys);
+            newlyFound = true;
+          }
+        }
+      }
+    });
+
+    if (newlyFound) {
+      setSelectedCells(new Set()); // Сбрасываем текущий выбор после нахождения
+    }
+  }, [matrix, foundNames]);
+
+  const confirmWordFound = (name: string, keys: string[]) => {
+    setFoundNames(prev => new Set(prev).add(name));
+    setFoundCells(prev => {
+      const next = new Set(prev);
+      keys.forEach(k => next.add(k));
+      return next;
+    });
+    setXp(prev => prev + 50);
+    toast({ 
+      title: `Найдено имя: ${name}`, 
+      description: "Связь с Логосом установлена. +50 XP.",
+      variant: "default"
+    });
+  };
+
+  const handleReset = () => {
+    setMatrix(generateMatrix());
+    setFoundNames(new Set());
+    setFoundCells(new Set());
+    setSelectedCells(new Set());
+    setXp(0);
+    toast({ title: "Матрица пересобрана", description: "Предыдущие сигналы стерты." });
+  };
+
+  if (!mounted) return null;
+
+  return (
+    <>
+      <AppSidebar />
+      <SidebarInset>
+        <header className="flex h-16 shrink-0 items-center justify-between px-6 border-b bg-slate-950 text-white sticky top-0 z-30 shadow-2xl">
+          <div className="flex items-center gap-4">
+            <SidebarTrigger className="text-accent" />
+            <div className="flex items-center gap-2">
+              <Gamepad2 className="text-accent w-6 h-6 animate-pulse" />
+              <h1 className="text-xl font-headline font-bold uppercase tracking-widest text-white italic">Ludus Center</h1>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <div className="flex flex-col items-end mr-4">
+              <span className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">Game Experience</span>
+              <span className="text-sm font-mono font-bold text-emerald-500">{xp} XP</span>
+            </div>
+            <Badge variant="outline" className="border-accent/30 text-accent font-bold px-4 bg-accent/5 font-mono text-[10px]">STAGE 2: ACTIVE</Badge>
+          </div>
+        </header>
+
+        <main className="flex-1 p-4 lg:p-10 bg-slate-900 overflow-auto relative font-mono text-slate-300">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,255,0.02),transparent)] pointer-events-none" />
+          
+          <div className="max-w-7xl mx-auto space-y-10 relative z-10">
+            
+            <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as any)} className="w-full">
+              <TabsList className="bg-black/40 p-1 rounded-2xl h-14 w-full max-w-2xl border border-white/10 mb-8 shadow-2xl">
+                <TabsTrigger value="registry" className="flex-1 rounded-xl gap-2 h-full font-bold data-[state=active]:bg-primary data-[state=active]:text-background uppercase text-[10px] tracking-widest">
+                  <Library className="w-4 h-4" /> Реестр 12 Игр
+                </TabsTrigger>
+                <TabsTrigger value="active_game" className="flex-1 rounded-xl gap-2 h-full font-bold data-[state=active]:bg-accent data-[state=active]:text-primary uppercase text-[10px] tracking-widest">
+                  <Zap className="w-4 h-4" /> Игровой HUD
+                </TabsTrigger>
+              </TabsList>
+
+              {/* --- VIEW: REGISTRY --- */}
+              <TabsContent value="registry" className="animate-in fade-in duration-500 space-y-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {LUDUS_REGISTRY.map((game, i) => (
+                    <Card key={game.id} className={cn(
+                      "bg-black/40 border-white/5 rounded-[2.5rem] overflow-hidden group hover:scale-[1.03] transition-all shadow-2xl relative border flex flex-col h-full ring-1 ring-white/5 hover:ring-accent/30",
+                      game.status !== 'Active' && "opacity-50 grayscale hover:grayscale-0"
+                    )}>
+                      <CardHeader className="bg-white/5 border-b p-6 flex flex-row items-center justify-between">
+                        <div className="p-3 bg-primary/10 rounded-2xl text-primary group-hover:bg-primary group-hover:text-background transition-colors">
+                          <game.icon className="w-6 h-6" />
+                        </div>
+                        <span className="text-[10px] font-mono text-slate-700">{(i+1).toString().padStart(2, '0')}</span>
+                      </CardHeader>
+                      <CardContent className="p-6 flex-1 space-y-4">
+                        <div className="space-y-1">
+                          <Badge variant="outline" className="text-[8px] border-white/10 text-slate-500 uppercase px-2">{game.category}</Badge>
+                          <CardTitle className="text-lg text-white font-headline leading-tight">{game.label}</CardTitle>
+                        </div>
+                        <p className="text-[11px] text-slate-500 italic leading-relaxed">"{game.lecture.slice(0, 60)}..."</p>
+                        <div className="pt-4 border-t border-white/5 flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <div className="p-1.5 bg-white/5 rounded-lg text-accent"><game.agentIcon className="w-3.5 h-3.5" /></div>
+                            <span className="text-[9px] font-bold text-slate-400 uppercase">{game.agent}</span>
+                          </div>
+                          <Badge className={cn("text-[8px] uppercase border-none", game.status === 'Active' ? "bg-emerald-500 text-white" : "bg-slate-800 text-slate-600")}>
+                            {game.status}
+                          </Badge>
+                        </div>
+                      </CardContent>
+                      <CardFooter className="p-4 bg-white/5 flex justify-end">
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          onClick={() => { setSelectedGameId(game.id); setActiveTab('active_game'); }}
+                          className="text-accent text-[9px] uppercase font-bold tracking-widest gap-2" 
+                          disabled={game.status !== 'Active'}
+                        >
+                          Инициировать <ChevronRight className="w-3 h-3" />
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  ))}
+                </div>
+              </TabsContent>
+
+              {/* --- VIEW: ACTIVE GAME HUD --- */}
+              <TabsContent value="active_game" className="animate-in zoom-in duration-700 space-y-10">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                  
+                  {/* Game Area */}
+                  <div className="lg:col-span-8 space-y-6">
+                    <Card className="bg-black/60 border-white/5 rounded-[3rem] p-6 shadow-2xl ring-1 ring-white/10 relative overflow-hidden h-fit">
+                      <div className="absolute top-0 right-0 p-10 opacity-5"><Grid3X3 className="w-64 h-64" /></div>
+                      
+                      <div className="relative z-10 space-y-6">
+                        <div className="flex justify-between items-center px-4">
+                          <div className="flex items-center gap-4">
+                            <div className="p-3 bg-accent/20 rounded-2xl text-accent"><activeGame.icon className="w-6 h-6 animate-pulse" /></div>
+                            <div>
+                              <h3 className="text-2xl font-headline font-bold text-white italic">{activeGame.label}</h3>
+                              <p className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">{activeGame.category} | Level: {activeGame.difficulty}</p>
+                            </div>
+                          </div>
+                          <div className="flex gap-2">
+                            <Button variant="outline" size="sm" onClick={handleReset} className="rounded-xl border-white/10 text-slate-500 hover:text-white h-10 px-4 text-[10px] uppercase font-bold">
+                              <RefreshCcw className="w-3.5 h-3.5 mr-2" /> Сброс
+                            </Button>
+                          </div>
+                        </div>
+
+                        {/* THE MATRIX 17x17 GRID */}
+                        <div className="grid grid-cols-17 gap-px bg-white/5 border border-white/10 p-px rounded-xl overflow-hidden shadow-inner">
+                          {matrix.map((row, rIdx) => (
+                            row.map((cell, cIdx) => {
+                              const key = `${rIdx}-${cIdx}`;
+                              const isSelected = selectedCells.has(key);
+                              const isFound = foundCells.has(key);
+                              return (
+                                <div 
+                                  key={key}
+                                  onClick={() => handleCellClick(rIdx, cIdx)}
+                                  className={cn(
+                                    "aspect-square flex items-center justify-center text-[9px] md:text-xs font-bold transition-all cursor-pointer select-none",
+                                    isFound ? "bg-primary text-background" :
+                                    isSelected ? "bg-accent text-primary scale-110 z-10 shadow-[0_0_15px_rgba(0,255,255,0.4)]" : 
+                                    "bg-black/40 text-slate-600 hover:bg-white/5 hover:text-white"
+                                  )}
+                                >
+                                  {cell}
+                                </div>
+                              )
+                            })
+                          ))}
+                        </div>
+                      </div>
+                    </Card>
+                  </div>
+
+                  {/* Sidebar: Agent & Rules */}
+                  <div className="lg:col-span-4 space-y-6">
+                    {/* AGENT MASTER BLOCK */}
+                    <Card className="bg-accent text-primary border-none p-8 rounded-[3rem] shadow-2xl relative overflow-hidden group">
+                      <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:scale-110 transition-transform"><activeGame.agentIcon className="w-24 h-24" /></div>
+                      <div className="relative z-10 space-y-6">
+                        <div className="flex items-center gap-4">
+                          <div className="p-4 bg-white/20 rounded-2xl shadow-xl"><activeGame.agentIcon className="w-8 h-8" /></div>
+                          <div>
+                            <p className="text-[10px] font-bold uppercase tracking-widest opacity-60">Агент-Мастер</p>
+                            <h3 className="text-2xl font-headline font-bold">{activeGame.agent}</h3>
+                          </div>
+                        </div>
+                        
+                        <div className="p-6 bg-white/10 rounded-[2rem] border border-white/10 relative">
+                          <div className="absolute -top-3 left-6 bg-accent px-3 text-[9px] font-bold uppercase tracking-widest">Lecture Pulse</div>
+                          <Quote className="w-4 h-4 opacity-20 mb-2" />
+                          <p className="text-sm italic font-medium leading-relaxed">"{activeGame.lecture}"</p>
+                        </div>
+
+                        <div className="pt-4 border-t border-white/10 flex justify-between items-center">
+                          <span className="text-[10px] uppercase font-bold animate-pulse">Hint Standby...</span>
+                          <Button 
+                            variant="ghost" 
+                            size="sm" 
+                            className="h-8 rounded-lg bg-white/10 hover:bg-white/20 text-[9px] uppercase font-bold"
+                            onClick={() => toast({ title: "Агент Мама подсказывает:", description: "Ищите имена из священного круга. Женские лежат по горизонту жизни." })}
+                          >Запросить подсказку</Button>
+                        </div>
+                      </div>
+                    </Card>
+
+                    {/* PROGRESS & FOUND WORDS */}
+                    <div className="space-y-6">
+                      <div className="flex items-center justify-between px-2">
+                        <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
+                          <Trophy className="w-4 h-4 text-accent" /> Найдено: {foundNames.size} / {FEMALE_NAMES.length + MALE_NAMES.length}
+                        </h4>
+                        <span className="text-xl font-bold text-accent font-mono">
+                          {Math.round((foundNames.size / (FEMALE_NAMES.length + MALE_NAMES.length)) * 100)}%
+                        </span>
+                      </div>
+                      <Progress value={(foundNames.size / (FEMALE_NAMES.length + MALE_NAMES.length)) * 100} className="h-1 bg-white/5" />
+                      
+                      <ScrollArea className="h-64 rounded-[2rem] bg-black/40 border border-white/5 p-6">
+                        <div className="grid grid-cols-2 gap-2">
+                          {FEMALE_NAMES.map(name => (
+                            <Badge key={name} variant="outline" className={cn(
+                              "justify-center h-10 border-white/5 transition-all duration-1000",
+                              foundNames.has(name) ? "bg-accent text-primary font-bold border-accent shadow-lg scale-105" : "text-slate-700 opacity-30"
+                            )}>
+                              {name}
+                            </Badge>
+                          ))}
+                          {MALE_NAMES.map(name => (
+                            <Badge key={name} variant="outline" className={cn(
+                              "justify-center h-10 border-white/5 transition-all duration-1000",
+                              foundNames.has(name) ? "bg-primary text-background font-bold border-primary shadow-lg scale-105" : "text-slate-700 opacity-30"
+                            )}>
+                              {name}
+                            </Badge>
+                          ))}
+                        </div>
+                      </ScrollArea>
+                    </div>
+
+                    <Card className="bg-slate-950 border-none shadow-xl rounded-[2.5rem] p-8 space-y-4 border border-white/5">
+                      <div className="flex items-center gap-3 text-emerald-500">
+                        <ShieldCheck className="w-5 h-5" />
+                        <span className="text-[10px] font-bold uppercase tracking-widest">Ludus Protocol Rules</span>
+                      </div>
+                      <p className="text-[10px] text-slate-500 italic leading-relaxed">
+                        "Поиск имен по горизонтали символизирует широту жизни (Ж), по вертикали — строгость пути (М). Соберите оба вектора для достижения равновесия."
+                      </p>
+                    </Card>
+                  </div>
+                </div>
+              </TabsContent>
+            </Tabs>
+
+            {/* Strategic Footer */}
+            <Card className="bg-slate-950 text-white border-none shadow-2xl rounded-[3rem] p-10 overflow-hidden relative border border-white/5 mt-12">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-3xl" />
+              <div className="flex flex-col md:flex-row items-center gap-10 relative z-10">
+                <div className="p-6 bg-primary text-background rounded-[2rem] shadow-2xl ring-4 ring-primary/20">
+                  <Brain className="w-10 h-10" />
+                </div>
+                <div className="space-y-4">
+                  <h3 className="text-3xl font-headline font-bold text-primary italic tracking-tight">The Art of Learning (Ludus)</h3>
+                  <p className="text-slate-400 text-lg leading-relaxed max-w-3xl font-serif italic">
+                    "Игра — это не развлечение, а метод быстрой десериализации Логоса в сознание. Каждая минута в Ludus Center конвертируется в лингвистический капитал."
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </main>
+      </SidebarInset>
+      <style jsx global>{`
+        .grid-cols-17 { grid-template-columns: repeat(17, minmax(0, 1fr)); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow { animation: spin-slow 25s linear infinite; }
+      `}</style>
+    </>
+  );
+}
+Архитектура «Ludus Oecumene» (Игровой мир Братства)
+# Версия: 1.1.0
+# Статус: Stage 1 Ingress COMPLETE | Stage 2 Initiation ACTIVE
+# Style: Strict Obsidian | Minimal Graphics | High-Density Data
+
+"""
+ТЕХНИЧЕСКОЕ ЗАДАНИЕ: ГЕЙМИФИЦИРОВАННЫЙ КОНТУР ВЫЖИВАНИЯ И ПРАВОСЛАВИЯ
+Модуль предназначен для трансформации процесса обучения и интеграции 
+в среду «Global Russians» в захватывающую RPG-симуляцию с экономикой 
+типа EVE Online и боевой системой в стиле «Бойцовского Клуба».
+"""
+
+## I. ФИЛОСОФСКИЙ БАЗИС (THE CORE)
+
+1.  **Цель**: Переход от «изучения» к «созиданию капитала». Язык и культура — это оружие и товар.
+2.  **Среда**: Ойкумена (Кипр, Греция, Армения).
+3.  **Духовный фильтр**: Православие не как теория, а как операционная система выживания (Трезвение, Соборность, Кенозис).
+
+---
+
+## II. 12 СТОЛПОВ ГЕЙМПЛЕЯ (СИНТЕЗ 99 КОНЦЕПЦИЙ)
+
+1.  **[Permadeath of Ignorance]**: Ошибка в критическом квесте ведет к временной блокировке модуля (Исихия).
+2.  **[Lógos Combat (Fight Club)]**: Схватка — это дуэль на знание Аориста или Догматов. Неверное окончание — потеря HP.
+3.  **[Market of Relics (EVE Style)]**: Свободная торговля артефактами (словами, патентами, инсайтами) между игроками в Firestore.
+4.  **[Reputation Collateral]**: Твой Merit Index (баллы опыта) является залогом для получения «кредитов» на использование ИИ.
+5.  **[Procedural Orthodoxy]**: Квесты генерируются на основе живых литургических календарей и OSINT-новостей.
+6.  **[Asymmetric Information]**: Доступ к картам «Тайного Кипра» покупается за дешифрованные греческие манускрипты.
+7.  **[Maker Quotas]**: Игрок обязан созидать (Rule 12), чтобы восстанавливать Энергию (Metanoia Battery).
+8.  **[Sovereign Identity]**: Прогресс в игре напрямую влияет на твой ранг в Братстве (от Послушника до Приора).
+9.  **[Agape Arbitrage]**: Решение конфликтов через Соборный механизм (Agape Framework).
+10. **[Offline-First Survival]**: Инвентарь и квесты доступны в горах/в море без сети (IndexedDB Sync).
+11. **[Linguistic Hacking]**: Грамматика подается как «взлом терминала» реальности.
+12. **[The Great Exodus]**: Финальный квест — получение сертификата и легализация в новой среде.
+
+---
+
+## III. ТЕХНИЧЕСКИЙ ПЛАН (STAGE 1-4)
+
+1.  **Phase 1: Ingress**. Терминал входа. (ВЫПОЛНЕНО)
+2.  **Phase 2: Initiation**. Протокол «Врата» (Proof of Knowledge). (В ПРОЦЕССЕ)
+3.  **Phase 3: Capital**. Генерация первых ресурсов через обучение. (ПЛАНИРУЕТСЯ)
+4.  **Phase 4: Market**. Запуск коллекции `ludus_market`. (ПЛАНИРУЕТСЯ)
+
+*Chief Game Architect | Academia Lux 2024*

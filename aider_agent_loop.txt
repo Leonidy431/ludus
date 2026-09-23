@@ -4,10 +4,5 @@
 DO NOT ASK QUESTIONS. OUTPUT ONLY CODE AND HLD UPDATES.
 
 🎯 ФОКУС ИТЕРАЦИИ: VR Submarine/ROV Simulator
-Разработай код (C#) и HLD документацию по одной из фаз:
-1. Input Abstraction (IPlayerInput, переключение MouseSimulator/OpenXR).
-2. 6DOF Physics (Thermocline density, Buoyancy, Drag) - без тяжелых FixedUpdate.
-3. Interactive Cockpit (Event System, маппинг 0.0-1.0 физической тяги).
-4. CI/CD (GitHub Actions YAML для сборки Android .apk на Quest 3).
-
-Сохрани результаты в папку UnityVR/ и обнови HLD_VR.md.
+Разработай код (C#) и HLD документацию по одной из фаз.
+Сохрани результаты в папку oculus-knights/UnityVR/ и обнови HLD_VR.md.
