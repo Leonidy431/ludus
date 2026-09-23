@@ -1,0 +1,1322 @@
+Формальный гейм-дизайн-док: IsSyk-Kul / Иоанн на камне
+Обзор проекта
+Проект — это narrative strategy / serious game о молодом дьяконе, епископе Иоанне, армянском монастыре на Иссык-Куле, подводной археологии и долгой исторической памяти.
+
+Игровое ядро строится на сочетании четырёх контуров: духовное служение, управление монастырским узлом, историко-географическая стратегия и археологическое чтение следов.
+
+Основная аудитория — молодые дьяконы, семинаристы, исследователи церковной истории и игроки, любящие медленные интеллектуальные игры с сильным миром и моральным выбором.
+
+Цели проекта
+Игровые цели
+Создать эмоционально сильную историческую игру без боевой доминанты.
+
+Провести игрока через 99 узловых точек решений.
+
+Соединить XIII век и XXI век через механику памяти, воды и археологии.
+
+Образовательные цели
+Научить видеть миссию Церкви как систему: литургия, экономика, власть, климат, тексты.
+
+Дать базовое понимание подводной археологии и чтения культурного слоя.
+
+Встроить рефлексию и авторский текст пользователя в геймплей.
+
+Core fantasy
+Игрок не «побеждает врагов», а учится быть человеком, чьи решения читаются через века по воде, камню, карте, архиву и памяти общины.
+
+Жанр и формат
+Primary genre: narrative strategy.
+
+Secondary genre: management sim.
+
+Tertiary layer: serious archaeology / historical interpretation game.
+
+Camera stack: top-down management + cinematic close scenes + first-person underwater expedition modules.
+
+High concept loop
+Игрок получает историческую или современную ситуацию.
+
+Слушает голоса наставников и специалистов.
+
+Делает выбор из нескольких решений или пишет собственный вариант.
+
+Видит последствия в ресурсах, отношениях, нарративе и долговременной памяти.
+
+Позже находит следы этих решений в археологическом и историческом слоях.
+
+Pillars
+1. Историческая плотность
+Мир строится на Шёлковом пути, Иссык-Куле, армянской миссии, монастырской экономике и подводной археологии.
+
+2. Духовная субъектность
+Главный герой — молодой дьякон, который не декоративен, а принимает решения в реальной церковной и хозяйственной ткани.
+
+3. Вода как система
+Вода — не фон, а живая механика: угроза, архив, разрушитель и хранитель одновременно.
+
+4. След во времени
+Каждый выбор должен быть читаем через 300–700 лет в тексте, легенде, карте, руине, памяти или музейной находке.
+
+Модули
+Модуль A. Narrative campaign (99 узлов)
+Основная кампания разбита на 99 точек. Каждая точка содержит:
+
+scene_id
+
+исторический контекст
+
+ведущего святого отца
+
+ведущего специалиста
+
+2–4 системных варианта решения
+
+одно свободное текстовое поле игрока
+
+immediate outcome
+
+delayed outcome
+
+archaeology echo
+
+Эта структура поддерживает и scripted campaign, и semi-procedural course mode.
+
+Модуль B. Monastery management
+Система монастыря включает:
+
+храм
+
+архив
+
+скрипторий
+
+кузню
+
+керамику
+
+сады
+
+причал
+
+караван-сарай
+
+кладбище
+
+реликварное хранилище
+
+У каждого блока есть состояние, риск затопления, вклад в общину и влияние на нарратив.
+
+Модуль C. Water / terrain simulation
+Система моделирует:
+
+сезонные изменения воды
+
+вековой тренд уровня воды
+
+последствия шторма
+
+влияние землетрясения
+
+изменение береговой линии
+
+доступность причала и террас
+
+Симуляция не обязана быть научно идеальной, но должна быть системно убедительной и визуально читаемой.
+
+Модуль D. Dialogue and conscience system
+Внутренние голоса, святые отцы и специалисты образуют layered dialogue engine. Игрок читает не просто NPC-реплики, а поле интерпретаций.
+
+Модуль E. Archaeology mode
+В современном времени игрок управляет экспедицией и собирает следы своих прошлых решений:
+
+sonar scan
+
+dive path
+
+artifact identification
+
+map overlay
+
+archive cross-reference
+
+publication / interpretation choice
+
+Эта система вдохновляется образовательными играми об археологическом исследовании и историческом анализе.
+
+Модуль F. Reflection / writing mode
+Игрок пишет:
+
+проповедь
+
+запись в архив
+
+письмо начальству
+
+личный дневник
+
+отчёт археолога
+
+итоговую формулу своей миссии
+
+Текст сохраняется и может быть использован в аналитике курса, повторном прохождении и финальном досье.
+
+Основные системы
+1. Resources
+Минимальный набор:
+
+Bread
+
+Material
+
+Knowledge
+
+Trust
+
+Sanctity
+
+Water pressure
+
+Trade flow
+
+Ресурсы должны быть немногочисленны и легко считываться, без перегруженного survival-менеджмента.
+
+2. Reputation vectors
+Отдельные шкалы:
+
+trust_of_brothers
+
+trust_of_merchants
+
+trust_of_locals
+
+trust_of_authority
+
+trust_of_future_scholars
+
+Последняя шкала — уникальная фишка проекта: игрок буквально строит репутацию перед будущими археологами и историками.
+
+3. Narrative truth system
+Игра отслеживает, насколько игрок:
+
+честен в описании реликвии
+
+осторожен в легенде
+
+склонен к манипуляции
+
+умеет держать сложность
+
+Эта система влияет на число паломников, отношения с центрами власти и будущую достоверность археологического чтения.
+
+4. Time persistence
+Каждое решение сохраняется в глобальный state tree:
+
+immediate flag
+
+era flag
+
+building flag
+
+text artifact flag
+
+archaeology recovery flag
+
+Это позволяет строить многослойные delayed consequences.
+
+5. Mentor system
+48 наставников делятся на две группы:
+
+24 духовных голоса
+
+24 практических специалиста
+
+На каждой точке игры движок выбирает ведущего наставника вручную или по тегам сцены: liturgy, economy, archive, storm, diplomacy, archaeology, migration.
+
+Структура 99 узлов
+Каждый узел можно хранить в JSON следующего типа:
+
+json
+{
+  "id": 17,
+  "title": "Первый большой шторм",
+  "era": "1321",
+  "tags": ["water", "archive", "community"],
+  "saint_mentor_id": "maximus_confessor",
+  "specialist_id": "architect_restorer",
+  "scene_text": "...",
+  "choices": [
+    {"id": "save_archive", "label": "Сначала спасать архив"},
+    {"id": "save_reliquary", "label": "Сначала спасать реликварий"},
+    {"id": "save_people", "label": "Сначала выводить людей"}
+  ],
+  "free_text_prompt": "Опиши свой собственный порядок спасения и почему.",
+  "immediate_effects": {},
+  "delayed_effects": {},
+  "archaeology_echo": "..."
+}
+Экраны
+1. Main menu
+Разделы:
+
+Continue
+
+New Campaign
+
+Archaeology Mode
+
+Seminar Mode
+
+Archive
+
+Settings
+
+Credits
+
+На фоне — медленное озеро с едва видимыми подводными контурами.
+
+2. Campaign map
+Большая карта Иссык-Куля и Шёлкового пути, где активные узлы подсвечиваются как маршрут памяти.
+
+3. Scene screen
+Содержит:
+
+заголовок сцены
+
+cinematic illustration / 3D frame
+
+scene text
+
+окно святого отца
+
+окно специалиста
+
+системные варианты выбора
+
+поле свободного ответа
+
+панель последствий
+
+4. Monastery management screen
+Вид сверху на монастырский комплекс с интерактивными зонами, слоями риска воды и оперативными задачами.
+
+5. Water and terrain screen
+График воды, карта береговой линии, отмеченные зоны переноса, прогноз на эпохи.
+
+6. Dialogue screen
+Портреты наставников, ветвящийся разговор, выделенные термины, подсветка морали и исторического риска.
+
+7. Archive screen
+Хранит:
+
+тексты игрока
+
+найденные артефакты
+
+карты
+
+письма
+
+летопись воды
+
+unlocked codex entries
+
+8. Archaeology expedition screen
+Современный лагерь, список находок, план погружения, подводная карта и интерфейс сопоставления прошлого с настоящим.
+
+9. Seminar dashboard
+Экран для преподавателя или ведущего группы:
+
+прогресс по 99 узлам
+
+тексты игроков
+
+heatmap выборов
+
+дискуссионные вопросы
+
+экспорт материалов
+
+UX-поток одной точки
+Игрок входит в сцену.
+
+Получает короткий cinematic intro.
+
+Читает базовый текст ситуации.
+
+Слушает/читает святого отца.
+
+Слушает/читает специалиста.
+
+Выбирает системный вариант или пишет свой.
+
+Получает immediate feedback.
+
+Видит, что изменилось в мире.
+
+Позже встречает delayed echo.
+
+В XXI веке может найти археологический след этого решения.
+
+Техническая архитектура
+Вариант 1. Godot + Firebase
+Подходит для:
+
+быстрого инди-прототипа
+
+сильной нарративной логики
+
+небольшого бюджета
+
+web export + desktop build
+
+Клиентская часть
+Godot 4.x
+
+GDScript for gameplay logic
+
+UI через Control nodes
+
+2.5D scenes, lightweight 3D for water and dives
+
+JSON-driven content pipeline
+
+Backend
+Firebase Authentication — анонимный и email sign-in
+
+Cloud Firestore — profile, progress, node states, texts
+
+Cloud Functions — validation, analytics, prompt assembly
+
+Firebase Storage — screenshots, exported dossiers, teacher packets
+
+Firebase Hosting — web shell и landing/admin modules
+
+Плюсы
+низкий порог команды
+
+быстрое прототипирование
+
+дешёвый старт
+
+удобная JSON-driven narrative layer
+
+Минусы
+менее зрелая enterprise-интеграция
+
+сложнее мощный 3D polish, если проект резко вырастет
+
+Вариант 2. Unity + Firebase
+Подходит для:
+
+сильной cinematic presentation
+
+большего 3D-потенциала
+
+команды с опытом Unity
+
+более тяжёлого long-term production
+
+Клиентская часть
+Unity 6 / latest LTS
+
+UI Toolkit или uGUI
+
+Timeline/Cinemachine for dramatic scenes
+
+ScriptableObjects + JSON hybrid content system
+
+underwater shaders, terrain transitions, map overlays
+
+Backend
+Firebase Authentication
+
+Firestore
+
+Cloud Functions
+
+Storage
+
+Remote Config для балансировки и показа курсовых режимов
+
+Плюсы
+богаче визуальные инструменты
+
+легче делать кинематографические сцены
+
+сильнее экосистема плагинов
+
+Минусы
+выше стоимость разработки
+
+тяжелее iteration loop
+
+сложнее дисциплина контент-пайплайна
+
+API и data model
+Основные сущности
+ts
+User {
+  id: string
+  role: "player" | "teacher" | "admin"
+  locale: "ru" | "en"
+  createdAt: timestamp
+}
+
+Profile {
+  userId: string
+  backgroundType: "seminarian" | "researcher" | "general"
+  chosenPathTags: string[]
+}
+
+NodeProgress {
+  userId: string
+  nodeId: number
+  selectedChoiceId: string | null
+  freeText: string
+  mentorSaintId: string
+  specialistId: string
+  statsDelta: object
+  completedAt: timestamp
+}
+
+CampaignState {
+  userId: string
+  currentNode: number
+  resources: object
+  reputation: object
+  flags: object
+}
+
+ArtifactRecord {
+  userId: string
+  artifactId: string
+  foundInEra: "past" | "present"
+  interpretedAs: string
+  confidence: number
+}
+Пример REST/Function endpoints
+text
+POST /startCampaign
+POST /submitNodeChoice
+POST /submitFreeText
+GET  /campaignState
+GET  /nodeDefinition/{id}
+GET  /archive
+POST /archaeology/scan
+POST /teacher/exportSession
+Пример Firestore collections
+users
+
+profiles
+
+campaigns
+
+node_progress
+
+free_text_entries
+
+artifact_records
+
+seminar_groups
+
+seminar_exports
+
+telemetry_events
+
+Контентный пайплайн
+Narrative content
+Хранить отдельно:
+
+node definitions
+
+mentor texts
+
+specialist texts
+
+consequence maps
+
+codex entries
+
+glossary entries
+
+Это позволит локализацию и быстрые правки без пересборки клиента.
+
+Prompt assembly layer
+Для каждой точки может существовать генератор подсказок:
+
+system prompt for saint voice
+
+system prompt for specialist voice
+
+user context prompt
+
+moderation and tone constraints
+
+Если применять ИИ-ассистента внутри курса, он не должен заменять авторский выбор игрока, а должен помогать уточнять и углублять текст.
+
+Пример промта специалиста
+text
+Ты — приходской архитектор и реставратор из Москвы. Твоя задача — комментировать игровую точку с позиции материальной устойчивости храма, безопасности, хранения архива и долгой жизни здания. Говори ясно, современно, с уважением к церковной традиции. Не морализируй. Покажи игроку 2–3 практических риска и 2–3 сильных решения. Затем предложи ему написать свой вариант свободным текстом.
+Пример промта святого отца
+text
+Ты — святой отец, связанный с традицией церковного рассуждения. Комментируй игровую сцену не абстрактно, а применительно к конкретной ситуации: вода, страх, реликвия, архив, бедные, власть, ложь, смирение. Говори коротко, сильно и образно. Дай не готовый ответ, а духовный вектор, после которого игрок должен сам принять решение.
+Прототипы
+Prototype A — Text-first vertical slice
+Содержит:
+
+10 узлов кампании
+
+6 наставников
+
+6 специалистов
+
+1 карта монастыря
+
+1 упрощённый экран воды
+
+1 археологический эпилог
+
+Технология: Godot + Firestore.
+
+Цель — проверить, работает ли ядро «сцена → голоса → выбор → текст → след во времени».
+
+Prototype B — Visual slice
+Содержит:
+
+одну полностью polished сцену шторма
+
+один монастырский management loop
+
+одно погружение XXI века
+
+один экран археологического сопоставления
+
+Технология: Unity + Firebase.
+
+Цель — проверить кинематографию, чувство воды и связку эпох.
+
+Prototype C — Seminar web companion
+Содержит:
+
+веб-кабинет преподавателя
+
+экспорт ответов игроков
+
+heatmap решений
+
+discussion prompts
+
+Технология: Firebase Hosting + simple React/Vue front-end или статический web app.
+
+MVP
+Минимально жизнеспособная версия:
+
+24 точки вместо 99
+
+8 святых отцов
+
+8 специалистов
+
+1 сценарная линия Иссык-Куля
+
+1 простая модель ресурсов
+
+1 модель воды
+
+1 эпилог археолога
+
+сохранение прогресса
+
+экспорт итогового досье игрока
+
+Production roadmap
+Phase 1
+research lock
+
+content bible
+
+data schema
+
+interaction prototype
+
+Phase 2
+vertical slice
+
+mentor system
+
+writing mode
+
+water simulation lite
+
+Phase 3
+24-node MVP
+
+seminar dashboard
+
+telemetry
+
+export features
+
+Phase 4
+expansion to 99 nodes
+
+archaeology mode full
+
+bilingual release
+
+external partnerships
+
+Метрики успеха
+Игровые
+completion rate per node
+
+return rate
+
+average free text length
+
+branch diversity
+
+archaeology mode completion
+
+Образовательные
+рост качества свободных ответов
+
+умение игрока удерживать больше одной оси анализа
+
+качество итогового проекта или рефлексии
+
+преподавательская оценка полезности в семинарском режиме
+
+Риски
+чрезмерная текстовость без достаточной визуальной награды
+
+перегрузка историческим материалом
+
+конфликт между духовной серьёзностью и игровым форматом
+
+дорогая production-сборка при слишком раннем уходе в 3D
+
+слабая дисциплина контентной структуры при 99 точках
+
+Рекомендация по старту
+Для первого хода сильнее выглядит Godot + Firebase, потому что проект прежде всего narrative-systemic и нуждается в быстрой обкатке текста, выборов, последствий и пользовательских ответов.
+
+Unity стоит брать либо для второго этапа, либо если уже есть команда, которая уверенно делает cinematic исторические сцены и поддерживает тяжёлый контентный пайплайн.
+
+Следующий практический шаг
+Сразу после утверждения этого документа разумно собрать три артефакта:
+
+Content bible на 24 узла.
+
+JSON schema для node system.
+
+Wireframes 8 основных экранов.
+
+
+# Формальный гейм-дизайн-док: IsSyk-Kul / Иоанн на камне
+
+## Обзор проекта
+
+Проект — это narrative strategy / serious game о молодом дьяконе, епископе Иоанне, армянском монастыре на Иссык-Куле, подводной археологии и долгой исторической памяти. [geoexplorersclub](https://geoexplorersclub.com/en/v-poiskah-armyanskogo-hristianskogo-monastyrya/)
+
+Игровое ядро строится на сочетании четырёх контуров: духовное служение, управление монастырским узлом, историко-географическая стратегия и археологическое чтение следов. [heritagedaily](https://www.heritagedaily.com/2026/06/archaeologists-unearth-remains-of-submerged-medieval-trading-centre/158288)
+
+Основная аудитория — молодые дьяконы, семинаристы, исследователи церковной истории и игроки, любящие медленные интеллектуальные игры с сильным миром и моральным выбором. [ieeexplore.ieee](https://ieeexplore.ieee.org/document/11027723/)
+
+## Цели проекта
+
+### Игровые цели
+
+- Создать эмоционально сильную историческую игру без боевой доминанты.
+- Провести игрока через 99 узловых точек решений.
+- Соединить XIII век и XXI век через механику памяти, воды и археологии. [youtube](https://www.youtube.com/watch?v=lG4jDHs3sTQ&vl=ru)
+
+### Образовательные цели
+
+- Научить видеть миссию Церкви как систему: литургия, экономика, власть, климат, тексты. [academia](https://www.academia.edu/88021440/CHRISTIAN_COMMUNITIES_IN_MEDIEVAL_CENTRAL_ASIA_SYRIAC_AND_SYRO_TURKIC_INSCRIPTIONS_FROM_ZHETYSU_AND_THE_CHUY_VALLEY_9_TH_14_TH_CENTURIES)
+- Дать базовое понимание подводной археологии и чтения культурного слоя. [archaeologie](https://archaeologie.pro/en/archive/51/1006/)
+- Встроить рефлексию и авторский текст пользователя в геймплей. [games.jmir](https://games.jmir.org/2024/1/e48099/)
+
+## Core fantasy
+
+Игрок не «побеждает врагов», а учится быть человеком, чьи решения читаются через века по воде, камню, карте, архиву и памяти общины. [humus.livejournal](https://humus.livejournal.com/6070072.html)
+
+## Жанр и формат
+
+- Primary genre: narrative strategy.
+- Secondary genre: management sim.
+- Tertiary layer: serious archaeology / historical interpretation game. [seriousgamessociety](https://seriousgamessociety.org/2016/09/22/hunt-the-ancestor/)
+- Camera stack: top-down management + cinematic close scenes + first-person underwater expedition modules. [moscowdiveshow](https://www.moscowdiveshow.ru/news/1781/)
+
+## High concept loop
+
+1. Игрок получает историческую или современную ситуацию.
+2. Слушает голоса наставников и специалистов.
+3. Делает выбор из нескольких решений или пишет собственный вариант.
+4. Видит последствия в ресурсах, отношениях, нарративе и долговременной памяти.
+5. Позже находит следы этих решений в археологическом и историческом слоях. [paxsims.wordpress](https://paxsims.wordpress.com/2014/09/21/toward-serious-matrix-games/)
+
+## Pillars
+
+### 1. Историческая плотность
+
+Мир строится на Шёлковом пути, Иссык-Куле, армянской миссии, монастырской экономике и подводной археологии. [geoexplorersclub](https://geoexplorersclub.com/en/v-poiskah-armyanskogo-hristianskogo-monastyrya/)
+
+### 2. Духовная субъектность
+
+Главный герой — молодой дьякон, который не декоративен, а принимает решения в реальной церковной и хозяйственной ткани. [armenianchurch](https://www.armenianchurch.org/en/Overview)
+
+### 3. Вода как система
+
+Вода — не фон, а живая механика: угроза, архив, разрушитель и хранитель одновременно. [ecoticias](https://www.ecoticias.com/en/archaeologists-working-in-3-to-13-feet-of-water-along-kyrgyzstans-lake-issyk-kul-say-they-have-mapped-streets-public-buildings-and-a-muslim-cemetery-and-they-believe-a-major-early-1400s-ea/32945/)
+
+### 4. След во времени
+
+Каждый выбор должен быть читаем через 300–700 лет в тексте, легенде, карте, руине, памяти или музейной находке. [eurasia](https://eurasia.travel/the-kurmentin-cave-complex-the-brothers-of-armenia-monastery/)
+
+## Модули
+
+### Модуль A. Narrative campaign (99 узлов)
+
+Основная кампания разбита на 99 точек. Каждая точка содержит:
+
+- scene_id
+- исторический контекст
+- ведущего святого отца
+- ведущего специалиста
+- 2–4 системных варианта решения
+- одно свободное текстовое поле игрока
+- immediate outcome
+- delayed outcome
+- archaeology echo
+
+Эта структура поддерживает и scripted campaign, и semi-procedural course mode. [seriousgamessociety](https://seriousgamessociety.org/tools-and-methods-for-sg-design/)
+
+### Модуль B. Monastery management
+
+Система монастыря включает:
+
+- храм
+- архив
+- скрипторий
+- кузню
+- керамику
+- сады
+- причал
+- караван-сарай
+- кладбище
+- реликварное хранилище
+
+У каждого блока есть состояние, риск затопления, вклад в общину и влияние на нарратив. [store.steampowered](https://store.steampowered.com/app/1795090/Monastery_Builder/)
+
+### Модуль C. Water / terrain simulation
+
+Система моделирует:
+
+- сезонные изменения воды
+- вековой тренд уровня воды
+- последствия шторма
+- влияние землетрясения
+- изменение береговой линии
+- доступность причала и террас
+
+Симуляция не обязана быть научно идеальной, но должна быть системно убедительной и визуально читаемой. [cawater-info](https://cawater-info.net/bk/1-1-2-1-issyk-kul_e.htm)
+
+### Модуль D. Dialogue and conscience system
+
+Внутренние голоса, святые отцы и специалисты образуют layered dialogue engine. Игрок читает не просто NPC-реплики, а поле интерпретаций. [schmemann](https://www.schmemann.org/byhim/russiantheology.html)
+
+### Модуль E. Archaeology mode
+
+В современном времени игрок управляет экспедицией и собирает следы своих прошлых решений:
+
+- sonar scan
+- dive path
+- artifact identification
+- map overlay
+- archive cross-reference
+- publication / interpretation choice
+
+Эта система вдохновляется образовательными играми об археологическом исследовании и историческом анализе. [academia](https://www.academia.edu/44582588/Serious_Games_and_Archaeology_Rough_Notes_on_Crafting_Archaeological_Data_for_Heritage_Enhancement)
+
+### Модуль F. Reflection / writing mode
+
+Игрок пишет:
+
+- проповедь
+- запись в архив
+- письмо начальству
+- личный дневник
+- отчёт археолога
+- итоговую формулу своей миссии
+
+Текст сохраняется и может быть использован в аналитике курса, повторном прохождении и финальном досье. [arxiv](https://arxiv.org/pdf/2404.10649.pdf)
+
+## Основные системы
+
+### 1. Resources
+
+Минимальный набор:
+
+- Bread
+- Material
+- Knowledge
+- Trust
+- Sanctity
+- Water pressure
+- Trade flow
+
+Ресурсы должны быть немногочисленны и легко считываться, без перегруженного survival-менеджмента. [youtube](https://www.youtube.com/watch?v=xz_WWSmAXlY)
+
+### 2. Reputation vectors
+
+Отдельные шкалы:
+
+- trust_of_brothers
+- trust_of_merchants
+- trust_of_locals
+- trust_of_authority
+- trust_of_future_scholars
+
+Последняя шкала — уникальная фишка проекта: игрок буквально строит репутацию перед будущими археологами и историками. [heritagedaily](https://www.heritagedaily.com/2026/06/archaeologists-unearth-remains-of-submerged-medieval-trading-centre/158288)
+
+### 3. Narrative truth system
+
+Игра отслеживает, насколько игрок:
+
+- честен в описании реликвии
+- осторожен в легенде
+- склонен к манипуляции
+- умеет держать сложность
+
+Эта система влияет на число паломников, отношения с центрами власти и будущую достоверность археологического чтения. [a1plus](https://a1plus.am/en/article/148550)
+
+### 4. Time persistence
+
+Каждое решение сохраняется в глобальный state tree:
+
+- immediate flag
+- era flag
+- building flag
+- text artifact flag
+- archaeology recovery flag
+
+Это позволяет строить многослойные delayed consequences. [paxsims.wordpress](https://paxsims.wordpress.com/2014/09/21/toward-serious-matrix-games/)
+
+### 5. Mentor system
+
+48 наставников делятся на две группы:
+
+- 24 духовных голоса
+- 24 практических специалиста
+
+На каждой точке игры движок выбирает ведущего наставника вручную или по тегам сцены: liturgy, economy, archive, storm, diplomacy, archaeology, migration. [en.wikipedia](https://en.wikipedia.org/wiki/Church_Fathers)
+
+## Структура 99 узлов
+
+Каждый узел можно хранить в JSON следующего типа:
+
+```json
+{
+  "id": 17,
+  "title": "Первый большой шторм",
+  "era": "1321",
+  "tags": ["water", "archive", "community"],
+  "saint_mentor_id": "maximus_confessor",
+  "specialist_id": "architect_restorer",
+  "scene_text": "...",
+  "choices": [
+    {"id": "save_archive", "label": "Сначала спасать архив"},
+    {"id": "save_reliquary", "label": "Сначала спасать реликварий"},
+    {"id": "save_people", "label": "Сначала выводить людей"}
+  ],
+  "free_text_prompt": "Опиши свой собственный порядок спасения и почему.",
+  "immediate_effects": {},
+  "delayed_effects": {},
+  "archaeology_echo": "..."
+}
+```
+
+## Экраны
+
+### 1. Main menu
+
+Разделы:
+
+- Continue
+- New Campaign
+- Archaeology Mode
+- Seminar Mode
+- Archive
+- Settings
+- Credits
+
+На фоне — медленное озеро с едва видимыми подводными контурами. [youtube](https://www.youtube.com/watch?v=lG4jDHs3sTQ&vl=ru)
+
+### 2. Campaign map
+
+Большая карта Иссык-Куля и Шёлкового пути, где активные узлы подсвечиваются как маршрут памяти. [asianreviewofbooks](https://asianreviewofbooks.com/silk-roads-peoples-cultures-landscapes-edited-by-susan-whitfield/)
+
+### 3. Scene screen
+
+Содержит:
+
+- заголовок сцены
+- cinematic illustration / 3D frame
+- scene text
+- окно святого отца
+- окно специалиста
+- системные варианты выбора
+- поле свободного ответа
+- панель последствий
+
+### 4. Monastery management screen
+
+Вид сверху на монастырский комплекс с интерактивными зонами, слоями риска воды и оперативными задачами. [store.steampowered](https://store.steampowered.com/app/1795090/Monastery_Builder/)
+
+### 5. Water and terrain screen
+
+График воды, карта береговой линии, отмеченные зоны переноса, прогноз на эпохи. [rgo](https://rgo.ru/activity/redaction/articles/chelovek-razgadavshiy-issyk-kul-kakuyu-taynu-sumel-ponyat-izvestnyy-geograf/)
+
+### 6. Dialogue screen
+
+Портреты наставников, ветвящийся разговор, выделенные термины, подсветка морали и исторического риска.
+
+### 7. Archive screen
+
+Хранит:
+
+- тексты игрока
+- найденные артефакты
+- карты
+- письма
+- летопись воды
+- unlocked codex entries
+
+### 8. Archaeology expedition screen
+
+Современный лагерь, список находок, план погружения, подводная карта и интерфейс сопоставления прошлого с настоящим. [geoexplorersclub](https://geoexplorersclub.com/en/podvodnye-tajny-i-neraskrytye-zagadki-issyk-kulya/)
+
+### 9. Seminar dashboard
+
+Экран для преподавателя или ведущего группы:
+
+- прогресс по 99 узлам
+- тексты игроков
+- heatmap выборов
+- дискуссионные вопросы
+- экспорт материалов
+
+## UX-поток одной точки
+
+1. Игрок входит в сцену.
+2. Получает короткий cinematic intro.
+3. Читает базовый текст ситуации.
+4. Слушает/читает святого отца.
+5. Слушает/читает специалиста.
+6. Выбирает системный вариант или пишет свой.
+7. Получает immediate feedback.
+8. Видит, что изменилось в мире.
+9. Позже встречает delayed echo.
+10. В XXI веке может найти археологический след этого решения. [ieeexplore.ieee](https://ieeexplore.ieee.org/document/11027723/)
+
+## Техническая архитектура
+
+### Вариант 1. Godot + Firebase
+
+Подходит для:
+
+- быстрого инди-прототипа
+- сильной нарративной логики
+- небольшого бюджета
+- web export + desktop build
+
+#### Клиентская часть
+
+- Godot 4.x
+- GDScript for gameplay logic
+- UI через Control nodes
+- 2.5D scenes, lightweight 3D for water and dives
+- JSON-driven content pipeline
+
+#### Backend
+
+- Firebase Authentication — анонимный и email sign-in
+- Cloud Firestore — profile, progress, node states, texts
+- Cloud Functions — validation, analytics, prompt assembly
+- Firebase Storage — screenshots, exported dossiers, teacher packets
+- Firebase Hosting — web shell и landing/admin modules
+
+#### Плюсы
+
+- низкий порог команды
+- быстрое прототипирование
+- дешёвый старт
+- удобная JSON-driven narrative layer
+
+#### Минусы
+
+- менее зрелая enterprise-интеграция
+- сложнее мощный 3D polish, если проект резко вырастет
+
+### Вариант 2. Unity + Firebase
+
+Подходит для:
+
+- сильной cinematic presentation
+- большего 3D-потенциала
+- команды с опытом Unity
+- более тяжёлого long-term production
+
+#### Клиентская часть
+
+- Unity 6 / latest LTS
+- UI Toolkit или uGUI
+- Timeline/Cinemachine for dramatic scenes
+- ScriptableObjects + JSON hybrid content system
+- underwater shaders, terrain transitions, map overlays
+
+#### Backend
+
+- Firebase Authentication
+- Firestore
+- Cloud Functions
+- Storage
+- Remote Config для балансировки и показа курсовых режимов
+
+#### Плюсы
+
+- богаче визуальные инструменты
+- легче делать кинематографические сцены
+- сильнее экосистема плагинов
+
+#### Минусы
+
+- выше стоимость разработки
+- тяжелее iteration loop
+- сложнее дисциплина контент-пайплайна
+
+## API и data model
+
+### Основные сущности
+
+```ts
+User {
+  id: string
+  role: "player" | "teacher" | "admin"
+  locale: "ru" | "en"
+  createdAt: timestamp
+}
+
+Profile {
+  userId: string
+  backgroundType: "seminarian" | "researcher" | "general"
+  chosenPathTags: string[]
+}
+
+NodeProgress {
+  userId: string
+  nodeId: number
+  selectedChoiceId: string | null
+  freeText: string
+  mentorSaintId: string
+  specialistId: string
+  statsDelta: object
+  completedAt: timestamp
+}
+
+CampaignState {
+  userId: string
+  currentNode: number
+  resources: object
+  reputation: object
+  flags: object
+}
+
+ArtifactRecord {
+  userId: string
+  artifactId: string
+  foundInEra: "past" | "present"
+  interpretedAs: string
+  confidence: number
+}
+```
+
+### Пример REST/Function endpoints
+
+```http
+POST /startCampaign
+POST /submitNodeChoice
+POST /submitFreeText
+GET  /campaignState
+GET  /nodeDefinition/{id}
+GET  /archive
+POST /archaeology/scan
+POST /teacher/exportSession
+```
+
+### Пример Firestore collections
+
+- users
+- profiles
+- campaigns
+- node_progress
+- free_text_entries
+- artifact_records
+- seminar_groups
+- seminar_exports
+- telemetry_events
+
+## Контентный пайплайн
+
+### Narrative content
+
+Хранить отдельно:
+
+- node definitions
+- mentor texts
+- specialist texts
+- consequence maps
+- codex entries
+- glossary entries
+
+Это позволит локализацию и быстрые правки без пересборки клиента. [games.jmir](https://games.jmir.org/2024/1/e48099/)
+
+### Prompt assembly layer
+
+Для каждой точки может существовать генератор подсказок:
+
+- system prompt for saint voice
+- system prompt for specialist voice
+- user context prompt
+- moderation and tone constraints
+
+Если применять ИИ-ассистента внутри курса, он не должен заменять авторский выбор игрока, а должен помогать уточнять и углублять текст.
+
+## Пример промта специалиста
+
+```text
+Ты — приходской архитектор и реставратор из Москвы. Твоя задача — комментировать игровую точку с позиции материальной устойчивости храма, безопасности, хранения архива и долгой жизни здания. Говори ясно, современно, с уважением к церковной традиции. Не морализируй. Покажи игроку 2–3 практических риска и 2–3 сильных решения. Затем предложи ему написать свой вариант свободным текстом.
+```
+
+## Пример промта святого отца
+
+```text
+Ты — святой отец, связанный с традицией церковного рассуждения. Комментируй игровую сцену не абстрактно, а применительно к конкретной ситуации: вода, страх, реликвия, архив, бедные, власть, ложь, смирение. Говори коротко, сильно и образно. Дай не готовый ответ, а духовный вектор, после которого игрок должен сам принять решение.
+```
+
+## Прототипы
+
+### Prototype A — Text-first vertical slice
+
+Содержит:
+
+- 10 узлов кампании
+- 6 наставников
+- 6 специалистов
+- 1 карта монастыря
+- 1 упрощённый экран воды
+- 1 археологический эпилог
+
+Технология: Godot + Firestore.
+
+Цель — проверить, работает ли ядро «сцена → голоса → выбор → текст → след во времени».
+
+### Prototype B — Visual slice
+
+Содержит:
+
+- одну полностью polished сцену шторма
+- один монастырский management loop
+- одно погружение XXI века
+- один экран археологического сопоставления
+
+Технология: Unity + Firebase.
+
+Цель — проверить кинематографию, чувство воды и связку эпох.
+
+### Prototype C — Seminar web companion
+
+Содержит:
+
+- веб-кабинет преподавателя
+- экспорт ответов игроков
+- heatmap решений
+- discussion prompts
+
+Технология: Firebase Hosting + simple React/Vue front-end или статический web app. [oerproject](https://www.oerproject.com/topics/the-silk-roads)
+
+## MVP
+
+Минимально жизнеспособная версия:
+
+- 24 точки вместо 99
+- 8 святых отцов
+- 8 специалистов
+- 1 сценарная линия Иссык-Куля
+- 1 простая модель ресурсов
+- 1 модель воды
+- 1 эпилог археолога
+- сохранение прогресса
+- экспорт итогового досье игрока
+
+## Production roadmap
+
+### Phase 1
+
+- research lock
+- content bible
+- data schema
+- interaction prototype
+
+### Phase 2
+
+- vertical slice
+- mentor system
+- writing mode
+- water simulation lite
+
+### Phase 3
+
+- 24-node MVP
+- seminar dashboard
+- telemetry
+- export features
+
+### Phase 4
+
+- expansion to 99 nodes
+- archaeology mode full
+- bilingual release
+- external partnerships
+
+## Метрики успеха
+
+### Игровые
+
+- completion rate per node
+- return rate
+- average free text length
+- branch diversity
+- archaeology mode completion
+
+### Образовательные
+
+- рост качества свободных ответов
+- умение игрока удерживать больше одной оси анализа
+- качество итогового проекта или рефлексии
+- преподавательская оценка полезности в семинарском режиме
+
+## Риски
+
+- чрезмерная текстовость без достаточной визуальной награды
+- перегрузка историческим материалом
+- конфликт между духовной серьёзностью и игровым форматом
+- дорогая production-сборка при слишком раннем уходе в 3D
+- слабая дисциплина контентной структуры при 99 точках
+
+## Рекомендация по старту
+
+Для первого хода сильнее выглядит Godot + Firebase, потому что проект прежде всего narrative-systemic и нуждается в быстрой обкатке текста, выборов, последствий и пользовательских ответов. [seriousgamessociety](https://seriousgamessociety.org/tools-and-methods-for-sg-design/)
+
+Unity стоит брать либо для второго этапа, либо если уже есть команда, которая уверенно делает cinematic исторические сцены и поддерживает тяжёлый контентный пайплайн. [youtube](https://www.youtube.com/watch?v=xz_WWSmAXlY)
