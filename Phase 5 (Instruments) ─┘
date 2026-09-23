@@ -1,0 +1,113 @@
+
+Nothing in Physics references Instruments, and nothing in Instruments
+references Cockpit *except the bridge*, which is the single file allowed to
+know both — exactly the way `CockpitCommandSource` is the single file allowed
+to know both Cockpit and Physics.
+
+### 6.3 Filtering, not raw differences
+`DepthRateMetersPerSecond` and `BallastRatePerSecond` are exponentially
+filtered with a tunable time constant (`rateFilterSeconds`, default 0.35 s),
+using `1 − exp(−dt / τ)` so the result is frame-rate independent. A raw
+per-frame difference spikes on a dropped frame (common on XR2 during an
+IL2CPP hitch) and makes the HUD needle unreadable; the time constant makes the
+displayed rate a property of the boat, not of the CPU.
+
+### 6.4 Alarm arbitration
+Exactly one active `DiveAlarm`, most-severe first:
+`ThrusterSaturated` → `ApproachingSurface` / `ShallowWater` → `ApproachingSeabed`
+→ `None`, with `TelemetryLost` raised when a source that previously reported a
+live solver goes invalid. An authority saturation can become a loss of control,
+so it deliberately outranks a shallow-water advisory. Alarms and states raise
+their events only on change, so a HUD animation is not retriggered every frame.
+
+### 6.5 Allocator diagnostics (live, opt-in)
+`ThrusterSaturated`, `ThrusterResidualSquared` and `ThrusterSaturationPasses`
+are carried on `DiveTelemetrySample` and reflect the Phase 2 completion
+`ThrusterAllocator`'s own severity telemetry. `SixDofTelemetrySource` reads
+them from a nullable `ThrusterAllocator` reference handed in via
+`Bind(ThrusterAllocator)` (or set through `Allocator`); when it is null or
+`!IsConfigured`, the three fields are reset to their defaults and no
+`ThrusterSaturated` alarm can be raised. `SixDofBody`'s deferred
+`useControlAllocator` opt-in only needs to call that `Bind` once; the adapter
+never reaches into a solver field that does not exist yet, so no
+speculative coupling is introduced. The hardening note from the Phase 2
+allocator entry still applies: the value read is whatever the *last* call to
+`Allocate` left behind, so a solver that only calls `Allocate` at steady state
+must call it every tick.
+
+### 6.6 Test strategy (instruments)
+`DiveComputerTests` (EditMode, scene-free) drives `Tick` directly against an
+in-file fake source. Unlike `Phase2ApiContractTests` these are *behavioural*
+tests, not reflection: Phase 5 defines its own surface in this iteration, so
+there is no frozen external contract to protect and real values are cheap.
+Covered: unbound source → `Unpowered`/`None`, live→invalid → `TelemetryLost`,
+dry hull at zero depth → `Surfaced`, ascending/descending ramps → correct state
+and rate sign, filter smoothing (rate < raw), saturation outranking depth
+advisories, transition-only event firing, and rebind clearing filter state.
+
+### 6.7 XR2 budget / cost
+One `Update` per `DiveComputer`, one `Sample` call per frame, pointer reads
+only. No LINQ, no closures, no reflection, no per-frame allocation.
+`GetComponentsInChildren<MonoBehaviour>` runs once in `Awake` (Unity cannot
+`GetComponent` an interface), never per frame. `DisallowMultipleComponent`
+prevents two computers arguing over the same HUD.
+
+### 6.8 Cockpit bridge
+`DiveCockpitBridge` is the Phase 5 → Phase 3 seam. It subscribes to
+`DiveComputer.StateChanged` / `DiveComputer.AlarmRaised` and republishes each
+transition as a `CockpitEvent` on a `CockpitEventBus`.
+
+The frozen `CockpitEventType` enum (Phase 3) has no dive-specific members and
+`CockpitEvent.cs` is not edited by this pass. The bridge therefore emits
+`CockpitEventType.Toggled` — the nearest generic category — and encodes the
+semantics in `controlId`, which is already documented by CockpitEvent.cs as an
+opaque subscriber discriminator:
+
+| `controlId` | `value` | `state` |
+|---|---|---|
+| `dive.state` | `(float)DiveState` | `state != Unpowered` |
+| `dive.alarm` | `(float)DiveAlarm` | `alarm != None` |
+
+Because `CockpitEvent` is a struct with no managed fields and `control` is left
+null (it is an instrument telegram, not a physical control), raising is
+allocation-free. State and alarm still fire only on transition (deduping is in
+`DiveComputer`, not the bridge), so a HUD listening on the bus is not
+retriggered every frame.
+
+**Shared-bus auto-discovery.** The scene's cockpit already owns a shared
+`CockpitEventBus` on `CockpitManager.Instance.Bus`, so the bridge adopts that
+bus in its own `Awake` — before allocating its private fallback — unless an
+explicit bus has been bound first. `CockpitManager` runs at
+`DefaultExecutionOrder(-95)`, ahead of the bridge at `-45`, so on normal scene
+load `Instance` is guaranteed to be set. `UsingSharedBus` exposes whether the
+adoption actually happened, and the private fallback is retained only for bare
+test / tool scenes with no manager. Consequences: a HUD that subscribes to
+`CockpitManager.Instance.Bus` sees dive state and alarm transitions without
+ever knowing the bridge exists, and every other cockpit family (button events,
+lever events) lands on the same channel, so mixing them is trivial.
+
+The bridge is deliberately self-contained as well: it unsubscribes on
+`OnDestroy` and before any rebind, so a destroyed or rewired bridge can never
+leave dangling delegates on the computer's event list, and its bus is never
+null once `Awake` has run, so a subscriber that grabbed the reference before
+an external `Bind` keeps receiving events.
+
+### 6.9 Test strategy (bridge)
+`DiveCockpitBridgeTests` (EditMode, scene-free) drives a real `DiveComputer`
+against an in-file fake source and asserts the bridge contract: correct
+`controlId`, correct encoded `value` / `state`, `Toggled` category with null
+`control`, no telegram on non-transitions, bus resolution in all three modes
+(explicit bind wins; `CockpitManager.Instance.Bus` is auto-adopted; absent a
+manager, the private fallback is used), detach on destroy, and no
+double-publish after a rebind to the same computer.
+
+### 6.10 Deferred
+- PlayMode tests on physical or cloud Quest 3 hardware (runner has no headset).
+- Android App Bundle / asset-pack split (single side-load `.apk` for now).
+- Optional `SixDofBody` `useControlAllocator` opt-in on the solver side; the
+  adapter side of it (see §6.5) is already in place.
+- A concrete `DivePanel` HUD binder (`UnityEngine.UI`) — presentation, and
+  deliberately outside the classification-and-arbitration module.
+- Sonar / thermal visualisation of the thermocline (art pass).
+- Roblox-side parity for the shared-seed replay harness (Role 1 work,
+  `HLD_Roblox.md`).
