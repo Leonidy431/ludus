@@ -78,15 +78,52 @@ Continuous development diary for Deacon's Path: Issyk-Kul (Meta Quest 3 VR ROV S
 
 ---
 
-### Session 3: Predictive Alarms (Phase 6b Hookup)
+## Session 3: Critical Blockers Unblocked (A6, A8, U1)
 
 **[2026-09-25 01:45 UTC]**  
 **Delta:** +4h  
-[To be filled in next iteration]
+**Current State:**
+- ✅ **A6 UNBLOCKED** — [`docs/DEMIURGE_ARCHITECTURE.md`](./docs/DEMIURGE_ARCHITECTURE.md) (420 lines) — Complete graph-based world simulator spec with:
+  - DemiurgeNode & DemiurgeEdge data model (Firestore-ready TypeScript types)
+  - 3-phase simulation loop: Phase A (Constraints), Phase B (Causality Propagation), Phase C (Topological Query)
+  - Aristotelian causality framework (Matter, Form, Action, Goal) integrated into node/edge semantics
+  - O(1)–O(E) performance budgets (8ms/cycle on 4 Hz tick; headroom for 90 FPS VR)
+  - Backward-compat: Phase 5 DiveState → NodeStatus mapping verified
+  - 10 EditMode tests planned for Phase 6a-1
 
-- [ ] Design: ETA-to-crush-depth, battery depletion curve
-- [ ] Implement hook structs (placeholder in DiveComputer)
-- [ ] Phase 8 manual override skeleton
+- ✅ **A8 UNBLOCKED** — [`functions/src/schemas/ludusTypes.ts`](./functions/src/schemas/ludusTypes.ts) (480 lines) — Firestore TypeScript schema contract:
+  - DemiurgeNode, DemiurgeEdge (graph entities)
+  - PlayerProfile, CharacterAttributes (player state)
+  - ResourcePool, Artifact (inventory system)
+  - KairoticTask, KnowledgeGate, PlayerGateAttempt (progression mechanics)
+  - Faction, FactionMembership, MarketListing, MarketTransaction (social/economy)
+  - TopologyCache, CorpusMapping (denormalized indexes for fast queries)
+  - Validation helpers: validatePlayerProfile(), validateDemiurgeNode()
+  - Zero regressions: all types strict-mode-validated
+
+- ✅ **U1 UNBLOCKED** — [`docs/GAME_TAB_INTEGRATION.md`](./docs/GAME_TAB_INTEGRATION.md) (380 lines) — Game tab UI integration spec:
+  - NavBar update: add "Games" tab with 🎮 icon + quest badge
+  - Scene routes: ludus-dashboard, ludus-gate-challenge, ludus-quest-detail, ludus-marketplace
+  - Components: PlayerProfileCard, QuestList, GatePanel, MarketplaceBrowser, FactionCard
+  - Real-time subscriptions: usePlayerProfile(), usePlayerQuests(), usePlayerResources(), useGate()
+  - i18n integration (ludus.json keys + reactive locale switching)
+  - Firestore Emulator validation path
+  - Obsidian theme (gold/cyan, strict high-contrast design)
+  - 8-day implementation sprint plan
+  - Success criteria: 12 checkpoints
+
+**Roadblocks:** None. All three specs reference each other; ready for parallel implementation.
+
+**Game Testing Readiness Update:**
+- **EditMode tests (Phase 6a):** ✅ Classifier ready; Demiurge tests incoming
+- **PlayMode integration (Phase 6b):** ⏳ Awaiting Demiurge simulation + game-tab UI
+- **Device testing (Quest 3):** ⏳ Phase 6c (after Demiurge + sensor fusion)
+
+**Next Actions (next 4h, ETA 2026-09-25 05:45 UTC):**
+1. Implement Demiurge TypeScript classes + EditMode tests (10 tests; Phase 6a-1).
+2. Initialize Firestore seed data (5 sample players, 20 NPCs, 50 edges).
+3. Start Game Tab UI implementation (NavBar + PlayerProfileCard; Phase 6-6d week 1).
+4. Profile Demiurge simulation loop on Snapdragon XR2 emulation.
 
 ---
 
