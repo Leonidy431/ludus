@@ -143,9 +143,58 @@ Continuous development diary for Deacon's Path: Issyk-Kul (Meta Quest 3 VR ROV S
 
 ---
 
-### Session 4: Sensor Fusion Prep (Phase 7 Readiness)
+### Session 4: Phase 6b Bridge Integration & Firestore Init
 
-**[2026-09-25 05:45 UTC]**  
+**[2026-09-25 09:45 UTC]**  
+**Delta:** +8h  
+**Current State:**
+- ✅ **DemiurgeBridge.cs implemented** (370 lines) — Adapter MonoBehaviour connecting Phase 5 DiveComputer to Phase 6 Demiurge Engine:
+  - Start(): Initialize DemiurgeSimulator, create player node with device ID hash
+  - Update(): Poll DiveState + telemetry, update node status/attributes per frame
+  - UpdateNodeStatusFromDiveState(): 16 DiveState → 4 NodeStatus (ACTIVE/DORMANT/CORRUPTED/DESTROYED)
+    - Terminal states (CriticalExceeding, HullCompromised) → DESTROYED
+    - Critical states (PowerFailing, BallastBleeding) → CORRUPTED
+    - Operational states (Descending, Hovering, Ascending) → ACTIVE
+    - Idle states (Surfaced, Beached) → DORMANT
+  - UpdateNodeAttributesFromTelemetry(): 7 sensor → attribute mappings
+    - Depth (0–1000m) → Wisdom (10–20)
+    - Power (0–100%) → Constitution (1–20)
+    - Velocity (0–2 m/s) → Dexterity (5–20)
+    - Pressure (bar) → Strength (log scale, 5–20)
+    - Temperature (0–20°C) → Charisma (5–15)
+    - Ballast fill (0–100%) → Faith (5–15)
+    - Water density (1000–1030) → Erudition (5–15)
+  - Resource decay: Gold/Faith drain 0.1% per second (simulated power consumption)
+  - Demiurge tick every 250ms (4 Hz, independent of render thread)
+  - Public API: GetPlayerNode(), GetReachableNodes(maxDepth), InjectEdge(), GetCycleCount()
+  - Commit: 7ff6741
+
+**Roadblocks:** None. Bridge compiled clean; ready for PlayMode tests.
+
+**Delivery Summary (Day 2, 8h):**
+✅ **DemiurgeBridge.cs** (370 lines) — Phase 5→6 adapter, committed 7ff6741
+✅ **Game Tab UI** (webtypicon2) — ludus-game.js + ludus-game.css, PR #455 (draft)
+  - Lazy-loaded Firebase Auth module
+  - Player profile card with 9 attributes + 4 resources
+  - Demiurge graph BFS client-side (mentors, NPCs, quests)
+  - Knowledge gates tier progression (1–3)
+  - Obsidian theme (gold #D4AF37 + cyan #00CED1)
+  - i18n integration + error handling
+- Commits: webtypicon2 7eb608d0, ludus 7ff6741
+- PRs open: ludus #2, webtypicon2 #455 (both draft, watching)
+
+**Next Actions (Days 3–4, ETA 2026-09-26 01:45 UTC):**
+1. Run seedDemiurgeData.ts: Initialize Firestore (5 players, 20 NPCs, 50 edges, 10 gates).
+2. Verify ludus collections (ludus_nodes, ludus_edges, ludus_knowledge_gates, ludus_health_checks).
+3. PlayMode integration tests (Phase 6b-2): MonoBehaviour lifecycle + DiveComputer hookup.
+4. Device testing (Quest 3): Profile → Demiurge attributes mapping verification.
+5. Green both PRs (#2, #455) and merge to main for first v0.1 release.
+
+---
+
+### Session 4b: Sensor Fusion Prep (Phase 7 Readiness)
+
+**[PLACEHOLDER FOR NEXT SESSION]**  
 **Delta:** +4h  
 [To be filled in next iteration]
 
