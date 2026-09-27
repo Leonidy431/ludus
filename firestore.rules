@@ -1,0 +1,235 @@
+rules_version = '2';
+
+// ============================================================================
+// Ludus Protocol — Firestore Security Rules
+// S12 CRITICAL blocker: Authentication & Authorization
+//
+// Scope: every ludus_* collection defined in functions/src/schemas/ludusTypes.ts.
+// This game module is fully isolated from the liturgical corpus (ТАБУ №1) —
+// these rules never reference, read, or write any non-ludus_* path.
+//
+// Model:
+//   - Admin (custom claim `admin: true`, set server-side only) — full read/write
+//     on every collection. This satisfies "admin-only read access to all
+//     collections" from docs/DEPLOYMENT_READINESS_V0_1.md.
+//   - Signed-in player — scoped read/write per collection below.
+//   - Anonymous — no access to any ludus_* document.
+//
+// Known, documented tradeoff (not silently glossed over): "players can read
+// reachable nodes (depth <= 5) but not write" from the readiness doc is not
+// enforced as a depth-bounded ACL here — Firestore rules cannot walk a graph
+// at request time without either a recursive get() chain (unbounded cost) or
+// a maintained per-player reachability list. The existing client (ludus-game.js)
+// already does client-side BFS over the full ludus_nodes/ludus_edges collections
+// to render the network view, so a depth-restricted read would break it. Instead:
+// ALL signed-in players may READ ludus_nodes/ludus_edges (world-state graph is
+// not secret), but only the WORLD SIMULATION (admin / Cloud Functions using the
+// Admin SDK, which bypasses these rules entirely) may WRITE them — a player can
+// never forge their own node's attributes/resources or another player's edges.
+// ============================================================================
+
+function isSignedIn() {
+  return request.auth != null;
+}
+
+function isAdmin() {
+  return isSignedIn() && request.auth.token.admin == true;
+}
+
+function isOwnerUid(uid) {
+  return isSignedIn() && request.auth.uid == uid;
+}
+
+// The player's own DemiurgeNode id, resolved via their PlayerProfile doc
+// (ludus_players/{uid}.nodeId). A missing profile means "no owned node yet".
+function ownNodeId() {
+  return get(/databases/$(database)/documents/ludus_players/$(request.auth.uid)).data.nodeId;
+}
+
+function ownsNode(nodeId) {
+  return isSignedIn()
+    && exists(/databases/$(database)/documents/ludus_players/$(request.auth.uid))
+    && ownNodeId() == nodeId;
+}
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ------------------------------------------------------------------
+    // Player profiles (PlayerProfile) — one doc per Firebase Auth UID.
+    // ------------------------------------------------------------------
+    match /ludus_players/{uid} {
+      allow read: if isAdmin() || isOwnerUid(uid);
+      // A player may create/update their OWN profile only, and may never
+      // set the `admin` field or rewrite `userId` to someone else's uid.
+      allow create: if isAdmin() || (
+        isOwnerUid(uid) &&
+        request.resource.data.userId == uid
+      );
+      allow update: if isAdmin() || (
+        isOwnerUid(uid) &&
+        request.resource.data.userId == uid &&
+        request.resource.data.nodeId == resource.data.nodeId // node binding is immutable client-side
+      );
+      allow delete: if isAdmin();
+    }
+
+    // ------------------------------------------------------------------
+    // Demiurge world graph (DemiurgeNode) — see class-level note above.
+    // ------------------------------------------------------------------
+    match /ludus_nodes/{nodeId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin(); // world simulation writes via Admin SDK only
+    }
+
+    // Edges are relationships between nodes (mentorship, trade, conflict, …) —
+    // same reasoning: readable by any signed-in player for graph traversal,
+    // never client-writable (prevents forging alliances/conflicts).
+    match /ludus_edges/{edgeId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    match /ludus_topology_cache/{sourceNodeId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // ------------------------------------------------------------------
+    // Character attributes & resources — server-computed from telemetry
+    // (DemiurgeBridge) and quest rewards; never directly client-writable.
+    // ------------------------------------------------------------------
+    match /ludus_character_attributes/{playerId} {
+      allow read: if isAdmin() || isOwnerUid(playerId);
+      allow write: if isAdmin();
+    }
+
+    match /ludus_resource_pools/{poolId} {
+      allow read: if isAdmin() || (
+        isSignedIn() && resource.data.playerId == request.auth.uid
+      );
+      allow write: if isAdmin();
+    }
+
+    match /ludus_artifacts/{artifactId} {
+      // Artifact ownership isn't in this schema (artifacts reference a
+      // DemiurgeNode, not a playerId directly) — readable by any signed-in
+      // player (needed to render another player's showcased inventory /
+      // marketplace listings), never client-writable.
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // ------------------------------------------------------------------
+    // Kairotic tasks (quests). Players may self-claim an AVAILABLE task —
+    // the one client-writable state transition this schema needs — but may
+    // not touch title/description/rewards/difficulty or claim on someone
+    // else's behalf.
+    // ------------------------------------------------------------------
+    match /ludus_kairotic_tasks/{taskId} {
+      allow read: if isSignedIn();
+      allow update: if isAdmin() || (
+        isSignedIn() &&
+        resource.data.status == 'available' &&
+        request.resource.data.status == 'active' &&
+        request.resource.data.assignedPlayerId == request.auth.uid &&
+        // every other field is untouched by this transition
+        request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['status', 'assignedPlayerId'])
+      );
+      allow create, delete: if isAdmin();
+    }
+
+    // ------------------------------------------------------------------
+    // Knowledge gates (Proof-of-Knowledge). The question is public once a
+    // gate is unlocked; acceptableAnswers[].answerHash is a SHA-256 digest,
+    // not the plaintext — exposing it is an accepted, documented risk of
+    // this schema shape (a determined client could dictionary-attack the
+    // hash offline), not a secret leak of the answer itself. Verification
+    // authority for attempts stays server-side (§ ludus_gate_attempts).
+    // ------------------------------------------------------------------
+    match /ludus_knowledge_gates/{gateId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // Attempts are an append-only, self-scoped log: a player may create
+    // their own attempt record (client submits an answer hash; a Cloud
+    // Function — not covered by these rules, since it uses the Admin SDK —
+    // is the actual authority that computes `passed`/`score`), may read
+    // only their own attempts, and may never edit or delete history.
+    match /ludus_gate_attempts/{attemptId} {
+      allow read: if isAdmin() || (
+        isSignedIn() && resource.data.playerId == request.auth.uid
+      );
+      allow create: if isSignedIn() &&
+        request.resource.data.playerId == request.auth.uid;
+      allow update, delete: if isAdmin();
+    }
+
+    // ------------------------------------------------------------------
+    // Factions & alliances — membership/reputation mutated only through
+    // Cloud Function business logic (prevents self-promotion to "leader").
+    // ------------------------------------------------------------------
+    match /ludus_factions/{factionId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    match /ludus_faction_memberships/{membershipId} {
+      allow read: if isAdmin() || ownsNode(resource.data.nodeId);
+      allow write: if isAdmin();
+    }
+
+    // ------------------------------------------------------------------
+    // Marketplace — a player manages their own listings; transactions are
+    // always finalized server-side (both parties' balances must move
+    // atomically, which client-side rules cannot guarantee).
+    // ------------------------------------------------------------------
+    match /ludus_market_listings/{listingId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() &&
+        request.resource.data.sellerId == request.auth.uid &&
+        request.resource.data.status == 'active';
+      allow update: if isAdmin() || (
+        isSignedIn() &&
+        resource.data.sellerId == request.auth.uid &&
+        // a seller may only cancel their own active listing, not change price/qty
+        request.resource.data.status == 'cancelled' &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])
+      );
+      allow delete: if isAdmin();
+    }
+
+    match /ludus_market_transactions/{transactionId} {
+      allow read: if isAdmin() || (
+        isSignedIn() && (
+          resource.data.buyerId == request.auth.uid ||
+          resource.data.sellerId == request.auth.uid
+        )
+      );
+      allow write: if isAdmin(); // atomic settlement is a Cloud Function's job
+    }
+
+    // ------------------------------------------------------------------
+    // System / internal — never client-readable or client-writable.
+    // ------------------------------------------------------------------
+    match /ludus_health_checks/{checkId} {
+      allow read, write: if isAdmin();
+    }
+
+    match /ludus_corpus_mappings/{corpusId} {
+      allow read: if isSignedIn(); // read-only reference data, harmless to expose
+      allow write: if isAdmin();
+    }
+
+    // ------------------------------------------------------------------
+    // Default deny — anything not matched above (including any future
+    // ludus_* collection added without an explicit rule, and every path
+    // outside this game module) is closed by default.
+    // ------------------------------------------------------------------
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

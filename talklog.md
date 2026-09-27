@@ -225,6 +225,85 @@ Continuous development diary for Deacon's Path: Issyk-Kul (Meta Quest 3 VR ROV S
 
 ---
 
+### Session 5: S12 CRITICAL Blocker — Authentication & Firestore Rules
+
+**[2026-09-27 08:15 UTC]**  
+**Delta:** resumed from backlog + docs/DEPLOYMENT_READINESS_V0_1.md "Remaining Critical Work" §S12 (no elapsed-time gap to report — continuing the deployment-readiness queue directly).  
+**Current State:**
+
+- ✅ **S12 UNBLOCKED** — Authentication & Authorization, per the exact task list in
+  `docs/DEPLOYMENT_READINESS_V0_1.md` (now superseded there by a "✅ DELIVERED" note):
+  - [`firestore.rules`](./firestore.rules) (new, ~220 lines) — per-collection rules
+    for every `ludus_*` collection in `ludusTypes.ts`: `ludus_players` (owner
+    read/write, immutable `nodeId` binding), `ludus_nodes`/`ludus_edges`/
+    `ludus_topology_cache` (signed-in read, admin-only write — world simulation
+    is never client-forgeable), `ludus_character_attributes`/`ludus_resource_pools`
+    (owner read, admin write), `ludus_artifacts` (signed-in read, admin write),
+    `ludus_kairotic_tasks` (the one client-writable state transition: a player
+    may self-claim an `available` task via `diff().affectedKeys().hasOnly([...])`,
+    touching nothing else), `ludus_knowledge_gates` (signed-in read, admin write —
+    documented tradeoff: `acceptableAnswers[].answerHash` is a SHA-256 digest,
+    not plaintext, so exposing the doc isn't an answer leak), `ludus_gate_attempts`
+    (append-only self-scoped log — create own, read own, never edit/delete client-side),
+    `ludus_factions`/`ludus_faction_memberships`/`ludus_market_listings`/
+    `ludus_market_transactions` (read scoped to self where applicable, all
+    mutating business logic reserved to admin/Cloud Functions), `ludus_health_checks`
+    (admin-only both ways), `ludus_corpus_mappings` (signed-in read), and a
+    default-deny fallback (`match /{document=**} { allow read, write: if false; }`)
+    for any unmatched/future path.
+  - [`functions/src/middleware/auth.ts`](./functions/src/middleware/auth.ts) (new,
+    ~95 lines) — `verifyIdToken()` (never throws; malformed/expired/wrong-project
+    tokens all collapse to "no valid identity", never leaking which failure mode),
+    `requireAuth()`/`requireAdmin()` wrapping `functions.https.onRequest`'s
+    `(req, res) => void` shape with zero signature change for call sites.
+  - [`functions/src/scripts/setAdminClaim.ts`](./functions/src/scripts/setAdminClaim.ts)
+    (new, ~55 lines) — CLI-only provisioning script (`ts-node setAdminClaim.ts <uid> grant|revoke`)
+    for the `admin` custom claim; deliberately NOT a Cloud Function (an
+    HTTP-triggerable "make me admin" endpoint would defeat the claim entirely).
+  - Wired into [`functions/src/api/ludus-health.ts`](./functions/src/api/ludus-health.ts):
+    `ludusMetrics` now wrapped in `requireAdmin(...)` (401 no token, 403 no
+    admin claim); `ludusHealth` deliberately left public — inline comment
+    explains why (LB/CI/monitoring callers hold no player/admin credential,
+    and the response carries only aggregate counts, no PII).
+
+**Roadblocks / honest gaps (not silently glossed over):**
+- No `firebase` CLI, Firestore Emulator, or `node_modules` exist in this
+  sandbox — `firestore.rules` was checked structurally (brace/paren balance:
+  43/43, 101/101) and hand-reviewed against the schema in `ludusTypes.ts`, but
+  **has not been run through `firebase emulators:exec --only firestore`'s real
+  rules-unit-test harness**. This is the honest remaining gap before "S12
+  UNBLOCKED" becomes "S12 deployed and verified" — flagged in
+  `docs/DEPLOYMENT_READINESS_V0_1.md`'s Authentication & Security section as a
+  concrete next step, not silently marked done.
+- The three new/edited TypeScript files were syntax/type-checked locally with
+  a bare `tsc` (no `@types/node`, no `firebase-functions`/`firebase-admin`
+  package present) — every reported diagnostic was traced to a missing-module/
+  missing-`@types/node` artifact of that setup (`Cannot find module
+  'firebase-functions'`, implicit-`any` on `functions.https.onRequest`'s
+  callback params, `process` not found), none to an actual bug in the new code.
+  Real compilation against the project's real `tsconfig.json` + installed
+  deps (wherever this repo's functions eventually get merged/deployed —
+  likely alongside webtypicon2's own `functions/` project, per the existing
+  cross-repo pattern of `ludus` docs referencing `webtypicon2 7eb608d0`) is
+  still the authoritative gate, not this ad hoc check.
+- No admin account has actually been provisioned — `/api/ludus/metrics` will
+  401 for everyone (including the operator) until `setAdminClaim.ts` is run
+  against a real project with a real `uid`.
+
+**Next Actions:**
+1. Deploy `firestore.rules` to the real Firebase project (`firebase deploy
+   --only firestore:rules`) and run its rules-unit-test suite against the
+   Firestore Emulator before trusting it in prod.
+2. Run `setAdminClaim.ts grant <operator-uid>` once the operator's Firebase
+   Auth UID is known, so `/api/ludus/metrics` is actually reachable by someone.
+3. A10 (Offline Sync & Client-Side Caching) is the next CRITICAL blocker in
+   the queue per `docs/DEPLOYMENT_READINESS_V0_1.md` — IndexedDB schema +
+   Service Worker + optimistic mutations in `ludus-game.js`.
+4. Resolve the "+1 Unknown" blind-spot gap (99 Blind Spots Assessment, Day 1)
+   before calling v0.1 fully ready.
+
+---
+
 ## Development Discipline Checklist
 
 - [ ] All code commits tagged with `#phase6-fsm` and linked in talklog.

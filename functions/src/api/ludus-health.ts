@@ -14,6 +14,7 @@
 
 import * as functions from 'firebase-functions';
 import { getFirestore, Timestamp, FieldValue } from 'firebase-admin/firestore';
+import { requireAdmin } from '../middleware/auth';
 
 interface HealthCheckResponse {
   status: 'ok' | 'degraded' | 'down';
@@ -53,6 +54,15 @@ const HEALTH_CHECK_COUNTERS = {
 
 /**
  * Health check endpoint: Verify Ludus collections + seed data + performance.
+ *
+ * S12 note: deliberately left PUBLIC (no auth gate), unlike `ludusMetrics` below.
+ * A health endpoint that load balancers / uptime monitors / CI smoke tests hit
+ * on every request must not require a Firebase ID token — none of those callers
+ * hold a player/admin credential, and gating it would just break the exact
+ * consumers this endpoint documents itself as serving ("Used by: CI/CD health
+ * checks, load balancers, monitoring dashboards"). The response also carries
+ * no player-identifying data (only aggregate counts), so exposing it publicly
+ * is not an information-disclosure risk on its own.
  */
 export const ludusHealth = functions.https.onRequest(async (req, res) => {
   try {
@@ -240,11 +250,16 @@ async function countCollection(db: any, collectionName: string): Promise<number>
 
 /**
  * Metrics endpoint: Expose check pass/fail counters for monitoring.
+ *
+ * S12 CRITICAL blocker: admin-gated (`Authorization: Bearer <admin idToken>`).
+ * Unlike /health, this is an internal operational signal (raw pass/fail
+ * counters since process start) with no external-consumer contract — gating
+ * it costs nothing and closes an unauthenticated-info-disclosure surface.
  */
-export const ludusMetrics = functions.https.onRequest((req, res) => {
+export const ludusMetrics = functions.https.onRequest(requireAdmin((req, res) => {
   res.json({
     health_checks_passed: HEALTH_CHECK_COUNTERS.CHECKS_PASSED,
     health_checks_failed: HEALTH_CHECK_COUNTERS.CHECKS_FAILED,
     uptime_seconds: Math.round((Date.now() - HEALTH_CHECK_COUNTERS.START_TIME) / 1000),
   });
-});
+}));

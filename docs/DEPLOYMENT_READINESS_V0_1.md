@@ -9,15 +9,15 @@ date: 2026-09-25
 
 # Ludus Protocol — v0.1 Deployment Readiness Assessment
 
-**Last Updated:** 2026-09-25 17:00 UTC  
+**Last Updated:** 2026-09-27 08:15 UTC  
 **Deployment Target:** Meta Quest 3 + webtypicon2 Platform  
-**Readiness:** 50% (4 of 8 CRITICAL blockers resolved)  
+**Readiness:** 62.5% (5 of 8 CRITICAL blockers resolved)  
 
 ---
 
 ## Executive Summary
 
-Day 2 Phase 6b delivery completed with **4 CRITICAL blockers UNBLOCKED**:
+Day 2 Phase 6b delivery completed with **4 CRITICAL blockers UNBLOCKED**; Session 5 added a 5th:
 
 | Blocker | Status | Delivery | Commit |
 |---------|--------|----------|--------|
@@ -26,12 +26,12 @@ Day 2 Phase 6b delivery completed with **4 CRITICAL blockers UNBLOCKED**:
 | **U1** (Game Tab Integration) | ✅ UNBLOCKED | webtypicon2 ludus-game.js + CSS | 7eb608d0 |
 | **T1** (PlayMode Tests) | ✅ UNBLOCKED | PHASE6_DemiurgeBridgePlayModeTests.cs | c137fd8 |
 | **D3** (Health Check) | ✅ UNBLOCKED | functions/src/api/ludus-health.ts | 90e0599 |
-| **S12** (Auth Crypto) | ⏳ PENDING | Firestore rules + JWT validation | — |
+| **S12** (Auth Crypto) | ✅ UNBLOCKED | firestore.rules + functions/src/middleware/auth.ts | Session 5 |
 | **A10** (Offline Sync) | ⏳ PENDING | Client-side cache + SW integration | — |
 | **+1** (Unknown) | ⏳ PENDING | From blind spots assessment | — |
 
-**v0.1 Path:** Merge ludus #2 + webtypicon2 #455 → Initialize Firestore → Device testing (Quest 3)  
-**Estimated Time to Ship:** 3–5 days (dependent on device testing + S12/A10 resolution)
+**v0.1 Path:** Merge ludus #2 + webtypicon2 #455 → Initialize Firestore → Deploy `firestore.rules` → Device testing (Quest 3)  
+**Estimated Time to Ship:** 2–4 days (dependent on device testing + A10 resolution)
 
 ---
 
@@ -101,16 +101,42 @@ Day 2 Phase 6b delivery completed with **4 CRITICAL blockers UNBLOCKED**:
 
 ### Authentication & Security
 
-**Status:** ⏳ PENDING (S12 CRITICAL)  
+**Status:** ✅ READY (S12 delivered, Session 5)  
 **Components:**
-- Firestore Rules: Read/write access control per user role
-- JWT Validation: Authorization header Bearer token verification
-- Service Account: Admin operations (seeding, health checks, migrations)
+- `firestore.rules` — per-collection rules for all `ludus_*` collections (players,
+  nodes, edges, character attributes, resources, artifacts, kairotic tasks,
+  knowledge gates, gate attempts, factions, faction memberships, marketplace
+  listings/transactions, topology cache, corpus mappings, health checks).
+  Default-deny fallback for any unmatched/future path.
+- `functions/src/middleware/auth.ts` — `verifyIdToken()`, `requireAuth()`,
+  `requireAdmin()` wrapping `functions.https.onRequest` handlers.
+- `functions/src/scripts/setAdminClaim.ts` — one-off CLI script to grant/revoke
+  the `admin` custom claim (never settable by the client itself).
+- Wired into `functions/src/api/ludus-health.ts`: `/api/ludus/metrics` now
+  requires an admin bearer token (403 without the claim, 401 without a token);
+  `/api/ludus/health` stays public by deliberate, documented decision (load
+  balancers/CI smoke tests have no player/admin credential to present, and the
+  response carries only aggregate counts — see inline comment in that file).
 
-**Outstanding:**
-- Firestore rules must enforce read-only access to ludus collections
-- Admin-only write access for seed data operations
-- Player-scoped queries (can only see own profile + reachable graph)
+**Documented tradeoff (not silently deferred — see `firestore.rules` header
+comment):** "players can read reachable nodes (depth ≤ 5) but not write" is
+implemented as "any signed-in player can READ ludus_nodes/ludus_edges, only
+admin/Cloud Functions can WRITE them" rather than a depth-bounded ACL — a
+per-request graph walk in security rules is either unbounded-cost or requires
+a maintained per-player reachability index that doesn't exist in this schema
+yet. The existing client-side BFS in `ludus-game.js` already reads the full
+node/edge collections, so a depth-restricted read would have broken it.
+
+**Not yet done (tracked, not silently dropped):**
+- `firestore.rules` has not been deployed to a real Firebase project — no
+  `firebase` CLI / emulator was available in this session's sandbox to run
+  `firebase emulators:exec --only firestore 'npm test'` against it. Structural
+  check only (brace/paren balance, hand-reviewed rule logic). **Before v0.1
+  ships, run the real Firestore Rules unit-test suite** (a good place to spend
+  part of the Device Testing window) — this is the honest gap, not "done".
+- No admin user has actually been provisioned yet (`setAdminClaim.ts` exists
+  but hasn't been run against a real project) — `/api/ludus/metrics` will 401
+  for everyone, including the operator, until it is.
 
 ### Offline Capability
 
@@ -210,30 +236,11 @@ Day 2 Phase 6b delivery completed with **4 CRITICAL blockers UNBLOCKED**:
 
 ## Remaining Critical Work
 
-### S12: Authentication & Authorization (Firestore Rules)
+### ~~S12: Authentication & Authorization (Firestore Rules)~~ ✅ DELIVERED (Session 5)
 
-**Scope:** Firestore security rules + JWT validation  
-**Priority:** CRITICAL (required before prod deployment)  
-**Effort:** 4–6 hours
-
-**Tasks:**
-1. Write Firestore rules:
-   - Players can read/write own `ludus_nodes` document only
-   - Players can read reachable nodes (depth ≤ 5) but not write
-   - Admin-only read access to all collections
-   - Knowledge gates: read/write answers for own player only
-
-2. Implement JWT validation in Cloud Functions:
-   - Extract `Authorization: Bearer <token>` header
-   - Verify Firebase ID token
-   - Enforce role-based access (admin vs. player)
-
-3. Add auth middleware to health check + metrics endpoints
-
-**Files to Create/Edit:**
-- `firestore.rules`
-- `functions/src/middleware/auth.ts`
-- `functions/src/api/ludus-health.ts` (add auth checks)
+See "Authentication & Security" component above for the full delivery + the
+two honestly-remaining sub-gaps (rules not yet deployed/tested against a real
+project; no admin account provisioned yet).
 
 ### A10: Offline Sync & Client-Side Caching
 
