@@ -1,1 +1,11 @@
 .aider*
+node_modules/
+functions/node_modules/
+functions/lib/
+functions/dist/
+functions/build/
+functions/.env.local
+*.log
+.DS_Store
+dist/
+build/
