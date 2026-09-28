@@ -10,10 +10,12 @@
  * Response: { status: "ok"|"degraded"|"down", components: {...}, timestamp: ISO8601 }
  *
  * Used by: CI/CD health checks, load balancers, monitoring dashboards.
+ * Auth: Optional (public endpoint, but includes auth context if provided)
  */
 
 import * as functions from 'firebase-functions';
 import { getFirestore, Timestamp, FieldValue } from 'firebase-admin/firestore';
+import { verifyIdToken } from '../middleware/auth';
 
 interface HealthCheckResponse {
   status: 'ok' | 'degraded' | 'down';
@@ -53,9 +55,16 @@ const HEALTH_CHECK_COUNTERS = {
 
 /**
  * Health check endpoint: Verify Ludus collections + seed data + performance.
+ * Auth: Optional (public by default, but can be called by authenticated users)
  */
 export const ludusHealth = functions.https.onRequest(async (req, res) => {
   try {
+    // Optional auth verification (for tracking/logging purposes)
+    const authContext = await verifyIdToken(req.headers.authorization as string);
+    if (authContext) {
+      console.log(`[Health] Authenticated request from user: ${authContext.uid} (role: ${authContext.role})`);
+    }
+
     const db = getFirestore();
     const response: HealthCheckResponse = {
       status: 'ok',
@@ -240,8 +249,28 @@ async function countCollection(db: any, collectionName: string): Promise<number>
 
 /**
  * Metrics endpoint: Expose check pass/fail counters for monitoring.
+ * Auth: Admin-only (requires valid Bearer token with admin role)
  */
-export const ludusMetrics = functions.https.onRequest((req, res) => {
+export const ludusMetrics = functions.https.onRequest(async (req, res) => {
+  // Require admin authentication
+  const authContext = await verifyIdToken(req.headers.authorization as string);
+
+  if (!authContext) {
+    return res.status(401).json({
+      error: 'Unauthorized',
+      message: 'Authentication required. Provide Authorization: Bearer <token> header.'
+    });
+  }
+
+  if (authContext.role !== 'admin') {
+    return res.status(403).json({
+      error: 'Forbidden',
+      message: 'Admin role required to access metrics.'
+    });
+  }
+
+  console.log(`[Metrics] Admin metrics accessed by: ${authContext.uid}`);
+
   res.json({
     health_checks_passed: HEALTH_CHECK_COUNTERS.CHECKS_PASSED,
     health_checks_failed: HEALTH_CHECK_COUNTERS.CHECKS_FAILED,

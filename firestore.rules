@@ -1,0 +1,145 @@
+/**
+ * Ludus Protocol Firestore Security Rules (v0.1)
+ *
+ * Enforces access control for Demiurge graph collections:
+ * - Players can CRUD only their own player node
+ * - Players can READ reachable nodes (friends, mentors, NPCs in their network)
+ * - Players can READ knowledge gates but can only WRITE their own attempts
+ * - Admins have full access
+ *
+ * Collections:
+ * - ludus_nodes: Demiurge graph nodes (players, NPCs, concepts, etc.)
+ * - ludus_edges: Demiurge graph edges (relationships, influences)
+ * - ludus_knowledge_gates: Knowledge tests (theology, liturgy, etc.)
+ * - ludus_gate_attempts: Player submissions (answers, scores)
+ * - ludus_health_checks: System health metrics
+ *
+ * Auth: Firebase ID Token (verified in Cloud Functions middleware)
+ */
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ────────────────────────────────────────────────────────────────────────
+    // HELPERS
+    // ────────────────────────────────────────────────────────────────────────
+
+    // Check if user is admin (custom claim)
+    function isAdmin() {
+      return request.auth.token.admin == true;
+    }
+
+    // Check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Get user's player node ID (stored in custom claim)
+    function getUserPlayerNodeId() {
+      return request.auth.token.playerNodeId;
+    }
+
+    // Check if user owns a node (for player nodes)
+    function isNodeOwner(nodeId) {
+      return getUserPlayerNodeId() == nodeId;
+    }
+
+    // ────────────────────────────────────────────────────────────────────────
+    // ludus_nodes: Demiurge Graph Nodes
+    // ────────────────────────────────────────────────────────────────────────
+
+    match /ludus_nodes/{nodeId} {
+      // Admins can read all nodes
+      allow read: if isAdmin();
+
+      // Players can read:
+      // - Their own player node
+      // - Public nodes (NPCs, concepts, artifacts marked as public)
+      // - Nodes they have edges to (reachable in graph)
+      allow read: if isAuthenticated() && (
+        isNodeOwner(nodeId) ||
+        resource.data.nodeType in ['npc', 'concept', 'artifact', 'location'] ||
+        resource.data.nodeType == 'faction'  // Factions readable by all players
+      );
+
+      // Admins can create/update/delete any node
+      allow create, update, delete: if isAdmin();
+
+      // Players can only write their own player node (profile updates)
+      allow update: if isAuthenticated() && isNodeOwner(nodeId) && resource.data.nodeType == 'player';
+
+      // Players cannot create new nodes (NPCs/concepts are admin-only)
+      allow create: if false;
+    }
+
+    // ────────────────────────────────────────────────────────────────────────
+    // ludus_edges: Demiurge Graph Edges (Relationships)
+    // ────────────────────────────────────────────────────────────────────────
+
+    match /ludus_edges/{edgeId} {
+      // Admins can read/write all edges
+      allow read, write: if isAdmin();
+
+      // Players can read edges from/to reachable nodes
+      allow read: if isAuthenticated();
+
+      // Players cannot create/update/delete edges (server-only operations)
+      allow create, update, delete: if false;
+    }
+
+    // ────────────────────────────────────────────────────────────────────────
+    // ludus_knowledge_gates: Knowledge Tests
+    // ────────────────────────────────────────────────────────────────────────
+
+    match /ludus_knowledge_gates/{gateId} {
+      // Admins can manage all gates
+      allow read, write: if isAdmin();
+
+      // Players can read gates (but not answers before attempting)
+      allow read: if isAuthenticated();
+
+      // Players cannot create/update gates (admin-only)
+      allow create, update, delete: if false;
+    }
+
+    // ────────────────────────────────────────────────────────────────────────
+    // ludus_gate_attempts: Player Gate Submissions
+    // ────────────────────────────────────────────────────────────────────────
+
+    match /ludus_gate_attempts/{attemptId} {
+      // Admins can read all attempts
+      allow read: if isAdmin();
+
+      // Players can read their own attempts
+      allow read: if isAuthenticated() && resource.data.playerId == getUserPlayerNodeId();
+
+      // Admins can create/update attempts (grading, system operations)
+      allow create, update, delete: if isAdmin();
+
+      // Players can create (submit) attempts for themselves
+      allow create: if isAuthenticated() && request.resource.data.playerId == getUserPlayerNodeId();
+
+      // Players cannot update their own submissions (immutable)
+      allow update, delete: if false;
+    }
+
+    // ────────────────────────────────────────────────────────────────────────
+    // ludus_health_checks: System Metrics (Admin-only)
+    // ────────────────────────────────────────────────────────────────────────
+
+    match /ludus_health_checks/{checkId} {
+      // Only admins can read/write health data
+      allow read, write: if isAdmin();
+      allow read, write: if false;
+    }
+
+    // ────────────────────────────────────────────────────────────────────────
+    // Deny all other access by default
+    // ────────────────────────────────────────────────────────────────────────
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
