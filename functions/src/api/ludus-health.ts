@@ -256,17 +256,19 @@ export const ludusMetrics = functions.https.onRequest(async (req, res) => {
   const authContext = await verifyIdToken(req.headers.authorization as string);
 
   if (!authContext) {
-    return res.status(401).json({
+    res.status(401).json({
       error: 'Unauthorized',
       message: 'Authentication required. Provide Authorization: Bearer <token> header.'
     });
+    return;
   }
 
   if (authContext.role !== 'admin') {
-    return res.status(403).json({
+    res.status(403).json({
       error: 'Forbidden',
       message: 'Admin role required to access metrics.'
     });
+    return;
   }
 
   console.log(`[Metrics] Admin metrics accessed by: ${authContext.uid}`);
