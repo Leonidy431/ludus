@@ -1,1 +1,26 @@
 .aider*
+
+# Build artifacts
+functions/lib/
+functions/dist/
+
+# Dependencies
+node_modules/
+functions/node_modules/
+*/node_modules/
+
+# Lock files
+package-lock.json
+yarn.lock
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+service-account.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
