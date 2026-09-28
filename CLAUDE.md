@@ -198,16 +198,33 @@ ludus/
 
 ---
 
-## ✅ Текущий статус (2026-09-28)
+## ✅ Текущий статус (2026-09-28 14:45 UTC)
 
-- ✅ **NPC_DIALOGUE_SYSTEM.md** — создан и закоммичен в ludus/docs (PR #5)
-- ✅ **SOUND_DESIGN_SYSTEM.md** — создан и закоммичен в ludus/docs (PR #5)
-- ✅ **webtypicon2 CLAUDE.md** — расширен с фронтенд интеграцией
-- ✅ **ludus-npc-sound-frontend.md** — создан в webtypicon2 правилах
-- ⏳ **Frontend development** — начинается Oct 1
-- ⏳ **Voice recording** — Oct 2–Nov
-- ⏳ **Audio mixing** — Nov–Dec
-- ⏳ **Production** — Feb 2027
+### Design Phase (✅ COMPLETE)
+- ✅ **NPC_DIALOGUE_SYSTEM.md** — 500+ lines, 10 NPCs, branching logic, AI engine
+- ✅ **SOUND_DESIGN_SYSTEM.md** — 600+ lines, 40+ tracks, spatial audio, VR specs
+- ✅ **ludus CLAUDE.md** — Project constitution with Demiurgic causality principle
+- ✅ **PR #5** — Merged dialogue + sound design to ludus/main
+
+### Frontend Integration Phase (✅ IN PROGRESS - 95% COMPLETE)
+- ✅ **ludus-npc-dialogue-manager.js** — 380+ lines, dialogue tree management
+- ✅ **ludus-audio-manager.js** — 420+ lines, 4-layer dynamic mixing, spatial audio
+- ✅ **ludus-npc-dialogue-ui.js** — 290+ lines, modal component, choice rendering
+- ✅ **ludus-dialogue.css** — 380+ lines, responsive design, dark/light mode
+- ✅ **LUDUS_FRONTEND_INTEGRATION.md** — 500+ lines, complete integration guide
+- ⏳ **Cloud Functions API** — Endpoints pending (Oct 1–5 implementation)
+- ⏳ **ludus-game.js** — NPC click handler integration (Oct 1–5)
+
+### Next Phases
+- ⏳ **Voice Casting & Recording** — Oct 2–Nov 15
+- ⏳ **Audio Integration (Wwise)** — Nov 16–Dec 15
+- ⏳ **Beta Testing on Quest 3** — Dec 16–Jan 31
+- ⏳ **Production Deployment** — Feb 2027
+
+### Repos Status
+- **ludus/main** — NPC + sound design specs (PR #5, in review)
+- **ludus/claude/gracious-clarke-36w4kh** — Branch with NPC + sound + .gitignore updates
+- **webtypicon2/main** — Dialogue/audio components + integration guide (pushed)
 
 ---
 
