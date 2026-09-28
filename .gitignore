@@ -9,3 +9,5 @@ functions/.env.local
 .DS_Store
 dist/
 build/
+.env
+.env.local
