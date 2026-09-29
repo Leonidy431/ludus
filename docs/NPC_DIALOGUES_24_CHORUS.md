@@ -437,6 +437,7 @@
 - решение: bias: Symeon teaches endurance, so reward long standing with Constitution / counter: endurance used for display feeds vainglory; asceticism is never paid as such / why: bonuses are for understanding (a chain of will, the proof of height is readiness to descend); the vainglory node gives the discernment cue with three marks.
 - решение: bias: the pay-the-worker exhortation is Symeon's own / counter (Skeptic): uncertain in Theodoret / why: in one_well it is attributed to the Law (Deuteronomy 24:15), while usury and oaths are attributed to Symeon via Theodoret.
 - решение: bias: show the nimbus on the pillar-stander / counter: TABOO 0.2 p.2 and 0.35 rule 7 / why: holiness is carried by the pillar, the wind and the bow; no ring, no glow tied to the player's attributes.
+- решение (цикл 11, проверка канона): bias: Evagrius Scholasticus alone is enough for the obedience node / counter: he is a church historian, a witness, not an authority, and `check_canon.py` fails a teaching line that has only witnesses / why: the Menologion of St Dimitry of Rostov, 1 September (Life of St Symeon the Stylite), is added as the Church's own account. Dissent (Skeptic): the patrologist must confirm that the Menologion text retells the obedience test before merge; until then the addition is a proposal inside the PR, not a verified citation.
 
 ### Tabib Mar-Ava
 

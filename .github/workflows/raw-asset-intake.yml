@@ -27,6 +27,12 @@ on:
     paths:
       - 'public/ludus/art/derived/**'
       - 'scripts/raw_assets/**'
+      - 'scripts/check_canon.py'
+      - 'scripts/tests/**'
+      - 'data/patristic-canon.json'
+      - 'functions/src/data/npc-dialogues-24.json'
+      - 'public/ludus/data/passions.json'
+      - 'public/ludus/ludus-confession.js'
       - '.github/workflows/raw-asset-intake.yml'
 
 permissions:
@@ -76,6 +82,15 @@ jobs:
       # gates, no church words on buttons).
       - name: Dialogue contract (24 NPCs)
         run: python scripts/check_dialogues.py
+
+      # CLAUDE.md TABOO 0.35 rule 18: every teaching source (dialogue
+      # nodes, passions, confession questions) comes from the closed
+      # canon in data/patristic-canon.json, with chapter, step, date and
+      # topic checked; the negative tests prove the checker can fail.
+      - name: Patristic canon
+        run: |
+          python -m pycodestyle scripts/check_canon.py scripts/tests/
+          python -m unittest discover scripts/tests -v
 
       - name: Intake (images and licences only)
         if: github.event_name == 'workflow_dispatch'
