@@ -1,0 +1,23 @@
+{
+ "id": "p0318-vozvrashchenie-ekspeditsii-v-skit",
+ "kind": "event",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  20,
+  10,
+  20
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#317",
+ "name": "Возвращение экспедиции в скит",
+ "type": "событие",
+ "storyline": "м.99 (нарратив)",
+ "box": "зона 20м",
+ "shape": "zone",
+ "size_m": 20,
+ "method": "primitive-from-box-field",
+ "collider": "trigger volume",
+ "hiddenInBuild": true,
+ "noInteract": false,
+ "noLoot": false
+}

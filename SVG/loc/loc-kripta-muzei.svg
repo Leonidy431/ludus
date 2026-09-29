@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Сводчатая крипта с нишами-витринами">
+  <title>Крипта-хранилище</title>
+  <desc>Сводчатая крипта: арки на столбах, в стенных нишах — черепки, кувшин, свиток, глиняная табличка ушедших народов, свет одной лампы. ФОРМА: сохранённые следы исчезнувших культур. ДЕЙСТВИЕ: игрок описывает и бережёт найденное, а не присваивает. ЦЕЛЬ: память о людях прошлого как уважение к творению Божию; ничто здесь не добыча. Миссия: 39 «Сбор трупов культур».</desc>
+  <rect width="320" height="180" fill="#1a0e04"/>
+  <!-- своды -->
+  <g fill="none" stroke="#c8a56a" stroke-width="2">
+    <path d="M10 150 V70 Q50 20 90 70 V150"/>
+    <path d="M90 150 V70 Q160 6 230 70 V150"/>
+    <path d="M230 150 V70 Q270 20 310 70 V150"/>
+  </g>
+  <path d="M20 70 Q50 34 80 70 M100 70 Q160 20 220 70 M240 70 Q270 34 300 70" fill="none" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- столбы -->
+  <g fill="#2a1808" stroke="#c8a56a" stroke-width="1.5">
+    <rect x="84" y="70" width="12" height="80"/><rect x="224" y="70" width="12" height="80"/>
+  </g>
+  <!-- ниши-витрины -->
+  <g fill="#140a02" stroke="#e8c87a" stroke-width="1.5">
+    <path d="M30 130 V100 Q40 90 50 100 V130 Z"/>
+    <path d="M60 130 V100 Q70 90 80 100 V130 Z"/>
+    <path d="M244 130 V100 Q254 90 264 100 V130 Z"/>
+    <path d="M274 130 V100 Q284 90 294 100 V130 Z"/>
+  </g>
+  <!-- содержимое ниш: кувшин, черепки, табличка, свиток -->
+  <path d="M36 128 Q34 116 38 112 V108 H42 V112 Q46 116 44 128 Z" fill="#8a6a34"/>
+  <path d="M63 128 L68 120 L72 126 Z M72 128 L76 122 L78 128 Z" fill="#8a6a34"/>
+  <rect x="248" y="110" width="12" height="16" fill="#8a6a34"/>
+  <g stroke="#1a0e04" stroke-width=".8"><path d="M250 114 h8 M250 118 h8 M250 122 h6"/></g>
+  <rect x="278" y="116" width="12" height="6" rx="3" fill="#c8a56a"/>
+  <!-- центральный стол-витрина с черепком -->
+  <path d="M130 150 V130 H190 V150" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M130 130 L136 124 H184 L190 130" fill="none" stroke="#c8a56a" stroke-width="1.2"/>
+  <path d="M150 128 Q160 118 172 126 L166 128 Z" fill="#8a6a34" stroke="#e8c87a" stroke-width="1"/>
+  <!-- подвесная лампа -->
+  <path d="M160 26 V56" stroke="#8a6a34" stroke-width="1.2"/>
+  <path d="M152 58 H168 Q166 66 160 66 Q154 66 152 58 Z" fill="#c8a56a"/>
+  <path d="M160 48 Q163 53 160 57 Q157 53 160 48 Z" fill="#e8c87a"/>
+  <circle cx="160" cy="60" r="20" fill="#e8c87a" opacity=".08"/>
+  <!-- пол из плит -->
+  <path d="M0 150 H320 V180 H0 Z" fill="#2a1808"/>
+  <g stroke="#8a6a34" stroke-width="1"><path d="M0 162 H320 M60 150 L50 180 M160 150 V180 M260 150 L270 180"/></g>
+</svg>

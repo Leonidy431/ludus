@@ -1,0 +1,23 @@
+{
+ "id": "p0357-plennyy-grek-ikonopisets-nikifor",
+ "kind": "npc",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  1.7,
+  2.261,
+  0.02
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#356",
+ "name": "Пленный грек-иконописец Никифор",
+ "type": "NPC",
+ "storyline": "25 (spiritual)",
+ "box": "капсула 1.7м, диалог r1.5м, глубже при Хитрость≥8",
+ "shape": "plane",
+ "size_m": 1.7,
+ "method": "primitive-from-box-field",
+ "collider": "plane 1.7 m",
+ "hiddenInBuild": false,
+ "noInteract": true,
+ "noLoot": true
+}

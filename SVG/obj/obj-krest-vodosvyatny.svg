@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Водосвятный крест над чашей воды">
+  <title>Водосвятный крест</title>
+  <desc>Форма: простой напрестольный крест с рукоятью, опускаемый в чашу с водой; без свечения и без нимба. Действие: священник трижды погружает крест в воду на молебне. Цель: освящение воды — Богоявление как присутствие, а не сила в руках игрока. Крест не оружие и не предмет лута. Миссия: 43 «Обряд освящения воды».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. -->
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="#1a0e04" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- чаша для воды -->
+  <path d="M22 60 H74 Q72 78 48 80 Q24 78 22 60 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <ellipse cx="48" cy="60" rx="26" ry="4.5" fill="#1f5a73" stroke="#c8a56a" stroke-width="1.4"/>
+  <path d="M40 84 h16 M44 80 v4 M52 80 v4" stroke="#8a6a34" stroke-width="2"/>
+  <!-- восьмиконечный крест, нижний конец в воде -->
+  <g stroke="#e8c87a" stroke-width="2.4" stroke-linecap="round" fill="none">
+    <path d="M48 14 V62"/><path d="M38 30 H58"/><path d="M42 22 H54"/><path d="M42 44 L54 40"/>
+  </g>
+  <!-- круги по воде от погружения -->
+  <ellipse cx="48" cy="61" rx="8" ry="1.6" fill="none" stroke="#c8a56a" stroke-width="1"/>
+  <ellipse cx="48" cy="61" rx="14" ry="2.6" fill="none" stroke="#c8a56a" stroke-width=".8" opacity=".6"/>
+</svg>

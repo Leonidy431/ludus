@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Камень епископа Иоанна на берегу Иссык-Куля">
+  <title>Камень Иоанна</title>
+  <desc>ФОРМА: одинокий надгробный кайрак с крестом на берегу озера, у подножия зажжённая свеча и сорванные полевые цветы. ДЕЙСТВИЕ: дьякон приходит на память епископа Иоанна, молится и приносит кутью. ЦЕЛЬ: память о пастыре как молитва, а не культ камня; епископ Иоанн здесь историческая рамка, а не икона. Миссия: 29 Память епископа Иоанна.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. Рисовано вручную: сырьё 99 репо не подходит (правило 0.15). -->
+  <defs>
+    <linearGradient id="ki-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#ki-nebo)"/>
+  <!-- вечерняя звезда -->
+  <circle cx="250" cy="30" r="1.8" fill="#e8c87a"/>
+  <circle cx="250" cy="30" r="6" fill="#e8c87a" opacity=".15"/>
+  <!-- дальние горы за озером -->
+  <path d="M0 90 L40 66 L76 84 L120 58 L168 86 L214 62 L262 84 L320 64 V100 H0 Z" fill="#241405"/>
+  <!-- озеро -->
+  <rect y="98" width="320" height="44" fill="#0d2a3a"/>
+  <g stroke="#1f5a73" stroke-width="1.2" fill="none">
+    <path d="M20 108 Q30 104 40 108 M90 118 Q100 114 110 118 M200 110 Q210 106 220 110 M260 124 Q270 120 280 124"/>
+  </g>
+  <!-- отсвет последнего света на воде -->
+  <path d="M150 104 H180 M155 112 H175" stroke="#c8a56a" stroke-width="1.2" opacity=".5"/>
+  <!-- берег -->
+  <path d="M0 146 Q100 132 200 142 Q260 148 320 138 V180 H0 Z" fill="#2a1808"/>
+  <path d="M0 146 Q100 132 200 142 Q260 148 320 138" fill="none" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- надгробный кайрак -->
+  <path d="M132 166 Q124 128 146 114 Q170 108 180 126 Q188 146 180 166 Z" fill="#241405" stroke="#c8a56a" stroke-width="2"/>
+  <g stroke="#e8c87a" stroke-width="2" fill="none" stroke-linecap="round">
+    <path d="M156 122 V148 M146 132 H166"/>
+    <path d="M153 122 H159 M153 148 H159 M146 129 V135 M166 129 V135" stroke-width="1.3"/>
+  </g>
+  <path d="M148 152 Q152 147 156 151 Q160 147 164 152 Q156 156 148 152 Z" fill="none" stroke="#c8a56a" stroke-width="1.3"/>
+  <!-- строки надписи штрихами: текст не выдумываем -->
+  <path d="M144 158 H170 M146 162 H168" stroke="#8a6a34" stroke-width="1.1"/>
+  <!-- свеча памяти -->
+  <rect x="116" y="158" width="4" height="10" fill="#e8c87a"/>
+  <path d="M118 150 Q121 154 118 157 Q115 154 118 150 Z" fill="#e8c87a"/>
+  <circle cx="118" cy="154" r="7" fill="#e8c87a" opacity=".15"/>
+  <!-- полевые цветы у камня -->
+  <g stroke="#8a6a34" stroke-width="1" fill="#c8a56a">
+    <path d="M190 168 V158 M196 168 V160" fill="none"/>
+    <circle cx="190" cy="157" r="1.8"/><circle cx="196" cy="159" r="1.8"/>
+  </g>
+</svg>

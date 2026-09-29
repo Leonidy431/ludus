@@ -1,0 +1,23 @@
+{
+ "id": "p0162-kuvshin-s-muskusom",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 408,
+ "bbox_m": [
+  0.125,
+  0.25,
+  0.125
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#161",
+ "name": "Кувшин с мускусом",
+ "type": "предмет",
+ "storyline": "м.3-4 (торговля)",
+ "box": "капсула 0.25м",
+ "shape": "capsule",
+ "size_m": 0.25,
+ "method": "primitive-from-box-field",
+ "collider": "capsule 0.25 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

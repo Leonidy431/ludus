@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Напрестольное Евангелие">
+  <title>Евангелие</title>
+  <desc>Напрестольное Евангелие — Сам Христос-Слово посреди Церкви; четыре медальона — евангелисты, возвещающие Его на четыре стороны мира. Основание первых ворот знания.</desc>
+  <!-- Объект литургии: окладное Евангелие с крестом и четырьмя евангелистами -->
+  <defs>
+    <radialGradient id="evangelie-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <!-- картуш-рамка -->
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#evangelie-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <g>
+    <!-- оклад книги -->
+    <rect x="22" y="14" width="52" height="68" rx="3" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+    <rect x="26" y="18" width="44" height="60" rx="2" fill="none" stroke="#8a6a34" stroke-width="1.2"/>
+    <!-- средник: крест в круге -->
+    <circle cx="48" cy="48" r="11" fill="#1a0e04" stroke="#e8c87a" stroke-width="1.6"/>
+    <path d="M48 40 V56 M42 46 H54" stroke="#e8c87a" stroke-width="2.4" stroke-linecap="round"/>
+    <!-- четыре евангелиста -->
+    <g fill="#c8a56a" stroke="#8a6a34" stroke-width=".8">
+      <circle cx="32" cy="25" r="3.5"/><circle cx="64" cy="25" r="3.5"/>
+      <circle cx="32" cy="71" r="3.5"/><circle cx="64" cy="71" r="3.5"/>
+    </g>
+    <!-- застёжки -->
+    <path d="M74 32 H78 M74 64 H78" stroke="#e8c87a" stroke-width="2.4"/>
+    <path d="M22 16 V80" stroke="#8a6a34" stroke-width="2.4"/>
+  </g>
+</svg>

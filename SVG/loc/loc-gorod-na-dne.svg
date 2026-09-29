@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Город-на-дне — улица затопленного поселения в иле">
+  <title>Город-на-дне</title>
+  <desc>ФОРМА: подводная улица затопленного поселения: ряды глинобитных стен, арки дверей, кувшин в иле, лучи света сверху, рыбы и пузыри. ДЕЙСТВИЕ: ROV дьякона медленно проходит улицу, фиксирует находки, не поднимая лишнего и не тревожа погребений. ЦЕЛЬ: трезвая память — видеть былую жизнь, не превращая её в добычу. Миссия: 34 «Город-на-дне».</desc>
+  <!-- Арт-канон §9.0: умбра+золото; синие тона — только вода озера. -->
+  <defs>
+    <linearGradient id="gnd-voda" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1f5a73"/>
+      <stop offset="100%" stop-color="#0d2a3a"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#gnd-voda)"/>
+  <!-- лучи света сверху -->
+  <g fill="#e8c87a" opacity=".08">
+    <path d="M110 0 H140 L180 180 H130 Z"/><path d="M200 0 H220 L250 180 H214 Z"/>
+  </g>
+  <!-- дальний ряд стен в дымке -->
+  <path d="M0 110 V88 H30 V96 H60 V82 H96 V100 H130 V90 H170 V104 H210 V86 H250 V98 H290 V84 H320 V110 Z" fill="#0d2a3a" stroke="#1f5a73" stroke-width="1.2"/>
+  <!-- ближние стены улицы, левая сторона -->
+  <g fill="#2a1808" stroke="#8a6a34" stroke-width="1.6">
+    <path d="M0 150 V92 H50 L56 100 V150 Z"/>
+    <path d="M60 146 V104 H104 V146 Z"/>
+  </g>
+  <!-- правая сторона -->
+  <g fill="#2a1808" stroke="#8a6a34" stroke-width="1.6">
+    <path d="M220 146 V100 H266 V146 Z"/>
+    <path d="M270 150 V90 L276 84 H320 V150 Z"/>
+  </g>
+  <!-- арки дверей и окна -->
+  <g fill="#0d2a3a" stroke="#c8a56a" stroke-width="1.3">
+    <path d="M18 150 V122 Q26 112 34 122 V150 Z"/><path d="M74 146 V126 Q82 118 90 126 V146 Z"/>
+    <path d="M234 146 V124 Q243 116 252 124 V146 Z"/><path d="M288 150 V120 Q296 112 304 120 V150 Z"/>
+    <rect x="286" y="98" width="8" height="8"/><rect x="66" y="110" width="7" height="7"/>
+  </g>
+  <!-- обрушенная кладка -->
+  <g fill="#8a6a34" opacity=".8"><rect x="112" y="146" width="10" height="5" transform="rotate(-12 117 148)"/><rect x="200" y="148" width="9" height="5" transform="rotate(10 204 150)"/></g>
+  <!-- ил по дну улицы -->
+  <path d="M0 150 Q80 140 160 150 Q240 158 320 146 V180 H0 Z" fill="#241405"/>
+  <path d="M0 162 Q90 156 180 164 Q260 168 320 160" fill="none" stroke="#8a6a34" stroke-width="1" opacity=".6"/>
+  <!-- кувшин, наполовину в иле -->
+  <g transform="translate(160,148)">
+    <path d="M-7 4 Q-9 -8 -3 -10 V-14 H3 V-10 Q9 -8 7 4 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.2"/>
+  </g>
+  <!-- водоросли -->
+  <g stroke="#8a6a34" stroke-width="1.4" fill="none"><path d="M40 152 Q36 140 42 130"/><path d="M252 150 Q258 138 252 128"/></g>
+  <!-- рыбы и пузыри -->
+  <g fill="#c8a56a" opacity=".85">
+    <path d="M140 60 q8 -5 14 0 q-6 5 -14 0 Z M154 60 l5 -3 v6 Z"/>
+    <path d="M190 74 q-7 -4 -12 0 q5 4 12 0 Z M178 74 l-4 -3 v6 Z"/>
+  </g>
+  <g fill="none" stroke="#e8c87a" stroke-width="1" opacity=".6"><circle cx="164" cy="128" r="2"/><circle cx="167" cy="118" r="1.5"/><circle cx="165" cy="108" r="1.2"/></g>
+</svg>

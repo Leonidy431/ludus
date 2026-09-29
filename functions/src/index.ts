@@ -20,6 +20,9 @@ import * as admin from 'firebase-admin';
 // Initialize Firebase Admin SDK
 admin.initializeApp();
 
+// Single entry point for the Hosting "/api/**" rewrite (firebase.json).
+export { api } from './api/ludus-router';
+
 // Export Cloud Functions - Health & Monitoring
 export { ludusHealth, ludusMetrics } from './api/ludus-health';
 

@@ -1,0 +1,23 @@
+{
+ "id": "p0275-malchik-pogonshchik-erden",
+ "kind": "npc",
+ "lod": "proxy",
+ "tris": 408,
+ "bbox_m": [
+  0.65,
+  1.3,
+  0.65
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#274",
+ "name": "Мальчик-погонщик Ерден",
+ "type": "NPC",
+ "storyline": "м.2, м.10 (торговля)",
+ "box": "капсула 1.3м",
+ "shape": "capsule",
+ "size_m": 1.3,
+ "method": "primitive-from-box-field",
+ "collider": "capsule 1.3 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

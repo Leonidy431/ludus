@@ -1,0 +1,23 @@
+{
+ "id": "p0936-kolokol-nabat-tumannyy",
+ "kind": "sound",
+ "lod": "proxy",
+ "tris": 80,
+ "bbox_m": [
+  0.3,
+  0.3,
+  0.3
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#935",
+ "name": "Колокол-набат туманный",
+ "type": "звук",
+ "storyline": "50-55 гидрология",
+ "box": "источник звука на мысе",
+ "shape": "emitter",
+ "size_m": 0.3,
+ "method": "primitive-from-box-field",
+ "collider": "trigger volume",
+ "hiddenInBuild": true,
+ "noInteract": false,
+ "noLoot": true
+}

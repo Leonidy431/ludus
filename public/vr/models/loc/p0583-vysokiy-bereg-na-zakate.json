@@ -1,0 +1,23 @@
+{
+ "id": "p0583-vysokiy-bereg-na-zakate",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  4,
+  4,
+  4
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#582",
+ "name": "Высокий берег на закате",
+ "type": "локация",
+ "storyline": "96,31",
+ "box": "берег: terrain",
+ "shape": "box",
+ "size_m": 4,
+ "method": "primitive-from-box-field",
+ "collider": "box 4 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

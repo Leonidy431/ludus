@@ -1,0 +1,16 @@
+{
+ "id": "obj-kropilo",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 572,
+ "bbox_m": [
+  0.392,
+  0.392,
+  0.03
+ ],
+ "source": "SVG/obj/obj-kropilo.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "convex hull of the alpha silhouette",
+ "noInteract": false,
+ "noLoot": true
+}

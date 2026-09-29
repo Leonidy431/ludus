@@ -1,0 +1,16 @@
+{
+ "id": "loc-chuiskaya-dolina",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 970,
+ "bbox_m": [
+  5.336,
+  3,
+  0.441
+ ],
+ "source": "SVG/loc/loc-chuiskaya-dolina.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

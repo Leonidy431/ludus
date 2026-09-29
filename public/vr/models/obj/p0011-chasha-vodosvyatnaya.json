@@ -1,0 +1,23 @@
+{
+ "id": "p0011-chasha-vodosvyatnaya",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 64,
+ "bbox_m": [
+  0.5,
+  0.5,
+  0.5
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#10",
+ "name": "Чаша водосвятная",
+ "type": "предмет",
+ "storyline": "39 гидрология",
+ "box": "цилиндр 0.5м, поставить у берега",
+ "shape": "cylinder",
+ "size_m": 0.5,
+ "method": "primitive-from-box-field",
+ "collider": "cylinder 0.5 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

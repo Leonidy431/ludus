@@ -1,0 +1,16 @@
+{
+ "id": "loc-pritvor-sud",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 742,
+ "bbox_m": [
+  5.333,
+  3.004,
+  0.5
+ ],
+ "source": "SVG/loc/loc-pritvor-sud.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

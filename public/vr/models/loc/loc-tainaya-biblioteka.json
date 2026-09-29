@@ -1,0 +1,16 @@
+{
+ "id": "loc-tainaya-biblioteka",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 1228,
+ "bbox_m": [
+  5.348,
+  3,
+  0.86
+ ],
+ "source": "SVG/loc/loc-tainaya-biblioteka.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

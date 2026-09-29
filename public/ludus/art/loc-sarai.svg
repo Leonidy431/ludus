@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" role="img" aria-label="Сарай, столица Улуса Джучи">
+  <rect width="200" height="120" fill="#1a0e04"/>
+  <rect x="4" y="4" width="192" height="112" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- степной горизонт и Волга-Ахтуба -->
+  <path d="M4 74 H196" stroke="#8a6a34" stroke-width="1.2" opacity=".7"/>
+  <path d="M4 100 Q60 94 110 100 Q160 106 196 98" fill="none" stroke="#c8a56a" stroke-width="1.6" opacity=".6"/>
+  <!-- ряд юрт ставки -->
+  <g fill="#1a0e04" stroke="#c8a56a" stroke-width="1.6">
+    <path d="M28 74 q10 -16 20 0 Z"/>
+    <path d="M58 74 q8 -12 16 0 Z"/>
+    <path d="M126 74 q8 -12 16 0 Z"/>
+  </g>
+  <!-- дворец с айваном и минарет (кирпичный Сарай) -->
+  <rect x="82" y="48" width="32" height="26" fill="#1a0e04" stroke="#e8c87a" stroke-width="1.8"/>
+  <path d="M92 74 v-14 q6 -8 12 0 v14" fill="#2a1808" stroke="#e8c87a" stroke-width="1.5"/>
+  <rect x="150" y="34" width="8" height="40" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.6"/>
+  <path d="M149 34 h10 l-5 -8 Z" fill="#2a1808" stroke="#e8c87a" stroke-width="1.4"/>
+  <!-- бунчук ставки -->
+  <path d="M46 74 V46 m0 0 q6 2 10 -2 M46 46 q-4 4 -8 2" fill="none" stroke="#e8c87a" stroke-width="1.6"/>
+  <!-- подпись-картуш -->
+  <rect x="70" y="103" width="60" height="11" fill="#1a0e04" stroke="#8a6a34" stroke-width="1"/>
+  <text x="100" y="111.5" font-family="Georgia, serif" font-size="7.5" fill="#c8a56a" text-anchor="middle">САРАЙ · УЛУС ДЖУЧИ</text>
+</svg>

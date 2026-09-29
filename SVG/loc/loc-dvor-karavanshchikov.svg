@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Двор возчиков у стен обители с повозками">
+  <title>Двор караванщиков</title>
+  <desc>Форма: мощёный двор под стеной обители, две повозки, отдыхающий верблюд, колода с водой и костёр. Действие: возчики разных народов делят воду, огонь и ночлег, договариваются о братстве. Цель: гостеприимство обители соединяет дорогу. Миссия: 15 Братство караванщиков.</desc>
+  <!-- Арт-канон §9.0: умбра+золото. Локация миссии 15: двор у ворот обители, вечер. -->
+  <defs>
+    <linearGradient id="dvor-karavanshchikov-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#dvor-karavanshchikov-nebo)"/>
+  <!-- вечерняя звезда -->
+  <circle cx="250" cy="28" r="2" fill="#e8c87a"/>
+  <!-- стена обители с воротами -->
+  <rect x="0" y="62" width="320" height="58" fill="#2a1808"/>
+  <path d="M0 62 H320" stroke="#c8a56a" stroke-width="2"/>
+  <g fill="#2a1808" stroke="#c8a56a" stroke-width="1.5">
+    <path d="M20 62 V54 H32 V62 M60 62 V54 H72 V62 M248 62 V54 H260 V62 M288 62 V54 H300 V62"/>
+  </g>
+  <path d="M140 120 V84 Q160 66 180 84 V120 Z" fill="#140a02" stroke="#e8c87a" stroke-width="2"/>
+  <path d="M160 64 V50 M155 55 H165 M156 60 L164 58" stroke="#e8c87a" stroke-width="1.8"/>
+  <circle cx="160" cy="96" r="2.5" fill="#e8c87a"/>
+  <!-- земля двора -->
+  <rect y="120" width="320" height="60" fill="#241405"/>
+  <g stroke="#3a2410" stroke-width="1.2"><path d="M0 140 H320"/><path d="M0 160 H320"/></g>
+  <!-- повозка слева -->
+  <g stroke="#c8a56a" stroke-width="1.8" fill="#2a1808">
+    <path d="M30 138 H96 V124 H30 Z"/><path d="M96 132 L118 136"/>
+  </g>
+  <path d="M34 124 Q63 104 92 124" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <g fill="none" stroke="#e8c87a" stroke-width="2"><circle cx="46" cy="144" r="10"/><circle cx="82" cy="144" r="10"/></g>
+  <g stroke="#8a6a34" stroke-width="1.2"><path d="M36 144 H56 M46 134 V154 M72 144 H92 M82 134 V154"/></g>
+  <!-- вторая повозка справа -->
+  <g stroke="#c8a56a" stroke-width="1.8" fill="#2a1808"><path d="M226 140 H286 V128 H226 Z"/><path d="M226 134 L206 138"/></g>
+  <g fill="#8a6a34" stroke="#c8a56a" stroke-width="1"><rect x="234" y="118" width="16" height="10"/><rect x="254" y="120" width="22" height="8"/></g>
+  <g fill="none" stroke="#e8c87a" stroke-width="2"><circle cx="240" cy="146" r="9"/><circle cx="272" cy="146" r="9"/></g>
+  <!-- лежащий верблюд -->
+  <path d="M196 162 Q200 148 212 150 Q216 140 224 148 Q232 146 236 162 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.4"/>
+  <path d="M198 158 Q188 150 186 142 Q184 138 180 140" fill="none" stroke="#c8a56a" stroke-width="3"/>
+  <!-- колода с водой -->
+  <path d="M120 156 H164 L160 166 H124 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M124 158 H160" stroke="#1f5a73" stroke-width="2"/>
+  <!-- общий костёр -->
+  <path d="M170 168 Q174 156 172 150 Q180 158 176 168 Z" fill="#e8c87a"/>
+  <path d="M164 170 H184" stroke="#8a6a34" stroke-width="2"/>
+  <circle cx="174" cy="160" r="14" fill="#e8c87a" opacity=".1"/>
+</svg>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Крипта-архив: сводчатый подвал с нишами для свитков">
+  <title>Крипта-архив</title>
+  <desc>Форма: подземный сводчатый зал с нишами, где лежат запечатанные футляры со свитками, окованные сундуки у стены, лестница к люку, откуда падает свет, лампада на крюке. Действие: спустить рукописи в сухой подвал, запечатать и записать опись, пока наверху беда. Цель: хранить память и учение отцов для будущих поколений; архив не прячут от людей, его спасают для людей. Миссия: 57 Защита архивов.</desc>
+  <!-- Арт-канон §9.0: умбра+золото. Интерьер: подвал обители; святынь-объектов в кадре нет. -->
+  <defs>
+    <linearGradient id="kripta-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#kripta-nebo)"/>
+  <!-- каменная толща -->
+  <rect width="320" height="180" fill="#1a0e04" opacity=".7"/>
+  <!-- своды -->
+  <g fill="#140a02" stroke="#c8a56a" stroke-width="2">
+    <path d="M20 160 V80 Q80 20 140 80 V160 Z"/>
+    <path d="M180 160 V80 Q240 20 300 80 V160 Z"/>
+  </g>
+  <path d="M0 160 H320" stroke="#8a6a34" stroke-width="2"/>
+  <rect y="160" width="320" height="20" fill="#241405"/>
+  <!-- кладка -->
+  <g stroke="#2a1808" stroke-width="1.2"><path d="M0 100 H20 M140 100 H180 M300 100 H320 M0 130 H20 M140 130 H180 M300 130 H320 M160 70 V100 M160 130 V160"/></g>
+  <!-- ниши со свитками-футлярами -->
+  <g fill="#2a1808" stroke="#8a6a34" stroke-width="1.5">
+    <rect x="34" y="84" width="92" height="22"/><rect x="34" y="116" width="92" height="22"/>
+  </g>
+  <g fill="#8a6a34" stroke="#e8c87a" stroke-width="1.2">
+    <rect x="38" y="90" width="26" height="8" rx="3"/><rect x="68" y="90" width="26" height="8" rx="3"/><rect x="98" y="90" width="24" height="8" rx="3"/>
+    <rect x="38" y="122" width="26" height="8" rx="3"/><rect x="68" y="122" width="26" height="8" rx="3"/>
+  </g>
+  <g fill="#c0392b"><circle cx="64" cy="94" r="2"/><circle cx="94" cy="94" r="2"/><circle cx="64" cy="126" r="2"/></g>
+  <!-- окованные сундуки -->
+  <g fill="#2a1808" stroke="#c8a56a" stroke-width="1.6"><rect x="196" y="134" width="42" height="26"/><rect x="242" y="140" width="36" height="20"/></g>
+  <g stroke="#8a6a34" stroke-width="2.5"><path d="M208 134 V160 M226 134 V160 M254 140 V160 M266 140 V160"/></g>
+  <!-- лестница к люку и свет сверху -->
+  <path d="M290 0 L250 0 L200 110 L240 110 Z" fill="#e8c87a" opacity=".1"/>
+  <g stroke="#c8a56a" stroke-width="2"><path d="M258 20 L222 120 M280 20 L244 120"/><path d="M254 32 H276 M246 54 H268 M238 76 H260 M230 98 H252"/></g>
+  <!-- лампада на крюке -->
+  <path d="M160 40 V60" stroke="#8a6a34" stroke-width="1.4"/>
+  <path d="M152 60 H168 Q167 68 160 70 Q153 68 152 60 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.2"/>
+  <path d="M160 50 Q163 55 160 59 Q157 55 160 50 Z" fill="#e8c87a"/>
+  <circle cx="160" cy="58" r="16" fill="#e8c87a" opacity=".1"/>
+</svg>

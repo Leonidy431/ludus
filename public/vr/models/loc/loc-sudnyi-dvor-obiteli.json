@@ -1,0 +1,16 @@
+{
+ "id": "loc-sudnyi-dvor-obiteli",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 580,
+ "bbox_m": [
+  5.358,
+  3.001,
+  0.501
+ ],
+ "source": "SVG/loc/loc-sudnyi-dvor-obiteli.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

@@ -1,0 +1,16 @@
+{
+ "id": "loc-brod-chu",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 846,
+ "bbox_m": [
+  5.333,
+  3,
+  0.46
+ ],
+ "source": "SVG/loc/loc-brod-chu.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

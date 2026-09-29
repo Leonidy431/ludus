@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-label="Путеводная звезда">
+  <rect width="80" height="80" fill="#1a0e04"/>
+  <rect x="3" y="3" width="74" height="74" fill="none" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- восьмиконечная звезда странника (вифлеемский тип, не нимб) -->
+  <g stroke="#e8c87a" fill="#2a1808">
+    <path d="M40 12 L44 34 L40 40 L36 34 Z" stroke-width="1.6"/>
+    <path d="M40 68 L44 46 L40 40 L36 46 Z" stroke-width="1.6"/>
+    <path d="M12 40 L34 36 L40 40 L34 44 Z" stroke-width="1.6"/>
+    <path d="M68 40 L46 36 L40 40 L46 44 Z" stroke-width="1.6"/>
+    <path d="M22 22 L36 33 L40 40 L33 36 Z" stroke-width="1.2"/>
+    <path d="M58 22 L44 33 L40 40 L47 36 Z" stroke-width="1.2"/>
+    <path d="M22 58 L33 44 L40 40 L36 47 Z" stroke-width="1.2"/>
+    <path d="M58 58 L47 44 L40 40 L44 47 Z" stroke-width="1.2"/>
+  </g>
+  <circle cx="40" cy="40" r="4" fill="#e8c87a"/>
+  <!-- дорожная нить под звездой -->
+  <path d="M14 66 Q40 58 66 66" fill="none" stroke="#c8a56a" stroke-width="1.4" stroke-dasharray="3 3"/>
+</svg>

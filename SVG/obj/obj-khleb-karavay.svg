@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Дорожный каравай в чистом плате">
+  <title>Хлеб в дорогу</title>
+  <desc>ФОРМА: круглый каравай с тремя надрезами на развязанном дорожном плате, рядом колос. ДЕЙСТВИЕ: дьякон собирает хлеб в путь, делится им с караванщиками, пленниками и гостями. ЦЕЛЬ: хлеб насущный как дар, который умножается, когда его отдают. Миссии: 6 Миссия-логист, 9 Караван благотворительности, 24 Покровительство пленникам, 25 Обет гостеприимства.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. Рисовано вручную: сырьё 99 репо не подходит (правило 0.15). -->
+  <defs>
+    <radialGradient id="khleb-karavay-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#khleb-karavay-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- развязанный дорожный плат -->
+  <path d="M12 66 L32 54 H64 L84 66 L68 80 H28 Z" fill="#e8d9b8" opacity=".85" stroke="#8a6a34" stroke-width="1.4"/>
+  <path d="M12 66 Q6 60 11 55 M84 66 Q90 60 85 55" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- каравай -->
+  <path d="M24 62 Q23 36 48 33 Q73 36 72 62 Q60 68 48 68 Q36 68 24 62 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.6"/>
+  <path d="M30 47 Q48 37 66 47" fill="none" stroke="#e8c87a" stroke-width="1.4" opacity=".8"/>
+  <!-- три надреза корки -->
+  <g stroke="#2a1808" stroke-width="1.8" stroke-linecap="round">
+    <path d="M39 44 L44 56 M48 42 V56 M57 44 L52 56"/>
+  </g>
+  <!-- колос рядом -->
+  <path d="M78 52 Q76 34 70 22" fill="none" stroke="#8a6a34" stroke-width="1.4"/>
+  <g fill="#e8c87a">
+    <ellipse cx="71" cy="26" rx="1.8" ry="3" transform="rotate(-25 71 26)"/>
+    <ellipse cx="74" cy="31" rx="1.8" ry="3" transform="rotate(-20 74 31)"/>
+    <ellipse cx="75" cy="37" rx="1.8" ry="3" transform="rotate(-10 75 37)"/>
+    <ellipse cx="69" cy="32" rx="1.8" ry="3" transform="rotate(20 69 32)"/>
+  </g>
+  <!-- тёплый пар свежего хлеба -->
+  <path d="M42 28 q-3 -4 0 -8 q3 -4 0 -8 M54 28 q3 -4 0 -8 q-3 -4 0 -8" fill="none" stroke="#e8c87a" stroke-width="1.2" opacity=".45"/>
+</svg>

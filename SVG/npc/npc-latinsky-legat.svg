@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Латинский легат, монах-посланник с грамотой">
+  <title>Латинский легат</title>
+  <desc>Латинский легат — монах-посланник из далёкой земли (как францисканцы-послы XIV века на Шёлковом пути): тонзура, ряса с капюшоном, пояс-верёвка с узлами, свиток с висячей печатью. Нарисован уважительно, как человек веры и долга, без карикатуры. ФОРМА: грамота и полномочие. ДЕЙСТВИЕ: игрок ведёт переговоры о реликвиях, отличая правду от притязаний. ЦЕЛЬ: вести спор честно и мирно, не уступая православной веры. Миссия: 52 «Протокол о реликвиях».</desc>
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- голова с тонзурой -->
+  <circle cx="50" cy="34" r="10" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M40.5 31 Q50 24 59.5 31" fill="none" stroke="#8a6a34" stroke-width="3"/>
+  <ellipse cx="50" cy="26" rx="5" ry="2" fill="#1a0e04"/>
+  <path d="M46 40 Q50 42 54 40" fill="none" stroke="#c8a56a" stroke-width="1"/>
+  <!-- капюшон на плечах -->
+  <path d="M36 48 Q50 58 64 48 Q60 44 50 46 Q40 44 36 48 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- ряса -->
+  <path d="M50 48 C31 54 27 80 29 120 H71 C73 80 69 54 50 48 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- пояс-верёвка с тремя узлами -->
+  <path d="M32 78 Q50 82 68 78" fill="none" stroke="#e8c87a" stroke-width="1.8"/>
+  <path d="M56 80 Q58 96 55 112" fill="none" stroke="#e8c87a" stroke-width="1.5"/>
+  <g fill="#e8c87a"><circle cx="57.5" cy="90" r="1.8"/><circle cx="57.2" cy="99" r="1.8"/><circle cx="56" cy="108" r="1.8"/></g>
+  <!-- свиток грамоты с висячей печатью -->
+  <rect x="30" y="86" width="20" height="14" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.2"/>
+  <path d="M30 86 q-3 7 0 14 M50 86 q3 7 0 14" fill="none" stroke="#8a6a34" stroke-width="1.2"/>
+  <g stroke="#8a6a34" stroke-width=".8"><path d="M33 90 h14 M33 93 h14 M33 96 h10"/></g>
+  <path d="M40 100 V108" stroke="#c0392b" stroke-width="1.2"/>
+  <circle cx="40" cy="111" r="3.5" fill="#c0392b" stroke="#8a6a34" stroke-width="1"/>
+  <!-- дорожный посох -->
+  <path d="M74 120 V52" stroke="#8a6a34" stroke-width="2"/>
+</svg>

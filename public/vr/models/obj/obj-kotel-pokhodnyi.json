@@ -1,0 +1,16 @@
+{
+ "id": "obj-kotel-pokhodnyi",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 680,
+ "bbox_m": [
+  0.392,
+  0.392,
+  0.035
+ ],
+ "source": "SVG/obj/obj-kotel-pokhodnyi.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "convex hull of the alpha silhouette",
+ "noInteract": false,
+ "noLoot": false
+}

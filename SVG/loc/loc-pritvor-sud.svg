@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Притвор храма — скамьи для церковного суда">
+  <title>Притвор-суд</title>
+  <desc>ФОРМА: притвор храма: аркада на столпах, скамьи вдоль стен, стол со свитком и чернильницей, распахнутые двери в храм со светом лампад. ДЕЙСТВИЕ: споры общины разбираются в притворе — стороны выслушиваются, решение записывается, наказание врачует, а не мстит. ЦЕЛЬ: правда с милостью — суд, открытый к примирению. Миссия: 49 Судебная автономия.</desc>
+  <!-- Арт-канон §9.0: умбра+золото. -->
+  <rect width="320" height="180" fill="#1a0e04"/>
+  <!-- пол из плит -->
+  <path d="M0 140 H320 V180 H0 Z" fill="#241405"/>
+  <g stroke="#2a1808" stroke-width="1.2"><path d="M0 156 H320 M60 140 L40 180 M130 140 L124 180 M190 140 L196 180 M260 140 L280 180"/></g>
+  <!-- аркада притвора -->
+  <g fill="none" stroke="#c8a56a" stroke-width="2">
+    <path d="M20 140 V60 Q55 24 90 60 V140"/>
+    <path d="M230 140 V60 Q265 24 300 60 V140"/>
+  </g>
+  <g fill="#2a1808" stroke="#8a6a34" stroke-width="1.5">
+    <rect x="14" y="56" width="12" height="84"/><rect x="84" y="56" width="12" height="84"/>
+    <rect x="224" y="56" width="12" height="84"/><rect x="294" y="56" width="12" height="84"/>
+  </g>
+  <!-- двери в храм: свет лампад изнутри -->
+  <path d="M130 140 V72 Q160 44 190 72 V140 Z" fill="#8a6a34" stroke="#e8c87a" stroke-width="2"/>
+  <path d="M140 140 V78 Q160 58 180 78 V140 Z" fill="#c8a56a" opacity=".6"/>
+  <g fill="#e8c87a"><circle cx="152" cy="90" r="2"/><circle cx="168" cy="90" r="2"/></g>
+  <!-- крест над дверьми -->
+  <path d="M160 36 V54 M154 42 H166" stroke="#e8c87a" stroke-width="2"/>
+  <!-- скамьи вдоль стен -->
+  <g fill="#2a1808" stroke="#c8a56a" stroke-width="1.6">
+    <path d="M30 118 H80 V124 H30 Z"/><path d="M240 118 H290 V124 H240 Z"/>
+  </g>
+  <g stroke="#8a6a34" stroke-width="2"><path d="M34 124 V138 M76 124 V138 M244 124 V138 M286 124 V138"/></g>
+  <!-- стол суда со свитком и чернильницей -->
+  <path d="M110 150 H210 V156 H110 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M116 156 V172 M204 156 V172" stroke="#8a6a34" stroke-width="2.4"/>
+  <rect x="136" y="144" width="30" height="6" rx="3" fill="#c8a56a" stroke="#8a6a34" stroke-width="1"/>
+  <path d="M180 144 Q184 138 188 144 Z" fill="#1a0e04" stroke="#c8a56a" stroke-width="1"/>
+  <path d="M186 142 L194 130" stroke="#e8c87a" stroke-width="1.2"/>
+  <!-- лампада над столом -->
+  <path d="M160 0 V18" stroke="#8a6a34" stroke-width="1.2"/>
+  <path d="M154 18 H166 Q165 25 160 26 Q155 25 154 18 Z" fill="#c8a56a"/>
+  <circle cx="160" cy="16" r="6" fill="#e8c87a" opacity=".2"/>
+</svg>

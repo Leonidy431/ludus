@@ -1,0 +1,23 @@
+{
+ "id": "p0561-garem-krylo-zakryto-dlya-igroka",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  4,
+  2,
+  4
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#560",
+ "name": "Гарем-крыло (закрыто для игрока)",
+ "type": "локация",
+ "storyline": "63",
+ "box": "двери: блок, выход-триггер",
+ "shape": "zone",
+ "size_m": 4,
+ "method": "primitive-from-box-field",
+ "collider": "trigger volume",
+ "hiddenInBuild": true,
+ "noInteract": false,
+ "noLoot": false
+}

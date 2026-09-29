@@ -1,0 +1,23 @@
+{
+ "id": "p0480-bukhta-karakol",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  3,
+  3,
+  3
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#479",
+ "name": "Бухта Каракол",
+ "type": "локация",
+ "storyline": "7,53",
+ "box": "причал: box-коллайдер 10x3м",
+ "shape": "box",
+ "size_m": 3,
+ "method": "primitive-from-box-field",
+ "collider": "box 3 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

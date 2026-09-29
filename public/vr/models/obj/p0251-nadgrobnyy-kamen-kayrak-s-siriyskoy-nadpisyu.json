@@ -1,0 +1,23 @@
+{
+ "id": "p0251-nadgrobnyy-kamen-kayrak-s-siriyskoy-nadpisyu",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  0.6,
+  0.6,
+  0.6
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#250",
+ "name": "Надгробный камень-кайрак с сирийской надписью",
+ "type": "предмет",
+ "storyline": "м.75 (ремесло)/м.92 (нарратив)",
+ "box": "box 0.6м, только осмотр",
+ "shape": "box",
+ "size_m": 0.6,
+ "method": "primitive-from-box-field",
+ "collider": "box 0.6 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

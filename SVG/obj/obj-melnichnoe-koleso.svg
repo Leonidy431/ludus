@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Мельничное колесо на горном ручье">
+  <title>Мельничное колесо</title>
+  <desc>Форма: деревянное водяное колесо с лопатками над потоком. Действие: вода, которую никто не заставлял, мелет зерно для общины. Цель: дар творения служит всем без насилия над ним. Миссия: 82 «Энергия воды».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. -->
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="#1a0e04" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- поток ручья -->
+  <path d="M10 74 Q30 68 48 74 T86 74 V86 H10 Z" fill="#1f5a73" stroke="#0d2a3a" stroke-width="1"/>
+  <path d="M16 80 Q24 77 32 80 M60 80 Q68 77 76 80" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".6"/>
+  <!-- обод колеса -->
+  <circle cx="48" cy="46" r="26" fill="none" stroke="#c8a56a" stroke-width="2.4"/>
+  <circle cx="48" cy="46" r="20" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- спицы -->
+  <g stroke="#8a6a34" stroke-width="2">
+    <path d="M48 26 V66 M28 46 H68 M34 32 L62 60 M62 32 L34 60"/>
+  </g>
+  <!-- лопатки по ободу -->
+  <g fill="#2a1808" stroke="#e8c87a" stroke-width="1.2">
+    <rect x="45" y="16" width="6" height="8"/><rect x="45" y="68" width="6" height="8"/>
+    <rect x="18" y="43" width="8" height="6"/><rect x="70" y="43" width="8" height="6"/>
+  </g>
+  <!-- ступица -->
+  <circle cx="48" cy="46" r="4.5" fill="#e8c87a" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- брызги с лопатки -->
+  <g fill="#1f5a73"><circle cx="40" cy="80" r="1.5"/><circle cx="56" cy="79" r="1.5"/></g>
+</svg>

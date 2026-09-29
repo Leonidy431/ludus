@@ -2,7 +2,7 @@
 id: phase6-fsm-13-states
 type: architecture
 tags: [rov, phase6, fsm, state-machine, dive-computer, underwater, submarine]
-related: [[HLD_PHASE5_DETAILED.md], [DiveComputer.cs], [DiveState.cs]]
+related: [[docs/hld/HLD_PHASE5_DETAILED.md], [DiveComputer.cs], [DiveState.cs]]
 version: 1.0
 status: draft
 last_updated: 2026-09-24

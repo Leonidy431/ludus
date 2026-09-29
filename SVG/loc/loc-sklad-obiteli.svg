@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Склад обители: закрома, полки и конторка келаря">
+  <title>Склад обители</title>
+  <desc>Форма: бревенчатый склад — закрома с зерном, полки с кувшинами масла и мёда, мешки, конторка келаря с бирками-зарубками и книгой прихода-расхода, безмен. Действие: вести счёт запасам, раздавать по нужде, откладывать на голодный год. Цель: хозяйство как верность в малом (Лк. 16:10): эконом обители распоряжается чужим — Божьим и братским. Миссия: 11 Миссионер-экономист.</desc>
+  <!-- Арт-канон §9.0: умбра+золото. Интерьер: склад обители. -->
+  <defs>
+    <linearGradient id="sklad-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#sklad-nebo)"/>
+  <rect width="320" height="138" fill="#1a0e04" opacity=".55"/>
+  <rect y="138" width="320" height="42" fill="#241405"/>
+  <path d="M0 138 H320" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- брёвна стен -->
+  <g stroke="#2a1808" stroke-width="1.4"><path d="M0 30 H320 M0 60 H320 M0 90 H320 M0 120 H320"/></g>
+  <!-- закрома с зерном -->
+  <g fill="#2a1808" stroke="#c8a56a" stroke-width="2"><path d="M14 138 V90 H64 V138 Z"/><path d="M70 138 V90 H120 V138 Z"/></g>
+  <g fill="#c8a56a"><path d="M16 100 Q40 88 62 100 V104 H16 Z"/><path d="M72 106 Q96 96 118 106 V110 H72 Z"/></g>
+  <g stroke="#8a6a34" stroke-width="1.4"><path d="M14 116 H64 M70 116 H120"/></g>
+  <!-- мешки -->
+  <g fill="#8a6a34" stroke="#e8c87a" stroke-width="1.5">
+    <path d="M128 138 Q124 116 134 110 L140 106 L146 110 Q156 116 152 138 Z"/>
+    <path d="M150 138 Q148 122 156 118 L160 115 L164 118 Q172 122 170 138 Z"/>
+  </g>
+  <!-- полки с кувшинами -->
+  <g stroke="#c8a56a" stroke-width="2"><path d="M186 50 H300 M186 80 H300 M190 40 V110 M296 40 V110 M186 110 H300"/></g>
+  <g fill="#2a1808" stroke="#e8c87a" stroke-width="1.3">
+    <path d="M198 50 Q194 42 198 36 H206 Q210 42 206 50 Z"/><path d="M218 50 Q214 42 218 36 H226 Q230 42 226 50 Z"/>
+    <path d="M240 50 Q236 42 240 36 H248 Q252 42 248 50 Z"/><path d="M262 50 Q258 40 264 34 H270 Q276 40 272 50 Z"/>
+    <rect x="200" y="66" width="16" height="14"/><rect x="222" y="66" width="16" height="14"/><rect x="248" y="68" width="20" height="12"/>
+  </g>
+  <!-- конторка келаря с книгой и бирками -->
+  <path d="M220 124 L284 116 L286 124 L222 132 Z" fill="#8a6a34" stroke="#e8c87a" stroke-width="1.6"/>
+  <path d="M226 130 V160 M280 124 V160" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M236 124 L254 121 L270 118 L268 112 L252 115 L238 118 Z" fill="#e8d9b8" opacity=".7" stroke="#2a1808" stroke-width="1"/>
+  <g stroke="#e8c87a" stroke-width="2"><path d="M300 100 V132 M306 100 V128 M312 100 V134"/></g>
+  <g stroke="#1a0e04" stroke-width="1"><path d="M298 106 h4 M298 112 h4 M304 108 h4 M310 104 h4 M310 116 h4"/></g>
+  <!-- безмен на крюке -->
+  <path d="M160 30 V60 M146 60 H176" stroke="#c8a56a" stroke-width="1.6"/>
+  <circle cx="174" cy="64" r="3" fill="#c8a56a"/>
+</svg>

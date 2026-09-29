@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Изгнанный епископ — в дорожной рясе, с малым омофором">
+  <title>Изгнанный епископ</title>
+  <desc>Форма: пожилой епископ без кафедры: дорожная ряса, потёртый омофор с крестами, посох-палка вместо жезла, свёрток с антиминсом у груди. Без нимба. Действие: ищет приюта и совета у миссии. Цель: верность Церкви в изгнании, смирение без озлобления. Миссия: 58 «Изгнанные епископы».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. -->
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- голова, седые волосы -->
+  <circle cx="50" cy="36" r="11" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M39 32 Q42 22 50 22 Q58 22 61 32 Q56 27 50 27 Q44 27 39 32 Z" fill="#c8a56a" opacity=".7"/>
+  <!-- длинная седая борода -->
+  <path d="M42 40 Q44 58 50 60 Q56 58 58 40 Q54 47 50 47 Q46 47 42 40 Z" fill="#e8c87a" opacity=".75"/>
+  <!-- дорожная ряса, подол в пыли -->
+<path d="M50 48 C31 54 27 80 29 118 H71 C73 80 69 54 50 48 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M31 112 q6 -3 10 0 q6 -3 10 0 q6 -3 10 0 q6 -3 9 0" fill="none" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- потёртый омофор с крестами -->
+  <path d="M36 56 Q50 66 64 56 L60 62 Q50 70 40 62 Z" fill="#8a6a34" stroke="#e8c87a" stroke-width="1.5"/>
+  <path d="M50 64 V100 M47 100 h6 v8 h-6 Z" fill="none" stroke="#e8c87a" stroke-width="2"/>
+  <path d="M50 76 v6 M47 79 h6 M50 90 v6 M47 93 h6" stroke="#1a0e04" stroke-width="1.4"/>
+  <!-- свёрток с антиминсом у груди -->
+  <rect x="34" y="72" width="10" height="8" rx="1.5" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.4"/>
+  <!-- простой посох странника -->
+  <path d="M72 120 V44" stroke="#8a6a34" stroke-width="2.2"/>
+  <path d="M69 46 h6" stroke="#8a6a34" stroke-width="2"/>
+</svg>

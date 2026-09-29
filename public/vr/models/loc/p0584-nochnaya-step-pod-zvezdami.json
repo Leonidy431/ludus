@@ -1,0 +1,23 @@
+{
+ "id": "p0584-nochnaya-step-pod-zvezdami",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  4,
+  2,
+  4
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#583",
+ "name": "Ночная степь под звёздами",
+ "type": "локация",
+ "storyline": "97",
+ "box": "зона: trigger",
+ "shape": "zone",
+ "size_m": 4,
+ "method": "primitive-from-box-field",
+ "collider": "trigger volume",
+ "hiddenInBuild": true,
+ "noInteract": false,
+ "noLoot": false
+}

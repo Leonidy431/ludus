@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Обзорный шлем — врата в объёмный двор">
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. Объект
+       II-каталога (проход №46): «обзорный шлем» — византийская стилизация
+       VR-гарнитуры (ремешок как диадема, окуляры как двойная арка) — иконка
+       входа в VR-сцену из «Ставки Хана» (реестр п.2) и блока требований
+       vr.html (п.89). -->
+  <defs>
+    <radialGradient id="shlem-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+    <linearGradient id="shlem-body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8c87a"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#shlem-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- Ремешок-диадема -->
+  <path d="M20 46 Q26 30 48 28 Q70 30 76 46" fill="none" stroke="#c8a56a" stroke-width="3" opacity=".85"/>
+  <circle cx="48" cy="27" r="2.4" fill="#e8c87a"/>
+  <!-- Корпус шлема -->
+  <rect x="22" y="42" width="52" height="26" rx="10" fill="url(#shlem-body)" stroke="#8a6a34" stroke-width="2"/>
+  <!-- Носовая выемка -->
+  <path d="M42 68 Q48 60 54 68 Z" fill="#1a0e04" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- Окуляры — двойная арка -->
+  <path d="M28 56 Q34 47 40 56 L40 60 Q34 63 28 60 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.4"/>
+  <path d="M56 56 Q62 47 68 56 L68 60 Q62 63 56 60 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.4"/>
+  <!-- Отблеск двора в окулярах: юрта и звезда -->
+  <path d="M31 57 L34 53 L37 57 Z" fill="#e8c87a" opacity=".85"/>
+  <circle cx="63" cy="54" r="1.6" fill="#e8c87a" opacity=".9"/>
+  <path d="M60 58 L66 58" stroke="#8a6a34" stroke-width=".9" opacity=".7"/>
+  <!-- Блик корпуса -->
+  <path d="M27 46 Q40 42 55 44" stroke="#fff3c0" stroke-width="1.2" fill="none" opacity=".45"/>
+</svg>

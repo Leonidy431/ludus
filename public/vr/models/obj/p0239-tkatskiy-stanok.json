@@ -1,0 +1,23 @@
+{
+ "id": "p0239-tkatskiy-stanok",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  1.5,
+  1.5,
+  1.5
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#238",
+ "name": "Ткацкий станок",
+ "type": "предмет",
+ "storyline": "м.69 (ремесло)",
+ "box": "box 1.5м",
+ "shape": "box",
+ "size_m": 1.5,
+ "method": "primitive-from-box-field",
+ "collider": "box 1.5 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

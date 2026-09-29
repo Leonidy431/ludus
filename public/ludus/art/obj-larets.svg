@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Ларец даров — узелок в чистом плате">
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. Объект
+       II-каталога: кованый ларец с приоткрытой крышкой и узелок дара —
+       заглавная иконка вкладки «Дары» (проход №37). Конституция ст. 4.4:
+       «дарителя не видно, виден только дар». -->
+  <defs>
+    <radialGradient id="larets-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#larets-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- Корпус ларца -->
+  <rect x="22" y="46" width="52" height="28" rx="3" fill="#2a1808" stroke="#c8a56a" stroke-width="1.6"/>
+  <!-- Приоткрытая сводчатая крышка -->
+  <path d="M22 46 Q24 30 48 29 Q72 30 74 46 L70 46 Q68 34 48 33.5 Q28 34 26 46 Z"
+        fill="#c8a56a" stroke="#8a6a34" stroke-width="1.4"/>
+  <!-- Кованые полосы и замок -->
+  <line x1="34" y1="46" x2="34" y2="74" stroke="#8a6a34" stroke-width="1.6"/>
+  <line x1="62" y1="46" x2="62" y2="74" stroke="#8a6a34" stroke-width="1.6"/>
+  <rect x="44" y="50" width="8" height="10" rx="1.5" fill="#e8c87a" stroke="#8a6a34" stroke-width="1"/>
+  <circle cx="48" cy="54" r="1.4" fill="#1a0e04"/>
+  <!-- Узелок дара в чистом плате, выглядывающий из щели -->
+  <path d="M40 42 Q48 36 56 42 Q54 45 48 45.5 Q42 45 40 42 Z" fill="#e8d9b8" stroke="#8a6a34" stroke-width="1"/>
+  <path d="M46 37.5 Q48 34 50 37.5" fill="none" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- Свечение дара -->
+  <circle cx="48" cy="40" r="10" fill="#e8c87a" opacity=".12"/>
+</svg>

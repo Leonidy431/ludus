@@ -1,0 +1,1401 @@
+{
+  "id": "7503efbff8",
+  "seed": "7503efbff820da63e9dc506f27e4e50dbf37fd00",
+  "piece": 1,
+  "source": {
+    "repo": "https://github.com/Card-Forge/forge",
+    "path": "forge-gui/res/adventure/common/sprites/enemy/undead/ghost.png",
+    "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+    "piece": 1
+  },
+  "repo": "https://github.com/Card-Forge/forge",
+  "path": "forge-gui/res/adventure/common/sprites/enemy/undead/ghost.png",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license": "GPL",
+  "license_file": "LICENSE",
+  "threshold": 0.35,
+  "redraw": {
+    "shape_change": 0.0,
+    "iou_change": 0.0,
+    "colour_change": 0.4462,
+    "silhouette_loss": 0.0,
+    "is_recolour": true
+  },
+  "name": "ant_acedia_7503efbff8",
+  "passion": "acedia",
+  "passion_reason": "grey achromatic source",
+  "features": {
+    "hue": null,
+    "chromatic": false,
+    "mean_value": 0.397,
+    "roughness": 0.0,
+    "glyph": null,
+    "glyph_iou": 0.371,
+    "glyph_margin": 0.01,
+    "words": [
+      "forge",
+      "gui",
+      "res",
+      "adventure",
+      "common",
+      "sprites",
+      "enemy",
+      "undead",
+      "ghost",
+      "png"
+    ]
+  },
+  "behaviour": {
+    "source_role": "obstacle",
+    "antagonist": "homing"
+  },
+  "palette": {
+    "hue": 45,
+    "basis": "passion-hue",
+    "stops": [
+      "#4c3f17",
+      "#997c26",
+      "#d9b857",
+      "#f9ffb2"
+    ]
+  },
+  "texture": {
+    "source": "smooth",
+    "antagonist": "rough"
+  },
+  "reference_strength": 1,
+  "variants": [
+    {
+      "slot": "v01",
+      "kind": "reference",
+      "amplified": false,
+      "shape_change": 0.8354,
+      "iou_change": 0.8354,
+      "colour_change": 0.9854,
+      "silhouette_loss": 0.7316,
+      "hitbox": {
+        "bbox": [
+          6,
+          116,
+          250,
+          234
+        ],
+        "area": 11509,
+        "radius": 60.53,
+        "hull": [
+          [
+            6,
+            155
+          ],
+          [
+            7,
+            153
+          ],
+          [
+            8,
+            152
+          ],
+          [
+            10,
+            151
+          ],
+          [
+            90,
+            116
+          ],
+          [
+            126,
+            116
+          ],
+          [
+            246,
+            151
+          ],
+          [
+            248,
+            152
+          ],
+          [
+            249,
+            153
+          ],
+          [
+            250,
+            155
+          ],
+          [
+            250,
+            160
+          ],
+          [
+            249,
+            162
+          ],
+          [
+            248,
+            163
+          ],
+          [
+            246,
+            164
+          ],
+          [
+            186,
+            190
+          ],
+          [
+            66,
+            234
+          ],
+          [
+            50,
+            234
+          ],
+          [
+            30,
+            225
+          ],
+          [
+            28,
+            224
+          ],
+          [
+            27,
+            223
+          ],
+          [
+            26,
+            221
+          ],
+          [
+            6,
+            177
+          ]
+        ]
+      },
+      "file": "ant_acedia_7503efbff8_v01.png",
+      "analytics_id": "ludus.variant.acedia.7503efbff8.v01"
+    },
+    {
+      "slot": "v02",
+      "kind": "erosion",
+      "amplified": false,
+      "shape_change": 0.8745,
+      "iou_change": 0.8745,
+      "colour_change": 0.9951,
+      "silhouette_loss": 0.824,
+      "hitbox": {
+        "bbox": [
+          8,
+          118,
+          248,
+          224
+        ],
+        "area": 7410,
+        "radius": 48.57,
+        "hull": [
+          [
+            8,
+            157
+          ],
+          [
+            9,
+            155
+          ],
+          [
+            10,
+            154
+          ],
+          [
+            12,
+            153
+          ],
+          [
+            92,
+            118
+          ],
+          [
+            124,
+            118
+          ],
+          [
+            244,
+            153
+          ],
+          [
+            246,
+            154
+          ],
+          [
+            247,
+            155
+          ],
+          [
+            248,
+            157
+          ],
+          [
+            248,
+            158
+          ],
+          [
+            247,
+            160
+          ],
+          [
+            246,
+            161
+          ],
+          [
+            244,
+            162
+          ],
+          [
+            184,
+            188
+          ],
+          [
+            84,
+            223
+          ],
+          [
+            72,
+            224
+          ],
+          [
+            69,
+            224
+          ],
+          [
+            32,
+            223
+          ],
+          [
+            30,
+            222
+          ],
+          [
+            29,
+            221
+          ],
+          [
+            28,
+            219
+          ],
+          [
+            8,
+            175
+          ]
+        ]
+      },
+      "file": "ant_acedia_7503efbff8_v02.png",
+      "analytics_id": "ludus.variant.acedia.7503efbff8.v02"
+    },
+    {
+      "slot": "v03",
+      "kind": "crystallisation",
+      "amplified": false,
+      "cell": 16,
+      "shape_change": 0.787,
+      "iou_change": 0.8108,
+      "colour_change": 0.9886,
+      "silhouette_loss": 0.6841,
+      "hitbox": {
+        "bbox": [
+          0,
+          112,
+          240,
+          240
+        ],
+        "area": 12609,
+        "radius": 63.35,
+        "hull": [
+          [
+            0,
+            160
+          ],
+          [
+            25,
+            144
+          ],
+          [
+            89,
+            112
+          ],
+          [
+            128,
+            112
+          ],
+          [
+            240,
+            144
+          ],
+          [
+            240,
+            160
+          ],
+          [
+            192,
+            192
+          ],
+          [
+            112,
+            224
+          ],
+          [
+            64,
+            240
+          ],
+          [
+            48,
+            240
+          ],
+          [
+            32,
+            224
+          ],
+          [
+            0,
+            176
+          ]
+        ]
+      },
+      "file": "ant_acedia_7503efbff8_v03.png",
+      "analytics_id": "ludus.variant.acedia.7503efbff8.v03"
+    },
+    {
+      "slot": "v04",
+      "kind": "amorphous",
+      "amplified": false,
+      "blur_radius": 14,
+      "alpha_pulse_frames": [
+        1.0,
+        0.85,
+        0.7,
+        0.85
+      ],
+      "shape_change": 0.7906,
+      "iou_change": 0.7906,
+      "colour_change": 0.9891,
+      "silhouette_loss": 0.593,
+      "hitbox": {
+        "bbox": [
+          0,
+          109,
+          237,
+          239
+        ],
+        "area": 17286,
+        "radius": 74.18,
+        "hull": [
+          [
+            0,
+            154
+          ],
+          [
+            3,
+            152
+          ],
+          [
+            10,
+            148
+          ],
+          [
+            85,
+            112
+          ],
+          [
+            91,
+            110
+          ],
+          [
+            96,
+            109
+          ],
+          [
+            115,
+            109
+          ],
+          [
+            121,
+            111
+          ],
+          [
+            227,
+            147
+          ],
+          [
+            233,
+            150
+          ],
+          [
+            236,
+            153
+          ],
+          [
+            237,
+            155
+          ],
+          [
+            237,
+            160
+          ],
+          [
+            235,
+            164
+          ],
+          [
+            234,
+            165
+          ],
+          [
+            230,
+            168
+          ],
+          [
+            194,
+            189
+          ],
+          [
+            192,
+            190
+          ],
+          [
+            187,
+            192
+          ],
+          [
+            74,
+            237
+          ],
+          [
+            66,
+            239
+          ],
+          [
+            51,
+            239
+          ],
+          [
+            47,
+            238
+          ],
+          [
+            44,
+            237
+          ],
+          [
+            36,
+            233
+          ],
+          [
+            29,
+            226
+          ],
+          [
+            27,
+            223
+          ],
+          [
+            0,
+            178
+          ]
+        ]
+      },
+      "file": "ant_acedia_7503efbff8_v04.png",
+      "analytics_id": "ludus.variant.acedia.7503efbff8.v04"
+    },
+    {
+      "slot": "v05",
+      "kind": "symbiote",
+      "amplified": false,
+      "shape_change": 0.7669,
+      "iou_change": 0.7766,
+      "colour_change": 0.9882,
+      "silhouette_loss": 0.5778,
+      "hitbox": {
+        "bbox": [
+          0,
+          94,
+          256,
+          237
+        ],
+        "area": 16794,
+        "radius": 73.11,
+        "hull": [
+          [
+            0,
+            180
+          ],
+          [
+            6,
+            155
+          ],
+          [
+            7,
+            153
+          ],
+          [
+            57,
+            102
+          ],
+          [
+            62,
+            97
+          ],
+          [
+            66,
+            95
+          ],
+          [
+            69,
+            94
+          ],
+          [
+            77,
+            94
+          ],
+          [
+            209,
+            127
+          ],
+          [
+            212,
+            128
+          ],
+          [
+            216,
+            130
+          ],
+          [
+            255,
+            150
+          ],
+          [
+            256,
+            151
+          ],
+          [
+            256,
+            173
+          ],
+          [
+            255,
+            174
+          ],
+          [
+            66,
+            234
+          ],
+          [
+            19,
+            237
+          ],
+          [
+            12,
+            237
+          ],
+          [
+            9,
+            236
+          ],
+          [
+            6,
+            234
+          ],
+          [
+            4,
+            232
+          ],
+          [
+            2,
+            229
+          ],
+          [
+            1,
+            226
+          ],
+          [
+            0,
+            202
+          ]
+        ]
+      },
+      "file": "ant_acedia_7503efbff8_v05.png",
+      "analytics_id": "ludus.variant.acedia.7503efbff8.v05"
+    },
+    {
+      "slot": "v06",
+      "kind": "techno",
+      "amplified": false,
+      "outline_px": 4,
+      "shape_change": 0.8017,
+      "iou_change": 0.9082,
+      "colour_change": 0.9953,
+      "silhouette_loss": 0.8827,
+      "hitbox": {
+        "bbox": [
+          6,
+          116,
+          250,
+          234
+        ],
+        "area": 5055,
+        "radius": 40.11,
+        "hull": [
+          [
+            6,
+            155
+          ],
+          [
+            7,
+            153
+          ],
+          [
+            8,
+            152
+          ],
+          [
+            10,
+            151
+          ],
+          [
+            90,
+            116
+          ],
+          [
+            126,
+            116
+          ],
+          [
+            246,
+            151
+          ],
+          [
+            248,
+            152
+          ],
+          [
+            249,
+            153
+          ],
+          [
+            250,
+            155
+          ],
+          [
+            250,
+            160
+          ],
+          [
+            249,
+            162
+          ],
+          [
+            248,
+            163
+          ],
+          [
+            246,
+            164
+          ],
+          [
+            186,
+            190
+          ],
+          [
+            66,
+            234
+          ],
+          [
+            50,
+            234
+          ],
+          [
+            30,
+            225
+          ],
+          [
+            28,
+            224
+          ],
+          [
+            27,
+            223
+          ],
+          [
+            26,
+            221
+          ],
+          [
+            6,
+            177
+          ]
+        ]
+      },
+      "file": "ant_acedia_7503efbff8_v06.png",
+      "analytics_id": "ludus.variant.acedia.7503efbff8.v06"
+    },
+    {
+      "slot": "v07",
+      "kind": "dark_matter",
+      "amplified": false,
+      "shape_change": 0.797,
+      "iou_change": 0.8115,
+      "colour_change": 0.6055,
+      "silhouette_loss": 0.6558,
+      "hitbox": {
+        "bbox": [
+          3,
+          113,
+          253,
+          237
+        ],
+        "area": 14985,
+        "radius": 69.06,
+        "hull": [
+          [
+            3,
+            152
+          ],
+          [
+            4,
+            150
+          ],
+          [
+            5,
+            149
+          ],
+          [
+            7,
+            148
+          ],
+          [
+            87,
+            113
+          ],
+          [
+            129,
+            113
+          ],
+          [
+            249,
+            148
+          ],
+          [
+            251,
+            149
+          ],
+          [
+            252,
+            150
+          ],
+          [
+            253,
+            152
+          ],
+          [
+            253,
+            163
+          ],
+          [
+            252,
+            165
+          ],
+          [
+            251,
+            166
+          ],
+          [
+            249,
+            167
+          ],
+          [
+            189,
+            193
+          ],
+          [
+            69,
+            237
+          ],
+          [
+            47,
+            237
+          ],
+          [
+            27,
+            228
+          ],
+          [
+            25,
+            227
+          ],
+          [
+            24,
+            226
+          ],
+          [
+            23,
+            224
+          ],
+          [
+            3,
+            180
+          ]
+        ]
+      },
+      "file": "ant_acedia_7503efbff8_v07.png",
+      "analytics_id": "ludus.variant.acedia.7503efbff8.v07"
+    },
+    {
+      "slot": "v08",
+      "kind": "swarm",
+      "amplified": false,
+      "particle_step": 11,
+      "shape_change": 0.9211,
+      "iou_change": 0.9213,
+      "colour_change": 0.9968,
+      "silhouette_loss": 0.9032,
+      "hitbox": {
+        "bbox": [
+          3,
+          114,
+          248,
+          235
+        ],
+        "area": 4175,
+        "radius": 36.45,
+        "hull": [
+          [
+            3,
+            166
+          ],
+          [
+            5,
+            164
+          ],
+          [
+            21,
+            149
+          ],
+          [
+            91,
+            116
+          ],
+          [
+            96,
+            114
+          ],
+          [
+            98,
+            114
+          ],
+          [
+            118,
+            116
+          ],
+          [
+            228,
+            146
+          ],
+          [
+            246,
+            157
+          ],
+          [
+            248,
+            159
+          ],
+          [
+            248,
+            163
+          ],
+          [
+            246,
+            165
+          ],
+          [
+            66,
+            235
+          ],
+          [
+            64,
+            235
+          ],
+          [
+            31,
+            226
+          ],
+          [
+            29,
+            224
+          ],
+          [
+            3,
+            168
+          ]
+        ]
+      },
+      "file": "ant_acedia_7503efbff8_v08.png",
+      "analytics_id": "ludus.variant.acedia.7503efbff8.v08"
+    },
+    {
+      "slot": "v09",
+      "kind": "echo",
+      "amplified": false,
+      "alpha": 0.5,
+      "echo_alpha": 0.25,
+      "echo_offset": [
+        15,
+        -6
+      ],
+      "shape_change": 0.7956,
+      "iou_change": 0.8042,
+      "colour_change": 0.989,
+      "silhouette_loss": 0.6436,
+      "hitbox": {
+        "bbox": [
+          6,
+          110,
+          256,
+          234
+        ],
+        "area": 15065,
+        "radius": 69.25,
+        "hull": [
+          [
+            6,
+            155
+          ],
+          [
+            7,
+            153
+          ],
+          [
+            8,
+            152
+          ],
+          [
+            10,
+            151
+          ],
+          [
+            90,
+            116
+          ],
+          [
+            105,
+            110
+          ],
+          [
+            141,
+            110
+          ],
+          [
+            256,
+            145
+          ],
+          [
+            256,
+            158
+          ],
+          [
+            248,
+            163
+          ],
+          [
+            246,
+            164
+          ],
+          [
+            201,
+            184
+          ],
+          [
+            186,
+            190
+          ],
+          [
+            66,
+            234
+          ],
+          [
+            50,
+            234
+          ],
+          [
+            30,
+            225
+          ],
+          [
+            28,
+            224
+          ],
+          [
+            27,
+            223
+          ],
+          [
+            26,
+            221
+          ],
+          [
+            6,
+            177
+          ]
+        ]
+      },
+      "file": "ant_acedia_7503efbff8_v09.png",
+      "analytics_id": "ludus.variant.acedia.7503efbff8.v09"
+    },
+    {
+      "slot": "v10",
+      "kind": "inverted_gravity",
+      "amplified": false,
+      "stretch": 1.2966101694915255,
+      "shape_change": 0.6943,
+      "iou_change": 0.715,
+      "colour_change": 0.9916,
+      "silhouette_loss": 0.5798,
+      "hitbox": {
+        "bbox": [
+          32,
+          46,
+          208,
+          234
+        ],
+        "area": 11454,
+        "radius": 60.38,
+        "hull": [
+          [
+            32,
+            218
+          ],
+          [
+            38,
+            159
+          ],
+          [
+            50,
+            132
+          ],
+          [
+            91,
+            60
+          ],
+          [
+            94,
+            57
+          ],
+          [
+            118,
+            46
+          ],
+          [
+            123,
+            46
+          ],
+          [
+            126,
+            49
+          ],
+          [
+            201,
+            126
+          ],
+          [
+            207,
+            134
+          ],
+          [
+            208,
+            139
+          ],
+          [
+            208,
+            142
+          ],
+          [
+            176,
+            176
+          ],
+          [
+            68,
+            233
+          ],
+          [
+            66,
+            234
+          ],
+          [
+            50,
+            234
+          ],
+          [
+            48,
+            233
+          ],
+          [
+            33,
+            221
+          ],
+          [
+            32,
+            220
+          ]
+        ]
+      },
+      "file": "ant_acedia_7503efbff8_v10.png",
+      "analytics_id": "ludus.variant.acedia.7503efbff8.v10"
+    },
+    {
+      "slot": "v11",
+      "kind": "hybrid",
+      "amplified": false,
+      "parents": [
+        "v09",
+        "v10"
+      ],
+      "op": "union",
+      "shape_change": 0.7269,
+      "iou_change": 0.7452,
+      "colour_change": 0.5947,
+      "silhouette_loss": 0.5081,
+      "hitbox": {
+        "bbox": [
+          6,
+          46,
+          256,
+          234
+        ],
+        "area": 18205,
+        "radius": 76.12,
+        "hull": [
+          [
+            6,
+            155
+          ],
+          [
+            7,
+            153
+          ],
+          [
+            91,
+            60
+          ],
+          [
+            94,
+            57
+          ],
+          [
+            118,
+            46
+          ],
+          [
+            123,
+            46
+          ],
+          [
+            256,
+            145
+          ],
+          [
+            256,
+            158
+          ],
+          [
+            248,
+            163
+          ],
+          [
+            246,
+            164
+          ],
+          [
+            201,
+            184
+          ],
+          [
+            186,
+            190
+          ],
+          [
+            66,
+            234
+          ],
+          [
+            50,
+            234
+          ],
+          [
+            30,
+            225
+          ],
+          [
+            28,
+            224
+          ],
+          [
+            27,
+            223
+          ],
+          [
+            26,
+            221
+          ],
+          [
+            6,
+            177
+          ]
+        ]
+      },
+      "file": "ant_acedia_7503efbff8_v11.png",
+      "analytics_id": "ludus.variant.acedia.7503efbff8.v11"
+    },
+    {
+      "slot": "v12",
+      "kind": "hybrid",
+      "amplified": false,
+      "parents": [
+        "v04",
+        "v06"
+      ],
+      "op": "union",
+      "shape_change": 0.7917,
+      "iou_change": 0.7917,
+      "colour_change": 0.5354,
+      "silhouette_loss": 0.593,
+      "hitbox": {
+        "bbox": [
+          0,
+          109,
+          250,
+          239
+        ],
+        "area": 17420,
+        "radius": 74.46,
+        "hull": [
+          [
+            0,
+            154
+          ],
+          [
+            3,
+            152
+          ],
+          [
+            10,
+            148
+          ],
+          [
+            85,
+            112
+          ],
+          [
+            91,
+            110
+          ],
+          [
+            96,
+            109
+          ],
+          [
+            115,
+            109
+          ],
+          [
+            246,
+            151
+          ],
+          [
+            248,
+            152
+          ],
+          [
+            249,
+            153
+          ],
+          [
+            250,
+            155
+          ],
+          [
+            250,
+            160
+          ],
+          [
+            249,
+            162
+          ],
+          [
+            248,
+            163
+          ],
+          [
+            246,
+            164
+          ],
+          [
+            192,
+            190
+          ],
+          [
+            187,
+            192
+          ],
+          [
+            74,
+            237
+          ],
+          [
+            66,
+            239
+          ],
+          [
+            51,
+            239
+          ],
+          [
+            47,
+            238
+          ],
+          [
+            44,
+            237
+          ],
+          [
+            36,
+            233
+          ],
+          [
+            29,
+            226
+          ],
+          [
+            27,
+            223
+          ],
+          [
+            0,
+            178
+          ]
+        ]
+      },
+      "file": "ant_acedia_7503efbff8_v12.png",
+      "analytics_id": "ludus.variant.acedia.7503efbff8.v12"
+    }
+  ],
+  "rejected_variants": [],
+  "shortfall": 0,
+  "status": "ok",
+  "file": "ant_acedia_7503efbff8_v01.png",
+  "shape_change": 0.6943,
+  "colour_change": 0.9854,
+  "claim_features": [
+    "форма-антагонист страсти «acedia» (по Евагрию и Иоанну Лествичнику), выведенная из альфа-силуэта источника",
+    "палитра passion-hue (тон 45°) и инверсия фактуры smooth -> rough",
+    "инвертированное поведение obstacle -> homing; 12 вариантов с попарно различными хитбоксами",
+    "изменение формы по альфа-маскам (|A xor B| / |A or B|): от 69.4% до 92.1%",
+    "источник: https://github.com/Card-Forge/forge @ 647b5eac95, forge-gui/res/adventure/common/sprites/enemy/undead/ghost.png #1 (GPL)"
+  ]
+}

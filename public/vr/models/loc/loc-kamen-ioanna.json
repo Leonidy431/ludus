@@ -1,0 +1,16 @@
+{
+ "id": "loc-kamen-ioanna",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 842,
+ "bbox_m": [
+  5.336,
+  3,
+  0.401
+ ],
+ "source": "SVG/loc/loc-kamen-ioanna.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

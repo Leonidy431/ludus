@@ -1,0 +1,23 @@
+{
+ "id": "p0309-ritm-kuznechnykh-molotov",
+ "kind": "sound",
+ "lod": "proxy",
+ "tris": 80,
+ "bbox_m": [
+  0.3,
+  0.3,
+  0.3
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#308",
+ "name": "Ритм кузнечных молотов",
+ "type": "звук",
+ "storyline": "м.71 (ремесло)",
+ "box": "3D на наковальне",
+ "shape": "emitter",
+ "size_m": 0.3,
+ "method": "primitive-from-box-field",
+ "collider": "trigger volume",
+ "hiddenInBuild": true,
+ "noInteract": false,
+ "noLoot": false
+}

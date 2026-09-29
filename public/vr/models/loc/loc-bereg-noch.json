@@ -1,0 +1,16 @@
+{
+ "id": "loc-bereg-noch",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 1395,
+ "bbox_m": [
+  5.35,
+  3,
+  0.781
+ ],
+ "source": "SVG/loc/loc-bereg-noch.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

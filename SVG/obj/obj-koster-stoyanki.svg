@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Костёр кочевой стоянки с треногой и котлом">
+  <title>Костёр стоянки</title>
+  <desc>ФОРМА: очаг на камнях под треногой, над огнём котёл, у огня кошма — как у очага двора (obj-koster-dvora), но в степи. ДЕЙСТВИЕ: переговоры с кочевниками идут у общего огня — сперва разделить еду, потом говорить. ЦЕЛЬ: мир начинается с гостеприимства; к кочевникам — уважение, а не страх. Миссия: 50 «Переговорщик с кочевниками».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. -->
+  <defs>
+    <radialGradient id="kstn-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#kstn-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- отсвет -->
+  <circle cx="48" cy="64" r="34" fill="#e8c87a" opacity=".1"/>
+  <!-- кошма у огня -->
+  <path d="M10 82 L30 76 L40 86 L16 90 Z" fill="#8a6a34" opacity=".6" stroke="#c8a56a" stroke-width="1"/>
+  <!-- камни очага -->
+  <g fill="#3a2410" stroke="#241405" stroke-width="1">
+    <ellipse cx="30" cy="76" rx="6" ry="4"/><ellipse cx="42" cy="80" rx="7" ry="4.5"/>
+    <ellipse cx="56" cy="80" rx="7" ry="4.5"/><ellipse cx="68" cy="76" rx="6" ry="4"/>
+  </g>
+  <!-- тренога -->
+  <path d="M48 14 L26 78 M48 14 L70 78 M48 14 L50 78" stroke="#8a6a34" stroke-width="2"/>
+  <path d="M48 14 V36" stroke="#c8a56a" stroke-width="1.2"/>
+  <!-- котёл -->
+  <path d="M36 38 H60 Q60 54 48 56 Q36 54 36 38 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.6"/>
+  <path d="M36 38 Q48 30 60 38" fill="none" stroke="#c8a56a" stroke-width="1.2"/>
+  <!-- пар над котлом -->
+  <path d="M44 34 q-3 -5 0 -9 M52 34 q3 -5 0 -9" fill="none" stroke="#e8d9b8" stroke-width="1" opacity=".6"/>
+  <!-- пламя под котлом -->
+  <path d="M48 76 Q38 70 42 62 Q44 66 46 64 Q46 58 48 56 Q54 62 52 66 Q56 64 56 60 Q60 70 48 76 Z" fill="#e8c87a"/>
+  <path d="M48 74 Q44 70 46 66 Q48 68 50 66 Q52 70 48 74 Z" fill="#fff3c0"/>
+  <g fill="#a33a2a"><circle cx="42" cy="75" r="1.4"/><circle cx="54" cy="75" r="1.4"/></g>
+</svg>

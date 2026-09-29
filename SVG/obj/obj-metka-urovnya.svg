@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Зарубка уровня воды на береговом камне">
+  <title>Метка уровня воды</title>
+  <desc>ФОРМА: береговой валун с рядом зарубок-отметок, верхняя подчёркнута; ниже — вода Иссык-Куля. ДЕЙСТВИЕ: игрок сверяет подъём воды по годам и решает, когда переносить обитель и когда предупреждать селение. ЦЕЛЬ: трезвение как внимательность к знакам тварного мира; память, записанная в камне, а не догадка. Миссии: 35 «Перенос монастыря», 44 «Предупреждение потопа».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. -->
+  <defs>
+    <radialGradient id="metk-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#metk-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- валун -->
+  <path d="M22 74 Q18 44 34 28 Q50 18 64 26 Q78 36 76 74 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.8"/>
+  <path d="M34 30 Q30 46 32 70" fill="none" stroke="#8a6a34" stroke-width="1"/>
+  <!-- ряд зарубок: годы подъёма воды -->
+  <g stroke="#c8a56a" stroke-width="1.6">
+    <path d="M44 64 h14"/><path d="M44 57 h12"/><path d="M44 50 h14"/><path d="M44 43 h10"/>
+  </g>
+  <!-- верхняя, свежая зарубка — предупреждение -->
+  <path d="M42 36 h20" stroke="#e8c87a" stroke-width="2.2"/>
+  <path d="M40 33 l4 3 l-4 3" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+  <!-- счётные черты у зарубок -->
+  <g stroke="#8a6a34" stroke-width="1">
+    <path d="M62 62 v4 M65 62 v4 M62 55 v4 M62 48 v4 M65 48 v4 M68 48 v4"/>
+  </g>
+  <!-- вода озера у подножия -->
+  <path d="M10 74 H86 V86 Q48 90 10 86 Z" fill="#0d2a3a"/>
+  <g stroke="#1f5a73" stroke-width="1.4" fill="none">
+    <path d="M14 78 Q20 75 26 78 Q32 81 38 78"/>
+    <path d="M52 80 Q58 77 64 80 Q70 83 78 80"/>
+  </g>
+</svg>

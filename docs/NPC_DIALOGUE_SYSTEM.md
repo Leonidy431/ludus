@@ -32,7 +32,7 @@ date: 2026-09-29
 |-----------|------|-----------------|---------|
 | **Mentor** | Guides player on spiritual path | Wisdom, Faith | Elder priest, theologian |
 | **Concept** | Abstract personification | Variable | Virtue, sin, mystery |
-| **Guardian** | Tests & challenges player | Strength, Cunning | Gate keeper, demon |
+| **Guardian** | Tests & challenges player | Constitution, Cunning | Gate keeper, demon |
 | **Companion** | Ally in journey | All attributes | Fellow pilgrim |
 
 ---
@@ -249,18 +249,20 @@ interface DialogueState {
 
 ### 3.2 Supporting NPCs (10 profiles)
 
+Operator's resolution 2026-09-29 (CLAUDE.md TABOO 0.25): only the Orthodox/Byzantine pantheon. Hildegard → Kassia; Bonaventure → Gregory Palamas; Catherine of Siena → Catherine of Alexandria, who already had her own row, so the two rows are merged and the freed slot goes to Macrina the Younger. The portraits of St Symeon the New Theologian and St John Chrysostom stay in the character reserve.
+
 | NPC | Role | Attributes | Dialogue Trees |
 |-----|------|-----------|-----------------|
-| Abba Moses | Desert father | Wisdom, Strength | 6 trees (virtue teaching) |
-| Ekaterina | Martyr saint | Faith, Constitution | 5 trees (courage, sacrifice) |
+| Abba Moses | Desert father | Wisdom, Constitution | 6 trees (virtue teaching) |
+| Great Martyr Catherine of Alexandria | Martyr and wise disputant (took the slot of Catherine of Siena per the operator's resolution) | Wisdom, Faith, Constitution | 10 trees (courage and sacrifice; disputation with the philosophers; riddles and ciphers) |
 | Maximos | Theologian | Erudition, Wisdom | 8 trees (systematic theology) |
 | Photius | Patriarch | Charisma, Cunning | 7 trees (church politics) |
-| Mary Magdalene | Contemplative | Faith, Charisma | 5 trees (repentance) |
-| Gregory the Great | Pope-saint | Wisdom, Charisma | 6 trees (pastoral care) |
-| Symeon Stylite | Ascetic | Strength, Constitution | 4 trees (ascetical theology) |
-| Hildegard | Visionary | Erudition, Faith | 7 trees (cosmic harmony) |
-| Bonaventure | Mystic | Wisdom, Erudition | 6 trees (mystical path) |
-| Catherine of Siena | Doctor | Charisma, Faith | 5 trees (prophetic speech) |
+| Equal-to-the-Apostles Mary Magdalene, myrrh-bearer | Contemplative | Faith, Charisma | 5 trees (repentance) |
+| St Gregory the Dialogist (Двоеслов) | Pastor-hierarch of Rome (undivided Church) | Wisdom, Charisma | 6 trees (pastoral care) |
+| Symeon Stylite | Ascetic | Constitution, Faith | 4 trees (ascetical theology) |
+| St Kassiani the hymnographer (Кассия) | Hymnographer-abbess | Erudition, Faith | 7 trees (hymnody, repentance in song) |
+| St Gregory Palamas | Archbishop, teacher of hesychasm and the uncreated light (replaces Bonaventure per the operator's resolution) | Wisdom, Faith | 6 trees (advanced stages of the prayer of the heart, Tabor light) |
+| St Macrina the Younger | Ascetic foundress, teacher of her brothers Basil and Gregory of Nyssa (slot freed by merging the two Catherines) | Wisdom, Erudition | 5 trees (soul and resurrection, community life) |
 
 ---
 

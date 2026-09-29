@@ -1,0 +1,23 @@
+{
+ "id": "p0298-zatoplennye-ruiny-u-koysary",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  30,
+  15,
+  30
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#297",
+ "name": "Затопленные руины у Койсары",
+ "type": "локация",
+ "storyline": "м.46-47 (гидрология)",
+ "box": "навмеш объём 100м",
+ "shape": "zone",
+ "size_m": 30,
+ "method": "primitive-from-box-field",
+ "collider": "trigger volume",
+ "hiddenInBuild": true,
+ "noInteract": false,
+ "noLoot": false
+}

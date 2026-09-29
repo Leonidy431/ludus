@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Трапезный хлеб">
+  <title>Трапезный хлеб</title>
+  <desc>ФОРМА: круглый хлеб с крестообразным надрезом на доске, отрезанный ломоть и солонка. ДЕЙСТВИЕ: хлеб делят за общей трапезой обители, где за одним столом сидят гости из разных народов и партий. Это пища, а не просфора и не святыня. ЦЕЛЬ: трапеза примиряет врагов лучше спора. Миссия 61.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, двойная рамка-картуш -->
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="#1a0e04" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- доска -->
+  <path d="M10 66 H82 Q86 66 86 70 V74 H10 Z" fill="#3a2410" stroke="#8a6a34" stroke-width="1.8"/>
+  <path d="M82 70 H90" stroke="#8a6a34" stroke-width="3" stroke-linecap="round"/>
+  <!-- каравай -->
+  <path d="M16 66 Q16 36 44 34 Q72 36 72 66 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="2"/>
+  <path d="M26 50 Q44 42 62 50" fill="none" stroke="#e8c87a" stroke-width="1.5"/>
+  <!-- крестообразный надрез -->
+  <path d="M44 38 V58 M34 48 H54" stroke="#8a6a34" stroke-width="1.6"/>
+  <!-- отрезанный ломоть -->
+  <path d="M70 66 Q74 50 80 48 L84 66 Z" fill="#e8c87a" stroke="#8a6a34" stroke-width="1.4"/>
+  <!-- солонка -->
+  <path d="M18 18 H34 L32 28 H20 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.4"/>
+  <ellipse cx="26" cy="18" rx="8" ry="2" fill="#e8c87a"/>
+</svg>

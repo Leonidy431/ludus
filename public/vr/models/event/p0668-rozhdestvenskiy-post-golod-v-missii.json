@@ -1,0 +1,23 @@
+{
+ "id": "p0668-rozhdestvenskiy-post-golod-v-missii",
+ "kind": "event",
+ "lod": "proxy",
+ "tris": 64,
+ "bbox_m": [
+  0.6,
+  0.6,
+  0.6
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#667",
+ "name": "Рождественский пост: голод в миссии",
+ "type": "событие",
+ "storyline": "83 spiritual",
+ "box": "котёл: cylinder 0.6м",
+ "shape": "cylinder",
+ "size_m": 0.6,
+ "method": "primitive-from-box-field",
+ "collider": "cylinder 0.6 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Черепок чаши со знаком рыбы в сетке раскопа">
+  <title>Черепок со знаком рыбы</title>
+  <desc>ФОРМА: обломок венчика чаши из миссии 67 с процарапанным знаком рыбы (ихтис), в разметочной сетке раскопа, рядом кисть археолога. ДЕЙСТВИЕ: игрок расчищает, описывает и не присваивает находку. ЦЕЛЬ: память о христианах Иссык-Куля хранится честным свидетельством, а не легендой. Миссия: 93 Режим археолога.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. Рисовано вручную: сырьё 99 репо не подходит (правило 0.15). -->
+  <defs>
+    <radialGradient id="cherepok-ikhtis-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#cherepok-ikhtis-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- разметочная сетка раскопа -->
+  <g stroke="#8a6a34" stroke-width=".8" opacity=".55" stroke-dasharray="2 2">
+    <path d="M12 30 H84 M12 70 H84 M28 12 V84 M68 12 V84"/>
+  </g>
+  <!-- черепок -->
+  <path d="M20 42 Q48 28 76 40 L71 51 L77 59 L63 73 L51 67 L41 75 L28 63 L31 53 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.6"/>
+  <path d="M20 42 Q48 28 76 40" fill="none" stroke="#e8c87a" stroke-width="2.2"/>
+  <path d="M23 47 Q48 35 73 45" fill="none" stroke="#2a1808" stroke-width="1"/>
+  <!-- процарапанный знак рыбы -->
+  <path d="M34 52 Q48 42 62 60 M34 60 Q48 70 62 52" fill="none" stroke="#1a0e04" stroke-width="2" stroke-linecap="round"/>
+  <!-- кисть археолога -->
+  <g transform="rotate(35 76 72)">
+    <rect x="74" y="58" width="4" height="15" fill="#c8a56a" stroke="#8a6a34" stroke-width=".8"/>
+    <path d="M73 73 H79 L80 80 H72 Z" fill="#e8c87a"/>
+  </g>
+</svg>

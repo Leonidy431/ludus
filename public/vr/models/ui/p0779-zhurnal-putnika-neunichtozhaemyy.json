@@ -1,0 +1,23 @@
+{
+ "id": "p0779-zhurnal-putnika-neunichtozhaemyy",
+ "kind": "ui",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  0.3,
+  0.399,
+  0.02
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#778",
+ "name": "Журнал Путника (неуничтожаемый)",
+ "type": "интерфейс",
+ "storyline": "все; m29",
+ "box": "книга: box 0.25×0.3м, двуручный хват",
+ "shape": "plane",
+ "size_m": 0.3,
+ "method": "primitive-from-box-field",
+ "collider": "plane 0.3 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

@@ -1,0 +1,23 @@
+{
+ "id": "p0270-rybak-starshina-sadyk",
+ "kind": "npc",
+ "lod": "proxy",
+ "tris": 408,
+ "bbox_m": [
+  0.9,
+  1.8,
+  0.9
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#269",
+ "name": "Рыбак-старшина Садык",
+ "type": "NPC",
+ "storyline": "м.36-38 (гидрология)",
+ "box": "капсула 1.8м",
+ "shape": "capsule",
+ "size_m": 1.8,
+ "method": "primitive-from-box-field",
+ "collider": "capsule 1.8 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

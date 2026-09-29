@@ -1,0 +1,3 @@
+[submodule "vendor/kolokol"]
+	path = vendor/kolokol
+	url = https://github.com/Leonidy431/kolokol

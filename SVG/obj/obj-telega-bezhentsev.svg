@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Телега беженцев со скарбом">
+  <title>Телега беженцев</title>
+  <desc>Форма: двухколёсная арба с узлами, котлом и свёрнутым войлоком. Действие: семьи уходят с берега до прихода большой воды по предупреждению миссии. Цель: забота о жизни ближнего выше имущества. Миссия: 44 «Предупреждение потопа».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. -->
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="#1a0e04" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- кузов арбы -->
+  <path d="M16 50 H70 L66 62 H20 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M26 50 V62 M38 50 V62 M50 50 V62 M60 50 V62" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- оглобли -->
+  <path d="M66 58 L88 54" stroke="#8a6a34" stroke-width="2.4"/>
+  <!-- скарб: узлы, котёл, свёрнутый войлок -->
+  <path d="M20 50 Q22 38 32 40 Q36 46 34 50 Z" fill="#8a6a34" stroke="#e8c87a" stroke-width="1.4"/>
+  <rect x="36" y="38" width="18" height="12" rx="6" fill="#2a1808" stroke="#e8c87a" stroke-width="1.4"/>
+  <path d="M56 50 Q56 42 62 42 Q68 42 68 50 Z" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.4"/>
+  <path d="M58 42 Q62 38 66 42" fill="none" stroke="#c8a56a" stroke-width="1"/>
+  <!-- большое колесо арбы -->
+  <circle cx="40" cy="66" r="14" fill="none" stroke="#c8a56a" stroke-width="2.2"/>
+  <path d="M40 52 V80 M26 66 H54 M30 56 L50 76 M50 56 L30 76" stroke="#8a6a34" stroke-width="1.4"/>
+  <circle cx="40" cy="66" r="3" fill="#e8c87a"/>
+  <!-- дорога и уходящая вода за ней -->
+  <path d="M10 82 H86" stroke="#8a6a34" stroke-width="1.5"/>
+  <path d="M10 88 Q20 85 30 88 T50 88" fill="none" stroke="#1f5a73" stroke-width="1.5"/>
+</svg>

@@ -1,0 +1,23 @@
+{
+ "id": "p0127-kadilo-arkhiereyskoe-s-bubentsami",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 408,
+ "bbox_m": [
+  0.5,
+  1,
+  0.5
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#126",
+ "name": "Кадило архиерейское с бубенцами",
+ "type": "предмет",
+ "storyline": "70 духовный",
+ "box": "капсула 1м",
+ "shape": "capsule",
+ "size_m": 1,
+ "method": "primitive-from-box-field",
+ "collider": "capsule 1 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": true
+}

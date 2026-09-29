@@ -111,7 +111,7 @@ const dialogueTrees = [
     nodes: [
       {
         id: 'greeting',
-        text: 'Welcome, sister. Come, join us in the Divine Liturgy.',
+        text: 'Welcome, brother deacon. Come, join us in the Divine Liturgy.',
         branches: [
           {
             text: 'What is the meaning of the liturgy?',

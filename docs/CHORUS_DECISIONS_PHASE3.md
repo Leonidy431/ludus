@@ -284,9 +284,9 @@ Architect confirms: 13 scenarios = complete Demiurgic Causality verification
 
 ## 🔗 RELATED DOCUMENTS
 
-- `COMPREHENSIVE_GAPS_ANALYSIS.md` — Full gap audit with status tracking
-- `PHASE_3_MASTER_CHECKLIST.md` — Oct 1 deployment checklist
-- `PHASE_3_QUEST3_TESTING_CHECKLIST.md` — Quest 3 real device testing
+- `docs/reports/COMPREHENSIVE_GAPS_ANALYSIS.md` — Full gap audit with status tracking
+- `docs/reports/PHASE_3_MASTER_CHECKLIST.md` — Oct 1 deployment checklist
+- `docs/reports/PHASE_3_QUEST3_TESTING_CHECKLIST.md` — Quest 3 real device testing
 - `API_ERROR_HANDLING_GUIDE.md` — 10 error scenarios with curl tests
 - `PERFORMANCE_PROFILING_BASELINE.md` — Latency targets + measurement methodology
 - `FRONTEND_BACKEND_INTEGRATION_TESTING.md` — 13 integration test scenarios

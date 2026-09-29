@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Архив свитков — ниша с грамотами">
+  <title>Архив свитков</title>
+  <desc>Форма: ниша с уложенными свитками и шнурами-ярлыками, ветвящимися от общей нити. Действие: найти запись о прежнем выборе и понять, куда он повёл. Цель: память о последствиях учит ответственности. Миссия: 90 Ветвление судьбы.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов.
+       Хранилище: свитки как записи выборов; шнуры ярлыков ветвятся. -->
+  <defs>
+    <radialGradient id="arkhiv-svitkov-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#arkhiv-svitkov-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- арочная ниша -->
+  <path d="M18 80 V34 Q18 18 48 18 Q78 18 78 34 V80 Z" fill="#1a0e04" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M18 56 H78" stroke="#8a6a34" stroke-width="2"/>
+  <!-- свитки на верхней полке -->
+  <g fill="#2a1808" stroke="#c8a56a" stroke-width="1.5">
+    <rect x="24" y="44" width="22" height="10" rx="5"/><rect x="48" y="44" width="24" height="10" rx="5"/>
+    <rect x="32" y="34" width="26" height="10" rx="5"/>
+  </g>
+  <g fill="#8a6a34"><circle cx="29" cy="49" r="3"/><circle cx="53" cy="49" r="3"/><circle cx="37" cy="39" r="3"/></g>
+  <!-- свитки на нижней полке -->
+  <g fill="#2a1808" stroke="#c8a56a" stroke-width="1.5">
+    <rect x="22" y="68" width="24" height="10" rx="5"/><rect x="50" y="68" width="24" height="10" rx="5"/>
+    <rect x="36" y="58" width="24" height="10" rx="5"/>
+  </g>
+  <g fill="#8a6a34"><circle cx="27" cy="73" r="3"/><circle cx="55" cy="73" r="3"/><circle cx="41" cy="63" r="3"/></g>
+  <!-- ветвящийся шнур ярлыков: один путь — три исхода -->
+  <g fill="none" stroke="#e8c87a" stroke-width="1.4">
+    <path d="M48 22 V28"/><path d="M48 28 Q40 30 38 34"/><path d="M48 28 V34"/><path d="M48 28 Q58 30 62 34"/>
+  </g>
+  <g fill="#e8c87a"><circle cx="48" cy="22" r="2"/><rect x="36" y="33" width="4" height="3"/><rect x="60" y="33" width="4" height="3"/></g>
+</svg>

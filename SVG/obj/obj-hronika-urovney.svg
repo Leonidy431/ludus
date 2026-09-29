@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Хроника уровней озера — кодекс с зарубками и таблицами">
+  <title>Хроника уровней</title>
+  <desc>ФОРМА: раскрытый кодекс: слева таблица с зарубками-метками по годам, справа кривая уровня воды; закладка-лента. ДЕЙСТВИЕ: дьякон сводит записи братьев за много лет и видит ритм подъёма и спада озера. ЦЕЛЬ: память обители как знание, служащее людям. Миссия: 45 Гидрологический архив.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. Рисовано вручную: сырьё 99 репо не подходит (правило 0.15). -->
+  <defs>
+    <radialGradient id="hu-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#hu-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- переплёт -->
+  <path d="M14 26 Q30 20 48 26 Q66 20 82 26 V74 Q66 68 48 74 Q30 68 14 74 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.6"/>
+  <!-- страницы -->
+  <path d="M18 26 Q32 22 47 27 V70 Q32 66 18 70 Z" fill="#e8c87a" stroke="#8a6a34" stroke-width="1.2"/>
+  <path d="M49 27 Q64 22 78 26 V70 Q64 66 49 70 Z" fill="#e8c87a" stroke="#8a6a34" stroke-width="1.2"/>
+  <path d="M48 26 V74" stroke="#2a1808" stroke-width="1.4"/>
+  <!-- таблица: строки лет и зарубки -->
+  <g stroke="#2a1808" stroke-width=".9">
+    <path d="M21 34 H45 M21 42 H45 M21 50 H45 M21 58 H45 M21 66 H45"/>
+    <path d="M29 30 V68"/>
+  </g>
+  <g stroke="#8a6a34" stroke-width="1.3">
+    <path d="M32 31 v6 M34 31 v6 M36 31 v6 M32 39 v6 M34 39 v6 M32 47 v6 M34 47 v6 M36 47 v6 M38 47 v6"/>
+    <path d="M32 55 v6 M34 55 v6 M32 63 v4 M34 63 v4 M36 63 v4"/>
+  </g>
+  <!-- кривая уровня воды -->
+  <path d="M52 40 L76 40 M52 60 H76" stroke="#8a6a34" stroke-width=".7" stroke-dasharray="2 2"/>
+  <path d="M52 56 Q56 44 60 48 Q64 54 68 42 Q72 34 76 44" fill="none" stroke="#1f5a73" stroke-width="1.8"/>
+  <g fill="#c0392b"><circle cx="60" cy="48" r="1.3"/><circle cx="68" cy="42" r="1.3"/></g>
+  <!-- закладка-лента -->
+  <path d="M46 72 V86 L48 83 L50 86 V72 Z" fill="#c0392b" stroke="#8a6a34" stroke-width=".8"/>
+</svg>

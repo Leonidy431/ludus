@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Врата знания II — Литургическое: Чаша, порог Мудрости 6">
+  <title>Врата II: Литургическое</title>
+  <desc>Евхаристическая Чаша, покрытая звездицей, над ней — крест. Смысл: вера становится общей молитвой — в Литургии Церковь делается одним Телом вокруг одной Чаши. Шесть точек внизу — порог Мудрости 6.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка. Врата знания, уровень 2 из 6. -->
+  <defs>
+    <radialGradient id="g2-bg" cx="50%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#g2-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- крест над Чашей -->
+  <path d="M48 12 V26 M42 17 H54" stroke="#e8c87a" stroke-width="2" stroke-linecap="round"/>
+  <!-- звездица над потиром -->
+  <path d="M36 32 Q48 24 60 32 M48 26 V34" stroke="#c8a56a" stroke-width="1.5" fill="none"/>
+  <!-- чаша потира -->
+  <path d="M32 34 H64 Q64 52 48 56 Q32 52 32 34 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.5"/>
+  <ellipse cx="48" cy="34" rx="16" ry="3.4" fill="#c0392b" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- ножка с яблоком и стопа -->
+  <path d="M48 56 V70" stroke="#c8a56a" stroke-width="3"/>
+  <circle cx="48" cy="63" r="3.4" fill="#e8c87a" stroke="#8a6a34" stroke-width="1"/>
+  <path d="M36 76 Q48 68 60 76 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- порог Мудрости: 6 точек -->
+  <g fill="#e8c87a"><circle cx="37" cy="83" r="1.5"/><circle cx="41.4" cy="83" r="1.5"/><circle cx="45.8" cy="83" r="1.5"/><circle cx="50.2" cy="83" r="1.5"/><circle cx="54.6" cy="83" r="1.5"/><circle cx="59" cy="83" r="1.5"/></g>
+</svg>

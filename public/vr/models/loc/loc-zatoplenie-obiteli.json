@@ -1,0 +1,16 @@
+{
+ "id": "loc-zatoplenie-obiteli",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 1138,
+ "bbox_m": [
+  5.333,
+  3,
+  0.541
+ ],
+ "source": "SVG/loc/loc-zatoplenie-obiteli.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

@@ -1,0 +1,23 @@
+{
+ "id": "p1067-kolokol-dlya-zabludshikh-v-gorakh",
+ "kind": "sound",
+ "lod": "proxy",
+ "tris": 80,
+ "bbox_m": [
+  0.3,
+  0.3,
+  0.3
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#1066",
+ "name": "Колокол для заблудших в горах",
+ "type": "звук",
+ "storyline": "51",
+ "box": "канат capsule",
+ "shape": "emitter",
+ "size_m": 0.3,
+ "method": "primitive-from-box-field",
+ "collider": "trigger volume",
+ "hiddenInBuild": true,
+ "noInteract": false,
+ "noLoot": true
+}

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Сигнальный костёр на башне">
+  <title>Сигнальный костёр на башне</title>
+  <desc>ФОРМА: каменная башенка с железной чашей, в ней поленья и пламя, над ним клубы дыма. ДЕЙСТВИЕ: цепь костров передаёт весть от поста к посту вдоль берега: об опасности, о приходе каравана. ЦЕЛЬ: бдение ради ближних — стража, которая не спит. Миссия 84.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, двойная рамка-картуш -->
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="#1a0e04" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- клубы дыма -->
+  <g fill="#8a6a34" opacity=".4">
+    <circle cx="52" cy="18" r="5"/><circle cx="60" cy="14" r="4"/><circle cx="46" cy="24" r="4"/>
+  </g>
+  <!-- пламя: редкий красный в сердцевине -->
+  <path d="M36 46 Q34 34 44 26 Q42 34 48 34 Q48 24 56 22 Q52 32 60 38 Q62 44 60 46 Z" fill="#e8c87a" stroke="#c8a56a" stroke-width="1.2"/>
+  <path d="M42 46 Q42 38 48 36 Q50 42 54 40 Q56 44 54 46 Z" fill="#c0392b"/>
+  <!-- железная чаша -->
+  <path d="M30 46 H66 L60 54 H36 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.8"/>
+  <path d="M36 46 L42 42 M60 46 L54 42" stroke="#8a6a34" stroke-width="2"/>
+  <!-- каменная башенка -->
+  <path d="M36 54 H60 L64 84 H32 Z" fill="#3a2410" stroke="#c8a56a" stroke-width="1.8"/>
+  <g stroke="#8a6a34" stroke-width="1" fill="none">
+    <path d="M35 62 H61 M34 70 H62 M33 78 H63 M44 54 V62 M52 62 V70 M42 70 V78 M54 78 V84"/>
+  </g>
+</svg>

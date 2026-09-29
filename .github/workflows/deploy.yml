@@ -1,0 +1,80 @@
+# Deploy the ludus Meta build (public/, Cloud Functions, Firestore rules)
+# to Firebase on every push to main (CLAUDE.md digest rule 7: main only
+# changes through a reviewed PR, so a push to main is a release).
+#
+# Nothing secret lives in the repo (CLAUDE.md: secrets only in GitHub
+# Secrets). The job needs two settings made once by the operator:
+#   vars.LUDUS_FIREBASE_PROJECT       Firebase project id for ludus;
+#   secrets.FIREBASE_SERVICE_ACCOUNT  JSON key of a deploy service account.
+# Without them the job reports what is missing and skips the deploy
+# instead of failing, so a fork or a fresh repo stays green.
+name: Deploy (Firebase)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ludus-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PROJECT: ${{ vars.LUDUS_FIREBASE_PROJECT }}
+      HAS_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check deploy settings
+        id: gate
+        run: |
+          if [ -z "$PROJECT" ] || [ "$HAS_KEY" != "true" ]; then
+            {
+              echo "### Deploy skipped"
+              echo "Set repo variable LUDUS_FIREBASE_PROJECT and secret"
+              echo "FIREBASE_SERVICE_ACCOUNT to enable deploys."
+            } >> "$GITHUB_STEP_SUMMARY"
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.gate.outputs.run == 'true'
+        with:
+          node-version: 20
+
+      # The same gates as the PR checks, so a broken tree never ships.
+      - name: Front-end checks
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          for f in public/ludus/*.js public/index.html; do
+            case "$f" in *.js) node --check "$f" ;; esac
+          done
+          node --test tests/*.test.js
+          python3 scripts/meta3d/check_coverage.py
+
+      - name: Build Cloud Functions
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          npm --prefix functions ci
+          npm --prefix functions run build
+
+      - name: Deploy hosting, functions and rules
+        if: steps.gate.outputs.run == 'true'
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          key="$RUNNER_TEMP/sa.json"
+          printf '%s' "$FIREBASE_SERVICE_ACCOUNT" > "$key"
+          export GOOGLE_APPLICATION_CREDENTIALS="$key"
+          npx --yes firebase-tools@13 deploy --project "$PROJECT" \
+            --only hosting,functions,firestore:rules --non-interactive
+          rm -f "$key"

@@ -1,0 +1,16 @@
+{
+ "id": "obj-nakovalnya",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 934,
+ "bbox_m": [
+  0.392,
+  0.392,
+  0.028
+ ],
+ "source": "SVG/obj/obj-nakovalnya.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "convex hull of the alpha silhouette",
+ "noInteract": false,
+ "noLoot": false
+}

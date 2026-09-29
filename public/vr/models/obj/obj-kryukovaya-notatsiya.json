@@ -1,0 +1,16 @@
+{
+ "id": "obj-kryukovaya-notatsiya",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 1308,
+ "bbox_m": [
+  0.392,
+  0.392,
+  0.04
+ ],
+ "source": "SVG/obj/obj-kryukovaya-notatsiya.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "convex hull of the alpha silhouette",
+ "noInteract": false,
+ "noLoot": false
+}

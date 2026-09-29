@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Литургический покров-воздух на чистой доске, только для храма">
+  <title>Покров-воздух</title>
+  <desc>ФОРМА: шитый золотом покров-воздух с крестом в середине и кистями по углам лежит на чистой доске под светом сверху; рядом игла с нитью — работа мастерицы завершена. ДЕЙСТВИЕ: в текстильной мастерской игрок видит, как шьют для храма с молитвой; готовый покров передаётся в храм (noInteract, noLoot) — его нельзя продать, надеть или взять в инвентарь. ЦЕЛЬ: труд рук, посвящённый Богу; святыня — не товар. Миссия: 69 «Текстильные цеха».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. -->
+  <defs>
+    <radialGradient id="pkrv-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#pkrv-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- свет сверху -->
+  <path d="M36 8 H60 L70 40 H26 Z" fill="#e8c87a" opacity=".08"/>
+  <!-- чистая доска -->
+  <path d="M10 72 L20 30 H76 L86 72 Z" fill="#2a1808" stroke="#8a6a34" stroke-width="1.4"/>
+  <!-- покров -->
+  <path d="M20 66 L27 36 H69 L76 66 Z" fill="#e8d9b8" stroke="#c8a56a" stroke-width="1.6"/>
+  <!-- шитая кайма -->
+  <path d="M25 62 L30 40 H66 L71 62 Z" fill="none" stroke="#8a6a34" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <!-- крест в середине -->
+  <path d="M48 42 V60 M40 48 H56" stroke="#8a6a34" stroke-width="2.4"/>
+  <path d="M48 42 V60 M40 48 H56" stroke="#e8c87a" stroke-width="1"/>
+  <!-- кисти по углам -->
+  <g stroke="#c8a56a" stroke-width="1.4">
+    <path d="M20 66 l-2 6 M76 66 l2 6 M27 36 l-2 -5 M69 36 l2 -5"/>
+  </g>
+  <g fill="#e8c87a">
+    <circle cx="17.5" cy="73" r="1.6"/><circle cx="78.5" cy="73" r="1.6"/>
+    <circle cx="24.5" cy="30" r="1.4"/><circle cx="71.5" cy="30" r="1.4"/>
+  </g>
+  <!-- игла с нитью у края доски -->
+  <path d="M60 80 L80 76" stroke="#c8a56a" stroke-width="1.4"/>
+  <path d="M60 80 Q52 84 46 80" fill="none" stroke="#e8c87a" stroke-width="1"/>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Ковчежец с частицей мощей">
+  <title>Ковчежец с частицей мощей</title>
+  <desc>ФОРМА: малый ковчег-домик с двускатной крышкой, крестом на коньке и оконцем, за которым лежит частица. Нимба нет: святость показана светом сверху. ДЕЙСТВИЕ: ковчег несут с благоговением, о подлинности свидетельствует предание и ризница, а не торг. Это не добыча и не оружие. ЦЕЛЬ: спор версий о мощах решается смирением и свидетельством. Миссии 89, 90.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, двойная рамка-картуш -->
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="#1a0e04" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- мягкий свет сверху, не нимб -->
+  <g stroke="#e8c87a" stroke-width="1" opacity=".35">
+    <path d="M48 10 V20 M38 12 L42 21 M58 12 L54 21"/>
+  </g>
+  <!-- крест на коньке -->
+  <path d="M48 20 V30 M44 24 H52" stroke="#e8c87a" stroke-width="2"/>
+  <!-- двускатная крышка -->
+  <path d="M24 44 L48 30 L72 44 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.8"/>
+  <!-- корпус ковчега -->
+  <rect x="26" y="44" width="44" height="28" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M26 50 H70 M26 66 H70" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- оконце с частицей -->
+  <path d="M42 64 V56 Q48 50 54 56 V64 Z" fill="#1a0e04" stroke="#e8c87a" stroke-width="1.5"/>
+  <circle cx="48" cy="60" r="2" fill="#e8c87a"/>
+  <!-- ножки и покров -->
+  <path d="M28 72 v4 M68 72 v4" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M16 78 H80 L76 82 H20 Z" fill="#3a2410" stroke="#8a6a34" stroke-width="1.2"/>
+</svg>

@@ -1,0 +1,16 @@
+{
+ "id": "loc-kantselyariya",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 1062,
+ "bbox_m": [
+  5.333,
+  3,
+  0.48
+ ],
+ "source": "SVG/loc/loc-kantselyariya.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

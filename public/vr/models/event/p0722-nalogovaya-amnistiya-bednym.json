@@ -1,0 +1,23 @@
+{
+ "id": "p0722-nalogovaya-amnistiya-bednym",
+ "kind": "event",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  0.3,
+  0.3,
+  0.3
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#721",
+ "name": "Налоговая амнистия бедным",
+ "type": "событие",
+ "storyline": "10 trade",
+ "box": "список: box 0.3м",
+ "shape": "box",
+ "size_m": 0.3,
+ "method": "primitive-from-box-field",
+ "collider": "box 0.3 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

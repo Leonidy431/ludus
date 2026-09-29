@@ -1,0 +1,23 @@
+{
+ "id": "p0780-stroka-pokayaniya-v-zhurnale",
+ "kind": "ui",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  0.05,
+  0.067,
+  0.02
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#779",
+ "name": "Строка покаяния в журнале",
+ "type": "интерфейс",
+ "storyline": "m26",
+ "box": "строка: ray-target 0.02м",
+ "shape": "plane",
+ "size_m": 0.05,
+ "method": "primitive-from-box-field",
+ "collider": "plane 0.05 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

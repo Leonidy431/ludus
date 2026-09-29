@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Бек рода — старейшина кочевого рода">
+  <title>Бек рода</title>
+  <desc>Форма: седой старейшина кочевого рода в войлочной шапке с меховой опушкой и тёплом халате, в руке посох, на поясе огниво и нож в ножнах, за плечом стоит юрта. Действие: выслушивает, взвешивает, отвечает за весь род; с ним договариваются как с равным. Цель: переговоры в уважении и правде, без хитрости и без высокомерия. Нарисован с достоинством, без карикатуры. Миссия: 50 «Переговорщик с кочевниками».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш, без нимбов -->
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- юрта рода за спиной -->
+  <path d="M60 58 Q76 36 92 58 V74 H60 Z" fill="#2a1808" stroke="#8a6a34" stroke-width="1.2"/>
+  <path d="M74 48 L76 42 L78 48" fill="none" stroke="#8a6a34" stroke-width="1"/>
+  <!-- голова -->
+  <circle cx="46" cy="38" r="11" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- войлочная шапка с меховой опушкой -->
+  <path d="M35 33 Q36 16 46 14 Q56 16 57 33 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M33 34 Q46 28 59 34" fill="none" stroke="#e8d9b8" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- седая борода и усы -->
+  <path d="M39 44 Q46 62 53 44 Q50 50 46 50 Q42 50 39 44 Z" fill="#e8d9b8" opacity=".85"/>
+  <path d="M40 43 Q46 46 52 43" fill="none" stroke="#e8d9b8" stroke-width="1.4"/>
+  <!-- халат с запахом и опушкой -->
+  <path d="M46 52 C28 58 24 82 26 120 H68 C70 82 64 58 46 52 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M40 56 L54 118" stroke="#e8d9b8" stroke-width="2" opacity=".7"/>
+  <!-- кожаный пояс с огнивом и ножнами -->
+  <path d="M30 90 H64" stroke="#8a6a34" stroke-width="3"/>
+  <path d="M36 90 v8 h6 v-8" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.2"/>
+  <path d="M56 91 L60 106" stroke="#c8a56a" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- посох старейшины -->
+  <path d="M74 122 V74" stroke="#c8a56a" stroke-width="2.2"/>
+  <circle cx="74" cy="72" r="2.5" fill="#e8c87a"/>
+  <!-- открытая ладонь: жест слова, не угрозы -->
+  <path d="M64 84 q6 -2 8 -8" fill="none" stroke="#c8a56a" stroke-width="2"/>
+</svg>

@@ -1,0 +1,16 @@
+{
+ "id": "obj-bell",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 234,
+ "bbox_m": [
+  0.238,
+  0.276,
+  0.012
+ ],
+ "source": "public/ludus/art/obj-bell.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "convex hull of the alpha silhouette",
+ "noInteract": false,
+ "noLoot": true
+}

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Келья исихаста — красный угол с иконой, лампада, рогожка для поклонов">
+  <title>Келья исихаста</title>
+  <desc>Внутренность кельи: красный угол с иконой и лампадой, рогожка для поклонов, скамеечка, узкое окно. Смысл: «Сиди в келье твоей, и келья научит тебя всему» — внешняя тишина готовит место для внутренней молитвы.</desc>
+  <!-- Арт-канон §9.0: умбра+золото. Локация: келья, ступень «Созерцательное». -->
+  <rect width="320" height="180" fill="#1a0e04"/>
+  <!-- стены и угол кельи -->
+  <path d="M0 0 H200 V136 H0 Z" fill="#2a1808"/>
+  <path d="M200 0 L320 0 L320 180 L200 136 Z" fill="#241405"/>
+  <path d="M200 0 V136" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- пол -->
+  <path d="M0 136 H200 L320 180 H0 Z" fill="#140a02"/>
+  <path d="M0 136 H200 L320 180" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- узкое окно с лунным светом -->
+  <g>
+    <path d="M60 40 V80 H76 V40 Q68 30 60 40 Z" fill="#3a2410" stroke="#c8a56a" stroke-width="1.6"/>
+    <path d="M68 34 V80 M60 58 H76" stroke="#8a6a34" stroke-width="1.2"/>
+    <path d="M60 80 L44 136 H100 L76 80 Z" fill="#e8c87a" opacity=".06"/>
+  </g>
+  <!-- цепочки лампады (позади иконы) -->
+  <path d="M200 0 V88 M192 0 Q194 80 196 90 M208 0 Q206 80 204 90" stroke="#8a6a34" stroke-width="1" fill="none" opacity=".7"/>
+  <!-- полочка красного угла -->
+  <path d="M178 76 L200 70 L222 76 L200 84 Z" fill="#3a2410" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- икона в углу: доска, ковчег, нимб и лик -->
+  <g>
+    <rect x="186" y="34" width="28" height="36" rx="1" fill="#2a1808" stroke="#e8c87a" stroke-width="2"/>
+    <rect x="190" y="38" width="20" height="28" fill="none" stroke="#8a6a34" stroke-width="1"/>
+    <circle cx="200" cy="48" r="7" fill="none" stroke="#e8c87a" stroke-width="1.5"/>
+    <circle cx="200" cy="49" r="3.6" fill="#8a6a34"/>
+    <path d="M193 66 Q200 54 207 66" fill="#c8a56a" opacity=".7"/>
+  </g>
+  <!-- лампада перед иконой, красный огонь -->
+  <g>
+    <path d="M192 92 H208 Q207 102 200 104 Q193 102 192 92 Z" fill="#c0392b" stroke="#c8a56a" stroke-width="1.4"/>
+    <path d="M200 84 Q203 88 201.5 91 Q200 92.5 198.5 91 Q197 88 200 84 Z" fill="#e8c87a"/>
+    <circle cx="200" cy="90" r="12" fill="#e8c87a" opacity=".12"/>
+  </g>
+  <!-- рогожка для поклонов -->
+  <g>
+    <path d="M110 150 L200 150 L232 172 L96 172 Z" fill="#3a2410" stroke="#c8a56a" stroke-width="1.5"/>
+    <g stroke="#8a6a34" stroke-width="1" opacity=".8">
+      <path d="M118 156 H210 M112 162 H220 M106 168 H226"/>
+    </g>
+  </g>
+  <!-- чётки на рогожке -->
+  <ellipse cx="160" cy="161" rx="10" ry="4" fill="none" stroke="#e8c87a" stroke-width="1.5" stroke-dasharray="1.5 1.5"/>
+  <path d="M170 161 h6 M173 158 v6" stroke="#e8c87a" stroke-width="1.5"/>
+  <!-- низкая скамеечка исихаста -->
+  <g stroke="#c8a56a" stroke-width="1.8" fill="#2a1808">
+    <path d="M36 142 H78 V148 H36 Z"/>
+    <path d="M40 148 V160 M74 148 V160" fill="none"/>
+  </g>
+  <!-- раскрытая Псалтирь на скамеечке -->
+  <path d="M46 142 Q52 136 57 141 Q62 136 68 142" fill="#e8d9b8" stroke="#8a6a34" stroke-width="1" opacity=".85"/>
+</svg>

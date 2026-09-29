@@ -1,0 +1,23 @@
+{
+ "id": "p0949-siriyskoe-penie-nestorian",
+ "kind": "sound",
+ "lod": "proxy",
+ "tris": 80,
+ "bbox_m": [
+  15,
+  15,
+  15
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#948",
+ "name": "Сирийское пение несториан",
+ "type": "звук",
+ "storyline": "70-75 дипломатия",
+ "box": "триггер 15м",
+ "shape": "emitter",
+ "size_m": 15,
+ "method": "primitive-from-box-field",
+ "collider": "trigger volume",
+ "hiddenInBuild": true,
+ "noInteract": false,
+ "noLoot": false
+}

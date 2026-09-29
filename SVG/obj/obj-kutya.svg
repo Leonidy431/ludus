@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Кутья — поминальная чаша с пшеницей и свечой">
+  <title>Кутья</title>
+  <desc>ФОРМА: глубокая чаша с варёной пшеницей, сверху крест из изюма, рядом восковая свеча. ДЕЙСТВИЕ: дьякон приносит кутью на память епископа Иоанна и делит её с пришедшими. ЦЕЛЬ: зерно, умершее ради колоса (Ин 12:24), — надежда воскресения; это поминовение, а не угощение и не награда. Миссия: 29 Память епископа Иоанна.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. Рисовано вручную: сырьё 99 репо не подходит (правило 0.15). -->
+  <defs>
+    <radialGradient id="ku-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#ku-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- чаша на ножке -->
+  <path d="M18 46 H78 Q76 70 48 72 Q20 70 18 46 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.8"/>
+  <path d="M40 72 L36 80 H60 L56 72" fill="#8a6a34" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- горка пшеницы -->
+  <path d="M20 46 Q48 22 76 46 Z" fill="#e8c87a" stroke="#8a6a34" stroke-width="1.2"/>
+  <g fill="#c8a56a"><circle cx="30" cy="43" r="1"/><circle cx="38" cy="40" r="1"/><circle cx="60" cy="40" r="1"/><circle cx="68" cy="43" r="1"/><circle cx="54" cy="44" r="1"/><circle cx="42" cy="44" r="1"/></g>
+  <!-- крест из изюма поверх зерна -->
+  <g fill="#2a1808">
+    <circle cx="48" cy="30" r="1.8"/><circle cx="48" cy="35" r="1.8"/><circle cx="48" cy="40" r="1.8"/><circle cx="48" cy="45" r="1.8"/>
+    <circle cx="42" cy="35" r="1.8"/><circle cx="54" cy="35" r="1.8"/>
+  </g>
+  <!-- поминальная свеча -->
+  <rect x="74" y="24" width="4" height="20" fill="#e8c87a" stroke="#8a6a34" stroke-width=".8"/>
+  <path d="M76 14 Q79 19 76 22 Q73 19 76 14 Z" fill="#e8c87a"/>
+  <circle cx="76" cy="19" r="7" fill="#e8c87a" opacity=".15"/>
+  <!-- колос: зерно, умершее ради жизни -->
+  <path d="M18 30 Q22 20 26 14" fill="none" stroke="#8a6a34" stroke-width="1.2"/>
+  <g fill="#c8a56a"><ellipse cx="24" cy="18" rx="1.4" ry="2.4"/><ellipse cx="22" cy="23" rx="1.4" ry="2.4"/><ellipse cx="27" cy="21" rx="1.4" ry="2.4"/></g>
+</svg>

@@ -1,0 +1,23 @@
+{
+ "id": "p0018-triod-postnaya",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  0.25,
+  0.25,
+  0.25
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#17",
+ "name": "Триодь постная",
+ "type": "предмет",
+ "storyline": "29 духовный",
+ "box": "box 0.25м, открыть в пост",
+ "shape": "box",
+ "size_m": 0.25,
+ "method": "primitive-from-box-field",
+ "collider": "box 0.25 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

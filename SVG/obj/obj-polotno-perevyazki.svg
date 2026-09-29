@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Свёрток перевязочного полотна с травами">
+  <title>Перевязочное полотно</title>
+  <desc>Форма: скатка чистого льняного бинта с отмотанным концом, сложенный плат, веточка подорожника и малая склянка масла. Действие: перевязать рану любому — своему и чужому, как самарянин на дороге. Цель: врачевание тела как служение ближнему (Лк. 10:34); реестр ТБ-12. Миссия: 76 Травничество и медицина.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. Объект: лечебница обители. -->
+  <defs>
+    <radialGradient id="polotno-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#polotno-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- сложенный плат -->
+  <path d="M16 62 L44 54 L70 62 L42 72 Z" fill="#e8d9b8" opacity=".3" stroke="#c8a56a" stroke-width="1.4"/>
+  <!-- скатка бинта -->
+  <ellipse cx="40" cy="44" rx="12" ry="14" fill="#e8d9b8" opacity=".85" stroke="#8a6a34" stroke-width="1.6"/>
+  <ellipse cx="40" cy="44" rx="7" ry="8" fill="none" stroke="#c8a56a" stroke-width="1.2"/>
+  <ellipse cx="40" cy="44" rx="2.5" ry="3" fill="#2a1808"/>
+  <!-- отмотанный конец полотна -->
+  <path d="M46 56 Q58 62 70 54 Q76 50 80 56 L76 60 Q70 56 64 62 Q54 68 44 60 Z" fill="#e8d9b8" opacity=".75" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- веточка подорожника -->
+  <g fill="#8a6a34" stroke="#e8c87a" stroke-width="1">
+    <path d="M58 40 Q64 26 72 24 Q70 34 58 40 Z"/><path d="M60 36 Q70 36 76 32 Q72 42 60 38 Z"/>
+  </g>
+  <path d="M56 44 L74 24" stroke="#c8a56a" stroke-width="1"/>
+  <!-- склянка масла -->
+  <path d="M20 22 h6 v4 l3 4 v14 h-12 v-14 l3 -4 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.4"/>
+  <rect x="18" y="36" width="10" height="7" fill="#c8a56a" opacity=".6"/>
+</svg>

@@ -1,0 +1,23 @@
+{
+ "id": "p0568-melnitsa-na-karakolke",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 64,
+ "bbox_m": [
+  4,
+  4,
+  4
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#567",
+ "name": "Мельница на Каракольке",
+ "type": "локация",
+ "storyline": "74,38",
+ "box": "колесо: cylinder",
+ "shape": "cylinder",
+ "size_m": 4,
+ "method": "primitive-from-box-field",
+ "collider": "cylinder 4 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

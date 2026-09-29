@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Богатые террасы — виноградники у воды">
+  <title>Богатые террасы</title>
+  <desc>Низкие террасы садов и виноградников у самой воды Иссык-Куля: арык несёт воду с гор, ряды лозы и фруктовые деревья, у берега лодка, на склоне дом хозяина. ФОРМА: плодородие, которое легко принять за собственную заслугу. ДЕЙСТВИЕ: игрок решает, как делить урожай с работниками и странниками. ЦЕЛЬ: притча о безумном богаче (Лк. 12:16–21): богатство — поручение, а не опора. Миссия 42.</desc>
+  <!-- Арт-канон §9.0: умбра+золото; 2D-виньетка локации -->
+  <defs>
+    <linearGradient id="terr-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#terr-nebo)"/>
+  <!-- солнце и горы -->
+  <circle cx="70" cy="44" r="12" fill="#e8c87a" opacity=".85"/>
+  <path d="M0 84 L60 56 L110 76 L170 50 L230 74 L280 58 L320 72 V96 H0 Z" fill="#241405"/>
+  <!-- склон с террасами -->
+  <path d="M0 130 V92 Q160 84 320 96 V130 Z" fill="#2a1808"/>
+  <g fill="#3a2410" stroke="#c8a56a" stroke-width="1.4">
+    <path d="M0 104 Q160 96 320 106 V110 Q160 100 0 108 Z"/>
+    <path d="M0 118 Q160 110 320 120 V124 Q160 114 0 122 Z"/>
+  </g>
+  <!-- ряды лозы -->
+  <g fill="none" stroke="#c8a56a" stroke-width="1.3">
+    <path d="M10 100 q10 -5 20 0 q10 -5 20 0 q10 -5 20 0 M150 96 q10 -5 20 0 q10 -5 20 0 q10 -5 20 0"/>
+    <path d="M40 114 q10 -5 20 0 q10 -5 20 0 M200 114 q10 -5 20 0 q10 -5 20 0 q10 -5 20 0"/>
+  </g>
+  <!-- фруктовые деревья -->
+  <g fill="#8a6a34" stroke="#c8a56a" stroke-width="1.2">
+    <circle cx="116" cy="96" r="7"/><circle cx="268" cy="98" r="6"/>
+  </g>
+  <path d="M116 103 V110 M268 104 V110" stroke="#8a6a34" stroke-width="1.6"/>
+  <!-- дом хозяина -->
+  <path d="M296 94 V82 L306 76 L316 82 V94 Z" fill="#3a2410" stroke="#c8a56a" stroke-width="1.4"/>
+  <rect x="304" y="86" width="4" height="4" fill="#e8c87a"/>
+  <!-- арык, стекающий к озеру -->
+  <path d="M150 86 Q146 100 156 112 Q162 122 158 132" fill="none" stroke="#1f5a73" stroke-width="2.4"/>
+  <!-- озеро -->
+  <rect y="130" width="320" height="50" fill="#0d2a3a"/>
+  <g stroke="#1f5a73" stroke-width="1.3" fill="none">
+    <path d="M30 146 q10 -4 20 0 M100 160 q10 -4 20 0 M200 150 q10 -4 20 0 M260 166 q10 -4 20 0"/>
+  </g>
+  <path d="M0 130 Q160 126 320 130" stroke="#c8a56a" stroke-width="1.4" fill="none"/>
+  <!-- лодка у берега -->
+  <path d="M220 136 H246 L242 141 H224 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.2"/>
+</svg>

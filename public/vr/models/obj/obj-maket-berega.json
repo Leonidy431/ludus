@@ -1,0 +1,16 @@
+{
+ "id": "obj-maket-berega",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 529,
+ "bbox_m": [
+  0.392,
+  0.392,
+  0.033
+ ],
+ "source": "SVG/obj/obj-maket-berega.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "convex hull of the alpha silhouette",
+ "noInteract": false,
+ "noLoot": false
+}

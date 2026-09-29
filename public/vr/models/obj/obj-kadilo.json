@@ -1,0 +1,16 @@
+{
+ "id": "obj-kadilo",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 644,
+ "bbox_m": [
+  0.392,
+  0.392,
+  0.04
+ ],
+ "source": "public/ludus/art/obj-kadilo.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "convex hull of the alpha silhouette",
+ "noInteract": false,
+ "noLoot": true
+}

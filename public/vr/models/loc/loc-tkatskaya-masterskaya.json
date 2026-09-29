@@ -1,0 +1,16 @@
+{
+ "id": "loc-tkatskaya-masterskaya",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 546,
+ "bbox_m": [
+  5.333,
+  3,
+  0.581
+ ],
+ "source": "SVG/loc/loc-tkatskaya-masterskaya.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

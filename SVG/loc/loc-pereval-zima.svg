@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Заснеженный перевал Тянь-Шаня с каменным зимовьем">
+  <title>Зимний перевал</title>
+  <desc>Форма: седловина перевала между заснеженными вершинами, петли тропы, каменное зимовье с огнём в окне и тур из камней. Действие: рассчитать запасы и время, чтобы довести караван до зимовья до бури. Цель: трезвый расчёт — забота о ближних на пути. Миссия: 6 Миссия-логист.</desc>
+  <!-- Арт-канон §9.0: умбра+золото. Локация миссии 6: перевал в сумерках, снег — светлая охра. -->
+  <defs>
+    <linearGradient id="pereval-zima-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#pereval-zima-nebo)"/>
+  <!-- вершины -->
+  <path d="M0 110 L50 40 L90 84 L130 58 L160 80 L200 36 L250 90 L290 54 L320 76 V180 H0 Z" fill="#2a1808" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- снежные шапки -->
+  <g fill="#e8d9b8" opacity=".85">
+    <path d="M38 57 L50 40 L62 54 L56 52 L50 58 L44 54 Z"/>
+    <path d="M122 66 L130 58 L140 68 L134 66 L130 70 Z"/>
+    <path d="M186 55 L200 36 L214 56 L206 52 L200 60 L192 54 Z"/>
+    <path d="M280 64 L290 54 L300 64 L294 62 L290 66 Z"/>
+  </g>
+  <!-- снежное поле перевала -->
+  <path d="M0 132 Q80 104 160 112 Q240 104 320 128 V180 H0 Z" fill="#c8a56a" opacity=".55"/>
+  <path d="M0 150 Q100 132 180 142 Q260 150 320 142 V180 H0 Z" fill="#8a6a34" opacity=".5"/>
+  <!-- петли тропы к седловине -->
+  <path d="M60 178 Q120 164 90 152 Q60 140 130 134 Q190 128 150 118 Q130 112 160 108" fill="none" stroke="#1a0e04" stroke-width="2" stroke-dasharray="4 3"/>
+  <!-- каменное зимовье -->
+  <g stroke="#e8c87a" stroke-width="1.8">
+    <path d="M224 146 V126 L246 114 L268 126 V146 Z" fill="#2a1808"/>
+    <path d="M220 126 L246 110 L272 126" fill="none"/>
+  </g>
+  <g stroke="#8a6a34" stroke-width="1"><path d="M224 134 H268 M234 126 V134 M258 126 V134 M246 134 V146"/></g>
+  <rect x="236" y="130" width="7" height="6" fill="#e8c87a"/>
+  <circle cx="240" cy="133" r="10" fill="#e8c87a" opacity=".14"/>
+  <path d="M260 112 Q256 100 264 90" fill="none" stroke="#8a6a34" stroke-width="2.5" opacity=".7"/>
+  <!-- тур из камней на седловине -->
+  <g fill="#8a6a34" stroke="#c8a56a" stroke-width="1"><ellipse cx="160" cy="106" rx="6" ry="3"/><ellipse cx="160" cy="101" rx="4.5" ry="2.5"/><ellipse cx="160" cy="97" rx="3" ry="2"/></g>
+  <!-- снежинки -->
+  <g stroke="#e8d9b8" stroke-width="1" opacity=".7"><path d="M40 20 v6 M37 23 h6"/><path d="M110 30 v6 M107 33 h6"/><path d="M250 22 v6 M247 25 h6"/><path d="M300 36 v6 M297 39 h6"/></g>
+</svg>

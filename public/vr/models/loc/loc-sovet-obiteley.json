@@ -1,0 +1,16 @@
+{
+ "id": "loc-sovet-obiteley",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 1572,
+ "bbox_m": [
+  5.358,
+  3.013,
+  0.56
+ ],
+ "source": "SVG/loc/loc-sovet-obiteley.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

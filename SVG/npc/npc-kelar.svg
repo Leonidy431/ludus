@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Келарь — монах-хранитель запасов обители">
+  <title>Брат-келарь</title>
+  <desc>ФОРМА: монах в скуфье и тёмном подряснике, на поясе связка ключей, в руках мера для зерна, у ног закрома. ДЕЙСТВИЕ: дьякон учится у него хранить зерно сухим, вести счёт и делить хлеб поровну в голод. ЦЕЛЬ: верность в малом — хозяйство как послушание. Миссия: 75 Системы хранения зерна.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. Рисовано вручную: сырьё 99 репо не подходит (правило 0.15). -->
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <circle cx="50" cy="36" r="11" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- скуфья -->
+  <path d="M39 32 Q39 20 50 20 Q61 20 61 32 Z" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M45 37 h3 M52 37 h3" stroke="#c8a56a" stroke-width="1.2"/>
+  <path d="M42 42 Q50 56 58 42 Q54 48 50 48 Q46 48 42 42 Z" fill="#8a6a34"/>
+  <!-- подрясник -->
+  <path d="M50 48 C31 54 27 80 29 118 H71 C73 80 69 54 50 48 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M50 50 V118" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- кожаный пояс и связка ключей -->
+  <path d="M31 86 H69" stroke="#8a6a34" stroke-width="3"/>
+  <circle cx="36" cy="92" r="4" fill="none" stroke="#e8c87a" stroke-width="1.5"/>
+  <g stroke="#e8c87a" stroke-width="1.5" fill="none">
+    <path d="M34 95 V106 h3 M34 102 h2"/><path d="M39 95 V104 h3 M39 100 h2"/>
+  </g>
+  <!-- мера для зерна (четверик) с зерном -->
+  <path d="M40 64 Q44 76 48 72 M60 64 Q56 76 52 72" fill="none" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M42 66 L46 80 H58 L62 66 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M42 66 Q52 60 62 66" fill="#e8c87a" stroke="#e8c87a" stroke-width="1"/>
+  <path d="M44 72 H60" stroke="#2a1808" stroke-width="1"/>
+  <!-- закром с зерном -->
+  <rect x="68" y="108" width="20" height="18" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M68 114 H88 M78 108 V126" stroke="#8a6a34" stroke-width="1.2"/>
+  <path d="M70 108 Q78 102 86 108" fill="#e8c87a"/>
+</svg>

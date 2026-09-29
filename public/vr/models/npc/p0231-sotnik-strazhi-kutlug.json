@@ -1,0 +1,23 @@
+{
+ "id": "p0231-sotnik-strazhi-kutlug",
+ "kind": "npc",
+ "lod": "proxy",
+ "tris": 408,
+ "bbox_m": [
+  0.95,
+  1.9,
+  0.95
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#230",
+ "name": "Сотник стражи Кутлуг",
+ "type": "NPC",
+ "storyline": "м.62 (дипломатия)",
+ "box": "капсула 1.9м",
+ "shape": "capsule",
+ "size_m": 1.9,
+ "method": "primitive-from-box-field",
+ "collider": "capsule 1.9 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

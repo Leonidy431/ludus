@@ -1,0 +1,16 @@
+{
+ "id": "obj-zhernov",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 642,
+ "bbox_m": [
+  0.392,
+  0.392,
+  0.063
+ ],
+ "source": "SVG/obj/obj-zhernov.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "convex hull of the alpha silhouette",
+ "noInteract": false,
+ "noLoot": false
+}

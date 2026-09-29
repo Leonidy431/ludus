@@ -1,7 +1,7 @@
 # Phase 3: Quick Start Guide
 ## Oct 1–5, 2026 | Deployment & Testing
 
-**Full checklist:** See `PHASE_3_DEPLOYMENT_CHECKLIST.md` (1000+ lines)
+**Full checklist:** See `docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md` (1000+ lines)
 
 ---
 

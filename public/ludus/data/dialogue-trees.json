@@ -1,0 +1,345 @@
+{
+  "source": "functions/src/scripts/seedComprehensiveTestData.ts",
+  "trees": {
+    "elder_sergius": {
+      "npcId": "elder_sergius",
+      "npcName": "Elder Sergius",
+      "theology": "Hesychasm (Contemplative Prayer)",
+      "startNode": "greeting",
+      "nodes": [
+        {
+          "id": "greeting",
+          "text": "Peace be with you, seeker of silence.",
+          "branches": [
+            {
+              "text": "I seek understanding through contemplation",
+              "condition": {
+                "wisdom": 5
+              },
+              "nextNodeId": "contemplation_path",
+              "attributeBonuses": {
+                "wisdom": 2,
+                "faith": 1
+              },
+              "narrativeEffect": "Elder nods approvingly"
+            },
+            {
+              "text": "Teach me about prayer of the heart",
+              "nextNodeId": "heart_prayer",
+              "attributeBonuses": {
+                "faith": 2
+              }
+            },
+            {
+              "text": "I have many doubts",
+              "condition": {
+                "wisdom": 2
+              },
+              "nextNodeId": "doubt_path",
+              "attributeBonuses": {
+                "faith": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "contemplation_path",
+          "text": "The Jesus prayer: \"Lord Jesus Christ, have mercy on me.\" Repeat in silence.",
+          "branches": [
+            {
+              "text": "I will practice this discipline",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "wisdom": 3,
+                "constitution": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "heart_prayer",
+          "text": "The heart prayer connects intellect with spirit, body with soul.",
+          "branches": [
+            {
+              "text": "How do I begin?",
+              "nextNodeId": "prayer_practice",
+              "attributeBonuses": {
+                "faith": 2
+              }
+            }
+          ]
+        },
+        {
+          "id": "prayer_practice",
+          "text": "Begin with 40 times daily. Morning, noon, evening. The prayer becomes your heartbeat.",
+          "branches": [
+            {
+              "text": "I accept this practice",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "faith": 3,
+                "constitution": 2
+              }
+            }
+          ]
+        },
+        {
+          "id": "doubt_path",
+          "text": "Doubt is not sin. Doubt is the beginning of wisdom.",
+          "branches": [
+            {
+              "text": "How do I move past doubt?",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "wisdom": 2,
+                "faith": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "theodora": {
+      "npcId": "theodora",
+      "npcName": "Theodora",
+      "theology": "Liturgical Theology (Community & Worship)",
+      "startNode": "greeting",
+      "nodes": [
+        {
+          "id": "greeting",
+          "text": "Welcome, brother deacon. Come, join us in the Divine Liturgy.",
+          "branches": [
+            {
+              "text": "What is the meaning of the liturgy?",
+              "nextNodeId": "liturgy_meaning",
+              "attributeBonuses": {
+                "erudition": 1,
+                "faith": 1
+              }
+            },
+            {
+              "text": "Teach me the hymns",
+              "nextNodeId": "hymns",
+              "attributeBonuses": {
+                "charisma": 1,
+                "faith": 1
+              }
+            },
+            {
+              "text": "I feel lost in ritual",
+              "nextNodeId": "ritual_guidance",
+              "attributeBonuses": {
+                "faith": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "liturgy_meaning",
+          "text": "The Liturgy is heaven on earth. In it, we stand before the throne of God.",
+          "branches": [
+            {
+              "text": "I want to understand deeper",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "wisdom": 2,
+                "erudition": 2
+              }
+            }
+          ]
+        },
+        {
+          "id": "hymns",
+          "text": "The hymns carry theology in song. Listen to the words as you sing.",
+          "branches": [
+            {
+              "text": "I will sing with the community",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "charisma": 2,
+                "faith": 2
+              }
+            }
+          ]
+        },
+        {
+          "id": "ritual_guidance",
+          "text": "The ritual gives structure to our prayer. Let it guide you naturally.",
+          "branches": [
+            {
+              "text": "Show me the way",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "faith": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "abba_john": {
+      "npcId": "abba_john",
+      "npcName": "Abba John the Desert Father",
+      "theology": "Ascetic Discipline (Monastic Practice)",
+      "startNode": "greeting",
+      "nodes": [
+        {
+          "id": "greeting",
+          "text": "Why have you come to the wilderness?",
+          "branches": [
+            {
+              "text": "To escape the world",
+              "nextNodeId": "escape_path",
+              "attributeBonuses": {
+                "constitution": 1
+              }
+            },
+            {
+              "text": "To strengthen my spirit",
+              "condition": {
+                "faith": 6
+              },
+              "nextNodeId": "strength_path",
+              "attributeBonuses": {
+                "faith": 2,
+                "constitution": 1
+              }
+            },
+            {
+              "text": "I do not know",
+              "nextNodeId": "seeking_path",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "escape_path",
+          "text": "Escape is not enough. You must seek transformation.",
+          "branches": [
+            {
+              "text": "Teach me discipline",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "constitution": 2,
+                "faith": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "strength_path",
+          "text": "The wilderness refines the soul. Fast. Pray. Labor.",
+          "branches": [
+            {
+              "text": "I am ready for asceticism",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "constitution": 3,
+                "faith": 2
+              }
+            }
+          ]
+        },
+        {
+          "id": "seeking_path",
+          "text": "Seeking without knowing is the beginning of monastic life.",
+          "branches": [
+            {
+              "text": "I will seek in the silence",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "wisdom": 2,
+                "faith": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "sister_catherine": {
+      "npcId": "sister_catherine",
+      "npcName": "Sister Catherine",
+      "theology": "Mystical Theology (Divine Union)",
+      "startNode": "greeting",
+      "nodes": [
+        {
+          "id": "greeting",
+          "text": "What does your heart seek?",
+          "branches": [
+            {
+              "text": "Union with the Divine",
+              "condition": {
+                "wisdom": 8,
+                "faith": 8
+              },
+              "nextNodeId": "union_path",
+              "attributeBonuses": {
+                "wisdom": 2,
+                "faith": 3
+              }
+            },
+            {
+              "text": "How can I know God?",
+              "nextNodeId": "knowledge_path",
+              "attributeBonuses": {
+                "wisdom": 1,
+                "faith": 1
+              }
+            },
+            {
+              "text": "The path seems impossible",
+              "nextNodeId": "struggle_path",
+              "attributeBonuses": {
+                "faith": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "union_path",
+          "text": "The divine marriage of soul and spirit. You are ready for theosis.",
+          "branches": [
+            {
+              "text": "I dedicate myself to union",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "wisdom": 3,
+                "faith": 3
+              }
+            }
+          ]
+        },
+        {
+          "id": "knowledge_path",
+          "text": "God is known through love, not intellect alone.",
+          "branches": [
+            {
+              "text": "Teach me to love as you do",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "faith": 2,
+                "charisma": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "struggle_path",
+          "text": "The way is narrow. But grace meets the struggling soul.",
+          "branches": [
+            {
+              "text": "I will persevere",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "constitution": 2,
+                "faith": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

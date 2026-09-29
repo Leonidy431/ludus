@@ -1,0 +1,16 @@
+{
+ "id": "loc-pereval-santash",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 2196,
+ "bbox_m": [
+  5.333,
+  3.016,
+  0.801
+ ],
+ "source": "SVG/loc/loc-pereval-santash.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

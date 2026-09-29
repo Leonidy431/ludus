@@ -1,20 +1,39 @@
-/* ── Ludus Protocol Game Tab Styles ──────────────────────────────────────────── */
+/*
+ * Ludus game core styles: auth, profile (FORM), network and gate panels.
+ *
+ * Colour tokens come from ludus-design-system.css, which loads first.
+ * This file used to redefine the shared --ludus-* tokens on :root and
+ * silently repainted every other module, so it now only reads them,
+ * with fallbacks for when the design system is missing.
+ *
+ * Quest 3 pointers are imprecise, so every control is at least 44 px
+ * tall and has a visible focus ring.
+ */
 
-:root {
-  --ludus-gold: #D4AF37;
-  --ludus-cyan: #00CED1;
-  --ludus-dark-bg: #1a0a00;
-  --ludus-border: #2d2d2d;
-  --ludus-text-primary: #e0e0e0;
-  --ludus-text-secondary: #999;
+#ludus-game-container {
+  --lg-gold: var(--ludus-gold, #d4af37);
+  --lg-cyan: var(--ludus-cyan, #00ced1);
+  --lg-bg: var(--ludus-dark-bg, #0f0f0f);
+  --lg-card: var(--ludus-dark-card, #1a1a1a);
+  --lg-border: var(--ludus-border, #2a2a2a);
+  --lg-text: var(--ludus-text-primary, #f0f0f0);
+  --lg-muted: var(--ludus-text-secondary, #a0a0a0);
+  --lg-error: var(--ludus-error, #ef4444);
+  --lg-warning: var(--ludus-warning, #fbbf24);
+  --lg-radius: var(--ludus-card-radius, 8px);
+  --lg-control-height: var(--ludus-btn-height, 44px);
+
+  color: var(--lg-text);
+  background-color: var(--lg-bg);
 }
 
-/* ── Game Tab Container ──────────────────────────────────────────────────────── */
+/* ── Game Tab Container (hosted build on typikon.site) ─────────────────── */
+
 #ludus-tab {
   display: none;
   padding: 1rem;
-  background-color: var(--ludus-dark-bg);
-  color: var(--ludus-text-primary);
+  background-color: var(--ludus-dark-bg, #0f0f0f);
+  color: var(--ludus-text-primary, #f0f0f0);
   overflow-y: auto;
   max-height: calc(100vh - 200px);
 }
@@ -23,103 +42,162 @@
   display: block;
 }
 
-/* ── Auth Panel ──────────────────────────────────────────────────────────────── */
-.ludus-signin-panel {
+/* ── Shared controls ───────────────────────────────────────────────────── */
+
+.ludus-signin-btn,
+.ludus-signout-btn,
+.ludus-retry-btn,
+.ludus-gate-btn {
+  min-height: var(--lg-control-height);
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.ludus-signin-btn:focus-visible,
+.ludus-signout-btn:focus-visible,
+.ludus-retry-btn:focus-visible,
+.ludus-gate-btn:focus-visible {
+  outline: 3px solid var(--lg-gold);
+  outline-offset: 2px;
+}
+
+/* ── Auth Panel ────────────────────────────────────────────────────────── */
+
+.ludus-signin-panel,
+.ludus-offline-panel {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 3rem 1rem;
+  padding: 2rem 1rem;
   text-align: center;
 }
 
-.ludus-signin-panel h3 {
-  margin-bottom: 1.5rem;
+.ludus-signin-panel h3,
+.ludus-offline-panel h3 {
+  margin: 0 0 1rem;
   font-size: 1.5rem;
-  color: var(--ludus-gold);
+  color: var(--lg-gold);
 }
 
-.ludus-signin-btn {
-  padding: 0.75rem 1.5rem;
-  background-color: var(--ludus-cyan);
-  color: #000;
+.ludus-signin-btn,
+.ludus-retry-btn {
   border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  background-color: var(--lg-cyan);
+  color: #000;
 }
 
-.ludus-signin-btn:hover {
+.ludus-signin-btn:hover,
+.ludus-retry-btn:hover {
   background-color: #00aab8;
-  transform: scale(1.05);
+}
+
+/*
+ * The offline panel explains why sign-in is missing.  The amber edge
+ * marks it as a degraded state rather than an error, because the guest
+ * game keeps working.
+ */
+.ludus-offline-panel {
+  margin-bottom: 1rem;
+  border: 1px solid var(--lg-border);
+  border-left: 4px solid var(--lg-warning);
+  border-radius: var(--lg-radius);
+  background-color: var(--lg-card);
+}
+
+.ludus-offline-panel p {
+  max-width: 36rem;
+  margin: 0 0 1rem;
+  color: var(--lg-muted);
+  line-height: 1.5;
 }
 
 .ludus-profile-header {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  border-bottom: 2px solid var(--ludus-border);
+  border-bottom: 2px solid var(--lg-border);
   margin-bottom: 1rem;
 }
 
+/* Long display names must wrap instead of pushing the button away. */
 .ludus-player-name {
+  min-width: 0;
+  overflow-wrap: anywhere;
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--ludus-gold);
+  color: var(--lg-gold);
 }
 
 .ludus-signout-btn {
-  padding: 0.5rem 1rem;
   background-color: transparent;
-  color: var(--ludus-text-secondary);
-  border: 1px solid var(--ludus-border);
-  border-radius: 4px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  color: var(--lg-muted);
+  border: 1px solid var(--lg-border);
 }
 
 .ludus-signout-btn:hover {
-  color: var(--ludus-cyan);
-  border-color: var(--ludus-cyan);
+  color: var(--lg-cyan);
+  border-color: var(--lg-cyan);
 }
 
-/* ── Profile Card ────────────────────────────────────────────────────────────── */
+/* ── Profile Card ──────────────────────────────────────────────────────── */
+
 .ludus-profile-card {
-  border: 2px solid var(--ludus-gold);
-  border-radius: 6px;
+  border: 2px solid var(--lg-gold);
+  border-radius: var(--lg-radius);
   padding: 1.5rem;
   margin-bottom: 2rem;
   background-color: rgba(212, 175, 55, 0.05);
 }
 
 .ludus-profile-title {
-  color: var(--ludus-gold);
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid var(--ludus-gold);
+  margin: 0 0 1rem;
   padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--lg-gold);
+  color: var(--lg-gold);
+  font-size: 1.3rem;
 }
 
-/* ── Attributes Grid ─────────────────────────────────────────────────────────── */
-.ludus-attributes {
+/* ── Attributes (FORM) ─────────────────────────────────────────────────── */
+
+/*
+ * ludus-design-system.css also styles .ludus-attributes as a multi-column
+ * grid and .ludus-attr-item as a flex row, which squeezes the bars to a
+ * few pixels.  The id prefix wins that cascade so the profile always
+ * shows one full-width bar per attribute.
+ */
+#ludus-profile .ludus-attributes {
+  display: block;
   margin-bottom: 2rem;
 }
 
-.ludus-attributes h4 {
-  color: var(--ludus-cyan);
-  margin-bottom: 1rem;
-  text-transform: uppercase;
+#ludus-profile .ludus-attr-item {
+  display: grid;
+}
+
+.ludus-attributes h4,
+.ludus-resources h4 {
+  margin: 0 0 1rem;
   font-size: 0.9rem;
   letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.ludus-attributes h4 {
+  color: var(--lg-cyan);
 }
 
 .ludus-attr-item {
   display: grid;
-  grid-template-columns: 2rem 10rem 1fr;
+  grid-template-columns: 2.5rem minmax(6rem, 10rem) 1fr;
   gap: 0.75rem;
   align-items: center;
   margin-bottom: 0.75rem;
@@ -133,17 +211,24 @@
   text-align: center;
 }
 
+/* Drawn attribute badges replace emoji, which render differently on
+   each headset and are missing from some Quest system fonts. */
+.ludus-attr-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
 .ludus-attr-label {
   font-size: 0.9rem;
-  color: var(--ludus-text-secondary);
+  color: var(--lg-muted);
 }
 
 .attr-bar {
-  --pct: 50%;
+  --pct: 0%;
   position: relative;
   height: 1.5rem;
   background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid var(--ludus-cyan);
+  border: 1px solid var(--lg-cyan);
   border-radius: 2px;
   overflow: hidden;
 }
@@ -154,37 +239,54 @@
   top: 0;
   height: 100%;
   width: var(--pct);
-  background: linear-gradient(90deg, var(--ludus-cyan), var(--ludus-gold));
+  background: linear-gradient(90deg, var(--lg-cyan), var(--lg-gold));
   transition: width 0.3s ease;
 }
 
-.attr-val {
+/*
+ * Tick marks on the Wisdom bar sit at the six gate thresholds, so the
+ * bar reads as a path through the gates and not just a number.
+ */
+.attr-tick {
   position: absolute;
-  right: 0.25rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #fff;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  margin-left: -1px;
+  background-color: rgba(255, 255, 255, 0.35);
   z-index: 1;
 }
 
-/* ── Resources ───────────────────────────────────────────────────────────────── */
+.attr-tick.is-reached {
+  background-color: var(--lg-gold);
+}
+
+/* The value keeps a dark halo so it stays legible over the gold fill. */
+.attr-val {
+  position: absolute;
+  right: 0.35rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 3px #000, 0 0 3px #000;
+  z-index: 2;
+}
+
+/* ── Resources ─────────────────────────────────────────────────────────── */
+
 .ludus-resources {
   margin-bottom: 2rem;
 }
 
 .ludus-resources h4 {
-  color: var(--ludus-gold);
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
+  color: var(--lg-gold);
 }
 
 .ludus-resource-item {
   display: grid;
-  grid-template-columns: 2rem 10rem auto;
+  grid-template-columns: 2rem minmax(6rem, 10rem) auto;
   gap: 1rem;
   align-items: center;
   padding: 0.75rem;
@@ -200,30 +302,36 @@
 
 .ludus-res-label {
   font-size: 0.9rem;
-  color: var(--ludus-text-secondary);
+  color: var(--lg-muted);
 }
 
 .ludus-res-val {
   font-weight: 600;
-  color: var(--ludus-gold);
+  color: var(--lg-gold);
   font-size: 1rem;
 }
 
 .ludus-causality {
   padding: 1rem;
   background-color: rgba(0, 206, 209, 0.1);
-  border-left: 3px solid var(--ludus-cyan);
+  border-left: 3px solid var(--lg-cyan);
   border-radius: 4px;
   margin-top: 1rem;
 }
 
 .ludus-causality p {
   margin: 0;
-  color: var(--ludus-text-primary);
+  color: var(--lg-text);
   font-size: 0.95rem;
+  overflow-wrap: anywhere;
 }
 
-/* ── Network (Mentors / Quests) ──────────────────────────────────────────────── */
+.ludus-causality p + p {
+  margin-top: 0.5rem;
+}
+
+/* ── Network (Mentors / Quests) ────────────────────────────────────────── */
+
 .ludus-network {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -231,127 +339,217 @@
   margin-bottom: 2rem;
 }
 
-@media (max-width: 768px) {
-  .ludus-network {
-    grid-template-columns: 1fr;
-  }
-}
-
 .ludus-network h3 {
-  color: var(--ludus-cyan);
-  margin-bottom: 1rem;
+  margin: 0 0 1rem;
+  color: var(--lg-cyan);
   text-transform: uppercase;
   font-size: 1rem;
   letter-spacing: 1px;
 }
 
 .ludus-node-card {
-  border: 1px solid var(--ludus-border);
-  border-radius: 6px;
+  border: 1px solid var(--lg-border);
+  border-radius: var(--lg-radius);
   padding: 1rem;
   margin-bottom: 0.75rem;
   background-color: rgba(45, 45, 45, 0.5);
-  transition: all 0.2s ease;
+  overflow-wrap: anywhere;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .ludus-node-card:hover {
-  border-color: var(--ludus-cyan);
+  border-color: var(--lg-cyan);
   background-color: rgba(0, 206, 209, 0.1);
 }
 
 .ludus-node-card h4 {
-  margin: 0 0 0.5rem 0;
-  color: var(--ludus-gold);
+  margin: 0 0 0.5rem;
+  color: var(--lg-gold);
   font-size: 1rem;
 }
 
 .ludus-node-role {
   margin: 0.25rem 0;
-  color: var(--ludus-text-secondary);
+  color: var(--lg-muted);
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .ludus-node-goal {
-  margin: 0.5rem 0 0 0;
-  color: var(--ludus-text-primary);
+  margin: 0.5rem 0 0;
+  color: var(--lg-text);
   font-size: 0.9rem;
   font-style: italic;
 }
 
-/* ── Knowledge Gates (Progression) ───────────────────────────────────────────── */
+.ludus-empty {
+  color: var(--lg-muted);
+  font-style: italic;
+}
+
+/* ── Knowledge Gates ───────────────────────────────────────────────────── */
+
 .ludus-gates-panel {
   margin-bottom: 2rem;
 }
 
 .ludus-gates-panel h3 {
-  color: var(--ludus-gold);
-  margin-bottom: 1rem;
+  margin: 0 0 1rem;
+  color: var(--lg-gold);
   text-transform: uppercase;
   font-size: 1rem;
   letter-spacing: 1px;
 }
 
+/* The ladder lists all six gates so locked ones still show the path. */
+.ludus-gate-ladder {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 0.5rem;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+/* minmax(0, 1fr) lets long gate names shrink instead of pushing the
+   card wider than its column (audit BS-052). */
+.ludus-gate-step {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  grid-template-areas:
+    "icon level name"
+    "icon level status";
+  column-gap: 0.6rem;
+  align-items: center;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--lg-border);
+  border-radius: var(--lg-radius);
+  background-color: var(--lg-card);
+}
+
+.ludus-gate-level {
+  grid-area: level;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  font-weight: 700;
+}
+
+.ludus-gate-name {
+  grid-area: name;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.ludus-gate-icon {
+  grid-area: icon;
+  width: 3rem;
+  height: 3rem;
+}
+
+/* A locked gate is dimmed, not hidden: the ladder shows the whole path
+   so the player sees what their FORM is growing towards. */
+.ludus-gate-step.is-locked .ludus-gate-icon {
+  opacity: 0.45;
+}
+
+.ludus-gate-status {
+  grid-area: status;
+  font-size: 0.875rem;
+  color: var(--lg-muted);
+}
+
+.ludus-gate-step.is-open {
+  border-color: var(--lg-gold);
+  color: var(--lg-gold);
+}
+
+/* Locked gates are dimmed, but the text stays above 4.5:1 contrast. */
+.ludus-gate-step.is-locked {
+  color: var(--lg-muted);
+}
+
 .ludus-gate-card {
-  border-left: 4px solid var(--ludus-cyan);
+  border-left: 4px solid var(--lg-cyan);
   border-radius: 4px;
   padding: 1rem;
   margin-bottom: 1rem;
   background-color: rgba(0, 206, 209, 0.1);
-  transition: all 0.2s ease;
+  overflow-wrap: anywhere;
 }
 
+/*
+ * Tiers 1-6 follow the six gate levels; colour warms as the path goes
+ * deeper, ending in the quiet grey of apophatic silence.
+ */
 .ludus-gate-card.ludus-tier-2 {
-  border-left-color: var(--ludus-gold);
+  border-left-color: var(--lg-gold);
   background-color: rgba(212, 175, 55, 0.1);
 }
 
 .ludus-gate-card.ludus-tier-3 {
+  border-left-color: #e8964a;
+  background-color: rgba(232, 150, 74, 0.1);
+}
+
+.ludus-gate-card.ludus-tier-4 {
+  border-left-color: #c77dff;
+  background-color: rgba(199, 125, 255, 0.1);
+}
+
+.ludus-gate-card.ludus-tier-5 {
   border-left-color: #ff6b6b;
   background-color: rgba(255, 107, 107, 0.1);
 }
 
+.ludus-gate-card.ludus-tier-6 {
+  border-left-color: #d0d0d0;
+  background-color: rgba(208, 208, 208, 0.08);
+}
+
 .ludus-gate-card h4 {
-  margin: 0 0 0.5rem 0;
-  color: var(--ludus-gold);
+  margin: 0 0 0.5rem;
+  color: var(--lg-gold);
   font-size: 1rem;
 }
 
 .ludus-gate-subject {
   margin: 0.25rem 0;
-  color: var(--ludus-text-secondary);
-  font-size: 0.8rem;
+  color: var(--lg-muted);
+  font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .ludus-gate-question {
   margin: 0.75rem 0;
-  color: var(--ludus-text-primary);
+  color: var(--lg-text);
   font-size: 0.9rem;
   font-style: italic;
   font-weight: 500;
 }
 
 .ludus-gate-btn {
-  padding: 0.5rem 1rem;
-  background-color: var(--ludus-cyan);
-  color: #000;
   border: none;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  background-color: var(--lg-cyan);
+  color: #000;
 }
 
 .ludus-gate-btn:hover {
   background-color: #00aab8;
-  transform: scale(1.02);
 }
 
-/* ── Error Box ───────────────────────────────────────────────────────────────── */
+/* ── Error Box ─────────────────────────────────────────────────────────── */
+
+/*
+ * Visibility is driven only by the hidden attribute, which the module
+ * toggles; no display rule here may fight it.
+ */
 #ludus-error {
   padding: 1rem;
   margin-bottom: 1rem;
@@ -359,19 +557,136 @@
   border-left: 4px solid #ff6b6b;
   border-radius: 4px;
   color: #ffb3b3;
+}
+
+#ludus-error[hidden] {
   display: none;
 }
 
-#ludus-error:not([hidden]) {
-  display: block;
-}
+/* ── Loading State ─────────────────────────────────────────────────────── */
 
-/* ── Loading State ───────────────────────────────────────────────────────────── */
 .ludus-loading {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 3rem 1rem;
-  color: var(--ludus-text-secondary);
+  color: var(--lg-muted);
   font-size: 0.95rem;
+}
+
+/* ── Narrow viewports and motion preferences ───────────────────────────── */
+
+@media (max-width: 768px) {
+  .ludus-network {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* On phones the label moves above the bar so the bar keeps its width. */
+@media (max-width: 480px) {
+  .ludus-attr-item {
+    grid-template-columns: 2rem 1fr;
+  }
+
+  .ludus-attr-item .attr-bar {
+    grid-column: 1 / -1;
+  }
+
+  .ludus-profile-card {
+    padding: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .attr-fill,
+  .ludus-node-card,
+  .ludus-signin-btn,
+  .ludus-signout-btn,
+  .ludus-retry-btn,
+  .ludus-gate-btn {
+    transition: none;
+  }
+}
+
+/* ── Hero and mentors ─────────────────────────────────────────────── */
+
+.ludus-hero {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ludus-hero-portrait {
+  width: 5rem;
+  height: auto;
+}
+
+.ludus-mentor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  gap: 1rem;
+}
+
+.ludus-core-mentor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ludus-mentor-portrait {
+  width: 7rem;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+/* 48 px is the minimum comfortable pointer target on Quest 3. */
+.ludus-talk-btn {
+  min-height: 48px;
+  margin-top: auto;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--lg-gold, #d4af37);
+  border-radius: 6px;
+  color: var(--lg-gold, #d4af37);
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.ludus-talk-btn:hover,
+.ludus-talk-btn:focus-visible {
+  color: #0f0f0f;
+  background: var(--lg-gold, #d4af37);
+}
+
+/* Resonance glow replaces the nimbus (CLAUDE.md TABOO 0.25): it grows
+   with the resonance value and appears only above the threshold, so a
+   saint "shines" for the player whose FORM follows the same path. */
+.ludus-resonance {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 0.875rem;
+  color: var(--lg-muted, #c4c4c4);
+}
+
+.ludus-core-mentor.is-resonant .ludus-mentor-portrait {
+  filter: drop-shadow(0 0 calc(var(--resonance) * 14px)
+    rgba(232, 200, 122, 0.85));
+  animation: ludus-resonance-breath 4s ease-in-out infinite;
+}
+
+.ludus-core-mentor.is-resonant .ludus-resonance {
+  color: var(--lg-gold, #d4af37);
+}
+
+/* A slow breath (4 s) echoes the rhythm of the prayer of the heart. */
+@keyframes ludus-resonance-breath {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ludus-core-mentor.is-resonant .ludus-mentor-portrait {
+    animation: none;
+  }
 }

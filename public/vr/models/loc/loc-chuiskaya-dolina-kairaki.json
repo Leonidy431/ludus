@@ -1,0 +1,16 @@
+{
+ "id": "loc-chuiskaya-dolina-kairaki",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 1460,
+ "bbox_m": [
+  5.337,
+  3,
+  0.561
+ ],
+ "source": "SVG/loc/loc-chuiskaya-dolina-kairaki.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

@@ -1,0 +1,116 @@
+# OSINT pass over the 99 backlog repos every 1.5 hours (CLAUDE.md TABOO
+# 0.15). The pass is deficit-driven: scripts/raw_assets/osint_cycle.py
+# takes the next open deficits, searches the blobless index, fetches only
+# the chosen files, runs the >= 35 % raw-material pipeline and copies only
+# what passes check_delta into public/ludus/art/derived/<DEF-id>/.
+#
+# Results never go straight to main (CLAUDE.md digest rule 7): the job
+# commits to the branch raw-osint/auto and opens or updates one PR.
+#
+# Runner: the repo variable LUDUS_RAW_RUNNER holds a JSON label list.
+# Unset, the job runs on GitHub's free ubuntu-latest (ludus is public).
+# Once the vm-batch machine is also registered as a runner of THIS repo,
+# set LUDUS_RAW_RUNNER to ["self-hosted","vm-batch"]; GitHub then queues
+# the job until that runner is free. Self-hosted runners registered to
+# webtypicon2 cannot take ludus jobs: runners belong to one repository on
+# a personal account.
+name: Raw OSINT cycle (every 1.5 h)
+
+on:
+  workflow_dispatch:
+    inputs:
+      deficits:
+        description: 'deficits per pass'
+        default: '3'
+      per_deficit:
+        description: 'files per deficit'
+        default: '6'
+  # Two crons give an exact 90-minute cadence: 00:00, 01:30, 03:00, ...
+  schedule:
+    - cron: '0 0-21/3 * * *'
+    - cron: '30 1-22/3 * * *'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: raw-osint-cycle
+  cancel-in-progress: false
+
+jobs:
+  pass:
+    runs-on: ${{ fromJSON(vars.LUDUS_RAW_RUNNER || '"ubuntu-latest"') }}
+    timeout-minutes: 120
+    env:
+      INDEX: ${{ github.workspace }}/../raw-repos
+      BRANCH: raw-osint/auto
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Continue from the previous pass: its cursor and log live on the
+      # automation branch until that PR is merged.
+      - name: Switch to the automation branch
+        run: |
+          git config user.name "ludus-raw-runner"
+          git config user.email "ludus-raw-runner@users.noreply.github.com"
+          if git ls-remote --exit-code origin "$BRANCH" >/dev/null; then
+            git fetch origin "$BRANCH"
+            git checkout -B "$BRANCH" "origin/$BRANCH"
+            git merge --no-edit origin/main || true
+          else
+            git checkout -B "$BRANCH"
+          fi
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install tools
+        run: pip install pillow pycodestyle
+
+      - name: PEP 8 and pipeline tests
+        run: |
+          python -m pycodestyle scripts/raw_assets/
+          python -m unittest discover scripts/raw_assets/tests
+
+      # Blobless, no-checkout clones: trees only, about a minute for all
+      # 99 repos; a self-hosted runner keeps them between passes.
+      - name: Index the 99 backlog repos
+        run: |
+          python scripts/raw_assets/index_repos.py --backlog backlog \
+            --out "$INDEX" --jobs 4
+
+      - name: OSINT pass
+        env:
+          DEFICITS: ${{ inputs.deficits || '3' }}
+          PER: ${{ inputs.per_deficit || '6' }}
+        run: |
+          python scripts/raw_assets/osint_cycle.py --index "$INDEX" \
+            --deficits "$DEFICITS" --per-deficit "$PER"
+
+      - name: Delta gate
+        run: |
+          python scripts/raw_assets/check_delta.py \
+            --root public/ludus/art/derived --threshold 0.35
+
+      # Only raw-material bookkeeping and derived art are committed here;
+      # the log (docs/RAW_OSINT_CURSOR.json) only grows.
+      - name: Commit and open or update the PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add docs/RAW_OSINT_CURSOR.json docs/RAW_CODE_CANDIDATES.json \
+            public/ludus/art/derived THIRD_PARTY_NOTICES.md 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "nothing new this pass"; exit 0
+          fi
+          git commit -m "raw OSINT pass $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push origin "HEAD:$BRANCH"
+          if ! gh pr view "$BRANCH" >/dev/null 2>&1; then
+            gh pr create --draft --base main --head "$BRANCH" \
+              --title "Raw OSINT passes (automated, >= 35 %)" \
+              --body "Automated deficit-driven passes over the 99 backlog repos (CLAUDE.md TABOO 0.15). Every object carries meta-json with shape/colour change, passion, hitboxes and a claim sheet; licences are in THIRD_PARTY_NOTICES.md and need human confirmation before merge."
+          fi

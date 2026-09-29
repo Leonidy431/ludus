@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Трапезная обители с длинным столом">
+  <title>Трапезная обители</title>
+  <desc>Форма: сводчатая трапезная с арочными окнами, длинный стол с хлебами, чашами и кувшином, лавки по обе стороны, аналой чтеца в торце, лампада над столом. Действие: братия и гости — купцы разных исповеданий — садятся за один стол и слушают чтение, прежде чем говорить о делах. Цель: общая трапеза учит миру и мере: сначала слово, потом хлеб, потом совет. Миссия: 13 Купеческий синод.</desc>
+  <!-- Арт-канон §9.0: умбра+золото. Интерьер: трапезная, гости за столом не изображены — место для совета. -->
+  <defs>
+    <linearGradient id="trapeznaya-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#trapeznaya-nebo)"/>
+  <rect width="320" height="136" fill="#1a0e04" opacity=".55"/>
+  <rect y="136" width="320" height="44" fill="#241405"/>
+  <!-- арочные окна со светом -->
+  <g fill="#8a6a34" opacity=".55" stroke="#c8a56a" stroke-width="1.6">
+    <path d="M40 90 V50 Q52 34 64 50 V90 Z"/><path d="M128 90 V50 Q140 34 152 50 V90 Z"/><path d="M216 90 V50 Q228 34 240 50 V90 Z"/>
+  </g>
+  <g stroke="#1a0e04" stroke-width="1.2"><path d="M52 44 V90 M140 44 V90 M228 44 V90"/></g>
+  <!-- своды -->
+  <path d="M0 30 Q80 0 160 30 Q240 0 320 30" fill="none" stroke="#8a6a34" stroke-width="2"/>
+  <!-- лампада над столом -->
+  <path d="M160 30 V58" stroke="#8a6a34" stroke-width="1.2"/>
+  <path d="M152 58 H168 Q167 66 160 68 Q153 66 152 58 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1"/>
+  <path d="M160 48 Q163 53 160 57 Q157 53 160 48 Z" fill="#e8c87a"/>
+  <circle cx="160" cy="56" r="14" fill="#e8c87a" opacity=".1"/>
+  <!-- длинный стол в перспективе -->
+  <path d="M60 150 L110 108 H210 L260 150 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M60 150 V162 M260 150 V162" stroke="#c8a56a" stroke-width="2"/>
+  <!-- лавки -->
+  <path d="M34 164 L96 112 M286 164 L224 112" stroke="#8a6a34" stroke-width="4"/>
+  <!-- хлебы, чаши, кувшин -->
+  <g fill="#c8a56a" stroke="#e8c87a" stroke-width="1">
+    <ellipse cx="120" cy="120" rx="7" ry="3"/><ellipse cx="200" cy="120" rx="7" ry="3"/><ellipse cx="100" cy="140" rx="9" ry="4"/><ellipse cx="220" cy="140" rx="9" ry="4"/>
+  </g>
+  <g fill="#8a6a34" stroke="#e8c87a" stroke-width="1.2">
+    <path d="M136 116 h6 l-1 6 h-4 Z M178 116 h6 l-1 6 h-4 Z M126 132 h7 l-1 7 h-5 Z M187 132 h7 l-1 7 h-5 Z"/>
+    <path d="M156 138 Q152 128 157 122 H163 Q168 128 164 138 Z"/>
+  </g>
+  <!-- аналой чтеца в торце -->
+  <path d="M290 136 V100 M280 96 L300 90" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M280 96 L300 90 L302 96 L282 102 Z" fill="#e8d9b8" opacity=".6" stroke="#8a6a34" stroke-width="1"/>
+</svg>

@@ -1,0 +1,23 @@
+{
+ "id": "p1015-gnev-yarost-na-shtorm",
+ "kind": "event",
+ "lod": "proxy",
+ "tris": 408,
+ "bbox_m": [
+  1,
+  2,
+  1
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#1014",
+ "name": "Гнев: ярость на шторм",
+ "type": "событие",
+ "storyline": "53",
+ "box": "весло capsule",
+ "shape": "capsule",
+ "size_m": 2,
+ "method": "primitive-from-box-field",
+ "collider": "capsule 2 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

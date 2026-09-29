@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Каменная сигнальная башня на холме над озером">
+  <title>Сигнальная башня</title>
+  <desc>ФОРМА: каменная башенка на холме с огнём наверху; внизу озеро, на дальнем мысу ответный огонь. ДЕЙСТВИЕ: дозорный передаёт весть по цепи огней — о караване, буре или набеге; игрок учится читать и отвечать на знаки. ЦЕЛЬ: бодрствование и ответственность за ближних — «стражу держите». Миссия: 84 «Системы сигнализации».</desc>
+  <!-- Арт-канон §9.0: умбра+золото; синь только для воды. -->
+  <defs>
+    <linearGradient id="sigb-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#sigb-nebo)"/>
+  <!-- дальние горы -->
+  <path d="M0 80 L40 56 L80 74 L130 48 L180 72 L230 52 L280 72 L320 60 V100 H0 Z" fill="#241405"/>
+  <!-- озеро -->
+  <rect y="96" width="320" height="40" fill="#0d2a3a"/>
+  <g stroke="#1f5a73" stroke-width="1.4" fill="none">
+    <path d="M150 106 Q160 103 170 106"/><path d="M200 118 Q210 115 220 118"/><path d="M250 108 Q260 105 270 108"/>
+  </g>
+  <!-- дальний мыс с ответным огнём -->
+  <path d="M250 98 Q276 88 320 94 V100 H250 Z" fill="#241405"/>
+  <path d="M292 90 v-6" stroke="#8a6a34" stroke-width="2"/>
+  <circle cx="292" cy="82" r="2.5" fill="#e8c87a"/>
+  <circle cx="292" cy="82" r="7" fill="#e8c87a" opacity=".15"/>
+  <!-- холм -->
+  <path d="M0 180 V120 Q40 84 90 80 Q140 84 170 130 Q200 160 250 180 Z" fill="#2a1808" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- башня из камня -->
+  <path d="M74 84 V40 H106 V84 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M70 40 H110 V32 H104 V36 H98 V32 H92 V36 H86 V32 H80 V36 H76 V32 H70 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <g stroke="#8a6a34" stroke-width="1" fill="none">
+    <path d="M74 52 H106 M74 64 H106 M74 76 H106 M84 40 V52 M96 52 V64 M86 64 V76 M98 76 V84"/>
+  </g>
+  <path d="M86 84 V72 Q90 67 94 72 V84" fill="#140a02" stroke="#e8c87a" stroke-width="1.2"/>
+  <!-- сигнальный огонь на верху -->
+  <path d="M90 30 Q82 22 88 12 Q89 18 92 16 Q94 10 92 4 Q102 14 96 26 Q94 30 90 30 Z" fill="#e8c87a"/>
+  <path d="M90 29 Q86 24 90 18 Q92 22 93 26 Z" fill="#fff3c0"/>
+  <circle cx="90" cy="20" r="16" fill="#e8c87a" opacity=".12"/>
+  <!-- тропа к башне -->
+  <path d="M150 180 Q120 140 100 90" fill="none" stroke="#8a6a34" stroke-width="1.2" stroke-dasharray="3 3"/>
+</svg>

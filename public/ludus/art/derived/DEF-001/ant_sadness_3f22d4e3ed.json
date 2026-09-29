@@ -1,0 +1,1246 @@
+{
+  "id": "3f22d4e3ed",
+  "seed": "3f22d4e3ed50608cee7ba07db49f20fd6a46fc6e",
+  "piece": 0,
+  "source": {
+    "repo": "https://github.com/Card-Forge/forge",
+    "path": "forge-gui/res/adventure/common/sprites/enemy/undead/ghost_2.png",
+    "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+    "piece": 0
+  },
+  "repo": "https://github.com/Card-Forge/forge",
+  "path": "forge-gui/res/adventure/common/sprites/enemy/undead/ghost_2.png",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license": "GPL",
+  "license_file": "LICENSE",
+  "threshold": 0.35,
+  "redraw": {
+    "shape_change": 0.0,
+    "iou_change": 0.0,
+    "colour_change": 1.0,
+    "silhouette_loss": 0.0,
+    "is_recolour": true
+  },
+  "name": "ant_sadness_3f22d4e3ed",
+  "passion": "sadness",
+  "passion_reason": "dominant hue 235 deg",
+  "features": {
+    "hue": 235,
+    "chromatic": true,
+    "mean_value": 0.899,
+    "roughness": 97.93,
+    "glyph": null,
+    "glyph_iou": 0.0,
+    "glyph_margin": 0.0,
+    "words": [
+      "forge",
+      "gui",
+      "res",
+      "adventure",
+      "common",
+      "sprites",
+      "enemy",
+      "undead",
+      "ghost",
+      "png"
+    ]
+  },
+  "behaviour": {
+    "source_role": "ambient",
+    "antagonist": "homing"
+  },
+  "palette": {
+    "hue": 55,
+    "basis": "complement",
+    "stops": [
+      "#0f0e05",
+      "#38350e",
+      "#807933",
+      "#d9eba4"
+    ]
+  },
+  "texture": {
+    "source": "rough",
+    "antagonist": "smooth"
+  },
+  "reference_strength": 1,
+  "variants": [
+    {
+      "slot": "v01",
+      "kind": "reference",
+      "amplified": false,
+      "shape_change": 0.4118,
+      "iou_change": 0.4675,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.353,
+      "hitbox": {
+        "bbox": [
+          24,
+          44,
+          232,
+          256
+        ],
+        "area": 25640,
+        "radius": 90.34,
+        "hull": [
+          [
+            24,
+            44
+          ],
+          [
+            25,
+            44
+          ],
+          [
+            206,
+            96
+          ],
+          [
+            232,
+            188
+          ],
+          [
+            232,
+            210
+          ],
+          [
+            215,
+            250
+          ],
+          [
+            214,
+            252
+          ],
+          [
+            210,
+            256
+          ],
+          [
+            75,
+            256
+          ],
+          [
+            29,
+            215
+          ],
+          [
+            24,
+            210
+          ]
+        ]
+      },
+      "file": "ant_sadness_3f22d4e3ed_v01.png",
+      "analytics_id": "ludus.variant.sadness.3f22d4e3ed.v01"
+    },
+    {
+      "slot": "v02",
+      "kind": "erosion",
+      "amplified": false,
+      "shape_change": 0.5375,
+      "iou_change": 0.5681,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.4996,
+      "hitbox": {
+        "bbox": [
+          26,
+          50,
+          230,
+          256
+        ],
+        "area": 19605,
+        "radius": 79.0,
+        "hull": [
+          [
+            26,
+            50
+          ],
+          [
+            27,
+            50
+          ],
+          [
+            204,
+            101
+          ],
+          [
+            230,
+            194
+          ],
+          [
+            230,
+            208
+          ],
+          [
+            213,
+            248
+          ],
+          [
+            212,
+            250
+          ],
+          [
+            208,
+            256
+          ],
+          [
+            207,
+            256
+          ],
+          [
+            115,
+            251
+          ],
+          [
+            108,
+            250
+          ],
+          [
+            103,
+            249
+          ],
+          [
+            95,
+            247
+          ],
+          [
+            77,
+            242
+          ],
+          [
+            61,
+            233
+          ],
+          [
+            54,
+            229
+          ],
+          [
+            39,
+            219
+          ],
+          [
+            31,
+            213
+          ],
+          [
+            26,
+            208
+          ]
+        ]
+      },
+      "file": "ant_sadness_3f22d4e3ed_v02.png",
+      "analytics_id": "ludus.variant.sadness.3f22d4e3ed.v02"
+    },
+    {
+      "slot": "v03",
+      "kind": "crystallisation",
+      "amplified": false,
+      "cell": 16,
+      "shape_change": 0.4157,
+      "iou_change": 0.491,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.3723,
+      "hitbox": {
+        "bbox": [
+          16,
+          48,
+          240,
+          256
+        ],
+        "area": 25609,
+        "radius": 90.29,
+        "hull": [
+          [
+            16,
+            57
+          ],
+          [
+            25,
+            48
+          ],
+          [
+            48,
+            48
+          ],
+          [
+            208,
+            96
+          ],
+          [
+            240,
+            192
+          ],
+          [
+            240,
+            208
+          ],
+          [
+            208,
+            256
+          ],
+          [
+            80,
+            256
+          ],
+          [
+            48,
+            240
+          ],
+          [
+            16,
+            208
+          ]
+        ]
+      },
+      "file": "ant_sadness_3f22d4e3ed_v03.png",
+      "analytics_id": "ludus.variant.sadness.3f22d4e3ed.v03"
+    },
+    {
+      "slot": "v04",
+      "kind": "amorphous",
+      "amplified": false,
+      "blur_radius": 15,
+      "alpha_pulse_frames": [
+        1.0,
+        0.85,
+        0.7,
+        0.85
+      ],
+      "shape_change": 0.3915,
+      "iou_change": 0.4182,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.2212,
+      "hitbox": {
+        "bbox": [
+          16,
+          50,
+          231,
+          256
+        ],
+        "area": 33238,
+        "radius": 102.86,
+        "hull": [
+          [
+            16,
+            71
+          ],
+          [
+            17,
+            66
+          ],
+          [
+            18,
+            63
+          ],
+          [
+            19,
+            61
+          ],
+          [
+            21,
+            58
+          ],
+          [
+            25,
+            54
+          ],
+          [
+            28,
+            52
+          ],
+          [
+            31,
+            51
+          ],
+          [
+            37,
+            50
+          ],
+          [
+            38,
+            50
+          ],
+          [
+            45,
+            51
+          ],
+          [
+            189,
+            90
+          ],
+          [
+            195,
+            92
+          ],
+          [
+            199,
+            94
+          ],
+          [
+            202,
+            96
+          ],
+          [
+            208,
+            102
+          ],
+          [
+            210,
+            105
+          ],
+          [
+            211,
+            107
+          ],
+          [
+            213,
+            113
+          ],
+          [
+            231,
+            203
+          ],
+          [
+            231,
+            214
+          ],
+          [
+            230,
+            218
+          ],
+          [
+            228,
+            223
+          ],
+          [
+            224,
+            231
+          ],
+          [
+            219,
+            240
+          ],
+          [
+            210,
+            256
+          ],
+          [
+            69,
+            256
+          ],
+          [
+            41,
+            234
+          ],
+          [
+            36,
+            230
+          ],
+          [
+            27,
+            221
+          ],
+          [
+            25,
+            218
+          ],
+          [
+            21,
+            210
+          ],
+          [
+            20,
+            205
+          ],
+          [
+            16,
+            88
+          ]
+        ]
+      },
+      "file": "ant_sadness_3f22d4e3ed_v04.png",
+      "analytics_id": "ludus.variant.sadness.3f22d4e3ed.v04"
+    },
+    {
+      "slot": "v05",
+      "kind": "symbiote",
+      "amplified": false,
+      "shape_change": 0.4021,
+      "iou_change": 0.456,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.297,
+      "hitbox": {
+        "bbox": [
+          16,
+          44,
+          237,
+          256
+        ],
+        "area": 29604,
+        "radius": 97.07,
+        "hull": [
+          [
+            16,
+            116
+          ],
+          [
+            24,
+            44
+          ],
+          [
+            25,
+            44
+          ],
+          [
+            171,
+            62
+          ],
+          [
+            214,
+            76
+          ],
+          [
+            217,
+            77
+          ],
+          [
+            220,
+            79
+          ],
+          [
+            223,
+            82
+          ],
+          [
+            225,
+            85
+          ],
+          [
+            226,
+            88
+          ],
+          [
+            237,
+            149
+          ],
+          [
+            237,
+            158
+          ],
+          [
+            232,
+            210
+          ],
+          [
+            215,
+            250
+          ],
+          [
+            214,
+            252
+          ],
+          [
+            210,
+            256
+          ],
+          [
+            75,
+            256
+          ],
+          [
+            29,
+            215
+          ],
+          [
+            24,
+            210
+          ],
+          [
+            16,
+            124
+          ]
+        ]
+      },
+      "file": "ant_sadness_3f22d4e3ed_v05.png",
+      "analytics_id": "ludus.variant.sadness.3f22d4e3ed.v05"
+    },
+    {
+      "slot": "v06",
+      "kind": "techno",
+      "amplified": false,
+      "outline_px": 4,
+      "shape_change": 0.4109,
+      "iou_change": 0.8679,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.859,
+      "hitbox": {
+        "bbox": [
+          24,
+          44,
+          232,
+          256
+        ],
+        "area": 6198,
+        "radius": 44.42,
+        "hull": [
+          [
+            24,
+            44
+          ],
+          [
+            25,
+            44
+          ],
+          [
+            206,
+            96
+          ],
+          [
+            232,
+            188
+          ],
+          [
+            232,
+            210
+          ],
+          [
+            215,
+            250
+          ],
+          [
+            214,
+            252
+          ],
+          [
+            210,
+            256
+          ],
+          [
+            75,
+            256
+          ],
+          [
+            29,
+            215
+          ],
+          [
+            24,
+            210
+          ]
+        ]
+      },
+      "file": "ant_sadness_3f22d4e3ed_v06.png",
+      "analytics_id": "ludus.variant.sadness.3f22d4e3ed.v06"
+    },
+    {
+      "slot": "v07",
+      "kind": "dark_matter",
+      "amplified": false,
+      "shape_change": 0.3948,
+      "iou_change": 0.4227,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.2572,
+      "hitbox": {
+        "bbox": [
+          21,
+          41,
+          235,
+          256
+        ],
+        "area": 30621,
+        "radius": 98.73,
+        "hull": [
+          [
+            21,
+            41
+          ],
+          [
+            28,
+            41
+          ],
+          [
+            209,
+            93
+          ],
+          [
+            235,
+            185
+          ],
+          [
+            235,
+            213
+          ],
+          [
+            218,
+            253
+          ],
+          [
+            217,
+            255
+          ],
+          [
+            216,
+            256
+          ],
+          [
+            72,
+            256
+          ],
+          [
+            26,
+            218
+          ],
+          [
+            21,
+            213
+          ]
+        ]
+      },
+      "file": "ant_sadness_3f22d4e3ed_v07.png",
+      "analytics_id": "ludus.variant.sadness.3f22d4e3ed.v07"
+    },
+    {
+      "slot": "v08",
+      "kind": "swarm",
+      "amplified": false,
+      "particle_step": 11,
+      "shape_change": 0.7552,
+      "iou_change": 0.7683,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.7491,
+      "hitbox": {
+        "bbox": [
+          22,
+          57,
+          232,
+          255
+        ],
+        "area": 9922,
+        "radius": 56.2,
+        "hull": [
+          [
+            22,
+            78
+          ],
+          [
+            33,
+            59
+          ],
+          [
+            35,
+            57
+          ],
+          [
+            39,
+            57
+          ],
+          [
+            201,
+            100
+          ],
+          [
+            203,
+            102
+          ],
+          [
+            232,
+            208
+          ],
+          [
+            232,
+            212
+          ],
+          [
+            209,
+            242
+          ],
+          [
+            207,
+            244
+          ],
+          [
+            147,
+            255
+          ],
+          [
+            129,
+            255
+          ],
+          [
+            99,
+            254
+          ],
+          [
+            73,
+            249
+          ],
+          [
+            54,
+            235
+          ],
+          [
+            33,
+            215
+          ],
+          [
+            31,
+            213
+          ],
+          [
+            27,
+            202
+          ],
+          [
+            22,
+            102
+          ]
+        ]
+      },
+      "file": "ant_sadness_3f22d4e3ed_v08.png",
+      "analytics_id": "ludus.variant.sadness.3f22d4e3ed.v08"
+    },
+    {
+      "slot": "v09",
+      "kind": "echo",
+      "amplified": false,
+      "alpha": 0.5,
+      "echo_alpha": 0.25,
+      "echo_offset": [
+        18,
+        2
+      ],
+      "shape_change": 0.4161,
+      "iou_change": 0.4527,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.2831,
+      "hitbox": {
+        "bbox": [
+          24,
+          44,
+          250,
+          256
+        ],
+        "area": 30538,
+        "radius": 98.59,
+        "hull": [
+          [
+            24,
+            44
+          ],
+          [
+            25,
+            44
+          ],
+          [
+            43,
+            46
+          ],
+          [
+            224,
+            98
+          ],
+          [
+            250,
+            190
+          ],
+          [
+            250,
+            212
+          ],
+          [
+            233,
+            252
+          ],
+          [
+            232,
+            254
+          ],
+          [
+            230,
+            256
+          ],
+          [
+            75,
+            256
+          ],
+          [
+            29,
+            215
+          ],
+          [
+            24,
+            210
+          ]
+        ]
+      },
+      "file": "ant_sadness_3f22d4e3ed_v09.png",
+      "analytics_id": "ludus.variant.sadness.3f22d4e3ed.v09"
+    },
+    {
+      "slot": "v10",
+      "kind": "inverted_gravity",
+      "amplified": false,
+      "stretch": 1.3018867924528301,
+      "shape_change": 0.4028,
+      "iou_change": 0.4475,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.3382,
+      "hitbox": {
+        "bbox": [
+          38,
+          0,
+          219,
+          256
+        ],
+        "area": 25572,
+        "radius": 90.22,
+        "hull": [
+          [
+            38,
+            190
+          ],
+          [
+            42,
+            131
+          ],
+          [
+            80,
+            3
+          ],
+          [
+            81,
+            0
+          ],
+          [
+            111,
+            0
+          ],
+          [
+            162,
+            11
+          ],
+          [
+            165,
+            14
+          ],
+          [
+            166,
+            16
+          ],
+          [
+            213,
+            167
+          ],
+          [
+            219,
+            194
+          ],
+          [
+            219,
+            196
+          ],
+          [
+            213,
+            251
+          ],
+          [
+            211,
+            255
+          ],
+          [
+            210,
+            256
+          ],
+          [
+            75,
+            256
+          ],
+          [
+            40,
+            203
+          ],
+          [
+            38,
+            197
+          ]
+        ]
+      },
+      "file": "ant_sadness_3f22d4e3ed_v10.png",
+      "analytics_id": "ludus.variant.sadness.3f22d4e3ed.v10"
+    },
+    {
+      "slot": "v11",
+      "kind": "hybrid",
+      "amplified": false,
+      "parents": [
+        "v02",
+        "v08"
+      ],
+      "op": "xor",
+      "shape_change": 0.5545,
+      "iou_change": 0.6846,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.6436,
+      "hitbox": {
+        "bbox": [
+          22,
+          50,
+          232,
+          256
+        ],
+        "area": 14469,
+        "radius": 67.86,
+        "hull": [
+          [
+            22,
+            78
+          ],
+          [
+            26,
+            50
+          ],
+          [
+            27,
+            50
+          ],
+          [
+            201,
+            100
+          ],
+          [
+            204,
+            101
+          ],
+          [
+            230,
+            194
+          ],
+          [
+            232,
+            208
+          ],
+          [
+            232,
+            212
+          ],
+          [
+            212,
+            250
+          ],
+          [
+            208,
+            256
+          ],
+          [
+            207,
+            256
+          ],
+          [
+            129,
+            255
+          ],
+          [
+            99,
+            254
+          ],
+          [
+            73,
+            249
+          ],
+          [
+            54,
+            235
+          ],
+          [
+            33,
+            215
+          ],
+          [
+            26,
+            208
+          ],
+          [
+            22,
+            102
+          ]
+        ]
+      },
+      "file": "ant_sadness_3f22d4e3ed_v11.png",
+      "analytics_id": "ludus.variant.sadness.3f22d4e3ed.v11"
+    },
+    {
+      "slot": "v12",
+      "kind": "hybrid",
+      "amplified": false,
+      "parents": [
+        "v04",
+        "v06"
+      ],
+      "op": "grown_intersection",
+      "shape_change": 0.3982,
+      "iou_change": 0.6866,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.6247,
+      "hitbox": {
+        "bbox": [
+          20,
+          47,
+          235,
+          256
+        ],
+        "area": 17038,
+        "radius": 73.64,
+        "hull": [
+          [
+            20,
+            51
+          ],
+          [
+            21,
+            50
+          ],
+          [
+            24,
+            48
+          ],
+          [
+            27,
+            47
+          ],
+          [
+            37,
+            47
+          ],
+          [
+            197,
+            89
+          ],
+          [
+            208,
+            94
+          ],
+          [
+            210,
+            96
+          ],
+          [
+            235,
+            199
+          ],
+          [
+            235,
+            215
+          ],
+          [
+            219,
+            251
+          ],
+          [
+            216,
+            256
+          ],
+          [
+            71,
+            256
+          ],
+          [
+            25,
+            219
+          ],
+          [
+            20,
+            214
+          ]
+        ]
+      },
+      "replaces": "v12",
+      "file": "ant_sadness_3f22d4e3ed_v12.png",
+      "analytics_id": "ludus.variant.sadness.3f22d4e3ed.v12"
+    }
+  ],
+  "rejected_variants": [
+    {
+      "slot": "v12",
+      "kind": "hybrid",
+      "amplified": false,
+      "parents": [
+        "v06",
+        "v07"
+      ],
+      "op": "union",
+      "shape_change": 0.3948,
+      "iou_change": 0.4227,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.2572,
+      "hitbox": {
+        "bbox": [
+          21,
+          41,
+          235,
+          256
+        ],
+        "area": 30621,
+        "radius": 98.73,
+        "hull": [
+          [
+            21,
+            41
+          ],
+          [
+            28,
+            41
+          ],
+          [
+            209,
+            93
+          ],
+          [
+            235,
+            185
+          ],
+          [
+            235,
+            213
+          ],
+          [
+            218,
+            253
+          ],
+          [
+            217,
+            255
+          ],
+          [
+            216,
+            256
+          ],
+          [
+            72,
+            256
+          ],
+          [
+            26,
+            218
+          ],
+          [
+            21,
+            213
+          ]
+        ]
+      },
+      "reason": "duplicate-hitbox"
+    }
+  ],
+  "shortfall": 0,
+  "status": "ok",
+  "file": "ant_sadness_3f22d4e3ed_v01.png",
+  "shape_change": 0.3915,
+  "colour_change": 1.0,
+  "claim_features": [
+    "форма-антагонист страсти «sadness» (по Евагрию и Иоанну Лествичнику), выведенная из альфа-силуэта источника",
+    "палитра complement (тон 55°) и инверсия фактуры rough -> smooth",
+    "инвертированное поведение ambient -> homing; 12 вариантов с попарно различными хитбоксами",
+    "изменение формы по альфа-маскам (|A xor B| / |A or B|): от 39.1% до 75.5%",
+    "источник: https://github.com/Card-Forge/forge @ 647b5eac95, forge-gui/res/adventure/common/sprites/enemy/undead/ghost_2.png #0 (GPL)"
+  ]
+}

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Зодчий-мастер с циркулем и чертежом">
+  <title>Зодчий-мастер</title>
+  <desc>Форма: мастер в рабочем кафтане и шапке, в руке циркуль, у груди свиток с планом купольного храма. Действие: снимает меры, строит план по окружности и квадрату. Цель: геометрия как послушание — мера и порядок служат дому молитвы, а не славе мастера. Миссии: 71 «Архитектурное копирование Самарканда», 72 «Планировочная геометрия».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш, без нимбов -->
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- голова в войлочной шапке мастера -->
+  <circle cx="50" cy="36" r="11" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M39 32 Q40 20 50 20 Q60 20 61 32 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- короткая борода -->
+  <path d="M44 43 Q50 50 56 43 Q53 47 50 47 Q47 47 44 43 Z" fill="#c8a56a" opacity=".8"/>
+  <!-- рабочий кафтан, подпоясанный -->
+  <path d="M50 48 C31 54 27 80 29 118 H71 C73 80 69 54 50 48 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M33 90 H67" stroke="#8a6a34" stroke-width="3"/>
+  <!-- свиток-план: квадрат, вписанный круг, купол -->
+  <rect x="30" y="60" width="26" height="26" fill="#e8d9b8" stroke="#8a6a34" stroke-width="1.5"/>
+  <g fill="none" stroke="#8a6a34" stroke-width="1">
+    <circle cx="43" cy="73" r="9"/>
+    <path d="M34 73 H52 M43 64 V82"/>
+  </g>
+  <!-- циркуль в правой руке -->
+  <g stroke="#e8c87a" stroke-width="2" fill="none">
+    <path d="M66 58 L60 84 M66 58 L72 84"/>
+  </g>
+  <circle cx="66" cy="58" r="2" fill="#e8c87a"/>
+  <!-- угольник у пояса -->
+  <path d="M58 96 V110 H70" fill="none" stroke="#c8a56a" stroke-width="2"/>
+  <!-- шнур-отвес -->
+  <path d="M40 92 V108" stroke="#8a6a34" stroke-width="1.2"/>
+  <path d="M38 108 L40 113 L42 108 Z" fill="#e8c87a"/>
+</svg>

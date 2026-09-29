@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" role="img" aria-label="Москва, деревянный кремль">
+  <rect width="200" height="120" fill="#1a0e04"/>
+  <rect x="4" y="4" width="192" height="112" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- боровицкий холм -->
+  <path d="M4 96 Q60 78 100 82 Q150 86 196 94" fill="#2a1808" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- деревянная стена с заборолами -->
+  <path d="M40 82 V60 h6 v-6 h6 v6 h10 v-6 h6 v6 h10 v-6 h6 v6 h10 v-6 h6 v6 h10 v-6 h6 v6 h10 v-6 h6 v6 h6 V82" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.8"/>
+  <!-- воротная башня с шатром -->
+  <rect x="88" y="42" width="22" height="40" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.8"/>
+  <path d="M85 42 h28 l-14 -16 Z" fill="#2a1808" stroke="#e8c87a" stroke-width="1.6"/>
+  <path d="M95 68 h8 v14 h-8 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.4"/>
+  <!-- главка храма за стеной с крестом -->
+  <path d="M140 60 q0 -10 8 -10 q8 0 8 10 v4 h-16 Z" fill="#1a0e04" stroke="#e8c87a" stroke-width="1.6"/>
+  <path d="M148 50 v-8 M144 45 h8 M145.5 48.5 l5 -2.5" stroke="#e8c87a" stroke-width="1.4" fill="none"/>
+  <!-- москва-река -->
+  <path d="M4 104 Q70 98 120 104 Q160 108 196 102" fill="none" stroke="#c8a56a" stroke-width="1.6" opacity=".6"/>
+  <path d="M30 108 Q80 104 130 108" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".35"/>
+  <!-- подпись-картуш -->
+  <rect x="72" y="103" width="56" height="11" fill="#1a0e04" stroke="#8a6a34" stroke-width="1"/>
+  <text x="100" y="111.5" font-family="Georgia, serif" font-size="7.5" fill="#c8a56a" text-anchor="middle">МОСКВА · КРЕМЛЬ</text>
+</svg>

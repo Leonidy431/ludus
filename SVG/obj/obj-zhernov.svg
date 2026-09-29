@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Мельничный жернов и водяное колесо">
+  <title>Жернов водяной мельницы</title>
+  <desc>Форма: круглый жернов с насечкой борозд и отверстием, рядом лопасти водяного колеса и струя воды. Действие: сила воды, а не рабский труд, мелет зерно общины. Цель: разумное пользование творением ради хлеба для всех. Миссия: 82 Энергия воды.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов.
+       Предмет миссии 82: жернов обители; вода — синяя по канону воды. -->
+  <defs>
+    <radialGradient id="zhernov-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#zhernov-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- струя воды на колесо -->
+  <path d="M12 18 Q22 20 24 34" fill="none" stroke="#1f5a73" stroke-width="4"/>
+  <!-- лопасти водяного колеса за жерновом -->
+  <g stroke="#8a6a34" stroke-width="2.4">
+    <path d="M28 28 L16 16"/><path d="M28 28 L12 32"/><path d="M28 28 L26 12"/>
+  </g>
+  <circle cx="28" cy="28" r="10" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- жернов -->
+  <circle cx="52" cy="54" r="28" fill="#2a1808" stroke="#c8a56a" stroke-width="2.2"/>
+  <circle cx="52" cy="54" r="24" fill="none" stroke="#8a6a34" stroke-width="1"/>
+  <!-- насечка: борозды по секторам -->
+  <g stroke="#c8a56a" stroke-width="1.3">
+    <path d="M52 46 L52 30"/><path d="M58 48 L70 38"/><path d="M60 54 L76 54"/><path d="M58 60 L70 70"/>
+    <path d="M52 62 L52 78"/><path d="M46 60 L34 70"/><path d="M44 54 L28 54"/><path d="M46 48 L34 38"/>
+  </g>
+  <g stroke="#8a6a34" stroke-width="1"><path d="M55 34 L66 42"/><path d="M73 57 L64 67"/><path d="M49 74 L38 66"/><path d="M31 51 L40 41"/></g>
+  <!-- ось-отверстие -->
+  <circle cx="52" cy="54" r="6" fill="#1a0e04" stroke="#e8c87a" stroke-width="1.8"/>
+  <!-- мука/зерно у кромки -->
+  <g fill="#e8c87a"><circle cx="78" cy="80" r="1.3"/><circle cx="82" cy="78" r="1"/><circle cx="74" cy="84" r="1"/></g>
+</svg>

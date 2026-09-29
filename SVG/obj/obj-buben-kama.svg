@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Бубен кама — чужая святыня, не берётся в руки">
+  <title>Бубен кама</title>
+  <desc>Форма: бубен местного шамана лежит на войлоке, рядом не протянута ничья рука. Действие: миссионер не берёт, не отнимает и не разрушает предмет чужого обряда; разговор идёт с человеком. Цель: уважение к собеседнику и различение веры. Нет рисунков духов и знаков на коже. Предмет не добыча и не инвентарь. Миссия: 55 «Союз с местными шаманами».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. -->
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="#1a0e04" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- войлочный коврик под бубном -->
+  <path d="M14 72 L82 72 L76 84 L20 84 Z" fill="#2a1808" stroke="#8a6a34" stroke-width="1.5"/>
+  <path d="M22 78 H74" stroke="#8a6a34" stroke-width="1" stroke-dasharray="3 2"/>
+  <!-- обечайка бубна -->
+  <ellipse cx="48" cy="48" rx="26" ry="24" fill="#2a1808" stroke="#c8a56a" stroke-width="2.4"/>
+  <ellipse cx="48" cy="48" rx="21" ry="19" fill="#8a6a34" opacity=".45"/>
+  <!-- гладкая кожа без знаков; подвески-колокольчики снизу -->
+  <g stroke="#c8a56a" stroke-width="1.2"><path d="M40 70 v4 M48 72 v4 M56 70 v4"/></g>
+  <g fill="#e8c87a"><circle cx="40" cy="75" r="1.6"/><circle cx="48" cy="77" r="1.6"/><circle cx="56" cy="75" r="1.6"/></g>
+  <!-- колотушка лежит в стороне, рядом никто не берёт -->
+  <path d="M74 20 L84 34" stroke="#8a6a34" stroke-width="2.2" stroke-linecap="round"/>
+  <ellipse cx="73" cy="19" rx="3" ry="2" fill="#2a1808" stroke="#c8a56a" stroke-width="1"/>
+</svg>

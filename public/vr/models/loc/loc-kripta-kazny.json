@@ -1,0 +1,16 @@
+{
+ "id": "loc-kripta-kazny",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 814,
+ "bbox_m": [
+  5.358,
+  3.018,
+  0.421
+ ],
+ "source": "SVG/loc/loc-kripta-kazny.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

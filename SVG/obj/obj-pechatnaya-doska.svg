@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Печатная доска">
+  <title>Печатная доска</title>
+  <desc>ФОРМА: резная деревянная доска для оттиска с орнаментальной рамкой, заставкой с малым крестом и выпуклыми строками, рядом тампон для краски. ДЕЙСТВИЕ: монахи печатают листы для учения, текст вырезается бережно, без искажения. ЦЕЛЬ: книга умножается ради просвещения, а не ради прибыли. Миссия 79 (позднее).</desc>
+  <!-- Арт-канон §9.0: умбра+золото, двойная рамка-картуш -->
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="#1a0e04" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- доска в перспективе -->
+  <path d="M14 30 L70 22 L82 60 L26 70 Z" fill="#3a2410" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M26 70 L26 76 L82 66 L82 60" fill="#2a1808" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- резная рамка -->
+  <path d="M20 33 L67 26 L77 58 L29 66 Z" fill="none" stroke="#e8c87a" stroke-width="1.2"/>
+  <!-- заставка с малым крестом -->
+  <path d="M44 30 v8 M40 33 h8" stroke="#e8c87a" stroke-width="1.6"/>
+  <!-- выпуклые строки, условно -->
+  <g stroke="#c8a56a" stroke-width="2" stroke-linecap="round">
+    <path d="M26 44 L66 38 M28 51 L69 45 M30 58 L71 52"/>
+  </g>
+  <!-- тампон для краски -->
+  <ellipse cx="22" cy="82" rx="9" ry="4" fill="#2a1808" stroke="#8a6a34" stroke-width="1.4"/>
+  <path d="M22 78 V70" stroke="#8a6a34" stroke-width="3" stroke-linecap="round"/>
+</svg>

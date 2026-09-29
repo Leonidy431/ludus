@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Мельник у водяной мельницы">
+  <title>Мельник</title>
+  <desc>ФОРМА: мельник в колпаке и фартуке, запорошённом мукой, с мешком зерна на плече; у подола — водяное колесо. ДЕЙСТВИЕ: учит строить запруду и колесо, чтобы вода молола хлеб для обители и соседей. ЦЕЛЬ: труд с природой, а не против неё — сила воды служит хлебу для всех. Миссия: 82 Энергия воды.</desc>
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- Арт-канон §9.0: умбра+золото. Синий — только вода у колеса. -->
+  <!-- голова в колпаке -->
+  <circle cx="50" cy="38" r="11" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M39 34 Q42 20 56 22 Q64 26 61 34 Q50 30 39 34 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- усы -->
+  <path d="M44 44 Q50 48 56 44" fill="none" stroke="#c8a56a" stroke-width="1.8"/>
+  <!-- рубаха -->
+  <path d="M50 50 C31 56 27 80 29 118 H71 C73 80 69 56 50 50 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- фартук в муке -->
+  <path d="M38 70 H62 L64 112 H36 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.5"/>
+  <g fill="#e8c87a"><circle cx="44" cy="80" r="1.3"/><circle cx="55" cy="90" r="1.2"/><circle cx="47" cy="100" r="1.3"/></g>
+  <!-- мешок зерна на плече -->
+  <path d="M58 50 Q66 40 76 46 Q82 56 74 64 Q66 64 60 58 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M60 50 Q62 46 66 46" fill="none" stroke="#e8c87a" stroke-width="1.2"/>
+  <!-- водяное колесо у подола -->
+  <g transform="translate(22,112)">
+    <circle r="10" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.5"/>
+    <path d="M0 -10 V10 M-10 0 H10 M-7 -7 L7 7 M-7 7 L7 -7" stroke="#8a6a34" stroke-width="1.2"/>
+    <circle r="2" fill="#c8a56a"/>
+  </g>
+  <path d="M8 126 Q16 122 24 126 T40 126" fill="none" stroke="#1f5a73" stroke-width="2"/>
+</svg>

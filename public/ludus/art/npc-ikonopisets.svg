@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Иконописец с кистью и доской">
+  <title>Иконописец</title>
+  <desc>Мирянин-иконописец в рабочем фартуке, с кистью и загрунтованной доской с ковчегом. Не святой, без нимба: нимб он пишет, но не носит. Икона — окно в Царство, которое пишут в посте и молитве. Смысл: Dexterity (ловкость руки) служит Faith; мастерство становится богословием в красках.</desc>
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- голова, волосы подвязаны ремешком -->
+  <circle cx="44" cy="34" r="11" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M33 30 Q44 20 55 30" fill="none" stroke="#8a6a34" stroke-width="2"/>
+  <!-- рубаха -->
+  <path d="M44 46 C26 52 22 80 24 118 H64 C66 80 62 52 44 46 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- аккуратная борода -->
+  <path d="M35 36 Q36 50 44 52 Q52 50 53 36 Q50 44 44 44 Q38 44 35 36 Z" fill="#c8a56a" opacity=".8"/>
+  <!-- рабочий фартук с пятнами охры -->
+  <path d="M34 62 H54 L56 116 H32 Z" fill="#1a0e04" stroke="#8a6a34" stroke-width="1.5"/>
+  <circle cx="40" cy="80" r="1.5" fill="#c8a56a"/><circle cx="48" cy="92" r="1.2" fill="#e8c87a"/><circle cx="43" cy="104" r="1.3" fill="#c0392b"/>
+  <!-- доска иконы с ковчегом, лик ещё только намечен -->
+  <path d="M60 54 H86 V96 H60 Z" fill="#c8a56a" stroke="#e8c87a" stroke-width="1.8"/>
+  <path d="M64 58 H82 V92 H64 Z" fill="#2a1808" stroke="#8a6a34" stroke-width="1.2"/>
+  <circle cx="73" cy="70" r="7" fill="none" stroke="#e8c87a" stroke-width="1.5"/>
+  <circle cx="73" cy="71" r="3.5" fill="none" stroke="#c8a56a" stroke-width="1" stroke-dasharray="1.5 1.5"/>
+  <path d="M68 90 Q73 78 78 90" fill="none" stroke="#c8a56a" stroke-width="1" stroke-dasharray="1.5 1.5"/>
+  <!-- рука с тонкой беличьей кистью -->
+  <path d="M56 78 L70 66" stroke="#8a6a34" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M70 66 l2 -2" stroke="#e8c87a" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="55" cy="79" r="3" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- раковинки с растёртыми пигментами на полке -->
+  <path d="M66 120 H90" stroke="#8a6a34" stroke-width="1.5"/>
+  <path d="M68 120 q3 -5 6 0 Z" fill="#e8c87a"/>
+  <path d="M76 120 q3 -5 6 0 Z" fill="#c0392b"/>
+  <path d="M84 120 q3 -5 6 0 Z" fill="#c8a56a"/>
+</svg>

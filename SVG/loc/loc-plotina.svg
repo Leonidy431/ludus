@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Земляная запруда со шлюзом на горной реке">
+  <title>Земляная запруда</title>
+  <desc>Форма: земляная насыпь поперёк долины, укреплённая плетнём и камнем, деревянный шлюз с подъёмным щитом и воротом, выше запруды — пруд, ниже — арык к полям. Действие: поднять или опустить щит и посмотреть, куда пойдёт вода: на поля или в селение. Цель: воду дают всем по мере, власть над рекой — ответственность за соседа ниже по течению. Миссия: 38 Плотинный эксперимент.</desc>
+  <!-- Арт-канон §9.0: умбра+золото. Локация миссии 38: запруда в предгорьях у Иссык-Куля. -->
+  <defs>
+    <linearGradient id="plotina-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#plotina-nebo)"/>
+  <!-- горы -->
+  <path d="M0 90 L40 52 L76 80 L120 44 L168 84 L214 50 L260 82 L300 58 L320 72 V110 H0 Z" fill="#241405"/>
+  <g fill="#e8d9b8" opacity=".75"><path d="M114 50 L120 44 L126 50 L120 48 Z"/><path d="M208 56 L214 50 L220 56 L214 54 Z"/></g>
+  <!-- пруд выше запруды -->
+  <path d="M0 100 Q80 94 150 104 L150 124 Q70 128 0 120 Z" fill="#0d2a3a"/>
+  <g stroke="#1f5a73" stroke-width="1.2" fill="none"><path d="M20 108 q8 -3 16 0 M70 114 q8 -3 16 0 M110 106 q8 -3 16 0"/></g>
+  <!-- земляная насыпь -->
+  <path d="M0 122 Q70 128 150 124 L186 118 L320 130 V180 H0 Z" fill="#2a1808"/>
+  <path d="M0 122 Q70 128 150 124" fill="none" stroke="#c8a56a" stroke-width="2"/>
+  <g stroke="#8a6a34" stroke-width="1.2" fill="none"><path d="M20 132 q6 4 12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0"/></g>
+  <!-- шлюз: стойки, щит, ворот -->
+  <g stroke="#c8a56a" stroke-width="2.2" fill="none"><path d="M150 132 V84 M176 132 V84 M144 84 H182"/></g>
+  <rect x="153" y="100" width="20" height="26" fill="#8a6a34" stroke="#e8c87a" stroke-width="1.6"/>
+  <path d="M153 108 H173 M153 116 H173" stroke="#2a1808" stroke-width="1.2"/>
+  <path d="M163 84 V100" stroke="#e8c87a" stroke-width="1.4"/>
+  <circle cx="163" cy="80" r="6" fill="none" stroke="#e8c87a" stroke-width="1.8"/>
+  <path d="M157 80 H169 M163 74 V86" stroke="#e8c87a" stroke-width="1.2"/>
+  <!-- арык ниже шлюза к полям -->
+  <path d="M163 132 Q170 150 200 156 Q250 164 320 160" fill="none" stroke="#1f5a73" stroke-width="5"/>
+  <path d="M163 132 Q170 150 200 156 Q250 164 320 160" fill="none" stroke="#0d2a3a" stroke-width="2"/>
+  <!-- поля и селение ниже -->
+  <g stroke="#8a6a34" stroke-width="1.2"><path d="M220 140 H300 M226 146 H296 M232 152 H290"/></g>
+  <g fill="#140a02" stroke="#c8a56a" stroke-width="1.4"><path d="M270 130 V122 H284 V130 Z"/><path d="M290 132 V124 H302 V132 Z"/></g>
+  <!-- плетень на откосе -->
+  <g stroke="#c8a56a" stroke-width="1.4"><path d="M100 126 V138 M110 126 V139 M120 125 V139 M130 125 V138"/><path d="M96 131 Q115 134 134 130"/></g>
+</svg>

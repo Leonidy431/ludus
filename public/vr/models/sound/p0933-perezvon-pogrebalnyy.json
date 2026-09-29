@@ -1,0 +1,23 @@
+{
+ "id": "p0933-perezvon-pogrebalnyy",
+ "kind": "sound",
+ "lod": "proxy",
+ "tris": 80,
+ "bbox_m": [
+  20,
+  20,
+  20
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#932",
+ "name": "Перезвон погребальный",
+ "type": "звук",
+ "storyline": "45, 78",
+ "box": "триггер у кладбища, 20м",
+ "shape": "emitter",
+ "size_m": 20,
+ "method": "primitive-from-box-field",
+ "collider": "trigger volume",
+ "hiddenInBuild": true,
+ "noInteract": false,
+ "noLoot": false
+}

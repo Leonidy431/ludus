@@ -323,9 +323,9 @@ PHASE 6-8: Long-term Roadmap (Mar 2027+)
 
 ## 🔗 RELATED DOCUMENTS
 
-- `COMPREHENSIVE_GAPS_ANALYSIS.md` — All 40+ gaps with P2/P3 deferral rationale
+- `docs/reports/COMPREHENSIVE_GAPS_ANALYSIS.md` — All 40+ gaps with P2/P3 deferral rationale
 - `CHORUS_DECISIONS_PHASE3.md` — Chorus framework applied to 4 P1 gaps
-- `PHASE_3_MASTER_CHECKLIST.md` — Oct 1 execution guide
+- `docs/reports/PHASE_3_MASTER_CHECKLIST.md` — Oct 1 execution guide
 - `CLAUDE.md` — Project constitution with Chorus Decision Framework (ТАБУ №0.5)
 
 ---

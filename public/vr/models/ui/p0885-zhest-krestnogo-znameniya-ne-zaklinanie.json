@@ -1,0 +1,23 @@
+{
+ "id": "p0885-zhest-krestnogo-znameniya-ne-zaklinanie",
+ "kind": "ui",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  0.4,
+  0.532,
+  0.02
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#884",
+ "name": "Жест крестного знамения (не заклинание)",
+ "type": "интерфейс",
+ "storyline": "spiritual",
+ "box": "жест-распознаватель",
+ "shape": "plane",
+ "size_m": 0.4,
+ "method": "primitive-from-box-field",
+ "collider": "plane 0.4 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": true
+}

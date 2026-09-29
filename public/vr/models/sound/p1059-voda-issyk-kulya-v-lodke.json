@@ -1,0 +1,23 @@
+{
+ "id": "p1059-voda-issyk-kulya-v-lodke",
+ "kind": "sound",
+ "lod": "proxy",
+ "tris": 80,
+ "bbox_m": [
+  0.3,
+  0.3,
+  0.3
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#1058",
+ "name": "Вода Иссык-Куля в лодке",
+ "type": "звук",
+ "storyline": "36-45",
+ "box": "весло capsule",
+ "shape": "emitter",
+ "size_m": 0.3,
+ "method": "primitive-from-box-field",
+ "collider": "trigger volume",
+ "hiddenInBuild": true,
+ "noInteract": false,
+ "noLoot": false
+}

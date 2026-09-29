@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Деревянная форма для кирпича и готовый сырец">
+  <title>Форма для кирпича</title>
+  <desc>Форма: деревянная двухгнёздная форма-станок с ручками и рядом готовый квадратный кирпич-сырец, как в зодчестве Самарканда. Действие: зодчий учит бить кирпич одной мерой — каждый равен другому. Цель: общая мера делает стену прочной; послушание мере — основа храма. Миссия: 71 «Архитектурное копирование Самарканда».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. -->
+  <defs>
+    <radialGradient id="kirpich-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#kirpich-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- деревянная форма на два гнезда, в перспективе -->
+  <path d="M14 40 L60 28 L78 38 L32 50 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.6"/>
+  <path d="M32 50 V56 L78 44 V38" fill="#2a1808" stroke="#c8a56a" stroke-width="1.6"/>
+  <path d="M14 40 V46 L32 56" fill="none" stroke="#c8a56a" stroke-width="1.6"/>
+  <!-- два пустых гнезда -->
+  <g fill="#1a0e04" stroke="#8a6a34" stroke-width="1">
+    <path d="M22 40 L38 36 L46 40 L30 44 Z"/>
+    <path d="M44 34 L60 30 L68 34 L52 38 Z"/>
+  </g>
+  <!-- ручки -->
+  <path d="M14 40 L6 42 M78 38 L86 36" stroke="#c8a56a" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- готовый кирпич-сырец -->
+  <path d="M36 66 L60 60 L74 66 L50 72 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.4"/>
+  <path d="M36 66 V74 L50 80 V72 M50 80 L74 74 V66" fill="#8a6a34" stroke="#8a6a34" stroke-width="1.4"/>
+  <!-- отпечаток мастера -->
+  <path d="M52 64 v4 M50 66 h4" stroke="#2a1808" stroke-width="1"/>
+</svg>

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Горное ущелье с бурной рекой и недостроенным мостом">
+  <title>Ущелье и недостроенный мост</title>
+  <desc>Узкое ущелье, по дну бьётся белопенная река; с левого берега вынесен деревянный пролёт на подкосах, но до правого берега он не дошёл, рядом брёвна и верёвки. ФОРМА: разрыв пути. ДЕЙСТВИЕ: игрок рассчитывает пролёт, опоры и брод. ЦЕЛЬ: мост как служение — дорога миссии для всех, кто идёт следом. Миссия: 73 «Мосты и дороги миссии».</desc>
+  <defs>
+    <linearGradient id="grm-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#grm-nebo)"/>
+  <!-- дальняя вершина -->
+  <path d="M120 60 L160 20 L200 60 Z" fill="#241405"/>
+  <path d="M152 28 L160 20 L168 28 Z" fill="#e8d9b8" opacity=".8"/>
+  <!-- левая скала ущелья -->
+  <path d="M0 0 H70 L96 60 L90 100 L112 180 H0 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- правая скала ущелья -->
+  <path d="M320 0 H250 L230 70 L240 110 L214 180 H320 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- трещины скал -->
+  <g stroke="#8a6a34" stroke-width="1.2" fill="none">
+    <path d="M30 40 L44 70 L38 100"/><path d="M280 50 L270 90 L284 120"/>
+  </g>
+  <!-- бурная река -->
+  <path d="M106 150 Q160 140 222 150 L214 180 H112 Z" fill="#0d2a3a"/>
+  <g stroke="#1f5a73" stroke-width="2" fill="none">
+    <path d="M116 158 Q134 152 150 160 Q168 166 186 156 Q200 150 214 158"/>
+  </g>
+  <g stroke="#e8d9b8" stroke-width="1.5" fill="none" opacity=".75">
+    <path d="M122 166 Q128 162 134 166"/><path d="M160 170 Q166 166 172 170"/>
+    <path d="M196 164 Q202 160 208 164"/><path d="M142 154 Q146 151 150 154"/>
+  </g>
+  <!-- недостроенный пролёт с левого берега -->
+  <g stroke="#e8c87a" stroke-width="2" fill="none">
+    <path d="M94 80 H176"/>
+    <path d="M94 86 H170"/>
+    <path d="M96 100 L130 82 M100 116 L150 84"/>
+  </g>
+  <!-- настил-доски -->
+  <g stroke="#c8a56a" stroke-width="1.4">
+    <path d="M104 76 v10 M116 76 v10 M128 76 v10 M140 76 v10 M152 76 v10 M164 76 v10"/>
+  </g>
+  <!-- опора на правом берегу ждёт пролёта -->
+  <g stroke="#e8c87a" stroke-width="2" fill="none">
+    <path d="M234 80 H246 M236 80 L238 110"/>
+  </g>
+  <!-- свисающая верёвка -->
+  <path d="M176 80 Q180 100 178 116" stroke="#c8a56a" stroke-width="1.2" fill="none"/>
+  <!-- брёвна на берегу -->
+  <g fill="#8a6a34" stroke="#c8a56a" stroke-width="1.2">
+    <rect x="14" y="120" width="44" height="6" rx="3"/><rect x="20" y="128" width="40" height="6" rx="3"/>
+  </g>
+</svg>

@@ -1,0 +1,23 @@
+{
+ "id": "p0769-zatoplennyy-nekropol",
+ "kind": "event",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  8,
+  4,
+  8
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#768",
+ "name": "Затопленный некрополь",
+ "type": "событие",
+ "storyline": "34,93 hydrology",
+ "box": "зона запрета: box 8м",
+ "shape": "zone",
+ "size_m": 8,
+ "method": "primitive-from-box-field",
+ "collider": "trigger volume",
+ "hiddenInBuild": true,
+ "noInteract": false,
+ "noLoot": false
+}

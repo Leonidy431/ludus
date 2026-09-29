@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Кувшин с процарапанной рыбой — знак Ихтис">
+  <title>Кувшин со знаком Ихтис</title>
+  <desc>Форма: глиняный кувшин с ручкой и узким горлом, на тулове процарапана рыба — ИХТИС, «Иисус Христос, Божий Сын, Спаситель» по первым буквам греческого слова. Действие: находка на берегу — игрок узнаёт знак и понимает, что здесь жили христиане. Цель: тайный знак веры читается и без слов. Миссия: 16 «Символ Ихтиса».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. -->
+  <defs>
+    <radialGradient id="ikhtis-ker-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#ikhtis-ker-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- ручка -->
+  <path d="M60 30 Q74 32 70 50 Q68 58 62 60" fill="none" stroke="#c8a56a" stroke-width="3"/>
+  <!-- тулово кувшина -->
+  <path d="M42 20 H54 V28 Q68 36 66 56 Q64 76 48 78 Q32 76 30 56 Q28 36 42 28 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.8"/>
+  <ellipse cx="48" cy="20" rx="7" ry="2" fill="#2a1808" stroke="#c8a56a" stroke-width="1.2"/>
+  <!-- процарапанная рыба -->
+  <path d="M34 54 Q46 44 58 54 Q46 62 34 54 Z M58 54 L63 49 M58 54 L63 59" fill="none" stroke="#1a0e04" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="39" cy="53" r="1" fill="#1a0e04"/>
+  <!-- скол края: старая находка -->
+  <path d="M54 22 L56 26 L54 28" fill="none" stroke="#e8c87a" stroke-width="1"/>
+  <path d="M34 40 Q48 36 62 40" fill="none" stroke="#c8a56a" stroke-width=".8" opacity=".6"/>
+</svg>

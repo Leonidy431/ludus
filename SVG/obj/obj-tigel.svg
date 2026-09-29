@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Тигель с расплавом в клещах над горном">
+  <title>Тигель</title>
+  <desc>Глиняный тигель с расплавленным металлом, зажатый кузнечными клещами над углями горна. ФОРМА: металл, очищаемый огнём. ДЕЙСТВИЕ: игрок налаживает кузню обители — плавит, льёт, куёт орудия для пахоты и строительства. ЦЕЛЬ: «как золото в горниле» — испытание очищает; труд кормит общину. Миссия: 66 «Кузня монастыря».</desc>
+  <defs>
+    <radialGradient id="tgl-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#tgl-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- клещи -->
+  <g stroke="#c8a56a" stroke-width="2.5" fill="none" stroke-linecap="round">
+    <path d="M84 16 L56 34"/><path d="M80 12 L54 30"/>
+  </g>
+  <circle cx="58" cy="31" r="2" fill="#e8c87a"/>
+  <!-- тигель -->
+  <path d="M30 30 H62 L58 58 Q46 64 34 58 Z" fill="#8a6a34" stroke="#e8c87a" stroke-width="1.6"/>
+  <!-- расплав -->
+  <ellipse cx="46" cy="30" rx="16" ry="4" fill="#e8c87a" stroke="#8a6a34" stroke-width="1"/>
+  <ellipse cx="46" cy="30" rx="8" ry="1.8" fill="#fff3c0" opacity=".8"/>
+  <!-- носик слива -->
+  <path d="M30 30 L24 27 L30 34" fill="#8a6a34" stroke="#e8c87a" stroke-width="1.2"/>
+  <!-- угли горна -->
+  <path d="M14 78 Q48 66 82 78 V84 H14 Z" fill="#2a1808" stroke="#8a6a34" stroke-width="1.2"/>
+  <g fill="#c0392b" opacity=".85"><circle cx="30" cy="76" r="3"/><circle cx="48" cy="73" r="3.5"/><circle cx="64" cy="76" r="3"/></g>
+  <!-- языки пламени -->
+  <g fill="#e8c87a" opacity=".8">
+    <path d="M38 72 Q36 66 40 62 Q40 68 42 70 Z"/><path d="M52 70 Q50 64 54 60 Q54 66 56 69 Z"/>
+  </g>
+</svg>

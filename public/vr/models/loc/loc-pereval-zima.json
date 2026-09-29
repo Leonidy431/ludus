@@ -1,0 +1,16 @@
+{
+ "id": "loc-pereval-zima",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 680,
+ "bbox_m": [
+  5.358,
+  3.013,
+  0.441
+ ],
+ "source": "SVG/loc/loc-pereval-zima.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

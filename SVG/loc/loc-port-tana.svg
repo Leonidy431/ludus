@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Порт Тана — причал на Дону и генуэзские суда">
+  <title>Порт Тана</title>
+  <desc>Форма: деревянный причал фактории Тана в устье Дона, у причала генуэзская галера и когг, тюки и бочки. Действие: армянские и генуэзские купцы заключают союз о торговом пути. Цель: честный договор и мир между народами на торговом пути. Миссия: 7 «Армяно-генуэзский союз».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. -->
+  <defs><linearGradient id="pt-nebo" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a0e04"/><stop offset="60%" stop-color="#3a2410"/><stop offset="100%" stop-color="#8a6a34"/></linearGradient></defs>
+  <rect width="320" height="180" fill="url(#pt-nebo)"/>
+  <!-- низкий берег с крепостной стеной фактории -->
+  <path d="M0 96 H90 V78 H100 V84 H110 V78 H120 V96 H320 V104 H0 Z" fill="#241405"/>
+  <!-- вода -->
+  <rect y="102" width="320" height="78" fill="#0d2a3a"/>
+  <g stroke="#1f5a73" stroke-width="1.4" fill="none">
+    <path d="M20 130 Q30 126 40 130 M150 150 Q160 146 170 150 M250 124 Q260 120 270 124 M200 168 Q210 164 220 168"/>
+  </g>
+  <!-- причал на сваях -->
+  <path d="M0 132 H130 V138 H0 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <g stroke="#8a6a34" stroke-width="2.2"><path d="M20 138 V160 M60 138 V160 M100 138 V160"/></g>
+  <!-- тюки и бочки на причале -->
+  <g fill="#8a6a34" stroke="#e8c87a" stroke-width="1.2">
+    <rect x="14" y="120" width="16" height="12"/><rect x="34" y="124" width="12" height="8"/>
+    <ellipse cx="60" cy="126" rx="6" ry="6"/><ellipse cx="74" cy="126" rx="6" ry="6"/>
+  </g>
+  <!-- генуэзская галера у причала -->
+  <path d="M136 132 H250 Q246 146 230 148 H150 Q138 144 136 132 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <g stroke="#8a6a34" stroke-width="1.2"><path d="M150 148 L144 158 M166 148 L160 158 M182 148 L176 158 M198 148 L192 158 M214 148 L208 158"/></g>
+  <path d="M192 132 V70" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M160 78 L224 70 L196 124 Z" fill="#c8a56a" opacity=".85" stroke="#e8c87a" stroke-width="1.2"/>
+  <!-- красный вымпел генуэзского судна -->
+  <path d="M192 70 L206 66 L192 62 Z" fill="#c0392b"/>
+  <!-- когг на рейде -->
+  <g transform="translate(270,110)">
+    <path d="M-24 10 H24 Q20 22 0 22 Q-20 22 -24 10 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.6"/>
+    <path d="M0 10 V-30" stroke="#c8a56a" stroke-width="1.6"/>
+    <rect x="-14" y="-26" width="28" height="30" fill="#8a6a34" stroke="#e8c87a" stroke-width="1"/>
+  </g>
+  <!-- чайки -->
+  <path d="M60 40 q4 -4 8 0 q4 -4 8 0 M110 30 q3 -3 6 0 q3 -3 6 0" fill="none" stroke="#e8c87a" stroke-width="1.2"/>
+</svg>

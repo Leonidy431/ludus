@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Дорожная чернильница с пером">
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. Предмет
+       реестра «99 предметов персонажей»: дорожная чернильница переписчика
+       Вардана — [обобщённо-историч.], типовой инструмент писца эпохи. -->
+  <defs>
+    <radialGradient id="chr-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#chr-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- Корпус чернильницы -->
+  <path d="M32 58 Q32 42 48 40 Q64 42 64 58 L60 66 L36 66 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.6"/>
+  <ellipse cx="48" cy="42" rx="15" ry="5" fill="#140a02" stroke="#8a6a34" stroke-width="1.3"/>
+  <ellipse cx="48" cy="41.5" rx="10" ry="3" fill="#1a0e04"/>
+  <!-- Крышка откинута -->
+  <path d="M42 36 Q48 30 56 34" fill="none" stroke="#8a6a34" stroke-width="1.4"/>
+  <!-- Перо, опёртое на край -->
+  <path d="M60 40 L78 20" stroke="#e8d9b8" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M60 40 L64 44 L78 20 Z" fill="#e8c87a" opacity=".5"/>
+  <!-- Подставка-ножки -->
+  <line x1="38" y1="66" x2="35" y2="72" stroke="#8a6a34" stroke-width="1.3"/>
+  <line x1="58" y1="66" x2="61" y2="72" stroke="#8a6a34" stroke-width="1.3"/>
+  <circle cx="48" cy="42" r="9" fill="#e8c87a" opacity=".12"/>
+</svg>

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Бревенчатый мост через разлившийся ручей">
+  <title>Бревно моста</title>
+  <desc>ФОРМА: два связанных бревна над бурным ручьём, колья по берегам и верёвочный поручень. ДЕЙСТВИЕ: в сезон дождей игрок укрепляет переправу и переводит людей по одному, держась за верёвку. ЦЕЛЬ: терпение и забота о слабом — «носите бремена друг друга». Миссия: 41 «Сезон дождей».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. -->
+  <defs>
+    <radialGradient id="brev-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#brev-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- берега -->
+  <path d="M8 60 Q20 50 28 52 V88 H8 Z M88 58 Q76 50 68 52 V88 H88 Z" fill="#2a1808" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- бурный ручей -->
+  <path d="M28 60 H68 V86 H28 Z" fill="#0d2a3a"/>
+  <g stroke="#1f5a73" stroke-width="1.5" fill="none">
+    <path d="M30 66 Q36 62 42 66 Q48 70 54 66 Q60 62 66 66"/>
+    <path d="M30 76 Q36 72 42 76 Q48 80 54 76 Q60 72 66 76"/>
+  </g>
+  <!-- два бревна -->
+  <g stroke="#c8a56a" stroke-width="1.6" fill="#8a6a34">
+    <rect x="16" y="50" width="64" height="6" rx="3"/>
+    <rect x="16" y="56" width="64" height="6" rx="3"/>
+  </g>
+  <g fill="#2a1808" stroke="#c8a56a" stroke-width="1">
+    <circle cx="16" cy="53" r="3"/><circle cx="16" cy="59" r="3"/>
+  </g>
+  <!-- вязка лыком -->
+  <path d="M34 49 v14 M62 49 v14" stroke="#e8c87a" stroke-width="2"/>
+  <!-- колья и верёвочный поручень -->
+  <path d="M20 50 V26 M76 50 V26" stroke="#8a6a34" stroke-width="3"/>
+  <path d="M20 28 Q48 38 76 28" fill="none" stroke="#e8c87a" stroke-width="1.5"/>
+</svg>

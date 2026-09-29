@@ -1,0 +1,16 @@
+{
+ "id": "loc-yuvelirnaya",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 730,
+ "bbox_m": [
+  5.333,
+  3,
+  0.621
+ ],
+ "source": "SVG/loc/loc-yuvelirnaya.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

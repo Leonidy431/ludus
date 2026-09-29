@@ -1,0 +1,16 @@
+{
+ "id": "loc-lechebnitsa",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 1244,
+ "bbox_m": [
+  5.341,
+  3,
+  0.661
+ ],
+ "source": "SVG/loc/loc-lechebnitsa.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

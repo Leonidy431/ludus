@@ -1,0 +1,16 @@
+{
+ "id": "loc-dvor-karavanshchikov",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 788,
+ "bbox_m": [
+  5.333,
+  3,
+  0.6
+ ],
+ "source": "SVG/loc/loc-dvor-karavanshchikov.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

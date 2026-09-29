@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" role="img" aria-label="Посольская грамота">
+  <rect width="120" height="80" fill="#1a0e04"/>
+  <path d="M22 16 H98 V58 H22 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M22 16 a6 8 0 0 0 0 16 M98 16 a6 8 0 0 1 0 16" fill="#1a0e04" stroke="#e8c87a" stroke-width="2"/>
+  <path d="M30 30 h60 M30 38 h60 M30 46 h40" stroke="#8a6a34" stroke-width="1.6"/>
+  <circle cx="86" cy="56" r="9" fill="#1a0e04" stroke="#e8c87a" stroke-width="2"/>
+  <path d="M82 56 l3 3 6 -7" fill="none" stroke="#e8c87a" stroke-width="1.6"/>
+  <path d="M86 65 v9 l4 -3 4 3 v-7" fill="#c8a56a"/>
+</svg>

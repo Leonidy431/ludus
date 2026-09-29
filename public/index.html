@@ -37,7 +37,9 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            font-size: 18px;
+            /* 18px was unreadable at 1832px Quest 3 width; the clamp
+               grows the loading text with the viewport. */
+            font-size: clamp(18px, 2.2vw, 40px);
             color: #D4AF37;
         }
         .loading-spinner {
@@ -326,6 +328,7 @@
 
     <!-- Load Ludus Modules (in correct order) -->
     <script src="/ludus/ludus-npc-dialogue-manager.js"></script>
+    <script src="/ludus/ludus-sacred-synth.js"></script>
     <script src="/ludus/ludus-audio-manager.js"></script>
     <script src="/ludus/ludus-npc-dialogue-ui.js"></script>
     <script src="/ludus/rov-lake-manager.js"></script>

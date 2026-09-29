@@ -1,0 +1,16 @@
+{
+ "id": "loc-trapeznaya",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 904,
+ "bbox_m": [
+  5.343,
+  3,
+  0.461
+ ],
+ "source": "SVG/loc/loc-trapeznaya.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

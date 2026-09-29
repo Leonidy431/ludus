@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Пустынный скит — малая церковь и кельи отшельников среди песков">
+  <title>Пустынный скит</title>
+  <desc>Скит в пустыне: малая церковь в середине, вокруг неё редкие кельи. Смысл: отшельники живут порознь всю седмицу, но сходятся к одной Чаше в воскресный день — уединение ради общения, а не вместо него.</desc>
+  <!-- Арт-канон §9.0: умбра+золото. Локация: скит (лавра египетского типа),
+       ступень «Аскетическое» — пост и монашеская дисциплина. -->
+  <defs>
+    <linearGradient id="skit-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#skit-nebo)"/>
+  <!-- утренняя звезда над скитом -->
+  <g stroke="#e8c87a" stroke-width="1.5">
+    <path d="M160 18 v10 M155 23 h10"/>
+  </g>
+  <circle cx="160" cy="23" r="7" fill="#e8c87a" opacity=".14"/>
+  <!-- дальние барханы -->
+  <path d="M0 112 Q50 92 110 108 Q170 120 230 100 Q280 88 320 104 L320 180 L0 180 Z" fill="#2a1808"/>
+  <path d="M0 132 Q70 116 150 130 Q230 142 320 124 L320 180 L0 180 Z" fill="#241405"/>
+  <!-- малая церковь: четверик, барабан, глава, крест -->
+  <g stroke="#c8a56a" stroke-width="2" fill="#2a1808">
+    <path d="M140 132 V100 H180 V132"/>
+    <path d="M150 100 V88 H170 V100"/>
+    <path d="M150 88 Q160 72 170 88 Z" fill="#8a6a34"/>
+  </g>
+  <path d="M160 74 V60 M155 65 h10 M156 71 l8 -2" stroke="#e8c87a" stroke-width="2" fill="none"/>
+  <!-- двери храма и окно с огнём -->
+  <path d="M154 132 V118 Q160 111 166 118 V132" fill="#140a02" stroke="#e8c87a" stroke-width="1.5"/>
+  <circle cx="160" cy="94" r="2" fill="#e8c87a"/>
+  <!-- кельи отшельников, разбросанные на расстоянии -->
+  <g fill="#2a1808" stroke="#c8a56a" stroke-width="1.6">
+    <path d="M48 124 V112 Q58 102 68 112 V124 Z"/>
+    <path d="M92 132 V122 Q100 114 108 122 V132 Z"/>
+    <path d="M214 130 V120 Q222 112 230 120 V130 Z"/>
+    <path d="M262 122 V110 Q272 100 282 110 V122 Z"/>
+  </g>
+  <!-- тёмные входы келий -->
+  <g fill="#140a02">
+    <rect x="55" y="116" width="6" height="8"/>
+    <rect x="97" y="125" width="6" height="7"/>
+    <rect x="219" y="123" width="6" height="7"/>
+    <rect x="269" y="114" width="6" height="8"/>
+  </g>
+  <!-- тропинки от келий к храму -->
+  <g stroke="#8a6a34" stroke-width="1.2" fill="none" stroke-dasharray="3 3" opacity=".8">
+    <path d="M58 126 Q100 140 150 134"/>
+    <path d="M100 134 Q126 140 152 136"/>
+    <path d="M222 132 Q196 140 168 134"/>
+    <path d="M272 124 Q230 142 170 134"/>
+  </g>
+  <!-- колодец скита -->
+  <g transform="translate(196,142)" stroke="#c8a56a" stroke-width="1.5" fill="none">
+    <ellipse cx="0" cy="6" rx="7" ry="2.5" fill="#140a02"/>
+    <path d="M-7 6 V12 H7 V6 M-5 6 V-4 M5 6 V-4 M-7 -4 H7"/>
+  </g>
+  <!-- пальма у источника -->
+  <g stroke="#8a6a34" stroke-width="1.6" fill="none">
+    <path d="M24 146 Q22 128 26 116"/>
+    <path d="M26 116 Q16 112 10 118 M26 116 Q34 108 42 114 M26 116 Q22 106 14 106 M26 116 Q32 106 38 104"/>
+  </g>
+</svg>

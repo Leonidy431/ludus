@@ -1,0 +1,16 @@
+{
+ "id": "loc-port-tana",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 616,
+ "bbox_m": [
+  5.346,
+  3,
+  0.381
+ ],
+ "source": "SVG/loc/loc-port-tana.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

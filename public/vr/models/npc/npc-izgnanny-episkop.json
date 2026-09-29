@@ -1,0 +1,16 @@
+{
+ "id": "npc-izgnanny-episkop",
+ "kind": "npc",
+ "lod": "proxy",
+ "tris": 674,
+ "bbox_m": [
+  1.144,
+  1.644,
+  0.083
+ ],
+ "source": "SVG/npc/npc-izgnanny-episkop.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "convex hull of the alpha silhouette",
+ "noInteract": false,
+ "noLoot": false
+}

@@ -1,0 +1,16 @@
+{
+ "id": "loc-plan-obiteli",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 726,
+ "bbox_m": [
+  5.333,
+  3,
+  0.681
+ ],
+ "source": "SVG/loc/loc-plan-obiteli.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

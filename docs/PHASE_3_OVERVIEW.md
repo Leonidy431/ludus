@@ -44,7 +44,7 @@
 **Usage:** For quick reference during testing, not detailed execution
 
 ### 3. Test Execution Log Template (600+ lines)
-**File:** `PHASE_3_TEST_LOG.md`
+**File:** `docs/reports/PHASE_3_TEST_LOG.md`
 
 **Designed for Live Recording:**
 - 📋 Oct 1 pre-deployment validation (with fill-in sections)
@@ -346,7 +346,7 @@ Friday Oct 5
              └─ Audio quality check
 
 14:00-17:00  Results compilation
-             ├─ Fill out PHASE_3_TEST_LOG.md
+             ├─ Fill out docs/reports/PHASE_3_TEST_LOG.md
              ├─ Summarize critical issues
              └─ Calculate pass rates
 
@@ -365,17 +365,17 @@ Friday Oct 5
 
 ### For Execution:
 
-1. **PHASE_3_DEPLOYMENT_CHECKLIST.md** (1000+ lines)
+1. **docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md** (1000+ lines)
    - Use when you want detailed step-by-step instructions
    - Includes all expected outputs and error handling
    - Comprehensive troubleshooting guide
 
-2. **PHASE_3_QUICK_START.md** (180+ lines)
+2. **docs/reports/PHASE_3_QUICK_START.md** (180+ lines)
    - Use for quick reference during testing
    - One-liner commands and success metrics
    - Troubleshooting quick links
 
-3. **PHASE_3_TEST_LOG.md** (600+ lines)
+3. **docs/reports/PHASE_3_TEST_LOG.md** (600+ lines)
    - Print and fill in during testing
    - Tracks actual results vs expected results
    - Captures performance metrics
@@ -419,11 +419,11 @@ Friday Oct 5
 ```
 ludus/
 ├── docs/
-│   ├── PHASE_3_DEPLOYMENT_CHECKLIST.md   (1000+ lines)
-│   ├── PHASE_3_QUICK_START.md            (180+ lines)
+│   ├── docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md   (1000+ lines)
+│   ├── docs/reports/PHASE_3_QUICK_START.md            (180+ lines)
 │   └── PHASE_3_OVERVIEW.md               (this file)
 │
-├── PHASE_3_TEST_LOG.md                   (600+ lines, fill-in template)
+├── docs/reports/PHASE_3_TEST_LOG.md                   (600+ lines, fill-in template)
 │
 ├── functions/
 │   ├── src/
@@ -460,9 +460,9 @@ webtypicon2/
 - ✅ Security checklist
 
 **What to Do Oct 1:**
-1. Read `PHASE_3_QUICK_START.md` (5 min)
-2. Follow `PHASE_3_DEPLOYMENT_CHECKLIST.md` sections 1–3 (2.5 hours)
-3. Fill in `PHASE_3_TEST_LOG.md` as you go
+1. Read `docs/reports/PHASE_3_QUICK_START.md` (5 min)
+2. Follow `docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md` sections 1–3 (2.5 hours)
+3. Fill in `docs/reports/PHASE_3_TEST_LOG.md` as you go
 4. Make go/no-go decision Oct 5
 
 **Next Phase:** Phase 4 (Voice Recording) starts Oct 2 if Phase 3 green

@@ -1,0 +1,16 @@
+{
+ "id": "loc-led-zaliva",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 498,
+ "bbox_m": [
+  5.337,
+  3,
+  0.441
+ ],
+ "source": "SVG/loc/loc-led-zaliva.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

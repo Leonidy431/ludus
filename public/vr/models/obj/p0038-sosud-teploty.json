@@ -1,0 +1,23 @@
+{
+ "id": "p0038-sosud-teploty",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 408,
+ "bbox_m": [
+  0.06,
+  0.12,
+  0.06
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#37",
+ "name": "Сосуд теплоты",
+ "type": "предмет",
+ "storyline": "37 духовный",
+ "box": "капсула 0.12м, тайминг",
+ "shape": "capsule",
+ "size_m": 0.12,
+ "method": "primitive-from-box-field",
+ "collider": "capsule 0.12 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

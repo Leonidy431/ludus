@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Слиток серебра — вес, а не жадность">
+  <title>Слиток серебра</title>
+  <desc>Форма: литой слиток-сом с клеймом мастера и отсечённый кусок для расчёта. Действие: честный вес в армянской фактории и в мастерской. Цель: труд и мера против сребролюбия. Миссии: 2 «Армянская фактория», 81 «Обработка серебра и золота».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. -->
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="#1a0e04" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- слиток-«сом»: трапеция с гранью -->
+  <path d="M20 60 L30 40 H66 L76 60 Z" fill="#8a6a34" stroke="#e8c87a" stroke-width="2"/>
+  <path d="M30 40 L34 46 H62 L66 40" fill="none" stroke="#c8a56a" stroke-width="1.4"/>
+  <path d="M34 46 L28 60 M62 46 L68 60" stroke="#c8a56a" stroke-width="1.2"/>
+  <!-- клеймо мастера: круг с крестовиной меры -->
+  <circle cx="48" cy="53" r="5" fill="#2a1808" stroke="#e8c87a" stroke-width="1.4"/>
+  <path d="M48 50 v6 M45 53 h6" stroke="#e8c87a" stroke-width="1"/>
+  <!-- отсечённый кусок для расчёта -->
+  <path d="M60 70 L66 64 H76 L72 72 Z" fill="#8a6a34" stroke="#e8c87a" stroke-width="1.5"/>
+  <!-- зарубка зубила и блик -->
+  <path d="M24 72 L40 66" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M36 43 H46" stroke="#e8c87a" stroke-width="1.5" opacity=".8"/>
+</svg>

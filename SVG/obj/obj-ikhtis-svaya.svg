@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Свая причала со знаком Ихтис">
+  <title>Свая причала со знаком Ихтис</title>
+  <desc>ФОРМА: дубовая свая причала, обмотанная канатом, на ней вырезана рыба-ИХТИС. ДЕЙСТВИЕ: знак указывает своим, где причалить и где найти христиан, его находят и читают, не ломают. ЦЕЛЬ: древний тайный знак веры в опасное время — Христос как рыба в воде. Миссия 16.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, двойная рамка-картуш -->
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="#1a0e04" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- вода у сваи -->
+  <path d="M8 66 H88 V86 Q88 88 86 88 H10 Q8 88 8 86 Z" fill="#0d2a3a"/>
+  <g stroke="#1f5a73" stroke-width="1.4" fill="none">
+    <path d="M14 72 q6 -3 12 0 M62 74 q6 -3 12 0 M30 82 q6 -3 12 0 M58 84 q5 -2 10 0"/>
+  </g>
+  <!-- свая -->
+  <path d="M38 14 H58 V76 H38 Z" fill="#3a2410" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M38 14 Q48 10 58 14" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M43 20 V70 M53 18 V72" stroke="#2a1808" stroke-width="1"/>
+  <!-- канат, обмотанный вокруг -->
+  <g stroke="#e8c87a" stroke-width="1.8" fill="none">
+    <path d="M36 24 L60 28 M36 28 L60 32"/>
+  </g>
+  <path d="M60 30 Q70 34 72 44" stroke="#e8c87a" stroke-width="1.5" fill="none"/>
+  <!-- резная рыба-ихтис -->
+  <path d="M41 48 Q48 40 54 48 L57 44 L57 52 L54 48 Q48 56 41 48 Z" fill="none" stroke="#e8c87a" stroke-width="1.8"/>
+  <circle cx="44.5" cy="47.5" r=".9" fill="#e8c87a"/>
+</svg>

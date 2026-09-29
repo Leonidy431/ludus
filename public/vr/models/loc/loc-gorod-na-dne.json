@@ -1,0 +1,16 @@
+{
+ "id": "loc-gorod-na-dne",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 880,
+ "bbox_m": [
+  5.36,
+  3,
+  0.521
+ ],
+ "source": "SVG/loc/loc-gorod-na-dne.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

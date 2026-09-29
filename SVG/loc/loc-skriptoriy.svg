@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Скрипторий обители — пюпитры, полки с кодексами и свет из окна">
+  <title>Скрипторий обители</title>
+  <desc>Форма: сводчатая палата с полками кодексов, два пюпитра и узкое окно, из которого падает свет. Действие: брат переписывает и сверяет рукописи — водные записи, грамоты, дорожники, хроники. Цель: память, хранимая трудом и смирением, а не присвоением знания. Миссии: 45 «Гидрологический архив», 62 «Эксперты по праву», 77 «Библиотека торговых маршрутов», 86 «Хроника диаспоры», 92 «Режим историка».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. Локация обители. -->
+  <rect width="320" height="180" fill="#1a0e04"/>
+  <!-- свод палаты -->
+  <path d="M10 180 V60 Q160 -6 310 60 V180" fill="#2a1808" stroke="#8a6a34" stroke-width="2"/>
+  <path d="M24 180 V66 Q160 8 296 66 V180" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".5"/>
+  <!-- узкое окно и луч света сверху -->
+  <path d="M152 70 V40 Q160 30 168 40 V70 Z" fill="#e8c87a" opacity=".85" stroke="#8a6a34" stroke-width="1.5"/>
+  <path d="M152 70 L120 160 H212 L168 70 Z" fill="#e8c87a" opacity=".08"/>
+  <!-- полки с кодексами слева -->
+  <g stroke="#8a6a34" stroke-width="2">
+    <path d="M36 80 H104 M36 108 H104 M36 136 H104"/>
+  </g>
+  <g fill="#1a0e04" stroke="#c8a56a" stroke-width="1.2">
+    <rect x="40" y="64" width="9" height="16"/><rect x="50" y="66" width="8" height="14"/>
+    <rect x="59" y="62" width="10" height="18"/><rect x="74" y="67" width="8" height="13"/>
+    <rect x="42" y="92" width="10" height="16"/><rect x="53" y="94" width="8" height="14"/>
+    <rect x="66" y="90" width="9" height="18"/><rect x="80" y="93" width="10" height="15"/>
+    <rect x="40" y="122" width="8" height="14"/><rect x="50" y="120" width="10" height="16"/>
+    <rect x="70" y="121" width="9" height="15"/><rect x="82" y="123" width="12" height="13"/>
+  </g>
+  <!-- свитки, лёжа на полке -->
+  <g fill="#c8a56a" stroke="#8a6a34" stroke-width="1">
+    <rect x="84" y="74" width="16" height="5" rx="2.5"/>
+    <rect x="58" y="130" width="10" height="5" rx="2.5"/>
+  </g>
+  <!-- пюпитр с раскрытым кодексом в луче света -->
+  <g stroke="#c8a56a" stroke-width="2" fill="none">
+    <path d="M166 160 V124 M156 160 h20"/>
+  </g>
+  <path d="M146 124 L166 114 L186 124 L166 130 Z" fill="#e8d9b8" stroke="#8a6a34" stroke-width="1.5"/>
+  <path d="M166 114 V130" stroke="#8a6a34" stroke-width="1"/>
+  <g stroke="#8a6a34" stroke-width=".8">
+    <path d="M152 122 L162 117 M154 125 L163 120 M170 117 L180 122 M169 120 L178 125"/>
+  </g>
+  <!-- второй пюпитр справа, чернильница и перо -->
+  <g stroke="#c8a56a" stroke-width="2" fill="#2a1808">
+    <path d="M232 160 V130 M222 160 h20" fill="none"/>
+    <path d="M216 130 L248 120 L250 128 L218 138 Z"/>
+  </g>
+  <rect x="252" y="118" width="6" height="7" fill="#1a0e04" stroke="#e8c87a" stroke-width="1.2"/>
+  <path d="M256 118 L264 102" stroke="#e8c87a" stroke-width="1.5"/>
+  <!-- сундук с грамотами у стены -->
+  <rect x="262" y="140" width="30" height="20" rx="2" fill="#2a1808" stroke="#c8a56a" stroke-width="1.6"/>
+  <path d="M277 140 V160" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- пол -->
+  <path d="M10 160 H310" stroke="#8a6a34" stroke-width="2"/>
+  <!-- лампада у полок -->
+  <path d="M120 52 V62 M114 62 Q120 72 126 62 Z" stroke="#8a6a34" stroke-width="1.4" fill="#c8a56a"/>
+  <circle cx="120" cy="58" r="6" fill="#e8c87a" opacity=".15"/>
+</svg>

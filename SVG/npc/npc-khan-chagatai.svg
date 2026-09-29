@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Хан Чагатайского улуса — владыка Алмалыка">
+  <title>Хан Чагатайского улуса</title>
+  <desc>Форма: хан Чагатайского улуса (ставка в Алмалыке), в отличие от хана Улуса Джучи: высокая шапка с загнутыми полями и пером, плащ с узором облаков, в руке пайцза — ярлык охранной власти, за спиной балдахин ставки. Действие: скрепляет договор с обителью и мирным караваном. Цель: слово, данное перед властью, хранится честно с обеих сторон. Нарисован как правитель, с уважением. Миссия: 46 «Договор с улусом».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш, без нимбов. Парный к npc-khan.svg
+       (Улус Джучи); отличие — шапка, пайцза, балдахин. -->
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- балдахин ставки -->
+  <path d="M12 20 Q50 8 88 20 V26 Q50 16 12 26 Z" fill="#2a1808" stroke="#8a6a34" stroke-width="1.5"/>
+  <path d="M16 26 V130 M84 26 V130" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- голова -->
+  <circle cx="50" cy="42" r="11" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- высокая шапка с загнутыми полями и пером -->
+  <path d="M42 34 L44 20 H56 L58 34 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M36 36 Q38 30 42 32 H58 Q62 30 64 36 Q50 32 36 36 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1"/>
+  <path d="M56 20 Q64 12 66 6" fill="none" stroke="#e8c87a" stroke-width="1.6"/>
+  <!-- усы, косицы за ушами -->
+  <path d="M44 47 Q50 50 56 47" fill="none" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M39 44 Q37 52 38 58 M61 44 Q63 52 62 58" fill="none" stroke="#8a6a34" stroke-width="1.8"/>
+  <!-- плащ с узором облаков -->
+  <path d="M50 54 C30 60 26 86 28 130 H72 C74 86 70 60 50 54 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <g fill="none" stroke="#8a6a34" stroke-width="1.2">
+    <path d="M34 80 q4 -4 8 0 q4 -4 8 0 M52 104 q4 -4 8 0 q4 -4 8 0 M34 118 q4 -4 8 0"/>
+  </g>
+  <path d="M50 54 V130" stroke="#e8c87a" stroke-width="1.5" opacity=".6"/>
+  <!-- пайцза: ярлык охранной власти на шнуре -->
+  <path d="M60 66 Q66 74 64 82" fill="none" stroke="#c8a56a" stroke-width="1"/>
+  <rect x="58" y="82" width="12" height="20" rx="6" fill="#e8c87a" stroke="#8a6a34" stroke-width="1.2"/>
+  <circle cx="64" cy="87" r="1.5" fill="#1a0e04"/>
+  <path d="M61 92 H67 M61 96 H67" stroke="#8a6a34" stroke-width="1"/>
+  <!-- пояс с бляхами -->
+  <path d="M31 106 H56" stroke="#8a6a34" stroke-width="3.5"/>
+  <g fill="#e8c87a"><circle cx="36" cy="106" r="1.5"/><circle cx="44" cy="106" r="1.5"/><circle cx="52" cy="106" r="1.5"/></g>
+</svg>

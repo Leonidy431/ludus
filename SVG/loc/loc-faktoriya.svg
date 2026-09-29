@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Армянская фактория: лавка-склад с тюками и конторкой писца">
+  <title>Армянская фактория</title>
+  <desc>Форма: торговый двор армянских купцов — аркада склада с тюками шёлка и хлопка, весы на перекладине, конторка писца с раскрытой книгой счетов, чернильницей и свечой, кувшины масла у стены. Действие: вести честный счёт и держать слово перед единоверцами и чужими. Цель: купец диаспоры — союзник миссии; мерило верное (Притч. 11:1) важнее прибыли. Миссия: 2 Армянская фактория.</desc>
+  <!-- Арт-канон §9.0: умбра+золото. Локация миссии 2: фактория армянской общины на Шёлковом пути. -->
+  <defs>
+    <linearGradient id="faktoriya-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#faktoriya-nebo)"/>
+  <!-- стена двора и пол -->
+  <rect width="320" height="138" fill="#1a0e04" opacity=".55"/>
+  <rect y="138" width="320" height="42" fill="#241405"/>
+  <path d="M0 138 H320" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- аркада склада -->
+  <g fill="#140a02" stroke="#c8a56a" stroke-width="2">
+    <path d="M16 138 V76 Q46 48 76 76 V138"/>
+    <path d="M84 138 V76 Q114 48 144 76 V138"/>
+  </g>
+  <path d="M8 40 H152" stroke="#8a6a34" stroke-width="2"/>
+  <!-- тюки в арках -->
+  <g fill="#8a6a34" stroke="#e8c87a" stroke-width="1.5">
+    <rect x="22" y="112" width="24" height="26" rx="3"/><rect x="48" y="118" width="22" height="20" rx="3"/>
+    <rect x="30" y="92" width="26" height="20" rx="3"/><rect x="92" y="114" width="26" height="24" rx="3"/>
+  </g>
+  <g stroke="#1a0e04" stroke-width="1.5"><path d="M34 112 V138 M59 118 V138 M43 92 V112 M105 114 V138 M22 125 H46 M92 126 H118"/></g>
+  <!-- кувшины масла -->
+  <g fill="#2a1808" stroke="#c8a56a" stroke-width="1.5">
+    <path d="M124 138 Q118 126 124 118 H132 Q138 126 132 138 Z"/><path d="M136 138 Q132 130 136 124 H142 Q146 130 142 138 Z"/>
+  </g>
+  <!-- весы на перекладине -->
+  <path d="M170 30 V56 M150 56 H190" stroke="#e8c87a" stroke-width="2"/>
+  <path d="M150 56 L144 72 H156 Z M190 56 L184 72 H196 Z" fill="none" stroke="#e8c87a" stroke-width="1.5"/>
+  <!-- конторка писца -->
+  <path d="M214 94 L284 84 L286 94 L216 104 Z" fill="#8a6a34" stroke="#e8c87a" stroke-width="1.8"/>
+  <path d="M222 102 V150 M278 94 V150 M222 130 H278" stroke="#c8a56a" stroke-width="2"/>
+  <!-- книга счетов -->
+  <path d="M228 96 L250 92 L272 88 L270 80 L250 84 L230 88 Z" fill="#e8d9b8" opacity=".7" stroke="#2a1808" stroke-width="1"/>
+  <path d="M250 84 V92" stroke="#2a1808" stroke-width="1"/>
+  <!-- свеча и чернильница -->
+  <path d="M292 88 V70" stroke="#e8d9b8" stroke-width="3"/>
+  <path d="M292 60 Q295 65 292 69 Q289 65 292 60 Z" fill="#e8c87a"/>
+  <circle cx="292" cy="66" r="12" fill="#e8c87a" opacity=".12"/>
+  <rect x="274" y="80" width="6" height="5" fill="#140a02" stroke="#c8a56a" stroke-width="1"/>
+  <path d="M278 80 L286 66" stroke="#e8c87a" stroke-width="1.2"/>
+  <!-- табурет писца -->
+  <path d="M234 150 V136 H258 V150" fill="none" stroke="#8a6a34" stroke-width="2"/>
+</svg>

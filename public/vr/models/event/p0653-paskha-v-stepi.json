@@ -1,0 +1,23 @@
+{
+ "id": "p0653-paskha-v-stepi",
+ "kind": "event",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  0.1,
+  0.1,
+  0.1
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#652",
+ "name": "Пасха в степи",
+ "type": "событие",
+ "storyline": "29,91 spiritual",
+ "box": "свеча: box 0.1м",
+ "shape": "box",
+ "size_m": 0.1,
+ "method": "primitive-from-box-field",
+ "collider": "box 0.1 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

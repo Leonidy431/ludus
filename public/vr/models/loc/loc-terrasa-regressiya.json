@@ -1,0 +1,16 @@
+{
+ "id": "loc-terrasa-regressiya",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 704,
+ "bbox_m": [
+  5.334,
+  3,
+  0.54
+ ],
+ "source": "SVG/loc/loc-terrasa-regressiya.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

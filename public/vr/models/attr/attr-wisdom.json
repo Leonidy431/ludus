@@ -1,0 +1,16 @@
+{
+ "id": "attr-wisdom",
+ "kind": "attr",
+ "lod": "proxy",
+ "tris": 556,
+ "bbox_m": [
+  0.294,
+  0.294,
+  0.026
+ ],
+ "source": "public/ludus/art/attr-wisdom.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "convex hull of the alpha silhouette",
+ "noInteract": false,
+ "noLoot": false
+}

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Топор и тесло корабела на обтёсанном бревне">
+  <title>Топор и тесло</title>
+  <desc>Форма: плотницкий топор, воткнутый в бревно, и тесло с поперечным лезвием, лежащее рядом; свежая щепа. Это орудия труда, а не оружие. Действие: корабел тешет доски для лодок и причала на верфи. Цель: терпеливый труд, которым строится общий путь по воде. Миссия: 68 «Верфи на Светлом Мысу».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. -->
+  <defs>
+    <radialGradient id="topor-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#topor-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- обтёсанное бревно -->
+  <path d="M12 60 H78 V74 H12 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.6"/>
+  <ellipse cx="80" cy="67" rx="5" ry="7" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.4"/>
+  <g fill="none" stroke="#8a6a34" stroke-width="1"><ellipse cx="80" cy="67" rx="2.5" ry="3.5"/></g>
+  <path d="M16 64 H70" stroke="#2a1808" stroke-width="1" opacity=".6"/>
+  <!-- топор, воткнутый в бревно -->
+  <path d="M34 60 L50 22" stroke="#c8a56a" stroke-width="3" stroke-linecap="round"/>
+  <path d="M26 52 Q24 62 34 64 L40 56 Z" fill="#e8c87a" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- тесло: рукоять и поперечное лезвие -->
+  <path d="M52 56 L80 36" stroke="#c8a56a" stroke-width="3" stroke-linecap="round"/>
+  <path d="M76 30 Q84 32 86 40 L80 40 Q78 36 74 35 Z" fill="#e8c87a" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- щепа -->
+  <g fill="#e8d9b8" stroke="#8a6a34" stroke-width=".6">
+    <path d="M20 80 l8 -2 -1 3 Z"/><path d="M52 82 l9 -1 -2 3 Z"/><path d="M66 80 l6 -3 0 3 Z"/>
+  </g>
+</svg>
