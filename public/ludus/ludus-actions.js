@@ -144,8 +144,26 @@
         };
       }
     });
+    // Meetings with the eight passions, kept by the server with the
+    // rule (op passionEnd); the same shape as normalizeRecord() in
+    // ludus-passion.js, so the road reads either source.
+    const passions = {};
+    const srcPa = src.passions && typeof src.passions === 'object'
+      ? src.passions : {};
+    Object.keys(srcPa).forEach((id) => {
+      const item = srcPa[id];
+      if (/^[a-z]{1,20}$/.test(id) && item && typeof item === 'object') {
+        passions[id] = {
+          meetings: Math.floor(num(item.meetings)),
+          overcome: Math.floor(num(item.overcome)),
+          captive: Math.floor(num(item.captive)),
+          discerned: item.discerned === true,
+        };
+      }
+    });
     return {
       practices,
+      passions,
       prayerCount: Math.floor(num(src.prayerCount)),
       fastDays: Math.floor(num(src.fastDays)),
       meditationHours: num(src.meditationHours),

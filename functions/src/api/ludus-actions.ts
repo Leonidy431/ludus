@@ -39,7 +39,22 @@ export interface Actions {
   gifts: Record<string, true>;
   practices: Record<string, { count: number; lastDay: string | null;
     lastAt: number }>;
+  passions: Record<string, PassionRecord>;
 }
+
+// Meetings with the eight passions on the road (public/ludus/
+// ludus-passion.js).  Only the outcome is kept, never what the player
+// chose to "say" to the thought, the same as the record on the device.
+export interface PassionRecord {
+  meetings: number;
+  overcome: number;
+  captive: number;
+  discerned: boolean;
+}
+
+// Evagrius' order, as in public/ludus/data/passions.json.
+export const PASSIONS = ['gluttony', 'lust', 'avarice', 'sadness', 'anger',
+  'acedia', 'vainglory', 'pride'];
 
 interface Practice {
   id: string;
@@ -136,8 +151,23 @@ export function normalize(raw: unknown): Actions {
       };
     }
   });
+  const passions: Actions['passions'] = {};
+  const srcPa = (src.passions && typeof src.passions === 'object'
+    ? src.passions : {}) as Record<string, Record<string, unknown>>;
+  PASSIONS.forEach((id) => {
+    const item = srcPa[id];
+    if (item && typeof item === 'object') {
+      passions[id] = {
+        meetings: Math.floor(num(item.meetings)),
+        overcome: Math.floor(num(item.overcome)),
+        captive: Math.floor(num(item.captive)),
+        discerned: item.discerned === true,
+      };
+    }
+  });
   return {
     practices,
+    passions,
     prayerCount: Math.floor(num(src.prayerCount)),
     fastDays: Math.floor(num(src.fastDays)),
     meditationHours: num(src.meditationHours),
@@ -167,7 +197,8 @@ export type Op =
   | { op: 'keepFast'; day: string }
   | { op: 'addStillness' }
   | { op: 'recordMeeting'; npcId: string }
-  | { op: 'acceptGift'; gateId: string };
+  | { op: 'acceptGift'; gateId: string }
+  | { op: 'passionEnd'; passion: string; end: string; named?: boolean };
 
 export class ActionError extends Error {
   constructor(public status: number, message: string) {
@@ -275,6 +306,31 @@ export function applyOp(current: Actions, input: Op, now: number,
       next.gifts[gate.id] = true;
       return next;
     }
+    case 'passionEnd': {
+      // The encounter runs in the browser; the server keeps its outcome
+      // with the same rule as finish() in ludus-passion.js.  Nothing
+      // here is a score: "discerned" only marks that the passion was
+      // named at its first stage, which the Wisdom +1 depends on.
+      if (!PASSIONS.includes(input.passion)) {
+        throw new ActionError(400, 'unknown passion');
+      }
+      if (!['virtue', 'captive', 'left'].includes(input.end)) {
+        throw new ActionError(400, 'end must be virtue, captive or left');
+      }
+      const item = next.passions[input.passion] || { meetings: 0,
+        overcome: 0, captive: 0, discerned: false };
+      item.meetings += 1;
+      if (input.end === 'virtue') {
+        item.overcome += 1;
+        if (input.named === true) {
+          item.discerned = true;
+        }
+      } else if (input.end === 'captive') {
+        item.captive += 1;
+      }
+      next.passions[input.passion] = item;
+      return next;
+    }
     default:
       throw new ActionError(400, 'unknown op');
   }
@@ -342,6 +398,7 @@ export async function ludusActions(req: Request, res: Response):
         npcId: 'npcId' in input ? input.npcId : null,
         gateId: 'gateId' in input ? input.gateId : null,
         practice: input.op === 'practice' ? input.id : null,
+        passion: input.op === 'passionEnd' ? input.passion : null,
         at: admin.firestore.FieldValue.serverTimestamp(),
       });
       return next;

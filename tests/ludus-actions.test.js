@@ -76,10 +76,13 @@ test('only whole minutes of stillness count', () => {
 
 test('normalize drops tampered keys and bad values', () => {
   const a = A.normalize({ prayerCount: -5, fastDays: 'x', xp: 999,
-    met: { theodora: 2, '<img>': 1 }, gifts: { apophatic: 'yes' } });
+    met: { theodora: 2, '<img>': 1 }, gifts: { apophatic: 'yes' },
+    passions: { anger: { meetings: 2, overcome: -1, discerned: 'yes' },
+      '<b>': { meetings: 1 } } });
   assert.deepEqual(a, { practices: {}, prayerCount: 0, fastDays: 0,
     meditationHours: 0, lastFastDay: null, met: { theodora: 2 },
-    gifts: {} });
+    gifts: {}, passions: { anger: { meetings: 2, overcome: 0, captive: 0,
+      discerned: false } } });
 });
 
 test('the rule of prayer has twelve distinct practices', () => {

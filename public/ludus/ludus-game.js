@@ -406,9 +406,10 @@
       // The stored rule comes from the backend, which can read the
       // player's document; the direct read above may be refused.
       await loadServerActions();
-      // The passion record stays on the device for now; the server has
-      // no endpoint for it yet (noted in the HLD).
-      state.passionRecord = loadGuestPassions();
+      // The passion record comes back with the rule (actions.passions);
+      // a guest keeps it on the device.
+      state.passionRecord = (state.actions && state.actions.passions)
+        || loadGuestPassions();
       loadPassionData();
       loadValley();
     } else {
@@ -1348,11 +1349,17 @@
           state.playerForm, state.actions);
       }
     } else if (kind === 'passion-close' && state.encounter) {
-      const result = api.finish(state.passionRecord, state.encounter);
+      const ended = state.encounter;
+      const result = api.finish(state.passionRecord, ended);
       state.passionRecord = result.record;
       state.encounter = null;
       if (state.formSource === 'guest') {
         saveGuestPassions();
+      } else {
+        const end = ended.stage === 'virtue' || ended.stage === 'captive'
+          ? ended.stage : 'left';
+        syncAction({ op: 'passionEnd', passion: ended.passionId, end,
+          named: Boolean(ended.named) });
       }
       applyDialogueResult({ attributeBonuses: result.attributeBonuses,
         playSound: true });

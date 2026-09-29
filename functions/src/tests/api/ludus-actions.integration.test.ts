@@ -68,6 +68,18 @@ maybe('POST/GET /api/ludus/actions (Firestore emulator)', () => {
     expect(r.body.actions.prayerCount).toBe(1);
   });
 
+  it('keeps a passion encounter across a reload', async () => {
+    const r = await call('POST', { op: 'passionEnd', passion: 'gluttony',
+      end: 'virtue', named: true });
+    expect(r.status).toBe(200);
+    const again = await call('GET');
+    expect(again.body.actions.passions.gluttony).toEqual({ meetings: 1,
+      overcome: 1, captive: 0, discerned: true });
+    const log = await admin.firestore().collection('ludus_actions_log')
+      .where('passion', '==', 'gluttony').get();
+    expect(log.size).toBeGreaterThanOrEqual(1);
+  });
+
   it('answers 409 for a bow that is not due', async () => {
     const r = await call('POST', { op: 'acceptGift', gateId: 'mystical' });
     expect(r.status).toBe(409);

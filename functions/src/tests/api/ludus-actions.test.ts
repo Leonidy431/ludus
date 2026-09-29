@@ -106,6 +106,29 @@ describe('ludus actions (server)', () => {
     expect(Object.keys(a)).not.toContain('xp');
   });
 
+  it('keeps the outcome of a passion encounter, not a score', () => {
+    let a = applyOp(EMPTY, { op: 'passionEnd', passion: 'gluttony',
+      end: 'captive' }, NOW, {});
+    a = applyOp(a, { op: 'passionEnd', passion: 'gluttony', end: 'virtue',
+      named: true }, NOW, {});
+    a = applyOp(a, { op: 'passionEnd', passion: 'lust', end: 'left' },
+      NOW, {});
+    expect(a.passions.gluttony).toEqual({ meetings: 2, overcome: 1,
+      captive: 1, discerned: true });
+    expect(a.passions.lust).toEqual({ meetings: 1, overcome: 0,
+      captive: 0, discerned: false });
+    expect(normalize(JSON.parse(JSON.stringify(a))).passions)
+      .toEqual(a.passions);
+    expect(Object.keys(a)).not.toContain('wisdom');
+  });
+
+  it('rejects an unknown passion or ending', () => {
+    expectError(() => applyOp(EMPTY, { op: 'passionEnd',
+      passion: 'greed2', end: 'virtue' }, NOW, {}), 400);
+    expectError(() => applyOp(EMPTY, { op: 'passionEnd',
+      passion: 'anger', end: 'won' }, NOW, {}), 400);
+  });
+
   it('derives the player id from the uid only', () => {
     expect(playerIdForUid('abcdefghijklmnopqrstu')).toBe(
       'player-abcdefghijklmnop');
