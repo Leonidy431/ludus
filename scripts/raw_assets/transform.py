@@ -31,6 +31,7 @@ import antagonist as ant  # noqa: E402
 from form import (CANVAS, alpha_mask, colour_change, fill_holes,  # noqa
                   hitbox, hitbox_key, iou_delta, shape_delta,
                   silhouette_loss)
+import passion_fields  # noqa: E402
 
 # Palette stops copied from public/ludus/art so the plain redraw sits in
 # the same visual family as the project's own drawings.
@@ -433,6 +434,8 @@ def write_object(out, record, images):
         img.save(path, optimize=True)
     if record.get('name'):
         meta = {k: v for k, v in record.items() if k != 'local'}
+        # Rule 13: an antagonist ships with its teaching fields.
+        passion_fields.enrich(meta)
         (out / f'{record["name"]}.json').write_text(
             json.dumps(meta, ensure_ascii=False, indent=2), encoding='utf-8')
 

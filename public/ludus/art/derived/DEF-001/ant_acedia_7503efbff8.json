@@ -1397,5 +1397,11 @@
     "инвертированное поведение obstacle -> homing; 12 вариантов с попарно различными хитбоксами",
     "изменение формы по альфа-маскам (|A xor B| / |A or B|): от 69.4% до 92.1%",
     "источник: https://github.com/Card-Forge/forge @ 647b5eac95, forge-gui/res/adventure/common/sprites/enemy/undead/ghost.png #1 (GPL)"
-  ]
+  ],
+  "opposing_virtue": "Patient endurance",
+  "ladder_step": "Ladder, step 13",
+  "patristic_source": "Evagrius, Praktikos 12",
+  "discernment_cue": "It makes the day twice as long and the place hateful.",
+  "discernment_cue_ru": "Он делает день вдвое длиннее, а место ненавистным.",
+  "teacher_npc": "abba_john"
 }

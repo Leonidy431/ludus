@@ -16,6 +16,9 @@ import json
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import passion_fields  # noqa: E402
+
 MESSAGE = 'Требуется Антагонист'
 IMAGE_SUFFIXES = {'.png', '.webp', '.jpg', '.jpeg', '.gif', '.svg'}
 
@@ -31,6 +34,13 @@ def load_meta(root):
             continue
         if not isinstance(meta, dict) or 'variants' not in meta:
             continue
+        # TABOO 0.35 rule 13: a passion antagonist without its virtue,
+        # Ladder step, source and discernment cue is a deception.
+        if str(meta.get('name', '')).startswith('ant_'):
+            lacking = passion_fields.missing(meta)
+            if lacking:
+                problems.append(f'{meta_path}: antagonist lacks '
+                                f'{", ".join(lacking)} (rule 13)')
         for variant in meta['variants']:
             listed[meta_path.parent / variant['file']] = variant
     return listed, problems

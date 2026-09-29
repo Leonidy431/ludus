@@ -1073,5 +1073,11 @@
     "инвертированное поведение projectile -> stationary_lure; 12 вариантов с попарно различными хитбоксами",
     "изменение формы по альфа-маскам (|A xor B| / |A or B|): от 49.4% до 84.4%",
     "источник: https://github.com/Card-Forge/forge @ 647b5eac95, forge-gui/res/adventure/common/sprites/enemy/plant/slimefoot.png #0 (GPL)"
-  ]
+  ],
+  "opposing_virtue": "Meekness",
+  "ladder_step": "Ladder, step 8",
+  "patristic_source": "Evagrius, Praktikos 11",
+  "discernment_cue": "It replays the offender's face again and again.",
+  "discernment_cue_ru": "Он снова и снова показывает лицо обидчика.",
+  "teacher_npc": "sister_catherine"
 }
