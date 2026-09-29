@@ -33,3 +33,7 @@ firestore-debug.log
 *.swp
 *.swo
 .DS_Store
+
+# Python
+__pycache__/
+*.pyc
