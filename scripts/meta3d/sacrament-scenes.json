@@ -1,0 +1,2163 @@
+[
+ {
+  "id": "sacrament-confession",
+  "title": "У аналоя",
+  "sacrament": "Покаяние",
+  "mood": "left chapel, dusk",
+  "parts": [
+   {
+    "name": "floor",
+    "shape": "box",
+    "size": [
+     8,
+     0.05,
+     8
+    ],
+    "pos": [
+     0,
+     -0.025,
+     0
+    ],
+    "color": "#3a2a1c",
+    "flags": {}
+   },
+   {
+    "name": "analoy-stand",
+    "shape": "box",
+    "size": [
+     0.1,
+     1.1,
+     0.1
+    ],
+    "pos": [
+     0,
+     0.55,
+     -1
+    ],
+    "color": "#5a3b1e",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "analoy-top",
+    "shape": "box",
+    "size": [
+     0.5,
+     0.03,
+     0.4
+    ],
+    "pos": [
+     0,
+     1.15,
+     -1
+    ],
+    "rot": [
+     -0.35,
+     0,
+     0
+    ],
+    "color": "#5a3b1e",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "analoy-cloth",
+    "shape": "box",
+    "size": [
+     0.52,
+     0.01,
+     0.42
+    ],
+    "pos": [
+     0,
+     1.17,
+     -1
+    ],
+    "rot": [
+     -0.35,
+     0,
+     0
+    ],
+    "color": "#7a1f1f",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "cross",
+    "shape": "box",
+    "size": [
+     0.04,
+     0.25,
+     0.02
+    ],
+    "pos": [
+     -0.1,
+     1.3,
+     -1.05
+    ],
+    "color": "#c8a56a",
+    "metalness": 0.6,
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "cross-bar",
+    "shape": "box",
+    "size": [
+     0.15,
+     0.03,
+     0.02
+    ],
+    "pos": [
+     -0.1,
+     1.36,
+     -1.05
+    ],
+    "color": "#c8a56a",
+    "metalness": 0.6,
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "gospel",
+    "shape": "box",
+    "size": [
+     0.2,
+     0.05,
+     0.26
+    ],
+    "pos": [
+     0.1,
+     1.22,
+     -1.0
+    ],
+    "rot": [
+     -0.35,
+     0,
+     0
+    ],
+    "color": "#c8a56a",
+    "metalness": 0.5,
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "column",
+    "shape": "cylinder",
+    "size": [
+     0.5,
+     3.2,
+     0.5
+    ],
+    "pos": [
+     0,
+     1.6,
+     -1.8
+    ],
+    "color": "#6e675c",
+    "flags": {}
+   },
+   {
+    "name": "icon-board",
+    "shape": "box",
+    "size": [
+     0.45,
+     0.6,
+     0.03
+    ],
+    "pos": [
+     0,
+     1.6,
+     -1.53
+    ],
+    "color": "#6b4a22",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "lampada-glass",
+    "shape": "cylinder",
+    "size": [
+     0.08,
+     0.1,
+     0.08
+    ],
+    "bottom": 0.05,
+    "pos": [
+     0,
+     1.9,
+     -1.35
+    ],
+    "color": "#9b1c1c",
+    "opacity": 0.8,
+    "emissive": "#ff9a3c",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "lampada-chain",
+    "shape": "box",
+    "size": [
+     0.005,
+     0.5,
+     0.005
+    ],
+    "pos": [
+     0,
+     2.1999999999999997,
+     -1.35
+    ],
+    "color": "#c8a56a",
+    "metalness": 0.6,
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "screen",
+    "shape": "box",
+    "size": [
+     1.2,
+     1.6,
+     0.04
+    ],
+    "pos": [
+     -1.2,
+     0.8,
+     -1.0
+    ],
+    "rot": [
+     0,
+     0.5,
+     0
+    ],
+    "color": "#5a3b1e",
+    "flags": {}
+   },
+   {
+    "name": "bench",
+    "shape": "box",
+    "size": [
+     1.4,
+     0.45,
+     0.35
+    ],
+    "pos": [
+     2.0,
+     0.225,
+     0.5
+    ],
+    "color": "#5a3b1e",
+    "flags": {}
+   },
+   {
+    "name": "witness-line",
+    "shape": "box",
+    "size": [
+     1.6,
+     0.005,
+     0.04
+    ],
+    "pos": [
+     0,
+     0.003,
+     -0.35
+    ],
+    "color": "#8a6a34",
+    "emissive": "#3a2a10",
+    "flags": {
+     "witnessLine": true
+    }
+   }
+  ],
+  "lights": [
+   {
+    "name": "lampada-1800K",
+    "color": "#ff9a3c",
+    "intensity": 0.8,
+    "distance": 3.0,
+    "pos": [
+     0,
+     1.95,
+     -1.35
+    ]
+   }
+  ],
+  "page": "ludus-confession",
+  "priestVisible": "far, back turned, at the royal doors",
+  "microphone": false,
+  "speechRecognition": false,
+  "logPresence": false,
+  "reward": null,
+  "attributes": null,
+  "gate": null,
+  "playerCan": [
+   "approach to the witness line",
+   "stand",
+   "bow the head (no effect)",
+   "leave"
+  ],
+  "audio": {
+   "roomTone_dBFS": -48,
+   "ison": "a cappella, vowels only",
+   "bells": "typikon only, never as feedback",
+   "digitalZero": false
+  },
+  "light": {
+   "lampada_K": 1800,
+   "instrumentLightFadeSeconds": 1.75
+  }
+ },
+ {
+  "id": "sacrament-baptism",
+  "title": "У купели",
+  "sacrament": "Крещение",
+  "mood": "Issyk-Kul shore, dawn",
+  "parts": [
+   {
+    "name": "floor",
+    "shape": "box",
+    "size": [
+     12,
+     0.05,
+     12
+    ],
+    "pos": [
+     0,
+     -0.025,
+     0
+    ],
+    "color": "#8a7a5c",
+    "flags": {}
+   },
+   {
+    "name": "lake",
+    "shape": "box",
+    "size": [
+     12,
+     0.02,
+     5
+    ],
+    "pos": [
+     0,
+     0.01,
+     -4
+    ],
+    "color": "#2a4a5a",
+    "opacity": 0.85,
+    "flags": {}
+   },
+   {
+    "name": "font-stone",
+    "shape": "cylinder",
+    "size": [
+     1.6,
+     0.5,
+     1.6
+    ],
+    "pos": [
+     0,
+     0.25,
+     -1.4
+    ],
+    "color": "#6e675c",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "font-water",
+    "shape": "cylinder",
+    "size": [
+     1.4,
+     0.02,
+     1.4
+    ],
+    "pos": [
+     0,
+     0.5,
+     -1.4
+    ],
+    "color": "#3d6b7a",
+    "opacity": 0.8,
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "white-robe",
+    "shape": "box",
+    "size": [
+     0.35,
+     0.03,
+     0.5
+    ],
+    "pos": [
+     1.0,
+     0.9,
+     -1.0
+    ],
+    "color": "#f2efe6",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "candle",
+    "shape": "cylinder",
+    "size": [
+     0.03,
+     0.3,
+     0.03
+    ],
+    "pos": [
+     0.9,
+     1.05,
+     -0.8
+    ],
+    "color": "#e8d6a8",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "candle-flame",
+    "shape": "cone",
+    "size": [
+     0.02,
+     0.04,
+     0.02
+    ],
+    "pos": [
+     0.9,
+     1.22,
+     -0.8
+    ],
+    "color": "#ffb347",
+    "emissive": "#ffb347",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "candle",
+    "shape": "cylinder",
+    "size": [
+     0.03,
+     0.3,
+     0.03
+    ],
+    "pos": [
+     -0.9,
+     1.05,
+     -0.8
+    ],
+    "color": "#e8d6a8",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "candle-flame",
+    "shape": "cone",
+    "size": [
+     0.02,
+     0.04,
+     0.02
+    ],
+    "pos": [
+     -0.9,
+     1.22,
+     -0.8
+    ],
+    "color": "#ffb347",
+    "emissive": "#ffb347",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "witness-line",
+    "shape": "box",
+    "size": [
+     5,
+     0.005,
+     0.04
+    ],
+    "pos": [
+     0,
+     0.003,
+     1.5
+    ],
+    "color": "#8a6a34",
+    "emissive": "#3a2a10",
+    "flags": {
+     "witnessLine": true
+    }
+   }
+  ],
+  "lights": [
+   {
+    "name": "dawn",
+    "color": "#ffd9a0",
+    "intensity": 1.2,
+    "distance": 12,
+    "pos": [
+     3,
+     4,
+     -6
+    ]
+   }
+  ],
+  "microphone": false,
+  "speechRecognition": false,
+  "logPresence": false,
+  "reward": null,
+  "attributes": null,
+  "gate": null,
+  "playerCan": [
+   "approach to the witness line",
+   "stand",
+   "bow the head (no effect)",
+   "leave"
+  ],
+  "audio": {
+   "roomTone_dBFS": -48,
+   "ison": "a cappella, vowels only",
+   "bells": "typikon only, never as feedback",
+   "digitalZero": false
+  },
+  "light": {
+   "lampada_K": 1800,
+   "instrumentLightFadeSeconds": 1.75
+  }
+ },
+ {
+  "id": "sacrament-chrismation",
+  "title": "В притворе",
+  "sacrament": "Миропомазание",
+  "mood": "narthex, morning",
+  "parts": [
+   {
+    "name": "floor",
+    "shape": "box",
+    "size": [
+     6,
+     0.05,
+     6
+    ],
+    "pos": [
+     0,
+     -0.025,
+     0
+    ],
+    "color": "#6e675c",
+    "flags": {}
+   },
+   {
+    "name": "analoy-stand",
+    "shape": "box",
+    "size": [
+     0.1,
+     1.1,
+     0.1
+    ],
+    "pos": [
+     0,
+     0.55,
+     -1
+    ],
+    "color": "#5a3b1e",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "analoy-top",
+    "shape": "box",
+    "size": [
+     0.5,
+     0.03,
+     0.4
+    ],
+    "pos": [
+     0,
+     1.15,
+     -1
+    ],
+    "rot": [
+     -0.35,
+     0,
+     0
+    ],
+    "color": "#5a3b1e",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "analoy-cloth",
+    "shape": "box",
+    "size": [
+     0.52,
+     0.01,
+     0.42
+    ],
+    "pos": [
+     0,
+     1.17,
+     -1
+    ],
+    "rot": [
+     -0.35,
+     0,
+     0
+    ],
+    "color": "#7a1f1f",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "chrism-vessel",
+    "shape": "cylinder",
+    "size": [
+     0.08,
+     0.14,
+     0.08
+    ],
+    "pos": [
+     0,
+     1.27,
+     -1.0
+    ],
+    "color": "#c8a56a",
+    "metalness": 0.6,
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "icon-board",
+    "shape": "box",
+    "size": [
+     0.45,
+     0.6,
+     0.03
+    ],
+    "pos": [
+     0,
+     1.6,
+     -2.4
+    ],
+    "color": "#6b4a22",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "lampada-glass",
+    "shape": "cylinder",
+    "size": [
+     0.08,
+     0.1,
+     0.08
+    ],
+    "bottom": 0.05,
+    "pos": [
+     0,
+     1.9,
+     -2.2
+    ],
+    "color": "#9b1c1c",
+    "opacity": 0.8,
+    "emissive": "#ff9a3c",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "lampada-chain",
+    "shape": "box",
+    "size": [
+     0.005,
+     0.5,
+     0.005
+    ],
+    "pos": [
+     0,
+     2.1999999999999997,
+     -2.2
+    ],
+    "color": "#c8a56a",
+    "metalness": 0.6,
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "candle",
+    "shape": "cylinder",
+    "size": [
+     0.03,
+     1.1,
+     0.03
+    ],
+    "pos": [
+     0.4,
+     0.55,
+     -0.9
+    ],
+    "color": "#e8d6a8",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "candle-flame",
+    "shape": "cone",
+    "size": [
+     0.02,
+     0.04,
+     0.02
+    ],
+    "pos": [
+     0.4,
+     1.12,
+     -0.9
+    ],
+    "color": "#ffb347",
+    "emissive": "#ffb347",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "witness-line",
+    "shape": "box",
+    "size": [
+     3,
+     0.005,
+     0.04
+    ],
+    "pos": [
+     0,
+     0.003,
+     1.0
+    ],
+    "color": "#8a6a34",
+    "emissive": "#3a2a10",
+    "flags": {
+     "witnessLine": true
+    }
+   }
+  ],
+  "lights": [
+   {
+    "name": "lampada-1800K",
+    "color": "#ff9a3c",
+    "intensity": 0.8,
+    "distance": 3.0,
+    "pos": [
+     0,
+     1.95,
+     -2.2
+    ]
+   }
+  ],
+  "microphone": false,
+  "speechRecognition": false,
+  "logPresence": false,
+  "reward": null,
+  "attributes": null,
+  "gate": null,
+  "playerCan": [
+   "approach to the witness line",
+   "stand",
+   "bow the head (no effect)",
+   "leave"
+  ],
+  "audio": {
+   "roomTone_dBFS": -48,
+   "ison": "a cappella, vowels only",
+   "bells": "typikon only, never as feedback",
+   "digitalZero": false
+  },
+  "light": {
+   "lampada_K": 1800,
+   "instrumentLightFadeSeconds": 1.75
+  }
+ },
+ {
+  "id": "sacrament-eucharist",
+  "title": "У западной стены",
+  "sacrament": "Причащение",
+  "mood": "Sunday morning, liturgy",
+  "parts": [
+   {
+    "name": "floor",
+    "shape": "box",
+    "size": [
+     10,
+     0.05,
+     14
+    ],
+    "pos": [
+     0,
+     -0.025,
+     0
+    ],
+    "color": "#3a2a1c",
+    "flags": {}
+   },
+   {
+    "name": "iconostasis",
+    "shape": "box",
+    "size": [
+     8,
+     4,
+     0.2
+    ],
+    "pos": [
+     0,
+     2,
+     -5
+    ],
+    "color": "#6b4a22",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "royal-doors-open",
+    "shape": "box",
+    "size": [
+     1.4,
+     2.4,
+     0.05
+    ],
+    "pos": [
+     0,
+     1.2,
+     -4.85
+    ],
+    "color": "#1a0e04",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "solea",
+    "shape": "box",
+    "size": [
+     6,
+     0.25,
+     1.2
+    ],
+    "pos": [
+     0,
+     0.125,
+     -4.2
+    ],
+    "color": "#6e675c",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "chalice-silhouette",
+    "shape": "cylinder",
+    "size": [
+     0.12,
+     0.25,
+     0.12
+    ],
+    "bottom": 0.08,
+    "pos": [
+     0,
+     1.35,
+     -3.8
+    ],
+    "color": "#c8a56a",
+    "metalness": 0.7,
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true,
+     "contentsHidden": true
+    }
+   },
+   {
+    "name": "lampada-glass",
+    "shape": "cylinder",
+    "size": [
+     0.08,
+     0.1,
+     0.08
+    ],
+    "bottom": 0.05,
+    "pos": [
+     -2.5,
+     2.6,
+     -4.6
+    ],
+    "color": "#9b1c1c",
+    "opacity": 0.8,
+    "emissive": "#ff9a3c",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "lampada-chain",
+    "shape": "box",
+    "size": [
+     0.005,
+     0.5,
+     0.005
+    ],
+    "pos": [
+     -2.5,
+     2.9,
+     -4.6
+    ],
+    "color": "#c8a56a",
+    "metalness": 0.6,
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "lampada-glass",
+    "shape": "cylinder",
+    "size": [
+     0.08,
+     0.1,
+     0.08
+    ],
+    "bottom": 0.05,
+    "pos": [
+     2.5,
+     2.6,
+     -4.6
+    ],
+    "color": "#9b1c1c",
+    "opacity": 0.8,
+    "emissive": "#ff9a3c",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "lampada-chain",
+    "shape": "box",
+    "size": [
+     0.005,
+     0.5,
+     0.005
+    ],
+    "pos": [
+     2.5,
+     2.9,
+     -4.6
+    ],
+    "color": "#c8a56a",
+    "metalness": 0.6,
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "west-wall",
+    "shape": "box",
+    "size": [
+     10,
+     4,
+     0.2
+    ],
+    "pos": [
+     0,
+     2,
+     6.5
+    ],
+    "color": "#6e675c",
+    "flags": {}
+   },
+   {
+    "name": "witness-line",
+    "shape": "box",
+    "size": [
+     8,
+     0.005,
+     0.04
+    ],
+    "pos": [
+     0,
+     0.003,
+     4.5
+    ],
+    "color": "#8a6a34",
+    "emissive": "#3a2a10",
+    "flags": {
+     "witnessLine": true
+    }
+   }
+  ],
+  "lights": [
+   {
+    "name": "lampada-1800K",
+    "color": "#ff9a3c",
+    "intensity": 0.8,
+    "distance": 3.0,
+    "pos": [
+     -2.5,
+     2.65,
+     -4.6
+    ]
+   },
+   {
+    "name": "lampada-1800K",
+    "color": "#ff9a3c",
+    "intensity": 0.8,
+    "distance": 3.0,
+    "pos": [
+     2.5,
+     2.65,
+     -4.6
+    ]
+   }
+  ],
+  "storyOnly": true,
+  "microphone": false,
+  "speechRecognition": false,
+  "logPresence": false,
+  "reward": null,
+  "attributes": null,
+  "gate": null,
+  "playerCan": [
+   "approach to the witness line",
+   "stand",
+   "bow the head (no effect)",
+   "leave"
+  ],
+  "audio": {
+   "roomTone_dBFS": -48,
+   "ison": "a cappella, vowels only",
+   "bells": "typikon only, never as feedback",
+   "digitalZero": false
+  },
+  "light": {
+   "lampada_K": 1800,
+   "instrumentLightFadeSeconds": 1.75
+  }
+ },
+ {
+  "id": "sacrament-ordination",
+  "title": "Память о хиротонии",
+  "sacrament": "Священство",
+  "mood": "cathedral, memory cut-scene",
+  "parts": [
+   {
+    "name": "floor",
+    "shape": "box",
+    "size": [
+     10,
+     0.05,
+     10
+    ],
+    "pos": [
+     0,
+     -0.025,
+     0
+    ],
+    "color": "#6e675c",
+    "flags": {}
+   },
+   {
+    "name": "altar-table",
+    "shape": "box",
+    "size": [
+     1.2,
+     1.0,
+     1.2
+    ],
+    "pos": [
+     0,
+     0.5,
+     -2
+    ],
+    "color": "#6b4a22",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "altar-cloth",
+    "shape": "box",
+    "size": [
+     1.3,
+     0.02,
+     1.3
+    ],
+    "pos": [
+     0,
+     1.01,
+     -2
+    ],
+    "color": "#c8a56a",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "orarion",
+    "shape": "box",
+    "size": [
+     0.06,
+     0.01,
+     1.6
+    ],
+    "pos": [
+     0.9,
+     1.02,
+     -2
+    ],
+    "color": "#c8a56a",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true,
+     "note": "sign of service, not of power"
+    }
+   },
+   {
+    "name": "lampada-glass",
+    "shape": "cylinder",
+    "size": [
+     0.08,
+     0.1,
+     0.08
+    ],
+    "bottom": 0.05,
+    "pos": [
+     0,
+     2.2,
+     -3.2
+    ],
+    "color": "#9b1c1c",
+    "opacity": 0.8,
+    "emissive": "#ff9a3c",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "lampada-chain",
+    "shape": "box",
+    "size": [
+     0.005,
+     0.5,
+     0.005
+    ],
+    "pos": [
+     0,
+     2.5,
+     -3.2
+    ],
+    "color": "#c8a56a",
+    "metalness": 0.6,
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "witness-line",
+    "shape": "box",
+    "size": [
+     6,
+     0.005,
+     0.04
+    ],
+    "pos": [
+     0,
+     0.003,
+     1.5
+    ],
+    "color": "#8a6a34",
+    "emissive": "#3a2a10",
+    "flags": {
+     "witnessLine": true
+    }
+   }
+  ],
+  "lights": [
+   {
+    "name": "lampada-1800K",
+    "color": "#ff9a3c",
+    "intensity": 0.8,
+    "distance": 3.0,
+    "pos": [
+     0,
+     2.25,
+     -3.2
+    ]
+   }
+  ],
+  "cutscene": true,
+  "microphone": false,
+  "speechRecognition": false,
+  "logPresence": false,
+  "reward": null,
+  "attributes": null,
+  "gate": null,
+  "playerCan": [
+   "approach to the witness line",
+   "stand",
+   "bow the head (no effect)",
+   "leave"
+  ],
+  "audio": {
+   "roomTone_dBFS": -48,
+   "ison": "a cappella, vowels only",
+   "bells": "typikon only, never as feedback",
+   "digitalZero": false
+  },
+  "light": {
+   "lampada_K": 1800,
+   "instrumentLightFadeSeconds": 1.75
+  }
+ },
+ {
+  "id": "sacrament-marriage",
+  "title": "Среди гостей",
+  "sacrament": "Брак",
+  "mood": "monastery church, afternoon",
+  "parts": [
+   {
+    "name": "floor",
+    "shape": "box",
+    "size": [
+     8,
+     0.05,
+     10
+    ],
+    "pos": [
+     0,
+     -0.025,
+     0
+    ],
+    "color": "#3a2a1c",
+    "flags": {}
+   },
+   {
+    "name": "analoy-stand",
+    "shape": "box",
+    "size": [
+     0.1,
+     1.1,
+     0.1
+    ],
+    "pos": [
+     0,
+     0.55,
+     -1.5
+    ],
+    "color": "#5a3b1e",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "analoy-top",
+    "shape": "box",
+    "size": [
+     0.5,
+     0.03,
+     0.4
+    ],
+    "pos": [
+     0,
+     1.15,
+     -1.5
+    ],
+    "rot": [
+     -0.35,
+     0,
+     0
+    ],
+    "color": "#5a3b1e",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "analoy-cloth",
+    "shape": "box",
+    "size": [
+     0.52,
+     0.01,
+     0.42
+    ],
+    "pos": [
+     0,
+     1.17,
+     -1.5
+    ],
+    "rot": [
+     -0.35,
+     0,
+     0
+    ],
+    "color": "#7a1f1f",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "crown-1",
+    "shape": "torus",
+    "size": [
+     0.2,
+     0.04,
+     0
+    ],
+    "pos": [
+     -0.15,
+     1.3,
+     -1.5
+    ],
+    "rot": [
+     1.2,
+     0,
+     0
+    ],
+    "color": "#c8a56a",
+    "metalness": 0.7,
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "crown-2",
+    "shape": "torus",
+    "size": [
+     0.2,
+     0.04,
+     0
+    ],
+    "pos": [
+     0.15,
+     1.3,
+     -1.5
+    ],
+    "rot": [
+     1.2,
+     0,
+     0
+    ],
+    "color": "#c8a56a",
+    "metalness": 0.7,
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "common-cup",
+    "shape": "cylinder",
+    "size": [
+     0.08,
+     0.12,
+     0.08
+    ],
+    "pos": [
+     0,
+     1.28,
+     -1.35
+    ],
+    "color": "#c8a56a",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true,
+     "note": "common cup of wine, not the Eucharist"
+    }
+   },
+   {
+    "name": "candle",
+    "shape": "cylinder",
+    "size": [
+     0.03,
+     1.2,
+     0.03
+    ],
+    "pos": [
+     -0.6,
+     0.6,
+     -1.2
+    ],
+    "color": "#e8d6a8",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "candle-flame",
+    "shape": "cone",
+    "size": [
+     0.02,
+     0.04,
+     0.02
+    ],
+    "pos": [
+     -0.6,
+     1.22,
+     -1.2
+    ],
+    "color": "#ffb347",
+    "emissive": "#ffb347",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "candle",
+    "shape": "cylinder",
+    "size": [
+     0.03,
+     1.2,
+     0.03
+    ],
+    "pos": [
+     0.6,
+     0.6,
+     -1.2
+    ],
+    "color": "#e8d6a8",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "candle-flame",
+    "shape": "cone",
+    "size": [
+     0.02,
+     0.04,
+     0.02
+    ],
+    "pos": [
+     0.6,
+     1.22,
+     -1.2
+    ],
+    "color": "#ffb347",
+    "emissive": "#ffb347",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "icon-board",
+    "shape": "box",
+    "size": [
+     0.45,
+     0.6,
+     0.03
+    ],
+    "pos": [
+     0,
+     1.8,
+     -3.5
+    ],
+    "color": "#6b4a22",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "lampada-glass",
+    "shape": "cylinder",
+    "size": [
+     0.08,
+     0.1,
+     0.08
+    ],
+    "bottom": 0.05,
+    "pos": [
+     0,
+     2.1,
+     -3.3
+    ],
+    "color": "#9b1c1c",
+    "opacity": 0.8,
+    "emissive": "#ff9a3c",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "lampada-chain",
+    "shape": "box",
+    "size": [
+     0.005,
+     0.5,
+     0.005
+    ],
+    "pos": [
+     0,
+     2.4,
+     -3.3
+    ],
+    "color": "#c8a56a",
+    "metalness": 0.6,
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "witness-line",
+    "shape": "box",
+    "size": [
+     5,
+     0.005,
+     0.04
+    ],
+    "pos": [
+     0,
+     0.003,
+     1.5
+    ],
+    "color": "#8a6a34",
+    "emissive": "#3a2a10",
+    "flags": {
+     "witnessLine": true
+    }
+   }
+  ],
+  "lights": [
+   {
+    "name": "lampada-1800K",
+    "color": "#ff9a3c",
+    "intensity": 0.8,
+    "distance": 3.0,
+    "pos": [
+     0,
+     2.15,
+     -3.3
+    ]
+   }
+  ],
+  "microphone": false,
+  "speechRecognition": false,
+  "logPresence": false,
+  "reward": null,
+  "attributes": null,
+  "gate": null,
+  "playerCan": [
+   "approach to the witness line",
+   "stand",
+   "bow the head (no effect)",
+   "leave"
+  ],
+  "audio": {
+   "roomTone_dBFS": -48,
+   "ison": "a cappella, vowels only",
+   "bells": "typikon only, never as feedback",
+   "digitalZero": false
+  },
+  "light": {
+   "lampada_K": 1800,
+   "instrumentLightFadeSeconds": 1.75
+  }
+ },
+ {
+  "id": "sacrament-unction",
+  "title": "У постели больного",
+  "sacrament": "Елеосвящение",
+  "mood": "monk's cell, night",
+  "parts": [
+   {
+    "name": "floor",
+    "shape": "box",
+    "size": [
+     5,
+     0.05,
+     5
+    ],
+    "pos": [
+     0,
+     -0.025,
+     0
+    ],
+    "color": "#3a2a1c",
+    "flags": {}
+   },
+   {
+    "name": "bed",
+    "shape": "box",
+    "size": [
+     0.9,
+     0.45,
+     2.0
+    ],
+    "pos": [
+     0,
+     0.225,
+     -1.0
+    ],
+    "color": "#5a3b1e",
+    "flags": {}
+   },
+   {
+    "name": "wheat-bowl",
+    "shape": "cylinder",
+    "size": [
+     0.35,
+     0.12,
+     0.35
+    ],
+    "pos": [
+     1.0,
+     0.86,
+     -0.4
+    ],
+    "color": "#b58a4a",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "oil-vessel",
+    "shape": "cylinder",
+    "size": [
+     0.07,
+     0.1,
+     0.07
+    ],
+    "pos": [
+     1.0,
+     0.97,
+     -0.4
+    ],
+    "color": "#c8a56a",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "table",
+    "shape": "box",
+    "size": [
+     0.5,
+     0.8,
+     0.5
+    ],
+    "pos": [
+     1.0,
+     0.4,
+     -0.4
+    ],
+    "color": "#5a3b1e",
+    "flags": {}
+   },
+   {
+    "name": "candle",
+    "shape": "cylinder",
+    "size": [
+     0.03,
+     0.18,
+     0.03
+    ],
+    "pos": [
+     1.12,
+     1.01,
+     -0.4
+    ],
+    "color": "#e8d6a8",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "candle-flame",
+    "shape": "cone",
+    "size": [
+     0.02,
+     0.04,
+     0.02
+    ],
+    "pos": [
+     1.12,
+     1.12,
+     -0.4
+    ],
+    "color": "#ffb347",
+    "emissive": "#ffb347",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "candle",
+    "shape": "cylinder",
+    "size": [
+     0.03,
+     0.18,
+     0.03
+    ],
+    "pos": [
+     1.0748185792975764,
+     1.01,
+     -0.3061800650613513
+    ],
+    "color": "#e8d6a8",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "candle-flame",
+    "shape": "cone",
+    "size": [
+     0.02,
+     0.04,
+     0.02
+    ],
+    "pos": [
+     1.0748185792975764,
+     1.12,
+     -0.3061800650613513
+    ],
+    "color": "#ffb347",
+    "emissive": "#ffb347",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "candle",
+    "shape": "cylinder",
+    "size": [
+     0.03,
+     0.18,
+     0.03
+    ],
+    "pos": [
+     0.9732969968017954,
+     1.01,
+     -0.28300876263498764
+    ],
+    "color": "#e8d6a8",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "candle-flame",
+    "shape": "cone",
+    "size": [
+     0.02,
+     0.04,
+     0.02
+    ],
+    "pos": [
+     0.9732969968017954,
+     1.12,
+     -0.28300876263498764
+    ],
+    "color": "#ffb347",
+    "emissive": "#ffb347",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "candle",
+    "shape": "cylinder",
+    "size": [
+     0.03,
+     0.18,
+     0.03
+    ],
+    "pos": [
+     0.8918834079979518,
+     1.01,
+     -0.3479346321067194
+    ],
+    "color": "#e8d6a8",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "candle-flame",
+    "shape": "cone",
+    "size": [
+     0.02,
+     0.04,
+     0.02
+    ],
+    "pos": [
+     0.8918834079979518,
+     1.12,
+     -0.3479346321067194
+    ],
+    "color": "#ffb347",
+    "emissive": "#ffb347",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "candle",
+    "shape": "cylinder",
+    "size": [
+     0.03,
+     0.18,
+     0.03
+    ],
+    "pos": [
+     0.8918841729967221,
+     1.01,
+     -0.4520669564253307
+    ],
+    "color": "#e8d6a8",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "candle-flame",
+    "shape": "cone",
+    "size": [
+     0.02,
+     0.04,
+     0.02
+    ],
+    "pos": [
+     0.8918841729967221,
+     1.12,
+     -0.4520669564253307
+    ],
+    "color": "#ffb347",
+    "emissive": "#ffb347",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "candle",
+    "shape": "cylinder",
+    "size": [
+     0.03,
+     0.18,
+     0.03
+    ],
+    "pos": [
+     0.9732987157359182,
+     1.01,
+     -0.5169916296948149
+    ],
+    "color": "#e8d6a8",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "candle-flame",
+    "shape": "cone",
+    "size": [
+     0.02,
+     0.04,
+     0.02
+    ],
+    "pos": [
+     0.9732987157359182,
+     1.12,
+     -0.5169916296948149
+    ],
+    "color": "#ffb347",
+    "emissive": "#ffb347",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "candle",
+    "shape": "cylinder",
+    "size": [
+     0.03,
+     0.18,
+     0.03
+    ],
+    "pos": [
+     1.0748199577689557,
+     1.01,
+     -0.4938188356325727
+    ],
+    "color": "#e8d6a8",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "candle-flame",
+    "shape": "cone",
+    "size": [
+     0.02,
+     0.04,
+     0.02
+    ],
+    "pos": [
+     1.0748199577689557,
+     1.12,
+     -0.4938188356325727
+    ],
+    "color": "#ffb347",
+    "emissive": "#ffb347",
+    "flags": {
+     "noLoot": true
+    }
+   },
+   {
+    "name": "icon-board",
+    "shape": "box",
+    "size": [
+     0.45,
+     0.6,
+     0.03
+    ],
+    "pos": [
+     0,
+     1.6,
+     -2.3
+    ],
+    "color": "#6b4a22",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "lampada-glass",
+    "shape": "cylinder",
+    "size": [
+     0.08,
+     0.1,
+     0.08
+    ],
+    "bottom": 0.05,
+    "pos": [
+     0,
+     1.9,
+     -2.1
+    ],
+    "color": "#9b1c1c",
+    "opacity": 0.8,
+    "emissive": "#ff9a3c",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "lampada-chain",
+    "shape": "box",
+    "size": [
+     0.005,
+     0.5,
+     0.005
+    ],
+    "pos": [
+     0,
+     2.1999999999999997,
+     -2.1
+    ],
+    "color": "#c8a56a",
+    "metalness": 0.6,
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "window",
+    "shape": "box",
+    "size": [
+     0.6,
+     0.8,
+     0.05
+    ],
+    "pos": [
+     -2.4,
+     1.5,
+     -1.0
+    ],
+    "rot": [
+     0,
+     1.5708,
+     0
+    ],
+    "color": "#1d2a3a",
+    "emissive": "#0a1422",
+    "flags": {}
+   },
+   {
+    "name": "witness-line",
+    "shape": "box",
+    "size": [
+     2,
+     0.005,
+     0.04
+    ],
+    "pos": [
+     0,
+     0.003,
+     1.6
+    ],
+    "color": "#8a6a34",
+    "emissive": "#3a2a10",
+    "flags": {
+     "witnessLine": true
+    }
+   }
+  ],
+  "lights": [
+   {
+    "name": "lampada-1800K",
+    "color": "#ff9a3c",
+    "intensity": 0.8,
+    "distance": 3.0,
+    "pos": [
+     0,
+     1.95,
+     -2.1
+    ]
+   },
+   {
+    "name": "seven-candles",
+    "color": "#ffb347",
+    "intensity": 0.6,
+    "distance": 2.5,
+    "pos": [
+     1.0,
+     1.3,
+     -0.4
+    ]
+   }
+  ],
+  "microphone": false,
+  "speechRecognition": false,
+  "logPresence": false,
+  "reward": null,
+  "attributes": null,
+  "gate": null,
+  "playerCan": [
+   "approach to the witness line",
+   "stand",
+   "bow the head (no effect)",
+   "leave"
+  ],
+  "audio": {
+   "roomTone_dBFS": -48,
+   "ison": "a cappella, vowels only",
+   "bells": "typikon only, never as feedback",
+   "digitalZero": false
+  },
+  "light": {
+   "lampada_K": 1800,
+   "instrumentLightFadeSeconds": 1.75
+  }
+ }
+]

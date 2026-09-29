@@ -1,0 +1,53 @@
+{
+ "id": "sacrament-eucharist",
+ "kind": "scene",
+ "lod": "proxy",
+ "tris": 288,
+ "bbox_m": [
+  10,
+  4.05,
+  14
+ ],
+ "title": "У западной стены",
+ "sacrament": "Причащение",
+ "mood": "Sunday morning, liturgy",
+ "storyOnly": true,
+ "microphone": false,
+ "speechRecognition": false,
+ "logPresence": false,
+ "reward": null,
+ "attributes": null,
+ "gate": null,
+ "playerCan": [
+  "approach to the witness line",
+  "stand",
+  "bow the head (no effect)",
+  "leave"
+ ],
+ "audio": {
+  "roomTone_dBFS": -48,
+  "ison": "a cappella, vowels only",
+  "bells": "typikon only, never as feedback",
+  "digitalZero": false
+ },
+ "light": {
+  "lampada_K": 1800,
+  "instrumentLightFadeSeconds": 1.75
+ },
+ "source": "scripts/meta3d/sacrament-scenes.json",
+ "method": "scene-kit-primitives",
+ "holyObjects": [
+  "iconostasis",
+  "royal-doors-open",
+  "solea",
+  "chalice-silhouette",
+  "lampada-glass",
+  "lampada-chain",
+  "lampada-glass",
+  "lampada-chain"
+ ],
+ "lights": [
+  "lampada-1800K",
+  "lampada-1800K"
+ ]
+}
