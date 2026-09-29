@@ -985,6 +985,53 @@ window.LudusAudioManager = (function () {
     applyDucking(playingLayers);
   }
 
+  // ── Stillness ──────────────────────────────────────────────────────
+  // Silence is a state of the mixer, not the absence of sound (TABOO
+  // 0.35 rule 8; TABOO 0.4 rule 2): at a holy place, in the apophatic
+  // gate or during the pause before a gate opens, the machine layers
+  // fall to -60 dBFS while room tone and breath stay near -45 dBFS.
+  // A digital zero in a headset feels like a dropout, not like peace.
+  const STILL_DUCK = 0.001;
+  let stillSource = null;
+  let stillDepth = 0;
+
+  async function enterStillness() {
+    stillDepth += 1;
+    if (stillDepth > 1 || !audioContext) {
+      return stillSource;
+    }
+    for (const name of ['music', 'sfx', 'dialogue']) {
+      smoothSet(layers[name].duck.gain, STILL_DUCK, 1.5);
+    }
+    stillSource = await playAudio(null, 'ambience',
+      { loop: true, fadeIn: 1.5, synthKey: 'room_tone' });
+    return stillSource;
+  }
+
+  // Calls nest: leaving one sacred zone inside another keeps the quiet.
+  function leaveStillness() {
+    if (stillDepth === 0) {
+      return;
+    }
+    stillDepth -= 1;
+    if (stillDepth > 0) {
+      return;
+    }
+    if (stillSource) {
+      try {
+        stillSource.stop();
+      } catch (err) {
+        // Already stopped.
+      }
+      stillSource = null;
+    }
+    applyDucking(dialogueVoices > 0 ? ['dialogue'] : []);
+  }
+
+  function isStill() {
+    return stillDepth > 0;
+  }
+
   /** Stops every voice with a short fade and releases its nodes. */
   function stopAll() {
     activeSources.slice().forEach(function (entry) {
@@ -1103,6 +1150,9 @@ window.LudusAudioManager = (function () {
     playCue,
     bellAllowed,
     stopAll,
+    enterStillness,
+    leaveStillness,
+    isStill,
     setMasterVolume,
     getMasterVolume,
     setLayerVolume,

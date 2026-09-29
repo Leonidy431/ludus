@@ -1063,6 +1063,24 @@
       },
     },
 
+    // Stillness as a mixer state (TABOO 0.35 rule 8, TABOO 0.4 rule 2):
+    // never digital zero, but room tone with a slow breath under it,
+    // the basic 4-6 s Jesus Prayer cycle of the hesychasm module.  The
+    // loop is three whole cycles, so it repeats without a seam.  The
+    // peak of 0.02 (-34 dBFS) puts the average near -48 dBFS, inside
+    // the -40...-50 band of TABOO 0.4 rule 2.
+    room_tone: {
+      meaning: 'Stillness: room tone and breath, about -48 dBFS.',
+      seconds: 3 * breathCycle(BREATH.basic), loop: true, peak: 0.02,
+      build: function (tr, rng) {
+        roomTone(tr, rng);
+        const env = breathEnvelope(BREATH.basic, 0.15);
+        noiseBed(tr, rng, 'bandpass', 0.9, function (t) {
+          return { freq: 900, gain: env(t) };
+        }, 0.6);
+      },
+    },
+
     // Looping beds (music layer).
     desert_silence: {
       meaning: 'Desert stillness: faint wind over room tone.',

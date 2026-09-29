@@ -1029,18 +1029,34 @@
   // apophatic gate has no bell at all: its sound is near-silence (TABOO
   // 0.2 item 6).  Nothing here adds to FORM.
   const GATE_SILENCE_MS = 2000;
+  // The apophatic gate: stillness only, a little longer than a breath
+  // cycle of the Athonite pattern (5 + 1 + 8 + 1 s).
+  const APOPHATIC_STILL_MS = 15000;
   function openGateRitual(gateId) {
     const clock = window.LudusLiturgicalClock;
     const day = clock ? clock.describe(new Date()) : null;
     document.dispatchEvent(new CustomEvent('ludus:gate-opened', {
       detail: { gateId, day },
     }));
+    // The pause before the bell is stillness, not a dropout: the
+    // mixer holds room tone and breath (TABOO 0.35 rule 8).  The
+    // apophatic gate never rings; its stillness simply lasts longer.
+    const audio = window.LudusAudioManager;
+    const still = audio && typeof audio.enterStillness === 'function';
+    if (still) {
+      audio.enterStillness().catch(() => {});
+    }
     if (gateId === 'apophatic') {
+      if (still) {
+        setTimeout(() => audio.leaveStillness(), APOPHATIC_STILL_MS);
+      }
       return;
     }
     setTimeout(() => {
       try {
-        const audio = window.LudusAudioManager;
+        if (still) {
+          audio.leaveStillness();
+        }
         if (audio && typeof audio.playCue === 'function') {
           audio.playCue('blagovest').catch(() => {});
         }
