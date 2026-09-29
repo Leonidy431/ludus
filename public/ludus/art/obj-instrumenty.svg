@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Инструменты мастера — резец, чекан и кисть">
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. Объект
+       II-каталога: скрещённые орудия мастерской (резец иконописца-резчика,
+       молоток-чекан, кисть) — заглавная иконка вкладки «Мастерская»
+       (проход №37): верифицированные мастера и монастыри Агоры. -->
+  <defs>
+    <radialGradient id="instr-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#instr-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- Молоток-чекан (диагональ ↘) -->
+  <g transform="rotate(40 48 48)">
+    <rect x="45.5" y="28" width="5" height="40" rx="2" fill="#c8a56a" stroke="#8a6a34" stroke-width="1"/>
+    <rect x="36" y="22" width="24" height="10" rx="2.5" fill="#e8c87a" stroke="#8a6a34" stroke-width="1.2"/>
+  </g>
+  <!-- Резец (диагональ ↙) -->
+  <g transform="rotate(-40 48 48)">
+    <rect x="45.7" y="30" width="4.6" height="26" rx="2" fill="#c8a56a" stroke="#8a6a34" stroke-width="1"/>
+    <path d="M45.7 56 L50.3 56 L48 66 Z" fill="#e8c87a" stroke="#8a6a34" stroke-width="1"/>
+  </g>
+  <!-- Кисть (вертикаль, поверх) -->
+  <rect x="46.4" y="24" width="3.2" height="34" rx="1.6" fill="#e8d9b8" stroke="#8a6a34" stroke-width=".9"/>
+  <path d="M46 58 Q48 57 50 58 L49.3 67 Q48 69.5 46.7 67 Z" fill="#8a6a34" stroke="#8a6a34" stroke-width=".8"/>
+  <path d="M47.2 66 Q48 68.5 48.8 66" fill="none" stroke="#e8c87a" stroke-width=".8"/>
+  <!-- Связующее кольцо в центре -->
+  <circle cx="48" cy="48" r="6.5" fill="none" stroke="#e8c87a" stroke-width="2"/>
+  <circle cx="48" cy="48" r="9.5" fill="none" stroke="#8a6a34" stroke-width="1" opacity=".6"/>
+</svg>

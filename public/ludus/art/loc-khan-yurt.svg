@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" role="img" aria-label="Ставка Хана">
+  <rect width="160" height="100" fill="#1a0e04"/>
+  <rect x="6" y="6" width="148" height="88" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <path d="M30 80 A50 34 0 0 1 130 80 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2.5"/>
+  <path d="M40 80 A40 26 0 0 1 120 80" fill="none" stroke="#8a6a34" stroke-width="1" stroke-dasharray="4 3"/>
+  <path d="M72 80 V62 A8 8 0 0 1 88 62 V80" fill="#1a0e04" stroke="#e8c87a" stroke-width="2"/>
+  <path d="M68 80 H92" stroke="#e8c87a" stroke-width="3"/>
+  <path d="M80 46 V22" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M80 22 q8 3 14 -2 q-6 8 -14 8 Z" fill="#c8a56a"/>
+  <circle cx="80" cy="46" r="4" fill="none" stroke="#e8c87a" stroke-width="1.5"/>
+</svg>

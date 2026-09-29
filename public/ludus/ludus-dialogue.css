@@ -314,29 +314,10 @@
   }
 }
 
-/* Light Mode */
-@media (prefers-color-scheme: light) {
-  #ludus-dialogue-container,
-  .ludus-dialogue-container {
-    --dlg-bg: #f8f8f8;
-    --dlg-text: #1a1a1a;
-    --dlg-muted: #4a4a4a;
-    --dlg-accent: #7a5c10;
-    --dlg-accent-2: #0a6f75;
-  }
-
-  .dialogue-text-box {
-    background: rgba(10, 111, 117, 0.06);
-  }
-
-  .dialogue-status {
-    color: #8a5a00;
-  }
-
-  .dialogue-continue-btn {
-    color: #fff;
-  }
-}
+/* No light-mode variant: the design system and the game scene are
+   dark-only, and a white card floating in a dark headset scene glares
+   and breaks immersion.  A light theme belongs in the design system
+   tokens first, which this file would then inherit. */
 
 /* High Contrast Mode */
 @media (prefers-contrast: more) {

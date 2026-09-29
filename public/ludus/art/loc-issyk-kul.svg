@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Иссык-Куль на закате — горное озеро, юрта на берегу">
+  <!-- Арт-канон §9.0: умбра+золото. Локация II блока кампании: Иссык-Куль —
+       горное озеро на пути дьякона. Проход №49; задел под реестр VR п.91
+       (вторая VR-сцена): 2D-фоллбэк/виньетка до появления issyk-kul.glb. -->
+  <defs>
+    <linearGradient id="ik-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="50%" stop-color="#3a2410"/>
+      <stop offset="80%" stop-color="#8a6a34"/>
+      <stop offset="100%" stop-color="#2a1808"/>
+    </linearGradient>
+    <linearGradient id="ik-voda" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8a6a34"/>
+      <stop offset="45%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#ik-nebo)"/>
+  <!-- Низкое солнце над водой -->
+  <circle cx="180" cy="92" r="14" fill="#e8c87a" opacity=".92"/>
+  <circle cx="180" cy="92" r="24" fill="#e8c87a" opacity=".16"/>
+  <!-- Дальние снежные хребты Тянь-Шаня -->
+  <path d="M0 96 L36 62 L58 84 L86 54 L118 88 L150 66 L190 92 L228 60 L258 86 L290 66 L320 90 L320 104 L0 104 Z"
+        fill="#241405"/>
+  <g fill="#e8d9b8" opacity=".8">
+    <path d="M30 68 L36 62 L42 68 L36 66 Z"/>
+    <path d="M80 60 L86 54 L92 60 L86 58 Z"/>
+    <path d="M222 66 L228 60 L234 66 L228 64 Z"/>
+  </g>
+  <!-- Озеро -->
+  <rect y="100" width="320" height="52" fill="url(#ik-voda)"/>
+  <!-- Дорожка заката на воде + волны -->
+  <g stroke="#e8c87a" stroke-width="1.6" fill="none" opacity=".55">
+    <path d="M168 108 H194"/><path d="M172 116 H190"/><path d="M175 124 H187"/>
+  </g>
+  <g stroke="#8a6a34" stroke-width="1.2" fill="none" opacity=".5">
+    <path d="M24 112 Q34 108 44 112"/><path d="M70 122 Q80 118 90 122"/>
+    <path d="M236 114 Q246 110 256 114"/><path d="M276 126 Q286 122 296 126"/>
+  </g>
+  <!-- Парус на глади -->
+  <g transform="translate(246,100)">
+    <path d="M0 6 L0 -10 L8 4 Z" fill="#e8d9b8" opacity=".85"/>
+    <path d="M-6 6 Q0 10 8 6 L6 9 L-4 9 Z" fill="#140a02"/>
+  </g>
+  <!-- Берег с юртой -->
+  <path d="M0 150 Q80 140 180 150 Q260 156 320 150 L320 180 L0 180 Z" fill="#241405"/>
+  <g transform="translate(52,138)">
+    <path d="M0 12 Q12 -4 24 12 L24 17 L0 17 Z" fill="#140a02"/>
+    <path d="M11 -1 L12 -5 L13 -1 Z" fill="#140a02"/>
+    <circle cx="12" cy="9" r="2.4" fill="#e8c87a" opacity=".85"/>
+  </g>
+  <!-- Костёр на берегу -->
+  <g transform="translate(96,156)">
+    <path d="M0 0 Q2 -6 0 -9 Q5 -6 3 0 Z" fill="#e8c87a"/>
+    <path d="M-4 2 H7 M-2 4 H5" stroke="#3a2410" stroke-width="1.6"/>
+  </g>
+</svg>

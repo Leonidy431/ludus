@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Пустыня Каракумы — барханы под палящим солнцем, саксаул и караванный след">
+  <!-- Арт-канон §9.0: умбра+золото. Ландшафтный тип Л-03 (Режиссёрский реестр
+       99, Дополнение №3, Гуру-проход №60) — переиспользуемый фон южного
+       обхода Герат↔Мерв через туркменскую пустыню. -->
+  <defs>
+    <linearGradient id="kk-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241405"/>
+      <stop offset="40%" stop-color="#5a3c14"/>
+      <stop offset="78%" stop-color="#c8945a"/>
+      <stop offset="100%" stop-color="#3a2410"/>
+    </linearGradient>
+    <linearGradient id="kk-dune1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c8945a"/>
+      <stop offset="100%" stop-color="#5a3c14"/>
+    </linearGradient>
+    <linearGradient id="kk-dune2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8a5a24"/>
+      <stop offset="100%" stop-color="#241405"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#kk-nebo)"/>
+  <!-- Палящее полуденное солнце -->
+  <circle cx="160" cy="56" r="16" fill="#f0d090" opacity=".95"/>
+  <circle cx="160" cy="56" r="30" fill="#f0d090" opacity=".18"/>
+  <!-- Дальняя барханная гряда -->
+  <path d="M0 92 Q40 78 80 90 Q120 100 160 84 Q200 70 240 88 Q280 100 320 86 L320 130 L0 130 Z" fill="url(#kk-dune2)"/>
+  <!-- Ближняя барханная гряда -->
+  <path d="M0 118 Q60 100 130 116 Q190 128 260 108 Q290 100 320 112 L320 180 L0 180 Z" fill="url(#kk-dune1)"/>
+  <!-- Гребни барханов (тонкие блики) -->
+  <g stroke="#f0d090" stroke-width="1" fill="none" opacity=".5">
+    <path d="M60 100 Q95 92 130 116"/>
+    <path d="M190 128 Q225 116 260 108"/>
+  </g>
+  <!-- Саксаул (редкий кустарник пустыни) -->
+  <g stroke="#241405" stroke-width="1.4" fill="none" opacity=".75">
+    <path d="M40 152 V138 M40 144 L34 138 M40 141 L46 136"/>
+    <path d="M270 158 V144 M270 150 L264 144 M270 147 L276 142"/>
+  </g>
+  <!-- Караванный след (цепочка следов) -->
+  <g fill="#241405" opacity=".5">
+    <circle cx="90" cy="164" r="1.6"/><circle cx="104" cy="167" r="1.6"/>
+    <circle cx="118" cy="163" r="1.6"/><circle cx="132" cy="168" r="1.6"/>
+    <circle cx="146" cy="164" r="1.6"/>
+  </g>
+</svg>

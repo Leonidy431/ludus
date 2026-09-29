@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Ступка с пестиком и травами лекаря">
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. Предмет
+       реестра «99 предметов персонажей»: ступка лекаря Мар-Авы (Табиб) —
+       [обобщённо-историч.], типовой инструмент врачевателя эпохи. -->
+  <defs>
+    <radialGradient id="stp-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#stp-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- Ступка -->
+  <path d="M28 54 Q28 72 48 74 Q68 72 68 54 L64 50 L32 50 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.6"/>
+  <ellipse cx="48" cy="50" rx="18" ry="5" fill="#140a02" stroke="#8a6a34" stroke-width="1.3"/>
+  <!-- Растёртая трава внутри -->
+  <ellipse cx="48" cy="49.5" rx="12" ry="3" fill="#5a7a3a" opacity=".55"/>
+  <!-- Пестик наклонён -->
+  <line x1="40" y1="46" x2="66" y2="26" stroke="#e8d9b8" stroke-width="3.4" stroke-linecap="round"/>
+  <ellipse cx="66" cy="24" rx="4.5" ry="3.4" fill="#c8a56a" stroke="#8a6a34" stroke-width="1"/>
+  <!-- Пучок трав рядом -->
+  <path d="M22 40 Q18 30 20 22" fill="none" stroke="#5a7a3a" stroke-width="1.6"/>
+  <path d="M25 40 Q23 28 27 20" fill="none" stroke="#6a8a48" stroke-width="1.6"/>
+  <path d="M28 40 Q29 30 32 24" fill="none" stroke="#5a7a3a" stroke-width="1.6"/>
+  <line x1="20" y1="41" x2="30" y2="41" stroke="#8a6a34" stroke-width="1.6"/>
+  <circle cx="48" cy="52" r="10" fill="#e8c87a" opacity=".1"/>
+</svg>

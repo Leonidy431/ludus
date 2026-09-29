@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Голубь с масличной ветвью — дипломатическая репутация">
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. Объект
+       II-каталога: голубь с ветвью (мир/твёрдое слово) — иконка
+       дипломатической репутации в stats-панели дашборда (проход №36). -->
+  <defs>
+    <radialGradient id="golub-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#golub-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- Корпус голубя (профиль влево, простые иконописные плоскости) -->
+  <path d="M62 52 Q54 62 40 61 Q28 60 24 50 Q30 52 36 50 Q28 46 27 39 Q34 43 41 42 Q49 41 55 45 Q61 48 62 52 Z"
+        fill="#e8c87a" stroke="#8a6a34" stroke-width="1.4"/>
+  <!-- Крыло -->
+  <path d="M40 44 Q48 34 60 34 Q54 44 46 48 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- Голова и клюв -->
+  <circle cx="26" cy="42" r="5.4" fill="#e8c87a" stroke="#8a6a34" stroke-width="1.2"/>
+  <path d="M21 42 L15.5 43.6 L21 45 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width=".8"/>
+  <circle cx="25" cy="41" r="1.1" fill="#1a0e04"/>
+  <!-- Хвост -->
+  <path d="M60 50 L74 44 L70 52 L76 54 L62 56 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- Масличная ветвь в клюве -->
+  <path d="M16 43.5 Q10 38 12 30" fill="none" stroke="#8a6a34" stroke-width="1.6"/>
+  <g fill="#c8a56a" stroke="#8a6a34" stroke-width=".6">
+    <ellipse cx="13.5" cy="36.5" rx="3" ry="1.5" transform="rotate(-40 13.5 36.5)"/>
+    <ellipse cx="11.5" cy="32" rx="3" ry="1.5" transform="rotate(-60 11.5 32)"/>
+    <ellipse cx="14.5" cy="29.5" rx="3" ry="1.5" transform="rotate(-15 14.5 29.5)"/>
+  </g>
+</svg>

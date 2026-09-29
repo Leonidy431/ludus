@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-label="Ханский ярлык">
+  <rect width="80" height="80" fill="#1a0e04"/>
+  <rect x="3" y="3" width="74" height="74" fill="none" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- вертикальный свиток ярлыка -->
+  <rect x="26" y="10" width="28" height="56" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M26 10 h28 M26 66 h28" stroke="#e8c87a" stroke-width="3"/>
+  <!-- вертикальные строки уйгурского письма (схематично) -->
+  <path d="M34 18 v14 M34 36 v10 M40 18 v20 M40 42 v12 M46 18 v10 M46 32 v18" stroke="#c8a56a" stroke-width="1.4" opacity=".75"/>
+  <!-- алая тамга-печать хана -->
+  <circle cx="47" cy="56" r="7" fill="#1a0e04" stroke="#c0504d" stroke-width="2"/>
+  <path d="M43 56 h8 M47 52 v8" stroke="#c0504d" stroke-width="1.6"/>
+</svg>

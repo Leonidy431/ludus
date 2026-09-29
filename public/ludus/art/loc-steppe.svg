@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Степь Дешт-и-Кипчака — травяное море под низким солнцем, вдали караван">
+  <!-- Арт-канон §9.0: умбра+золото. Ландшафтный тип Л-01 (Режиссёрский реестр
+       99, Дополнение №3, Гуру-проход №60) — переиспользуемый фон степного
+       коридора Золотой Орды (Сарай, кочевая ставка, путь Рубрука/Карпини). -->
+  <defs>
+    <linearGradient id="st-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="45%" stop-color="#3a2410"/>
+      <stop offset="82%" stop-color="#8a6a34"/>
+      <stop offset="100%" stop-color="#2a1808"/>
+    </linearGradient>
+    <linearGradient id="st-trava" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8a6a34"/>
+      <stop offset="100%" stop-color="#241405"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#st-nebo)"/>
+  <!-- Низкое солнце над бескрайней равниной -->
+  <circle cx="230" cy="72" r="13" fill="#e8c87a" opacity=".92"/>
+  <circle cx="230" cy="72" r="22" fill="#e8c87a" opacity=".14"/>
+  <!-- Плоский горизонт, едва заметная волнистость -->
+  <path d="M0 100 Q80 96 160 100 Q240 104 320 98 L320 180 L0 180 Z" fill="url(#st-trava)"/>
+  <!-- Ковыль / высокая трава на переднем плане -->
+  <g stroke="#e8d9b8" stroke-width="1.1" fill="none" opacity=".6">
+    <path d="M18 172 Q14 160 20 150"/><path d="M28 174 Q26 162 32 152"/>
+    <path d="M258 170 Q254 158 260 148"/><path d="M272 174 Q270 160 276 150"/>
+    <path d="M296 172 Q292 160 298 150"/>
+  </g>
+  <!-- Курганы вдали (степные могильники) -->
+  <g fill="#140a02" opacity=".7">
+    <path d="M52 100 Q60 90 68 100 Z"/>
+    <path d="M120 102 Q126 94 132 102 Z"/>
+  </g>
+  <!-- Караван силуэтом на горизонте -->
+  <g transform="translate(150,92)" fill="#140a02" opacity=".85">
+    <path d="M0 8 Q3 0 6 8 L4 8 L4 10 L2 10 L2 8 Z"/>
+    <path d="M12 8 Q15 1 18 8 L16 8 L16 10 L14 10 L14 8 Z"/>
+    <path d="M24 8 Q27 0 30 8 L28 8 L28 10 L26 10 L26 8 Z"/>
+  </g>
+  <!-- Ветер: длинные тонкие облака -->
+  <g stroke="#e8c87a" stroke-width="1" fill="none" opacity=".3">
+    <path d="M20 40 H90"/><path d="M180 30 H260"/>
+  </g>
+</svg>
