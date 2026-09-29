@@ -896,6 +896,12 @@ window.LudusAudioManager = (function () {
 
   /** Plays a catalogued SFX, falling back to its semantic cue. */
   async function playSfx(sfxKey, options = {}) {
+    const synthKey = (SFX_CATALOG[sfxKey] && SFX_CATALOG[sfxKey].cue)
+      || sfxKey;
+    if (!bellAllowed(sfxKey, options.now)
+        || !bellAllowed(synthKey, options.now)) {
+      return null;
+    }
     const sfx = SFX_CATALOG[sfxKey];
     if (!sfx) {
       throw new Error(`Unknown SFX: ${sfxKey}`);
@@ -909,7 +915,38 @@ window.LudusAudioManager = (function () {
    * Plays a sound by meaning (a key of SEMANTIC_CUES, for example
    * 'prayer_delivered' or an attribute name such as 'wisdom').
    */
+  // Which ringing order each bell cue belongs to.  Before any of them
+  // sounds, the liturgical clock is asked whether the Typikon allows that
+  // order today (CLAUDE.md TABOO 0.35 rule 9): no трезвон on Great Friday
+  // or Great Saturday, the Lenten call only on Lenten weekdays.  A cue the
+  // day does not allow is not replaced by another sound; silence is the
+  // right answer (TABOO 0.2 item 6).
+  const BELL_ORDER = {
+    blagovest: 'благовест',
+    blagovest_stroke: 'благовест',
+    monastery_bell_toll: 'благовест',
+    prayer_delivered: 'благовест',
+    meditation_bell: 'благовест',
+    trezvon: 'трезвон',
+    trezvon_motif: 'трезвон',
+    perezvon: 'перезвон',
+    perebor: 'перебор',
+    zvon_v_dvoi: 'двои',
+  };
+
+  function bellAllowed(key, now) {
+    const order = BELL_ORDER[key];
+    const clock = window.LudusLiturgicalClock;
+    if (!order || !clock) {
+      return true;
+    }
+    return clock.mayRing(order, now || new Date());
+  }
+
   async function playCue(cueKey, options = {}) {
+    if (!bellAllowed(cueKey, options.now)) {
+      return null;
+    }
     const cue = SEMANTIC_CUES[cueKey];
     if (!cue) {
       throw new Error(`Unknown cue: ${cueKey}`);
@@ -1064,6 +1101,7 @@ window.LudusAudioManager = (function () {
     playDialogue,
     playSfx,
     playCue,
+    bellAllowed,
     stopAll,
     setMasterVolume,
     getMasterVolume,
