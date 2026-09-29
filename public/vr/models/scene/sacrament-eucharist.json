@@ -9,7 +9,6 @@
   14
  ],
  "title": "У западной стены",
- "sacrament": "Причащение",
  "mood": "Sunday morning, liturgy",
  "storyOnly": true,
  "microphone": false,
@@ -27,7 +26,6 @@
  "audio": {
   "roomTone_dBFS": -48,
   "ison": "a cappella, vowels only",
-  "bells": "typikon only, never as feedback",
   "digitalZero": false
  },
  "light": {
@@ -35,6 +33,18 @@
   "instrumentLightFadeSeconds": 1.75
  },
  "operatorDecision": "Исповедь и Причащение — только издалека видно (2026-09-29)",
+ "bells": [
+  {
+   "order": "благовест",
+   "service": "литургия"
+  },
+  {
+   "order": "трезвон",
+   "service": "литургия",
+   "dayRankCondition": "по календарю; не в Великую Пятницу и Субботу"
+  }
+ ],
+ "internalRite": "Причащение",
  "source": "scripts/meta3d/sacrament-scenes.json",
  "method": "scene-kit-primitives",
  "holyObjects": [

@@ -125,14 +125,14 @@
     dialog.append(
       el('h3', { id: 'ludus-confession-h' }, 'Before confession'),
       el('p', { class: 'ludus-confession-note' },
-        'This is not the sacrament. Forgiveness is given by a priest in '
-        + 'church; here you only prepare your heart. What you write is '
+        'This is not the sacrament. God forgives; the priest reads the '
+        + 'prayer of absolution in church. Here you only prepare your heart. What you write is '
         + 'never saved, sent or logged, and it is burned when you close '
         + 'this page. If you want no digital trace at all, write on '
         + 'paper.'),
       el('p', { class: 'ludus-confession-note', lang: 'ru' },
-        'Это не таинство. Прощение даёт священник в храме; здесь вы '
-        + 'только готовите сердце. Написанное не сохраняется, не '
+        'Это не таинство. Прощает Бог; разрешительную молитву читает '
+        + 'священник в храме. Здесь вы только готовите сердце. Написанное не сохраняется, не '
         + 'отправляется и не записывается в журнал, а при закрытии '
         + 'сгорает. Если не хотите никакого цифрового следа, пишите на '
         + 'бумаге.'));

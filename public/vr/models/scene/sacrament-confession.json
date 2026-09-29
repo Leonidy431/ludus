@@ -8,11 +8,9 @@
   3.25,
   8
  ],
- "title": "У аналоя",
- "sacrament": "Покаяние",
+ "title": "Среди ожидающих",
  "mood": "left chapel, dusk",
  "page": "ludus-confession",
- "priestVisible": "at the analogion with the penitent, seen from afar",
  "microphone": false,
  "speechRecognition": false,
  "logPresence": false,
@@ -20,8 +18,8 @@
  "attributes": null,
  "gate": null,
  "playerCan": [
-  "wait on the bench behind the witness line",
-  "open the preparation page (ludus-confession.js)",
+  "sit or stand at the bench (witness line)",
+  "open the preparation page from the bench",
   "stand",
   "bow the head (no effect)",
   "leave"
@@ -29,7 +27,6 @@
  "audio": {
   "roomTone_dBFS": -48,
   "ison": "a cappella, vowels only",
-  "bells": "typikon only, never as feedback",
   "digitalZero": false
  },
  "light": {
@@ -39,6 +36,8 @@
  "witnessDistance_m": 4.5,
  "confessionAudible": false,
  "operatorDecision": "Исповедь и Причащение — только издалека видно (2026-09-29)",
+ "bells": null,
+ "internalRite": "Покаяние",
  "source": "scripts/meta3d/sacrament-scenes.json",
  "method": "scene-kit-primitives",
  "holyObjects": [

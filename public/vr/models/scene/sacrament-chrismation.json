@@ -2,15 +2,14 @@
  "id": "sacrament-chrismation",
  "kind": "scene",
  "lod": "proxy",
- "tris": 308,
+ "tris": 284,
  "bbox_m": [
   6,
-  2.5,
+  1.39,
   6
  ],
- "title": "В притворе",
- "sacrament": "Миропомазание",
- "mood": "narthex, morning",
+ "title": "У воды, в белом",
+ "mood": "same shore as baptism, right after immersion",
  "microphone": false,
  "speechRecognition": false,
  "logPresence": false,
@@ -26,13 +25,14 @@
  "audio": {
   "roomTone_dBFS": -48,
   "ison": "a cappella, vowels only",
-  "bells": "typikon only, never as feedback",
   "digitalZero": false
  },
  "light": {
   "lampada_K": 1800,
   "instrumentLightFadeSeconds": 1.75
  },
+ "bells": null,
+ "internalRite": "Миропомазание",
  "source": "scripts/meta3d/sacrament-scenes.json",
  "method": "scene-kit-primitives",
  "holyObjects": [
@@ -40,11 +40,9 @@
   "analoy-top",
   "analoy-cloth",
   "chrism-vessel",
-  "icon-board",
-  "lampada-glass",
-  "lampada-chain"
+  "font-stone"
  ],
  "lights": [
-  "lampada-1800K"
+  "dawn"
  ]
 }

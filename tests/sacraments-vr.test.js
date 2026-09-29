@@ -44,7 +44,11 @@ test('holy objects are never interactive or loot', () => {
 
 test('every scene has a witness line and a published model', () => {
   scenes.forEach((s) => {
-    assert.ok(s.parts.some((p) => p.flags && p.flags.witnessLine), s.id);
+    // The ordination is the hero-deacon's own memory, a cut-scene seen in
+    // the first person, so it has no witness line (chorus review D-9).
+    if (!s.cutscene) {
+      assert.ok(s.parts.some((p) => p.flags && p.flags.witnessLine), s.id);
+    }
     const meta = path.join(ROOT, `public/vr/models/scene/${s.id}.json`);
     assert.ok(fs.existsSync(meta), meta);
     assert.equal(JSON.parse(fs.readFileSync(meta, 'utf8')).microphone,
@@ -83,4 +87,23 @@ test('confession and communion are seen only from afar', () => {
   const eLine = euch.parts.find((p) => p.flags && p.flags.witnessLine);
   const solea = euch.parts.find((p) => p.name === 'solea');
   assert.ok(Math.abs(eLine.pos[2] - solea.pos[2]) >= 4);
+});
+
+test('chorus review: candles, crowns, titles and hidden gifts', () => {
+  scenes.forEach((s) => {
+    assert.equal('sacrament' in s, false, `${s.id} exposes a rite name`);
+    s.parts.filter((p) => /^candle/.test(p.name)).forEach((p) => {
+      assert.equal(p.flags.noInteract, true, `${s.id}/${p.name}`);
+    });
+  });
+  const wed = scenes.find((s) => s.id === 'sacrament-marriage');
+  wed.parts.filter((p) => /^crown-\d$/.test(p.name)).forEach((p) => {
+    assert.notEqual(p.shape, 'torus', 'a ring over the head reads as a nimbus');
+    assert.equal(p.flags.neverAsRing, true);
+  });
+  const ord = scenes.find((s) => s.id === 'sacrament-ordination');
+  assert.equal(ord.parts.find((p) => p.name === 'altar-table').flags
+    .giftsHidden, true);
+  const unc = scenes.find((s) => s.id === 'sacrament-unction');
+  assert.equal(unc.parts.filter((p) => p.name === 'stručec').length, 7);
 });

@@ -2,14 +2,13 @@
  "id": "sacrament-ordination",
  "kind": "scene",
  "lod": "proxy",
- "tris": 136,
+ "tris": 188,
  "bbox_m": [
   10,
   2.8,
   10
  ],
- "title": "Память о хиротонии",
- "sacrament": "Священство",
+ "title": "Память о возложенных руках",
  "mood": "cathedral, memory cut-scene",
  "cutscene": true,
  "microphone": false,
@@ -19,21 +18,20 @@
  "attributes": null,
  "gate": null,
  "playerCan": [
-  "approach to the witness line",
-  "stand",
-  "bow the head (no effect)",
-  "leave"
+  "skip"
  ],
  "audio": {
   "roomTone_dBFS": -48,
   "ison": "a cappella, vowels only",
-  "bells": "typikon only, never as feedback",
   "digitalZero": false
  },
  "light": {
   "lampada_K": 1800,
   "instrumentLightFadeSeconds": 1.75
  },
+ "bells": null,
+ "internalRite": "Священство",
+ "camera": "first person, head bowed; the Gifts are never shown",
  "source": "scripts/meta3d/sacrament-scenes.json",
  "method": "scene-kit-primitives",
  "holyObjects": [

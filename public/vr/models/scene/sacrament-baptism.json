@@ -2,14 +2,13 @@
  "id": "sacrament-baptism",
  "kind": "scene",
  "lod": "proxy",
- "tris": 368,
+ "tris": 380,
  "bbox_m": [
   12,
   1.29,
   12.5
  ],
  "title": "У купели",
- "sacrament": "Крещение",
  "mood": "Issyk-Kul shore, dawn",
  "microphone": false,
  "speechRecognition": false,
@@ -26,13 +25,14 @@
  "audio": {
   "roomTone_dBFS": -48,
   "ison": "a cappella, vowels only",
-  "bells": "typikon only, never as feedback",
   "digitalZero": false
  },
  "light": {
   "lampada_K": 1800,
   "instrumentLightFadeSeconds": 1.75
  },
+ "bells": null,
+ "internalRite": "Крещение",
  "source": "scripts/meta3d/sacrament-scenes.json",
  "method": "scene-kit-primitives",
  "holyObjects": [

@@ -1,8 +1,7 @@
 [
  {
   "id": "sacrament-confession",
-  "title": "У аналоя",
-  "sacrament": "Покаяние",
+  "title": "Среди ожидающих",
   "mood": "left chapel, dusk",
   "parts": [
    {
@@ -372,7 +371,6 @@
    }
   ],
   "page": "ludus-confession",
-  "priestVisible": "at the analogion with the penitent, seen from afar",
   "microphone": false,
   "speechRecognition": false,
   "logPresence": false,
@@ -380,8 +378,8 @@
   "attributes": null,
   "gate": null,
   "playerCan": [
-   "wait on the bench behind the witness line",
-   "open the preparation page (ludus-confession.js)",
+   "sit or stand at the bench (witness line)",
+   "open the preparation page from the bench",
    "stand",
    "bow the head (no effect)",
    "leave"
@@ -389,7 +387,6 @@
   "audio": {
    "roomTone_dBFS": -48,
    "ison": "a cappella, vowels only",
-   "bells": "typikon only, never as feedback",
    "digitalZero": false
   },
   "light": {
@@ -398,12 +395,13 @@
   },
   "witnessDistance_m": 4.5,
   "confessionAudible": false,
-  "operatorDecision": "Исповедь и Причащение — только издалека видно (2026-09-29)"
+  "operatorDecision": "Исповедь и Причащение — только издалека видно (2026-09-29)",
+  "bells": null,
+  "internalRite": "Покаяние"
  },
  {
   "id": "sacrament-baptism",
   "title": "У купели",
-  "sacrament": "Крещение",
   "mood": "Issyk-Kul shore, dawn",
   "parts": [
    {
@@ -515,7 +513,8 @@
     ],
     "color": "#e8d6a8",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -534,7 +533,8 @@
     "color": "#ffb347",
     "emissive": "#ffb347",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -552,7 +552,8 @@
     ],
     "color": "#e8d6a8",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -571,7 +572,8 @@
     "color": "#ffb347",
     "emissive": "#ffb347",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -591,6 +593,30 @@
     "emissive": "#3a2a10",
     "flags": {
      "witnessLine": true
+    }
+   },
+   {
+    "name": "mountain-stream",
+    "shape": "box",
+    "size": [
+     0.4,
+     0.03,
+     4.0
+    ],
+    "pos": [
+     0.9,
+     0.03,
+     -3.6
+    ],
+    "rot": [
+     0,
+     0.4,
+     0
+    ],
+    "color": "#3d6b7a",
+    "opacity": 0.85,
+    "flags": {
+     "note": "living water flows into the font; no light effect"
     }
    }
   ],
@@ -622,19 +648,19 @@
   "audio": {
    "roomTone_dBFS": -48,
    "ison": "a cappella, vowels only",
-   "bells": "typikon only, never as feedback",
    "digitalZero": false
   },
   "light": {
    "lampada_K": 1800,
    "instrumentLightFadeSeconds": 1.75
-  }
+  },
+  "bells": null,
+  "internalRite": "Крещение"
  },
  {
   "id": "sacrament-chrismation",
-  "title": "В притворе",
-  "sacrament": "Миропомазание",
-  "mood": "narthex, morning",
+  "title": "У воды, в белом",
+  "mood": "same shore as baptism, right after immersion",
   "parts": [
    {
     "name": "floor",
@@ -649,7 +675,7 @@
      -0.025,
      0
     ],
-    "color": "#6e675c",
+    "color": "#8a7a5c",
     "flags": {}
    },
    {
@@ -744,70 +770,6 @@
     }
    },
    {
-    "name": "icon-board",
-    "shape": "box",
-    "size": [
-     0.45,
-     0.6,
-     0.03
-    ],
-    "pos": [
-     0,
-     1.6,
-     -2.4
-    ],
-    "color": "#6b4a22",
-    "flags": {
-     "noInteract": true,
-     "noLoot": true,
-     "holy": true
-    }
-   },
-   {
-    "name": "lampada-glass",
-    "shape": "cylinder",
-    "size": [
-     0.08,
-     0.1,
-     0.08
-    ],
-    "bottom": 0.05,
-    "pos": [
-     0,
-     1.9,
-     -2.2
-    ],
-    "color": "#9b1c1c",
-    "opacity": 0.8,
-    "emissive": "#ff9a3c",
-    "flags": {
-     "noInteract": true,
-     "noLoot": true,
-     "holy": true
-    }
-   },
-   {
-    "name": "lampada-chain",
-    "shape": "box",
-    "size": [
-     0.005,
-     0.5,
-     0.005
-    ],
-    "pos": [
-     0,
-     2.1999999999999997,
-     -2.2
-    ],
-    "color": "#c8a56a",
-    "metalness": 0.6,
-    "flags": {
-     "noInteract": true,
-     "noLoot": true,
-     "holy": true
-    }
-   },
-   {
     "name": "candle",
     "shape": "cylinder",
     "size": [
@@ -822,7 +784,8 @@
     ],
     "color": "#e8d6a8",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -841,7 +804,8 @@
     "color": "#ffb347",
     "emissive": "#ffb347",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -862,18 +826,38 @@
     "flags": {
      "witnessLine": true
     }
+   },
+   {
+    "name": "font-stone",
+    "shape": "cylinder",
+    "size": [
+     1.6,
+     0.5,
+     1.6
+    ],
+    "pos": [
+     1.8,
+     0.25,
+     -1.4
+    ],
+    "color": "#6e675c",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
    }
   ],
   "lights": [
    {
-    "name": "lampada-1800K",
-    "color": "#ff9a3c",
-    "intensity": 0.8,
-    "distance": 3.0,
+    "name": "dawn",
+    "color": "#ffd9a0",
+    "intensity": 1.2,
+    "distance": 12,
     "pos": [
-     0,
-     1.95,
-     -2.2
+     3,
+     4,
+     -6
     ]
    }
   ],
@@ -892,18 +876,18 @@
   "audio": {
    "roomTone_dBFS": -48,
    "ison": "a cappella, vowels only",
-   "bells": "typikon only, never as feedback",
    "digitalZero": false
   },
   "light": {
    "lampada_K": 1800,
    "instrumentLightFadeSeconds": 1.75
-  }
+  },
+  "bells": null,
+  "internalRite": "Миропомазание"
  },
  {
   "id": "sacrament-eucharist",
   "title": "У западной стены",
-  "sacrament": "Причащение",
   "mood": "Sunday morning, liturgy",
   "parts": [
    {
@@ -959,7 +943,8 @@
     "flags": {
      "noInteract": true,
      "noLoot": true,
-     "holy": true
+     "holy": true,
+     "nothingBehind": true
     }
    },
    {
@@ -994,7 +979,7 @@
     "pos": [
      0,
      1.35,
-     -3.8
+     -3.6
     ],
     "color": "#c8a56a",
     "metalness": 0.7,
@@ -1169,19 +1154,29 @@
   "audio": {
    "roomTone_dBFS": -48,
    "ison": "a cappella, vowels only",
-   "bells": "typikon only, never as feedback",
    "digitalZero": false
   },
   "light": {
    "lampada_K": 1800,
    "instrumentLightFadeSeconds": 1.75
   },
-  "operatorDecision": "Исповедь и Причащение — только издалека видно (2026-09-29)"
+  "operatorDecision": "Исповедь и Причащение — только издалека видно (2026-09-29)",
+  "bells": [
+   {
+    "order": "благовест",
+    "service": "литургия"
+   },
+   {
+    "order": "трезвон",
+    "service": "литургия",
+    "dayRankCondition": "по календарю; не в Великую Пятницу и Субботу"
+   }
+  ],
+  "internalRite": "Причащение"
  },
  {
   "id": "sacrament-ordination",
-  "title": "Память о хиротонии",
-  "sacrament": "Священство",
+  "title": "Память о возложенных руках",
   "mood": "cathedral, memory cut-scene",
   "parts": [
    {
@@ -1217,7 +1212,8 @@
     "flags": {
      "noInteract": true,
      "noLoot": true,
-     "holy": true
+     "holy": true,
+     "giftsHidden": true
     }
    },
    {
@@ -1245,13 +1241,13 @@
     "shape": "box",
     "size": [
      0.06,
-     0.01,
-     1.6
+     0.9,
+     0.01
     ],
     "pos": [
-     0.9,
-     1.02,
-     -2
+     0,
+     1.35,
+     -0.9
     ],
     "color": "#c8a56a",
     "flags": {
@@ -1259,7 +1255,12 @@
      "noLoot": true,
      "holy": true,
      "note": "sign of service, not of power"
-    }
+    },
+    "rot": [
+     0,
+     0,
+     0.6
+    ]
    },
    {
     "name": "lampada-glass",
@@ -1306,22 +1307,24 @@
     }
    },
    {
-    "name": "witness-line",
-    "shape": "box",
+    "name": "ordinand-figure",
+    "shape": "cylinder",
     "size": [
-     6,
-     0.005,
-     0.04
+     0.45,
+     1.2,
+     0.45
     ],
     "pos": [
      0,
-     0.003,
-     1.5
+     0.6,
+     -0.9
     ],
-    "color": "#8a6a34",
-    "emissive": "#3a2a10",
+    "color": "#e8d9b8",
     "flags": {
-     "witnessLine": true
+     "npc": true,
+     "noInteract": true,
+     "noLoot": true,
+     "kneelingOneKnee": true
     }
    }
   ],
@@ -1346,27 +1349,25 @@
   "attributes": null,
   "gate": null,
   "playerCan": [
-   "approach to the witness line",
-   "stand",
-   "bow the head (no effect)",
-   "leave"
+   "skip"
   ],
   "audio": {
    "roomTone_dBFS": -48,
    "ison": "a cappella, vowels only",
-   "bells": "typikon only, never as feedback",
    "digitalZero": false
   },
   "light": {
    "lampada_K": 1800,
    "instrumentLightFadeSeconds": 1.75
-  }
+  },
+  "bells": null,
+  "internalRite": "Священство",
+  "camera": "first person, head bowed; the Gifts are never shown"
  },
  {
   "id": "sacrament-marriage",
   "title": "Среди гостей",
-  "sacrament": "Брак",
-  "mood": "monastery church, afternoon",
+  "mood": "posad parish church, afternoon",
   "parts": [
    {
     "name": "floor",
@@ -1456,11 +1457,11 @@
    },
    {
     "name": "crown-1",
-    "shape": "torus",
+    "shape": "cylinder",
     "size": [
      0.2,
-     0.04,
-     0
+     0.15,
+     0.2
     ],
     "pos": [
      -0.15,
@@ -1468,7 +1469,7 @@
      -1.5
     ],
     "rot": [
-     1.2,
+     0,
      0,
      0
     ],
@@ -1477,16 +1478,18 @@
     "flags": {
      "noInteract": true,
      "noLoot": true,
-     "holy": true
-    }
+     "holy": true,
+     "neverAsRing": true
+    },
+    "bottom": 0.18
    },
    {
     "name": "crown-2",
-    "shape": "torus",
+    "shape": "cylinder",
     "size": [
      0.2,
-     0.04,
-     0
+     0.15,
+     0.2
     ],
     "pos": [
      0.15,
@@ -1494,7 +1497,7 @@
      -1.5
     ],
     "rot": [
-     1.2,
+     0,
      0,
      0
     ],
@@ -1503,8 +1506,10 @@
     "flags": {
      "noInteract": true,
      "noLoot": true,
-     "holy": true
-    }
+     "holy": true,
+     "neverAsRing": true
+    },
+    "bottom": 0.18
    },
    {
     "name": "common-cup",
@@ -1542,7 +1547,8 @@
     ],
     "color": "#e8d6a8",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -1561,7 +1567,8 @@
     "color": "#ffb347",
     "emissive": "#ffb347",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -1579,7 +1586,8 @@
     ],
     "color": "#e8d6a8",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -1598,7 +1606,8 @@
     "color": "#ffb347",
     "emissive": "#ffb347",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -1683,6 +1692,46 @@
     "flags": {
      "witnessLine": true
     }
+   },
+   {
+    "name": "crown-cross-1",
+    "shape": "box",
+    "size": [
+     0.02,
+     0.06,
+     0.02
+    ],
+    "pos": [
+     -0.15,
+     1.41,
+     -1.5
+    ],
+    "color": "#c8a56a",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "crown-cross-2",
+    "shape": "box",
+    "size": [
+     0.02,
+     0.06,
+     0.02
+    ],
+    "pos": [
+     0.15,
+     1.41,
+     -1.5
+    ],
+    "color": "#c8a56a",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
    }
   ],
   "lights": [
@@ -1713,27 +1762,33 @@
   "audio": {
    "roomTone_dBFS": -48,
    "ison": "a cappella, vowels only",
-   "bells": "typikon only, never as feedback",
    "digitalZero": false
   },
   "light": {
    "lampada_K": 1800,
    "instrumentLightFadeSeconds": 1.75
-  }
+  },
+  "bells": [
+   {
+    "order": "трезвон",
+    "service": "венчание",
+    "dayRankCondition": "только в день, разрешённый для венчания; не в посты, Святки, Масленую и Светлую седмицы, не накануне ср/пт/вс и праздников, не 29.08 и 27.09"
+   }
+  ],
+  "internalRite": "Брак"
  },
  {
   "id": "sacrament-unction",
   "title": "У постели больного",
-  "sacrament": "Елеосвящение",
-  "mood": "monk's cell, night",
+  "mood": "infirmary cell, night",
   "parts": [
    {
     "name": "floor",
     "shape": "box",
     "size": [
-     5,
+     6,
      0.05,
-     5
+     6
     ],
     "pos": [
      0,
@@ -1796,7 +1851,8 @@
     "flags": {
      "noInteract": true,
      "noLoot": true,
-     "holy": true
+     "holy": true,
+     "note": "oil mixed with wine"
     }
    },
    {
@@ -1830,7 +1886,8 @@
     ],
     "color": "#e8d6a8",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -1849,7 +1906,8 @@
     "color": "#ffb347",
     "emissive": "#ffb347",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -1867,7 +1925,8 @@
     ],
     "color": "#e8d6a8",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -1886,7 +1945,8 @@
     "color": "#ffb347",
     "emissive": "#ffb347",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -1904,7 +1964,8 @@
     ],
     "color": "#e8d6a8",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -1923,7 +1984,8 @@
     "color": "#ffb347",
     "emissive": "#ffb347",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -1941,7 +2003,8 @@
     ],
     "color": "#e8d6a8",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -1960,7 +2023,8 @@
     "color": "#ffb347",
     "emissive": "#ffb347",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -1978,7 +2042,8 @@
     ],
     "color": "#e8d6a8",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -1997,7 +2062,8 @@
     "color": "#ffb347",
     "emissive": "#ffb347",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -2015,7 +2081,8 @@
     ],
     "color": "#e8d6a8",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -2034,7 +2101,8 @@
     "color": "#ffb347",
     "emissive": "#ffb347",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -2052,7 +2120,8 @@
     ],
     "color": "#e8d6a8",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -2071,7 +2140,8 @@
     "color": "#ffb347",
     "emissive": "#ffb347",
     "flags": {
-     "noLoot": true
+     "noLoot": true,
+     "noInteract": true
     }
    },
    {
@@ -2147,7 +2217,7 @@
      0.05
     ],
     "pos": [
-     -2.4,
+     -2.9,
      1.5,
      -1.0
     ],
@@ -2177,6 +2247,333 @@
     "emissive": "#3a2a10",
     "flags": {
      "witnessLine": true
+    }
+   },
+   {
+    "name": "gospel",
+    "shape": "box",
+    "size": [
+     0.16,
+     0.04,
+     0.2
+    ],
+    "pos": [
+     0.85,
+     0.83,
+     -0.25
+    ],
+    "color": "#c8a56a",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "cross",
+    "shape": "box",
+    "size": [
+     0.03,
+     0.14,
+     0.02
+    ],
+    "pos": [
+     1.15,
+     0.87,
+     -0.25
+    ],
+    "color": "#c8a56a",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "stručec",
+    "shape": "cylinder",
+    "size": [
+     0.01,
+     0.14,
+     0.01
+    ],
+    "pos": [
+     1.2,
+     0.9,
+     -0.4
+    ],
+    "color": "#d9c9a0",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "stručec",
+    "shape": "cylinder",
+    "size": [
+     0.01,
+     0.14,
+     0.01
+    ],
+    "pos": [
+     1.1246979603717466,
+     0.9,
+     -0.24363370350639404
+    ],
+    "color": "#d9c9a0",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "stručec",
+    "shape": "cylinder",
+    "size": [
+     0.01,
+     0.14,
+     0.01
+    ],
+    "pos": [
+     0.9554958132087371,
+     0.9,
+     -0.20501441756363528
+    ],
+    "color": "#d9c9a0",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "stručec",
+    "shape": "cylinder",
+    "size": [
+     0.01,
+     0.14,
+     0.01
+    ],
+    "pos": [
+     0.8198062264195162,
+     0.9,
+     -0.3132232521764884
+    ],
+    "color": "#d9c9a0",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "stručec",
+    "shape": "cylinder",
+    "size": [
+     0.01,
+     0.14,
+     0.01
+    ],
+    "pos": [
+     0.8198062264195162,
+     0.9,
+     -0.48677674782351166
+    ],
+    "color": "#d9c9a0",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "stručec",
+    "shape": "cylinder",
+    "size": [
+     0.01,
+     0.14,
+     0.01
+    ],
+    "pos": [
+     0.9554958132087371,
+     0.9,
+     -0.5949855824363648
+    ],
+    "color": "#d9c9a0",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "stručec",
+    "shape": "cylinder",
+    "size": [
+     0.01,
+     0.14,
+     0.01
+    ],
+    "pos": [
+     1.1246979603717466,
+     0.9,
+     -0.556366296493606
+    ],
+    "color": "#d9c9a0",
+    "flags": {
+     "noInteract": true,
+     "noLoot": true,
+     "holy": true
+    }
+   },
+   {
+    "name": "priest-figure",
+    "shape": "cylinder",
+    "size": [
+     0.45,
+     1.75,
+     0.45
+    ],
+    "pos": [
+     1.247409133863715,
+     0.875,
+     -0.3190142503906799
+    ],
+    "color": "#2a1f18",
+    "flags": {
+     "npc": true,
+     "noInteract": true,
+     "noLoot": true,
+     "standing": true
+    }
+   },
+   {
+    "name": "priest-figure",
+    "shape": "cylinder",
+    "size": [
+     0.45,
+     1.75,
+     0.45
+    ],
+    "pos": [
+     0.2910763671448629,
+     0.875,
+     0.46722140110070853
+    ],
+    "color": "#2a1f18",
+    "flags": {
+     "npc": true,
+     "noInteract": true,
+     "noLoot": true,
+     "standing": true
+    }
+   },
+   {
+    "name": "priest-figure",
+    "shape": "cylinder",
+    "size": [
+     0.45,
+     1.75,
+     0.45
+    ],
+    "pos": [
+     -0.8810485474697726,
+     0.875,
+     0.16571894218545613
+    ],
+    "color": "#2a1f18",
+    "flags": {
+     "npc": true,
+     "noInteract": true,
+     "noLoot": true,
+     "standing": true
+    }
+   },
+   {
+    "name": "priest-figure",
+    "shape": "cylinder",
+    "size": [
+     0.45,
+     1.75,
+     0.45
+    ],
+    "pos": [
+     -1.4,
+     0.875,
+     -0.9999999999999998
+    ],
+    "color": "#2a1f18",
+    "flags": {
+     "npc": true,
+     "noInteract": true,
+     "noLoot": true,
+     "standing": true
+    }
+   },
+   {
+    "name": "priest-figure",
+    "shape": "cylinder",
+    "size": [
+     0.45,
+     1.75,
+     0.45
+    ],
+    "pos": [
+     -0.8810485474697729,
+     0.875,
+     -2.165718942185456
+    ],
+    "color": "#2a1f18",
+    "flags": {
+     "npc": true,
+     "noInteract": true,
+     "noLoot": true,
+     "standing": true
+    }
+   },
+   {
+    "name": "priest-figure",
+    "shape": "cylinder",
+    "size": [
+     0.45,
+     1.75,
+     0.45
+    ],
+    "pos": [
+     0.2910763671448632,
+     0.875,
+     -2.4672214011007085
+    ],
+    "color": "#2a1f18",
+    "flags": {
+     "npc": true,
+     "noInteract": true,
+     "noLoot": true,
+     "standing": true
+    }
+   },
+   {
+    "name": "priest-figure",
+    "shape": "cylinder",
+    "size": [
+     0.45,
+     1.75,
+     0.45
+    ],
+    "pos": [
+     1.2474091338637148,
+     0.875,
+     -1.6809857496093206
+    ],
+    "color": "#2a1f18",
+    "flags": {
+     "npc": true,
+     "noInteract": true,
+     "noLoot": true,
+     "standing": true
     }
    }
   ],
@@ -2219,12 +2616,13 @@
   "audio": {
    "roomTone_dBFS": -48,
    "ison": "a cappella, vowels only",
-   "bells": "typikon only, never as feedback",
    "digitalZero": false
   },
   "light": {
    "lampada_K": 1800,
    "instrumentLightFadeSeconds": 1.75
-  }
+  },
+  "bells": null,
+  "internalRite": "Елеосвящение"
  }
 ]
