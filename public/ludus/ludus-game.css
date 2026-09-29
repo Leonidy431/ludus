@@ -845,3 +845,66 @@
     animation: none;
   }
 }
+
+/* Preparation for confession (TABOO 0.26): a quiet page in lamp light.
+   No counters, no gold of reward; the lamp token marks a holy thing. */
+.ludus-confession {
+  max-width: 40rem;
+  width: calc(100% - 2rem);
+  padding: 1.25rem;
+  border: 1px solid #8a6a34;
+  border-radius: 8px;
+  color: var(--lg-text);
+  background: #14100c;
+  box-shadow: 0 0 2.5rem rgba(255, 154, 60, 0.18);
+}
+
+.ludus-confession::backdrop {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.ludus-confession h3 {
+  margin-top: 0;
+  color: var(--ludus-light-lampada, #ff9a3c);
+}
+
+.ludus-confession-note {
+  color: var(--lg-muted);
+  font-size: 0.875rem;
+}
+
+.ludus-confession-questions li {
+  margin-bottom: 0.4rem;
+}
+
+.ludus-confession-ru {
+  display: block;
+  color: var(--lg-muted);
+  font-size: 0.875rem;
+}
+
+.ludus-confession textarea {
+  width: 100%;
+  min-height: 10rem;
+  margin: 0.75rem 0;
+  padding: 0.75rem;
+  border: 1px solid #8a6a34;
+  border-radius: 6px;
+  color: var(--lg-text);
+  background: #0f0c09;
+  font: inherit;
+  font-size: max(1rem, 1em);
+  resize: vertical;
+}
+
+.ludus-confession-btn {
+  border-color: var(--ludus-light-lampada, #ff9a3c);
+}
+
+/* At a holy thing the instrument cyan gives way to the lamp, including
+   the focus ring (TABOO 0.38: cyan belongs to devices). */
+.ludus-confession textarea:focus-visible,
+.ludus-confession button:focus-visible {
+  outline: 3px solid var(--ludus-light-lampada, #ff9a3c);
+  outline-offset: 2px;
+}

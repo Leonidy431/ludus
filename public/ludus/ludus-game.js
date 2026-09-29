@@ -831,6 +831,13 @@
       + api.PRACTICES.map((pr) => practiceButton(api, pr)).join('')
       + '</div>'
       + (bows ? `<div class="ludus-rule-actions">${bows}</div>` : '')
+      // Preparation for confession is not a practice: it has no counter
+      // and nothing about it is stored (TABOO 0.26), so it stands apart
+      // from the twelve and is handled by its own isolated module.
+      + '<div class="ludus-rule-actions">'
+      + '<button type="button" class="ludus-rule-btn ludus-confession-btn"'
+      + ' data-action="confession">Before confession: a page that burns'
+      + '</button></div>'
       + '</section>';
   }
 
@@ -1252,6 +1259,11 @@
         talkTo(target.getAttribute('data-npc-id'));
       } else if (action === 'practice') {
         doAction('practice', target.getAttribute('data-practice-id'));
+      } else if (action === 'confession') {
+        // Nothing is passed in or read back: the page is private.
+        if (window.LudusConfession) {
+          window.LudusConfession.open();
+        }
       } else if (action === 'bow') {
         doAction('bow', target.getAttribute('data-gate-id'));
       } else if (action === 'open-gate') {

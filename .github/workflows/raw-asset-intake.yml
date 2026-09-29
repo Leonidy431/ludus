@@ -65,6 +65,12 @@ jobs:
       - name: Meta 3D coverage
         run: python scripts/meta3d/check_coverage.py
 
+      # Front-end unit tests, including the confession-privacy guard
+      # (CLAUDE.md TABOO 0.26): the confession module must never gain a
+      # storage, network or logging API.
+      - name: Node tests (actions, confession privacy)
+        run: node --test tests/*.test.js
+
       - name: Intake (images and licences only)
         if: github.event_name == 'workflow_dispatch'
         env:

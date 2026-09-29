@@ -1,0 +1,53 @@
+// Static guarantees behind the confession-privacy declaration
+// (CLAUDE.md TABOO 0.26, docs/CONFESSION_PRIVACY_DECLARATION.md).
+// The module must contain no storage, network or logging API at all,
+// so a later edit that adds one fails the build instead of leaking.
+// Run: node --test tests/*.test.js
+'use strict';
+
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('fs');
+const path = require('path');
+
+const SRC = fs.readFileSync(path.join(__dirname,
+  '../public/ludus/ludus-confession.js'), 'utf8');
+// Comments may name the forbidden APIs to declare them; code may not.
+const CODE = SRC.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
+
+const FORBIDDEN = [
+  'localStorage', 'sessionStorage', 'indexedDB', 'document.cookie',
+  'caches', 'serviceWorker', 'fetch(', 'XMLHttpRequest', 'sendBeacon',
+  'WebSocket', 'EventSource', 'postMessage', 'console.', 'dispatchEvent',
+  'CustomEvent', 'firebase', 'firestore', 'gtag', 'analytics',
+  'innerHTML', '.value)', 'navigator.clipboard',
+];
+
+test('the confession module uses no storage, network or logging API',
+  () => {
+    FORBIDDEN.forEach((name) => {
+      assert.equal(CODE.includes(name), false, `found ${name}`);
+    });
+  });
+
+test('the typed text is read only to overwrite it', () => {
+  // The only reads of .value are inside burnField, as its length.
+  const reads = CODE.match(/\.value(?!\s*=)/g) || [];
+  assert.equal(reads.length, 1);
+  assert.match(CODE, /field\.value = ' '\.repeat\(field\.value\.length\)/);
+});
+
+test('spell-check and autocomplete are off on the page', () => {
+  assert.match(CODE, /spellcheck: 'false'/);
+  assert.match(CODE, /autocomplete: 'off'/);
+});
+
+test('the page says plainly that it is not the sacrament', () => {
+  assert.match(CODE, /This is not the sacrament/);
+  assert.match(CODE, /Это не таинство/);
+});
+
+test('the rule panel offers no counter for confession', () => {
+  const actions = require('../public/ludus/ludus-actions.js');
+  assert.equal(actions.PRACTICES.some((p) => /confess/.test(p.id)), false);
+});

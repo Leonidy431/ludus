@@ -11,7 +11,7 @@
 
 // Bump CACHE_VERSION whenever PRECACHE_PATHS changes or a release must
 // evict every stale copy at once; activate() drops all other versions.
-const CACHE_VERSION = "2026-09-29.5";
+const CACHE_VERSION = "2026-09-29.6";
 const CACHE_PREFIX = "ludus-";
 const STATIC_CACHE = `${CACHE_PREFIX}static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `${CACHE_PREFIX}runtime-${CACHE_VERSION}`;
@@ -33,6 +33,7 @@ const PRECACHE_PATHS = [
   "rov-lake-manager.js",
   // The gates cannot be evaluated offline without the ACTION layer.
   "ludus-actions.js",
+  "ludus-confession.js",
   "ludus-game.js",
   // Without the synth offline, every missing recording would fall back
   // to silence on the first launch without network.
