@@ -93,17 +93,44 @@
   const MENTORS = [
     { npcId: 'elder_sergius', name: 'Elder Sergius',
       teaching: 'Hesychasm: prayer of the heart',
-      portrait: 'npc-elder-sergius.svg' },
+      portrait: 'npc-elder-sergius.svg',
+      profile: { wisdom: 14, faith: 15, erudition: 12 } },
     { npcId: 'theodora', name: 'Theodora',
       teaching: 'The Divine Liturgy',
-      portrait: 'npc-theodora.svg' },
+      portrait: 'npc-theodora.svg',
+      profile: { faith: 13, erudition: 12, charisma: 11 } },
     { npcId: 'abba_john', name: 'Abba John',
       teaching: 'Ascetic discipline of the desert',
-      portrait: 'npc-abba-john.svg' },
+      portrait: 'npc-abba-john.svg',
+      profile: { constitution: 14, faith: 12, wisdom: 10 } },
     { npcId: 'sister_catherine', name: 'Sister Catherine',
       teaching: 'Mystical theology and theosis',
-      portrait: 'npc-sister-catherine.svg' },
+      portrait: 'npc-sister-catherine.svg',
+      profile: { wisdom: 14, faith: 14, charisma: 13 } },
   ];
+
+  // Resonance at or above this value lights the mentor's portrait.  The
+  // resolution (CLAUDE.md TABOO 0.25) replaces the nimbus with a glow
+  // that appears only when the player's FORM matches the saint's path.
+  const RESONANCE_GLOW = 0.8;
+
+  // Resonance ("ethos") is the cosine similarity between the player's
+  // seven attributes and a mentor's profile.  It is a derived metric,
+  // not an eighth attribute, so the constitution's seven stay intact;
+  // it measures the shape of the soul's growth, not its size.
+  function resonanceWith(profile, form) {
+    let dot = 0;
+    let a2 = 0;
+    let b2 = 0;
+    ATTRIBUTES.forEach((attr) => {
+      const a = toScore(form && form[attr.key]);
+      const b = toScore(profile[attr.key]);
+      dot += a * b;
+      a2 += a * a;
+      b2 += b * b;
+    });
+    return a2 && b2 ? dot / Math.sqrt(a2 * b2) : 0;
+  }
 
   // A guest's FORM is kept on the device, so the growth earned in
   // dialogue survives a reload even without an account.
@@ -611,16 +638,24 @@
 
     // Core mentors are always reachable: they are the ACTION half of
     // FORM -> ACTION -> GOAL, and a guest must be able to learn too.
-    const coreHtml = MENTORS.map((m) => '<div class="ludus-node-card'
-      + ' ludus-mentor-card ludus-core-mentor">'
+    const coreHtml = MENTORS.map((m) => {
+      const resonance = resonanceWith(m.profile, state.playerForm);
+      const glow = resonance >= RESONANCE_GLOW ? ' is-resonant' : '';
+      const pct = Math.round(resonance * 100);
+      return '<div class="ludus-node-card'
+      + ` ludus-mentor-card ludus-core-mentor${glow}"`
+      + ` style="--resonance: ${resonance.toFixed(3)}">`
       + `<img class="ludus-mentor-portrait" src="${ART}${m.portrait}"`
       + ' alt="" width="100" height="140">'
       + `<h4>${escapeHtml(m.name)}</h4>`
       + `<p class="ludus-node-role">${escapeHtml(m.teaching)}</p>`
+      + `<p class="ludus-resonance" title="Resonance of your FORM with`
+      + ` this path">Resonance ${pct}%</p>`
       + '<button type="button" class="ludus-talk-btn" data-action="talk"'
       + ` data-npc-id="${escapeHtml(m.npcId)}">Talk with `
       + `${escapeHtml(m.name)}</button>`
-      + '</div>').join('');
+      + '</div>';
+    }).join('');
 
     if (state.mode !== 'online' || !state.user) {
       container.innerHTML = '<div class="ludus-network">'
@@ -803,6 +838,7 @@
       saveGuestForm();
     }
     renderPlayerProfile();
+    renderReachableNodes();
     renderKnowledgeGates();
     announcePlayer();
   }

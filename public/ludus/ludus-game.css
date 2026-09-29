@@ -659,3 +659,34 @@
   color: #0f0f0f;
   background: var(--lg-gold, #d4af37);
 }
+
+/* Resonance glow replaces the nimbus (CLAUDE.md TABOO 0.25): it grows
+   with the resonance value and appears only above the threshold, so a
+   saint "shines" for the player whose FORM follows the same path. */
+.ludus-resonance {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 0.875rem;
+  color: var(--lg-muted, #c4c4c4);
+}
+
+.ludus-core-mentor.is-resonant .ludus-mentor-portrait {
+  filter: drop-shadow(0 0 calc(var(--resonance) * 14px)
+    rgba(232, 200, 122, 0.85));
+  animation: ludus-resonance-breath 4s ease-in-out infinite;
+}
+
+.ludus-core-mentor.is-resonant .ludus-resonance {
+  color: var(--lg-gold, #d4af37);
+}
+
+/* A slow breath (4 s) echoes the rhythm of the prayer of the heart. */
+@keyframes ludus-resonance-breath {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ludus-core-mentor.is-resonant .ludus-mentor-portrait {
+    animation: none;
+  }
+}
