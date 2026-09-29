@@ -69,6 +69,27 @@ interface DialogueState {
 }
 
 /**
+ * CORS headers for Quest 3 and other VR devices
+ */
+function setCorsHeaders(res: Response) {
+  res.set('Access-Control-Allow-Origin', '*');
+  res.set('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+  res.set('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+}
+
+/**
+ * Handle CORS preflight requests
+ */
+function handleCorsPreFlight(req: Request, res: Response) {
+  if (req.method === 'OPTIONS') {
+    setCorsHeaders(res);
+    res.status(204).send('');
+    return true;
+  }
+  return false;
+}
+
+/**
  * GET /api/ludus/dialogue/tree/{npcId}
  *
  * Load complete dialogue tree for an NPC from Firestore.
@@ -76,6 +97,9 @@ interface DialogueState {
  */
 export const getDialogueTree = functions.https.onRequest(
   async (req: Request, res: Response) => {
+    setCorsHeaders(res);
+    if (handleCorsPreFlight(req, res)) return;
+
     try {
       const npcId = Array.isArray(req.params.npcId) ? req.params.npcId[0] : (req.params.npcId as string);
       const perfLabel = `getDialogueTree[${npcId}]`;
@@ -91,7 +115,22 @@ export const getDialogueTree = functions.https.onRequest(
       const treeDoc = await db.collection('ludus_dialogue_trees').doc(npcId).get();
 
       if (!treeDoc.exists) {
-        res.status(404).json({ error: `Dialogue tree not found for NPC: ${npcId}` });
+        console.log(`[Ludus] ❌ Dialogue tree not found for NPC: ${npcId}`);
+        res.status(404).json({
+          error: `Dialogue tree not found for NPC: ${npcId}`,
+          context: {
+            npcId,
+            checked: [`ludus_dialogue_trees/${npcId}`],
+            timestamp: new Date().toISOString(),
+            deviceType: req.headers['user-agent'] || 'unknown'
+          },
+          recovery: [
+            `Verify NPC "${npcId}" is available in this game instance`,
+            'Try reloading the scene or restarting the game',
+            'If problem persists, check your internet connection',
+            'Contact support with the timestamp above'
+          ]
+        });
         console.timeEnd(perfLabel);
         return;
       }
@@ -120,6 +159,9 @@ export const getDialogueTree = functions.https.onRequest(
  */
 export const getNpcMemory = functions.https.onRequest(
   async (req: Request, res: Response) => {
+    setCorsHeaders(res);
+    if (handleCorsPreFlight(req, res)) return;
+
     try {
       const npcId = Array.isArray(req.params.npcId) ? req.params.npcId[0] : (req.params.npcId as string);
       const playerId = Array.isArray(req.params.playerId) ? req.params.playerId[0] : (req.params.playerId as string);
@@ -187,6 +229,9 @@ export const getNpcMemory = functions.https.onRequest(
  */
 export const persistDialogueState = functions.https.onRequest(
   async (req: Request, res: Response) => {
+    setCorsHeaders(res);
+    if (handleCorsPreFlight(req, res)) return;
+
     try {
       if (req.method !== 'POST') {
         res.status(405).json({ error: 'Method not allowed' });
@@ -310,6 +355,9 @@ export const persistDialogueState = functions.https.onRequest(
  */
 export const getDialogueStats = functions.https.onRequest(
   async (req: Request, res: Response) => {
+    setCorsHeaders(res);
+    if (handleCorsPreFlight(req, res)) return;
+
     try {
       const playerId = Array.isArray(req.params.playerId) ? req.params.playerId[0] : (req.params.playerId as string);
       const perfLabel = `getDialogueStats[${playerId}]`;
@@ -389,6 +437,9 @@ export const getDialogueStats = functions.https.onRequest(
  */
 export const upsertDialogueTree = functions.https.onRequest(
   async (req: Request, res: Response) => {
+    setCorsHeaders(res);
+    if (handleCorsPreFlight(req, res)) return;
+
     try {
       if (req.method !== 'POST') {
         res.status(405).json({ error: 'Method not allowed' });
