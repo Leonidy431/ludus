@@ -201,6 +201,9 @@
     passionRecord: {},
     encounter: null,
     stillTimer: null,
+    // Gates already open when the page was drawn; a gate is announced
+    // only when it opens in play, never again on a reload.
+    openGates: null,
     reachableNodes: [],
     knowledgeGates: [],
     // One of 'loading', 'online', 'offline'.
@@ -946,15 +949,21 @@
     }
 
     const ladder = api.evaluateLadder(state.playerForm, state.actions);
+    const nowOpen = ladder.filter((c) => c.open).map((c) => c.gate.id);
+    const opening = state.openGates
+      ? nowOpen.filter((id) => !state.openGates.includes(id)) : [];
+    state.openGates = nowOpen;
     const ladderHtml = ladder.map((check, index) => {
       const gate = check.gate;
       const open = check.open;
+      const isOpening = opening.includes(gate.id);
       const status = open ? 'Open'
         : '<ul class="ludus-gate-missing">'
           + check.missing.map((m) => '<li>'
             + `${escapeHtml(missingText(m))}</li>`).join('')
           + '</ul>';
-      return `<li class="ludus-gate-step ${open ? 'is-open' : 'is-locked'}"`
+      return `<li class="ludus-gate-step ${open ? 'is-open' : 'is-locked'}${
+        isOpening ? ' is-opening' : ''}"`
         + ` data-gate-id="${escapeHtml(gate.id)}">`
         + `<img class="ludus-gate-icon" src="${ART}gate-${index + 1}-`
         + `${escapeHtml(gate.id)}.svg" alt="" width="48" height="48">`
@@ -985,6 +994,36 @@
       + renderRoadPanel()
       + gateHtml
       + '</div>';
+    opening.forEach(openGateRitual);
+  }
+
+  // A gate opens as a rite, not as a pop-up (DEF-004): silence first,
+  // then the lamp's light on the gate's icon, then the call of the bell.
+  // The bell is asked of the liturgical clock through the audio manager,
+  // so on Great Friday the rite is silence and light only.  The last,
+  // apophatic gate has no bell at all: its sound is near-silence (TABOO
+  // 0.2 item 6).  Nothing here adds to FORM.
+  const GATE_SILENCE_MS = 2000;
+  function openGateRitual(gateId) {
+    const clock = window.LudusLiturgicalClock;
+    const day = clock ? clock.describe(new Date()) : null;
+    document.dispatchEvent(new CustomEvent('ludus:gate-opened', {
+      detail: { gateId, day },
+    }));
+    if (gateId === 'apophatic') {
+      return;
+    }
+    setTimeout(() => {
+      try {
+        const audio = window.LudusAudioManager;
+        if (audio && typeof audio.playCue === 'function') {
+          audio.playCue('blagovest').catch(() => {});
+        }
+      } catch (error) {
+        // A blocked audio context leaves the rite silent, which is
+        // still a true rite.
+      }
+    }, GATE_SILENCE_MS);
   }
 
   function renderGameUI() {

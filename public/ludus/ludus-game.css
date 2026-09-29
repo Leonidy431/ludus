@@ -975,3 +975,22 @@
     transition: none;
   }
 }
+
+/* A gate opening: the lamp's light comes up slowly on its icon after the
+   silence (DEF-004).  Lamp, not hearth: the gate is a step toward the
+   holy.  Without motion the light is simply there. */
+.ludus-gate-step.is-opening .ludus-gate-icon {
+  animation: ludus-gate-light 2.5s ease-in 2s both;
+}
+
+@keyframes ludus-gate-light {
+  from { box-shadow: 0 0 0 rgba(255, 154, 60, 0); }
+  to { box-shadow: 0 0 1.2rem rgba(255, 154, 60, 0.55); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ludus-gate-step.is-opening .ludus-gate-icon {
+    animation: none;
+    box-shadow: 0 0 1.2rem rgba(255, 154, 60, 0.55);
+  }
+}

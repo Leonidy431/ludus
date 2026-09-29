@@ -736,5 +736,278 @@
   "score": 1,
   "attribution": [],
   "slot": "DEF-006"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/potions/exotic/PotionOfDragonsBreath.java",
+  "kind": "code",
+  "hits": [
+   "breath"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-008"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/mobs/npcs/VaultTokenDoor.java",
+  "kind": "code",
+  "hits": [
+   "door",
+   "vault"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-009"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/quest/VaultBeacon.java",
+  "kind": "code",
+  "hits": [
+   "vault",
+   "quest"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-009"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/sprites/VaultTokenDoorSprite.java",
+  "kind": "code",
+  "hits": [
+   "door",
+   "vault"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-009"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/mobs/npcs/VaultLaser.java",
+  "kind": "code",
+  "hits": [
+   "vault"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-009"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/mobs/npcs/VaultMirror.java",
+  "kind": "code",
+  "hits": [
+   "vault"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-009"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/mobs/npcs/VaultSentry.java",
+  "kind": "code",
+  "hits": [
+   "vault"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-009"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/quest/CeremonialCandle.java",
+  "kind": "code",
+  "hits": [
+   "quest"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-009"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/quest/CorpseDust.java",
+  "kind": "code",
+  "hits": [
+   "quest"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-009"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/quest/DarkGold.java",
+  "kind": "code",
+  "hits": [
+   "quest"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-009"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/quest/DwarfToken.java",
+  "kind": "code",
+  "hits": [
+   "quest"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-009"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/quest/Embers.java",
+  "kind": "code",
+  "hits": [
+   "quest"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-009"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/quest/EscapeCrystal.java",
+  "kind": "code",
+  "hits": [
+   "quest"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-009"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/quest/GooBlob.java",
+  "kind": "code",
+  "hits": [
+   "quest"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-009"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/quest/ImpStatue.java",
+  "kind": "code",
+  "hits": [
+   "quest"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-009"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/quest/MetalShard.java",
+  "kind": "code",
+  "hits": [
+   "quest"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-009"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/quest/Pickaxe.java",
+  "kind": "code",
+  "hits": [
+   "quest"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-009"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/levels/Terrain.java",
+  "kind": "code",
+  "hits": [
+   "level"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-009"
  }
 ]
