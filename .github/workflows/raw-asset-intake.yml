@@ -71,6 +71,12 @@ jobs:
       - name: Node tests (actions, confession privacy)
         run: node --test tests/*.test.js
 
+      # CLAUDE.md TABOO 0.37/0.39: the 24 NPC trees keep the chorus
+      # contract (idiom, meaning, source, paraphrase for saints, FORM
+      # gates, no church words on buttons).
+      - name: Dialogue contract (24 NPCs)
+        run: python scripts/check_dialogues.py
+
       - name: Intake (images and licences only)
         if: github.event_name == 'workflow_dispatch'
         env:

@@ -204,6 +204,9 @@
     // Gates already open when the page was drawn; a gate is announced
     // only when it opens in play, never again on a reload.
     openGates: null,
+    // The other NPCs of the valley, read from the offline dialogue pack
+    // (the chorus of 12 editors, CLAUDE.md TABOO 0.37).
+    valley: [],
     reachableNodes: [],
     knowledgeGates: [],
     // One of 'loading', 'online', 'offline'.
@@ -407,6 +410,7 @@
       // no endpoint for it yet (noted in the HLD).
       state.passionRecord = loadGuestPassions();
       loadPassionData();
+      loadValley();
     } else {
       renderGameUI();
     }
@@ -736,12 +740,31 @@
       + '</div>';
     }).join('');
 
+    // Each person of the valley is shown by their craft, in their own
+    // idiom, not by a title (TABOO 0.39); a saint is a person here too.
+    const valleyHtml = state.valley.length ? '<section class="ludus-valley">'
+      + '<h3>People of the valley</h3><div class="ludus-mentor-grid">'
+      + state.valley.map((p) => '<div class="ludus-node-card'
+        + ' ludus-mentor-card">'
+        + `<img class="ludus-mentor-portrait" src="${ART}npc-${
+          escapeHtml(p.npcId.replace(/_/g, '-'))}.svg" alt="" width="100"`
+        + ' height="140" loading="lazy">'
+        + `<h4>${escapeHtml(p.name)}</h4>`
+        + `<p class="ludus-node-role">${escapeHtml(p.craft)}</p>`
+        + '<button type="button" class="ludus-talk-btn" data-action="talk"'
+        + ` data-npc-id="${escapeHtml(p.npcId)}">Talk with `
+        // Buttons carry no church titles (TABOO 0.39): the card's heading
+        // keeps "St …", the button speaks to the person by name.
+        + `${escapeHtml(p.name.replace(/^(St\.?|Saint)\s+/i, ''))}`
+        + '</button></div>').join('')
+      + '</div></section>' : '';
+
     if (state.mode !== 'online' || !state.user) {
       container.innerHTML = '<div class="ludus-network">'
         + '<section class="ludus-mentors">'
         + `<h3 data-i18n="ludus.mentor">${escapeHtml(t('ludus.mentor'))}`
         + `</h3><div class="ludus-mentor-grid">${coreHtml}</div>`
-        + '</section></div>';
+        + '</section>' + valleyHtml + '</div>';
       return;
     }
 
@@ -774,6 +797,7 @@
       + `<h3 data-i18n="ludus.mentor">${escapeHtml(t('ludus.mentor'))}</h3>`
       + `<div class="ludus-mentor-grid">${coreHtml}${mentorHtml}</div>`
       + '</section>'
+      + valleyHtml
       + '<section class="ludus-quests">'
       + `<h3 data-i18n="ludus.quests">${escapeHtml(t('ludus.quests'))}</h3>`
       + (questHtml || '<p class="ludus-empty">No quests available</p>')
@@ -1247,6 +1271,33 @@
     }
   }
 
+  // Read the other NPCs from the offline pack: the same file the dialogue
+  // manager uses, so a person listed here can always be talked to.
+  async function loadValley() {
+    if (state.valley.length) {
+      return;
+    }
+    try {
+      const res = await fetch('/ludus/data/dialogue-trees.json');
+      if (!res.ok) {
+        return;
+      }
+      const pack = await res.json();
+      const mentorIds = MENTORS.map((m) => m.npcId);
+      state.valley = Object.values(pack.trees || {})
+        .filter((tree) => !mentorIds.includes(tree.npcId))
+        .map((tree) => ({
+          npcId: String(tree.npcId),
+          name: String(tree.npcName || tree.npcId),
+          craft: String((tree.idiom && tree.idiom.craft) || '')
+            .split(/[.;]/)[0],
+        }));
+      renderReachableNodes();
+    } catch (error) {
+      console.warn('[Ludus] Valley unavailable offline:', error.message);
+    }
+  }
+
   async function loadPassionData() {
     if (state.passionData) {
       return;
@@ -1567,6 +1618,7 @@
     state.actions = loadGuestActions();
     state.passionRecord = loadGuestPassions();
     loadPassionData();
+    loadValley();
     state.reachableNodes = [];
     state.knowledgeGates = [];
     console.warn('[Ludus] Offline guest mode:', error && error.message);
