@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Святитель Фотий, патриарх Константинопольский">
+  <title>Патриарх Фотий</title>
+  <desc>Святитель Фотий Великий, патриарх Константинопольский, учёнейший муж своего века, благословивший миссию Кирилла и Мефодия к славянам. Омофор с крестами — пастырь несёт заблудшую овцу на плечах; Евангелие в руке — источник его власти. Смысл: учёность и церковное управление, подчинённые Слову и служению.</desc>
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- нимб святителя -->
+  <circle cx="50" cy="32" r="17" fill="#2a1808" stroke="#e8c87a" stroke-width="1.5"/>
+  <circle cx="50" cy="32" r="14.5" fill="none" stroke="#8a6a34" stroke-width="1" stroke-dasharray="2 2"/>
+  <!-- лик, открытое чело -->
+  <circle cx="50" cy="33" r="10" fill="#1a0e04" stroke="#c8a56a" stroke-width="2"/>
+  <!-- святительский саккос -->
+  <path d="M50 48 C31 54 27 80 29 118 H71 C73 80 69 54 50 48 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- округлая седая борода -->
+  <path d="M41 35 Q41 54 50 57 Q59 54 59 35 Q56 44 50 44 Q44 44 41 35 Z" fill="#e8c87a" opacity=".85"/>
+  <!-- великий омофор: полоса по плечам и спускающийся конец -->
+  <path d="M33 58 Q50 70 67 58" fill="none" stroke="#e8c87a" stroke-width="5"/>
+  <path d="M50 66 L46 118" stroke="#e8c87a" stroke-width="5"/>
+  <!-- кресты на омофоре -->
+  <g stroke="#1a0e04" stroke-width="1.3">
+    <path d="M38 60 v5 M35.5 62.5 h5"/>
+    <path d="M62 60 v5 M59.5 62.5 h5"/>
+    <path d="M48.5 82 v6 M45.5 85 h6"/>
+    <path d="M47 104 v6 M44 107 h6"/>
+  </g>
+  <!-- Евангелие в окладе -->
+  <path d="M56 78 H70 V98 H56 Z" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.8"/>
+  <path d="M63 82 v12 M59 87 h8" stroke="#e8c87a" stroke-width="1.5"/>
+  <circle cx="58" cy="80" r="1" fill="#e8c87a"/><circle cx="68" cy="80" r="1" fill="#e8c87a"/>
+  <circle cx="58" cy="96" r="1" fill="#e8c87a"/><circle cx="68" cy="96" r="1" fill="#e8c87a"/>
+  <!-- благословляющая десница -->
+  <path d="M34 80 q-2 -8 2 -10 q3 2 2 10 Z" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- свиток азбуки, благословлённой для славян -->
+  <path d="M16 110 H34 V124 H16 Z" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M14 108 h4 v18 h-4 Z M32 108 h4 v18 h-4 Z" fill="#8a6a34"/>
+  <path d="M20 114 h10 M20 117 h10 M20 120 h7" stroke="#e8c87a" stroke-width="1"/>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Хитрость — редко одобряемый атрибут">
+  <title>Хитрость (Cunning)</title>
+  <desc>Будьте мудры, как змии, и просты, как голуби (Мф 10:16): змей у тайной двери — хитрость открывает обходные пути, но без простоты голубя ведёт к лукавству. Приглушённый знак: атрибут редко одобряется, красный глаз — предостережение.</desc>
+  <!-- Атрибут ФОРМЫ №6: Cunning — змей у замочной скважины; приглушён, пунктирная рамка = «не одобряется» -->
+  <defs>
+    <radialGradient id="cunning-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <!-- картуш-рамка -->
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#cunning-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55" stroke-dasharray="3 3"/>
+  <g opacity=".6">
+    <!-- тайная дверь с замочной скважиной -->
+    <path d="M56 78 V34 Q56 22 68 22 Q80 22 80 34 V78 Z" fill="#2a1808" stroke="#8a6a34" stroke-width="1.8"/>
+    <circle cx="68" cy="48" r="3" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.2"/>
+    <path d="M67 50 L66 56 H70 L69 50" fill="#1a0e04" stroke="#c8a56a" stroke-width="1"/>
+    <!-- змей, ползущий к двери -->
+    <path d="M18 76 Q30 80 34 70 Q38 60 28 56 Q18 52 24 42 Q30 34 42 38" fill="none" stroke="#c8a56a" stroke-width="3" stroke-linecap="round"/>
+    <path d="M42 38 Q48 36 50 40 Q48 44 42 42 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.2"/>
+    <!-- предостерегающий глаз -->
+    <circle cx="46" cy="39" r="1.2" fill="#c0392b"/>
+    <path d="M50 40 l3 -1 M50 40 l3 1.5" stroke="#c0392b" stroke-width=".8"/>
+  </g>
+</svg>

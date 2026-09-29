@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Рыбак с Иссык-Куля с сетью">
+  <title>Рыбак Иссык-Куля</title>
+  <desc>Простой рыбак с берега Иссык-Куля в войлочном калпаке, с сетью через плечо и уловом. Не святой, без нимба. Сеть напоминает призвание апостолов: «идите за Мною, и Я сделаю вас ловцами человеков». Смысл: терпеливый труд и ожидание — первая ступень, на которой дьякон учится видеть Евангелие в повседневном.</desc>
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- голова, обветренное лицо -->
+  <circle cx="50" cy="36" r="11" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- высокий войлочный калпак с отворотом -->
+  <path d="M39 30 L44 14 Q50 10 56 14 L61 30 Z" fill="#c8a56a" stroke="#e8c87a" stroke-width="1.5"/>
+  <path d="M39 30 H61 L60 26 H40 Z" fill="#1a0e04" stroke="#8a6a34" stroke-width="1.2"/>
+  <path d="M46 18 q4 4 8 0" fill="none" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- стёганый халат-чапан -->
+  <path d="M50 48 C31 54 27 80 29 118 H71 C73 80 69 54 50 48 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- короткие усы и борода -->
+  <path d="M41 38 Q42 52 50 53 Q58 52 59 38 Q55 45 50 45 Q45 45 41 38 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1"/>
+  <!-- запах халата и кушак -->
+  <path d="M50 50 L46 118" stroke="#8a6a34" stroke-width="1.5"/>
+  <path d="M34 90 Q50 95 66 90" fill="none" stroke="#c8a56a" stroke-width="2"/>
+  <!-- сеть через плечо, ячея -->
+  <path d="M58 52 Q76 60 80 96 L66 104 Q66 76 56 58 Z" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.5"/>
+  <g stroke="#8a6a34" stroke-width="1" fill="none">
+    <path d="M60 60 L76 72 M62 70 L78 84 M64 82 L79 94 M66 94 L74 100"/>
+    <path d="M68 58 L60 72 M74 66 L64 86 M78 80 L68 100"/>
+  </g>
+  <!-- поплавки на верхней подборе -->
+  <circle cx="64" cy="56" r="1.6" fill="#e8c87a"/><circle cx="72" cy="62" r="1.6" fill="#e8c87a"/><circle cx="77" cy="72" r="1.6" fill="#e8c87a"/>
+  <!-- улов: две рыбы на кукане -->
+  <path d="M22 76 H38" stroke="#8a6a34" stroke-width="1.5"/>
+  <g fill="#c8a56a" stroke="#e8c87a" stroke-width="1">
+    <path d="M26 78 q4 6 0 16 q-4 -10 0 -16 Z M26 94 l-3 5 h6 Z"/>
+    <path d="M34 78 q4 8 0 20 q-4 -12 0 -20 Z M34 98 l-3 5 h6 Z"/>
+  </g>
+  <!-- волна озера у ног -->
+  <path d="M10 126 Q20 122 30 126 T50 126 T70 126 T90 126" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+</svg>

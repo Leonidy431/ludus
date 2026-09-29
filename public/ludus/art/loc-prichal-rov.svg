@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Причал на Иссык-Куле на рассвете — лебёдка подводного аппарата">
+  <title>Причал подводного аппарата</title>
+  <desc>Деревянный причал на рассвете, лебёдка с тросом опускает подводный аппарат в озеро, у края стоит малый крест. Смысл: всякое дело начинается с молитвы на рассвете — рука на рукояти лебёдки и сердце в молитве действуют вместе.</desc>
+  <!-- Арт-канон §9.0: умбра+золото. Локация ROV Lake: точка спуска аппарата. -->
+  <defs>
+    <linearGradient id="pr-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="55%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#c8a56a"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#pr-nebo)"/>
+  <!-- восходящее солнце из-за гор -->
+  <circle cx="84" cy="98" r="16" fill="#e8c87a" opacity=".9"/>
+  <circle cx="84" cy="98" r="28" fill="#e8c87a" opacity=".14"/>
+  <!-- хребет Тянь-Шаня -->
+  <path d="M0 96 L30 72 L56 90 L96 64 L130 92 L170 70 L210 94 L250 66 L290 88 L320 76 V104 H0 Z" fill="#241405"/>
+  <!-- озеро -->
+  <rect y="100" width="320" height="80" fill="#2a1808"/>
+  <g stroke="#e8c87a" stroke-width="1.6" opacity=".55">
+    <path d="M70 108 H98 M74 116 H94 M78 124 H90"/>
+  </g>
+  <g stroke="#8a6a34" stroke-width="1.2" fill="none" opacity=".6">
+    <path d="M20 120 Q30 116 40 120 M130 134 Q140 130 150 134 M40 150 Q50 146 60 150"/>
+  </g>
+  <!-- настил причала на сваях -->
+  <path d="M170 128 H320 V136 H170 Z" fill="#3a2410" stroke="#c8a56a" stroke-width="1.8"/>
+  <g stroke="#8a6a34" stroke-width="1">
+    <path d="M190 128 v8 M210 128 v8 M230 128 v8 M250 128 v8 M270 128 v8 M290 128 v8"/>
+  </g>
+  <g stroke="#c8a56a" stroke-width="2.2">
+    <path d="M176 136 V164 M216 136 V164 M256 136 V164 M296 136 V164"/>
+  </g>
+  <!-- стрела-кран лебёдки -->
+  <g stroke="#c8a56a" stroke-width="2" fill="none">
+    <path d="M232 128 V84 L186 78"/>
+    <path d="M232 104 L210 82"/>
+  </g>
+  <!-- барабан лебёдки с рукоятью -->
+  <circle cx="246" cy="120" r="7" fill="#2a1808" stroke="#e8c87a" stroke-width="2"/>
+  <path d="M246 120 l8 -6 v-4" stroke="#e8c87a" stroke-width="1.8" fill="none"/>
+  <path d="M240 120 L232 84" stroke="#8a6a34" stroke-width="1" />
+  <!-- трос к аппарату -->
+  <path d="M186 78 V132" stroke="#e8c87a" stroke-width="1.2"/>
+  <!-- подводный аппарат, полупогружён -->
+  <g stroke="#c8a56a" stroke-width="1.8">
+    <rect x="174" y="132" width="24" height="12" rx="3" fill="#2a1808"/>
+    <path d="M174 136 h-4 v5 h4 M198 136 h4 v5 h-4" fill="#2a1808"/>
+  </g>
+  <circle cx="180" cy="140" r="2" fill="#e8c87a"/>
+  <path d="M164 146 Q186 142 208 146" stroke="#8a6a34" stroke-width="1.2" fill="none"/>
+  <!-- поклонный крест на краю причала -->
+  <path d="M306 128 V98 M298 106 H314 M300 120 L312 116" stroke="#e8c87a" stroke-width="2.2" fill="none"/>
+  <!-- ящик с приборами и катушка кабеля -->
+  <rect x="262" y="116" width="18" height="12" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <circle cx="271" cy="122" r="1.8" fill="#c0392b"/>
+  <!-- чайки над водой -->
+  <g stroke="#e8d9b8" stroke-width="1.2" fill="none" opacity=".7">
+    <path d="M126 50 q4 -4 8 0 q4 -4 8 0"/><path d="M150 40 q3 -3 6 0 q3 -3 6 0"/>
+  </g>
+</svg>

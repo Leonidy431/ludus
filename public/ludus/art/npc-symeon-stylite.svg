@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Преподобный Симеон Столпник на столпе">
+  <title>Симеон Столпник</title>
+  <desc>Преподобный Симеон Столпник десятилетиями молился на столпе между небом и землёй. Столп — лестница восхождения: чем выше от мира, тем ближе к людям, которые приходят к его подножию за советом. Лестница учеников — связь подвижника с общиной. Смысл: терпение и постоянство молитвы (Constitution), ставшие служением.</desc>
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- нимб подвижника -->
+  <circle cx="50" cy="24" r="12" fill="#2a1808" stroke="#e8c87a" stroke-width="1.5"/>
+  <circle cx="50" cy="24" r="10" fill="none" stroke="#8a6a34" stroke-width="1" stroke-dasharray="2 2"/>
+  <!-- куколь схимника -->
+  <path d="M41 30 Q40 14 50 13 Q60 14 59 30 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.3"/>
+  <circle cx="50" cy="25" r="6.5" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- длинная борода -->
+  <path d="M46 29 Q50 40 54 29 Q53 34 50 35 Q47 34 46 29 Z" fill="#e8c87a" opacity=".75"/>
+  <!-- плечи в мантии над ограждением -->
+  <path d="M38 44 Q40 34 50 34 Q60 34 62 44 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- руки, воздетые в молитве -->
+  <path d="M41 40 L35 30 M59 40 L65 30" stroke="#c8a56a" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- капитель с ограждением -->
+  <path d="M34 44 H66 V54 H34 Z" fill="#1a0e04" stroke="#e8c87a" stroke-width="1.8"/>
+  <path d="M40 44 V54 M46 44 V54 M54 44 V54 M60 44 V54" stroke="#8a6a34" stroke-width="1.2"/>
+  <path d="M32 54 H68 L64 60 H36 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- ствол столпа -->
+  <path d="M40 60 H60 V120 H40 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M40 76 H60 M40 92 H60 M40 108 H60" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- база столпа -->
+  <path d="M34 120 H66 V128 H34 Z" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.8"/>
+  <!-- лестница учеников, приставленная к столпу -->
+  <g stroke="#8a6a34" stroke-width="1.5">
+    <path d="M22 128 L36 60 M29 128 L42 64"/>
+    <path d="M24 118 L31 119 M26 106 L33 107 M29 94 L35 95 M31 82 L37 83 M33 70 L39 71"/>
+  </g>
+  <!-- корзинка с хлебом, поднятая учеником -->
+  <path d="M72 70 h10 l-2 6 h-6 Z" fill="#1a0e04" stroke="#e8c87a" stroke-width="1.3"/>
+  <path d="M77 70 V56 L66 50" fill="none" stroke="#8a6a34" stroke-width="1" stroke-dasharray="2 2"/>
+</svg>

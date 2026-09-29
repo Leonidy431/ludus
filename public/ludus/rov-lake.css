@@ -1,41 +1,56 @@
-/**
- * ROV Lake Tab Styling
- * Dark theme: gold (#D4AF37) + cyan (#00CED1) on dark background
- * Responsive grid layout for metrics, attributes, and status
+/*
+ * ROV Lake panel for the Meta Quest 3 build.
+ *
+ * Gold marks what the player earned (Wisdom insight); cyan marks what
+ * the water reports (telemetry).  The panel sits inside
+ * #ludus-rov-container and must read well at arm's length in the Quest
+ * browser as well as on a 360 px phone.
  */
 
 :root {
-  --rov-gold: #D4AF37;
-  --rov-cyan: #00CED1;
-  --rov-dark-bg: #1a1a1a;
-  --rov-dark-card: #2a2a2a;
-  --rov-text-primary: #f0f0f0;
-  --rov-text-secondary: #a0a0a0;
+  --rov-gold: var(--ludus-gold, #d4af37);
+  --rov-cyan: var(--ludus-cyan, #00ced1);
+  --rov-dark-bg: var(--ludus-dark-bg, #1a1a1a);
+  --rov-dark-card: var(--ludus-dark-card, #2a2a2a);
+  --rov-text-primary: var(--ludus-text-primary, #f0f0f0);
+  --rov-text-secondary: var(--ludus-text-secondary, #a0a0a0);
   --rov-border: #3a3a3a;
+  --rov-ok: #4ade80;
+  --rov-bad: #ff6b6b;
 }
 
-/* ── Main ROV Lake container ────────────────────────────────────────────── */
+/* ── Panel layout ───────────────────────────────────────────────────── */
+
+/*
+ * The panel is optional content under the game, so it sizes to its
+ * content; the old fixed 600 px minimum left a large empty band.
+ */
 .rov-lake-tab {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 20px;
   padding: 20px;
+  margin-top: 20px;
   background: var(--rov-dark-bg);
   color: var(--rov-text-primary);
-  min-height: 600px;
-  overflow-y: auto;
+  border-radius: 8px;
+}
+
+/* Telemetry is the widest block, so it spans the full first row. */
+.rov-lake-tab > .rov-telemetry-panel {
+  grid-column: 1 / -1;
 }
 
 @media (max-width: 1024px) {
   .rov-lake-tab {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
-/* ── Panel base styles ────────────────────────────────────────────────────── */
 .rov-telemetry-panel,
 .rov-attribute-mapping-panel,
 .rov-status-panel {
+  min-width: 0;
   background: var(--rov-dark-card);
   border: 1px solid var(--rov-border);
   border-radius: 8px;
@@ -53,10 +68,18 @@
   padding-bottom: 8px;
 }
 
-/* ── Telemetry metrics grid ────────────────────────────────────────────── */
+/* The status header already draws a rule under the title. */
+.rov-status-panel h3 {
+  margin: 0;
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* ── Telemetry readouts ─────────────────────────────────────────────── */
+
 .rov-metrics-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 16px;
   margin: 16px 0;
 }
@@ -73,10 +96,6 @@
   gap: 8px;
 }
 
-.rov-metric-emoji {
-  font-size: 1.8em;
-}
-
 .rov-metric-label {
   font-size: 0.85em;
   color: var(--rov-text-secondary);
@@ -85,9 +104,13 @@
 }
 
 .rov-metric-value {
+  margin: 0;
   font-size: 1.4em;
   color: var(--rov-cyan);
   font-weight: bold;
+  /* Tabular digits stop the numbers shifting while the ROV moves. */
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .rov-metric-unit {
@@ -96,25 +119,40 @@
   margin-left: 4px;
 }
 
-/* ── Timestamp ──────────────────────────────────────────────────────────── */
-.rov-timestamp {
-  margin-top: 12px;
-  font-size: 0.8em;
+.rov-timestamp,
+.rov-empty {
+  margin: 12px 0 0;
+  font-size: 0.85em;
   color: var(--rov-text-secondary);
+}
+
+.rov-timestamp {
   text-align: right;
 }
 
-/* ── Attribute mapping section ──────────────────────────────────────────── */
+.rov-timestamp:empty {
+  display: none;
+}
+
+/*
+ * Without data every readout is a dash; dimming them keeps the
+ * explanation below as the thing the eye lands on.
+ */
+.rov-no-data .rov-metric,
+.rov-stale .rov-metric {
+  opacity: 0.55;
+}
+
+.rov-stale .rov-metric {
+  border-style: dashed;
+}
+
+/* ── Observation insight (depth to Wisdom) ──────────────────────────── */
+
 .rov-mapping-desc {
   color: var(--rov-text-secondary);
   font-size: 0.9em;
   margin: 0 0 16px 0;
-}
-
-.rov-mappings {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
 }
 
 .rov-attr-mapping {
@@ -131,10 +169,6 @@
   margin-bottom: 8px;
 }
 
-.rov-attr-emoji {
-  font-size: 1.5em;
-}
-
 .rov-attr-label {
   font-weight: bold;
   color: var(--rov-text-primary);
@@ -145,9 +179,9 @@
   color: var(--rov-gold);
   font-weight: bold;
   font-size: 1.1em;
+  font-variant-numeric: tabular-nums;
 }
 
-/* ── Attribute bar (progress bar) ───────────────────────────────────────── */
 .rov-attr-bar-container {
   position: relative;
   height: 20px;
@@ -159,31 +193,35 @@
 }
 
 .rov-attr-bar {
-  position: relative;
   height: 100%;
-  width: var(--pct, 50%);
-  background: linear-gradient(90deg, var(--rov-gold) 0%, var(--rov-cyan) 100%);
+  width: var(--pct, 0%);
+  background: linear-gradient(90deg, var(--rov-cyan) 0%,
+    var(--rov-gold) 100%);
   transition: width 0.3s ease;
 }
 
-.rov-attr-bar-fill {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, rgba(212, 175, 55, 0.8), rgba(0, 206, 209, 0.8));
-}
-
 .rov-attr-source {
-  font-size: 0.8em;
+  font-size: 0.85em;
   color: var(--rov-text-secondary);
   margin: 0;
+}
+
+.rov-lesson {
+  margin: 12px 0 0;
+  font-size: 0.9em;
+  line-height: 1.5;
+  color: var(--rov-text-primary);
   font-style: italic;
 }
 
-/* ── Status panel ────────────────────────────────────────────────────────── */
+/* ── Dive link status ───────────────────────────────────────────────── */
+
 .rov-status-header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  gap: 8px;
   margin-bottom: 16px;
   padding-bottom: 12px;
   border-bottom: 1px solid var(--rov-border);
@@ -196,16 +234,33 @@
   font-size: 0.9em;
 }
 
+/*
+ * State is carried by the text and by a leading mark, not by colour
+ * alone, so it stays readable for colour-blind players.
+ */
+.rov-status-indicator::before {
+  margin-right: 6px;
+}
+
 .rov-status-indicator.connected {
-  color: #00ff00;
-  background: rgba(0, 255, 0, 0.1);
-  border: 1px solid #00ff00;
+  color: var(--rov-ok);
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid var(--rov-ok);
+  animation: pulse-connect 2s infinite;
+}
+
+.rov-status-indicator.connected::before {
+  content: '\25CF';
 }
 
 .rov-status-indicator.disconnected {
-  color: #ff4444;
-  background: rgba(255, 68, 68, 0.1);
-  border: 1px solid #ff4444;
+  color: var(--rov-bad);
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid var(--rov-bad);
+}
+
+.rov-status-indicator.disconnected::before {
+  content: '\25CB';
 }
 
 .rov-status-info {
@@ -218,66 +273,30 @@
   margin: 0;
   font-size: 0.9em;
   color: var(--rov-text-secondary);
+  overflow-wrap: anywhere;
 }
 
-.rov-status-info strong {
-  color: var(--rov-text-primary);
-}
-
-/* ── Responsive adjustments ────────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .rov-lake-tab {
-    padding: 12px;
-    gap: 12px;
-  }
-
-  .rov-telemetry-panel,
-  .rov-attribute-mapping-panel,
-  .rov-status-panel {
-    padding: 16px;
-  }
-
-  .rov-metrics-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-
-  .rov-metric {
-    padding: 10px;
-  }
-
-  .rov-metric-emoji {
-    font-size: 1.5em;
-  }
-
-  .rov-metric-value {
-    font-size: 1.2em;
-  }
-}
-
-/* ── Animation: pulse on connect ────────────────────────────────────────── */
 @keyframes pulse-connect {
   0% {
-    box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7);
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
   }
+
   70% {
-    box-shadow: 0 0 0 10px rgba(0, 255, 0, 0);
+    box-shadow: 0 0 0 10px rgba(74, 222, 128, 0);
   }
+
   100% {
-    box-shadow: 0 0 0 0 rgba(0, 255, 0, 0);
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
   }
 }
 
-.rov-status-indicator.connected {
-  animation: pulse-connect 2s infinite;
-}
+/* ── Loading state ──────────────────────────────────────────────────── */
 
-/* ── Loading state ──────────────────────────────────────────────────────── */
 .rov-loading {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 400px;
+  min-height: 200px;
   color: var(--rov-text-secondary);
   font-size: 1.2em;
 }
@@ -291,25 +310,60 @@
   border: 2px solid var(--rov-border);
   border-top-color: var(--rov-cyan);
   border-radius: 50%;
-  animation: spin 0.6s linear infinite;
+  animation: rov-spin 0.6s linear infinite;
 }
 
-@keyframes spin {
+/*
+ * Prefixed name: a bare "spin" keyframe would collide with any other
+ * stylesheet on the page that defines its own "spin".
+ */
+@keyframes rov-spin {
   to {
     transform: rotate(360deg);
   }
 }
 
-/* ── Dark theme support ────────────────────────────────────────────────── */
-@media (prefers-color-scheme: dark) {
+/* ── Small screens ──────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
   .rov-lake-tab {
-    background: var(--rov-dark-bg);
+    padding: 12px;
+    gap: 12px;
   }
 
   .rov-telemetry-panel,
   .rov-attribute-mapping-panel,
   .rov-status-panel {
-    background: var(--rov-dark-card);
-    border-color: var(--rov-border);
+    padding: 16px;
+  }
+
+  .rov-metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .rov-metric {
+    padding: 10px;
+  }
+
+  .rov-metric-value {
+    font-size: 1.2em;
+  }
+}
+
+/* ── Reduced motion ─────────────────────────────────────────────────── */
+
+/*
+ * In a headset, constant pulsing in peripheral vision is a known
+ * discomfort trigger, so all motion stops when the player asks for it.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .rov-status-indicator.connected,
+  .rov-loading::after {
+    animation: none;
+  }
+
+  .rov-attr-bar {
+    transition: none;
   }
 }

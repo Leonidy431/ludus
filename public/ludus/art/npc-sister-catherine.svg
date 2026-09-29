@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Сестра Екатерина, созерцательница">
+  <title>Сестра Екатерина</title>
+  <desc>Монахиня в апостольнике со сложенными на груди руками под нисходящим нетварным светом: созерцание как путь к единению с Богом. Форма — Вера и Мудрость; действие — безмолвное созерцание; цель — обожение (теосис), мистический путь.</desc>
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- нисходящий нетварный свет (лучи сверху) -->
+  <g stroke="#e8c87a" stroke-width="1.2" opacity=".55">
+    <path d="M50 10 V17 M40 11 L43 18 M60 11 L57 18 M31 13 L36 20 M69 13 L64 20"/>
+  </g>
+  <path d="M42 9 Q50 14 58 9" fill="none" stroke="#e8c87a" stroke-width="1.5"/>
+  <!-- монашеское покрывало поверх апостольника -->
+  <path d="M34 60 Q30 22 50 20 Q70 22 66 60 Z" fill="#1a0e04" stroke="#8a6a34" stroke-width="2"/>
+  <!-- апостольник, обрамляющий лицо -->
+  <path d="M40 48 Q38 26 50 25 Q62 26 60 48 L56 56 H44 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- лицо с опущенным взором -->
+  <circle cx="50" cy="37" r="8" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M46 37 q1.5 1.2 3 0 M51 37 q1.5 1.2 3 0" fill="none" stroke="#c8a56a" stroke-width="1"/>
+  <!-- ряса -->
+  <path d="M50 54 C31 60 28 84 30 120 H70 C72 84 69 60 50 54 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- руки, сложенные на груди крестообразно -->
+  <path d="M38 78 L58 88 M62 78 L42 88" stroke="#c8a56a" stroke-width="2.5"/>
+  <circle cx="58" cy="88" r="2.5" fill="#2a1808" stroke="#c8a56a" stroke-width="1.2"/>
+  <circle cx="42" cy="88" r="2.5" fill="#2a1808" stroke="#c8a56a" stroke-width="1.2"/>
+  <!-- параман с крестом -->
+  <path d="M50 94 v12 M45 99 h10" stroke="#e8c87a" stroke-width="2"/>
+  <!-- лилия чистоты у подола -->
+  <path d="M22 122 V100 M22 100 q-4 -4 0 -9 q4 5 0 9 M22 108 q-5 -2 -6 -6 M22 108 q5 -2 6 -6" fill="none" stroke="#e8c87a" stroke-width="1.3"/>
+</svg>

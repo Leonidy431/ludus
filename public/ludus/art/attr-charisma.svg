@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Харизма — атрибут созидания общины">
+  <title>Харизма (Charisma)</title>
+  <desc>Огонь в средоточии и семь огоньков вокруг: слово, собирающее общину, как языки пламени в Пятидесятницу. По Григорию Богослову, слово служит единству Церкви. Атрибут даёт дар убеждения и создания общины.</desc>
+  <!-- Атрибут ФОРМЫ №5: Charisma — общий огонь, от которого зажжены семь сердец -->
+  <defs>
+    <radialGradient id="charisma-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <!-- картуш-рамка -->
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#charisma-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <g>
+    <!-- круг общины -->
+    <circle cx="48" cy="48" r="26" fill="none" stroke="#8a6a34" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <!-- средоточие: пламя слова -->
+    <path d="M48 32 Q56 44 52 52 Q50 56 48 56 Q46 56 44 52 Q40 44 48 32 Z" fill="#e8c87a" stroke="#8a6a34" stroke-width=".8"/>
+    <circle cx="48" cy="48" r="12" fill="#e8c87a" opacity=".12"/>
+    <!-- семь огоньков-сердец вокруг -->
+    <g fill="#c8a56a" stroke="#8a6a34" stroke-width=".7">
+      <path d="M48 16 q3 4 0 7 q-3 -3 0 -7 Z"/><path d="M73 28 q3 4 0 7 q-3 -3 0 -7 Z"/>
+      <path d="M79 54 q3 4 0 7 q-3 -3 0 -7 Z"/><path d="M62 74 q3 4 0 7 q-3 -3 0 -7 Z"/>
+      <path d="M34 74 q3 4 0 7 q-3 -3 0 -7 Z"/><path d="M17 54 q3 4 0 7 q-3 -3 0 -7 Z"/>
+      <path d="M23 28 q3 4 0 7 q-3 -3 0 -7 Z"/>
+    </g>
+  </g>
+</svg>

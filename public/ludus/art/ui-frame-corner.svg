@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Угловой орнамент рамки диалога">
+  <title>Угол рамки диалога</title>
+  <desc>Угол рамки с трилистником — Троица, объемлющая всякую беседу. Ставится в левый верхний угол панели диалога; остальные углы получаются поворотом.</desc>
+  <!-- двойная угловая рамка -->
+  <path d="M4 60 V14 Q4 4 14 4 H60" fill="none" stroke="#8a6a34" stroke-width="2"/>
+  <path d="M10 60 V18 Q10 10 18 10 H60" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- трилистник Троицы в углу -->
+  <g fill="#2a1808" stroke="#e8c87a" stroke-width="1.5">
+    <circle cx="22" cy="17" r="4"/><circle cx="17" cy="22" r="4"/><circle cx="25" cy="25" r="4"/>
+  </g>
+  <circle cx="21.3" cy="21.3" r="1.6" fill="#e8c87a"/>
+  <!-- побеги вдоль сторон -->
+  <g fill="none" stroke="#c8a56a" stroke-width="1.4" stroke-linecap="round">
+    <path d="M30 18 Q38 14 46 18 Q40 20 36 17"/><path d="M18 30 Q14 38 18 46 Q20 40 17 36"/>
+  </g>
+  <!-- бусины-завершения -->
+  <g fill="#c8a56a"><circle cx="54" cy="10" r="1.8"/><circle cx="10" cy="54" r="1.8"/></g>
+</svg>

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Наос храма — иконостас с Царскими вратами и диаконскими дверями">
+  <title>Наос храма</title>
+  <desc>Внутренность храма: иконостас в три яруса, Царские врата в середине, диаконские двери по сторонам, подсвечники и хорос. Смысл: иконостас не стена, а окно — образы святых показывают небо, а врата открываются в Литургии, соединяя алтарь и народ.</desc>
+  <!-- Арт-канон §9.0: умбра+золото. Локация: наос, ступень «Литургическое». -->
+  <rect width="320" height="180" fill="#1a0e04"/>
+  <!-- своды наоса -->
+  <path d="M0 40 Q160 -10 320 40 V0 H0 Z" fill="#140a02"/>
+  <path d="M0 40 Q160 -10 320 40" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- тело иконостаса -->
+  <rect x="40" y="36" width="240" height="118" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- верхний ярус: пророки, малые иконы -->
+  <g fill="#3a2410" stroke="#8a6a34" stroke-width="1.2">
+    <rect x="48" y="42" width="22" height="22"/><rect x="76" y="42" width="22" height="22"/>
+    <rect x="104" y="42" width="22" height="22"/><rect x="194" y="42" width="22" height="22"/>
+    <rect x="222" y="42" width="22" height="22"/><rect x="250" y="42" width="22" height="22"/>
+  </g>
+  <g fill="none" stroke="#e8c87a" stroke-width="1" opacity=".8">
+    <circle cx="59" cy="51" r="5"/><circle cx="87" cy="51" r="5"/><circle cx="115" cy="51" r="5"/>
+    <circle cx="205" cy="51" r="5"/><circle cx="233" cy="51" r="5"/><circle cx="261" cy="51" r="5"/>
+  </g>
+  <!-- Распятие над иконостасом -->
+  <path d="M160 14 V40 M150 22 H170 M154 33 L166 29" stroke="#e8c87a" stroke-width="2.2" fill="none"/>
+  <!-- средний ярус: Деисус вокруг Спаса -->
+  <rect x="140" y="42" width="40" height="22" fill="#3a2410" stroke="#e8c87a" stroke-width="1.5"/>
+  <circle cx="160" cy="51" r="6" fill="none" stroke="#e8c87a" stroke-width="1.4"/>
+  <path d="M156 51 h8 M160 47 v8" stroke="#c0392b" stroke-width="1"/>
+  <!-- местный ярус: большие иконы Спаса и Богородицы -->
+  <g fill="#3a2410" stroke="#c8a56a" stroke-width="1.5">
+    <rect x="48" y="74" width="30" height="46"/><rect x="242" y="74" width="30" height="46"/>
+    <rect x="108" y="74" width="26" height="46"/><rect x="186" y="74" width="26" height="46"/>
+  </g>
+  <g fill="none" stroke="#e8c87a" stroke-width="1.4">
+    <circle cx="121" cy="86" r="7"/><circle cx="199" cy="86" r="7"/>
+    <circle cx="63" cy="86" r="7"/><circle cx="257" cy="86" r="7"/>
+  </g>
+  <g fill="#8a6a34">
+    <path d="M113 118 Q121 94 129 118 Z"/><path d="M191 118 Q199 94 207 118 Z"/>
+    <path d="M55 118 Q63 94 71 118 Z"/><path d="M249 118 Q257 94 265 118 Z"/>
+  </g>
+  <!-- диаконские двери с архангелами (крыло — черта) -->
+  <g fill="#241405" stroke="#c8a56a" stroke-width="1.5">
+    <rect x="84" y="80" width="18" height="74"/><rect x="218" y="80" width="18" height="74"/>
+  </g>
+  <path d="M88 110 Q93 96 98 110 M222 110 Q227 96 232 110" fill="none" stroke="#e8c87a" stroke-width="1.2"/>
+  <!-- Царские врата, арка и две створки -->
+  <path d="M140 154 V90 Q160 66 180 90 V154" fill="#140a02" stroke="#e8c87a" stroke-width="2.5"/>
+  <path d="M160 78 V154" stroke="#e8c87a" stroke-width="1.5"/>
+  <g fill="none" stroke="#c8a56a" stroke-width="1">
+    <rect x="145" y="96" width="11" height="14"/><rect x="164" y="96" width="11" height="14"/>
+    <rect x="145" y="116" width="11" height="14"/><rect x="164" y="116" width="11" height="14"/>
+  </g>
+  <!-- свет престола в щели врат -->
+  <path d="M158 132 L162 132 L170 154 L150 154 Z" fill="#e8c87a" opacity=".18"/>
+  <!-- солея и амвон -->
+  <path d="M30 154 H290 L304 164 H16 Z" fill="#3a2410" stroke="#8a6a34" stroke-width="1.5"/>
+  <path d="M136 164 Q160 172 184 164" fill="none" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- подсвечники с огоньками -->
+  <g stroke="#c8a56a" stroke-width="1.6">
+    <path d="M24 176 V136 M16 176 H32 M18 136 H30"/>
+    <path d="M296 176 V136 M288 176 H304 M290 136 H302"/>
+  </g>
+  <g fill="#e8c87a">
+    <path d="M21 134 q1 -5 2 0 Z M25 134 q1 -6 2 0 Z"/>
+    <path d="M293 134 q1 -5 2 0 Z M297 134 q1 -6 2 0 Z"/>
+  </g>
+</svg>

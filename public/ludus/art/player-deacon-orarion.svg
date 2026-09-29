@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Дьякон с поднятым орарем возглашает ектенью">
+  <title>Дьякон с орарем</title>
+  <desc>Дьякон в стихаре поднимает орарь тремя перстами, призывая народ к молитве: как ангел, он возносит прошения общины к Богу. Форма — Вера и Харизма; действие — возглашение ектеньи; цель — единая молитва Церкви, соединяющая землю и небо.</desc>
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- голова дьякона -->
+  <circle cx="46" cy="36" r="11" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M40 42 Q46 52 52 42 Q50 48 46 48 Q42 48 40 42 Z" fill="#c8a56a" opacity=".7"/>
+  <!-- стихарь с широкими рукавами -->
+  <path d="M46 48 C28 54 24 80 26 120 H66 C68 80 64 54 46 48 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M26 120 H66" stroke="#e8c87a" stroke-width="2"/>
+  <!-- поднятая правая рука в широком рукаве -->
+  <path d="M58 54 L72 32 L78 36 L64 60 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <circle cx="76" cy="30" r="3" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- орарь: с левого плеча вниз и в поднятую руку -->
+  <path d="M38 52 L32 118" stroke="#e8c87a" stroke-width="4"/>
+  <path d="M38 52 Q58 46 76 28 L76 14" fill="none" stroke="#e8c87a" stroke-width="4"/>
+  <!-- кресты на ораре -->
+  <g stroke="#1a0e04" stroke-width="1.2">
+    <path d="M35 76 v6 M32 79 h6 M33 100 v6 M30 103 h6"/>
+    <path d="M76 17 v6 M73 20 h6"/>
+  </g>
+  <!-- возглас, восходящий вверх -->
+  <path d="M84 18 q4 -4 0 -8 M88 20 q6 -6 0 -12" fill="none" stroke="#8a6a34" stroke-width="1.2" stroke-dasharray="2 2"/>
+  <!-- кадильный дым у ног -->
+  <path d="M74 118 q-4 -6 0 -12 q4 -6 0 -12" fill="none" stroke="#8a6a34" stroke-width="1.2"/>
+</svg>

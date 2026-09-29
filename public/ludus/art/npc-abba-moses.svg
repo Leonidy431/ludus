@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Авва Моисей Мурин, пустынник Скита">
+  <title>Авва Моисей Мурин</title>
+  <desc>Преподобный Моисей Мурин (Эфиоп), бывший разбойник, ставший отцом Скитской пустыни. Он несёт дырявую корзину, из которой сыплется песок: «мои грехи сыплются позади меня, а я пришёл судить чужие». Смысл: покаяние и неосуждение брата — путь от бывшей силы к смирению.</desc>
+  <!-- Иконографический нимб допущен только для святых (бриф героев II очереди) -->
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- нимб святого -->
+  <circle cx="50" cy="32" r="17" fill="#2a1808" stroke="#e8c87a" stroke-width="1.5"/>
+  <circle cx="50" cy="32" r="14.5" fill="none" stroke="#8a6a34" stroke-width="1" stroke-dasharray="2 2"/>
+  <!-- лик под монашеским куколем -->
+  <path d="M37 38 Q36 18 50 17 Q64 18 63 38 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <circle cx="50" cy="34" r="10" fill="#1a0e04" stroke="#c8a56a" stroke-width="2"/>
+  <!-- грубая власяница пустынника -->
+  <path d="M50 46 C31 52 27 80 29 118 H71 C73 80 69 52 50 46 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- короткая курчавая борода -->
+  <path d="M41 36 Q41 50 50 52 Q59 50 59 36 Q56 44 50 44 Q44 44 41 36 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1"/>
+  <!-- параман со крестом -->
+  <path d="M42 56 H58 V70 H42 Z" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <path d="M50 58 v10 M46 62 h8" stroke="#e8c87a" stroke-width="2"/>
+  <!-- пояс-вервие -->
+  <path d="M31 88 Q50 94 69 88" fill="none" stroke="#8a6a34" stroke-width="2"/>
+  <!-- дырявая корзина на плече, песок течёт позади -->
+  <path d="M60 60 H80 L77 76 H63 Z" fill="#1a0e04" stroke="#e8c87a" stroke-width="1.5"/>
+  <path d="M61 65 H79 M62 70 H78 M65 60 V76 M70 60 V76 M75 60 V76" stroke="#8a6a34" stroke-width="1"/>
+  <path d="M60 60 Q70 52 80 60" fill="none" stroke="#c8a56a" stroke-width="1.5"/>
+  <g fill="#c8a56a">
+    <circle cx="70" cy="80" r="1"/><circle cx="71" cy="85" r="1"/><circle cx="72" cy="90" r="1"/>
+    <circle cx="73" cy="96" r="1"/><circle cx="74" cy="103" r="1"/><circle cx="76" cy="110" r="1"/>
+  </g>
+  <!-- песчаная кучка у ног: следы грехов, не чужих -->
+  <path d="M68 118 Q76 110 84 118 Z" fill="#8a6a34" opacity=".8"/>
+  <!-- посох пустынника -->
+  <path d="M24 120 V46 M20 50 h8" fill="none" stroke="#8a6a34" stroke-width="2"/>
+</svg>

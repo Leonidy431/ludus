@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Термометр воды — зонд термоклина">
+  <title>Термометр воды</title>
+  <desc>Зонд проходит тёплый верхний слой и холодную глубину: граница-термоклин — образ перехода от внешнего к внутреннему. Разные среды учат разным урокам: «Дух дышит, где хочет» (Ин 3:8).</desc>
+  <!-- Объект ROV: термозонд на кабеле пересекает термоклин -->
+  <defs>
+    <radialGradient id="termometr-vody-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#1f5a73"/>
+      <stop offset="100%" stop-color="#0d2a3a"/>
+    </radialGradient>
+  </defs>
+  <!-- картуш-рамка -->
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#termometr-vody-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <g>
+    <!-- тёплый верхний слой -->
+    <rect x="9" y="9" width="78" height="30" rx="5" fill="#8a6a34" opacity=".25"/>
+    <!-- линия термоклина -->
+    <path d="M10 40 Q30 36 48 40 T86 40" fill="none" stroke="#e8c87a" stroke-width="1.4" stroke-dasharray="4 3"/>
+    <!-- холодная глубина -->
+    <rect x="9" y="42" width="78" height="45" rx="5" fill="#0d2a3a" opacity=".5"/>
+    <!-- кабель -->
+    <path d="M48 8 V22" stroke="#c8a56a" stroke-width="1.4"/>
+    <!-- зонд-термометр -->
+    <rect x="42" y="22" width="12" height="44" rx="6" fill="#2a1808" stroke="#c8a56a" stroke-width="1.8"/>
+    <path d="M48 30 V66" stroke="#c0392b" stroke-width="2.4"/>
+    <circle cx="48" cy="72" r="7" fill="#c0392b" stroke="#c8a56a" stroke-width="1.8"/>
+    <!-- деления шкалы -->
+    <g stroke="#e8c87a" stroke-width="1.2">
+      <path d="M56 30 h5 M56 38 h3 M56 46 h5 M56 54 h3 M56 62 h5"/>
+    </g>
+  </g>
+</svg>

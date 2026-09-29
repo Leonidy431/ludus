@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Пещера исихаста — тьма и единственный светильник">
+  <title>Пещера исихаста</title>
+  <desc>Горная пещера отшельника: вокруг почти полная тьма, в нише горит один светильник, рядом вырезанный в камне крест и каменное ложе. Смысл: исихаст уходит от многого к единому — один огонь молитвы Иисусовой светит во тьме и тьма не объяла его.</desc>
+  <!-- Арт-канон §9.0: умбра+золото. Локация: пещера, ступень «Мистическое». -->
+  <defs>
+    <radialGradient id="pesh-svet" cx="52%" cy="58%" r="45%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect width="320" height="180" fill="#140a02"/>
+  <!-- свод пещеры: освещённая полость -->
+  <path d="M30 180 Q20 90 70 50 Q130 10 200 30 Q280 54 292 120 Q298 150 290 180 Z" fill="url(#pesh-svet)" stroke="#8a6a34" stroke-width="1.8"/>
+  <!-- наплывы камня на своде -->
+  <g stroke="#8a6a34" stroke-width="1.2" fill="none" opacity=".7">
+    <path d="M86 52 Q96 64 92 78"/><path d="M150 26 Q146 40 156 48"/>
+    <path d="M234 44 Q226 58 238 70"/><path d="M60 100 Q74 108 70 124"/>
+  </g>
+  <!-- сталактиты -->
+  <g fill="#241405" stroke="#8a6a34" stroke-width="1">
+    <path d="M112 34 L116 50 L120 32 Z"/><path d="M190 28 L193 42 L197 30 Z"/><path d="M252 54 L255 66 L259 58 Z"/>
+  </g>
+  <!-- ниша в скале со светильником -->
+  <path d="M146 112 V94 Q160 78 174 94 V112 Z" fill="#241405" stroke="#c8a56a" stroke-width="1.6"/>
+  <!-- единственный светильник: глиняная лампа и огонь -->
+  <path d="M150 112 Q160 106 172 110 L176 107 Q170 116 160 116 Q152 116 150 112 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.2"/>
+  <path d="M174 107 Q180 99 175 91 Q170 99 174 107 Z" fill="#e8c87a" stroke="#c8a56a" stroke-width=".6"/>
+  <circle cx="174" cy="102" r="10" fill="#e8c87a" opacity=".18"/>
+  <circle cx="174" cy="102" r="28" fill="#e8c87a" opacity=".06"/>
+  <!-- крест, вырезанный в камне над нишей -->
+  <path d="M160 58 V78 M152 64 H168" stroke="#e8c87a" stroke-width="2" fill="none"/>
+  <!-- каменное ложе отшельника -->
+  <path d="M200 146 H262 V156 H200 Z" fill="#241405" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M204 146 Q212 140 220 146" fill="#3a2410" stroke="#8a6a34" stroke-width="1"/>
+  <!-- кувшин с водой -->
+  <path d="M110 156 q-5 0 -5 -6 q0 -7 4 -9 v-4 h6 v4 q4 2 4 9 q0 6 -5 6 Z" fill="#241405" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- пол пещеры -->
+  <path d="M30 170 Q160 156 290 170" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- вход пещеры: лунная щель вдали -->
+  <path d="M276 96 Q286 110 284 132" stroke="#c8a56a" stroke-width="1" fill="none" opacity=".4"/>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Старец Сергий, исихаст пустыни">
+  <title>Старец Сергий</title>
+  <desc>Старец-исихаст в схимническом куколе с вервицей: мудрость начинается в молчании, а умная молитва сводит ум в сердце. Форма — Мудрость и Вера; действие — молитва Иисусова; цель — апофатическое незнание, свет в сердце.</desc>
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- схимнический кукол, покрывающий голову и плечи -->
+  <path d="M34 50 Q32 24 50 20 Q68 24 66 50 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- лицо в тени кукола -->
+  <circle cx="50" cy="36" r="9" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- мантия схимника -->
+  <path d="M50 50 C30 56 26 82 28 120 H72 C74 82 70 56 50 50 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- долгая седая борода — годы молчания -->
+  <path d="M42 39 Q41 52 50 62 Q59 52 58 39 Q50 46 42 39 Z" fill="#e8c87a" opacity=".8"/>
+  <!-- складки мантии — прямые, как путь безмолвия -->
+  <path d="M40 70 L37 118 M60 70 L63 118" stroke="#8a6a34" stroke-width="1.2" fill="none"/>
+  <!-- свет в сердце — молитва ума, сведённого в сердце -->
+  <circle cx="50" cy="78" r="4" fill="#e8c87a" opacity=".9"/>
+  <circle cx="50" cy="78" r="9" fill="#e8c87a" opacity=".14"/>
+  <!-- схимнический крест на аналаве -->
+  <path d="M50 88 v12 M45 93 h10" stroke="#c8a56a" stroke-width="2"/>
+  <!-- вервица, свисающая из руки -->
+  <path d="M66 84 Q72 96 66 108 Q60 96 66 84 Z" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <g fill="#c8a56a">
+    <circle cx="69" cy="90" r="1.6"/><circle cx="70" cy="97" r="1.6"/><circle cx="68.5" cy="103" r="1.6"/>
+    <circle cx="63.5" cy="103" r="1.6"/><circle cx="62" cy="97" r="1.6"/><circle cx="63" cy="90" r="1.6"/>
+  </g>
+  <path d="M66 108 v5 M64 111 h4" stroke="#e8c87a" stroke-width="1.5"/>
+  <!-- кисть руки, держащая вервицу -->
+  <circle cx="66" cy="83" r="3" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- песок пустыни у подножия -->
+  <path d="M10 126 Q30 120 50 126 Q70 132 90 124" fill="none" stroke="#8a6a34" stroke-width="1.5" stroke-dasharray="3 3"/>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Врата знания I — Основание: Евангелие, порог Мудрости 4">
+  <title>Врата I: Основание</title>
+  <desc>Напрестольное Евангелие с крестом и четырьмя евангелистами по углам. Смысл: всякий путь начинается со Слова — азы веры полагают основание, на котором строится всё дальнейшее восхождение. Четыре точки внизу — порог Мудрости 4.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка. Врата знания, уровень 1 из 6:
+       самый «богатый» образ — дальше каждая ступень строже и беднее. -->
+  <defs>
+    <radialGradient id="g1-bg" cx="50%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#g1-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- сияние вокруг книги -->
+  <circle cx="48" cy="44" r="30" fill="#e8c87a" opacity=".08"/>
+  <!-- оклад Евангелия -->
+  <rect x="28" y="18" width="40" height="54" rx="3" fill="#8a6a34" stroke="#e8c87a" stroke-width="2"/>
+  <rect x="32" y="22" width="32" height="46" rx="1.5" fill="#2a1808" stroke="#c8a56a" stroke-width="1"/>
+  <!-- корешок и застёжки -->
+  <path d="M28 30 h-3 M28 60 h-3" stroke="#e8c87a" stroke-width="2"/>
+  <!-- крест в средостении оклада -->
+  <path d="M48 30 V60 M38 40 H58" stroke="#e8c87a" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="48" cy="40" r="3.4" fill="#c0392b" stroke="#e8c87a" stroke-width="1"/>
+  <!-- четыре евангелиста — медальоны по углам -->
+  <g fill="#c8a56a" stroke="#8a6a34" stroke-width=".8">
+    <circle cx="36" cy="26" r="2.6"/><circle cx="60" cy="26" r="2.6"/>
+    <circle cx="36" cy="64" r="2.6"/><circle cx="60" cy="64" r="2.6"/>
+  </g>
+  <!-- порог Мудрости: 4 точки -->
+  <g fill="#e8c87a"><circle cx="41.4" cy="83" r="1.5"/><circle cx="45.8" cy="83" r="1.5"/><circle cx="50.2" cy="83" r="1.5"/><circle cx="54.6" cy="83" r="1.5"/></g>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 24" role="img" aria-label="Византийский орнамент-разделитель">
+  <title>Орнамент-разделитель</title>
+  <desc>Две линии сходятся к кресту в ромбе: всякий раздел речи и всякий переход в диалоге проходит через Крест — средоточие, в котором соединяются правая и левая части мира.</desc>
+  <!-- линии, сходящиеся к средоточию -->
+  <g stroke="#8a6a34" stroke-width="1.5" fill="none">
+    <path d="M8 12 H168"/><path d="M232 12 H392"/>
+  </g>
+  <g stroke="#c8a56a" stroke-width="1" opacity=".55">
+    <path d="M40 8 H164 M40 16 H164 M236 8 H360 M236 16 H360"/>
+  </g>
+  <!-- бусины-чётки по сторонам -->
+  <g fill="#c8a56a" stroke="#8a6a34" stroke-width=".6">
+    <circle cx="8" cy="12" r="2"/><circle cx="24" cy="12" r="2.4"/>
+    <circle cx="392" cy="12" r="2"/><circle cx="376" cy="12" r="2.4"/>
+  </g>
+  <!-- малые ромбы-завитки -->
+  <g fill="none" stroke="#c8a56a" stroke-width="1.4">
+    <path d="M168 12 L174 6 L180 12 L174 18 Z"/><path d="M220 12 L226 6 L232 12 L226 18 Z"/>
+  </g>
+  <!-- средоточие: крест в ромбе -->
+  <path d="M200 1 L211 12 L200 23 L189 12 Z" fill="#2a1808" stroke="#e8c87a" stroke-width="1.6"/>
+  <path d="M200 6 V18 M195 11 H205" stroke="#e8c87a" stroke-width="1.8" stroke-linecap="round"/>
+</svg>

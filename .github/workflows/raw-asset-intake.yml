@@ -1,0 +1,74 @@
+# Raw-material intake (CLAUDE.md TABOO 0.1): third-party art from the
+# backlog list is fetched, transformed, measured against the 35 % rule and
+# registered with its licence.  Results are uploaded as an artifact for
+# review; nothing is committed automatically, because a licence guess must
+# be confirmed by a human before any asset ships.
+name: Raw asset intake (35% rule)
+
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: 'owner/name filters, space separated (empty = all)'
+        default: 'tmewett/BrogueCE 00-Evan/shattered-pixel-dungeon'
+      max_repos:
+        description: 'max repositories from backlog'
+        default: '5'
+      per_repo:
+        description: 'max images per repository'
+        default: '10'
+      threshold:
+        description: 'minimum colour AND shape change'
+        default: '0.35'
+
+permissions:
+  contents: read
+
+jobs:
+  intake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install tools
+        run: pip install pillow pycodestyle
+
+      - name: PEP 8 gate
+        run: python -m pycodestyle scripts/raw_assets/
+
+      - name: Intake (images and licences only)
+        env:
+          ONLY: ${{ inputs.only }}
+          MAX_REPOS: ${{ inputs.max_repos }}
+          PER_REPO: ${{ inputs.per_repo }}
+        run: |
+          python scripts/raw_assets/intake.py --out build/raw \
+            --max-repos "$MAX_REPOS" --per-repo "$PER_REPO" \
+            ${ONLY:+--only $ONLY}
+
+      - name: Transform and measure
+        env:
+          THRESHOLD: ${{ inputs.threshold }}
+        run: |
+          python scripts/raw_assets/transform.py --raw build/raw \
+            --out build/derived --threshold "$THRESHOLD"
+
+      - name: Licence register and claim sheets
+        run: |
+          python scripts/raw_assets/register.py --derived build/derived \
+            --notices build/THIRD_PARTY_NOTICES.md
+          cat build/THIRD_PARTY_NOTICES.md >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: raw-asset-intake
+          path: |
+            build/derived
+            build/THIRD_PARTY_NOTICES.md
+            build/raw/manifest.json
+          retention-days: 14

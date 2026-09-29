@@ -1,7 +1,13 @@
 /**
- * Ludus Design System — Beautiful UI Components
- * Dark theme with gold/cyan accent colors
- * Smooth animations, responsive layout, accessibility-first
+ * Ludus design system: shared tokens and base components.
+ *
+ * This file loads first and is the single source of colour, type,
+ * spacing and motion tokens for the Meta Quest 3 build. The other
+ * module stylesheets read these tokens with literal fallbacks, so a
+ * token changed here repaints every panel at once.
+ *
+ * Contrast figures in the comments are WCAG 2.x ratios measured against
+ * --ludus-dark-card (#1a1a1a), the darkest surface text sits on.
  */
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -9,18 +15,47 @@
    ═════════════════════════════════════════════════════════════════════════ */
 
 :root {
+  /*
+   * The Meta build is dark only. In the headset a light panel glares
+   * against the passthrough or the dark scene, and three of the module
+   * stylesheets plus the inline boot shell still paint dark literals, so
+   * a light theme would render half light and fail contrast. Declaring
+   * the scheme makes native scrollbars and form controls dark as well.
+   */
+  color-scheme: dark;
+
   /* Colors */
-  --ludus-gold: #D4AF37;
-  --ludus-cyan: #00CED1;
+  --ludus-gold: #D4AF37;  /* 8.3:1 */
+  --ludus-cyan: #00CED1;  /* 8.9:1 */
   --ludus-dark-bg: #0f0f0f;
   --ludus-dark-card: #1a1a1a;
   --ludus-dark-hover: #252525;
-  --ludus-text-primary: #f0f0f0;
-  --ludus-text-secondary: #a0a0a0;
+  --ludus-text-primary: #f0f0f0;  /* 15.3:1 */
+
+  /*
+   * Secondary text was #a0a0a0 (6.7:1). That passes AA on a monitor,
+   * but the Quest 3 panel is soft and text is read from about a metre
+   * away, so it is raised to 9.3:1 (8.2:1 on the hover surface).
+   */
+  --ludus-text-secondary: #bdbdbd;
   --ludus-border: #2a2a2a;
   --ludus-success: #4ade80;
   --ludus-warning: #fbbf24;
-  --ludus-error: #ef4444;
+
+  /*
+   * #ef4444 dropped to 4.2:1 on its own tinted badge background. The
+   * lighter red keeps 5.5:1 there and matches the boot-shell error
+   * border in index.html.
+   */
+  --ludus-error: #ff6b6b;
+
+  /*
+   * One focus ring for every interactive element. Cyan stays visible on
+   * both the dark surfaces and the gold primary button, where the
+   * browser default ring was nearly invisible.
+   */
+  --ludus-focus-ring: 3px solid var(--ludus-cyan);
+  --ludus-focus-offset: 2px;
 
   /* Spacing */
   --ludus-spacing-xs: 4px;
@@ -30,13 +65,46 @@
   --ludus-spacing-xl: 20px;
   --ludus-spacing-2xl: 32px;
 
-  /* Typography */
-  --ludus-font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-  --ludus-font-mono: 'SF Mono', Monaco, 'Inconsolata', 'Courier New', monospace;
+  /*
+   * Typography. Each stack tries the platform UI face first, then Noto
+   * and Roboto, which ship on the Quest (Android) browser and cover
+   * Cyrillic and polytonic Greek, then CJK faces, and ends with colour
+   * emoji so the attribute icons never fall back to tofu.
+   */
+  --ludus-font-stack: system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Noto Sans', 'Helvetica Neue', Arial, 'Noto Sans CJK SC',
+    'PingFang SC', 'Hiragino Sans', 'Microsoft YaHei', sans-serif,
+    'Noto Color Emoji', 'Apple Color Emoji', 'Segoe UI Emoji';
+  --ludus-font-mono: 'SF Mono', Monaco, 'Inconsolata', 'Noto Sans Mono',
+    'DejaVu Sans Mono', 'Courier New', monospace;
+
+  /*
+   * Church Slavonic needs fonts that stack its combining titla and
+   * accents; the Ponomar family is the reference set from the Slavonic
+   * Computing Initiative. Noto Serif is the widely installed fallback.
+   */
+  --ludus-font-slavonic: 'Ponomar Unicode', 'Monomakh Unicode',
+    'Triodion Unicode', 'Noto Serif', 'DejaVu Serif', serif;
+
+  /* Polytonic Greek needs breathings and accents in Greek Extended. */
+  --ludus-font-greek: 'GFS Didot', 'Gentium Plus', 'Noto Serif',
+    'DejaVu Serif', serif;
+
+  /*
+   * Rem-based type scale. The root stays at the browser default so the
+   * Quest browser's own text zoom still scales every size.
+   */
+  --ludus-text-sm: 0.875rem;
+  --ludus-text-base: 1rem;
+  --ludus-text-lg: 1.25rem;
 
   /* Sizing */
-  --ludus-btn-height: 44px;
-  --ludus-input-height: 40px;
+  /*
+   * 48px rather than 44px: controller rays jitter more than a mouse, and
+   * 48px is the Android and Meta minimum hit target.
+   */
+  --ludus-btn-height: 48px;
+  --ludus-input-height: 48px;
   --ludus-card-radius: 8px;
   --ludus-btn-radius: 6px;
 
@@ -58,14 +126,13 @@
   --ludus-z-tooltip: 1100;
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --ludus-dark-bg: #0a0a0a;
-    --ludus-dark-card: #131313;
-    --ludus-dark-hover: #1f1f1f;
-  }
-}
+/*
+ * The old prefers-color-scheme: dark block darkened the surfaces to
+ * #0a0a0a only on dark-scheme devices, which is every Quest. The boot
+ * shell in index.html paints #0f0f0f, so the page flashed between two
+ * blacks, and contrast depended on an OS setting. One palette is used
+ * for both schemes instead.
+ */
 
 /* ═══════════════════════════════════════════════════════════════════════════
    GLOBAL STYLES
@@ -84,6 +151,73 @@ html, body {
   line-height: 1.6;
 }
 
+/*
+ * The inline boot-shell style in index.html sets body to a bare
+ * system-ui stack and comes later in the cascade. The extra type
+ * selector outranks it, so once this file loads the game text gets the
+ * multilingual stack while the boot shell still works without it.
+ */
+html body {
+  font-family: var(--ludus-font-stack);
+}
+
+/*
+ * Script-specific faces are chosen by the lang attribute, so content
+ * authors only need to mark the language of a quotation.
+ */
+:lang(cu) {
+  font-family: var(--ludus-font-slavonic);
+  line-height: 1.8;  /* Titla and stacked accents need the extra room. */
+}
+
+:lang(grc),
+:lang(el-polyton) {
+  font-family: var(--ludus-font-greek);
+}
+
+/*
+ * Han characters are shared between languages but drawn differently, so
+ * each language gets its own regional face first.
+ */
+:lang(zh),
+:lang(zh-Hans) {
+  font-family: 'Noto Sans CJK SC', 'PingFang SC', 'Microsoft YaHei',
+    var(--ludus-font-stack);
+}
+
+:lang(zh-Hant) {
+  font-family: 'Noto Sans CJK TC', 'PingFang TC', 'Microsoft JhengHei',
+    var(--ludus-font-stack);
+}
+
+:lang(ja) {
+  font-family: 'Noto Sans CJK JP', 'Hiragino Sans', 'Yu Gothic',
+    var(--ludus-font-stack);
+}
+
+:lang(ko) {
+  font-family: 'Noto Sans CJK KR', 'Apple SD Gothic Neo', 'Malgun Gothic',
+    var(--ludus-font-stack);
+}
+
+:lang(zh),
+:lang(ja),
+:lang(ko) {
+  line-height: 1.8;  /* Square glyphs crowd each other at 1.6. */
+}
+
+/*
+ * :where() keeps specificity at zero, so a module stylesheet that draws
+ * its own ring (ludus-game.css, ludus-dialogue.css) still wins, while
+ * every other control gets a visible ring instead of the thin browser
+ * default that disappears in the headset.
+ */
+:where(a, button, input, select, textarea, summary,
+       [tabindex]):focus-visible {
+  outline: var(--ludus-focus-ring);
+  outline-offset: var(--ludus-focus-offset);
+}
+
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -100,6 +234,7 @@ body {
   gap: var(--ludus-spacing-sm);
   padding: var(--ludus-spacing-md) var(--ludus-spacing-lg);
   min-height: var(--ludus-btn-height);
+  font: inherit;  /* Buttons otherwise ignore the multilingual stack. */
   font-size: 0.95em;
   font-weight: 600;
   text-decoration: none;
@@ -176,6 +311,8 @@ body {
   border: none;
   border-bottom: 3px solid transparent;
   color: var(--ludus-text-secondary);
+  min-height: var(--ludus-btn-height);
+  font: inherit;
   font-size: 0.95em;
   font-weight: 600;
   cursor: pointer;
@@ -269,7 +406,8 @@ body {
   position: relative;
   height: 100%;
   width: var(--pct, 50%);
-  background: linear-gradient(90deg, var(--ludus-gold) 0%, var(--ludus-cyan) 100%);
+  background: linear-gradient(90deg, var(--ludus-gold) 0%,
+    var(--ludus-cyan) 100%);
   transition: width var(--ludus-transition-slow) ease-out;
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1);
 }
@@ -293,15 +431,23 @@ body {
   50% { opacity: 1; }
 }
 
+/*
+ * Light text straight on the gold-to-cyan bar measured 1.7:1 to 1.9:1.
+ * A card-coloured pill behind the number gives 15.3:1 whatever the bar
+ * length, so the value stays readable at every attribute level.
+ */
 .ludus-attr-value {
   position: absolute;
   top: 50%;
-  right: 8px;
+  right: 4px;
   transform: translateY(-50%);
+  padding: 0 6px;
+  border-radius: 4px;
+  background: var(--ludus-dark-card);
   font-size: 0.8em;
   font-weight: bold;
+  line-height: 1.4;
   color: var(--ludus-text-primary);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
   z-index: 1;
 }
 
@@ -441,7 +587,7 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   ATTRIBUTE DISPLAY (9 D&D stats)
+   ATTRIBUTE DISPLAY (the seven FORM attributes)
    ═════════════════════════════════════════════════════════════════════════ */
 
 .ludus-attributes {
@@ -525,6 +671,30 @@ body {
   animation: slide-in-left var(--ludus-transition-slow);
 }
 
+/*
+ * Motion in a headset can cause vestibular discomfort, and several
+ * decorative loops above run forever. Honouring the OS setting here
+ * covers every module stylesheet too (rov-lake.css has no guard of its
+ * own). Durations are shortened rather than removed so that code which
+ * waits for animationend or transitionend still gets its event.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .ludus-btn-primary:hover,
+  .ludus-card:hover,
+  .ludus-metric:hover {
+    transform: none;
+  }
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════
    UTILITIES
    ═════════════════════════════════════════════════════════════════════════ */
@@ -561,11 +731,12 @@ body {
   }
 }
 
+/*
+ * The root font size used to shrink to 14px and then 13px on narrow
+ * screens, which took 0.8rem labels down to 10.4px. Narrow layouts now
+ * reflow instead, and text keeps the browser default size.
+ */
 @media (max-width: 768px) {
-  :root {
-    font-size: 14px;
-  }
-
   .ludus-card {
     padding: var(--ludus-spacing-lg);
   }
@@ -590,10 +761,6 @@ body {
 }
 
 @media (max-width: 480px) {
-  :root {
-    font-size: 13px;
-  }
-
   .ludus-card {
     padding: var(--ludus-spacing-md);
     margin-bottom: var(--ludus-spacing-lg);

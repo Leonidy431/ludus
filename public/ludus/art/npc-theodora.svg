@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Феодора, учительница литургии">
+  <title>Феодора</title>
+  <desc>Феодора с возжжённой свечой и раскрытым Служебником: премудрость (София) открывается в общей молитве Церкви. Форма — Эрудиция и Мудрость; действие — участие в Божественной литургии; цель — пробуждение софийного ведения в общине.</desc>
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- мафорий, покрывающий голову -->
+  <path d="M36 52 Q34 22 50 22 Q66 22 64 52 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- лицо -->
+  <circle cx="50" cy="36" r="9" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- три звезды на мафории — ум, чистота, премудрость -->
+  <g fill="#e8c87a">
+    <circle cx="50" cy="25" r="1.4"/><circle cx="39" cy="44" r="1.4"/><circle cx="61" cy="44" r="1.4"/>
+  </g>
+  <!-- одеяние -->
+  <path d="M50 48 C31 54 27 82 29 120 H71 C73 82 69 54 50 48 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- раскрытый Служебник в левой руке -->
+  <path d="M28 84 L42 80 L42 96 L28 100 Z M42 80 L56 84 L56 100 L42 96" fill="#1a0e04" stroke="#e8c87a" stroke-width="1.5"/>
+  <path d="M31 87 l8 -2 M31 91 l8 -2 M45 85 l8 2 M45 89 l8 2" stroke="#8a6a34" stroke-width="1"/>
+  <!-- красная строка устава -->
+  <path d="M31 95 l8 -2" stroke="#c0392b" stroke-width="1.2"/>
+  <!-- возжжённая свеча в правой руке -->
+  <path d="M67 70 V98" stroke="#e8c87a" stroke-width="3"/>
+  <circle cx="67" cy="98" r="3" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M67 58 Q71 64 69 68 Q67 70 65 68 Q63 64 67 58 Z" fill="#e8c87a"/>
+  <circle cx="67" cy="65" r="8" fill="#e8c87a" opacity=".15"/>
+  <!-- ступени амвона под ногами -->
+  <path d="M22 124 H78 M28 129 H72" stroke="#8a6a34" stroke-width="1.5"/>
+</svg>
