@@ -749,6 +749,36 @@
     }
   }
 
+  // A plucked gut or wire string (gusli) by the Karplus-Strong method:
+  // a delay line one period long is filled with noise and averaged on
+  // every pass, which is how a real string loses its high harmonics
+  // first.  The noise comes from the seeded rng, so the pluck is the
+  // same on every run.  This is folk, human work, not a sacred sound,
+  // which is why it may answer an ordinary game event.
+  function pluck(tr, t0, freq, level, rng, t60) {
+    const period = Math.max(2, Math.round(tr.rate / freq));
+    const line = new Float32Array(period);
+    for (let i = 0; i < period; i += 1) {
+      line[i] = rng() * 2 - 1;
+    }
+    // The loss per period that makes the tone fall by 60 dB in t60
+    // seconds; the averaging filter adds its own, frequency-dependent
+    // loss on top of it.
+    const loss = Math.pow(10, -3 / (t60 * freq));
+    const n = Math.round(t60 * tr.rate);
+    const clip = new Float32Array(n);
+    let idx = 0;
+    let prev = 0;
+    for (let i = 0; i < n; i += 1) {
+      const cur = line[idx];
+      clip[i] = cur;
+      line[idx] = loss * 0.5 * (cur + prev);
+      prev = cur;
+      idx = (idx + 1) % period;
+    }
+    mixInto(tr, clip, t0, level);
+  }
+
   function breathing(tr, rng, pattern) {
     const cycle = breathCycle(pattern);
     const env = breathEnvelope(pattern, 0);
@@ -1009,6 +1039,20 @@
     constitution: Object.assign(shortVoice([98.0], 1.8, 'o', 0.6), {
       meaning: 'Low steady ison with октавист: Constitution.',
     }),
+    // Generic FORM growth after a dialogue choice.  It used to borrow
+    // the Wisdom voice, which made a chant-like voice answer every
+    // bonus like a reward ding (SOUND_THEOLOGY_RULES, TABOO 0.2 item
+    // 5, rule 16).  Two soft plucks of a gusli string, a whole step
+    // apart and rising, say "something grew" with the warm, hand-made
+    // timbre of the hearth, and stay clear of bell, board and voice.
+    form_growth: {
+      meaning: 'Two gusli plucks rising a step: FORM has grown.',
+      seconds: 1.3, loop: false, peak: 0.35,
+      build: function (tr, rng) {
+        pluck(tr, 0.005, 196.0, 0.8, rng, 1.1);
+        pluck(tr, 0.16, 220.0, 0.9, rng, 1.1);
+      },
+    },
 
     // Silence.
     hesychia: {
@@ -1141,7 +1185,7 @@
     prayer_vocalization: 'prayer_voice',
     blessing_sound: 'trezvon_motif',
     teaching_complete: 'trezvon_motif',
-    ui_positive: 'wisdom',
+    ui_positive: 'form_growth',
     ui_negative: 'gate_locked',
     ui_neutral: 'choice',
     ui_confirm: 'choice',

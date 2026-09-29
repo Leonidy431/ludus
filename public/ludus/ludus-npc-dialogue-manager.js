@@ -2,8 +2,10 @@
  * Ludus NPC Dialogue Manager
  *
  * Manages dialogue trees, branching logic, and NPC interactions.
- * Loads dialogue trees and NPC memory from the Cloud Functions API,
- * checks the player's FORM (attributes) against branch conditions,
+ * Loads dialogue trees and NPC memory from the Cloud Functions API for
+ * signed-in players and from the bundled pack for guests (who have no
+ * backend), checks the player's FORM (attributes) against branch
+ * conditions,
  * records choices and keeps NPC memory across sessions.
  *
  * Demiurgic Causality: FORM (attributes) gates which branches are open,
@@ -256,51 +258,87 @@ window.LudusDialogueManager = (function () {
     }
   }
 
-  /**
-   * Load the dialogue tree for the given NPC.
-   *
-   * Tries the API first, then the offline cache.  Throws only when
-   * neither source has a usable tree; the error carries
-   * ``offline = true`` so the UI can explain why.
-   */
-  async function loadDialogueTree(npcId) {
-    if (typeof npcId !== 'string' || !npcId) {
-      throw new Error('npcId is required');
+  // Local sources only: the bundled pack first, then the tree cached
+  // by an earlier online session.  The pack is the reviewed content of
+  // this build, so it wins over a cache that may be older.
+  async function loadLocalTree(npcId) {
+    const bundled = normaliseTree(await loadBundledTree(npcId), npcId);
+    if (bundled) {
+      return bundled;
     }
-    const cacheKey = TREE_CACHE_PREFIX + npcId;
-    let tree = null;
-    let fromCache = false;
+    return normaliseTree(storageGet(TREE_CACHE_PREFIX + npcId), npcId);
+  }
 
+  // Signed-in players ask the API first, so they receive trees seeded
+  // after this build shipped; the offline cache and the bundled pack
+  // keep the conversation going when the network drops.
+  async function loadRemoteTree(npcId) {
+    const cacheKey = TREE_CACHE_PREFIX + npcId;
     try {
       const url = `${DIALOGUE_API}/tree/${encodeURIComponent(npcId)}`;
       const response = await fetch(url, { headers: await buildHeaders() });
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
-      tree = normaliseTree(await response.json(), npcId);
+      const tree = normaliseTree(await response.json(), npcId);
       if (!tree) {
         throw new Error('Malformed dialogue tree');
       }
       storageSet(cacheKey, tree);
+      return { tree: tree, offline: false, error: null };
     } catch (err) {
-      tree = normaliseTree(storageGet(cacheKey), npcId);
+      let tree = normaliseTree(storageGet(cacheKey), npcId);
       if (!tree) {
-        // A first-time guest has no cache yet.  The bundled content
-        // pack (exported from the backend seed data) keeps the core
-        // mentors talking with no network, as the constitution asks.
         tree = normaliseTree(await loadBundledTree(npcId), npcId);
       }
-      fromCache = Boolean(tree);
-      if (!tree) {
-        console.error(
-          `[Ludus] Failed to load dialogue tree for ${npcId}:`, err);
-        const failure = new Error(
-          `Dialogue with ${npcId} is unavailable offline`);
-        failure.offline = true;
-        failure.cause = err;
-        throw failure;
+      if (tree) {
+        console.warn(`[Ludus] Using cached dialogue tree for ${npcId}`);
       }
-      console.warn(`[Ludus] Using cached dialogue tree for ${npcId}`);
+      return { tree: tree, offline: Boolean(tree), error: err };
+    }
+  }
+
+  /**
+   * Load the dialogue tree for the given NPC.
+   *
+   * A guest (init() with no playerId, which is how the game starts a
+   * conversation in guest or offline mode or when Firebase is not
+   * configured) has no backend to ask, so the bundled pack is used
+   * directly and no request is sent: asking the API first only put a
+   * 404 in the console of every guest session.  A signed-in player
+   * tries the API first, then the offline cache and the pack.  Throws
+   * only when no source has a usable tree; the error carries
+   * ``offline = true`` so the UI can explain why.
+   */
+  async function loadDialogueTree(npcId) {
+    if (typeof npcId !== 'string' || !npcId) {
+      throw new Error('npcId is required');
+    }
+    let tree = null;
+    let fromCache = false;
+    let cause = null;
+
+    if (state.playerId) {
+      const result = await loadRemoteTree(npcId);
+      tree = result.tree;
+      fromCache = result.offline;
+      cause = result.error;
+    } else {
+      // Guest play is local by design, not a lost connection, so the
+      // "will sync when the headset reconnects" notice stays hidden:
+      // a guest's progress lives on the device and never syncs.
+      tree = await loadLocalTree(npcId);
+      cause = tree ? null : new Error('No bundled dialogue tree');
+    }
+
+    if (!tree) {
+      console.error(
+        `[Ludus] Failed to load dialogue tree for ${npcId}:`, cause);
+      const failure = new Error(
+        `Dialogue with ${npcId} is unavailable offline`);
+      failure.offline = true;
+      failure.cause = cause;
+      throw failure;
     }
 
     // A new conversation starts from a clean slate; keeping the old
@@ -509,6 +547,12 @@ window.LudusDialogueManager = (function () {
 
   async function drainPending() {
     const queue = storageGet(PENDING_KEY) || [];
+    // A guest has no account and no token, so posting an entry left by
+    // an earlier signed-in session would only fail with a 4xx.  The
+    // queue waits until that player signs in again.
+    if (!state.playerId) {
+      return queue.length;
+    }
     while (queue.length > 0) {
       try {
         await postState(queue[0]);
