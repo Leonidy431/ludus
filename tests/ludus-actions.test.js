@@ -1,6 +1,6 @@
 // Tests for the ACTION layer and the three-part gate check
 // (CLAUDE.md constitution section 4, TABOO 0.35 rule 14).
-// Run: node --test tests/
+// Run: node --test tests/*.test.js
 'use strict';
 
 const test = require('node:test');
