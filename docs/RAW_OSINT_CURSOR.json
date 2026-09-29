@@ -1,5 +1,5 @@
 {
- "next": 6,
+ "next": 9,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -110,6 +110,34 @@
    "accepted_objects": 8,
    "code_candidates": 38,
    "reverted": "Slot mismatch: DEF-004 (gate-opening moment, a GOAL) got dungeon doors turned into passions; DEF-006 (bubble columns) got a watermelon. Both deficits are procedural, not raw-material. Fix: images only for fill=raw-material. 8 objects removed before commit; code candidates kept."
+  },
+  {
+   "time": "2026-09-29T15:04:27.755731+00:00",
+   "deficits": [
+    {
+     "id": "DEF-007",
+     "skipped": "not-raw-material"
+    },
+    {
+     "id": "DEF-008",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 193,
+      "sacred-never-raw": 4
+     }
+    },
+    {
+     "id": "DEF-009",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 182
+     }
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 21
   }
  ]
 }
