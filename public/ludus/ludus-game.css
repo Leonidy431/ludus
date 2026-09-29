@@ -908,3 +908,48 @@
   outline: 3px solid var(--ludus-light-lampada, #ff9a3c);
   outline-offset: 2px;
 }
+
+/* On the road: a passion is drawn in the cold complementary palette
+   (TABOO 0.3 rules 26-29, TABOO 0.38), never in the lamp's warm gold. */
+.ludus-road {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #3a4a66;
+  border-radius: 8px;
+  background: #10141c;
+}
+
+.ludus-road h4 {
+  margin-top: 0;
+  color: #9fb4d9;
+}
+
+.ludus-road-card {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.ludus-road-art {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.ludus-road-lure {
+  font-style: italic;
+  color: #c9d4ea;
+}
+
+.ludus-road-btn {
+  border-color: #3a4a66;
+}
+
+.ludus-road-still {
+  color: var(--lg-muted);
+}
+
+.ludus-road-end {
+  color: var(--lg-text);
+}

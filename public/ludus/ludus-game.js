@@ -143,6 +143,14 @@
   // The guest's ACTION counters (prayer rope, fasts, stillness, mentors
   // met, bows) live beside the FORM for the same reason.
   const GUEST_ACTIONS_KEY = 'ludus.guest.actions';
+  // Meetings with the eight passions (outcomes only, never what was
+  // "said" to a thought) and the data that describes them.
+  const GUEST_PASSIONS_KEY = 'ludus.guest.passions';
+  const PASSIONS_URL = '/ludus/data/passions.json';
+  // Three breaths of stillness close a good encounter; five seconds a
+  // breath keeps it short enough for a headset and long enough to be a
+  // pause rather than a click.
+  const STILL_BREATH_SECONDS = 5;
 
   // Seconds in a minute of a timed practice.  A constant, so a test can
   // read how long a session is; it is never shortened in play.
@@ -189,6 +197,10 @@
     // A running timed practice (stillness, vigil, handiwork):
     // { id, endsAt, timer } or null.  Only one runs at a time.
     practiceTimer: null,
+    passionData: null,
+    passionRecord: {},
+    encounter: null,
+    stillTimer: null,
     reachableNodes: [],
     knowledgeGates: [],
     // One of 'loading', 'online', 'offline'.
@@ -388,6 +400,10 @@
       // The stored rule comes from the backend, which can read the
       // player's document; the direct read above may be refused.
       await loadServerActions();
+      // The passion record stays on the device for now; the server has
+      // no endpoint for it yet (noted in the HLD).
+      state.passionRecord = loadGuestPassions();
+      loadPassionData();
     } else {
       renderGameUI();
     }
@@ -811,6 +827,70 @@
   // Counters are shown plainly and never turn into points: TABOO 0.35
   // rule 16 forbids XP from prayer, so the panel says what was done and
   // nothing about what it "earned".
+  // "On the road": one passion at a time, in Evagrius' order.  The lure
+  // speaks the language of profit (TABOO 0.39); the options walk the
+  // ladder of a thought (ludus-passion.js).  A cold palette marks the
+  // passion, never the warm lamp of holy things (TABOO 0.38).
+  function renderRoadPanel() {
+    const api = window.LudusPassion;
+    const data = state.passionData;
+    if (!api || !data || !state.playerForm) {
+      return '';
+    }
+    const passion = state.encounter
+      ? data.passions.find((p) => p.id === state.encounter.passionId)
+      : api.nextPassion(data, state.passionRecord);
+    if (!passion) {
+      return '<section class="ludus-road"><h4>On the road</h4>'
+        + '<p>The road is quiet.</p></section>';
+    }
+    const art = passion.art ? `<img class="ludus-road-art" src="${
+      escapeHtml(passion.art)}" alt="" width="96" height="96">` : '';
+    if (!state.encounter) {
+      return '<section class="ludus-road" aria-labelledby="ludus-road-h">'
+        + '<h4 id="ludus-road-h">On the road</h4>'
+        + `<div class="ludus-road-card">${art}`
+        + `<p class="ludus-road-lure">${escapeHtml(passion.lure)}</p></div>`
+        + '<button type="button" class="ludus-rule-btn"'
+        + ' data-action="passion-meet">Stop and look at what is offered'
+        + '</button></section>';
+    }
+    const stage = state.encounter.stage;
+    let body = '';
+    if (stage === 'virtue') {
+      body = `<p class="ludus-road-end">The thought has passed. `
+        + `${escapeHtml(passion.virtue)} — ${escapeHtml(passion.source)}; `
+        + `${escapeHtml(passion.ladder)}.</p>`
+        + '<button type="button" class="ludus-rule-btn"'
+        + ' data-action="passion-close">Walk on</button>';
+    } else if (stage === 'captive') {
+      body = '<p class="ludus-road-end">It led you. It will come back; '
+        + 'the mentors can teach its sign.</p>'
+        + '<button type="button" class="ludus-rule-btn"'
+        + ' data-action="passion-close">Walk on</button>';
+    } else if (state.stillTimer) {
+      const left = Math.max(0, Math.ceil((state.stillTimer.endsAt
+        - Date.now()) / 1000));
+      body = `<p class="ludus-road-still" aria-live="polite">Be still… ${
+        left} s</p>`;
+    } else {
+      const opts = api.options(state.encounter, passion, state.playerForm,
+        state.actions);
+      body = '<div class="ludus-rule-actions">'
+        + opts.map((o) => '<button type="button" class="ludus-rule-btn'
+          + ' ludus-road-btn" data-action="passion-choice"'
+          + ` data-option-id="${escapeHtml(o.id)}">${escapeHtml(o.text)}`
+          + '</button>').join('')
+        + '</div>';
+    }
+    return '<section class="ludus-road is-meeting"'
+      + ' aria-labelledby="ludus-road-h">'
+      + `<h4 id="ludus-road-h">On the road: ${escapeHtml(passion.name)}</h4>`
+      + `<div class="ludus-road-card">${art}`
+      + `<p class="ludus-road-lure">${escapeHtml(passion.lure)}</p></div>`
+      + body + '</section>';
+  }
+
   function renderRulePanel(ladder) {
     const api = actionsApi();
     // The bow is offered only where every other condition already
@@ -900,6 +980,7 @@
       + `<h3 data-i18n="ludus.gates">${escapeHtml(t('ludus.gates'))}</h3>`
       + `<ol class="ludus-gate-ladder">${ladderHtml}</ol>`
       + renderRulePanel(ladder)
+      + renderRoadPanel()
       + gateHtml
       + '</div>';
   }
@@ -1104,6 +1185,88 @@
     }
   }
 
+  function loadGuestPassions() {
+    try {
+      const api = window.LudusPassion;
+      const raw = JSON.parse(
+        window.localStorage.getItem(GUEST_PASSIONS_KEY) || 'null');
+      return api ? api.normalizeRecord(raw) : {};
+    } catch (error) {
+      console.warn('[Ludus] Passion record unavailable:', error.message);
+      return {};
+    }
+  }
+
+  function saveGuestPassions() {
+    try {
+      window.localStorage.setItem(GUEST_PASSIONS_KEY,
+        JSON.stringify(state.passionRecord));
+    } catch (error) {
+      console.warn('[Ludus] Passion record not saved:', error.message);
+    }
+  }
+
+  async function loadPassionData() {
+    if (state.passionData) {
+      return;
+    }
+    try {
+      const res = await fetch(PASSIONS_URL);
+      if (res.ok) {
+        state.passionData = await res.json();
+        renderKnowledgeGates();
+      }
+    } catch (error) {
+      console.warn('[Ludus] Passions unavailable offline:', error.message);
+    }
+  }
+
+  // One step of an encounter.  "still" runs three breaths before the
+  // encounter can end, and nothing is counted until it ends.
+  function passionAction(kind, optionId) {
+    const api = window.LudusPassion;
+    const data = state.passionData;
+    if (!api || !data) {
+      return;
+    }
+    if (kind === 'passion-meet') {
+      const next = api.nextPassion(data, state.passionRecord);
+      if (next) {
+        state.encounter = api.start(next);
+      }
+    } else if (kind === 'passion-choice' && state.encounter) {
+      const passion = data.passions.find(
+        (p) => p.id === state.encounter.passionId);
+      const opt = api.options(state.encounter, passion, state.playerForm,
+        state.actions).find((o) => o.id === optionId);
+      if (opt && opt.breaths) {
+        const endsAt = Date.now() + opt.breaths * STILL_BREATH_SECONDS * 1000;
+        const timer = setInterval(() => {
+          if (Date.now() >= endsAt) {
+            clearInterval(timer);
+            state.stillTimer = null;
+            state.encounter = api.choose(state.encounter, optionId, passion,
+              state.playerForm, state.actions);
+          }
+          renderKnowledgeGates();
+        }, 1000);
+        state.stillTimer = { endsAt, timer };
+      } else {
+        state.encounter = api.choose(state.encounter, optionId, passion,
+          state.playerForm, state.actions);
+      }
+    } else if (kind === 'passion-close' && state.encounter) {
+      const result = api.finish(state.passionRecord, state.encounter);
+      state.passionRecord = result.record;
+      state.encounter = null;
+      if (state.formSource === 'guest') {
+        saveGuestPassions();
+      }
+      applyDialogueResult({ attributeBonuses: result.attributeBonuses });
+    }
+    renderKnowledgeGates();
+  }
+
   // Run one ACTION through the pure LudusActions layer.
   function doAction(kind, id) {
     const api = actionsApi();
@@ -1264,6 +1427,9 @@
         if (window.LudusConfession) {
           window.LudusConfession.open();
         }
+      } else if (action === 'passion-meet' || action === 'passion-choice'
+          || action === 'passion-close') {
+        passionAction(action, target.getAttribute('data-option-id'));
       } else if (action === 'bow') {
         doAction('bow', target.getAttribute('data-gate-id'));
       } else if (action === 'open-gate') {
@@ -1291,6 +1457,8 @@
     state.playerForm = loadGuestForm();
     state.formSource = 'guest';
     state.actions = loadGuestActions();
+    state.passionRecord = loadGuestPassions();
+    loadPassionData();
     state.reachableNodes = [];
     state.knowledgeGates = [];
     console.warn('[Ludus] Offline guest mode:', error && error.message);
