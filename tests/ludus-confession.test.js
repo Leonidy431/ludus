@@ -51,3 +51,13 @@ test('the rule panel offers no counter for confession', () => {
   const actions = require('../public/ludus/ludus-actions.js');
   assert.equal(actions.PRACTICES.some((p) => /confess/.test(p.id)), false);
 });
+
+test('the Eucharist is only in the story: no practice or button', () => {
+  const actions = require('../public/ludus/ludus-actions.js');
+  const re = /euchar|communion|liturgy|причащ|евхарист/i;
+  assert.equal(actions.PRACTICES.some((p) => re.test(p.id + p.label)),
+    false);
+  const game = fs.readFileSync(path.join(__dirname,
+    '../public/ludus/ludus-game.js'), 'utf8');
+  assert.equal(/data-action="[^"]*(euchar|communion)/i.test(game), false);
+});
