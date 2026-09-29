@@ -252,15 +252,15 @@ interface DialogueState {
 | NPC | Role | Attributes | Dialogue Trees |
 |-----|------|-----------|-----------------|
 | Abba Moses | Desert father | Wisdom, Constitution | 6 trees (virtue teaching) |
-| Ekaterina | Martyr saint | Faith, Constitution | 5 trees (courage, sacrifice) |
+| Great Martyr Catherine of Alexandria | Martyr saint | Faith, Constitution | 5 trees (courage, sacrifice) |
 | Maximos | Theologian | Erudition, Wisdom | 8 trees (systematic theology) |
 | Photius | Patriarch | Charisma, Cunning | 7 trees (church politics) |
-| Mary Magdalene | Contemplative | Faith, Charisma | 5 trees (repentance) |
-| Gregory the Great | Pope-saint | Wisdom, Charisma | 6 trees (pastoral care) |
+| Equal-to-the-Apostles Mary Magdalene, myrrh-bearer | Contemplative | Faith, Charisma | 5 trees (repentance) |
+| St Gregory the Dialogist (Двоеслов) | Pastor-hierarch of Rome (undivided Church) | Wisdom, Charisma | 6 trees (pastoral care) |
 | Symeon Stylite | Ascetic | Constitution, Faith | 4 trees (ascetical theology) |
-| Hildegard | Visionary | Erudition, Faith | 7 trees (cosmic harmony) |
-| Bonaventure | Mystic | Wisdom, Erudition | 6 trees (mystical path) |
-| Catherine of Siena | Doctor | Charisma, Faith | 5 trees (prophetic speech) |
+| St Kassiani the hymnographer (Кассия) | Hymnographer-abbess | Erudition, Faith | 7 trees (hymnody, repentance in song) |
+| St Symeon the New Theologian | Mystic of the uncreated light | Wisdom, Erudition | 6 trees (mystical path, vision of light) |
+| St John Chrysostom | Preacher-archbishop | Charisma, Faith | 5 trees (prophetic speech, almsgiving) |
 
 ---
 
