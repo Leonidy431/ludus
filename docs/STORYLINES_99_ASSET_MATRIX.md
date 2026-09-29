@@ -1,6 +1,6 @@
 # 99 сюжетных линий → графика, сценарий, реплики, объекты, box, звук (2026-09-29)
 
-Источник линий: 99 миссий `webtypicon2/functions/src/game/missions.ts` (миссия епископа Иоанна на Иссык-Куле, XIV в.; 6 блоков). Матрицу составили 3 агента; каждая потребность сверена с `public/ludus/art` (EXISTS/MISSING).
+Источник линий: 99 миссий `webtypicon2/functions/src/game/missions.ts` (миссия епископа Иоанна на Иссык-Куле, XIV в.; 6 блоков). Матрицу составили 3 агента; каждая потребность сверена с `public/ludus/art` (EXISTS/MISSING). **2026-09-29:** все 209 недостающих SVG нарисованы (DRAWN) и лежат в `SVG/{loc,npc,obj,ui}/`.
 
 **Итого отсутствует 209 SVG** (предметы, локации, NPC, интерфейс). Сводный список и статус отрисовки — внизу.
 
@@ -8,7 +8,7 @@
 
 **Сцена:** На берегу Иссык-Куля дьякон вместе с Анаит и караван-баши Саргисом закладывает укреплённый двор обители со складом и кельями для путников. Здесь он узнаёт, что двор строится ради странноприимства, а не ради влияния.
 
-**Графика:** EXISTS:loc-issyk-kul.svg (фон берега); MISSING:loc-karavansaray.svg (укреплённый двор обители: ворота, аркада келий-стойл, склад, малый храм); EXISTS:npc-anahit.svg (хозяйка караван-сарая); EXISTS:npc-sargis.svg (караван-баши); MISSING:npc-episkop-ioann.svg (епископ Иоанн, без нимба); EXISTS:obj-larets.svg (казна каравана под охраной); EXISTS:obj-vesy.svg; EXISTS:obj-lampada.svg (лампада над воротами); MISSING:obj-klyuch-sklada.svg (ключ от склада)
+**Графика:** EXISTS:loc-issyk-kul.svg (фон берега); DRAWN:loc-karavansaray.svg (укреплённый двор обители: ворота, аркада келий-стойл, склад, малый храм); EXISTS:npc-anahit.svg (хозяйка караван-сарая); EXISTS:npc-sargis.svg (караван-баши); DRAWN:npc-episkop-ioann.svg (епископ Иоанн, без нимба); EXISTS:obj-larets.svg (казна каравана под охраной); EXISTS:obj-vesy.svg; EXISTS:obj-lampada.svg (лампада над воротами); DRAWN:obj-klyuch-sklada.svg (ключ от склада)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Конституция ≥ 3 — дьякон выдерживает рабочий день на закладке стен. Если порог не пройден, сцена повторяется на следующий день, прогресс сохраняется.
@@ -33,7 +33,7 @@
 
 **Сцена:** В квартале Герата мелик Ашот и Саргис показывают дьякону армянский торговый двор (текстиль, серебро, пряности). Дьякон решает, как доход двора будет служить миссии, не превращая веру в предмет торга.
 
-**Графика:** EXISTS:loc-gerat.svg (двор Герата); EXISTS:loc-agora.svg (рынок); MISSING:loc-faktoriya.svg (армянская фактория: лавка-склад с тюками, конторка писца); EXISTS:npc-melik.svg (мелик Ашот); EXISTS:npc-sargis.svg; EXISTS:npc-vardan.svg (переписчик-учётчик); MISSING:obj-tyuk-shelka.svg (тюк ткани, реестр СГ-08); MISSING:obj-slitok-serebra.svg (серебро); MISSING:obj-meshok-pryanostey.svg; EXISTS:obj-vesy.svg; EXISTS:obj-chernilnitsa.svg
+**Графика:** EXISTS:loc-gerat.svg (двор Герата); EXISTS:loc-agora.svg (рынок); DRAWN:loc-faktoriya.svg (армянская фактория: лавка-склад с тюками, конторка писца); EXISTS:npc-melik.svg (мелик Ашот); EXISTS:npc-sargis.svg; EXISTS:npc-vardan.svg (переписчик-учётчик); DRAWN:obj-tyuk-shelka.svg (тюк ткани, реестр СГ-08); DRAWN:obj-slitok-serebra.svg (серебро); DRAWN:obj-meshok-pryanostey.svg; EXISTS:obj-vesy.svg; EXISTS:obj-chernilnitsa.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 3 — дьякон читает армянскую приходную книгу Вардана. Без порога Вардан читает вслух, и путь занимает больше шагов.
@@ -58,7 +58,7 @@
 
 **Сцена:** Во дворе обители епископ Иоанн разбирает спор двух купцов-единоверцев о порченом шёлке. Дьякон готовит свидетельства и учится судить без лицеприятия.
 
-**Графика:** MISSING:loc-sudnyi-dvor-obiteli.svg (двор обители с каменной скамьёй суда под навесом); MISSING:npc-episkop-ioann.svg; MISSING:npc-kupets-a.svg и MISSING:npc-kupets-b.svg (два купца-истца); EXISTS:npc-vardan.svg (писец протокола); EXISTS:obj-raspiska.svg (расписка-улика); EXISTS:obj-vesy.svg (образ правосудия); MISSING:obj-tyuk-shelka.svg (спорный товар)
+**Графика:** DRAWN:loc-sudnyi-dvor-obiteli.svg (двор обители с каменной скамьёй суда под навесом); DRAWN:npc-episkop-ioann.svg; DRAWN:npc-kupets-a.svg и DRAWN:npc-kupets-b.svg (два купца-истца); EXISTS:npc-vardan.svg (писец протокола); EXISTS:obj-raspiska.svg (расписка-улика); EXISTS:obj-vesy.svg (образ правосудия); DRAWN:obj-tyuk-shelka.svg (спорный товар)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Мудрость ≥ 4 — заметить расхождение дат в расписке. Без порога дьякон задаёт Вардану наводящие вопросы: лишний узел, тот же исход.
@@ -83,7 +83,7 @@
 
 **Сцена:** В ставке хана дьякон представляет епископа и договаривается: обитель чинит караваны и даёт им кров, а хан даёт защиту и льготу. При этом дьякон не соглашается ни на что против совести.
 
-**Графика:** EXISTS:loc-khan-yurt.svg; EXISTS:npc-khan.svg; EXISTS:npc-strazhnik.svg; MISSING:npc-episkop-ioann.svg; EXISTS:obj-yarlyk-khana.svg; EXISTS:obj-tamga-khana.svg; EXISTS:obj-paiza.svg; EXISTS:obj-rog-glashataya.svg; EXISTS:obj-golub-mira.svg
+**Графика:** EXISTS:loc-khan-yurt.svg; EXISTS:npc-khan.svg; EXISTS:npc-strazhnik.svg; DRAWN:npc-episkop-ioann.svg; EXISTS:obj-yarlyk-khana.svg; EXISTS:obj-tamga-khana.svg; EXISTS:obj-paiza.svg; EXISTS:obj-rog-glashataya.svg; EXISTS:obj-golub-mira.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Харизма ≥ 4 — дьякон получает право говорить у очага хана. Иначе он ждёт глашатая (лишний узел).
@@ -108,7 +108,7 @@
 
 **Сцена:** В голодную зиму купец Саргис просит у обители зерно и ткани до весенних поставок. Дьякон выбирает, дать ли их в долг без роста и без кабалы.
 
-**Графика:** MISSING:loc-ambar-obiteli.svg (амбар обители зимой); EXISTS:npc-sargis.svg; EXISTS:npc-vardan.svg; MISSING:npc-episkop-ioann.svg; MISSING:obj-meshok-zerna.svg; MISSING:obj-tyuk-shelka.svg; EXISTS:obj-raspiska.svg (запись долга); EXISTS:obj-vesy.svg
+**Графика:** DRAWN:loc-ambar-obiteli.svg (амбар обители зимой); EXISTS:npc-sargis.svg; EXISTS:npc-vardan.svg; DRAWN:npc-episkop-ioann.svg; DRAWN:obj-meshok-zerna.svg; DRAWN:obj-tyuk-shelka.svg; EXISTS:obj-raspiska.svg (запись долга); EXISTS:obj-vesy.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 3 — знать 44-е Апостольское правило (клирик не даёт в рост). Без порога Вардан читает правило вслух.
@@ -133,7 +133,7 @@
 
 **Сцена:** Перед зимой дьякон с Саргисом идёт по перевалу над Иссык-Кулём и ставит цепь зимовий: склады дров и хлеба и приют с лампадой, чтобы караваны пережили бураны.
 
-**Графика:** EXISTS:loc-steppe.svg; MISSING:loc-pereval-zima.svg (заснеженный перевал Тянь-Шаня с каменным зимовьем); EXISTS:npc-sargis.svg; EXISTS:npc-rybak-issyk-kul.svg (местный знаток троп); EXISTS:obj-kompas-puti.svg; EXISTS:obj-lampada.svg; MISSING:obj-vyazanka-drov.svg; MISSING:obj-khleb-karavay.svg (хлеб в дорогу)
+**Графика:** EXISTS:loc-steppe.svg; DRAWN:loc-pereval-zima.svg (заснеженный перевал Тянь-Шаня с каменным зимовьем); EXISTS:npc-sargis.svg; EXISTS:npc-rybak-issyk-kul.svg (местный знаток троп); EXISTS:obj-kompas-puti.svg; EXISTS:obj-lampada.svg; DRAWN:obj-vyazanka-drov.svg; DRAWN:obj-khleb-karavay.svg (хлеб в дорогу)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Конституция ≥ 4 — пройти участок бурана. Ниже порога дьякон ждёт затишья в пещере (сцена-задержка).
@@ -158,7 +158,7 @@
 
 **Сцена:** В порту Таны генуэзский купец предлагает дьякону доступ к морским путям в обмен на временный союз. Дьякон отделяет торговый договор от вопросов веры.
 
-**Графика:** MISSING:loc-port-tana.svg (причал Таны, генуэзские суда); MISSING:npc-genuezets.svg (генуэзский купец, мирянин); EXISTS:npc-sargis.svg; EXISTS:obj-gramota.svg; EXISTS:obj-zvezda-puti.svg (морская навигация); EXISTS:obj-golub-mira.svg; MISSING:obj-portulan.svg (морская карта)
+**Графика:** DRAWN:loc-port-tana.svg (причал Таны, генуэзские суда); DRAWN:npc-genuezets.svg (генуэзский купец, мирянин); EXISTS:npc-sargis.svg; EXISTS:obj-gramota.svg; EXISTS:obj-zvezda-puti.svg (морская навигация); EXISTS:obj-golub-mira.svg; DRAWN:obj-portulan.svg (морская карта)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 4 — прочесть латинскую грамоту и заметить в ней пункт о «подчинении римскому престолу». Иначе пункт обнаруживается позже, в узле Вардана.
@@ -183,7 +183,7 @@
 
 **Сцена:** У брода на реке Чу кочевой род и горожане Баласагуна готовы к набегу из-за вытоптанных полей. Дьякон ведёт их к примирению у общего костра.
 
-**Графика:** EXISTS:loc-steppe.svg; MISSING:loc-brod-chu.svg (брод реки Чу, поля и юрты по разные берега); MISSING:npc-bek-kochevnikov.svg (старейшина рода); MISSING:npc-starosta-goroda.svg; EXISTS:npc-anahit.svg (свидетельница); EXISTS:obj-koster-dvora.svg; EXISTS:obj-golub-mira.svg; EXISTS:obj-svitok-yazykov.svg
+**Графика:** EXISTS:loc-steppe.svg; DRAWN:loc-brod-chu.svg (брод реки Чу, поля и юрты по разные берега); DRAWN:npc-bek-kochevnikov.svg (старейшина рода); DRAWN:npc-starosta-goroda.svg; EXISTS:npc-anahit.svg (свидетельница); EXISTS:obj-koster-dvora.svg; EXISTS:obj-golub-mira.svg; EXISTS:obj-svitok-yazykov.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 3 — знание тюркского по свитку языков позволяет говорить без толмача. Иначе нужен толмач (лишний узел).
@@ -208,7 +208,7 @@
 
 **Сцена:** Обитель снаряжает караван с хлебом и тканью для бедных предместий Алмалыка. Дьякон раздаёт милостыню тайно, так чтобы левая рука не знала, что делает правая.
 
-**Графика:** MISSING:loc-predmestye-almalyk.svg (бедное предместье, глинобитные дома); EXISTS:loc-steppe.svg; MISSING:npc-vdova-s-detmi.svg (бедная семья); EXISTS:npc-sargis.svg; EXISTS:npc-theodora.svg (литургическое учение о милостыне); MISSING:obj-khleb-karavay.svg; MISSING:obj-tkan-otrez.svg; EXISTS:obj-larets.svg (узелок в чистом плате)
+**Графика:** DRAWN:loc-predmestye-almalyk.svg (бедное предместье, глинобитные дома); EXISTS:loc-steppe.svg; DRAWN:npc-vdova-s-detmi.svg (бедная семья); EXISTS:npc-sargis.svg; EXISTS:npc-theodora.svg (литургическое учение о милостыне); DRAWN:obj-khleb-karavay.svg; DRAWN:obj-tkan-otrez.svg; EXISTS:obj-larets.svg (узелок в чистом плате)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Конституция ≥ 3 — нести короба по улочкам. Ловкость ≥ 3 — оставить дар у порога незаметно (тайная милостыня).
@@ -233,7 +233,7 @@
 
 **Сцена:** Дьякон едет в Сарай за тарханным ярлыком, освобождающим обитель от податей. Там он узнаёт, что ярлык — это ответственность перед бедными, а не привилегия для обогащения.
 
-**Графика:** EXISTS:loc-saray.svg; EXISTS:npc-khan.svg; EXISTS:npc-strazhnik.svg; MISSING:npc-bitikchi.svg (писец канцелярии Орды); EXISTS:obj-yarlyk.svg; EXISTS:obj-tamga-khana.svg; EXISTS:obj-paiza.svg; EXISTS:obj-gramota.svg
+**Графика:** EXISTS:loc-saray.svg; EXISTS:npc-khan.svg; EXISTS:npc-strazhnik.svg; DRAWN:npc-bitikchi.svg (писец канцелярии Орды); EXISTS:obj-yarlyk.svg; EXISTS:obj-tamga-khana.svg; EXISTS:obj-paiza.svg; EXISTS:obj-gramota.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 5 — знать прецедент: ярлыки Узбека и Тайдулы митрополитам (док.). Иначе писец долго ищет архив.
@@ -258,7 +258,7 @@
 
 **Сцена:** Со склада обители пропадает зерно. Дьякон с переписчиком Варданом наводит честный учёт, находит причину кражи и милует голодного вора вместо наказания.
 
-**Графика:** MISSING:loc-sklad-obiteli.svg (склад: закрома, полки, конторка); EXISTS:npc-vardan.svg; MISSING:npc-poslushnik-vor.svg (голодный послушник-кладовщик); EXISTS:npc-abba-moses.svg (учение о несудимости); EXISTS:obj-chernilnitsa.svg; EXISTS:obj-vesy.svg; MISSING:obj-uchetnaya-kniga.svg (амбарная книга); MISSING:obj-meshok-zerna.svg
+**Графика:** DRAWN:loc-sklad-obiteli.svg (склад: закрома, полки, конторка); EXISTS:npc-vardan.svg; DRAWN:npc-poslushnik-vor.svg (голодный послушник-кладовщик); EXISTS:npc-abba-moses.svg (учение о несудимости); EXISTS:obj-chernilnitsa.svg; EXISTS:obj-vesy.svg; DRAWN:obj-uchetnaya-kniga.svg (амбарная книга); DRAWN:obj-meshok-zerna.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 3 — свести приход и расход. Мудрость ≥ 4 — увидеть, что недостача уходит мерами на одну семью.
@@ -283,7 +283,7 @@
 
 **Сцена:** С картой торговых путей дьякон ведёт караван Саргиса по северной ветви Шёлкового пути от Таласа к Иссык-Кулю и ставит у колодцев малые подворья-фактории.
 
-**Графика:** EXISTS:loc-steppe.svg; EXISTS:loc-nebo-stepi.svg; MISSING:loc-kolodets-na-puti.svg (колодец с подворьем); EXISTS:npc-sargis.svg; EXISTS:npc-vardan.svg; MISSING:obj-karta-putey.svg (реестр СГ-14); EXISTS:obj-kompas-puti.svg; EXISTS:obj-zvezda-puti.svg; MISSING:obj-bubentsy-karavana.svg (СГ-13)
+**Графика:** EXISTS:loc-steppe.svg; EXISTS:loc-nebo-stepi.svg; DRAWN:loc-kolodets-na-puti.svg (колодец с подворьем); EXISTS:npc-sargis.svg; EXISTS:npc-vardan.svg; DRAWN:obj-karta-putey.svg (реестр СГ-14); EXISTS:obj-kompas-puti.svg; EXISTS:obj-zvezda-puti.svg; DRAWN:obj-bubentsy-karavana.svg (СГ-13)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 4 — читать карту путей. Мудрость ≥ 3 — выбрать северную ветвь по источникам воды.
@@ -308,7 +308,7 @@
 
 **Сцена:** В трапезной обители купцы и духовенство собираются на сход. Дьякон помогает записать общие правила честной торговли: честные меры, запрет лихвы, отдых в воскресенье.
 
-**Графика:** MISSING:loc-trapeznaya.svg (трапезная обители с длинным столом); MISSING:npc-episkop-ioann.svg; EXISTS:npc-sargis.svg; EXISTS:npc-anahit.svg; EXISTS:npc-melik.svg; EXISTS:npc-vardan.svg; EXISTS:obj-gramota.svg (устав схода); EXISTS:obj-vesy.svg (эталонная мера); EXISTS:obj-evangelie.svg (лежит на аналое, не используется как предмет механики)
+**Графика:** DRAWN:loc-trapeznaya.svg (трапезная обители с длинным столом); DRAWN:npc-episkop-ioann.svg; EXISTS:npc-sargis.svg; EXISTS:npc-anahit.svg; EXISTS:npc-melik.svg; EXISTS:npc-vardan.svg; EXISTS:obj-gramota.svg (устав схода); EXISTS:obj-vesy.svg (эталонная мера); EXISTS:obj-evangelie.svg (лежит на аналое, не используется как предмет механики)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Харизма ≥ 4 — получить слово на сходе. Эрудиция ≥ 4 — сослаться на Втор 25:13–15 (одинаковые гири).
@@ -333,7 +333,7 @@
 
 **Сцена:** На ярмарке заезжий торговец предлагает обители купить ковчежец «с частицей мощей» для притока паломников. Дьякон отказывается торговать святыней и проверяет подлинность по уставу.
 
-**Графика:** EXISTS:loc-agora.svg; MISSING:npc-torgovets-relikviyami.svg (заезжий торговец; образ прелести); MISSING:npc-episkop-ioann.svg; EXISTS:npc-vardan.svg; MISSING:obj-kovchezhets.svg (ковчежец-реликварий, без нимбов); EXISTS:obj-larets.svg; EXISTS:obj-gramota.svg (свидетельство о подлинности)
+**Графика:** EXISTS:loc-agora.svg; DRAWN:npc-torgovets-relikviyami.svg (заезжий торговец; образ прелести); DRAWN:npc-episkop-ioann.svg; EXISTS:npc-vardan.svg; DRAWN:obj-kovchezhets.svg (ковчежец-реликварий, без нимбов); EXISTS:obj-larets.svg; EXISTS:obj-gramota.svg (свидетельство о подлинности)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Мудрость ≥ 5 — распознать прелесть: слишком красивый ковчег без свидетельства (ТАБУ 0.2 п.8). Иначе подсказка приходит в узле епископа.
@@ -358,7 +358,7 @@
 
 **Сцена:** Верующие возчики просят благословения на братство при обители. Дьякон помогает составить их устав взаимопомощи: общая касса вдов, проводники для бедных паломников.
 
-**Графика:** MISSING:loc-dvor-karavanshchikov.svg (двор возчиков у стен обители, повозки); EXISTS:npc-sargis.svg; MISSING:npc-vozchik.svg (молодой возчик-проводник); EXISTS:npc-theodora.svg; EXISTS:obj-gramota.svg (устав братства); MISSING:obj-verblyuzhye-sedlo.svg (СГ-06); EXISTS:obj-kompas-puti.svg
+**Графика:** DRAWN:loc-dvor-karavanshchikov.svg (двор возчиков у стен обители, повозки); EXISTS:npc-sargis.svg; DRAWN:npc-vozchik.svg (молодой возчик-проводник); EXISTS:npc-theodora.svg; EXISTS:obj-gramota.svg (устав братства); DRAWN:obj-verblyuzhye-sedlo.svg (СГ-06); EXISTS:obj-kompas-puti.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Харизма ≥ 3 — собрать возчиков. Эрудиция ≥ 3 — записать устав.
@@ -383,7 +383,7 @@
 
 **Сцена:** На причале Иссык-Куля рыбак показывает дьякону знак рыбы, процарапанный на сваях и глиняных кувшинах. Он объясняет, что ΙΧΘΥΣ — исповедание «Иисус Христос, Божий Сын, Спаситель», а не оберег.
 
-**Графика:** EXISTS:loc-issyk-kul.svg; EXISTS:loc-prichal-rov.svg (деревянный причал); EXISTS:npc-rybak-issyk-kul.svg; EXISTS:npc-tabib.svg (Мар-Ава, знаток сирийских знаков); MISSING:obj-ikhtis-keramika.svg (кувшин с процарапанной рыбой); MISSING:obj-ikhtis-svaya.svg (знак на свае причала); MISSING:obj-set-rybaka.svg
+**Графика:** EXISTS:loc-issyk-kul.svg; EXISTS:loc-prichal-rov.svg (деревянный причал); EXISTS:npc-rybak-issyk-kul.svg; EXISTS:npc-tabib.svg (Мар-Ава, знаток сирийских знаков); DRAWN:obj-ikhtis-keramika.svg (кувшин с процарапанной рыбой); DRAWN:obj-ikhtis-svaya.svg (знак на свае причала); DRAWN:obj-set-rybaka.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 3 — прочесть акроним ΙΧΘΥΣ по буквам. Иначе рыбак объясняет по-простому.
@@ -408,7 +408,7 @@
 
 **Сцена:** У кайрака в Чуйской долине лекарь Мар-Ава читает дьякону сирийскую надпись. Дьякон почитает умершего и свидетельствует православное исповедание о Богородице без вражды к собеседнику.
 
-**Графика:** MISSING:loc-chuiskaya-dolina-kairaki.svg (поле кайраков, Л-23); EXISTS:npc-tabib.svg (Мар-Ава, несторианин); MISSING:npc-reshchik-kairakov.svg (П-33, собирательный образ); MISSING:obj-kairak.svg (надгробный камень с крестом и сирийской надписью); EXISTS:obj-svitok-yazykov.svg; MISSING:npc-episkop-ioann.svg
+**Графика:** DRAWN:loc-chuiskaya-dolina-kairaki.svg (поле кайраков, Л-23); EXISTS:npc-tabib.svg (Мар-Ава, несторианин); DRAWN:npc-reshchik-kairakov.svg (П-33, собирательный образ); DRAWN:obj-kairak.svg (надгробный камень с крестом и сирийской надписью); EXISTS:obj-svitok-yazykov.svg; DRAWN:npc-episkop-ioann.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 5 — различить сирийское и армянское письмо на камне. Иначе Мар-Ава читает сам.
@@ -433,7 +433,7 @@
 
 **Сцена:** В храме обители дьякон готовит перевод ектении на местный тюркский, чтобы новокрещёные понимали службу, по примеру свв. Кирилла и Мефодия и Стефана Пермского.
 
-**Графика:** EXISTS:loc-hram-naos.svg; EXISTS:npc-theodora.svg (литургическая учительница); EXISTS:npc-vardan.svg (переписчик-переводчик); EXISTS:obj-orar.svg (орарь дьякона); EXISTS:obj-svitok-yazykov.svg; EXISTS:obj-chernilnitsa.svg; MISSING:obj-sluzhebnik-perevod.svg (тетрадь перевода ектении); EXISTS:obj-kadilo.svg
+**Графика:** EXISTS:loc-hram-naos.svg; EXISTS:npc-theodora.svg (литургическая учительница); EXISTS:npc-vardan.svg (переписчик-переводчик); EXISTS:obj-orar.svg (орарь дьякона); EXISTS:obj-svitok-yazykov.svg; EXISTS:obj-chernilnitsa.svg; DRAWN:obj-sluzhebnik-perevod.svg (тетрадь перевода ектении); EXISTS:obj-kadilo.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 5 — сопоставить греческий или славянский текст ектении с тюркскими словами по глоссарию. Иначе помогает Вардан (лишний узел).
@@ -458,7 +458,7 @@
 
 **Сцена:** Братия благоговейно поставляет в храм обители переносной ковчежец с частицей мощей апостола Матфея (по преданию Каталанского атласа 1375). Дьякон несёт кадило в малом крестном ходе.
 
-**Графика:** EXISTS:loc-hram-naos.svg; EXISTS:loc-issyk-kul.svg; MISSING:npc-episkop-ioann.svg; EXISTS:npc-theodora.svg; MISSING:obj-kovchezhets-matfeya.svg (ковчежец, без нимба); EXISTS:obj-kadilo.svg; EXISTS:obj-lampada.svg; EXISTS:obj-evangelie.svg (Евангелие от Матфея на аналое)
+**Графика:** EXISTS:loc-hram-naos.svg; EXISTS:loc-issyk-kul.svg; DRAWN:npc-episkop-ioann.svg; EXISTS:npc-theodora.svg; DRAWN:obj-kovchezhets-matfeya.svg (ковчежец, без нимба); EXISTS:obj-kadilo.svg; EXISTS:obj-lampada.svg; EXISTS:obj-evangelie.svg (Евангелие от Матфея на аналое)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Вера ≥ 5 — дьякону доверено кадить перед ковчежцем. Иначе он несёт свечу (иное служение, тот же исход).
@@ -483,7 +483,7 @@
 
 **Сцена:** Паломник сомневается, «настоящие ли это мощи, если это лишь частица». Дьякон вместе с Феодорой объясняет церковное учение о благодати, пребывающей в каждой частице, и не превращает его в уловку ради статуса.
 
-**Графика:** EXISTS:loc-hram-naos.svg; EXISTS:npc-theodora.svg; MISSING:npc-palomnik-somnevayushchiysya.svg; MISSING:obj-kovchezhets-matfeya.svg; EXISTS:npc-photius.svg (эрудиция, свидетельство предания)
+**Графика:** EXISTS:loc-hram-naos.svg; EXISTS:npc-theodora.svg; DRAWN:npc-palomnik-somnevayushchiysya.svg; DRAWN:obj-kovchezhets-matfeya.svg; EXISTS:npc-photius.svg (эрудиция, свидетельство предания)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 5 — привести свидетельство предания: благодать не делится с частицей (прп. Иоанн Дамаскин о мощах как источниках благодати). Иначе ответ даёт Феодора.
@@ -508,7 +508,7 @@
 
 **Сцена:** Латинский легат предлагает обители дипломатические выгоды, если она примет гибридный обряд. Дьякон, опираясь на пример свт. Марка Эфесского, вежливо отказывается менять веру ради выгоды.
 
-**Графика:** EXISTS:loc-hram-naos.svg; MISSING:npc-latinskiy-legat.svg (латинский легат, мирской облик, без изображения святых); MISSING:npc-episkop-ioann.svg; EXISTS:npc-maximos.svg (прп. Максим Исповедник: исповедание веры против компромисса); EXISTS:obj-gramota.svg (предлагаемое соглашение); EXISTS:obj-golub-mira.svg
+**Графика:** EXISTS:loc-hram-naos.svg; DRAWN:npc-latinskiy-legat.svg (латинский легат, мирской облик, без изображения святых); DRAWN:npc-episkop-ioann.svg; EXISTS:npc-maximos.svg (прп. Максим Исповедник: исповедание веры против компромисса); EXISTS:obj-gramota.svg (предлагаемое соглашение); EXISTS:obj-golub-mira.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 6 — распознать в тексте соглашения изменение Символа веры (Filioque). Иначе прп. Максим подсказывает в узле.
@@ -533,7 +533,7 @@
 
 **Сцена:** Купцы предлагают «придумать чудо» для притока паломников. Дьякон с Варданом вместо этого честно записывает подлинные свидетельства жизни братии с пометками достоверности.
 
-**Графика:** EXISTS:loc-kelia.svg (келья-скрипторий); EXISTS:npc-vardan.svg; EXISTS:npc-sargis.svg (соблазнитель выгодой); EXISTS:npc-gregory-dialogist.svg (свт. Григорий Двоеслов, автор «Собеседований» о чудесах); EXISTS:obj-chernilnitsa.svg; MISSING:obj-sinaksar-tetrad.svg (тетрадь записей о житиях)
+**Графика:** EXISTS:loc-kelia.svg (келья-скрипторий); EXISTS:npc-vardan.svg; EXISTS:npc-sargis.svg (соблазнитель выгодой); EXISTS:npc-gregory-dialogist.svg (свт. Григорий Двоеслов, автор «Собеседований» о чудесах); EXISTS:obj-chernilnitsa.svg; DRAWN:obj-sinaksar-tetrad.svg (тетрадь записей о житиях)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 4 — различать пометки [док.], [летоп.], [предание]. Иначе Вардан учит им на примере.
@@ -558,7 +558,7 @@
 
 **Сцена:** На перевале Санташ над Иссык-Кулём дьякон ставит поклонный крест и служит малое молебное пение о путешествующих, чтобы путники молились здесь, а не искали в кресте военной силы.
 
-**Графика:** MISSING:loc-pereval-santash.svg (горный перевал, каменная кладка «Санташ»); EXISTS:loc-nebo-stepi.svg; MISSING:npc-episkop-ioann.svg; EXISTS:npc-strazhnik.svg (воины отряда, просящие «силы»); MISSING:obj-poklonnyi-krest.svg (деревянный поклонный крест); EXISTS:obj-kadilo.svg; MISSING:obj-kropilo.svg (кропило и чаша святой воды)
+**Графика:** DRAWN:loc-pereval-santash.svg (горный перевал, каменная кладка «Санташ»); EXISTS:loc-nebo-stepi.svg; DRAWN:npc-episkop-ioann.svg; EXISTS:npc-strazhnik.svg (воины отряда, просящие «силы»); DRAWN:obj-poklonnyi-krest.svg (деревянный поклонный крест); EXISTS:obj-kadilo.svg; DRAWN:obj-kropilo.svg (кропило и чаша святой воды)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Конституция ≥ 4 — поднять крест на перевал. Иначе дьякон зовёт братию на помощь (лишний узел).
@@ -583,7 +583,7 @@
 
 **Сцена:** Дьякон посещает пленников в островной крепости на Иссык-Куле, приносит хлеб и воду и с аввой Моисеем учится милости к узникам, не превращая обитель в тюрьму.
 
-**Графика:** MISSING:loc-ostrov-krepost.svg (островная крепость на Иссык-Куле); EXISTS:npc-abba-moses.svg (прп. Моисей Мурин, бывший разбойник); EXISTS:npc-strazhnik.svg; MISSING:npc-plennik.svg; MISSING:obj-kuvshin-vody.svg; MISSING:obj-khleb-karavay.svg; MISSING:obj-kandaly.svg (оковы; силой не снимаются)
+**Графика:** DRAWN:loc-ostrov-krepost.svg (островная крепость на Иссык-Куле); EXISTS:npc-abba-moses.svg (прп. Моисей Мурин, бывший разбойник); EXISTS:npc-strazhnik.svg; DRAWN:npc-plennik.svg; DRAWN:obj-kuvshin-vody.svg; DRAWN:obj-khleb-karavay.svg; DRAWN:obj-kandaly.svg (оковы; силой не снимаются)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Харизма ≥ 4 — уговорить стражника пропустить. Иначе нужно принести пропускную бирку от мелика (лишний узел).
@@ -608,7 +608,7 @@
 
 **Сцена:** В бурную ночь к воротам обители приходят три путника разной веры. Дьякон, помня дуб Мамврийский, принимает всех, хотя запасов почти не осталось.
 
-**Графика:** MISSING:loc-karavansaray.svg (двор обители ночью); EXISTS:npc-anahit.svg (хозяйка странноприимницы); MISSING:npc-strannik-musulmanin.svg, MISSING:npc-strannik-kochevnik.svg, MISSING:npc-strannik-bednyi.svg; EXISTS:obj-lampada.svg; MISSING:obj-khleb-karavay.svg (обычный хлеб, не просфора); MISSING:obj-chasha-dlya-omoveniya-nog.svg
+**Графика:** DRAWN:loc-karavansaray.svg (двор обители ночью); EXISTS:npc-anahit.svg (хозяйка странноприимницы); DRAWN:npc-strannik-musulmanin.svg, DRAWN:npc-strannik-kochevnik.svg, DRAWN:npc-strannik-bednyi.svg; EXISTS:obj-lampada.svg; DRAWN:obj-khleb-karavay.svg (обычный хлеб, не просфора); DRAWN:obj-chasha-dlya-omoveniya-nog.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Конституция ≥ 3 — открыть тяжёлые ворота в бурю.
@@ -633,7 +633,7 @@
 
 **Сцена:** Измученный долгами купец хочет бросить караван. Дьякон слушает его, утешает словом и ведёт к епископу-священнику на исповедь, так как сам совершать таинство не может.
 
-**Графика:** MISSING:loc-karavansaray.svg (угол двора ночью); MISSING:npc-kupets-v-unynii.svg; MISSING:npc-episkop-ioann.svg (совершитель таинства); EXISTS:npc-elder-sergius.svg (учение о помыслах); EXISTS:obj-chetki.svg; EXISTS:obj-lampada.svg
+**Графика:** DRAWN:loc-karavansaray.svg (угол двора ночью); DRAWN:npc-kupets-v-unynii.svg; DRAWN:npc-episkop-ioann.svg (совершитель таинства); EXISTS:npc-elder-sergius.svg (учение о помыслах); EXISTS:obj-chetki.svg; EXISTS:obj-lampada.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Харизма ≥ 3 — купец соглашается говорить. Мудрость ≥ 4 — распознать уныние за словами о долге.
@@ -658,7 +658,7 @@
 
 **Сцена:** На праздник Преображения армяне, сирийцы и местные новокрещёные учатся вместе петь праздничный тропарь а капелла под руководством Кассии песнописицы. Мир между общинами рождается в общем пении.
 
-**Графика:** MISSING:loc-dvor-obiteli-prazdnik.svg (двор обители в праздник, берег); EXISTS:npc-kassiani.svg (прп. Кассия, песнописица); EXISTS:npc-anahit.svg; EXISTS:npc-tabib.svg; EXISTS:npc-rybak-issyk-kul.svg; EXISTS:obj-bell.svg (колокол звонницы); MISSING:obj-kryukovaya-notatsiya.svg (лист знаменной нотации)
+**Графика:** DRAWN:loc-dvor-obiteli-prazdnik.svg (двор обители в праздник, берег); EXISTS:npc-kassiani.svg (прп. Кассия, песнописица); EXISTS:npc-anahit.svg; EXISTS:npc-tabib.svg; EXISTS:npc-rybak-issyk-kul.svg; EXISTS:obj-bell.svg (колокол звонницы); DRAWN:obj-kryukovaya-notatsiya.svg (лист знаменной нотации)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Харизма ≥ 4 — собрать певцов разных общин. Эрудиция ≥ 3 — прочесть крюки.
@@ -683,7 +683,7 @@
 
 **Сцена:** С лодки у затопленной террасы дьякон погружается сам или опускает ROV к руинам часовни на дне Иссык-Куля. Он молится о тех, кто здесь служил, и ничего не забирает со святого места.
 
-**Графика:** EXISTS:loc-issyk-kul.svg; EXISTS:loc-issyk-kul-underwater.svg; EXISTS:loc-prichal-rov.svg; EXISTS:player-deacon-diver.svg; EXISTS:npc-rybak-issyk-kul.svg (лодочник); EXISTS:obj-rov.svg; EXISTS:obj-glubinomer.svg; EXISTS:obj-sonar.svg; EXISTS:obj-termometr-vody.svg; MISSING:loc-zatoplennaya-chasovnya.svg (руины часовни на подводной террасе); MISSING:obj-lodka.svg
+**Графика:** EXISTS:loc-issyk-kul.svg; EXISTS:loc-issyk-kul-underwater.svg; EXISTS:loc-prichal-rov.svg; EXISTS:player-deacon-diver.svg; EXISTS:npc-rybak-issyk-kul.svg (лодочник); EXISTS:obj-rov.svg; EXISTS:obj-glubinomer.svg; EXISTS:obj-sonar.svg; EXISTS:obj-termometr-vody.svg; DRAWN:loc-zatoplennaya-chasovnya.svg (руины часовни на подводной террасе); DRAWN:obj-lodka.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Конституция ≥ 5 — погружение самому. Иначе путь ROV (оба пути ведут к цели).
@@ -708,7 +708,7 @@
 
 **Сцена:** В годовщину преставления епископа Иоанна община идёт крестным ходом к его надгробному камню на берегу и служит литию. Дьякон возглашает ектению об упокоении.
 
-**Графика:** EXISTS:loc-issyk-kul.svg; MISSING:loc-kamen-ioanna.svg (надгробный камень Иоанна на берегу, кайрак с крестом); EXISTS:player-deacon-orarion.svg; EXISTS:npc-anahit.svg; EXISTS:npc-vardan.svg; EXISTS:npc-sargis.svg; EXISTS:obj-kadilo.svg; MISSING:obj-kutya.svg (кутья); EXISTS:obj-lampada.svg
+**Графика:** EXISTS:loc-issyk-kul.svg; DRAWN:loc-kamen-ioanna.svg (надгробный камень Иоанна на берегу, кайрак с крестом); EXISTS:player-deacon-orarion.svg; EXISTS:npc-anahit.svg; EXISTS:npc-vardan.svg; EXISTS:npc-sargis.svg; EXISTS:obj-kadilo.svg; DRAWN:obj-kutya.svg (кутья); EXISTS:obj-lampada.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Вера ≥ 4 — дьякон возглашает ектению. Ниже порога несёт свечу (иное служение, то же учение).
@@ -733,7 +733,7 @@
 
 **Сцена:** Авва Моисей Мурин, эфиоп, рассказывает общине на берегу о святых далёких земель. Дьякон учится почитать их, не переселяя «их чудеса» в местный пейзаж.
 
-**Графика:** EXISTS:loc-issyk-kul.svg; EXISTS:npc-abba-moses.svg (прп. Моисей Мурин, эфиоп); EXISTS:npc-rybak-issyk-kul.svg; EXISTS:npc-vardan.svg; MISSING:obj-karta-mira-palomnika.svg (карта святых мест мира); EXISTS:obj-evangelie.svg (Деян 8: крещение евнуха эфиопского)
+**Графика:** EXISTS:loc-issyk-kul.svg; EXISTS:npc-abba-moses.svg (прп. Моисей Мурин, эфиоп); EXISTS:npc-rybak-issyk-kul.svg; EXISTS:npc-vardan.svg; DRAWN:obj-karta-mira-palomnika.svg (карта святых мест мира); EXISTS:obj-evangelie.svg (Деян 8: крещение евнуха эфиопского)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 4 — вспомнить Деян 8:26–39 (Филипп и евнух-эфиоп). Иначе авва рассказывает сам.
@@ -758,7 +758,7 @@
 
 **Сцена:** Озеро отступило. На обнажившейся террасе дьякон с рыбаком и Варданом размечает место для кельи и огорода, отличая надёжную землю от той, куда вода вернётся.
 
-**Графика:** EXISTS:loc-issyk-kul.svg; MISSING:loc-terrasa-regressiya.svg (обнажившаяся терраса: солончак, старые сваи, береговые валы); EXISTS:npc-rybak-issyk-kul.svg; EXISTS:npc-vardan.svg; EXISTS:obj-glubinomer.svg; EXISTS:obj-termometr-vody.svg; MISSING:obj-mernaya-rejka.svg (мерная рейка уровня воды); MISSING:obj-kolyshki-razmetki.svg
+**Графика:** EXISTS:loc-issyk-kul.svg; DRAWN:loc-terrasa-regressiya.svg (обнажившаяся терраса: солончак, старые сваи, береговые валы); EXISTS:npc-rybak-issyk-kul.svg; EXISTS:npc-vardan.svg; EXISTS:obj-glubinomer.svg; EXISTS:obj-termometr-vody.svg; DRAWN:obj-mernaya-rejka.svg (мерная рейка уровня воды); DRAWN:obj-kolyshki-razmetki.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Мудрость ≥ 4 — читать береговые валы (следы прежних уровней). Эрудиция ≥ 3 — сверить их с хроникой уровней Вардана.
@@ -783,7 +783,7 @@
 
 **Сцена:** Вода поднимается и заливает нижнюю обитель. Дьякон с братией благоговейно выносит ковчежец, Евангелие и архив хроник на верхнюю террасу, успевая до затопления.
 
-**Графика:** EXISTS:loc-hram-naos.svg (заливаемый храм); MISSING:loc-zatoplenie-obiteli.svg (обитель в подступающей воде); MISSING:npc-episkop-ioann.svg; EXISTS:npc-vardan.svg; EXISTS:npc-theodora.svg; EXISTS:obj-evangelie.svg; MISSING:obj-kovchezhets-matfeya.svg; MISSING:obj-sunduk-arkhiva.svg; EXISTS:obj-lampada.svg
+**Графика:** EXISTS:loc-hram-naos.svg (заливаемый храм); DRAWN:loc-zatoplenie-obiteli.svg (обитель в подступающей воде); DRAWN:npc-episkop-ioann.svg; EXISTS:npc-vardan.svg; EXISTS:npc-theodora.svg; EXISTS:obj-evangelie.svg; DRAWN:obj-kovchezhets-matfeya.svg; DRAWN:obj-sunduk-arkhiva.svg; EXISTS:obj-lampada.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Конституция ≥ 5 — нести тяжёлый сундук архива. Иначе книги носятся по одной (больше ходок, тот же исход).
@@ -808,7 +808,7 @@
 
 **Сцена:** Монах-наблюдатель на берегу ведёт многолетние записи уровня воды. Вместе с дьяконом, по ROV-замерам и береговым валам, он выводит длинный цикл подъёма и спада озера (в игре — цикл Шнитникова), чтобы выбрать место обители.
 
-**Графика:** EXISTS:loc-prichal-rov.svg; EXISTS:loc-issyk-kul-underwater.svg; MISSING:npc-monakh-nablyudatel.svg (монах-летописец природы с мерной рейкой); EXISTS:npc-vardan.svg; EXISTS:obj-rov.svg; EXISTS:obj-glubinomer.svg; EXISTS:obj-termometr-vody.svg; EXISTS:obj-sonar.svg; MISSING:obj-letopis-urovney.svg (тетрадь с графиком уровней); MISSING:obj-mernaya-rejka.svg
+**Графика:** EXISTS:loc-prichal-rov.svg; EXISTS:loc-issyk-kul-underwater.svg; DRAWN:npc-monakh-nablyudatel.svg (монах-летописец природы с мерной рейкой); EXISTS:npc-vardan.svg; EXISTS:obj-rov.svg; EXISTS:obj-glubinomer.svg; EXISTS:obj-termometr-vody.svg; EXISTS:obj-sonar.svg; DRAWN:obj-letopis-urovney.svg (тетрадь с графиком уровней); DRAWN:obj-mernaya-rejka.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 5 — читать многолетний ряд уровней. Мудрость ≥ 4 — связать береговые валы на дне (сонар) с записями.
@@ -833,7 +833,7 @@
 
 **Сцена:** У причала ROV на Иссык-Куле дьякон спускает аппарат к затопленному поселению. Его улицы, кладбище и остатки храма проходятся как «данж памяти»: находки открывают записи, а не лут.
 
-**Графика:** EXISTS:loc-issyk-kul-underwater.svg (фон глубины); EXISTS:loc-prichal-rov.svg (точка спуска); MISSING:loc-gorod-na-dne.svg (улица затопленного поселения, стены в иле); EXISTS:npc-rybak-issyk-kul.svg (проводник, помнит, где стояли дома); EXISTS:npc-vardan.svg (записывает находки в хронику); EXISTS:obj-rov.svg; EXISTS:obj-sonar.svg; EXISTS:obj-glubinomer.svg; MISSING:obj-kairak.svg (надгробный камень-кайрак в иле)
+**Графика:** EXISTS:loc-issyk-kul-underwater.svg (фон глубины); EXISTS:loc-prichal-rov.svg (точка спуска); DRAWN:loc-gorod-na-dne.svg (улица затопленного поселения, стены в иле); EXISTS:npc-rybak-issyk-kul.svg (проводник, помнит, где стояли дома); EXISTS:npc-vardan.svg (записывает находки в хронику); EXISTS:obj-rov.svg; EXISTS:obj-sonar.svg; EXISTS:obj-glubinomer.svg; DRAWN:obj-kairak.svg (надгробный камень-кайрак в иле)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Constitution ≥ 4 глубиномер допускает погружение на глубину поселения. Иначе ROV остаётся на мелководье (gate_locked), и рыбак рассказывает о городе с берега.
@@ -857,7 +857,7 @@
 
 **Сцена:** Вода подступает к обители на нижней береговой террасе. Братия решает перенести храм, святыни и келии выше и идёт вверх по склону крестным ходом.
 
-**Графика:** EXISTS:loc-issyk-kul.svg (берег, нижняя терраса); MISSING:loc-verhnyaya-terrasa.svg (новая ограда на высокой террасе); EXISTS:npc-elder-sergius.svg (наставник, решение о переносе); EXISTS:npc-abba-john.svg (труд переноса); EXISTS:player-deacon-orarion.svg; EXISTS:obj-evangelie.svg (дьякон несёт Евангелие); EXISTS:obj-ikona.svg; EXISTS:obj-lampada.svg; EXISTS:obj-kadilo.svg; MISSING:obj-metka-urovnya.svg (зарубка уровня воды на камне)
+**Графика:** EXISTS:loc-issyk-kul.svg (берег, нижняя терраса); DRAWN:loc-verhnyaya-terrasa.svg (новая ограда на высокой террасе); EXISTS:npc-elder-sergius.svg (наставник, решение о переносе); EXISTS:npc-abba-john.svg (труд переноса); EXISTS:player-deacon-orarion.svg; EXISTS:obj-evangelie.svg (дьякон несёт Евангелие); EXISTS:obj-ikona.svg; EXISTS:obj-lampada.svg; EXISTS:obj-kadilo.svg; DRAWN:obj-metka-urovnya.svg (зарубка уровня воды на камне)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Wisdom ≥ 4 игрок читает зарубки уровня воды и сам признаёт необходимость переноса. Иначе Сергий проводит урок-диалог о знаках и повторяет выбор.
@@ -881,7 +881,7 @@
 
 **Сцена:** На пристани мелик объявляет пошлину за пользование прибрежной полосой. Рыбаки ропщут, а дьякон ведёт переговоры о льготе.
 
-**Графика:** EXISTS:loc-issyk-kul.svg (пристань); EXISTS:npc-melik.svg (мелик Ашот, вводит пошлину); EXISTS:npc-rybak-issyk-kul.svg; EXISTS:obj-vesy.svg (весы сборщика); EXISTS:obj-gramota.svg; EXISTS:obj-yarlyk.svg (прежняя льгота); MISSING:obj-ukaz-poshliny.svg (доска-указ о пошлине); MISSING:obj-ryba-statir.svg (сцена Мф 17:27, не награда)
+**Графика:** EXISTS:loc-issyk-kul.svg (пристань); EXISTS:npc-melik.svg (мелик Ашот, вводит пошлину); EXISTS:npc-rybak-issyk-kul.svg; EXISTS:obj-vesy.svg (весы сборщика); EXISTS:obj-gramota.svg; EXISTS:obj-yarlyk.svg (прежняя льгота); DRAWN:obj-ukaz-poshliny.svg (доска-указ о пошлине); DRAWN:obj-ryba-statir.svg (сцена Мф 17:27, не награда)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Charisma ≥ 4 мелик выслушивает; при Erudition ≥ 3 можно сослаться на прежний ярлык.
@@ -905,7 +905,7 @@
 
 **Сцена:** Зимой караван Саргиса может срезать путь до соседней миссии по льду мелкого залива и речного устья. Это быстро, но опасно; обход по берегу долог.
 
-**Графика:** MISSING:loc-led-zaliva.svg (замёрзший мелкий залив, горы); EXISTS:npc-sargis.svg (караван-баши); EXISTS:npc-abba-moses.svg (учение о рассуждении); EXISTS:obj-kompas-puti.svg; MISSING:obj-posokh-promer.svg (посох для промера льда)
+**Графика:** DRAWN:loc-led-zaliva.svg (замёрзший мелкий залив, горы); EXISTS:npc-sargis.svg (караван-баши); EXISTS:npc-abba-moses.svg (учение о рассуждении); EXISTS:obj-kompas-puti.svg; DRAWN:obj-posokh-promer.svg (посох для промера льда)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Wisdom ≥ 5 игрок различает тонкий лёд по цвету и звуку (фиксированные признаки на карте); при Constitution ≥ 4 выдерживает холод перехода.
@@ -929,7 +929,7 @@
 
 **Сцена:** Советник наместника предлагает запрудить сток, чтобы спасти богатый город за счёт низовых сёл. На совете дьякон должен занять позицию.
 
-**Графика:** MISSING:loc-plotina.svg (земляная запруда, шлюз); EXISTS:npc-melik.svg; EXISTS:npc-rybak-issyk-kul.svg (голос низовых сёл); EXISTS:npc-vardan.svg (хроника уровней); EXISTS:obj-glubinomer.svg; MISSING:obj-zaslonka-shlyuza.svg; MISSING:obj-maket-berega.svg (макет берега с городами)
+**Графика:** DRAWN:loc-plotina.svg (земляная запруда, шлюз); EXISTS:npc-melik.svg; EXISTS:npc-rybak-issyk-kul.svg (голос низовых сёл); EXISTS:npc-vardan.svg (хроника уровней); EXISTS:obj-glubinomer.svg; DRAWN:obj-zaslonka-shlyuza.svg; DRAWN:obj-maket-berega.svg (макет берега с городами)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Erudition ≥ 5 хроника уровней (м.45) раскрывает последствия запруды для обоих берегов. Без неё совет проходит только с показаниями рыбака.
@@ -953,7 +953,7 @@
 
 **Сцена:** ROV находит на дне предметы разных вер: несторианский кайрак, буддийскую статуэтку, уйгурскую печать. Дьякон решает, как бережно хранить их в крипте-музее обители.
 
-**Графика:** EXISTS:loc-issyk-kul-underwater.svg; MISSING:loc-kripta-muzei.svg (сводчатая крипта с нишами-витринами); EXISTS:npc-tabib.svg (Мар-Ава, узнаёт сирийскую надпись); EXISTS:npc-vardan.svg (опись); EXISTS:obj-rov.svg; MISSING:obj-kairak.svg; MISSING:obj-vitrina-kripty.svg
+**Графика:** EXISTS:loc-issyk-kul-underwater.svg; DRAWN:loc-kripta-muzei.svg (сводчатая крипта с нишами-витринами); EXISTS:npc-tabib.svg (Мар-Ава, узнаёт сирийскую надпись); EXISTS:npc-vardan.svg (опись); EXISTS:obj-rov.svg; DRAWN:obj-kairak.svg; DRAWN:obj-vitrina-kripty.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Erudition ≥ 5 игрок определяет язык надписи (сирийский, уйгурский). Без этого Мар-Ава атрибутирует находку в диалоге, но бонус не начисляется.
@@ -977,7 +977,7 @@
 
 **Сцена:** ROV картирует очередное затопленное поселение. Каждое место открывает свою «память»: ремесло (гончарный круг) и веру своих жителей.
 
-**Графика:** EXISTS:loc-issyk-kul-underwater.svg; EXISTS:loc-prichal-rov.svg; EXISTS:npc-rybak-issyk-kul.svg; EXISTS:npc-vardan.svg; EXISTS:obj-sonar.svg; EXISTS:obj-termometr-vody.svg; EXISTS:obj-glubinomer.svg; MISSING:obj-goncharny-krug.svg
+**Графика:** EXISTS:loc-issyk-kul-underwater.svg; EXISTS:loc-prichal-rov.svg; EXISTS:npc-rybak-issyk-kul.svg; EXISTS:npc-vardan.svg; EXISTS:obj-sonar.svg; EXISTS:obj-termometr-vody.svg; EXISTS:obj-glubinomer.svg; DRAWN:obj-goncharny-krug.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Wisdom ≥ 5 реальная телеметрия ROV (depth, temperature) засчитывается как наблюдение.
@@ -1001,7 +1001,7 @@
 
 **Сцена:** Ливни размыли горную дорогу и снесли мост через речку. Караван Саргиса застрял, и миссия своим трудом и средствами строит новый мост.
 
-**Графика:** MISSING:loc-razmytaya-doroga.svg (горная дорога, разлив речки); EXISTS:npc-sargis.svg; EXISTS:npc-anahit.svg; EXISTS:npc-abba-john.svg; EXISTS:obj-instrumenty.svg; MISSING:obj-brevno-mosta.svg
+**Графика:** DRAWN:loc-razmytaya-doroga.svg (горная дорога, разлив речки); EXISTS:npc-sargis.svg; EXISTS:npc-anahit.svg; EXISTS:npc-abba-john.svg; EXISTS:obj-instrumenty.svg; DRAWN:obj-brevno-mosta.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Constitution ≥ 4 можно работать под дождём, при Dexterity ≥ 3 — укладывать брёвна. При меньших значениях помогают братья, и стройка идёт дольше.
@@ -1025,7 +1025,7 @@
 
 **Сцена:** Братия и местные сажают виноград, сады и поля на низких террасах, зная, что вода придёт. Дьякон решает, что делать с урожаем.
 
-**Графика:** MISSING:loc-terrasy-sady.svg (виноградники на низких террасах у воды); EXISTS:npc-abba-john.svg; EXISTS:npc-theodora.svg (литургический смысл хлеба и вина); EXISTS:npc-anahit.svg; EXISTS:obj-prosfora.svg; MISSING:obj-loza.svg; MISSING:obj-ambar.svg
+**Графика:** DRAWN:loc-terrasy-sady.svg (виноградники на низких террасах у воды); EXISTS:npc-abba-john.svg; EXISTS:npc-theodora.svg (литургический смысл хлеба и вина); EXISTS:npc-anahit.svg; EXISTS:obj-prosfora.svg; DRAWN:obj-loza.svg; DRAWN:obj-ambar.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Wisdom ≥ 4 игрок сопоставляет хронику уровней (м.45) со сроком жизни террас.
@@ -1049,7 +1049,7 @@
 
 **Сцена:** На Богоявление крестный ход выходит к берегу Иссык-Куля. Епископ совершает великое водоосвящение, дьякон возглашает ектению, местные видят, что вода освящается Богом, а не сама божество.
 
-**Графика:** EXISTS:loc-issyk-kul.svg; MISSING:npc-episkop-ioann.svg (епископ Иоанн, без нимба); EXISTS:npc-theodora.svg; EXISTS:npc-rybak-issyk-kul.svg (местный, вопросы о «духе озера»); EXISTS:player-deacon-orarion.svg; EXISTS:obj-orar.svg; EXISTS:obj-kadilo.svg; EXISTS:obj-evangelie.svg; MISSING:obj-krest-vodosvyatny.svg (без свечения и нимба); MISSING:obj-chasha-vodosvyatnaya.svg
+**Графика:** EXISTS:loc-issyk-kul.svg; DRAWN:npc-episkop-ioann.svg (епископ Иоанн, без нимба); EXISTS:npc-theodora.svg; EXISTS:npc-rybak-issyk-kul.svg (местный, вопросы о «духе озера»); EXISTS:player-deacon-orarion.svg; EXISTS:obj-orar.svg; EXISTS:obj-kadilo.svg; EXISTS:obj-evangelie.svg; DRAWN:obj-krest-vodosvyatny.svg (без свечения и нимба); DRAWN:obj-chasha-vodosvyatnaya.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Faith ≥ 5 дьякон допускается к возглашению ектении; при Erudition ≥ 4 знает её слова (тексты не искажаются).
@@ -1073,7 +1073,7 @@
 
 **Сцена:** По хронике и зарубкам дьякон понимает, что вода поднимется. Он идёт на площадь прибрежного города убедить мелика и жителей уйти выше.
 
-**Графика:** EXISTS:loc-agora.svg (городская площадь); EXISTS:npc-melik.svg; EXISTS:npc-anahit.svg; EXISTS:npc-vardan.svg; EXISTS:obj-rog-glashataya.svg; EXISTS:obj-glubinomer.svg; MISSING:obj-metka-urovnya.svg; MISSING:obj-telega-bezhentsev.svg
+**Графика:** EXISTS:loc-agora.svg (городская площадь); EXISTS:npc-melik.svg; EXISTS:npc-anahit.svg; EXISTS:npc-vardan.svg; EXISTS:obj-rog-glashataya.svg; EXISTS:obj-glubinomer.svg; DRAWN:obj-metka-urovnya.svg; DRAWN:obj-telega-bezhentsev.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Erudition ≥ 5 есть данные хроники (м.45), при Charisma ≥ 5 — сила убеждения. При меньших значениях помогает Вардан, и город уходит позже (задержка, не гибель).
@@ -1097,7 +1097,7 @@
 
 **Сцена:** В скриптории Вардан учит дьякона вести летопись уровней воды по годам. Сопоставление записей открывает цикличность подъёмов.
 
-**Графика:** MISSING:loc-skriptoriy.svg (скрипторий обители); EXISTS:npc-vardan.svg; EXISTS:obj-chernilnitsa.svg; EXISTS:obj-glubinomer.svg; EXISTS:obj-termometr-vody.svg; MISSING:obj-hronika-urovney.svg (кодекс с зарубками-таблицами)
+**Графика:** DRAWN:loc-skriptoriy.svg (скрипторий обители); EXISTS:npc-vardan.svg; EXISTS:obj-chernilnitsa.svg; EXISTS:obj-glubinomer.svg; EXISTS:obj-termometr-vody.svg; DRAWN:obj-hronika-urovney.svg (кодекс с зарубками-таблицами)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Erudition ≥ 4 игрок читает прежние записи армянским письмом.
@@ -1121,7 +1121,7 @@
 
 **Сцена:** В ставке правителя Чагатайского улуса епископ и дьякон просят ярлык о неприкосновенности монастырей и факторий.
 
-**Графика:** EXISTS:loc-khan-yurt.svg; MISSING:npc-khan-chagatai.svg (существующий npc-khan.svg изображает хана Улуса Джучи); EXISTS:npc-strazhnik.svg; MISSING:npc-episkop-ioann.svg; EXISTS:obj-yarlyk-khana.svg; EXISTS:obj-paiza.svg; EXISTS:obj-larets.svg (дары в чистом плате); EXISTS:obj-golub-mira.svg
+**Графика:** EXISTS:loc-khan-yurt.svg; DRAWN:npc-khan-chagatai.svg (существующий npc-khan.svg изображает хана Улуса Джучи); EXISTS:npc-strazhnik.svg; DRAWN:npc-episkop-ioann.svg; EXISTS:obj-yarlyk-khana.svg; EXISTS:obj-paiza.svg; EXISTS:obj-larets.svg (дары в чистом плате); EXISTS:obj-golub-mira.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Charisma ≥ 6 дьякон допускается в ставку; при Erudition ≥ 5 знает Ясу и прежние ярлыки Церкви.
@@ -1145,7 +1145,7 @@
 
 **Сцена:** В канцелярии наместника дьякон и Вардан сверяют текст тарханной грамоты: обитель освобождается от налогов и воинского постоя, а взамен молится за правителя.
 
-**Графика:** MISSING:loc-kantselyariya.svg (диван наместника); EXISTS:npc-melik.svg; EXISTS:npc-vardan.svg; EXISTS:obj-yarlyk.svg; EXISTS:obj-tamga-khana.svg; EXISTS:obj-chernilnitsa.svg
+**Графика:** DRAWN:loc-kantselyariya.svg (диван наместника); EXISTS:npc-melik.svg; EXISTS:npc-vardan.svg; EXISTS:obj-yarlyk.svg; EXISTS:obj-tamga-khana.svg; EXISTS:obj-chernilnitsa.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Erudition ≥ 5 текст сверяется с образцом (исторический прототип — ярлык Менгу-Тимура митрополиту Кириллу, 1267).
@@ -1169,7 +1169,7 @@
 
 **Сцена:** Епископ как «консул» представляет армянскую общину перед монгольским даругачи. Дьякон готовит дело, где армянский купец обидел местного.
 
-**Графика:** MISSING:loc-divan-darugi.svg; MISSING:npc-darugachi.svg; MISSING:npc-episkop-ioann.svg; EXISTS:npc-sargis.svg; EXISTS:obj-gramota.svg; EXISTS:obj-paiza.svg; EXISTS:obj-raspiska.svg
+**Графика:** DRAWN:loc-divan-darugi.svg; DRAWN:npc-darugachi.svg; DRAWN:npc-episkop-ioann.svg; EXISTS:npc-sargis.svg; EXISTS:obj-gramota.svg; EXISTS:obj-paiza.svg; EXISTS:obj-raspiska.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Charisma ≥ 5 даругачи принимает; при Erudition ≥ 4 есть знание языка администрации.
@@ -1193,7 +1193,7 @@
 
 **Сцена:** В притворе проходит епископский суд: два купца-единоверца спорят о долге. Миссия добивается у власти права решать такие дела самой.
 
-**Графика:** MISSING:loc-pritvor-sud.svg (притвор, скамьи); MISSING:npc-episkop-ioann.svg; EXISTS:npc-sargis.svg (истец); MISSING:npc-kupets-dolzhnik.svg; EXISTS:obj-raspiska.svg; EXISTS:obj-vesy.svg; EXISTS:obj-evangelie.svg
+**Графика:** DRAWN:loc-pritvor-sud.svg (притвор, скамьи); DRAWN:npc-episkop-ioann.svg; EXISTS:npc-sargis.svg (истец); DRAWN:npc-kupets-dolzhnik.svg; EXISTS:obj-raspiska.svg; EXISTS:obj-vesy.svg; EXISTS:obj-evangelie.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Wisdom ≥ 6 дьякон допускается к разбору дела при епископе.
@@ -1217,7 +1217,7 @@
 
 **Сцена:** У брода кочевой род задержал караван Саргиса за потраву пастбищ. Дьякон улаживает спор у костра стоянки.
 
-**Графика:** EXISTS:loc-steppe.svg; EXISTS:npc-sargis.svg; MISSING:npc-bek-roda.svg (старейшина кочевого рода, уважительно, без карикатуры); MISSING:obj-koster-stoyanki.svg (можно адаптировать obj-koster-dvora.svg); EXISTS:obj-golub-mira.svg; EXISTS:obj-vesy.svg
+**Графика:** EXISTS:loc-steppe.svg; EXISTS:npc-sargis.svg; DRAWN:npc-bek-roda.svg (старейшина кочевого рода, уважительно, без карикатуры); DRAWN:obj-koster-stoyanki.svg (можно адаптировать obj-koster-dvora.svg); EXISTS:obj-golub-mira.svg; EXISTS:obj-vesy.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Charisma ≥ 5 бек говорит с дьяконом, иначе только через Саргиса.
@@ -1241,7 +1241,7 @@
 
 **Сцена:** Дьякон с прошением приходит к эмиру, по преданию — Тимуру, просить смягчить участь пленников, заключённых в замке на острове Иссык-Куля, и посещает их с хлебом.
 
-**Графика:** MISSING:loc-zamok-ostrov.svg (островной замок на озере); MISSING:npc-emir.svg (эмир / Тимур, без карикатуры); EXISTS:npc-strazhnik.svg; EXISTS:obj-gramota.svg (прошение); EXISTS:obj-prosfora.svg (хлеб пленникам); EXISTS:obj-larets.svg; MISSING:npc-plennik.svg
+**Графика:** DRAWN:loc-zamok-ostrov.svg (островной замок на озере); DRAWN:npc-emir.svg (эмир / Тимур, без карикатуры); EXISTS:npc-strazhnik.svg; EXISTS:obj-gramota.svg (прошение); EXISTS:obj-prosfora.svg (хлеб пленникам); EXISTS:obj-larets.svg; DRAWN:npc-plennik.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Faith ≥ 5 хватает мужества войти; при Charisma ≥ 7 эмир выслушивает прошение.
@@ -1266,7 +1266,7 @@
 
 **Сцена:** Латинский легат требует определить статус частицы мощей ап. Матфея, хранимой миссией. Составляется протокол о подлинности и почитании святыни.
 
-**Графика:** MISSING:loc-riznitsa.svg; MISSING:npc-latinsky-legat.svg; MISSING:npc-episkop-ioann.svg; EXISTS:npc-vardan.svg; MISSING:obj-kovchezhets.svg (ковчежец без сияния и нимба); EXISTS:obj-gramota.svg
+**Графика:** DRAWN:loc-riznitsa.svg; DRAWN:npc-latinsky-legat.svg; DRAWN:npc-episkop-ioann.svg; EXISTS:npc-vardan.svg; DRAWN:obj-kovchezhets.svg (ковчежец без сияния и нимба); EXISTS:obj-gramota.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Erudition ≥ 6 есть знание истории перенесения и предания о мощах на Иссык-Куле.
@@ -1290,7 +1290,7 @@
 
 **Сцена:** В караван-сарае купцы диаспоры приносят вести о смене власти на пути. Дьякон решает, как распорядиться этими сведениями.
 
-**Графика:** MISSING:loc-karavansaray.svg; EXISTS:npc-anahit.svg; EXISTS:npc-sargis.svg; EXISTS:obj-kompas-puti.svg; MISSING:obj-pismo-vesti.svg
+**Графика:** DRAWN:loc-karavansaray.svg; EXISTS:npc-anahit.svg; EXISTS:npc-sargis.svg; EXISTS:obj-kompas-puti.svg; DRAWN:obj-pismo-vesti.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Wisdom ≥ 5 игрок отличает весть от сплетни.
@@ -1314,7 +1314,7 @@
 
 **Сцена:** Братья-униторы собирают делегацию в Авиньон за буллой поддержки. Православный дьякон свидетельствует и спорит о цене такой поддержки.
 
-**Графика:** MISSING:loc-karavansaray.svg (проводы делегации; Авиньон — только весть, без локации); MISSING:npc-brat-unitor.svg; EXISTS:npc-vardan.svg; EXISTS:npc-photius.svg (голос учения о единстве Церкви); MISSING:obj-bulla.svg; EXISTS:obj-gramota.svg
+**Графика:** DRAWN:loc-karavansaray.svg (проводы делегации; Авиньон — только весть, без локации); DRAWN:npc-brat-unitor.svg; EXISTS:npc-vardan.svg; EXISTS:npc-photius.svg (голос учения о единстве Церкви); DRAWN:obj-bulla.svg; EXISTS:obj-gramota.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Erudition ≥ 7 есть знание истории разделения 1054 года и Лионской унии 1274 года.
@@ -1338,7 +1338,7 @@
 
 **Сцена:** В юрте кама дьякон ведёт осторожную беседу о Творце неба, не участвуя в камлании, чтобы снять угрозу религиозной вражды.
 
-**Графика:** EXISTS:loc-nebo-stepi.svg; MISSING:loc-yurta-kama.svg; MISSING:npc-kam.svg (кам, уважительно); EXISTS:obj-svitok-yazykov.svg; EXISTS:obj-evangelie.svg; MISSING:obj-buben-kama.svg (не берётся в руки)
+**Графика:** EXISTS:loc-nebo-stepi.svg; DRAWN:loc-yurta-kama.svg; DRAWN:npc-kam.svg (кам, уважительно); EXISTS:obj-svitok-yazykov.svg; EXISTS:obj-evangelie.svg; DRAWN:obj-buben-kama.svg (не берётся в руки)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Charisma ≥ 5 кам принимает гостя; при Wisdom ≥ 5 открыта сократическая ветка о Творце неба.
@@ -1362,7 +1362,7 @@
 
 **Сцена:** На ежегодной ярмарке за оградой обители съезжаются купцы разных стран. Миссия проверяет весы и находит фальшивую гирю.
 
-**Графика:** EXISTS:loc-agora.svg; EXISTS:npc-sargis.svg; EXISTS:npc-anahit.svg; EXISTS:npc-melik.svg; EXISTS:obj-vesy.svg; MISSING:obj-etalon-giri.svg
+**Графика:** EXISTS:loc-agora.svg; EXISTS:npc-sargis.svg; EXISTS:npc-anahit.svg; EXISTS:npc-melik.svg; EXISTS:obj-vesy.svg; DRAWN:obj-etalon-giri.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Erudition ≥ 3 известны меры и эталон.
@@ -1386,7 +1386,7 @@
 
 **Сцена:** При угрозе обыска дьякон с Варданом запечатывают хроники и метрики общины и прячут их в подземной крипте и затопленной келье.
 
-**Графика:** MISSING:loc-kripta-arhiva.svg; EXISTS:loc-issyk-kul-underwater.svg; EXISTS:npc-vardan.svg; EXISTS:npc-strazhnik.svg; EXISTS:obj-larets.svg; EXISTS:obj-rov.svg; MISSING:obj-germetichny-futlyar.svg
+**Графика:** DRAWN:loc-kripta-arhiva.svg; EXISTS:loc-issyk-kul-underwater.svg; EXISTS:npc-vardan.svg; EXISTS:npc-strazhnik.svg; EXISTS:obj-larets.svg; EXISTS:obj-rov.svg; DRAWN:obj-germetichny-futlyar.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Dexterity ≥ 4 футляр упаковывается и запечатывается смолой; при Constitution ≥ 4 ларцы переносятся в крипту.
@@ -1410,7 +1410,7 @@
 
 **Сцена:** В обитель прибывает иерарх, лишённый кафедры. Миссия решает, как принять его по канонам.
 
-**Графика:** MISSING:npc-izgnanny-episkop.svg; MISSING:npc-episkop-ioann.svg; EXISTS:loc-kelia.svg; EXISTS:obj-gramota.svg (отпускная грамота); EXISTS:obj-prosfora.svg
+**Графика:** DRAWN:npc-izgnanny-episkop.svg; DRAWN:npc-episkop-ioann.svg; EXISTS:loc-kelia.svg; EXISTS:obj-gramota.svg (отпускная грамота); EXISTS:obj-prosfora.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Erudition ≥ 6 известны каноны (Ап. 35; Антиох. 13, 22).
@@ -1434,7 +1434,7 @@
 
 **Сцена:** В Чуйской долине несторианская община Мар-Авы и миссия спорят о пастве. Разрешение — мирный диалог или раскол.
 
-**Графика:** EXISTS:npc-tabib.svg (Мар-Ава); MISSING:npc-nestoriansky-svyashchennik.svg; MISSING:loc-chuiskaya-dolina.svg (поле кайраков); MISSING:obj-kairak.svg; EXISTS:obj-evangelie.svg; EXISTS:obj-stupka.svg (общее лечение)
+**Графика:** EXISTS:npc-tabib.svg (Мар-Ава); DRAWN:npc-nestoriansky-svyashchennik.svg; DRAWN:loc-chuiskaya-dolina.svg (поле кайраков); DRAWN:obj-kairak.svg; EXISTS:obj-evangelie.svg; EXISTS:obj-stupka.svg (общее лечение)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Erudition ≥ 7 есть знание христологии (Ефес 431, Халкидон 451); при Wisdom ≥ 6 открыта ветка о Богородице.
@@ -1458,7 +1458,7 @@
 
 **Сцена:** Армянский купец просит благословить брак с некрещёной местной девушкой «ради укрепления общины». Дьякон учит о таинстве и о свободном согласии.
 
-**Графика:** EXISTS:loc-hram-naos.svg; MISSING:npc-zhenikh-kupets.svg; MISSING:npc-nevesta.svg; EXISTS:npc-anahit.svg; EXISTS:npc-theodora.svg; MISSING:obj-ventsy.svg
+**Графика:** EXISTS:loc-hram-naos.svg; DRAWN:npc-zhenikh-kupets.svg; DRAWN:npc-nevesta.svg; EXISTS:npc-anahit.svg; EXISTS:npc-theodora.svg; DRAWN:obj-ventsy.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Wisdom ≥ 5 открыта беседа с невестой.
@@ -1482,7 +1482,7 @@
 
 **Сцена:** Два правителя проводят переговоры в трапезной обители. Старец и дьякон хранят мир, не становясь ничьей партией.
 
-**Графика:** MISSING:loc-trapeza.svg; EXISTS:npc-khan.svg; EXISTS:npc-melik.svg; EXISTS:npc-elder-sergius.svg; EXISTS:obj-golub-mira.svg; MISSING:obj-trapeznyi-khleb.svg
+**Графика:** DRAWN:loc-trapeza.svg; EXISTS:npc-khan.svg; EXISTS:npc-melik.svg; EXISTS:npc-elder-sergius.svg; EXISTS:obj-golub-mira.svg; DRAWN:obj-trapeznyi-khleb.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Charisma ≥ 7 дьякон допускается к ведению встречи.
@@ -1506,7 +1506,7 @@
 
 **Сцена:** Вардан и дьякон изучают Ясу и местные обычаи, чтобы защитить вдову общины в споре о наследстве.
 
-**Графика:** MISSING:loc-skriptoriy.svg; EXISTS:npc-vardan.svg; MISSING:npc-vdova.svg; EXISTS:npc-melik.svg; EXISTS:obj-yarlyk.svg; EXISTS:obj-chernilnitsa.svg; EXISTS:obj-svitok-yazykov.svg
+**Графика:** DRAWN:loc-skriptoriy.svg; EXISTS:npc-vardan.svg; DRAWN:npc-vdova.svg; EXISTS:npc-melik.svg; EXISTS:obj-yarlyk.svg; EXISTS:obj-chernilnitsa.svg; EXISTS:obj-svitok-yazykov.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Erudition ≥ 6 можно найти нужную норму в своде.
@@ -1530,7 +1530,7 @@
 
 **Сцена:** Ночью у ворот обители стоят беглецы от гнева эмира. Дьякон решает, дать ли им приют, зная, что придут стражники.
 
-**Графика:** MISSING:loc-vorota-obiteli-noch.svg; EXISTS:npc-strazhnik.svg; MISSING:npc-beglets.svg; EXISTS:npc-elder-sergius.svg; EXISTS:obj-lampada.svg; EXISTS:obj-prosfora.svg
+**Графика:** DRAWN:loc-vorota-obiteli-noch.svg; EXISTS:npc-strazhnik.svg; DRAWN:npc-beglets.svg; EXISTS:npc-elder-sergius.svg; EXISTS:obj-lampada.svg; EXISTS:obj-prosfora.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Faith ≥ 6 дьякон решается принять; при Constitution ≥ 5 выдерживает стояние перед стражей.
@@ -1554,7 +1554,7 @@
 
 **Сцена:** Дьякон находит скрытую библиотеку ордена униторов с отчётами для доминиканцев и Папы и решает, что с ней делать.
 
-**Графика:** MISSING:loc-tainaya-biblioteka.svg; MISSING:npc-brat-unitor.svg; EXISTS:npc-vardan.svg; EXISTS:obj-larets.svg; EXISTS:obj-chernilnitsa.svg; MISSING:obj-otchet-ordena.svg
+**Графика:** DRAWN:loc-tainaya-biblioteka.svg; DRAWN:npc-brat-unitor.svg; EXISTS:npc-vardan.svg; EXISTS:obj-larets.svg; EXISTS:obj-chernilnitsa.svg; DRAWN:obj-otchet-ordena.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Erudition ≥ 7 дьякон читает латынь.
@@ -1578,7 +1578,7 @@
 
 **Сцена:** Дьякон предлагает наместнику собирать подать через старост общины, чтобы положить конец произволу откупщиков.
 
-**Графика:** MISSING:loc-divan-namestnika.svg; EXISTS:npc-melik.svg; MISSING:npc-otkupshchik.svg; EXISTS:obj-vesy.svg; EXISTS:obj-raspiska.svg; EXISTS:obj-gramota.svg
+**Графика:** DRAWN:loc-divan-namestnika.svg; EXISTS:npc-melik.svg; DRAWN:npc-otkupshchik.svg; EXISTS:obj-vesy.svg; EXISTS:obj-raspiska.svg; EXISTS:obj-gramota.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Erudition ≥ 5 можно вести учёт расписок.
@@ -1602,7 +1602,7 @@
 
 **Сцена:** Братия ставит кузню с тиглями. На совете решают, что ковать: орала и инструменты, а не оружие по заказу двора.
 
-**Графика:** MISSING:loc-kuznya-obiteli.svg; EXISTS:npc-abba-john.svg; MISSING:npc-kuznets-brat.svg; EXISTS:npc-strazhnik.svg (заказ оружия); EXISTS:obj-instrumenty.svg; MISSING:obj-tigel.svg; MISSING:obj-nakovalnya.svg
+**Графика:** DRAWN:loc-kuznya-obiteli.svg; EXISTS:npc-abba-john.svg; DRAWN:npc-kuznets-brat.svg; EXISTS:npc-strazhnik.svg (заказ оружия); EXISTS:obj-instrumenty.svg; DRAWN:obj-tigel.svg; DRAWN:obj-nakovalnya.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: при Constitution ≥ 5 выдерживается жар горна; при Dexterity ≥ 5 удаётся ковка.
@@ -1626,7 +1626,7 @@
 
 **Сцена:** Гончарный двор у обители на берегу Иссык-Куля: дьякон учится у гончара ставить знак Ихтиса на посуду, но так, чтобы знак свидетельствовал о Христе, а не поднимал цену.
 
-**Графика:** MISSING:loc-goncharnyi-dvor.svg (гончарный круг, печь-тандыр для обжига, озеро на фоне); MISSING:npc-gonchar.svg (мастер-гончар, армянин из диаспоры); EXISTS:npc-sister-catherine.svg (наставница: смирение делания); MISSING:obj-chasha-ikhtis.svg (глиняная чаша со знаком рыбы); MISSING:obj-goncharnyi-krug.svg; EXISTS:obj-vesy.svg (весы торга — искушение ценой)
+**Графика:** DRAWN:loc-goncharnyi-dvor.svg (гончарный круг, печь-тандыр для обжига, озеро на фоне); DRAWN:npc-gonchar.svg (мастер-гончар, армянин из диаспоры); EXISTS:npc-sister-catherine.svg (наставница: смирение делания); DRAWN:obj-chasha-ikhtis.svg (глиняная чаша со знаком рыбы); DRAWN:obj-goncharnyi-krug.svg; EXISTS:obj-vesy.svg (весы торга — искушение ценой)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Ловкость ≥ 3 открывает гончарный круг; при Ловкости < 3 гончар даёт упражнение на центровку глины (без провала, только повтор).
@@ -1651,7 +1651,7 @@
 
 **Сцена:** Верфь на мысу Светлый (северо-восток Иссык-Куля): дьякон с корабелом и рыбаком строит лодку и баржу для надводных экспедиций и спуска подводного аппарата.
 
-**Графика:** MISSING:loc-verf-svetlyi-mys.svg (стапель, рёбра лодки, мыс и озеро); MISSING:npc-korabel.svg (плотник-корабел); EXISTS:npc-rybak-issyk-kul.svg; EXISTS:obj-rov.svg; EXISTS:loc-prichal-rov.svg (финальный спуск); MISSING:obj-lodka-barzha.svg; MISSING:obj-topor-teslo.svg
+**Графика:** DRAWN:loc-verf-svetlyi-mys.svg (стапель, рёбра лодки, мыс и озеро); DRAWN:npc-korabel.svg (плотник-корабел); EXISTS:npc-rybak-issyk-kul.svg; EXISTS:obj-rov.svg; EXISTS:loc-prichal-rov.svg (финальный спуск); DRAWN:obj-lodka-barzha.svg; DRAWN:obj-topor-teslo.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Выносливость ≥ 4 — поднять и закрепить киль; при меньшей — рыбак помогает, этап удлиняется.
@@ -1675,7 +1675,7 @@
 
 **Сцена:** Ткацкая мастерская при обители: ткачихи диаспоры ткут полотна с крестами и виноградной лозой, и дьякон решает, что из этого идёт на торг, а что — на покровы храма.
 
-**Графика:** MISSING:loc-tkatskaya-masterskaya.svg (станки, мотки шерсти и шёлка, свет из окна); MISSING:npc-tkachikha.svg (ткачиха-армянка); EXISTS:npc-anahit.svg (хозяйка караван-сарая — покупательница); EXISTS:npc-sargis.svg; MISSING:obj-tkatskiy-stanok.svg; MISSING:obj-tyuk-shelka.svg (реестр СГ-08); MISSING:obj-pokrov-vozdukh.svg (литургический покров — только для храма)
+**Графика:** DRAWN:loc-tkatskaya-masterskaya.svg (станки, мотки шерсти и шёлка, свет из окна); DRAWN:npc-tkachikha.svg (ткачиха-армянка); EXISTS:npc-anahit.svg (хозяйка караван-сарая — покупательница); EXISTS:npc-sargis.svg; DRAWN:obj-tkatskiy-stanok.svg; DRAWN:obj-tyuk-shelka.svg (реестр СГ-08); DRAWN:obj-pokrov-vozdukh.svg (литургический покров — только для храма)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Ловкость ≥ 4 — работа челноком; узор задаётся картой нитей (детерминированно).
@@ -1700,7 +1700,7 @@
 
 **Сцена:** Сад и виноградник на нижней террасе озера: дьякон собирает виноград, отделяет вино для Евхаристии от вина-дара правителю и учится мере.
 
-**Графика:** MISSING:loc-sad-vinogradnik.svg (террасы, лоза, горы Тянь-Шаня); MISSING:npc-sadovnik.svg (монах-садовник); EXISTS:npc-elder-sergius.svg; EXISTS:npc-melik.svg (получатель дипломатического дара); MISSING:obj-grozd-vinograda.svg; MISSING:obj-karas-kuvshin.svg (кувшин-карас для вина); EXISTS:obj-prosfora.svg (связка с Евхаристией); EXISTS:obj-golub-mira.svg (дар как мир)
+**Графика:** DRAWN:loc-sad-vinogradnik.svg (террасы, лоза, горы Тянь-Шаня); DRAWN:npc-sadovnik.svg (монах-садовник); EXISTS:npc-elder-sergius.svg; EXISTS:npc-melik.svg (получатель дипломатического дара); DRAWN:obj-grozd-vinograda.svg; DRAWN:obj-karas-kuvshin.svg (кувшин-карас для вина); EXISTS:obj-prosfora.svg (связка с Евхаристией); EXISTS:obj-golub-mira.svg (дар как мир)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Выносливость ≥ 3 — сбор урожая на жаре; ритм сбора задаётся рядами лозы.
@@ -1724,7 +1724,7 @@
 
 **Сцена:** Кирпичный двор у строящегося храма: зодчий, видевший Самарканд, учит дьякона обжигу и кладке кирпича, и игрок решает, что заимствовать — технику или смысл.
 
-**Графика:** MISSING:loc-kirpichnyi-dvor.svg (формы кирпича, печь, строительные леса); MISSING:npc-zodchiy.svg (зодчий-мастер); EXISTS:loc-gerat.svg (образ тимуридского города, как отсылка); EXISTS:loc-hram-naos.svg (цель — наос храма); MISSING:obj-kirpich-forma.svg; EXISTS:obj-instrumenty.svg
+**Графика:** DRAWN:loc-kirpichnyi-dvor.svg (формы кирпича, печь, строительные леса); DRAWN:npc-zodchiy.svg (зодчий-мастер); EXISTS:loc-gerat.svg (образ тимуридского города, как отсылка); EXISTS:loc-hram-naos.svg (цель — наос храма); DRAWN:obj-kirpich-forma.svg; EXISTS:obj-instrumenty.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 5 — чтение чертежа купола; без неё зодчий объясняет основы (без провала).
@@ -1748,7 +1748,7 @@
 
 **Сцена:** С вершины холма над обителью дьякон с зодчим размечает кольями и верёвкой сетку улиц, чтобы храм оставался центром, а стены — защитой, а не угрозой.
 
-**Графика:** MISSING:loc-plan-obiteli.svg (вид сверху: храм, кельи, сетка улиц, озеро); EXISTS:loc-skit.svg (образец: храм в середине, кельи вокруг); MISSING:npc-zodchiy.svg; EXISTS:npc-strazhnik.svg (вопрос обороны); MISSING:obj-verevka-kolya.svg (разметочная верёвка с кольями); EXISTS:obj-kompas-puti.svg
+**Графика:** DRAWN:loc-plan-obiteli.svg (вид сверху: храм, кельи, сетка улиц, озеро); EXISTS:loc-skit.svg (образец: храм в середине, кельи вокруг); DRAWN:npc-zodchiy.svg; EXISTS:npc-strazhnik.svg (вопрос обороны); DRAWN:obj-verevka-kolya.svg (разметочная верёвка с кольями); EXISTS:obj-kompas-puti.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 4 — чтение плана; Хитрость ≥ 4 открывает (не одобряемую) ветку «потайные ходы».
@@ -1772,7 +1772,7 @@
 
 **Сцена:** На горной речке, впадающей в Иссык-Куль, дьякон с артелью строит деревянный мост, чтобы паломники и караваны переходили броды без гибели.
 
-**Графика:** MISSING:loc-gornaya-reka-most.svg (ущелье, бурная река, недостроенный мост); EXISTS:npc-sargis.svg; EXISTS:npc-rybak-issyk-kul.svg; MISSING:npc-mostovshik.svg (плотник-мостовщик); MISSING:obj-mernaya-trost.svg (реестр Д-10, мерная трость для бродов); MISSING:obj-brevno-svaya.svg
+**Графика:** DRAWN:loc-gornaya-reka-most.svg (ущелье, бурная река, недостроенный мост); EXISTS:npc-sargis.svg; EXISTS:npc-rybak-issyk-kul.svg; DRAWN:npc-mostovshik.svg (плотник-мостовщик); DRAWN:obj-mernaya-trost.svg (реестр Д-10, мерная трость для бродов); DRAWN:obj-brevno-svaya.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Выносливость ≥ 5 — вбивание свай в поток; Ловкость ≥ 4 — перекладка настила.
@@ -1796,7 +1796,7 @@
 
 **Сцена:** Под навесом у обители дьякон учит местных детей — киргизских, армянских, сирийских — лепить, ковать и выводить буквы, не требуя от них веры в обмен на хлеб.
 
-**Графика:** MISSING:loc-shkola-remesel.svg (навес, гончарный круг, малая наковальня, доски для письма); MISSING:npc-uchenik-rebenok.svg (дети-ученики, собирательный портрет); EXISTS:npc-vardan.svg (учит письму); EXISTS:npc-macrina.svg (наставница: воспитание как путь); MISSING:obj-voskovaya-tablichka.svg (реестр ВР-09); EXISTS:obj-chernilnitsa.svg; EXISTS:obj-instrumenty.svg
+**Графика:** DRAWN:loc-shkola-remesel.svg (навес, гончарный круг, малая наковальня, доски для письма); DRAWN:npc-uchenik-rebenok.svg (дети-ученики, собирательный портрет); EXISTS:npc-vardan.svg (учит письму); EXISTS:npc-macrina.svg (наставница: воспитание как путь); DRAWN:obj-voskovaya-tablichka.svg (реестр ВР-09); EXISTS:obj-chernilnitsa.svg; EXISTS:obj-instrumenty.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Харизма ≥ 4 — удержать внимание детей; Эрудиция ≥ 5 — вести урок письма.
@@ -1820,7 +1820,7 @@
 
 **Сцена:** Дьякон с келарем роет подземные зерновые ямы и строит амбар, а в голодный год решает, открыть ли их для города или придержать до высокой цены.
 
-**Графика:** MISSING:loc-ambar-obiteli.svg (амбар, подземные ямы, сухая степь); MISSING:npc-kelar.svg (монах-келарь); EXISTS:npc-melik.svg (город просит хлеба); EXISTS:npc-sargis.svg (предлагает скупить); MISSING:obj-meshok-zerna.svg; MISSING:obj-zernovaya-yama.svg; EXISTS:obj-vesy.svg
+**Графика:** DRAWN:loc-ambar-obiteli.svg (амбар, подземные ямы, сухая степь); DRAWN:npc-kelar.svg (монах-келарь); EXISTS:npc-melik.svg (город просит хлеба); EXISTS:npc-sargis.svg (предлагает скупить); DRAWN:obj-meshok-zerna.svg; DRAWN:obj-zernovaya-yama.svg; EXISTS:obj-vesy.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Выносливость ≥ 4 — рытьё и обмазка ям глиной; Эрудиция ≥ 4 — расчёт запаса на зиму.
@@ -1844,7 +1844,7 @@
 
 **Сцена:** В монастырской лечебнице лекарь Мар-Ава учит дьякона растирать травы и перевязывать раненых путников, а исцеление остаётся милостью Божией, а не кнопкой.
 
-**Графика:** MISSING:loc-lechebnitsa.svg (палата с лежанками, полки трав, лампада); EXISTS:npc-tabib.svg (Мар-Ава, лекарь); EXISTS:npc-theodora.svg; EXISTS:obj-stupka.svg; EXISTS:obj-instrumenty.svg; MISSING:obj-polotno-perevyazki.svg (реестр ТБ-12); EXISTS:obj-lampada.svg
+**Графика:** DRAWN:loc-lechebnitsa.svg (палата с лежанками, полки трав, лампада); EXISTS:npc-tabib.svg (Мар-Ава, лекарь); EXISTS:npc-theodora.svg; EXISTS:obj-stupka.svg; EXISTS:obj-instrumenty.svg; DRAWN:obj-polotno-perevyazki.svg (реестр ТБ-12); EXISTS:obj-lampada.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 5 — распознать травы по свитку; Ловкость ≥ 4 — перевязка.
@@ -1868,7 +1868,7 @@
 
 **Сцена:** В скриптории обители дьякон с переписчиком Варданом собирает карты и описания путей от караванщиков и сверяет их, отделяя правду от купеческих небылиц.
 
-**Графика:** MISSING:loc-skriptoriy.svg (полки со свитками, пюпитры, свет из окна); EXISTS:npc-vardan.svg; EXISTS:npc-sargis.svg; MISSING:obj-karta-torgovykh-putey.svg (реестр СГ-14); EXISTS:obj-chernilnitsa.svg; EXISTS:obj-svitok-yazykov.svg; EXISTS:obj-kompas-puti.svg
+**Графика:** DRAWN:loc-skriptoriy.svg (полки со свитками, пюпитры, свет из окна); EXISTS:npc-vardan.svg; EXISTS:npc-sargis.svg; DRAWN:obj-karta-torgovykh-putey.svg (реестр СГ-14); EXISTS:obj-chernilnitsa.svg; EXISTS:obj-svitok-yazykov.svg; EXISTS:obj-kompas-puti.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 5 — чтение описаний на трёх языках (грабар, сирийский, тюркский).
@@ -1892,7 +1892,7 @@
 
 **Сцена:** Ночью на берегу Иссык-Куля дьякон учит проводников находить путь по Полярной звезде и очертаниям гор, отличая навигацию от астрологии.
 
-**Графика:** MISSING:loc-bereg-noch.svg (ночной берег, звёздное небо, силуэты гор); EXISTS:loc-nebo-stepi.svg (небо как фон); EXISTS:npc-rybak-issyk-kul.svg; MISSING:npc-provodnik.svg (проводник каравана); EXISTS:obj-zvezda-puti.svg; EXISTS:obj-kompas-puti.svg
+**Графика:** DRAWN:loc-bereg-noch.svg (ночной берег, звёздное небо, силуэты гор); EXISTS:loc-nebo-stepi.svg (небо как фон); EXISTS:npc-rybak-issyk-kul.svg; DRAWN:npc-provodnik.svg (проводник каравана); EXISTS:obj-zvezda-puti.svg; EXISTS:obj-kompas-puti.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Мудрость ≥ 5 — различение созвездий; Эрудиция ≥ 4 — береговые ориентиры.
@@ -1916,7 +1916,7 @@
 
 **Сцена:** В поздней эпохе кампании братия обители осваивает печатную доску и оттискивает азбуку и Евангельские чтения на разных языках, споря, не убьёт ли печать молитву переписчика.
 
-**Графика:** MISSING:loc-tipografiya.svg (печатный стан, ряды литер, листы на просушке); EXISTS:npc-vardan.svg (переписчик против спешки); MISSING:npc-pechatnik.svg; MISSING:obj-pechatnaya-doska.svg; EXISTS:obj-evangelie.svg; EXISTS:obj-svitok-yazykov.svg
+**Графика:** DRAWN:loc-tipografiya.svg (печатный стан, ряды литер, листы на просушке); EXISTS:npc-vardan.svg (переписчик против спешки); DRAWN:npc-pechatnik.svg; DRAWN:obj-pechatnaya-doska.svg; EXISTS:obj-evangelie.svg; EXISTS:obj-svitok-yazykov.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 7 — набор литер без ошибок; Ловкость ≥ 5 — работа прессом.
@@ -1941,7 +1941,7 @@
 
 **Сцена:** В подклети храма дьякон с казначеем диаспоры обустраивает тайник для общей казны вдов и сирот и выясняет, что казна — это долг перед бедными, а не сокровище обители.
 
-**Графика:** MISSING:loc-kripta-kazny.svg (каменная подклеть, ниши, масляный светильник); EXISTS:npc-melik.svg (наместник-казначей); EXISTS:npc-abba-john.svg (наставник нестяжания); MISSING:obj-sunduk-kazny.svg (реестр МЛ-12); MISSING:obj-koshel-dirhemov.svg (реестр СГ-07); EXISTS:obj-raspiska.svg; EXISTS:obj-larets.svg
+**Графика:** DRAWN:loc-kripta-kazny.svg (каменная подклеть, ниши, масляный светильник); EXISTS:npc-melik.svg (наместник-казначей); EXISTS:npc-abba-john.svg (наставник нестяжания); DRAWN:obj-sunduk-kazny.svg (реестр МЛ-12); DRAWN:obj-koshel-dirhemov.svg (реестр СГ-07); EXISTS:obj-raspiska.svg; EXISTS:obj-larets.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Хитрость ≥ 3 — устройство тайника (скрытая ниша); Эрудиция ≥ 4 — учёт по распискам.
@@ -1965,7 +1965,7 @@
 
 **Сцена:** В ювелирной мастерской дьякон помогает мастеру чеканить потир и напрестольный крест для храма, а заказчик просит перелить их в украшения для жены эмира.
 
-**Графика:** MISSING:loc-yuvelirnaya.svg (горн, наковальня, чеканы, тигли); MISSING:npc-yuvelir.svg (мастер-серебряник); EXISTS:npc-khan.svg (заказчик от двора); EXISTS:obj-instrumenty.svg (чекан, резец); MISSING:obj-potir.svg (чаша для храма — без нимбов, без извлечения как лута); MISSING:obj-slitok-serebra.svg
+**Графика:** DRAWN:loc-yuvelirnaya.svg (горн, наковальня, чеканы, тигли); DRAWN:npc-yuvelir.svg (мастер-серебряник); EXISTS:npc-khan.svg (заказчик от двора); EXISTS:obj-instrumenty.svg (чекан, резец); DRAWN:obj-potir.svg (чаша для храма — без нимбов, без извлечения как лута); DRAWN:obj-slitok-serebra.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Ловкость ≥ 6 — чеканка орнамента; Эрудиция ≥ 5 — чтение надписи чаши (греч./грабар) без искажения.
@@ -1989,7 +1989,7 @@
 
 **Сцена:** На ручье, стекающем с гор к озеру, дьякон ставит водяную мельницу: колесо мелет муку для просфор и бедных и качает мехи кузни.
 
-**Графика:** MISSING:loc-vodyanaya-melnitsa.svg (мельница на ручье, колесо, жернова); MISSING:npc-melnik.svg; EXISTS:npc-rybak-issyk-kul.svg (право на воду); MISSING:obj-melnichnoe-koleso.svg; MISSING:obj-zhernov.svg; EXISTS:obj-prosfora.svg
+**Графика:** DRAWN:loc-vodyanaya-melnitsa.svg (мельница на ручье, колесо, жернова); DRAWN:npc-melnik.svg; EXISTS:npc-rybak-issyk-kul.svg (право на воду); DRAWN:obj-melnichnoe-koleso.svg; DRAWN:obj-zhernov.svg; EXISTS:obj-prosfora.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 5 — расчёт желоба и перепада; Выносливость ≥ 4 — установка вала.
@@ -2013,7 +2013,7 @@
 
 **Сцена:** На стоянке каравана в степи у Иссык-Куля дьякон ведёт походную кухню миссии и в постный день кормит и строгих постников, и голодных погонщиков, не осуждая никого.
 
-**Графика:** EXISTS:loc-steppe.svg; MISSING:loc-karavannaya-stoyanka.svg (шатры, котлы, верблюды); EXISTS:npc-sargis.svg; EXISTS:npc-anahit.svg (хозяйка — повариха); MISSING:obj-kotel-pokhodnyi.svg (реестр С-13); EXISTS:obj-koster-dvora.svg; EXISTS:obj-prosfora.svg
+**Графика:** EXISTS:loc-steppe.svg; DRAWN:loc-karavannaya-stoyanka.svg (шатры, котлы, верблюды); EXISTS:npc-sargis.svg; EXISTS:npc-anahit.svg (хозяйка — повариха); DRAWN:obj-kotel-pokhodnyi.svg (реестр С-13); EXISTS:obj-koster-dvora.svg; EXISTS:obj-prosfora.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Выносливость ≥ 4 — ночная варка; Ловкость ≥ 3 — раздача без пролива.
@@ -2037,7 +2037,7 @@
 
 **Сцена:** На холмах вокруг обители дьякон ставит сигнальные башни с кострами и знамёнами, чтобы предупреждать селения о набеге и потопе, и учится, что бодрствование сторожа — образ трезвения.
 
-**Графика:** MISSING:loc-signalnaya-bashnya.svg (каменная башенка на холме, вид на озеро); EXISTS:npc-strazhnik.svg; EXISTS:npc-elder-sergius.svg (трезвение); MISSING:obj-signalnyi-koster.svg; MISSING:obj-znamya-dozora.svg (реестр С-10); MISSING:obj-fakel-dozora.svg (реестр С-07)
+**Графика:** DRAWN:loc-signalnaya-bashnya.svg (каменная башенка на холме, вид на озеро); EXISTS:npc-strazhnik.svg; EXISTS:npc-elder-sergius.svg (трезвение); DRAWN:obj-signalnyi-koster.svg; DRAWN:obj-znamya-dozora.svg (реестр С-10); DRAWN:obj-fakel-dozora.svg (реестр С-07)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Выносливость ≥ 5 — ночной дозор без сна; Эрудиция ≥ 4 — код знамён (цвет/число огней).
@@ -2061,7 +2061,7 @@
 
 **Сцена:** В поздней линии игры обитель становится исследовательским центром: дьякон-водолаз с причала опускает подводный аппарат к затонувшим стенам собственного монастыря и ведёт их опись с благоговением.
 
-**Графика:** EXISTS:loc-prichal-rov.svg; EXISTS:loc-issyk-kul-underwater.svg; EXISTS:player-deacon-diver.svg; EXISTS:obj-rov.svg; EXISTS:obj-sonar.svg; EXISTS:obj-glubinomer.svg; EXISTS:obj-termometr-vody.svg; MISSING:loc-shtab-arkheologii.svg (палатка-лаборатория, столы описи, карты глубин); MISSING:obj-kayrak.svg (надгробие с крестом, связка П-33)
+**Графика:** EXISTS:loc-prichal-rov.svg; EXISTS:loc-issyk-kul-underwater.svg; EXISTS:player-deacon-diver.svg; EXISTS:obj-rov.svg; EXISTS:obj-sonar.svg; EXISTS:obj-glubinomer.svg; EXISTS:obj-termometr-vody.svg; DRAWN:loc-shtab-arkheologii.svg (палатка-лаборатория, столы описи, карты глубин); DRAWN:obj-kayrak.svg (надгробие с крестом, связка П-33)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Ловкость ≥ 6 — пилотирование ROV джойстиком; Выносливость ≥ 5 — долгое погружение; телеметрия глубины даёт Мудрость (ROV → Firestore → атрибут).
@@ -2070,7 +2070,7 @@
 - ЦЕЛЬ: «Из глубины воззвах к Тебе, Господи» (Пс 129) — наблюдение как молитва; Мудрость +2 (от глубины), Эрудиция +2.
 - Proof-of-Knowledge: «свои же затонувшие монастыри» — Эрудиция +1.
 
-**Реплики:** Рыбак (≈3 узла: где лежат стены), старец Сергий (≈4 узла: Пс 129, память усопших), археолог-мирянин (MISSING:npc-arkheolog.svg, ≈5 узлов: научная опись, этика). ≈12.
+**Реплики:** Рыбак (≈3 узла: где лежат стены), старец Сергий (≈4 узла: Пс 129, память усопших), археолог-мирянин (DRAWN:npc-arkheolog.svg, ≈5 узлов: научная опись, этика). ≈12.
 
 **Объекты:** ROV; сонар; глубиномер; термометр воды; планшет описи; фонарь
 
@@ -2086,7 +2086,7 @@
 
 **Сцена:** В скриптории дьякон с Варданом записывает в летопись диаспоры события года и имена, в том числе имя епископа Иоанна, и решает, писать ли правду о неудачах обители.
 
-**Графика:** MISSING:loc-skriptoriy.svg; EXISTS:npc-vardan.svg; MISSING:npc-episkop-ioann.svg (епископ Иоанн — прообраз героя кампании, без нимба, не канонизирован); MISSING:obj-letopis.svg (раскрытая летопись); EXISTS:obj-chernilnitsa.svg; MISSING:obj-kayrak.svg
+**Графика:** DRAWN:loc-skriptoriy.svg; EXISTS:npc-vardan.svg; DRAWN:npc-episkop-ioann.svg (епископ Иоанн — прообраз героя кампании, без нимба, не канонизирован); DRAWN:obj-letopis.svg (раскрытая летопись); EXISTS:obj-chernilnitsa.svg; DRAWN:obj-kayrak.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 6 — запись на грабаре; Мудрость ≥ 5 — отбор событий.
@@ -2111,7 +2111,7 @@
 
 **Сцена:** К обители приходит картограф из майоркинской мастерской Крескесов и расспрашивает дьякона, чтобы нанести на портулан «монастырь братьев-армян» на Иссык-Куле, а дьякон решает, что сказать правдиво.
 
-**Графика:** EXISTS:loc-issyk-kul.svg; MISSING:npc-kartograf-kreskes.svg (картограф майоркинской школы — собирательный образ); EXISTS:npc-vardan.svg (перевод); MISSING:obj-portulan.svg (портулан с розой ветров); EXISTS:obj-kompas-puti.svg; EXISTS:obj-svitok-yazykov.svg
+**Графика:** EXISTS:loc-issyk-kul.svg; DRAWN:npc-kartograf-kreskes.svg (картограф майоркинской школы — собирательный образ); EXISTS:npc-vardan.svg (перевод); DRAWN:obj-portulan.svg (портулан с розой ветров); EXISTS:obj-kompas-puti.svg; EXISTS:obj-svitok-yazykov.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 6 — объяснение пути на латыни через Вардана; Харизма ≥ 5 — принять гостя.
@@ -2135,7 +2135,7 @@
 
 **Сцена:** У ночного костра рыбаки рассказывают легенду о монастыре на дне и раке апостола Матфея, и дьякон учится отличать благочестивое предание от погони за сокровищем.
 
-**Графика:** EXISTS:loc-issyk-kul.svg; EXISTS:loc-issyk-kul-underwater.svg (видение-вставка); EXISTS:npc-rybak-issyk-kul.svg; EXISTS:npc-abba-john.svg; MISSING:obj-raka-matfeya.svg (рака — только как святыня для почитания, без нимба); EXISTS:obj-koster-dvora.svg
+**Графика:** EXISTS:loc-issyk-kul.svg; EXISTS:loc-issyk-kul-underwater.svg (видение-вставка); EXISTS:npc-rybak-issyk-kul.svg; EXISTS:npc-abba-john.svg; DRAWN:obj-raka-matfeya.svg (рака — только как святыня для почитания, без нимба); EXISTS:obj-koster-dvora.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Мудрость ≥ 5 — различение предания и слуха.
@@ -2160,7 +2160,7 @@
 
 **Сцена:** К обители прибывает посланец из Салерно, где почивают мощи апостола Матфея, и дьякон вместе с епископом должен смиренно согласовать заявление обители о «телесных мощах» с истиной.
 
-**Графика:** EXISTS:loc-hram-naos.svg; MISSING:npc-poslanets-salerno.svg (посланец из Салерно — мирянин-нотарий, не святой); MISSING:npc-episkop-ioann.svg; EXISTS:npc-photius.svg (учёность и точность); MISSING:obj-kovcheg-moshchey.svg (ковчежец с частицей — без нимба); EXISTS:obj-gramota.svg
+**Графика:** EXISTS:loc-hram-naos.svg; DRAWN:npc-poslanets-salerno.svg (посланец из Салерно — мирянин-нотарий, не святой); DRAWN:npc-episkop-ioann.svg; EXISTS:npc-photius.svg (учёность и точность); DRAWN:obj-kovcheg-moshchey.svg (ковчежец с частицей — без нимба); EXISTS:obj-gramota.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 7 — знание истории перенесения мощей; Харизма ≥ 5 — ведение беседы.
@@ -2184,7 +2184,7 @@
 
 **Сцена:** Вода озера поднимается; дьякон за ограниченное число действий переносит с братией святыни и архивы на верхнюю террасу, и исход кампании зависит от порядка и любви, а не от удачи.
 
-**Графика:** EXISTS:loc-issyk-kul.svg (подступающая вода); MISSING:loc-verkhnyaya-terrasa.svg (новая обитель на террасе); EXISTS:npc-elder-sergius.svg; EXISTS:npc-vardan.svg (архивы); MISSING:obj-kovcheg-moshchey.svg; MISSING:obj-arkhiv-svitkov.svg; EXISTS:obj-evangelie.svg; EXISTS:obj-ikona.svg
+**Графика:** EXISTS:loc-issyk-kul.svg (подступающая вода); DRAWN:loc-verkhnyaya-terrasa.svg (новая обитель на террасе); EXISTS:npc-elder-sergius.svg; EXISTS:npc-vardan.svg (архивы); DRAWN:obj-kovcheg-moshchey.svg; DRAWN:obj-arkhiv-svitkov.svg; EXISTS:obj-evangelie.svg; EXISTS:obj-ikona.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Выносливость ≥ 6 — число переносов за «день» (детерминированный бюджет действий = f(Выносливость)); Мудрость ≥ 6 — видение приоритетов.
@@ -2208,7 +2208,7 @@
 
 **Сцена:** На совете обителей дьякон перед картой сети миссий распределяет, какая обитель что даёт (лечебница, верфь, скрипторий), учась, что Церковь — Тело с разными членами.
 
-**Графика:** MISSING:loc-sovet-obiteley.svg (трапезная с большой картой сети миссий); EXISTS:npc-elder-sergius.svg; EXISTS:npc-theodora.svg; EXISTS:npc-sister-catherine.svg; EXISTS:npc-abba-john.svg; MISSING:obj-karta-seti-missiy.svg; EXISTS:obj-kompas-puti.svg
+**Графика:** DRAWN:loc-sovet-obiteley.svg (трапезная с большой картой сети миссий); EXISTS:npc-elder-sergius.svg; EXISTS:npc-theodora.svg; EXISTS:npc-sister-catherine.svg; EXISTS:npc-abba-john.svg; DRAWN:obj-karta-seti-missiy.svg; EXISTS:obj-kompas-puti.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Харизма ≥ 6 — вести совет; Мудрость ≥ 6 — видеть целое.
@@ -2233,7 +2233,7 @@
 
 **Сцена:** Игрок переключается в режим хрониста и, обходя события кампании как страницы, фиксирует их правдиво, понимая, что запись влияет на будущие эпохи.
 
-**Графика:** MISSING:loc-skriptoriy.svg; EXISTS:npc-vardan.svg; MISSING:ui-rezhim-khronista.svg (рамка режима хрониста); MISSING:obj-letopis.svg; EXISTS:obj-chernilnitsa.svg; EXISTS:ui-frame-corner.svg; EXISTS:ui-divider-ornament.svg
+**Графика:** DRAWN:loc-skriptoriy.svg; EXISTS:npc-vardan.svg; DRAWN:ui-rezhim-khronista.svg (рамка режима хрониста); DRAWN:obj-letopis.svg; EXISTS:obj-chernilnitsa.svg; EXISTS:ui-frame-corner.svg; EXISTS:ui-divider-ornament.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 7 открывает режим хрониста; Мудрость ≥ 6 — оценка событий.
@@ -2258,7 +2258,7 @@
 
 **Сцена:** Спустя столетия другой игрок-археолог опускает аппарат к руинам, оставленным первой кампанией, и читает по сохранившимся предметам решения предшественника.
 
-**Графика:** EXISTS:loc-issyk-kul-underwater.svg; EXISTS:loc-prichal-rov.svg; EXISTS:player-deacon-diver.svg; EXISTS:obj-rov.svg; EXISTS:obj-sonar.svg; MISSING:obj-kayrak.svg; MISSING:npc-arkheolog.svg; MISSING:obj-cherepok-ikhtis.svg (черепок чаши из миссии 67)
+**Графика:** EXISTS:loc-issyk-kul-underwater.svg; EXISTS:loc-prichal-rov.svg; EXISTS:player-deacon-diver.svg; EXISTS:obj-rov.svg; EXISTS:obj-sonar.svg; DRAWN:obj-kayrak.svg; DRAWN:npc-arkheolog.svg; DRAWN:obj-cherepok-ikhtis.svg (черепок чаши из миссии 67)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Ловкость ≥ 6 — пилотирование ROV; Эрудиция ≥ 6 — датировка находок.
@@ -2282,7 +2282,7 @@
 
 **Сцена:** В караван-сарай приходит весть, что купцы уходят на морские пути каравелл, караваны пустеют, и дьякон должен утешить разорённую диаспору и найти смысл миссии без торгового пути.
 
-**Графика:** MISSING:loc-karavan-saray-pustoy.svg (опустевший караван-сарай); EXISTS:npc-anahit.svg; EXISTS:npc-sargis.svg; EXISTS:npc-abba-john.svg; MISSING:obj-karavella-gravura.svg (гравюра каравеллы на письме купца); EXISTS:obj-gramota.svg
+**Графика:** DRAWN:loc-karavan-saray-pustoy.svg (опустевший караван-сарай); EXISTS:npc-anahit.svg; EXISTS:npc-sargis.svg; EXISTS:npc-abba-john.svg; DRAWN:obj-karavella-gravura.svg (гравюра каравеллы на письме купца); EXISTS:obj-gramota.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Харизма ≥ 6 — утешение; Мудрость ≥ 7 — видение смысла за переменой.
@@ -2307,7 +2307,7 @@
 
 **Сцена:** Армянская община покидает берега Иссык-Куля; дьякон провожает уходящих, благословляет дорогу и остаётся с артефактами, которые теперь будут свидетелями.
 
-**Графика:** EXISTS:loc-issyk-kul.svg; EXISTS:loc-steppe.svg (уходящий караван); EXISTS:npc-anahit.svg; EXISTS:npc-vardan.svg; EXISTS:npc-elder-sergius.svg; MISSING:obj-kayrak.svg; EXISTS:obj-lampada.svg
+**Графика:** EXISTS:loc-issyk-kul.svg; EXISTS:loc-steppe.svg (уходящий караван); EXISTS:npc-anahit.svg; EXISTS:npc-vardan.svg; EXISTS:npc-elder-sergius.svg; DRAWN:obj-kayrak.svg; EXISTS:obj-lampada.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Выносливость ≥ 6 — выдержать проводы; Вера ≥ 7 — благословение без отчаяния.
@@ -2332,7 +2332,7 @@
 
 **Сцена:** В подводных руинах дьякон находит надпись и летопись епископа Иоанна, и его голос звучит как чтение его слов из хроники — подсказки прошлого, а не призрак.
 
-**Графика:** EXISTS:loc-issyk-kul-underwater.svg; MISSING:npc-episkop-ioann.svg (без нимба, как образ из летописи; лицо в тени, силуэт на камне); MISSING:obj-kayrak.svg (кайрак с надписью Иоанна); EXISTS:obj-sonar.svg; EXISTS:obj-glubinomer.svg; MISSING:obj-letopis.svg
+**Графика:** EXISTS:loc-issyk-kul-underwater.svg; DRAWN:npc-episkop-ioann.svg (без нимба, как образ из летописи; лицо в тени, силуэт на камне); DRAWN:obj-kayrak.svg (кайрак с надписью Иоанна); EXISTS:obj-sonar.svg; EXISTS:obj-glubinomer.svg; DRAWN:obj-letopis.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 7 — чтение сирийско-армянской надписи; Мудрость ≥ 6 — понимание подсказки.
@@ -2356,7 +2356,7 @@
 
 **Сцена:** На свадьбе армянки и тюрка у обители смешиваются языки и обычаи, и дьякон определяет, что можно принять (язык, напев, одежда), а что нельзя смешивать (вера, таинство).
 
-**Графика:** EXISTS:loc-issyk-kul.svg; MISSING:loc-svadebnyi-dvor.svg (юрта и армянский дом рядом, праздник); EXISTS:npc-anahit.svg; EXISTS:npc-vardan.svg (переводчик); EXISTS:npc-kassiani.svg (песнописица: гимнография на родном языке); EXISTS:obj-svitok-yazykov.svg; MISSING:obj-venets-svadebnyi.svg (брачные венцы)
+**Графика:** EXISTS:loc-issyk-kul.svg; DRAWN:loc-svadebnyi-dvor.svg (юрта и армянский дом рядом, праздник); EXISTS:npc-anahit.svg; EXISTS:npc-vardan.svg (переводчик); EXISTS:npc-kassiani.svg (песнописица: гимнография на родном языке); EXISTS:obj-svitok-yazykov.svg; DRAWN:obj-venets-svadebnyi.svg (брачные венцы)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Эрудиция ≥ 6 — знание трёх языков; Харизма ≥ 6 — примирение семей.
@@ -2381,7 +2381,7 @@
 
 **Сцена:** К обители подступает толпа радикалов, требующих изгнать «смешанную» общину, и дьякон, не поднимая оружия, должен выбрать сторону правды и мира, противостоя гневу, а не людям.
 
-**Графика:** EXISTS:loc-issyk-kul.svg; MISSING:loc-vorota-obiteli.svg (ворота обители, толпа с факелами); MISSING:npc-vozhak-fanatikov.svg (вожак радикалов, человек, не демон); EXISTS:npc-strazhnik.svg; EXISTS:npc-abba-moses.svg (бывший разбойник — кротость против насилия); EXISTS:obj-golub-mira.svg
+**Графика:** EXISTS:loc-issyk-kul.svg; DRAWN:loc-vorota-obiteli.svg (ворота обители, толпа с факелами); DRAWN:npc-vozhak-fanatikov.svg (вожак радикалов, человек, не демон); EXISTS:npc-strazhnik.svg; EXISTS:npc-abba-moses.svg (бывший разбойник — кротость против насилия); EXISTS:obj-golub-mira.svg
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: Харизма ≥ 7 — слово к толпе; Выносливость ≥ 6 — стоять у ворот без страха.
@@ -2405,7 +2405,7 @@
 
 **Сцена:** Финальная кат-сцена: камера медленно уходит под воду Иссык-Куля, проходит термоклин и показывает руины обители и знак рыбы на камне — мост между миссией прошлого и археологией будущего.
 
-**Графика:** EXISTS:loc-issyk-kul.svg; EXISTS:loc-issyk-kul-underwater.svg; EXISTS:gate-6-apophatic.svg (финальная тональность безмолвия); MISSING:obj-kamen-ikhtis.svg (камень со знаком рыбы); MISSING:obj-kayrak.svg; EXISTS:obj-termometr-vody.svg (граница термоклина)
+**Графика:** EXISTS:loc-issyk-kul.svg; EXISTS:loc-issyk-kul-underwater.svg; EXISTS:gate-6-apophatic.svg (финальная тональность безмолвия); DRAWN:obj-kamen-ikhtis.svg (камень со знаком рыбы); DRAWN:obj-kayrak.svg; EXISTS:obj-termometr-vody.svg (граница термоклина)
 
 **Сценарий (ФОРМА → ДЕЙСТВИЕ → ЦЕЛЬ):**
 - ФОРМА: итоговый профиль 7 атрибутов определяет, какие следы видны на дне (детерминированно из решений миссий 67–98: черепки, мост, летопись).
@@ -2525,7 +2525,7 @@
 | `npc-kelar.svg` | 75 | монах-келарь | в работе |
 | `npc-khan-chagatai.svg` | 46 | существующий npc-khan.svg изображает хана Улуса Джучи | в работе |
 | `npc-korabel.svg` | 68 | плотник-корабел | в работе |
-| `npc-kupets-a.svg` | 3 | и MISSING:npc-kupets-b.svg (два купца-истца | в работе |
+| `npc-kupets-a.svg` | 3 | и DRAWN:npc-kupets-b.svg (два купца-истца | в работе |
 | `npc-kupets-dolzhnik.svg` | 49 |  | в работе |
 | `npc-kupets-v-unynii.svg` | 26 |  | в работе |
 | `npc-kuznets-brat.svg` | 66 |  | в работе |
@@ -2545,7 +2545,7 @@
 | `npc-reshchik-kairakov.svg` | 17 | П-33, собирательный образ | в работе |
 | `npc-sadovnik.svg` | 70 | монах-садовник | в работе |
 | `npc-starosta-goroda.svg` | 8 |  | в работе |
-| `npc-strannik-musulmanin.svg` | 25 | , MISSING:npc-strannik-kochevnik.svg, MISSING:npc-strannik-bednyi.svg | в работе |
+| `npc-strannik-musulmanin.svg` | 25 | , DRAWN:npc-strannik-kochevnik.svg, DRAWN:npc-strannik-bednyi.svg | в работе |
 | `npc-tkachikha.svg` | 69 | ткачиха-армянка | в работе |
 | `npc-torgovets-relikviyami.svg` | 14 | заезжий торговец; образ прелести | в работе |
 | `npc-uchenik-rebenok.svg` | 74 | дети-ученики, собирательный портрет | в работе |

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Верблюжье седло караванщика">
+  <title>Верблюжье седло</title>
+  <desc>Форма: деревянная седельная рама на две луки с потником и перемётными сумами (СГ-06). Действие: общее седло передают по цепочке братства караванщиков. Цель: взаимопомощь на Шёлковом пути. Миссия: 15 «Братство караванщиков».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. -->
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="#1a0e04" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- потник с бахромой -->
+  <path d="M16 56 Q48 46 80 56 L76 70 Q48 62 20 70 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.6"/>
+  <path d="M22 70 v4 M30 68 v4 M38 66 v4 M58 66 v4 M66 68 v4 M74 70 v4" stroke="#c8a56a" stroke-width="1.2"/>
+  <!-- рама: две луки -->
+  <g fill="#2a1808" stroke="#e8c87a" stroke-width="2">
+    <path d="M28 54 L30 30 Q34 26 38 30 L40 50"/>
+    <path d="M56 50 L58 30 Q62 26 66 30 L68 54"/>
+  </g>
+  <path d="M34 42 H62" stroke="#e8c87a" stroke-width="2"/>
+  <!-- перемётные сумы -->
+  <rect x="14" y="60" width="14" height="18" rx="3" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <rect x="68" y="60" width="14" height="18" rx="3" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M14 66 h14 M68 66 h14" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- медная бляха братства -->
+  <circle cx="48" cy="54" r="3" fill="#e8c87a" stroke="#8a6a34" stroke-width="1"/>
+</svg>

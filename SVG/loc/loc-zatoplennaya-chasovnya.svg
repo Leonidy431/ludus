@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Затопленная часовня — руины на подводной террасе Иссык-Куля">
+  <title>Затопленная часовня</title>
+  <desc>Форма: под водой, на каменной террасе склона — руины часовни: обломок апсиды, упавший купол, крест лежит на камне бережно, без свечения; свет сверху сквозь толщу воды, рыбы и водоросли. Действие: паломник-водолаз спускается с террасы на террасу и молча чтит место. Цель: память затопленной общины; святое не добыча — здесь ничего не забирают. Миссия: 28 «Паломничество по террасам».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. -->
+  <defs><linearGradient id="zc-voda" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1f5a73"/><stop offset="60%" stop-color="#0d2a3a"/><stop offset="100%" stop-color="#0d2a3a"/></linearGradient></defs>
+  <rect width="320" height="180" fill="url(#zc-voda)"/>
+  <!-- лучи света сверху сквозь толщу -->
+  <g fill="#c8a56a" opacity=".1">
+    <path d="M120 0 H150 L200 180 H150 Z"/><path d="M180 0 H196 L250 180 H222 Z"/>
+  </g>
+  <!-- ступени-террасы склона -->
+  <path d="M0 70 H70 V96 H150 V124 H240 V150 H320 V180 H0 Z" fill="#2a1808" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- руины часовни на средней террасе -->
+  <g fill="#1a0e04" stroke="#c8a56a" stroke-width="2">
+    <path d="M100 96 V60 H112 V70 Q128 50 144 70 V96"/>
+    <path d="M120 96 V80 Q128 72 136 80 V96" fill="#0d2a3a"/>
+  </g>
+  <!-- упавший купол-глава рядом -->
+  <path d="M74 96 Q84 80 96 96 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.6"/>
+  <!-- восьмиконечный крест, бережно положенный на камень -->
+  <g stroke="#e8c87a" stroke-width="1.8" stroke-linecap="round">
+    <path d="M160 120 H196"/><path d="M168 114 V126"/><path d="M174 116 V124"/><path d="M186 112 L188 128"/>
+  </g>
+  <!-- обломки кладки -->
+  <g fill="#1a0e04" stroke="#8a6a34" stroke-width="1.2">
+    <rect x="200" y="140" width="14" height="10"/><rect x="220" y="142" width="10" height="8"/><rect x="30" y="62" width="14" height="8"/>
+  </g>
+  <!-- водоросли -->
+  <g stroke="#8a6a34" stroke-width="1.6" fill="none">
+    <path d="M60 70 Q56 56 62 46 M66 70 Q70 58 66 50 M254 150 Q250 134 256 124 M262 150 Q266 136 262 128"/>
+  </g>
+  <!-- рыбы -->
+  <g fill="#c8a56a" opacity=".8">
+    <path d="M220 60 q8 -5 14 0 q-6 5 -14 0 Z M234 60 l5 -3 v6 Z"/>
+    <path d="M40 120 q8 -5 14 0 q-6 5 -14 0 Z M54 120 l5 -3 v6 Z"/>
+  </g>
+  <!-- пузырьки ныряльщика -->
+  <g fill="none" stroke="#e8c87a" stroke-width="1" opacity=".7">
+    <circle cx="270" cy="90" r="2"/><circle cx="274" cy="80" r="1.5"/><circle cx="268" cy="70" r="2.4"/>
+  </g>
+</svg>

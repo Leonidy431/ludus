@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Гончарный двор — круг, печь для обжига и озеро за стеной">
+  <title>Гончарный двор</title>
+  <desc>Форма: двор мастерской у берега: гончарный круг под навесом, печь-тандыр с дымом, ряды сохнущих кувшинов, озеро за глинобитной стеной. Действие: игрок учится ремеслу и обжигу. Цель: труд рук как служение общине. Миссия: 67 «Керамические мастерские».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. -->
+  <defs><linearGradient id="gd-nebo" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a0e04"/><stop offset="60%" stop-color="#3a2410"/><stop offset="100%" stop-color="#8a6a34"/></linearGradient></defs>
+  <rect width="320" height="180" fill="url(#gd-nebo)"/>
+  <!-- дальние горы и озеро -->
+  <path d="M0 84 L40 58 L80 80 L130 50 L180 78 L230 56 L280 80 L320 64 V96 H0 Z" fill="#241405"/>
+  <rect y="92" width="320" height="22" fill="#1f5a73"/>
+  <path d="M30 100 Q40 97 50 100 M210 104 Q220 101 230 104" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".6"/>
+  <!-- глинобитная стена двора -->
+  <path d="M0 110 H320 V124 H0 Z" fill="#2a1808" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- земля двора -->
+  <rect y="124" width="320" height="56" fill="#241405"/>
+  <!-- навес на столбах над кругом -->
+  <g stroke="#c8a56a" stroke-width="2" fill="none">
+    <path d="M40 150 V104 M110 150 V104"/><path d="M30 106 L75 94 L120 106"/>
+  </g>
+  <!-- гончарный круг и мастер-силуэт -->
+  <ellipse cx="75" cy="150" rx="16" ry="4" fill="#2a1808" stroke="#8a6a34" stroke-width="1.5"/>
+  <path d="M75 150 V138" stroke="#8a6a34" stroke-width="2"/>
+  <ellipse cx="75" cy="138" rx="11" ry="2.5" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.2"/>
+  <path d="M70 137 Q66 128 72 122 H78 Q84 128 80 137 Z" fill="#2a1808" stroke="#e8c87a" stroke-width="1.5"/>
+  <circle cx="98" cy="122" r="5" fill="#140a02" stroke="#c8a56a" stroke-width="1.4"/>
+  <path d="M98 127 Q90 132 92 150 H104 Q106 132 98 127 Z M92 134 L82 132" fill="#140a02" stroke="#c8a56a" stroke-width="1.4"/>
+  <!-- печь-тандыр с огнём и дымом -->
+  <path d="M190 156 V128 Q210 104 230 128 V156 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M202 156 V144 Q210 134 218 144 V156 Z" fill="#140a02"/>
+  <path d="M206 156 Q210 144 214 156 Z" fill="#e8c87a"/>
+  <path d="M210 110 Q204 96 212 86 Q220 76 214 64" fill="none" stroke="#8a6a34" stroke-width="2" opacity=".6"/>
+  <!-- ряды сохнущих кувшинов -->
+  <g fill="#8a6a34" stroke="#e8c87a" stroke-width="1.2">
+    <path d="M250 160 Q244 150 250 144 H256 Q262 150 256 160 Z"/>
+    <path d="M268 160 Q262 150 268 144 H274 Q280 150 274 160 Z"/>
+    <path d="M286 160 Q280 150 286 144 H292 Q298 150 292 160 Z"/>
+    <path d="M140 164 Q136 156 140 152 H146 Q150 156 146 164 Z"/>
+    <path d="M156 164 Q152 156 156 152 H162 Q166 156 162 164 Z"/>
+  </g>
+  <path d="M240 160 H304" stroke="#8a6a34" stroke-width="1.5"/>
+</svg>

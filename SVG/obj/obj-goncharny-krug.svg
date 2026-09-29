@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Гончарный круг — сосуд для воды">
+  <title>Гончарный круг</title>
+  <desc>Форма: ножной гончарный круг, на нём влажный кувшин для воды. Действие: руки дают глине форму по мере вращения. Цель: вода хранит память о сосуде и о мастере — начало учения о «памяти воды». Миссия: 40 «Память воды».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. -->
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="#1a0e04" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- маховик и ось круга -->
+  <ellipse cx="48" cy="78" rx="26" ry="5" fill="#2a1808" stroke="#8a6a34" stroke-width="2"/>
+  <path d="M48 78 V54" stroke="#8a6a34" stroke-width="2.5"/>
+  <!-- рабочий диск -->
+  <ellipse cx="48" cy="56" rx="20" ry="4" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.8"/>
+  <!-- сырой кувшин на диске -->
+  <path d="M40 55 Q34 44 40 36 Q44 32 44 26 H52 Q52 32 56 36 Q62 44 56 55 Z" fill="#2a1808" stroke="#e8c87a" stroke-width="1.8"/>
+  <ellipse cx="48" cy="26" rx="4" ry="1.4" fill="#1a0e04" stroke="#e8c87a" stroke-width="1"/>
+  <!-- следы пальцев по спирали -->
+  <path d="M40 46 Q48 48 56 46 M41 41 Q48 43 55 41" fill="none" stroke="#c8a56a" stroke-width="1"/>
+  <!-- стрелки вращения -->
+  <path d="M20 66 Q16 58 24 52 M76 66 Q80 58 72 52" fill="none" stroke="#c8a56a" stroke-width="1.2" stroke-dasharray="2 2"/>
+  <!-- капля воды -->
+  <path d="M70 26 Q74 32 70 34 Q66 32 70 26 Z" fill="#1f5a73" stroke="#e8c87a" stroke-width=".8"/>
+</svg>
