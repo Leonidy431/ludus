@@ -1,20 +1,46 @@
 /**
  * Ludus NPC Dialogue Component Styles
  *
- * Dialogue modal with branching choices, attribute checks, and bonuses.
- * Follows ludus-design-system.css color palette.
+ * Dialogue modal with branching choices, attribute checks and bonuses.
+ * Uses the tokens from ludus-design-system.css (--ludus-gold,
+ * --ludus-cyan, --ludus-dark-card); the old --ludus-accent-* names were
+ * never defined, so every rule silently fell back to literals.
+ *
+ * Sizes are chosen for the Meta Quest 3 browser: body text is at least
+ * 20px and every target is at least 56px tall, above the 48px minimum,
+ * because controller rays jitter more than a mouse pointer.
  */
 
-/* Dialogue Container */
+/* The page gives the container only an id, so both selectors are used;
+   the UI also adds the class when it opens. */
+#ludus-dialogue-container,
 .ludus-dialogue-container {
+  --dlg-accent: var(--ludus-gold, #D4AF37);
+  --dlg-accent-2: var(--ludus-cyan, #00CED1);
+  --dlg-bg: var(--ludus-dark-card, #1a1a1a);
+  --dlg-text: var(--ludus-text-primary, #f0f0f0);
+  --dlg-muted: #c4c4c4;  /* 9.6:1 on the card; #a0a0a0 read as grey mush. */
+  --dlg-target: 56px;
+
   position: fixed;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  max-width: 800px;
-  width: 90%;
-  max-height: 70vh;
-  z-index: 1000;
+  max-width: 880px;
+  width: calc(100% - 32px);
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: var(--ludus-z-modal, 1000);
+  font-size: 20px;
+}
+
+/* An empty container must not cover the game or catch pointer rays. */
+#ludus-dialogue-container:empty,
+.ludus-dialogue-container:empty {
+  display: none;
+}
+
+#ludus-dialogue-container.is-open {
   animation: slideInUp 0.3s ease-out;
 }
 
@@ -31,24 +57,17 @@
 
 /* Dialogue Modal */
 .ludus-dialogue-modal {
-  background: var(--ludus-card-bg, #1a1a1a);
-  border: 2px solid var(--ludus-accent-secondary, #00CED1);
+  /* The close button is absolutely positioned against the modal. */
+  position: relative;
+  background: var(--dlg-bg);
+  color: var(--dlg-text);
+  border: 2px solid var(--dlg-accent-2);
   border-radius: 12px;
   padding: 24px;
   box-shadow: 0 12px 40px rgba(0, 206, 209, 0.15);
   display: flex;
   flex-direction: column;
   gap: 16px;
-  animation: fadeIn 0.4s ease-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 /* NPC Header */
@@ -56,151 +75,152 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  border-left: 4px solid var(--ludus-accent-primary, #D4AF37);
+  border-left: 4px solid var(--dlg-accent);
   padding-left: 12px;
+  /* Keeps the name clear of the close button. */
+  padding-right: calc(var(--dlg-target) + 8px);
 }
 
 .dialogue-npc-name {
   font-size: 1.6em;
   font-weight: bold;
-  color: var(--ludus-accent-primary, #D4AF37);
+  color: var(--dlg-accent);
   margin: 0;
+  line-height: 1.2;
 }
 
 .dialogue-npc-role {
   font-size: 0.9em;
-  color: var(--ludus-text-secondary, #a0a0a0);
+  color: var(--dlg-muted);
   margin: 0;
   font-style: italic;
 }
 
 .dialogue-theology {
   font-size: 0.85em;
-  color: var(--ludus-accent-secondary, #00CED1);
+  color: var(--dlg-accent-2);
   font-weight: 500;
 }
 
 /* Dialogue Text (NPC Speech) */
 .dialogue-text-box {
   background: rgba(13, 27, 42, 0.5);
-  border-left: 3px solid var(--ludus-accent-secondary, #00CED1);
+  border-left: 3px solid var(--dlg-accent-2);
   padding: 16px;
   border-radius: 6px;
   min-height: 60px;
 }
 
 .dialogue-text {
-  font-size: 1em;
+  font-size: 1.1em;
   line-height: 1.6;
-  color: var(--ludus-text-primary, #f0f0f0);
+  color: var(--dlg-text);
   margin: 0;
-  font-style: italic;
+}
+
+.dialogue-status {
+  font-size: 0.85em;
+  color: var(--ludus-warning, #fbbf24);
+  margin: 0;
+}
+
+.dialogue-status:empty {
+  display: none;
 }
 
 /* Branches (Player Choices) */
 .dialogue-branches {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   margin-top: 8px;
 }
 
 .dialogue-choice {
   background: transparent;
-  border: 2px solid var(--ludus-accent-secondary, #00CED1);
-  color: var(--ludus-text-primary, #f0f0f0);
+  border: 2px solid var(--dlg-accent-2);
+  color: var(--dlg-text);
   padding: 12px 16px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 0.95em;
+  font: inherit;
+  font-size: 1em;
   text-align: left;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    transform 0.2s ease;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 12px;
-  min-height: 44px;
+  gap: 16px;
+  min-height: var(--dlg-target);
+  width: 100%;
 }
 
-.dialogue-choice:not([disabled]):hover {
+.choice-number {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.choice-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.dialogue-choice:not(.locked):not([disabled]):hover {
   background: rgba(0, 206, 209, 0.1);
-  border-color: var(--ludus-accent-primary, #D4AF37);
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+  border-color: var(--dlg-accent);
   transform: translateX(4px);
 }
 
-.dialogue-choice:not([disabled]):active {
+.dialogue-choice:not(.locked):not([disabled]):active {
   background: rgba(212, 175, 55, 0.15);
   transform: translateX(2px);
 }
 
-/* Locked Choices */
-.dialogue-choice[disabled],
-.dialogue-choice.locked {
-  opacity: 0.5;
-  cursor: not-allowed;
-  border-color: var(--ludus-text-secondary, #a0a0a0);
+/* Focus must be obvious in the headset, where there is no hover when
+   the player moves with the thumbstick. */
+.dialogue-choice:focus-visible,
+.dialogue-close-btn:focus-visible,
+.dialogue-continue-btn:focus-visible {
+  outline: 4px solid var(--dlg-accent);
+  outline-offset: 3px;
 }
 
-.dialogue-choice[disabled]:hover,
-.dialogue-choice.locked:hover {
-  background: transparent;
-  box-shadow: none;
-  transform: none;
+/* Locked Choices: visible but clearly closed to the current FORM. */
+.dialogue-choice.locked,
+.dialogue-choice[disabled] {
+  cursor: not-allowed;
+  border-style: dashed;
+  border-color: var(--dlg-muted);
+}
+
+.dialogue-choice.locked .choice-text {
+  color: var(--dlg-muted);
 }
 
 .choice-text {
-  flex: 1;
   font-weight: 500;
 }
 
 .choice-bonuses {
-  font-size: 0.8em;
-  color: var(--ludus-accent-primary, #D4AF37);
+  font-size: 0.85em;
+  color: var(--dlg-accent);
   font-weight: bold;
-  white-space: nowrap;
 }
 
 .lock-hint {
-  font-size: 0.75em;
-  color: var(--ludus-text-secondary, #a0a0a0);
-  font-style: italic;
-  display: block;
-  width: 100%;
-  text-align: left;
-  margin-top: 4px;
-}
-
-/* Bonuses Preview */
-.dialogue-bonuses-preview {
-  background: rgba(212, 175, 55, 0.08);
-  border: 1px solid var(--ludus-accent-primary, #D4AF37);
-  border-radius: 8px;
-  padding: 12px 16px;
-  margin-top: 8px;
-}
-
-.preview-label {
   font-size: 0.85em;
-  color: var(--ludus-text-secondary, #a0a0a0);
-  margin: 0 0 8px 0;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.bonuses-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.bonus-item {
-  font-size: 0.8em;
-  color: var(--ludus-accent-primary, #D4AF37);
-  background: rgba(212, 175, 55, 0.1);
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-weight: 500;
+  color: var(--dlg-muted);
+  font-style: italic;
 }
 
 /* Close Button */
@@ -210,90 +230,77 @@
   right: 8px;
   background: transparent;
   border: none;
-  color: var(--ludus-text-secondary, #a0a0a0);
+  color: var(--dlg-muted);
   font-size: 1.8em;
   cursor: pointer;
-  width: 36px;
-  height: 36px;
+  width: var(--dlg-target);
+  height: var(--dlg-target);
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .dialogue-close-btn:hover {
-  color: var(--ludus-accent-primary, #D4AF37);
+  color: var(--dlg-accent);
   background: rgba(212, 175, 55, 0.1);
 }
 
-/* Dialogue Complete Screen */
-.ludus-dialogue-complete {
-  text-align: center;
-  padding: 32px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.ludus-dialogue-complete h3 {
-  font-size: 1.4em;
-  color: var(--ludus-accent-primary, #D4AF37);
-  margin: 0;
-}
-
-.ludus-dialogue-complete p {
-  color: var(--ludus-text-secondary, #a0a0a0);
-  margin: 0;
-  line-height: 1.6;
-}
-
+/* Dialogue Complete State */
 .completion-bonuses {
   background: rgba(212, 175, 55, 0.1);
-  border: 1px solid var(--ludus-accent-primary, #D4AF37);
+  border: 1px solid var(--dlg-accent);
   border-radius: 8px;
-  padding: 16px;
+  padding: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .gain-item {
   display: inline-block;
   background: rgba(212, 175, 55, 0.2);
-  color: var(--ludus-accent-primary, #D4AF37);
+  color: var(--dlg-accent);
   padding: 6px 12px;
   border-radius: 4px;
   font-weight: bold;
-  margin: 4px;
 }
 
-/* Responsive Design */
+.dialogue-continue-btn {
+  min-height: var(--dlg-target);
+  padding: 12px 24px;
+  font: inherit;
+  font-weight: bold;
+  color: #111;
+  background: var(--dlg-accent);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  align-self: center;
+  min-width: 200px;
+}
+
+/* Responsive Design: phones keep the same minimum sizes; only the
+   padding shrinks, since small text is what fails in the headset. */
 @media (max-width: 768px) {
+  #ludus-dialogue-container,
   .ludus-dialogue-container {
     bottom: 10px;
-    width: 95%;
+    font-size: 18px;
   }
 
   .ludus-dialogue-modal {
     padding: 16px;
   }
-
-  .dialogue-choice {
-    font-size: 0.9em;
-    padding: 10px 12px;
-  }
-
-  .dialogue-text {
-    font-size: 0.95em;
-  }
-
-  .dialogue-npc-name {
-    font-size: 1.4em;
-  }
 }
 
 @media (max-width: 480px) {
+  #ludus-dialogue-container,
   .ludus-dialogue-container {
-    max-height: 80vh;
+    max-height: 85vh;
+    font-size: 17px;
   }
 
   .ludus-dialogue-modal {
@@ -301,58 +308,39 @@
     gap: 12px;
   }
 
-  .choice-bonuses {
-    display: none;
-  }
-
   .dialogue-choice {
-    min-height: 40px;
-    padding: 8px 10px;
+    padding: 10px 12px;
+    gap: 10px;
   }
 }
 
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-  .ludus-dialogue-modal {
-    box-shadow: 0 12px 40px rgba(0, 206, 209, 0.1);
-  }
-}
-
+/* Light Mode */
 @media (prefers-color-scheme: light) {
-  .ludus-dialogue-modal {
-    background: #f8f8f8;
-    border-color: #0a7f85;
+  #ludus-dialogue-container,
+  .ludus-dialogue-container {
+    --dlg-bg: #f8f8f8;
+    --dlg-text: #1a1a1a;
+    --dlg-muted: #4a4a4a;
+    --dlg-accent: #7a5c10;
+    --dlg-accent-2: #0a6f75;
   }
 
-  .dialogue-npc-name {
-    color: #8b6914;
+  .dialogue-text-box {
+    background: rgba(10, 111, 117, 0.06);
   }
 
-  .dialogue-text {
-    color: #1a1a1a;
+  .dialogue-status {
+    color: #8a5a00;
   }
 
-  .dialogue-choice {
-    color: #1a1a1a;
-    border-color: #0a7f85;
-  }
-
-  .dialogue-choice:not([disabled]):hover {
-    background: rgba(139, 105, 20, 0.08);
-    border-color: #8b6914;
-  }
-
-  .choice-bonuses {
-    color: #8b6914;
+  .dialogue-continue-btn {
+    color: #fff;
   }
 }
 
 /* High Contrast Mode */
 @media (prefers-contrast: more) {
-  .ludus-dialogue-modal {
-    border-width: 3px;
-  }
-
+  .ludus-dialogue-modal,
   .dialogue-choice {
     border-width: 3px;
   }
@@ -364,10 +352,16 @@
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  .ludus-dialogue-container,
+  #ludus-dialogue-container.is-open,
   .ludus-dialogue-modal,
-  .dialogue-choice {
+  .dialogue-choice,
+  .dialogue-close-btn {
     animation: none;
     transition: none;
+  }
+
+  .dialogue-choice:not(.locked):not([disabled]):hover,
+  .dialogue-choice:not(.locked):not([disabled]):active {
+    transform: none;
   }
 }
