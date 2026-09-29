@@ -68,3 +68,19 @@ test('no action performs a sacrament', () => {
   const labels = game.match(/data-action="[^"]+"/g) || [];
   labels.forEach((l) => assert.equal(re.test(l), false, l));
 });
+
+test('confession and communion are seen only from afar', () => {
+  const conf = scenes.find((s) => s.id === 'sacrament-confession');
+  const line = conf.parts.find((p) => p.flags && p.flags.witnessLine);
+  const analoy = conf.parts.find((p) => p.name === 'analoy-top');
+  const dist = Math.abs(line.pos[2] - analoy.pos[2]);
+  assert.ok(dist >= 4, `witness line only ${dist} m from the analogion`);
+  assert.equal(conf.confessionAudible, false);
+  conf.parts.filter((p) => p.flags && p.flags.npc).forEach((p) => {
+    assert.equal(p.flags.wordsAudible, false, p.name);
+  });
+  const euch = scenes.find((s) => s.id === 'sacrament-eucharist');
+  const eLine = euch.parts.find((p) => p.flags && p.flags.witnessLine);
+  const solea = euch.parts.find((p) => p.name === 'solea');
+  assert.ok(Math.abs(eLine.pos[2] - solea.pos[2]) >= 4);
+});

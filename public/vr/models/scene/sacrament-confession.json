@@ -2,7 +2,7 @@
  "id": "sacrament-confession",
  "kind": "scene",
  "lod": "proxy",
- "tris": 272,
+ "tris": 412,
  "bbox_m": [
   8,
   3.25,
@@ -12,7 +12,7 @@
  "sacrament": "Покаяние",
  "mood": "left chapel, dusk",
  "page": "ludus-confession",
- "priestVisible": "far, back turned, at the royal doors",
+ "priestVisible": "at the analogion with the penitent, seen from afar",
  "microphone": false,
  "speechRecognition": false,
  "logPresence": false,
@@ -20,7 +20,8 @@
  "attributes": null,
  "gate": null,
  "playerCan": [
-  "approach to the witness line",
+  "wait on the bench behind the witness line",
+  "open the preparation page (ludus-confession.js)",
   "stand",
   "bow the head (no effect)",
   "leave"
@@ -35,6 +36,9 @@
   "lampada_K": 1800,
   "instrumentLightFadeSeconds": 1.75
  },
+ "witnessDistance_m": 4.5,
+ "confessionAudible": false,
+ "operatorDecision": "Исповедь и Причащение — только издалека видно (2026-09-29)",
  "source": "scripts/meta3d/sacrament-scenes.json",
  "method": "scene-kit-primitives",
  "holyObjects": [
@@ -46,7 +50,8 @@
   "gospel",
   "icon-board",
   "lampada-glass",
-  "lampada-chain"
+  "lampada-chain",
+  "epitrachelion"
  ],
  "lights": [
   "lampada-1800K"

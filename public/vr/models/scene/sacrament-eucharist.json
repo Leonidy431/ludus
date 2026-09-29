@@ -34,6 +34,7 @@
   "lampada_K": 1800,
   "instrumentLightFadeSeconds": 1.75
  },
+ "operatorDecision": "Исповедь и Причащение — только издалека видно (2026-09-29)",
  "source": "scripts/meta3d/sacrament-scenes.json",
  "method": "scene-kit-primitives",
  "holyObjects": [

@@ -258,7 +258,10 @@ async function main() {
 
   report.pageErrors = errors;
   fs.mkdirSync(OUT, { recursive: true });
-  fs.writeFileSync(path.join(OUT, 'report.json'),
+  // A partial run (--only) writes its own report, so the full report is
+  // never overwritten with zeros for the parts that were not rebuilt.
+  fs.writeFileSync(path.join(OUT, only ? `report-${only}.json`
+    : 'report.json'),
     JSON.stringify(report, null, 1) + '\n');
   console.log(JSON.stringify({ ...report,
     overBudget: report.overBudget.length, failed: report.failed.length }));
