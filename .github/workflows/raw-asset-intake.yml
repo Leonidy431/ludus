@@ -30,6 +30,9 @@ on:
       - 'scripts/check_canon.py'
       - 'scripts/tests/**'
       - 'data/patristic-canon.json'
+      - 'functions/src/api/**'
+      - 'functions/src/tests/api/**'
+      - 'functions/src/schemas/**'
       - 'functions/src/data/npc-dialogues-24.json'
       - 'public/ludus/data/passions.json'
       - 'public/ludus/ludus-confession.js'
@@ -87,6 +90,20 @@ jobs:
       # nodes, passions, confession questions) comes from the closed
       # canon in data/patristic-canon.json, with chapter, step, date and
       # topic checked; the negative tests prove the checker can fail.
+      # TABOO 0.35 rules 15-16: the SKU validator (no simony, cosmetic
+      # only, no attribute as currency, no random reward) and the rule
+      # of prayer API.  Unit tests only; the emulator tests run locally.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Functions unit tests (SKU validator, actions API)
+        run: |
+          npm --prefix functions ci --no-audit --no-fund
+          cd functions && npx jest src/tests/api/sku-validator.test.ts \
+            src/tests/api/ludus-actions.test.ts \
+            src/tests/api/ludus-router.test.ts
+
       - name: Patristic canon
         run: |
           python -m pycodestyle scripts/check_canon.py scripts/tests/
