@@ -184,6 +184,13 @@ def main():
     manifest, code_hits, entry = [], [], {'time': stamp, 'deficits': []}
     for deficit in chosen:
         kinds = KINDS_BY_CATEGORY.get(deficit['category'])
+        # The fourth pass filled DEF-004 (the gate-opening moment) with
+        # dungeon doors and DEF-006 (bubble columns) with a watermelon:
+        # both deficits are meant to be procedural.  Images are taken only
+        # where the deficit asks for raw material; code deficits still
+        # list code candidates, which are rewritten, never copied.
+        if deficit['fill'] != 'raw-material':
+            kinds = (kinds or set()) & CODE_KINDS
         if not kinds:
             reason = ('audio-pipeline-pending' if deficit['category'] == 'звук'
                       else 'not-raw-material')
