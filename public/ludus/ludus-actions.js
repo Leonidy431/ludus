@@ -252,9 +252,13 @@
     } else {
       value = (a.practices[id] || { count: 0 }).count;
     }
-    const unit = pr.kind === 'timer' ? 'min'
-      : pr.kind === 'daily' ? 'days' : '';
-    return { shown: true, value, text: `${value}${unit ? ' ' + unit : ''}` };
+    let unit = '';
+    if (pr.kind === 'timer') {
+      unit = ' min';
+    } else if (pr.kind === 'daily') {
+      unit = value === 1 ? ' day' : ' days';
+    }
+    return { shown: true, value, text: `${value}${unit}` };
   }
 
   function keptToday(actions, id, day) {

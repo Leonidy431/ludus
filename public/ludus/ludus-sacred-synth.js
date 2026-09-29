@@ -913,14 +913,14 @@
       },
     },
     choice: {
-      meaning: 'One light semantron tap: a word was chosen.',
+      meaning: 'One light tap on a wooden desk: a word was chosen.',
       seconds: 0.45, loop: false, peak: 0.45,
       build: function (tr, rng) {
         knock(tr, 0.005, 520, 0.8, rng, false);
       },
     },
     gate_locked: {
-      meaning: 'Muted double knock on the било: FORM is not ready yet.',
+      meaning: 'Muted double knock on a wooden door: FORM is not ready yet.',
       seconds: 0.7, loop: false, peak: 0.5,
       build: function (tr, rng) {
         knock(tr, 0.005, 210, 0.9, rng, true);
@@ -1022,7 +1022,7 @@
       meaning: 'Many voices in unison and octave: Charisma, community.',
     }),
     dexterity: {
-      meaning: 'Two quick semantron taps: Dexterity, practice.',
+      meaning: 'Two quick taps of a carpenter\'s mallet: Dexterity, practice.',
       seconds: 0.55, loop: false, peak: 0.45,
       build: function (tr, rng) {
         knock(tr, 0.005, 600, 0.8, rng, false);
@@ -1183,8 +1183,11 @@
     character_breathing: 'breathing',
     kneeling_sound: 'kneeling',
     prayer_vocalization: 'prayer_voice',
-    blessing_sound: 'trezvon_motif',
-    teaching_complete: 'trezvon_motif',
+    // A teaching ends in stillness, not in a festal peal: a bell tied to
+    // a UI event is what CLAUDE.md TABOO 0.35 rule 9 forbids, and the
+    // трезвон belongs to feasts by the typikon, not to a closed dialog.
+    blessing_sound: 'hesychia',
+    teaching_complete: 'hesychia',
     ui_positive: 'form_growth',
     ui_negative: 'gate_locked',
     ui_neutral: 'choice',

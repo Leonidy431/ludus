@@ -788,7 +788,9 @@
     if (practice.kind === 'timer') {
       label = timerLabel(practice);
     } else if (kept) {
-      label = `${practice.label} — kept today`;
+      // The same words stay on the button; only its state says "done",
+      // so the rule reads as a rule and not as a checklist of trophies.
+      label = `${practice.label} (today: done)`;
     }
     const title = `Against ${practice.passion}; ${practice.virtue}. `
       + `${practice.source}`;

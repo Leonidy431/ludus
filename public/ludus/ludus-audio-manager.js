@@ -284,15 +284,19 @@ window.LudusAudioManager = (function () {
       layer: 'ambience',
     },
     teaching_complete: {
-      meaning: 'Short трезвон motif: a teaching has been received.',
+      // Stillness, not a peal: a bell never answers a UI event (TABOO
+      // 0.35 rule 9); the silence after a word is the teaching's echo.
+      meaning: 'Stillness after the word: a teaching has been received.',
       layer: 'sfx',
     },
     choice: {
-      meaning: 'One light semantron tap: a word was chosen.',
+      // The semantron (било) is a sacred object (TABOO 0.35 rule 6), so the
+      // interface knocks are ordinary wood, not the monastery's board.
+      meaning: 'One light tap on a wooden desk: a word was chosen.',
       layer: 'sfx',
     },
     gate_locked: {
-      meaning: 'Muted knock on the било: FORM is not yet sufficient.',
+      meaning: 'Muted knock on a wooden door: FORM is not yet sufficient.',
       layer: 'sfx',
     },
     // One cue per constitutional attribute, ordered high to low.  They
