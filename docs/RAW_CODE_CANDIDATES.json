@@ -3723,5 +3723,102 @@
   "score": 2,
   "attribution": [],
   "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/spells/Recycle.java",
+  "kind": "code",
+  "hits": [
+   "cycle"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-019"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/trinkets/DimensionalSundial.java",
+  "kind": "code",
+  "hits": [
+   "sundial"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-019"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/sprites/ShopkeeperSprite.java",
+  "kind": "code",
+  "hits": [
+   "shop"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-021"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/AdvanceCrankEffect.java",
+  "kind": "code",
+  "hits": [
+   "rank"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-021"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-gui-desktop/src/main/java/forge/itemmanager/SpellShopManager.java",
+  "kind": "code",
+  "hits": [
+   "shop"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-021"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-gui-mobile/src/forge/adventure/character/ShopActor.java",
+  "kind": "code",
+  "hits": [
+   "shop"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-021"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-gui-mobile/src/forge/itemmanager/SpellShopManager.java",
+  "kind": "code",
+  "hits": [
+   "shop"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-021"
  }
 ]

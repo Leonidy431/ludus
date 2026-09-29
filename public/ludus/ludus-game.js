@@ -406,6 +406,7 @@
       // The stored rule comes from the backend, which can read the
       // player's document; the direct read above may be refused.
       await loadServerActions();
+      await flushOutbox().catch(() => {});
       // The passion record comes back with the rule (actions.passions);
       // a guest keeps it on the device.
       state.passionRecord = (state.actions && state.actions.passions)
@@ -1307,10 +1308,52 @@
         renderKnowledgeGates();
       }
     } catch (error) {
-      console.warn('[Ludus] Action not saved:', error.message);
-      showError('Offline: the rule is kept on screen until reload.');
+      // No network: the act waits in the outbox and is sent when the
+      // connection returns (ludus-outbox.js); the server still judges it.
+      const box = window.LudusOutbox;
+      if (box && box.enqueue(window.localStorage, op, Date.now())) {
+        showError('Offline: kept, it will be sent when the network '
+          + 'returns.');
+      } else {
+        console.warn('[Ludus] Action not saved:', error.message);
+        showError('Offline: the rule is kept on screen until reload.');
+      }
     }
   }
+
+  // Send what waited offline, in order.  Called after sign-in and when
+  // the browser says the network is back.
+  async function flushOutbox() {
+    const box = window.LudusOutbox;
+    if (!box || state.mode !== 'online' || !state.user
+        || box.size(window.localStorage) === 0) {
+      return;
+    }
+    const token = await state.user.getIdToken();
+    const result = await box.flush(window.localStorage, async (op) => {
+      const res = await fetch('/api/ludus/actions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}` },
+        body: JSON.stringify(op),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (res.ok && body && body.actions) {
+        state.actions = normalizeActions(body.actions);
+      }
+      return { ok: res.ok, status: res.status };
+    }, Date.now());
+    if (result.dropped) {
+      showError(`${result.dropped} act(s) kept offline were too old `
+        + 'or refused by the server and were not counted.');
+    }
+    renderPlayerProfile();
+    renderKnowledgeGates();
+  }
+
+  window.addEventListener('online', () => {
+    flushOutbox().catch(() => {});
+  });
 
   // Read a signed-in player's rule from the backend.  The client cannot
   // read ludus_players itself (the rules compare uid with the document
