@@ -1,44 +1,65 @@
 /**
- * sw.js — Service Worker for Ludus offline support
+ * sw.js — Service Worker for Ludus offline support (Meta Quest 3 build).
  *
- * Handles:
- * - Static asset caching (ludus-game.js, ludus-game.css)
- * - Offline fallback for the game tab
- * - Background sync for pending mutations
- * - Cache strategies: network-first for dynamic, cache-first for static
+ * Responsibilities:
+ * - Precache the boot shell and the Ludus modules under a versioned name.
+ * - Serve modules stale-while-revalidate and pages network-first.
+ * - Keep API traffic network-only; offline writes live in IndexedDB.
+ * - Relay background-sync requests to an open client, which owns the
+ *   actual Firestore sync.
  */
 
-const CACHE_NAME = "ludus-v1";
-const STATIC_ASSETS = [
-  "/ludus/ludus-game.js",
-  "/ludus/ludus-game.css",
-  "/ludus/idb-schema.js", // Compiled from TypeScript
+// Bump CACHE_VERSION whenever PRECACHE_PATHS changes or a release must
+// evict every stale copy at once; activate() drops all other versions.
+const CACHE_VERSION = "2026-09-29.1";
+const CACHE_PREFIX = "ludus-";
+const STATIC_CACHE = `${CACHE_PREFIX}static-${CACHE_VERSION}`;
+const RUNTIME_CACHE = `${CACHE_PREFIX}runtime-${CACHE_VERSION}`;
+
+// Paths are resolved against this file, not hard-coded from the site
+// root, so the build keeps working if /ludus/ is mounted elsewhere.
+// Only files that really exist belong here: one 404 fails addAll() and
+// the old list (with a non-existent idb-schema.js) left the cache empty.
+const PRECACHE_PATHS = [
+  "../",
+  "../index.html",
+  "ludus-design-system.css",
+  "ludus-game.css",
+  "ludus-dialogue.css",
+  "rov-lake.css",
+  "ludus-npc-dialogue-manager.js",
+  "ludus-audio-manager.js",
+  "ludus-npc-dialogue-ui.js",
+  "rov-lake-manager.js",
+  "ludus-game.js",
 ];
+const PRECACHE_URLS = PRECACHE_PATHS.map(
+  (path) => new URL(path, self.location).href
+);
+const SHELL_URL = new URL("../index.html", self.location).href;
 
-const API_CACHE_NAME = "ludus-api-v1";
-const API_ROUTES = ["/api/ludus/", "/api/firestore/"];
-
+const API_PREFIXES = ["/api/"];
 const SYNC_TAG = "ludus-background-sync";
+
+// How long a client gets to confirm that its IndexedDB queue is flushed.
+const SYNC_ACK_TIMEOUT_MS = 30000;
 
 // ============================================================================
 // INSTALL EVENT
 // ============================================================================
 
 self.addEventListener("install", (event) => {
-  console.log("[Ludus SW] Installing service worker...");
-
+  // Errors are deliberately not swallowed: a failed precache must fail
+  // the install so the previous, complete worker keeps serving.
   event.waitUntil(
     (async () => {
-      try {
-        const cache = await caches.open(CACHE_NAME);
-        await cache.addAll(STATIC_ASSETS);
-        console.log("[Ludus SW] Static assets cached");
-
-        // Skip waiting to activate immediately
-        self.skipWaiting();
-      } catch (error) {
-        console.error("[Ludus SW] Cache install failed:", error);
-      }
+      const cache = await caches.open(STATIC_CACHE);
+      // 'reload' bypasses the HTTP cache so a new version never
+      // precaches the bytes of the previous release.
+      await cache.addAll(
+        PRECACHE_URLS.map((url) => new Request(url, { cache: "reload" }))
+      );
+      console.log("[Ludus SW] Precached", PRECACHE_URLS.length, "assets");
     })()
   );
 });
@@ -48,30 +69,21 @@ self.addEventListener("install", (event) => {
 // ============================================================================
 
 self.addEventListener("activate", (event) => {
-  console.log("[Ludus SW] Activating service worker...");
-
   event.waitUntil(
     (async () => {
-      try {
-        const cacheNames = await caches.keys();
-        await Promise.all(
-          cacheNames.map((cacheName) => {
-            if (
-              cacheName !== CACHE_NAME &&
-              cacheName !== API_CACHE_NAME
-            ) {
-              console.log("[Ludus SW] Deleting old cache:", cacheName);
-              return caches.delete(cacheName);
-            }
+      const keep = new Set([STATIC_CACHE, RUNTIME_CACHE]);
+      const names = await caches.keys();
+      // Only Ludus caches are pruned; other apps on the same origin
+      // (for example webtypicon pages) own theirs.
+      await Promise.all(
+        names
+          .filter((name) => name.startsWith(CACHE_PREFIX) && !keep.has(name))
+          .map((name) => {
+            console.log("[Ludus SW] Deleting old cache:", name);
+            return caches.delete(name);
           })
-        );
-
-        // Claim all clients
-        await self.clients.claim();
-        console.log("[Ludus SW] Service worker activated");
-      } catch (error) {
-        console.error("[Ludus SW] Activation failed:", error);
-      }
+      );
+      await self.clients.claim();
     })()
   );
 });
@@ -84,18 +96,18 @@ self.addEventListener("fetch", (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Skip cross-origin requests and non-GET
+  // Cross-origin traffic (Firebase CDN, Google auth) and writes are
+  // left to the browser untouched.
   if (url.origin !== self.location.origin || request.method !== "GET") {
     return;
   }
 
-  // Route to appropriate strategy
-  if (isStaticAsset(url)) {
-    event.respondWith(cacheFirstStrategy(request));
-  } else if (isApiRoute(url)) {
-    event.respondWith(networkFirstStrategy(request));
+  if (isApiRoute(url)) {
+    event.respondWith(networkOnly(request));
+  } else if (request.mode === "navigate") {
+    event.respondWith(networkFirstPage(request));
   } else {
-    event.respondWith(networkFirstStrategy(request));
+    event.respondWith(staleWhileRevalidate(request, event));
   }
 });
 
@@ -105,38 +117,28 @@ self.addEventListener("fetch", (event) => {
 
 self.addEventListener("sync", (event) => {
   if (event.tag === SYNC_TAG) {
-    console.log("[Ludus SW] Background sync triggered");
     event.waitUntil(syncPendingMutations());
   }
 });
 
 // ============================================================================
-// MESSAGE EVENT (Communication with client)
+// MESSAGE EVENT (communication with clients)
 // ============================================================================
 
 self.addEventListener("message", (event) => {
-  const { type, payload } = event.data;
+  // Any script on the origin can post here, so malformed data is ignored
+  // rather than allowed to throw inside the worker.
+  const data = event.data;
+  if (!data || typeof data.type !== "string") {
+    return;
+  }
 
-  if (type === "SKIP_WAITING") {
+  if (data.type === "SKIP_WAITING") {
     self.skipWaiting();
-  }
-
-  if (type === "REQUEST_SYNC") {
-    // Request background sync when client comes online
-    self.registration.sync
-      .register(SYNC_TAG)
-      .then(() => {
-        console.log("[Ludus SW] Sync registered");
-      })
-      .catch((error) => {
-        console.error("[Ludus SW] Sync registration failed:", error);
-      });
-  }
-
-  if (type === "CLEAR_CACHE") {
-    caches.delete(CACHE_NAME).then(() => {
-      console.log("[Ludus SW] Cache cleared");
-    });
+  } else if (data.type === "REQUEST_SYNC") {
+    event.waitUntil(requestSync());
+  } else if (data.type === "CLEAR_CACHE") {
+    event.waitUntil(clearLudusCaches());
   }
 });
 
@@ -145,53 +147,68 @@ self.addEventListener("message", (event) => {
 // ============================================================================
 
 /**
- * Cache-first strategy: return from cache, fall back to network
- * Used for static assets that rarely change
+ * Serve from cache at once and refresh the copy in the background.
+ *
+ * Modules change between releases without a version bump, so a pure
+ * cache-first strategy (the old behaviour) served stale code forever.
  */
-async function cacheFirstStrategy(request) {
-  const cache = await caches.open(CACHE_NAME);
-  const cached = await cache.match(request);
+async function staleWhileRevalidate(request, event) {
+  const cached = await caches.match(request);
+
+  const refresh = fetch(request)
+    .then(async (response) => {
+      if (isCacheable(response)) {
+        const cache = await caches.open(RUNTIME_CACHE);
+        await cache.put(request, response.clone());
+      }
+      return response;
+    })
+    .catch(() => null);
 
   if (cached) {
+    event.waitUntil(refresh);
     return cached;
   }
 
+  const fresh = await refresh;
+  if (fresh) {
+    return fresh;
+  }
+  // A missing script must fail as a network error; an HTML page served
+  // in its place would be parsed as JavaScript and hide the real cause.
+  return Response.error();
+}
+
+/**
+ * Pages try the network first so a deploy is visible on next load.
+ */
+async function networkFirstPage(request) {
   try {
     const response = await fetch(request);
-    if (response.status === 200) {
-      cache.put(request, response.clone());
+    if (response.ok) {
+      const cache = await caches.open(RUNTIME_CACHE);
+      await cache.put(request, response.clone());
     }
     return response;
   } catch (error) {
-    console.error("[Ludus SW] Cache-first fetch failed:", error);
-    return createOfflineFallback();
+    // Hosting rewrites every path to index.html, so the shell is the
+    // right offline answer for any navigation.
+    const cached =
+      (await caches.match(request)) || (await caches.match(SHELL_URL));
+    return cached || createOfflineFallback();
   }
 }
 
 /**
- * Network-first strategy: try network, fall back to cache
- * Used for API calls and dynamic content
+ * API responses are never cached.
+ *
+ * They carry per-player data behind an auth header that the cache key
+ * ignores, and offline writes are queued in IndexedDB by the client.
  */
-async function networkFirstStrategy(request) {
-  const cache = await caches.open(API_CACHE_NAME);
-
+async function networkOnly(request) {
   try {
-    const response = await fetch(request);
-
-    if (response.status === 200) {
-      cache.put(request, response.clone());
-    }
-
-    return response;
+    return await fetch(request);
   } catch (error) {
-    console.error("[Ludus SW] Network fetch failed:", error);
-
-    const cached = await cache.match(request);
-    if (cached) {
-      return cached;
-    }
-
-    // Return offline indicator for API requests
     return new Response(
       JSON.stringify({
         error: "offline",
@@ -199,7 +216,10 @@ async function networkFirstStrategy(request) {
       }),
       {
         status: 503,
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Cache-Control": "no-store",
+        },
       }
     );
   }
@@ -209,99 +229,128 @@ async function networkFirstStrategy(request) {
 // HELPER FUNCTIONS
 // ============================================================================
 
-function isStaticAsset(url) {
-  return STATIC_ASSETS.some((asset) => url.pathname.endsWith(asset));
+function isApiRoute(url) {
+  return API_PREFIXES.some((prefix) => url.pathname.startsWith(prefix));
 }
 
-function isApiRoute(url) {
-  return API_ROUTES.some((route) => url.pathname.startsWith(route));
+/**
+ * Decide whether a sub-resource response is safe to store.
+ *
+ * Firebase Hosting rewrites unknown paths to index.html with status 200,
+ * so an HTML body for a non-navigation request means the asset is gone
+ * and must not be cached under the script's URL.
+ */
+function isCacheable(response) {
+  if (!response || !response.ok || response.type !== "basic") {
+    return false;
+  }
+  const type = response.headers.get("Content-Type") || "";
+  return !type.includes("text/html");
+}
+
+async function clearLudusCaches() {
+  const names = await caches.keys();
+  await Promise.all(
+    names
+      .filter((name) => name.startsWith(CACHE_PREFIX))
+      .map((name) => caches.delete(name))
+  );
+  console.log("[Ludus SW] Ludus caches cleared");
+}
+
+async function requestSync() {
+  // Quest Browser and Safari lack Background Sync; the client then
+  // retries on its own 'online' event, so this is not an error.
+  if (!self.registration.sync) {
+    return;
+  }
+  try {
+    await self.registration.sync.register(SYNC_TAG);
+  } catch (error) {
+    console.warn("[Ludus SW] Sync registration failed:", error);
+  }
 }
 
 function createOfflineFallback() {
   return new Response(
-    `
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>Ludus — Offline</title>
-        <style>
-          body {
-            font-family: system-ui, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #eee;
-            margin: 0;
-          }
-          .container {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 8px;
-            max-width: 400px;
-          }
-          h1 { margin: 0 0 1rem 0; }
-          p { line-height: 1.6; margin: 1rem 0; }
-          .status {
-            font-size: 3rem;
-            margin: 1rem 0;
-          }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <h1>⛵ Ludus Offline</h1>
-          <div class="status">📡</div>
-          <p>
-            No internet connection detected.
-            Your game data is cached and will sync automatically when you're back online.
-          </p>
-          <p>Continue playing, or wait for connection.</p>
-        </div>
-      </body>
-    </html>
-  `,
+    `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludus — Offline</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #0f0f0f;
+        color: #f0f0f0;
+        margin: 0;
+      }
+      .container {
+        text-align: center;
+        padding: 2rem;
+        max-width: 400px;
+      }
+      h1 { color: #D4AF37; }
+      p { line-height: 1.6; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Ludus Offline</h1>
+      <p>No internet connection and no cached copy of the game yet.</p>
+      <p>Open Ludus once while online to enable offline play.</p>
+    </div>
+  </body>
+</html>`,
     {
-      status: 200,
-      headers: { "Content-Type": "text/html; charset=utf-8" },
+      status: 503,
+      headers: {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "no-store",
+      },
     }
   );
 }
 
 /**
- * Sync pending mutations to Firestore when connection is restored
+ * Ask an open client to flush its IndexedDB queue and wait for its ack.
+ *
+ * The worker cannot reach Firestore itself. The old version slept five
+ * seconds and then announced SYNC_COMPLETE whether or not anything had
+ * synced; now SYNC_COMPLETE reports whether a client actually confirmed.
  */
 async function syncPendingMutations() {
-  try {
-    // Import IDB schema (assumes it's available in the global scope)
-    // In production, this would be embedded or imported differently
-    console.log("[Ludus SW] Starting background sync of pending mutations");
+  const clients = await self.clients.matchAll({ type: "window" });
+  if (clients.length === 0) {
+    // Rejecting makes the browser retry the sync later, when a page
+    // that can perform it may be open again.
+    throw new Error("No client available to perform sync");
+  }
 
-    // Post message to all clients requesting sync
-    self.clients.matchAll().then((clients) => {
-      clients.forEach((client) => {
-        client.postMessage({
-          type: "SYNC_START",
-          timestamp: Date.now(),
-        });
-      });
+  const confirmed = await new Promise((resolve) => {
+    const channel = new MessageChannel();
+    const timer = setTimeout(() => resolve(false), SYNC_ACK_TIMEOUT_MS);
+    channel.port1.onmessage = (msg) => {
+      clearTimeout(timer);
+      resolve(Boolean(msg.data && msg.data.ok));
+    };
+    // Only one client performs the sync so mutations are not sent twice.
+    clients[0].postMessage(
+      { type: "SYNC_START", timestamp: Date.now() },
+      [channel.port2]
+    );
+  });
+
+  for (const client of clients) {
+    client.postMessage({
+      type: "SYNC_COMPLETE",
+      confirmed,
+      timestamp: Date.now(),
     });
-
-    // Wait for client-side sync to complete
-    await new Promise((resolve) => setTimeout(resolve, 5000));
-
-    self.clients.matchAll().then((clients) => {
-      clients.forEach((client) => {
-        client.postMessage({
-          type: "SYNC_COMPLETE",
-          timestamp: Date.now(),
-        });
-      });
-    });
-  } catch (error) {
-    console.error("[Ludus SW] Background sync failed:", error);
-    throw error;
   }
 }

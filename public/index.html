@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ludus-boot="loading">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +7,22 @@
 
     <title>Ludus — The Demiurgic Dialogue System</title>
 
+    <!--
+        Asset URLs are root-absolute on purpose. Hosting rewrites every
+        path to this file, so on a deep link such as /gate/3 a relative
+        'ludus/x.js' would resolve to /gate/ludus/x.js and come back as
+        HTML instead of script.
+    -->
     <!-- Stylesheets (in load order) -->
-    <link rel="stylesheet" href="ludus/ludus-design-system.css">
-    <link rel="stylesheet" href="ludus/ludus-game.css">
-    <link rel="stylesheet" href="ludus/ludus-dialogue.css">
-    <link rel="stylesheet" href="ludus/rov-lake.css">
+    <link rel="stylesheet" href="/ludus/ludus-design-system.css">
+    <link rel="stylesheet" href="/ludus/ludus-game.css">
+    <link rel="stylesheet" href="/ludus/ludus-dialogue.css">
+    <link rel="stylesheet" href="/ludus/rov-lake.css">
 
-    <!-- Prevent FOUC (Flash of Unstyled Content) -->
+    <!--
+        Boot-shell styles live inline so the spinner and the fatal panel
+        render even when every external stylesheet fails to load.
+    -->
     <style>
         html { background: #0f0f0f; }
         body {
@@ -44,20 +53,75 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        /* Users who ask for less motion still need a loading cue. */
+        @media (prefers-reduced-motion: reduce) {
+            .loading-spinner { animation: none; }
+        }
+        /*
+         * The attribute selector wins over author display rules, so a
+         * hidden panel can never leak onto the screen through a
+         * module stylesheet.
+         */
+        [hidden] { display: none !important; }
+        #ludus-game-container {
+            box-sizing: border-box;
+            width: 100%;
+            min-height: 100vh;
+            padding: 16px;
+        }
+        #ludus-error {
+            padding: 12px 16px;
+            margin-bottom: 12px;
+            border: 1px solid #ff6b6b;
+            border-radius: 6px;
+            color: #ffb3b3;
+            background: #2a1414;
+        }
+        #ludus-fatal {
+            box-sizing: border-box;
+            max-width: 640px;
+            margin: 10vh auto 0;
+            padding: 20px;
+            color: #ff6b6b;
+        }
+        #ludus-fatal-message {
+            color: #f0f0f0;
+            overflow-wrap: anywhere;
+        }
+        #ludus-reload {
+            min-height: 44px;  /* Quest 3 pointer target. */
+            padding: 8px 20px;
+            font: inherit;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <!-- App Root -->
-    <div id="app-loading">
-        <div class="loading-spinner"></div>
+    <!-- Spinner stays visible until init() settles; see boot script. -->
+    <div id="app-loading" role="status" aria-live="polite">
+        <div class="loading-spinner" aria-hidden="true"></div>
         <span>Initializing Ludus...</span>
     </div>
 
+    <!--
+        Fatal panel is static markup filled with textContent only, so an
+        error message can never be parsed as HTML.
+    -->
+    <div id="ludus-fatal" role="alert" hidden>
+        <h2>Ludus Error</h2>
+        <p id="ludus-fatal-message"></p>
+        <button type="button" id="ludus-reload">Reload Page</button>
+    </div>
+
     <!-- Main App Container -->
-    <div id="app" style="display: none;">
-        <!-- Game Canvas/Scene -->
-        <div id="ludus-game-container" style="width: 100%; height: 100vh;">
-            <!-- ludus-game.js renders here -->
+    <div id="app" hidden>
+        <!-- Game Canvas/Scene: ludus-game.js renders into these panels. -->
+        <div id="ludus-game-container">
+            <div id="ludus-error" role="alert" hidden></div>
+            <div id="ludus-auth"></div>
+            <div id="ludus-profile"></div>
+            <div id="ludus-network"></div>
+            <div id="ludus-gates"></div>
         </div>
 
         <!-- Dialogue Modal Container -->
@@ -67,62 +131,204 @@
         <div id="ludus-rov-container"></div>
     </div>
 
-    <!-- Loading Complete Script (minimal) -->
+    <!--
+        Error boundary. It must be registered before the module scripts
+        so that exceptions thrown while they evaluate are caught too.
+    -->
     <script>
-        // Show app, hide loading
-        window.addEventListener('load', () => {
-            document.getElementById('app-loading').style.display = 'none';
-            document.getElementById('app').style.display = 'block';
-        });
+        (function () {
+            'use strict';
 
-        // Error boundary
-        window.addEventListener('error', (event) => {
-            console.error('[Ludus] Uncaught error:', event.error);
-            document.getElementById('app').innerHTML = `
-                <div style="padding: 20px; color: #ff6b6b;">
-                    <h2>Ludus Error</h2>
-                    <p>${event.error?.message || 'Unknown error'}</p>
-                    <button onclick="location.reload()">Reload Page</button>
-                </div>
-            `;
-        });
+            // Firebase is loaded from a CDN inside init(); when the CDN
+            // is unreachable the loader never settles, so the boot has
+            // to give up on its own rather than spin forever.
+            var INIT_TIMEOUT_MS = 15000;
+
+            var root = document.documentElement;
+            var booted = false;
+
+            function setBootState(value) {
+                root.setAttribute('data-ludus-boot', value);
+            }
+
+            function describe(reason) {
+                if (reason && typeof reason.message === 'string') {
+                    return reason.message;
+                }
+                if (typeof reason === 'string' && reason) {
+                    return reason;
+                }
+                return 'Unknown error';
+            }
+
+            function hideSpinner() {
+                document.getElementById('app-loading').hidden = true;
+            }
+
+            // A fatal error raised while init() was still pending must
+            // stay on screen, so a late success does not cover it up.
+            function revealApp() {
+                if (root.getAttribute('data-ludus-boot') === 'failed') {
+                    return;
+                }
+                hideSpinner();
+                document.getElementById('app').hidden = false;
+            }
+
+            // The game shell is left mounted underneath, because other
+            // modules keep references to its containers; wiping it with
+            // innerHTML (as the old boundary did) broke them for good.
+            function showFatal(message) {
+                setBootState('failed');
+                hideSpinner();
+                document.getElementById('app').hidden = true;
+                document.getElementById('ludus-fatal-message').textContent =
+                    message;
+                document.getElementById('ludus-fatal').hidden = false;
+            }
+
+            // After a successful boot a stray runtime error should not
+            // take the whole game down, so it goes to the inline box.
+            function showNotice(message) {
+                var box = document.getElementById('ludus-error');
+                box.textContent = message;
+                box.hidden = false;
+            }
+
+            function report(prefix, reason) {
+                var message = prefix + describe(reason);
+                if (booted) {
+                    showNotice(message);
+                } else {
+                    showFatal(message);
+                }
+            }
+
+            window.addEventListener('error', function (event) {
+                console.error('[Ludus] Uncaught error:', event.error);
+                report('', event.error || event.message);
+            });
+
+            // Async failures (including a rejected init()) never reach
+            // the 'error' event, so they need their own listener.
+            window.addEventListener('unhandledrejection', function (event) {
+                console.error('[Ludus] Unhandled rejection:', event.reason);
+                report('', event.reason);
+            });
+
+            function withTimeout(promise, ms) {
+                return new Promise(function (resolve, reject) {
+                    var timer = setTimeout(function () {
+                        reject(new Error('timeout'));
+                    }, ms);
+                    Promise.resolve(promise).then(function (value) {
+                        clearTimeout(timer);
+                        resolve(value);
+                    }, function (error) {
+                        clearTimeout(timer);
+                        reject(error);
+                    });
+                });
+            }
+
+            async function boot() {
+                var mod = window.__LudusModule;
+                if (!mod || typeof mod.init !== 'function') {
+                    showFatal('The game module failed to load. ' +
+                              'Check your connection and reload.');
+                    return;
+                }
+                try {
+                    await withTimeout(mod.init(), INIT_TIMEOUT_MS);
+                    booted = true;
+                    revealApp();
+                    if (root.getAttribute('data-ludus-boot') !== 'failed') {
+                        setBootState('ready');
+                    }
+                    console.log('[Ludus] Game initialized successfully');
+                } catch (err) {
+                    // A slow or blocked backend still leaves the local
+                    // shell usable, so degrade instead of going blank.
+                    console.error('[Ludus] Initialization error:', err);
+                    booted = true;
+                    revealApp();
+                    if (root.getAttribute('data-ludus-boot') === 'failed') {
+                        return;
+                    }
+                    setBootState('degraded');
+                    showNotice(describe(err) === 'timeout'
+                        ? 'Online services did not respond. ' +
+                          'Sign-in and sync are unavailable for now.'
+                        : 'Initialization failed: ' + describe(err));
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                document.getElementById('ludus-reload')
+                    .addEventListener('click', function () {
+                        location.reload();
+                    });
+                boot();
+            });
+        }());
     </script>
 
     <!-- Service Worker Registration (offline support) -->
     <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('ludus/sw.js').then(reg => {
-                console.log('[Ludus] Service Worker registered:', reg.scope);
-            }).catch(err => {
-                console.warn('[Ludus] Service Worker registration failed:', err);
-                // Graceful degradation: app works without SW
-            });
-        }
+        (function () {
+            'use strict';
+
+            if (!('serviceWorker' in navigator)) {
+                return;
+            }
+
+            var SW_URL = '/ludus/sw.js';
+
+            // The worker lives in /ludus/, so it may only control '/'
+            // when hosting sends 'Service-Worker-Allowed: /'. Reading
+            // the header first picks the wide scope as soon as it is
+            // deployed, without a SecurityError on every page load.
+            function pickScope() {
+                return fetch(SW_URL, {method: 'HEAD', cache: 'no-store'})
+                    .then(function (res) {
+                        var allowed = res.headers
+                            .get('Service-Worker-Allowed');
+                        return allowed === '/' ? {scope: '/'} : undefined;
+                    })
+                    .catch(function () {
+                        return undefined;
+                    });
+            }
+
+            function register() {
+                pickScope()
+                    .then(function (options) {
+                        return navigator.serviceWorker
+                            .register(SW_URL, options);
+                    })
+                    .then(function (reg) {
+                        console.log('[Ludus] Service Worker registered:',
+                                    reg.scope);
+                    })
+                    .catch(function (err) {
+                        // The game works without a worker; offline
+                        // play is simply unavailable.
+                        console.warn('[Ludus] Service Worker ' +
+                                     'registration failed:', err);
+                    });
+            }
+
+            // Registration waits for 'load' so precaching does not
+            // compete with the first render on the headset.
+            window.addEventListener('load', register);
+        }());
     </script>
 
     <!-- Load Ludus Modules (in correct order) -->
-    <script src="ludus/ludus-npc-dialogue-manager.js"></script>
-    <script src="ludus/ludus-audio-manager.js"></script>
-    <script src="ludus/ludus-npc-dialogue-ui.js"></script>
-    <script src="ludus/rov-lake-manager.js"></script>
-    <script src="ludus/ludus-game.js"></script>
-
-    <!-- Initialize App on Load -->
-    <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            try {
-                // Initialize Ludus game
-                if (typeof LudusGame !== 'undefined' && LudusGame.init) {
-                    await LudusGame.init();
-                    console.log('[Ludus] Game initialized successfully');
-                } else {
-                    console.error('[Ludus] LudusGame module not loaded');
-                }
-            } catch (err) {
-                console.error('[Ludus] Initialization error:', err);
-                throw err;
-            }
-        });
-    </script>
+    <script src="/ludus/ludus-npc-dialogue-manager.js"></script>
+    <script src="/ludus/ludus-audio-manager.js"></script>
+    <script src="/ludus/ludus-npc-dialogue-ui.js"></script>
+    <script src="/ludus/rov-lake-manager.js"></script>
+    <script src="/ludus/ludus-game.js"></script>
 </body>
 </html>
