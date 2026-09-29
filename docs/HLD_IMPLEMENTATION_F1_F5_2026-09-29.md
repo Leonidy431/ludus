@@ -38,8 +38,8 @@
 |---|---|---|---|
 | ✅ Гостевой цикл, 4 наставника, бонусы в ФОРМУ, сохранение | — | `ludus-game.js`, `data/dialogue-trees.json` | Playwright: Вера 1→3 после reload |
 | ✅ Резонанс вместо нимба (метрика от 7 атрибутов) | ТАБУ №0.25 п.2 | `ludus-game.js/.css` | Playwright: 98 % → свечение |
-| Врата по трём условиям (атрибут + диалоги NPC + ритуальный счётчик); врата 4–6 как дар | DEF-009, улучш. 1 | `ludus-game.js`, Firestore `players.actions` | юнит + Playwright |
-| Слой ДЕЙСТВИЯ: `prayerCount`, `fastDays`, `meditationHours`; чётки как метроном дыхания | DEF-015, улучш. 2–3 | новый `ludus-actions.js` | юнит |
+| ✅ Врата по трём условиям (атрибут + диалоги NPC + ритуальный счётчик); врата 4–6 как дар | DEF-009, улучш. 1 | `ludus-game.js`, Firestore `players.actions` | юнит + Playwright. Доказательство: `node --test tests/*.test.js` — 9/9; Playwright (гость): чётки ×10 + Феодора + пост + Wisdom 4 → врата 1 «Open» после reload; врата 4 при Wisdom 10 ждут поклона «not to me» и открываются только после него; `docs/audit/2026-09-29/gates-three-conditions.png` |
+| ✅ Слой ДЕЙСТВИЯ: `prayerCount`, `fastDays`, `meditationHours`; чётки как метроном дыхания | DEF-015, улучш. 2–3 | новый `ludus-actions.js` | юнит 9/9; Playwright: панель «Rule of prayer» (чётки, пост раз в день, 1 мин безмолвия засчитана только целиком, отмена = 0), счётчики только показываются, «+N» нет; гостевые `ludus.guest.actions` переживают reload. Метроном дыхания для чёток — ещё не сделан |
 | Встреча со страстью: FSM (появление → признак → выбор по ФОРМЕ → исихия → добродетель) | DEF-016/017, улучш. 5–6 | `ludus-passion.js`, `data/passions.json` | юнит + Playwright |
 | Сюжетный хребет Иссык-Куль: пролог, акты, финал; 99 миссий в очереди | DEF-018 | `data/campaign-spine.json` (read-only из missions.ts) | схема JSON |
 | Отклик на рост атрибута: «+N» и тон атрибута | DEF-011 | `ludus-game.js`, synth | Playwright |

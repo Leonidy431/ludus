@@ -402,10 +402,12 @@
   letter-spacing: 1px;
 }
 
-/* The ladder lists all six gates so locked ones still show the path. */
+/* The ladder lists all six gates so locked ones still show the path.
+   Each card lists what is still missing, so columns are wide enough
+   for whole words; min() keeps a single column on narrow phones. */
 .ludus-gate-ladder {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
   gap: 0.5rem;
   margin: 0 0 1.5rem;
   padding: 0;
@@ -413,15 +415,20 @@
 }
 
 /* minmax(0, 1fr) lets long gate names shrink instead of pushing the
-   card wider than its column (audit BS-052). */
+   card wider than its column (audit BS-052).  The status spans the
+   whole card below the header, because a locked gate now lists up to
+   four missing conditions and they need the full width to stay
+   readable. */
 .ludus-gate-step {
   display: grid;
   grid-template-columns: auto auto minmax(0, 1fr);
   grid-template-areas:
     "icon level name"
-    "icon level status";
+    "status status status";
   column-gap: 0.6rem;
+  row-gap: 0.4rem;
   align-items: center;
+  align-content: start;
   padding: 0.6rem 0.75rem;
   border: 1px solid var(--lg-border);
   border-radius: var(--lg-radius);
@@ -443,7 +450,7 @@
 .ludus-gate-name {
   grid-area: name;
   font-weight: 600;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 .ludus-gate-icon {
@@ -542,6 +549,126 @@
 
 .ludus-gate-btn:hover {
   background-color: #00aab8;
+}
+
+/*
+ * What a locked gate still needs: FORM, mentors, rite, and for gates
+ * 4-6 the bow.  A plain list, so the path reads as steps to take and
+ * not as a score to raise.
+ */
+.ludus-gate-missing {
+  margin: 0.25rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.875rem;
+  line-height: 1.35;
+}
+
+.ludus-gate-missing li + li {
+  margin-top: 0.15rem;
+}
+
+/* ── Rule of prayer (ACTION layer) ─────────────────────────────────── */
+
+/*
+ * The panel shows counters and nothing else: no "+1", no score, no
+ * celebration (CLAUDE.md TABOO 0.35 rules 16-17).  Calm borders and
+ * the same card tokens as the ladder keep it quiet.
+ */
+.ludus-rule {
+  margin: 0 0 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--lg-border);
+  border-radius: var(--lg-radius);
+  background-color: var(--lg-card);
+}
+
+.ludus-rule h4 {
+  margin: 0 0 0.75rem;
+  color: var(--lg-gold);
+  font-size: 1rem;
+}
+
+.ludus-rule-counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 0 0 1rem;
+}
+
+.ludus-rule-counts div {
+  display: flex;
+  gap: 0.4rem;
+  align-items: baseline;
+}
+
+.ludus-rule-counts dt {
+  color: var(--lg-muted);
+  font-size: 0.875rem;
+}
+
+.ludus-rule-counts dd {
+  margin: 0;
+  color: var(--lg-text);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.ludus-rule-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* 48 px is the minimum comfortable pointer target on Quest 3. */
+.ludus-rule-btn {
+  min-height: 48px;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--lg-cyan);
+  border-radius: 6px;
+  color: var(--lg-text);
+  background: transparent;
+  font: inherit;
+  font-size: max(0.875rem, 1em);
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.ludus-rule-btn:hover:not(:disabled) {
+  background-color: rgba(0, 206, 209, 0.12);
+}
+
+.ludus-rule-btn:focus-visible {
+  outline: 3px solid var(--lg-gold);
+  outline-offset: 2px;
+}
+
+.ludus-rule-btn:disabled {
+  border-color: var(--lg-border);
+  color: var(--lg-muted);
+  cursor: default;
+}
+
+/* A running minute of stillness is marked by its border only. */
+.ludus-rule-btn.is-running {
+  border-color: var(--lg-gold);
+  color: var(--lg-gold);
+}
+
+/* The bow is set apart in gold: it is received, not earned. */
+.ludus-bow-btn {
+  border-color: var(--lg-gold);
+  color: var(--lg-gold);
+}
+
+.ludus-bow-btn:hover {
+  background-color: rgba(212, 175, 55, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ludus-rule-btn {
+    transition: none;
+  }
 }
 
 /* ── Error Box ─────────────────────────────────────────────────────────── */

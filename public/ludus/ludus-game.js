@@ -10,7 +10,10 @@
  * Demiurgic Causality (CLAUDE.md, taboo 0):
  *   FORM (7 attributes) -> ACTION (dialogue choices) -> GOAL (gates).
  * The UI therefore shows exactly the seven constitutional attributes and
- * derives gate access deterministically from Wisdom; nothing is random.
+ * derives gate access deterministically; nothing is random.  A gate
+ * opens only on three conditions at once (Wisdom, mentors met and a
+ * rite from actions{}), which window.LudusActions evaluates; gates 4-6
+ * also wait for a bow, "not to me" (CLAUDE.md TABOO 0.35 rule 14).
  *
  * Data sources (field-name adapter, see readPlayerForm()):
  *   - ludus_players/{playerId}.form.*    canonical FORM, written by the
@@ -64,8 +67,9 @@
       tooltip: 'Knowledge of texts (Synaxarion tradition)' },
   ];
 
-  // The six knowledge gates and their Wisdom thresholds (CLAUDE.md,
-  // section 4).  Order matters: each level presupposes the previous one.
+  // The Wisdom thresholds of the six gates (CLAUDE.md, section 4).  They
+  // only draw the ticks on the Wisdom bar: Wisdom is one condition of
+  // three, and whether a gate is open is decided by LudusActions.
   const GATE_LADDER = [
     { id: 'foundational', label: 'Foundational', wisdom: 4 },
     { id: 'liturgical', label: 'Liturgical', wisdom: 6 },
@@ -136,6 +140,13 @@
   // dialogue survives a reload even without an account.
   const GUEST_FORM_KEY = 'ludus.guest.form';
 
+  // The guest's ACTION counters (prayer rope, fasts, stillness, mentors
+  // met, bows) live beside the FORM for the same reason.
+  const GUEST_ACTIONS_KEY = 'ludus.guest.actions';
+
+  // One minute of stillness, counted only when it is completed.
+  const STILLNESS_SECONDS = 60;
+
   const RESOURCES = [
     { key: 'gold', label: 'Gold', emoji: '💰' },
     { key: 'faith', label: 'Faith', emoji: '⛪' },
@@ -172,6 +183,10 @@
     playerNode: null,
     playerForm: null,
     formSource: null,
+    // ACTION counters, always in the normalised LudusActions shape.
+    actions: null,
+    // A running minute of stillness: { endsAt, timer } or null.
+    stillness: null,
     reachableNodes: [],
     knowledgeGates: [],
     // One of 'loading', 'online', 'offline'.
@@ -362,6 +377,8 @@
     state.playerNode = null;
     state.playerForm = null;
     state.formSource = null;
+    state.actions = null;
+    stopStillness();
     state.reachableNodes = [];
     state.knowledgeGates = [];
     if (user) {
@@ -435,6 +452,10 @@
     const adapted = readPlayerForm(playerDoc, state.playerNode);
     state.playerForm = adapted.form;
     state.formSource = adapted.source;
+    // The ACTION layer is read beside FORM (players.actions in the
+    // "Firestore as Heaven" shape) and normalised, so a tampered or
+    // older record can neither crash the ladder nor add counters.
+    state.actions = normalizeActions(playerDoc && playerDoc.actions);
 
     const nodes = {};
     if (nodesRes.status === 'fulfilled') {
@@ -499,16 +520,48 @@
     return reachable;
   }
 
-  // The highest gate whose Wisdom threshold the FORM satisfies, or null.
+  // The ACTION layer is a separate script.  If it failed to load, the
+  // gates stay closed and say so, rather than falling back to the old
+  // Wisdom-only check that TABOO 0.35 rule 14 calls a bug.
+  function actionsApi() {
+    const api = window.LudusActions;
+    return api && typeof api.evaluateLadder === 'function' ? api : null;
+  }
+
+  function normalizeActions(raw) {
+    const api = actionsApi();
+    return api ? api.normalize(raw) : null;
+  }
+
+  // The highest open gate, judged on all three conditions, or null.
   function currentGateFor(form) {
-    const wisdom = toScore(form && form.wisdom);
-    let current = null;
-    GATE_LADDER.forEach((gate) => {
-      if (wisdom >= gate.wisdom) {
-        current = gate;
-      }
-    });
-    return current;
+    const api = actionsApi();
+    return api && state.actions ? api.currentGate(form, state.actions)
+      : null;
+  }
+
+  // Mentor ids become the names the player sees on the mentor cards.
+  function mentorName(npcId) {
+    const mentor = MENTORS.find((m) => m.npcId === npcId);
+    return mentor ? mentor.name : npcId;
+  }
+
+  // The text of one missing condition.  Dialogue items are rebuilt from
+  // the mentor list so the player reads "Theodora", not "theodora".
+  function missingText(item) {
+    if (item.kind === 'dialogue' && Array.isArray(item.mentors)) {
+      return `Speak with ${item.mentors.map(mentorName).join(', ')}`;
+    }
+    return item.text;
+  }
+
+  // Today's date on the player's own calendar, as YYYY-MM-DD.  A fast
+  // belongs to the local day, not to the UTC one.
+  function localIsoDay(date) {
+    const d = date || new Date();
+    const pad = (n) => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-`
+      + pad(d.getDate());
   }
 
   function renderAuthPanel() {
@@ -596,8 +649,8 @@
     const gate = currentGateFor(form);
     const goalText = (state.playerNode && state.playerNode.causality
       && state.playerNode.causality.goal) || 'Redemption and wisdom';
-    const gateText = gate ? `${gate.label} (Wisdom ${gate.wisdom}+)`
-      : `Not yet at the first gate (Wisdom ${GATE_LADDER[0].wisdom})`;
+    const gateText = gate ? gate.label
+      : 'Not yet through the first gate';
 
     container.innerHTML = '<div class="ludus-profile-card">'
       + '<div class="ludus-hero">'
@@ -702,8 +755,70 @@
       + '</div>';
   }
 
-  // The gate ladder is derived from FORM alone, so it renders offline
-  // too; Firestore gate questions are appended when they exist.
+  // The label of the stillness button.  While a minute runs it shows
+  // the seconds left, so the player sees that only a whole minute
+  // counts; a second press cancels it.
+  function stillnessLabel() {
+    if (!state.stillness) {
+      return 'Stillness: 1 minute';
+    }
+    const left = Math.max(0,
+      Math.ceil((state.stillness.endsAt - Date.now()) / 1000));
+    const mm = Math.floor(left / 60);
+    const ss = String(left % 60).padStart(2, '0');
+    return `Stillness: ${mm}:${ss} (press to stop)`;
+  }
+
+  // The rule of prayer.  Counters are shown plainly and never turn
+  // into points: TABOO 0.35 rule 16 forbids XP from prayer, so the
+  // panel says what was done and nothing about what it "earned".
+  function renderRulePanel(ladder) {
+    const actions = state.actions;
+    const minutes = Math.floor(actions.meditationHours * 60 + 1e-6);
+    const fastedToday = actions.lastFastDay === localIsoDay();
+    const running = state.stillness ? ' is-running' : '';
+
+    // The bow is offered only where every other condition already
+    // holds and the lower gates are passed, so it can never be taken
+    // for a shortcut past a missing step.
+    const bows = ladder.filter((check) => check.readyForGift
+      && check.missing.some((m) => m.kind === 'gift')
+      && !check.missing.some((m) => m.kind === 'ladder'))
+      .map((check) => '<button type="button"'
+        + ' class="ludus-rule-btn ludus-bow-btn" data-action="bow"'
+        + ` data-gate-id="${escapeHtml(check.gate.id)}">`
+        + `Bow: not to me (${escapeHtml(check.gate.label)})</button>`)
+      .join('');
+
+    return '<section class="ludus-rule" aria-labelledby="ludus-rule-h">'
+      + '<h4 id="ludus-rule-h">Rule of prayer</h4>'
+      + '<dl class="ludus-rule-counts">'
+      + '<div><dt>Knots prayed</dt>'
+      + `<dd>${escapeHtml(actions.prayerCount)}</dd></div>`
+      + '<div><dt>Fasts kept</dt>'
+      + `<dd>${escapeHtml(actions.fastDays)}</dd></div>`
+      + '<div><dt>Minutes of stillness</dt>'
+      + `<dd>${escapeHtml(minutes)}</dd></div>`
+      + '</dl>'
+      + '<div class="ludus-rule-actions">'
+      + '<button type="button" class="ludus-rule-btn"'
+      + ' data-action="pray-knot">Prayer rope: one knot</button>'
+      + '<button type="button" class="ludus-rule-btn"'
+      + ` data-action="keep-fast"${fastedToday ? ' disabled' : ''}>`
+      + (fastedToday ? 'Today\'s fast is kept' : 'Keep today\'s fast')
+      + '</button>'
+      + `<button type="button" class="ludus-rule-btn${running}"`
+      + ' data-action="stillness"'
+      + ` aria-pressed="${state.stillness ? 'true' : 'false'}">`
+      + `${escapeHtml(stillnessLabel())}</button>`
+      + bows
+      + '</div>'
+      + '</section>';
+  }
+
+  // The ladder is judged on three conditions (FORM, mentors met and a
+  // rite), all of which live on the device for a guest, so it renders
+  // offline too; Firestore gate questions are appended when they exist.
   function renderKnowledgeGates() {
     const container = document.getElementById('ludus-gates');
     if (!container) {
@@ -714,16 +829,31 @@
       return;
     }
 
-    const wisdom = toScore(state.playerForm.wisdom);
-    const ladderHtml = GATE_LADDER.map((gate, index) => {
-      const open = wisdom >= gate.wisdom;
-      const status = open ? 'Open' : `Needs Wisdom ${gate.wisdom}`;
-      return `<li class="ludus-gate-step ${open ? 'is-open' : 'is-locked'}">`
+    const api = actionsApi();
+    if (!api || !state.actions) {
+      container.innerHTML = '<div class="ludus-gates-panel">'
+        + `<h3 data-i18n="ludus.gates">${escapeHtml(t('ludus.gates'))}</h3>`
+        + '<p class="ludus-empty">The gates cannot be read right now.'
+        + ' Please reload the page.</p></div>';
+      return;
+    }
+
+    const ladder = api.evaluateLadder(state.playerForm, state.actions);
+    const ladderHtml = ladder.map((check, index) => {
+      const gate = check.gate;
+      const open = check.open;
+      const status = open ? 'Open'
+        : '<ul class="ludus-gate-missing">'
+          + check.missing.map((m) => '<li>'
+            + `${escapeHtml(missingText(m))}</li>`).join('')
+          + '</ul>';
+      return `<li class="ludus-gate-step ${open ? 'is-open' : 'is-locked'}"`
+        + ` data-gate-id="${escapeHtml(gate.id)}">`
         + `<img class="ludus-gate-icon" src="${ART}gate-${index + 1}-`
-        + `${gate.id}.svg" alt="" width="48" height="48">`
+        + `${escapeHtml(gate.id)}.svg" alt="" width="48" height="48">`
         + `<span class="ludus-gate-level">${index + 1}</span>`
         + `<span class="ludus-gate-name">${escapeHtml(gate.label)}</span>`
-        + `<span class="ludus-gate-status">${escapeHtml(status)}</span>`
+        + `<div class="ludus-gate-status">${status}</div>`
         + '</li>';
     }).join('');
 
@@ -744,6 +874,7 @@
     container.innerHTML = '<div class="ludus-gates-panel">'
       + `<h3 data-i18n="ludus.gates">${escapeHtml(t('ludus.gates'))}</h3>`
       + `<ol class="ludus-gate-ladder">${ladderHtml}</ol>`
+      + renderRulePanel(ladder)
       + gateHtml
       + '</div>';
   }
@@ -819,6 +950,136 @@
     }
   }
 
+  // Read the guest's saved ACTION counters.  normalize() keeps only the
+  // known counters, so a hand-edited record cannot add new ones.
+  function loadGuestActions() {
+    let saved = null;
+    try {
+      saved = JSON.parse(
+        window.localStorage.getItem(GUEST_ACTIONS_KEY) || 'null');
+    } catch (error) {
+      console.warn('[Ludus] Guest actions unavailable:', error.message);
+    }
+    return normalizeActions(saved);
+  }
+
+  function saveGuestActions() {
+    try {
+      window.localStorage.setItem(GUEST_ACTIONS_KEY,
+        JSON.stringify(state.actions));
+    } catch (error) {
+      // As with FORM, a refused write keeps the counters for this
+      // session only; the action itself must not fail.
+      console.warn('[Ludus] Guest actions not saved:', error.message);
+    }
+  }
+
+  // Store new counters, re-render what depends on them and tell other
+  // modules (sound, analytics) what was done.  Nothing here adds to
+  // FORM: an action is recorded and shown, never paid for.
+  function commitActions(kind, next) {
+    if (!next) {
+      return;
+    }
+    // Re-rendering replaces the buttons, so the focused one is noted
+    // and focused again; a pointer or keyboard user keeps their place.
+    const active = document.activeElement;
+    const focusKey = active && active.getAttribute
+      ? active.getAttribute('data-action') : null;
+    const focusGate = focusKey ? active.getAttribute('data-gate-id') : null;
+
+    state.actions = next;
+    if (state.formSource === 'guest') {
+      saveGuestActions();
+    }
+    renderPlayerProfile();
+    renderKnowledgeGates();
+
+    if (focusKey) {
+      const selector = `#ludus-gates [data-action="${focusKey}"]`
+        + (focusGate ? `[data-gate-id="${focusGate}"]` : '');
+      let target = null;
+      try {
+        target = document.querySelector(selector);
+      } catch (error) {
+        target = null;
+      }
+      if (target && !target.disabled) {
+        target.focus();
+      }
+    }
+    try {
+      document.dispatchEvent(new CustomEvent('ludus:action', {
+        detail: { kind, actions: { ...state.actions } },
+      }));
+    } catch (error) {
+      console.warn('[Ludus] Could not announce action:', error);
+    }
+  }
+
+  // Run one ACTION through the pure LudusActions layer.
+  function doAction(kind, gateId) {
+    const api = actionsApi();
+    if (!api || !state.actions || !state.playerForm) {
+      showError('The rule of prayer is not available right now.');
+      return;
+    }
+    if (kind === 'pray-knot') {
+      commitActions(kind, api.prayKnot(state.actions));
+    } else if (kind === 'keep-fast') {
+      commitActions(kind, api.keepFast(state.actions, localIsoDay()));
+    } else if (kind === 'bow') {
+      commitActions(kind,
+        api.acceptGift(state.actions, state.playerForm, gateId));
+    } else if (kind === 'stillness') {
+      toggleStillness();
+    }
+  }
+
+  function stopStillness() {
+    if (state.stillness) {
+      clearInterval(state.stillness.timer);
+      state.stillness = null;
+    }
+  }
+
+  // Refresh only the button text each second.  Re-rendering the panel
+  // would steal focus and flicker; stillness should dim nothing else.
+  function updateStillnessButton() {
+    const button = document.querySelector(
+      '#ludus-gates [data-action="stillness"]');
+    if (button) {
+      button.textContent = stillnessLabel();
+      button.setAttribute('aria-pressed',
+        state.stillness ? 'true' : 'false');
+      button.classList.toggle('is-running', Boolean(state.stillness));
+    }
+  }
+
+  // A minute of stillness counts only when it is completed: stopping
+  // early records nothing, because addStillness takes whole minutes.
+  function toggleStillness() {
+    if (state.stillness) {
+      stopStillness();
+      updateStillnessButton();
+      return;
+    }
+    const endsAt = Date.now() + STILLNESS_SECONDS * 1000;
+    const timer = setInterval(() => {
+      if (!state.stillness || Date.now() < state.stillness.endsAt) {
+        updateStillnessButton();
+        return;
+      }
+      stopStillness();
+      const api = actionsApi();
+      if (api && state.actions) {
+        commitActions('stillness', api.addStillness(state.actions, 1));
+      }
+    }, 1000);
+    state.stillness = { endsAt, timer };
+    updateStillnessButton();
+  }
+
   // A dialogue choice is the only source of growth: its bonuses come
   // from the tree data, so FORM -> ACTION -> GOAL stays deterministic.
   function applyDialogueResult(result) {
@@ -856,7 +1117,19 @@
     manager.init(signedIn ? state.playerId : null, {
       getAuthToken: signedIn ? () => state.user.getIdToken() : null,
     });
-    await ui.open(npcId, { ...state.playerForm }, applyDialogueResult);
+    // The first choice taken in this conversation records the meeting,
+    // even when it carries no bonus: a gate asks whether the player sat
+    // with the mentor, not whether the talk paid in attributes.
+    let met = false;
+    const onChoice = (result) => {
+      const api = actionsApi();
+      if (!met && api && state.actions) {
+        met = true;
+        commitActions('meeting', api.recordMeeting(state.actions, npcId));
+      }
+      applyDialogueResult(result);
+    };
+    await ui.open(npcId, { ...state.playerForm }, onChoice);
   }
 
   // One delegated listener replaces the old inline onclick attributes,
@@ -882,6 +1155,9 @@
         retry();
       } else if (action === 'talk') {
         talkTo(target.getAttribute('data-npc-id'));
+      } else if (action === 'pray-knot' || action === 'keep-fast'
+          || action === 'stillness' || action === 'bow') {
+        doAction(action, target.getAttribute('data-gate-id'));
       } else if (action === 'open-gate') {
         // The gate quiz lives in the dialogue layer; this module only
         // reports which gate the player chose.
@@ -906,6 +1182,7 @@
     state.playerNode = null;
     state.playerForm = loadGuestForm();
     state.formSource = 'guest';
+    state.actions = loadGuestActions();
     state.reachableNodes = [];
     state.knowledgeGates = [];
     console.warn('[Ludus] Offline guest mode:', error && error.message);
@@ -926,6 +1203,8 @@
     state.mode = 'online';
     state.playerForm = null;
     state.playerId = null;
+    state.actions = null;
+    stopStillness();
     renderGameUI();
     state.auth.onAuthStateChanged((user) => {
       setUser(user).catch((error) => {
@@ -962,6 +1241,7 @@
     getPlayerData: () => state.playerNode,
     getPlayerForm: () => (state.playerForm ? { ...state.playerForm } : null),
     getMode: () => state.mode,
+    getActions: () => (state.actions ? { ...state.actions } : null),
     getReachableNodes: () => state.reachableNodes,
   };
 
