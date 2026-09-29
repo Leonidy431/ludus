@@ -1189,6 +1189,18 @@
 
   // Catalogue keys of ludus-audio-manager.js that share a recipe.
   // Every MUSIC_CATALOG, SFX_CATALOG and SEMANTIC_CUES key resolves.
+  // Ison on the tonic of each of the eight tones (ludus-glas.js).
+  // Byzantine bases with Ni = C3: Pa D3, Di G3, Ga F3, Zo-flat B-flat2,
+  // Ni C3.  The ison is sung on "o" with the Athonite breath; text is
+  // never sung by the machine (TABOO 0.35 rule 10).
+  const GLAS_TONIC = { 1: 146.83, 2: 196.0, 3: 174.61, 4: 146.83,
+    5: 146.83, 6: 146.83, 7: 116.54, 8: 130.81 };
+  Object.keys(GLAS_TONIC).forEach(function (g) {
+    RECIPES['ison_glas_' + g] = Object.assign(
+      isonBed(GLAS_TONIC[g], 'athonite', 'o', 0.5),
+      { meaning: 'Ison on the tonic of tone ' + g + ' (tone of the week).' });
+  });
+
   const ALIASES = {
     desert_wind: 'world_change',
     transformation_effect: 'world_change',
@@ -1322,6 +1334,7 @@
     ENSEMBLE: ENSEMBLE,
     BELL_PARTIALS: BELL_PARTIALS,
     BREATH: BREATH,
+    GLAS_TONIC: GLAS_TONIC,
   };
 
   root.LudusSacredSynth = api;

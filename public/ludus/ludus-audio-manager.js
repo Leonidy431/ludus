@@ -940,7 +940,12 @@ window.LudusAudioManager = (function () {
     if (!order || !clock) {
       return true;
     }
-    return clock.mayRing(order, now || new Date());
+    const allowed = clock.mayRing(order, now || new Date());
+    if (allowed) {
+      // Bell and ison never sound together (TABOO 0.35 rule 10).
+      stopIson();
+    }
+    return allowed;
   }
 
   async function playCue(cueKey, options = {}) {
@@ -1030,6 +1035,39 @@ window.LudusAudioManager = (function () {
 
   function isStill() {
     return stillDepth > 0;
+  }
+
+  // The ison of the tone of the week (ludus-glas.js): the machine
+  // holds the base note only, never a text (TABOO 0.35 rule 10), and it
+  // is silent in Holy Week, when the Octoechos is not sung.  A bell and
+  // the ison never sound together, so a bell cue stops it first.
+  let isonSource = null;
+
+  async function playIsonOfTheWeek(now = new Date()) {
+    const glas = window.LudusGlas;
+    const clock = window.LudusLiturgicalClock;
+    if (!glas || !clock) {
+      return null;
+    }
+    const tone = glas.describe(now, clock);
+    stopIson();
+    if (!tone.cue) {
+      return null;
+    }
+    isonSource = await playAudio(null, 'music',
+      { loop: true, fadeIn: 3, synthKey: tone.cue });
+    return tone;
+  }
+
+  function stopIson() {
+    if (isonSource) {
+      try {
+        isonSource.stop();
+      } catch (err) {
+        // Already stopped.
+      }
+      isonSource = null;
+    }
   }
 
   /** Stops every voice with a short fade and releases its nodes. */
@@ -1151,6 +1189,8 @@ window.LudusAudioManager = (function () {
     bellAllowed,
     stopAll,
     enterStillness,
+    playIsonOfTheWeek,
+    stopIson,
     leaveStillness,
     isStill,
     setMasterVolume,
