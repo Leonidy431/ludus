@@ -144,8 +144,9 @@
   // met, bows) live beside the FORM for the same reason.
   const GUEST_ACTIONS_KEY = 'ludus.guest.actions';
 
-  // One minute of stillness, counted only when it is completed.
-  const STILLNESS_SECONDS = 60;
+  // Seconds in a minute of a timed practice.  A constant, so a test can
+  // read how long a session is; it is never shortened in play.
+  const PRACTICE_MINUTE_SECONDS = 60;
 
   const RESOURCES = [
     { key: 'gold', label: 'Gold', emoji: '💰' },
@@ -185,8 +186,9 @@
     formSource: null,
     // ACTION counters, always in the normalised LudusActions shape.
     actions: null,
-    // A running minute of stillness: { endsAt, timer } or null.
-    stillness: null,
+    // A running timed practice (stillness, vigil, handiwork):
+    // { id, endsAt, timer } or null.  Only one runs at a time.
+    practiceTimer: null,
     reachableNodes: [],
     knowledgeGates: [],
     // One of 'loading', 'online', 'offline'.
@@ -378,11 +380,14 @@
     state.playerForm = null;
     state.formSource = null;
     state.actions = null;
-    stopStillness();
+    stopPracticeTimer();
     state.reachableNodes = [];
     state.knowledgeGates = [];
     if (user) {
       await loadPlayerData();
+      // The stored rule comes from the backend, which can read the
+      // player's document; the direct read above may be refused.
+      await loadServerActions();
     } else {
       renderGameUI();
     }
@@ -755,29 +760,57 @@
       + '</div>';
   }
 
-  // The label of the stillness button.  While a minute runs it shows
-  // the seconds left, so the player sees that only a whole minute
-  // counts; a second press cancels it.
-  function stillnessLabel() {
-    if (!state.stillness) {
-      return 'Stillness: 1 minute';
+  // The label of a timed practice.  While it runs it shows the time
+  // left, so the player sees that only a whole session counts; a second
+  // press stops it and nothing is recorded.
+  function timerLabel(practice) {
+    const run = state.practiceTimer;
+    if (!run || run.id !== practice.id) {
+      return `${practice.label}: ${practice.minutes} min`;
     }
-    const left = Math.max(0,
-      Math.ceil((state.stillness.endsAt - Date.now()) / 1000));
+    const left = Math.max(0, Math.ceil((run.endsAt - Date.now()) / 1000));
     const mm = Math.floor(left / 60);
     const ss = String(left % 60).padStart(2, '0');
-    return `Stillness: ${mm}:${ss} (press to stop)`;
+    return `${practice.label}: ${mm}:${ss} (press to stop)`;
   }
 
-  // The rule of prayer.  Counters are shown plainly and never turn
-  // into points: TABOO 0.35 rule 16 forbids XP from prayer, so the
-  // panel says what was done and nothing about what it "earned".
-  function renderRulePanel(ladder) {
-    const actions = state.actions;
-    const minutes = Math.floor(actions.meditationHours * 60 + 1e-6);
-    const fastedToday = actions.lastFastDay === localIsoDay();
-    const running = state.stillness ? ' is-running' : '';
+  // One button of the rule.  Daily practices lock once kept today;
+  // a secret good deed shows no number at all (Mt 6:3-4).
+  function practiceButton(api, practice) {
+    const today = localIsoDay();
+    const kept = practice.kind === 'daily'
+      && api.keptToday(state.actions, practice.id, today);
+    const running = state.practiceTimer
+      && state.practiceTimer.id === practice.id;
+    const busy = state.practiceTimer && !running;
+    const tally = api.practiceTally(state.actions, practice.id);
+    let label = practice.label;
+    if (practice.kind === 'timer') {
+      label = timerLabel(practice);
+    } else if (kept) {
+      label = `${practice.label} — kept today`;
+    }
+    const title = `Against ${practice.passion}; ${practice.virtue}. `
+      + `${practice.source}`;
+    return '<div class="ludus-practice">'
+      + `<button type="button" class="ludus-rule-btn${running
+        ? ' is-running' : ''}" data-action="practice"`
+      + ` data-practice-id="${escapeHtml(practice.id)}"`
+      + ` title="${escapeHtml(title)}"`
+      + (practice.kind === 'timer'
+        ? ` aria-pressed="${running ? 'true' : 'false'}"` : '')
+      + (kept || busy ? ' disabled' : '')
+      + `>${escapeHtml(label)}</button>`
+      + `<span class="ludus-practice-tally">${escapeHtml(tally.text)}</span>`
+      + '</div>';
+  }
 
+  // The rule of prayer: twelve practices from LudusActions.PRACTICES.
+  // Counters are shown plainly and never turn into points: TABOO 0.35
+  // rule 16 forbids XP from prayer, so the panel says what was done and
+  // nothing about what it "earned".
+  function renderRulePanel(ladder) {
+    const api = actionsApi();
     // The bow is offered only where every other condition already
     // holds and the lower gates are passed, so it can never be taken
     // for a shortcut past a missing step.
@@ -792,27 +825,10 @@
 
     return '<section class="ludus-rule" aria-labelledby="ludus-rule-h">'
       + '<h4 id="ludus-rule-h">Rule of prayer</h4>'
-      + '<dl class="ludus-rule-counts">'
-      + '<div><dt>Knots prayed</dt>'
-      + `<dd>${escapeHtml(actions.prayerCount)}</dd></div>`
-      + '<div><dt>Fasts kept</dt>'
-      + `<dd>${escapeHtml(actions.fastDays)}</dd></div>`
-      + '<div><dt>Minutes of stillness</dt>'
-      + `<dd>${escapeHtml(minutes)}</dd></div>`
-      + '</dl>'
-      + '<div class="ludus-rule-actions">'
-      + '<button type="button" class="ludus-rule-btn"'
-      + ' data-action="pray-knot">Prayer rope: one knot</button>'
-      + '<button type="button" class="ludus-rule-btn"'
-      + ` data-action="keep-fast"${fastedToday ? ' disabled' : ''}>`
-      + (fastedToday ? 'Today\'s fast is kept' : 'Keep today\'s fast')
-      + '</button>'
-      + `<button type="button" class="ludus-rule-btn${running}"`
-      + ' data-action="stillness"'
-      + ` aria-pressed="${state.stillness ? 'true' : 'false'}">`
-      + `${escapeHtml(stillnessLabel())}</button>`
-      + bows
+      + '<div class="ludus-rule-actions ludus-practice-grid">'
+      + api.PRACTICES.map((pr) => practiceButton(api, pr)).join('')
       + '</div>'
+      + (bows ? `<div class="ludus-rule-actions">${bows}</div>` : '')
       + '</section>';
   }
 
@@ -977,9 +993,12 @@
   // Store new counters, re-render what depends on them and tell other
   // modules (sound, analytics) what was done.  Nothing here adds to
   // FORM: an action is recorded and shown, never paid for.
-  function commitActions(kind, next) {
+  function commitActions(kind, next, op) {
     if (!next) {
       return;
+    }
+    if (op) {
+      syncAction(op);
     }
     // Re-rendering replaces the buttons, so the focused one is noted
     // and focused again; a pointer or keyboard user keeps their place.
@@ -987,6 +1006,8 @@
     const focusKey = active && active.getAttribute
       ? active.getAttribute('data-action') : null;
     const focusGate = focusKey ? active.getAttribute('data-gate-id') : null;
+    const focusPractice = focusKey
+      ? active.getAttribute('data-practice-id') : null;
 
     state.actions = next;
     if (state.formSource === 'guest') {
@@ -997,7 +1018,8 @@
 
     if (focusKey) {
       const selector = `#ludus-gates [data-action="${focusKey}"]`
-        + (focusGate ? `[data-gate-id="${focusGate}"]` : '');
+        + (focusGate ? `[data-gate-id="${focusGate}"]` : '')
+        + (focusPractice ? `[data-practice-id="${focusPractice}"]` : '');
       let target = null;
       try {
         target = document.querySelector(selector);
@@ -1017,67 +1039,137 @@
     }
   }
 
+  // Signed-in players keep their rule in the database: every accepted
+  // act is sent to /api/ludus/actions, which re-applies it with the same
+  // rules, journals it and answers with the stored counters.  The local
+  // state is shown at once; the server's answer then replaces it, so a
+  // rejected act (for example a second vigil in the same ten minutes)
+  // does not linger on screen.
+  async function syncAction(op) {
+    if (state.mode !== 'online' || !state.user) {
+      return;
+    }
+    try {
+      const token = await state.user.getIdToken();
+      const res = await fetch('/api/ludus/actions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}` },
+        body: JSON.stringify(op),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        showError(body.error || 'The rule could not be saved.');
+      }
+      if (body && body.actions) {
+        state.actions = normalizeActions(body.actions);
+        renderPlayerProfile();
+        renderKnowledgeGates();
+      }
+    } catch (error) {
+      console.warn('[Ludus] Action not saved:', error.message);
+      showError('Offline: the rule is kept on screen until reload.');
+    }
+  }
+
+  // Read a signed-in player's rule from the backend.  The client cannot
+  // read ludus_players itself (the rules compare uid with the document
+  // id, and ids are "player-<uid16>"), so the server answers for it.
+  async function loadServerActions() {
+    if (state.mode !== 'online' || !state.user) {
+      return;
+    }
+    try {
+      const token = await state.user.getIdToken();
+      const res = await fetch('/api/ludus/actions', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (res.ok) {
+        const body = await res.json();
+        state.actions = normalizeActions(body.actions);
+        renderPlayerProfile();
+        renderKnowledgeGates();
+      }
+    } catch (error) {
+      console.warn('[Ludus] Could not load the rule:', error.message);
+    }
+  }
+
   // Run one ACTION through the pure LudusActions layer.
-  function doAction(kind, gateId) {
+  function doAction(kind, id) {
     const api = actionsApi();
     if (!api || !state.actions || !state.playerForm) {
       showError('The rule of prayer is not available right now.');
       return;
     }
-    if (kind === 'pray-knot') {
-      commitActions(kind, api.prayKnot(state.actions));
-    } else if (kind === 'keep-fast') {
-      commitActions(kind, api.keepFast(state.actions, localIsoDay()));
-    } else if (kind === 'bow') {
-      commitActions(kind,
-        api.acceptGift(state.actions, state.playerForm, gateId));
-    } else if (kind === 'stillness') {
-      toggleStillness();
-    }
-  }
-
-  function stopStillness() {
-    if (state.stillness) {
-      clearInterval(state.stillness.timer);
-      state.stillness = null;
-    }
-  }
-
-  // Refresh only the button text each second.  Re-rendering the panel
-  // would steal focus and flicker; stillness should dim nothing else.
-  function updateStillnessButton() {
-    const button = document.querySelector(
-      '#ludus-gates [data-action="stillness"]');
-    if (button) {
-      button.textContent = stillnessLabel();
-      button.setAttribute('aria-pressed',
-        state.stillness ? 'true' : 'false');
-      button.classList.toggle('is-running', Boolean(state.stillness));
-    }
-  }
-
-  // A minute of stillness counts only when it is completed: stopping
-  // early records nothing, because addStillness takes whole minutes.
-  function toggleStillness() {
-    if (state.stillness) {
-      stopStillness();
-      updateStillnessButton();
+    if (kind === 'bow') {
+      commitActions(kind, api.acceptGift(state.actions, state.playerForm, id),
+        { op: 'acceptGift', gateId: id });
       return;
     }
-    const endsAt = Date.now() + STILLNESS_SECONDS * 1000;
-    const timer = setInterval(() => {
-      if (!state.stillness || Date.now() < state.stillness.endsAt) {
-        updateStillnessButton();
+    const practice = api.PRACTICES.find((p) => p.id === id);
+    if (!practice) {
+      return;
+    }
+    if (practice.kind === 'timer') {
+      togglePracticeTimer(practice);
+      return;
+    }
+    const day = localIsoDay();
+    commitActions(practice.id, api.doPractice(state.actions, practice.id,
+      { day }), { op: 'practice', id: practice.id, day });
+  }
+
+  function stopPracticeTimer() {
+    if (state.practiceTimer) {
+      clearInterval(state.practiceTimer.timer);
+      state.practiceTimer = null;
+    }
+  }
+
+  // Refresh only the running button's text each second.  Re-rendering
+  // the panel would steal focus and flicker.
+  function updateTimerButton(practice) {
+    const button = document.querySelector('#ludus-gates [data-action='
+      + `"practice"][data-practice-id="${practice.id}"]`);
+    if (button) {
+      button.textContent = timerLabel(practice);
+      const running = Boolean(state.practiceTimer
+        && state.practiceTimer.id === practice.id);
+      button.setAttribute('aria-pressed', running ? 'true' : 'false');
+      button.classList.toggle('is-running', running);
+    }
+  }
+
+  // A timed practice counts only when it is completed: stopping early
+  // records nothing, and while one runs the other timers wait.
+  function togglePracticeTimer(practice) {
+    if (state.practiceTimer) {
+      const same = state.practiceTimer.id === practice.id;
+      stopPracticeTimer();
+      renderKnowledgeGates();
+      if (same) {
         return;
       }
-      stopStillness();
+    }
+    const endsAt = Date.now()
+      + practice.minutes * PRACTICE_MINUTE_SECONDS * 1000;
+    const timer = setInterval(() => {
+      const run = state.practiceTimer;
+      if (!run || Date.now() < run.endsAt) {
+        updateTimerButton(practice);
+        return;
+      }
+      stopPracticeTimer();
       const api = actionsApi();
       if (api && state.actions) {
-        commitActions('stillness', api.addStillness(state.actions, 1));
+        commitActions(practice.id, api.doPractice(state.actions,
+          practice.id, { minutes: practice.minutes }),
+          { op: 'practice', id: practice.id });
       }
     }, 1000);
-    state.stillness = { endsAt, timer };
-    updateStillnessButton();
+    state.practiceTimer = { id: practice.id, endsAt, timer };
+    renderKnowledgeGates();
   }
 
   // A dialogue choice is the only source of growth: its bonuses come
@@ -1125,7 +1217,8 @@
       const api = actionsApi();
       if (!met && api && state.actions) {
         met = true;
-        commitActions('meeting', api.recordMeeting(state.actions, npcId));
+        commitActions('meeting', api.recordMeeting(state.actions, npcId),
+          { op: 'recordMeeting', npcId });
       }
       applyDialogueResult(result);
     };
@@ -1155,9 +1248,10 @@
         retry();
       } else if (action === 'talk') {
         talkTo(target.getAttribute('data-npc-id'));
-      } else if (action === 'pray-knot' || action === 'keep-fast'
-          || action === 'stillness' || action === 'bow') {
-        doAction(action, target.getAttribute('data-gate-id'));
+      } else if (action === 'practice') {
+        doAction('practice', target.getAttribute('data-practice-id'));
+      } else if (action === 'bow') {
+        doAction('bow', target.getAttribute('data-gate-id'));
       } else if (action === 'open-gate') {
         // The gate quiz lives in the dialogue layer; this module only
         // reports which gate the player chose.
@@ -1204,7 +1298,7 @@
     state.playerForm = null;
     state.playerId = null;
     state.actions = null;
-    stopStillness();
+    stopPracticeTimer();
     renderGameUI();
     state.auth.onAuthStateChanged((user) => {
       setUser(user).catch((error) => {
