@@ -197,7 +197,7 @@
 
 .ludus-attr-item {
   display: grid;
-  grid-template-columns: 2rem minmax(6rem, 10rem) 1fr;
+  grid-template-columns: 2.5rem minmax(6rem, 10rem) 1fr;
   gap: 0.75rem;
   align-items: center;
   margin-bottom: 0.75rem;
@@ -209,6 +209,13 @@
 .ludus-attr-emoji {
   font-size: 1.2rem;
   text-align: center;
+}
+
+/* Drawn attribute badges replace emoji, which render differently on
+   each headset and are missing from some Quest system fonts. */
+.ludus-attr-icon {
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 .ludus-attr-label {
@@ -260,7 +267,7 @@
   right: 0.35rem;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   font-weight: 700;
   color: #fff;
   text-shadow: 0 0 3px #000, 0 0 3px #000;
@@ -405,12 +412,14 @@
   list-style: none;
 }
 
+/* minmax(0, 1fr) lets long gate names shrink instead of pushing the
+   card wider than its column (audit BS-052). */
 .ludus-gate-step {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto auto minmax(0, 1fr);
   grid-template-areas:
-    "level name"
-    "level status";
+    "icon level name"
+    "icon level status";
   column-gap: 0.6rem;
   align-items: center;
   padding: 0.6rem 0.75rem;
@@ -434,11 +443,24 @@
 .ludus-gate-name {
   grid-area: name;
   font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.ludus-gate-icon {
+  grid-area: icon;
+  width: 3rem;
+  height: 3rem;
+}
+
+/* A locked gate is dimmed, not hidden: the ladder shows the whole path
+   so the player sees what their FORM is growing towards. */
+.ludus-gate-step.is-locked .ludus-gate-icon {
+  opacity: 0.45;
 }
 
 .ludus-gate-status {
   grid-area: status;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   color: var(--lg-muted);
 }
 
@@ -499,7 +521,7 @@
 .ludus-gate-subject {
   margin: 0.25rem 0;
   color: var(--lg-muted);
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -584,4 +606,56 @@
   .ludus-gate-btn {
     transition: none;
   }
+}
+
+/* ── Hero and mentors ─────────────────────────────────────────────── */
+
+.ludus-hero {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ludus-hero-portrait {
+  width: 5rem;
+  height: auto;
+}
+
+.ludus-mentor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  gap: 1rem;
+}
+
+.ludus-core-mentor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ludus-mentor-portrait {
+  width: 7rem;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+/* 48 px is the minimum comfortable pointer target on Quest 3. */
+.ludus-talk-btn {
+  min-height: 48px;
+  margin-top: auto;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--lg-gold, #d4af37);
+  border-radius: 6px;
+  color: var(--lg-gold, #d4af37);
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.ludus-talk-btn:hover,
+.ludus-talk-btn:focus-visible {
+  color: #0f0f0f;
+  background: var(--lg-gold, #d4af37);
 }

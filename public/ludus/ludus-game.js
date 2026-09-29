@@ -82,6 +82,33 @@
     return form;
   }, {}));
 
+  // Project art lives next to the modules.  Paths are root-absolute for
+  // the same reason as the asset URLs in index.html: hosting rewrites
+  // deep links to the shell, and a relative path would then break.
+  const ART = '/ludus/art/';
+
+  // The mentors a guest can meet without any network.  Their dialogue
+  // trees ship in /ludus/data/dialogue-trees.json (exported from the
+  // backend seed), so ids must match the seed's npcId values.
+  const MENTORS = [
+    { npcId: 'elder_sergius', name: 'Elder Sergius',
+      teaching: 'Hesychasm: prayer of the heart',
+      portrait: 'npc-elder-sergius.svg' },
+    { npcId: 'theodora', name: 'Theodora',
+      teaching: 'The Divine Liturgy',
+      portrait: 'npc-theodora.svg' },
+    { npcId: 'abba_john', name: 'Abba John',
+      teaching: 'Ascetic discipline of the desert',
+      portrait: 'npc-abba-john.svg' },
+    { npcId: 'sister_catherine', name: 'Sister Catherine',
+      teaching: 'Mystical theology and theosis',
+      portrait: 'npc-sister-catherine.svg' },
+  ];
+
+  // A guest's FORM is kept on the device, so the growth earned in
+  // dialogue survives a reload even without an account.
+  const GUEST_FORM_KEY = 'ludus.guest.form';
+
   const RESOURCES = [
     { key: 'gold', label: 'Gold', emoji: '💰' },
     { key: 'faith', label: 'Faith', emoji: '⛪' },
@@ -513,9 +540,12 @@
       return;
     }
 
+    // The drawn badge replaces the emoji: emoji glyphs differ between
+    // headsets and some Quest fonts lack them entirely.
     const attrHtml = ATTRIBUTES.map((attr) => '<div class="ludus-attr-item">'
-      + `<span class="ludus-attr-emoji" title="${escapeHtml(attr.tooltip)}"`
-      + ` aria-hidden="true">${attr.emoji}</span>`
+      + `<img class="ludus-attr-icon" src="${ART}attr-${attr.key}.svg"`
+      + ` alt="" title="${escapeHtml(attr.tooltip)}" width="40"`
+      + ' height="40">'
       + `<span class="ludus-attr-label">${escapeHtml(attr.label)}</span>`
       + formatAttributeBar(attr.key, form[attr.key], ATTR_MAX)
       + '</div>').join('');
@@ -543,8 +573,13 @@
       : `Not yet at the first gate (Wisdom ${GATE_LADDER[0].wisdom})`;
 
     container.innerHTML = '<div class="ludus-profile-card">'
+      + '<div class="ludus-hero">'
+      + `<img class="ludus-hero-portrait" src="${ART}`
+      + 'player-deacon-orarion.svg" alt="The deacon, the player\'s hero"'
+      + ' width="100" height="140">'
       + '<h3 class="ludus-profile-title" data-i18n="ludus.profile">'
       + `${escapeHtml(t('ludus.profile'))}</h3>`
+      + '</div>'
       + '<div class="ludus-attributes">'
       + '<h4 data-i18n="ludus.attributes">'
       + `${escapeHtml(t('ludus.attributes'))}</h4>`
@@ -569,8 +604,30 @@
     if (!container) {
       return;
     }
-    if (state.mode !== 'online' || !state.user) {
+    if (!state.playerForm) {
       container.innerHTML = '';
+      return;
+    }
+
+    // Core mentors are always reachable: they are the ACTION half of
+    // FORM -> ACTION -> GOAL, and a guest must be able to learn too.
+    const coreHtml = MENTORS.map((m) => '<div class="ludus-node-card'
+      + ' ludus-mentor-card ludus-core-mentor">'
+      + `<img class="ludus-mentor-portrait" src="${ART}${m.portrait}"`
+      + ' alt="" width="100" height="140">'
+      + `<h4>${escapeHtml(m.name)}</h4>`
+      + `<p class="ludus-node-role">${escapeHtml(m.teaching)}</p>`
+      + '<button type="button" class="ludus-talk-btn" data-action="talk"'
+      + ` data-npc-id="${escapeHtml(m.npcId)}">Talk with `
+      + `${escapeHtml(m.name)}</button>`
+      + '</div>').join('');
+
+    if (state.mode !== 'online' || !state.user) {
+      container.innerHTML = '<div class="ludus-network">'
+        + '<section class="ludus-mentors">'
+        + `<h3 data-i18n="ludus.mentor">${escapeHtml(t('ludus.mentor'))}`
+        + `</h3><div class="ludus-mentor-grid">${coreHtml}</div>`
+        + '</section></div>';
       return;
     }
 
@@ -601,7 +658,7 @@
     container.innerHTML = '<div class="ludus-network">'
       + '<section class="ludus-mentors">'
       + `<h3 data-i18n="ludus.mentor">${escapeHtml(t('ludus.mentor'))}</h3>`
-      + (mentorHtml || '<p class="ludus-empty">No mentors nearby</p>')
+      + `<div class="ludus-mentor-grid">${coreHtml}${mentorHtml}</div>`
       + '</section>'
       + '<section class="ludus-quests">'
       + `<h3 data-i18n="ludus.quests">${escapeHtml(t('ludus.quests'))}</h3>`
@@ -627,6 +684,8 @@
       const open = wisdom >= gate.wisdom;
       const status = open ? 'Open' : `Needs Wisdom ${gate.wisdom}`;
       return `<li class="ludus-gate-step ${open ? 'is-open' : 'is-locked'}">`
+        + `<img class="ludus-gate-icon" src="${ART}gate-${index + 1}-`
+        + `${gate.id}.svg" alt="" width="48" height="48">`
         + `<span class="ludus-gate-level">${index + 1}</span>`
         + `<span class="ludus-gate-name">${escapeHtml(gate.label)}</span>`
         + `<span class="ludus-gate-status">${escapeHtml(status)}</span>`
@@ -693,6 +752,77 @@
     }, 5000);
   }
 
+  // Read the guest's saved FORM.  Only the seven attributes are taken,
+  // and storage errors fall back to the seed minimum.
+  function loadGuestForm() {
+    const form = { ...GUEST_FORM };
+    try {
+      const saved = JSON.parse(
+        window.localStorage.getItem(GUEST_FORM_KEY) || 'null');
+      if (saved && typeof saved === 'object') {
+        ATTRIBUTES.forEach((attr) => {
+          const value = Number(saved[attr.key]);
+          if (Number.isFinite(value) && value >= 1) {
+            form[attr.key] = Math.min(ATTR_MAX, value);
+          }
+        });
+      }
+    } catch (error) {
+      console.warn('[Ludus] Guest progress unavailable:', error.message);
+    }
+    return form;
+  }
+
+  function saveGuestForm() {
+    try {
+      window.localStorage.setItem(GUEST_FORM_KEY,
+        JSON.stringify(state.playerForm));
+    } catch (error) {
+      // Private windows refuse storage; progress then lasts only for
+      // this session, which is still better than failing the choice.
+      console.warn('[Ludus] Guest progress not saved:', error.message);
+    }
+  }
+
+  // A dialogue choice is the only source of growth: its bonuses come
+  // from the tree data, so FORM -> ACTION -> GOAL stays deterministic.
+  function applyDialogueResult(result) {
+    const bonuses = (result && result.attributeBonuses) || {};
+    if (!state.playerForm || Object.keys(bonuses).length === 0) {
+      return;
+    }
+    const next = { ...state.playerForm };
+    ATTRIBUTES.forEach((attr) => {
+      const bonus = Number(bonuses[attr.key]);
+      if (Number.isFinite(bonus) && bonus > 0) {
+        next[attr.key] = Math.min(ATTR_MAX, toScore(next[attr.key]) + bonus);
+      }
+    });
+    state.playerForm = next;
+    if (state.formSource === 'guest') {
+      saveGuestForm();
+    }
+    renderPlayerProfile();
+    renderKnowledgeGates();
+    announcePlayer();
+  }
+
+  async function talkTo(npcId) {
+    const manager = window.LudusDialogueManager;
+    const ui = window.LudusDialogueUI;
+    if (!npcId || !manager || !ui || !state.playerForm) {
+      showError('Dialogue is not available right now.');
+      return;
+    }
+    // Guests have no server-side memory, so they are passed as null
+    // and the manager skips the /memory request.
+    const signedIn = state.mode === 'online' && state.user;
+    manager.init(signedIn ? state.playerId : null, {
+      getAuthToken: signedIn ? () => state.user.getIdToken() : null,
+    });
+    await ui.open(npcId, { ...state.playerForm }, applyDialogueResult);
+  }
+
   // One delegated listener replaces the old inline onclick attributes,
   // which needed globals and would be blocked by a strict CSP.
   function bindListeners() {
@@ -714,6 +844,8 @@
         signOut();
       } else if (action === 'retry') {
         retry();
+      } else if (action === 'talk') {
+        talkTo(target.getAttribute('data-npc-id'));
       } else if (action === 'open-gate') {
         // The gate quiz lives in the dialogue layer; this module only
         // reports which gate the player chose.
@@ -736,7 +868,7 @@
     state.user = null;
     state.playerId = 'guest';
     state.playerNode = null;
-    state.playerForm = { ...GUEST_FORM };
+    state.playerForm = loadGuestForm();
     state.formSource = 'guest';
     state.reachableNodes = [];
     state.knowledgeGates = [];

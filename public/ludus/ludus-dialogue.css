@@ -40,8 +40,14 @@
   display: none;
 }
 
+/* The huge spread shadow dims the scene behind the dialogue.  A
+   ::before backdrop cannot be used: the container's transform makes it
+   the containing block, so a fixed pseudo-element would only cover the
+   panel itself.  Without dimming, the open dialogue visually merged
+   with the mentor cards and gate ladder underneath it. */
 #ludus-dialogue-container.is-open {
   animation: slideInUp 0.3s ease-out;
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.6);
 }
 
 @keyframes slideInUp {

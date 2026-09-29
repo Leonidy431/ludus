@@ -18,6 +18,7 @@ window.LudusDialogueManager = (function () {
   // These must match the routes exported in functions/src/index.ts
   // (tree, memory, state, stats under /api/ludus/dialogue).
   const DIALOGUE_API = '/api/ludus/dialogue';
+  const BUNDLED_TREES_URL = '/ludus/data/dialogue-trees.json';
 
   // The constitution fixes exactly seven attributes.  Conditions and
   // bonuses that name anything else are dropped, so a typo in seeded
@@ -230,6 +231,31 @@ window.LudusDialogueManager = (function () {
     return headers;
   }
 
+  // The pack is fetched once per page and shared by all NPCs.  It is a
+  // static file, so the service worker can serve it offline as well.
+  let bundledPack = null;
+
+  async function loadBundledTree(npcId) {
+    try {
+      if (!bundledPack) {
+        bundledPack = fetch(BUNDLED_TREES_URL).then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+          }
+          return response.json();
+        });
+      }
+      const pack = await bundledPack;
+      return (pack && pack.trees && pack.trees[npcId]) || null;
+    } catch (err) {
+      // Allow a later retry instead of caching the failure forever.
+      bundledPack = null;
+      console.warn('[Ludus] Bundled dialogue pack unavailable:',
+        err.message);
+      return null;
+    }
+  }
+
   /**
    * Load the dialogue tree for the given NPC.
    *
@@ -258,6 +284,12 @@ window.LudusDialogueManager = (function () {
       storageSet(cacheKey, tree);
     } catch (err) {
       tree = normaliseTree(storageGet(cacheKey), npcId);
+      if (!tree) {
+        // A first-time guest has no cache yet.  The bundled content
+        // pack (exported from the backend seed data) keeps the core
+        // mentors talking with no network, as the constitution asks.
+        tree = normaliseTree(await loadBundledTree(npcId), npcId);
+      }
       fromCache = Boolean(tree);
       if (!tree) {
         console.error(

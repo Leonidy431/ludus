@@ -11,7 +11,7 @@
 
 // Bump CACHE_VERSION whenever PRECACHE_PATHS changes or a release must
 // evict every stale copy at once; activate() drops all other versions.
-const CACHE_VERSION = "2026-09-29.1";
+const CACHE_VERSION = "2026-09-29.2";
 const CACHE_PREFIX = "ludus-";
 const STATIC_CACHE = `${CACHE_PREFIX}static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `${CACHE_PREFIX}runtime-${CACHE_VERSION}`;
@@ -32,6 +32,14 @@ const PRECACHE_PATHS = [
   "ludus-npc-dialogue-ui.js",
   "rov-lake-manager.js",
   "ludus-game.js",
+  // The offline dialogue pack lets a first-time guest talk with the
+  // core mentors with no network at all.
+  "data/dialogue-trees.json",
+  "art/player-deacon-orarion.svg",
+  "art/npc-elder-sergius.svg",
+  "art/npc-theodora.svg",
+  "art/npc-abba-john.svg",
+  "art/npc-sister-catherine.svg",
 ];
 const PRECACHE_URLS = PRECACHE_PATHS.map(
   (path) => new URL(path, self.location).href
