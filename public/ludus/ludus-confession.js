@@ -60,6 +60,17 @@
       q_ru: 'Кого я осудил как худшего себя?', source: 'Ladder, 23' },
   ];
 
+  // On a headset there is no field at all.  The Quest system keyboard
+  // offers voice dictation, which the operating system handles and may
+  // send to Meta's servers; a web page cannot switch it off, so a
+  // warning there would promise what the code cannot keep.  The page
+  // shows the questions only and leaves the answer to paper or to the
+  // silence of the heart (decision recorded in TABOO 0.26 item 9).
+  function isHeadset() {
+    const ua = (root && root.navigator && root.navigator.userAgent) || '';
+    return /OculusBrowser|Quest|Pico|Wolvic/i.test(ua);
+  }
+
   // A page opened twice must not keep the first text, so the dialog is
   // built anew every time and removed from the DOM when it closes.
   let dialog = null;
@@ -135,6 +146,44 @@
     });
     dialog.append(list);
 
+    if (isHeadset()) {
+      dialog.append(el('p', { class: 'ludus-confession-note' },
+        'On a headset this page has no place to write: voice dictation '
+        + 'cannot be switched off by the game. Answer these questions '
+        + 'on paper, or in the silence of your heart.'),
+      el('p', { class: 'ludus-confession-note', lang: 'ru' },
+        'В шлеме на этом листке писать нельзя: голосовой ввод игра '
+        + 'выключить не может. Ответьте на вопросы на бумаге или в '
+        + 'тишине сердца.'));
+      const close1 = el('button', { type: 'button', class: 'ludus-rule-btn' },
+        'Close');
+      close1.addEventListener('click', close);
+      const row1 = el('div', { class: 'ludus-rule-actions' });
+      row1.append(close1);
+      dialog.append(row1);
+      dialog.addEventListener('cancel', (event) => {
+        event.preventDefault();
+        close();
+      });
+      document.body.append(dialog);
+      if (typeof dialog.showModal === 'function') {
+        dialog.showModal();
+      } else {
+        dialog.setAttribute('open', '');
+      }
+      close1.focus();
+      return;
+    }
+
+    dialog.append(el('p', { class: 'ludus-confession-note' },
+      'Do not dictate by voice: your device may send speech to its '
+      + 'maker\'s servers. A third-party keyboard may keep what you '
+      + 'type; use the system keyboard or paper.'),
+    el('p', { class: 'ludus-confession-note', lang: 'ru' },
+      'Не диктуйте голосом: устройство может отправить речь на серверы '
+      + 'производителя. Сторонняя клавиатура может хранить набранное; '
+      + 'пишите системной клавиатурой или на бумаге.'));
+
     const field = el('textarea', {
       'aria-label': 'Your page (never saved)',
       rows: '8',
@@ -182,7 +231,7 @@
     field.focus();
   }
 
-  const api = { open, close, QUESTIONS };
+  const api = { open, close, QUESTIONS, isHeadset };
   if (typeof module === 'object' && module.exports) {
     module.exports = api;
   }

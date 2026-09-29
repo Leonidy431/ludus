@@ -61,3 +61,18 @@ test('the Eucharist is only in the story: no practice or button', () => {
     '../public/ludus/ludus-game.js'), 'utf8');
   assert.equal(/data-action="[^"]*(euchar|communion)/i.test(game), false);
 });
+
+test('a headset gets no field: dictation cannot be switched off', () => {
+  assert.match(CODE, /function isHeadset\(\)/);
+  assert.match(CODE, /OculusBrowser\|Quest/);
+  // The headset branch returns before any textarea is created.
+  const branch = CODE.slice(CODE.indexOf('if (isHeadset())'),
+    CODE.indexOf("const field = el('textarea'"));
+  assert.match(branch, /return;/);
+  assert.equal(branch.includes("'textarea'"), false);
+});
+
+test('other devices are warned about dictation and keyboards', () => {
+  assert.match(CODE, /Do not dictate by voice/);
+  assert.match(CODE, /Не диктуйте голосом/);
+});
