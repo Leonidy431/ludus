@@ -1,5 +1,5 @@
 {
- "next": 12,
+ "next": 15,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -162,6 +162,29 @@
    ],
    "accepted_objects": 0,
    "code_candidates": 165
+  },
+  {
+   "time": "2026-09-29T18:05:17.391370+00:00",
+   "deficits": [
+    {
+     "id": "DEF-013",
+     "skipped": "not-raw-material"
+    },
+    {
+     "id": "DEF-014",
+     "skipped": "not-raw-material"
+    },
+    {
+     "id": "DEF-015",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 187
+     }
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 13
   }
  ]
 }
