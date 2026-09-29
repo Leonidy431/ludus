@@ -62,7 +62,7 @@ npx ts-node functions/src/scripts/seedComprehensiveTestData.ts
 | **Tests hang or timeout** | Restart emulator: `killall node`, then start again |
 | **Performance >1000ms** | This is expected on emulator, note it, continue testing |
 
-**For each red flag:** refer to PHASE_3_DEPLOYMENT_CHECKLIST.md section "Remediation Guide"
+**For each red flag:** refer to docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md section "Remediation Guide"
 
 ---
 
@@ -81,9 +81,9 @@ npx ts-node functions/src/scripts/seedComprehensiveTestData.ts
 - `functions/src/scripts/seedComprehensiveTestData.ts` (20 players, 4 NPCs, edge cases)
 
 **Documentation:**
-- `PHASE_3_MASTER_CHECKLIST.md` ← CURRENT STATUS & VERIFICATION
-- `PHASE_3_QUICK_START.md` ← 5-COMMAND OVERVIEW
-- `PHASE_3_DEPLOYMENT_CHECKLIST.md` ← DETAILED WALKTHROUGH
+- `docs/reports/PHASE_3_MASTER_CHECKLIST.md` ← CURRENT STATUS & VERIFICATION
+- `docs/reports/PHASE_3_QUICK_START.md` ← 5-COMMAND OVERVIEW
+- `docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md` ← DETAILED WALKTHROUGH
 - `docs/INTEGRATION_TEST_SCENARIOS.md` ← 13 TEST SCENARIOS
 - `docs/API_ERROR_HANDLING_GUIDE.md` ← ERROR CASES
 - `docs/PERFORMANCE_PROFILING_BASELINE.md` ← PERFORMANCE TARGETS
@@ -167,9 +167,9 @@ npx ts-node functions/src/scripts/seedComprehensiveTestData.ts
 | Document | When to Read | Key Info |
 |----------|-------------|----------|
 | **THIS FILE** | Right now (you are) | 5-step overview, GO criteria |
-| **PHASE_3_MASTER_CHECKLIST.md** | Before starting (quick review) | Verification results, readiness scorecard |
-| **PHASE_3_QUICK_START.md** | If you forget the 5 steps | Command-by-command reference |
-| **PHASE_3_DEPLOYMENT_CHECKLIST.md** | If something fails | Detailed troubleshooting, remediation |
+| **docs/reports/PHASE_3_MASTER_CHECKLIST.md** | Before starting (quick review) | Verification results, readiness scorecard |
+| **docs/reports/PHASE_3_QUICK_START.md** | If you forget the 5 steps | Command-by-command reference |
+| **docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md** | If something fails | Detailed troubleshooting, remediation |
 | **docs/API_ERROR_HANDLING_GUIDE.md** | If you see unexpected errors | What each error code means |
 | **docs/INTEGRATION_TEST_SCENARIOS.md** | After tests pass | Detailed test case documentation |
 | **docs/PERFORMANCE_PROFILING_BASELINE.md** | If performance seems off | Performance targets & measurement method |
@@ -196,8 +196,8 @@ npx ts-node functions/src/scripts/seedComprehensiveTestData.ts
 ## ✍️ CHECKLIST FOR OCT 1 MORNING
 
 **Before You Start (5 min):**
-- [ ] You have read THIS FILE (OCT_1_MORNING_START.md)
-- [ ] You have reviewed PHASE_3_MASTER_CHECKLIST.md
+- [ ] You have read THIS FILE (docs/reports/OCT_1_MORNING_START.md)
+- [ ] You have reviewed docs/reports/PHASE_3_MASTER_CHECKLIST.md
 - [ ] You have 3 terminal windows ready (or ability to split screen)
 - [ ] You have coffee ☕
 

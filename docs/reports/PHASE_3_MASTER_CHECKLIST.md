@@ -41,9 +41,9 @@ firebase deploy --only functions,firestore:rules
 
 | File | Lines | Purpose | When to Read |
 |------|-------|---------|-------------|
-| `PHASE_3_QUICK_START.md` | 180 | 5 critical commands | Start here (2 min) |
-| `PHASE_3_DEPLOYMENT_CHECKLIST.md` | 1,000 | Step-by-step validation | Full walkthrough |
-| `PHASE_3_FINAL_BACKLOG.md` | 400 | Gap tracking + timeline | Reference |
+| `docs/reports/PHASE_3_QUICK_START.md` | 180 | 5 critical commands | Start here (2 min) |
+| `docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md` | 1,000 | Step-by-step validation | Full walkthrough |
+| `docs/reports/PHASE_3_FINAL_BACKLOG.md` | 400 | Gap tracking + timeline | Reference |
 | **THIS FILE** | — | Master summary | You are here |
 
 ### Technical Documentation
@@ -101,9 +101,9 @@ chmod +x scripts/*.sh
 
 ### Documentation
 
-- [ ] `PHASE_3_DEPLOYMENT_CHECKLIST.md` exists (1,000 lines)
-- [ ] `PHASE_3_QUICK_START.md` exists (180 lines)
-- [ ] `PHASE_3_FINAL_BACKLOG.md` exists (400 lines)
+- [ ] `docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md` exists (1,000 lines)
+- [ ] `docs/reports/PHASE_3_QUICK_START.md` exists (180 lines)
+- [ ] `docs/reports/PHASE_3_FINAL_BACKLOG.md` exists (400 lines)
 - [ ] `docs/PERFORMANCE_PROFILING_BASELINE.md` exists (NEW)
 - [ ] `docs/API_ERROR_HANDLING_GUIDE.md` exists (NEW)
 - [ ] `docs/INTEGRATION_TEST_SCENARIOS.md` exists (NEW)
@@ -267,13 +267,13 @@ cd functions && npm run build 2>&1 | tail -5
 ## 🆘 TROUBLESHOOTING QUICK LINKS
 
 ### If Validation Script Fails
-→ See `PHASE_3_DEPLOYMENT_CHECKLIST.md` section "Remediation Guide"
+→ See `docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md` section "Remediation Guide"
 
 ### If TypeScript Won't Compile
-→ See `PHASE_3_DEPLOYMENT_CHECKLIST.md` section "Phase 3A.1: TypeScript Compilation Check"
+→ See `docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md` section "Phase 3A.1: TypeScript Compilation Check"
 
 ### If Emulator Won't Start
-→ See `PHASE_3_DEPLOYMENT_CHECKLIST.md` section "Phase 3B.1: Firebase Emulator Startup"
+→ See `docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md` section "Phase 3B.1: Firebase Emulator Startup"
 
 ### If API Tests Fail
 → See `docs/API_ERROR_HANDLING_GUIDE.md` for expected responses
@@ -307,7 +307,7 @@ firebase functions:list
 **Step 4: Begin Phase 3 Testing**
 - Load app on Quest 3 VR headset
 - Test all 5 endpoints with real player
-- Follow `PHASE_3_TEST_LOG.md` template
+- Follow `docs/reports/PHASE_3_TEST_LOG.md` template
 
 ---
 
@@ -327,11 +327,11 @@ firebase functions:list
 **Documentation Index:**
 ```
 Root:
-├── PHASE_3_MASTER_CHECKLIST.md (this file)
-├── PHASE_3_QUICK_START.md
-├── PHASE_3_DEPLOYMENT_CHECKLIST.md
-├── PHASE_3_FINAL_BACKLOG.md
-├── SESSION_SUMMARY_SEP29.md
+├── docs/reports/PHASE_3_MASTER_CHECKLIST.md (this file)
+├── docs/reports/PHASE_3_QUICK_START.md
+├── docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md
+├── docs/reports/PHASE_3_FINAL_BACKLOG.md
+├── docs/reports/SESSION_SUMMARY_SEP29.md
 └── docs/
     ├── PERFORMANCE_PROFILING_BASELINE.md
     ├── API_ERROR_HANDLING_GUIDE.md

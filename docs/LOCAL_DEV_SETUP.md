@@ -357,7 +357,7 @@ npm run build          # (if using build tool)
 2. **Start local servers** (Step 6) to see app running
 3. **Test API endpoints** (Step 7) to verify backend
 4. **Make a code change** to verify auto-reload works
-5. **Read PHASE_3_QUICK_START.md** for testing checklist
+5. **Read docs/reports/PHASE_3_QUICK_START.md** for testing checklist
 
 ---
 

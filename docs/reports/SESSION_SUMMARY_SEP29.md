@@ -28,7 +28,7 @@ Continue and work all day until finished before game tests. Find all blind spots
 ## 📊 Work Completed
 
 ### Phase 1: Comprehensive Audit (Previous Session)
-- ✅ Identified 50+ gaps across project (documented in COMPREHENSIVE_PROJECT_AUDIT.md)
+- ✅ Identified 50+ gaps across project (documented in docs/reports/COMPREHENSIVE_PROJECT_AUDIT.md)
 - ✅ Classified by severity: 7 P0, 10 P1, 15+ P2, 10+ P3
 - ✅ Estimated effort per gap
 - ✅ Created prioritized backlog
@@ -84,7 +84,7 @@ Continue and work all day until finished before game tests. Find all blind spots
 - index.html (web entry point)
 - LOCAL_DEV_SETUP.md (400+ lines)
 - .env.local.example (template)
-- COMPREHENSIVE_PROJECT_AUDIT.md (2,263+ lines)
+- docs/reports/COMPREHENSIVE_PROJECT_AUDIT.md (2,263+ lines)
 
 **Code Modifications (Previous Session):**
 - ludus-dialogue.ts (admin auth added)
@@ -174,26 +174,26 @@ Resolved 7 TypeScript compilation errors:
 
 ### Phase 5: Comprehensive Documentation (This Session)
 
-**1. PHASE_3_DEPLOYMENT_CHECKLIST.md** (1,000+ lines)
+**1. docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md** (1,000+ lines)
 - Complete step-by-step verification guide
 - Covers: Phase 3A (validation), 3B (API testing), 3C (pre-deployment), 3D (decision)
 - Time allocation: 6.5 hours (06:00-12:30 UTC)
 - Includes: Expected outputs, validation checklists, remediation guide
 - Decision criteria: GO if 0 failures, NO-GO if 4+ failures
 
-**2. PHASE_3_FINAL_BACKLOG.md** (400+ lines)
+**2. docs/reports/PHASE_3_FINAL_BACKLOG.md** (400+ lines)
 - Unified backlog consolidating all audit findings
 - Tracks: 7 P0 gaps fixed, 40+ remaining gaps
 - Prioritized: By impact and effort
 - Oct 1 morning execution plan: Step-by-step schedule
 
-**3. PHASE_3_QUICK_START.md** (180+ lines)
+**3. docs/reports/PHASE_3_QUICK_START.md** (180+ lines)
 - Quick reference guide (2-page TL;DR)
 - Five critical commands ready to copy-paste
 - Complete 15-minute timeline breakdown
 - Go/No-Go criteria, troubleshooting, sanity checks
 
-**4. This Document: SESSION_SUMMARY_SEP29.md**
+**4. This Document: docs/reports/SESSION_SUMMARY_SEP29.md**
 - Complete overview of all work accomplished
 - Links to all related files and documentation
 - Impact assessment and ready-for-deployment verification
@@ -211,9 +211,9 @@ Resolved 7 TypeScript compilation errors:
 ### Documentation
 - **Total Lines:** 2,500+
 - **Files Created:** 4 major documentation files
-- **PHASE_3_DEPLOYMENT_CHECKLIST.md:** 991 lines
-- **PHASE_3_FINAL_BACKLOG.md:** 311 lines
-- **PHASE_3_QUICK_START.md:** 239 lines
+- **docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md:** 991 lines
+- **docs/reports/PHASE_3_FINAL_BACKLOG.md:** 311 lines
+- **docs/reports/PHASE_3_QUICK_START.md:** 239 lines
 - **LOCAL_DEV_SETUP.md:** 378 lines
 
 ### Verification
@@ -353,9 +353,9 @@ Resolved 7 TypeScript compilation errors:
 ## 📁 Related Files & References
 
 **Core Documentation:**
-- `PHASE_3_DEPLOYMENT_CHECKLIST.md` — Full step-by-step guide (1,000+ lines)
-- `PHASE_3_FINAL_BACKLOG.md` — Gap tracking and prioritization (400 lines)
-- `PHASE_3_QUICK_START.md` — Quick reference (180 lines)
+- `docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md` — Full step-by-step guide (1,000+ lines)
+- `docs/reports/PHASE_3_FINAL_BACKLOG.md` — Gap tracking and prioritization (400 lines)
+- `docs/reports/PHASE_3_QUICK_START.md` — Quick reference (180 lines)
 - `CLAUDE.md` — Project constitution (Demiurgic causality principle)
 
 **API & Backend:**
@@ -404,11 +404,11 @@ Resolved 7 TypeScript compilation errors:
    firebase deploy --only functions,firestore:rules
    ```
 
-5. **If failures → Fix and re-validate** (see remediation guide in PHASE_3_DEPLOYMENT_CHECKLIST.md)
+5. **If failures → Fix and re-validate** (see remediation guide in docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md)
 
 ### For Detailed Reference:
-- See `PHASE_3_DEPLOYMENT_CHECKLIST.md` for every step with expected outputs
-- See `PHASE_3_QUICK_START.md` for quick copy-paste commands
+- See `docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md` for every step with expected outputs
+- See `docs/reports/PHASE_3_QUICK_START.md` for quick copy-paste commands
 
 ---
 
@@ -448,8 +448,8 @@ Resolved 7 TypeScript compilation errors:
 
 If issues arise during Oct 1 execution:
 
-1. **Check** `PHASE_3_DEPLOYMENT_CHECKLIST.md` remediation section
-2. **Review** `PHASE_3_QUICK_START.md` for command syntax
+1. **Check** `docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md` remediation section
+2. **Review** `docs/reports/PHASE_3_QUICK_START.md` for command syntax
 3. **Consult** `docs/LOCAL_DEV_SETUP.md` for environment issues
 4. **Check** Firebase logs: `firebase functions:log`
 5. **Open** GitHub issue if blocker found

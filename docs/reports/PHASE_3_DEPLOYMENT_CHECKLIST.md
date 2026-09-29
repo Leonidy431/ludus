@@ -700,7 +700,7 @@ grep -c "<link.*ludus" public/index.html
 
 **Quick Checks:**
 ```bash
-for file in PHASE_3_DEPLOYMENT_CHECKLIST.md PHASE_3_FINAL_BACKLOG.md docs/LOCAL_DEV_SETUP.md; do
+for file in docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md docs/reports/PHASE_3_FINAL_BACKLOG.md docs/LOCAL_DEV_SETUP.md; do
   if [ -f "$file" ]; then
     LINES=$(wc -l < "$file")
     echo "✓ $file ($LINES lines)"
@@ -806,7 +806,7 @@ echo "Deployment complete at $(date -u +%H:%M:%S)" >> PHASE_3_DEPLOYMENT_NOTES.m
 - Test all 5 API endpoints with real players
 - Verify audio and visual elements
 - Document any issues found
-- Follow `PHASE_3_TEST_LOG.md` template
+- Follow `docs/reports/PHASE_3_TEST_LOG.md` template
 
 ### If ❌ NO-GO Decision
 
@@ -955,9 +955,9 @@ Proceed with Phase 3 testing. Deploy Cloud Functions and Firestore Rules.
 
 ## 📎 Related Documents
 
-- **PHASE_3_FINAL_BACKLOG.md** — Backlog of all identified gaps, prioritized by severity
-- **PHASE_3_QUICK_START.md** — TL;DR summary for quick reference
-- **PHASE_3_TEST_LOG.md** — Template for logging Phase 3 test results
+- **docs/reports/PHASE_3_FINAL_BACKLOG.md** — Backlog of all identified gaps, prioritized by severity
+- **docs/reports/PHASE_3_QUICK_START.md** — TL;DR summary for quick reference
+- **docs/reports/PHASE_3_TEST_LOG.md** — Template for logging Phase 3 test results
 - **LOCAL_DEV_SETUP.md** — Complete local development setup guide
 - **CLOUD_FUNCTIONS_DIALOGUE_API.md** — Full API reference documentation
 

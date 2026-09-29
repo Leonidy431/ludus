@@ -464,7 +464,7 @@ test_scenario 3 "Non-admin token" \
 
 ## 📎 Related Files
 
-- `PHASE_3_DEPLOYMENT_CHECKLIST.md` — Full Phase 3 guide
+- `docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md` — Full Phase 3 guide
 - `scripts/test-api-endpoints.sh` — Automated endpoint tests
 - `functions/src/api/ludus-dialogue.ts` — Implementation
 - `firestore.rules` — Security rules (prevent cross-player access)

@@ -372,11 +372,11 @@ class OfflineDialogueQueue {
 
 ## 🔗 RELATED DOCUMENTS
 
-- `PHASE_3_MASTER_CHECKLIST.md` — Overall readiness
+- `docs/reports/PHASE_3_MASTER_CHECKLIST.md` — Overall readiness
 - `INTEGRATION_TEST_SCENARIOS.md` — API-level test scenarios
 - `API_ERROR_HANDLING_GUIDE.md` — Error handling reference
 - `PERFORMANCE_PROFILING_BASELINE.md` — Performance targets
-- `PHASE_3_QUEST3_TESTING_CHECKLIST.md` — Quest 3 specific tests
+- `docs/reports/PHASE_3_QUEST3_TESTING_CHECKLIST.md` — Quest 3 specific tests
 
 ---
 

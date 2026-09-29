@@ -218,9 +218,9 @@ Jan-Feb (Phase 5: Audio)
 ## 📞 CONTACT & RESOURCES
 
 **For Oct 1 Execution:**
-- See: OCT_1_MORNING_START.md (5-minute quick start)
-- See: PHASE_3_MASTER_CHECKLIST.md (verification results)
-- See: PHASE_3_QUEST3_TESTING_CHECKLIST.md (Quest 3 prep)
+- See: docs/reports/OCT_1_MORNING_START.md (5-minute quick start)
+- See: docs/reports/PHASE_3_MASTER_CHECKLIST.md (verification results)
+- See: docs/reports/PHASE_3_QUEST3_TESTING_CHECKLIST.md (Quest 3 prep)
 
 **For Deferred Gaps (Phase 4+):**
 - Priority: gap_021 (OpenAPI), gap_023 (caching), gap_046 (CI)
@@ -276,7 +276,7 @@ The project is ready for Phase 3 testing with:
 
 Remaining P2 gaps are intentionally deferred to Phase 4-5 and documented in this tracker. None block Phase 3 testing.
 
-**Oct 1 Execution:** Start with OCT_1_MORNING_START.md (5 min read) → then follow PHASE_3_MASTER_CHECKLIST.md
+**Oct 1 Execution:** Start with docs/reports/OCT_1_MORNING_START.md (5 min read) → then follow docs/reports/PHASE_3_MASTER_CHECKLIST.md
 
 ---
 

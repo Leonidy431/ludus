@@ -478,7 +478,7 @@ assert(data.currentAttributes.faith === 11);
 
 **Total Tests:** 13 scenarios  
 **Estimated Time:** 90 minutes  
-**Pass/Fail Tracking:** Document in PHASE_3_TEST_LOG.md
+**Pass/Fail Tracking:** Document in docs/reports/PHASE_3_TEST_LOG.md
 
 ---
 
@@ -504,7 +504,7 @@ assert(data.currentAttributes.faith === 11);
 
 ## 📎 Related Files
 
-- `PHASE_3_DEPLOYMENT_CHECKLIST.md` — Full deployment guide
+- `docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md` — Full deployment guide
 - `API_ERROR_HANDLING_GUIDE.md` — Error scenarios (10 cases)
 - `scripts/test-api-endpoints.sh` — Automated test runner
 - `functions/src/tests/api/ludus-dialogue.integration.test.ts` — Jest tests

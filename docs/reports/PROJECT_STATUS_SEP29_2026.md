@@ -21,19 +21,19 @@
 ### Phase 3 Preparation (✅ COMPLETE)
 
 **Documentation Created (Sep 28-29):**
-- ✅ COMPREHENSIVE_GAPS_ANALYSIS.md (380+ lines)
+- ✅ docs/reports/COMPREHENSIVE_GAPS_ANALYSIS.md (380+ lines)
   - Tracks 40+ identified gaps (7 P0 + 10 P1 + 15 P2 + 8 P3)
   - Status: 25+ gaps FIXED, 15+ P2 deferred, 0 blockers
 
-- ✅ PHASE_3_MASTER_CHECKLIST.md (360+ lines)
+- ✅ docs/reports/PHASE_3_MASTER_CHECKLIST.md (360+ lines)
   - Complete Oct 1 deployment guide (6.5-hour validation timeline)
   - GO/NO-GO criteria, all verification results passing
 
-- ✅ OCT_1_MORNING_START.md (240+ lines)
+- ✅ docs/reports/OCT_1_MORNING_START.md (240+ lines)
   - 5-minute quick start for Oct 1 06:00 UTC execution
   - Timeline: 06:00-11:00 validation, 11:00 decision, 09:00+ Quest 3 testing
 
-- ✅ PHASE_3_QUEST3_TESTING_CHECKLIST.md (360+ lines)
+- ✅ docs/reports/PHASE_3_QUEST3_TESTING_CHECKLIST.md (360+ lines)
   - Real device testing scenarios for Meta Quest 3
   - Critical pre-09:00 UTC fixes identified
   - Performance measurement plan with JSON export
@@ -234,17 +234,17 @@
 ## 📞 KEY DOCUMENTS FOR OCT 1 EXECUTION
 
 **Quick Reference (Read in 5 minutes):**
-1. `OCT_1_MORNING_START.md` — Step-by-step 6.5-hour guide
-2. `PHASE_3_MASTER_CHECKLIST.md` — Comprehensive checklist
+1. `docs/reports/OCT_1_MORNING_START.md` — Step-by-step 6.5-hour guide
+2. `docs/reports/PHASE_3_MASTER_CHECKLIST.md` — Comprehensive checklist
 
 **Detailed Reference (During testing):**
-3. `PHASE_3_QUEST3_TESTING_CHECKLIST.md` — Real device scenarios
+3. `docs/reports/PHASE_3_QUEST3_TESTING_CHECKLIST.md` — Real device scenarios
 4. `API_ERROR_HANDLING_GUIDE.md` — Expected errors + responses
 5. `PERFORMANCE_PROFILING_BASELINE.md` — Performance targets
 
 **Architecture Reference (If issues arise):**
 6. `FRONTEND_BACKEND_INTEGRATION_TESTING.md` — Integration flows
-7. `COMPREHENSIVE_GAPS_ANALYSIS.md` — Current project state
+7. `docs/reports/COMPREHENSIVE_GAPS_ANALYSIS.md` — Current project state
 
 **Framework Reference (Decision-making):**
 8. `CHORUS_DECISIONS_PHASE3.md` — How P1 decisions were made
@@ -299,7 +299,7 @@ The project is ready for Phase 3 testing with:
 - ✅ Architecture decisions documented (Chorus framework)
 
 **Next Actions:**
-1. **Oct 1 06:00 UTC:** Execute OCT_1_MORNING_START.md
+1. **Oct 1 06:00 UTC:** Execute docs/reports/OCT_1_MORNING_START.md
 2. **Oct 1 09:00 UTC:** Begin Quest 3 live device testing
 3. **Oct 2 00:00 UTC:** Submit PHASE_3_MASTER_CHECKLIST results
 4. **Nov 1 00:00 UTC:** Begin Phase 4 with PHASE4_PLANNING_CHORUS.md roadmap

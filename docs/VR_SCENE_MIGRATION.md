@@ -107,7 +107,7 @@ checked against every tracked text file, line by line:
 
 **Decision: nothing was deleted.** The files do come from a broken
 heredoc, but their text is the only copy of large parts of
-`UnityVR/HLD_VR.md` (165 lines now) and `HLD_Roblox.md` in the working
+`UnityVR/HLD_VR.md` (165 lines now) and `docs/hld/HLD_Roblox.md` in the working
 tree. The rule for this cleanup was to delete only fragments that are
 not unique source. Root `InputProvider.cs` is not identical to
 `UnityVR/Assets/Scripts/Input/InputProvider.cs` and is not a fragment of
@@ -115,5 +115,5 @@ it: it is markdown HLD text, and the real file is C# code (per `diff`).
 So it stays, as the rule requires.
 
 Recommended follow-up (owner of the HLD docs): merge each fragment into
-`UnityVR/HLD_VR.md` / `HLD_Roblox.md` in section order, then
+`UnityVR/HLD_VR.md` / `docs/hld/HLD_Roblox.md` in section order, then
 `git rm` the nine root files in the same commit.

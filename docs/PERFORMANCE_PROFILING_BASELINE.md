@@ -293,8 +293,8 @@ firebase functions:log | grep -oE '[0-9.]+ms' | \
 
 ## 🔗 Related Documents
 
-- **PHASE_3_DEPLOYMENT_CHECKLIST.md** — Full deployment guide
-- **PHASE_3_FINAL_BACKLOG.md** — gap_016 reference
+- **docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md** — Full deployment guide
+- **docs/reports/PHASE_3_FINAL_BACKLOG.md** — gap_016 reference
 - **Cloud Functions Logs:** `firebase functions:log`
 - **Firestore Metrics:** Firebase Console → Project Settings → Usage
 

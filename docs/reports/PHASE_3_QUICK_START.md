@@ -110,7 +110,7 @@ cd functions && npm run build 2>&1 | tail -5
 ls -lh functions/src/tests/fixtures/*.json
 ```
 
-**If any check fails:** Review `PHASE_3_DEPLOYMENT_CHECKLIST.md` for remediation
+**If any check fails:** Review `docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md` for remediation
 
 ---
 
@@ -136,7 +136,7 @@ firebase emulators:start --only firestore,functions
 ```
 
 **Still Stuck?**
-- See "Remediation Guide" in `PHASE_3_DEPLOYMENT_CHECKLIST.md`
+- See "Remediation Guide" in `docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md`
 - Check Firebase logs: `firebase functions:log`
 - Don't deploy until all issues fixed
 
@@ -158,10 +158,10 @@ firebase emulators:start --only firestore,functions
 
 ## 📎 Key Documents
 
-- **Full Checklist:** `PHASE_3_DEPLOYMENT_CHECKLIST.md` (1000+ lines, detailed)
-- **Backlog:** `PHASE_3_FINAL_BACKLOG.md` (gap tracking, priorities)
+- **Full Checklist:** `docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md` (1000+ lines, detailed)
+- **Backlog:** `docs/reports/PHASE_3_FINAL_BACKLOG.md` (gap tracking, priorities)
 - **Dev Setup:** `docs/LOCAL_DEV_SETUP.md` (environment configuration)
-- **This Guide:** `PHASE_3_QUICK_START.md` (you are here)
+- **This Guide:** `docs/reports/PHASE_3_QUICK_START.md` (you are here)
 
 ---
 

@@ -325,7 +325,7 @@ Object.entries(byEndpoint).forEach(([endpoint, times]) => {
 - [ ] "Launch app" button ready for Quest 3 (or sideloaded APK ready)
 
 **Documentation Ready:**
-- [ ] PHASE_3_TEST_LOG.md prepared for manual entries
+- [ ] docs/reports/PHASE_3_TEST_LOG.md prepared for manual entries
 - [ ] Performance baseline targets from Oct 1 AM emulator test
 - [ ] Error scenario reference (API_ERROR_HANDLING_GUIDE.md)
 - [ ] Integration test scenarios (INTEGRATION_TEST_SCENARIOS.md)
@@ -359,8 +359,8 @@ Object.entries(byEndpoint).forEach(([endpoint, times]) => {
 
 ## 📞 REFERENCE DOCUMENTS
 
-- **PHASE_3_MASTER_CHECKLIST.md** — Oct 1 AM validation reference
-- **OCT_1_MORNING_START.md** — 5-step execution plan
+- **docs/reports/PHASE_3_MASTER_CHECKLIST.md** — Oct 1 AM validation reference
+- **docs/reports/OCT_1_MORNING_START.md** — 5-step execution plan
 - **docs/API_ERROR_HANDLING_GUIDE.md** — Expected error scenarios
 - **docs/PERFORMANCE_PROFILING_BASELINE.md** — Measurement methodology
 - **docs/INTEGRATION_TEST_SCENARIOS.md** — Test case details

@@ -2,7 +2,7 @@
 id: ludus-development-log
 type: log
 tags: [ludus, development, phase6, fsm, talklog, daily-progress]
-related: [[docs/PHASE6_FSM_13STATES.md], [HLD_PHASE5_DETAILED.md], [CONSTITUTION.md]]
+related: [[docs/PHASE6_FSM_13STATES.md], [docs/hld/HLD_PHASE5_DETAILED.md], [CONSTITUTION.md]]
 version: 1.0
 status: active
 ---
@@ -25,7 +25,7 @@ Continuous development diary for Deacon's Path: Issyk-Kul (Meta Quest 3 VR ROV S
 - ✅ Defined state taxonomy with entry/exit conditions, telemetry outputs, and backward-compatibility mapping to Phase 5 (6-state) FSM.
 - ✅ State transition matrix (abbreviated) with guarding rules (blocked transitions).
 - ✅ Implementation architecture stub (DiveState.cs, DiveStateCompat helper).
-- Phase 5 baseline: [`HLD_PHASE5_DETAILED.md`](./HLD_PHASE5_DETAILED.md) — 0.1ms budget, zero allocations, EditMode tests established.
+- Phase 5 baseline: [`docs/hld/HLD_PHASE5_DETAILED.md`](./HLD_PHASE5_DETAILED.md) — 0.1ms budget, zero allocations, EditMode tests established.
 
 **Roadblocks:** None identified yet. DiveState enum compiles cleanly; no dependency conflicts.
 
