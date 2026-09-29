@@ -12,6 +12,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { Request, Response } from 'express';
+import Logger from '../utils/logger';
 
 const db = admin.firestore();
 
@@ -100,14 +101,13 @@ export const getDialogueTree = functions.https.onRequest(
     setCorsHeaders(res);
     if (handleCorsPreFlight(req, res)) return;
 
+    const startTime = Date.now();
     try {
       const npcId = Array.isArray(req.params.npcId) ? req.params.npcId[0] : (req.params.npcId as string);
-      const perfLabel = `getDialogueTree[${npcId}]`;
-      console.time(perfLabel);
 
       if (!npcId) {
+        Logger.warn('Missing npcId parameter', { endpoint: 'getDialogueTree' });
         res.status(400).json({ error: 'Missing npcId parameter' });
-        console.timeEnd(perfLabel);
         return;
       }
 
@@ -115,7 +115,8 @@ export const getDialogueTree = functions.https.onRequest(
       const treeDoc = await db.collection('ludus_dialogue_trees').doc(npcId).get();
 
       if (!treeDoc.exists) {
-        console.log(`[Ludus] ❌ Dialogue tree not found for NPC: ${npcId}`);
+        const duration = Date.now() - startTime;
+        Logger.failure('Dialogue tree not found', 'getDialogueTree', duration, 404, { npcId });
         res.status(404).json({
           error: `Dialogue tree not found for NPC: ${npcId}`,
           context: {
@@ -131,19 +132,17 @@ export const getDialogueTree = functions.https.onRequest(
             'Contact support with the timestamp above'
           ]
         });
-        console.timeEnd(perfLabel);
         return;
       }
 
       const tree = treeDoc.data() as DialogueTree;
+      const duration = Date.now() - startTime;
 
-      // Log access
-      console.log(`[Ludus] Dialogue tree loaded for NPC: ${npcId}`);
-      console.timeEnd(perfLabel);
-
+      Logger.success('Dialogue tree loaded', 'getDialogueTree', duration, { npcId });
       res.json(tree);
     } catch (err) {
-      console.error('[Ludus] Error loading dialogue tree:', err);
+      const duration = Date.now() - startTime;
+      Logger.error('Error loading dialogue tree', err, { endpoint: 'getDialogueTree', duration });
       res.status(500).json({ error: 'Failed to load dialogue tree' });
     }
   }
@@ -162,23 +161,23 @@ export const getNpcMemory = functions.https.onRequest(
     setCorsHeaders(res);
     if (handleCorsPreFlight(req, res)) return;
 
+    const startTime = Date.now();
     try {
       const npcId = Array.isArray(req.params.npcId) ? req.params.npcId[0] : (req.params.npcId as string);
       const playerId = Array.isArray(req.params.playerId) ? req.params.playerId[0] : (req.params.playerId as string);
       const authUser = req.headers['x-firebase-auth-user'] as string;
-      const perfLabel = `getNpcMemory[${npcId}/${playerId}]`;
-      console.time(perfLabel);
 
       if (!npcId || !playerId) {
+        Logger.warn('Missing npcId or playerId', { endpoint: 'getNpcMemory' });
         res.status(400).json({ error: 'Missing npcId or playerId' });
-        console.timeEnd(perfLabel);
         return;
       }
 
       // Verify player is requesting their own memory
       if (authUser && authUser !== playerId) {
+        const duration = Date.now() - startTime;
+        Logger.failure('Unauthorized memory access attempt', 'getNpcMemory', duration, 403, { npcId, playerId });
         res.status(403).json({ error: 'Cannot access other player memory' });
-        console.timeEnd(perfLabel);
         return;
       }
 
@@ -198,19 +197,20 @@ export const getNpcMemory = functions.https.onRequest(
           totalInteractions: 0,
           choiceHistory: [],
         };
+        const duration = Date.now() - startTime;
+        Logger.success('First meeting - no prior memory', 'getNpcMemory', duration, { npcId, playerId });
         res.json(firstMeetingMemory);
-        console.timeEnd(perfLabel);
         return;
       }
 
       const memory = memoryDoc.data() as NpcMemory;
+      const duration = Date.now() - startTime;
 
-      console.log(`[Ludus] NPC memory loaded: ${npcId} ← ${playerId}`);
-      console.timeEnd(perfLabel);
-
+      Logger.success('NPC memory loaded', 'getNpcMemory', duration, { npcId, playerId });
       res.json(memory);
     } catch (err) {
-      console.error('[Ludus] Error loading NPC memory:', err);
+      const duration = Date.now() - startTime;
+      Logger.error('Error loading NPC memory', err, { endpoint: 'getNpcMemory', duration });
       res.status(500).json({ error: 'Failed to load NPC memory' });
     }
   }
@@ -232,6 +232,7 @@ export const persistDialogueState = functions.https.onRequest(
     setCorsHeaders(res);
     if (handleCorsPreFlight(req, res)) return;
 
+    const startTime = Date.now();
     try {
       if (req.method !== 'POST') {
         res.status(405).json({ error: 'Method not allowed' });
@@ -246,12 +247,9 @@ export const persistDialogueState = functions.https.onRequest(
         attributeBonuses,
       } = req.body;
 
-      const perfLabel = `persistDialogueState[${playerId}/${npcId}]`;
-      console.time(perfLabel);
-
       if (!playerId || !npcId || !currentNodeId) {
+        Logger.warn('Missing required fields for dialogue state', { endpoint: 'persistDialogueState' });
         res.status(400).json({ error: 'Missing required fields' });
-        console.timeEnd(perfLabel);
         return;
       }
 
@@ -281,7 +279,7 @@ export const persistDialogueState = functions.https.onRequest(
           const playerDoc = await transaction.get(playerRef);
 
           if (!playerDoc.exists) {
-            console.warn(`[Ludus] Player document not found: ${playerId}`);
+            Logger.warn('Player document not found during attribute update', { playerId, endpoint: 'persistDialogueState' });
             return;
           }
 
@@ -332,8 +330,11 @@ export const persistDialogueState = functions.https.onRequest(
 
       await memoryRef.set(updatedMemory, { merge: true });
 
-      console.log(`[Ludus] Dialogue state persisted: ${playerId} ← ${npcId}`);
-      console.timeEnd(perfLabel);
+      const duration = Date.now() - startTime;
+      Logger.success('Dialogue state persisted with attribute updates', 'persistDialogueState', duration, {
+        playerId,
+        npcId,
+      });
 
       res.json({
         success: true,
@@ -341,7 +342,8 @@ export const persistDialogueState = functions.https.onRequest(
         bonusesApplied: Object.keys(attributeBonuses || {}),
       });
     } catch (err) {
-      console.error('[Ludus] Error persisting dialogue state:', err);
+      const duration = Date.now() - startTime;
+      Logger.error('Error persisting dialogue state', err, { endpoint: 'persistDialogueState', duration });
       res.status(500).json({ error: 'Failed to persist dialogue state' });
     }
   }
@@ -358,14 +360,13 @@ export const getDialogueStats = functions.https.onRequest(
     setCorsHeaders(res);
     if (handleCorsPreFlight(req, res)) return;
 
+    const startTime = Date.now();
     try {
       const playerId = Array.isArray(req.params.playerId) ? req.params.playerId[0] : (req.params.playerId as string);
-      const perfLabel = `getDialogueStats[${playerId}]`;
-      console.time(perfLabel);
 
       if (!playerId) {
+        Logger.warn('Missing playerId', { endpoint: 'getDialogueStats' });
         res.status(400).json({ error: 'Missing playerId' });
-        console.timeEnd(perfLabel);
         return;
       }
 
@@ -373,8 +374,9 @@ export const getDialogueStats = functions.https.onRequest(
       const playerDoc = await db.collection('ludus_players').doc(playerId).get();
 
       if (!playerDoc.exists) {
+        const duration = Date.now() - startTime;
+        Logger.failure('Player not found', 'getDialogueStats', duration, 404, { playerId });
         res.status(404).json({ error: 'Player not found' });
-        console.timeEnd(perfLabel);
         return;
       }
 
@@ -409,8 +411,8 @@ export const getDialogueStats = functions.https.onRequest(
         }
       }
 
-      console.log(`[Ludus] Dialogue stats retrieved for player: ${playerId}`);
-      console.timeEnd(perfLabel);
+      const duration = Date.now() - startTime;
+      Logger.success(`Dialogue stats retrieved (${npcCount} NPCs)`, 'getDialogueStats', duration, { playerId });
 
       res.json({
         playerId,
@@ -421,7 +423,8 @@ export const getDialogueStats = functions.https.onRequest(
           npcCount <= 2 ? 'beginner' : npcCount <= 5 ? 'intermediate' : 'advanced',
       });
     } catch (err) {
-      console.error('[Ludus] Error retrieving dialogue stats:', err);
+      const duration = Date.now() - startTime;
+      Logger.error('Error retrieving dialogue stats', err, { endpoint: 'getDialogueStats', duration });
       res.status(500).json({ error: 'Failed to retrieve dialogue stats' });
     }
   }
@@ -440,6 +443,7 @@ export const upsertDialogueTree = functions.https.onRequest(
     setCorsHeaders(res);
     if (handleCorsPreFlight(req, res)) return;
 
+    const startTime = Date.now();
     try {
       if (req.method !== 'POST') {
         res.status(405).json({ error: 'Method not allowed' });
@@ -448,20 +452,19 @@ export const upsertDialogueTree = functions.https.onRequest(
 
       const npcId = Array.isArray(req.params.npcId) ? req.params.npcId[0] : (req.params.npcId as string);
       const treeData: Partial<DialogueTree> = req.body;
-      const perfLabel = `upsertDialogueTree[${npcId}]`;
-      console.time(perfLabel);
 
       if (!npcId) {
+        Logger.warn('Missing npcId for upsert', { endpoint: 'upsertDialogueTree' });
         res.status(400).json({ error: 'Missing npcId' });
-        console.timeEnd(perfLabel);
         return;
       }
 
       // Admin auth check: Verify user is Firebase admin or has admin token
       const authHeader = req.headers.authorization;
       if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        const duration = Date.now() - startTime;
+        Logger.failure('Missing admin token', 'upsertDialogueTree', duration, 401, { npcId });
         res.status(401).json({ error: 'Unauthorized: Admin token required' });
-        console.timeEnd(perfLabel);
         return;
       }
 
@@ -470,21 +473,22 @@ export const upsertDialogueTree = functions.https.onRequest(
         const decodedToken = await admin.auth().verifyIdToken(token);
         // Check if user has admin custom claim
         if (!decodedToken.admin && !decodedToken.isAdmin) {
+          const duration = Date.now() - startTime;
+          Logger.failure('Insufficient privileges', 'upsertDialogueTree', duration, 403, { npcId });
           res.status(403).json({ error: 'Forbidden: Admin privileges required' });
-          console.timeEnd(perfLabel);
           return;
         }
       } catch (authErr) {
-        console.warn('[Ludus] Auth verification failed:', authErr);
+        const duration = Date.now() - startTime;
+        Logger.warn('Auth verification failed', { npcId, endpoint: 'upsertDialogueTree' });
         res.status(401).json({ error: 'Unauthorized: Invalid or expired token' });
-        console.timeEnd(perfLabel);
         return;
       }
 
       // Validate tree structure
       if (!treeData.npcName || !treeData.startNode || !treeData.nodes) {
+        Logger.warn('Invalid dialogue tree structure', { npcId, endpoint: 'upsertDialogueTree' });
         res.status(400).json({ error: 'Invalid dialogue tree structure' });
-        console.timeEnd(perfLabel);
         return;
       }
 
@@ -499,12 +503,15 @@ export const upsertDialogueTree = functions.https.onRequest(
 
       await db.collection('ludus_dialogue_trees').doc(npcId).set(completeTree);
 
-      console.log(`[Ludus] Dialogue tree upserted for NPC: ${npcId}`);
-      console.timeEnd(perfLabel);
+      const duration = Date.now() - startTime;
+      Logger.success(`Dialogue tree upserted (${treeData.nodes?.length || 0} nodes)`, 'upsertDialogueTree', duration, {
+        npcId,
+      });
 
       res.json({ success: true, npcId });
     } catch (err) {
-      console.error('[Ludus] Error upserting dialogue tree:', err);
+      const duration = Date.now() - startTime;
+      Logger.error('Error upserting dialogue tree', err, { endpoint: 'upsertDialogueTree', duration });
       res.status(500).json({ error: 'Failed to upsert dialogue tree' });
     }
   }
