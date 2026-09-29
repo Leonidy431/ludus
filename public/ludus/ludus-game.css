@@ -954,6 +954,38 @@
   color: var(--lg-text);
 }
 
+/* Rays of sobriety (HLD F2, DEF-023): when a thought is turned away,
+   thin rays cross the road once.  Hearth light, not the lamp: sobriety
+   is the soul's own labour with God, and the lamp belongs to holy
+   things (TABOO 0.38).  No glow follows the player afterwards. */
+.ludus-road {
+  position: relative;
+}
+
+.ludus-light-nepsis {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: repeating-linear-gradient(115deg,
+    rgba(255, 179, 71, 0) 0 22px,
+    rgba(255, 179, 71, 0.10) 22px 24px);
+  animation: ludus-nepsis 4s ease-out both;
+}
+
+@keyframes ludus-nepsis {
+  0% { opacity: 0; }
+  30% { opacity: 1; }
+  100% { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ludus-light-nepsis {
+    animation: none;
+    opacity: 0.35;
+  }
+}
+
 /* FORM grew: a short hearth-light outline on the attribute and a plain
    line of text.  Hearth, not lamp: understanding is human work, the
    lamp belongs to holy things (TABOO 0.38). */
@@ -981,6 +1013,39 @@
    holy.  Without motion the light is simply there. */
 .ludus-gate-step.is-opening .ludus-gate-icon {
   animation: ludus-gate-light 2.5s ease-in 2s both;
+}
+
+/* The light of Tabor at the mystical gate (HLD F2, DEF-023).  It is
+   uncreated, so it gets no colour of its own and no source: not a
+   fourth class of light, not a ring or a halo (TABOO 0.2 item 2, TABOO
+   0.25 item 2).  Shadows go and the instrument cyan gives way; the
+   whole step brightens evenly, as the disciples saw all things lit
+   (Mt 17:2; St Gregory Palamas, Triads).  It is never tied to an
+   attribute of the player. */
+.ludus-gate-step.is-tabor {
+  animation: ludus-tabor 3s ease-in 2s both;
+  outline-color: transparent;
+}
+
+.ludus-gate-step.is-opening.is-tabor .ludus-gate-icon {
+  box-shadow: none;
+  animation: none;
+}
+
+@keyframes ludus-tabor {
+  from { filter: none; }
+  to { filter: brightness(1.35) contrast(0.85); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ludus-gate-step.is-tabor {
+    animation: none;
+    filter: brightness(1.35) contrast(0.85);
+  }
+
+  .ludus-gate-step.is-opening.is-tabor .ludus-gate-icon {
+    box-shadow: none;
+  }
 }
 
 @keyframes ludus-gate-light {

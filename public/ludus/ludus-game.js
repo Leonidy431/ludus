@@ -888,7 +888,10 @@
     const stage = state.encounter.stage;
     let body = '';
     if (stage === 'virtue') {
-      body = `<p class="ludus-road-end">The thought has passed. `
+      // Rays of sobriety over the road: decorative only, no count, no
+      // reward, hidden from screen readers (the text says it all).
+      body = '<div class="ludus-light-nepsis" aria-hidden="true"></div>'
+        + `<p class="ludus-road-end">The thought has passed. `
         + `${escapeHtml(passion.virtue)} — ${escapeHtml(passion.source)}; `
         + `${escapeHtml(passion.ladder)}.</p>`
         + '<button type="button" class="ludus-rule-btn"'
@@ -987,8 +990,10 @@
           + check.missing.map((m) => '<li>'
             + `${escapeHtml(missingText(m))}</li>`).join('')
           + '</ul>';
+      // The mystical gate opens in the light of Tabor (see the CSS).
+      const tabor = isOpening && gate.id === 'mystical' ? ' is-tabor' : '';
       return `<li class="ludus-gate-step ${open ? 'is-open' : 'is-locked'}${
-        isOpening ? ' is-opening' : ''}"`
+        isOpening ? ' is-opening' : ''}${tabor}"`
         + ` data-gate-id="${escapeHtml(gate.id)}">`
         + `<img class="ludus-gate-icon" src="${ART}gate-${index + 1}-`
         + `${escapeHtml(gate.id)}.svg" alt="" width="48" height="48">`
