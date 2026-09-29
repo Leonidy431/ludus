@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ludus — Theological RPG with NPC Dialogue, Attribute System, and Spatial Audio">
+
+    <title>Ludus — The Demiurgic Dialogue System</title>
+
+    <!-- Stylesheets (in load order) -->
+    <link rel="stylesheet" href="ludus/ludus-design-system.css">
+    <link rel="stylesheet" href="ludus/ludus-game.css">
+    <link rel="stylesheet" href="ludus/ludus-dialogue.css">
+    <link rel="stylesheet" href="ludus/rov-lake.css">
+
+    <!-- Prevent FOUC (Flash of Unstyled Content) -->
+    <style>
+        html { background: #0f0f0f; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #0f0f0f;
+            color: #f0f0f0;
+        }
+        #app-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-size: 18px;
+            color: #D4AF37;
+        }
+        .loading-spinner {
+            border: 4px solid #333;
+            border-top: 4px solid #D4AF37;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-right: 15px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- App Root -->
+    <div id="app-loading">
+        <div class="loading-spinner"></div>
+        <span>Initializing Ludus...</span>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="app" style="display: none;">
+        <!-- Game Canvas/Scene -->
+        <div id="ludus-game-container" style="width: 100%; height: 100vh;">
+            <!-- ludus-game.js renders here -->
+        </div>
+
+        <!-- Dialogue Modal Container -->
+        <div id="ludus-dialogue-container"></div>
+
+        <!-- ROV Lake Panel Container (optional, for telemetry display) -->
+        <div id="ludus-rov-container"></div>
+    </div>
+
+    <!-- Loading Complete Script (minimal) -->
+    <script>
+        // Show app, hide loading
+        window.addEventListener('load', () => {
+            document.getElementById('app-loading').style.display = 'none';
+            document.getElementById('app').style.display = 'block';
+        });
+
+        // Error boundary
+        window.addEventListener('error', (event) => {
+            console.error('[Ludus] Uncaught error:', event.error);
+            document.getElementById('app').innerHTML = `
+                <div style="padding: 20px; color: #ff6b6b;">
+                    <h2>Ludus Error</h2>
+                    <p>${event.error?.message || 'Unknown error'}</p>
+                    <button onclick="location.reload()">Reload Page</button>
+                </div>
+            `;
+        });
+    </script>
+
+    <!-- Service Worker Registration (offline support) -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('ludus/sw.js').then(reg => {
+                console.log('[Ludus] Service Worker registered:', reg.scope);
+            }).catch(err => {
+                console.warn('[Ludus] Service Worker registration failed:', err);
+                // Graceful degradation: app works without SW
+            });
+        }
+    </script>
+
+    <!-- Load Ludus Modules (in correct order) -->
+    <script src="ludus/ludus-npc-dialogue-manager.js"></script>
+    <script src="ludus/ludus-audio-manager.js"></script>
+    <script src="ludus/ludus-npc-dialogue-ui.js"></script>
+    <script src="ludus/rov-lake-manager.js"></script>
+    <script src="ludus/ludus-game.js"></script>
+
+    <!-- Initialize App on Load -->
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                // Initialize Ludus game
+                if (typeof LudusGame !== 'undefined' && LudusGame.init) {
+                    await LudusGame.init();
+                    console.log('[Ludus] Game initialized successfully');
+                } else {
+                    console.error('[Ludus] LudusGame module not loaded');
+                }
+            } catch (err) {
+                console.error('[Ludus] Initialization error:', err);
+                throw err;
+            }
+        });
+    </script>
+</body>
+</html>

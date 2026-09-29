@@ -380,8 +380,26 @@ export const upsertDialogueTree = functions.https.onRequest(
         return;
       }
 
-      // TODO: Add admin auth check when available
-      // For now, only allow from localhost or specific secrets
+      // Admin auth check: Verify user is Firebase admin or has admin token
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        res.status(401).json({ error: 'Unauthorized: Admin token required' });
+        return;
+      }
+
+      const token = authHeader.substring(7); // Remove 'Bearer ' prefix
+      try {
+        const decodedToken = await admin.auth().verifyIdToken(token);
+        // Check if user has admin custom claim
+        if (!decodedToken.admin && !decodedToken.isAdmin) {
+          res.status(403).json({ error: 'Forbidden: Admin privileges required' });
+          return;
+        }
+      } catch (authErr) {
+        console.warn('[Ludus] Auth verification failed:', authErr);
+        res.status(401).json({ error: 'Unauthorized: Invalid or expired token' });
+        return;
+      }
 
       // Validate tree structure
       if (!treeData.npcName || !treeData.startNode || !treeData.nodes) {

@@ -1,0 +1,634 @@
+/**
+ * Ludus Design System — Beautiful UI Components
+ * Dark theme with gold/cyan accent colors
+ * Smooth animations, responsive layout, accessibility-first
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ROOT: Design Tokens & Variables
+   ═════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Colors */
+  --ludus-gold: #D4AF37;
+  --ludus-cyan: #00CED1;
+  --ludus-dark-bg: #0f0f0f;
+  --ludus-dark-card: #1a1a1a;
+  --ludus-dark-hover: #252525;
+  --ludus-text-primary: #f0f0f0;
+  --ludus-text-secondary: #a0a0a0;
+  --ludus-border: #2a2a2a;
+  --ludus-success: #4ade80;
+  --ludus-warning: #fbbf24;
+  --ludus-error: #ef4444;
+
+  /* Spacing */
+  --ludus-spacing-xs: 4px;
+  --ludus-spacing-sm: 8px;
+  --ludus-spacing-md: 12px;
+  --ludus-spacing-lg: 16px;
+  --ludus-spacing-xl: 20px;
+  --ludus-spacing-2xl: 32px;
+
+  /* Typography */
+  --ludus-font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  --ludus-font-mono: 'SF Mono', Monaco, 'Inconsolata', 'Courier New', monospace;
+
+  /* Sizing */
+  --ludus-btn-height: 44px;
+  --ludus-input-height: 40px;
+  --ludus-card-radius: 8px;
+  --ludus-btn-radius: 6px;
+
+  /* Shadows */
+  --ludus-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+  --ludus-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --ludus-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.4);
+  --ludus-shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.5);
+
+  /* Transitions */
+  --ludus-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ludus-transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ludus-transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Z-index scale */
+  --ludus-z-base: 0;
+  --ludus-z-dropdown: 100;
+  --ludus-z-modal: 1000;
+  --ludus-z-tooltip: 1100;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ludus-dark-bg: #0a0a0a;
+    --ludus-dark-card: #131313;
+    --ludus-dark-hover: #1f1f1f;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   GLOBAL STYLES
+   ═════════════════════════════════════════════════════════════════════════ */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--ludus-font-stack);
+  background: var(--ludus-dark-bg);
+  color: var(--ludus-text-primary);
+  line-height: 1.6;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BUTTONS
+   ═════════════════════════════════════════════════════════════════════════ */
+
+.ludus-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ludus-spacing-sm);
+  padding: var(--ludus-spacing-md) var(--ludus-spacing-lg);
+  min-height: var(--ludus-btn-height);
+  font-size: 0.95em;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--ludus-btn-radius);
+  cursor: pointer;
+  transition: all var(--ludus-transition-fast);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Primary button (gold) */
+.ludus-btn-primary {
+  background: var(--ludus-gold);
+  color: #000;
+}
+
+.ludus-btn-primary:hover {
+  background: #e5a428;
+  box-shadow: var(--ludus-shadow-md);
+  transform: translateY(-2px);
+}
+
+.ludus-btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary button (cyan) */
+.ludus-btn-secondary {
+  background: transparent;
+  color: var(--ludus-cyan);
+  border: 2px solid var(--ludus-cyan);
+}
+
+.ludus-btn-secondary:hover {
+  background: rgba(0, 206, 209, 0.1);
+  box-shadow: 0 0 12px rgba(0, 206, 209, 0.3);
+}
+
+/* Text button */
+.ludus-btn-text {
+  background: transparent;
+  color: var(--ludus-gold);
+  padding: var(--ludus-spacing-md);
+}
+
+.ludus-btn-text:hover {
+  color: #e5a428;
+}
+
+/* Disabled state */
+.ludus-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TAB NAVIGATION
+   ═════════════════════════════════════════════════════════════════════════ */
+
+.ludus-tab-switcher {
+  display: flex;
+  gap: var(--ludus-spacing-md);
+  border-bottom: 2px solid var(--ludus-border);
+  overflow-x: auto;
+  padding: var(--ludus-spacing-lg);
+  margin-bottom: var(--ludus-spacing-xl);
+}
+
+.ludus-tab-btn {
+  position: relative;
+  padding: var(--ludus-spacing-md) var(--ludus-spacing-lg);
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: var(--ludus-text-secondary);
+  font-size: 0.95em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--ludus-transition-fast);
+  white-space: nowrap;
+}
+
+.ludus-tab-btn:hover {
+  color: var(--ludus-text-primary);
+}
+
+.ludus-tab-btn.active {
+  color: var(--ludus-gold);
+  border-bottom-color: var(--ludus-gold);
+}
+
+.ludus-tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--ludus-gold), var(--ludus-cyan));
+}
+
+/* Mobile: vertical stacking */
+@media (max-width: 640px) {
+  .ludus-tab-switcher {
+    flex-wrap: wrap;
+    padding: var(--ludus-spacing-md);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CARDS
+   ═════════════════════════════════════════════════════════════════════════ */
+
+.ludus-card {
+  background: var(--ludus-dark-card);
+  border: 1px solid var(--ludus-border);
+  border-radius: var(--ludus-card-radius);
+  padding: var(--ludus-spacing-xl);
+  box-shadow: var(--ludus-shadow-md);
+  transition: all var(--ludus-transition-base);
+}
+
+.ludus-card:hover {
+  border-color: var(--ludus-cyan);
+  box-shadow: 0 0 16px rgba(0, 206, 209, 0.15);
+  transform: translateY(-4px);
+}
+
+.ludus-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--ludus-spacing-lg);
+  padding-bottom: var(--ludus-spacing-md);
+  border-bottom: 1px solid var(--ludus-border);
+}
+
+.ludus-card-title {
+  margin: 0;
+  font-size: 1.3em;
+  color: var(--ludus-gold);
+  display: flex;
+  align-items: center;
+  gap: var(--ludus-spacing-md);
+}
+
+.ludus-card-title-emoji {
+  font-size: 1.4em;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ATTRIBUTE BARS (Progress Bars)
+   ═════════════════════════════════════════════════════════════════════════ */
+
+.ludus-attr-bar-container {
+  position: relative;
+  height: 24px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--ludus-border);
+  margin: var(--ludus-spacing-md) 0;
+}
+
+.ludus-attr-bar {
+  position: relative;
+  height: 100%;
+  width: var(--pct, 50%);
+  background: linear-gradient(90deg, var(--ludus-gold) 0%, var(--ludus-cyan) 100%);
+  transition: width var(--ludus-transition-slow) ease-out;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+.ludus-attr-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg,
+    rgba(212, 175, 55, 0.3),
+    rgba(0, 206, 209, 0.3)
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.ludus-attr-value {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  font-size: 0.8em;
+  font-weight: bold;
+  color: var(--ludus-text-primary);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   METRICS GRID (ROV Lake telemetry)
+   ═════════════════════════════════════════════════════════════════════════ */
+
+.ludus-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--ludus-spacing-lg);
+  margin: var(--ludus-spacing-xl) 0;
+}
+
+.ludus-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--ludus-spacing-lg);
+  background: rgba(0, 206, 209, 0.05);
+  border: 2px solid var(--ludus-cyan);
+  border-radius: var(--ludus-card-radius);
+  transition: all var(--ludus-transition-fast);
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.ludus-metric::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.ludus-metric:hover {
+  border-color: var(--ludus-gold);
+  box-shadow: 0 0 12px rgba(0, 206, 209, 0.2);
+  transform: translateY(-2px);
+}
+
+.ludus-metric:hover::before {
+  left: 100%;
+}
+
+.ludus-metric-emoji {
+  font-size: 2em;
+  margin-bottom: var(--ludus-spacing-md);
+  display: block;
+}
+
+.ludus-metric-label {
+  font-size: 0.8em;
+  color: var(--ludus-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  margin-bottom: var(--ludus-spacing-sm);
+}
+
+.ludus-metric-value {
+  font-size: 1.6em;
+  color: var(--ludus-cyan);
+  font-weight: bold;
+  font-family: var(--ludus-font-mono);
+}
+
+.ludus-metric-unit {
+  font-size: 0.7em;
+  color: var(--ludus-text-secondary);
+  margin-left: 4px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   STATUS INDICATORS
+   ═════════════════════════════════════════════════════════════════════════ */
+
+.ludus-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ludus-spacing-sm);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+.ludus-status-connected {
+  background: rgba(74, 222, 128, 0.1);
+  color: var(--ludus-success);
+  border: 1px solid var(--ludus-success);
+  animation: pulse-connected 2s infinite;
+}
+
+.ludus-status-disconnected {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--ludus-error);
+  border: 1px solid var(--ludus-error);
+}
+
+.ludus-status-loading {
+  background: rgba(251, 191, 36, 0.1);
+  color: var(--ludus-warning);
+  border: 1px solid var(--ludus-warning);
+}
+
+@keyframes pulse-connected {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(74, 222, 128, 0);
+  }
+}
+
+/* Status dot animation */
+.ludus-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0%, 49%, 100% { opacity: 1; }
+  50%, 99% { opacity: 0.3; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ATTRIBUTE DISPLAY (9 D&D stats)
+   ═════════════════════════════════════════════════════════════════════════ */
+
+.ludus-attributes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--ludus-spacing-lg);
+}
+
+.ludus-attr-item {
+  display: flex;
+  align-items: center;
+  gap: var(--ludus-spacing-md);
+  padding: var(--ludus-spacing-md);
+  background: rgba(212, 175, 55, 0.05);
+  border-left: 3px solid var(--ludus-gold);
+  border-radius: 4px;
+}
+
+.ludus-attr-emoji {
+  font-size: 1.6em;
+  min-width: 32px;
+  text-align: center;
+}
+
+.ludus-attr-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.ludus-attr-label {
+  font-size: 0.85em;
+  color: var(--ludus-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ANIMATIONS
+   ═════════════════════════════════════════════════════════════════════════ */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+  }
+}
+
+/* Apply fade-in to cards on load */
+.ludus-card {
+  animation: fade-in var(--ludus-transition-slow);
+}
+
+/* Apply slide-in to list items */
+.ludus-attr-item {
+  animation: slide-in-left var(--ludus-transition-slow);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   UTILITIES
+   ═════════════════════════════════════════════════════════════════════════ */
+
+.ludus-text-muted {
+  color: var(--ludus-text-secondary);
+}
+
+.ludus-text-gold {
+  color: var(--ludus-gold);
+}
+
+.ludus-text-cyan {
+  color: var(--ludus-cyan);
+}
+
+.ludus-border-top {
+  border-top: 1px solid var(--ludus-border);
+  padding-top: var(--ludus-spacing-lg);
+  margin-top: var(--ludus-spacing-lg);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .ludus-attributes {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+
+  .ludus-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    font-size: 14px;
+  }
+
+  .ludus-card {
+    padding: var(--ludus-spacing-lg);
+  }
+
+  .ludus-attributes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ludus-metrics-grid {
+    grid-template-columns: 1fr;
+    gap: var(--ludus-spacing-md);
+  }
+
+  .ludus-metric {
+    padding: var(--ludus-spacing-md);
+  }
+
+  .ludus-btn {
+    width: 100%;
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    font-size: 13px;
+  }
+
+  .ludus-card {
+    padding: var(--ludus-spacing-md);
+    margin-bottom: var(--ludus-spacing-lg);
+  }
+
+  .ludus-card-title {
+    font-size: 1.1em;
+  }
+
+  .ludus-attributes {
+    grid-template-columns: 1fr;
+  }
+
+  .ludus-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ludus-tab-switcher {
+    padding: var(--ludus-spacing-sm);
+  }
+}
+
+/* ═════════════════════════════════════════════════════════════════════════
+   PRINT STYLES
+   ═════════════════════════════════════════════════════════════════════════ */
+
+@media print {
+  .ludus-btn-primary,
+  .ludus-btn-secondary,
+  .ludus-tab-switcher {
+    display: none;
+  }
+
+  .ludus-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
