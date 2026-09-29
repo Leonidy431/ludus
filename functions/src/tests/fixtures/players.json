@@ -1,0 +1,232 @@
+[
+  {
+    "playerId": "test-player-001",
+    "name": "Novice Ascetic",
+    "form": {
+      "wisdom": 3,
+      "faith": 5,
+      "dexterity": 4,
+      "constitution": 6,
+      "charisma": 3,
+      "cunning": 2,
+      "erudition": 2
+    },
+    "actions": {
+      "prayerCount": 2,
+      "fastDays": 1,
+      "meditationHours": 0.5
+    },
+    "goal": {
+      "currentGate": "foundational",
+      "enlightenmentLevel": "beginner",
+      "npcRelations": ["elder_sergius"]
+    }
+  },
+  {
+    "playerId": "test-player-002",
+    "name": "Seeker of Wisdom",
+    "form": {
+      "wisdom": 7,
+      "faith": 4,
+      "dexterity": 3,
+      "constitution": 4,
+      "charisma": 5,
+      "cunning": 3,
+      "erudition": 6
+    },
+    "actions": {
+      "prayerCount": 8,
+      "fastDays": 3,
+      "meditationHours": 4.5
+    },
+    "goal": {
+      "currentGate": "liturgical",
+      "enlightenmentLevel": "intermediate",
+      "npcRelations": ["elder_sergius", "theodora"]
+    }
+  },
+  {
+    "playerId": "test-player-003",
+    "name": "Devoted Contemplative",
+    "form": {
+      "wisdom": 9,
+      "faith": 9,
+      "dexterity": 5,
+      "constitution": 8,
+      "charisma": 6,
+      "cunning": 2,
+      "erudition": 8
+    },
+    "actions": {
+      "prayerCount": 21,
+      "fastDays": 10,
+      "meditationHours": 16
+    },
+    "goal": {
+      "currentGate": "contemplative",
+      "enlightenmentLevel": "advanced",
+      "npcRelations": ["elder_sergius", "theodora", "abba_john"]
+    }
+  },
+  {
+    "playerId": "test-player-004",
+    "name": "Swift Practitioner",
+    "form": {
+      "wisdom": 5,
+      "faith": 6,
+      "dexterity": 8,
+      "constitution": 5,
+      "charisma": 4,
+      "cunning": 5,
+      "erudition": 4
+    },
+    "actions": {
+      "prayerCount": 5,
+      "fastDays": 2,
+      "meditationHours": 2
+    },
+    "goal": {
+      "currentGate": "foundational",
+      "enlightenmentLevel": "beginner",
+      "npcRelations": ["theodora"]
+    }
+  },
+  {
+    "playerId": "test-player-005",
+    "name": "Faithful Heart",
+    "form": {
+      "wisdom": 4,
+      "faith": 10,
+      "dexterity": 4,
+      "constitution": 7,
+      "charisma": 8,
+      "cunning": 3,
+      "erudition": 3
+    },
+    "actions": {
+      "prayerCount": 14,
+      "fastDays": 5,
+      "meditationHours": 3.5
+    },
+    "goal": {
+      "currentGate": "liturgical",
+      "enlightenmentLevel": "intermediate",
+      "npcRelations": ["elder_sergius"]
+    }
+  },
+  {
+    "playerId": "test-player-006",
+    "name": "Cunning Scholar",
+    "form": {
+      "wisdom": 8,
+      "faith": 3,
+      "dexterity": 6,
+      "constitution": 3,
+      "charisma": 7,
+      "cunning": 9,
+      "erudition": 10
+    },
+    "actions": {
+      "prayerCount": 3,
+      "fastDays": 0,
+      "meditationHours": 1
+    },
+    "goal": {
+      "currentGate": "foundational",
+      "enlightenmentLevel": "beginner",
+      "npcRelations": ["theodora"]
+    }
+  },
+  {
+    "playerId": "test-player-007",
+    "name": "Balanced Seeker",
+    "form": {
+      "wisdom": 6,
+      "faith": 6,
+      "dexterity": 6,
+      "constitution": 6,
+      "charisma": 6,
+      "cunning": 4,
+      "erudition": 5
+    },
+    "actions": {
+      "prayerCount": 7,
+      "fastDays": 2,
+      "meditationHours": 3
+    },
+    "goal": {
+      "currentGate": "foundational",
+      "enlightenmentLevel": "beginner",
+      "npcRelations": ["elder_sergius"]
+    }
+  },
+  {
+    "playerId": "test-player-008",
+    "name": "Ascetic Master",
+    "form": {
+      "wisdom": 10,
+      "faith": 8,
+      "dexterity": 4,
+      "constitution": 10,
+      "charisma": 5,
+      "cunning": 1,
+      "erudition": 7
+    },
+    "actions": {
+      "prayerCount": 28,
+      "fastDays": 14,
+      "meditationHours": 24
+    },
+    "goal": {
+      "currentGate": "ascetic",
+      "enlightenmentLevel": "advanced",
+      "npcRelations": ["elder_sergius", "theodora", "abba_john"]
+    }
+  },
+  {
+    "playerId": "test-player-009",
+    "name": "Charismatic Leader",
+    "form": {
+      "wisdom": 5,
+      "faith": 7,
+      "dexterity": 5,
+      "constitution": 5,
+      "charisma": 10,
+      "cunning": 6,
+      "erudition": 4
+    },
+    "actions": {
+      "prayerCount": 6,
+      "fastDays": 2,
+      "meditationHours": 1.5
+    },
+    "goal": {
+      "currentGate": "foundational",
+      "enlightenmentLevel": "beginner",
+      "npcRelations": ["theodora"]
+    }
+  },
+  {
+    "playerId": "test-player-010",
+    "name": "Mystical Explorer",
+    "form": {
+      "wisdom": 11,
+      "faith": 9,
+      "dexterity": 3,
+      "constitution": 6,
+      "charisma": 4,
+      "cunning": 2,
+      "erudition": 9
+    },
+    "actions": {
+      "prayerCount": 25,
+      "fastDays": 8,
+      "meditationHours": 20
+    },
+    "goal": {
+      "currentGate": "mystical",
+      "enlightenmentLevel": "advanced",
+      "npcRelations": ["elder_sergius", "theodora", "abba_john"]
+    }
+  }
+]

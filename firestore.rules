@@ -135,6 +135,119 @@ service cloud.firestore {
     }
 
     // ────────────────────────────────────────────────────────────────────────
+    // ludus_dialogue_trees: Dialogue Content (Public Read, Admin Write)
+    // ────────────────────────────────────────────────────────────────────────
+
+    match /ludus_dialogue_trees/{npcId} {
+      // Anyone can read dialogue trees (public game content)
+      allow read: if isAuthenticated();
+
+      // Only admins can create/update dialogue trees
+      allow create, update: if isAdmin();
+
+      // Only admins can delete
+      allow delete: if isAdmin();
+    }
+
+    // ────────────────────────────────────────────────────────────────────────
+    // ludus_players: Player Profiles (Private, Player-only)
+    // ────────────────────────────────────────────────────────────────────────
+
+    match /ludus_players/{playerId} {
+      // Players can read their own profile
+      allow read: if isAuthenticated() && request.auth.uid == playerId;
+
+      // Players can update their own profile
+      allow update: if isAuthenticated() && request.auth.uid == playerId;
+
+      // Players cannot create/delete profiles (created by backend)
+      allow create, delete: if false;
+    }
+
+    // ────────────────────────────────────────────────────────────────────────
+    // ludus_npc_memory: NPC Interaction History (Player-specific)
+    // ────────────────────────────────────────────────────────────────────────
+
+    match /ludus_npc_memory/{npcId} {
+      // Metadata read: any authenticated user
+      allow read: if isAuthenticated();
+
+      // Write: admin only
+      allow write: if isAdmin();
+
+      // Player-specific memory subcollection
+      match /players/{playerId} {
+        // Players can read their own memory
+        allow read: if isAuthenticated() && request.auth.uid == playerId;
+
+        // Players can write their own memory (after dialogue)
+        allow create, update: if isAuthenticated() && request.auth.uid == playerId;
+
+        // No deletes
+        allow delete: if false;
+      }
+    }
+
+    // ────────────────────────────────────────────────────────────────────────
+    // ludus_dialogue_states: Dialogue Session History (Player-specific)
+    // ────────────────────────────────────────────────────────────────────────
+
+    match /ludus_dialogue_states/{docId} {
+      // Extract playerId from docId (format: "playerId_npcId")
+      function getStatePlayerId() {
+        return docId.split('_')[0];
+      }
+
+      // Players can read their own dialogue states
+      allow read: if isAuthenticated() && request.auth.uid == getStatePlayerId();
+
+      // Players can write their own dialogue states
+      allow create, update: if isAuthenticated() && request.auth.uid == getStatePlayerId();
+
+      // No deletes (archive only)
+      allow delete: if false;
+    }
+
+    // ────────────────────────────────────────────────────────────────────────
+    // ludus_demiurge_nodes: Demiurge Graph Simulation (Authenticated)
+    // ────────────────────────────────────────────────────────────────────────
+
+    match /ludus_demiurge_nodes/{nodeId} {
+      // Authenticated users can read nodes
+      allow read: if isAuthenticated();
+
+      // Only admins can write
+      allow write: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // ────────────────────────────────────────────────────────────────────────
+    // ludus_demiurge_edges: Demiurge Graph Edges (Authenticated)
+    // ────────────────────────────────────────────────────────────────────────
+
+    match /ludus_demiurge_edges/{edgeId} {
+      // Authenticated users can read edges
+      allow read: if isAuthenticated();
+
+      // Only admins can write
+      allow write: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // ────────────────────────────────────────────────────────────────────────
+    // ludus_rov_telemetry: ROV Dive Data (Authenticated, Admin Write)
+    // ────────────────────────────────────────────────────────────────────────
+
+    match /ludus_rov_telemetry/{rovId} {
+      // Authenticated players can read telemetry
+      allow read: if isAuthenticated();
+
+      // Only admins can write (from dive computer)
+      allow write: if isAdmin();
+      allow delete: if false;
+    }
+
+    // ────────────────────────────────────────────────────────────────────────
     // Deny all other access by default
     // ────────────────────────────────────────────────────────────────────────
 

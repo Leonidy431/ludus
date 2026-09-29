@@ -3,6 +3,9 @@
 # Build artifacts
 functions/lib/
 functions/dist/
+functions/build/
+dist/
+build/
 
 # Dependencies
 node_modules/
@@ -17,10 +20,16 @@ npm-debug.log*
 # Environment
 .env
 .env.local
+functions/.env.local
 service-account.json
 
-# IDE
+# Logs
+*.log
+firestore-debug.log
+
+# IDE / OS
 .vscode/
 .idea/
 *.swp
 *.swo
+.DS_Store

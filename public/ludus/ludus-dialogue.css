@@ -1,0 +1,373 @@
+/**
+ * Ludus NPC Dialogue Component Styles
+ *
+ * Dialogue modal with branching choices, attribute checks, and bonuses.
+ * Follows ludus-design-system.css color palette.
+ */
+
+/* Dialogue Container */
+.ludus-dialogue-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 800px;
+  width: 90%;
+  max-height: 70vh;
+  z-index: 1000;
+  animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Dialogue Modal */
+.ludus-dialogue-modal {
+  background: var(--ludus-card-bg, #1a1a1a);
+  border: 2px solid var(--ludus-accent-secondary, #00CED1);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 12px 40px rgba(0, 206, 209, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* NPC Header */
+.dialogue-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-left: 4px solid var(--ludus-accent-primary, #D4AF37);
+  padding-left: 12px;
+}
+
+.dialogue-npc-name {
+  font-size: 1.6em;
+  font-weight: bold;
+  color: var(--ludus-accent-primary, #D4AF37);
+  margin: 0;
+}
+
+.dialogue-npc-role {
+  font-size: 0.9em;
+  color: var(--ludus-text-secondary, #a0a0a0);
+  margin: 0;
+  font-style: italic;
+}
+
+.dialogue-theology {
+  font-size: 0.85em;
+  color: var(--ludus-accent-secondary, #00CED1);
+  font-weight: 500;
+}
+
+/* Dialogue Text (NPC Speech) */
+.dialogue-text-box {
+  background: rgba(13, 27, 42, 0.5);
+  border-left: 3px solid var(--ludus-accent-secondary, #00CED1);
+  padding: 16px;
+  border-radius: 6px;
+  min-height: 60px;
+}
+
+.dialogue-text {
+  font-size: 1em;
+  line-height: 1.6;
+  color: var(--ludus-text-primary, #f0f0f0);
+  margin: 0;
+  font-style: italic;
+}
+
+/* Branches (Player Choices) */
+.dialogue-branches {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.dialogue-choice {
+  background: transparent;
+  border: 2px solid var(--ludus-accent-secondary, #00CED1);
+  color: var(--ludus-text-primary, #f0f0f0);
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95em;
+  text-align: left;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+}
+
+.dialogue-choice:not([disabled]):hover {
+  background: rgba(0, 206, 209, 0.1);
+  border-color: var(--ludus-accent-primary, #D4AF37);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+  transform: translateX(4px);
+}
+
+.dialogue-choice:not([disabled]):active {
+  background: rgba(212, 175, 55, 0.15);
+  transform: translateX(2px);
+}
+
+/* Locked Choices */
+.dialogue-choice[disabled],
+.dialogue-choice.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: var(--ludus-text-secondary, #a0a0a0);
+}
+
+.dialogue-choice[disabled]:hover,
+.dialogue-choice.locked:hover {
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
+
+.choice-text {
+  flex: 1;
+  font-weight: 500;
+}
+
+.choice-bonuses {
+  font-size: 0.8em;
+  color: var(--ludus-accent-primary, #D4AF37);
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.lock-hint {
+  font-size: 0.75em;
+  color: var(--ludus-text-secondary, #a0a0a0);
+  font-style: italic;
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin-top: 4px;
+}
+
+/* Bonuses Preview */
+.dialogue-bonuses-preview {
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid var(--ludus-accent-primary, #D4AF37);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 8px;
+}
+
+.preview-label {
+  font-size: 0.85em;
+  color: var(--ludus-text-secondary, #a0a0a0);
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bonuses-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.bonus-item {
+  font-size: 0.8em;
+  color: var(--ludus-accent-primary, #D4AF37);
+  background: rgba(212, 175, 55, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+/* Close Button */
+.dialogue-close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: var(--ludus-text-secondary, #a0a0a0);
+  font-size: 1.8em;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.dialogue-close-btn:hover {
+  color: var(--ludus-accent-primary, #D4AF37);
+  background: rgba(212, 175, 55, 0.1);
+}
+
+/* Dialogue Complete Screen */
+.ludus-dialogue-complete {
+  text-align: center;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ludus-dialogue-complete h3 {
+  font-size: 1.4em;
+  color: var(--ludus-accent-primary, #D4AF37);
+  margin: 0;
+}
+
+.ludus-dialogue-complete p {
+  color: var(--ludus-text-secondary, #a0a0a0);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.completion-bonuses {
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid var(--ludus-accent-primary, #D4AF37);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.gain-item {
+  display: inline-block;
+  background: rgba(212, 175, 55, 0.2);
+  color: var(--ludus-accent-primary, #D4AF37);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  margin: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .ludus-dialogue-container {
+    bottom: 10px;
+    width: 95%;
+  }
+
+  .ludus-dialogue-modal {
+    padding: 16px;
+  }
+
+  .dialogue-choice {
+    font-size: 0.9em;
+    padding: 10px 12px;
+  }
+
+  .dialogue-text {
+    font-size: 0.95em;
+  }
+
+  .dialogue-npc-name {
+    font-size: 1.4em;
+  }
+}
+
+@media (max-width: 480px) {
+  .ludus-dialogue-container {
+    max-height: 80vh;
+  }
+
+  .ludus-dialogue-modal {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .choice-bonuses {
+    display: none;
+  }
+
+  .dialogue-choice {
+    min-height: 40px;
+    padding: 8px 10px;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .ludus-dialogue-modal {
+    box-shadow: 0 12px 40px rgba(0, 206, 209, 0.1);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .ludus-dialogue-modal {
+    background: #f8f8f8;
+    border-color: #0a7f85;
+  }
+
+  .dialogue-npc-name {
+    color: #8b6914;
+  }
+
+  .dialogue-text {
+    color: #1a1a1a;
+  }
+
+  .dialogue-choice {
+    color: #1a1a1a;
+    border-color: #0a7f85;
+  }
+
+  .dialogue-choice:not([disabled]):hover {
+    background: rgba(139, 105, 20, 0.08);
+    border-color: #8b6914;
+  }
+
+  .choice-bonuses {
+    color: #8b6914;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: more) {
+  .ludus-dialogue-modal {
+    border-width: 3px;
+  }
+
+  .dialogue-choice {
+    border-width: 3px;
+  }
+
+  .choice-text {
+    font-weight: bold;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .ludus-dialogue-container,
+  .ludus-dialogue-modal,
+  .dialogue-choice {
+    animation: none;
+    transition: none;
+  }
+}
