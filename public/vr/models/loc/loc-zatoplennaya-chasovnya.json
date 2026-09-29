@@ -1,0 +1,16 @@
+{
+ "id": "loc-zatoplennaya-chasovnya",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 642,
+ "bbox_m": [
+  5.358,
+  3.013,
+  0.401
+ ],
+ "source": "SVG/loc/loc-zatoplennaya-chasovnya.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

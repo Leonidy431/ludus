@@ -1,0 +1,23 @@
+{
+ "id": "p0351-palomnik-iz-trapezunda-iakov",
+ "kind": "npc",
+ "lod": "proxy",
+ "tris": 408,
+ "bbox_m": [
+  0.85,
+  1.7,
+  0.85
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#350",
+ "name": "Паломник из Трапезунда Иаков",
+ "type": "NPC",
+ "storyline": "19 (spiritual)",
+ "box": "капсула 1.7м, диалог r1.5м, глубже при Эрудиция≥8",
+ "shape": "capsule",
+ "size_m": 1.7,
+ "method": "primitive-from-box-field",
+ "collider": "capsule 1.7 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

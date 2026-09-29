@@ -1,0 +1,23 @@
+{
+ "id": "p0028-kadilnitsa-ruchnaya-katseya",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 408,
+ "bbox_m": [
+  0.1,
+  0.2,
+  0.1
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#27",
+ "name": "Кадильница ручная (кацея)",
+ "type": "предмет",
+ "storyline": "44 духовный",
+ "box": "капсула 0.2м",
+ "shape": "capsule",
+ "size_m": 0.2,
+ "method": "primitive-from-box-field",
+ "collider": "capsule 0.2 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": true
+}

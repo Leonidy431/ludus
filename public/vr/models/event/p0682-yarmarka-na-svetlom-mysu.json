@@ -1,0 +1,23 @@
+{
+ "id": "p0682-yarmarka-na-svetlom-mysu",
+ "kind": "event",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  2,
+  2,
+  2
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#681",
+ "name": "Ярмарка на Светлом Мысу",
+ "type": "событие",
+ "storyline": "56 diplomacy",
+ "box": "прилавок: box 2м",
+ "shape": "box",
+ "size_m": 2,
+ "method": "primitive-from-box-field",
+ "collider": "box 2 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

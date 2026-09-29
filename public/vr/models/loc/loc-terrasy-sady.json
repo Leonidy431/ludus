@@ -1,0 +1,16 @@
+{
+ "id": "loc-terrasy-sady",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 714,
+ "bbox_m": [
+  5.357,
+  3,
+  0.361
+ ],
+ "source": "SVG/loc/loc-terrasy-sady.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

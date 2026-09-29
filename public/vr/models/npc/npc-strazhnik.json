@@ -1,0 +1,16 @@
+{
+ "id": "npc-strazhnik",
+ "kind": "npc",
+ "lod": "proxy",
+ "tris": 845,
+ "bbox_m": [
+  1.192,
+  1.692,
+  0.158
+ ],
+ "source": "public/ludus/art/npc-strazhnik.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "convex hull of the alpha silhouette",
+ "noInteract": false,
+ "noLoot": false
+}

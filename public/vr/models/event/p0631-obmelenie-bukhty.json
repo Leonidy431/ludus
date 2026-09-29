@@ -1,0 +1,23 @@
+{
+ "id": "p0631-obmelenie-bukhty",
+ "kind": "event",
+ "lod": "proxy",
+ "tris": 408,
+ "bbox_m": [
+  0.75,
+  1.5,
+  0.75
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#630",
+ "name": "Обмеление бухты",
+ "type": "событие",
+ "storyline": "31 hydrology",
+ "box": "рейка: capsule 1.5м, замер",
+ "shape": "capsule",
+ "size_m": 1.5,
+ "method": "primitive-from-box-field",
+ "collider": "capsule 1.5 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

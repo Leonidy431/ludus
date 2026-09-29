@@ -1,0 +1,23 @@
+{
+ "id": "p0461-otstupnik-torgovets-grig-srebrolyubie",
+ "kind": "npc",
+ "lod": "proxy",
+ "tris": 408,
+ "bbox_m": [
+  0.85,
+  1.7,
+  0.85
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#460",
+ "name": "Отступник-торговец Григ (сребролюбие)",
+ "type": "NPC",
+ "storyline": "94, 95 (narrative)",
+ "box": "капсула 1.7м, диалог r1.5м, глубже при Харизма≥10",
+ "shape": "capsule",
+ "size_m": 1.7,
+ "method": "primitive-from-box-field",
+ "collider": "capsule 1.7 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

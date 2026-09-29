@@ -1,0 +1,16 @@
+{
+ "id": "loc-shkola-remesel",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 1368,
+ "bbox_m": [
+  5.358,
+  3,
+  0.441
+ ],
+ "source": "SVG/loc/loc-shkola-remesel.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

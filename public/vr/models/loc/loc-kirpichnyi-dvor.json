@@ -1,0 +1,16 @@
+{
+ "id": "loc-kirpichnyi-dvor",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 636,
+ "bbox_m": [
+  5.333,
+  3,
+  0.601
+ ],
+ "source": "SVG/loc/loc-kirpichnyi-dvor.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

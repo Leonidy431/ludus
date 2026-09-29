@@ -1,0 +1,16 @@
+{
+ "id": "loc-steppe",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 388,
+ "bbox_m": [
+  5.333,
+  3,
+  0.321
+ ],
+ "source": "public/ludus/art/loc-steppe.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

@@ -1,0 +1,23 @@
+{
+ "id": "p0757-noch-soblazna-mzdoimstva",
+ "kind": "event",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  0.2,
+  0.2,
+  0.2
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#756",
+ "name": "Ночь соблазна мздоимства",
+ "type": "событие",
+ "storyline": "3,8 trade",
+ "box": "мешочек: box 0.2м, отказ жестом",
+ "shape": "box",
+ "size_m": 0.2,
+ "method": "primitive-from-box-field",
+ "collider": "box 0.2 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

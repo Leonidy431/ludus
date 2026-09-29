@@ -1,0 +1,16 @@
+{
+ "id": "loc-vodyanaya-melnitsa",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 940,
+ "bbox_m": [
+  5.358,
+  3,
+  0.481
+ ],
+ "source": "SVG/loc/loc-vodyanaya-melnitsa.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

@@ -1,0 +1,23 @@
+{
+ "id": "p0161-meshochek-shafrana",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 352,
+ "bbox_m": [
+  0.1,
+  0.1,
+  0.1
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#160",
+ "name": "Мешочек шафрана",
+ "type": "предмет",
+ "storyline": "м.3 (торговля)",
+ "box": "сфера 0.1м, открыть щипком",
+ "shape": "sphere",
+ "size_m": 0.1,
+ "method": "primitive-from-box-field",
+ "collider": "sphere 0.1 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

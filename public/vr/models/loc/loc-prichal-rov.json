@@ -1,0 +1,16 @@
+{
+ "id": "loc-prichal-rov",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 754,
+ "bbox_m": [
+  5.348,
+  3,
+  0.501
+ ],
+ "source": "public/ludus/art/loc-prichal-rov.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

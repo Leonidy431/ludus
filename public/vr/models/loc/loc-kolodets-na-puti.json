@@ -1,0 +1,16 @@
+{
+ "id": "loc-kolodets-na-puti",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 424,
+ "bbox_m": [
+  5.333,
+  3.039,
+  0.421
+ ],
+ "source": "SVG/loc/loc-kolodets-na-puti.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

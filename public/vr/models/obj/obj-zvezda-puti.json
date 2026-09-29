@@ -1,0 +1,16 @@
+{
+ "id": "obj-zvezda-puti",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 232,
+ "bbox_m": [
+  0.376,
+  0.376,
+  0.03
+ ],
+ "source": "public/ludus/art/obj-zvezda-puti.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "convex hull of the alpha silhouette",
+ "noInteract": false,
+ "noLoot": false
+}

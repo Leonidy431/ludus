@@ -1,0 +1,23 @@
+{
+ "id": "p0571-syrtovaya-observatoriya-pastukha",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  4,
+  4,
+  4
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#570",
+ "name": "Сыртовая обсерватория пастуха",
+ "type": "локация",
+ "storyline": "77",
+ "box": "камни: box",
+ "shape": "box",
+ "size_m": 4,
+ "method": "primitive-from-box-field",
+ "collider": "box 4 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

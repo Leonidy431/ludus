@@ -1,0 +1,23 @@
+{
+ "id": "p0199-kasseta-gidroakusticheskoy-zapisi",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  0.08,
+  0.08,
+  0.08
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#198",
+ "name": "Кассета гидроакустической записи",
+ "type": "предмет",
+ "storyline": "м.44-45 (гидрология)",
+ "box": "box 0.08м",
+ "shape": "box",
+ "size_m": 0.08,
+ "method": "primitive-from-box-field",
+ "collider": "box 0.08 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

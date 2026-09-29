@@ -1,0 +1,23 @@
+{
+ "id": "p0724-shelkovyy-koridor-perekryt",
+ "kind": "event",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  5,
+  5,
+  5
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#723",
+ "name": "Шёлковый коридор перекрыт",
+ "type": "событие",
+ "storyline": "12 trade",
+ "box": "застава: box 5м",
+ "shape": "box",
+ "size_m": 5,
+ "method": "primitive-from-box-field",
+ "collider": "box 5 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

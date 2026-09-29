@@ -1,0 +1,23 @@
+{
+ "id": "p0035-agnets-vynutyy",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  0.06,
+  0.06,
+  0.06
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#34",
+ "name": "Агнец вынутый",
+ "type": "предмет",
+ "storyline": "34 духовный",
+ "box": "box 0.06м, только смотреть",
+ "shape": "box",
+ "size_m": 0.06,
+ "method": "primitive-from-box-field",
+ "collider": "box 0.06 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

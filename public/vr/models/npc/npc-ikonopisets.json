@@ -1,0 +1,16 @@
+{
+ "id": "npc-ikonopisets",
+ "kind": "npc",
+ "lod": "proxy",
+ "tris": 724,
+ "bbox_m": [
+  1.25,
+  1.75,
+  0.014
+ ],
+ "source": "public/ludus/art/npc-ikonopisets.svg",
+ "method": "flat-board",
+ "collider": "convex hull of the alpha silhouette",
+ "noInteract": true,
+ "noLoot": true
+}

@@ -1,0 +1,23 @@
+{
+ "id": "p0323-nakhodka-dnevnika-v-zatoplennoy-kele",
+ "kind": "event",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  2,
+  1,
+  2
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#322",
+ "name": "Находка дневника в затопленной келье",
+ "type": "событие",
+ "storyline": "м.47 (гидрология)/м.93 (нарратив)",
+ "box": "триггер-объём",
+ "shape": "zone",
+ "size_m": 2,
+ "method": "primitive-from-box-field",
+ "collider": "trigger volume",
+ "hiddenInBuild": true,
+ "noInteract": false,
+ "noLoot": false
+}

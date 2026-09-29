@@ -1,0 +1,16 @@
+{
+ "id": "obj-koster-stoyanki",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 990,
+ "bbox_m": [
+  0.392,
+  0.404,
+  0.043
+ ],
+ "source": "SVG/obj/obj-koster-stoyanki.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "convex hull of the alpha silhouette",
+ "noInteract": false,
+ "noLoot": false
+}

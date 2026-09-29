@@ -1,0 +1,16 @@
+{
+ "id": "obj-lodka-barzha",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 696,
+ "bbox_m": [
+  0.392,
+  0.392,
+  0.035
+ ],
+ "source": "SVG/obj/obj-lodka-barzha.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "convex hull of the alpha silhouette",
+ "noInteract": false,
+ "noLoot": false
+}

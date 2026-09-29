@@ -1,0 +1,23 @@
+{
+ "id": "p0523-masterskaya-ikonopistsa-bez-nimbov-v-arte",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  4,
+  5.32,
+  0.02
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#522",
+ "name": "Мастерская иконописца (без нимбов в арте)",
+ "type": "локация",
+ "storyline": "73,74",
+ "box": "доска: box",
+ "shape": "plane",
+ "size_m": 4,
+ "method": "primitive-from-box-field",
+ "collider": "plane 4 m",
+ "hiddenInBuild": false,
+ "noInteract": true,
+ "noLoot": true
+}

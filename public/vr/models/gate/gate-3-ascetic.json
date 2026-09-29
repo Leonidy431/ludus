@@ -1,0 +1,16 @@
+{
+ "id": "gate-3-ascetic",
+ "kind": "gate",
+ "lod": "proxy",
+ "tris": 1446,
+ "bbox_m": [
+  1.175,
+  1.175,
+  0.203
+ ],
+ "source": "public/ludus/art/gate-3-ascetic.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "convex hull of the alpha silhouette",
+ "noInteract": false,
+ "noLoot": false
+}

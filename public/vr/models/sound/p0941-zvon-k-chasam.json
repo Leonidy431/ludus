@@ -1,0 +1,23 @@
+{
+ "id": "p0941-zvon-k-chasam",
+ "kind": "sound",
+ "lod": "proxy",
+ "tris": 80,
+ "bbox_m": [
+  0.3,
+  0.3,
+  0.3
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#940",
+ "name": "Звон к часам",
+ "type": "звук",
+ "storyline": "21",
+ "box": "интерфейс-таймер",
+ "shape": "emitter",
+ "size_m": 0.3,
+ "method": "primitive-from-box-field",
+ "collider": "trigger volume",
+ "hiddenInBuild": true,
+ "noInteract": false,
+ "noLoot": false
+}

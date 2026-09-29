@@ -1,0 +1,23 @@
+{
+ "id": "p1017-pechal-utonuvshiy-syn",
+ "kind": "event",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  2,
+  1,
+  2
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#1016",
+ "name": "Печаль: утонувший сын",
+ "type": "событие",
+ "storyline": "45",
+ "box": "лодка box",
+ "shape": "zone",
+ "size_m": 2,
+ "method": "primitive-from-box-field",
+ "collider": "trigger volume",
+ "hiddenInBuild": true,
+ "noInteract": false,
+ "noLoot": false
+}

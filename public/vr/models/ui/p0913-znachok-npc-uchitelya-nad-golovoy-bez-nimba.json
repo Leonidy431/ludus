@@ -1,0 +1,23 @@
+{
+ "id": "p0913-znachok-npc-uchitelya-nad-golovoy-bez-nimba",
+ "kind": "ui",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  0.4,
+  0.532,
+  0.02
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#912",
+ "name": "Значок NPC-учителя над головой (без нимба)",
+ "type": "интерфейс",
+ "storyline": "все",
+ "box": "нет",
+ "shape": "plane",
+ "size_m": 0.4,
+ "method": "primitive-from-box-field",
+ "collider": "plane 0.4 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

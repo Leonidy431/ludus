@@ -1,0 +1,16 @@
+{
+ "id": "loc-sklad-obiteli",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 932,
+ "bbox_m": [
+  5.333,
+  3,
+  0.54
+ ],
+ "source": "SVG/loc/loc-sklad-obiteli.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

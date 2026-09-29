@@ -1,0 +1,16 @@
+{
+ "id": "loc-razmytaya-doroga",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 708,
+ "bbox_m": [
+  5.358,
+  3.015,
+  0.341
+ ],
+ "source": "SVG/loc/loc-razmytaya-doroga.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

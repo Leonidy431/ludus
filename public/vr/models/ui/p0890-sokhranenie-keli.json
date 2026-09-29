@@ -1,0 +1,23 @@
+{
+ "id": "p0890-sokhranenie-keli",
+ "kind": "ui",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  2,
+  2.66,
+  0.02
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#889",
+ "name": "Сохранение-кельи",
+ "type": "интерфейс",
+ "storyline": "все",
+ "box": "дверь: box 0.9×2м",
+ "shape": "plane",
+ "size_m": 2,
+ "method": "primitive-from-box-field",
+ "collider": "plane 2 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

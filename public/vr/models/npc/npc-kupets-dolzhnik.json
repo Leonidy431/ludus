@@ -1,0 +1,16 @@
+{
+ "id": "npc-kupets-dolzhnik",
+ "kind": "npc",
+ "lod": "proxy",
+ "tris": 400,
+ "bbox_m": [
+  1.144,
+  1.644,
+  0.105
+ ],
+ "source": "SVG/npc/npc-kupets-dolzhnik.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "convex hull of the alpha silhouette",
+ "noInteract": false,
+ "noLoot": false
+}

@@ -1,0 +1,23 @@
+{
+ "id": "p0900-vybor-kontsovki-glavy",
+ "kind": "ui",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  0.3,
+  0.399,
+  0.02
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#899",
+ "name": "Выбор концовки главы",
+ "type": "интерфейс",
+ "storyline": "m80,m90",
+ "box": "две плашки: box 0.3м",
+ "shape": "plane",
+ "size_m": 0.3,
+ "method": "primitive-from-box-field",
+ "collider": "plane 0.3 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

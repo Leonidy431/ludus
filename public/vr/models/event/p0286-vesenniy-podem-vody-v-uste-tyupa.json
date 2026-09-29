@@ -1,0 +1,23 @@
+{
+ "id": "p0286-vesenniy-podem-vody-v-uste-tyupa",
+ "kind": "event",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  30,
+  15,
+  30
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#285",
+ "name": "Весенний подъём воды в устье Тюпа",
+ "type": "событие",
+ "storyline": "м.49 (гидрология)",
+ "box": "зона 30м",
+ "shape": "zone",
+ "size_m": 30,
+ "method": "primitive-from-box-field",
+ "collider": "trigger volume",
+ "hiddenInBuild": true,
+ "noInteract": false,
+ "noLoot": false
+}

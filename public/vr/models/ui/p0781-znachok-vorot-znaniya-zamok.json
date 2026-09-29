@@ -1,0 +1,23 @@
+{
+ "id": "p0781-znachok-vorot-znaniya-zamok",
+ "kind": "ui",
+ "lod": "proxy",
+ "tris": 352,
+ "bbox_m": [
+  0.05,
+  0.05,
+  0.05
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#780",
+ "name": "Значок ворот знания (замок)",
+ "type": "интерфейс",
+ "storyline": "spiritual m16-30",
+ "box": "иконка-триггер: sphere 0.05м",
+ "shape": "sphere",
+ "size_m": 0.05,
+ "method": "primitive-from-box-field",
+ "collider": "sphere 0.05 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

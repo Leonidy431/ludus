@@ -1,0 +1,16 @@
+{
+ "id": "loc-trapeza",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 1688,
+ "bbox_m": [
+  5.367,
+  3.017,
+  0.76
+ ],
+ "source": "SVG/loc/loc-trapeza.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

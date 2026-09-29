@@ -1,0 +1,16 @@
+{
+ "id": "loc-dvor-obiteli-prazdnik",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 1376,
+ "bbox_m": [
+  5.333,
+  3,
+  0.741
+ ],
+ "source": "SVG/loc/loc-dvor-obiteli-prazdnik.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

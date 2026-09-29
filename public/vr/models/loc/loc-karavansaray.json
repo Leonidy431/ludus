@@ -1,0 +1,16 @@
+{
+ "id": "loc-karavansaray",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 1292,
+ "bbox_m": [
+  5.333,
+  3.01,
+  0.581
+ ],
+ "source": "SVG/loc/loc-karavansaray.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

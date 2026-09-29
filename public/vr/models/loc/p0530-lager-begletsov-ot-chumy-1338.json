@@ -1,0 +1,23 @@
+{
+ "id": "p0530-lager-begletsov-ot-chumy-1338",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  4,
+  4,
+  4
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#529",
+ "name": "Лагерь беглецов от чумы (1338)",
+ "type": "локация",
+ "storyline": "96",
+ "box": "шатёр: box",
+ "shape": "box",
+ "size_m": 4,
+ "method": "primitive-from-box-field",
+ "collider": "box 4 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

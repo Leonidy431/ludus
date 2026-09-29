@@ -1,0 +1,16 @@
+{
+ "id": "loc-tipografiya",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 918,
+ "bbox_m": [
+  5.333,
+  3,
+  1.041
+ ],
+ "source": "SVG/loc/loc-tipografiya.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

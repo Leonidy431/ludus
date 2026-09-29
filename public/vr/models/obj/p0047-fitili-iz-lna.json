@@ -1,0 +1,23 @@
+{
+ "id": "p0047-fitili-iz-lna",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 352,
+ "bbox_m": [
+  0.05,
+  0.05,
+  0.05
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#46",
+ "name": "Фитили из льна",
+ "type": "предмет",
+ "storyline": "76 ремесло",
+ "box": "сфера 0.05м",
+ "shape": "sphere",
+ "size_m": 0.05,
+ "method": "primitive-from-box-field",
+ "collider": "sphere 0.05 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

@@ -1,0 +1,16 @@
+{
+ "id": "loc-divan-darugi",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 1094,
+ "bbox_m": [
+  5.367,
+  3,
+  0.48
+ ],
+ "source": "SVG/loc/loc-divan-darugi.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

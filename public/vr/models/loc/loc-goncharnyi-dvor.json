@@ -1,0 +1,16 @@
+{
+ "id": "loc-goncharnyi-dvor",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 1030,
+ "bbox_m": [
+  5.358,
+  3,
+  0.481
+ ],
+ "source": "SVG/loc/loc-goncharnyi-dvor.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

@@ -1,0 +1,23 @@
+{
+ "id": "p0289-osvyashchenie-novoy-lodki",
+ "kind": "event",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  10,
+  5,
+  10
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#288",
+ "name": "Освящение новой лодки",
+ "type": "событие",
+ "storyline": "м.78 (ремесло)",
+ "box": "зона 10м",
+ "shape": "zone",
+ "size_m": 10,
+ "method": "primitive-from-box-field",
+ "collider": "trigger volume",
+ "hiddenInBuild": true,
+ "noInteract": false,
+ "noLoot": false
+}

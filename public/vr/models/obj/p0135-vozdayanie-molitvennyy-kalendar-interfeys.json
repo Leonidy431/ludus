@@ -1,0 +1,23 @@
+{
+ "id": "p0135-vozdayanie-molitvennyy-kalendar-interfeys",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  0.3,
+  0.399,
+  0.02
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#134",
+ "name": "Воздаяние-молитвенный календарь (интерфейс)",
+ "type": "предмет",
+ "storyline": "78 духовный",
+ "box": "UI-панель",
+ "shape": "plane",
+ "size_m": 0.3,
+ "method": "primitive-from-box-field",
+ "collider": "plane 0.3 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

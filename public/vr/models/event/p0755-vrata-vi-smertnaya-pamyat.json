@@ -1,0 +1,23 @@
+{
+ "id": "p0755-vrata-vi-smertnaya-pamyat",
+ "kind": "event",
+ "lod": "proxy",
+ "tris": 408,
+ "bbox_m": [
+  0.5,
+  1,
+  0.5
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#754",
+ "name": "Врата VI: смертная память",
+ "type": "событие",
+ "storyline": "95 gate",
+ "box": "лопата: capsule 1м",
+ "shape": "capsule",
+ "size_m": 1,
+ "method": "primitive-from-box-field",
+ "collider": "capsule 1 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

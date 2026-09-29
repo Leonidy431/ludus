@@ -1,0 +1,16 @@
+{
+ "id": "loc-zamok-ostrov",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 806,
+ "bbox_m": [
+  5.333,
+  3,
+  0.501
+ ],
+ "source": "SVG/loc/loc-zamok-ostrov.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

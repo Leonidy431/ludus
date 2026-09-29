@@ -1,0 +1,23 @@
+{
+ "id": "p0358-uygurskiy-khristianin-markos",
+ "kind": "npc",
+ "lod": "proxy",
+ "tris": 408,
+ "bbox_m": [
+  0.85,
+  1.7,
+  0.85
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#357",
+ "name": "Уйгурский христианин Маркос",
+ "type": "NPC",
+ "storyline": "26 (spiritual)",
+ "box": "капсула 1.7м, диалог r1.5м",
+ "shape": "capsule",
+ "size_m": 1.7,
+ "method": "primitive-from-box-field",
+ "collider": "capsule 1.7 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

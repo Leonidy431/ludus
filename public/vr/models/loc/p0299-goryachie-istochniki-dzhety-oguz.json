@@ -1,0 +1,23 @@
+{
+ "id": "p0299-goryachie-istochniki-dzhety-oguz",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  30,
+  15,
+  30
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#298",
+ "name": "Горячие источники Джеты-Огуз",
+ "type": "локация",
+ "storyline": "м.50 (гидрология)",
+ "box": "навмеш 40м",
+ "shape": "zone",
+ "size_m": 30,
+ "method": "primitive-from-box-field",
+ "collider": "trigger volume",
+ "hiddenInBuild": true,
+ "noInteract": false,
+ "noLoot": false
+}

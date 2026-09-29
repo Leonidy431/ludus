@@ -1,0 +1,9 @@
+{
+  "name": "ludus-meta3d",
+  "private": true,
+  "description": "SVG and prompt to glTF proxies for the Meta build (CLAUDE.md TABOO 0.32)",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "three": "0.169.0"
+  }
+}

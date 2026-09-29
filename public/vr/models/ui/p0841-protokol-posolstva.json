@@ -1,0 +1,23 @@
+{
+ "id": "p0841-protokol-posolstva",
+ "kind": "ui",
+ "lod": "proxy",
+ "tris": 408,
+ "bbox_m": [
+  0.15,
+  0.3,
+  0.15
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#840",
+ "name": "Протокол посольства",
+ "type": "интерфейс",
+ "storyline": "m53",
+ "box": "свиток: capsule 0.3м",
+ "shape": "capsule",
+ "size_m": 0.3,
+ "method": "primitive-from-box-field",
+ "collider": "capsule 0.3 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

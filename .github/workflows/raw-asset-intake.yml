@@ -60,6 +60,11 @@ jobs:
           python scripts/raw_assets/check_delta.py \
             --root public/ludus/art/derived --threshold 0.35
 
+      # CLAUDE.md TABOO 0.32: every SVG and prompt has a Meta 3D object;
+      # a gap fails with "Нет объёма для Meta".
+      - name: Meta 3D coverage
+        run: python scripts/meta3d/check_coverage.py
+
       - name: Intake (images and licences only)
         if: github.event_name == 'workflow_dispatch'
         env:

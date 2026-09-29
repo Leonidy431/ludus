@@ -1,0 +1,23 @@
+{
+ "id": "p0140-pechat-episkopskaya",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 64,
+ "bbox_m": [
+  0.06,
+  0.06,
+  0.06
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#139",
+ "name": "Печать епископская",
+ "type": "предмет",
+ "storyline": "92 дипломатия",
+ "box": "цилиндр 0.06м",
+ "shape": "cylinder",
+ "size_m": 0.06,
+ "method": "primitive-from-box-field",
+ "collider": "cylinder 0.06 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

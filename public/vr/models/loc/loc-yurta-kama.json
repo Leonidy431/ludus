@@ -1,0 +1,16 @@
+{
+ "id": "loc-yurta-kama",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 674,
+ "bbox_m": [
+  5.333,
+  3,
+  0.421
+ ],
+ "source": "SVG/loc/loc-yurta-kama.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

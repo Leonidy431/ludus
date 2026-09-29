@@ -1,0 +1,16 @@
+{
+ "id": "obj-arkhiv-svitkov",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 1584,
+ "bbox_m": [
+  0.392,
+  0.392,
+  0.058
+ ],
+ "source": "SVG/obj/obj-arkhiv-svitkov.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "convex hull of the alpha silhouette",
+ "noInteract": false,
+ "noLoot": false
+}

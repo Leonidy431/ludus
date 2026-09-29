@@ -1,0 +1,16 @@
+{
+ "id": "obj-evangelie",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 858,
+ "bbox_m": [
+  0.392,
+  0.392,
+  0.03
+ ],
+ "source": "public/ludus/art/obj-evangelie.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "convex hull of the alpha silhouette",
+ "noInteract": false,
+ "noLoot": true
+}

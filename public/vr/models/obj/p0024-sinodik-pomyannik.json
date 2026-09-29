@@ -1,0 +1,23 @@
+{
+ "id": "p0024-sinodik-pomyannik",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  0.15,
+  0.15,
+  0.15
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#23",
+ "name": "Синодик помянник",
+ "type": "предмет",
+ "storyline": "85 нарратив",
+ "box": "box 0.15м, записать",
+ "shape": "box",
+ "size_m": 0.15,
+ "method": "primitive-from-box-field",
+ "collider": "box 0.15 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

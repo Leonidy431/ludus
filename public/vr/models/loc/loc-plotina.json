@@ -1,0 +1,16 @@
+{
+ "id": "loc-plotina",
+ "kind": "loc",
+ "lod": "proxy",
+ "tris": 558,
+ "bbox_m": [
+  5.336,
+  3,
+  0.441
+ ],
+ "source": "SVG/loc/loc-plotina.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "none (scene backdrop)",
+ "noInteract": false,
+ "noLoot": false
+}

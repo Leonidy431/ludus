@@ -1,0 +1,23 @@
+{
+ "id": "p0964-ikonopisnaya-masterskaya",
+ "kind": "sound",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  0.2,
+  0.266,
+  0.02
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#963",
+ "name": "Иконописная мастерская",
+ "type": "звук",
+ "storyline": "87",
+ "box": "ступка box 0.2м",
+ "shape": "plane",
+ "size_m": 0.2,
+ "method": "primitive-from-box-field",
+ "collider": "plane 0.2 m",
+ "hiddenInBuild": false,
+ "noInteract": true,
+ "noLoot": true
+}
