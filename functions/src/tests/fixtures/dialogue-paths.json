@@ -1,0 +1,83 @@
+{
+  "wisdom_path": {
+    "name": "Path of Understanding (Noesis)",
+    "description": "Dialogue choices emphasizing contemplation, study, and intellectual depth",
+    "attributeFocus": ["wisdom", "erudition"],
+    "minRequiredWisdom": 8,
+    "dialogueTree": "elder_sergius",
+    "testCases": [
+      {
+        "playerId": "test-player-002",
+        "expectedOutcome": "wisdom_bonus",
+        "expectedBonus": 2,
+        "description": "Seeker with Wisdom 7 reaches wisdom-gated dialogue"
+      },
+      {
+        "playerId": "test-player-010",
+        "expectedOutcome": "mystical_unlocked",
+        "expectedBonus": 3,
+        "description": "Mystical explorer with Wisdom 11 unlocks deep contemplative paths"
+      },
+      {
+        "playerId": "test-player-001",
+        "expectedOutcome": "blocked",
+        "expectedReason": "insufficient_wisdom",
+        "description": "Novice ascetic with Wisdom 3 cannot access wisdom path"
+      }
+    ]
+  },
+  "faith_path": {
+    "name": "Path of Trust (Pistis)",
+    "description": "Dialogue choices based on faith, community, and liturgical practice",
+    "attributeFocus": ["faith", "charisma"],
+    "minRequiredFaith": 7,
+    "dialogueTree": "theodora",
+    "testCases": [
+      {
+        "playerId": "test-player-005",
+        "expectedOutcome": "faith_bonus",
+        "expectedBonus": 2,
+        "description": "Faithful heart with Faith 10 excels in faith-based dialogue"
+      },
+      {
+        "playerId": "test-player-009",
+        "expectedOutcome": "charisma_synergy",
+        "expectedBonus": 3,
+        "description": "Charismatic leader with Charisma 10 + Faith 7 achieves synergy"
+      },
+      {
+        "playerId": "test-player-006",
+        "expectedOutcome": "blocked",
+        "expectedReason": "insufficient_faith",
+        "description": "Cunning scholar with Faith 3 cannot access faith path"
+      }
+    ]
+  },
+  "practice_path": {
+    "name": "Path of Action (Praxis)",
+    "description": "Dialogue choices emphasizing practical discipline, dexterity, and ascetic practice",
+    "attributeFocus": ["dexterity", "constitution"],
+    "minRequiredConstruction": 6,
+    "dialogueTree": "abba_john",
+    "testCases": [
+      {
+        "playerId": "test-player-008",
+        "expectedOutcome": "ascetic_mastery",
+        "expectedBonus": 3,
+        "description": "Ascetic master with Constitution 10 + Dexterity 4 achieves discipline"
+      },
+      {
+        "playerId": "test-player-004",
+        "expectedOutcome": "dexterity_bonus",
+        "expectedBonus": 2,
+        "description": "Swift practitioner with Dexterity 8 excels in action-based dialogue"
+      },
+      {
+        "playerId": "test-player-003",
+        "expectedOutcome": "full_mastery",
+        "expectedBonus": 4,
+        "description": "Devoted contemplative with balanced attributes achieves full mastery"
+      }
+    ]
+  }
+}

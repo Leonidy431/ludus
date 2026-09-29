@@ -77,10 +77,13 @@ interface DialogueState {
 export const getDialogueTree = functions.https.onRequest(
   async (req: Request, res: Response) => {
     try {
-      const { npcId } = req.params;
+      const npcId = Array.isArray(req.params.npcId) ? req.params.npcId[0] : (req.params.npcId as string);
+      const perfLabel = `getDialogueTree[${npcId}]`;
+      console.time(perfLabel);
 
       if (!npcId) {
         res.status(400).json({ error: 'Missing npcId parameter' });
+        console.timeEnd(perfLabel);
         return;
       }
 
@@ -89,6 +92,7 @@ export const getDialogueTree = functions.https.onRequest(
 
       if (!treeDoc.exists) {
         res.status(404).json({ error: `Dialogue tree not found for NPC: ${npcId}` });
+        console.timeEnd(perfLabel);
         return;
       }
 
@@ -96,6 +100,7 @@ export const getDialogueTree = functions.https.onRequest(
 
       // Log access
       console.log(`[Ludus] Dialogue tree loaded for NPC: ${npcId}`);
+      console.timeEnd(perfLabel);
 
       res.json(tree);
     } catch (err) {
@@ -116,17 +121,22 @@ export const getDialogueTree = functions.https.onRequest(
 export const getNpcMemory = functions.https.onRequest(
   async (req: Request, res: Response) => {
     try {
-      const { npcId, playerId } = req.params;
+      const npcId = Array.isArray(req.params.npcId) ? req.params.npcId[0] : (req.params.npcId as string);
+      const playerId = Array.isArray(req.params.playerId) ? req.params.playerId[0] : (req.params.playerId as string);
       const authUser = req.headers['x-firebase-auth-user'] as string;
+      const perfLabel = `getNpcMemory[${npcId}/${playerId}]`;
+      console.time(perfLabel);
 
       if (!npcId || !playerId) {
         res.status(400).json({ error: 'Missing npcId or playerId' });
+        console.timeEnd(perfLabel);
         return;
       }
 
       // Verify player is requesting their own memory
       if (authUser && authUser !== playerId) {
         res.status(403).json({ error: 'Cannot access other player memory' });
+        console.timeEnd(perfLabel);
         return;
       }
 
@@ -140,18 +150,21 @@ export const getNpcMemory = functions.https.onRequest(
 
       if (!memoryDoc.exists) {
         // First meeting - no prior memory
-        res.json({
+        const firstMeetingMemory: NpcMemory = {
           firstMeeting: true,
-          lastInteraction: null,
+          lastInteraction: undefined,
           totalInteractions: 0,
           choiceHistory: [],
-        } as NpcMemory);
+        };
+        res.json(firstMeetingMemory);
+        console.timeEnd(perfLabel);
         return;
       }
 
       const memory = memoryDoc.data() as NpcMemory;
 
       console.log(`[Ludus] NPC memory loaded: ${npcId} ← ${playerId}`);
+      console.timeEnd(perfLabel);
 
       res.json(memory);
     } catch (err) {
@@ -188,8 +201,12 @@ export const persistDialogueState = functions.https.onRequest(
         attributeBonuses,
       } = req.body;
 
+      const perfLabel = `persistDialogueState[${playerId}/${npcId}]`;
+      console.time(perfLabel);
+
       if (!playerId || !npcId || !currentNodeId) {
         res.status(400).json({ error: 'Missing required fields' });
+        console.timeEnd(perfLabel);
         return;
       }
 
@@ -271,6 +288,7 @@ export const persistDialogueState = functions.https.onRequest(
       await memoryRef.set(updatedMemory, { merge: true });
 
       console.log(`[Ludus] Dialogue state persisted: ${playerId} ← ${npcId}`);
+      console.timeEnd(perfLabel);
 
       res.json({
         success: true,
@@ -293,10 +311,13 @@ export const persistDialogueState = functions.https.onRequest(
 export const getDialogueStats = functions.https.onRequest(
   async (req: Request, res: Response) => {
     try {
-      const { playerId } = req.params;
+      const playerId = Array.isArray(req.params.playerId) ? req.params.playerId[0] : (req.params.playerId as string);
+      const perfLabel = `getDialogueStats[${playerId}]`;
+      console.time(perfLabel);
 
       if (!playerId) {
         res.status(400).json({ error: 'Missing playerId' });
+        console.timeEnd(perfLabel);
         return;
       }
 
@@ -305,6 +326,7 @@ export const getDialogueStats = functions.https.onRequest(
 
       if (!playerDoc.exists) {
         res.status(404).json({ error: 'Player not found' });
+        console.timeEnd(perfLabel);
         return;
       }
 
@@ -340,6 +362,7 @@ export const getDialogueStats = functions.https.onRequest(
       }
 
       console.log(`[Ludus] Dialogue stats retrieved for player: ${playerId}`);
+      console.timeEnd(perfLabel);
 
       res.json({
         playerId,
@@ -372,11 +395,14 @@ export const upsertDialogueTree = functions.https.onRequest(
         return;
       }
 
-      const { npcId } = req.params;
+      const npcId = Array.isArray(req.params.npcId) ? req.params.npcId[0] : (req.params.npcId as string);
       const treeData: Partial<DialogueTree> = req.body;
+      const perfLabel = `upsertDialogueTree[${npcId}]`;
+      console.time(perfLabel);
 
       if (!npcId) {
         res.status(400).json({ error: 'Missing npcId' });
+        console.timeEnd(perfLabel);
         return;
       }
 
@@ -384,6 +410,7 @@ export const upsertDialogueTree = functions.https.onRequest(
       const authHeader = req.headers.authorization;
       if (!authHeader || !authHeader.startsWith('Bearer ')) {
         res.status(401).json({ error: 'Unauthorized: Admin token required' });
+        console.timeEnd(perfLabel);
         return;
       }
 
@@ -393,17 +420,20 @@ export const upsertDialogueTree = functions.https.onRequest(
         // Check if user has admin custom claim
         if (!decodedToken.admin && !decodedToken.isAdmin) {
           res.status(403).json({ error: 'Forbidden: Admin privileges required' });
+          console.timeEnd(perfLabel);
           return;
         }
       } catch (authErr) {
         console.warn('[Ludus] Auth verification failed:', authErr);
         res.status(401).json({ error: 'Unauthorized: Invalid or expired token' });
+        console.timeEnd(perfLabel);
         return;
       }
 
       // Validate tree structure
       if (!treeData.npcName || !treeData.startNode || !treeData.nodes) {
         res.status(400).json({ error: 'Invalid dialogue tree structure' });
+        console.timeEnd(perfLabel);
         return;
       }
 
@@ -419,6 +449,7 @@ export const upsertDialogueTree = functions.https.onRequest(
       await db.collection('ludus_dialogue_trees').doc(npcId).set(completeTree);
 
       console.log(`[Ludus] Dialogue tree upserted for NPC: ${npcId}`);
+      console.timeEnd(perfLabel);
 
       res.json({ success: true, npcId });
     } catch (err) {
