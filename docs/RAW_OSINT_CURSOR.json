@@ -1,0 +1,84 @@
+{
+ "next": 3,
+ "log": [
+  {
+   "time": "2026-09-29T12:43:56.018762+00:00",
+   "deficits": [
+    {
+     "id": "DEF-001",
+     "hits": 200,
+     "taken": 4,
+     "refused": {
+      "sacred-never-raw": 2
+     }
+    },
+    {
+     "id": "DEF-002",
+     "hits": 200,
+     "taken": 4,
+     "refused": {
+      "sacred-never-raw": 2
+     }
+    }
+   ],
+   "accepted_objects": 43,
+   "code_candidates": 190,
+   "reverted": "отменено ведущим: в выборку попали скриншоты примеров движка (examples/audio/*.png), а не игровые объекты; добавлен фильтр NOT_GAME + is_game_object, производные не отгружались"
+  },
+  {
+   "time": "2026-09-29T12:46:44.839156+00:00",
+   "deficits": [
+    {
+     "id": "DEF-001",
+     "hits": 200,
+     "taken": 4,
+     "refused": {
+      "not-a-game-object": 99,
+      "sacred-never-raw": 2
+     }
+    },
+    {
+     "id": "DEF-002",
+     "hits": 200,
+     "taken": 4,
+     "refused": {
+      "not-a-game-object": 160
+     }
+    }
+   ],
+   "accepted_objects": 29,
+   "code_candidates": 29,
+   "note": "DEF-002 (звук) ошибочно сопоставлен со спрайтами Mindustry по слову synth; производные DEF-002 удалены до отгрузки, введён KINDS_BY_CATEGORY",
+   "reverted": "отменено ведущим: 25 объектов — дубли кадров анимации (гриб, червь, слизень); введён FRAME_DUP_IOU=0.85, производные не отгружались"
+  },
+  {
+   "time": "2026-09-29T12:49:54.330207+00:00",
+   "deficits": [
+    {
+     "id": "DEF-001",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "not-a-game-object": 99,
+      "sacred-never-raw": 2
+     }
+    },
+    {
+     "id": "DEF-002",
+     "skipped": "audio-pipeline-pending"
+    },
+    {
+     "id": "DEF-003",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 186,
+      "sacred-never-raw": 3
+     }
+    }
+   ],
+   "accepted_objects": 7,
+   "code_candidates": 13
+  }
+ ]
+}

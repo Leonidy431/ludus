@@ -1,0 +1,180 @@
+[
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/mobs/npcs/Ghost.java",
+  "kind": "code",
+  "hits": [
+   "mob",
+   "ghost"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-001"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-gui-mobile/src/forge/adventure/character/EnemySprite.java",
+  "kind": "code",
+  "hits": [
+   "mob",
+   "enemy"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-001"
+ },
+ {
+  "repo": "https://github.com/triplea-game/triplea",
+  "commit": "2a8b4401d9a6442636fb1d90bf5659b15fa46343",
+  "license_file": "LICENSE",
+  "path": "game-app/game-core/src/main/java/org/triplea/config/AbstractInputStreamPropertyReader.java",
+  "kind": "code",
+  "hits": [
+   "rope",
+   "input"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/Chains.java",
+  "kind": "code",
+  "hits": [
+   "chain"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/artifacts/EtherealChains.java",
+  "kind": "code",
+  "hits": [
+   "chain"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/Anuken/Mindustry",
+  "commit": "f3bfa418a5e8d7d7d98540a0da62b9f19bc845cb",
+  "license_file": "LICENSE",
+  "path": "core/src/mindustry/entities/units/UnitController.java",
+  "kind": "code",
+  "hits": [
+   "controller"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/Anuken/Mindustry",
+  "commit": "f3bfa418a5e8d7d7d98540a0da62b9f19bc845cb",
+  "license_file": "LICENSE",
+  "path": "core/src/mindustry/world/blocks/distribution/ChainedBuilding.java",
+  "kind": "code",
+  "hits": [
+   "chain"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/Azgaar/Fantasy-Map-Generator",
+  "commit": "77192941fd69cfdc141e882487327252e33ac43b",
+  "license_file": "LICENSE",
+  "path": "src/controllers/units-editor.ts",
+  "kind": "code",
+  "hits": [
+   "controller"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/card/CardProperty.java",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/card/CardStateProperty.java",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/player/PlayerProperty.java",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/spellability/SpellAbilityProperty.java",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/trackable/TrackableProperty.java",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-003"
+ }
+]

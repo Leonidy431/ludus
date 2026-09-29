@@ -437,6 +437,21 @@ def write_object(out, record, images):
             json.dumps(meta, ensure_ascii=False, indent=2), encoding='utf-8')
 
 
+FRAME_DUP_IOU = 0.85
+
+
+def frame_mask(piece):
+    """Alpha silhouette of a piece on a small fixed grid for comparison."""
+    alpha = piece.convert('RGBA').getchannel('A').resize((32, 32))
+    return [v > 16 for v in alpha.tobytes()]
+
+
+def mask_iou(a, b):
+    inter = sum(x and y for x, y in zip(a, b))
+    union = sum(x or y for x, y in zip(a, b)) or 1
+    return inter / union
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--raw', default='build/raw')
@@ -463,7 +478,19 @@ def main():
         except OSError as exc:
             rejected.append({**item, 'reason': f'unreadable: {exc}'})
             continue
+        kept_masks = []
         for index, piece in enumerate(slice_sheet(src, args.per_sheet)):
+            # Frames of one animation differ by a few pixels; turning each
+            # into its own antagonist produced near-identical sets (11
+            # "anger" objects from one mushroom walk cycle), so a piece
+            # whose silhouette matches an earlier one is skipped.
+            mask = frame_mask(piece)
+            if any(mask_iou(mask, seen) > FRAME_DUP_IOU
+                   for seen in kept_masks):
+                rejected.append({**item, 'piece': index,
+                                 'reason': 'duplicate-animation-frame'})
+                continue
+            kept_masks.append(mask)
             record, images = process_piece(item, index, piece,
                                            args.threshold)
             write_object(out, record, images)
