@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Ковчежец-реликварий на покрове, под печатью описи">
+  <title>Ковчежец</title>
+  <desc>ФОРМА: малый ковчежец в виде храмика с двускатной кровлей и крестом, на покрове, со светом сверху; без ликов и нимбов. Красная печать на ленте — опись и протокол подлинности. ДЕЙСТВИЕ: дьякон не покупает и не продаёт святыню, а выясняет происхождение, составляет протокол и возвращает её в храм. ЦЕЛЬ: святыня не товар (прав. 29 апостольское о симонии); почитание, а не торг. Миссии: 14 Рынок реликвий, 52 Протокол о реликвиях.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. Рисовано вручную: сырьё 99 репо не подходит (правило 0.15). -->
+  <defs>
+    <radialGradient id="kovchezhets-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#kovchezhets-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- свет сверху -->
+  <path d="M40 9 H56 L66 44 H30 Z" fill="#e8c87a" opacity=".08"/>
+  <!-- покров под ковчежцем -->
+  <path d="M16 74 H80 L74 82 H22 Z" fill="#2a1808" stroke="#8a6a34" stroke-width="1.4"/>
+  <path d="M22 78 H74" stroke="#c8a56a" stroke-width="1" stroke-dasharray="2 2"/>
+  <!-- корпус-храмик -->
+  <rect x="28" y="46" width="40" height="28" rx="2" fill="#2a1808" stroke="#c8a56a" stroke-width="1.8"/>
+  <!-- аркада без ликов; среднее окно с тёплым светом -->
+  <g fill="none" stroke="#8a6a34" stroke-width="1.3">
+    <path d="M32 70 V58 Q36 52 40 58 V70 M56 70 V58 Q60 52 64 58 V70"/>
+  </g>
+  <path d="M43 70 V57 Q48 50 53 57 V70 Z" fill="#e8c87a" opacity=".35" stroke="#e8c87a" stroke-width="1.3"/>
+  <!-- двускатная кровля и крест на коньке -->
+  <path d="M23 47 L48 30 L73 47 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.5"/>
+  <path d="M48 30 V16 M43 21 H53" stroke="#e8c87a" stroke-width="2"/>
+  <!-- лента с печатью описи -->
+  <path d="M68 62 Q78 64 79 74" fill="none" stroke="#c0392b" stroke-width="1.4"/>
+  <circle cx="79" cy="77" r="4" fill="#c0392b" stroke="#8a6a34" stroke-width="1"/>
+</svg>

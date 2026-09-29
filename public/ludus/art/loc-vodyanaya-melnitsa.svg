@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Водяная мельница обители на горном ручье">
+  <title>Водяная мельница</title>
+  <desc>ФОРМА: каменный дом мельницы, наливное колесо под деревянным жёлобом, ручей с падающей водой, запасные жернова у стены и мешки зерна. ДЕЙСТВИЕ: дьякон строит жёлоб и чинит колесо, распределяя воду по справедливости с соседями. ЦЕЛЬ: труд с силами творения, а не против них. Миссия: 82 Энергия воды.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. Рисовано вручную: сырьё 99 репо не подходит (правило 0.15). -->
+  <defs>
+    <linearGradient id="vm-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#vm-nebo)"/>
+  <!-- горы -->
+  <path d="M0 84 L50 50 L90 76 L140 44 L190 74 L240 46 L290 72 L320 60 V110 H0 Z" fill="#241405"/>
+  <!-- берег -->
+  <path d="M0 120 H320 V180 H0 Z" fill="#2a1808"/>
+  <!-- ручей -->
+  <path d="M0 150 Q80 140 160 152 Q240 164 320 150 V172 Q240 180 160 170 Q80 160 0 170 Z" fill="#0d2a3a" stroke="#1f5a73" stroke-width="1.5"/>
+  <g stroke="#1f5a73" stroke-width="1.2" fill="none">
+    <path d="M30 160 Q40 156 50 160 M230 166 Q240 162 250 166 M280 160 Q290 156 300 160"/>
+  </g>
+  <!-- дом мельницы -->
+  <g fill="#241405" stroke="#c8a56a" stroke-width="1.8">
+    <path d="M160 150 V96 H250 V150 Z"/>
+    <path d="M152 98 L205 70 L258 98 Z" fill="#8a6a34"/>
+  </g>
+  <path d="M196 150 V124 H214 V150" fill="#140a02" stroke="#e8c87a" stroke-width="1.5"/>
+  <rect x="226" y="108" width="12" height="10" fill="#140a02" stroke="#c8a56a" stroke-width="1.2"/>
+  <circle cx="232" cy="113" r="2" fill="#e8c87a"/>
+  <!-- жёлоб на столбах -->
+  <path d="M40 92 L140 104" stroke="#c8a56a" stroke-width="4"/>
+  <path d="M60 96 V122 M100 100 V124" stroke="#8a6a34" stroke-width="2"/>
+  <path d="M140 104 Q146 108 144 116" fill="none" stroke="#1f5a73" stroke-width="3"/>
+  <!-- наливное колесо со спицами и лопастями -->
+  <g fill="none" stroke="#c8a56a" stroke-width="2">
+    <circle cx="136" cy="138" r="24"/>
+    <circle cx="136" cy="138" r="18" stroke-width="1.2"/>
+    <circle cx="136" cy="138" r="3.5" fill="#e8c87a"/>
+    <path d="M136 114 V162 M112 138 H160 M119 121 L153 155 M153 121 L119 155" stroke-width="1.4"/>
+  </g>
+  <g stroke="#e8c87a" stroke-width="2">
+    <path d="M136 114 v-4 M160 138 h4 M112 138 h-4 M136 162 v4 M153 121 l3 -3 M119 155 l-3 3 M119 121 l-3 -3 M153 155 l3 3"/>
+  </g>
+  <!-- запасные жернова у стены -->
+  <g fill="#2a1808" stroke="#c8a56a" stroke-width="1.5">
+    <ellipse cx="274" cy="130" rx="6" ry="16"/>
+    <ellipse cx="290" cy="132" rx="5" ry="14"/>
+  </g>
+  <g fill="#e8c87a"><circle cx="274" cy="130" r="1.8"/><circle cx="290" cy="132" r="1.6"/></g>
+  <!-- мешки зерна -->
+  <g fill="#8a6a34" stroke="#c8a56a" stroke-width="1.2">
+    <path d="M254 150 Q252 138 258 136 Q264 138 262 150 Z"/>
+    <path d="M300 150 Q298 140 304 138 Q310 140 308 150 Z"/>
+  </g>
+</svg>

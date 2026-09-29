@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Монастырская типография — печатный стан, наборные кассы и листы на просушке">
+  <title>Монастырская типография</title>
+  <desc>ФОРМА: мастерская с винтовым печатным станом (станины, поперечина, винт, рычаг, талер), наборной кассой с рядами литер, листами на верёвках под потолком и стопой бумаги у окна. ДЕЙСТВИЕ: в позднейшую эпоху братия печатает азбуки и книги для местных народов их языком. ЦЕЛЬ: слово для всех языков, как в Пятидесятницу; тиражирование учения, а не прибыли. Миссия: 79 Монастырская типография (позднее).</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. Рисовано вручную: сырьё 99 репо не подходит (правило 0.15). -->
+  <defs>
+    <linearGradient id="tipografiya-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#2a1808"/>
+      <stop offset="100%" stop-color="#2a1808"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#tipografiya-nebo)"/>
+  <!-- стены и пол -->
+  <rect y="20" width="320" height="120" fill="#2a1808"/>
+  <rect y="140" width="320" height="40" fill="#241405"/>
+  <path d="M0 140 H320" stroke="#8a6a34" stroke-width="2"/>
+  <!-- окно со светом -->
+  <path d="M146 100 V66 Q160 52 174 66 V100 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.8"/>
+  <path d="M160 58 V100 M146 80 H174" stroke="#2a1808" stroke-width="1.4"/>
+  <path d="M146 100 H174 L190 150 H130 Z" fill="#e8c87a" opacity=".08"/>
+  <!-- верёвки и листы на просушке -->
+  <path d="M20 32 Q80 40 140 34 M180 34 Q240 40 300 32" fill="none" stroke="#8a6a34" stroke-width="1.2"/>
+  <g fill="#e8d9b8" opacity=".85" stroke="#8a6a34" stroke-width="1"><rect x="40" y="34" width="16" height="20"/><rect x="68" y="36" width="16" height="20"/><rect x="96" y="38" width="16" height="20"/><rect x="212" y="38" width="16" height="20"/><rect x="240" y="36" width="16" height="20"/><rect x="268" y="34" width="16" height="20"/></g>
+  <!-- печатный стан -->
+  <g stroke="#c8a56a" stroke-width="2.2" fill="#2a1808">
+    <path d="M40 150 V64 M110 150 V64" fill="none"/>
+    <rect x="34" y="60" width="82" height="10"/>
+    <rect x="34" y="120" width="82" height="8"/>
+  </g>
+  <path d="M75 70 V92" stroke="#e8c87a" stroke-width="3"/>
+  <path d="M71 74 L79 77 M71 80 L79 83 M71 86 L79 89" stroke="#8a6a34" stroke-width="1.2"/>
+  <path d="M75 82 L112 90" stroke="#c8a56a" stroke-width="2"/>
+  <rect x="58" y="92" width="34" height="6" fill="#8a6a34" stroke="#e8c87a" stroke-width="1.3"/>
+  <rect x="54" y="113" width="42" height="7" fill="#e8d9b8" stroke="#8a6a34" stroke-width="1"/>
+  <!-- наборная касса с литерами -->
+  <rect x="218" y="78" width="88" height="50" fill="#140a02" stroke="#c8a56a" stroke-width="1.8"/>
+  <g fill="#2a1808" stroke="#8a6a34" stroke-width=".8"><rect x="222" y="82" width="14" height="9"/><rect x="238" y="82" width="14" height="9"/><rect x="254" y="82" width="14" height="9"/><rect x="270" y="82" width="14" height="9"/><rect x="286" y="82" width="14" height="9"/><rect x="222" y="93" width="14" height="9"/><rect x="238" y="93" width="14" height="9"/><rect x="254" y="93" width="14" height="9"/><rect x="270" y="93" width="14" height="9"/><rect x="286" y="93" width="14" height="9"/><rect x="222" y="104" width="14" height="9"/><rect x="238" y="104" width="14" height="9"/><rect x="254" y="104" width="14" height="9"/><rect x="270" y="104" width="14" height="9"/><rect x="286" y="104" width="14" height="9"/><rect x="222" y="115" width="14" height="9"/><rect x="238" y="115" width="14" height="9"/><rect x="254" y="115" width="14" height="9"/><rect x="270" y="115" width="14" height="9"/><rect x="286" y="115" width="14" height="9"/></g>
+  <g fill="#c8a56a">
+    <rect x="226" y="86" width="2" height="4"/><rect x="230" y="86" width="2" height="4"/><rect x="244" y="97" width="2" height="4"/>
+    <rect x="260" y="86" width="2" height="4"/><rect x="276" y="108" width="2" height="4"/><rect x="292" y="119" width="2" height="4"/>
+  </g>
+  <path d="M222 128 V150 M302 128 V150" stroke="#c8a56a" stroke-width="1.8"/>
+  <!-- стопа бумаги -->
+  <g fill="#e8d9b8" stroke="#8a6a34" stroke-width="1"><rect x="150" y="136" width="24" height="4"/><rect x="151" y="132" width="22" height="4"/></g>
+</svg>

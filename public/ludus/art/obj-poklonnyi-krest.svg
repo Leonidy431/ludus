@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Деревянный поклонный крест на холме">
+  <title>Поклонный крест</title>
+  <desc>Форма: восьмиконечный деревянный крест с кровелькой-голубцом на каменном основании. Действие: поставить крест как знак места молитвы; у него останавливаются и кланяются. Цель: форпост веры — место встречи, а не укрепление; святыня не трофей и не оружие. Миссия: 23 «Форпост веры». Нарисован нашим пером, из сырья не берётся (ТАБУ 0.3 п.6).</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов.
+       Святыня: только собственный рисунок; без нимба, без эффектов награды. -->
+  <defs>
+    <radialGradient id="poklonnyi-krest-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#poklonnyi-krest-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- холм и камни основания -->
+  <path d="M10 84 Q48 64 86 84 Z" fill="#2a1808" stroke="#8a6a34" stroke-width="1.5"/>
+  <g fill="#8a6a34" stroke="#c8a56a" stroke-width="1"><ellipse cx="42" cy="76" rx="5" ry="3"/><ellipse cx="54" cy="76" rx="5" ry="3"/><ellipse cx="48" cy="72" rx="5" ry="3"/></g>
+  <!-- кровелька-голубец -->
+  <path d="M36 22 L48 14 L60 22" fill="none" stroke="#c8a56a" stroke-width="2.2"/>
+  <!-- восьмиконечный крест -->
+  <g stroke="#e8c87a" stroke-width="3.2" stroke-linecap="square">
+    <path d="M48 20 V70"/><path d="M42 27 H54"/><path d="M34 36 H62"/><path d="M40 55 L56 50"/>
+  </g>
+  <!-- волокна дерева -->
+  <path d="M48 38 V68" stroke="#8a6a34" stroke-width=".8"/>
+  <!-- свет сверху — атрибут, не нимб -->
+  <g stroke="#e8c87a" stroke-width="1" opacity=".35"><path d="M48 8 V12"/><path d="M30 12 L33 15"/><path d="M66 12 L63 15"/></g>
+</svg>

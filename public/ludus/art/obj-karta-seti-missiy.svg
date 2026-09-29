@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Карта сети миссий — озеро в центре и тропы к станам">
+  <title>Карта сети миссий</title>
+  <desc>ФОРМА: лист карты: в центре озеро и обитель-узел, от неё тропы к шести станам-миссиям, связанным и между собой. ДЕЙСТВИЕ: игрок прокладывает пути, чтобы весть, хлеб и помощь ходили между станами. ЦЕЛЬ: Церковь — тело, где члены держатся друг за друга; обитель служит, а не господствует. Миссия: 91 «Миссия-как-хаб».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. Синий —
+       только вода озера. -->
+  <defs>
+    <radialGradient id="kartaset-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#kartaset-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- лист карты с загнутым углом -->
+  <path d="M14 16 H76 L82 22 V80 H14 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M76 16 V22 H82" fill="none" stroke="#c8a56a" stroke-width="1.2"/>
+  <!-- тропы-связи: кольцо и лучи -->
+  <g fill="none" stroke="#8a6a34" stroke-width="1.3" stroke-dasharray="3 2">
+    <path d="M26 28 L48 24 L70 30 L74 56 L56 72 L28 68 Z"/>
+  </g>
+  <g fill="none" stroke="#e8c87a" stroke-width="1.5">
+    <path d="M48 48 L26 28 M48 48 L48 24 M48 48 L70 30 M48 48 L74 56 M48 48 L56 72 M48 48 L28 68"/>
+  </g>
+  <!-- озеро в центре -->
+  <ellipse cx="48" cy="50" rx="11" ry="6" fill="#1f5a73" stroke="#0d2a3a" stroke-width="1.2"/>
+  <!-- обитель-узел на берегу -->
+  <circle cx="48" cy="44" r="4" fill="#1a0e04" stroke="#e8c87a" stroke-width="1.5"/>
+  <path d="M48 37 V41 M46.5 38.5 H49.5" stroke="#e8c87a" stroke-width="1"/>
+  <!-- станы-миссии -->
+  <g fill="#c8a56a" stroke="#1a0e04" stroke-width="1">
+    <circle cx="26" cy="28" r="3"/><circle cx="48" cy="24" r="3"/><circle cx="70" cy="30" r="3"/>
+    <circle cx="74" cy="56" r="3"/><circle cx="56" cy="72" r="3"/><circle cx="28" cy="68" r="3"/>
+  </g>
+  <!-- роза ветров в углу -->
+  <path d="M22 78 V70 M18 74 H26" stroke="#c8a56a" stroke-width="1"/>
+</svg>

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Двор обители с каменной скамьёй суда под навесом">
+  <title>Судный двор обители</title>
+  <desc>Двор обители: под деревянным навесом — каменная скамья епископского суда, по сторонам две скамьи для спорящих, в глубине стена и малая церковь, у колодца — старое дерево. ФОРМА: открытое место под небом, где всех видно. ДЕЙСТВИЕ: игрок выслушивает обе стороны и выносит решение. ЦЕЛЬ: суд как примирение, а не месть; правда в любви. Миссия: 3 «Епископ-арбитр».</desc>
+  <defs>
+    <linearGradient id="sud-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#sud-nebo)"/>
+  <!-- ограда обители -->
+  <path d="M0 110 V86 H320 V110" fill="#241405" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- малая церковь за оградой -->
+  <g fill="#2a1808" stroke="#c8a56a" stroke-width="1.6">
+    <path d="M250 86 V64 H286 V86"/>
+    <path d="M260 64 V56 H276 V64"/>
+    <path d="M260 56 Q268 44 276 56 Z" fill="#8a6a34"/>
+  </g>
+  <path d="M268 45 V34 M264 38 h8" stroke="#e8c87a" stroke-width="1.6"/>
+  <!-- мощёный двор -->
+  <path d="M0 110 H320 V180 H0 Z" fill="#2a1808"/>
+  <g stroke="#8a6a34" stroke-width="1" opacity=".7">
+    <path d="M0 130 H320 M0 154 H320 M40 110 L30 180 M120 110 L116 180 M200 110 L204 180 M280 110 L290 180"/>
+  </g>
+  <!-- навес на четырёх столбах -->
+  <g stroke="#c8a56a" stroke-width="2" fill="none">
+    <path d="M110 138 V86 M210 138 V86 M118 128 V92 M202 128 V92"/>
+  </g>
+  <path d="M96 88 L160 70 L224 88 Z" fill="#1a0e04" stroke="#e8c87a" stroke-width="2"/>
+  <path d="M104 88 H216" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- каменная скамья суда -->
+  <g fill="#8a6a34" stroke="#e8c87a" stroke-width="1.5">
+    <rect x="136" y="112" width="48" height="10"/>
+    <rect x="136" y="98" width="48" height="14" fill="#2a1808"/>
+    <rect x="140" y="122" width="6" height="12"/><rect x="174" y="122" width="6" height="12"/>
+  </g>
+  <!-- раскрытая книга закона на скамье -->
+  <path d="M152 112 L160 109 L168 112 L168 108 L160 105 L152 108 Z" fill="#e8c87a"/>
+  <!-- скамьи для двух сторон -->
+  <g fill="#2a1808" stroke="#c8a56a" stroke-width="1.5">
+    <rect x="60" y="140" width="40" height="6"/><path d="M64 146 v8 M96 146 v8"/>
+    <rect x="220" y="140" width="40" height="6"/><path d="M224 146 v8 M256 146 v8"/>
+  </g>
+  <!-- колодец и дерево -->
+  <g stroke="#c8a56a" stroke-width="1.5" fill="none">
+    <ellipse cx="30" cy="140" rx="10" ry="3" fill="#140a02"/>
+    <path d="M20 140 V150 H40 V140"/>
+  </g>
+  <g stroke="#8a6a34" stroke-width="2" fill="none">
+    <path d="M296 150 Q292 120 300 96"/>
+  </g>
+  <g fill="#241405" stroke="#8a6a34" stroke-width="1.2">
+    <circle cx="298" cy="92" r="14"/><circle cx="284" cy="100" r="9"/>
+  </g>
+</svg>

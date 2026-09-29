@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Трапезная обители: длинный стол, чтец за аналоем, гости">
+  <title>Трапезная обители</title>
+  <desc>ФОРМА: сводчатая трапезная — длинный стол с хлебом и чашами, братия и гости сидят по обе стороны, у окна чтец за аналоем, над столом лампада. ДЕЙСТВИЕ: за одним столом встречаются игумен и посланники хана; игрок ведёт беседу так, чтобы обитель не стала орудием политики. ЦЕЛЬ: трапеза как продолжение молитвы — слово читается вслух, и гость принят как Христос. Миссия: 61 «Политический монастырь».</desc>
+  <!-- Арт-канон §9.0: умбра+золото; синь только для воды. -->
+  <defs>
+    <linearGradient id="trap-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#trap-nebo)"/>
+  <!-- стены и своды -->
+  <rect width="320" height="180" fill="#2a1808"/>
+  <path d="M0 60 Q80 10 160 60 Q240 10 320 60 V0 H0 Z" fill="#1a0e04" stroke="#8a6a34" stroke-width="2"/>
+  <path d="M160 60 V150" stroke="#8a6a34" stroke-width="3"/>
+  <!-- окна с дневным светом -->
+  <g fill="#140a02" stroke="#c8a56a" stroke-width="1.5">
+    <path d="M50 96 V74 Q60 62 70 74 V96 Z"/><path d="M250 96 V74 Q260 62 270 74 V96 Z"/>
+  </g>
+  <path d="M54 94 V76 Q60 68 66 76 V94 Z M254 94 V76 Q260 68 266 76 V94 Z" fill="#e8c87a" opacity=".3"/>
+  <!-- лампада над столом -->
+  <path d="M110 40 V58" stroke="#8a6a34" stroke-width="1.2"/>
+  <path d="M104 58 H116 Q114 66 110 66 Q106 66 104 58 Z" fill="#c8a56a"/>
+  <circle cx="110" cy="55" r="7" fill="#e8c87a" opacity=".2"/>
+  <!-- чтец за аналоем -->
+  <path d="M276 150 V124 L292 118 V150" fill="none" stroke="#c8a56a" stroke-width="1.8"/>
+  <path d="M272 118 L296 112 L298 118 L274 124 Z" fill="#e8d9b8" stroke="#8a6a34" stroke-width="1"/>
+  <path d="M300 150 q0 -32 8 -34 q4 0 4 34 Z" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.2"/>
+  <circle cx="306" cy="110" r="4.5" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.2"/>
+  <!-- братия (слева) и гости в дорожных шапках (справа) -->
+  <g fill="#1a0e04" stroke="#c8a56a" stroke-width="1.2">
+    <path d="M40 130 q0 -14 8 -14 q8 0 8 14 Z"/><circle cx="48" cy="111" r="4.5"/>
+    <path d="M70 130 q0 -14 8 -14 q8 0 8 14 Z"/><circle cx="78" cy="111" r="4.5"/>
+    <path d="M100 130 q0 -14 8 -14 q8 0 8 14 Z"/><circle cx="108" cy="111" r="4.5"/>
+    <path d="M180 130 q0 -14 8 -14 q8 0 8 14 Z"/><circle cx="188" cy="111" r="4.5"/>
+    <path d="M210 130 q0 -14 8 -14 q8 0 8 14 Z"/><circle cx="218" cy="111" r="4.5"/>
+  </g>
+  <g fill="#8a6a34" stroke="#c8a56a" stroke-width="1">
+    <path d="M182 108 Q188 100 194 108 Z"/><path d="M212 108 Q218 100 224 108 Z"/>
+  </g>
+  <!-- игуменское место с посохом во главе -->
+  <path d="M150 130 q0 -16 10 -16 q10 0 10 16 Z" fill="#140a02" stroke="#e8c87a" stroke-width="1.4"/>
+  <circle cx="160" cy="108" r="5" fill="#140a02" stroke="#e8c87a" stroke-width="1.4"/>
+  <path d="M174 132 V98 q0 -4 -4 -4" fill="none" stroke="#8a6a34" stroke-width="1.8"/>
+  <!-- длинный стол: хлеб, чаши -->
+  <rect x="24" y="130" width="236" height="8" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M34 138 V160 M250 138 V160" stroke="#8a6a34" stroke-width="3"/>
+  <g fill="#e8c87a">
+    <ellipse cx="60" cy="128" rx="6" ry="3"/><ellipse cx="134" cy="128" rx="6" ry="3"/><ellipse cx="204" cy="128" rx="6" ry="3"/>
+  </g>
+  <g fill="none" stroke="#e8c87a" stroke-width="1.2">
+    <path d="M88 124 h8 l-1 5 h-6 Z"/><path d="M172 124 h8 l-1 5 h-6 Z"/><path d="M232 124 h8 l-1 5 h-6 Z"/>
+  </g>
+  <!-- пол -->
+  <path d="M0 160 H320 V180 H0 Z" fill="#1a0e04"/>
+</svg>

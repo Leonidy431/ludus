@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Колодец с подворьем на Шёлковом пути">
+  <title>Колодец на пути</title>
+  <desc>ФОРМА: колодец-журавль у глинобитного подворья, ворота, верблюд у водопоя, дорога уходит к горам. ДЕЙСТВИЕ: караван делит воду по очереди; игрок решает споры у колодца миром, а не силой. ЦЕЛЬ: вода даром — образ гостеприимства и милости на торговом пути. Миссия: 12 «Шёлковый коридор».</desc>
+  <!-- Арт-канон §9.0: умбра+золото; синь только для воды. -->
+  <defs>
+    <linearGradient id="kolp-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#kolp-nebo)"/>
+  <!-- дальние горы -->
+  <path d="M0 96 L50 70 L90 88 L140 62 L190 90 L240 66 L290 86 L320 78 V110 H0 Z" fill="#241405"/>
+  <!-- степь -->
+  <path d="M0 108 H320 V180 H0 Z" fill="#2a1808"/>
+  <!-- дорога -->
+  <path d="M150 180 Q170 140 200 110" fill="none" stroke="#8a6a34" stroke-width="10" opacity=".45"/>
+  <!-- подворье: глинобитная стена, ворота, башенка -->
+  <g fill="#2a1808" stroke="#c8a56a" stroke-width="1.8">
+    <path d="M14 150 V104 H118 V150 Z"/>
+    <path d="M14 104 V92 H30 V104"/>
+  </g>
+  <path d="M52 150 V124 Q66 110 80 124 V150" fill="#140a02" stroke="#e8c87a" stroke-width="1.5"/>
+  <g fill="#140a02"><rect x="22" y="112" width="6" height="6"/><rect x="96" y="112" width="6" height="6"/></g>
+  <circle cx="99" cy="115" r="1.6" fill="#e8c87a"/>
+  <!-- колодец-журавль -->
+  <g stroke="#c8a56a" stroke-width="2" fill="none">
+    <path d="M196 156 V110"/>
+    <path d="M170 98 L236 124"/>
+    <path d="M236 124 V142"/>
+  </g>
+  <rect x="190" y="108" width="12" height="4" fill="#8a6a34"/>
+  <path d="M232 142 h8 v6 h-8 Z" fill="#8a6a34"/>
+  <path d="M166 96 l8 4 l-2 6 l-8 -4 Z" fill="#140a02" stroke="#8a6a34" stroke-width="1"/>
+  <!-- сруб колодца с водой -->
+  <path d="M222 148 H254 V164 H222 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.8"/>
+  <ellipse cx="238" cy="148" rx="16" ry="3.5" fill="#0d2a3a" stroke="#1f5a73" stroke-width="1.2"/>
+  <!-- корыто и верблюд у водопоя -->
+  <path d="M258 162 h26 v5 h-26 Z" fill="#8a6a34"/>
+  <path d="M268 160 V140 Q272 128 282 132 L286 140 Q300 136 304 146 L306 160 M304 146 V160 M290 146 V160" fill="none" stroke="#e8c87a" stroke-width="1.6"/>
+  <path d="M282 132 q-4 -8 -10 -6 l-2 4" fill="none" stroke="#e8c87a" stroke-width="1.6"/>
+</svg>

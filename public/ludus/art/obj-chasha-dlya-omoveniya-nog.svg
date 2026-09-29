@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Чаша для омовения ног с кувшином и полотенцем">
+  <title>Чаша для омовения ног</title>
+  <desc>ФОРМА: широкий медный таз с водой, кувшин, из которого льётся струя, и полотенце на краю. ДЕЙСТВИЕ: дьякон сам омывает ноги пришедшему путнику, как Христос ученикам (Ин 13:14). ЦЕЛЬ: смирение и гостеприимство как служение. Миссия: 25 Обет гостеприимства.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. Рисовано вручную: сырьё 99 репо не подходит (правило 0.15). -->
+  <defs>
+    <radialGradient id="ch-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#ch-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- кувшин, наклонённый над тазом -->
+  <g transform="rotate(-28 36 34)">
+    <path d="M28 20 H44 L42 26 Q50 34 44 46 H28 Q22 34 30 26 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.5"/>
+    <path d="M44 28 Q52 30 48 40" fill="none" stroke="#8a6a34" stroke-width="1.6"/>
+  </g>
+  <!-- струя воды -->
+  <path d="M30 42 Q36 52 44 60" fill="none" stroke="#1f5a73" stroke-width="2.4"/>
+  <!-- таз с водой -->
+  <path d="M16 58 H80 Q76 76 48 78 Q20 76 16 58 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.8"/>
+  <ellipse cx="48" cy="58" rx="32" ry="6" fill="#0d2a3a" stroke="#8a6a34" stroke-width="1.4"/>
+  <path d="M34 58 Q40 56 46 58 M52 59 Q58 57 64 59" fill="none" stroke="#1f5a73" stroke-width="1.2"/>
+  <path d="M40 78 L36 84 H60 L56 78" fill="#8a6a34" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- полотенце на краю таза -->
+  <path d="M68 54 Q76 52 80 56 L78 76 Q74 74 70 76 Z" fill="#e8c87a" stroke="#8a6a34" stroke-width="1.2"/>
+  <path d="M71 72 H77 M71 70 H77" stroke="#c0392b" stroke-width=".9"/>
+</svg>

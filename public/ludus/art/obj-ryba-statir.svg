@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Рыба со статиром во рту — сцена Мф 17:27">
+  <title>Рыба со статиром</title>
+  <desc>ФОРМА: удочка с крючком над водой, рыба, поднятая из волн, во рту у неё монета-статир. ДЕЙСТВИЕ: сцена Мф 17:27 — подать платится «за Меня и за тебя», чтобы не соблазнить сборщиков; это урок, а не находка и не награда игроку. ЦЕЛЬ: свобода сынов, добровольно платящих долг мира. Миссия: 36 Водный налог.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. Рисовано вручную: сырьё 99 репо не подходит (правило 0.15). -->
+  <defs>
+    <radialGradient id="rs-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#rs-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- волны -->
+  <path d="M8 66 Q20 60 32 66 Q44 72 56 66 Q68 60 80 66 Q84 68 88 66 V88 H8 Z" fill="#0d2a3a"/>
+  <path d="M8 66 Q20 60 32 66 Q44 72 56 66 Q68 60 80 66 Q84 68 88 66" fill="none" stroke="#1f5a73" stroke-width="1.6"/>
+  <!-- леса удочки сверху -->
+  <path d="M60 10 V30 Q60 36 55 36" fill="none" stroke="#c8a56a" stroke-width="1.2"/>
+  <!-- рыба, выгнутая над водой -->
+  <path d="M24 60 Q34 40 54 40 Q62 42 64 48 Q60 56 50 58 Q36 60 24 60 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.6"/>
+  <path d="M24 60 L14 52 L16 66 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.4"/>
+  <path d="M38 44 Q42 36 48 40" fill="none" stroke="#8a6a34" stroke-width="1.3"/>
+  <g stroke="#8a6a34" stroke-width=".9" fill="none"><path d="M34 52 q3 -3 6 0 M42 50 q3 -3 6 0 M36 56 q3 -3 6 0"/></g>
+  <circle cx="56" cy="45" r="1.8" fill="#2a1808"/>
+  <!-- статир во рту -->
+  <circle cx="66" cy="48" r="5" fill="#e8c87a" stroke="#8a6a34" stroke-width="1.3"/>
+  <circle cx="66" cy="48" r="2.6" fill="none" stroke="#8a6a34" stroke-width=".8"/>
+  <!-- капли с рыбы -->
+  <g fill="#1f5a73"><circle cx="30" cy="64" r="1.2"/><circle cx="46" cy="62" r="1"/></g>
+</svg>

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Кузня обители — горн, наковальня и мехи">
+  <title>Кузня обители</title>
+  <desc>ФОРМА: монастырская кузня: сводчатый горн с огнём, наковальня с молотом, кожаные мехи, клещи на стене; в окне — купол обители. ДЕЙСТВИЕ: братия и трудники куют лемехи, скобы и гвозди для хозяйства под молитву в ритм ударов; мечей здесь не куют. ЦЕЛЬ: «перекуют мечи на орала» — труд, который служит миру и хлебу. Миссия: 66 Кузня монастыря.</desc>
+  <!-- Арт-канон §9.0: умбра+золото. -->
+  <defs>
+    <radialGradient id="kuz-ogon" cx="30%" cy="60%" r="60%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#kuz-ogon)"/>
+  <!-- каменная кладка стены -->
+  <g stroke="#2a1808" stroke-width="1.2"><path d="M0 40 H320 M0 70 H320 M0 100 H320 M40 10 V40 M120 40 V70 M200 10 V40 M260 70 V100 M300 40 V70"/></g>
+  <!-- пол -->
+  <path d="M0 146 H320 V180 H0 Z" fill="#241405"/>
+  <path d="M0 146 H320" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- горн со сводом и дымоходом -->
+  <path d="M40 146 V96 Q80 70 120 96 V146 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M64 86 V20 H96 V86" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M56 130 V112 Q80 96 104 112 V130 Z" fill="#140a02" stroke="#8a6a34" stroke-width="1.4"/>
+  <!-- огонь горна -->
+  <path d="M64 130 Q68 116 74 124 Q78 108 84 122 Q90 112 96 130 Z" fill="#e8c87a"/>
+  <path d="M72 130 Q78 120 82 126 Q86 118 90 130 Z" fill="#c0392b" opacity=".7"/>
+  <circle cx="80" cy="120" r="26" fill="#e8c87a" opacity=".08"/>
+  <!-- мехи -->
+  <path d="M120 128 L150 118 Q160 124 150 134 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M150 118 L162 110" stroke="#8a6a34" stroke-width="2"/>
+  <!-- наковальня на колоде -->
+  <path d="M188 146 V128 H212 V146 Z" fill="#2a1808" stroke="#8a6a34" stroke-width="1.6"/>
+  <path d="M176 116 H226 Q224 124 214 124 V128 H186 V124 Q180 122 176 116 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.6"/>
+  <!-- раскалённый лемех на наковальне и молот -->
+  <path d="M192 114 Q200 108 210 114 Z" fill="#e8c87a"/>
+  <path d="M226 88 L208 104" stroke="#c8a56a" stroke-width="2.4"/>
+  <rect x="220" y="80" width="14" height="8" transform="rotate(-42 227 84)" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.2"/>
+  <!-- искры -->
+  <g fill="#e8c87a"><circle cx="198" cy="100" r="1.3"/><circle cx="214" cy="96" r="1"/><circle cx="190" cy="104" r="1"/></g>
+  <!-- клещи и подковы на стене -->
+  <g fill="none" stroke="#c8a56a" stroke-width="1.6">
+    <path d="M262 52 L270 90 M274 52 L266 90"/>
+    <path d="M288 56 a6 6 0 1 1 10 0 M288 76 a6 6 0 1 1 10 0"/>
+  </g>
+  <!-- окно с куполом обители -->
+  <path d="M142 70 V44 Q156 30 170 44 V70 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M148 70 V58 Q156 50 164 58 V70 Z" fill="#2a1808"/>
+  <path d="M156 52 V44 M153 47 h6" stroke="#2a1808" stroke-width="1.4"/>
+  <!-- бадья для закалки -->
+  <path d="M242 146 V130 H270 V146 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <ellipse cx="256" cy="130" rx="14" ry="3" fill="#1f5a73"/>
+</svg>

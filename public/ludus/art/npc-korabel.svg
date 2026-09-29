@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Корабел, плотник верфи">
+  <title>Корабел, плотник верфи</title>
+  <desc>ФОРМА: плотник в шапке и кожаном фартуке, с тесаком-теслом в руке; за спиной рёбра строящейся лодки, у ног бухта каната. ДЕЙСТВИЕ: он строит лодки для рыбаков и перевоза миссии через озеро, учит прочности шва и терпению. ЦЕЛЬ: труд рук как служение — корабль, как и Церковь, строится ребро за ребром. Миссия 68.</desc>
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- Арт-канон §9.0: умбра+золото, картуш, без нимбов -->
+  <!-- рёбра строящейся лодки за спиной -->
+  <g fill="none" stroke="#8a6a34" stroke-width="1.6" opacity=".8">
+    <path d="M14 88 Q16 60 22 50 M22 96 Q22 70 28 58 M78 58 Q84 70 84 96 M72 50 Q80 60 86 88"/>
+    <path d="M12 98 Q50 110 88 98"/>
+  </g>
+  <!-- голова в вязаной шапке -->
+  <circle cx="50" cy="36" r="10" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M40 32 Q50 18 60 32 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- короткая борода -->
+  <path d="M43 40 Q50 50 57 40 Q54 46 50 46 Q46 46 43 40 Z" fill="#c8a56a" opacity=".8"/>
+  <!-- рубаха -->
+  <path d="M50 48 C31 54 27 80 29 118 H71 C73 80 69 54 50 48 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- кожаный фартук -->
+  <path d="M38 64 H62 L64 116 H36 Z" fill="#3a2410" stroke="#8a6a34" stroke-width="1.6"/>
+  <path d="M44 76 H56 V84 H44 Z" fill="none" stroke="#c8a56a" stroke-width="1.2"/>
+  <!-- тесло в руке -->
+  <path d="M68 96 L76 70" stroke="#8a6a34" stroke-width="2.5"/>
+  <path d="M72 70 Q76 64 84 68 L80 72 Z" fill="#e8c87a" stroke="#c8a56a" stroke-width="1"/>
+  <!-- бухта каната у ног -->
+  <g fill="none" stroke="#e8c87a" stroke-width="1.4">
+    <ellipse cx="24" cy="122" rx="10" ry="4"/><ellipse cx="24" cy="119" rx="7" ry="3"/>
+  </g>
+</svg>

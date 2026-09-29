@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Купец в унынии, опустивший голову">
+  <title>Купец в унынии</title>
+  <desc>ФОРМА: купец сидит, склонив голову на руку; пустой кошель и опрокинутые весы у ног, над ним тусклый огонёк. ДЕЙСТВИЕ: игрок-миссионер не обличает и не торопит — выслушивает, помогает назвать помысл и зовёт к исповеди. ЦЕЛЬ: уныние (акедия) лечится терпением, трудом и надеждой, а не утешением богатством; страсть не принадлежит народу — это человек в беде. Миссия: 26 «Миссионер-исповедник купцов».</desc>
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- Арт-канон §9.0: умбра+золото; человек, а не карикатура -->
+  <!-- склонённая голова -->
+  <circle cx="46" cy="44" r="10" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M36 40 Q46 30 56 40" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.2"/>
+  <!-- сгорбленная фигура сидит на тюке -->
+  <path d="M48 54 C34 58 28 76 30 100 H66 C68 80 62 62 48 54 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- рука, подпирающая голову -->
+  <path d="M60 66 Q62 56 54 50" fill="none" stroke="#c8a56a" stroke-width="3" stroke-linecap="round"/>
+  <!-- тюк с товаром -->
+  <rect x="26" y="100" width="46" height="16" rx="3" fill="#1a0e04" stroke="#8a6a34" stroke-width="1.6"/>
+  <path d="M26 108 H72 M49 100 V116" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- пустой развязанный кошель -->
+  <path d="M22 126 q-2 -8 6 -9 q8 1 6 9 Z" fill="none" stroke="#c8a56a" stroke-width="1.4"/>
+  <path d="M28 117 q-4 -4 -8 -2" fill="none" stroke="#c8a56a" stroke-width="1"/>
+  <!-- опрокинутые весы -->
+  <path d="M60 128 L84 118 M72 123 V112" stroke="#8a6a34" stroke-width="1.6"/>
+  <path d="M60 128 l-2 5 h6 Z M84 118 l-3 5 h6 Z" fill="none" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- тусклый огонёк надежды над ним -->
+  <circle cx="72" cy="26" r="2" fill="#e8c87a" opacity=".7"/>
+  <circle cx="72" cy="26" r="6" fill="#e8c87a" opacity=".1"/>
+</svg>

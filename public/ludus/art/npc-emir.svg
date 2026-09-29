@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Эмир, правитель с ярлыком о пленных">
+  <title>Эмир</title>
+  <desc>Форма: правитель в тюрбане с навершием-пером, в халате с широким поясом, с ярлыком-грамотой в руке. Действие: выслушать просьбу о пленных и решить её печатью, а не мечом. Цель: милость сильного как путь к миру; человек, а не злодей. Миссия: 51 Защита пленных.</desc>
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- голова в тюрбане с навершием -->
+  <circle cx="50" cy="38" r="11" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M37 33 Q37 20 50 20 Q63 20 63 33 Q56 29 50 29 Q44 29 37 33 Z" fill="#8a6a34" stroke="#e8c87a" stroke-width="1.5"/>
+  <path d="M40 27 Q50 23 60 27" fill="none" stroke="#e8c87a" stroke-width="1"/>
+  <circle cx="50" cy="23" r="2.4" fill="#c0392b" stroke="#e8c87a" stroke-width="1"/>
+  <path d="M50 21 Q53 13 57 11" fill="none" stroke="#e8c87a" stroke-width="1.5"/>
+  <!-- спокойные глаза и достойная борода -->
+  <path d="M45 37 h3 M52 37 h3" stroke="#c8a56a" stroke-width="1.3"/>
+  <path d="M43 43 Q50 56 57 43 Q54 50 50 50 Q46 50 43 43 Z" fill="#c8a56a" opacity=".8"/>
+  <!-- халат -->
+  <path d="M50 50 C30 56 26 82 28 120 H72 C74 82 70 56 50 50 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M50 52 L44 120 M50 52 L56 120" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- широкий пояс с бляхами -->
+  <rect x="31" y="84" width="38" height="6" fill="#8a6a34" stroke="#e8c87a" stroke-width="1.2"/>
+  <g fill="#e8c87a"><circle cx="40" cy="87" r="1.5"/><circle cx="50" cy="87" r="1.5"/><circle cx="60" cy="87" r="1.5"/></g>
+  <!-- ярлык-грамота с печатью в руке -->
+  <path d="M60 64 L76 60 L78 72 L62 76 Z" fill="#c8a56a" stroke="#e8c87a" stroke-width="1.2"/>
+  <g stroke="#2a1808" stroke-width=".8"><path d="M63 66 L74 63"/><path d="M64 70 L75 67"/></g>
+  <circle cx="70" cy="76" r="2.5" fill="#c0392b"/>
+  <!-- ковёр приёма у ног -->
+  <path d="M22 124 H78" stroke="#8a6a34" stroke-width="2"/>
+  <path d="M26 128 H74" stroke="#c8a56a" stroke-width="1" stroke-dasharray="3 2"/>
+</svg>

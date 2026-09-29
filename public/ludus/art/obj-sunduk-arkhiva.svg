@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Окованный сундук архива со свитками и печатью">
+  <title>Сундук архива</title>
+  <desc>ФОРМА: окованный сундук с открытой крышкой, внутри свитки и кодекс, на крышке восковая печать. ДЕЙСТВИЕ: в «фазе трансгрессии», когда озеро наступает на берег, игрок спасает летопись обители и решает, что уносить первым. ЦЕЛЬ: память Церкви — свидетельство, а не имущество; архив не сжигают и не прячут. Миссия: 32 «Фаза трансгрессии».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. -->
+  <defs>
+    <radialGradient id="sunk-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#sunk-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- откинутая крышка -->
+  <path d="M20 44 L24 22 H72 L76 44 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.6"/>
+  <path d="M34 22 L32 44 M62 22 L64 44" stroke="#8a6a34" stroke-width="2"/>
+  <!-- восковая печать на крышке -->
+  <circle cx="48" cy="32" r="4" fill="#c0392b" stroke="#8a6a34" stroke-width="1"/>
+  <circle cx="48" cy="32" r="1.8" fill="none" stroke="#1a0e04" stroke-width="1"/>
+  <!-- свитки и кодекс внутри -->
+  <g fill="#e8d9b8" stroke="#8a6a34" stroke-width="1">
+    <rect x="26" y="40" width="20" height="6" rx="3"/>
+    <rect x="30" y="35" width="18" height="6" rx="3"/>
+  </g>
+  <rect x="52" y="34" width="16" height="12" fill="#8a6a34" stroke="#e8c87a" stroke-width="1.2"/>
+  <path d="M60 34 V46" stroke="#e8c87a" stroke-width="1"/>
+  <!-- корпус -->
+  <rect x="18" y="46" width="60" height="32" rx="2" fill="#2a1808" stroke="#c8a56a" stroke-width="1.8"/>
+  <!-- оковка и замок -->
+  <path d="M18 56 H78 M32 46 V78 M64 46 V78" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="43" y="52" width="10" height="12" rx="1.5" fill="#c8a56a" stroke="#8a6a34" stroke-width="1"/>
+  <path d="M48 56 v4" stroke="#1a0e04" stroke-width="1.6"/>
+  <!-- ручки -->
+  <path d="M14 60 q-2 6 4 8 M82 60 q2 6 -4 8" fill="none" stroke="#c8a56a" stroke-width="1.5"/>
+</svg>

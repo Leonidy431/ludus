@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Наковальня на колоде с молотом">
+  <title>Наковальня</title>
+  <desc>ФОРМА: кованая наковальня с рогом на дубовой колоде, молот и клещи с раскалённой заготовкой, искры. ДЕЙСТВИЕ: дьякон учится у кузнеца ковать подковы и лемехи для обители и соседей. ЦЕЛЬ: «перекуют мечи на орала» (Ис 2:4) — ремесло мира. Миссия: 66 Кузня монастыря.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. Рисовано вручную: сырьё 99 репо не подходит (правило 0.15). -->
+  <defs>
+    <radialGradient id="na-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#na-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- наковальня с рогом -->
+  <path d="M16 36 H62 Q76 36 82 30 Q80 42 64 44 L58 48 V56 H66 V60 H30 V56 H38 V48 L32 44 Q18 44 16 36 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.8"/>
+  <path d="M18 38 H62" stroke="#e8c87a" stroke-width="1.2"/>
+  <!-- дубовая колода -->
+  <path d="M28 60 H68 L70 82 H26 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.6"/>
+  <path d="M36 64 V80 M48 64 V80 M60 64 V80" stroke="#2a1808" stroke-width="1"/>
+  <!-- раскалённая заготовка -->
+  <rect x="40" y="32" width="14" height="4" rx="1" fill="#e8c87a"/>
+  <rect x="40" y="32" width="14" height="4" rx="1" fill="#c0392b" opacity=".45"/>
+  <!-- молот -->
+  <path d="M60 14 L48 28" stroke="#8a6a34" stroke-width="2.5"/>
+  <rect x="56" y="8" width="14" height="8" rx="1.5" transform="rotate(40 63 12)" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- искры -->
+  <g stroke="#e8c87a" stroke-width="1.2" stroke-linecap="round">
+    <path d="M38 28 l-4 -5 M44 26 l-1 -6 M56 28 l4 -4 M34 32 l-6 -2"/>
+  </g>
+</svg>

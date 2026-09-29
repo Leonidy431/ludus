@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Гравюра каравеллы на письме купца">
+  <title>Гравюра каравеллы</title>
+  <desc>Форма: лист купеческого письма с сургучом, на поле гравюра штрихом — каравелла с латинскими парусами на волнах. Действие: весть с далёкого моря приходит в степь; дьякон читает её и понимает, что пути торговли уходят с Шёлкового пути на море. Цель: встречать перемену эпохи трезво, без страха и без жадности; путь Евангелия не зависит от торговых дорог. Миссия: 94 Смена парадигмы.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. Объект: гравюра — штрих и сетка, без заливок цвета. -->
+  <defs>
+    <radialGradient id="karavella-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#karavella-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- лист письма -->
+  <path d="M16 14 H80 V82 H16 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.6"/>
+  <g stroke="#8a6a34" stroke-width=".9"><path d="M22 20 H62 M22 24 H58 M22 28 H66"/></g>
+  <!-- корпус каравеллы -->
+  <path d="M26 62 H72 L66 70 H32 Z" fill="none" stroke="#e8c87a" stroke-width="1.6"/>
+  <path d="M26 62 L22 56 M72 62 L78 56" stroke="#e8c87a" stroke-width="1.4"/>
+  <g stroke="#c8a56a" stroke-width=".8"><path d="M32 64 H68 M34 67 H66"/></g>
+  <!-- мачты и латинские паруса -->
+  <g stroke="#e8c87a" stroke-width="1.4"><path d="M38 62 V36 M54 62 V30 M66 62 V42"/></g>
+  <g fill="none" stroke="#e8c87a" stroke-width="1.3">
+    <path d="M30 40 L46 34 L38 58 Z"/><path d="M44 34 L64 26 L54 58 Z"/><path d="M62 44 L74 40 L66 58 Z"/>
+  </g>
+  <!-- штриховка парусов, как на гравюре -->
+  <g stroke="#8a6a34" stroke-width=".7">
+    <path d="M36 40 L40 50 M40 38 L42 46 M50 32 L54 48 M56 30 L57 42 M66 44 L67 52"/>
+  </g>
+  <!-- волны штрихом -->
+  <g fill="none" stroke="#c8a56a" stroke-width="1"><path d="M20 74 q4 -3 8 0 t8 0 t8 0 t8 0 t8 0 t8 0 t8 0"/><path d="M24 78 q4 -2 8 0 t8 0 t8 0 t8 0 t8 0"/></g>
+  <!-- сургуч купца -->
+  <circle cx="72" cy="20" r="5" fill="#c0392b" stroke="#e8c87a" stroke-width="1.2"/>
+</svg>

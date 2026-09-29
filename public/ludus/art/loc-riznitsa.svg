@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ризница обители — облачения на вешалах, закрытый ковчег, опись на аналое">
+  <title>Ризница обители</title>
+  <desc>Форма: сводчатая ризница — облачения висят в порядке, закрытый ковчег под лампадой, на аналое раскрыта опись. Действие: игрок составляет протокол: каждая святыня записана, запечатана и остаётся на месте; ничего не берётся как добыча и не выносится ради выгоды. Цель: хранение святыни — служение и отчёт, а не обладание. Миссия: 52 «Протокол о реликвиях».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. ТАБУ 0.2 п.3: святое не
+       бывает лутом; ковчег закрыт, в центре внимания опись. -->
+  <rect width="320" height="180" fill="#1a0e04"/>
+  <!-- свод -->
+  <path d="M12 180 V62 Q160 0 308 62 V180" fill="#2a1808" stroke="#8a6a34" stroke-width="2"/>
+  <!-- свет сверху из малого окна -->
+  <path d="M154 38 H166 V54 H154 Z" fill="#e8c87a" opacity=".8"/>
+  <path d="M154 54 L130 150 H190 L166 54 Z" fill="#e8c87a" opacity=".07"/>
+  <!-- жердь с облачениями слева -->
+  <path d="M30 60 H120" stroke="#8a6a34" stroke-width="2.5"/>
+  <g fill="#2a1808" stroke="#c8a56a" stroke-width="1.6">
+    <path d="M40 60 L34 124 H62 L56 60 Z"/>
+    <path d="M70 60 L64 118 H90 L84 60 Z"/>
+    <path d="M100 60 L96 110 H112 L108 60 Z"/>
+  </g>
+  <!-- тонкие кресты-нашивки на облачениях -->
+  <g stroke="#e8c87a" stroke-width="1.3">
+    <path d="M48 76 V88 M43 82 H53 M77 74 V84 M72 79 H82"/>
+  </g>
+  <path d="M104 64 V108" stroke="#e8c87a" stroke-width="1.5"/>
+  <!-- закрытый ковчег под лампадой -->
+  <path d="M160 70 V80" stroke="#8a6a34" stroke-width="1.4"/>
+  <path d="M154 80 Q160 90 166 80 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.2"/>
+  <circle cx="160" cy="78" r="7" fill="#e8c87a" opacity=".16"/>
+  <rect x="138" y="116" width="44" height="30" rx="2" fill="#2a1808" stroke="#c8a56a" stroke-width="1.8"/>
+  <path d="M136 116 L160 104 L184 116 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M160 108 V114 M157 111 H163" stroke="#e8c87a" stroke-width="1.3"/>
+  <!-- печать-шнур на ковчеге -->
+  <path d="M138 128 H182" stroke="#c0392b" stroke-width="1.5"/>
+  <circle cx="160" cy="128" r="3" fill="#c0392b" stroke="#e8c87a" stroke-width=".8"/>
+  <!-- аналой с раскрытой описью -->
+  <path d="M252 150 V118 M244 150 H260" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M232 118 L252 106 L272 118 L252 124 Z" fill="#e8d9b8" stroke="#8a6a34" stroke-width="1.5"/>
+  <g stroke="#8a6a34" stroke-width=".8">
+    <path d="M238 116 L248 110 M240 119 L249 114 M256 110 L266 116 M255 114 L264 119"/>
+  </g>
+  <!-- стена с шкафом утвари, створки закрыты -->
+  <rect x="210" y="60" width="80" height="36" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M250 60 V96" stroke="#c8a56a" stroke-width="1.5"/>
+  <g fill="#e8c87a"><circle cx="246" cy="78" r="1.6"/><circle cx="254" cy="78" r="1.6"/></g>
+  <!-- пол -->
+  <path d="M12 150 H308" stroke="#8a6a34" stroke-width="2"/>
+</svg>

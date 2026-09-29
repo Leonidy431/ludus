@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Заслонка шлюза">
+  <title>Заслонка шлюза</title>
+  <desc>ФОРМА: деревянный щит между двумя каменными устоями, над ним ворот с канатом, из-под щита течёт вода. ДЕЙСТВИЕ: поднимая заслонку на выверенную высоту, игрок делит воду между полями вверху и внизу. ЦЕЛЬ: мера и расчёт вместо жадности: вода нужна всем. Миссия 38.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, двойная рамка-картуш -->
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="#1a0e04" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- каменные устои -->
+  <g fill="#3a2410" stroke="#c8a56a" stroke-width="1.8">
+    <rect x="14" y="26" width="14" height="52"/><rect x="68" y="26" width="14" height="52"/>
+  </g>
+  <g stroke="#8a6a34" stroke-width="1"><path d="M14 40 H28 M14 54 H28 M68 40 H82 M68 54 H82 M21 26 V40 M75 40 V54"/></g>
+  <!-- ворот с рукоятью -->
+  <path d="M14 22 H82" stroke="#8a6a34" stroke-width="3"/>
+  <circle cx="48" cy="22" r="5" fill="#2a1808" stroke="#e8c87a" stroke-width="1.6"/>
+  <path d="M48 22 L56 14" stroke="#e8c87a" stroke-width="1.8"/>
+  <path d="M48 27 V36" stroke="#e8c87a" stroke-width="1.4"/>
+  <!-- деревянный щит -->
+  <rect x="30" y="36" width="36" height="30" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.8"/>
+  <path d="M30 46 H66 M30 56 H66" stroke="#3a2410" stroke-width="1.2"/>
+  <!-- поток воды из-под щита -->
+  <path d="M28 70 H68 V82 Q68 86 64 86 H32 Q28 86 28 82 Z" fill="#0d2a3a"/>
+  <g stroke="#1f5a73" stroke-width="1.5" fill="none"><path d="M32 70 q4 4 8 0 q4 4 8 0 q4 4 8 0 q4 4 8 0 M34 78 q6 -3 12 0 q6 3 12 0"/></g>
+</svg>

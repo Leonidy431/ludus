@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Отчёт ордена — стопка листов, перевязанная шнуром, с восковой печатью">
+  <title>Отчёт ордена</title>
+  <desc>Форма: стопка исписанных листов, перевязанная крест-накрест шнуром, с восковой печатью, и загнутый угол верхнего листа. Действие: игрок находит скрытый отчёт братьев-униторов и решает, как поступить с чужой тайной: прочесть честно, свериться с источниками и не использовать её во вред. Цель: истина без злорадства; спор о вере — без клеветы. Миссия: 64 «Тайный архив униторов».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов;
+       красный — только воск печати. -->
+  <defs>
+    <radialGradient id="otchet-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#otchet-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- нижние листы стопки -->
+  <rect x="22" y="24" width="50" height="56" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.2" transform="rotate(4 47 52)"/>
+  <rect x="21" y="21" width="50" height="56" fill="#e8d9b8" stroke="#8a6a34" stroke-width="1.2" transform="rotate(-2 46 49)"/>
+  <!-- верхний лист со строками и загнутым углом -->
+  <path d="M22 18 H62 L72 28 V74 H22 Z" fill="#e8d9b8" stroke="#8a6a34" stroke-width="1.5"/>
+  <path d="M62 18 V28 H72" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.2"/>
+  <g stroke="#8a6a34" stroke-width="1">
+    <path d="M28 26 H56 M28 32 H64 M28 38 H66 M28 60 H66 M28 66 H58"/>
+  </g>
+  <!-- шнур крест-накрест -->
+  <path d="M22 48 H72 M47 18 V74" stroke="#8a6a34" stroke-width="2"/>
+  <!-- восковая печать на узле -->
+  <circle cx="47" cy="48" r="7" fill="#c0392b" stroke="#e8c87a" stroke-width="1.2"/>
+  <circle cx="47" cy="48" r="3.5" fill="none" stroke="#e8c87a" stroke-width="1"/>
+  <!-- хвосты шнура -->
+  <path d="M50 54 Q54 64 50 72 M44 54 Q40 64 44 72" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+</svg>

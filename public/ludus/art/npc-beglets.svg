@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Беглец, ищущий убежища в миссии">
+  <title>Беглец</title>
+  <desc>ФОРМА: усталый путник в изорванном плаще, с узелком на палке, голова опущена, босые ноги в пыли. ДЕЙСТВИЕ: просит убежища у ворот миссии; игрок решает — укрыть, накормить и заступиться перед властью, не спрашивая веры и рода. ЦЕЛЬ: гостеприимство и милость — «странником был, и вы приняли Меня». Миссия: 63 Миссия-убежище.</desc>
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- Арт-канон §9.0: умбра+золото. Беглец — человек в беде, не враг. -->
+  <!-- склонённая голова в платке -->
+  <circle cx="46" cy="40" r="11" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M34 40 Q36 26 48 28 Q58 30 57 38 Q50 32 40 36 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- изорванный плащ, сгорбленная спина -->
+  <path d="M46 52 C30 58 28 84 31 116 L36 112 L40 118 L46 113 L52 118 L58 112 L64 117 L67 112 C70 82 64 58 46 52 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- заплаты -->
+  <g fill="none" stroke="#8a6a34" stroke-width="1.2">
+    <rect x="36" y="80" width="8" height="7"/><path d="M56 70 l6 2 -1 6 -6 -2 Z"/>
+  </g>
+  <!-- палка с узелком на плече -->
+  <path d="M40 60 L74 34" stroke="#8a6a34" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M68 30 Q78 26 82 36 Q78 44 70 40 Q66 36 68 30 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.2"/>
+  <path d="M72 30 l2 -4 2 4" fill="none" stroke="#8a6a34" stroke-width="1"/>
+  <!-- протянутая рука: просьба о крове -->
+  <path d="M34 70 Q24 74 22 82" fill="none" stroke="#c8a56a" stroke-width="2" stroke-linecap="round"/>
+  <!-- следы пути -->
+  <g fill="#8a6a34" opacity=".8">
+    <ellipse cx="18" cy="126" rx="2.5" ry="1.4"/><ellipse cx="28" cy="122" rx="2.5" ry="1.4"/><ellipse cx="80" cy="126" rx="2.5" ry="1.4"/>
+  </g>
+</svg>

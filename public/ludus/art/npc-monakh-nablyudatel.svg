@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Монах-наблюдатель с мерной рейкой у воды">
+  <title>Монах-наблюдатель</title>
+  <desc>ФОРМА: монах-летописец природы в куколе, в одной руке мерная рейка с зарубками, стоящая в воде, в другой свиток записей; у подола уровень озера. ДЕЙСТВИЕ: дьякон вместе с ним ежедневно отмечает уровень и цвет воды, ветер и лёд. ЦЕЛЬ: внимательность к творению — прогноз из терпеливого наблюдения, а не гадания. Миссия: 33 Лимнологический прогноз.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. Рисовано вручную: сырьё 99 репо не подходит (правило 0.15). -->
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <circle cx="50" cy="36" r="11" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- монашеский кукол -->
+  <path d="M37 40 Q36 20 50 20 Q64 20 63 40 Q58 28 50 28 Q42 28 37 40 Z" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M45 37 h3 M52 37 h3" stroke="#e8c87a" stroke-width="1.2"/>
+  <path d="M43 42 Q50 54 57 42 Q54 47 50 47 Q46 47 43 42 Z" fill="#8a6a34"/>
+  <path d="M50 48 C31 54 27 80 29 118 H71 C73 80 69 54 50 48 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- мерная рейка с зарубками, стоит в воде -->
+  <path d="M74 20 V128" stroke="#c8a56a" stroke-width="3"/>
+  <g stroke="#e8c87a" stroke-width="1.3">
+    <path d="M74 30 h5 M74 40 h3 M74 50 h5 M74 60 h3 M74 70 h5 M74 80 h3 M74 90 h5 M74 100 h3 M74 110 h5"/>
+  </g>
+  <path d="M68 64 Q70 60 74 60" fill="none" stroke="#c8a56a" stroke-width="2"/>
+  <!-- свиток записей -->
+  <path d="M34 66 Q36 76 40 78" fill="none" stroke="#c8a56a" stroke-width="2"/>
+  <rect x="30" y="76" width="18" height="12" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.2"/>
+  <path d="M33 80 H45 M33 84 H42" stroke="#2a1808" stroke-width="1"/>
+  <circle cx="30" cy="82" r="2.5" fill="#8a6a34"/><circle cx="48" cy="82" r="2.5" fill="#8a6a34"/>
+  <!-- уровень озера у подола -->
+  <path d="M6 120 H94 V134 H6 Z" fill="#0d2a3a"/>
+  <path d="M6 120 Q16 117 26 120 Q36 123 46 120 Q56 117 66 120 Q76 123 86 120 L94 120" fill="none" stroke="#1f5a73" stroke-width="1.5"/>
+</svg>

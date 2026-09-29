@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Рака апостола Матфея — ковчег с крестом под лампадой">
+  <title>Рака апостола Матфея</title>
+  <desc>ФОРМА: закрытый ковчег-рака с двускатной крышкой и крестом, покрытый пеленой; над ним лампада, по сторонам свечи. Без нимба и без раскрытого содержимого. ДЕЙСТВИЕ: только почитание — поклон, свеча, молитва; раку нельзя взять, продать или унести. ЦЕЛЬ: предание о мощах апостола в затонувшей обители — память о благовестии на Востоке. Миссия: 88 Легенда о затонувшем монастыре.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. Святыня
+       флаги noInteract/noLoot: не добыча и не оружие (ТАБУ 0.2 п.3). -->
+  <defs>
+    <radialGradient id="raka-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#raka-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- цепь и лампада над ракой -->
+  <path d="M48 10 V18" stroke="#8a6a34" stroke-width="1.2"/>
+  <path d="M42 18 H54 Q53 25 48 26 Q43 25 42 18 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1"/>
+  <path d="M48 12 Q50.5 15 48 17.5 Q45.5 15 48 12 Z" fill="#e8c87a"/>
+  <circle cx="48" cy="18" r="8" fill="#e8c87a" opacity=".12"/>
+  <!-- крест на кровле ковчега -->
+  <path d="M48 30 V42 M44 34 H52" stroke="#e8c87a" stroke-width="2" stroke-linecap="round"/>
+  <!-- двускатная крышка -->
+  <path d="M20 54 L48 42 L76 54 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.6"/>
+  <!-- корпус раки -->
+  <rect x="22" y="54" width="52" height="20" fill="#2a1808" stroke="#c8a56a" stroke-width="1.6"/>
+  <!-- аркатура стенки -->
+  <g fill="none" stroke="#8a6a34" stroke-width="1.2">
+    <path d="M28 72 V62 Q32 57 36 62 V72 M42 72 V62 Q46 57 50 62 V72 M56 72 V62 Q60 57 64 62 V72"/>
+  </g>
+  <!-- пелена-покров, спадающая с края -->
+  <path d="M22 54 H74 L70 60 Q48 64 26 60 Z" fill="#c8a56a" opacity=".85"/>
+  <path d="M46 57 v3 M44.5 58.5 h3" stroke="#8a6a34" stroke-width="1"/>
+  <!-- подножие -->
+  <path d="M18 74 H78 V80 H18 Z" fill="#1a0e04" stroke="#8a6a34" stroke-width="1.4"/>
+  <!-- свечи по сторонам -->
+  <g stroke="#e8c87a" stroke-width="2"><path d="M13 80 V62 M83 80 V62"/></g>
+  <g fill="#e8c87a"><path d="M13 55 q2 3 0 6 q-2 -3 0 -6 Z"/><path d="M83 55 q2 3 0 6 q-2 -3 0 -6 Z"/></g>
+</svg>

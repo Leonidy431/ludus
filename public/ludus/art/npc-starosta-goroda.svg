@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Староста торгового города">
+  <title>Староста торгового города</title>
+  <desc>ФОРМА: пожилой староста в отороченной мехом шапке и длинном кафтане с поясом, с посохом власти и печатью на шнуре, в руке грамота. ДЕЙСТВИЕ: он решает споры купцов разных народов, игрок помогает ему судить по мере и совести. ЦЕЛЬ: правда в торге — одна для своего и для чужого. Миссия 8.</desc>
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- Арт-канон §9.0: умбра+золото, картуш, без нимбов -->
+  <!-- голова в шапке с меховой опушкой -->
+  <circle cx="50" cy="37" r="10" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M40 30 Q50 14 60 30 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M38 31 Q50 25 62 31 Q50 34 38 31 Z" fill="#c8a56a" stroke="#e8c87a" stroke-width="1"/>
+  <!-- длинная седая борода -->
+  <path d="M42 42 Q44 62 50 64 Q56 62 58 42 Q54 48 50 48 Q46 48 42 42 Z" fill="#e8c87a" opacity=".7"/>
+  <!-- длинный кафтан -->
+  <path d="M50 50 C31 56 27 80 29 118 H71 C73 80 69 56 50 50 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M50 64 V118" stroke="#8a6a34" stroke-width="1.4"/>
+  <g fill="#c8a56a"><circle cx="50" cy="72" r="1.2"/><circle cx="50" cy="80" r="1.2"/><circle cx="50" cy="96" r="1.2"/></g>
+  <path d="M31 88 H69" stroke="#e8c87a" stroke-width="2.5"/>
+  <!-- печать на шнуре -->
+  <path d="M40 88 V98" stroke="#c8a56a" stroke-width="1"/>
+  <circle cx="40" cy="101" r="3.5" fill="#c0392b" stroke="#8a6a34" stroke-width="1"/>
+  <!-- посох власти -->
+  <path d="M74 120 V44" stroke="#8a6a34" stroke-width="2.5"/>
+  <circle cx="74" cy="42" r="3" fill="#e8c87a"/>
+  <!-- грамота в руке -->
+  <path d="M22 70 H34 V90 H22 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.4"/>
+  <path d="M25 76 H31 M25 81 H31 M25 86 H29" stroke="#2a1808" stroke-width="1"/>
+</svg>

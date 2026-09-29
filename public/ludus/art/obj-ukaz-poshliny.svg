@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Доска-указ о водной пошлине">
+  <title>Указ о пошлине</title>
+  <desc>Форма: деревянная доска на столбе с вырезанными строками, знаком воды и печатью. Действие: огласить меру водной пошлины для всех одинаково. Цель: закон, известный всем, защищает бедного от произвола. Миссия: 36 Водный налог.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов.
+       Предмет миссии 36: знак капли — предмет указа, строки — вырезанный текст. -->
+  <defs>
+    <radialGradient id="ukaz-poshliny-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#ukaz-poshliny-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- столб -->
+  <rect x="45" y="60" width="6" height="26" fill="#2a1808" stroke="#8a6a34" stroke-width="1.4"/>
+  <!-- доска с кровлей -->
+  <path d="M16 24 L48 14 L80 24" fill="none" stroke="#c8a56a" stroke-width="2"/>
+  <rect x="18" y="24" width="60" height="38" rx="2" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- знак капли: предмет пошлины — вода -->
+  <path d="M30 32 Q36 40 36 44 A6 6 0 0 1 24 44 Q24 40 30 32 Z" fill="#1f5a73" stroke="#e8c87a" stroke-width="1.2"/>
+  <!-- строки указа -->
+  <g stroke="#e8c87a" stroke-width="1.4"><path d="M42 32 H72"/><path d="M42 38 H68"/><path d="M42 44 H72"/><path d="M24 54 H72"/></g>
+  <!-- печать -->
+  <circle cx="68" cy="54" r="4" fill="#c0392b" stroke="#e8c87a" stroke-width="1"/>
+  <!-- гвозди -->
+  <g fill="#e8c87a"><circle cx="21" cy="27" r="1.2"/><circle cx="75" cy="27" r="1.2"/><circle cx="21" cy="59" r="1.2"/><circle cx="75" cy="59" r="1.2"/></g>
+  <!-- земля -->
+  <path d="M26 86 Q48 80 70 86" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+</svg>

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ткацкая мастерская: станки, мотки шерсти и шёлка, свет из окна">
+  <title>Ткацкая мастерская</title>
+  <desc>Форма: мастерская с горизонтальным и вертикальным станками, корзинами с мотками шерсти и шёлка, свет падает из высокого окна. Действие: учиться ремеслу, считать нити и честно ценить труд ткачих. Цель: цех как община труда и взаимного обучения. Миссия: 69 Текстильные цеха.</desc>
+  <!-- Арт-канон §9.0: умбра+золото. Интерьер миссии 69: мастерская армянских ткачих, утро. -->
+  <defs>
+    <linearGradient id="tkatskaya-masterskaya-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#tkatskaya-masterskaya-nebo)"/>
+  <!-- стена и пол -->
+  <rect width="320" height="138" fill="#2a1808" opacity=".6"/>
+  <rect y="138" width="320" height="42" fill="#241405"/>
+  <path d="M0 138 H320" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- высокое окно и луч -->
+  <path d="M40 60 V30 Q52 16 64 30 V60 Z" fill="#e8c87a" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M52 20 V60 M40 42 H64" stroke="#8a6a34" stroke-width="1.5"/>
+  <path d="M40 60 L64 60 L180 172 L90 172 Z" fill="#e8c87a" opacity=".1"/>
+  <!-- вертикальный станок -->
+  <g stroke="#c8a56a" stroke-width="2.2" fill="none"><path d="M92 150 V44"/><path d="M152 150 V44"/><path d="M86 48 H158"/><path d="M86 140 H158"/></g>
+  <g stroke="#e8c87a" stroke-width=".9"><path d="M98 48 V140 M104 48 V140 M110 48 V140 M116 48 V140 M122 48 V140 M128 48 V140 M134 48 V140 M140 48 V140 M146 48 V140"/></g>
+  <!-- вытканная часть с узором -->
+  <rect x="96" y="104" width="52" height="36" fill="#8a6a34"/>
+  <path d="M98 122 L106 112 L114 122 L122 112 L130 122 L138 112 L146 122" fill="none" stroke="#c0392b" stroke-width="1.8"/>
+  <path d="M98 130 H146" stroke="#e8c87a" stroke-width="1.2"/>
+  <!-- горизонтальный станок -->
+  <g stroke="#c8a56a" stroke-width="2" fill="#2a1808"><path d="M190 132 H290 V122 H190 Z"/><path d="M196 132 V160 M284 132 V160"/></g>
+  <g stroke="#e8c87a" stroke-width=".8"><path d="M194 124 H286 M194 127 H286 M194 130 H286"/></g>
+  <path d="M232 116 Q240 112 248 116 Q240 120 232 116 Z" fill="#c8a56a"/>
+  <path d="M220 110 H270" stroke="#8a6a34" stroke-width="2"/>
+  <!-- висящие мотки на жерди -->
+  <path d="M180 60 H300" stroke="#8a6a34" stroke-width="2"/>
+  <g fill="none" stroke-width="3"><path d="M196 60 V84" stroke="#e8c87a"/><path d="M220 60 V88" stroke="#c0392b"/><path d="M244 60 V82" stroke="#c8a56a"/><path d="M268 60 V86" stroke="#e8c87a"/></g>
+  <!-- корзина с клубками -->
+  <path d="M20 150 H70 L64 172 H26 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <g fill="#2a1808" stroke="#e8c87a" stroke-width="1.3"><circle cx="34" cy="146" r="6"/><circle cx="48" cy="144" r="7"/><circle cx="60" cy="147" r="5"/></g>
+</svg>

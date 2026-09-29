@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Пленник — человек в верёвочных путах">
+  <title>Пленник</title>
+  <desc>ФОРМА: исхудавший человек с непокрытой головой, в рваной рубахе, руки связаны верёвкой; у ног чаша воды и хлеб, свет падает сверху. ДЕЙСТВИЕ: дьякон выкупает, кормит и защищает пленника, кем бы тот ни был. ЦЕЛЬ: «в темнице был, и вы пришли ко Мне» — милость к узнику. Миссии: 24 Покровительство пленникам, 51 Защита пленных.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. Рисовано вручную: сырьё 99 репо не подходит (правило 0.15). -->
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- свет сверху: надежда, а не нимб -->
+  <path d="M40 6 L30 40 H70 L60 6 Z" fill="#e8c87a" opacity=".08"/>
+  <!-- голова без покрова, спутанные волосы, опущенный взгляд -->
+  <circle cx="50" cy="36" r="11" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M40 30 Q44 22 50 24 Q56 22 60 30" fill="none" stroke="#8a6a34" stroke-width="2"/>
+  <path d="M45 38 h3 M52 38 h3" stroke="#c8a56a" stroke-width="1.2"/>
+  <path d="M44 43 Q50 50 56 43" fill="none" stroke="#8a6a34" stroke-width="1.4"/>
+  <!-- рваная рубаха -->
+  <path d="M50 48 C33 54 30 80 32 118 l5 -4 l4 4 l5 -4 l4 4 l5 -4 l4 4 l5 -4 l4 4 C70 80 67 54 50 48 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M42 70 l4 6 M58 90 l-3 5" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- руки, связанные верёвкой спереди -->
+  <path d="M36 60 Q38 76 46 84 M64 60 Q62 76 54 84" fill="none" stroke="#c8a56a" stroke-width="2"/>
+  <rect x="44" y="80" width="12" height="8" rx="2" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M44 83 H56 M44 86 H56" stroke="#8a6a34" stroke-width="1.4"/>
+  <path d="M50 88 Q48 100 54 108" fill="none" stroke="#8a6a34" stroke-width="1.4"/>
+  <!-- чаша воды и хлеб милосердия у ног -->
+  <path d="M16 124 H30 Q29 131 23 132 Q17 131 16 124 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.2"/>
+  <ellipse cx="23" cy="124" rx="7" ry="1.8" fill="#1f5a73"/>
+  <ellipse cx="78" cy="128" rx="8" ry="4" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.2"/>
+  <path d="M74 127 l2 -2 M79 127 l2 -2" stroke="#e8c87a" stroke-width="1"/>
+</svg>

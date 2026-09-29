@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Кам, старейшина-шаман местного рода">
+  <title>Кам</title>
+  <desc>Кам — уважаемый старейшина местного рода, хранитель обычаев гор и озера: меховая шапка с перьями, халат с бахромой, бубен. Нарисован как человек, с достоинством, без карикатуры и демонизации; его вера — иная, но он собеседник, а не враг. ФОРМА: знание земли и рода. ДЕЙСТВИЕ: игрок слушает, ищет общее в заботе о людях и воде, свидетельствует о Христе без насилия. ЦЕЛЬ: мир и уважение как почва для проповеди. Миссия: 55 «Союз с местными шаманами».</desc>
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- меховая шапка с перьями филина -->
+  <path d="M38 30 Q40 18 50 17 Q60 18 62 30 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M36 30 H64" stroke="#e8c87a" stroke-width="3" stroke-linecap="round"/>
+  <path d="M50 17 L46 6 M50 17 L54 6" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- лицо старца -->
+  <circle cx="50" cy="39" r="9" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M46 37 h2 M52 37 h2" stroke="#c8a56a" stroke-width="1"/>
+  <path d="M45 44 Q50 50 55 44 Q52 52 50 54 Q48 52 45 44 Z" fill="#c8a56a" opacity=".7"/>
+  <!-- халат -->
+  <path d="M50 50 C31 56 27 82 29 120 H71 C73 82 69 56 50 50 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M50 52 L44 120" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- бахрома-ленты по подолу -->
+  <g stroke="#c8a56a" stroke-width="1.2">
+    <path d="M32 120 v6 M38 120 v7 M44 120 v6 M56 120 v6 M62 120 v7 M68 120 v6"/>
+  </g>
+  <!-- бубен с колотушкой (простой обод, без знаков) -->
+  <ellipse cx="68" cy="80" rx="15" ry="17" fill="#8a6a34" stroke="#e8c87a" stroke-width="2"/>
+  <ellipse cx="68" cy="80" rx="11" ry="13" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".7"/>
+  <path d="M30 74 Q26 86 36 94" fill="none" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M36 94 L46 84" stroke="#e8c87a" stroke-width="1.8"/>
+  <ellipse cx="47" cy="83" rx="2.5" ry="2" fill="#c8a56a"/>
+</svg>

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Амбар обители зимой — зерно под снегом">
+  <title>Амбар обители зимой</title>
+  <desc>Бревенчатый амбар обители на сваях под снежной кровлей, мешки зерна у входа, следы к двери. ФОРМА: запас, собранный летом. ДЕЙСТВИЕ: игрок считает, хранит и раздаёт зерно. ЦЕЛЬ: честное хранение общего — доверие общины, а не богатство. Миссии: 5 «Кредит доверия», 75 «Системы хранения зерна».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, зима передана светлой охрой -->
+  <defs>
+    <linearGradient id="amb-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="70%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#amb-nebo)"/>
+  <!-- дальние заснеженные горы -->
+  <path d="M0 100 L40 70 L70 90 L110 60 L150 94 L200 66 L240 90 L280 70 L320 92 V120 H0 Z" fill="#241405"/>
+  <g fill="#e8d9b8" opacity=".75">
+    <path d="M34 75 L40 70 L46 75 Z"/><path d="M104 65 L110 60 L116 65 Z"/>
+    <path d="M194 71 L200 66 L206 71 Z"/><path d="M274 75 L280 70 L286 75 Z"/>
+  </g>
+  <!-- снежная земля -->
+  <path d="M0 136 Q90 126 180 134 Q260 140 320 132 V180 H0 Z" fill="#c8a56a" opacity=".55"/>
+  <path d="M0 150 Q120 142 320 150 V180 H0 Z" fill="#e8d9b8" opacity=".35"/>
+  <!-- стена обители с малой главкой вдали -->
+  <path d="M230 124 V108 H300 V124" fill="#2a1808" stroke="#8a6a34" stroke-width="1.5"/>
+  <path d="M262 108 V100 H270 V108 M262 100 Q266 92 270 100" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M266 93 V86 M263.5 89 h5" stroke="#e8c87a" stroke-width="1.5"/>
+  <!-- амбар на сваях -->
+  <g stroke="#c8a56a" stroke-width="2" fill="#2a1808">
+    <path d="M86 132 V140 M110 132 V140 M150 132 V140 M174 132 V140" fill="none"/>
+    <rect x="80" y="96" width="100" height="36"/>
+    <path d="M72 98 L130 66 L188 98 Z" fill="#1a0e04"/>
+  </g>
+  <!-- снег на кровле -->
+  <path d="M72 98 L130 66 L188 98 L182 98 L130 72 L78 98 Z" fill="#e8d9b8" opacity=".85"/>
+  <!-- брёвна сруба -->
+  <g stroke="#8a6a34" stroke-width="1.2">
+    <path d="M80 105 H180 M80 114 H180 M80 123 H180"/>
+  </g>
+  <!-- дверь с засовом -->
+  <rect x="120" y="104" width="20" height="28" fill="#140a02" stroke="#e8c87a" stroke-width="1.5"/>
+  <path d="M118 116 H142" stroke="#e8c87a" stroke-width="2"/>
+  <!-- мешки зерна у крыльца -->
+  <g fill="#8a6a34" stroke="#e8c87a" stroke-width="1.3">
+    <path d="M190 140 Q188 128 196 126 Q204 128 202 140 Z"/>
+    <path d="M204 142 Q202 130 210 128 Q218 130 216 142 Z"/>
+  </g>
+  <!-- следы к двери -->
+  <g fill="#2a1808" opacity=".7">
+    <ellipse cx="130" cy="150" rx="2" ry="1"/><ellipse cx="138" cy="156" rx="2" ry="1"/>
+    <ellipse cx="128" cy="162" rx="2" ry="1"/><ellipse cx="136" cy="168" rx="2" ry="1"/>
+  </g>
+  <!-- падающий снег -->
+  <g fill="#e8d9b8" opacity=".7">
+    <circle cx="30" cy="30" r="1.2"/><circle cx="70" cy="50" r="1"/><circle cx="120" cy="24" r="1.2"/>
+    <circle cx="170" cy="44" r="1"/><circle cx="220" cy="28" r="1.2"/><circle cx="290" cy="46" r="1"/>
+    <circle cx="250" cy="60" r="1"/><circle cx="40" cy="120" r="1"/>
+  </g>
+</svg>

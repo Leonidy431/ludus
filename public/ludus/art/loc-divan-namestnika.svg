@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Диван наместника — арочный зал приёмов с писцом и податными мешками">
+  <title>Диван наместника</title>
+  <desc>ФОРМА: арочный зал приёмов: возвышение с подушками наместника, решётчатое окно со светом, ковёр, столик писца со свитками и весами, мешки подати натурой. ДЕЙСТВИЕ: дьякон добивается справедливого и посильного налога для бедных общин, с расчётами на руках, без лести и подкупа. ЦЕЛЬ: «отдавайте кесарево кесарю» (Мф. 22:21) — правда в мере и милость в сборе. Миссия: 65 Рационализация налогов.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. Рисовано вручную: сырьё 99 репо не подходит (правило 0.15). -->
+  <defs>
+    <linearGradient id="divan-namestnika-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#divan-namestnika-nebo)"/>
+  <!-- задняя стена -->
+  <rect y="26" width="320" height="106" fill="#2a1808"/>
+  <path d="M0 26 H320" stroke="#8a6a34" stroke-width="2"/>
+  <!-- три арки -->
+  <g fill="#140a02" stroke="#c8a56a" stroke-width="2">
+    <path d="M52 122 V70 Q80 40 108 70 V122 Z"/>
+    <path d="M132 122 V64 Q160 30 188 64 V122 Z"/>
+    <path d="M212 122 V70 Q240 40 268 70 V122 Z"/>
+  </g>
+  <!-- решётка среднего окна и свет -->
+  <g stroke="#8a6a34" stroke-width="1.2" fill="none">
+    <path d="M146 52 L174 80 M174 52 L146 80 M140 66 L160 46 L180 66 L160 86 Z"/>
+  </g>
+  <path d="M146 92 H174 L196 150 H124 Z" fill="#e8c87a" opacity=".08"/>
+  <!-- висячие светильники -->
+  <g stroke="#8a6a34" stroke-width="1"><path d="M80 26 V44 M240 26 V44"/></g>
+  <g fill="#c8a56a"><path d="M74 44 H86 L83 49 H77 Z M234 44 H246 L243 49 H237 Z"/></g>
+  <g fill="#e8c87a"><circle cx="80" cy="41" r="1.8"/><circle cx="240" cy="41" r="1.8"/></g>
+  <!-- пол и ковёр -->
+  <rect y="132" width="320" height="48" fill="#241405"/>
+  <path d="M100 140 H220 L240 172 H80 Z" fill="#2a1808" stroke="#8a6a34" stroke-width="2"/>
+  <path d="M108 144 H212 L228 168 H92 Z" fill="none" stroke="#c8a56a" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <path d="M160 148 L172 156 L160 164 L148 156 Z" fill="#c0392b" opacity=".8" stroke="#e8c87a" stroke-width="1"/>
+  <!-- возвышение наместника с подушками -->
+  <rect x="124" y="118" width="72" height="14" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <rect x="134" y="108" width="52" height="10" rx="4" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.2"/>
+  <rect x="124" y="104" width="10" height="14" rx="4" fill="#e8c87a" stroke="#8a6a34" stroke-width="1"/>
+  <!-- столик писца: свитки и весы -->
+  <g stroke="#c8a56a" stroke-width="1.6" fill="#2a1808">
+    <rect x="48" y="138" width="46" height="6"/>
+    <path d="M52 144 V154 M90 144 V154" fill="none"/>
+  </g>
+  <g fill="#e8d9b8" stroke="#8a6a34" stroke-width="1"><rect x="54" y="132" width="16" height="5" rx="2.5"/><rect x="58" y="127" width="14" height="5" rx="2.5"/></g>
+  <g stroke="#e8c87a" stroke-width="1.4" fill="none"><path d="M84 138 V126 M76 126 H92 M76 126 L74 132 H78 Z M92 126 L90 132 H94 Z"/></g>
+  <!-- мешки подати натурой -->
+  <g fill="#c8a56a" stroke="#8a6a34" stroke-width="1.3">
+    <path d="M244 150 Q242 134 250 132 L248 128 H258 L256 132 Q264 134 262 150 Z"/>
+    <path d="M266 152 Q264 138 271 136 L269 132 H279 L277 136 Q284 138 282 152 Z"/>
+  </g>
+</svg>

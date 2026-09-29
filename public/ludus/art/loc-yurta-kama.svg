@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Юрта кама — войлочная юрта в степи у гор, бубен у входа, конь на привязи">
+  <title>Юрта кама</title>
+  <desc>ФОРМА: войлочная юрта с решёткой-кереге и дымом из тундука, у входа висит бубен, береза с лентами, конь у коновязи, костёр; вечер у гор. Нарисовано уважительно: дом человека иной веры, без демонизации и оккультных знаков. ДЕЙСТВИЕ: дьякон приходит гостем, слушает старейшину, ищет общее в заботе о воде, скоте и людях. ЦЕЛЬ: мирная беседа — почва для свидетельства о Христе без принуждения. Миссия: 55 Союз с местными шаманами.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. Рисовано вручную: сырьё 99 репо не подходит (правило 0.15). -->
+  <defs>
+    <linearGradient id="yurta-kama-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#yurta-kama-nebo)"/>
+  <!-- горы -->
+  <path d="M0 108 L46 66 L84 96 L132 56 L180 94 L230 62 L280 96 L320 74 V126 H0 Z" fill="#241405"/>
+  <g fill="#e8d9b8" opacity=".75"><path d="M124 64 L132 56 L140 64 L132 61 Z M222 70 L230 62 L238 70 L230 67 Z"/></g>
+  <!-- степь -->
+  <path d="M0 124 Q160 114 320 124 V180 H0 Z" fill="#2a1808"/>
+  <!-- юрта -->
+  <path d="M110 156 V124 Q150 88 190 124 V156 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M110 124 H190" stroke="#c8a56a" stroke-width="1.6"/>
+  <g stroke="#2a1808" stroke-width="1" opacity=".8">
+    <path d="M114 128 L126 152 M126 128 L114 152 M134 128 L146 152 M146 128 L134 152 M164 128 L176 152 M176 128 L164 152 M184 128 L188 136"/>
+  </g>
+  <path d="M112 136 H188" stroke="#e8c87a" stroke-width="1.4"/>
+  <!-- дверь с войлочным узором -->
+  <rect x="150" y="132" width="12" height="24" fill="#140a02" stroke="#e8c87a" stroke-width="1.4"/>
+  <path d="M152 140 q4 -5 8 0 M152 148 q4 -5 8 0" fill="none" stroke="#c8a56a" stroke-width="1"/>
+  <!-- тундук и дым -->
+  <path d="M142 98 H158" stroke="#e8c87a" stroke-width="2"/>
+  <path d="M150 96 q-6 -10 0 -18 q6 -8 0 -18" fill="none" stroke="#c8a56a" stroke-width="1.4" opacity=".5"/>
+  <!-- бубен у входа -->
+  <path d="M168 130 V134" stroke="#8a6a34" stroke-width="1"/>
+  <circle cx="171" cy="140" r="6" fill="#c8a56a" stroke="#2a1808" stroke-width="1.4"/>
+  <!-- береза с лентами -->
+  <path d="M58 158 Q56 128 60 100 M59 124 Q48 116 44 106 M60 112 Q70 104 74 96" fill="none" stroke="#e8d9b8" stroke-width="2"/>
+  <g stroke="#c8a56a" stroke-width="1.4"><path d="M50 114 l-2 8 M68 104 l3 8 M58 118 l4 7"/></g>
+  <path d="M46 110 l-3 7" stroke="#c0392b" stroke-width="1.4"/>
+  <!-- конь у коновязи -->
+  <path d="M232 160 V140 M250 140 H222" stroke="#8a6a34" stroke-width="2"/>
+  <path d="M250 150 Q250 142 258 142 H278 Q284 140 288 132 L294 134 L290 144 Q288 148 284 150 V164 M258 150 V164 M264 150 V164 M280 150 V164 M250 150 Q246 156 248 162" fill="#140a02" stroke="#c8a56a" stroke-width="1.4"/>
+  <!-- костёр -->
+  <g transform="translate(206,166)">
+    <path d="M0 0 Q2 -8 0 -12 Q6 -8 4 0 Z" fill="#e8c87a"/>
+    <path d="M-5 2 H9 M-3 4 H7" stroke="#8a6a34" stroke-width="1.6"/>
+  </g>
+</svg>

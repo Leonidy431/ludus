@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Кошель дирхемов, реестр СГ-07">
+  <title>Кошель дирхемов (СГ-07)</title>
+  <desc>Форма: кожаный кошель на шнурке и несколько серебряных дирхемов с отмеченным весом. Действие: сберечь и учесть монеты общины, не приумножая их ростом. Цель: трезвое хранение против сребролюбия. Миссия: 80 Хранение монет.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов.
+       Предмет реестра СГ-07: хранимое серебро общины, не награда и не лут. -->
+  <defs>
+    <radialGradient id="koshel-dirhemov-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#koshel-dirhemov-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- кошель -->
+  <path d="M30 40 Q22 50 24 66 Q28 80 48 80 Q68 80 72 66 Q74 50 66 40 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M30 40 Q48 46 66 40 Q60 34 48 34 Q36 34 30 40 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- затянутый шнур с узлом -->
+  <path d="M32 42 Q48 48 64 42" fill="none" stroke="#e8c87a" stroke-width="1.5"/>
+  <path d="M48 45 Q44 54 40 56 M48 45 Q52 54 55 58" fill="none" stroke="#e8c87a" stroke-width="1.3"/>
+  <circle cx="48" cy="45" r="2" fill="#e8c87a"/>
+  <!-- ярлык реестра: семь точек -->
+  <rect x="38" y="64" width="20" height="8" rx="2" fill="#1a0e04" stroke="#8a6a34" stroke-width="1"/>
+  <g fill="#c8a56a"><circle cx="42" cy="68" r=".9"/><circle cx="45" cy="68" r=".9"/><circle cx="48" cy="68" r=".9"/><circle cx="51" cy="68" r=".9"/><circle cx="54" cy="68" r=".9"/></g>
+  <!-- дирхемы рядом, с кольцевой каймой -->
+  <g fill="#c8a56a" stroke="#8a6a34" stroke-width="1">
+    <circle cx="76" cy="76" r="6"/><circle cx="18" cy="78" r="5"/><circle cx="80" cy="64" r="4.5"/>
+  </g>
+  <g fill="none" stroke="#1a0e04" stroke-width=".8"><circle cx="76" cy="76" r="4"/><circle cx="18" cy="78" r="3.2"/></g>
+</svg>

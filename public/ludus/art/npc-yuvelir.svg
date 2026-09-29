@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Мастер-серебряник с молоточком и тиглем">
+  <title>Мастер-серебряник</title>
+  <desc>Форма: мастер в тюбетейке и фартуке у наковаленки, молоточек в руке, тигель на огне, пробирный камень у пояса, перед ним простая чаша в работе. Действие: плавит, проверяет пробу и честно чеканит; мерило — правда веса. Цель: благородный металл служит мере и красоте, а не сребролюбию. Миссия: 81 «Обработка серебра и золота».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш, без нимбов -->
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- голова в тюбетейке -->
+  <circle cx="50" cy="36" r="11" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M40 30 Q41 22 50 22 Q59 22 60 30 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M44 26 h4 M52 26 h4" stroke="#e8c87a" stroke-width="1"/>
+  <!-- усы и короткая бородка -->
+  <path d="M44 42 Q50 45 56 42" fill="none" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M47 45 Q50 51 53 45 Z" fill="#c8a56a" opacity=".8"/>
+  <!-- халат и кожаный фартук -->
+  <path d="M50 48 C31 54 27 80 29 118 H71 C73 80 69 54 50 48 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M38 64 H62 L64 112 H36 Z" fill="#3a2410" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- молоточек в правой руке -->
+  <path d="M66 66 L72 80" stroke="#c8a56a" stroke-width="2.2"/>
+  <rect x="61" y="60" width="10" height="5" transform="rotate(-22 66 62)" fill="#e8c87a" stroke="#8a6a34" stroke-width=".8"/>
+  <!-- наковаленка и чаша в работе -->
+  <path d="M40 118 H62 L58 110 H44 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M44 106 Q51 114 58 106 Z" fill="#e8d9b8" stroke="#8a6a34" stroke-width="1"/>
+  <!-- тигель над углями -->
+  <path d="M18 112 L22 124 H30 L34 112 Z" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.5"/>
+  <ellipse cx="26" cy="112" rx="8" ry="2" fill="#e8c87a"/>
+  <g fill="#c0392b"><circle cx="22" cy="128" r="1.6"/><circle cx="27" cy="129" r="1.6"/><circle cx="31" cy="128" r="1.4"/></g>
+  <!-- пробирный камень на шнуре -->
+  <path d="M40 90 V96" stroke="#c8a56a" stroke-width="1"/>
+  <rect x="36" y="96" width="8" height="10" rx="1" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.2"/>
+  <path d="M38 101 H42" stroke="#e8c87a" stroke-width="1"/>
+</svg>

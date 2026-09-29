@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Раскрытая летопись на аналое">
+  <title>Раскрытая летопись</title>
+  <desc>Форма: раскрытый кодекс на наклонном аналое, киноварный инициал, ровные строки погодных записей, перо и чернильница. Действие: записывать события год за годом, ничего не приукрашивая и не вычёркивая. Цель: память Церкви хранит правду о людях, а не славу о них; летописец свидетель, а не судья. Миссии: 86 Хроника диаспоры, 92 Режим историка, 96 Фантомный епископ.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. Объект: летопись миссии — журнал, который не уничтожается. -->
+  <defs>
+    <radialGradient id="letopis-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#letopis-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- аналой -->
+  <path d="M30 80 L48 62 L66 80" fill="none" stroke="#8a6a34" stroke-width="2"/>
+  <path d="M48 62 V80" stroke="#8a6a34" stroke-width="2"/>
+  <!-- раскрытый кодекс -->
+  <path d="M16 58 L48 64 L80 58 L80 28 L48 34 L16 28 Z" fill="#2a1808" stroke="#e8c87a" stroke-width="1.8"/>
+  <path d="M48 34 V64" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M20 31 L46 36 V60 L20 55 Z M76 31 L50 36 V60 L76 55 Z" fill="#e8d9b8" opacity=".14"/>
+  <!-- киноварный инициал -->
+  <rect x="21" y="34" width="7" height="8" fill="#c0392b" stroke="#e8c87a" stroke-width=".8"/>
+  <!-- погодные строки -->
+  <g stroke="#c8a56a" stroke-width="1.1">
+    <path d="M30 37 L44 39.5 M30 41 L44 43.5 M21 45 L44 49 M21 49 L44 53 M21 53 L38 56"/>
+    <path d="M52 39.5 L74 35.5 M52 43.5 L74 39.5 M52 47.5 L74 43.5 M52 51.5 L74 47.5 M52 55.5 L66 53"/>
+  </g>
+  <!-- перо и чернильница -->
+  <path d="M68 70 L84 18" stroke="#e8c87a" stroke-width="1.4"/>
+  <path d="M84 18 Q76 26 74 40 Q80 30 84 18 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width=".8"/>
+  <path d="M18 70 h10 v8 h-10 Z" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.4"/>
+  <ellipse cx="23" cy="70" rx="5" ry="1.6" fill="#140a02" stroke="#c8a56a" stroke-width="1"/>
+</svg>

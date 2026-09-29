@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Обнажившаяся терраса Иссык-Куля — солончак, старые сваи, береговые валы">
+  <title>Терраса регрессии</title>
+  <desc>Форма: озеро отступило; ступени древних береговых валов, белые пятна солончака, ряд почерневших свай прежнего причала, вода далеко у гор. Действие: игрок измеряет уровни валов и читает по сваям, где стоял берег, — вода уходила и возвращалась. Цель: мир меняется, и человек учится смирению перед временем и тварью. Миссия: 31 «Фаза регрессии».</desc>
+  <!-- Арт-канон §9.0: умбра+золото; озёрные синие только для воды. -->
+  <defs>
+    <linearGradient id="reg-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#reg-nebo)"/>
+  <!-- горы за озером -->
+  <path d="M0 76 L50 46 L90 70 L140 40 L190 72 L240 48 L290 70 L320 58 V86 H0 Z" fill="#241405"/>
+  <g fill="#e8d9b8" opacity=".7"><path d="M132 45 L140 40 L148 45 Z"/><path d="M233 52 L240 48 L247 52 Z"/></g>
+  <!-- отступившая вода вдали -->
+  <rect y="84" width="320" height="12" fill="#0d2a3a"/>
+  <path d="M40 90 H80 M200 92 H240" stroke="#1f5a73" stroke-width="1.2"/>
+  <!-- береговые валы: три уступа -->
+  <path d="M0 96 Q160 92 320 96 V110 Q160 106 0 110 Z" fill="#3a2410"/>
+  <path d="M0 110 Q160 106 320 110 V128 Q160 122 0 128 Z" fill="#2a1808"/>
+  <path d="M0 128 Q160 122 320 128 V180 H0 Z" fill="#241405"/>
+  <g fill="none" stroke="#c8a56a" stroke-width="1.5" opacity=".8">
+    <path d="M0 110 Q160 106 320 110"/><path d="M0 128 Q160 122 320 128"/>
+  </g>
+  <!-- солончак: белые корки -->
+  <g fill="#e8d9b8" opacity=".55">
+    <ellipse cx="60" cy="146" rx="30" ry="5"/><ellipse cx="200" cy="140" rx="40" ry="4"/>
+    <ellipse cx="280" cy="160" rx="24" ry="4"/><ellipse cx="120" cy="166" rx="22" ry="3"/>
+  </g>
+  <!-- ряд старых свай прежнего причала -->
+  <g fill="#1a0e04" stroke="#c8a56a" stroke-width="1.5">
+    <rect x="130" y="112" width="5" height="22"/><rect x="146" y="114" width="5" height="20"/>
+    <rect x="162" y="116" width="5" height="18"/><rect x="178" y="118" width="5" height="16"/>
+    <rect x="194" y="121" width="5" height="12"/>
+  </g>
+  <!-- отметка старого уровня воды на сваях -->
+  <path d="M126 120 H204" stroke="#1f5a73" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <!-- мерная рейка исследователя -->
+  <path d="M250 150 V116" stroke="#e8c87a" stroke-width="2"/>
+  <g stroke="#e8c87a" stroke-width="1.2"><path d="M250 122 h5 M250 130 h5 M250 138 h5 M250 146 h5"/></g>
+  <!-- трещины такыра -->
+  <g stroke="#8a6a34" stroke-width="1" fill="none" opacity=".7">
+    <path d="M20 170 l12 -4 8 6 14 -3 M220 172 l10 -6 12 4 10 -5"/>
+  </g>
+  <!-- ракушки, вынесенные на вал -->
+  <g fill="#c8a56a"><circle cx="90" cy="118" r="1.5"/><circle cx="96" cy="120" r="1.2"/><circle cx="230" cy="112" r="1.4"/></g>
+</svg>

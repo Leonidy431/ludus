@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Сигнальное знамя дозора на древке">
+  <title>Знамя дозора</title>
+  <desc>ФОРМА: треугольное сигнальное полотнище на древке с полосами-знаками, древко вкопано у камня. ДЕЙСТВИЕ: дозорный поднимает и склоняет знамя по условленному коду (реестр С-10) — днём, когда огня не видно. ЦЕЛЬ: ясная весть без крика; знамя служит вестью ближним, а не боевым штандартом. Миссия: 84 «Системы сигнализации».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. -->
+  <defs>
+    <radialGradient id="znmd-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#znmd-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- древко -->
+  <path d="M28 84 V14" stroke="#8a6a34" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="28" cy="13" r="2.5" fill="#e8c87a"/>
+  <!-- полотнище, колеблемое ветром -->
+  <path d="M30 18 Q50 14 74 28 Q52 34 30 44 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- полосы-знаки кода -->
+  <path d="M34 22 V40 M40 21 V38" stroke="#2a1808" stroke-width="2"/>
+  <path d="M48 24 Q54 26 60 28" stroke="#c0392b" stroke-width="2.2" fill="none"/>
+  <!-- линии ветра -->
+  <g stroke="#e8c87a" stroke-width="1" opacity=".5" fill="none">
+    <path d="M60 46 q8 -2 14 0 M66 52 q6 -2 12 0"/>
+  </g>
+  <!-- камень у основания и растяжки -->
+  <path d="M16 86 Q18 76 28 76 Q40 76 42 86 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.4"/>
+  <path d="M28 50 L14 84 M28 50 L46 84" stroke="#8a6a34" stroke-width="1" opacity=".7"/>
+</svg>

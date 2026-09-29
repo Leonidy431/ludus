@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Караванная стоянка — шатры, котлы на треногах и отдыхающие верблюды">
+  <title>Караванная стоянка</title>
+  <desc>ФОРМА: вечерняя стоянка каравана у подножия гор: шатры, котлы на треногах над кострами, лежащие верблюды, тюки. ДЕЙСТВИЕ: игрок устраивает полевые кухни, где кормят караванщиков, погонщиков и бедных любой веры из одного котла. ЦЕЛЬ: трапеза любви — «алкал, и вы дали Мне есть» (Мф. 25:35). Миссия: 83 Полевые кухни.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. Рисовано вручную: сырьё 99 репо не подходит (правило 0.15). -->
+  <defs>
+    <linearGradient id="karavannaya-stoyanka-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#karavannaya-stoyanka-nebo)"/>
+  <!-- дальние горы -->
+  <path d="M0 104 L40 70 L72 92 L110 60 L150 90 L196 66 L240 94 L282 68 L320 90 V120 H0 Z" fill="#241405"/>
+  <g fill="#e8d9b8" opacity=".7"><path d="M104 66 L110 60 L116 66 L110 64 Z M276 74 L282 68 L288 74 L282 72 Z"/></g>
+  <!-- земля стоянки -->
+  <path d="M0 118 Q160 108 320 118 V180 H0 Z" fill="#2a1808"/>
+  <!-- шатры -->
+  <g fill="#2a1808" stroke="#c8a56a" stroke-width="2">
+    <path d="M30 140 L62 104 L94 140 Z"/>
+    <path d="M214 132 L240 102 L266 132 Z"/>
+  </g>
+  <g fill="#140a02"><path d="M56 140 L62 122 L68 140 Z M235 132 L240 118 L245 132 Z"/></g>
+  <path d="M62 104 V98 M240 102 V96" stroke="#8a6a34" stroke-width="1.6"/>
+  <path d="M62 98 L70 101 L62 103" fill="#c0392b"/>
+  <!-- котлы на треногах -->
+  <g transform="translate(128,150)">
+    <path d="M-10 0 L0 -20 L10 0" fill="none" stroke="#8a6a34" stroke-width="1.6"/>
+    <path d="M0 -20 V-14" stroke="#8a6a34" stroke-width="1"/>
+    <path d="M-7 -14 H7 Q6 -5 0 -5 Q-6 -5 -7 -14 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+    <path d="M-3 0 Q-1 -5 0 -3 Q2 -6 3 0 Z" fill="#e8c87a"/>
+    <path d="M-2 -17 q-3 -5 0 -9 q3 -4 0 -8 M3 -17 q3 -5 0 -9" fill="none" stroke="#e8c87a" stroke-width="1" opacity=".45"/>
+  </g>
+  <g transform="translate(176,148)">
+    <path d="M-10 0 L0 -20 L10 0" fill="none" stroke="#8a6a34" stroke-width="1.6"/>
+    <path d="M0 -20 V-14" stroke="#8a6a34" stroke-width="1"/>
+    <path d="M-7 -14 H7 Q6 -5 0 -5 Q-6 -5 -7 -14 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+    <path d="M-3 0 Q-1 -5 0 -3 Q2 -6 3 0 Z" fill="#e8c87a"/>
+    <path d="M-2 -17 q-3 -5 0 -9 q3 -4 0 -8 M3 -17 q3 -5 0 -9" fill="none" stroke="#e8c87a" stroke-width="1" opacity=".45"/>
+  </g>
+  <!-- лежащие верблюды -->
+  <g transform="translate(250,164)"><path d="M0 0 Q-2 -10 6 -14 Q10 -24 17 -15 Q22 -25 29 -15 Q35 -14 37 -8 Q42 -12 44 -24 Q45 -30 51 -29 L55 -26 L50 -24 Q48 -12 42 0 Z" fill="#140a02" stroke="#c8a56a" stroke-width="1.3"/><path d="M4 0 q4 4 9 0 M27 0 q4 4 9 0" fill="none" stroke="#c8a56a" stroke-width="1.3"/></g>
+  <g transform="translate(86,170) scale(.8)"><path d="M0 0 Q-2 -10 6 -14 Q10 -24 17 -15 Q22 -25 29 -15 Q35 -14 37 -8 Q42 -12 44 -24 Q45 -30 51 -29 L55 -26 L50 -24 Q48 -12 42 0 Z" fill="#140a02" stroke="#c8a56a" stroke-width="1.3"/><path d="M4 0 q4 4 9 0 M27 0 q4 4 9 0" fill="none" stroke="#c8a56a" stroke-width="1.3"/></g>
+  <!-- тюки -->
+  <g fill="#c8a56a" stroke="#8a6a34" stroke-width="1.2">
+    <rect x="16" y="150" width="16" height="10" rx="2"/><rect x="200" y="152" width="14" height="10" rx="2"/>
+  </g>
+</svg>

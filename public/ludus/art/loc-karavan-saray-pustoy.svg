@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Опустевший караван-сарай под луной">
+  <title>Опустевший караван-сарай</title>
+  <desc>Заброшенный караван-сарай на старом пути: высокий арочный портал, осыпавшиеся стены, пустые ниши стойл, сухой колодец и перекати-поле; караваны ушли другой дорогой. ФОРМА: пустота вместо торга. ДЕЙСТВИЕ: игрок понимает, что мир изменился, и решает, чему служить дальше. ЦЕЛЬ: «Не имамы зде пребывающаго града»: земное преходит, а служение ищет новый путь. Миссия 94.</desc>
+  <!-- Арт-канон §9.0: умбра+золото; 2D-виньетка локации -->
+  <defs>
+    <linearGradient id="ksp-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#ksp-nebo)"/>
+  <!-- бледная луна -->
+  <circle cx="252" cy="36" r="12" fill="#e8c87a" opacity=".8"/>
+  <circle cx="258" cy="32" r="11" fill="#2a1808" opacity=".6"/>
+  <!-- степь -->
+  <path d="M0 128 Q160 116 320 128 V180 H0 Z" fill="#2a1808"/>
+  <!-- стены с осыпью -->
+  <path d="M40 132 V88 H96 L104 96 L112 88 H128 V132 Z" fill="#3a2410" stroke="#c8a56a" stroke-width="1.8"/>
+  <path d="M192 132 V88 H214 L220 100 L230 92 L236 104 H280 V132 Z" fill="#3a2410" stroke="#c8a56a" stroke-width="1.8"/>
+  <!-- арочный портал -->
+  <path d="M128 132 V60 H192 V132 Z" fill="#3a2410" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M142 132 V96 Q160 70 178 96 V132 Z" fill="#140a02" stroke="#e8c87a" stroke-width="1.6"/>
+  <path d="M134 66 H186" stroke="#8a6a34" stroke-width="1.4"/>
+  <path d="M176 60 L184 70 L192 64" fill="none" stroke="#8a6a34" stroke-width="1.4"/>
+  <!-- пустые ниши стойл -->
+  <g fill="#140a02" stroke="#8a6a34" stroke-width="1.2">
+    <path d="M52 124 V108 Q58 100 64 108 V124 Z"/><path d="M76 124 V108 Q82 100 88 108 V124 Z"/>
+    <path d="M244 124 V110 Q250 102 256 110 V124 Z"/>
+  </g>
+  <!-- обломки у стены -->
+  <g fill="#8a6a34"><rect x="100" y="128" width="8" height="5"/><rect x="226" y="129" width="7" height="4"/></g>
+  <!-- сухой колодец -->
+  <ellipse cx="80" cy="152" rx="14" ry="4" fill="#140a02" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M66 152 V144 M94 152 V144 M64 144 H96" stroke="#8a6a34" stroke-width="1.6"/>
+  <!-- перекати-поле -->
+  <g fill="none" stroke="#c8a56a" stroke-width="1" opacity=".8">
+    <circle cx="238" cy="154" r="7"/><path d="M232 150 L244 158 M233 158 L243 150 M238 147 V161"/>
+  </g>
+</svg>

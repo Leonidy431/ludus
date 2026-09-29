@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Кирпичный двор: печь, формы, леса">
+  <title>Кирпичный двор</title>
+  <desc>Форма: обжиговая печь с огнём, ряды сохнущего кирпича, деревянные формы и леса у растущей стены с куполом по образцу Самарканда. Действие: учиться у мастеров чужой архитектуры и строить своё. Цель: мастерство перенимается смиренно — копия учит, а не ворует. Миссия: 71 Архитектурное копирование Самарканда.</desc>
+  <!-- Арт-канон §9.0: умбра+золото. Локация миссии 71: стройка при обители, полдень в пыли. -->
+  <defs>
+    <linearGradient id="kirpichnyi-dvor-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#kirpichnyi-dvor-nebo)"/>
+  <!-- контур далёкого купола-образца -->
+  <path d="M232 70 Q260 30 288 70 Z" fill="none" stroke="#8a6a34" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <rect x="228" y="70" width="64" height="16" fill="none" stroke="#8a6a34" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <!-- земля -->
+  <path d="M0 132 Q160 124 320 132 V180 H0 Z" fill="#241405"/>
+  <!-- растущая стена -->
+  <path d="M200 132 V86 H300 V132 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.8"/>
+  <g stroke="#8a6a34" stroke-width="1"><path d="M200 98 H300 M200 110 H300 M200 122 H300"/><path d="M220 86 V98 M250 86 V98 M280 86 V98 M235 98 V110 M265 98 V110 M220 110 V122 M250 110 V122 M280 110 V122"/></g>
+  <!-- строительные леса -->
+  <g stroke="#c8a56a" stroke-width="2"><path d="M192 132 V70"/><path d="M308 132 V70"/><path d="M188 96 H312"/><path d="M188 72 H312"/></g>
+  <path d="M192 96 L220 72 M308 96 L280 72" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- обжиговая печь -->
+  <path d="M30 132 V96 Q60 60 90 96 V132 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M48 132 V116 Q60 104 72 116 V132 Z" fill="#c0392b" stroke="#e8c87a" stroke-width="1.5"/>
+  <path d="M54 132 Q58 120 60 114 Q64 122 66 132 Z" fill="#e8c87a"/>
+  <circle cx="60" cy="122" r="20" fill="#e8c87a" opacity=".1"/>
+  <!-- дым -->
+  <path d="M60 72 Q52 56 62 44 Q72 32 64 18" fill="none" stroke="#8a6a34" stroke-width="3" opacity=".6"/>
+  <!-- ряды сохнущего кирпича -->
+  <g fill="#8a6a34" stroke="#c8a56a" stroke-width="1">
+    <rect x="104" y="146" width="12" height="6"/><rect x="118" y="146" width="12" height="6"/><rect x="132" y="146" width="12" height="6"/><rect x="146" y="146" width="12" height="6"/>
+    <rect x="110" y="140" width="12" height="6"/><rect x="124" y="140" width="12" height="6"/><rect x="138" y="140" width="12" height="6"/>
+    <rect x="104" y="162" width="12" height="6"/><rect x="118" y="162" width="12" height="6"/><rect x="132" y="162" width="12" height="6"/>
+  </g>
+  <!-- деревянные формы кирпича -->
+  <g fill="none" stroke="#e8c87a" stroke-width="1.6"><rect x="160" y="160" width="30" height="8"/><path d="M170 160 V168 M180 160 V168"/></g>
+  <!-- корыто глины -->
+  <path d="M20 158 H70 L64 170 H26 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+</svg>

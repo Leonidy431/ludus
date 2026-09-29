@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Лист крюковой знаменной нотации">
+  <title>Лист знаменной нотации</title>
+  <desc>ФОРМА: лист певческой рукописи: строки крюков-знамён без текста, киноварные пометы и поля. ДЕЙСТВИЕ: регент диаспоры учит разноязычный хор петь по одним знамёнам, одним гласом и а капелла. ЦЕЛЬ: единомыслие — многие голоса как одни уста. Знамёна обобщены, богослужебный текст не приводится. Миссия: 27 Хор диаспоры.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. Красный —
+       только киноварь помет, как в рукописях. -->
+  <defs>
+    <radialGradient id="kryuk-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#kryuk-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- лист рукописи -->
+  <path d="M18 14 H78 V82 H18 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.5"/>
+  <path d="M24 14 V82" stroke="#8a6a34" stroke-width=".8" opacity=".7"/>
+  <!-- киноварный инициал-заставка -->
+  <path d="M28 19 H72" stroke="#c0392b" stroke-width="2"/>
+  <!-- строки знамён: крюк, стопица, статья, запятая -->
+  <g fill="none" stroke="#1a0e04" stroke-width="1.6" stroke-linecap="round">
+    <path d="M30 30 q4 -4 4 2 q0 3 -3 2 M40 28 v5 M40 30 h3 M49 30 q3 -3 5 0 M60 28 q-3 3 0 5 M68 30 q4 -4 4 2"/>
+    <path d="M30 44 v5 M30 46 h3 M38 46 q3 -3 5 0 M48 44 q4 -4 4 2 q0 3 -3 2 M58 44 v5 M64 46 q3 -3 5 0"/>
+    <path d="M30 60 q4 -4 4 2 M40 60 q3 -3 5 0 M50 58 v5 M50 60 h3 M60 60 q4 -4 4 2 q0 3 -3 2 M70 58 q-3 3 0 5"/>
+    <path d="M30 74 q3 -3 5 0 M40 72 v5 M48 74 q4 -4 4 2 M58 74 q3 -3 5 0"/>
+  </g>
+  <!-- точки-стопицы -->
+  <g fill="#1a0e04"><circle cx="36" cy="37" r="1"/><circle cx="54" cy="51" r="1"/><circle cx="44" cy="66" r="1"/></g>
+  <!-- киноварные пометы над знамёнами -->
+  <g fill="#c0392b"><circle cx="45" cy="26" r="1"/><circle cx="62" cy="41" r="1"/><circle cx="36" cy="56" r="1"/><circle cx="66" cy="70" r="1"/></g>
+</svg>

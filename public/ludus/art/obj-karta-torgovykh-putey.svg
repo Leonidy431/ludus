@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Карта торговых путей — развёрнутый свиток с дорогами">
+  <title>Карта торговых путей</title>
+  <desc>ФОРМА: развёрнутый свиток-реестр (СГ-14) с очертанием озера, горной грядой, пунктирными дорогами каравана и точками стоянок; печать обители. ДЕЙСТВИЕ: дьякон собирает рассказы купцов в общую карту и делится ею со всеми путниками. ЦЕЛЬ: знание пути как общее благо. Миссия: 77 Библиотека торговых маршрутов.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. Рисовано вручную: сырьё 99 репо не подходит (правило 0.15). -->
+  <defs>
+    <radialGradient id="kt-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#kt-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- лист свитка -->
+  <rect x="18" y="22" width="60" height="52" fill="#e8c87a" stroke="#8a6a34" stroke-width="1.4"/>
+  <!-- валики свитка -->
+  <rect x="12" y="18" width="8" height="60" rx="4" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.4"/>
+  <rect x="76" y="18" width="8" height="60" rx="4" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.4"/>
+  <!-- горная гряда -->
+  <path d="M24 38 l5 -7 l5 7 l5 -8 l5 8 l5 -6 l5 6" fill="none" stroke="#8a6a34" stroke-width="1.3"/>
+  <!-- озеро -->
+  <ellipse cx="56" cy="52" rx="13" ry="6" fill="#1f5a73" stroke="#0d2a3a" stroke-width="1"/>
+  <!-- дороги каравана -->
+  <g fill="none" stroke="#2a1808" stroke-width="1.4" stroke-dasharray="3 2">
+    <path d="M22 64 Q34 58 42 60 Q48 64 44 68 L72 66"/>
+    <path d="M42 60 Q40 48 30 44"/>
+    <path d="M69 50 Q74 42 74 32"/>
+  </g>
+  <!-- стоянки -->
+  <g fill="#2a1808"><circle cx="22" cy="64" r="2"/><circle cx="42" cy="60" r="2"/><circle cx="30" cy="44" r="2"/><circle cx="72" cy="66" r="2"/><circle cx="74" cy="32" r="2"/></g>
+  <!-- роза ветров -->
+  <path d="M66 28 V40 M60 34 H72" stroke="#8a6a34" stroke-width="1"/>
+  <!-- печать обители на шнуре -->
+  <path d="M48 74 V80" stroke="#8a6a34" stroke-width="1.2"/>
+  <circle cx="48" cy="84" r="4" fill="#c0392b" stroke="#8a6a34" stroke-width="1"/>
+</svg>

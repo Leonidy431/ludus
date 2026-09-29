@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Островной замок посреди озера">
+  <title>Замок на острове</title>
+  <desc>ФОРМА: каменный замок на скалистом острове — стена, две башни, узкое окно-темница; к берегу идёт лодка с фонарём. ДЕЙСТВИЕ: игрок добивается встречи с пленниками, приносит хлеб и слово, выкупает или заступается — без оружия и хитрости. ЦЕЛЬ: «в темнице был, и вы пришли ко Мне» — милость к узникам любой веры. Миссия: 51 «Защита пленных».</desc>
+  <!-- Арт-канон §9.0: умбра+золото; синь только для воды. -->
+  <defs>
+    <linearGradient id="zost-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#2a1808"/>
+      <stop offset="100%" stop-color="#3a2410"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#zost-nebo)"/>
+  <!-- луна за облаком -->
+  <circle cx="250" cy="32" r="10" fill="#e8c87a" opacity=".85"/>
+  <path d="M226 36 Q244 30 270 38" stroke="#2a1808" stroke-width="5" fill="none"/>
+  <!-- дальние хребты -->
+  <path d="M0 88 L50 60 L100 80 L150 56 L210 82 L260 62 L320 84 V100 H0 Z" fill="#241405"/>
+  <!-- озеро -->
+  <rect y="96" width="320" height="84" fill="#0d2a3a"/>
+  <g stroke="#1f5a73" stroke-width="1.4" fill="none">
+    <path d="M20 120 Q30 116 40 120"/><path d="M250 128 Q260 124 270 128"/>
+    <path d="M60 160 Q70 156 80 160"/><path d="M270 164 Q280 160 290 164"/>
+  </g>
+  <!-- скалистый остров -->
+  <path d="M90 130 Q110 110 160 108 Q210 110 230 130 Q200 140 160 140 Q120 140 90 130 Z" fill="#241405" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- стена и башни -->
+  <g fill="#2a1808" stroke="#c8a56a" stroke-width="2">
+    <path d="M118 118 V84 H202 V118 Z"/>
+    <path d="M108 120 V60 H130 V120 Z"/>
+    <path d="M190 120 V66 H212 V120 Z"/>
+  </g>
+  <g fill="#8a6a34">
+    <path d="M106 60 H132 V54 H127 V57 H121 V54 H117 V57 H111 V54 H106 Z"/>
+    <path d="M188 66 H214 V60 H209 V63 H203 V60 H199 V63 H193 V60 H188 Z"/>
+  </g>
+  <path d="M118 84 H202 V80 H196 V84 H188 V80 H180 V84 H172 V80 H164 V84 H156 V80 H148 V84 H140 V80 H132 V84" fill="none" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- ворота и окно темницы -->
+  <path d="M152 118 V102 Q160 94 168 102 V118" fill="#140a02" stroke="#e8c87a" stroke-width="1.5"/>
+  <rect x="197" y="84" width="8" height="10" fill="#140a02" stroke="#c8a56a" stroke-width="1"/>
+  <path d="M199 84 V94 M201 84 V94 M203 84 V94" stroke="#8a6a34" stroke-width=".8"/>
+  <circle cx="119" cy="76" r="2" fill="#e8c87a"/>
+  <!-- отражение в воде -->
+  <path d="M112 142 V156 M200 142 V152" stroke="#1f5a73" stroke-width="4" opacity=".6"/>
+  <!-- лодка с фонарём, плывущая к острову -->
+  <g transform="translate(40,150)">
+    <path d="M0 0 Q20 8 40 0 L36 6 H4 Z" fill="#140a02" stroke="#c8a56a" stroke-width="1.5"/>
+    <path d="M30 0 V-12" stroke="#8a6a34" stroke-width="1.5"/>
+    <circle cx="30" cy="-14" r="2.5" fill="#e8c87a"/>
+    <path d="M14 -1 q0 -9 4 -9 q4 0 4 9" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.2"/>
+  </g>
+</svg>

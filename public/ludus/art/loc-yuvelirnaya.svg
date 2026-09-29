@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Ювелирная мастерская: горн, наковальня, чеканы, тигли">
+  <title>Ювелирная мастерская</title>
+  <desc>Форма: горн с мехами и жаром, наковальня с чаркой в работе, стойка чеканов и молоточков, тигли с расплавом. Действие: очищать серебро и золото огнём и терпением, работу вести по честной пробе. Цель: огонь очищает металл, как искушение — сердце (Притч. 17:3). Миссия: 81 Обработка серебра и золота.</desc>
+  <!-- Арт-канон §9.0: умбра+золото. Интерьер миссии 81: мастерская серебряника при обители. -->
+  <defs>
+    <linearGradient id="yuvelirnaya-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#yuvelirnaya-nebo)"/>
+  <!-- стена и пол -->
+  <rect width="320" height="136" fill="#1a0e04" opacity=".6"/>
+  <rect y="136" width="320" height="44" fill="#241405"/>
+  <path d="M0 136 H320" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- горн с вытяжкой -->
+  <path d="M30 136 V96 H110 V136 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M40 96 L56 40 H84 L100 96" fill="#2a1808" stroke="#c8a56a" stroke-width="1.8"/>
+  <path d="M46 96 Q70 86 94 96" fill="#c0392b" stroke="#e8c87a" stroke-width="1.5"/>
+  <g fill="#e8c87a"><path d="M60 94 Q64 80 66 92 Z"/><path d="M72 93 Q76 78 80 93 Z"/></g>
+  <circle cx="70" cy="92" r="24" fill="#e8c87a" opacity=".1"/>
+  <!-- меха -->
+  <path d="M112 112 L140 100 L150 116 L140 128 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M112 116 H104" stroke="#c8a56a" stroke-width="3"/>
+  <!-- тигли у горна -->
+  <g fill="#8a6a34" stroke="#e8c87a" stroke-width="1.4"><path d="M40 150 L44 164 H56 L60 150 Z"/><path d="M68 152 L71 164 H79 L82 152 Z"/></g>
+  <g fill="#e8c87a"><ellipse cx="50" cy="150" rx="10" ry="2"/><ellipse cx="75" cy="152" rx="7" ry="1.6"/></g>
+  <!-- наковальня на чурбаке -->
+  <rect x="176" y="136" width="28" height="30" fill="#2a1808" stroke="#8a6a34" stroke-width="1.5"/>
+  <path d="M164 122 H212 Q218 122 222 118 H230 Q226 128 212 130 V136 H172 V130 Q164 128 164 122 Z" fill="#8a6a34" stroke="#e8c87a" stroke-width="1.8"/>
+  <!-- чарка в работе и молоточек -->
+  <path d="M184 122 Q186 112 194 112 Q202 112 204 122" fill="#c8a56a" stroke="#e8c87a" stroke-width="1.2"/>
+  <path d="M214 96 L200 110" stroke="#c8a56a" stroke-width="2.2"/>
+  <rect x="210" y="90" width="12" height="6" transform="rotate(-45 216 93)" fill="#8a6a34" stroke="#e8c87a" stroke-width="1.2"/>
+  <!-- стойка чеканов и молоточков -->
+  <rect x="244" y="46" width="60" height="8" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <g stroke="#e8c87a" stroke-width="2"><path d="M252 54 V84"/><path d="M262 54 V80"/><path d="M272 54 V86"/><path d="M282 54 V78"/><path d="M294 54 V82"/></g>
+  <g fill="#c8a56a"><rect x="248" y="84" width="8" height="4"/><rect x="290" y="82" width="8" height="4"/></g>
+  <!-- верстак с проволокой -->
+  <path d="M240 118 H310 M246 118 V150 M304 118 V150" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M252 114 Q262 106 272 114 Q282 122 292 114" fill="none" stroke="#e8c87a" stroke-width="1.3"/>
+</svg>

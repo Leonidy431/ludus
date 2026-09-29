@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Брод реки Чу — поля на одном берегу, юрты на другом">
+  <title>Брод реки Чу</title>
+  <desc>ФОРМА: мелкий брод через Чу: слева пашни и арыки оседлых, справа юрты кочевников, посреди реки — караван на перекатах. ДЕЙСТВИЕ: дьякон мирит землепашцев и скотоводов о воде и переправе, торг идёт на камнях брода. ЦЕЛЬ: миротворчество — река одна для обоих берегов. Миссия: 8 Торговый медиатор.</desc>
+  <!-- Арт-канон §9.0: умбра+золото. Синий — только вода реки. -->
+  <defs>
+    <linearGradient id="chu-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="70%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#chu-nebo)"/>
+  <!-- дальние горы Киргизского хребта -->
+  <path d="M0 78 L40 54 L70 70 L110 46 L150 68 L200 50 L240 70 L280 52 L320 66 V90 H0 Z" fill="#241405"/>
+  <!-- левый берег: пашни полосами -->
+  <path d="M0 90 H150 L120 180 H0 Z" fill="#2a1808"/>
+  <g stroke="#8a6a34" stroke-width="1.4">
+    <path d="M6 100 H138 M4 112 H132 M2 124 H128 M0 136 H124 M0 148 H120"/>
+  </g>
+  <g stroke="#c8a56a" stroke-width="1" opacity=".7"><path d="M40 94 L28 170 M80 94 L72 170"/></g>
+  <!-- правый берег: степь -->
+  <path d="M190 90 H320 V180 H176 Z" fill="#2a1808"/>
+  <!-- река Чу -->
+  <path d="M150 90 H190 L176 180 H120 Z" fill="#1f5a73"/>
+  <g stroke="#0d2a3a" stroke-width="1.2" fill="none"><path d="M152 104 Q160 100 170 104 M140 140 Q152 136 164 140 M130 166 Q144 162 158 166"/></g>
+  <!-- камни брода -->
+  <g fill="#8a6a34" stroke="#c8a56a" stroke-width="1"><ellipse cx="136" cy="122" rx="6" ry="2.5"/><ellipse cx="152" cy="124" rx="6" ry="2.5"/><ellipse cx="168" cy="122" rx="6" ry="2.5"/></g>
+  <!-- верблюд и погонщик на броде -->
+  <g transform="translate(142,110)" fill="#140a02" stroke="#e8c87a" stroke-width="1.2">
+    <path d="M0 8 q3 -8 7 -2 q3 -6 7 0 l4 -4 l2 2 l-4 6 l0 8 h-2 v-6 h-10 v6 h-2 v-6 Z"/>
+  </g>
+  <path d="M136 112 v8 M136 108 a2 2 0 1 0 0.1 0" stroke="#c8a56a" stroke-width="1.6" fill="none"/>
+  <!-- юрты на правом берегу -->
+  <g fill="#140a02" stroke="#c8a56a" stroke-width="1.5">
+    <path d="M214 118 Q230 98 246 118 V126 H214 Z"/>
+    <path d="M262 110 Q276 92 290 110 V118 H262 Z"/>
+  </g>
+  <g fill="#e8c87a"><rect x="227" y="118" width="6" height="8"/><circle cx="276" cy="104" r="1.5"/></g>
+  <!-- дым очага и табун -->
+  <path d="M230 98 Q226 88 232 80" fill="none" stroke="#8a6a34" stroke-width="1.2"/>
+  <g fill="#8a6a34"><ellipse cx="220" cy="150" rx="5" ry="2.5"/><ellipse cx="240" cy="156" rx="5" ry="2.5"/><ellipse cx="262" cy="148" rx="5" ry="2.5"/></g>
+  <!-- снопы на левом берегу -->
+  <g fill="#c8a56a"><path d="M52 150 l4 -12 l4 12 Z"/><path d="M92 158 l4 -12 l4 12 Z"/></g>
+</svg>

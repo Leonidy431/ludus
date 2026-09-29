@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Амбарная учётная книга и бирка с зарубками">
+  <title>Учётная книга</title>
+  <desc>ФОРМА: раскрытая амбарная книга с графами прихода и расхода, отметки-чёрточки, под ней бирка с зарубками. ДЕЙСТВИЕ: дьякон ведёт открытый учёт зерна, тканей и милостыни, чтобы каждый мог проверить. ЦЕЛЬ: честный счёт — ограда от сребролюбия; хозяйство обители прозрачно. Миссия: 11 Миссионер-экономист.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. Рисовано вручную: сырьё 99 репо не подходит (правило 0.15). -->
+  <defs>
+    <radialGradient id="uchetnaya-kniga-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#uchetnaya-kniga-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- переплёт -->
+  <rect x="13" y="26" width="70" height="46" rx="3" fill="#2a1808" stroke="#c8a56a" stroke-width="1.6"/>
+  <!-- страницы -->
+  <path d="M17 29 H47 V69 H17 Z M49 29 H79 V69 H49 Z" fill="#e8d9b8" stroke="#8a6a34" stroke-width="1"/>
+  <!-- графы -->
+  <g stroke="#8a6a34" stroke-width=".9">
+    <path d="M28 29 V69 M39 29 V69 M60 29 V69 M71 29 V69"/>
+    <path d="M17 35 H47 M17 41 H47 M17 47 H47 M17 53 H47 M17 59 H47 M17 65 H47"/>
+    <path d="M49 35 H79 M49 41 H79 M49 47 H79 M49 53 H79 M49 59 H79 M49 65 H79"/>
+  </g>
+  <!-- отметки счёта -->
+  <g stroke="#2a1808" stroke-width="1.2">
+    <path d="M31 37 v3 M33 37 v3 M35 37 v3 M31 43 v3 M33 43 v3 M31 49 v3 M33 49 v3 M35 49 v3 M37 49 v3"/>
+    <path d="M63 37 v3 M65 37 v3 M63 43 v3 M63 49 v3 M65 49 v3 M67 49 v3"/>
+  </g>
+  <!-- бирка с зарубками -->
+  <rect x="20" y="77" width="56" height="6" rx="1.5" fill="#c8a56a" stroke="#8a6a34" stroke-width="1"/>
+  <g stroke="#2a1808" stroke-width="1.2"><path d="M28 77 v3 M33 77 v3 M38 77 v3 M43 77 v3 M52 77 v3 M57 77 v3"/></g>
+</svg>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Диван наместника — канцелярия с писцом, печатью и ковром">
+  <title>Диван наместника</title>
+  <desc>Форма: канцелярия наместника под стрельчатыми арками — помост с ковром и подушкой, низкий стол писца, ящик грамот, большая печать-тамга. Действие: игрок терпеливо проходит писцов и доказывает права обители законно, без подкупа. Цель: правда перед властью через честный документ. Миссия: 47 «Тарханная грамота».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, без нимбов. Светская палата. -->
+  <rect width="320" height="180" fill="#1a0e04"/>
+  <!-- три стрельчатые арки -->
+  <g fill="#2a1808" stroke="#c8a56a" stroke-width="2">
+    <path d="M20 150 V70 Q20 36 60 30 Q100 36 100 70 V150"/>
+    <path d="M120 150 V64 Q120 26 160 18 Q200 26 200 64 V150"/>
+    <path d="M220 150 V70 Q220 36 260 30 Q300 36 300 70 V150"/>
+  </g>
+  <!-- решётчатые окна с дневным светом -->
+  <g fill="#e8c87a" opacity=".22">
+    <path d="M40 110 V74 Q40 50 60 46 Q80 50 80 74 V110 Z"/>
+    <path d="M240 110 V74 Q240 50 260 46 Q280 50 280 74 V110 Z"/>
+  </g>
+  <g stroke="#8a6a34" stroke-width="1.2" fill="none">
+    <path d="M40 82 H80 M40 96 H80 M60 46 V110 M240 82 H280 M240 96 H280 M260 46 V110"/>
+  </g>
+  <!-- помост наместника с ковром -->
+  <rect x="120" y="116" width="80" height="14" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <rect x="124" y="100" width="72" height="16" fill="#c0392b" opacity=".75" stroke="#e8c87a" stroke-width="1.5"/>
+  <g fill="none" stroke="#e8c87a" stroke-width="1">
+    <path d="M160 102 L168 108 L160 114 L152 108 Z"/>
+    <path d="M136 104 L140 108 L136 112 L132 108 Z M184 104 L188 108 L184 112 L180 108 Z"/>
+  </g>
+  <!-- подушка-валик: место наместника пусто — ждёт -->
+  <rect x="146" y="88" width="28" height="12" rx="6" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- большая печать на подставке -->
+  <circle cx="160" cy="58" r="12" fill="none" stroke="#e8c87a" stroke-width="2"/>
+  <path d="M154 58 Q160 52 166 58 M160 58 V66" stroke="#e8c87a" stroke-width="1.6" fill="none"/>
+  <!-- низкий стол писца слева -->
+  <rect x="40" y="132" width="44" height="6" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M44 138 V150 M80 138 V150" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="48" y="126" width="18" height="6" fill="#e8d9b8" stroke="#8a6a34" stroke-width="1"/>
+  <rect x="70" y="126" width="5" height="6" fill="#1a0e04" stroke="#e8c87a" stroke-width="1"/>
+  <path d="M73 126 L78 116" stroke="#e8c87a" stroke-width="1.3"/>
+  <!-- ящик свитков справа -->
+  <rect x="236" y="128" width="40" height="22" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <g fill="#c8a56a" stroke="#8a6a34" stroke-width=".8">
+    <rect x="240" y="121" width="14" height="5" rx="2.5"/><rect x="256" y="120" width="16" height="5" rx="2.5"/>
+  </g>
+  <!-- пол -->
+  <path d="M0 150 H320" stroke="#8a6a34" stroke-width="2"/>
+  <path d="M0 150 H320 V180 H0 Z" fill="#241405"/>
+</svg>

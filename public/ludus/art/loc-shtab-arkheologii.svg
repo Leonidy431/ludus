@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Штаб подводной археологии: палатка, столы описи, карта глубин">
+  <title>Штаб подводной археологии</title>
+  <desc>Форма: палатка-лаборатория на берегу, стол описи с находками и ярлыками, доска с картой изобат, катушка кабеля ROV у воды. Действие: описать каждую находку со дна и её глубину прежде, чем толковать. Цель: верить приборам и честной описи — память затонувших поселений как урок. Миссия: 85 Штаб подводной археологии.</desc>
+  <!-- Арт-канон §9.0: умбра+золото. Локация миссии 85: берег Иссык-Куля, вода — синие тона канона. -->
+  <defs>
+    <linearGradient id="shtab-arkheologii-nebo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0e04"/>
+      <stop offset="60%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#8a6a34"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#shtab-arkheologii-nebo)"/>
+  <!-- горы за озером -->
+  <path d="M0 84 L40 60 L80 78 L130 52 L180 80 L230 58 L280 76 L320 64 V92 H0 Z" fill="#241405"/>
+  <!-- озеро -->
+  <rect y="90" width="320" height="34" fill="#0d2a3a"/>
+  <g fill="none" stroke="#1f5a73" stroke-width="1.4"><path d="M20 100 Q30 96 40 100"/><path d="M250 106 Q260 102 270 106"/><path d="M180 114 Q190 110 200 114"/></g>
+  <!-- берег -->
+  <path d="M0 122 Q160 116 320 124 V180 H0 Z" fill="#2a1808"/>
+  <!-- палатка-лаборатория -->
+  <path d="M30 164 L90 98 L150 164 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M90 98 L76 164 H104 Z" fill="#140a02" stroke="#e8c87a" stroke-width="1.5"/>
+  <path d="M90 98 V88" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M30 164 L18 170 M150 164 L162 170" stroke="#8a6a34" stroke-width="1.2"/>
+  <circle cx="90" cy="140" r="3" fill="#e8c87a"/>
+  <!-- стол описи с находками -->
+  <g stroke="#c8a56a" stroke-width="1.8"><path d="M170 146 H250"/><path d="M176 146 V168 M244 146 V168"/></g>
+  <path d="M180 146 V136 Q178 130 184 128 Q190 130 188 136 V146 Z" fill="#8a6a34" stroke="#e8c87a" stroke-width="1.2"/>
+  <ellipse cx="204" cy="143" rx="7" ry="3" fill="#c8a56a"/>
+  <g fill="#e8c87a"><rect x="218" y="140" width="6" height="4"/><rect x="230" y="139" width="8" height="5"/></g>
+  <g stroke="#e8c87a" stroke-width=".8"><path d="M184 128 L190 122"/><path d="M204 140 L208 132"/></g>
+  <!-- доска с картой изобат -->
+  <rect x="262" y="118" width="46" height="36" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.8"/>
+  <g fill="none" stroke="#1f5a73" stroke-width="1.3"><ellipse cx="285" cy="136" rx="18" ry="12"/><ellipse cx="287" cy="137" rx="11" ry="7"/><ellipse cx="289" cy="138" rx="4" ry="2.5"/></g>
+  <circle cx="280" cy="132" r="1.8" fill="#c0392b"/>
+  <path d="M270 154 V170 M300 154 V170" stroke="#8a6a34" stroke-width="1.8"/>
+  <!-- катушка кабеля подводного аппарата -->
+  <circle cx="160" cy="124" r="7" fill="none" stroke="#e8c87a" stroke-width="1.8"/>
+  <circle cx="160" cy="124" r="2" fill="#e8c87a"/>
+  <path d="M166 120 Q176 108 190 110" fill="none" stroke="#c8a56a" stroke-width="1.2"/>
+</svg>
