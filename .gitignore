@@ -11,3 +11,4 @@ dist/
 build/
 .env
 .env.local
+firestore-debug.log

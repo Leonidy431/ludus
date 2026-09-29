@@ -15,7 +15,8 @@
     "logs": "firebase functions:log",
     "test": "jest",
     "lint": "eslint .",
-    "ts-node": "ts-node"
+    "ts-node": "ts-node",
+    "test:emu": "cd .. && firebase emulators:exec --project demo-ludus --only firestore 'cd functions && npx jest'"
   },
   "dependencies": {
     "firebase-admin": "^12.0.0",
