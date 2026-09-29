@@ -16,6 +16,7 @@
 import * as functions from 'firebase-functions';
 import { getFirestore, Timestamp, FieldValue } from 'firebase-admin/firestore';
 import { verifyIdToken } from '../middleware/auth';
+import { rateLimit, rateLimitPresets } from '../middleware/rateLimit';
 
 interface HealthCheckResponse {
   status: 'ok' | 'degraded' | 'down';

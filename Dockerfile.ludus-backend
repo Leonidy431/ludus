@@ -1,0 +1,52 @@
+FROM node:18-alpine
+
+LABEL maintainer="Ludus Backend Team"
+LABEL description="Ludus Backend API - ROV Telemetry & Attribute Mapping"
+LABEL version="0.1"
+
+WORKDIR /app
+
+# Install dumb-init for proper signal handling
+RUN apk add --no-cache dumb-init curl tini
+
+# Copy package files
+COPY functions/package*.json ./
+
+# Install production dependencies only
+RUN npm ci --production && \
+    npm cache clean --force
+
+# Copy compiled Cloud Functions (requires npm run build)
+COPY functions/lib ./lib
+
+# Copy Firestore configuration
+COPY firestore.rules ./
+COPY firebase.json ./
+
+# Create health check script
+RUN echo '#!/bin/sh' > /healthcheck.sh && \
+    echo 'curl -f http://localhost:3000/health || exit 1' >> /healthcheck.sh && \
+    chmod +x /healthcheck.sh
+
+# Create non-root user for security
+RUN addgroup -g 1000 ludus && \
+    adduser -D -u 1000 -G ludus ludus
+
+# Change ownership of app directory
+RUN chown -R ludus:ludus /app
+
+# Switch to non-root user
+USER ludus
+
+# Expose port (VPC-internal only, see docker-compose)
+EXPOSE 3000
+
+# Use dumb-init to handle signals properly
+ENTRYPOINT ["/sbin/dumb-init", "--"]
+
+# Start Ludus backend API
+CMD ["node", "lib/index.js"]
+
+# Health check verification
+HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
+    CMD /healthcheck.sh || exit 1

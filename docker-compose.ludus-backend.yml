@@ -1,0 +1,95 @@
+version: '3.8'
+
+# Ludus Backend Standalone Container
+# Separate deployment for ludus-api service on VM8 (panopticon-mirror-vm)
+# Independent from translation viewer and other services
+#
+# Deploy: docker-compose -f docker-compose.ludus-backend.yml up -d
+# Logs: docker logs -f ludus-backend-api
+# Stop: docker-compose -f docker-compose.ludus-backend.yml down
+
+services:
+  ludus-backend-api:
+    container_name: ludus-backend-api
+    image: ludus-backend:v0.1
+    build:
+      context: .
+      dockerfile: ./Dockerfile.ludus-backend
+    restart: unless-stopped
+
+    # Network: VPC-internal only (no public exposure)
+    networks:
+      - ludus-isolated
+
+    # Port binding: VPC-internal IP only
+    ports:
+      - "10.20.0.2:3000:3000"  # Accessible only within VPC (IAP tunnel required)
+
+    # Environment variables
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      FIRESTORE_PROJECT_ID: ludus-dev
+      FIRESTORE_CREDENTIALS: /ludus-secrets/firestore-service-account.json
+      LOG_LEVEL: info
+      TELEMETRY_BUFFER_SIZE: 30
+      ATTRIBUTE_MAPPING_ENABLED: "true"
+
+    # Volumes: immutable credentials, shared data
+    volumes:
+      - ludus-secrets:/ludus-secrets:ro           # Read-only credentials
+      - ludus-data:/ludus-data                    # Persistent logs, cache
+      - /etc/localtime:/etc/localtime:ro          # Timezone sync
+
+    # Health check
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '0.75'        # Max 75% of 1 vCPU
+          memory: 768M        # Max 768 MB RAM
+        reservations:
+          cpus: '0.5'         # Reserved 50% of 1 vCPU
+          memory: 512M        # Reserved 512 MB RAM
+
+    # Logging
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "5"
+        labels: "service=ludus-backend"
+
+    # Depends on nothing (standalone)
+    depends_on: []
+
+# Isolated network for Ludus backend only
+networks:
+  ludus-isolated:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.21.0.0/16
+
+# Named volumes for persistent storage
+volumes:
+  ludus-secrets:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /data/ludus-secrets
+
+  ludus-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /data/ludus-data
