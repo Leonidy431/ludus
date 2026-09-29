@@ -1,5 +1,5 @@
 {
- "next": 9,
+ "next": 12,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -138,6 +138,30 @@
    ],
    "accepted_objects": 0,
    "code_candidates": 21
+  },
+  {
+   "time": "2026-09-29T16:44:21.828984+00:00",
+   "deficits": [
+    {
+     "id": "DEF-010",
+     "skipped": "not-raw-material"
+    },
+    {
+     "id": "DEF-011",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 34,
+      "sacred-never-raw": 1
+     }
+    },
+    {
+     "id": "DEF-012",
+     "skipped": "audio-pipeline-pending"
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 165
   }
  ]
 }
