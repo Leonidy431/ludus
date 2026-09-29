@@ -861,6 +861,64 @@
   // speaks the language of profit (TABOO 0.39); the options walk the
   // ladder of a thought (ludus-passion.js).  A cold palette marks the
   // passion, never the warm lamp of holy things (TABOO 0.38).
+  // The Manuscript of rights: the licence register generated from the
+  // shipped files (scripts/build_rights_manifest.py).  Copyleft notes
+  // and missing licence files are shown as they are, not smoothed over.
+  async function openRights() {
+    let data = null;
+    try {
+      const res = await fetch('/ludus/data/rights.json');
+      data = res.ok ? await res.json() : null;
+    } catch (error) {
+      console.warn('[Ludus] Rights register unavailable:', error.message);
+    }
+    const dialog = document.createElement('dialog');
+    dialog.className = 'ludus-rights';
+    dialog.setAttribute('aria-labelledby', 'ludus-rights-h');
+    const pct = (x) => (typeof x === 'number'
+      ? `${(x * 100).toFixed(1)} %` : '—');
+    const lib = (item) => '<li><strong>' + escapeHtml(item.name)
+      + '</strong> — ' + escapeHtml(item.licence)
+      + (item.licence_file_present ? ''
+        : ' <em>(no licence file in the repository)</em>')
+      + (item.note ? `<br><span class="ludus-rights-note">${
+        escapeHtml(item.note)}</span>` : '') + '</li>';
+    const raw = (item) => '<tr><td>' + escapeHtml(item.object)
+      + '</td><td>' + escapeHtml(item.passion || '') + '</td><td>'
+      + escapeHtml(item.licence) + '</td><td>' + pct(item.min_shape_change)
+      + '</td><td>' + pct(item.colour_change) + '</td><td><a href="'
+      + escapeHtml(item.repo) + '" rel="noopener" target="_blank">'
+      + escapeHtml(item.repo.replace('https://github.com/', ''))
+      + '</a> @' + escapeHtml(item.commit) + '<br><code>'
+      + escapeHtml(item.path) + '</code></td></tr>';
+    dialog.innerHTML = '<h3 id="ludus-rights-h">Manuscript of rights</h3>'
+      + (data ? '<h4>This work</h4><ul>' + lib(data.own) + '</ul>'
+        + '<h4>Engines and libraries</h4><ul>'
+        + data.libraries.map(lib).join('') + '</ul>'
+        + '<h4>Raw material, reworked through the runner</h4>'
+        + '<p class="ludus-rights-note">Copyleft sources keep their '
+        + 'attribution and share-alike duties whatever the 35 % rule '
+        + 'says; the final word is the lawyer\'s.</p>'
+        + '<div class="ludus-rights-scroll"><table><thead><tr>'
+        + '<th>Object</th><th>Passion</th><th>Licence</th><th>Shape</th>'
+        + '<th>Colour</th><th>Source</th></tr></thead><tbody>'
+        + data.raw_material.map(raw).join('') + '</tbody></table></div>'
+        : '<p>The register could not be loaded.</p>')
+      + '<div class="ludus-rule-actions"><button type="button"'
+      + ' class="ludus-rule-btn" data-close>Close</button></div>';
+    const close = () => {
+      dialog.close();
+      dialog.remove();
+    };
+    dialog.querySelector('[data-close]').addEventListener('click', close);
+    dialog.addEventListener('cancel', (event) => {
+      event.preventDefault();
+      close();
+    });
+    document.body.append(dialog);
+    dialog.showModal();
+  }
+
   function renderRoadPanel() {
     const api = window.LudusPassion;
     const data = state.passionData;
@@ -1023,6 +1081,11 @@
       + renderRulePanel(ladder)
       + renderRoadPanel()
       + gateHtml
+      // The register of rights is a plain link at the foot, not part of
+      // the path (HLD F5, improvement 95).
+      + '<p class="ludus-rights-link"><button type="button"'
+      + ' class="ludus-link-btn" data-action="rights">'
+      + 'Manuscript of rights (licences)</button></p>'
       + '</div>';
     opening.forEach(openGateRitual);
   }
@@ -1609,6 +1672,8 @@
         talkTo(target.getAttribute('data-npc-id'));
       } else if (action === 'practice') {
         doAction('practice', target.getAttribute('data-practice-id'));
+      } else if (action === 'rights') {
+        openRights();
       } else if (action === 'confession') {
         // Nothing is passed in or read back: the page is private.
         if (window.LudusConfession) {

@@ -3209,5 +3209,519 @@
    "LICENSE.TXT"
   ],
   "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/OpenApoc/OpenApoc",
+  "commit": "d06cc102905e35d0e703d2d25204fd4ab2795e12",
+  "license_file": "LICENSE",
+  "path": "game/state/battle/ai/unitaibehavior.cpp",
+  "kind": "code",
+  "hits": [
+   "ai",
+   "behavior",
+   "state"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/OpenApoc/OpenApoc",
+  "commit": "d06cc102905e35d0e703d2d25204fd4ab2795e12",
+  "license_file": "LICENSE",
+  "path": "game/state/battle/ai/unitaibehavior.h",
+  "kind": "code",
+  "hits": [
+   "ai",
+   "behavior",
+   "state"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/hero/abilities/warrior/Shockwave.java",
+  "kind": "code",
+  "hits": [
+   "ai",
+   "wave"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/mobs/npcs/Blacksmith.java",
+  "kind": "code",
+  "hits": [
+   "mob",
+   "ai"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/mobs/npcs/DirectableAlly.java",
+  "kind": "code",
+  "hits": [
+   "mob",
+   "ai"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/mobs/npcs/Imp.java",
+  "kind": "code",
+  "hits": [
+   "mob",
+   "ai"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/mobs/npcs/ImpShopkeeper.java",
+  "kind": "code",
+  "hits": [
+   "mob",
+   "ai"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/mobs/npcs/MirrorImage.java",
+  "kind": "code",
+  "hits": [
+   "mob",
+   "ai"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/mobs/npcs/NPC.java",
+  "kind": "code",
+  "hits": [
+   "mob",
+   "ai"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/mobs/npcs/PrismaticImage.java",
+  "kind": "code",
+  "hits": [
+   "mob",
+   "ai"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/mobs/npcs/RatKing.java",
+  "kind": "code",
+  "hits": [
+   "mob",
+   "ai"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/mobs/npcs/Sheep.java",
+  "kind": "code",
+  "hits": [
+   "mob",
+   "ai"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/mobs/npcs/Shopkeeper.java",
+  "kind": "code",
+  "hits": [
+   "mob",
+   "ai"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/mobs/npcs/Wandmaker.java",
+  "kind": "code",
+  "hits": [
+   "mob",
+   "ai"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/spells/ReclaimTrap.java",
+  "kind": "code",
+  "hits": [
+   "ai",
+   "trap"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/trinkets/TrapMechanism.java",
+  "kind": "code",
+  "hits": [
+   "ai",
+   "trap"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/wands/WandOfBlastWave.java",
+  "kind": "code",
+  "hits": [
+   "ai",
+   "wave"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/sprites/MobSprite.java",
+  "kind": "code",
+  "hits": [
+   "mob",
+   "ai"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/sprites/SpawnerSprite.java",
+  "kind": "code",
+  "hits": [
+   "ai",
+   "spawn"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/AssembleContraptionEffect.java",
+  "kind": "code",
+  "hits": [
+   "ai",
+   "trap"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/SetStateEffect.java",
+  "kind": "code",
+  "hits": [
+   "ai",
+   "state"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-gui-mobile/src/forge/adventure/data/BiomeTerrainData.java",
+  "kind": "code",
+  "hits": [
+   "mob",
+   "ai"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-gui/src/main/java/forge/gamemodes/quest/bazaar/QuestItemEstates.java",
+  "kind": "code",
+  "hits": [
+   "ai",
+   "state"
+  ],
+  "score": 2,
+  "attribution": [
+   "forge-gui/LICENSE.txt"
+  ],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/OpenApoc/OpenApoc",
+  "commit": "d06cc102905e35d0e703d2d25204fd4ab2795e12",
+  "license_file": "LICENSE",
+  "path": "game/state/battle/ai/unitai.cpp",
+  "kind": "code",
+  "hits": [
+   "ai",
+   "state"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/OpenApoc/OpenApoc",
+  "commit": "d06cc102905e35d0e703d2d25204fd4ab2795e12",
+  "license_file": "LICENSE",
+  "path": "game/state/battle/ai/unitai.h",
+  "kind": "code",
+  "hits": [
+   "ai",
+   "state"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/OpenApoc/OpenApoc",
+  "commit": "d06cc102905e35d0e703d2d25204fd4ab2795e12",
+  "license_file": "LICENSE",
+  "path": "game/state/battle/ai/unitaidefault.cpp",
+  "kind": "code",
+  "hits": [
+   "ai",
+   "state"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/OpenApoc/OpenApoc",
+  "commit": "d06cc102905e35d0e703d2d25204fd4ab2795e12",
+  "license_file": "LICENSE",
+  "path": "game/state/battle/ai/unitaidefault.h",
+  "kind": "code",
+  "hits": [
+   "ai",
+   "state"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/OpenApoc/OpenApoc",
+  "commit": "d06cc102905e35d0e703d2d25204fd4ab2795e12",
+  "license_file": "LICENSE",
+  "path": "game/state/battle/ai/unitaihardcore.cpp",
+  "kind": "code",
+  "hits": [
+   "ai",
+   "state"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/OpenApoc/OpenApoc",
+  "commit": "d06cc102905e35d0e703d2d25204fd4ab2795e12",
+  "license_file": "LICENSE",
+  "path": "game/state/battle/ai/unitaihardcore.h",
+  "kind": "code",
+  "hits": [
+   "ai",
+   "state"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/OpenApoc/OpenApoc",
+  "commit": "d06cc102905e35d0e703d2d25204fd4ab2795e12",
+  "license_file": "LICENSE",
+  "path": "game/state/battle/ai/unitaihelper.cpp",
+  "kind": "code",
+  "hits": [
+   "ai",
+   "state"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/OpenApoc/OpenApoc",
+  "commit": "d06cc102905e35d0e703d2d25204fd4ab2795e12",
+  "license_file": "LICENSE",
+  "path": "game/state/battle/ai/unitaihelper.h",
+  "kind": "code",
+  "hits": [
+   "ai",
+   "state"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/OpenApoc/OpenApoc",
+  "commit": "d06cc102905e35d0e703d2d25204fd4ab2795e12",
+  "license_file": "LICENSE",
+  "path": "game/state/battle/ai/unitailowmorale.cpp",
+  "kind": "code",
+  "hits": [
+   "ai",
+   "state"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/OpenApoc/OpenApoc",
+  "commit": "d06cc102905e35d0e703d2d25204fd4ab2795e12",
+  "license_file": "LICENSE",
+  "path": "game/state/battle/ai/unitailowmorale.h",
+  "kind": "code",
+  "hits": [
+   "ai",
+   "state"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-016"
+ },
+ {
+  "repo": "https://github.com/OpenApoc/OpenApoc",
+  "commit": "d06cc102905e35d0e703d2d25204fd4ab2795e12",
+  "license_file": "LICENSE",
+  "path": "game/state/battle/ai/unitaivanilla.cpp",
+  "kind": "code",
+  "hits": [
+   "ai",
+   "state"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-016"
  }
 ]

@@ -1059,3 +1059,62 @@
     box-shadow: 0 0 1.2rem rgba(255, 154, 60, 0.55);
   }
 }
+
+/* Manuscript of rights: a quiet link and a readable register.  Charcoal
+   and parchment, no gold: a licence list is not a holy thing. */
+.ludus-rights-link {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.ludus-link-btn {
+  border: 0;
+  background: none;
+  color: var(--lg-muted);
+  font: inherit;
+  font-size: 0.875rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ludus-rights {
+  width: min(56rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  padding: 1rem 1.25rem;
+  border: 1px solid #5a5550;
+  border-radius: 8px;
+  color: var(--lg-text);
+  background: #14110e;
+}
+
+.ludus-rights::backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.ludus-rights-note {
+  color: var(--lg-muted);
+  font-size: 0.875rem;
+}
+
+.ludus-rights-scroll {
+  overflow-x: auto;
+}
+
+.ludus-rights table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+
+.ludus-rights th,
+.ludus-rights td {
+  padding: 0.35rem 0.5rem;
+  border-bottom: 1px solid #2a2622;
+  text-align: left;
+  vertical-align: top;
+}
+
+.ludus-rights code {
+  overflow-wrap: anywhere;
+}
+
