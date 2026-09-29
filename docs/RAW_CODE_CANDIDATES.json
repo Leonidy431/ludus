@@ -1009,5 +1009,2205 @@
    "LICENSE.txt"
   ],
   "slot": "DEF-009"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/FloatingText.java",
+  "kind": "code",
+  "hits": [
+   "float",
+   "text",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Effects/FloatingText.cs",
+  "kind": "code",
+  "hits": [
+   "float",
+   "text",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/Anuken/Mindustry",
+  "commit": "f3bfa418a5e8d7d7d98540a0da62b9f19bc845cb",
+  "license_file": "LICENSE",
+  "path": "core/src/mindustry/content/StatusEffects.java",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/Anuken/Mindustry",
+  "commit": "f3bfa418a5e8d7d7d98540a0da62b9f19bc845cb",
+  "license_file": "LICENSE",
+  "path": "core/src/mindustry/type/StatusEffect.java",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/ChangeTextEffect.java",
+  "kind": "code",
+  "hits": [
+   "text",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/ChooseNumberEffect.java",
+  "kind": "code",
+  "hits": [
+   "number",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/ClassLevelUpEffect.java",
+  "kind": "code",
+  "hits": [
+   "levelup",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/CounterEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/CountersMoveEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/CountersMultiplyEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/CountersNoteEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/CountersProliferateEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/CountersPutAllEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/CountersPutEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/CountersPutOrRemoveEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/CountersRemoveAllEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/CountersRemoveEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/DebuffEffect.java",
+  "kind": "code",
+  "hits": [
+   "buff",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/ReplaceCounterEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/TextBoxExchangeEffect.java",
+  "kind": "code",
+  "hits": [
+   "text",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/MonoGame/MonoGame",
+  "commit": "9cce5c73ad5869a8abe54dad9ed201d0678fa8fe",
+  "license_file": "LICENSE.txt",
+  "path": "MonoGame.Framework.Content.Pipeline/Serialization/Compiler/DualTextureEffectWriter.cs",
+  "kind": "code",
+  "hits": [
+   "text",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/MonoGame/MonoGame",
+  "commit": "9cce5c73ad5869a8abe54dad9ed201d0678fa8fe",
+  "license_file": "LICENSE.txt",
+  "path": "MonoGame.Framework/Content/ContentReaders/DualTextureEffectReader.cs",
+  "kind": "code",
+  "hits": [
+   "text",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/MonoGame/MonoGame",
+  "commit": "9cce5c73ad5869a8abe54dad9ed201d0678fa8fe",
+  "license_file": "LICENSE.txt",
+  "path": "MonoGame.Framework/Graphics/Effect/DualTextureEffect.cs",
+  "kind": "code",
+  "hits": [
+   "text",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/OpenDungeons/OpenDungeons",
+  "commit": "a9efe49a6f0790f8b5f89a6cd93775b197ecab1c",
+  "license_file": "LICENSE.md",
+  "path": "source/renderscene/RenderSceneAddParticleEffect.cpp",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "particle"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.md"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/OpenDungeons/OpenDungeons",
+  "commit": "a9efe49a6f0790f8b5f89a6cd93775b197ecab1c",
+  "license_file": "LICENSE.md",
+  "path": "source/renderscene/RenderSceneAddParticleEffect.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "particle"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.md"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/OpenDungeons/OpenDungeons",
+  "commit": "a9efe49a6f0790f8b5f89a6cd93775b197ecab1c",
+  "license_file": "LICENSE.md",
+  "path": "source/renderscene/RenderSceneAddParticleEffectBone.cpp",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "particle"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.md"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/OpenDungeons/OpenDungeons",
+  "commit": "a9efe49a6f0790f8b5f89a6cd93775b197ecab1c",
+  "license_file": "LICENSE.md",
+  "path": "source/renderscene/RenderSceneAddParticleEffectBone.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "particle"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.md"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Effects/FloatingSprite.cs",
+  "kind": "code",
+  "hits": [
+   "float",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "scene/gui/rich_text_effect.cpp",
+  "kind": "code",
+  "hits": [
+   "text",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "scene/gui/rich_text_effect.h",
+  "kind": "code",
+  "hits": [
+   "text",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/ApplyStatusEffect.java",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/PreventDamageAndRemoveCountersEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CantBeCounteredControlledEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CantBeCounteredSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CounterTargetAndSearchGraveyardHandLibraryEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CounterTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CounterTargetWithReplacementEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CounterUnlessPaysEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/DoIfAnyNumberCostPaid.java",
+  "kind": "code",
+  "hits": [
+   "number",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/DoubleCountersSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/DoubleCountersTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/EntersBattlefieldWithXCountersEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/EntersWithCountersControlledEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ExileSpellWithTimeCountersEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/PutSavedPermanentCountersTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/PutSourceCountersOnTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/RemoveAllCountersAllEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/RemoveAllCountersSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/RemoveUpToAmountCountersEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ReturnFromGraveyardToBattlefieldWithCounterTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ReturnMORToBattlefieldUnderOwnerControlWithCounterEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ReturnSourceFromGraveyardToBattlefieldWithCounterEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ReturnToBattlefieldUnderOwnerControlWithCounterTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/ChangeMaxNumberThatCanAttackSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "number",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/AddCounterChoiceSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/AddCounterEnteringCreatureEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/AddCountersAllEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/AddCountersAttachedEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/AddCountersPlayersEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/AddCountersSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/AddCountersTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/AddPlusOneCountersAttachedEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/AddPoisonCounterTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/DistributeCountersEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/DoubleCounterOnEachPermanentEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/GetEnergyCountersControllerEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/GetTicketCountersControllerEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/MoveCounterTargetsEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/MoveCountersFromSourceToTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/MoveCountersFromTargetToSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/ProliferateEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/RemoveAllCountersPermanentTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/RemoveCounterSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/RemoveCounterTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/RemoveCountersAttachedEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/counter/TimeTravelEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/discard/DiscardHandDrawSameNumberSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "number",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/replacement/ModifyCountersAddedEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ruleModifying/CantHaveCountersAllEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ruleModifying/CantHaveCountersSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/keyword/FinalityCounterEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/keyword/ShieldCounterEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/keyword/StunCounterEffect.java",
+  "kind": "code",
+  "hits": [
+   "counter",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/panda3d/panda3d",
+  "commit": "ec9ea0a93a7de249efea3f41b4fdf878f5e1650b",
+  "license_file": "LICENSE",
+  "path": "contrib/src/sceneeditor/seParticleEffect.py",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "particle"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/panda3d/panda3d",
+  "commit": "ec9ea0a93a7de249efea3f41b4fdf878f5e1650b",
+  "license_file": "LICENSE",
+  "path": "direct/src/particles/ParticleEffect.py",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "particle"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Server/Anomaly/Effects/ShuffleParticlesAnomalySystem.cs",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "particle"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Server/Atmos/Components/PressureImmunityStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Server/Atmos/EntitySystems/PressureImmunityStatusEffectSystem.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Server/Jobs/ApplyStatusEffectSpecial.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Server/NPC/HTN/Preconditions/HasStatusEffectPrecondition.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Server/Toolshed/Commands/StatusEffects/StatusEffectCommand.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Bed/Sleep/ForcedSleepingStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Clumsy/ClumsyStatusEffectSystem.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Clumsy/Components/ClumsyCatchStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Clumsy/Components/ClumsyDefibStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Clumsy/Components/ClumsyGrabStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Clumsy/Components/ClumsyGunStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Clumsy/Components/ClumsyInjectorStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Clumsy/Components/ClumsyVaultStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Damage/Components/DamageModifierStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Damage/Components/StaminaModifierStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Damage/Systems/DamageModifierStatusEffect.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Drowsiness/DrowsinessStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Drunk/DrunkStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/EntityEffects/Effects/StatusEffects/BaseStatusEffectEntityEffect.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/EntityEffects/Effects/StatusEffects/DrunkEntityEffectSystem.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/EntityEffects/Effects/StatusEffects/ElectrocuteEntityEffectSystem.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/EntityEffects/Effects/StatusEffects/GenericStatusEffectEntityEffectSystem.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/EntityEffects/Effects/StatusEffects/JitterEntityEffectSystem.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/EntityEffects/Effects/StatusEffects/ModifyKnockdownEntityEffectSystem.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/EntityEffects/Effects/StatusEffects/ModifyParalysisEntityEffectSystem.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/EntityEffects/Effects/StatusEffects/ModifyStatusEffectEntityEffectSystem.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/EntityEffects/Effects/StatusEffects/MovementSpeedModifierEntityEffectSystem.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/EntityEffects/Effects/Transform/PopupMessageEntityEffectSystem.cs",
+  "kind": "code",
+  "hits": [
+   "popup",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Eye/Blinding/Components/BlindnessStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Flash/Components/FlashedStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Item/ForcedItemStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Item/ForcedItemStatusEffectItemComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Item/ForcedItemStatusEffectSystem.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Movement/Components/FrictionStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Movement/Components/MovementModStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Speech/Muting/MutedStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Speech/Muting/MutedStatusEffectSystem.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/StatusEffect/StatusEffectPrototype.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/StatusEffect/StatusEffectsComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/StatusEffect/StatusEffectsSystem.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/StatusEffectNew/Components/CloneableStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/StatusEffectNew/Components/ExaminableStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/StatusEffectNew/Components/PermanentStatusEffectsComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/StatusEffectNew/Components/RejuvenateRemovedStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/StatusEffectNew/Components/StatusEffectAlertComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/StatusEffectNew/Components/StatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/StatusEffectNew/Components/StatusEffectContainerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/StatusEffectNew/ExaminableStatusEffectSystem.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/StatusEffectNew/PermanentStatusEffectsSystem.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/StatusEffectNew/StatusEffectAlertSystem.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/StatusEffectNew/StatusEffectSystem.API.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/StatusEffectNew/StatusEffectSystem.Relay.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/StatusEffectNew/StatusEffectsSystem.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Stunnable/KnockdownStatusEffectComponent.cs",
+  "kind": "code",
+  "hits": [
+   "status",
+   "effect"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-011"
  }
 ]
