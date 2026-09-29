@@ -198,7 +198,7 @@ ludus/
 
 ---
 
-## ✅ Текущий статус (2026-09-28 14:45 UTC)
+## ✅ Текущий статус (2026-09-29 — Phase 2 COMPLETE)
 
 ### Design Phase (✅ COMPLETE)
 - ✅ **NPC_DIALOGUE_SYSTEM.md** — 500+ lines, 10 NPCs, branching logic, AI engine
@@ -206,25 +206,54 @@ ludus/
 - ✅ **ludus CLAUDE.md** — Project constitution with Demiurgic causality principle
 - ✅ **PR #5** — Merged dialogue + sound design to ludus/main
 
-### Frontend Integration Phase (✅ IN PROGRESS - 95% COMPLETE)
+### Phase 2: Frontend & Backend Integration (✅ COMPLETE)
+
+**Frontend Components (webtypicon2):**
 - ✅ **ludus-npc-dialogue-manager.js** — 380+ lines, dialogue tree management
 - ✅ **ludus-audio-manager.js** — 420+ lines, 4-layer dynamic mixing, spatial audio
 - ✅ **ludus-npc-dialogue-ui.js** — 290+ lines, modal component, choice rendering
 - ✅ **ludus-dialogue.css** — 380+ lines, responsive design, dark/light mode
 - ✅ **LUDUS_FRONTEND_INTEGRATION.md** — 500+ lines, complete integration guide
-- ⏳ **Cloud Functions API** — Endpoints pending (Oct 1–5 implementation)
-- ⏳ **ludus-game.js** — NPC click handler integration (Oct 1–5)
+
+**Backend API (ludus Cloud Functions):**
+- ✅ **ludus-dialogue.ts** — 450+ lines, 5 core endpoints
+- ✅ **seedDialogueData.ts** — 300+ lines, seed script for dialogue trees
+- ✅ **CLOUD_FUNCTIONS_DIALOGUE_API.md** — 550+ lines, complete API reference
+- ✅ **functions/src/index.ts** — Updated with dialogue endpoint exports
+
+**API Endpoints Ready:**
+1. `GET /api/ludus/dialogue/tree/{npcId}` — Load dialogue trees
+2. `GET /api/ludus/dialogue/memory/{npcId}/{playerId}` — NPC memory
+3. `POST /api/ludus/dialogue/state` — Persist choices & bonuses
+4. `GET /api/ludus/dialogue/stats/{playerId}` — Engagement stats
+5. `POST /api/ludus/dialogue/tree/{npcId}` (ADMIN) — Seed trees
 
 ### Next Phases
-- ⏳ **Voice Casting & Recording** — Oct 2–Nov 15
-- ⏳ **Audio Integration (Wwise)** — Nov 16–Dec 15
-- ⏳ **Beta Testing on Quest 3** — Dec 16–Jan 31
-- ⏳ **Production Deployment** — Feb 2027
+- ⏳ **Phase 3: Testing & Validation (Oct 1–5)** — Deploy Cloud Functions, integration testing
+- ⏳ **Phase 4: Voice Casting & Recording** — Oct 2–Nov 15
+- ⏳ **Phase 5: Audio Integration (Wwise)** — Nov 16–Dec 15
+- ⏳ **Phase 6: Beta Testing on Quest 3** — Dec 16–Jan 31
+- ⏳ **Phase 7: Production Deployment** — Feb 2027
 
 ### Repos Status
-- **ludus/main** — NPC + sound design specs (PR #5, in review)
-- **ludus/claude/gracious-clarke-36w4kh** — Branch with NPC + sound + .gitignore updates
-- **webtypicon2/main** — Dialogue/audio components + integration guide (pushed)
+
+**ludus repository:**
+- **main** — NPC + sound design specs (PR #5, in review)
+- **claude/gracious-clarke-36w4kh** — Branch with:
+  - NPC_DIALOGUE_SYSTEM.md (500+ lines)
+  - SOUND_DESIGN_SYSTEM.md (600+ lines)
+  - ludus-dialogue.ts (450+ lines, 5 Cloud Functions)
+  - seedDialogueData.ts (300+ lines)
+  - CLOUD_FUNCTIONS_DIALOGUE_API.md (550+ lines)
+  - CLAUDE.md (Project constitution)
+
+**webtypicon2 repository:**
+- **main** — Frontend components (deployed):
+  - ludus-npc-dialogue-manager.js (380+ lines)
+  - ludus-audio-manager.js (420+ lines)
+  - ludus-npc-dialogue-ui.js (290+ lines)
+  - ludus-dialogue.css (380+ lines)
+  - LUDUS_FRONTEND_INTEGRATION.md (500+ lines)
 
 ---
 
