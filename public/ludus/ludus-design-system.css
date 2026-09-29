@@ -27,6 +27,14 @@
   /* Colors */
   --ludus-gold: #D4AF37;  /* 8.3:1 */
   --ludus-cyan: #00CED1;  /* 8.9:1 */
+  /* Three classes of light (CLAUDE.md TABOO 0.38): the lamp belongs
+     only to holy things and is never boosted; hearth light marks human
+     work; instrument light marks the ROV, sonar and the world of price.
+     Charcoal is the "hypothesis" ink of the birch-bark UI. */
+  --ludus-light-lampada: #FF9A3C;  /* 1800 K */
+  --ludus-light-hearth: #FFB347;   /* 1900-2500 K */
+  --ludus-light-instrument: #CFE8FF;  /* 6500 K */
+  --ludus-ink-charcoal: #5A5550;
   --ludus-dark-bg: #0f0f0f;
   --ludus-dark-card: #1a1a1a;
   --ludus-dark-hover: #252525;
