@@ -76,6 +76,10 @@ HUE_BUCKETS = [
     (345, 361, 'anger'),
 ]
 
+# Glyph recognition limits, see source_features().
+GLYPH_IOU = 0.55
+GLYPH_MARGIN = 0.08
+
 # Below this mean edge strength a source reads as smooth.
 SMOOTH_EDGE = 18
 
@@ -146,17 +150,20 @@ def _glyph_templates():
 
 
 def recognise_glyph(mask):
-    """Return (glyph, IoU) of the best-matching ASCII glyph."""
+    """Return (glyph, IoU, margin) of the best-matching ASCII glyph.
+
+    The margin over the runner-up guards against shapes that are close
+    to several glyphs at once (a bar is "|", "l" and "I" alike).
+    """
     norm = _normalised(mask)
     if norm is None:
-        return None, 0.0
-    best, score = None, 0.0
+        return None, 0.0, 0.0
+    scores = []
     for ch, tpl in _glyph_templates().items():
         union = area(ImageChops.lighter(norm, tpl)) or 1
-        iou = area(ImageChops.multiply(norm, tpl)) / union
-        if iou > score:
-            best, score = ch, iou
-    return best, score
+        scores.append((area(ImageChops.multiply(norm, tpl)) / union, ch))
+    scores.sort(reverse=True)
+    return scores[0][1], scores[0][0], scores[0][0] - scores[1][0]
 
 
 def source_features(piece, canvas, mask, path):
@@ -186,23 +193,29 @@ def source_features(piece, canvas, mask, path):
     # Texture is judged at native resolution, where the upscale has not
     # yet flattened the drawing into large uniform blocks.
     native = piece.convert('RGBA')
-    inner = alpha_mask(native).filter(ImageFilter.MinFilter(3))
+    # The 5x5 erosion keeps the 3x3 edge kernel and one antialias pixel
+    # off the outline, so only drawing inside the form is measured.
+    inner = alpha_mask(native).filter(ImageFilter.MinFilter(5))
     edges = native.convert('L').filter(ImageFilter.FIND_EDGES).tobytes()
     inside = [edges[i] for i, f in enumerate(inner.tobytes()) if f]
     roughness = sum(inside) / len(inside) if inside else 0.0
 
-    glyph, glyph_iou = (None, 0.0)
+    glyph, glyph_iou, margin = None, 0.0, 0.0
     if not chromatic:
         # Only monochrome pieces can be atlas glyphs; a coloured sprite
         # that happens to look like "S" is not a letter.
-        glyph, glyph_iou = recognise_glyph(mask)
+        glyph, glyph_iou, margin = recognise_glyph(mask)
+    # The atlas font differs from Pillow's, so the match is loose (IoU
+    # 0.55) but must clearly beat the next glyph.
+    known = glyph_iou >= GLYPH_IOU and margin >= GLYPH_MARGIN
     words = [w for w in re.split(r'[^a-z]+', path.lower()) if w]
     return {
         'hue': hue, 'chromatic': chromatic,
         'mean_value': round(mean_value, 4),
         'roughness': round(roughness, 2),
-        'glyph': glyph if glyph_iou >= 0.6 else None,
+        'glyph': glyph if known else None,
         'glyph_iou': round(glyph_iou, 3),
+        'glyph_margin': round(margin, 3),
         'words': words,
     }
 
@@ -373,18 +386,40 @@ def _centre(mask):
     return cx, cy, max(box[2] - box[0], box[3] - box[1]) / 2, box
 
 
-def _rays(mask, st, count, r0, r1, half, strength):
-    """Draw radiating triangles from the centre of the form."""
-    out = mask.copy()
-    draw = ImageDraw.Draw(out)
+def _scale(mask, k):
+    """Scale the form about the centre of its box."""
+    box = mask.getbbox()
+    if box is None:
+        return mask
+    part = mask.crop(box)
+    w = max(1, round(part.width * k))
+    h = max(1, round(part.height * k))
+    out = Image.new('L', mask.size, 0)
+    out.paste(part.resize((w, h), Image.NEAREST),
+              (round((box[0] + box[2] - w) / 2),
+               round((box[1] + box[3] - h) / 2)))
+    return out
+
+
+def _rays(mask, st, count, r0, r1, half, strength, core=1.0):
+    """Shrink the form to a core and draw rays from its centre.
+
+    The source fills the canvas up to a 24 px margin, so growth outward
+    alone would be clipped; the passion first contracts, then reaches.
+    """
     cx, cy, radius, _ = _centre(mask)
+    out = _scale(mask, core)
+    draw = ImageDraw.Draw(out)
     for k in range(count):
         a = 2 * math.pi * (k + 0.35 * st.unit()) / count
-        tip = radius * r1 * (1 + 0.25 * (strength - 1)) * st.uniform(0.9, 1.1)
+        tip = radius * r1 * (1 + 0.1 * (strength - 1))
+        tip *= st.uniform(0.9, 1.05)
         base = radius * r0
-        pts = [(cx + base * math.cos(a - half), cy + base * math.sin(a - half)),
-               (cx + tip * math.cos(a), cy + tip * math.sin(a)),
-               (cx + base * math.cos(a + half), cy + base * math.sin(a + half))]
+
+        def at(r, angle):
+            return (cx + r * math.cos(angle), cy + r * math.sin(angle))
+
+        pts = [at(base, a - half), at(tip, a), at(base, a + half)]
         draw.polygon(pts, fill=255)
     return out
 
@@ -394,12 +429,10 @@ def _rays(mask, st, count, r0, r1, half, strength):
 # 2 amplified) and returns the antagonist's form.
 
 def shape_anger(mask, st, s):
-    """Wrath bursts outward in tongues and burns its own heart out."""
-    out = _rays(mask, st, 7 + int(3 * st.unit()), 0.4, 1.3, 0.17, s)
-    cx, cy, radius, _ = _centre(mask)
-    r = radius * 0.2 * s
-    ImageDraw.Draw(out).ellipse([cx - r, cy - r, cx + r, cy + r], fill=0)
-    return out
+    """Wrath clenches its heart small and lashes out in tongues."""
+    core = max(0.3, 0.6 - 0.15 * (s - 1))
+    return _rays(mask, st, 7 + int(3 * st.unit()), 0.3 * core + 0.1, 1.1,
+                 0.2, s, core)
 
 
 def shape_avarice(mask, st, s):
@@ -477,9 +510,10 @@ def shape_acedia(mask, st, s):
 
 def shape_vainglory(mask, st, s):
     """Vainglory radiates thin rays and wears a counterfeit halo."""
-    out = _rays(mask, st, 12, 0.3, 1.55, 0.05 * s, s)
+    core = max(0.35, 0.65 - 0.15 * (s - 1))
+    out = _rays(mask, st, 12, 0.2, 1.1, 0.05 * s, s, core)
     cx, cy, radius, _ = _centre(mask)
-    r = min(radius * 1.12, CANVAS / 2 - 4)
+    r = min(radius * 0.85, CANVAS / 2 - 4)
     ImageDraw.Draw(out).ellipse([cx - r, cy - r, cx + r, cy + r],
                                 outline=255, width=6 + 4 * (s - 1))
     return out

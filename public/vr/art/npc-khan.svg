@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Хан Улуса Джучи — хозяин двора">
+  <!-- Арт-канон §9.0: умбра+золото, картуш, без нимбов. NPC-портрет
+       (проход №47): хан двора Герата — аватар реплик двора в VR-панели
+       (реестр п.36/37); формат 100×140 как у прочих npc-*.svg. -->
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- Голова -->
+  <circle cx="50" cy="38" r="12" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- Меховая шапка с навершием -->
+  <path d="M36 34 Q50 20 64 34 L64 38 Q50 30 36 38 Z" fill="#3a2410" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M48 22 L50 15 L52 22 Z" fill="#e8c87a"/>
+  <circle cx="50" cy="14" r="2" fill="#e8c87a"/>
+  <!-- Усы и бородка -->
+  <path d="M42 43 Q50 47 58 43" stroke="#c8a56a" stroke-width="1.6" fill="none" opacity=".85"/>
+  <path d="M47 47 Q50 54 53 47 Z" fill="#c8a56a" opacity=".8"/>
+  <!-- Плечи: халат с золотой оторочкой -->
+  <path d="M26 96 Q30 62 50 58 Q70 62 74 96 L74 130 L26 130 Z"
+        fill="#2a1808" stroke="#8a6a34" stroke-width="2"/>
+  <path d="M50 58 L46 130 M50 58 L54 130" stroke="#c8a56a" stroke-width="1.4" opacity=".7"/>
+  <!-- Пояс с тамгой -->
+  <rect x="34" y="98" width="32" height="7" rx="2" fill="#8a6a34" stroke="#c8a56a" stroke-width="1"/>
+  <path d="M46 101.5 Q50 98.5 54 101.5 M50 101.5 L50 99" stroke="#1a0e04" stroke-width="1.2" fill="none"/>
+  <!-- Пиала кумыса в руке -->
+  <path d="M63 92 Q68 90 72 92 Q71 97 67.5 97 Q64 97 63 92 Z" fill="#e8c87a" stroke="#8a6a34" stroke-width="1.2"/>
+  <!-- Блик -->
+  <path d="M33 70 Q40 62 49 60" stroke="#fff3c0" stroke-width="1" fill="none" opacity=".4"/>
+</svg>

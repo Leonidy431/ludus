@@ -18,8 +18,16 @@ on:
         description: 'max images per repository'
         default: '10'
       threshold:
-        description: 'minimum colour AND shape change'
+        description: 'minimum alpha shape change of every variant'
         default: '0.35'
+
+  # The gate also runs on every change that could ship derived art or
+  # alter the pipeline; the heavy intake steps stay manual (see below).
+  pull_request:
+    paths:
+      - 'public/ludus/art/derived/**'
+      - 'scripts/raw_assets/**'
+      - '.github/workflows/raw-asset-intake.yml'
 
 permissions:
   contents: read
@@ -41,7 +49,19 @@ jobs:
       - name: PEP 8 gate
         run: python -m pycodestyle scripts/raw_assets/
 
+      # Alpha-form rules, the Antagonist protocol and determinism.
+      - name: Pipeline unit tests
+        run: python -m unittest discover scripts/raw_assets/tests -v
+
+      # Every shipped derived sprite needs meta with shape_change >= 35 %,
+      # otherwise the build fails with "Требуется Антагонист".
+      - name: Shipped derived assets delta gate
+        run: |
+          python scripts/raw_assets/check_delta.py \
+            --root public/ludus/art/derived --threshold 0.35
+
       - name: Intake (images and licences only)
+        if: github.event_name == 'workflow_dispatch'
         env:
           ONLY: ${{ inputs.only }}
           MAX_REPOS: ${{ inputs.max_repos }}
@@ -52,6 +72,7 @@ jobs:
             ${ONLY:+--only $ONLY}
 
       - name: Transform and measure
+        if: github.event_name == 'workflow_dispatch'
         env:
           THRESHOLD: ${{ inputs.threshold }}
         run: |
@@ -59,12 +80,14 @@ jobs:
             --out build/derived --threshold "$THRESHOLD"
 
       - name: Licence register and claim sheets
+        if: github.event_name == 'workflow_dispatch'
         run: |
           python scripts/raw_assets/register.py --derived build/derived \
             --notices build/THIRD_PARTY_NOTICES.md
           cat build/THIRD_PARTY_NOTICES.md >> "$GITHUB_STEP_SUMMARY"
 
       - uses: actions/upload-artifact@v4
+        if: github.event_name == 'workflow_dispatch'
         with:
           name: raw-asset-intake
           path: |

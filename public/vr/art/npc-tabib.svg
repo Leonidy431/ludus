@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Мар-Ава, лекарь-несторианин">
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- пожилое лицо, длинная седая борода -->
+  <circle cx="50" cy="34" r="11" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M42 40 Q50 62 58 40 Q56 52 50 54 Q44 52 42 40 Z" fill="#e8c87a" opacity=".75"/>
+  <!-- ряса восточно-сирийского лекаря -->
+  <path d="M50 52 C31 58 27 82 29 118 H71 C73 82 69 58 50 52 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <!-- нагрудный восточно-сирийский крест (атрибут сана, не нимб) -->
+  <path d="M50 62 v12 M44 67 h12" stroke="#e8c87a" stroke-width="2.5"/>
+  <!-- пучок трав в руке -->
+  <path d="M33 92 q-4 -10 2 -16 M35 92 q0 -10 6 -14 M37 92 q4 -8 9 -10" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <path d="M31 92 h10 l-1 6 h-8 Z" fill="#1a0e04" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- сосуд с бальзамом -->
+  <path d="M62 96 q-3 0 -3 4 v6 q0 4 5 4 q5 0 5 -4 v-6 q0 -4 -3 -4 v-3 h-4 Z" fill="#1a0e04" stroke="#e8c87a" stroke-width="1.5"/>
+</svg>

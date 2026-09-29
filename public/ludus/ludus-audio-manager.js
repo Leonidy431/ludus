@@ -5,7 +5,12 @@
  * and a brick-wall limiter.  Every sound is tied to a meaning from the
  * constitution ("sound is a language"), NPC voices are placed at the
  * NPC's position with HRTF panning, and a missing or undecodable asset
- * never throws into the game: the call resolves to null instead.
+ * never throws into the game.  No recordings exist yet, so a catalogue
+ * file that fails to load (404 or decode error) is replaced by the
+ * deterministic procedural rendering of the same key from
+ * ludus-sacred-synth.js (window.LudusSacredSynth), cached after the
+ * first render.  Only when that is unavailable does a call resolve to
+ * null.  Sound rules: docs/SOUND_THEOLOGY_RULES.md.
  *
  * Public global: window.LudusAudioManager (name is part of the shared
  * contract with ludus-npc-dialogue-ui.js and must not change).
@@ -63,6 +68,10 @@ window.LudusAudioManager = (function () {
   // file is requested once, not on every click.
   const bufferCache = new Map();
   const warnedPaths = new Set();
+
+  // One procedural rendering per catalogue key (see sacredBuffer).
+  const synthCache = new Map();
+  let synthMissingWarned = false;
 
   // NPC world positions, so a voice line is heard from where the NPC
   // stands without every caller having to pass coordinates.
@@ -170,8 +179,8 @@ window.LudusAudioManager = (function () {
   };
 
   // SFX library.  The "cue" field links each file to its meaning in
-  // SEMANTIC_CUES, which also supplies a synthesised stand-in while the
-  // recorded asset does not exist yet.
+  // SEMANTIC_CUES.  While the recorded asset does not exist, the sacred
+  // synth renders the SFX key itself (it knows every key here).
   const SFX_CATALOG = {
     // Environmental.
     desert_wind: {
@@ -236,73 +245,121 @@ window.LudusAudioManager = (function () {
   };
 
   // Semantic cue table: the meaning each sound carries (constitution,
-  // "sound is a language").  Pitch follows FORM: high, rising notes for
-  // Wisdom (spiritual ascent), low notes for Constitution (rootedness).
-  // "synth" describes the procedural stand-in; all parameters are fixed
-  // so the same event always sounds the same (no randomness).
+  // "sound is a language").  Pitch follows FORM: high, rising voices
+  // for Wisdom (spiritual ascent), low voices for Constitution
+  // (rootedness).  The sound itself is rendered by LudusSacredSynth
+  // under the same key; nothing is random, so the same event always
+  // sounds the same.  Bells appear only in their liturgical meanings
+  // and never as a reward ding (docs/SOUND_THEOLOGY_RULES.md).
   const SEMANTIC_CUES = {
     prayer_delivered: {
-      meaning: 'Bell: the prayer has been delivered.',
+      meaning: 'One благовест stroke: the prayer has been delivered.',
       layer: 'sfx',
-      synth: { kind: 'bell', freq: 293.66, length: 3.0 },
     },
     world_change: {
       meaning: 'Wind: the world is changing around the player.',
       layer: 'ambience',
-      synth: { kind: 'wind', freq: 700, length: 2.5 },
     },
     teaching_complete: {
-      meaning: 'Blessing chord: a teaching has been received.',
+      meaning: 'Short трезвон motif: a teaching has been received.',
       layer: 'sfx',
-      synth: { kind: 'chord', freq: 392.0, length: 1.8 },
     },
     choice: {
-      meaning: 'Soft mid tone: a choice was made, no FORM changed.',
+      meaning: 'One light semantron tap: a word was chosen.',
       layer: 'sfx',
-      synth: { kind: 'tone', freq: 440, length: 0.25 },
     },
     gate_locked: {
-      meaning: 'Falling low tone: FORM is not yet sufficient.',
+      meaning: 'Muted knock on the било: FORM is not yet sufficient.',
       layer: 'sfx',
-      synth: { kind: 'glide', freq: 220, to: 146.83, length: 0.45 },
     },
-    // One cue per constitutional attribute, ordered high to low.
+    // One cue per constitutional attribute, ordered high to low.  They
+    // are wordless voices or wood, never bells.
     wisdom: {
-      meaning: 'High rising phrase: Wisdom grows (ascent, noesis).',
+      meaning: 'Voice rising a step: Wisdom grows (ascent, noesis).',
       layer: 'sfx',
-      synth: { kind: 'glide', freq: 659.25, to: 987.77, length: 0.6 },
     },
     faith: {
-      meaning: 'Bright bell fifth: Faith strengthened.',
+      meaning: 'Open fifth in voices: Faith strengthened.',
       layer: 'sfx',
-      synth: { kind: 'chord', freq: 523.25, length: 1.2 },
     },
     erudition: {
-      meaning: 'Clear upper tone: Erudition, knowledge of texts.',
+      meaning: 'Parchment and a clear upper voice: Erudition.',
       layer: 'sfx',
-      synth: { kind: 'tone', freq: 587.33, length: 0.5 },
     },
     charisma: {
-      meaning: 'Warm horn-like mid tone: Charisma, the community.',
+      meaning: 'Voices in unison and octave: Charisma, the community.',
       layer: 'sfx',
-      synth: { kind: 'tone', freq: 392.0, length: 0.6, wave: 'sawtooth' },
     },
     dexterity: {
-      meaning: 'Quick double note: Dexterity, practice in action.',
+      meaning: 'Two quick semantron taps: Dexterity, practice.',
       layer: 'sfx',
-      synth: { kind: 'double', freq: 493.88, length: 0.35 },
     },
     cunning: {
-      meaning: 'Muted low-mid tone: Cunning, a hidden path.',
+      meaning: 'A muted low knock: Cunning, a hidden path.',
       layer: 'sfx',
-      synth: { kind: 'tone', freq: 277.18, length: 0.4, wave: 'square' },
     },
     constitution: {
-      meaning: 'Deep steady tone: Constitution, rootedness.',
+      meaning: 'Low steady ison with октавист: Constitution, roots.',
       layer: 'sfx',
-      synth: { kind: 'tone', freq: 98.0, length: 0.9 },
+    },
+    // Ringing orders of the Typikon (kolokol research, chapter 25).
+    blagovest: {
+      meaning: 'Благовест: measured strokes call to prayer.',
+      layer: 'sfx',
+    },
+    trezvon: {
+      meaning: 'Трезвон: the joy of the feast.',
+      layer: 'sfx',
+    },
+    perezvon: {
+      meaning: 'Перезвон, large to small: solemn procession.',
+      layer: 'sfx',
+    },
+    perebor: {
+      meaning: 'Перебор, small to large then all: mourning.',
+      layer: 'sfx',
+    },
+    zvon_v_dvoi: {
+      meaning: 'Звон в двои: Lenten restraint.',
+      layer: 'sfx',
+    },
+    semantron: {
+      meaning: 'Semantron: the prophets\' voice before the Gospel.',
+      layer: 'sfx',
+    },
+    ison: {
+      meaning: 'Ison: the wordless drone of chant, breathing prayer.',
+      layer: 'music',
+    },
+    // ROV lake.
+    sonar_ping: {
+      meaning: 'Sonar ping and echo: depth is known by listening.',
+      layer: 'sfx',
+    },
+    water: {
+      meaning: 'Lake water: the depth the ROV observes.',
+      layer: 'ambience',
+    },
+    // Silence is a sound state with its own meaning.
+    hesychia: {
+      meaning: 'Hesychia: stillness, the room tone of a stone church.',
+      layer: 'ambience',
+    },
+    // Antagonists: the passions never get sacred sounds.
+    passion: {
+      meaning: 'A passion: unresolved dissonance, stilled by hesychia.',
+      layer: 'sfx',
     },
   };
+
+  // The eight logismoi (Evagrius) as separate antagonist cues.
+  ['gluttony', 'lust', 'avarice', 'sorrow', 'anger', 'acedia',
+    'vainglory', 'pride'].forEach(function (name) {
+    SEMANTIC_CUES['passion_' + name] = {
+      meaning: `The passion of ${name}: dissonance that never resolves.`,
+      layer: 'sfx',
+    };
+  });
 
   // ── Preferences ────────────────────────────────────────────────────
   // Storage can be missing or throw (private mode, blocked site data,
@@ -690,123 +747,34 @@ window.LudusAudioManager = (function () {
     }
   }
 
-  // ── Procedural cues ────────────────────────────────────────────────
-  // A fixed LCG gives the wind its noise.  It is deterministic on
-  // purpose: the constitution forbids chance, and a repeatable texture
-  // is also easier to verify on the headset.
-  function noiseBuffer(seconds) {
-    const length = Math.max(1, Math.floor(audioContext.sampleRate *
-      seconds));
-    const buffer = audioContext.createBuffer(1, length,
-      audioContext.sampleRate);
-    const data = buffer.getChannelData(0);
-    let state = 0x2f6b1d3a;
-    for (let i = 0; i < length; i += 1) {
-      state = (Math.imul(state, 1664525) + 1013904223) >>> 0;
-      data[i] = state / 2147483648 - 1;
+  // ── Procedural stand-ins ───────────────────────────────────────────
+  // Renders a catalogue key with the sacred synth and caches the
+  // buffer, so the render cost (tens to a few hundred milliseconds for
+  // a thirty-second bed) is paid once per key per session.
+  function sacredBuffer(key) {
+    if (!key) {
+      return Promise.resolve(null);
     }
-    return buffer;
-  }
-
-  // Renders a synth description into a one-shot AudioBuffer offline,
-  // so the result plays through the same voice path as a recording.
-  function renderSynth(synth) {
-    const rate = audioContext.sampleRate;
-    const length = Math.ceil(rate * (synth.length + 0.05));
-    const Offline = window.OfflineAudioContext ||
-      window.webkitOfflineAudioContext;
-    const off = new Offline(1, length, rate);
-    const out = off.createGain();
-    out.gain.value = 0.35;  // Headroom: cues sit under dialogue.
-    out.connect(off.destination);
-    const end = synth.length;
-
-    function envelope(target, attack, decay) {
-      target.gain.setValueAtTime(0, 0);
-      target.gain.linearRampToValueAtTime(1, attack);
-      target.gain.setTargetAtTime(0, attack, decay);
+    if (synthCache.has(key)) {
+      return synthCache.get(key);
     }
-
-    function partial(freq, level, wave, decay) {
-      const osc = off.createOscillator();
-      const amp = off.createGain();
-      osc.type = wave || 'sine';
-      osc.frequency.value = freq;
-      envelope(amp, 0.005, decay);
-      const lvl = off.createGain();
-      lvl.gain.value = level;
-      osc.connect(amp).connect(lvl).connect(out);
-      osc.start(0);
-      osc.stop(end);
-      return osc;
+    const synth = window.LudusSacredSynth;
+    if (!synth || typeof synth.render !== 'function' || !synth.has(key)) {
+      if (!synth && !synthMissingWarned) {
+        synthMissingWarned = true;
+        console.warn('[Ludus Audio] LudusSacredSynth not loaded; ' +
+          'missing assets stay silent');
+      }
+      return Promise.resolve(null);
     }
-
-    if (synth.kind === 'bell') {
-      // Inharmonic partials are what make a struck bell read as a bell.
-      const ratios = [1, 2.0, 2.76, 5.4, 8.93];
-      ratios.forEach(function (r, i) {
-        partial(synth.freq * r, 0.6 / (i + 1), 'sine', end / (3 + i));
-      });
-    } else if (synth.kind === 'chord') {
-      partial(synth.freq, 0.5, 'sine', end / 3);
-      partial(synth.freq * 1.5, 0.35, 'sine', end / 3);
-      partial(synth.freq * 2, 0.2, 'sine', end / 4);
-    } else if (synth.kind === 'glide') {
-      const osc = off.createOscillator();
-      const amp = off.createGain();
-      osc.frequency.setValueAtTime(synth.freq, 0);
-      osc.frequency.exponentialRampToValueAtTime(synth.to, end * 0.8);
-      envelope(amp, 0.01, end / 4);
-      osc.connect(amp).connect(out);
-      osc.start(0);
-      osc.stop(end);
-    } else if (synth.kind === 'double') {
-      const first = off.createGain();
-      const second = off.createGain();
-      [first, second].forEach(function (g, i) {
-        const osc = off.createOscillator();
-        osc.frequency.value = synth.freq * (i ? 1.25 : 1);
-        g.gain.setValueAtTime(0, 0);
-        g.gain.setValueAtTime(0, i * 0.12);
-        g.gain.linearRampToValueAtTime(0.8, i * 0.12 + 0.005);
-        g.gain.setTargetAtTime(0, i * 0.12 + 0.005, 0.04);
-        osc.connect(g).connect(out);
-        osc.start(0);
-        osc.stop(end);
-      });
-    } else if (synth.kind === 'wind') {
-      const src = off.createBufferSource();
-      src.buffer = noiseBuffer(synth.length + 0.05);
-      const band = off.createBiquadFilter();
-      band.type = 'bandpass';
-      band.Q.value = 1.2;
-      band.frequency.setValueAtTime(synth.freq * 0.5, 0);
-      band.frequency.linearRampToValueAtTime(synth.freq * 1.4, end / 2);
-      band.frequency.linearRampToValueAtTime(synth.freq * 0.6, end);
-      const amp = off.createGain();
-      amp.gain.setValueAtTime(0, 0);
-      amp.gain.linearRampToValueAtTime(1.2, end / 2);
-      amp.gain.linearRampToValueAtTime(0, end);
-      src.connect(band).connect(amp).connect(out);
-      src.start(0);
-    } else {
-      partial(synth.freq, 0.8, synth.wave, end / 3);
-    }
-    return off.startRendering();
-  }
-
-  const synthCache = new Map();
-
-  function synthBuffer(cueKey) {
-    if (!synthCache.has(cueKey)) {
-      const cue = SEMANTIC_CUES[cueKey];
-      const job = renderSynth(cue.synth).catch(function (err) {
-        console.warn(`[Ludus Audio] Cue render failed: ${cueKey}`, err);
-        return null;
-      });
-      synthCache.set(cueKey, job);
-    }
-    return synthCache.get(cueKey);
+    const job = Promise.resolve().then(function () {
+      return synth.render(key, audioContext);
+    }).catch(function (err) {
+      console.warn(`[Ludus Audio] Cue render failed: ${key}`, err);
+      return null;
+    });
+    synthCache.set(key, job);
+    return job;
   }
 
   // ── Playback ───────────────────────────────────────────────────────
@@ -822,7 +790,9 @@ window.LudusAudioManager = (function () {
    * out of existence.  Never rejects for asset problems.
    * layer: 'music' | 'dialogue' | 'sfx' | 'ambience'
    * options: { fadeIn, loop, volume, position: {x, y, z}, spatialize,
-   *            x, y, z, fallbackCue }
+   *            x, y, z, synthKey, fallbackCue }
+   * synthKey is the catalogue key rendered procedurally when the file
+   * is missing; fallbackCue (a SEMANTIC_CUES key) is tried after it.
    */
   async function playAudio(filePath, layer = 'sfx', options = {}) {
     if (!layers[layer]) {
@@ -837,9 +807,12 @@ window.LudusAudioManager = (function () {
     }
 
     let buffer = filePath ? await loadAudioBuffer(filePath) : null;
+    if (!buffer && options.synthKey) {
+      buffer = await sacredBuffer(options.synthKey);
+    }
     if (!buffer && options.fallbackCue &&
         SEMANTIC_CUES[options.fallbackCue]) {
-      buffer = await synthBuffer(options.fallbackCue);
+      buffer = await sacredBuffer(options.fallbackCue);
     }
     if (!buffer) {
       return null;
@@ -863,7 +836,8 @@ window.LudusAudioManager = (function () {
     if (!track) {
       throw new Error(`Unknown track: ${trackKey}`);
     }
-    return playAudio(track.file, 'music', { fadeIn, loop: true });
+    return playAudio(track.file, 'music',
+      { fadeIn, loop: true, synthKey: trackKey });
   }
 
   /**
@@ -885,7 +859,8 @@ window.LudusAudioManager = (function () {
     if (!sfx) {
       throw new Error(`Unknown SFX: ${sfxKey}`);
     }
-    const merged = Object.assign({ fallbackCue: sfx.cue }, options);
+    const merged = Object.assign(
+      { synthKey: sfxKey, fallbackCue: sfx.cue }, options);
     return playAudio(sfx.file, 'sfx', merged);
   }
 
@@ -898,7 +873,7 @@ window.LudusAudioManager = (function () {
     if (!cue) {
       throw new Error(`Unknown cue: ${cueKey}`);
     }
-    const merged = Object.assign({ fallbackCue: cueKey }, options);
+    const merged = Object.assign({ synthKey: cueKey }, options);
     return playAudio(cue.file || null, cue.layer, merged);
   }
 
@@ -1018,6 +993,7 @@ window.LudusAudioManager = (function () {
       liveNodes: liveNodes,
       dialogueVoices: dialogueVoices,
       cachedBuffers: bufferCache.size,
+      synthesizedCues: synthCache.size,
       muted: prefs.muted,
       master: prefs.master,
     };

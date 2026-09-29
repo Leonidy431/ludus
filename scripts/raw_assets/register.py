@@ -1,12 +1,16 @@
 """Write the licence register and per-object claim sheets.
 
 Step three of the raw-material pipeline (CLAUDE.md, TABOO 0.4).  Every
-accepted object gets an entry in THIRD_PARTY_NOTICES.md and a claim sheet
-in the style of a Russian utility claim ("отличающийся тем, что"), so the
-lawyer reviews one file per object instead of reconstructing history.
+derived object (an Antagonist with its twelve variants) gets an entry in
+THIRD_PARTY_NOTICES.md and a claim sheet in the style of a Russian
+utility claim ("отличающийся тем, что"), so the lawyer reviews one file
+per object instead of reconstructing history.  Objects stopped with
+Alpha_Silhouette_Error are listed separately and never registered as
+shippable.
 
 Usage:
-    python3 scripts/raw_assets/register.py --derived build/derived
+    python3 scripts/raw_assets/register.py --derived build/derived \
+        --notices build/THIRD_PARTY_NOTICES.md
 """
 
 import argparse
@@ -20,28 +24,42 @@ the obligations of its source licence (attribution; share-alike for
 CC-BY-SA; source availability for GPL).  The 35 % change threshold is an
 internal technology rule and does not by itself remove these duties.
 
-| Object | Source | Commit | Path | Licence | Colour | Shape |
-|--------|--------|--------|------|---------|-------|-----------|
+Shape change is |A xor B| / |A or B| over alpha masks on the 256x256
+canvas (interior-only moves weigh 0.1); the column shows the weakest of
+the object's variants.
+
+| Object | Passion | Variants | Source | Commit | Path | Licence \
+| Min shape |
+|--------|---------|----------|--------|--------|------|---------\
+|-----------|
 """
 
 
 def claim_text(record):
     """Compose the claim sheet for one derived object."""
-    feats = record['features']
+    feats = record['claim_features']
     distinguishing = ';\n    '.join(feats[:3])
     evidence = '\n'.join(f'- {f}' for f in feats[3:])
-    return f"""# Формула: объект {record['id']}
+    rows = '\n'.join(
+        f'| {v["slot"]} | {v["kind"]} | {v["shape_change"]:.1%} '
+        f'| {v["colour_change"]:.1%} | {v["hitbox"]["area"]} '
+        f'| {v["analytics_id"]} |' for v in record['variants'])
+    return f"""# Формула: объект {record['name']}
 
 1. Графический объект игры Ludus, полученный из исходного изображения
    путём переработки, отличающийся тем, что содержит:
     {distinguishing}.
 
-2. Объект по п. 1, отличающийся тем, что изменение цвета объекта и
-   изменение его формы (1 - IoU силуэтов) составляют каждое не менее
-   35 % при сравнении на общем холсте 256×256.
+2. Объект по п. 1, отличающийся тем, что изменение формы каждого из
+   его вариантов (|A xor B| / |A or B| по альфа-маскам) составляет не
+   менее 35 % при сравнении на общем холсте 256×256.
 
 Доказательная база:
 {evidence}
+
+| Вариант | Вид | Форма | Цвет | Площадь хитбокса | Аналитика |
+|---------|-----|-------|------|------------------|-----------|
+{rows}
 """
 
 
@@ -58,16 +76,22 @@ def main():
 
     rows = []
     for rec in report['accepted']:
-        (claims / f'{rec["id"]}.md').write_text(claim_text(rec), 'utf-8')
+        (claims / f'{rec["name"]}.md').write_text(claim_text(rec), 'utf-8')
         rows.append(
-            f'| {rec["file"]} | {rec["repo"]} | {rec["commit"][:10]} '
-            f'| {rec["path"]} | {rec["license"]} '
-            f'| {rec["colour_change"]:.1%} | {rec["shape_change"]:.1%} |')
+            f'| {rec["name"]} | {rec["passion"]} '
+            f'| {len(rec["variants"])}/12 | {rec["repo"]} '
+            f'| {rec["commit"][:10]} | {rec["path"]} #{rec["piece"]} '
+            f'| {rec["license"]} | {rec["shape_change"]:.1%} |')
 
-    Path(args.notices).write_text(NOTICE_HEADER + '\n'.join(rows) + '\n',
-                                  encoding='utf-8')
-    print(f'{len(rows)} objects registered -> {args.notices}; '
-          f'claims in {claims}')
+    errors = [f'- {e["path"]} #{e["piece"]}: {e["error_detail"]}'
+              for e in report.get('errors', [])]
+    text = NOTICE_HEADER + '\n'.join(rows) + '\n'
+    if errors:
+        text += '\n## Stopped objects (not shippable)\n\n'
+        text += '\n'.join(errors) + '\n'
+    Path(args.notices).write_text(text, encoding='utf-8')
+    print(f'{len(rows)} objects registered, {len(errors)} stopped -> '
+          f'{args.notices}; claims in {claims}')
 
 
 if __name__ == '__main__':

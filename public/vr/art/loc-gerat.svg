@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" role="img" aria-label="Двор Герата">
+  <rect width="160" height="100" fill="#1a0e04"/>
+  <rect x="6" y="6" width="148" height="88" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <path d="M14 78 H146" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M20 78 V44 H62 V78 M98 78 V44 H140 V78" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M62 78 V52 A18 18 0 0 1 98 52 V78" fill="none" stroke="#e8c87a" stroke-width="2.5"/>
+  <path d="M20 44 l6-8 6 8 M50 44 l6-8 6 8 M98 44 l6-8 6 8 M128 44 l6-8 6 8" fill="none" stroke="#c8a56a" stroke-width="2"/>
+  <circle cx="80" cy="86" r="6" fill="none" stroke="#e8c87a" stroke-width="2"/>
+  <path d="M80 24 v10 M75 29 h10" stroke="#8a6a34" stroke-width="1.5"/>
+  <circle cx="80" cy="29" r="9" fill="none" stroke="#8a6a34" stroke-width="1" stroke-dasharray="3 2"/>
+</svg>
