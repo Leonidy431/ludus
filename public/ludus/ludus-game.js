@@ -643,7 +643,9 @@
 
     // The drawn badge replaces the emoji: emoji glyphs differ between
     // headsets and some Quest fonts lack them entirely.
-    const attrHtml = ATTRIBUTES.map((attr) => '<div class="ludus-attr-item">'
+    const grown = state.lastGrowth || {};
+    const attrHtml = ATTRIBUTES.map((attr) => '<div class="ludus-attr-item'
+      + `${grown[attr.key] ? ' is-growing' : ''}" data-attr="${attr.key}">`
       + `<img class="ludus-attr-icon" src="${ART}attr-${attr.key}.svg"`
       + ` alt="" title="${escapeHtml(attr.tooltip)}" width="40"`
       + ' height="40">'
@@ -1262,7 +1264,8 @@
       if (state.formSource === 'guest') {
         saveGuestPassions();
       }
-      applyDialogueResult({ attributeBonuses: result.attributeBonuses });
+      applyDialogueResult({ attributeBonuses: result.attributeBonuses,
+        playSound: true });
     }
     renderKnowledgeGates();
   }
@@ -1358,6 +1361,16 @@
         next[attr.key] = Math.min(ATTR_MAX, toScore(next[attr.key]) + bonus);
       }
     });
+    // Note what grew, before the form is replaced, for the feedback.
+    const growth = {};
+    ATTRIBUTES.forEach((attr) => {
+      const before = toScore(state.playerForm[attr.key]);
+      const after = toScore(next[attr.key]);
+      if (after > before) {
+        growth[attr.key] = { before, after };
+      }
+    });
+    state.lastGrowth = growth;
     state.playerForm = next;
     if (state.formSource === 'guest') {
       saveGuestForm();
@@ -1365,7 +1378,63 @@
     renderPlayerProfile();
     renderReachableNodes();
     renderKnowledgeGates();
+    announceGrowth(Boolean(result && result.playSound));
     announcePlayer();
+  }
+
+  // FORM grew: one frame of sight, sound and touch (TABOO 0.35 rule
+  // 17).  Sight is a plain line "Wisdom 3 -> 5" and a short outline on
+  // the attribute, no confetti and no "+N" score.  Sound is the plucked
+  // gusli string (form_growth): the attribute cues are voice-like, and a
+  // human voice must not become a reward ding (TABOO 0.2 item 5).  Touch
+  // is one short pulse where the device has one.  Understanding grows in
+  // dialogue only; prayer and practices never reach this path.
+  function announceGrowth(withSound) {
+    const growth = state.lastGrowth || {};
+    const keys = Object.keys(growth);
+    if (keys.length === 0) {
+      return;
+    }
+    const line = keys.map((k) => {
+      const attr = ATTRIBUTES.find((a) => a.key === k);
+      return `${attr ? attr.label : k} ${growth[k].before} → ${growth[k].after}`;
+    }).join(', ');
+    let live = document.getElementById('ludus-growth-live');
+    if (!live) {
+      live = document.createElement('p');
+      live.id = 'ludus-growth-live';
+      live.className = 'ludus-growth-line';
+      live.setAttribute('role', 'status');
+      live.setAttribute('aria-live', 'polite');
+      const profile = document.getElementById('ludus-profile');
+      if (profile) {
+        profile.prepend(live);
+      }
+    }
+    live.textContent = `Grew in understanding: ${line}`;
+    // The dialogue window already plays the growth pluck on its own
+    // choice, so only growth from elsewhere (the road) sounds here, and a
+    // gain is never heard twice.
+    try {
+      const audio = window.LudusAudioManager;
+      if (withSound && audio && typeof audio.playSfx === 'function') {
+        audio.playSfx('ui_positive').catch(() => {});
+      }
+    } catch (error) {
+      // Sound is a companion, never a condition; a blocked context is fine.
+    }
+    if (navigator.vibrate) {
+      navigator.vibrate(30);
+    }
+    document.dispatchEvent(new CustomEvent('ludus:form-grew', {
+      detail: { growth },
+    }));
+    clearTimeout(state.growthTimer);
+    state.growthTimer = setTimeout(() => {
+      state.lastGrowth = {};
+      document.querySelectorAll('.ludus-attr-item.is-growing')
+        .forEach((el) => el.classList.remove('is-growing'));
+    }, 2500);
   }
 
   async function talkTo(npcId) {

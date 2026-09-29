@@ -953,3 +953,25 @@
 .ludus-road-end {
   color: var(--lg-text);
 }
+
+/* FORM grew: a short hearth-light outline on the attribute and a plain
+   line of text.  Hearth, not lamp: understanding is human work, the
+   lamp belongs to holy things (TABOO 0.38). */
+.ludus-growth-line {
+  margin: 0 0 0.5rem;
+  color: var(--ludus-light-hearth, #ffb347);
+  font-size: 0.875rem;
+}
+
+.ludus-attr-item.is-growing {
+  outline: 2px solid var(--ludus-light-hearth, #ffb347);
+  outline-offset: 2px;
+  border-radius: 6px;
+  transition: outline-color 0.6s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ludus-attr-item.is-growing {
+    transition: none;
+  }
+}
