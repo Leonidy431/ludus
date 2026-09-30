@@ -199,7 +199,8 @@ func _bell_rules() -> void:
 	t._check(call.ring and call.stroke_times.size() == 12,
 		"Lenten weekday: 12 strokes before Vespers")
 	var ord := LudusTypikon.bell_call(at("2026-09-29T17:51"))
-	t._check(ord.stroke_times.size() == 120, "ordinary day: measured call")
+	t._check(ord.stroke_times.size() == 96,
+		"ordinary day: measured call, 8 min (bell-rules.json)")
 	t._check(not LudusTypikon.bell_call(at("2026-09-29T18:00")).ring,
 		"the call ends when Vespers begins")
 

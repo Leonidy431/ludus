@@ -42,17 +42,28 @@ const FIXED_FEASTS := {
 	"12-04": "Entry of the Theotokos",
 }
 
-## The call to Vespers heard from the shore.  kolokol ch. 25: the
-## благовест, measured single strokes on the largest bell, announces
-## the beginning of a service.  How long before Vespers it begins is
-## not in the sources; ten minutes is a design choice, and so is the
-## five-second stroke (docs/SOUND_THEOLOGY_RULES.md: "4 to 6 s ... a
-## design choice, not a sourced fact").
-const CALL_MINUTES := 10
-const STROKE_EVERY := 5.0
-## kolokol ch. 25: on the weekdays of Great Lent twelve strokes are
-## struck before Vespers, the stepped Lenten call.
-const LENTEN_VESPERS_STROKES := 12
+## The one bell table of the web and the headset (docs/HLD_BELL_RULES_
+## TYPIKON_2026-09-30.md): every order, period and cue with its source
+## in the Typikon or the bell book.  public/ludus/data/bell-rules.json
+## is the same file byte for byte (cmp in .github/workflows/godot.yml).
+const RULES_PATH := "res://data/bell-rules.json"
+static var _rules := {}
+
+
+## The bell table, read once.
+static func rules() -> Dictionary:
+	if _rules.is_empty():
+		_rules = JSON.parse_string(FileAccess.get_file_as_string(
+			RULES_PATH))
+	return _rules
+
+
+## A path cue of the table by its id, or {}.
+static func cue(id: String) -> Dictionary:
+	for c in rules().cues:
+		if c.id == id:
+			return c
+	return {}
 
 
 ## Midnight UTC of a civil date, as seconds; only used as a day index.
@@ -118,21 +129,38 @@ static func describe(now: Dictionary) -> Dictionary:
 		"feast": feast, "rank": rank}
 
 
-## Bell orders the Typikon allows on this day (ludus-liturgical-clock.js
-## allowedOrders).
+## Bell orders the sources name for this day: periodOrders of the
+## table (ludus-liturgical-clock.js allowedOrders holds the same lists;
+## tests/ludus-liturgical-clock.test.js compares them).
 static func allowed_orders(info: Dictionary) -> Array:
-	match info.period:
-		"great-friday", "great-saturday":
-			return ["благовест", "перебор"]
-		"holy-week":
-			return ["благовест"]
-		"great-lent":
-			if info.rank == "great":
-				return ["благовест", "трезвон", "двои"]
-			return ["благовест", "двои"]
-		"pascha", "bright-week":
-			return ["благовест", "трезвон", "перезвон"]
-	return ["благовест", "трезвон", "перезвон", "перебор", "двои"]
+	var key: String = info.period
+	if key == "great-lent":
+		key += "/great" if info.rank == "great" else "/daily"
+	var row: Dictionary = rules().periodOrders.get(key,
+		rules().periodOrders.ordinary)
+	return row.orders.duplicate()
+
+
+## The classes of a day that the cues of the table name in "when":
+## the period, and sunday, great-feast, ordinary-weekday, lent-daily,
+## lent-weekday (Monday to Friday) and lent-great.
+static func day_classes(info: Dictionary) -> Array:
+	var out := [info.period]
+	var wd: int = info.weekday
+	if wd == 0:
+		out.append("sunday")
+	if info.feast != null and info.period != "pascha":
+		out.append("great-feast")
+	if info.period == "ordinary" and info.rank == "daily":
+		out.append("ordinary-weekday")
+	if info.period == "great-lent":
+		if info.rank == "daily":
+			out.append("lent-daily")
+			if wd >= 1 and wd <= 5:
+				out.append("lent-weekday")
+		else:
+			out.append("lent-great")
+	return out
 
 
 static func may_ring(order: String, now: Dictionary) -> bool:
@@ -167,38 +195,46 @@ static func tonic_of(now: Dictionary) -> float:
 ## The shore bell at a local moment: {ring, stroke_times, reason}.
 ## stroke_times are seconds from the start of the call, and "since" is
 ## how long the call has been going.  The bell is the call to Vespers
-## and nothing else: no task, find or button reaches this function.
+## of the table (cue "vespers-call") and nothing else: no task, find or
+## button reaches this function.  Only the благовест part is here; the
+## звон в двои that follows it on weekdays needs two bells and rings
+## on the path of the witness (TypikonCore).
 static func bell_call(now: Dictionary) -> Dictionary:
+	var c := cue("vespers-call")
+	var pat: Dictionary = c.pattern
 	var minute_of_day: int = int(now.get("hour", 0)) * 60 \
 		+ int(now.get("minute", 0))
-	var start := VESPERS_HOUR * 60 - CALL_MINUTES
+	var start: int = int(c.minute)
+	var service: int = int(c.serviceMinute)
 	var since := float(minute_of_day - start) * 60.0 \
 		+ float(now.get("second", 0))
 	var off := {"ring": false, "stroke_times": [], "since": since,
 		"reason": ""}
-	if minute_of_day < start or minute_of_day >= VESPERS_HOUR * 60:
+	if minute_of_day < start or minute_of_day >= service:
 		off.reason = "not the hour of the call to Vespers"
 		return off
 	# Before 18:00 the moment still belongs to the civil day, and the
 	# Vespers being called opens the next liturgical day.  The order
 	# is asked of the day whose Vespers it is.
 	var vespers := now.duplicate()
-	vespers.hour = VESPERS_HOUR
-	vespers.minute = 0
+	vespers.hour = service / 60
+	vespers.minute = service % 60
 	if not may_ring("благовест", vespers):
 		off.reason = "the Typikon does not allow благовест"
 		return off
 	var info := describe(now)
+	var lit := describe(vespers)
 	var times := []
-	# A Lenten weekday is Monday to Friday of a day that is not a feast.
-	var weekday: int = info.weekday
-	if info.period == "great-lent" and info.rank == "daily" \
-			and weekday >= 1 and weekday <= 5:
-		for k in LENTEN_VESPERS_STROKES:
-			times.append(k * STROKE_EVERY)
+	var every: float = pat.every
+	# A Lenten weekday (Monday to Friday, no feast) whose Vespers opens
+	# another day of the fast: the twelve strokes of the table (rule
+	# lent-vespers).  The eve of a feast in Lent is called "довольно".
+	if "lent-weekday" in day_classes(info) \
+			and "lent-daily" in day_classes(lit):
+		for k in int(pat.lentenCount):
+			times.append(k * every)
 	else:
-		var n := int(CALL_MINUTES * 60 / STROKE_EVERY)
-		for k in n:
-			times.append(k * STROKE_EVERY)
+		for k in int(float(pat.minutes) * 60.0 / every):
+			times.append(k * every)
 	return {"ring": true, "stroke_times": times, "since": since,
 		"reason": "благовест to Vespers (%s)" % info.period}
