@@ -1,0 +1,9 @@
+# The raw runner's append-only journals merge by union, never by text:
+# two writers (session passes via main, the hourly CI pass on
+# raw-osint/auto) append at the same end, so a text merge always
+# conflicts there.  The driver is scripts/raw_assets/journal_merge.py;
+# without `git config merge.ludus-journal.driver ...` git falls back to
+# its normal merge (CLAUDE.md TABOO 0.25 p. 5, TABOO 0.012 p. 5).
+docs/RAW_OSINT_CURSOR.json merge=ludus-journal
+docs/RAW_CODE_CANDIDATES.json merge=ludus-journal
+docs/RAW_PROPS_REGISTER.jsonl merge=ludus-journal

@@ -11309,5 +11309,688 @@
    "LICENSE.TXT"
   ],
   "slot": "DEF-036"
+ },
+ {
+  "repo": "https://github.com/yairm210/Unciv",
+  "commit": "eba5356202ea101c696f34be1cffee8373eb109a",
+  "license_file": "LICENSE",
+  "path": "core/src/com/unciv/ui/screens/pickerscreens/UnitRenamePopup.kt",
+  "kind": "code",
+  "hits": [
+   "screen",
+   "screens",
+   "com",
+   "unciv",
+   "pickerscreens"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-035"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Disposal/Unit/DisposalUnitWindow.xaml.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "xaml",
+   "disposal",
+   "disposalunitwindow"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-036"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Lobby/UI/CharacterPickerButton.xaml.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "xaml",
+   "lobby",
+   "characterpickerbutton"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-036"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Lobby/UI/CharacterSetupGui.xaml.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "xaml",
+   "lobby",
+   "charactersetupgui"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-036"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Lobby/UI/CharacterSetupGuiSavePanel.xaml.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "xaml",
+   "lobby",
+   "charactersetupguisavepanel"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-036"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Chemistry/EntitySystems/SolutionItemStatusSystem.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "entitysystems",
+   "chemistry"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-036"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Disposal/Mailing/MailingUnitWindow.xaml.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "xaml",
+   "disposal"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-036"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Effects/ColorFlashEffectSystem.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "effects",
+   "colorflasheffectsystem"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-036"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Effects/EffectVisualizerSystem.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "effects",
+   "effectvisualizersystem"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-036"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Fluids/UI/AbsorbentItemStatus.xaml.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "xaml",
+   "absorbentitemstatus"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-036"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Instruments/UI/ChannelItem.xaml.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "xaml",
+   "channelitem"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-036"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Lobby/UI/LobbyCharacterPreviewPanel.xaml.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "xaml",
+   "lobby"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-036"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "drivers/gles3/effects/copy_effects.cpp",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "cpp",
+   "effects",
+   "drivers",
+   "gles",
+   "copy"
+  ],
+  "score": 6,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/copy_effects.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "servers",
+   "renderer",
+   "rendering",
+   "copy"
+  ],
+  "score": 6,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/fsr.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "servers",
+   "renderer",
+   "rendering",
+   "fsr"
+  ],
+  "score": 6,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/fsr2.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "servers",
+   "renderer",
+   "rendering",
+   "fsr"
+  ],
+  "score": 6,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "drivers/gles3/effects/copy_effects.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "drivers",
+   "gles",
+   "copy"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "drivers/gles3/effects/cubemap_filter.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "filter",
+   "drivers",
+   "gles"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "drivers/gles3/effects/feed_effects.cpp",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "cpp",
+   "effects",
+   "drivers",
+   "gles"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "drivers/gles3/effects/glow.cpp",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "cpp",
+   "effects",
+   "drivers",
+   "gles"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "drivers/gles3/effects/post_effects.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "post",
+   "effects",
+   "drivers",
+   "gles"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/bokeh_dof.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "servers",
+   "renderer",
+   "rendering"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/debug_effects.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "servers",
+   "renderer",
+   "rendering"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/luminance.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "servers",
+   "renderer",
+   "rendering"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/metal_fx.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "servers",
+   "renderer",
+   "rendering"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/resolve.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "servers",
+   "renderer",
+   "rendering"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/smaa.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "servers",
+   "renderer",
+   "rendering"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/sort_effects.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "servers",
+   "renderer",
+   "rendering"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/spatial_upscaler.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "servers",
+   "renderer",
+   "rendering"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/ss_effects.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "servers",
+   "renderer",
+   "rendering"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/taa.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "servers",
+   "renderer",
+   "rendering"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/tone_mapper.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "servers",
+   "renderer",
+   "rendering"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/vrs.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "servers",
+   "renderer",
+   "rendering"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/spells/Alchemize.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "shatteredpixel",
+   "shatteredpixeldungeon",
+   "spells",
+   "alchemize"
+  ],
+  "score": 6,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/spells/BeaconOfReturning.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "shatteredpixel",
+   "shatteredpixeldungeon",
+   "spells",
+   "beaconofreturning"
+  ],
+  "score": 6,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
  }
 ]

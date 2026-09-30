@@ -45,8 +45,13 @@ def attribution_files(records, folder):
             and str(Path(r['path']).parent) in parents]
 
 
-def search(root, kinds, keywords, limit, allow_unlicensed):
-    """Score every file by how many keywords its path contains."""
+def search(root, kinds, keywords, limit, allow_unlicensed, uncapped=None):
+    """Score every file by how many keywords its path contains.
+
+    Only the best `limit` hits are returned.  When `uncapped` is a list,
+    every hit is also appended to it (without attribution files), so a
+    caller can say how many there were beyond the cap.
+    """
     words = [w.lower() for w in keywords]
     # Whole words only: "pike" once matched "pikeman", so a fish slot got
     # soldiers.  A key may carry a plural ending (fish -> fishes).
@@ -73,7 +78,9 @@ def search(root, kinds, keywords, limit, allow_unlicensed):
                 'score': len(hits),
             })
     results.sort(key=lambda r: (-r['score'], r['repo'], r['path']))
-    results = results[:limit]
+    if uncapped is not None:
+        uncapped.extend(results)
+    results = [dict(r) for r in results[:limit]]
     by_repo = {h['repo']: recs for h, recs in load_index(root)}
     for res in results:
         res['attribution'] = attribution_files(
