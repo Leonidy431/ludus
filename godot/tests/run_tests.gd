@@ -110,4 +110,10 @@ func _initialize() -> void:
 	_near(r.depth, fx.game.depth, "game depth")
 	_near(r.z, fx.game.z, "game drift z")
 	print("dive_core: %d checks, %d failures" % [checks, failures])
+	# Sound of the dive (scripts/audio, HLD_FOLLOWUPS D5).
+	var before := checks
+	var fails := failures
+	load("res://tests/test_audio.gd").new().run(self)
+	print("audio: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	quit(1 if failures else 0)
