@@ -1,5 +1,5 @@
 {
- "next": 7,
+ "next": 10,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -859,6 +859,77 @@
     "ant_avarice_f14d9c7468",
     "ant_vainglory_12f32bbb0f"
    ]
+  },
+  {
+   "time": "2026-09-30T09:57:10.116684+00:00",
+   "deficits": [
+    {
+     "id": "DEF-059",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "not-a-game-object": 110,
+      "hostile-for-neutral-slot": 14
+     },
+     "added_keywords": [
+      "anchor",
+      "net",
+      "oar",
+      "boat",
+      "raft",
+      "pier",
+      "dock",
+      "wreck",
+      "planks",
+      "barrels",
+      "pots",
+      "jugs"
+     ],
+     "keywords_total": 44
+    },
+    {
+     "id": "DEF-003",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 138,
+      "sacred-never-raw": 1,
+      "dogma-stop-list": 2
+     },
+     "added_keywords": [
+      "lua",
+      "corsixth",
+      "door",
+      "doors",
+      "java",
+      "chains",
+      "com",
+      "controllers",
+      "editor",
+      "effects",
+      "left",
+      "right"
+     ],
+     "keywords_total": 25
+    },
+    {
+     "id": "DEF-008",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 198,
+      "sacred-never-raw": 1
+     },
+     "added_keywords": [
+      "controllers",
+      "editor",
+      "units"
+     ],
+     "keywords_total": 13
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 65
   }
  ],
  "keywords": {
@@ -976,7 +1047,19 @@
    "kettle",
    "bucket",
    "basket",
-   "rope"
+   "rope",
+   "anchor",
+   "net",
+   "oar",
+   "boat",
+   "raft",
+   "pier",
+   "dock",
+   "wreck",
+   "planks",
+   "barrels",
+   "pots",
+   "jugs"
   ],
   "DEF-001": [
    "beast",
@@ -1024,6 +1107,25 @@
    "booth",
    "buildings",
    "productionsites"
+  ],
+  "DEF-003": [
+   "lua",
+   "corsixth",
+   "door",
+   "doors",
+   "java",
+   "chains",
+   "com",
+   "controllers",
+   "editor",
+   "effects",
+   "left",
+   "right"
+  ],
+  "DEF-008": [
+   "controllers",
+   "editor",
+   "units"
   ]
  }
 }

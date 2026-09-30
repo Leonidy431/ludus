@@ -5826,5 +5826,474 @@
    "CREDITS.md"
   ],
   "slot": "DEF-059"
+ },
+ {
+  "repo": "https://github.com/CorsixTH/CorsixTH",
+  "commit": "c0435336e3926b7d602485ff6739da3ac142bfd5",
+  "license_file": "LICENSE.txt",
+  "path": "CorsixTH/Lua/objects/doors/swing_door_left.lua",
+  "kind": "code",
+  "hits": [
+   "swing",
+   "lua",
+   "corsixth",
+   "door",
+   "doors",
+   "left"
+  ],
+  "score": 6,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/CorsixTH/CorsixTH",
+  "commit": "c0435336e3926b7d602485ff6739da3ac142bfd5",
+  "license_file": "LICENSE.txt",
+  "path": "CorsixTH/Lua/objects/doors/swing_door_right.lua",
+  "kind": "code",
+  "hits": [
+   "swing",
+   "lua",
+   "corsixth",
+   "door",
+   "doors",
+   "right"
+  ],
+  "score": 6,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/CorsixTH/CorsixTH",
+  "commit": "c0435336e3926b7d602485ff6739da3ac142bfd5",
+  "license_file": "LICENSE.txt",
+  "path": "CorsixTH/Lua/objects/doors/entrance_left_door.lua",
+  "kind": "code",
+  "hits": [
+   "lua",
+   "corsixth",
+   "door",
+   "doors",
+   "left"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/CorsixTH/CorsixTH",
+  "commit": "c0435336e3926b7d602485ff6739da3ac142bfd5",
+  "license_file": "LICENSE.txt",
+  "path": "CorsixTH/Lua/objects/doors/entrance_right_door.lua",
+  "kind": "code",
+  "hits": [
+   "lua",
+   "corsixth",
+   "door",
+   "doors",
+   "right"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/BlobEmitter.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/CellEmitter.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/CheckedCell.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/CircleArc.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/DarkBlock.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/Degradation.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/Effects.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/Enchanting.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/Fireball.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/IceBlock.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/Identification.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/MagicMissile.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/Pushing.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/ShadowBox.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/Speck.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/SpellSprite.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/Surprise.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/Swap.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/TargetedCell.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/Transmuting.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/Wound.java",
+  "kind": "code",
+  "hits": [
+   "java",
+   "com",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/CorsixTH/CorsixTH",
+  "commit": "c0435336e3926b7d602485ff6739da3ac142bfd5",
+  "license_file": "LICENSE.txt",
+  "path": "CorsixTH/Lua/objects/door.lua",
+  "kind": "code",
+  "hits": [
+   "lua",
+   "corsixth",
+   "door"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
+ },
+ {
+  "repo": "https://github.com/CorsixTH/CorsixTH",
+  "commit": "c0435336e3926b7d602485ff6739da3ac142bfd5",
+  "license_file": "LICENSE.txt",
+  "path": "LevelEdit/src/com/corsixth/leveledit/TabObjects.java",
+  "kind": "code",
+  "hits": [
+   "corsixth",
+   "java",
+   "com"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-003"
  }
 ]
