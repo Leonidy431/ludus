@@ -2,12 +2,57 @@
  "id": "lake-silt-slope-0",
  "kind": "lake",
  "lod": "proxy",
- "tris": 12,
- "bbox_m": [
-  3,
-  0.02,
-  3
+ "detail": "procedural-detailed",
+ "details": [
+  "soft silt surface",
+  "burrow mounds with holes",
+  "a snail trail"
  ],
+ "tris": 810,
+ "bbox_m": [
+  3.0,
+  0.017,
+  3.0
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   3.0,
+   0.017,
+   3.0
+  ],
+  "centre_m": [
+   0.0,
+   0.004,
+   0.0
+  ]
+ },
+ "materials": [
+  {
+   "name": "silt",
+   "colour": "#6a655a",
+   "roughness": 1,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "burrow",
+   "colour": "#2a2824",
+   "roughness": 1,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "trail",
+   "colour": "#555148",
+   "roughness": 1,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 61640177412269,
  "name": "Илистая равнина: ровная",
  "category": "shelf",
  "band": "slope",
@@ -19,6 +64,9 @@
   "noLoot": false,
   "loot": "keep"
  },
- "source": "public/ludus/data/lake-objects-99.json",
- "method": "lake-kit-primitives"
+ "noLoot": false,
+ "noInteract": false,
+ "size_m": 3.0,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
 }

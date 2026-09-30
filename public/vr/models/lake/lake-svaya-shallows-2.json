@@ -2,12 +2,58 @@
  "id": "lake-svaya-shallows-2",
  "kind": "lake",
  "lod": "proxy",
- "tris": 12,
- "bbox_m": [
-  0.07,
-  2,
-  0.07
+ "detail": "procedural-detailed",
+ "details": [
+  "eight axe-hewn faces",
+  "rotten splintered tops",
+  "algae fringe",
+  "cross-beam lashed to the row"
  ],
+ "tris": 664,
+ "bbox_m": [
+  3.058,
+  2.124,
+  0.423
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   3.058,
+   2.124,
+   0.423
+  ],
+  "centre_m": [
+   -0.002,
+   0.854,
+   0.011
+  ]
+ },
+ "materials": [
+  {
+   "name": "wood",
+   "colour": "#5a4a38",
+   "roughness": 0.95,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "wood-rot",
+   "colour": "#362c22",
+   "roughness": 1,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "algae",
+   "colour": "#5a7a3a",
+   "roughness": 0.9,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 218310008531980,
  "name": "Свая затопленного посада: ряд свай",
  "category": "find",
  "band": "shallows",
@@ -19,6 +65,9 @@
   "noLoot": false,
   "loot": "hand-over"
  },
- "source": "public/ludus/data/lake-objects-99.json",
- "method": "lake-kit-primitives"
+ "noLoot": false,
+ "noInteract": false,
+ "size_m": 2.0,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
 }

@@ -2,12 +2,93 @@
  "id": "lake-lin-shallows-0",
  "kind": "lake",
  "lod": "proxy",
- "tris": 24,
- "bbox_m": [
-  0.429,
-  0.105,
-  0.042
+ "detail": "procedural-detailed",
+ "details": [
+  "dark back",
+  "pale belly",
+  "dorsal fin",
+  "anal fin",
+  "trunc tail fin",
+  "pectoral fins",
+  "pelvic fins",
+  "eyes",
+  "gill cover",
+  "1 pair(s) of barbels",
+  "water weed around it"
  ],
+ "tris": 800,
+ "bbox_m": [
+  0.644,
+  0.526,
+  0.21
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.644,
+   0.526,
+   0.21
+  ],
+  "centre_m": [
+   0.07,
+   0.088,
+   -0.056
+  ]
+ },
+ "materials": [
+  {
+   "name": "fish-back",
+   "colour": "#424c24",
+   "roughness": 0.55,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-belly",
+   "colour": "#9ea97f",
+   "roughness": 0.4,
+   "metallic": 0.1,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-fin",
+   "colour": "#3a4020",
+   "roughness": 0.7,
+   "metallic": 0.0,
+   "alpha": 0.85
+  },
+  {
+   "name": "fish-mark",
+   "colour": "#202511",
+   "roughness": 0.7,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-iris",
+   "colour": "#c0402a",
+   "roughness": 0.3,
+   "metallic": 0.3,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-pupil",
+   "colour": "#0a0a0a",
+   "roughness": 0.2,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "weed",
+   "colour": "#4a6a3a",
+   "roughness": 0.8,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 103724263587561,
  "name": "Линь: в траве",
  "category": "fish",
  "band": "shallows",
@@ -19,6 +100,9 @@
   "noLoot": false,
   "loot": "keep"
  },
- "source": "public/ludus/data/lake-objects-99.json",
- "method": "lake-kit-primitives"
+ "noLoot": false,
+ "noInteract": false,
+ "size_m": 0.35,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
 }

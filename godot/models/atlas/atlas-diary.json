@@ -1,0 +1,86 @@
+{
+ "id": "atlas-diary",
+ "kind": "atlas",
+ "lod": "proxy",
+ "detail": "procedural-detailed",
+ "details": [
+  "leather-covered boards",
+  "swollen block of pages",
+  "rounded spine",
+  "raised bands on the spine",
+  "iron clasp",
+  "silt it lay in"
+ ],
+ "tris": 384,
+ "bbox_m": [
+  0.54,
+  0.066,
+  0.54
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.54,
+   0.066,
+   0.54
+  ],
+  "centre_m": [
+   0.0,
+   0.033,
+   0.0
+  ]
+ },
+ "materials": [
+  {
+   "name": "leather",
+   "colour": "#5a3a22",
+   "roughness": 0.8,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "leather-band",
+   "colour": "#3f2918",
+   "roughness": 0.8,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "parchment",
+   "colour": "#c8b89a",
+   "roughness": 0.9,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "clasp",
+   "colour": "#4a4a48",
+   "roughness": 0.6,
+   "metallic": 0.5,
+   "alpha": 1.0
+  },
+  {
+   "name": "silt",
+   "colour": "#6a655a",
+   "roughness": 1,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 69864311311523,
+ "name": "Дневник рыцаря в кожаном переплёте",
+ "category": "atlas-trace",
+ "shape": "book",
+ "size_m": 0.3,
+ "atlas_nodes": [
+  4,
+  96
+ ],
+ "loot": "hand-over",
+ "noLoot": false,
+ "noInteract": false,
+ "source": "scripts/story/atlas_nodes.py TRACES; own procedural drawing, no raw material",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
+}

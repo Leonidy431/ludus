@@ -22,6 +22,10 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 const names = ${JSON.stringify(files.map((f) => path.basename(f)))};
 const loader = new GLTFLoader();
+// One renderer for every tile: Chromium keeps only about sixteen live
+// WebGL contexts, so a renderer per tile left the first tiles white.
+const r = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+r.setSize(256, 256);
 for (let i = 0; i < names.length; i++) {
   const gltf = await loader.loadAsync('/m/' + i);
   const scene = new THREE.Scene();
@@ -36,12 +40,12 @@ for (let i = 0; i < names.length; i++) {
   const cam = new THREE.PerspectiveCamera(35, 1, size / 100, size * 10);
   cam.position.set(c.x + size * 0.9, c.y + size * 0.45, c.z + size * 1.5);
   cam.lookAt(c);
-  const r = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
-  r.setSize(256, 256);
   r.render(scene, cam);
+  const img = new Image();
+  img.src = r.domElement.toDataURL('image/png');
   const fig = document.createElement('figure');
   fig.style.margin = 0;
-  fig.append(r.domElement, Object.assign(document.createElement('figcaption'),
+  fig.append(img, Object.assign(document.createElement('figcaption'),
     { textContent: names[i] }));
   document.getElementById('g').append(fig);
 }

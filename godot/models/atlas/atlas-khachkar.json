@@ -1,0 +1,61 @@
+{
+ "id": "atlas-khachkar",
+ "kind": "atlas",
+ "lod": "proxy",
+ "detail": "procedural-detailed",
+ "details": [
+  "pedestal stone",
+  "upright slab",
+  "cornice",
+  "carved frame",
+  "cross in relief",
+  "split trefoil tips of the arms",
+  "rosette under the cross",
+  "rosette spokes",
+  "leaf scrolls rising from the rosette"
+ ],
+ "tris": 884,
+ "bbox_m": [
+  1.2,
+  2.0,
+  0.5
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   1.2,
+   2.0,
+   0.5
+  ],
+  "centre_m": [
+   0.0,
+   1.0,
+   0.0
+  ]
+ },
+ "materials": [
+  {
+   "name": "stone",
+   "colour": "#8c8578",
+   "roughness": 0.95,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 211663128173662,
+ "name": "Хачкар — крест-камень братьев",
+ "category": "atlas-trace",
+ "shape": "khachkar",
+ "size_m": 1.6,
+ "atlas_nodes": [
+  15
+ ],
+ "loot": null,
+ "noLoot": true,
+ "noInteract": true,
+ "source": "scripts/story/atlas_nodes.py TRACES; own procedural drawing, no raw material",
+ "method": "lake-detail-kit (numpy, own glTF writer)",
+ "holy_note": "own drawing (TABOO 0.35 rule 6): stone only, no glow, no gold; relief faces +Z; the console fades near it"
+}

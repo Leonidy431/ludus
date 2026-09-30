@@ -2,12 +2,70 @@
  "id": "lake-gravel-shallows-0",
  "kind": "lake",
  "lod": "proxy",
- "tris": 12,
- "bbox_m": [
-  3,
-  0.02,
-  3
+ "detail": "procedural-detailed",
+ "details": [
+  "bed of sand",
+  "rounded pebbles of mixed rock"
  ],
+ "tris": 4072,
+ "bbox_m": [
+  3.0,
+  0.054,
+  3.0
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   3.0,
+   0.054,
+   3.0
+  ],
+  "centre_m": [
+   0.0,
+   0.012,
+   0.0
+  ]
+ },
+ "materials": [
+  {
+   "name": "sand",
+   "colour": "#b8a888",
+   "roughness": 1,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "pebble",
+   "colour": "#9a8f80",
+   "roughness": 0.9,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "pebble-dark",
+   "colour": "#5c564d",
+   "roughness": 0.9,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "pebble-red",
+   "colour": "#a0604a",
+   "roughness": 0.9,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "pebble-pale",
+   "colour": "#b8b1a6",
+   "roughness": 0.9,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 191937800438653,
  "name": "Галечное поле: мелкая",
  "category": "shelf",
  "band": "shallows",
@@ -19,6 +77,9 @@
   "noLoot": false,
   "loot": "keep"
  },
- "source": "public/ludus/data/lake-objects-99.json",
- "method": "lake-kit-primitives"
+ "noLoot": false,
+ "noInteract": false,
+ "size_m": 3.0,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
 }

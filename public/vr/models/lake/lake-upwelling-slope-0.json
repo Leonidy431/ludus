@@ -2,12 +2,42 @@
  "id": "lake-upwelling-slope-0",
  "kind": "lake",
  "lod": "proxy",
- "tris": 12,
- "bbox_m": [
-  4,
-  0.02,
-  4
+ "detail": "procedural-detailed",
+ "details": [
+  "flow lines",
+  "arrow of the flow"
  ],
+ "tris": 474,
+ "bbox_m": [
+  4.066,
+  3.228,
+  3.351
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   4.066,
+   3.228,
+   3.351
+  ],
+  "centre_m": [
+   0.033,
+   1.804,
+   0.003
+  ]
+ },
+ "materials": [
+  {
+   "name": "water-bright",
+   "colour": "#b7cdd8",
+   "roughness": 0.1,
+   "metallic": 0,
+   "alpha": 0.55
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 53576471222927,
  "name": "Подъём глубинной воды у свала: кромка",
  "category": "water",
  "band": "slope",
@@ -19,6 +49,9 @@
   "noLoot": true,
   "loot": null
  },
- "source": "public/ludus/data/lake-objects-99.json",
- "method": "lake-kit-primitives"
+ "noLoot": true,
+ "noInteract": false,
+ "size_m": 4.0,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
 }

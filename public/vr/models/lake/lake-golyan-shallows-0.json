@@ -2,12 +2,86 @@
  "id": "lake-golyan-shallows-0",
  "kind": "lake",
  "lod": "proxy",
- "tris": 24,
- "bbox_m": [
-  0.086,
-  0.021,
-  0.008
+ "detail": "procedural-detailed",
+ "details": [
+  "dark back",
+  "pale belly",
+  "lateral stripe",
+  "dorsal fin",
+  "anal fin",
+  "emarg tail fin",
+  "pectoral fins",
+  "pelvic fins",
+  "eyes",
+  "gill cover",
+  "school of 7"
  ],
+ "tris": 2945,
+ "bbox_m": [
+  0.178,
+  0.071,
+  0.148
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.178,
+   0.071,
+   0.148
+  ],
+  "centre_m": [
+   -0.055,
+   -0.001,
+   -0.004
+  ]
+ },
+ "materials": [
+  {
+   "name": "fish-back",
+   "colour": "#5f6356",
+   "roughness": 0.55,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-belly",
+   "colour": "#bdc1b3",
+   "roughness": 0.4,
+   "metallic": 0.1,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-fin",
+   "colour": "#7b806e",
+   "roughness": 0.7,
+   "metallic": 0.0,
+   "alpha": 0.85
+  },
+  {
+   "name": "fish-mark",
+   "colour": "#2e3029",
+   "roughness": 0.7,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-iris",
+   "colour": "#c8b070",
+   "roughness": 0.3,
+   "metallic": 0.3,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-pupil",
+   "colour": "#0a0a0a",
+   "roughness": 0.2,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 183158932044698,
  "name": "Иссык-кульский гольян: стайка",
  "category": "fish",
  "band": "shallows",
@@ -19,6 +93,9 @@
   "noLoot": false,
   "loot": "release"
  },
- "source": "public/ludus/data/lake-objects-99.json",
- "method": "lake-kit-primitives"
+ "noLoot": false,
+ "noInteract": false,
+ "size_m": 0.07,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
 }
