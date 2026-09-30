@@ -44,6 +44,9 @@ jobs:
     timeout-minutes: 120
     env:
       INDEX: ${{ github.workspace }}/../raw-repos
+      # Props store (CLAUDE.md TABOO 0.012): bytes live outside the repo
+      # and the APK; only docs/RAW_PROPS_REGISTER.json is committed.
+      PROPS: ${{ github.workspace }}/../raw-props
       BRANCH: raw-osint/auto
     steps:
       - uses: actions/checkout@v4
@@ -83,13 +86,25 @@ jobs:
           python scripts/raw_assets/index_repos.py --backlog backlog \
             --out "$INDEX" --jobs 4
 
+      # The free runner starts empty every hour, so the props store is
+      # kept between passes as a workflow cache (never an artifact: an
+      # artifact is a download for anyone who can read the repo, which
+      # would be distribution; see docs/HLD_PROPS_STORE_2026-09-30.md).
+      - name: Restore the props store
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PROPS }}
+          key: raw-props-${{ github.run_id }}
+          restore-keys: raw-props-
+
       - name: OSINT pass
         env:
           DEFICITS: ${{ inputs.deficits || '3' }}
           PER: ${{ inputs.per_deficit || '6' }}
         run: |
           python scripts/raw_assets/osint_cycle.py --index "$INDEX" \
-            --deficits "$DEFICITS" --per-deficit "$PER"
+            --deficits "$DEFICITS" --per-deficit "$PER" \
+            --props-cache "$PROPS"
 
       - name: Delta gate
         run: |
@@ -103,6 +118,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           git add docs/RAW_OSINT_CURSOR.json docs/RAW_CODE_CANDIDATES.json \
+            docs/RAW_PROPS_REGISTER.json \
             public/ludus/art/derived THIRD_PARTY_NOTICES.md 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "nothing new this pass"; exit 0

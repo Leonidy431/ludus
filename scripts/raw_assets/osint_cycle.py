@@ -20,9 +20,19 @@ Code deficits are not copied: matching source files are only listed in
 docs/RAW_CODE_CANDIDATES.json, because code is rewritten by a person or
 agent and measured with code_delta.py.
 
+Props (CLAUDE.md TABOO 0.012, operator 2026-09-30: "бери все даже не
+игровое нам в реквизит"): a hit refused only because it is not a game
+object (examples, docs, tests, screenshots, editors, promo) is no longer
+dropped.  Its bytes go to a props cache outside the repo and a line to
+the append-only register docs/RAW_PROPS_REGISTER.json (props.py).
+Holy things, the stop-list, fonts and unlicensed repos stay refused.
+Nothing reaches derived/, godot/ or the APK from the shelf by itself;
+--props-to-slot prepares one prop through the pipeline for review.
+
 Usage:
     python3 scripts/raw_assets/osint_cycle.py --index /home/user/raw-repos \
-        --deficits 3 --per-deficit 6
+        --deficits 3 --per-deficit 6 [--props-cache /home/user/raw-props]
+    python3 scripts/raw_assets/osint_cycle.py --props-to-slot KEY DEF-056
 """
 
 import argparse
@@ -34,6 +44,7 @@ import subprocess
 import sys
 from pathlib import Path
 
+import props
 from intake import is_game_object
 from search_index import search
 
@@ -93,6 +104,21 @@ KINDS_BY_CATEGORY = {
     'код': CODE_KINDS,
     'конвейер': CODE_KINDS,
 }
+
+
+def slot_kinds(deficit):
+    """Index kinds a deficit may take, for a pass and for a prop alike.
+
+    The fourth pass filled DEF-004 (the gate-opening moment) with
+    dungeon doors and DEF-006 (bubble columns) with a watermelon: both
+    deficits are meant to be procedural.  Images are taken only where
+    the deficit asks for raw material; code deficits still list code
+    candidates, which are rewritten, never copied.
+    """
+    kinds = set(KINDS_BY_CATEGORY.get(deficit['category']) or ())
+    if deficit['fill'] != 'raw-material':
+        kinds &= CODE_KINDS
+    return kinds
 
 
 def open_deficits():
@@ -162,17 +188,66 @@ HOSTILE = re.compile(r'(^|/)(enemy|enemies|monsters?|mobs?|fiends?|'
 OUTLINE = re.compile(r'[-_+]outline\.[a-z]+$', re.IGNORECASE)
 
 
+def reasons(path):
+    """Every stop-list a path trips, the holy and dogmatic ones first.
+
+    The order used to put "not a game object" first, so a holy thing in
+    examples/ was counted only as non-game.  Since non-game things go to
+    the props store (TABOO 0.012), that order would have put it on the
+    shelf; now the holy and the stop-listed are named first and the
+    store takes only paths whose single reason is "not a game object".
+    Fonts were excluded through is_game_object before; they keep their
+    exclusion under their own name.
+    """
+    found = []
+    if DOGMA_STOP.search(path):
+        found.append('dogma-stop-list')
+    if SACRED.search(path):
+        found.append('sacred-never-raw')
+    if props.is_font(path):
+        found.append('font')
+    if OUTLINE.search(path):
+        found.append('outline-helper')
+    if NOT_GAME.search(path) or not is_game_object(path):
+        found.append('not-a-game-object')
+    return found
+
+
 def allowed(path):
     """Apply the stop-lists; return the reason when a path is refused."""
-    if NOT_GAME.search(path) or not is_game_object(path):
-        return 'not-a-game-object'
-    if OUTLINE.search(path):
-        return 'outline-helper'
-    if DOGMA_STOP.search(path):
-        return 'dogma-stop-list'
-    if SACRED.search(path):
-        return 'sacred-never-raw'
-    return None
+    found = reasons(path)
+    return found[0] if found else None
+
+
+def is_prop(path):
+    """True when the only thing wrong with a path is that it is not a
+    game object: such a thing goes to the props store (TABOO 0.012)."""
+    return reasons(path) == ['not-a-game-object']
+
+
+def sort_hits(hits, neutral):
+    """Split search hits into pipeline candidates, props and refusals.
+
+    A repo without a licence file is "all rights reserved": nothing is
+    taken from it, not even a prop (TABOO 0.012 p. 2).
+    """
+    usable, shelf, refused = [], [], {}
+    for hit in hits:
+        found = reasons(hit['path'])
+        if not hit.get('license_file'):
+            found.insert(0, 'no-licence')
+        if found == ['not-a-game-object']:
+            shelf.append(hit)
+            continue
+        reason = found[0] if found else None
+        if not reason and neutral and hit['kind'] not in CODE_KINDS \
+                and HOSTILE.search(hit['path']):
+            reason = 'hostile-for-neutral-slot'
+        if reason:
+            refused[reason] = refused.get(reason, 0) + 1
+            continue
+        usable.append(hit)
+    return usable, shelf, refused
 
 
 def fetch(index_root, hit, dest_root):
@@ -266,7 +341,21 @@ def main():
     parser.add_argument('--only', default='',
                         help='comma-separated deficit ids; the rotation '
                              'cursor is left where it is')
+    parser.add_argument('--props-cache', default=props.DEFAULT_CACHE,
+                        help='props store outside the repo (TABOO 0.012)')
+    parser.add_argument('--props-to-slot', nargs=2,
+                        metavar=('KEY', 'DEF_ID'),
+                        help='prepare one prop for a slot through the '
+                             'pipeline in build/props; nothing ships')
     args = parser.parse_args()
+
+    if args.props_to_slot:
+        plan = props.to_slot(args.props_to_slot[0], args.props_to_slot[1],
+                             args.index, args.props_cache)
+        print(json.dumps(plan, ensure_ascii=False, indent=2))
+        return
+    # Refuse a cache inside the repo before any work is done.
+    props.check_cache_outside(args.props_cache)
 
     work = ROOT / args.work
     shutil.rmtree(work, ignore_errors=True)
@@ -286,17 +375,13 @@ def main():
         chosen = (deficits[start:] + deficits[:start])[:args.deficits]
         cursor['next'] = start + len(chosen)
 
-    stamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
-    manifest, code_hits, entry = [], [], {'time': stamp, 'deficits': []}
+    now = datetime.datetime.now(datetime.timezone.utc)
+    stamp = now.isoformat()
+    pass_id = 'osint-' + now.strftime('%Y-%m-%dT%H:%M:%SZ')
+    manifest, code_hits, shelf = [], [], []
+    entry = {'time': stamp, 'pass_id': pass_id, 'deficits': []}
     for deficit in chosen:
-        kinds = KINDS_BY_CATEGORY.get(deficit['category'])
-        # The fourth pass filled DEF-004 (the gate-opening moment) with
-        # dungeon doors and DEF-006 (bubble columns) with a watermelon:
-        # both deficits are meant to be procedural.  Images are taken only
-        # where the deficit asks for raw material; code deficits still
-        # list code candidates, which are rewritten, never copied.
-        if deficit['fill'] != 'raw-material':
-            kinds = (kinds or set()) & CODE_KINDS
+        kinds = slot_kinds(deficit)
         if not kinds:
             reason = ('audio-pipeline-pending' if deficit['category'] == 'звук'
                       else 'not-raw-material')
@@ -308,16 +393,12 @@ def main():
         print(f'{deficit["id"]}: +{len(grown)} keywords {grown}')
         hits = search(args.index, kinds, keys, limit=200,
                       allow_unlicensed=False)
-        taken, refused = 0, {}
+        taken = 0
         neutral = deficit['id'] not in ANTAGONIST_SLOTS
-        for hit in hits:
-            reason = allowed(hit['path'])
-            if not reason and neutral and hit['kind'] not in CODE_KINDS \
-                    and HOSTILE.search(hit['path']):
-                reason = 'hostile-for-neutral-slot'
-            if reason:
-                refused[reason] = refused.get(reason, 0) + 1
-                continue
+        usable, to_shelf, refused = sort_hits(hits, neutral)
+        # All of them, no per-deficit cap: the operator said "всё".
+        shelf += [(hit, deficit['id']) for hit in to_shelf]
+        for hit in usable:
             if hit['kind'] in CODE_KINDS:
                 code_hits.append({**hit, 'slot': deficit['id']})
                 continue
@@ -342,10 +423,40 @@ def main():
             taken += 1
         entry['deficits'].append({'id': deficit['id'], 'hits': len(hits),
                                   'taken': taken, 'refused': refused,
+                                  'to_props': len(to_shelf),
                                   'added_keywords': grown,
                                   'keywords_total': len(keys)})
         print(f'{deficit["id"]}: hits={len(hits)} taken={taken} '
-              f'refused={refused}')
+              f'to_props={len(to_shelf)} refused={refused}')
+
+    # The props store (TABOO 0.012): every non-game hit of the pass is
+    # really taken (bytes in the cache, sha1 in the register) before the
+    # pipeline runs, so a failing transform cannot lose it.
+    register = props.load_register()
+    before = (props.REGISTER.stat().st_size
+              if props.REGISTER.exists() else 0)
+    stats = props.take(shelf, register, args.index, args.props_cache,
+                       pass_id, lambda hit: licence_of(args.index, hit),
+                       is_prop)
+    after = props.save_register(register) if shelf else before
+    for rec in entry['deficits']:
+        if rec['id'] in stats['by_deficit']:
+            rec['props'] = stats['by_deficit'][rec['id']]
+    totals = props.store_totals(register)
+    entry.update({
+        'props_taken': stats['taken'],
+        'props_duplicates': stats['duplicates'],
+        'props_errors': stats['errors'],
+        'props_refused': stats['refused'],
+        'props_new_bytes': stats['new_bytes'],
+        'props_store_files': totals['files'],
+        'props_store_bytes': totals['bytes'],
+        'props_register_bytes': after,
+        'props_register_growth_bytes': after - before,
+    })
+    print(f'props: taken {stats["taken"]} duplicates {stats["duplicates"]}'
+          f' errors {stats["errors"]}; store {totals["files"]} files, '
+          f'{totals["bytes"] / 1e6:.2f} MB; register +{after - before} B')
 
     (raw_dir / 'manifest.json').write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2), 'utf-8')

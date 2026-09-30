@@ -1,5 +1,5 @@
 {
- "next": 12,
+ "next": 18,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -1480,6 +1480,181 @@
    ],
    "accepted_objects": 0,
    "code_candidates": 199
+  },
+  {
+   "time": "2026-09-30T13:31:00.540801+00:00",
+   "pass_id": "osint-2026-09-30T13:31:00Z",
+   "deficits": [
+    {
+     "id": "DEF-031",
+     "skipped": "not-raw-material"
+    },
+    {
+     "id": "DEF-035",
+     "hits": 200,
+     "taken": 0,
+     "refused": {},
+     "to_props": 171,
+     "added_keywords": [
+      "unit",
+      "actions",
+      "overviewscreen",
+      "presenter",
+      "devconsole",
+      "autoplay",
+      "bottombar",
+      "citypresenter",
+      "cityscreen",
+      "cityscreentiletable",
+      "consoletilecommands",
+      "consoleunitcommands"
+     ],
+     "keywords_total": 32,
+     "props": {
+      "screenshot": 171
+     }
+    },
+    {
+     "id": "DEF-036",
+     "hits": 200,
+     "taken": 0,
+     "refused": {},
+     "to_props": 179,
+     "added_keywords": [
+      "atmos",
+      "xaml",
+      "entitysystems",
+      "objectstab",
+      "overlays",
+      "administration",
+      "tabs",
+      "anomaly",
+      "cartridgeloader",
+      "cartridges",
+      "clear",
+      "effects"
+     ],
+     "keywords_total": 26,
+     "props": {
+      "other": 179
+     }
+    }
+   ],
+   "props_taken": {
+    "other": 179,
+    "screenshot": 171
+   },
+   "props_duplicates": 0,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 2205163,
+   "props_store_files": 350,
+   "props_store_bytes": 2205163,
+   "props_register_bytes": 225398,
+   "props_register_growth_bytes": 225398,
+   "accepted_objects": 0,
+   "code_candidates": 50,
+   "reverted": "Props part only (first pass with the TABOO 0.012 props store): props.prop_kind read \"ui/screens/\" as screenshots, so 171 Unciv and Forge UI classes (*.kt, *.java) were filed as \"screenshot\"; the register also stored the derivable cache path (116 of 641 bytes a line). The register and the cache were never committed; both were removed and rebuilt by the next pass with the fixed kinds. Keywords and the 50 code candidates of this pass stand."
+  },
+  {
+   "time": "2026-09-30T13:38:01.579690+00:00",
+   "pass_id": "osint-2026-09-30T13:38:01Z",
+   "deficits": [
+    {
+     "id": "DEF-040",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 4,
+      "dogma-stop-list": 1
+     },
+     "to_props": 125,
+     "added_keywords": [
+      "actors",
+      "hero",
+      "spells",
+      "effects",
+      "abilities",
+      "npcs",
+      "cleric",
+      "duelist",
+      "huntress",
+      "mage",
+      "rogue",
+      "warrior"
+     ],
+     "keywords_total": 31,
+     "props": {
+      "other": 125
+     }
+    },
+    {
+     "id": "DEF-047",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 4,
+      "dogma-stop-list": 1
+     },
+     "to_props": 125,
+     "added_keywords": [
+      "actors",
+      "hero",
+      "spells",
+      "effects",
+      "abilities",
+      "npcs",
+      "cleric",
+      "duelist",
+      "huntress",
+      "mage",
+      "rogue",
+      "warrior"
+     ],
+     "keywords_total": 30
+    },
+    {
+     "id": "DEF-048",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 5,
+      "dogma-stop-list": 1
+     },
+     "to_props": 100,
+     "added_keywords": [
+      "actors",
+      "hero",
+      "effects",
+      "spells",
+      "abilities",
+      "npcs",
+      "particles",
+      "cleric",
+      "duelist",
+      "huntress",
+      "mage",
+      "rogue"
+     ],
+     "keywords_total": 32,
+     "props": {
+      "other": 2
+     }
+    }
+   ],
+   "props_taken": {
+    "other": 127
+   },
+   "props_duplicates": 223,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 482676,
+   "props_store_files": 127,
+   "props_store_bytes": 482676,
+   "props_register_bytes": 73668,
+   "props_register_growth_bytes": 73668,
+   "accepted_objects": 0,
+   "code_candidates": 234
   }
  ],
  "keywords": {
@@ -1838,7 +2013,19 @@
    "worldscreen",
    "lblmenuitem",
    "minimaptile",
-   "minimaptileutil"
+   "minimaptileutil",
+   "unit",
+   "actions",
+   "overviewscreen",
+   "presenter",
+   "devconsole",
+   "autoplay",
+   "bottombar",
+   "citypresenter",
+   "cityscreen",
+   "cityscreentiletable",
+   "consoletilecommands",
+   "consoleunitcommands"
   ],
   "DEF-036": [
    "building",
@@ -1847,7 +2034,19 @@
    "content",
    "itemstatussheetlet",
    "sheetlets",
-   "stylesheets"
+   "stylesheets",
+   "atmos",
+   "xaml",
+   "entitysystems",
+   "objectstab",
+   "overlays",
+   "administration",
+   "tabs",
+   "anomaly",
+   "cartridgeloader",
+   "cartridges",
+   "clear",
+   "effects"
   ],
   "DEF-040": [
    "java",
@@ -1861,7 +2060,19 @@
    "cpp",
    "render",
    "content",
-   "gamesys"
+   "gamesys",
+   "actors",
+   "hero",
+   "spells",
+   "effects",
+   "abilities",
+   "npcs",
+   "cleric",
+   "duelist",
+   "huntress",
+   "mage",
+   "rogue",
+   "warrior"
   ],
   "DEF-047": [
    "java",
@@ -1875,7 +2086,19 @@
    "gtk",
    "custom",
    "gamemap",
-   "loader"
+   "loader",
+   "actors",
+   "hero",
+   "spells",
+   "effects",
+   "abilities",
+   "npcs",
+   "cleric",
+   "duelist",
+   "huntress",
+   "mage",
+   "rogue",
+   "warrior"
   ],
   "DEF-048": [
    "java",
@@ -1889,7 +2112,19 @@
    "coreitemsdisplay",
    "creator",
    "dialogs",
-   "dock"
+   "dock",
+   "actors",
+   "hero",
+   "effects",
+   "spells",
+   "abilities",
+   "npcs",
+   "particles",
+   "cleric",
+   "duelist",
+   "huntress",
+   "mage",
+   "rogue"
   ],
   "DEF-055": [],
   "DEF-039": [
