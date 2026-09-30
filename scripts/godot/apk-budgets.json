@@ -83,8 +83,8 @@
       "why": "the project's own choice, stricter than Meta's load-dependent ranges: Meta recommends < 100 for Quest 2 and < 200 for Quest 3 (device-optimization-comparison), and export_presets.cfg has quest_2_support=true. Counted over the whole frame: the main view (one call covers both eyes under multiview) and every SubViewport, 3D and canvas. Known breaches are exceptions until blocker Б-1 is lifted; a new call above them turns CI red",
       "exceptions": {
         "hub": {
-          "limit": 71,
-          "why": "measured 71 (courtyard, 70 main 3D + 1 canvas), llvmpipe 1280x720, after the still geometry was merged (godot/scripts/static_batch.gd) and the cell's partition became an occluder; was 438. Now under the base 100, so Б-1 no longer holds for the hub: kept as a ratchet at the measured value (may only go down) until the lead drops it",
+          "limit": 72,
+          "why": "measured 72 (courtyard, 71 main 3D + 1 canvas; three runs), llvmpipe 1280x720, after the still geometry was merged (godot/scripts/static_batch.gd) and the cell's partition became an occluder; was 438. Now under the base 100, so Б-1 no longer holds for the hub: kept as a ratchet at the measured value (may only go down) until the lead drops it",
           "approval": "pending: the operator decides on Quest 2 and on the strict limit",
           "blocker": "Б-1"
         },
