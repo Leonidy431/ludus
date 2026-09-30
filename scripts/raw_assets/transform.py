@@ -508,8 +508,16 @@ FRAME_DUP_IOU = 0.85
 
 
 def frame_mask(piece):
-    """Alpha silhouette of a piece on a small fixed grid for comparison."""
-    alpha = piece.convert('RGBA').getchannel('A').resize((32, 32))
+    """Alpha silhouette of a piece on a small fixed grid for comparison.
+
+    The silhouette is cropped to its own box first, so two frames that
+    sit at different offsets in their files still compare as one shape.
+    """
+    alpha = piece.convert('RGBA').getchannel('A')
+    box = alpha.point(lambda v: 255 if v > 16 else 0).getbbox()
+    if box:
+        alpha = alpha.crop(box)
+    alpha = alpha.resize((32, 32))
     return [v > 16 for v in alpha.tobytes()]
 
 
@@ -534,6 +542,10 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
 
     accepted, rejected, errors = [], [], []
+    # Kept silhouettes per slot for the whole pass: frames of one
+    # animation are often separate files (defend1.png, defend2.png), and
+    # a per-file list let both through on 2026-09-30 (IoU 0.92).
+    kept_by_slot = {}
     for item in manifest:
         if not item['local'].lower().endswith('.png'):
             # SVG needs a rasteriser the runner does not have yet.
@@ -545,7 +557,7 @@ def main():
         except OSError as exc:
             rejected.append({**item, 'reason': f'unreadable: {exc}'})
             continue
-        kept_masks = []
+        kept_masks = kept_by_slot.setdefault(item.get('slot'), [])
         for index, piece in enumerate(slice_sheet(src, args.per_sheet)):
             # Frames of one animation differ by a few pixels; turning each
             # into its own antagonist produced near-identical sets (11

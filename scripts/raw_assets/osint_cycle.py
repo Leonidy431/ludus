@@ -78,7 +78,10 @@ PLAIN_WORDS = {'png', 'svg', 'jpg', 'gif', 'img', 'image', 'images', 'res',
                'forge', 'adventure', 'mods', 'mod', 'build', 'dist',
                'public', 'static', 'lib', 'libs', 'game', 'games',
                # Joining words of file names ("entity_with_body").
-               'with', 'for', 'from', 'into'}
+               'with', 'for', 'from', 'into',
+               # Sprite-format folders and view words, not things (the
+               # 17:51 pass grew rsi, inhand, left, right, generic).
+               'rsi', 'inhand', 'left', 'right', 'generic', 'props'}
 
 # Rule 5: paths that must never enter the pipeline at all.
 DOGMA_STOP = re.compile(

@@ -10,7 +10,9 @@
 extends Node3D
 
 const THERMO_Y := -DiveCore.THERMOCLINE_M
-const LAMP_COLOUR := Color(0.95, 0.97, 1.0)  # Instrument light, 6500 K.
+# Instrument light, 6500 K; the lamp's numbers live in RimLight, where
+# the readability test reads them too.
+const LAMP_COLOUR := RimLight.LAMP_COLOUR
 const FLOW_SHAPES := ["current", "eddy", "intwave", "plume", "langmuir",
 	"upwelling", "layer", "cloud"]
 const ZONE_SHAPES := ["ripples", "gravel", "silt", "meadow", "swarm",
@@ -117,6 +119,18 @@ var columns: Array = []
 var vent: Dictionary = {}
 var bubble_mm: MultiMesh
 var bubble_inst: MultiMeshInstance3D
+# Reading things against the water (operator 2026-09-30): the lamp's
+# highlight while it shines, the rim light without it; holy things get
+# neither.  Made before any material, as it registers the shader globals.
+var rim := RimLight.new()
+## The node of every lake object and trace built, by id: the test walks
+## them to see that no holy thing carries the band.
+var thing_nodes := {}
+# Proof frames show the settled light, not a fade caught half way.
+var rim_settled := false
+var rim_us := 0.0
+var rim_frames := 0
+var drawings := 0
 # GPU and CPU render time with the bubbles hidden and shown (shots).
 var gpu_ms := {"off": [], "on": []}
 # Rough cost of the bubbles, microseconds of CPU per frame (shots only).
@@ -133,6 +147,9 @@ func _ready() -> void:
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--shots="):
 			shots_dir = arg.trim_prefix("--shots=")
+		# The same frames without the band, for before/after and cost.
+		if arg == "--rim=off":
+			rim.enabled = false
 	chronicle = _load_chronicle()
 	traces = AtlasTraces.place(atlas_data, chronicle)
 	holy_points.append_array(AtlasTraces.holy_points(traces))
@@ -314,7 +331,11 @@ func _build_objects() -> void:
 		node.position = Vector3(p.x, -p.depth, p.z)
 		node.rotation.y = p.yaw
 		add_child(node)
-		if str(p.id).begins_with("bulla"):
+		thing_nodes[p.id] = node
+		# The bulla bears a cross (holy in its data): no outline of light
+		# on it, and the console falls silent there.
+		rim.dress(node, RimLight.is_holy(p))
+		if RimLight.is_holy(p):
 			holy_points.append(node.position)
 
 
@@ -340,6 +361,9 @@ func _build_traces() -> void:
 		if p.kind == "trace" and ResourceLoader.exists(path):
 			node.add_child((load(path) as PackedScene).instantiate())
 			add_child(node)
+			thing_nodes[p.id] = node
+			# The khachkar is holy: it keeps its plain stone.
+			rim.dress(node, RimLight.is_holy(p))
 			continue
 		match p.shape:
 			"book":
@@ -381,6 +405,8 @@ func _build_traces() -> void:
 						c.darkened(0.1 * (i % 3)))
 					k.rotation = Vector3(r.call(), r.call() * TAU, r.call())
 		add_child(node)
+		thing_nodes[p.id] = node
+		rim.dress(node, RimLight.is_holy(p))
 
 
 ## A khachkar of our own drawing: an upright slab with a cross in low
@@ -466,6 +492,10 @@ func _build_own_drawings() -> void:
 			# The drawing stands on its lower edge, on the floor.
 			sp.position = Vector3(x, -DiveCore.floor_depth(x, z)
 				+ float(kit.size) * 0.45, z)
+			# Its material turns it to the eye, cuts its alpha and draws
+			# the band on its edge (RimLight.drawing).
+			rim.drawing(sp)
+			drawings += 1
 			add_child(sp)
 
 
@@ -606,6 +636,8 @@ func _build_fish() -> void:
 		mat.roughness = 0.5
 		mat.cull_mode = BaseMaterial3D.CULL_DISABLED
 		inst.material_override = mat
+		# One material per school: the band costs nothing more here.
+		rim.dress(inst)
 		add_child(inst)
 		fish_meshes.append(inst)
 
@@ -753,8 +785,7 @@ const BIOME_SHOTS := [
 func _biome_shots(k: int) -> void:
 	var f := shot_frame % 40
 	if k >= BIOME_SHOTS.size():
-		_report_costs()
-		get_tree().quit()
+		_rim_shots(k - BIOME_SHOTS.size())
 		return
 	var plan: Dictionary = BIOME_SHOTS[k]
 	var rid := get_viewport().get_viewport_rid()
@@ -799,6 +830,78 @@ func _biome_shots(k: int) -> void:
 	shot_frame += 1
 
 
+## Proof frames of the operator's decision on reading things (RimLight):
+## the knight's shield in the night of the deep with the lamp off (the
+## rim light) and on (its highlight), in first and third person; the
+## khachkar with the lamp off and on and the bulla with the lamp off (no
+## light on the holy); the passage of the chronicle and the diary with
+## the lamp off and on.  In first person the lamp rides on the eye and
+## looks where it looks.
+const RIM_SHOTS := [
+	{"name": "night-off", "trace": "shield", "lamp": false, "back": 3.0,
+		"above": 3.0, "first": true},
+	{"name": "night-on", "trace": "shield", "lamp": true, "back": 3.0,
+		"above": 3.0, "first": true},
+	{"name": "night-off-3p", "trace": "shield", "lamp": false, "back": 4.0,
+		"above": 3.0, "first": false},
+	{"name": "night-on-3p", "trace": "shield", "lamp": true, "back": 4.0,
+		"above": 3.0, "first": false},
+	{"name": "khachkar-off", "trace": "khachkar", "lamp": false, "back": 2.6,
+		"above": 1.2, "first": false},
+	{"name": "khachkar-on", "trace": "khachkar", "lamp": true, "back": 2.6,
+		"above": 1.2, "first": false},
+	{"name": "bulla-off", "thing": "bulla.shallows.0", "lamp": false,
+		"back": 0.9, "above": 0.5, "first": true},
+	{"name": "passage-off", "trace": "passage", "lamp": false, "back": 7.0,
+		"above": 1.2, "first": false},
+	{"name": "passage-on", "trace": "passage", "lamp": true, "back": 7.0,
+		"above": 1.2, "first": false},
+	{"name": "diary-off", "trace": "diary", "lamp": false, "back": 3.5,
+		"above": 1.2, "first": false},
+]
+var rim_lights := {}
+
+
+func _rim_shots(k: int) -> void:
+	if k >= RIM_SHOTS.size():
+		_report_costs()
+		get_tree().quit()
+		return
+	var plan: Dictionary = RIM_SHOTS[k]
+	rim_settled = true
+	rov.lamp = plan.lamp
+	if third_person == plan.first:
+		third_person = not plan.first
+		_place_view()
+	var p := {}
+	for tr in traces + placed:
+		if tr.id == plan.get("trace", plan.get("thing")):
+			p = tr
+	rov.yaw = 0.0
+	rov.x = p.x - plan.back
+	rov.z = p.z - (0.0 if plan.first else 1.2)
+	rov.depth = minf(DiveCore.floor_depth(rov.x, rov.z), p.depth) \
+		- plan.above
+	# In first person the eye (and the lamp on it) looks down at the
+	# thing; from behind, the chase camera does.
+	pitch = -atan2(plan.above, plan.back + RovBody.EYE.z) if plan.first \
+		else -0.2
+	t = 40.0 + k
+	if shot_frame % 40 == 39:
+		print("rim shot %s: in %s at %.1f m, lamp %s, rim %.3f, lamp %.3f"
+			% [plan.name, biome, rov.depth, "on" if plan.lamp else "off",
+			_y(rim_lights.get("rim", Vector3.ZERO)),
+			_y(rim_lights.get("lamp", Vector3.ZERO))])
+		get_viewport().get_texture().get_image().save_png(
+			"%s/dive-rim-%s.png" % [shots_dir, plan.name])
+	shot_frame += 1
+
+
+## Luminance of a linear colour.
+static func _y(c: Vector3) -> float:
+	return 0.2126 * c.x + 0.7152 * c.y + 0.0722 * c.z
+
+
 static func _mean(a: Array) -> float:
 	var sum := 0.0
 	for v in a:
@@ -813,6 +916,11 @@ func _report_costs() -> void:
 	print("render GPU ms: bubbles hidden %.3f, shown %.3f (n=%d/%d)" % [
 		_mean(gpu_ms.off), _mean(gpu_ms.on), gpu_ms.off.size(),
 		gpu_ms.on.size()])
+	print("rim: %d surfaces dressed with %d materials, %d kept as they "
+		% [rim.dressed, rim.materials.size(), rim.kept]
+		+ "were, %d drawings with %d materials, %d shaders; %.1f us CPU"
+		% [drawings, rim.drawing_materials.size(), rim.shaders.size(),
+		rim_us / maxf(1.0, rim_frames)] + " per frame")
 
 
 func _build_rig() -> void:
@@ -825,9 +933,11 @@ func _build_rig() -> void:
 	rig.add_child(camera)
 	lamp = SpotLight3D.new()
 	lamp.light_color = LAMP_COLOUR
-	lamp.light_energy = 4.0
-	lamp.spot_range = 22.0
-	lamp.spot_angle = 32.0
+	lamp.light_energy = RimLight.LAMP_ENERGY
+	lamp.spot_range = RimLight.LAMP_RANGE_M
+	lamp.spot_angle = RimLight.LAMP_ANGLE_DEG
+	lamp.spot_attenuation = RimLight.LAMP_ATTENUATION
+	lamp.spot_angle_attenuation = RimLight.LAMP_ANGLE_ATTENUATION
 	camera.add_child(lamp)
 	left_hand = XRController3D.new()
 	left_hand.tracker = &"left_hand"
@@ -856,7 +966,9 @@ func _place_view() -> void:
 	if lamp.get_parent() != holder:
 		lamp.reparent(holder, false)
 	lamp.position = Vector3(0, 0.02, -0.72) if third_person else Vector3.ZERO
-	lamp.rotation = Vector3(-0.12, 0, 0) if third_person else Vector3.ZERO
+	# Down with the drawn beams, onto the floor where things are read.
+	lamp.rotation = Vector3(RimLight.LAMP_PITCH_3P, 0, 0) if third_person \
+		else Vector3.ZERO
 
 
 # --- Telemetry and messages ---------------------------------------------
@@ -1270,8 +1382,20 @@ func _process(dt: float) -> void:
 		camera.rotation.y = CHASE_YAW if third_person else 0.0
 	lamp.visible = rov.lamp and rov.battery > 0.0
 	# A fall dims the world until the safety stop is held.
-	lamp.light_energy = 1.2 if game.fallen else 4.0
+	lamp.light_energy = RimLight.LAMP_ENERGY * (0.3 if game.fallen else 1.0)
 	_update_water(tel)
+	# Things are read by the lamp's highlight where it shines and by the
+	# rim light where it does not (the operator's decision, RimLight).
+	# The proof frames jump from place to place: there the lights are
+	# settled at once instead of easing.
+	if rim_settled:
+		rim.weight = 0.0 if lamp.visible else 1.0
+		rim.settle_background()
+	var rim_t0 := Time.get_ticks_usec()
+	rim_lights = rim.update(lamp, lamp.visible, lamp.light_energy,
+		tel.depth, maxf(0.0, tel.floor - tel.depth), dt)
+	rim_us += Time.get_ticks_usec() - rim_t0
+	rim_frames += 1
 	_update_thermocline(tel.depth)
 	_update_bubbles()
 	audio.update(tel, rov, inp, schools, t, dt, xr_active)
@@ -1396,7 +1520,7 @@ func _build_audio() -> void:
 func _hint() -> String:
 	var things: Array = placed + traces
 	var hit := DiveCore.nearest(rov, things, REACH_M)
-	if not hit.is_empty() and hit.thing.get("holy", false):
+	if not hit.is_empty() and RimLight.is_holy(hit.thing):
 		# No hint at a holy thing: the interface is gone there.
 		return ""
 	if hit.is_empty():

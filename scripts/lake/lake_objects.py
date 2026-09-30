@@ -280,6 +280,10 @@ EVERY_ITEM = True
 NATIVE_FISH = {'chebak', 'chebachok', 'marinka', 'osman', 'gubach',
                'osman-scaly', 'loach-tibet', 'loach-grey', 'golyan'}
 NO_LOOT = {'bulla', 'tether', 'buoyline', 'kosti'}
+# Things that bear the holy: no loot, no outline of light, and the
+# console falls silent near them (TABOO 0.2 p. 2, 0.35 rules 6-7).  The
+# game reads the flag from the data, not from a list of names.
+HOLY = {'bulla'}
 
 
 def loot_rule(item, category):
@@ -378,6 +382,8 @@ def main():
         c['parts'] = parts(c)
         rule = loot_rule(c['item'], c['category'])
         c['flags'] = {'noLoot': rule is None, 'loot': rule}
+        if c['item'] in HOLY:
+            c['flags']['holy'] = True
     (ROOT / 'docs' / 'LAKE_OBJECTS_999.json').write_text(json.dumps(
         {'note': 'Combinations item x state x depth band of eighty '
                  'real things of Issyk-Kul; not 999 distinct things.',
