@@ -159,4 +159,13 @@ func _initialize() -> void:
 	load("res://tests/test_rope.gd").new().run(self)
 	print("rope: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# The obitel's objects (TABOO 0.07, HLD_OBITEL_OBJECTS_2026-09-30).
+	before = checks
+	fails = failures
+	var obitel = load("res://tests/test_obitel.gd").new()
+	obitel.run(self)
+	await process_frame
+	obitel.in_hub(self)
+	print("obitel: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	quit(1 if failures else 0)

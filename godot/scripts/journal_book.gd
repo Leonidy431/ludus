@@ -16,10 +16,11 @@
 class_name JournalBook
 extends Node3D
 
-# By the north wall, between the gate ladder and the cell of the evening
-# rule: at the scriptorium's north end its reach overlapped the cell's
-# lectern, and the cell's prompt read "journal".
-const AT := Vector3(-1.5, 0, -7.6)
+# Beside the board of form in the south of the courtyard: the record of
+# the way next to the form it records.  At the scriptorium's north end
+# its reach covered the lectern of the evening cell, and by the north
+# wall it stood in the workshop.
+const AT := Vector3(-1.4, 0, 6.0)
 const HUB_SAVE := "user://hub.json"
 const DIVE_SAVE := "user://dive.json"
 const OAK := Color(0.42, 0.29, 0.17)

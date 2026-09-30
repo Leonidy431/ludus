@@ -1,0 +1,23 @@
+{
+ "id": "p0136-poklonnyy-kovrik",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  0.6,
+  0.798,
+  0.02
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#135",
+ "name": "Поклонный коврик",
+ "type": "предмет",
+ "storyline": "79 духовный",
+ "box": "плоскость 0.6м",
+ "shape": "plane",
+ "size_m": 0.6,
+ "method": "primitive-from-box-field",
+ "collider": "plane 0.6 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}
