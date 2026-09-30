@@ -4,15 +4,18 @@
 ## its dawn, along one path.  The player walks, stands, turns, bows the
 ## head and leaves; the path's edge is every kit's witness line.  There
 ## is no prompt, no counter, no reward and no record of the visit, and
-## no microphone is ever opened (TABOO 0.26 point 10).  The only sound
-## is the room's own tone, never digital zero.  B or Esc: back to the
-## courtyard (Nav).
+## no microphone is ever opened (TABOO 0.26 point 10).  The sound is the
+## room's own tone (never digital zero), the ison of the brethren a
+## cappella by the kit one stands at, and the far monastery's bells at
+## the hours the Typikon sets (WitnessAudio, docs/HLD_WITNESS_SOUND_
+## 2026-09-30.md).  Nothing the walker does rings a bell.  B or Esc:
+## back to the courtyard (Nav).  --now=YYYY-MM-DDTHH:MM sets the clock
+## (for shots and listening tests).
 extends Node3D
 
 const WALK_MPS := 1.2
 const LAMPADA_K := Color(1.0, 0.52, 0.16)   # About 1800 K.
 const DAWN := Color(1.0, 0.72, 0.5)
-const MIX_RATE := 22050.0
 
 var bays: Array = []
 var pos := WitnessCore.START
@@ -26,7 +29,7 @@ var camera: XRCamera3D
 var left_hand: XRController3D
 var right_hand: XRController3D
 var tone: AudioStreamGeneratorPlayback
-var tone_state := {"seed": 7, "lp": 0.0}
+var audio := WitnessAudio.new()
 var webxr: XRInterface
 var vr_button: Button
 
@@ -35,6 +38,14 @@ var shot_frame := 0
 
 
 func _ready() -> void:
+	var now := Time.get_datetime_dict_from_system()
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--now="):
+			var text := arg.trim_prefix("--now=")
+			if text.length() == 16:
+				text += ":00"
+			now = Time.get_datetime_dict_from_datetime_string(text, false)
+	audio.set_now(now)
 	_build_world()
 	_build_bays()
 	_build_rig()
@@ -186,7 +197,7 @@ func _build_rig() -> void:
 
 func _build_tone() -> void:
 	var gen := AudioStreamGenerator.new()
-	gen.mix_rate = MIX_RATE
+	gen.mix_rate = WitnessAudio.MIX_RATE
 	gen.buffer_length = 0.3
 	var player := AudioStreamPlayer.new()
 	player.stream = gen
@@ -195,14 +206,29 @@ func _build_tone() -> void:
 	tone = player.get_stream_playback() as AudioStreamGeneratorPlayback
 
 
+## Leaving the path: a bell clip still rendering on the worker thread
+## finishes first, so the thread never outlives the synth it writes to.
+func _exit_tree() -> void:
+	if audio.bells.task != -1:
+		WorkerThreadPool.wait_for_task_completion(audio.bells.task)
+		audio.bells.task = -1
+
+
 func _feed_tone() -> void:
 	if tone == null:
 		return
+	# The day's bell strokes are rendered ahead of the hour, so no frame
+	# waits for a bell: on a worker thread in the APK, a little every
+	# frame in the Web build, which is exported without threads.
+	if OS.has_feature("web"):
+		audio.bells.warm(WitnessAudio.WARM_PER_FRAME_WEB)
+	else:
+		audio.bells.warm_async()
+	audio.listen(pos, bays)
 	var n := tone.get_frames_available()
 	if n <= 0:
 		return
-	for v in WitnessCore.room_tone(n, tone_state):
-		tone.push_frame(Vector2(v, v))
+	tone.push_buffer(audio.generate(n))
 
 
 func _stick(hand: XRController3D) -> Vector2:
