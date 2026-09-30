@@ -127,29 +127,25 @@ func _web_parity(t: Object, data: Dictionary) -> void:
 				and absf(a.depth - b.depth) < 1e-6
 				and absf(a.yaw - b.yaw) < 1e-6,
 				"web '%s' %s on the same spot" % [choice, a.id])
-	# The own drawings: the loop of dive.gd _build_own_drawings.
-	var dive = preload("res://scripts/dive.gd").new()
+	# The own drawings: the very placement _build_own_drawings runs.
+	var dive := preload("res://scripts/dive.gd")
 	var k := 0
 	var same := 0
 	for kit in dive.OWN_DRAWINGS:
-		var files: Array = dive._kit_files("res://art/derived/%s" % kit.dir,
-			kit.kit)
-		t._check(files.size() == 12, "%s: 12 variants" % kit.kit)
-		var r := DiveCore.rng("own:" + str(kit.kit))
-		for i in int(kit.n):
-			var d: float = lerpf(kit.depth[0], kit.depth[1], r.call())
-			var z: float = (r.call() * 2.0 - 1.0) * DiveCore.CORRIDOR_M
-			var x := DiveCore.x_for_depth(d)
-			var y := DiveCore.floor_depth(x, z) - float(kit.size) * 0.45
+		var spots: Array = dive.own_drawing_spots(kit)
+		t._check(dive._kit_files("res://art/derived/%s" % kit.dir,
+			kit.kit).size() == 12, "%s: 12 variants" % kit.kit)
+		t._check(spots.size() == int(kit.n), "%s: %d drawings" % [kit.kit,
+			int(kit.n)])
+		for spot in spots:
 			if k < web.drawings.size():
 				var w: Dictionary = web.drawings[k]
-				if w.kit == kit.kit and absf(w.x - x) < 1e-6 \
-						and absf(w.z - z) < 1e-6 \
-						and absf(w.centreDepth - y) < 1e-6 \
-						and w.file == str(files[i % files.size()]).get_file():
+				if w.kit == kit.kit and absf(w.x - spot.x) < 1e-6 \
+						and absf(w.z - spot.z) < 1e-6 \
+						and absf(w.centreDepth - spot.y) < 1e-6 \
+						and w.file == str(spot.file).get_file():
 					same += 1
 			k += 1
-	dive.free()
 	t._check(k == web.drawings.size() and same == k,
 		"web own drawings on the same spots (%d of %d)" % [same, k])
 

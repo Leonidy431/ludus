@@ -346,9 +346,13 @@
   function draw() {
     const v = view();
     const dpr = window.devicePixelRatio || 1;
-    if (canvas.width !== Math.round(v.w * dpr)) {
-      canvas.width = Math.round(v.w * dpr);
-      canvas.height = Math.round(v.h * dpr);
+    // Both sides are checked: a phone address bar or a Quest browser
+    // window changes only the height, and a stale buffer would stretch.
+    const bw = Math.round(v.w * dpr);
+    const bh = Math.round(v.h * dpr);
+    if (canvas.width !== bw || canvas.height !== bh) {
+      canvas.width = bw;
+      canvas.height = bh;
     }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     drawWater(v);
@@ -406,7 +410,7 @@
       vertical: (k.ArrowUp || k.KeyW || h.up ? 1 : 0)
         - (k.ArrowDown || k.KeyS || h.down ? 1 : 0),
       // Along the shore: z grows to the right of the dive line.
-      strafe: ((k.KeyE ? 1 : 0) - (k.KeyQ ? 1 : 0))
+      strafe: ((k.KeyE || h.far ? 1 : 0) - (k.KeyQ || h.near ? 1 : 0))
         * (Math.cos(state.rov.yaw) >= 0 ? 1 : -1),
       turn: 0,
     };
@@ -494,13 +498,29 @@
     if (!target) {
       return;
     }
+    // Up the slope the floor lifts the ROV, so at a holy thing the
+    // stand-off shrinks until the ROV is inside FADE_NEAR: the proof frame
+    // must show the console truly gone, not 3.04 m away at 0.012.
+    const holy = Boolean(target.holy);
+    let rov = null;
+    for (let off = 2.5; off >= 0.75; off -= 0.25) {
+      rov = standOff(target, off);
+      if (!holy || Atlas.holyDistance(rov, state.holy)
+          <= Atlas.FADE_NEAR - 0.2) {
+        break;
+      }
+    }
+    state.rov = rov;
+  }
+
+  function standOff(target, off) {
     const rov = Core.newRov();
-    rov.x = target.x - 2.5;
+    rov.x = target.x - off;
     rov.z = target.z;
     rov.yaw = 0;
     rov.depth = Math.max(0.5, Math.min(target.depth - 1.0,
       Core.floorDepth(rov.x, rov.z) - Core.ROV.minClearance));
-    state.rov = rov;
+    return rov;
   }
 
   // --- Loop -------------------------------------------------------------
