@@ -44,54 +44,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "cormorant.shallows.1",
-   "item": "cormorant",
-   "category": "bird",
-   "ru": "Баклан под водой: охотится",
-   "en": "Cormorant underwater",
-   "band": "shallows",
-   "depth": [
-    0,
-    5
-   ],
-   "state": "охотится",
-   "shape": "bird",
-   "size_m": 0.8,
-   "colour": "#2a2a2a",
-   "score": {
-    "truth": 9,
-    "teaching": 5,
-    "readable": 8,
-    "novelty": 9,
-    "safety": 10
-   },
-   "total": 41,
-   "parts": [
-    {
-     "name": "bird-zone",
-     "shape": "box",
-     "size": [
-      0.8,
-      0.02,
-      0.8
-     ],
-     "pos": [
-      0,
-      0.01,
-      0
-     ],
-     "color": "#2a2a2a",
-     "flags": {
-      "zone": true
-     }
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": true,
+    "loot": null
    }
   },
   {
@@ -138,7 +92,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": true,
+    "loot": null
    }
   },
   {
@@ -185,7 +140,152 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": true,
+    "loot": null
+   }
+  },
+  {
+   "id": "krokhal.shallows.0",
+   "item": "krokhal",
+   "category": "bird",
+   "ru": "Большой крохаль: ныряет",
+   "en": "Goosander",
+   "band": "shallows",
+   "depth": [
+    0,
+    5
+   ],
+   "state": "ныряет",
+   "shape": "bird",
+   "size_m": 0.6,
+   "colour": "#3a4a40",
+   "score": {
+    "truth": 8,
+    "teaching": 5,
+    "readable": 8,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 39,
+   "parts": [
+    {
+     "name": "bird-zone",
+     "shape": "box",
+     "size": [
+      0.6,
+      0.02,
+      0.6
+     ],
+     "pos": [
+      0,
+      0.01,
+      0
+     ],
+     "color": "#3a4a40",
+     "flags": {
+      "zone": true
+     }
+    }
+   ],
+   "flags": {
+    "noLoot": true,
+    "loot": null
+   }
+  },
+  {
+   "id": "lysukha.shallows.0",
+   "item": "lysukha",
+   "category": "bird",
+   "ru": "Лысуха под водой: ныряет",
+   "en": "Coot underwater",
+   "band": "shallows",
+   "depth": [
+    0,
+    3
+   ],
+   "state": "ныряет",
+   "shape": "bird",
+   "size_m": 0.4,
+   "colour": "#1e1e20",
+   "score": {
+    "truth": 8,
+    "teaching": 5,
+    "readable": 8,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 39,
+   "parts": [
+    {
+     "name": "bird-zone",
+     "shape": "box",
+     "size": [
+      0.4,
+      0.02,
+      0.4
+     ],
+     "pos": [
+      0,
+      0.01,
+      0
+     ],
+     "color": "#1e1e20",
+     "flags": {
+      "zone": true
+     }
+    }
+   ],
+   "flags": {
+    "noLoot": true,
+    "loot": null
+   }
+  },
+  {
+   "id": "nyrok.shallows.0",
+   "item": "nyrok",
+   "category": "bird",
+   "ru": "Красноносый нырок: ныряет",
+   "en": "Red-crested pochard",
+   "band": "shallows",
+   "depth": [
+    0,
+    3
+   ],
+   "state": "ныряет",
+   "shape": "bird",
+   "size_m": 0.5,
+   "colour": "#7a3a2a",
+   "score": {
+    "truth": 8,
+    "teaching": 5,
+    "readable": 8,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 39,
+   "parts": [
+    {
+     "name": "bird-zone",
+     "shape": "box",
+     "size": [
+      0.5,
+      0.02,
+      0.5
+     ],
+     "pos": [
+      0,
+      0.01,
+      0
+     ],
+     "color": "#7a3a2a",
+     "flags": {
+      "zone": true
+     }
+    }
+   ],
+   "flags": {
+    "noLoot": true,
+    "loot": null
    }
   },
   {
@@ -229,51 +329,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "balka.shallows.1",
-   "item": "balka",
-   "category": "find",
-   "ru": "Деревянная балка: сгнившая",
-   "en": "Timber beam",
-   "band": "shallows",
-   "depth": [
-    3,
-    5
-   ],
-   "state": "сгнившая",
-   "shape": "beam",
-   "size_m": 3.0,
-   "colour": "#5a4630",
-   "score": {
-    "truth": 9,
-    "teaching": 5,
-    "readable": 8,
-    "novelty": 7,
-    "safety": 10
-   },
-   "total": 39,
-   "parts": [
-    {
-     "name": "beam",
-     "shape": "box",
-     "size": [
-      3.0,
-      0.25,
-      0.4
-     ],
-     "pos": [
-      0,
-      0.125,
-      0
-     ],
-     "color": "#5a4630"
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "hand-over"
    }
   },
   {
@@ -317,51 +374,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "bulla.shallows.1",
-   "item": "bulla",
-   "category": "find",
-   "ru": "Свинцовая булла: на камне",
-   "en": "Lead seal",
-   "band": "shallows",
-   "depth": [
-    2,
-    5
-   ],
-   "state": "на камне",
-   "shape": "disc",
-   "size_m": 0.04,
-   "colour": "#8a8a8a",
-   "score": {
-    "truth": 8,
-    "teaching": 6,
-    "readable": 5,
-    "novelty": 8,
-    "safety": 10
-   },
-   "total": 37,
-   "parts": [
-    {
-     "name": "disc",
-     "shape": "box",
-     "size": [
-      0.04,
-      0.008,
-      0.032
-     ],
-     "pos": [
-      0,
-      0.004,
-      0
-     ],
-     "color": "#8a8a8a"
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": true,
+    "loot": null
    }
   },
   {
@@ -408,54 +422,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "cherepki.shelf.1",
-   "item": "cherepki",
-   "category": "find",
-   "ru": "Россыпь черепков: у сваи",
-   "en": "Potsherds",
-   "band": "shelf",
-   "depth": [
-    5,
-    20
-   ],
-   "state": "у сваи",
-   "shape": "sherds",
-   "size_m": 0.4,
-   "colour": "#a06a48",
-   "score": {
-    "truth": 10,
-    "teaching": 5,
-    "readable": 6,
-    "novelty": 7,
-    "safety": 10
-   },
-   "total": 39,
-   "parts": [
-    {
-     "name": "sherds-zone",
-     "shape": "box",
-     "size": [
-      0.4,
-      0.02,
-      0.4
-     ],
-     "pos": [
-      0,
-      0.01,
-      0
-     ],
-     "color": "#a06a48",
-     "flags": {
-      "zone": true
-     }
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "hand-over"
    }
   },
   {
@@ -499,7 +467,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "hand-over"
    }
   },
   {
@@ -543,7 +512,98 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "hand-over"
+   }
+  },
+  {
+   "id": "glazur.shallows.0",
+   "item": "glazur",
+   "category": "find",
+   "ru": "Глазурованный кирпич: один",
+   "en": "Glazed brick",
+   "band": "shallows",
+   "depth": [
+    2,
+    5
+   ],
+   "state": "один",
+   "shape": "brick",
+   "size_m": 0.3,
+   "colour": "#3a7a8a",
+   "score": {
+    "truth": 9,
+    "teaching": 6,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "parts": [
+    {
+     "name": "brick",
+     "shape": "box",
+     "size": [
+      0.3,
+      0.15,
+      0.24
+     ],
+     "pos": [
+      0,
+      0.075,
+      0
+     ],
+     "color": "#3a7a8a"
+    }
+   ],
+   "flags": {
+    "noLoot": false,
+    "loot": "hand-over"
+   }
+  },
+  {
+   "id": "glazur.shallows.1",
+   "item": "glazur",
+   "category": "find",
+   "ru": "Глазурованный кирпич: в кладке",
+   "en": "Glazed brick",
+   "band": "shallows",
+   "depth": [
+    2,
+    5
+   ],
+   "state": "в кладке",
+   "shape": "brick",
+   "size_m": 0.3,
+   "colour": "#3a7a8a",
+   "score": {
+    "truth": 9,
+    "teaching": 6,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "parts": [
+    {
+     "name": "brick",
+     "shape": "box",
+     "size": [
+      0.3,
+      0.15,
+      0.24
+     ],
+     "pos": [
+      0,
+      0.075,
+      0
+     ],
+     "color": "#3a7a8a"
+    }
+   ],
+   "flags": {
+    "noLoot": false,
+    "loot": "hand-over"
    }
   },
   {
@@ -587,51 +647,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "gruzilo.shallows.1",
-   "item": "gruzilo",
-   "category": "find",
-   "ru": "Каменное грузило сети: связка",
-   "en": "Net sinker stone",
-   "band": "shallows",
-   "depth": [
-    1,
-    5
-   ],
-   "state": "связка",
-   "shape": "sinker",
-   "size_m": 0.1,
-   "colour": "#7a7466",
-   "score": {
-    "truth": 9,
-    "teaching": 6,
-    "readable": 6,
-    "novelty": 8,
-    "safety": 10
-   },
-   "total": 39,
-   "parts": [
-    {
-     "name": "sinker",
-     "shape": "box",
-     "size": [
-      0.1,
-      0.06999999999999999,
-      0.08000000000000002
-     ],
-     "pos": [
-      0,
-      0.034999999999999996,
-      0
-     ],
-     "color": "#7a7466"
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "hand-over"
    }
   },
   {
@@ -675,51 +692,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "kayrak.shallows.1",
-   "item": "kayrak",
-   "category": "find",
-   "ru": "Кайрак — зернотёрка: в песке",
-   "en": "Grinding stone",
-   "band": "shallows",
-   "depth": [
-    2,
-    5
-   ],
-   "state": "в песке",
-   "shape": "slab",
-   "size_m": 0.5,
-   "colour": "#8a8070",
-   "score": {
-    "truth": 9,
-    "teaching": 6,
-    "readable": 7,
-    "novelty": 8,
-    "safety": 10
-   },
-   "total": 40,
-   "parts": [
-    {
-     "name": "slab",
-     "shape": "box",
-     "size": [
-      0.5,
-      0.125,
-      0.4
-     ],
-     "pos": [
-      0,
-      0.0625,
-      0
-     ],
-     "color": "#8a8070"
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "hand-over"
    }
   },
   {
@@ -763,7 +737,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "hand-over"
    }
   },
   {
@@ -807,7 +782,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "hand-over"
    }
   },
   {
@@ -851,7 +827,146 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "hand-over"
+   }
+  },
+  {
+   "id": "kleshchi.shallows.0",
+   "item": "kleshchi",
+   "category": "find",
+   "ru": "Кузнечные клещи: в песке",
+   "en": "Smith's tongs",
+   "band": "shallows",
+   "depth": [
+    2,
+    5
+   ],
+   "state": "в песке",
+   "shape": "shard",
+   "size_m": 0.4,
+   "colour": "#4a4a48",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "parts": [
+    {
+     "name": "shard",
+     "shape": "box",
+     "size": [
+      0.4,
+      0.27999999999999997,
+      0.32000000000000006
+     ],
+     "pos": [
+      0,
+      0.13999999999999999,
+      0
+     ],
+     "color": "#4a4a48"
+    }
+   ],
+   "flags": {
+    "noLoot": false,
+    "loot": "hand-over"
+   }
+  },
+  {
+   "id": "kleshchi.shallows.1",
+   "item": "kleshchi",
+   "category": "find",
+   "ru": "Кузнечные клещи: у кладки",
+   "en": "Smith's tongs",
+   "band": "shallows",
+   "depth": [
+    2,
+    5
+   ],
+   "state": "у кладки",
+   "shape": "shard",
+   "size_m": 0.4,
+   "colour": "#4a4a48",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "parts": [
+    {
+     "name": "shard",
+     "shape": "box",
+     "size": [
+      0.4,
+      0.27999999999999997,
+      0.32000000000000006
+     ],
+     "pos": [
+      0,
+      0.13999999999999999,
+      0
+     ],
+     "color": "#4a4a48"
+    }
+   ],
+   "flags": {
+    "noLoot": false,
+    "loot": "hand-over"
+   }
+  },
+  {
+   "id": "kosti.shallows.0",
+   "item": "kosti",
+   "category": "find",
+   "ru": "Кости животных: россыпь",
+   "en": "Animal bones",
+   "band": "shallows",
+   "depth": [
+    2,
+    5
+   ],
+   "state": "россыпь",
+   "shape": "sherds",
+   "size_m": 0.4,
+   "colour": "#d8d0b8",
+   "score": {
+    "truth": 9,
+    "teaching": 6,
+    "readable": 6,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 39,
+   "parts": [
+    {
+     "name": "sherds-zone",
+     "shape": "box",
+     "size": [
+      0.4,
+      0.02,
+      0.4
+     ],
+     "pos": [
+      0,
+      0.01,
+      0
+     ],
+     "color": "#d8d0b8",
+     "flags": {
+      "zone": true
+     }
+    }
+   ],
+   "flags": {
+    "noLoot": true,
+    "loot": null
    }
   },
   {
@@ -895,51 +1010,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "kotel.shallows.1",
-   "item": "kotel",
-   "category": "find",
-   "ru": "Обломок бронзового котла: ручка",
-   "en": "Bronze cauldron shard",
-   "band": "shallows",
-   "depth": [
-    3,
-    5
-   ],
-   "state": "ручка",
-   "shape": "shard",
-   "size_m": 0.4,
-   "colour": "#6a8a6a",
-   "score": {
-    "truth": 9,
-    "teaching": 5,
-    "readable": 7,
-    "novelty": 8,
-    "safety": 10
-   },
-   "total": 39,
-   "parts": [
-    {
-     "name": "shard",
-     "shape": "box",
-     "size": [
-      0.4,
-      0.27999999999999997,
-      0.32000000000000006
-     ],
-     "pos": [
-      0,
-      0.13999999999999999,
-      0
-     ],
-     "color": "#6a8a6a"
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "hand-over"
    }
   },
   {
@@ -983,51 +1055,53 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "hand-over"
    }
   },
   {
-   "id": "ochag.shallows.1",
-   "item": "ochag",
+   "id": "shlak.shallows.0",
+   "item": "shlak",
    "category": "find",
-   "ru": "Кольцо очага: в иле",
-   "en": "Hearth ring",
+   "ru": "Металлургический шлак: кусок",
+   "en": "Smelting slag",
    "band": "shallows",
    "depth": [
-    3,
+    2,
     5
    ],
-   "state": "в иле",
-   "shape": "ring",
-   "size_m": 0.8,
-   "colour": "#6a5a4a",
+   "state": "кусок",
+   "shape": "shard",
+   "size_m": 0.2,
+   "colour": "#3a3430",
    "score": {
-    "truth": 8,
-    "teaching": 7,
-    "readable": 7,
+    "truth": 9,
+    "teaching": 6,
+    "readable": 6,
     "novelty": 9,
     "safety": 10
    },
-   "total": 41,
+   "total": 40,
    "parts": [
     {
-     "name": "ring",
+     "name": "shard",
      "shape": "box",
      "size": [
-      0.8,
-      0.25,
-      0.4
+      0.2,
+      0.13999999999999999,
+      0.16000000000000003
      ],
      "pos": [
       0,
-      0.125,
+      0.06999999999999999,
       0
      ],
-     "color": "#6a5a4a"
+     "color": "#3a3430"
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "hand-over"
    }
   },
   {
@@ -1071,7 +1145,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "hand-over"
    }
   },
   {
@@ -1115,7 +1190,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "hand-over"
    }
   },
   {
@@ -1159,51 +1235,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "yakor.shallows.1",
-   "item": "yakor",
-   "category": "find",
-   "ru": "Якорный камень: с верёвкой",
-   "en": "Anchor stone",
-   "band": "shallows",
-   "depth": [
-    2,
-    5
-   ],
-   "state": "с верёвкой",
-   "shape": "anchor",
-   "size_m": 0.5,
-   "colour": "#6a6660",
-   "score": {
-    "truth": 8,
-    "teaching": 7,
-    "readable": 8,
-    "novelty": 9,
-    "safety": 10
-   },
-   "total": 42,
-   "parts": [
-    {
-     "name": "anchor",
-     "shape": "box",
-     "size": [
-      0.5,
-      0.35,
-      0.4
-     ],
-     "pos": [
-      0,
-      0.175,
-      0
-     ],
-     "color": "#6a6660"
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "hand-over"
    }
   },
   {
@@ -1247,7 +1280,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "hand-over"
    }
   },
   {
@@ -1291,7 +1325,128 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "hand-over"
+   }
+  },
+  {
+   "id": "amur-chebachok.shallows.0",
+   "item": "amur-chebachok",
+   "category": "fish",
+   "ru": "Амурский чебачок: стайка",
+   "en": "Stone moroko",
+   "band": "shallows",
+   "depth": [
+    0,
+    5
+   ],
+   "state": "стайка",
+   "shape": "fish",
+   "size_m": 0.08,
+   "colour": "#b0b4a8",
+   "score": {
+    "truth": 8,
+    "teaching": 6,
+    "readable": 5,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 38,
+   "parts": [
+    {
+     "name": "body",
+     "shape": "box",
+     "size": [
+      0.08,
+      0.024,
+      0.0096
+     ],
+     "pos": [
+      0,
+      0,
+      0
+     ],
+     "color": "#b0b4a8"
+    },
+    {
+     "name": "tail",
+     "shape": "box",
+     "size": [
+      0.02,
+      0.024,
+      0.0032
+     ],
+     "pos": [
+      -0.048,
+      0,
+      0
+     ],
+     "color": "#b0b4a8"
+    }
+   ],
+   "flags": {
+    "noLoot": false,
+    "loot": "keep"
+   }
+  },
+  {
+   "id": "amur-white.shallows.0",
+   "item": "amur-white",
+   "category": "fish",
+   "ru": "Белый амур: одиночка",
+   "en": "Grass carp",
+   "band": "shallows",
+   "depth": [
+    0,
+    5
+   ],
+   "state": "одиночка",
+   "shape": "fish",
+   "size_m": 0.8,
+   "colour": "#9a9a70",
+   "score": {
+    "truth": 6,
+    "teaching": 4,
+    "readable": 8,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 35,
+   "parts": [
+    {
+     "name": "body",
+     "shape": "box",
+     "size": [
+      0.8,
+      0.24,
+      0.096
+     ],
+     "pos": [
+      0,
+      0,
+      0
+     ],
+     "color": "#9a9a70"
+    },
+    {
+     "name": "tail",
+     "shape": "box",
+     "size": [
+      0.2,
+      0.24,
+      0.032
+     ],
+     "pos": [
+      -0.48,
+      0,
+      0
+     ],
+     "color": "#9a9a70"
+    }
+   ],
+   "flags": {
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -1350,66 +1505,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "chebachok.shelf.0",
-   "item": "chebachok",
-   "category": "fish",
-   "ru": "Иссык-кульский чебачок: стайка",
-   "en": "Small dace",
-   "band": "shelf",
-   "depth": [
-    5,
-    15
-   ],
-   "state": "стайка",
-   "shape": "fish",
-   "size_m": 0.14,
-   "colour": "#cfd8da",
-   "score": {
-    "truth": 10,
-    "teaching": 5,
-    "readable": 7,
-    "novelty": 5,
-    "safety": 10
-   },
-   "total": 38,
-   "parts": [
-    {
-     "name": "body",
-     "shape": "box",
-     "size": [
-      0.14,
-      0.042,
-      0.016800000000000002
-     ],
-     "pos": [
-      0,
-      0,
-      0
-     ],
-     "color": "#cfd8da"
-    },
-    {
-     "name": "tail",
-     "shape": "box",
-     "size": [
-      0.035,
-      0.042,
-      0.005600000000000001
-     ],
-     "pos": [
-      -0.084,
-      0,
-      0
-     ],
-     "color": "#cfd8da"
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "release"
    }
   },
   {
@@ -1420,7 +1517,7 @@
    "en": "Issyk-Kul dace",
    "band": "shallows",
    "depth": [
-    2,
+    1,
     5
    ],
    "state": "стайка",
@@ -1468,66 +1565,68 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "release"
    }
   },
   {
-   "id": "chebak.shallows.4",
-   "item": "chebak",
+   "id": "golyan.shallows.0",
+   "item": "golyan",
    "category": "fish",
-   "ru": "Иссык-кульский чебак: в тени камня",
-   "en": "Issyk-Kul dace",
+   "ru": "Иссык-кульский гольян: стайка",
+   "en": "Issyk-Kul minnow",
    "band": "shallows",
    "depth": [
-    2,
-    5
+    0,
+    3
    ],
-   "state": "в тени камня",
+   "state": "стайка",
    "shape": "fish",
-   "size_m": 0.3,
-   "colour": "#b9c4c9",
+   "size_m": 0.07,
+   "colour": "#9aa08a",
    "score": {
-    "truth": 10,
+    "truth": 8,
     "teaching": 6,
-    "readable": 8,
-    "novelty": 5,
+    "readable": 5,
+    "novelty": 9,
     "safety": 10
    },
-   "total": 40,
+   "total": 39,
    "parts": [
     {
      "name": "body",
      "shape": "box",
      "size": [
-      0.3,
-      0.09,
-      0.036
+      0.07,
+      0.021,
+      0.008400000000000001
      ],
      "pos": [
       0,
       0,
       0
      ],
-     "color": "#b9c4c9"
+     "color": "#9aa08a"
     },
     {
      "name": "tail",
      "shape": "box",
      "size": [
-      0.075,
-      0.09,
-      0.012
+      0.0175,
+      0.021,
+      0.0028000000000000004
      ],
      "pos": [
-      -0.18,
+      -0.042,
       0,
       0
      ],
-     "color": "#b9c4c9"
+     "color": "#9aa08a"
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "release"
    }
   },
   {
@@ -1586,66 +1685,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "gubach.shallows.1",
-   "item": "gubach",
-   "category": "fish",
-   "ru": "Пятнистый губач: на песке",
-   "en": "Stone loach",
-   "band": "shallows",
-   "depth": [
-    1,
-    5
-   ],
-   "state": "на песке",
-   "shape": "fish",
-   "size_m": 0.12,
-   "colour": "#9a8f73",
-   "score": {
-    "truth": 10,
-    "teaching": 7,
-    "readable": 5,
-    "novelty": 7,
-    "safety": 10
-   },
-   "total": 39,
-   "parts": [
-    {
-     "name": "body",
-     "shape": "box",
-     "size": [
-      0.12,
-      0.036,
-      0.0144
-     ],
-     "pos": [
-      0,
-      0,
-      0
-     ],
-     "color": "#9a8f73"
-    },
-    {
-     "name": "tail",
-     "shape": "box",
-     "size": [
-      0.03,
-      0.036,
-      0.0048
-     ],
-     "pos": [
-      -0.072,
-      0,
-      0
-     ],
-     "color": "#9a8f73"
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "release"
    }
   },
   {
@@ -1704,66 +1745,308 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
-   "id": "ishkhan.slope.1",
-   "item": "ishkhan",
+   "id": "karas.shallows.0",
+   "item": "karas",
    "category": "fish",
-   "ru": "Севанская форель: на границе слоя",
-   "en": "Sevan trout",
-   "band": "slope",
+   "ru": "Серебряный карась: стайка",
+   "en": "Prussian carp",
+   "band": "shallows",
    "depth": [
-    20,
-    50
+    0,
+    5
    ],
-   "state": "на границе слоя",
+   "state": "стайка",
    "shape": "fish",
-   "size_m": 0.55,
-   "colour": "#a7a39a",
+   "size_m": 0.25,
+   "colour": "#b8b090",
    "score": {
-    "truth": 9,
-    "teaching": 6,
-    "readable": 8,
+    "truth": 8,
+    "teaching": 4,
+    "readable": 7,
     "novelty": 6,
     "safety": 10
    },
-   "total": 41,
+   "total": 36,
    "parts": [
     {
      "name": "body",
      "shape": "box",
      "size": [
-      0.55,
-      0.165,
-      0.066
+      0.25,
+      0.075,
+      0.03
      ],
      "pos": [
       0,
       0,
       0
      ],
-     "color": "#a7a39a"
+     "color": "#b8b090"
     },
     {
      "name": "tail",
      "shape": "box",
      "size": [
-      0.1375,
-      0.165,
-      0.022000000000000002
+      0.0625,
+      0.075,
+      0.01
      ],
      "pos": [
-      -0.33,
+      -0.15,
       0,
       0
      ],
-     "color": "#a7a39a"
+     "color": "#b8b090"
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
+   }
+  },
+  {
+   "id": "leshch.shallows.0",
+   "item": "leshch",
+   "category": "fish",
+   "ru": "Лещ: стайка",
+   "en": "Bream",
+   "band": "shallows",
+   "depth": [
+    3,
+    5
+   ],
+   "state": "стайка",
+   "shape": "fish",
+   "size_m": 0.4,
+   "colour": "#b3a67f",
+   "score": {
+    "truth": 9,
+    "teaching": 4,
+    "readable": 8,
+    "novelty": 4,
+    "safety": 10
+   },
+   "total": 36,
+   "parts": [
+    {
+     "name": "body",
+     "shape": "box",
+     "size": [
+      0.4,
+      0.12,
+      0.048
+     ],
+     "pos": [
+      0,
+      0,
+      0
+     ],
+     "color": "#b3a67f"
+    },
+    {
+     "name": "tail",
+     "shape": "box",
+     "size": [
+      0.1,
+      0.12,
+      0.016
+     ],
+     "pos": [
+      -0.24,
+      0,
+      0
+     ],
+     "color": "#b3a67f"
+    }
+   ],
+   "flags": {
+    "noLoot": false,
+    "loot": "keep"
+   }
+  },
+  {
+   "id": "lin.shallows.0",
+   "item": "lin",
+   "category": "fish",
+   "ru": "Линь: в траве",
+   "en": "Tench",
+   "band": "shallows",
+   "depth": [
+    1,
+    5
+   ],
+   "state": "в траве",
+   "shape": "fish",
+   "size_m": 0.35,
+   "colour": "#6a7a3a",
+   "score": {
+    "truth": 8,
+    "teaching": 5,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 37,
+   "parts": [
+    {
+     "name": "body",
+     "shape": "box",
+     "size": [
+      0.35,
+      0.105,
+      0.041999999999999996
+     ],
+     "pos": [
+      0,
+      0,
+      0
+     ],
+     "color": "#6a7a3a"
+    },
+    {
+     "name": "tail",
+     "shape": "box",
+     "size": [
+      0.0875,
+      0.105,
+      0.013999999999999999
+     ],
+     "pos": [
+      -0.21,
+      0,
+      0
+     ],
+     "color": "#6a7a3a"
+    }
+   ],
+   "flags": {
+    "noLoot": false,
+    "loot": "keep"
+   }
+  },
+  {
+   "id": "loach-grey.shallows.0",
+   "item": "loach-grey",
+   "category": "fish",
+   "ru": "Серый голец: на песке",
+   "en": "Grey stone loach",
+   "band": "shallows",
+   "depth": [
+    0,
+    5
+   ],
+   "state": "на песке",
+   "shape": "fish",
+   "size_m": 0.13,
+   "colour": "#80806e",
+   "score": {
+    "truth": 7,
+    "teaching": 6,
+    "readable": 5,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 36,
+   "parts": [
+    {
+     "name": "body",
+     "shape": "box",
+     "size": [
+      0.13,
+      0.039,
+      0.0156
+     ],
+     "pos": [
+      0,
+      0,
+      0
+     ],
+     "color": "#80806e"
+    },
+    {
+     "name": "tail",
+     "shape": "box",
+     "size": [
+      0.0325,
+      0.039,
+      0.005200000000000001
+     ],
+     "pos": [
+      -0.078,
+      0,
+      0
+     ],
+     "color": "#80806e"
+    }
+   ],
+   "flags": {
+    "noLoot": false,
+    "loot": "release"
+   }
+  },
+  {
+   "id": "loach-tibet.shallows.0",
+   "item": "loach-tibet",
+   "category": "fish",
+   "ru": "Тибетский голец: под камнем",
+   "en": "Tibetan stone loach",
+   "band": "shallows",
+   "depth": [
+    0,
+    5
+   ],
+   "state": "под камнем",
+   "shape": "fish",
+   "size_m": 0.11,
+   "colour": "#8c8468",
+   "score": {
+    "truth": 7,
+    "teaching": 6,
+    "readable": 5,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 36,
+   "parts": [
+    {
+     "name": "body",
+     "shape": "box",
+     "size": [
+      0.11,
+      0.033,
+      0.0132
+     ],
+     "pos": [
+      0,
+      0,
+      0
+     ],
+     "color": "#8c8468"
+    },
+    {
+     "name": "tail",
+     "shape": "box",
+     "size": [
+      0.0275,
+      0.033,
+      0.0044
+     ],
+     "pos": [
+      -0.066,
+      0,
+      0
+     ],
+     "color": "#8c8468"
+    }
+   ],
+   "flags": {
+    "noLoot": false,
+    "loot": "release"
    }
   },
   {
@@ -1774,7 +2057,7 @@
    "en": "Marinka",
    "band": "shallows",
    "depth": [
-    3,
+    1,
     5
    ],
    "state": "в тени камня",
@@ -1822,66 +2105,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "marinka.shelf.4",
-   "item": "marinka",
-   "category": "fish",
-   "ru": "Иссык-кульская маринка: в тени камня",
-   "en": "Marinka",
-   "band": "shelf",
-   "depth": [
-    5,
-    20
-   ],
-   "state": "в тени камня",
-   "shape": "fish",
-   "size_m": 0.45,
-   "colour": "#8f8a6e",
-   "score": {
-    "truth": 10,
-    "teaching": 6,
-    "readable": 8,
-    "novelty": 6,
-    "safety": 10
-   },
-   "total": 41,
-   "parts": [
-    {
-     "name": "body",
-     "shape": "box",
-     "size": [
-      0.45,
-      0.135,
-      0.054
-     ],
-     "pos": [
-      0,
-      0,
-      0
-     ],
-     "color": "#8f8a6e"
-    },
-    {
-     "name": "tail",
-     "shape": "box",
-     "size": [
-      0.1125,
-      0.135,
-      0.018000000000000002
-     ],
-     "pos": [
-      -0.27,
-      0,
-      0
-     ],
-     "color": "#8f8a6e"
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "release"
    }
   },
   {
@@ -1940,32 +2165,33 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "release"
    }
   },
   {
-   "id": "osman.shelf.4",
-   "item": "osman",
+   "id": "osman-scaly.shallows.0",
+   "item": "osman-scaly",
    "category": "fish",
-   "ru": "Голый осман: в тени камня",
-   "en": "Naked osman",
-   "band": "shelf",
+   "ru": "Чешуйчатый осман: у устья",
+   "en": "Scaly osman",
+   "band": "shallows",
    "depth": [
-    5,
-    20
+    0,
+    5
    ],
-   "state": "в тени камня",
+   "state": "у устья",
    "shape": "fish",
    "size_m": 0.35,
-   "colour": "#7d7a66",
+   "colour": "#8a8266",
    "score": {
-    "truth": 10,
+    "truth": 7,
     "teaching": 5,
     "readable": 7,
-    "novelty": 6,
+    "novelty": 8,
     "safety": 10
    },
-   "total": 39,
+   "total": 37,
    "parts": [
     {
      "name": "body",
@@ -1980,7 +2206,7 @@
       0,
       0
      ],
-     "color": "#7d7a66"
+     "color": "#8a8266"
     },
     {
      "name": "tail",
@@ -1995,11 +2221,132 @@
       0,
       0
      ],
-     "color": "#7d7a66"
+     "color": "#8a8266"
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "release"
+   }
+  },
+  {
+   "id": "raduzhnaya.shallows.0",
+   "item": "raduzhnaya",
+   "category": "fish",
+   "ru": "Радужная форель: одиночка",
+   "en": "Rainbow trout",
+   "band": "shallows",
+   "depth": [
+    2,
+    5
+   ],
+   "state": "одиночка",
+   "shape": "fish",
+   "size_m": 0.5,
+   "colour": "#b0a0a8",
+   "score": {
+    "truth": 8,
+    "teaching": 5,
+    "readable": 8,
+    "novelty": 6,
+    "safety": 10
+   },
+   "total": 37,
+   "parts": [
+    {
+     "name": "body",
+     "shape": "box",
+     "size": [
+      0.5,
+      0.15,
+      0.06
+     ],
+     "pos": [
+      0,
+      0,
+      0
+     ],
+     "color": "#b0a0a8"
+    },
+    {
+     "name": "tail",
+     "shape": "box",
+     "size": [
+      0.125,
+      0.15,
+      0.02
+     ],
+     "pos": [
+      -0.3,
+      0,
+      0
+     ],
+     "color": "#b0a0a8"
+    }
+   ],
+   "flags": {
+    "noLoot": false,
+    "loot": "keep"
+   }
+  },
+  {
+   "id": "sazan.shallows.0",
+   "item": "sazan",
+   "category": "fish",
+   "ru": "Сазан: одиночка",
+   "en": "Wild carp",
+   "band": "shallows",
+   "depth": [
+    1,
+    5
+   ],
+   "state": "одиночка",
+   "shape": "fish",
+   "size_m": 0.55,
+   "colour": "#a88f55",
+   "score": {
+    "truth": 9,
+    "teaching": 4,
+    "readable": 8,
+    "novelty": 4,
+    "safety": 10
+   },
+   "total": 35,
+   "parts": [
+    {
+     "name": "body",
+     "shape": "box",
+     "size": [
+      0.55,
+      0.165,
+      0.066
+     ],
+     "pos": [
+      0,
+      0,
+      0
+     ],
+     "color": "#a88f55"
+    },
+    {
+     "name": "tail",
+     "shape": "box",
+     "size": [
+      0.1375,
+      0.165,
+      0.022000000000000002
+     ],
+     "pos": [
+      -0.33,
+      0,
+      0
+     ],
+     "color": "#a88f55"
+    }
+   ],
+   "flags": {
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -2058,66 +2405,128 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
-   "id": "sig.slope.1",
-   "item": "sig",
+   "id": "sudak.shallows.0",
+   "item": "sudak",
    "category": "fish",
-   "ru": "Сиг: на границе слоя",
-   "en": "Whitefish",
-   "band": "slope",
+   "ru": "Судак: одиночка",
+   "en": "Zander",
+   "band": "shallows",
    "depth": [
-    20,
-    50
+    4,
+    5
    ],
-   "state": "на границе слоя",
+   "state": "одиночка",
    "shape": "fish",
-   "size_m": 0.4,
-   "colour": "#c6ccce",
+   "size_m": 0.6,
+   "colour": "#9ea58e",
    "score": {
     "truth": 9,
     "teaching": 5,
-    "readable": 7,
-    "novelty": 6,
+    "readable": 8,
+    "novelty": 5,
     "safety": 10
    },
-   "total": 39,
+   "total": 37,
    "parts": [
     {
      "name": "body",
      "shape": "box",
      "size": [
-      0.4,
-      0.12,
-      0.048
+      0.6,
+      0.18,
+      0.072
      ],
      "pos": [
       0,
       0,
       0
      ],
-     "color": "#c6ccce"
+     "color": "#9ea58e"
     },
     {
      "name": "tail",
      "shape": "box",
      "size": [
-      0.1,
-      0.12,
-      0.016
+      0.15,
+      0.18,
+      0.024
      ],
      "pos": [
-      -0.24,
+      -0.36,
       0,
       0
      ],
-     "color": "#c6ccce"
+     "color": "#9ea58e"
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
+   }
+  },
+  {
+   "id": "tolstolob.shallows.0",
+   "item": "tolstolob",
+   "category": "fish",
+   "ru": "Белый толстолобик: стайка",
+   "en": "Silver carp",
+   "band": "shallows",
+   "depth": [
+    0,
+    5
+   ],
+   "state": "стайка",
+   "shape": "fish",
+   "size_m": 0.7,
+   "colour": "#c8ccc8",
+   "score": {
+    "truth": 6,
+    "teaching": 4,
+    "readable": 8,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 36,
+   "parts": [
+    {
+     "name": "body",
+     "shape": "box",
+     "size": [
+      0.7,
+      0.21,
+      0.08399999999999999
+     ],
+     "pos": [
+      0,
+      0,
+      0
+     ],
+     "color": "#c8ccc8"
+    },
+    {
+     "name": "tail",
+     "shape": "box",
+     "size": [
+      0.175,
+      0.21,
+      0.027999999999999997
+     ],
+     "pos": [
+      -0.42,
+      0,
+      0
+     ],
+     "color": "#c8ccc8"
+    }
+   ],
+   "flags": {
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -2161,51 +2570,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "bottle.shallows.1",
-   "item": "bottle",
-   "category": "human",
-   "ru": "Бутылка на песке: в песке",
-   "en": "A bottle on the sand",
-   "band": "shallows",
-   "depth": [
-    0,
-    5
-   ],
-   "state": "в песке",
-   "shape": "bottle",
-   "size_m": 0.3,
-   "colour": "#7a9a8a",
-   "score": {
-    "truth": 9,
-    "teaching": 7,
-    "readable": 7,
-    "novelty": 7,
-    "safety": 10
-   },
-   "total": 40,
-   "parts": [
-    {
-     "name": "bottle",
-     "shape": "box",
-     "size": [
-      0.3,
-      0.36,
-      0.24
-     ],
-     "pos": [
-      0,
-      0.18,
-      0
-     ],
-     "color": "#7a9a8a"
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -2249,51 +2615,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "buoyline.shallows.1",
-   "item": "buoyline",
-   "category": "human",
-   "ru": "Цепь буя станции: ржавая",
-   "en": "Station buoy chain",
-   "band": "shallows",
-   "depth": [
-    0,
-    5
-   ],
-   "state": "ржавая",
-   "shape": "chain",
-   "size_m": 3.0,
-   "colour": "#6a6a6a",
-   "score": {
-    "truth": 8,
-    "teaching": 6,
-    "readable": 8,
-    "novelty": 8,
-    "safety": 10
-   },
-   "total": 40,
-   "parts": [
-    {
-     "name": "chain-0",
-     "shape": "box",
-     "size": [
-      0.09,
-      3.0,
-      0.09
-     ],
-     "pos": [
-      -0.06,
-      1.5,
-      0.0
-     ],
-     "color": "#6a6a6a"
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": true,
+    "loot": null
    }
   },
   {
@@ -2340,7 +2663,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -2387,7 +2711,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -2431,51 +2756,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "tether.shallows.1",
-   "item": "tether",
-   "category": "human",
-   "ru": "Трос ROV: петля",
-   "en": "ROV tether",
-   "band": "shallows",
-   "depth": [
-    0,
-    5
-   ],
-   "state": "петля",
-   "shape": "rope",
-   "size_m": 3.0,
-   "colour": "#e0a040",
-   "score": {
-    "truth": 10,
-    "teaching": 7,
-    "readable": 8,
-    "novelty": 5,
-    "safety": 10
-   },
-   "total": 40,
-   "parts": [
-    {
-     "name": "rope-0",
-     "shape": "box",
-     "size": [
-      0.09,
-      3.0,
-      0.09
-     ],
-     "pos": [
-      -0.06,
-      1.5,
-      0.0
-     ],
-     "color": "#e0a040"
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": true,
+    "loot": null
    }
   },
   {
@@ -2522,54 +2804,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "chironomid.shelf.1",
-   "item": "chironomid",
-   "category": "life",
-   "ru": "Трубочки мотыля в иле: на склоне",
-   "en": "Midge larva tubes",
-   "band": "shelf",
-   "depth": [
-    5,
-    20
-   ],
-   "state": "на склоне",
-   "shape": "tubes",
-   "size_m": 0.02,
-   "colour": "#8a6a50",
-   "score": {
-    "truth": 9,
-    "teaching": 6,
-    "readable": 3,
-    "novelty": 9,
-    "safety": 10
-   },
-   "total": 37,
-   "parts": [
-    {
-     "name": "tubes-zone",
-     "shape": "box",
-     "size": [
-      0.02,
-      0.02,
-      0.02
-     ],
-     "pos": [
-      0,
-      0.01,
-      0
-     ],
-     "color": "#8a6a50",
-     "flags": {
-      "zone": true
-     }
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -2616,54 +2852,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "gammarus.shallows.1",
-   "item": "gammarus",
-   "category": "life",
-   "ru": "Бокоплавы: на камне",
-   "en": "Amphipods",
-   "band": "shallows",
-   "depth": [
-    0,
-    5
-   ],
-   "state": "на камне",
-   "shape": "swarm",
-   "size_m": 0.02,
-   "colour": "#c9b28a",
-   "score": {
-    "truth": 9,
-    "teaching": 6,
-    "readable": 4,
-    "novelty": 9,
-    "safety": 10
-   },
-   "total": 38,
-   "parts": [
-    {
-     "name": "swarm-zone",
-     "shape": "box",
-     "size": [
-      0.02,
-      0.02,
-      0.02
-     ],
-     "pos": [
-      0,
-      0.01,
-      0
-     ],
-     "color": "#c9b28a",
-     "flags": {
-      "zone": true
-     }
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -2707,51 +2897,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "lymnaea.shallows.1",
-   "item": "lymnaea",
-   "category": "life",
-   "ru": "Прудовик на камне: на траве",
-   "en": "Pond snail",
-   "band": "shallows",
-   "depth": [
-    0,
-    5
-   ],
-   "state": "на траве",
-   "shape": "shell",
-   "size_m": 0.04,
-   "colour": "#8a7a5a",
-   "score": {
-    "truth": 9,
-    "teaching": 7,
-    "readable": 6,
-    "novelty": 9,
-    "safety": 10
-   },
-   "total": 41,
-   "parts": [
-    {
-     "name": "shell",
-     "shape": "box",
-     "size": [
-      0.04,
-      0.024,
-      0.032
-     ],
-     "pos": [
-      0,
-      0.012,
-      0
-     ],
-     "color": "#8a7a5a"
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -2798,54 +2945,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "plankton.shelf.1",
-   "item": "plankton",
-   "category": "life",
-   "ru": "Облако рачков-планктона: на границе слоя",
-   "en": "Zooplankton cloud",
-   "band": "shelf",
-   "depth": [
-    5,
-    20
-   ],
-   "state": "на границе слоя",
-   "shape": "cloud",
-   "size_m": 1.5,
-   "colour": "#d6e2e0",
-   "score": {
-    "truth": 9,
-    "teaching": 6,
-    "readable": 5,
-    "novelty": 8,
-    "safety": 10
-   },
-   "total": 41,
-   "parts": [
-    {
-     "name": "cloud-zone",
-     "shape": "box",
-     "size": [
-      1.5,
-      0.02,
-      1.5
-     ],
-     "pos": [
-      0,
-      0.01,
-      0
-     ],
-     "color": "#d6e2e0",
-     "flags": {
-      "zone": true
-     }
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -2892,54 +2993,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "shells.shallows.1",
-   "item": "shells",
-   "category": "life",
-   "ru": "Россыпь пустых раковин: в гальке",
-   "en": "Empty shells",
-   "band": "shallows",
-   "depth": [
-    0,
-    5
-   ],
-   "state": "в гальке",
-   "shape": "shells",
-   "size_m": 0.3,
-   "colour": "#d8d0bc",
-   "score": {
-    "truth": 8,
-    "teaching": 7,
-    "readable": 6,
-    "novelty": 8,
-    "safety": 10
-   },
-   "total": 39,
-   "parts": [
-    {
-     "name": "shells-zone",
-     "shape": "box",
-     "size": [
-      0.3,
-      0.02,
-      0.3
-     ],
-     "pos": [
-      0,
-      0.01,
-      0
-     ],
-     "color": "#d8d0bc",
-     "flags": {
-      "zone": true
-     }
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -2986,7 +3041,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -3033,7 +3089,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -3080,54 +3137,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "nitchatka.shallows.1",
-   "item": "nitchatka",
-   "category": "plant",
-   "ru": "Нитчатка на камнях: на свае",
-   "en": "Filamentous algae",
-   "band": "shallows",
-   "depth": [
-    0,
-    5
-   ],
-   "state": "на свае",
-   "shape": "fuzz",
-   "size_m": 0.2,
-   "colour": "#6a8a3a",
-   "score": {
-    "truth": 9,
-    "teaching": 6,
-    "readable": 6,
-    "novelty": 8,
-    "safety": 10
-   },
-   "total": 39,
-   "parts": [
-    {
-     "name": "fuzz-zone",
-     "shape": "box",
-     "size": [
-      0.2,
-      0.02,
-      0.2
-     ],
-     "pos": [
-      0,
-      0.01,
-      0
-     ],
-     "color": "#6a8a3a",
-     "flags": {
-      "zone": true
-     }
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -3231,111 +3242,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "rdest.shallows.1",
-   "item": "rdest",
-   "category": "plant",
-   "ru": "Рдест: редкий",
-   "en": "Pondweed",
-   "band": "shallows",
-   "depth": [
-    0,
-    5
-   ],
-   "state": "редкий",
-   "shape": "stems",
-   "size_m": 0.8,
-   "colour": "#6d8a4c",
-   "score": {
-    "truth": 9,
-    "teaching": 6,
-    "readable": 8,
-    "novelty": 9,
-    "safety": 10
-   },
-   "total": 42,
-   "parts": [
-    {
-     "name": "stems-0",
-     "shape": "box",
-     "size": [
-      0.046,
-      0.8,
-      0.046
-     ],
-     "pos": [
-      -0.3,
-      0.4,
-      0.0
-     ],
-     "color": "#6d8a4c"
-    },
-    {
-     "name": "stems-1",
-     "shape": "box",
-     "size": [
-      0.046,
-      0.8,
-      0.046
-     ],
-     "pos": [
-      -0.18,
-      0.4,
-      0.08
-     ],
-     "color": "#6d8a4c"
-    },
-    {
-     "name": "stems-2",
-     "shape": "box",
-     "size": [
-      0.046,
-      0.8,
-      0.046
-     ],
-     "pos": [
-      -0.06,
-      0.4,
-      0.0
-     ],
-     "color": "#6d8a4c"
-    },
-    {
-     "name": "stems-3",
-     "shape": "box",
-     "size": [
-      0.046,
-      0.8,
-      0.046
-     ],
-     "pos": [
-      0.06,
-      0.4,
-      0.08
-     ],
-     "color": "#6d8a4c"
-    },
-    {
-     "name": "stems-4",
-     "shape": "box",
-     "size": [
-      0.046,
-      0.8,
-      0.046
-     ],
-     "pos": [
-      0.18,
-      0.4,
-      0.0
-     ],
-     "color": "#6d8a4c"
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -3469,141 +3377,161 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
-   "id": "trostnik.shallows.1",
-   "item": "trostnik",
+   "id": "urut.shallows.0",
+   "item": "urut",
    "category": "plant",
-   "ru": "Тростник у берега: редкий",
-   "en": "Shore reeds",
+   "ru": "Уруть: густая",
+   "en": "Water milfoil",
    "band": "shallows",
    "depth": [
     0,
-    1
+    5
    ],
-   "state": "редкий",
-   "shape": "reeds",
-   "size_m": 2.0,
-   "colour": "#8a8a52",
+   "state": "густая",
+   "shape": "stems",
+   "size_m": 0.7,
+   "colour": "#4a6a3a",
    "score": {
-    "truth": 9,
+    "truth": 7,
     "teaching": 5,
-    "readable": 9,
-    "novelty": 8,
+    "readable": 7,
+    "novelty": 9,
     "safety": 10
    },
-   "total": 41,
+   "total": 38,
    "parts": [
     {
-     "name": "reeds-0",
+     "name": "stems-0",
      "shape": "box",
      "size": [
-      0.07,
-      2.0,
-      0.07
-     ],
-     "pos": [
-      -0.42,
-      1.0,
-      0.0
-     ],
-     "color": "#8a8a52"
-    },
-    {
-     "name": "reeds-1",
-     "shape": "box",
-     "size": [
-      0.07,
-      2.0,
-      0.07
+      0.044,
+      0.7,
+      0.044
      ],
      "pos": [
       -0.3,
-      1.0,
-      0.08
+      0.35,
+      0.0
      ],
-     "color": "#8a8a52"
+     "color": "#4a6a3a"
     },
     {
-     "name": "reeds-2",
+     "name": "stems-1",
      "shape": "box",
      "size": [
-      0.07,
-      2.0,
-      0.07
+      0.044,
+      0.7,
+      0.044
      ],
      "pos": [
       -0.18,
-      1.0,
-      0.0
+      0.35,
+      0.08
      ],
-     "color": "#8a8a52"
+     "color": "#4a6a3a"
     },
     {
-     "name": "reeds-3",
+     "name": "stems-2",
      "shape": "box",
      "size": [
-      0.07,
-      2.0,
-      0.07
+      0.044,
+      0.7,
+      0.044
      ],
      "pos": [
       -0.06,
-      1.0,
-      0.08
+      0.35,
+      0.0
      ],
-     "color": "#8a8a52"
+     "color": "#4a6a3a"
     },
     {
-     "name": "reeds-4",
+     "name": "stems-3",
      "shape": "box",
      "size": [
-      0.07,
-      2.0,
-      0.07
+      0.044,
+      0.7,
+      0.044
      ],
      "pos": [
       0.06,
-      1.0,
-      0.0
+      0.35,
+      0.08
      ],
-     "color": "#8a8a52"
+     "color": "#4a6a3a"
     },
     {
-     "name": "reeds-5",
+     "name": "stems-4",
      "shape": "box",
      "size": [
-      0.07,
-      2.0,
-      0.07
+      0.044,
+      0.7,
+      0.044
      ],
      "pos": [
       0.18,
-      1.0,
-      0.08
-     ],
-     "color": "#8a8a52"
-    },
-    {
-     "name": "reeds-6",
-     "shape": "box",
-     "size": [
-      0.07,
-      2.0,
-      0.07
-     ],
-     "pos": [
-      0.3,
-      1.0,
+      0.35,
       0.0
      ],
-     "color": "#8a8a52"
+     "color": "#4a6a3a"
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
+   }
+  },
+  {
+   "id": "blacksilt.shallows.0",
+   "item": "blacksilt",
+   "category": "shelf",
+   "ru": "Чёрный железистый ил: пятно",
+   "en": "Black ferrous silt",
+   "band": "shallows",
+   "depth": [
+    0,
+    5
+   ],
+   "state": "пятно",
+   "shape": "silt",
+   "size_m": 2.0,
+   "colour": "#2a2a28",
+   "score": {
+    "truth": 8,
+    "teaching": 6,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 39,
+   "parts": [
+    {
+     "name": "silt-zone",
+     "shape": "box",
+     "size": [
+      2.0,
+      0.02,
+      2.0
+     ],
+     "pos": [
+      0,
+      0.01,
+      0
+     ],
+     "color": "#2a2a28",
+     "flags": {
+      "zone": true
+     }
+    }
+   ],
+   "flags": {
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -3647,7 +3575,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -3691,7 +3620,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -3735,51 +3665,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "clay.shelf.1",
-   "item": "clay",
-   "category": "shelf",
-   "ru": "Глинистый выход: промоина",
-   "en": "Clay outcrop",
-   "band": "shelf",
-   "depth": [
-    5,
-    20
-   ],
-   "state": "промоина",
-   "shape": "outcrop",
-   "size_m": 1.5,
-   "colour": "#9a7a5a",
-   "score": {
-    "truth": 9,
-    "teaching": 5,
-    "readable": 6,
-    "novelty": 8,
-    "safety": 10
-   },
-   "total": 38,
-   "parts": [
-    {
-     "name": "outcrop",
-     "shape": "box",
-     "size": [
-      1.5,
-      0.75,
-      1.2000000000000002
-     ],
-     "pos": [
-      0,
-      0.375,
-      0
-     ],
-     "color": "#9a7a5a"
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -3826,54 +3713,56 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
-   "id": "gravel.shallows.1",
-   "item": "gravel",
+   "id": "quartz.shallows.0",
+   "item": "quartz",
    "category": "shelf",
-   "ru": "Галечное поле: крупная",
-   "en": "Gravel field",
+   "ru": "Кварцевая галька: россыпь",
+   "en": "Quartz pebbles",
    "band": "shallows",
    "depth": [
     0,
     5
    ],
-   "state": "крупная",
+   "state": "россыпь",
    "shape": "gravel",
-   "size_m": 3.0,
-   "colour": "#9a8f80",
+   "size_m": 2.0,
+   "colour": "#e0dcd0",
    "score": {
-    "truth": 10,
+    "truth": 9,
     "teaching": 5,
     "readable": 7,
     "novelty": 7,
     "safety": 10
    },
-   "total": 39,
+   "total": 38,
    "parts": [
     {
      "name": "gravel-zone",
      "shape": "box",
      "size": [
-      3.0,
+      2.0,
       0.02,
-      3.0
+      2.0
      ],
      "pos": [
       0,
       0.01,
       0
      ],
-     "color": "#9a8f80",
+     "color": "#e0dcd0",
      "flags": {
       "zone": true
      }
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -3920,54 +3809,98 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
-   "id": "ripples.shallows.1",
-   "item": "ripples",
+   "id": "sandstone.shallows.0",
+   "item": "sandstone",
    "category": "shelf",
-   "ru": "Песчаная рябь: крупная",
-   "en": "Sand ripples",
+   "ru": "Красный песчаник: глыба",
+   "en": "Red sandstone",
    "band": "shallows",
    "depth": [
     0,
     5
    ],
-   "state": "крупная",
-   "shape": "ripples",
-   "size_m": 3.0,
-   "colour": "#c8b890",
+   "state": "глыба",
+   "shape": "boulder",
+   "size_m": 0.8,
+   "colour": "#a0503a",
    "score": {
-    "truth": 10,
-    "teaching": 7,
-    "readable": 8,
-    "novelty": 6,
+    "truth": 9,
+    "teaching": 6,
+    "readable": 9,
+    "novelty": 8,
     "safety": 10
    },
-   "total": 41,
+   "total": 42,
    "parts": [
     {
-     "name": "ripples-zone",
+     "name": "boulder",
      "shape": "box",
      "size": [
-      3.0,
-      0.02,
-      3.0
+      0.8,
+      0.5599999999999999,
+      0.6400000000000001
      ],
      "pos": [
       0,
-      0.01,
+      0.27999999999999997,
       0
      ],
-     "color": "#c8b890",
-     "flags": {
-      "zone": true
-     }
+     "color": "#a0503a"
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
+   }
+  },
+  {
+   "id": "schist.shallows.0",
+   "item": "schist",
+   "category": "shelf",
+   "ru": "Сланцевая плитка: плитка",
+   "en": "Schist flags",
+   "band": "shallows",
+   "depth": [
+    0,
+    5
+   ],
+   "state": "плитка",
+   "shape": "slab",
+   "size_m": 0.6,
+   "colour": "#5a5f5a",
+   "score": {
+    "truth": 8,
+    "teaching": 5,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 38,
+   "parts": [
+    {
+     "name": "slab",
+     "shape": "box",
+     "size": [
+      0.6,
+      0.15,
+      0.48
+     ],
+     "pos": [
+      0,
+      0.075,
+      0
+     ],
+     "color": "#5a5f5a"
+    }
+   ],
+   "flags": {
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -4014,54 +3947,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "silt.slope.1",
-   "item": "silt",
-   "category": "shelf",
-   "ru": "Илистая равнина: со следами",
-   "en": "Silt plain",
-   "band": "slope",
-   "depth": [
-    20,
-    50
-   ],
-   "state": "со следами",
-   "shape": "silt",
-   "size_m": 3.0,
-   "colour": "#6a655a",
-   "score": {
-    "truth": 10,
-    "teaching": 7,
-    "readable": 5,
-    "novelty": 8,
-    "safety": 10
-   },
-   "total": 39,
-   "parts": [
-    {
-     "name": "silt-zone",
-     "shape": "box",
-     "size": [
-      3.0,
-      0.02,
-      3.0
-     ],
-     "pos": [
-      0,
-      0.01,
-      0
-     ],
-     "color": "#6a655a",
-     "flags": {
-      "zone": true
-     }
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -4105,7 +3992,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -4149,7 +4037,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -4196,54 +4085,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "spring.shallows.1",
-   "item": "spring",
-   "category": "shelf",
-   "ru": "Выход подводного источника: мерцание воды",
-   "en": "Spring seep",
-   "band": "shallows",
-   "depth": [
-    0,
-    5
-   ],
-   "state": "мерцание воды",
-   "shape": "seep",
-   "size_m": 0.6,
-   "colour": "#b8c8c0",
-   "score": {
-    "truth": 7,
-    "teaching": 8,
-    "readable": 7,
-    "novelty": 9,
-    "safety": 10
-   },
-   "total": 41,
-   "parts": [
-    {
-     "name": "seep-zone",
-     "shape": "box",
-     "size": [
-      0.6,
-      0.02,
-      0.6
-     ],
-     "pos": [
-      0,
-      0.01,
-      0
-     ],
-     "color": "#b8c8c0",
-     "flags": {
-      "zone": true
-     }
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -4287,7 +4130,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -4331,7 +4175,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": false,
+    "loot": "keep"
    }
   },
   {
@@ -4378,7 +4223,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": true,
+    "loot": null
    }
   },
   {
@@ -4425,7 +4271,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": true,
+    "loot": null
    }
   },
   {
@@ -4472,7 +4319,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": true,
+    "loot": null
    }
   },
   {
@@ -4519,7 +4367,344 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": true,
+    "loot": null
+   }
+  },
+  {
+   "id": "intwave.slope.0",
+   "item": "intwave",
+   "category": "water",
+   "ru": "Внутренняя волна на термоклине: граница",
+   "en": "Internal wave on the thermocline",
+   "band": "slope",
+   "depth": [
+    40,
+    50
+   ],
+   "state": "граница",
+   "shape": "intwave",
+   "size_m": 6.0,
+   "colour": "#b8d8e0",
+   "score": {
+    "truth": 9,
+    "teaching": 10,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 46,
+   "parts": [
+    {
+     "name": "intwave-zone",
+     "shape": "box",
+     "size": [
+      6.0,
+      0.02,
+      6.0
+     ],
+     "pos": [
+      0,
+      0.01,
+      0
+     ],
+     "color": "#b8d8e0",
+     "flags": {
+      "zone": true
+     }
+    }
+   ],
+   "flags": {
+    "noLoot": true,
+    "loot": null
+   }
+  },
+  {
+   "id": "intwave.slope.2",
+   "item": "intwave",
+   "category": "water",
+   "ru": "Внутренняя волна на термоклине: переход",
+   "en": "Internal wave on the thermocline",
+   "band": "slope",
+   "depth": [
+    40,
+    50
+   ],
+   "state": "переход",
+   "shape": "intwave",
+   "size_m": 6.0,
+   "colour": "#b8d8e0",
+   "score": {
+    "truth": 9,
+    "teaching": 10,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 46,
+   "parts": [
+    {
+     "name": "intwave-zone",
+     "shape": "box",
+     "size": [
+      6.0,
+      0.02,
+      6.0
+     ],
+     "pos": [
+      0,
+      0.01,
+      0
+     ],
+     "color": "#b8d8e0",
+     "flags": {
+      "zone": true
+     }
+    }
+   ],
+   "flags": {
+    "noLoot": true,
+    "loot": null
+   }
+  },
+  {
+   "id": "karman.shallows.0",
+   "item": "karman",
+   "category": "water",
+   "ru": "Вихревая дорожка за валуном: за валуном",
+   "en": "Vortex street behind a boulder",
+   "band": "shallows",
+   "depth": [
+    0,
+    5
+   ],
+   "state": "за валуном",
+   "shape": "eddy",
+   "size_m": 2.5,
+   "colour": "#a8c8d0",
+   "score": {
+    "truth": 10,
+    "teaching": 9,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 45,
+   "parts": [
+    {
+     "name": "eddy-zone",
+     "shape": "box",
+     "size": [
+      2.5,
+      0.02,
+      2.5
+     ],
+     "pos": [
+      0,
+      0.01,
+      0
+     ],
+     "color": "#a8c8d0",
+     "flags": {
+      "zone": true
+     }
+    }
+   ],
+   "flags": {
+    "noLoot": true,
+    "loot": null
+   }
+  },
+  {
+   "id": "karman.shallows.1",
+   "item": "karman",
+   "category": "water",
+   "ru": "Вихревая дорожка за валуном: за сваей",
+   "en": "Vortex street behind a boulder",
+   "band": "shallows",
+   "depth": [
+    0,
+    5
+   ],
+   "state": "за сваей",
+   "shape": "eddy",
+   "size_m": 2.5,
+   "colour": "#a8c8d0",
+   "score": {
+    "truth": 10,
+    "teaching": 9,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 45,
+   "parts": [
+    {
+     "name": "eddy-zone",
+     "shape": "box",
+     "size": [
+      2.5,
+      0.02,
+      2.5
+     ],
+     "pos": [
+      0,
+      0.01,
+      0
+     ],
+     "color": "#a8c8d0",
+     "flags": {
+      "zone": true
+     }
+    }
+   ],
+   "flags": {
+    "noLoot": true,
+    "loot": null
+   }
+  },
+  {
+   "id": "langmuir.shallows.0",
+   "item": "langmuir",
+   "category": "water",
+   "ru": "Ленгмюровские полосы под ветром: полосы",
+   "en": "Langmuir streaks",
+   "band": "shallows",
+   "depth": [
+    0,
+    5
+   ],
+   "state": "полосы",
+   "shape": "langmuir",
+   "size_m": 5.0,
+   "colour": "#d8ecf0",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "parts": [
+    {
+     "name": "langmuir-zone",
+     "shape": "box",
+     "size": [
+      5.0,
+      0.02,
+      5.0
+     ],
+     "pos": [
+      0,
+      0.01,
+      0
+     ],
+     "color": "#d8ecf0",
+     "flags": {
+      "zone": true
+     }
+    }
+   ],
+   "flags": {
+    "noLoot": true,
+    "loot": null
+   }
+  },
+  {
+   "id": "plume.shallows.0",
+   "item": "plume",
+   "category": "water",
+   "ru": "Шлейф речной воды у устья: у устья",
+   "en": "River plume",
+   "band": "shallows",
+   "depth": [
+    0,
+    5
+   ],
+   "state": "у устья",
+   "shape": "plume",
+   "size_m": 4.0,
+   "colour": "#b0b098",
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 44,
+   "parts": [
+    {
+     "name": "plume-zone",
+     "shape": "box",
+     "size": [
+      4.0,
+      0.02,
+      4.0
+     ],
+     "pos": [
+      0,
+      0.01,
+      0
+     ],
+     "color": "#b0b098",
+     "flags": {
+      "zone": true
+     }
+    }
+   ],
+   "flags": {
+    "noLoot": true,
+    "loot": null
+   }
+  },
+  {
+   "id": "plume.shallows.1",
+   "item": "plume",
+   "category": "water",
+   "ru": "Шлейф речной воды у устья: мутный",
+   "en": "River plume",
+   "band": "shallows",
+   "depth": [
+    0,
+    5
+   ],
+   "state": "мутный",
+   "shape": "plume",
+   "size_m": 4.0,
+   "colour": "#b0b098",
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 44,
+   "parts": [
+    {
+     "name": "plume-zone",
+     "shape": "box",
+     "size": [
+      4.0,
+      0.02,
+      4.0
+     ],
+     "pos": [
+      0,
+      0.01,
+      0
+     ],
+     "color": "#b0b098",
+     "flags": {
+      "zone": true
+     }
+    }
+   ],
+   "flags": {
+    "noLoot": true,
+    "loot": null
    }
   },
   {
@@ -4566,54 +4751,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "seiche.shallows.1",
-   "item": "seiche",
-   "category": "water",
-   "ru": "Сейшевое течение: сильное",
-   "en": "Seiche current",
-   "band": "shallows",
-   "depth": [
-    0,
-    5
-   ],
-   "state": "сильное",
-   "shape": "current",
-   "size_m": 4.0,
-   "colour": "#9ab8c0",
-   "score": {
-    "truth": 9,
-    "teaching": 7,
-    "readable": 5,
-    "novelty": 9,
-    "safety": 10
-   },
-   "total": 40,
-   "parts": [
-    {
-     "name": "current-zone",
-     "shape": "box",
-     "size": [
-      4.0,
-      0.02,
-      4.0
-     ],
-     "pos": [
-      0,
-      0.01,
-      0
-     ],
-     "color": "#9ab8c0",
-     "flags": {
-      "zone": true
-     }
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": true,
+    "loot": null
    }
   },
   {
@@ -4660,7 +4799,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": true,
+    "loot": null
    }
   },
   {
@@ -4707,7 +4847,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": true,
+    "loot": null
    }
   },
   {
@@ -4754,54 +4895,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
-   }
-  },
-  {
-   "id": "snow.shelf.1",
-   "item": "snow",
-   "category": "water",
-   "ru": "Взвесь «морского снега»: густая",
-   "en": "Marine snow",
-   "band": "shelf",
-   "depth": [
-    5,
-    20
-   ],
-   "state": "густая",
-   "shape": "particles",
-   "size_m": 3.0,
-   "colour": "#e0e8e8",
-   "score": {
-    "truth": 10,
-    "teaching": 6,
-    "readable": 6,
-    "novelty": 5,
-    "safety": 10
-   },
-   "total": 37,
-   "parts": [
-    {
-     "name": "particles-zone",
-     "shape": "box",
-     "size": [
-      3.0,
-      0.02,
-      3.0
-     ],
-     "pos": [
-      0,
-      0.01,
-      0
-     ],
-     "color": "#e0e8e8",
-     "flags": {
-      "zone": true
-     }
-    }
-   ],
-   "flags": {
-    "noLoot": true
+    "noLoot": true,
+    "loot": null
    }
   },
   {
@@ -4848,7 +4943,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": true,
+    "loot": null
    }
   },
   {
@@ -4895,7 +4991,8 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": true,
+    "loot": null
    }
   },
   {
@@ -4942,54 +5039,56 @@
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": true,
+    "loot": null
    }
   },
   {
-   "id": "turbid.shallows.1",
-   "item": "turbid",
+   "id": "upwelling.slope.0",
+   "item": "upwelling",
    "category": "water",
-   "ru": "Облако мути: у дна",
-   "en": "Turbidity cloud",
-   "band": "shallows",
+   "ru": "Подъём глубинной воды у свала: кромка",
+   "en": "Upwelling at the drop",
+   "band": "slope",
    "depth": [
-    0,
-    5
+    20,
+    50
    ],
-   "state": "у дна",
-   "shape": "cloud",
-   "size_m": 2.0,
-   "colour": "#8a8a70",
+   "state": "кромка",
+   "shape": "upwelling",
+   "size_m": 4.0,
+   "colour": "#98b8c8",
    "score": {
-    "truth": 9,
-    "teaching": 6,
+    "truth": 7,
+    "teaching": 8,
     "readable": 6,
-    "novelty": 7,
+    "novelty": 9,
     "safety": 10
    },
-   "total": 38,
+   "total": 41,
    "parts": [
     {
-     "name": "cloud-zone",
+     "name": "upwelling-zone",
      "shape": "box",
      "size": [
-      2.0,
+      4.0,
       0.02,
-      2.0
+      4.0
      ],
      "pos": [
       0,
       0.01,
       0
      ],
-     "color": "#8a8a70",
+     "color": "#98b8c8",
      "flags": {
       "zone": true
      }
     }
    ],
    "flags": {
-    "noLoot": true
+    "noLoot": true,
+    "loot": null
    }
   }
  ]

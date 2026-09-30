@@ -258,7 +258,8 @@ async function main() {
   }
 
   // The 99 objects of Issyk-Kul (scripts/lake/lake_objects.py): each is
-  // a small kit of primitives, seen in the dive, never loot.
+  // a small kit of primitives; loot follows flags.loot (operator,
+  // 2026-09-30), never for water, birds or the bulla with its cross.
   if (only === 'lake' || !only) {
     report.lake = 0;
     const lake = JSON.parse(fs.readFileSync(LAKE, 'utf8')).objects;
@@ -267,7 +268,7 @@ async function main() {
       try {
         const res = await page.evaluate((spec) => window.sceneToGlb(spec),
           { id, parts: obj.parts, lights: [],
-            userData: { noLoot: true, category: obj.category } });
+            userData: { ...obj.flags, category: obj.category } });
         write('lake', id, res, {
           name: obj.ru, category: obj.category, band: obj.band,
           depth_m: obj.depth, flags: obj.flags,

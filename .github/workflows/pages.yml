@@ -1,0 +1,91 @@
+# Publish the ludus front-end to GitHub Pages so the operator can open it
+# in a real browser and in the Quest 3 browser (operator, 2026-09-30:
+# "сделай деплой, я проверю в реальности").
+#
+# Why Pages as well as Firebase: the Firebase deploy (deploy.yml) needs
+# the secret FIREBASE_SERVICE_ACCOUNT and the variable
+# LUDUS_FIREBASE_PROJECT, which are not set yet, so it skips.  Pages
+# needs no secret for a public repository.
+#
+# What works there: the static game, the ROV lake view, data, art and the
+# service worker.  What does not: /api (Cloud Functions); the game falls
+# back to its offline loop and outbox, as it does without a network.
+#
+# Layout: the site lives at https://leonidy431.github.io/ludus/, and the
+# code asks for /ludus/<file>, so the contents of public/ludus/ go to
+# the site root and public/index.html becomes its index page.
+#
+# One-time setting: Settings -> Pages -> Source: "GitHub Actions".  The
+# configure step below tries to enable it by itself; if the token may
+# not, the job summary says so.
+name: Deploy (GitHub Pages)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: ludus-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # The same gates as the PR checks, so a broken tree never ships.
+      - name: Front-end checks
+        run: |
+          for f in public/ludus/*.js; do node --check "$f"; done
+          node --test tests/*.test.js
+
+      - name: Assemble the site
+        run: |
+          mkdir -p site
+          cp -r public/ludus/. site/
+          cp public/index.html site/index.html
+          cp -r public/vr site/vr
+          # SPA routes fall back to the game page, as Firebase rewrites do.
+          cp site/index.html site/404.html
+          touch site/.nojekyll
+
+      - name: Enable Pages
+        id: pages
+        continue-on-error: true
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Report a missing Pages setting
+        if: steps.pages.outcome != 'success'
+        run: |
+          {
+            echo "### Pages is not enabled yet"
+            echo "Settings -> Pages -> Source: GitHub Actions, then re-run."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

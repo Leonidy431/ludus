@@ -5691,5 +5691,140 @@
    "LICENSE.txt"
   ],
   "slot": "DEF-057"
+ },
+ {
+  "repo": "https://github.com/CorsixTH/CorsixTH",
+  "commit": "c0435336e3926b7d602485ff6739da3ac142bfd5",
+  "license_file": "LICENSE.txt",
+  "path": "CorsixTH/Lua/objects/plant.lua",
+  "kind": "code",
+  "hits": [
+   "plant"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-058"
+ },
+ {
+  "repo": "https://github.com/bevyengine/bevy",
+  "commit": "92a29e701a6b0bf8846484c3999c2ba97d90dd06",
+  "license_file": "LICENSE-APACHE",
+  "path": "crates/bevy_post_process/src/effect_stack/chromatic_aberration.rs",
+  "kind": "code",
+  "hits": [
+   "crate",
+   "post"
+  ],
+  "score": 2,
+  "attribution": [
+   "CREDITS.md"
+  ],
+  "slot": "DEF-059"
+ },
+ {
+  "repo": "https://github.com/bevyengine/bevy",
+  "commit": "92a29e701a6b0bf8846484c3999c2ba97d90dd06",
+  "license_file": "LICENSE-APACHE",
+  "path": "crates/bevy_post_process/src/effect_stack/lens_distortion.rs",
+  "kind": "code",
+  "hits": [
+   "crate",
+   "post"
+  ],
+  "score": 2,
+  "attribution": [
+   "CREDITS.md"
+  ],
+  "slot": "DEF-059"
+ },
+ {
+  "repo": "https://github.com/bevyengine/bevy",
+  "commit": "92a29e701a6b0bf8846484c3999c2ba97d90dd06",
+  "license_file": "LICENSE-APACHE",
+  "path": "crates/bevy_post_process/src/effect_stack/mod.rs",
+  "kind": "code",
+  "hits": [
+   "crate",
+   "post"
+  ],
+  "score": 2,
+  "attribution": [
+   "CREDITS.md"
+  ],
+  "slot": "DEF-059"
+ },
+ {
+  "repo": "https://github.com/bevyengine/bevy",
+  "commit": "92a29e701a6b0bf8846484c3999c2ba97d90dd06",
+  "license_file": "LICENSE-APACHE",
+  "path": "crates/bevy_post_process/src/effect_stack/vignette.rs",
+  "kind": "code",
+  "hits": [
+   "crate",
+   "post"
+  ],
+  "score": 2,
+  "attribution": [
+   "CREDITS.md"
+  ],
+  "slot": "DEF-059"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/Beam.java",
+  "kind": "code",
+  "hits": [
+   "beam"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-059"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Crates/DuplicateUnitCrateAction.cs",
+  "kind": "code",
+  "hits": [
+   "crate"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-059"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Crates/GiveUnitCrateAction.cs",
+  "kind": "code",
+  "hits": [
+   "crate"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-059"
+ },
+ {
+  "repo": "https://github.com/bevyengine/bevy",
+  "commit": "92a29e701a6b0bf8846484c3999c2ba97d90dd06",
+  "license_file": "LICENSE-APACHE",
+  "path": "crates/bevy_app/src/propagate.rs",
+  "kind": "code",
+  "hits": [
+   "crate"
+  ],
+  "score": 1,
+  "attribution": [
+   "CREDITS.md"
+  ],
+  "slot": "DEF-059"
  }
 ]

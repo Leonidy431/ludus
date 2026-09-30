@@ -137,6 +137,21 @@
     ctx.restore();
   }
 
+  // Stroke n lines of m points each; point(i, k) gives the k-th point of
+  // line i.  The style of the seiche current: thin, half-transparent.
+  function flowLines(ctx, n, m, point) {
+    ctx.globalAlpha = 0.7;
+    ctx.lineWidth = 2;
+    for (let i = 0; i < n; i++) {
+      ctx.beginPath();
+      for (let k = 0; k < m; k++) {
+        const [px, py] = point(i, k);
+        k ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
+      }
+      ctx.stroke();
+    }
+  }
+
   // One simple drawing per shape family; colours come from the data.
   function drawObject(ctx, o, x, floorY, t) {
     const c = o.colour;
@@ -212,10 +227,6 @@
           ctx.fill();
         }
         break;
-      case 'layer':
-        ctx.globalAlpha = 0.18;
-        ctx.fillRect(x - 200, floorY * 0.45 + 3 * Math.sin(t), 400, 10);
-        break;
       case 'net':
         ctx.globalAlpha = 0.8;
         ctx.lineWidth = 1;
@@ -252,6 +263,52 @@
           }
           ctx.stroke();
         }
+        break;
+      // The water's motion in the manner of the seiche current, which
+      // the operator liked (2026-09-30: "такого больше"): moving lines
+      // that trace the flow, each after its own physics.
+      case 'eddy':
+        // A Karman vortex street: pairs of whirls shed behind an
+        // obstacle, alternating sides and drifting downstream.
+        flowLines(ctx, 5, 14, (i, k) => {
+          const cx = x - s + i * s * 0.5 + ((t * 20) % (s * 0.5));
+          const cy = y - 30 + (i % 2 ? 14 : -14);
+          const a = k / 13 * Math.PI * 2 * (i % 2 ? 1 : -1) + t * 2;
+          const r = 4 + k * 1.1;
+          return [cx + r * Math.cos(a), cy + r * 0.6 * Math.sin(a)];
+        });
+        break;
+      case 'intwave': case 'layer':
+        // An internal wave on the density step: long, slow and tall,
+        // because the layers differ little in weight.
+        flowLines(ctx, 4, 16, (i, k) => [x - 200 + k * 26,
+          floorY * 0.45 + i * 6 + 14 * Math.sin(k * 0.45 - t * 0.6 + i * 0.3)]);
+        break;
+      case 'plume':
+        // Cold, muddy river water slides under the lake as a fan.
+        flowLines(ctx, 6, 12, (i, k) => [x - s + k * s / 6,
+          y - 10 + (i - 2.5) * (2 + k * 1.6) + 3 * Math.sin(k + t * 2 + i)]);
+        break;
+      case 'langmuir':
+        // Wind rolls the surface into parallel cells; lines of foam and
+        // plankton gather where the rolls meet.
+        flowLines(ctx, 5, 10, (i, k) => [x - s + i * s * 0.45
+          + 3 * Math.sin(k + t * 1.5), 6 + k * 7]);
+        break;
+      case 'upwelling':
+        // Deep water rising at the edge of the drop, spreading as it
+        // meets lighter water above.
+        flowLines(ctx, 5, 12, (i, k) => [x + (i - 2) * (6 + k * 3)
+          + 3 * Math.sin(k + t * 2), y + 10 - k * 8]);
+        break;
+      case 'ripples': case 'silt': case 'cloud':
+        // Sand ripples, a trail of silt and a drifting cloud: all read
+        // as lines shaped by the same slow current.
+        flowLines(ctx, o.shape === 'cloud' ? 6 : 4, 12, (i, k) => [
+          x - s * 0.9 + k * s * 0.15,
+          (o.shape === 'cloud' ? y - 30 : y + 4) + i * 5
+          + (o.shape === 'ripples' ? 3 * Math.sin(k * 1.6)
+            : 4 * Math.sin(k * 0.8 + t * 1.2 + i))]);
         break;
       default:
         // Fields and clouds: a patch on or near the floor, outlined.
@@ -367,7 +424,7 @@
     return { fish, finds, objects };
   }
 
-  const api = { scene, inView, waterColour, drawPanorama, panorama,
+  const api = { scene, inView, waterColour, drawPanorama, panorama, drawObject,
     PANO_W, PANO_H, FOV_DEG };
   if (typeof module === 'object' && module.exports) {
     module.exports = api;

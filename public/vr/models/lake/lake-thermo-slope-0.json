@@ -16,7 +16,8 @@
   50
  ],
  "flags": {
-  "noLoot": true
+  "noLoot": true,
+  "loot": null
  },
  "source": "public/ludus/data/lake-objects-99.json",
  "method": "lake-kit-primitives"

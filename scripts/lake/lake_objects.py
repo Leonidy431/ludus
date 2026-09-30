@@ -39,19 +39,19 @@ BANDS = [('shallows', 0, 5), ('shelf', 5, 20), ('slope', 20, 50),
 #  novelty, shape, size m, colour, states).  Shapes map to 3D parts.
 ITEMS = [
     # Fish: the species of data/issyk-kul-fish.json.
-    ('chebak', 'fish', 'Иссык-кульский чебак', 'Issyk-Kul dace', (2, 40),
+    ('chebak', 'fish', 'Иссык-кульский чебак', 'Issyk-Kul dace', (1, 60),
      10, 6, 8, 5, 'fish', 0.30, '#b9c4c9',
      ['стайка', 'одиночка', 'молодь', 'у дна', 'в тени камня']),
     ('chebachok', 'fish', 'Иссык-кульский чебачок', 'Small dace', (1, 15),
      10, 5, 7, 5, 'fish', 0.14, '#cfd8da',
      ['стайка', 'молодь', 'у берега', 'в траве', 'у поверхности']),
-    ('marinka', 'fish', 'Иссык-кульская маринка', 'Marinka', (3, 60),
+    ('marinka', 'fish', 'Иссык-кульская маринка', 'Marinka', (1, 40),
      10, 6, 8, 6, 'fish', 0.45, '#8f8a6e',
      ['одиночка', 'пара', 'у дна', 'кормится', 'в тени камня']),
     ('osman', 'fish', 'Голый осман', 'Naked osman', (1, 20), 10, 5, 7, 6,
      'fish', 0.35, '#7d7a66', ['одиночка', 'у дна', 'у устья', 'кормится',
                                'в тени камня']),
-    ('gubach', 'fish', 'Пятнистый губач', 'Stone loach', (1, 30), 10, 7,
+    ('gubach', 'fish', 'Пятнистый губач', 'Stone loach', (1, 100), 10, 7,
      5, 7, 'fish', 0.12, '#9a8f73', ['под камнем', 'на песке', 'в гальке',
                                      'замер', 'кормится']),
     ('ishkhan', 'fish', 'Севанская форель', 'Sevan trout', (15, 120), 9,
@@ -67,6 +67,31 @@ ITEMS = [
     ('sig', 'fish', 'Сиг', 'Whitefish', (10, 80), 9, 5, 7, 6, 'fish', 0.40,
      '#c6ccce', ['стайка', 'на границе слоя', 'в глубине', 'одиночка',
                  'пара']),
+    # The rest of the species list (docs/ISSYK_KUL_FISH.md): river-mouth
+    # natives and the accidental or planned introductions that live on.
+    ('osman-scaly', 'fish', 'Чешуйчатый осман', 'Scaly osman', (0, 5), 7,
+     5, 7, 8, 'fish', 0.35, '#8a8266', ['у устья', 'одиночка', 'в струе']),
+    ('loach-tibet', 'fish', 'Тибетский голец', 'Tibetan stone loach',
+     (0, 5), 7, 6, 5, 8, 'fish', 0.11, '#8c8468', ['под камнем', 'у устья',
+                                                   'в гальке']),
+    ('loach-grey', 'fish', 'Серый голец', 'Grey stone loach', (0, 30), 7,
+     6, 5, 8, 'fish', 0.13, '#80806e', ['на песке', 'в траве', 'замер']),
+    ('golyan', 'fish', 'Иссык-кульский гольян', 'Issyk-Kul minnow', (0, 3),
+     8, 6, 5, 9, 'fish', 0.07, '#9aa08a', ['стайка', 'у ключа', 'у устья']),
+    ('raduzhnaya', 'fish', 'Радужная форель', 'Rainbow trout', (2, 40), 8,
+     5, 8, 6, 'fish', 0.50, '#b0a0a8', ['одиночка', 'охотится', 'у садка']),
+    ('lin', 'fish', 'Линь', 'Tench', (1, 10), 8, 5, 7, 7, 'fish', 0.35,
+     '#6a7a3a', ['в траве', 'у дна', 'одиночка']),
+    ('karas', 'fish', 'Серебряный карась', 'Prussian carp', (0, 10), 8, 4,
+     7, 6, 'fish', 0.25, '#b8b090', ['стайка', 'в траве', 'у берега']),
+    ('amur-chebachok', 'fish', 'Амурский чебачок', 'Stone moroko', (0, 5),
+     8, 6, 5, 8, 'fish', 0.08, '#b0b4a8', ['стайка', 'у берега',
+                                           'в траве']),
+    ('amur-white', 'fish', 'Белый амур', 'Grass carp', (0, 8), 6, 4, 8, 7,
+     'fish', 0.80, '#9a9a70', ['одиночка', 'в траве', 'кормится']),
+    ('tolstolob', 'fish', 'Белый толстолобик', 'Silver carp', (0, 10), 6,
+     4, 8, 7, 'fish', 0.70, '#c8ccc8', ['стайка', 'у поверхности',
+                                        'одиночка']),
     # Small life of the bottom and the water.
     ('gammarus', 'life', 'Бокоплавы', 'Amphipods', (0, 60), 9, 6, 4, 9,
      'swarm', 0.02, '#c9b28a', ['рой у дна', 'на камне', 'в траве']),
@@ -92,6 +117,8 @@ ITEMS = [
     ('nitchatka', 'plant', 'Нитчатка на камнях', 'Filamentous algae',
      (0, 10), 9, 6, 6, 8, 'fuzz', 0.2, '#6a8a3a', ['на камне', 'на свае',
                                                    'на сети']),
+    ('urut', 'plant', 'Уруть', 'Water milfoil', (0, 6), 7, 5, 7, 9,
+     'stems', 0.7, '#4a6a3a', ['густая', 'редкая', 'колышется']),
     # The shelf itself.
     ('ripples', 'shelf', 'Песчаная рябь', 'Sand ripples', (0, 30), 10, 7,
      8, 6, 'ripples', 3.0, '#c8b890', ['мелкая', 'крупная', 'под течением']),
@@ -113,6 +140,16 @@ ITEMS = [
     ('spring', 'shelf', 'Выход подводного источника', 'Spring seep',
      (0, 20), 7, 8, 7, 9, 'seep', 0.6, '#b8c8c0',
      ['струйка', 'мерцание воды', 'ключ в песке']),
+    # All the stones: what the shores of Terskey and Kungey shed.
+    ('sandstone', 'shelf', 'Красный песчаник', 'Red sandstone', (0, 20), 9,
+     6, 9, 8, 'boulder', 0.8, '#a0503a', ['глыба', 'окатыш', 'плита']),
+    ('quartz', 'shelf', 'Кварцевая галька', 'Quartz pebbles', (0, 20), 9, 5,
+     7, 7, 'gravel', 2.0, '#e0dcd0', ['россыпь', 'у кромки', 'в песке']),
+    ('schist', 'shelf', 'Сланцевая плитка', 'Schist flags', (0, 40), 8, 5,
+     7, 8, 'slab', 0.6, '#5a5f5a', ['плитка', 'осыпь', 'в иле']),
+    ('blacksilt', 'shelf', 'Чёрный железистый ил', 'Black ferrous silt',
+     (0, 30), 8, 6, 6, 9, 'silt', 2.0, '#2a2a28', ['пятно', 'у берега',
+                                                   'под песком']),
     # Finds of the drowned settlements (neutral things only).
     ('khum', 'find', 'Хум — большой глиняный сосуд', 'Khum, a storage jar',
      (2, 40), 9, 6, 9, 9, 'jar', 0.9, '#9a6a45',
@@ -145,6 +182,16 @@ ITEMS = [
      9, 'anchor', 0.5, '#6a6660', ['один', 'с верёвкой', 'в иле']),
     ('balka', 'find', 'Деревянная балка', 'Timber beam', (3, 40), 9, 5, 8,
      7, 'beam', 3.0, '#5a4630', ['целая', 'сгнившая', 'в иле']),
+    # Finds named by the underwater expeditions (docs/ISSYK_KUL_FISH.md,
+    # section 4): glazed brick, slag, smith's tongs, animal bones.
+    ('glazur', 'find', 'Глазурованный кирпич', 'Glazed brick', (2, 30), 9,
+     6, 8, 9, 'brick', 0.3, '#3a7a8a', ['один', 'в кладке', 'скол']),
+    ('shlak', 'find', 'Металлургический шлак', 'Smelting slag', (2, 30), 9,
+     6, 6, 9, 'shard', 0.2, '#3a3430', ['кусок', 'россыпь', 'в иле']),
+    ('kleshchi', 'find', 'Кузнечные клещи', "Smith's tongs", (2, 30), 9, 7,
+     7, 9, 'shard', 0.4, '#4a4a48', ['в песке', 'у кладки', 'обросшие']),
+    ('kosti', 'find', 'Кости животных', 'Animal bones', (2, 30), 9, 6, 6,
+     8, 'sherds', 0.4, '#d8d0b8', ['россыпь', 'у очага', 'в иле']),
     # The water's own phenomena.
     ('caustics', 'water', 'Солнечная сетка на дне', 'Sun caustics',
      (0, 8), 10, 7, 9, 7, 'light', 3.0, '#e8f0c8',
@@ -165,6 +212,23 @@ ITEMS = [
                                      'оседает']),
     ('seiche', 'water', 'Сейшевое течение', 'Seiche current', (0, 60), 9,
      7, 5, 9, 'current', 4.0, '#9ab8c0', ['слабое', 'сильное', 'разворот']),
+    # More of the water's motion, drawn as flow lines like the seiche
+    # current (operator, 2026-09-30: "такого больше").
+    ('karman', 'water', 'Вихревая дорожка за валуном',
+     'Vortex street behind a boulder', (0, 60), 10, 9, 7, 9, 'eddy', 2.5,
+     '#a8c8d0', ['за валуном', 'за сваей', 'гаснет']),
+    ('intwave', 'water', 'Внутренняя волна на термоклине',
+     'Internal wave on the thermocline', (40, 110), 9, 10, 7, 9,
+     'intwave', 6.0, '#b8d8e0', ['граница', 'гребень', 'переход']),
+    ('plume', 'water', 'Шлейф речной воды у устья', 'River plume',
+     (0, 15), 9, 8, 8, 9, 'plume', 4.0, '#b0b098', ['у устья', 'мутный',
+                                                    'холодный']),
+    ('langmuir', 'water', 'Ленгмюровские полосы под ветром',
+     'Langmuir streaks', (0, 6), 9, 7, 7, 9, 'langmuir', 5.0, '#d8ecf0',
+     ['полосы', 'под ветром', 'гаснут']),
+    ('upwelling', 'water', 'Подъём глубинной воды у свала',
+     'Upwelling at the drop', (20, 120), 7, 8, 6, 9, 'upwelling', 4.0,
+     '#98b8c8', ['кромка', 'слабый', 'холодный']),
     # People and the lake today.
     ('tether', 'human', 'Трос ROV', 'ROV tether', (0, 300), 10, 7, 8, 5,
      'rope', 3.0, '#e0a040', ['натянут', 'петля', 'у дна']),
@@ -181,6 +245,15 @@ ITEMS = [
     ('cormorant', 'bird', 'Баклан под водой', 'Cormorant underwater',
      (0, 10), 9, 5, 8, 9, 'bird', 0.8, '#2a2a2a', ['ныряет', 'охотится',
                                                    'всплывает']),
+    # Wintering divers of the Issyk-Kul Ramsar site.
+    ('lysukha', 'bird', 'Лысуха под водой', 'Coot underwater', (0, 3), 8,
+     5, 8, 8, 'bird', 0.4, '#1e1e20', ['ныряет', 'щиплет траву',
+                                       'всплывает']),
+    ('nyrok', 'bird', 'Красноносый нырок', 'Red-crested pochard', (0, 3),
+     8, 5, 8, 8, 'bird', 0.5, '#7a3a2a', ['ныряет', 'щиплет траву',
+                                          'всплывает']),
+    ('krokhal', 'bird', 'Большой крохаль', 'Goosander', (0, 5), 8, 5, 8,
+     8, 'bird', 0.6, '#3a4a40', ['ныряет', 'охотится', 'всплывает']),
 ]
 
 # What each state and band adds, so ties break by what matters to play.
@@ -188,8 +261,35 @@ STATE_BONUS = {'на границе слоя': 3, 'в ритме дыхания'
                'кромка': 2, 'старая береговая линия': 2, 'переход': 2,
                'темнота внизу': 2, 'в тени камня': 1, 'у сваи': 1,
                'ряд свай': 1, 'с рыбой': 1, 'стайка': 1}
-CATEGORY_MIN = {'fish': 14, 'life': 7, 'plant': 7, 'shelf': 15,
-                'find': 20, 'water': 14, 'human': 6, 'bird': 3}
+# Operator, 2026-09-30: "добавь всех рыб все камни и все реальное".  So
+# every real thing of the register is shown at least once; the category
+# minimums of the first selection are no longer needed.
+EVERY_ITEM = True
+
+# Operator, 2026-09-30: "можно брать как добычу".  What may be taken and
+# how, one rule per item, deterministic (TABOO 0.35 r.15):
+#   keep       taken into the bag (introduced fish, stones, plant samples,
+#              litter and the ghost net, whose removal is itself a mercy);
+#   release    native and endemic fish: caught, entered in the log and
+#              let go -- the lake bans fishing for its endemics and four
+#              of them are in the Red Book of Kyrgyzstan;
+#   hand-over  finds of the drowned settlements go to the brotherhood's
+#              scriptorium, never sold (no SKU, TABOO 0.35 r.16);
+#   None       nothing to take: water, light, living birds, the station's
+#              gear, and anything that bears a cross (the lead bulla).
+NATIVE_FISH = {'chebak', 'chebachok', 'marinka', 'osman', 'gubach',
+               'osman-scaly', 'loach-tibet', 'loach-grey', 'golyan'}
+NO_LOOT = {'bulla', 'tether', 'buoyline', 'kosti'}
+
+
+def loot_rule(item, category):
+    if item in NO_LOOT or category in ('water', 'bird'):
+        return None
+    if category == 'fish':
+        return 'release' if item in NATIVE_FISH else 'keep'
+    if category == 'find':
+        return 'hand-over'
+    return 'keep'
 
 
 def pool():
@@ -219,15 +319,12 @@ def pool():
 def select(candidates, n=99, per_item=2):
     ranked = sorted(candidates, key=lambda c: (-c['total'], c['id']))
     chosen, per = [], {}
-    # First make sure every category is present in its minimum number.
-    for cat, need in CATEGORY_MIN.items():
-        for c in ranked:
-            if sum(x['category'] == cat for x in chosen) >= need:
-                break
-            if c['category'] == cat and per.get(c['item'], 0) < per_item \
-                    and c not in chosen:
-                chosen.append(c)
-                per[c['item']] = per.get(c['item'], 0) + 1
+    # Every real thing first, in its best state (EVERY_ITEM); the rest of
+    # the places go to the next best states, at most two per thing.
+    for c in ranked:
+        if EVERY_ITEM and c['item'] not in per:
+            chosen.append(c)
+            per[c['item']] = 1
     for c in ranked:
         if len(chosen) >= n:
             break
@@ -276,12 +373,13 @@ def main():
     # its real size is recorded either way.
     real = len(cands)
     ranked = sorted(cands, key=lambda c: (-c['total'], c['id']))[:999]
-    best = select(ranked)
+    best = select(cands)
     for c in best:
         c['parts'] = parts(c)
-        c['flags'] = {'noLoot': True}
+        rule = loot_rule(c['item'], c['category'])
+        c['flags'] = {'noLoot': rule is None, 'loot': rule}
     (ROOT / 'docs' / 'LAKE_OBJECTS_999.json').write_text(json.dumps(
-        {'note': 'Combinations item x state x depth band of about ninety '
+        {'note': 'Combinations item x state x depth band of eighty '
                  'real things of Issyk-Kul; not 999 distinct things.',
          'real_combinations': real, 'kept': len(ranked),
          'candidates': ranked}, ensure_ascii=False, indent=1) + '\n',
@@ -293,14 +391,18 @@ def main():
              f'Pool: {real} real combinations (item x state x depth band) '
              f'of {len(ITEMS)} things of Issyk-Kul. The operator asked for '
              '999; the lake honestly gives this many, and nothing was '
-             'invented to reach the number. Selection: top scores, '
-             'at most two per item, every category present. Seeing is '
-             'observation, never loot (flag noLoot).', '',
-             '| # | Category | Object | Band | Depth, m | Score |',
-             '|---|---|---|---|---|---|']
+             'invented to reach the number. Selection: every real thing '
+             'at least once in its best state, then the next best states, '
+             'at most two per thing. Loot (operator, 2026-09-30): keep, '
+             'release (native fish), hand-over (finds) or none (water, '
+             'birds, station gear, the bulla with its cross); see '
+             'docs/ISSYK_KUL_FISH.md.', '',
+             '| # | Category | Object | Band | Depth, m | Score | Loot |',
+             '|---|---|---|---|---|---|---|']
     for i, c in enumerate(best, 1):
         lines.append(f'| {i} | {c["category"]} | {c["ru"]} | {c["band"]} '
-                     f'| {c["depth"][0]}–{c["depth"][1]} | {c["total"]} |')
+                     f'| {c["depth"][0]}–{c["depth"][1]} | {c["total"]} '
+                     f'| {c["flags"]["loot"] or "—"} |')
     (ROOT / 'docs' / 'LAKE_OBJECTS_99.md').write_text(
         '\n'.join(lines) + '\n', encoding='utf-8')
     cats = {}

@@ -16,7 +16,8 @@
   20
  ],
  "flags": {
-  "noLoot": true
+  "noLoot": false,
+  "loot": "hand-over"
  },
  "source": "public/ludus/data/lake-objects-99.json",
  "method": "lake-kit-primitives"

@@ -43,6 +43,17 @@ CURSOR = ROOT / 'docs' / 'RAW_OSINT_CURSOR.json'
 CODE_CANDIDATES = ROOT / 'docs' / 'RAW_CODE_CANDIDATES.json'
 DERIVED = ROOT / 'public' / 'ludus' / 'art' / 'derived'
 NOTICES = ROOT / 'THIRD_PARTY_NOTICES.md'
+LADDER = ROOT / 'docs' / 'RAW_KEYWORD_LADDER.json'
+
+# Operator, 2026-09-30: "каждый проход добавляй 12 ключевых слов".
+KEYWORDS_PER_PASS = 12
+# Path words that say nothing about the object itself.
+PLAIN_WORDS = {'png', 'svg', 'jpg', 'gif', 'img', 'image', 'images', 'res',
+               'assets', 'asset', 'data', 'art', 'gfx', 'graphics', 'src',
+               'main', 'resources', 'textures', 'texture', 'sprites',
+               'sprite', 'tiles', 'tile', 'items', 'item', 'objects',
+               'object', 'png', 'core', 'base', 'default', 'small', 'large',
+               'big', 'icon', 'icons', 'the', 'and', 'of', 'new', 'old'}
 
 # Rule 5: paths that must never enter the pipeline at all.
 DOGMA_STOP = re.compile(
@@ -133,7 +144,8 @@ NOT_GAME = re.compile(r'(^|/)(examples?|docs?|tests?|screenshots?|'
 ANTAGONIST_SLOTS = {'DEF-001'}
 HOSTILE = re.compile(r'(^|/)(enemy|enemies|monsters?|mobs?|fiends?|'
                      r'demons?|undead|bosses|boss|humanoids?|soldiers?|'
-                     r'orcs?|goblins?|skull\w*|abyss\w*|vaults?|mon)'
+                     r'orcs?|goblins?|skull\w*|abyss\w*|vaults?|mon|'
+                     r'turrets?|weapons?)'
                      r'(/|_|\.|$)', re.IGNORECASE)
 
 
@@ -180,6 +192,52 @@ def licence_of(index_root, hit):
     return 'UNKNOWN'
 
 
+def ladder_words(def_id):
+    """The real-object keyword ladder of a deficit, if it has one."""
+    if not LADDER.exists():
+        return []
+    return json.loads(LADDER.read_text('utf-8'))['ladders'].get(def_id, [])
+
+
+def neighbour_words(hits, known):
+    """Most frequent path words next to earlier hits, not yet keys.
+
+    When the real-object ladder runs out, the next words come from the
+    material itself: the folder and file words that stand beside what
+    was already found.  Stop-listed, sacred and hostile words never
+    become keys.
+    """
+    counts = {}
+    for hit in hits:
+        for word in re.split(r'[^a-z]+', hit['path'].lower()):
+            if (len(word) < 3 or word in PLAIN_WORDS or word in known
+                    or DOGMA_STOP.search(word) or SACRED.search(word)
+                    or HOSTILE.search(word) or word.isdigit()):
+                continue
+            counts[word] = counts.get(word, 0) + 1
+    return [w for w, _ in sorted(counts.items(), key=lambda x: (-x[1], x[0]))]
+
+
+def grow_keywords(deficit, cursor, index, kinds):
+    """Add the next twelve keywords of a deficit; return the added ones.
+
+    Deterministic: the real-object ladder first, in its written order,
+    then neighbour words ranked by frequency and name.
+    """
+    added = cursor.setdefault('keywords', {}).setdefault(deficit['id'], [])
+    known = set(deficit['keywords']) | set(added)
+    fresh = [w for w in ladder_words(deficit['id']) if w not in known]
+    new = fresh[:KEYWORDS_PER_PASS]
+    if len(new) < KEYWORDS_PER_PASS:
+        hits = search(index, kinds, deficit['keywords'] + added, limit=400,
+                      allow_unlicensed=False)
+        hits = [h for h in hits if not allowed(h['path'])]
+        more = neighbour_words(hits, known | set(new))
+        new += more[:KEYWORDS_PER_PASS - len(new)]
+    added.extend(new)
+    return new
+
+
 def run(cmd):
     subprocess.run(cmd, check=True, cwd=ROOT, timeout=3600)
 
@@ -190,6 +248,9 @@ def main():
     parser.add_argument('--work', default='build/osint')
     parser.add_argument('--deficits', type=int, default=3)
     parser.add_argument('--per-deficit', type=int, default=6)
+    parser.add_argument('--only', default='',
+                        help='comma-separated deficit ids; the rotation '
+                             'cursor is left where it is')
     args = parser.parse_args()
 
     work = ROOT / args.work
@@ -202,9 +263,13 @@ def main():
     if not deficits:
         print('no open deficits')
         return
-    start = cursor['next'] % len(deficits)
-    chosen = (deficits[start:] + deficits[:start])[:args.deficits]
-    cursor['next'] = start + len(chosen)
+    if args.only:
+        wanted = args.only.split(',')
+        chosen = [d for d in deficits if d['id'] in wanted]
+    else:
+        start = cursor['next'] % len(deficits)
+        chosen = (deficits[start:] + deficits[:start])[:args.deficits]
+        cursor['next'] = start + len(chosen)
 
     stamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
     manifest, code_hits, entry = [], [], {'time': stamp, 'deficits': []}
@@ -223,7 +288,10 @@ def main():
             entry['deficits'].append({'id': deficit['id'], 'skipped': reason})
             print(f'{deficit["id"]}: skipped ({reason})')
             continue
-        hits = search(args.index, kinds, deficit['keywords'], limit=200,
+        grown = grow_keywords(deficit, cursor, args.index, kinds)
+        keys = deficit['keywords'] + cursor['keywords'][deficit['id']]
+        print(f'{deficit["id"]}: +{len(grown)} keywords {grown}')
+        hits = search(args.index, kinds, keys, limit=200,
                       allow_unlicensed=False)
         taken, refused = 0, {}
         neutral = deficit['id'] not in ANTAGONIST_SLOTS
@@ -258,7 +326,9 @@ def main():
             })
             taken += 1
         entry['deficits'].append({'id': deficit['id'], 'hits': len(hits),
-                                  'taken': taken, 'refused': refused})
+                                  'taken': taken, 'refused': refused,
+                                  'added_keywords': grown,
+                                  'keywords_total': len(keys)})
         print(f'{deficit["id"]}: hits={len(hits)} taken={taken} '
               f'refused={refused}')
 

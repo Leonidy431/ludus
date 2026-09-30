@@ -41,7 +41,39 @@ test('the 99 lake objects are drawn only in their depth range', () => {
       const spec = objects.find((x) => x.id === o.id);
       assert.ok(d >= spec.depth[0] && d <= spec.depth[1], `${o.id}@${d}`);
       assert.notEqual(spec.category, 'fish');
-      assert.equal(spec.flags.noLoot, true);
     });
   }
+});
+
+// Operator, 2026-09-30: "добавь всех рыб все камни и все реальное" and
+// "можно брать как добычу".  Every real thing is shown; loot follows one
+// rule per item, and nothing with a cross, no water and no bird is loot.
+test('every real thing is among the 99, loot by rule', () => {
+  const objects = require('../public/ludus/data/lake-objects-99.json')
+    .objects;
+  const items = new Set(objects.map((o) => o.item));
+  data.fish.forEach((f) => assert.ok(items.has(f.id), f.id));
+  const rules = new Set(['keep', 'release', 'hand-over', null]);
+  objects.forEach((o) => {
+    assert.ok(rules.has(o.flags.loot), o.id);
+    assert.equal(o.flags.noLoot, o.flags.loot === null, o.id);
+    if (['water', 'bird'].includes(o.category) || o.item === 'bulla') {
+      assert.equal(o.flags.loot, null, o.id);
+    }
+    if (o.category === 'find' && o.item !== 'bulla' && o.item !== 'kosti') {
+      assert.equal(o.flags.loot, 'hand-over', o.id);
+    }
+  });
+});
+
+test('native and endemic fish are released, never kept', () => {
+  data.fish.forEach((f) => {
+    const native = /endemic|native/.test(f.status);
+    assert.equal(f.loot, native ? 'release' : 'keep', f.id);
+    if (f.redBook) {
+      assert.equal(f.loot, 'release', f.id);
+    }
+  });
+  const bulla = data.finds.find((f) => f.id === 'bulla');
+  assert.equal(bulla.loot, null);
 });

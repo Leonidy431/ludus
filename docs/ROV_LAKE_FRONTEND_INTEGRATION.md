@@ -460,3 +460,14 @@ app.use((req, res, next) => {
 **Session:** 2026-09-28 10:50 UTC  
 **Next:** Phase 1 IAP tunnel verification
 
+## The view from the ROV: data and sources (2026-09-30)
+
+- `public/ludus/ludus-lake-view.js` — the 360° window above the telemetry.
+- `public/ludus/data/issyk-kul-fish.json` — 20 fish species with status,
+  Red Book mark and loot rule (`keep` / `release`).
+- `public/ludus/data/lake-objects-99.json` — 99 objects: every one of the
+  80 real things of the register at least once
+  (`scripts/lake/lake_objects.py`, `docs/LAKE_OBJECTS_99.md`).
+- `docs/ISSYK_KUL_FISH.md` — the species list, its sources and what an
+  ichthyologist, a geologist and an archaeologist must check before release.
+
