@@ -1,5 +1,5 @@
 {
- "next": 9,
+ "next": 12,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -1421,6 +1421,65 @@
     "own_balka_fc14815fb5",
     "own_khum_04712f8b8b"
    ]
+  },
+  {
+   "time": "2026-09-30T12:51:11.457778+00:00",
+   "deficits": [
+    {
+     "id": "DEF-024",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 4,
+      "dogma-stop-list": 3,
+      "not-a-game-object": 71
+     },
+     "added_keywords": [
+      "shatteredpixel",
+      "shatteredpixeldungeon",
+      "effects",
+      "hero",
+      "spells",
+      "particles",
+      "abilities",
+      "npcs",
+      "buildings",
+      "cleric",
+      "duelist",
+      "huntress"
+     ],
+     "keywords_total": 38
+    },
+    {
+     "id": "DEF-027",
+     "skipped": "audio-pipeline-pending"
+    },
+    {
+     "id": "DEF-028",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 123
+     },
+     "added_keywords": [
+      "effects",
+      "servers",
+      "stack",
+      "filter",
+      "board",
+      "card",
+      "cockatrice",
+      "distortion",
+      "limiter",
+      "modules",
+      "reverb",
+      "aberration"
+     ],
+     "keywords_total": 35
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 199
   }
  ],
  "keywords": {
@@ -1727,7 +1786,19 @@
    "traits",
    "widget",
    "actors",
-   "com"
+   "com",
+   "shatteredpixel",
+   "shatteredpixeldungeon",
+   "effects",
+   "hero",
+   "spells",
+   "particles",
+   "abilities",
+   "npcs",
+   "buildings",
+   "cleric",
+   "duelist",
+   "huntress"
   ],
   "DEF-028": [
    "effect",
@@ -1741,7 +1812,19 @@
    "logic",
    "map",
    "post",
-   "process"
+   "process",
+   "effects",
+   "servers",
+   "stack",
+   "filter",
+   "board",
+   "card",
+   "cockatrice",
+   "distortion",
+   "limiter",
+   "modules",
+   "reverb",
+   "aberration"
   ],
   "DEF-035": [
    "java",

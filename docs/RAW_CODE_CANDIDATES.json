@@ -10152,5 +10152,822 @@
   "score": 7,
   "attribution": [],
   "slot": "DEF-052"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/audio/effects/reverb_filter.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "effects",
+   "servers",
+   "filter",
+   "reverb"
+  ],
+  "score": 6,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/audio/effects/audio_effect_distortion.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "effects",
+   "servers",
+   "distortion"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/audio/effects/audio_effect_filter.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "effects",
+   "servers",
+   "filter"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/audio/effects/audio_effect_hard_limiter.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "effects",
+   "servers",
+   "limiter"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/audio/effects/audio_effect_limiter.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "effects",
+   "servers",
+   "limiter"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/audio/effects/audio_effect_reverb.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "effects",
+   "servers",
+   "reverb"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/audio/effects/eq_filter.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "effects",
+   "servers",
+   "filter"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/roughness_limiter.cpp",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "cpp",
+   "effects",
+   "servers",
+   "limiter"
+  ],
+  "score": 5,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/Cockatrice/Cockatrice",
+  "commit": "1365f3cb492c788e1ae3a3927e9fb00dcf7f9033",
+  "license_file": "LICENSE",
+  "path": "cockatrice/src/game_graphics/board/abstract_card_drag_item.h",
+  "kind": "code",
+  "hits": [
+   "drag",
+   "board",
+   "card",
+   "cockatrice"
+  ],
+  "score": 4,
+  "attribution": [],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/Cockatrice/Cockatrice",
+  "commit": "1365f3cb492c788e1ae3a3927e9fb00dcf7f9033",
+  "license_file": "LICENSE",
+  "path": "cockatrice/src/game_graphics/board/abstract_card_item.cpp",
+  "kind": "code",
+  "hits": [
+   "cpp",
+   "board",
+   "card",
+   "cockatrice"
+  ],
+  "score": 4,
+  "attribution": [],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/Cockatrice/Cockatrice",
+  "commit": "1365f3cb492c788e1ae3a3927e9fb00dcf7f9033",
+  "license_file": "LICENSE",
+  "path": "cockatrice/src/game_graphics/board/card_drag_item.h",
+  "kind": "code",
+  "hits": [
+   "drag",
+   "board",
+   "card",
+   "cockatrice"
+  ],
+  "score": 4,
+  "attribution": [],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/Cockatrice/Cockatrice",
+  "commit": "1365f3cb492c788e1ae3a3927e9fb00dcf7f9033",
+  "license_file": "LICENSE",
+  "path": "cockatrice/src/game_graphics/board/card_item.cpp",
+  "kind": "code",
+  "hits": [
+   "cpp",
+   "board",
+   "card",
+   "cockatrice"
+  ],
+  "score": 4,
+  "attribution": [],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "drivers/gles3/effects/cubemap_filter.cpp",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "cpp",
+   "effects",
+   "filter"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/audio/effects/audio_effect_amplify.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/audio/effects/audio_effect_capture.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/audio/effects/audio_effect_chorus.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/audio/effects/audio_effect_compressor.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/audio/effects/audio_effect_delay.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/audio/effects/audio_effect_eq.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/audio/effects/audio_effect_panner.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/audio/effects/audio_effect_phaser.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/audio/effects/audio_effect_pitch_shift.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/audio/effects/audio_effect_record.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/audio/effects/audio_effect_spectrum_analyzer.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/audio/effects/audio_effect_stereo_enhance.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/bokeh_dof.cpp",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "cpp",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/copy_effects.cpp",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "cpp",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/debug_effects.cpp",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "cpp",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/fsr.cpp",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "cpp",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/fsr2.cpp",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "cpp",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/luminance.cpp",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "cpp",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/metal_fx.cpp",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "cpp",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/resolve.cpp",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "cpp",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/roughness_limiter.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "servers",
+   "limiter"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/smaa.cpp",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "cpp",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/sort_effects.cpp",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "cpp",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/ss_effects.cpp",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "cpp",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/taa.cpp",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "cpp",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/tone_mapper.cpp",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "cpp",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/rendering/renderer_rd/effects/vrs.cpp",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "cpp",
+   "effects",
+   "servers"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/Cockatrice/Cockatrice",
+  "commit": "1365f3cb492c788e1ae3a3927e9fb00dcf7f9033",
+  "license_file": "LICENSE",
+  "path": "cockatrice/src/game_graphics/board/abstract_card_item.h",
+  "kind": "code",
+  "hits": [
+   "board",
+   "card",
+   "cockatrice"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/Cockatrice/Cockatrice",
+  "commit": "1365f3cb492c788e1ae3a3927e9fb00dcf7f9033",
+  "license_file": "LICENSE",
+  "path": "cockatrice/src/game_graphics/board/abstract_graphics_item.cpp",
+  "kind": "code",
+  "hits": [
+   "cpp",
+   "board",
+   "cockatrice"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/Cockatrice/Cockatrice",
+  "commit": "1365f3cb492c788e1ae3a3927e9fb00dcf7f9033",
+  "license_file": "LICENSE",
+  "path": "cockatrice/src/game_graphics/board/arrow_item.cpp",
+  "kind": "code",
+  "hits": [
+   "cpp",
+   "board",
+   "cockatrice"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/Cockatrice/Cockatrice",
+  "commit": "1365f3cb492c788e1ae3a3927e9fb00dcf7f9033",
+  "license_file": "LICENSE",
+  "path": "cockatrice/src/game_graphics/board/card_item.h",
+  "kind": "code",
+  "hits": [
+   "board",
+   "card",
+   "cockatrice"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-028"
  }
 ]
