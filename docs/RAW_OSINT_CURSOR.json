@@ -1,5 +1,5 @@
 {
- "next": 21,
+ "next": 5,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -2358,6 +2358,126 @@
     "audio-references.json": 4498
    },
    "note": "Spectral references only (TABOO 0.35 rule 8): no audio file in the repository or public/; godot/data holds slot medians only. Props rows in docs/RAW_AUDIO_PROPS.json (TABOO 0.012)."
+  },
+  {
+   "time": "2026-09-30T17:51:10.326375+00:00",
+   "pass_id": "osint-2026-09-30T17:51:10Z",
+   "deficits": [
+    {
+     "id": "DEF-056",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "hostile-for-neutral-slot": 4
+     },
+     "to_props": 45,
+     "hits_uncapped": 31906,
+     "props_uncapped": 12671,
+     "props_uncapped_repos": 37,
+     "added_keywords": [
+      "rsi",
+      "blaze",
+      "inhand",
+      "effect",
+      "hit",
+      "projectile",
+      "generic",
+      "left",
+      "props",
+      "right",
+      "rpg",
+      "carpplush"
+     ],
+     "keywords_total": 57,
+     "keywords_not_searched": [],
+     "props": {
+      "other": 45
+     },
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-049",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "sacred-never-raw": 2,
+      "hostile-for-neutral-slot": 1
+     },
+     "to_props": 19,
+     "hits_uncapped": 37855,
+     "props_uncapped": 12625,
+     "props_uncapped_repos": 35,
+     "added_keywords": [
+      "rsi",
+      "environment",
+      "tracker",
+      "plasma",
+      "ashfall",
+      "gridfire",
+      "heavy",
+      "snowfall",
+      "wall",
+      "generic",
+      "light",
+      "props"
+     ],
+     "keywords_total": 35,
+     "keywords_not_searched": [],
+     "props": {
+      "other": 19
+     },
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-052",
+     "hits": 200,
+     "taken": 6,
+     "refused": {},
+     "to_props": 0,
+     "hits_uncapped": 52145,
+     "props_uncapped": 26250,
+     "props_uncapped_repos": 37,
+     "added_keywords": [
+      "corner",
+      "deep",
+      "concave",
+      "ink",
+      "shallow",
+      "convex",
+      "dead",
+      "archiv",
+      "dough",
+      "ingredients",
+      "ogl",
+      "rsi"
+     ],
+     "keywords_total": 39,
+     "keywords_not_searched": [],
+     "props": {},
+     "props_seen": 0
+    }
+   ],
+   "props_taken": {
+    "other": 64
+   },
+   "props_taken_by_index_kind": {
+    "image": 64
+   },
+   "props_duplicates": 0,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 47896,
+   "props_store_files": 612,
+   "props_store_bytes": 3443131,
+   "props_cache_files_on_disk": 3823,
+   "props_cache_bytes_on_disk": 70657664,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 358097,
+   "props_register_growth_bytes": 40912,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 4
   }
  ],
  "keywords": {
@@ -2397,7 +2517,19 @@
    "fishing",
    "aquarium",
    "fishes",
-   "water"
+   "water",
+   "rsi",
+   "blaze",
+   "inhand",
+   "effect",
+   "hit",
+   "projectile",
+   "generic",
+   "left",
+   "props",
+   "right",
+   "rpg",
+   "carpplush"
   ],
   "DEF-057": [
    "granite",
@@ -2609,7 +2741,19 @@
    "long",
    "calc",
    "gold",
-   "square"
+   "square",
+   "rsi",
+   "environment",
+   "tracker",
+   "plasma",
+   "ashfall",
+   "gridfire",
+   "heavy",
+   "snowfall",
+   "wall",
+   "generic",
+   "light",
+   "props"
   ],
   "DEF-052": [
    "water",
@@ -2630,7 +2774,19 @@
    "gatherers",
    "hut",
    "brewery",
-   "charcoal"
+   "charcoal",
+   "corner",
+   "deep",
+   "concave",
+   "ink",
+   "shallow",
+   "convex",
+   "dead",
+   "archiv",
+   "dough",
+   "ingredients",
+   "ogl",
+   "rsi"
   ],
   "DEF-003": [
    "lua",
