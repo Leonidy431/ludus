@@ -112,8 +112,6 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - uses: android-actions/setup-android@v3
-
       - name: Cache Godot
         uses: actions/cache@v4
         with:
@@ -135,8 +133,11 @@ jobs:
 
       - name: Android SDK packages and debug key
         run: |
-          yes | sdkmanager --licenses >/dev/null || true
-          sdkmanager "platform-tools" "build-tools;34.0.0" \
+          # The runner image ships the Android SDK; setup-android@v3
+          # failed on the retired "tools" package, so it is not used.
+          SDKM="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKM" --licenses >/dev/null || true
+          "$SDKM" "platform-tools" "build-tools;34.0.0" \
             "platforms;android-34" >/dev/null
           keytool -genkeypair -v -keystore "$RUNNER_TEMP/debug.keystore" \
             -storepass android -keypass android -alias androiddebugkey \
