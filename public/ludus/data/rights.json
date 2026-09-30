@@ -98,6 +98,19 @@
    "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
   },
   {
+   "object": "ant_avarice_f14d9c7468",
+   "slot": "DEF-001",
+   "passion": "avarice",
+   "repo": "https://github.com/crawl/crawl",
+   "commit": "7c31f6e797",
+   "path": "crawl-ref/source/rltiles/UNUSED/monsters/ravenous_mimic.png",
+   "licence": "GPL",
+   "colour_change": 0.4486,
+   "min_shape_change": 0.4018,
+   "variants": 12,
+   "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
+  },
+  {
    "object": "ant_gluttony_3b98248226",
    "slot": "DEF-001",
    "passion": "gluttony",
@@ -109,6 +122,18 @@
    "min_shape_change": 0.372,
    "variants": 12,
    "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
+  },
+  {
+   "object": "ant_lust_fc98bcfdb9",
+   "slot": "DEF-001",
+   "passion": "lust",
+   "repo": "ludus (own drawing)",
+   "commit": "drawing-r1",
+   "path": "scripts/raw_assets/own_passion.py",
+   "licence": "project (own drawing, no third-party material)",
+   "colour_change": null,
+   "min_shape_change": 0.4484,
+   "variants": 12
   },
   {
    "object": "ant_pride_4a93e8590a",
@@ -133,6 +158,19 @@
    "licence": "GPL",
    "colour_change": 1.0,
    "min_shape_change": 0.3915,
+   "variants": 12,
+   "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
+  },
+  {
+   "object": "ant_vainglory_12f32bbb0f",
+   "slot": "DEF-001",
+   "passion": "vainglory",
+   "repo": "https://github.com/crawl/crawl",
+   "commit": "7c31f6e797",
+   "path": "crawl-ref/source/rltiles/item/misc/misc_phantom_mirror.png",
+   "licence": "GPL",
+   "colour_change": 0.6615,
+   "min_shape_change": 0.5665,
    "variants": 12,
    "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
   }

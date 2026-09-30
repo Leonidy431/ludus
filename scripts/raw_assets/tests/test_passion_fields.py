@@ -38,6 +38,40 @@ class PassionFieldsTest(unittest.TestCase):
             (root / 'ant_anger_1.json').write_text(json.dumps(meta))
             self.assertEqual(check_delta.check(root, 0.35), [])
 
+    def test_mentor_nodes_teach_the_sign_in_the_teachers_tree(self):
+        root = Path(__file__).resolve().parents[3]
+        trees = json.loads((root / 'functions' / 'src' / 'data' /
+                            'npc-dialogues-24.json').read_text('utf-8'))
+        by_id = {t['npcId']: {n['id']: n for n in t['nodes']}
+                 for t in trees}
+        table = passion_fields.load()
+        # Synonyms the meanings use for the passion's name.
+        names = {'avarice': ('avarice', 'love of money'),
+                 'lust': ('lust', 'fornication')}
+        for passion, node_id in passion_fields.MENTOR_NODES.items():
+            teacher = table[passion]['teacher']
+            node = by_id[teacher].get(node_id)
+            self.assertIsNotNone(node, f'{teacher}:{node_id}')
+            self.assertTrue(node['meaning'].startswith('Discernment cue'),
+                            node_id)
+            self.assertTrue(any(w in node['meaning'].lower()
+                                for w in names.get(passion, (passion,))),
+                            f'{node_id} does not name {passion}')
+
+    def test_shipped_kits_name_their_mentor_node(self):
+        root = Path(__file__).resolve().parents[3]
+        kits = root / 'public' / 'ludus' / 'art' / 'derived' / 'DEF-001'
+        for name in ('ant_avarice_f14d9c7468', 'ant_vainglory_12f32bbb0f',
+                     'ant_lust_fc98bcfdb9'):
+            meta = json.loads((kits / f'{name}.json').read_text('utf-8'))
+            self.assertEqual(passion_fields.missing(meta), [], name)
+            teacher, node = meta['mentor_node'].split(':')
+            self.assertEqual(teacher, meta['teacher_npc'])
+            self.assertEqual(node,
+                             passion_fields.MENTOR_NODES[meta['passion']])
+            self.assertEqual(meta['status'], 'ok')
+            self.assertEqual(len(meta['variants']), 12)
+
 
 if __name__ == '__main__':
     unittest.main()
