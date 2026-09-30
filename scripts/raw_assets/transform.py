@@ -31,6 +31,7 @@ import antagonist as ant  # noqa: E402
 from form import (CANVAS, alpha_mask, colour_change, fill_holes,  # noqa
                   hitbox, hitbox_key, iou_delta, shape_delta,
                   silhouette_loss)
+import neutral_variants  # noqa: E402
 import passion_fields  # noqa: E402
 import reference  # noqa: E402
 
@@ -409,20 +410,29 @@ def process_piece(item, index, piece, threshold=0.35):
     else:
         ref_mask = alpha_mask(plain)
 
-    # Step 3: twelve variants, each measured against the source.
-    builder = VariantBuilder(seed, palette, texture, canvas, src_mask,
-                             threshold)
-    made = builder.run(ref_mask)
+    # Step 3: twelve variants, each measured against the source.  A
+    # neutral thing of the lake gets the age-and-pose family of
+    # neutral_variants.py: the antagonist family (erosion, swarm, echo)
+    # turned its stones into vases on 2026-09-30.
     tag = passion or 'none'
     variants = []
-    for v in builder.accepted:
-        v.pop('mask')
+    if natural and not passion:
+        accepted, rejected, made = neutral_variants.build(
+            canvas, item['slot'], seed, threshold)
+        record['variant_family'] = 'neutral-age-pose'
+    else:
+        builder = VariantBuilder(seed, palette, texture, canvas, src_mask,
+                                 threshold)
+        made = builder.run(ref_mask)
+        accepted, rejected = builder.accepted, builder.rejected
+    for v in accepted:
+        v.pop('mask', None)
         v['file'] = f'{prefix}_{v["slot"]}.png'
         v['analytics_id'] = f'ludus.variant.{tag}.{oid}.{v["slot"]}'
         images[v['file']] = made[v['slot']]
         variants.append(v)
     record['variants'] = variants
-    record['rejected_variants'] = builder.rejected
+    record['rejected_variants'] = rejected
     record['shortfall'] = 12 - len(variants)
     record['status'] = 'ok' if len(variants) == 12 else 'shortfall'
     first = variants[0] if variants else {}

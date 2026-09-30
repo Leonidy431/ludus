@@ -531,6 +531,149 @@
    "accepted_objects": 6,
    "code_candidates": 23,
    "reverted": "Eye check of the contact sheet (docs/audit/2026-09-30/raw-lake-pass-contact-rejected.png): the new real-object selection and natural palette work (no passion colours), but the shapes are not recognisable: the stone is a top-down diamond tile whose variants read as vases, the \"log\" is a coloured pixel sprite whose variants read as rubble, and most kelp variants dissolve into blobs and dots. Two fixes follow: the stone profile now demands a side view resting on a base, and the neutral variant family (shape ops that keep the thing recognisable) is still to be built. Nothing shipped; the register rows of this pass were not kept."
+  },
+  {
+   "time": "2026-09-30T04:13:23.161488+00:00",
+   "deficits": [
+    {
+     "id": "DEF-001",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "sacred-never-raw": 9,
+      "not-a-game-object": 1
+     },
+     "added_keywords": [
+      "gui",
+      "adventure",
+      "forge",
+      "common",
+      "beast",
+      "units",
+      "aberration",
+      "java",
+      "deep",
+      "crawl",
+      "ref",
+      "rltiles"
+     ],
+     "keywords_total": 26
+    }
+   ],
+   "accepted_objects": 23,
+   "code_candidates": 0,
+   "shipped": [
+    "ant_pride_4a93e8590a"
+   ],
+   "note": "Run in a scratch copy for the 8th passion. 23 objects passed; only ant_pride_4a93e8590a shipped (pride was missing from DEF-001; its 12 variants keep the canonical kinds v04 amorphous, v07 dark matter, v09 echo). ant_pride_df3b8f7d22 and ant_pride_1ed80aa7be (same beholder sheet, hybrids in those slots) and 20 anger/sadness objects were not shipped: those passions already have art. Eye check: a green spire with a three-point crown on all 5 biome backgrounds, see docs/audit/2026-09-30/antagonist-contact-pride.png."
+  },
+  {
+   "time": "2026-09-30T04:17:51.245999+00:00",
+   "deficits": [
+    {
+     "id": "DEF-056",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "not-a-game-object": 98,
+      "hostile-for-neutral-slot": 10,
+      "dogma-stop-list": 2,
+      "sacred-never-raw": 5
+     },
+     "added_keywords": [
+      "ide",
+      "rudd",
+      "barbel",
+      "char",
+      "salmonid",
+      "goldfish",
+      "koi",
+      "smelt",
+      "fry",
+      "shoal",
+      "fins",
+      "herring"
+     ],
+     "keywords_total": 33
+    },
+    {
+     "id": "DEF-057",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "not-a-game-object": 53,
+      "dogma-stop-list": 1,
+      "sacred-never-raw": 27
+     },
+     "added_keywords": [
+      "rocks",
+      "stones",
+      "pebbles",
+      "boulders",
+      "mud",
+      "sediment",
+      "seabed",
+      "riverbed",
+      "shore",
+      "beach",
+      "cliff",
+      "marble"
+     ],
+     "keywords_total": 31
+    },
+    {
+     "id": "DEF-058",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "hostile-for-neutral-slot": 15,
+      "not-a-game-object": 120
+     },
+     "added_keywords": [
+      "moss",
+      "fern",
+      "bush",
+      "shrub",
+      "vine",
+      "sprout",
+      "leaf",
+      "leaves",
+      "stem",
+      "tallgrass",
+      "flora",
+      "underwater"
+     ],
+     "keywords_total": 31
+    },
+    {
+     "id": "DEF-059",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "not-a-game-object": 160,
+      "hostile-for-neutral-slot": 14
+     },
+     "added_keywords": [
+      "shard",
+      "sherd",
+      "brick",
+      "millstone",
+      "anvil",
+      "tongs",
+      "hammer",
+      "cauldron",
+      "kettle",
+      "bucket",
+      "basket",
+      "rope"
+     ],
+     "keywords_total": 32
+    }
+   ],
+   "accepted_objects": 5,
+   "code_candidates": 27,
+   "shipped": [],
+   "note": "Run in a scratch copy to fetch raw pieces for the neutral age-and-pose family (scripts/raw_assets/neutral_variants.py). Nothing shipped: no object reached 12/12 variants at >= 35 % while fitting its real object profile; DEF-056 had no fish piece of at least 12 px; DEF-059 pieces are Mindustry power-beam blocks, not wood or pottery. Numbers in docs/audit/2026-09-30/neutral-variants-report.json, sheet in docs/audit/2026-09-30/neutral-contact.png."
   }
  ],
  "keywords": {
@@ -546,7 +689,19 @@
    "cyprinid",
    "chub",
    "gudgeon",
-   "roach"
+   "roach",
+   "ide",
+   "rudd",
+   "barbel",
+   "char",
+   "salmonid",
+   "goldfish",
+   "koi",
+   "smelt",
+   "fry",
+   "shoal",
+   "fins",
+   "herring"
   ],
   "DEF-057": [
    "granite",
@@ -560,7 +715,19 @@
    "flint",
    "basalt",
    "rubble",
-   "limestone"
+   "limestone",
+   "rocks",
+   "stones",
+   "pebbles",
+   "boulders",
+   "mud",
+   "sediment",
+   "seabed",
+   "riverbed",
+   "shore",
+   "beach",
+   "cliff",
+   "marble"
   ],
   "DEF-058": [
    "pondweed",
@@ -574,7 +741,19 @@
    "sedge",
    "waterlily",
    "lily",
-   "lotus"
+   "lotus",
+   "moss",
+   "fern",
+   "bush",
+   "shrub",
+   "vine",
+   "sprout",
+   "leaf",
+   "leaves",
+   "stem",
+   "tallgrass",
+   "flora",
+   "underwater"
   ],
   "DEF-059": [
    "jar",
@@ -588,7 +767,33 @@
    "pile",
    "post",
    "driftwood",
-   "logs"
+   "logs",
+   "shard",
+   "sherd",
+   "brick",
+   "millstone",
+   "anvil",
+   "tongs",
+   "hammer",
+   "cauldron",
+   "kettle",
+   "bucket",
+   "basket",
+   "rope"
+  ],
+  "DEF-001": [
+   "gui",
+   "adventure",
+   "forge",
+   "common",
+   "beast",
+   "units",
+   "aberration",
+   "java",
+   "deep",
+   "crawl",
+   "ref",
+   "rltiles"
   ]
  }
 }
