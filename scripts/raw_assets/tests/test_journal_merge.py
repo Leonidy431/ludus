@@ -80,9 +80,11 @@ class JournalMergeTest(unittest.TestCase):
         row = {'repo': 'r', 'path': 'a.c', 'slot': 'DEF-024'}
         mine = {'repo': 'r', 'path': 'b.c', 'slot': 'DEF-024'}
         yours = {'repo': 'r', 'path': 'c.c', 'slot': 'DEF-028'}
+        # The same file seen at another upstream revision is one line.
+        again = {**mine, 'commit': 'b' * 40}
         merged = json.loads(journal_merge.merge_candidates(
             json.dumps([row]), json.dumps([row, mine]),
-            json.dumps([row, yours])))
+            json.dumps([row, yours, again])))
         self.assertEqual(merged, [row, mine, yours])
 
     def test_register_lines_stay_in_place(self):

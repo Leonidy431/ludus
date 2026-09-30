@@ -127,9 +127,20 @@ def merge_cursor(base_text, ours_text, theirs_text):
 
 
 def merge_candidates(_base_text, ours_text, theirs_text):
-    merged = _union_dicts(
-        _json(ours_text, []), _json(theirs_text, []),
-        lambda c: (c['repo'], c['path'], c.get('slot')))
+    """One line per (repo, path), the first sighting kept.
+
+    That is the file's own rule (osint_cycle lists a file once, under
+    the deficit that found it first).  The same file indexed at another
+    upstream revision differs only in "commit"; the real merge of
+    raw-osint/auto into main on 2026-09-30 had 95 such pairs, and they
+    are sightings of one file, not a clash.
+    """
+    merged, seen = [], set()
+    for cand in _json(ours_text, []) + _json(theirs_text, []):
+        key = (cand['repo'], cand['path'])
+        if key not in seen:
+            seen.add(key)
+            merged.append(cand)
     return json.dumps(merged, ensure_ascii=False, indent=1)
 
 
