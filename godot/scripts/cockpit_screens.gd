@@ -1,14 +1,18 @@
 ## The console's second screen, as DiveGuard's panel has it: the front
 ## camera's picture and the imaging sonar, two cards in the same BlueOS
-## look as the telemetry cards (docs/HLD_MANGUSTIK_COCKPIT M8).
+## look as the telemetry cards (docs/HLD_MANGUSTIK_COCKPIT M8), and the
+## hydrophone from the operator's posoh repo as a third card
+## (docs/HLD_POSOH_HYDROPHONE_2026-09-30.md).
 class_name CockpitScreens
 extends HBoxContainer
 
 const CAMERA_PX := Vector2i(256, 144)
 const SONAR_PX := Vector2(200, 144)
+const HYDRO_PX := Vector2(196, 144)
 
 var picture: TextureRect
 var sonar: SonarScope
+var hydro: HydroScope
 
 
 func _init() -> void:
@@ -21,6 +25,10 @@ func _init() -> void:
 	sonar = SonarScope.new()
 	sonar.custom_minimum_size = SONAR_PX
 	_card("СОНАР %d м" % roundi(CockpitCore.SONAR_RANGE), sonar)
+	hydro = HydroScope.new()
+	hydro.custom_minimum_size = HYDRO_PX
+	_card("ГИДРОФОН 0–%d кГц" % roundi(PosohCore.nyquist_hz() / 1000.0),
+		hydro)
 
 
 func _card(title: String, content: Control) -> void:
@@ -114,3 +122,54 @@ class SonarScope:
 		var line := CockpitCore.ACCENT
 		line.a = 0.8
 		draw_line(apex, _point(sweep, CockpitCore.SONAR_RANGE), line, 1.5)
+
+
+## The hydrophone's card: two level bars (the lake and the ROV's own
+## thrusters, as a difference, since the instrument is uncalibrated),
+## how far a vehicle like this one would be heard, and the water's
+## sound speed with the wavelength at the top of the band.  Instrument
+## cyan for the reading; amber only when the thrusters drown the lake.
+class HydroScope:
+	extends Control
+
+	var r := {}
+	var card := {}
+
+	func show_reading(depth: float, thrust: float) -> void:
+		r = PosohCore.reading(depth, thrust)
+		card = PosohCore.card(depth, thrust)
+		queue_redraw()
+
+	func _text(at: Vector2, text: String, colour: Color,
+			font_size := 13) -> void:
+		draw_string(get_theme_default_font(), at, text,
+			HORIZONTAL_ALIGNMENT_LEFT, size.x - at.x, font_size, colour)
+
+	func _bar(y: float, fill: float, colour: Color) -> void:
+		var track := CockpitCore.MUTED
+		track.a = 0.25
+		draw_rect(Rect2(0, y, size.x, 8), track)
+		draw_rect(Rect2(0, y, size.x * clampf(fill, 0.0, 1.0), 8), colour)
+
+	func _draw() -> void:
+		if r.is_empty():
+			return
+		var cyan := CockpitCore.ACCENT
+		var muted := CockpitCore.MUTED
+		var loud: Color = CockpitCore.STATE_COLOUR[card.state]
+		_text(Vector2(0, 16), card.value, loud, 17)
+		# Both bars on one 90 dB scale that starts 30 dB under the lake,
+		# so the lake fills a third and the thrusters show how far they
+		# rise over it; stopped thrusters leave their bar empty.
+		var floor_db: float = r.ambient_db - 30.0
+		_text(Vector2(0, 38), "озеро", muted)
+		_bar(44, (r.ambient_db - floor_db) / 90.0, cyan)
+		_text(Vector2(0, 68), "свои винты", muted)
+		var own: float = r.self_db
+		_bar(74, 0.0 if own == -INF else (own - floor_db) / 90.0,
+			loud if r.masked else cyan)
+		_text(Vector2(0, 100), card.sub, cyan)
+		_text(Vector2(0, 118), "c %d м/с · λ %.1f см" % [
+			roundi(r.sound_speed), r.wavelength_cm], muted)
+		_text(Vector2(0, 136), "пьезо 20 мм · слышит кругом" if r.omni
+			else "пьезо 20 мм", muted)

@@ -1,0 +1,131 @@
+{
+ "id": "posoh_hydrophone",
+ "lod": "proxy",
+ "source": "third_party/posoh/hardware/cad/hydrophone_v1.scad (Leonidy431/posoh @ 55f44d0), rendered part by part by OpenSCAD",
+ "why_proxy": "bench \"model 1\": piezo size, boards and O-ring groove are [UNVERIFIED] in the drawing; epoxy potting and wiring are not drawn",
+ "size_m": [
+  0.0564,
+  0.0564,
+  0.1035
+ ],
+ "box": [
+  0.0564,
+  0.0564,
+  0.1035
+ ],
+ "axis": "tube along -Z, sensor face forward at z = -L, end-cap flange (mount face) at z = 0",
+ "drawing_mm": {
+  "tube_total_length": 103.5,
+  "tube_od": 56.4,
+  "tube_id": 50.4,
+  "piezo_diameter": 20.0,
+  "end_cap_length": 12.0,
+  "dry_bay_length": 95.0
+ },
+ "depth_rating_m": null,
+ "depth_rating_note": "none in the source: printed PETG/ABS tube, slip-fit O-ring cap, \"revisit before a real dive-rated build\" (HYDROPHONE_V1.md)",
+ "triangles": 4108,
+ "noInteract": false,
+ "noLoot": true,
+ "parts": [
+  {
+   "part": "tube_body",
+   "translate_mm": [
+    0,
+    0,
+    0
+   ],
+   "colour": "#c0c0c0",
+   "alpha": 0.5,
+   "triangles": 764
+  },
+  {
+   "part": "end_cap",
+   "translate_mm": [
+    0,
+    0,
+    91.51
+   ],
+   "colour": "#ffa500",
+   "alpha": 0.6,
+   "triangles": 1020
+  },
+  {
+   "part": "standoff",
+   "translate_mm": [
+    -8,
+    -22.2,
+    13.5
+   ],
+   "colour": "#9ea3a8",
+   "alpha": 1.0,
+   "triangles": 512
+  },
+  {
+   "part": "standoff",
+   "translate_mm": [
+    8,
+    -22.2,
+    13.5
+   ],
+   "colour": "#9ea3a8",
+   "alpha": 1.0,
+   "triangles": 512
+  },
+  {
+   "part": "standoff",
+   "translate_mm": [
+    -8,
+    -22.2,
+    43.5
+   ],
+   "colour": "#9ea3a8",
+   "alpha": 1.0,
+   "triangles": 512
+  },
+  {
+   "part": "standoff",
+   "translate_mm": [
+    8,
+    -22.2,
+    43.5
+   ],
+   "colour": "#9ea3a8",
+   "alpha": 1.0,
+   "triangles": 512
+  },
+  {
+   "part": "piezo_disc",
+   "translate_mm": [
+    0,
+    0,
+    0
+   ],
+   "colour": "#8b0000",
+   "alpha": 1.0,
+   "triangles": 252
+  },
+  {
+   "part": "preamp_board",
+   "translate_mm": [
+    0,
+    0,
+    13.5
+   ],
+   "colour": "#008000",
+   "alpha": 1.0,
+   "triangles": 12
+  },
+  {
+   "part": "esp32_board",
+   "translate_mm": [
+    0,
+    0,
+    43.5
+   ],
+   "colour": "#0000ff",
+   "alpha": 1.0,
+   "triangles": 12
+  }
+ ]
+}

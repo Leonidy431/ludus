@@ -21,6 +21,9 @@ var lenses: Array = []
 # Lamp housings and lenses: part of the frame, hidden with it.
 var fixtures: Array = []
 var led: MeshInstance3D
+## The posoh hydrophone on the bow end of the top auxiliary tube
+## (PosohCore.MOUNT); part of the frame, hidden with it in first person.
+var hydrophone: Node3D
 var arm_root: Node3D
 var arm_upper: Node3D
 var arm_fore: Node3D
@@ -44,6 +47,7 @@ func _ready() -> void:
 	for side in [-1.0, 1.0]:
 		_headlight(side * HEADLIGHT_X)
 	_status_led()
+	_hydrophone()
 	_manipulator()
 
 
@@ -152,6 +156,20 @@ func _status_led() -> void:
 	led.material_override = _unshaded(Color(0.08, 0.82, 0.82))
 	led.position = Vector3(0, 0.6, 0.05)
 	add_child(led)
+
+
+## The operator's own hydrophone (posoh "model 1",
+## godot/models/posoh/hydrophone.glb, built from hydrophone_v1.scad).
+## The model's origin is its end-cap flange and its sensor looks along
+## -Z, so it only needs to be put on the mount: the cap against the
+## top tube's bow end, the potted piezo facing the water ahead.
+func _hydrophone() -> void:
+	var scene := load("res://models/posoh/hydrophone.glb") as PackedScene
+	hydrophone = scene.instantiate() if scene else Node3D.new()
+	hydrophone.name = "PosohHydrophone"
+	hydrophone.position = PosohCore.MOUNT
+	add_child(hydrophone)
+	fixtures.append(hydrophone)
 
 
 ## Two links and a claw under the front of the frame, at the tool

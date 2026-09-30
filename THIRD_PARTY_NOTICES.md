@@ -40,3 +40,12 @@ here so the lawyer sees every third-party component (TABOO 0.1).
 
 Details: `third_party/mangustik/SOURCES.md`. No colour/shape delta is
 claimed: these are not raw material through the runner.
+
+## Posoh hydrophone "model 1" (operator's own repo, 2026-09-30)
+
+| Source | Revision | Path | Licence | Use |
+|---|---|---|---|---|
+| Leonidy431/posoh | 55f44d0 | hardware/HYDROPHONE_V1.md; hardware/cad/*.scad and renders/*.png; hardware/firmware/hydrophone_v1/hydrophone_v1.ino; hardware/thermal/THERMAL_BUDGET.md; BOM_SENSORS.md; HARDWARE_INTEGRATION.md; OPENSCAD_DFM_PROTOCOL.md; docs/HARDWARE_BOM.md | none recorded; operator's own work (first-party) | hydrophone model `godot/models/posoh/hydrophone.glb` (rendered by OpenSCAD from hydrophone_v1.scad), `godot/scripts/posoh_core.gd` (sample rate and preamp values) |
+
+Details: `third_party/posoh/SOURCES.md`. No colour/shape delta is
+claimed: these are not raw material through the runner.

@@ -141,4 +141,10 @@ func _initialize() -> void:
 	load("res://tests/test_cockpit.gd").new().run(self)
 	print("cockpit: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# The posoh hydrophone on the Mangustik (HLD_POSOH_HYDROPHONE).
+	before = checks
+	fails = failures
+	load("res://tests/test_posoh.gd").new().run(self)
+	print("posoh: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	quit(1 if failures else 0)
