@@ -297,6 +297,11 @@
     panel.appendChild(insight);
     panel.appendChild(status);
     root.replaceChildren(panel);
+    // The view from the ROV sits above the telemetry (operator,
+    // 2026-09-30); ludus-lake-view.js draws it.
+    if (window.LudusLakeView) {
+      window.LudusLakeView.mount(panel);
+    }
 
     state.dom = {
       panel, values, empty, timestamp, bonus, bar, fill, source, lesson,
@@ -423,6 +428,9 @@
       : null;
     state.currentTelemetry = telemetry;
     state.lastUpdate = now;
+    if (window.LudusLakeView) {
+      window.LudusLakeView.update(telemetry);
+    }
 
     const bonus = wisdomBonusForDepth(telemetry.depth);
     const changed = bonus !== state.insight.bonus;

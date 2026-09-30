@@ -378,3 +378,27 @@
   font-size: 0.875rem;
 }
 
+/* The view from the ROV: a 16:9 window above the telemetry, drag to
+   turn (the whole panorama is 360 degrees). */
+.rov-lake-view {
+  margin-bottom: 1rem;
+}
+
+.rov-lake-view-window {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 1px solid #2a3a40;
+  border-radius: 8px;
+  background: #06222a;
+  cursor: grab;
+  touch-action: none;
+}
+
+.rov-lake-view-caption {
+  margin: 0.4rem 0 0;
+  color: var(--lg-muted, #aaa);
+  font-size: 0.875rem;
+}
+

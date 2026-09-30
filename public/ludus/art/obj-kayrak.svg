@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Кайрак — надгробный камень с высеченным крестом">
+  <title>Кайрак с крестом</title>
+  <desc>ФОРМА: речной валун-кайрак христиан Семиречья с высеченным крестом над цветком и строками надписи, наполовину в донном иле. ДЕЙСТВИЕ: дьякон-археолог находит, очищает и описывает камень, не забирая его (связка П-33). ЦЕЛЬ: память об усопших братьях диаспоры — молитва об умерших, а не добыча. Миссии: 85 Штаб подводной археологии, 86 Хроника диаспоры, 93 Режим археолога, 95 Исчезновение диаспоры, 96 Фантомный епископ, 99 Эпилог воды.</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш-рамка, без нимбов. Святыня
+       показана как память на месте, а не как трофей. -->
+  <defs>
+    <radialGradient id="kayrak-bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#3a2410"/>
+      <stop offset="100%" stop-color="#1a0e04"/>
+    </radialGradient>
+  </defs>
+  <rect x="2" y="2" width="92" height="92" rx="10" fill="url(#kayrak-bg)" stroke="#8a6a34" stroke-width="2"/>
+  <rect x="7" y="7" width="82" height="82" rx="7" fill="none" stroke="#c8a56a" stroke-width="1" opacity=".55"/>
+  <!-- тело валуна -->
+  <path d="M24 72 Q18 44 32 26 Q48 14 64 24 Q78 38 72 72 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.8"/>
+  <!-- высеченный крест с расширенными концами -->
+  <g fill="none" stroke="#e8c87a" stroke-width="2" stroke-linecap="round">
+    <path d="M48 26 V50 M38 36 H58"/>
+    <path d="M45 26 H51 M45 50 H51 M38 33 V39 M58 33 V39" stroke-width="1.4"/>
+  </g>
+  <!-- цветок-подножие креста (лотос несториан) -->
+  <path d="M40 54 Q44 48 48 52 Q52 48 56 54 Q48 58 40 54 Z" fill="none" stroke="#c8a56a" stroke-width="1.4"/>
+  <!-- строки надписи — только штрихи, текст не выдумываем -->
+  <g stroke="#8a6a34" stroke-width="1.2" stroke-linecap="round">
+    <path d="M34 61 H62 M36 65 H60"/>
+  </g>
+  <!-- донный ил и ракушки: камень на месте находки -->
+  <path d="M12 76 Q30 68 48 74 Q66 80 84 72 V84 H12 Z" fill="#1a0e04" stroke="#8a6a34" stroke-width="1.2"/>
+  <g fill="#8a6a34"><circle cx="22" cy="80" r="1.4"/><circle cx="70" cy="79" r="1.2"/><circle cx="54" cy="81" r="1"/></g>
+  <!-- метка связки П-33: бирка археолога на шнуре -->
+  <path d="M72 48 Q78 50 80 58" fill="none" stroke="#8a6a34" stroke-width="1"/>
+  <rect x="76" y="58" width="8" height="10" rx="1.5" fill="#1a0e04" stroke="#c8a56a" stroke-width="1"/>
+  <path d="M78 62 h4 M78 65 h3" stroke="#c8a56a" stroke-width=".8"/>
+</svg>

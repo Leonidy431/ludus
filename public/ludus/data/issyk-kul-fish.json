@@ -1,0 +1,21 @@
+{
+ "note": "Fish of Lake Issyk-Kul seen through the ROV (observation, never a catch or a reward). Species list from the lake's ichthyology (endemic dace, native marinka, osman and stone loach; species introduced in the 20th century). Depth ranges are rough guides for the game, not survey data: to be checked by an ichthyologist before release.",
+ "fish": [
+  {"id": "chebak", "ru": "Иссык-кульский чебак", "en": "Issyk-Kul dace", "latin": "Leuciscus schmidti", "status": "endemic", "depth": [2, 40], "school": 7, "length": 0.30, "colour": "#b9c4c9"},
+  {"id": "chebachok", "ru": "Иссык-кульский чебачок", "en": "Issyk-Kul small dace", "latin": "Leuciscus bergi", "status": "endemic", "depth": [1, 15], "school": 11, "length": 0.14, "colour": "#cfd8da"},
+  {"id": "marinka", "ru": "Иссык-кульская маринка", "en": "Issyk-Kul marinka", "latin": "Schizothorax pseudaksaiensis issykkuli", "status": "native", "depth": [3, 60], "school": 2, "length": 0.45, "colour": "#8f8a6e"},
+  {"id": "osman", "ru": "Голый осман", "en": "Naked osman", "latin": "Gymnodiptychus dybowskii", "status": "native", "depth": [1, 20], "school": 1, "length": 0.35, "colour": "#7d7a66"},
+  {"id": "gubach", "ru": "Пятнистый губач", "en": "Spotted stone loach", "latin": "Triplophysa strauchii", "status": "native", "depth": [1, 30], "school": 1, "length": 0.12, "colour": "#9a8f73", "bottom": true},
+  {"id": "ishkhan", "ru": "Севанская форель (ишхан)", "en": "Sevan trout", "latin": "Salmo ischchan", "status": "introduced", "depth": [15, 120], "school": 1, "length": 0.55, "colour": "#a7a39a"},
+  {"id": "sudak", "ru": "Судак", "en": "Zander", "latin": "Sander lucioperca", "status": "introduced", "depth": [4, 35], "school": 1, "length": 0.60, "colour": "#9ea58e"},
+  {"id": "leshch", "ru": "Лещ", "en": "Common bream", "latin": "Abramis brama", "status": "introduced", "depth": [3, 25], "school": 3, "length": 0.40, "colour": "#b3a67f"},
+  {"id": "sazan", "ru": "Сазан", "en": "Wild carp", "latin": "Cyprinus carpio", "status": "introduced", "depth": [1, 15], "school": 2, "length": 0.55, "colour": "#a88f55"},
+  {"id": "sig", "ru": "Сиг", "en": "Lake whitefish", "latin": "Coregonus lavaretus", "status": "introduced", "depth": [10, 80], "school": 4, "length": 0.40, "colour": "#c6ccce"}
+ ],
+ "finds": [
+  {"id": "kayrak", "ru": "Кайрак — зернотёрка", "en": "Kairak, a grinding stone", "art": "/ludus/art/obj-kayrak.svg", "depth": [2, 30]},
+  {"id": "svaya", "ru": "Бревно-свая затопленного посада", "en": "A pile of a drowned settlement", "art": "/ludus/art/obj-brevno-svaya.svg", "depth": [3, 40]},
+  {"id": "bulla", "ru": "Свинцовая булла-печать", "en": "A lead seal (bulla)", "art": "/ludus/art/obj-bulla.svg", "depth": [2, 25]},
+  {"id": "kuvshin", "ru": "Глиняный кувшин", "en": "A clay jug", "art": "/ludus/art/obj-karas-kuvshin.svg", "depth": [2, 35]}
+ ]
+}
