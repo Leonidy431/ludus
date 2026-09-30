@@ -173,6 +173,78 @@
    "min_shape_change": 0.5665,
    "variants": 12,
    "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
+  },
+  {
+   "object": "own_boulder_4d9da8b0ae",
+   "slot": "DEF-057",
+   "passion": null,
+   "repo": "ludus (own drawing)",
+   "commit": "neutral-dr",
+   "path": "scripts/raw_assets/neutral_procedural.py",
+   "licence": "project (own drawing, no third-party material)",
+   "colour_change": null,
+   "min_shape_change": 0.3553,
+   "variants": 12
+  },
+  {
+   "object": "own_quartz_e0197ebc07",
+   "slot": "DEF-057",
+   "passion": null,
+   "repo": "ludus (own drawing)",
+   "commit": "neutral-dr",
+   "path": "scripts/raw_assets/neutral_procedural.py",
+   "licence": "project (own drawing, no third-party material)",
+   "colour_change": null,
+   "min_shape_change": 0.3515,
+   "variants": 12
+  },
+  {
+   "object": "own_rdest_2d5b9cbcc1",
+   "slot": "DEF-058",
+   "passion": null,
+   "repo": "ludus (own drawing)",
+   "commit": "neutral-dr",
+   "path": "scripts/raw_assets/neutral_procedural.py",
+   "licence": "project (own drawing, no third-party material)",
+   "colour_change": null,
+   "min_shape_change": 0.4213,
+   "variants": 12
+  },
+  {
+   "object": "own_trostnik_cbc1190335",
+   "slot": "DEF-058",
+   "passion": null,
+   "repo": "ludus (own drawing)",
+   "commit": "neutral-dr",
+   "path": "scripts/raw_assets/neutral_procedural.py",
+   "licence": "project (own drawing, no third-party material)",
+   "colour_change": null,
+   "min_shape_change": 0.4358,
+   "variants": 12
+  },
+  {
+   "object": "own_balka_fc14815fb5",
+   "slot": "DEF-059",
+   "passion": null,
+   "repo": "ludus (own drawing)",
+   "commit": "neutral-dr",
+   "path": "scripts/raw_assets/neutral_procedural.py",
+   "licence": "project (own drawing, no third-party material)",
+   "colour_change": null,
+   "min_shape_change": 0.3501,
+   "variants": 12
+  },
+  {
+   "object": "own_khum_04712f8b8b",
+   "slot": "DEF-059",
+   "passion": null,
+   "repo": "ludus (own drawing)",
+   "commit": "neutral-dr",
+   "path": "scripts/raw_assets/neutral_procedural.py",
+   "licence": "project (own drawing, no third-party material)",
+   "colour_change": null,
+   "min_shape_change": 0.3523,
+   "variants": 12
   }
  ]
 }
