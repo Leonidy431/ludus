@@ -59,6 +59,11 @@ var road_sprite: Sprite3D
 var atlas: Dictionary = AtlasCore.load_data()
 var atlas_page := 0
 var atlas_board: Label3D
+# The chronicle of the knight (AtlasTraces): written once at the
+# scriptorium table; chron is {choice, reply} while its page is open.
+const DIVE_SAVE := "user://dive.json"
+var chronicle := ""
+var chron := {}
 var select_was := false
 var interact_was := false
 var stick_was := 0.0
@@ -179,6 +184,7 @@ func _build_world() -> void:
 	_build_road(oak)
 	_build_refectory(oak)
 	_build_atlas(oak)
+	_build_chronicle(oak)
 
 
 ## The way out to the path of the witness: a plain oak arch on the south
@@ -206,6 +212,9 @@ func _build_atlas(oak: Color) -> void:
 	atlas_board.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	atlas_board.modulate = Color(0.2, 0.15, 0.1)
 	atlas_board.outline_size = 0
+	# Read from the front only: from the scriptorium table behind it the
+	# page showed through mirrored.
+	atlas_board.double_sided = false
 	atlas_board.position = at + Vector3(0, 2.0, -0.35)
 	add_child(atlas_board)
 	_board_back(atlas_board.position + Vector3(0, 0, -0.02),
@@ -213,6 +222,28 @@ func _build_atlas(oak: Color) -> void:
 	atlas_board.text = AtlasCore.page_text(atlas, atlas_page)
 	things.append({"id": "atlas", "kind": "atlas", "pos": at,
 		"ru": "Аналой: «Атлас воды» — читать дальше"})
+
+
+## The chronicle on the scriptorium table: an open codex.  What the
+## knight did under the vault of Sis is written here once; the lake
+## keeps the trace of it (TABOO 0.03 rule 3).
+func _build_chronicle(oak: Color) -> void:
+	_box(Vector3(0.42, 0.05, 0.3), Vector3(-5.5, 0.83, 2.2),
+		Color(0.93, 0.88, 0.76))
+	_box(Vector3(0.44, 0.03, 0.32), Vector3(-5.5, 0.81, 2.2), oak.darkened(0.3))
+	things.append({"id": "chronicle", "kind": "chronicle",
+		"pos": Vector3(-5.0, 0, 2.2), "ru": "Летопись обители: 1375 год"})
+
+
+## What the scribe says of the knight's things handed over in the dive.
+func _scribe_page() -> String:
+	if not FileAccess.file_exists(DIVE_SAVE):
+		return ""
+	var data = JSON.parse_string(FileAccess.get_file_as_string(DIVE_SAVE))
+	if not data is Dictionary:
+		return ""
+	var given = data.get("bag", {}).get("atlas", [])
+	return AtlasTraces.scribe_page(atlas, given if given is Array else [])
 
 
 ## The refectory table, bare: today's fast is kept here once a day,
@@ -506,7 +537,8 @@ func _save() -> void:
 	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if f:
 		f.store_string(JSON.stringify({"form": form, "actions": actions,
-			"trials": trial_state, "passions": passion_record}))
+			"trials": trial_state, "passions": passion_record,
+			"chronicle": chronicle}))
 
 
 func _load() -> void:
@@ -533,6 +565,8 @@ func _load() -> void:
 				trial_state.trial_wait[g] = int(w)
 		passion_record = PassionCore.normalize_record(data.get("passions",
 			{}))
+		chronicle = AtlasTraces.write_chronicle(atlas,
+			data.get("chronicle"), "")
 		var f = ts.get("fall")
 		if f is Dictionary and not TrialCore.passion_of(trial_data,
 				f.get("passion")).is_empty():
@@ -602,6 +636,8 @@ func _process(dt: float) -> void:
 			if not encounter.is_empty():
 				encounter.choice = posmod(encounter.choice - int(signf(nav)),
 					maxi(1, _encounter_options().size()))
+			elif not chron.is_empty():
+				chron.choice = posmod(chron.choice - int(signf(nav)), 2)
 			elif not trial.is_empty():
 				trial.choice = posmod(trial.choice - int(signf(nav)), 3)
 			else:
@@ -614,6 +650,8 @@ func _process(dt: float) -> void:
 	if interact and not interact_was:
 		if not encounter.is_empty():
 			_select(encounter.choice)
+		elif not chron.is_empty():
+			_select(chron.choice)
 		elif not trial.is_empty():
 			_select(trial.choice)
 		elif talk.is_empty():
@@ -669,8 +707,14 @@ func _interact() -> void:
 		"road":
 			_road()
 		"atlas":
-			atlas_page = AtlasCore.next_page(atlas, atlas_page)
-			atlas_board.text = AtlasCore.page_text(atlas, atlas_page)
+			var scribe := _scribe_page()
+			atlas_page = AtlasCore.next_page(atlas, atlas_page, scribe)
+			atlas_board.text = AtlasCore.page_text(atlas, atlas_page, scribe)
+		"chronicle":
+			if chronicle != "":
+				_say(AtlasTraces.option(atlas, chronicle).written_ru)
+			else:
+				chron = {"choice": 0, "reply": ""}
 		"fast":
 			var before := float(actions.fastDays)
 			actions = HubCore.keep_fast(actions,
@@ -726,6 +770,9 @@ func _bow() -> void:
 
 
 func _select(i: int) -> void:
+	if not chron.is_empty():
+		_write_chronicle(i)
+		return
 	if not encounter.is_empty():
 		_choose_on_road(i)
 		return
@@ -744,6 +791,20 @@ func _select(i: int) -> void:
 	else:
 		talk.node = HubCore.node_of(tree, res.next)
 		talk.choice = 0
+	_save()
+
+
+## The chronicle is written once; the answer says where its trace is.
+## Nothing is scored: mercy is not paid in points (Constitution).
+func _write_chronicle(i: int) -> void:
+	if chron.reply != "":
+		chron = {}
+		return
+	var opts := AtlasTraces.options(atlas)
+	if i >= opts.size():
+		return
+	chronicle = AtlasTraces.write_chronicle(atlas, chronicle, opts[i].id)
+	chron.reply = AtlasTraces.option(atlas, chronicle).written_ru
 	_save()
 
 
@@ -778,7 +839,7 @@ func _check_fall() -> void:
 
 func _panel_open() -> bool:
 	return not talk.is_empty() or not trial.is_empty() \
-		or not encounter.is_empty()
+		or not encounter.is_empty() or not chron.is_empty()
 
 
 func _passion(id) -> Dictionary:
@@ -903,6 +964,16 @@ func _refresh_prompt() -> void:
 						lines.append("%s%d. %s" % [mark, j + 1,
 							opts[j].text_ru])
 		panel.text = "\n".join(lines)
+	elif not chron.is_empty():
+		var lines := ["Летопись обители", "", atlas.chronicle.scene_ru, ""]
+		if chron.reply != "":
+			lines += [chron.reply, "", "(нажми — закрыть летопись)"]
+		else:
+			var opts := AtlasTraces.options(atlas)
+			for j in opts.size():
+				var mark := "▸ " if j == chron.choice else "  "
+				lines.append("%s%d. %s" % [mark, j + 1, opts[j].text_ru])
+		panel.text = "\n".join(lines)
 	elif not trial.is_empty():
 		var tv := TrialCore.trial_view(trial_data, trial_state, trial.gate,
 			form, actions)
@@ -1000,6 +1071,8 @@ func _shots() -> void:
 		{"name": "road", "pos": Vector3(-5.6, 0, 4.6), "yaw": PI,
 			"road": true},
 		{"name": "atlas", "pos": Vector3(-4.4, 0, 6.2), "yaw": 0.0},
+		{"name": "chronicle", "pos": Vector3(-3.8, 0, 2.4), "yaw": PI / 2.0,
+			"chronicle": true},
 	]
 	var n := shot_frame / 20
 	if n >= plan.size():
@@ -1024,6 +1097,8 @@ func _shots() -> void:
 		# not follow the player to the next place.
 		encounter = {}
 		road_sprite.visible = false
+	# The chronicle's page open, nothing written (a proof frame only).
+	chron = {"choice": 0, "reply": ""} if s.has("chronicle") else {}
 	if s.has("trial") and trial.is_empty():
 		# The first gate opened as the ladder asks: Wisdom 4, ten knots,
 		# a talk with Theodora (a proof frame only; nothing is saved).

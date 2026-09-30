@@ -28,4 +28,4 @@
 | Фаза | Состояние | Доказательство |
 |---|---|---|
 | S0–S3 | ✅ сборка; шлем — не проверен | `python3 scripts/story/render.py --check` → «atlas: 99 nodes, every one with its Constitution line»; хор: принято 35, адаптировано 35, заменено 29; `atlas: 403 checks, 0 failures` |
-| S4 | следующий шаг | — |
+| S4 | ✅ сборка; шлем — не проверен | `docs/HLD_ATLAS_TRACES_2026-09-30.md`; `atlas: 442 checks, 0 failures` |

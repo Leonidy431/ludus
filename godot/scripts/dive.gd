@@ -55,6 +55,12 @@ var console_alpha := 1.0
 # Holy things on the lake floor (the bulla bears a cross): near them the
 # console goes out (TABOO 0.4 rule 2).
 var holy_points: Array = []
+# The Water Atlas (TABOO 0.03): the knight's traces on the lake floor,
+# placed by the chronicle's choice written in the hub (AtlasTraces).
+const HUB_SAVE := "user://hub.json"
+var atlas_data: Dictionary = AtlasCore.load_data()
+var chronicle := ""
+var traces: Array = []
 # The Mangustik's body (godot/models/rov/mangustik.glb, the operator's
 # drawings).  Third person: the camera rides behind and above it, as a
 # chase camera; first person: the camera is the ROV's own eye and the
@@ -102,12 +108,19 @@ func _ready() -> void:
 	placed = DiveCore.place_objects(lake.objects)
 	schools = DiveCore.fish_schools(fish.fish)
 	_load_bag()
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--shots="):
+			shots_dir = arg.trim_prefix("--shots=")
+	chronicle = _load_chronicle()
+	traces = AtlasTraces.place(atlas_data, chronicle)
+	holy_points.append_array(AtlasTraces.holy_points(traces))
 	_build_environment()
 	_build_floor()
 	_build_surface()
 	_build_thermocline()
 	_build_objects()
 	_build_stones()
+	_build_traces()
 	_build_fish()
 	_build_lines()
 	_build_snow()
@@ -116,10 +129,8 @@ func _ready() -> void:
 	_build_hud()
 	_start_xr()
 	_build_audio()
-	for arg in OS.get_cmdline_user_args():
-		if arg.begins_with("--shots="):
-			shots_dir = arg.trim_prefix("--shots=")
-			DirAccess.make_dir_recursive_absolute(shots_dir)
+	if shots_dir != "":
+		DirAccess.make_dir_recursive_absolute(shots_dir)
 
 
 func _load_json(path: String) -> Variant:
@@ -253,6 +264,143 @@ func _build_objects() -> void:
 
 ## Stones and pebbles that dress the floor of the dive corridor.  They
 ## are scenery, not lake objects: placed by seed, never loot.
+## The knight's traces, drawn from simple shapes by their `shape` (own
+## procedural drawing: the khachkar above all is never raw material,
+## TABOO 0.35 rule 6).  Stone and iron only: no glow, no gold.
+func _build_traces() -> void:
+	for p in traces:
+		var node := Node3D.new()
+		node.position = Vector3(p.x, -p.depth, p.z)
+		node.rotation.y = p.yaw
+		if p.shape in ["khachkar", "spare", "vault"]:
+			# A khachkar faces west, and on this shore west is up the
+			# slope, where the ROV comes from; so does the passage.
+			node.rotation.y = -PI / 2.0
+		var c := Color(p.colour)
+		match p.shape:
+			"book":
+				_part(node, BoxMesh, Vector3(0.3, 0.08, 0.22),
+					Vector3(0, 0.02, 0), c)
+			"amphora":
+				# Lying on its side, half in the silt.
+				var a := _part(node, CylinderMesh, Vector3(0.22, 0.55, 0.22),
+					Vector3(0, 0.08, 0), c)
+				a.rotation.z = 1.4
+				_part(node, SphereMesh, Vector3(0.3, 0.3, 0.3),
+					Vector3(0.05, 0.08, 0), c)
+			"astrolabe":
+				var ring := _part(node, TorusMesh, Vector3(0.26, 0.26, 0.26),
+					Vector3(0, 0.03, 0), c, 0.35, 0.8)
+				ring.rotation.x = 0.25
+				_part(node, BoxMesh, Vector3(0.24, 0.015, 0.03),
+					Vector3(0, 0.04, 0), c.darkened(0.2), 0.4, 0.8)
+			"shield":
+				var disc := _part(node, CylinderMesh, Vector3(0.9, 0.05, 0.9),
+					Vector3(0, 0.05, 0), c, 0.7, 0.6)
+				disc.rotation.x = 0.3
+				_part(node, SphereMesh, Vector3(0.18, 0.1, 0.18),
+					Vector3(0, 0.14, -0.03), c.darkened(0.15), 0.6, 0.6)
+			"khachkar":
+				_khachkar(node, c)
+			"spare":
+				for dx in [-1.1, 1.1]:
+					_part(node, BoxMesh, Vector3(0.5, 2.2, 0.6),
+						Vector3(dx, 1.1, 0), c)
+				_part(node, BoxMesh, Vector3(2.8, 0.45, 0.7),
+					Vector3(0, 2.4, 0), c)
+			"vault":
+				var r := DiveCore.rng("atlas:rubble")
+				for i in 9:
+					var k := _part(node, BoxMesh, Vector3(0.5, 0.35, 0.45)
+						* (0.7 + 0.6 * r.call()), Vector3((r.call() - 0.5)
+						* 2.4, 0.15 + 0.2 * (i % 3), (r.call() - 0.5) * 1.6),
+						c.darkened(0.1 * (i % 3)))
+					k.rotation = Vector3(r.call(), r.call() * TAU, r.call())
+		add_child(node)
+
+
+## A khachkar of our own drawing: an upright slab with a cross in low
+## relief, its arms ending in split tips, and a rosette under it.  The
+## same stone as the slab; it is seen by its shadows, not by a light.
+func _khachkar(node: Node3D, stone: Color) -> void:
+	_part(node, BoxMesh, Vector3(0.9, 1.6, 0.22), Vector3(0, 0.8, 0), stone)
+	var relief := stone.lightened(0.15)
+	var z := 0.14
+	_part(node, BoxMesh, Vector3(0.1, 0.8, 0.07), Vector3(0, 1.0, z), relief)
+	_part(node, BoxMesh, Vector3(0.56, 0.1, 0.07), Vector3(0, 1.15, z),
+		relief)
+	for tip in [Vector3(0, 1.42, z), Vector3(0, 0.58, z),
+			Vector3(-0.3, 1.15, z), Vector3(0.3, 1.15, z)]:
+		_part(node, BoxMesh, Vector3(0.12, 0.12, 0.07), tip, relief)
+	var rose := _part(node, CylinderMesh, Vector3(0.22, 0.04, 0.22),
+		Vector3(0, 0.3, z), relief)
+	rose.rotation.x = PI / 2.0
+
+
+func _part(parent: Node3D, kind, size: Vector3, at: Vector3, colour: Color,
+		rough := 0.95, metal := 0.0) -> MeshInstance3D:
+	var m := MeshInstance3D.new()
+	var mesh: PrimitiveMesh = kind.new()
+	if mesh is BoxMesh:
+		mesh.size = size
+	elif mesh is CylinderMesh:
+		mesh.top_radius = size.x / 2.0
+		mesh.bottom_radius = size.z / 2.0
+		mesh.height = size.y
+	elif mesh is SphereMesh:
+		mesh.radius = 0.5
+		mesh.height = 1.0
+		m.scale = size
+	elif mesh is TorusMesh:
+		mesh.outer_radius = size.x / 2.0
+		mesh.inner_radius = size.x / 2.0 - 0.025
+	m.mesh = mesh
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color = colour
+	mat.roughness = rough
+	mat.metallic = metal
+	m.material_override = mat
+	m.position = at
+	parent.add_child(m)
+	return m
+
+
+## After the depth frames: the knight's diary, the khachkar (the console
+## gone, as it settles after FADE_SECONDS) and the passage of the
+## chronicle, each from behind the body, the ROV 3 m short of it.
+func _atlas_shots() -> void:
+	var plan := ["diary", "khachkar", "passage"]
+	var k := shot_frame / 40 - shot_plan.size()
+	if k >= plan.size():
+		get_tree().quit()
+		return
+	var p := {}
+	for tr in traces:
+		if tr.id == plan[k]:
+			p = tr
+	if not third_person:
+		third_person = true
+		_place_view()
+	var back: float = {"diary": 3.5, "khachkar": 2.6,
+		"passage": 7.0}[plan[k]]
+	# Coming down the slope from the shore, a little to one side so the
+	# body does not hide the thing; the ROV hangs over its own floor.
+	rov.x = p.x - back
+	rov.z = p.z - 1.2
+	rov.depth = DiveCore.floor_depth(rov.x, rov.z) - 1.2
+	rov.yaw = 0.0
+	pitch = -0.2
+	var here := Vector3(rov.x, -rov.depth, rov.z)
+	var nearest := INF
+	for h in holy_points:
+		nearest = minf(nearest, here.distance_to(h))
+	console_alpha = CockpitCore.fade_target(nearest)
+	if shot_frame % 40 == 39:
+		get_viewport().get_texture().get_image().save_png(
+			"%s/dive-atlas-%s.png" % [shots_dir, plan[k]])
+	shot_frame += 1
+
+
 func _build_stones() -> void:
 	var r := DiveCore.rng("dive:stones")
 	var mm := MultiMesh.new()
@@ -560,7 +708,7 @@ func _update_screens(dt: float) -> void:
 	sonar_left -= dt
 	if sonar_left <= 0.0:
 		sonar_left = 1.0 / SONAR_HZ
-		var things: Array = placed.duplicate()
+		var things: Array = placed + traces
 		for sc in schools:
 			var p := DiveCore.fish_at(sc, 0, t)
 			things.append({"x": p.x, "z": p.z, "depth": p.depth,
@@ -642,17 +790,29 @@ func _read_input() -> Dictionary:
 
 
 func _interact() -> void:
-	# The arm reaches whatever it finds: an empty reach is the answer
-	# "nothing here" too.
-	body.reach(t)
-	audio.on_arm()
-	arm_now = true
-	var things: Array = placed.duplicate()
+	var things: Array = placed + traces
 	for s in schools:
 		var p := DiveCore.fish_at(s, 0, t)
 		things.append({"id": s.id, "loot": s.loot, "x": p.x, "z": p.z,
 			"depth": p.depth, "ru": s.ru, "category": "fish"})
 	var hit := DiveCore.nearest(rov, things, REACH_M)
+	if not hit.is_empty() and hit.thing.get("kind") in ["trace", "passage"]:
+		# The knight's things go to the scribe; at the khachkar the arm
+		# does not move at all (TABOO 0.4 rule 1).
+		var res := AtlasTraces.take(bag, hit.thing)
+		if res.reach:
+			body.reach(t)
+			audio.on_arm()
+			arm_now = true
+		bag = res.bag
+		_save_bag()
+		_say(res.text)
+		return
+	# The arm reaches whatever it finds: an empty reach is the answer
+	# "nothing here" too.
+	body.reach(t)
+	audio.on_arm()
+	arm_now = true
 	if hit.is_empty():
 		# With the tether unwound the empty reach lifts the loop, and the
 		# core says so itself this frame.
@@ -662,7 +822,11 @@ func _interact() -> void:
 		_say("Рядом ничего нет. Подойди ближе.")
 		return
 	var res := DiveCore.loot_action(hit.thing, bag)
+	# loot_action is the port of dive-core.js and knows three pockets;
+	# what went to the scribe from the Atlas stays where it is.
+	var atlas_given: Array = bag.get("atlas", [])
 	bag = res.bag
+	bag["atlas"] = atlas_given
 	_save_bag()
 	audio.on_taken(res.rule)
 	_say("%s. %s" % [hit.thing.ru, res.text])
@@ -688,6 +852,19 @@ func _save_bag() -> void:
 	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if f:
 		f.store_string(JSON.stringify({"bag": bag, "done": game.done}))
+
+
+## The chronicle's choice is written in the hub (hub.json); the dive only
+## reads it.  Proof frames show the "spare" floor without saving it.
+func _load_chronicle() -> String:
+	if FileAccess.file_exists(HUB_SAVE):
+		var data = JSON.parse_string(FileAccess.get_file_as_string(HUB_SAVE))
+		if data is Dictionary:
+			var c := AtlasTraces.write_chronicle(atlas_data,
+				data.get("chronicle"), "")
+			if c != "":
+				return c
+	return "spare" if shots_dir != "" else ""
 
 
 func _load_bag() -> void:
@@ -858,7 +1035,7 @@ func _shots() -> void:
 	# Each depth twice: from the ROV's eye, then from behind its body.
 	var n := shot_frame / 40
 	if n >= shot_plan.size():
-		get_tree().quit()
+		_atlas_shots()
 		return
 	var chase := shot_frame % 40 >= 20
 	if chase != third_person:
@@ -891,8 +1068,11 @@ func _build_audio() -> void:
 
 
 func _hint() -> String:
-	var things: Array = placed.duplicate()
+	var things: Array = placed + traces
 	var hit := DiveCore.nearest(rov, things, REACH_M)
+	if not hit.is_empty() and hit.thing.get("holy", false):
+		# No hint at a holy thing: the interface is gone there.
+		return ""
 	if hit.is_empty():
 		# The first seconds teach the view switch, then stay quiet.
 		return "V (или Y на левом контроллере) — вид: из глаза ROV или " \

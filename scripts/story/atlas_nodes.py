@@ -730,3 +730,82 @@ LINKS = [
      'предателя; Илья и рыцарь — два служителя; Китеж слышен, не '
      'находится.'),
 ]
+
+# The chronicle's choice (nodes 26-27).  At the scriptorium table the
+# player writes down, once, what the knight did with the enemy under
+# the vault at Sis.  The choice gives nothing: no attribute, no counter.
+# Its trace is in the lake: the dive draws the passage whole or the
+# vault fallen, and every trace below is placed by a seed that includes
+# the choice (node 28: the knight's error moved where things lie).
+CHRONICLE = {
+    'nodes': [26, 27, 28],
+    'scene_ru': 'Летопись, 1375 год. Сис горит; под сводом ворот рыцарь '
+                'держит мамлюка, который шёл открыть город врагу. Свод '
+                'трещит. Писец ждёт, что записать.',
+    'options': [
+        {'id': 'spare', 'node': 26,
+         'text_ru': 'Рыцарь отпустил его и вывел из-под свода.',
+         'written_ru': 'Записано: пощадил. Свод устоял; в 2026 году '
+                       'проход в скальную нишу на свале цел.',
+         'lake_ru': 'Проход в нишу: свод цел'},
+        {'id': 'vault', 'node': 27,
+         'text_ru': 'Рыцарь обрушил свод, чтобы враг не прошёл.',
+         'written_ru': 'Записано: обрушил. Камни свода легли завалом; '
+                       'в 2026 году аппарат обходит его, а не бурит.',
+         'lake_ru': 'Завал обрушенного свода'},
+    ],
+    'constitution': 'ФОРМА (Вера и Хитрость рыцаря) → ДЕЙСТВИЕ (свободный '
+                    'выбор, записанный один раз) → ЦЕЛЬ (след выбора '
+                    'виден в настоящем; милость не награждается очками)',
+}
+
+# The knight's traces in the lake, for the dive (Godot).  depth is where
+# the thing lies on the floor of the dive line; loot 'hand-over' goes to
+# the scribe, never into the bag; holy things are noInteract/noLoot and
+# the console goes out beside them.  The real ground under the story:
+# divers and archaeologists of Issyk-Kul raise medieval ceramics,
+# millstones and iron from drowned settlements on the shelf; the knight
+# and his things are the chorus' story on that ground.
+TRACES = [
+    {'id': 'diary', 'nodes': [4, 96], 'depth': 14.0,
+     'ru': 'Дневник рыцаря в кожаном переплёте',
+     'shape': 'book', 'colour': '#5a3a22', 'size': 0.3,
+     'loot': 'hand-over', 'holy': False,
+     'scribe_ru': 'Писец сверяет строку за строкой: грабар, почерк '
+                  'воина. «Сканер читает буквы, а смысл — человек».',
+     'constitution': 'ФОРМА (Книжность) → ДЕЙСТВИЕ (поднять и отдать '
+                     'писцу) → ЦЕЛЬ (читать свидетельство, не присваивать)'},
+    {'id': 'amphora', 'nodes': [14], 'depth': 24.0,
+     'ru': 'Амфора со свитком о литье колоколов',
+     'shape': 'amphora', 'colour': '#a8643c', 'size': 0.6,
+     'loot': 'hand-over', 'holy': False,
+     'scribe_ru': 'Свиток о литье колоколов: мастера знали, как звенит '
+                  'бронза. Писец откладывает его для звонаря.',
+     'constitution': 'ФОРМА (Книжность) → ДЕЙСТВИЕ (передать ремесло) → '
+                     'ЦЕЛЬ (знание мастеров служит обители)'},
+    {'id': 'astrolabe', 'nodes': [28, 40, 82], 'depth': 36.0,
+     'ru': 'Астролябия рыцаря',
+     'shape': 'astrolabe', 'colour': '#b08d57', 'size': 0.25,
+     'loot': 'hand-over', 'holy': False,
+     'scribe_ru': 'Астролябия: рыцарь учился у арабских астрономов, а '
+                  'ошибся на полградуса — поэтому она лежала не там, где '
+                  'её искали.',
+     'constitution': 'ФОРМА (Мудрость) → ДЕЙСТВИЕ (найти вещь по чужой '
+                     'ошибке) → ЦЕЛЬ (ошибка прощается, знание остаётся)'},
+    {'id': 'khachkar', 'nodes': [15], 'depth': 70.0,
+     'ru': 'Хачкар — крест-камень братьев',
+     'shape': 'khachkar', 'colour': '#8c8578', 'size': 1.6,
+     'loot': None, 'holy': True,
+     'scribe_ru': '',
+     'constitution': 'ФОРМА (трезвение) → ДЕЙСТВИЕ (остановиться, пульт '
+                     'гаснет) → ЦЕЛЬ (святое не ключ и не находка)'},
+    {'id': 'shield', 'nodes': [92, 41], 'depth': 160.0,
+     'ru': 'Щит рыцаря',
+     'shape': 'shield', 'colour': '#4a4640', 'size': 0.9,
+     'loot': 'hand-over', 'holy': False,
+     'scribe_ru': 'Щит с самого дна. Писец кладёт его под лампу рядом с '
+                  'дневником: вещь и письмо, а не призрак.',
+     'constitution': 'ФОРМА (Стойкость) → ДЕЙСТВИЕ (дойти до глубины и '
+                     'вернуться медленно) → ЦЕЛЬ (касание вещи, а не '
+                     'вызов мёртвого)'},
+]

@@ -14,16 +14,20 @@ static func load_data() -> Dictionary:
 		"res://data/atlas-99.json"))
 
 
-static func page_count(data: Dictionary) -> int:
-	return data.nodes.size() + 1
+## scribe: the scribe's page about the things handed over from the lake
+## (AtlasTraces.scribe_page); when there is one it follows node 99.
+static func page_count(data: Dictionary, scribe := "") -> int:
+	return data.nodes.size() + 1 + (1 if scribe != "" else 0)
 
 
-## The next page after `page`, round to the frame after the last node.
-static func next_page(data: Dictionary, page: int) -> int:
-	return posmod(page + 1, page_count(data))
+## The next page after `page`, round to the frame after the last one.
+static func next_page(data: Dictionary, page: int, scribe := "") -> int:
+	return posmod(page + 1, page_count(data, scribe))
 
 
-static func page_text(data: Dictionary, page: int) -> String:
+static func page_text(data: Dictionary, page: int, scribe := "") -> String:
+	if scribe != "" and page == data.nodes.size() + 1:
+		return scribe
 	if page <= 0:
 		return "%s\n\n%s\n\n%s" % [data.title_ru, data.frame.hinge,
 			data.frame.chorus]

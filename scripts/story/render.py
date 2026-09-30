@@ -63,6 +63,35 @@ def problems():
                 out.append(f'#{n}: church word "{w}" in a game label')
         if not why.strip():
             out.append(f'#{n}: no reason')
+    out += trace_problems()
+    return out
+
+
+def trace_problems():
+    out = []
+    ids = [c['id'] for c in A.CHRONICLE['options']]
+    if len(ids) != 2 or len(set(ids)) != 2:
+        out.append('chronicle: exactly two distinct options')
+    for c in A.CHRONICLE['options'] + A.TRACES:
+        if c.get('node', 1) not in range(1, 100):
+            out.append(f'{c["id"]}: node out of 1..99')
+    lines = [A.CHRONICLE['constitution']] + [
+        t['constitution'] for t in A.TRACES]
+    for line in lines:
+        if not all(w in line for w in ('ФОРМА', 'ДЕЙСТВИЕ', 'ЦЕЛЬ', '→')):
+            out.append(f'trace: no FORM -> ACTION -> GOAL in "{line}"')
+    for t in A.TRACES:
+        # Holy things are never loot (TABOO 0.4 rule 1); everything else
+        # the knight left goes to the scribe, not into the bag.
+        if t['holy'] and t['loot'] is not None:
+            out.append(f'{t["id"]}: a holy thing cannot be loot')
+        if not t['holy'] and t['loot'] != 'hand-over':
+            out.append(f'{t["id"]}: the knight\'s things go to the scribe')
+        if not 0.0 < t['depth'] <= 165.0:
+            out.append(f'{t["id"]}: depth outside the dive line')
+        for w in REJECTED:
+            if w in (t['ru'] + t['scribe_ru']).lower():
+                out.append(f'{t["id"]}: "{w}" in what the game shows')
     return out
 
 
@@ -77,6 +106,7 @@ def data_text():
                     'scripts/story/atlas_nodes.py; do not edit.',
             'title_ru': 'Атлас воды', 'frame': A.FRAME,
             'links': [{'plot': p, 'tie': t} for p, t in A.LINKS],
+            'chronicle': A.CHRONICLE, 'traces': A.TRACES,
             'nodes': nodes}
     return json.dumps(body, ensure_ascii=False, indent=1) + '\n'
 
@@ -132,14 +162,36 @@ def doc_text():
                              f'{cell(why)} |')
         lines.append('')
     lines += [
-        '## Несогласия и открытые вопросы оператору',
+        '## Следы рыцаря в погружении (шлем)',
+        '',
+        f'**Летопись (узлы 26–28).** {A.CHRONICLE["scene_ru"]} Выбор '
+        'пишется один раз и ничего не даёт; его след — вид дна на свале. '
+        f'Конституция: {A.CHRONICLE["constitution"]}.',
+        '',
+        '| След | Узлы | Глубина, м | Что с ним | Конституция |',
+        '|---|---|---|---|---|',
+    ]
+    for t in A.TRACES:
+        what = ('святыня: noInteract/noLoot, пульт гаснет' if t['holy']
+                else 'писцу (hand-over)')
+        lines.append(f'| {cell(t["ru"])} | '
+                     f'{", ".join(str(n) for n in t["nodes"])} | '
+                     f'{t["depth"]:g} | {what} | '
+                     f'{cell(t["constitution"])} |')
+    lines += [
+        '',
+        'Узел 41 (щит-риф у чебачка) уступает узлу 92: щит лежит в '
+        'самой глубокой точке линии погружения; чебачок живёт до 15 м, '
+        'поэтому риф остаётся строкой летописи.',
+        '',
+        '## Несогласия и решения оператора',
         '',
         '- **Армянское пение (узел 6).** Хор не синтезирует обряд другой '
-        'церкви; пока — тишина и строка писца. Решает богослов хора 12 '
-        '(ТАБУ №0.37).',
+        'церкви: тишина и строка писца. Оператор 2026-09-30: «Все вопросы '
+        'да» — предложение хора принято.',
         '- **Посвящение и «Кавалер Ушакова» (узел 75).** Государственная '
-        'награда не равна посвящению; если это личная связь оператора, '
-        'хор примет её как биографию героя, а не как механику.',
+        'награда не равна посвящению; оператор 2026-09-30 («Все вопросы '
+        'да») принял её как биографию героя, а не как механику.',
         '- **Реинкарнация как рамка «Облачного атласа».** Отклонена '
         'катехизатором и догматистом (Евр. 9:27); скептик возразил: '
         '«роман о переселении душ без переселения душ». Синтез: одна нить '
