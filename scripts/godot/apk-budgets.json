@@ -70,7 +70,7 @@
         "models/rov/mangustik.glb": {
           "limit": 20000,
           "why": "docs/HLD_MANGUSTIK_COCKPIT_2026-09-30.md M2 and scripts/meta3d/mangustik_rov.py MAX_TRIANGLES = 20000 (whole vehicle). Conflicts with TABOO 0.32 p.4",
-          "approval": "pending: operator decides (simplify to 5,000 or allow in the rule); set by the HLD, not by the operator",
+          "approval": "pending: the operator chooses a 5,000-triangle proxy or an allowance in the rule; set by the HLD",
           "blocker": "Б-2"
         }
       }
@@ -85,19 +85,19 @@
         "hub": {
           "limit": 438,
           "why": "measured 438 (courtyard, 437 main 3D + 1 canvas), llvmpipe 1280x720; ratchet: may only go down",
-          "approval": "pending: operator decides on Quest 2; developer merges meshes (Б-1)",
+          "approval": "pending: the operator decides on Quest 2 and on the strict limit",
           "blocker": "Б-1"
         },
         "dive": {
           "limit": 255,
           "why": "measured 255 (depth-3m: main 3D 149 + canvas 4 + three SubViewports 102), llvmpipe 1280x720; ratchet: may only go down",
-          "approval": "pending: operator decides on Quest 2; developer merges meshes (Б-1)",
+          "approval": "pending: the operator decides on Quest 2 and on the strict limit",
           "blocker": "Б-1"
         },
         "witness": {
           "limit": 129,
           "why": "measured 129 (start), llvmpipe 1280x720; ratchet: may only go down",
-          "approval": "pending: operator decides on Quest 2; developer merges meshes (Б-1)",
+          "approval": "pending: the operator decides on Quest 2 and on the strict limit",
           "blocker": "Б-1"
         }
       }
