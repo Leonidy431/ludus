@@ -58,8 +58,11 @@ jobs:
         run: |
           node scripts/godot/make_fixture.js
           node scripts/godot/make_hub_fixture.js
+          node scripts/godot/make_trial_fixture.js
+          node scripts/godot/make_passion_fixture.js
           git diff --exit-code godot/tests/fixture.json \
-            godot/tests/hub_fixture.json
+            godot/tests/hub_fixture.json godot/tests/trial_fixture.json \
+            godot/tests/passion_fixture.json
 
       - name: Lake data in sync with the web build
         run: |
@@ -70,6 +73,9 @@ jobs:
           # The hub reads the same talks as the web game (TABOO 0.39).
           cmp public/ludus/data/dialogue-trees.json \
               godot/data/dialogue-trees.json
+          # Thresholds and passions read the same data as the web game.
+          cmp public/ludus/data/gate-trials.json godot/data/gate-trials.json
+          cmp public/ludus/data/passions.json godot/data/passions.json
           # The path of the witness uses the same scene kits as the web
           # VR scene (docs/SACRAMENTS_VR_SCENES.md).
           for f in public/vr/models/scene/sacrament-*; do

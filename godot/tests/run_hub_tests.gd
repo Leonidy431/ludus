@@ -101,4 +101,10 @@ func _initialize() -> void:
 	load("res://tests/test_trial.gd").new().run(self)
 	print("trial: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# The meeting of a passion (PassionCore, ludus-passion.js).
+	before = checks
+	fails = failures
+	load("res://tests/test_passion.gd").new().run(self)
+	print("passion: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	quit(1 if failures else 0)
