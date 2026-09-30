@@ -48,8 +48,8 @@
 | P0 | ✅ | Godot 4.7.1; сверка GDScript ↔ JS: 638 проверок, 0 расхождений (`tests/run_tests.gd`); `node --test tests/dive-core.test.js` 18/18 |
 | P1 | ✅ | кадры 3/12/35/60/120 м под Xvfb (`docs/audit/2026-09-30/godot-dive-p1.png`); Web-сборка в Chromium: 0 ошибок консоли, через Mesa GL дно и лампа рисуются верно |
 | P2 | ✅ в ядре и сцене | задачи поясов, «падение» и остановка безопасности, течение на свале, сонар с эхом; тест целого погружения 0 → 60 → 0 м |
-| P3 | в CI | job `test` в `godot.yml` экспортирует Web; `pages.yml` публикует `/ludus/godot/` после мёржа |
-| P4 | в CI | job `android`: APK с плагином Meta; первый прогон упал на `setup-android` (устаревший пакет `tools`), исправлено — SDK берётся с раннера |
+| P3 | ✅ сборка | CI-прогон 36670358090: job `test` зелёный, артефакт `ludus-dive-web`; `pages.yml` публикует `/ludus/godot/` после мёржа |
+| P4 | ✅ сборка — **готово к загрузке в шлем** | CI-прогон 36670358090, job `android` зелёный: `ludus-dive-quest.apk` 90 МБ, `org.ludus.dive` 0.1.0, minSdk 29; в манифесте `org.khronos.openxr.permission.OPENXR`, `android.hardware.vr.headtracking`, `com.oculus.intent.category.VR`, `com.oculus.supportedDevices`. На Quest 3 не проверено — это делает оператор (ТАБУ №0.02 п. 4) |
 | Репо оператора | ✅ | 7 сабмодулей в `vendor/godot/`; аддоны xr-tools, beehave, dialogic, oceanfft в `godot/addons` (пока исключены из экспорта); Jolt включён встроенный |
 
 **Предупреждение по репо оператора (скептик).** godot4-oceanfft считает волны compute-шейдером. В Web-сборке и на рендерере Compatibility он не работает, возможен только в нативном APK на рендерере Mobile, и цену по кадру на Quest 3 надо мерить. godot_voxel — C++-модуль, под Android его нужно собрать. hitbox-hurtbox относится к боевой механике и по ТАБУ №0.2 п. 4 против страстей не применяется: страсть побеждается трезвением, а не оружием. Он годится только для ветки «Рыцари» и только как референс.
