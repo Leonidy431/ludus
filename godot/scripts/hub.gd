@@ -37,6 +37,11 @@ var t := 0.0
 var xr_active := false
 var snap_ready := true
 var talk := {}  # {npc, node, choice} while a talk is open.
+# The threshold of a gate (TrialCore): {gate, choice, reply} while open.
+var trial := {}
+var trial_data := TrialCore.load_data()
+var trial_state := TrialCore.empty_state()
+var sun: DirectionalLight3D
 var select_was := false
 var interact_was := false
 var stick_was := 0.0
@@ -118,7 +123,7 @@ func _build_world() -> void:
 	var we := WorldEnvironment.new()
 	we.environment = env
 	add_child(we)
-	var sun := DirectionalLight3D.new()
+	sun = DirectionalLight3D.new()
 	sun.rotation_degrees = Vector3(-18, -60, 0)
 	sun.light_color = Color(1.0, 0.8, 0.6)
 	sun.light_energy = 0.7
@@ -424,7 +429,8 @@ func _refresh_boards() -> void:
 func _save() -> void:
 	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if f:
-		f.store_string(JSON.stringify({"form": form, "actions": actions}))
+		f.store_string(JSON.stringify({"form": form, "actions": actions,
+			"trials": trial_state}))
 
 
 func _load() -> void:
@@ -439,6 +445,18 @@ func _load() -> void:
 			actions[k] = float(act.get(k, 0.0))
 		actions.met = act.get("met", {})
 		actions.gifts = act.get("gifts", {})
+		# Only known shapes come back, as normalizeState does in JS.
+		var ts: Dictionary = data.get("trials", {})
+		for g in TrialCore.GATE_IDS:
+			if ts.get("trials", {}).get(g, false) == true:
+				trial_state.trials[g] = true
+			var w = ts.get("trial_wait", {}).get(g)
+			if typeof(w) in [TYPE_INT, TYPE_FLOAT]:
+				trial_state.trial_wait[g] = int(w)
+		var f = ts.get("fall")
+		if f is Dictionary and not TrialCore.passion_of(trial_data,
+				f.get("passion")).is_empty():
+			trial_state.fall = f
 
 
 # --- Controls -----------------------------------------------------------------
@@ -460,7 +478,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		yaw -= event.relative.x * 0.004
 		camera.rotation.x = clampf(camera.rotation.x
 			- event.relative.y * 0.003, -1.2, 1.2)
-	if event is InputEventKey and event.pressed and not talk.is_empty():
+	if event is InputEventKey and event.pressed and _panel_open():
 		var n: int = event.keycode - KEY_1
 		if n >= 0 and n < 4:
 			_select(n)
@@ -471,7 +489,7 @@ func _process(dt: float) -> void:
 	t += dt
 	var move := Vector2(_key(KEY_D, KEY_A), _key(KEY_S, KEY_W))
 	var turn := _key(KEY_Q, KEY_E)
-	var interact := Input.is_key_pressed(KEY_E) and talk.is_empty() \
+	var interact := Input.is_key_pressed(KEY_E) and not _panel_open() \
 		or Input.is_key_pressed(KEY_SPACE)
 	var nav := 0.0
 	if xr_active:
@@ -488,8 +506,9 @@ func _process(dt: float) -> void:
 	else:
 		yaw += turn * 1.5 * dt
 		nav = _key(KEY_UP, KEY_DOWN)
-	# While a talk is open the stick chooses the line and the body stays.
-	if talk.is_empty():
+	# While a talk or a threshold is open the stick chooses the line and
+	# the body stays.
+	if not _panel_open():
 		var heading := yaw
 		if xr_active:
 			var z := camera.transform.basis.z
@@ -500,18 +519,25 @@ func _process(dt: float) -> void:
 		pos.z = clampf(pos.z, BOUNDS.position.y, BOUNDS.end.y)
 	else:
 		if absf(nav) > 0.6 and absf(stick_was) <= 0.6:
-			var n := HubCore.open_branches(talk.node, form).size()
-			talk.choice = posmod(talk.choice - int(signf(nav)), maxi(1, n))
+			if not trial.is_empty():
+				trial.choice = posmod(trial.choice - int(signf(nav)), 3)
+			else:
+				var n := HubCore.open_branches(talk.node, form).size()
+				talk.choice = posmod(talk.choice - int(signf(nav)),
+					maxi(1, n))
 		stick_was = nav
 	rig.position = pos
 	rig.rotation.y = yaw
 	if interact and not interact_was:
-		if talk.is_empty():
+		if not trial.is_empty():
+			_select(trial.choice)
+		elif talk.is_empty():
 			_interact()
 		else:
 			_select(talk.choice)
 	interact_was = interact
 	_stillness(dt, move)
+	_check_fall()
 	hearth.light_energy = 1.3 + 0.15 * sin(t * 7.0) * sin(t * 2.3)
 	message_left = maxf(0.0, message_left - dt)
 	_refresh_boards()
@@ -547,6 +573,11 @@ func _interact() -> void:
 			_say("Узел завязан. Узлов: %d." % int(actions.prayerCount))
 			_save()
 		"pier":
+			# A fall closes the road to the deep until it is lifted.
+			var fs := TrialCore.fall_status(trial_data, trial_state, actions)
+			if fs.fallen:
+				_say("Путь в глубину закрыт: %s. Признак: %s Открывают трезвение (угол безмолвия) и беседа с наставником." % [fs.passion_ru, fs.cue])
+				return
 			_save()
 			get_tree().change_scene_to_file("res://scenes/dive.tscn")
 		"witness":
@@ -554,9 +585,32 @@ func _interact() -> void:
 			_save()
 			get_tree().change_scene_to_file("res://scenes/witness.tscn")
 		"ladder":
-			_bow()
+			_ladder()
 		"stillness":
 			_say("Постой здесь, не двигаясь. Время идёт само.")
+
+
+## At the ladder: the bow when a gift is ready, else the threshold of
+## the first open gate not yet crossed, else what is still missing.
+func _ladder() -> void:
+	for c in HubCore.evaluate_ladder(form, actions):
+		if c.ready_for_gift:
+			_bow()
+			return
+	if TrialCore.fall_status(trial_data, trial_state, actions).fallen:
+		_say("Сначала трезвение и беседа с наставником: свет потускнел.")
+		return
+	for gid in TrialCore.GATE_IDS:
+		var tv := TrialCore.trial_view(trial_data, trial_state, gid, form,
+			actions)
+		if tv.is_empty() or not tv.open or tv.passed:
+			continue
+		if tv.waiting:
+			_say("У порога «%s» ждут: сперва вернись к наставнику и поговори." % tv.trial.title_ru)
+			return
+		trial = {"gate": gid, "choice": 0, "reply": ""}
+		return
+	_bow()
 
 
 ## The bow for gates 4-6: "not to me".  It is accepted only when all
@@ -572,6 +626,9 @@ func _bow() -> void:
 
 
 func _select(i: int) -> void:
+	if not trial.is_empty():
+		_choose_threshold(i)
+		return
 	var open := HubCore.open_branches(talk.node, form)
 	if i >= open.size():
 		return
@@ -585,6 +642,39 @@ func _select(i: int) -> void:
 		talk.node = HubCore.node_of(tree, res.next)
 		talk.choice = 0
 	_save()
+
+
+## A choice at the threshold.  After the answer the next press steps
+## away; nothing is scored (Constitution: a choice by understanding).
+func _choose_threshold(i: int) -> void:
+	if trial.reply != "":
+		trial = {}
+		return
+	var tv := TrialCore.trial_view(trial_data, trial_state, trial.gate,
+		form, actions)
+	var res := TrialCore.choose_trial(trial_data, trial_state, trial.gate,
+		tv.options[i].id, form, actions)
+	if res.outcome == null:
+		trial = {}
+		return
+	trial_state = res.state
+	trial.reply = res.reply
+	_save()
+
+
+## The fall is lifted by itself once sobriety and the mentor's talk are
+## both newer than it; then the courtyard's light comes back.
+func _check_fall() -> void:
+	var fs := TrialCore.fall_status(trial_data, trial_state, actions)
+	if fs.fallen and fs.can_lift:
+		trial_state = TrialCore.lift_fall(trial_data, trial_state, actions)
+		_say("Свет вернулся: %s." % fs.virtue_ru)
+		_save()
+	sun.light_energy = 0.25 if fs.fallen and not fs.can_lift else 0.7
+
+
+func _panel_open() -> bool:
+	return not talk.is_empty() or not trial.is_empty()
 
 
 ## Stillness counts only while the body is truly still in the corner.
@@ -608,9 +698,21 @@ func _say(text: String) -> void:
 
 
 func _refresh_prompt() -> void:
-	panel.visible = not talk.is_empty()
+	panel.visible = _panel_open()
 	panel_bg.visible = panel.visible
-	if not talk.is_empty():
+	if not trial.is_empty():
+		var tv := TrialCore.trial_view(trial_data, trial_state, trial.gate,
+			form, actions)
+		var tr: Dictionary = tv.trial
+		var lines := [tr.title_ru, "", tr.scene_ru, ""]
+		if trial.reply != "":
+			lines += [trial.reply, "", "(нажми — отойти от порога)"]
+		else:
+			for j in tv.options.size():
+				var mark := "▸ " if j == trial.choice else "  "
+				lines.append("%s%d. %s" % [mark, j + 1, tv.options[j].text])
+		panel.text = "\n".join(lines)
+	elif not talk.is_empty():
 		var tree: Dictionary = trees[talk.npc]
 		var lines := [tree.get("npcName_ru", talk.npc) + ":",
 			str(talk.node.get("text_ru", talk.node.text)), ""]
@@ -621,7 +723,7 @@ func _refresh_prompt() -> void:
 				open[i].text)])
 		panel.text = "\n".join(lines)
 	var text := message if message_left > 0.0 else ""
-	if text == "" and talk.is_empty():
+	if text == "" and not _panel_open():
 		var th := _nearest()
 		if not th.is_empty():
 			text = th.ru
@@ -690,6 +792,8 @@ func _shots() -> void:
 		{"name": "pier", "pos": Vector3(5.5, 0, 0.6), "yaw": -PI / 2.0},
 		{"name": "ladder", "pos": Vector3(1.0, 0, -1.0), "yaw": 0.0},
 		{"name": "witness-gate", "pos": Vector3(1.2, 0, 3.4), "yaw": PI},
+		{"name": "threshold", "pos": Vector3(1.0, 0, -2.4), "yaw": 0.0,
+			"trial": "foundational"},
 	]
 	var n := shot_frame / 20
 	if n >= plan.size():
@@ -705,6 +809,13 @@ func _shots() -> void:
 			tree.startNode), "choice": 0}
 	elif not s.has("talk"):
 		talk = {}
+	if s.has("trial") and trial.is_empty():
+		# The first gate opened as the ladder asks: Wisdom 4, ten knots,
+		# a talk with Theodora (a proof frame only; nothing is saved).
+		form.wisdom = 4
+		actions.prayerCount = 10.0
+		actions.met["theodora"] = 1
+		trial = {"gate": s.trial, "choice": 1, "reply": ""}
 	if shot_frame % 20 == 19:
 		get_viewport().get_texture().get_image().save_png(
 			"%s/hub-%s.png" % [shots_dir, s.name])

@@ -95,4 +95,10 @@ func _initialize() -> void:
 	load("res://tests/test_witness.gd").new().run(self)
 	print("witness: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# The thresholds of the gates (HLD_TETHER_TRIALS_PASSIONS T2).
+	before = checks
+	fails = failures
+	load("res://tests/test_trial.gd").new().run(self)
+	print("trial: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	quit(1 if failures else 0)
