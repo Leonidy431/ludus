@@ -1,5 +1,5 @@
 {
- "next": 10,
+ "next": 13,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -930,6 +930,52 @@
    ],
    "accepted_objects": 0,
    "code_candidates": 65
+  },
+  {
+   "time": "2026-09-30T10:59:50.166738+00:00",
+   "deficits": [
+    {
+     "id": "DEF-012",
+     "skipped": "audio-pipeline-pending"
+    },
+    {
+     "id": "DEF-019",
+     "hits": 143,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 143
+     },
+     "added_keywords": [],
+     "keywords_total": 8
+    },
+    {
+     "id": "DEF-024",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 146,
+      "sacred-never-raw": 3,
+      "dogma-stop-list": 1
+     },
+     "added_keywords": [
+      "flags",
+      "building",
+      "city",
+      "conditions",
+      "effect",
+      "java",
+      "openra",
+      "player",
+      "traits",
+      "widget",
+      "actors",
+      "com"
+     ],
+     "keywords_total": 26
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 50
   }
  ],
  "keywords": {
@@ -1126,6 +1172,21 @@
    "controllers",
    "editor",
    "units"
+  ],
+  "DEF-019": [],
+  "DEF-024": [
+   "flags",
+   "building",
+   "city",
+   "conditions",
+   "effect",
+   "java",
+   "openra",
+   "player",
+   "traits",
+   "widget",
+   "actors",
+   "com"
   ]
  }
 }

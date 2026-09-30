@@ -55,6 +55,10 @@ var passion_record := {}
 var encounter := {}
 var encounter_still := -1.0  # Seconds left of the three breaths.
 var road_sprite: Sprite3D
+# The Water Atlas on the lectern of the scriptorium (AtlasCore).
+var atlas: Dictionary = AtlasCore.load_data()
+var atlas_page := 0
+var atlas_board: Label3D
 var select_was := false
 var interact_was := false
 var stick_was := 0.0
@@ -174,6 +178,7 @@ func _build_world() -> void:
 	_build_witness_gate(oak)
 	_build_road(oak)
 	_build_refectory(oak)
+	_build_atlas(oak)
 
 
 ## The way out to the path of the witness: a plain oak arch on the south
@@ -185,6 +190,29 @@ func _build_witness_gate(oak: Color) -> void:
 	_box(Vector3(2.3, 0.25, 0.35), at + Vector3(0, 2.7, 0), oak)
 	things.append({"id": "witness", "kind": "witness", "pos": at,
 		"ru": "Тропа свидетеля: постоять у черты"})
+
+
+## A lectern at the end of the scriptorium with "The Water Atlas": one
+## page at a time, the frame first (TABOO 0.03).  Birch-bark board,
+## hearth light; reading counts nothing.
+func _build_atlas(oak: Color) -> void:
+	var at := Vector3(-4.4, 0, 3.6)
+	_box(Vector3(0.12, 1.0, 0.12), at + Vector3(0, 0.5, 0), oak)
+	_box(Vector3(0.7, 0.05, 0.5), at + Vector3(0, 1.05, 0), oak)
+	atlas_board = Label3D.new()
+	atlas_board.font_size = 26
+	atlas_board.pixel_size = 0.0022
+	atlas_board.width = 900
+	atlas_board.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	atlas_board.modulate = Color(0.2, 0.15, 0.1)
+	atlas_board.outline_size = 0
+	atlas_board.position = at + Vector3(0, 2.0, -0.35)
+	add_child(atlas_board)
+	_board_back(atlas_board.position + Vector3(0, 0, -0.02),
+		Vector2(2.2, 1.9), Vector3.ZERO)
+	atlas_board.text = AtlasCore.page_text(atlas, atlas_page)
+	things.append({"id": "atlas", "kind": "atlas", "pos": at,
+		"ru": "Аналой: «Атлас воды» — читать дальше"})
 
 
 ## The refectory table, bare: today's fast is kept here once a day,
@@ -640,6 +668,9 @@ func _interact() -> void:
 			get_tree().change_scene_to_file("res://scenes/dive.tscn")
 		"road":
 			_road()
+		"atlas":
+			atlas_page = AtlasCore.next_page(atlas, atlas_page)
+			atlas_board.text = AtlasCore.page_text(atlas, atlas_page)
 		"fast":
 			var before := float(actions.fastDays)
 			actions = HubCore.keep_fast(actions,
@@ -968,6 +999,7 @@ func _shots() -> void:
 			"trial": "foundational"},
 		{"name": "road", "pos": Vector3(-5.6, 0, 4.6), "yaw": PI,
 			"road": true},
+		{"name": "atlas", "pos": Vector3(-4.4, 0, 6.2), "yaw": 0.0},
 	]
 	var n := shot_frame / 20
 	if n >= plan.size():
@@ -987,6 +1019,11 @@ func _shots() -> void:
 		trial = {}
 		if encounter.is_empty():
 			_road()
+	else:
+		# Each proof frame shows one thing: a meeting on the road does
+		# not follow the player to the next place.
+		encounter = {}
+		road_sprite.visible = false
 	if s.has("trial") and trial.is_empty():
 		# The first gate opened as the ladder asks: Wisdom 4, ten knots,
 		# a talk with Theodora (a proof frame only; nothing is saved).
