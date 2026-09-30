@@ -101,6 +101,9 @@ jobs:
           # The proxies the 99 locations show are shipped, and only those
           # (docs/HLD_LOCATIONS_99_2026-09-30.md, L4; TABOO 0.011).
           python3 scripts/locations/ship_models.py --check
+          # The drawings of the 99 repos each place stands (their boxes
+          # and metres) match the kits passed by eye (TABOO 0.012, 0.1).
+          python3 scripts/raw_assets/location_items.py items --check
           # One bell table for the web clock and the headset's bells,
           # every rule with its source (docs/HLD_BELL_RULES_TYPIKON_*).
           cmp public/ludus/data/bell-rules.json godot/data/bell-rules.json
@@ -141,12 +144,13 @@ jobs:
           xvfb-run -a -s "-screen 0 1280x720x24" "$GODOT" --path . \
             --rendering-driver opengl3 res://scenes/witness.tscn \
             -- --shots="$PWD/../build/shots"
-          # Eight of the 99 locations, one per kind of shell and light,
+          # Nine of the 99 locations, one per kind of shell and light and
+          # one with a drawing of the repos (the court-yard bench),
           # as entered and with the heart's panel open (TABOO 0.013 p. 7).
           xvfb-run -a -s "-screen 0 1280x720x24" "$GODOT" --path . \
             --rendering-driver opengl3 res://scenes/location.tscn \
             -- --shots="$PWD/../build/shots" \
-            --locations=deacon-cell,forge,ichthys-pier,obitel-caravanserai,drowned-posad,sis-gate,zero-board,naos
+            --locations=deacon-cell,forge,ichthys-pier,obitel-caravanserai,drowned-posad,sis-gate,zero-board,naos,court-yard
           ls ../build/shots
 
       # Scene budgets of the headset build, rendered under Xvfb: draw

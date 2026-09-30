@@ -100,7 +100,8 @@ func open_place(id: String) -> void:
 		remove_child(world)
 		world.free()
 	loc = LocationCore.by_id(data, id)
-	p = LocationCore.plan(loc, data.things, LocationCore.load_items())
+	p = LocationCore.plan(loc, data.things, LocationCore.load_items(),
+		LocationCore.load_kits())
 	world = LocationBuild.build(p)
 	add_child(world)
 	things = [{"id": "heart", "pos": p.heart, "reach": LocationCore.REACH_M,

@@ -1,5 +1,5 @@
 {
- "note": "Things of the 99 locations from the 99 cloned repos (TABOO 0.013 p. 3, 0.012, 0.1): kits passed by eye, written by scripts/raw_assets/location_items.py ship. Only the variants a location shows are in the APK; the full kits of twelve are in public/ludus/art/derived.",
+ "note": "Things of the 99 locations from the 99 cloned repos (TABOO 0.013 p. 3, 0.012, 0.1): kits passed by eye, written by scripts/raw_assets/location_items.py ship (or items, from the shipped metas). Only the variants a location shows are in the APK; the full kits of twelve are in public/ludus/art/derived. The builder stands each as a sprite in metres (godot/scripts/location_core.gd).",
  "kits": {
   "obj_bench_41042cf8fd": {
    "thing": "bench",
@@ -8,7 +8,8 @@
    ],
    "dir": "res://art/derived/LOC-court-yard",
    "licence": "CC-BY-SA-3.0",
-   "variants": 12
+   "variants": 12,
+   "side_px": 118
   },
   "obj_bridge_log_40b14237a3": {
    "thing": "bridge-log",
@@ -18,7 +19,8 @@
    ],
    "dir": "res://art/derived/LOC-mountain-bridge",
    "licence": "GPL-2.0-or-later",
-   "variants": 12
+   "variants": 12,
+   "side_px": 118
   },
   "obj_hourglass_e49ab22431": {
    "thing": "hourglass",
@@ -27,7 +29,8 @@
    ],
    "dir": "res://art/derived/LOC-rock-island",
    "licence": "CC-BY-SA-3.0",
-   "variants": 12
+   "variants": 12,
+   "side_px": 118
   },
   "obj_tools_9b09b1f302": {
    "thing": "tools",
@@ -36,7 +39,8 @@
    ],
    "dir": "res://art/derived/LOC-forge",
    "licence": "GPL-2.0-or-later",
-   "variants": 12
+   "variants": 12,
+   "side_px": 118
   }
  },
  "locations": {
@@ -54,11 +58,20 @@
     "changes": [
      "stack"
     ],
+    "bboxes": [
+     [
+      69,
+      66,
+      187,
+      238
+     ]
+    ],
     "size_m": [
      1.2,
      0.45,
      0.35
     ],
+    "px_m": 0.010169,
     "licence": "CC-BY-SA-3.0"
    }
   ],
@@ -76,11 +89,20 @@
     "changes": [
      "pair"
     ],
+    "bboxes": [
+     [
+      13,
+      151,
+      243,
+      238
+     ]
+    ],
     "size_m": [
      1.2,
      0.45,
      0.35
     ],
+    "px_m": 0.010169,
     "licence": "CC-BY-SA-3.0"
    }
   ],
@@ -98,11 +120,20 @@
     "changes": [
      "leans -12, broken"
     ],
+    "bboxes": [
+     [
+      36,
+      141,
+      166,
+      237
+     ]
+    ],
     "size_m": [
      0.6,
      0.6,
      0.03
     ],
+    "px_m": 0.005085,
     "licence": "GPL-2.0-or-later"
    }
   ],
@@ -120,11 +151,20 @@
     "changes": [
      "pair"
     ],
+    "bboxes": [
+     [
+      37,
+      120,
+      204,
+      238
+     ]
+    ],
     "size_m": [
      1.2,
      0.45,
      0.35
     ],
+    "px_m": 0.010169,
     "licence": "CC-BY-SA-3.0"
    }
   ],
@@ -142,11 +182,20 @@
     "changes": [
      "leans -12, broken"
     ],
+    "bboxes": [
+     [
+      80,
+      136,
+      243,
+      238
+     ]
+    ],
     "size_m": [
      1.2,
      0.45,
      0.35
     ],
+    "px_m": 0.010169,
     "licence": "CC-BY-SA-3.0"
    }
   ],
@@ -164,11 +213,20 @@
     "changes": [
      "leans +12, chipped"
     ],
+    "bboxes": [
+     [
+      65,
+      130,
+      191,
+      238
+     ]
+    ],
     "size_m": [
      1.2,
      0.45,
      0.35
     ],
+    "px_m": 0.010169,
     "licence": "CC-BY-SA-3.0"
    }
   ],
@@ -186,11 +244,20 @@
     "changes": [
      "leans +12, chipped"
     ],
+    "bboxes": [
+     [
+      65,
+      130,
+      191,
+      238
+     ]
+    ],
     "size_m": [
      1.2,
      0.45,
      0.35
     ],
+    "px_m": 0.010169,
     "licence": "CC-BY-SA-3.0"
    }
   ],
@@ -208,11 +275,20 @@
     "changes": [
      "pair"
     ],
+    "bboxes": [
+     [
+      37,
+      120,
+      216,
+      238
+     ]
+    ],
     "size_m": [
      0.6,
      0.6,
      0.03
     ],
+    "px_m": 0.005085,
     "licence": "GPL-2.0-or-later"
    }
   ],
@@ -230,11 +306,20 @@
     "changes": [
      "leans -24, broken"
     ],
+    "bboxes": [
+     [
+      95,
+      132,
+      213,
+      238
+     ]
+    ],
     "size_m": [
      0.4,
      0.4,
      4.0
     ],
+    "px_m": 0.033898,
     "licence": "GPL-2.0-or-later"
    }
   ],
@@ -252,11 +337,20 @@
     "changes": [
      "pair"
     ],
+    "bboxes": [
+     [
+      37,
+      120,
+      216,
+      238
+     ]
+    ],
     "size_m": [
      0.6,
      0.6,
      0.03
     ],
+    "px_m": 0.005085,
     "licence": "GPL-2.0-or-later"
    }
   ],
@@ -274,11 +368,20 @@
     "changes": [
      "stack"
     ],
+    "bboxes": [
+     [
+      69,
+      66,
+      187,
+      238
+     ]
+    ],
     "size_m": [
      1.2,
      0.45,
      0.35
     ],
+    "px_m": 0.010169,
     "licence": "CC-BY-SA-3.0"
    }
   ],
@@ -296,11 +399,20 @@
     "changes": [
      "leans -24, chipped"
     ],
+    "bboxes": [
+     [
+      58,
+      126,
+      199,
+      238
+     ]
+    ],
     "size_m": [
      1.2,
      0.45,
      0.35
     ],
+    "px_m": 0.010169,
     "licence": "CC-BY-SA-3.0"
    }
   ],
@@ -318,11 +430,20 @@
     "changes": [
      "upended, chipped"
     ],
+    "bboxes": [
+     [
+      69,
+      151,
+      187,
+      238
+     ]
+    ],
     "size_m": [
      1.2,
      0.45,
      0.35
     ],
+    "px_m": 0.010169,
     "licence": "CC-BY-SA-3.0"
    }
   ],
@@ -340,11 +461,20 @@
     "changes": [
      "leans -24, chipped"
     ],
+    "bboxes": [
+     [
+      67,
+      111,
+      190,
+      237
+     ]
+    ],
     "size_m": [
      0.09,
      0.16,
      0.09
     ],
+    "px_m": 0.001356,
     "licence": "CC-BY-SA-3.0"
    }
   ],
@@ -362,11 +492,20 @@
     "changes": [
      "pair"
     ],
+    "bboxes": [
+     [
+      46,
+      120,
+      219,
+      238
+     ]
+    ],
     "size_m": [
      0.6,
      0.6,
      0.03
     ],
+    "px_m": 0.005085,
     "licence": "GPL-2.0-or-later"
    }
   ],
@@ -384,11 +523,20 @@
     "changes": [
      "leans -12, broken"
     ],
+    "bboxes": [
+     [
+      80,
+      136,
+      243,
+      238
+     ]
+    ],
     "size_m": [
      1.2,
      0.45,
      0.35
     ],
+    "px_m": 0.010169,
     "licence": "CC-BY-SA-3.0"
    }
   ]

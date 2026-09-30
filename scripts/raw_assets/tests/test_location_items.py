@@ -294,6 +294,29 @@ class ShippedTest(unittest.TestCase):
                    GODOT.glob('art/derived/LOC-*/*.png')}
         self.assertEqual(on_disk, copied)
 
+    def test_headset_boxes_and_metres(self):
+        # The headset stands each drawing by the box and the metres in
+        # its file, not by the kit's meta (not in the APK): the file must
+        # be current, and each box must be the drawn part of its canvas.
+        text = li.godot_items(li.shipped_metas_on_disk(),
+                              li.load_locations())
+        self.assertEqual(text, (GODOT / 'data' / 'location-items.json')
+                         .read_text('utf-8'))
+        items = json.loads(text)
+        data = li.load_locations()
+        for rows in items['locations'].values():
+            for row in rows:
+                side = items['kits'][row['kit']]['side_px']
+                self.assertAlmostEqual(
+                    row['px_m'] * side, max(data['things'][row['item']]
+                                            ['size_m']), places=3)
+                for f, box in zip(row['files'], row['bboxes']):
+                    rel = row['kit_dir'].replace('res://', '') + '/' + f
+                    alpha = Image.open(GODOT / rel).convert('RGBA') \
+                        .getchannel('A').point(lambda a: 255 if a > 16
+                                               else 0)
+                    self.assertEqual(list(alpha.getbbox()), box, rel)
+
     def test_queue_is_deterministic_and_fits_rooms(self):
         meta = shipped_metas()[0][1]
         a = li.variant_queue(meta, 'porch-court', 'bench', 'room')

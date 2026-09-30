@@ -20,6 +20,7 @@ const FORM_MAY_CHANGE := ["talk", "passion"]
 var data: Dictionary = {}
 var scene: Node
 var missing_total := 0
+var kits: Dictionary = {}
 
 
 func fresh() -> Dictionary:
@@ -32,21 +33,60 @@ func fresh() -> Dictionary:
 func run(t: Object) -> void:
 	data = LocationCore.load_data()
 	var items := LocationCore.load_items()
+	kits = LocationCore.load_kits()
+	t._check(not kits.is_empty(), "the props store's drawings load")
+	var kit_fill := 0
+	var kit_beside := 0
+	var kit_rows := 0
+	var kit_skipped := []
 	var ctx := LocationHeart.context()
 	var locs: Array = data.get("locations", [])
 	t._check(locs.size() == 99, "99 places to build (%d)" % locs.size())
 	var waiting := {}
 	for loc in locs:
-		var a := LocationCore.plan(loc, data.things, items)
-		var b := LocationCore.plan(loc, data.things, items)
+		var a := LocationCore.plan(loc, data.things, items, kits)
+		var b := LocationCore.plan(loc, data.things, items, kits)
 		var id: String = loc.id
 		t._check(var_to_str(a) == var_to_str(b), id + " plan deterministic")
 		t._check(String(loc.constitution).contains("ФОРМА")
 			and String(loc.constitution).contains("ДЕЙСТВИЕ")
 			and String(loc.constitution).contains("ЦЕЛЬ"),
 			id + " has its Constitution line")
-		t._check(a.slots.size() + a.missing.size() == loc.slots.size(),
+		var own_slots: Array = a.slots.filter(
+			func(s): return not s.get("second", false))
+		t._check(own_slots.size() + a.missing.size() == loc.slots.size(),
 			id + " every wished thing is placed or listed as missing")
+		# Every drawing a place is given stands, or is listed with why.
+		var drawn: Array = a.slots.filter(
+			func(s): return s.model.from == "kit")
+		var rows: Array = kits.get(id, [])
+		kit_rows += rows.size()
+		t._check(drawn.size() + a.kits_skipped.size() == rows.size(),
+			"%s: every drawing stands or is listed (%d + %d of %d)" % [id,
+				drawn.size(), a.kits_skipped.size(), rows.size()])
+		for k in a.kits_skipped:
+			kit_skipped.append("%s/%s: %s" % [id, k.object, k.why])
+		var per := {}
+		for s in a.slots:
+			per[s.object] = int(per.get(s.object, 0)) + 1
+		for key in per:
+			t._check(per[key] <= LocationCore.MAX_STATES,
+				"%s: at most two states of %s" % [id, key])
+		for s in drawn:
+			t._check(not s.holy and s.thing.get("holy") == null
+				and not s.flags.noInteract,
+				"%s: a drawing of the repos is never holy (%s)" % [id,
+					s.object])
+			t._check(s.model.h <= maxf(LocationCore.KIT_TALL
+				* float(s.thing.size_m[1]), 0.6) + 1e-4,
+				"%s: %s drawing no taller than its thing allows (%.2f m)"
+				% [id, s.object, s.model.h])
+			t._check(s.tag == not s.second, "%s: only a filled slot of %s "
+				% [id, s.object] + "has a tag")
+			if s.second:
+				kit_beside += 1
+			else:
+				kit_fill += 1
 		for m in a.missing:
 			var th: Dictionary = data.things[m.object]
 			t._check(String(th.state).begins_with("pending"),
@@ -85,6 +125,11 @@ func run(t: Object) -> void:
 	keys.sort()
 	print("locations built: %d wished things wait for a model in %d kinds: %s"
 		% [missing_total, keys.size(), ", ".join(keys)])
+	print("locations built: drawings of the repos %d of %d stand (%d fill "
+		% [kit_fill + kit_beside, kit_rows, kit_fill]
+		+ "a slot, %d beside a proxy); not stood: %s" % [kit_beside,
+			", ".join(kit_skipped) if not kit_skipped.is_empty()
+			else "none"])
 	_fit(t)
 	_families(t)
 	scene = (load(LocationCore.SCENE) as PackedScene).instantiate()
@@ -277,7 +322,7 @@ func _built(t: Object, loc: Dictionary) -> void:
 	for c in things.get_children():
 		var holder := c as Node3D
 		var meta: Dictionary = holder.get_meta("location_thing")
-		var box: AABB = holder.transform * ObitelLayout.local_aabb(holder)
+		var box: AABB = holder.transform * LocationBuild.local_box(holder)
 		var r := Rect2(box.position.x, box.position.z, box.size.x,
 			box.size.z)
 		var key: String = meta.object
@@ -295,15 +340,26 @@ func _built(t: Object, loc: Dictionary) -> void:
 			"%s: %s has %d triangles (<= 5000)" % [id, key, tris])
 		var meshes := holder.find_children("*", "MeshInstance3D", true,
 			false)
-		t._check(meshes.size() == 1
-			and (meshes[0] as MeshInstance3D).mesh.get_surface_count() <= 2,
-			"%s: %s is one mesh of <= 2 surfaces (%d meshes)" % [id, key,
-				meshes.size()])
+		if meta.from == "kit":
+			_drawing(t, id, holder, meshes)
+		else:
+			t._check(meshes.size() == 1
+				and (meshes[0] as MeshInstance3D).mesh.get_surface_count()
+					<= 2, "%s: %s is one mesh of <= 2 surfaces (%d meshes)"
+				% [id, key, meshes.size()])
 		if meta.holy:
 			t._check(meta.noInteract and meta.noLoot and not tagged.has(key),
 				"%s: holy %s flat, both flags, no tag" % [id, key])
 			t._check(box.size.z <= 0.2 or box.size.x <= 0.2,
 				"%s: holy %s is flat (%s)" % [id, key, box.size])
+	var drawn := 0
+	for s in p.slots:
+		drawn += int(s.model.from == "kit")
+	var sprites := 0
+	for c in things.get_children():
+		sprites += c.find_children("*", "Sprite3D", true, false).size()
+	t._check(sprites == drawn, "%s: every drawing is in the scene (%d of %d)"
+		% [id, sprites, drawn])
 	var person := world.get_node_or_null("PersonName") as Label3D
 	if person:
 		t._check(not LocationsCore.has_church_word(person.text),
@@ -318,3 +374,32 @@ func _built(t: Object, loc: Dictionary) -> void:
 	t._check(lampada == (p.lampada and p.holy_key != ""
 		and not p.missing.any(func(m): return m.object == p.holy_key)),
 		"%s: a lampada only beside its holy thing" % id)
+
+
+## A drawing of the props store in the scene: one Sprite3D and no mesh,
+## its region inside its texture, lit by the place and cut by its alpha,
+## standing on the ground or the bench by its lowest pixel (a billboard)
+## or hung on a wall.
+func _drawing(t: Object, id: String, holder: Node3D, meshes: Array) -> void:
+	var meta: Dictionary = holder.get_meta("location_thing")
+	var key: String = meta.object
+	var list := holder.find_children("*", "Sprite3D", true, false)
+	t._check(list.size() == 1 and meshes.is_empty(),
+		"%s: %s drawing is one sprite" % [id, key])
+	if list.size() != 1:
+		return
+	var sp := list[0] as Sprite3D
+	t._check(sp.texture != null and Rect2(Vector2.ZERO,
+		sp.texture.get_size()).encloses(sp.region_rect),
+		"%s: %s drawing's region is inside its canvas" % [id, key])
+	t._check(sp.shaded and sp.alpha_cut == SpriteBase3D.ALPHA_CUT_DISCARD,
+		"%s: %s drawing is lit and cut by its alpha" % [id, key])
+	t._check(not LocationsCore.has_church_word(str(meta.ru)),
+		"%s: %s drawing's name has no church word" % [id, key])
+	t._check(str(meta.licence) != "",
+		"%s: %s drawing carries its licence" % [id, key])
+	if sp.billboard != BaseMaterial3D.BILLBOARD_DISABLED:
+		var box := LocationBuild.local_box(holder)
+		t._check(absf(box.position.y) < 1e-3,
+			"%s: %s drawing stands on its lowest pixel (%.3f)" % [id, key,
+				box.position.y])

@@ -192,7 +192,8 @@ static func triangles(root: Node) -> int:
 	var list: Array = root.find_children("*", "MeshInstance3D", true, false)
 	if root is MeshInstance3D:
 		list.append(root)
-	var n := 0
+	# A drawing of the props store is one quad: two triangles.
+	var n := 2 * root.find_children("*", "Sprite3D", true, false).size()
 	for c in list:
 		var mesh: Mesh = (c as MeshInstance3D).mesh
 		if mesh == null:
@@ -470,6 +471,8 @@ static func _posts(world: Node3D, s: Dictionary) -> void:
 ## joined into one mesh, set on its slot by its own box: on the ground or
 ## the bench by its bottom, on a wall by its centre.
 static func instance(s: Dictionary) -> Node3D:
+	if s.model.from == "kit":
+		return kit(s)
 	var model: Node3D = null
 	var method := ""
 	if s.model.from == "own":
@@ -521,6 +524,71 @@ static func instance(s: Dictionary) -> Node3D:
 	return holder
 
 
+## A drawing of the props store (LocationCore._place_kits), as the D6
+## drawings stand in the dive (dive.gd _build_own_drawings): a Sprite3D
+## of the drawn part of its canvas, in metres, lit by the place's own
+## light, cut by its alpha.  On the ground or the bench it turns about
+## its upright and stands on its lowest pixel; on a wall it hangs flat,
+## facing the room, a hand's breadth off the wall.
+static func kit(s: Dictionary) -> Node3D:
+	var tex := load(s.model.path) as Texture2D
+	if tex == null:
+		return null
+	var m: Dictionary = s.model
+	var sp := Sprite3D.new()
+	sp.name = "Drawing"
+	sp.texture = tex
+	sp.region_enabled = true
+	sp.region_rect = m.region
+	sp.pixel_size = m.px
+	sp.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
+	sp.shaded = true
+	sp.double_sided = true
+	# The kits are pixel drawings with no mipmaps: nearest keeps their
+	# edges, linear would smear them over a metre.
+	sp.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
+	var holder := Node3D.new()
+	holder.name = ("Thing_" if not s.get("second", false) else "Beside_") \
+		+ s.object
+	holder.add_child(sp)
+	if m.billboard:
+		sp.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
+		sp.position = Vector3(0, m.h / 2.0, 0)
+	else:
+		sp.position = Vector3(0, 0, 0.03)
+	holder.position = s.pos
+	holder.rotation_degrees = Vector3(0, s.yaw, 0)
+	holder.set_meta("location_thing", {"object": s.object, "ru": s.ru,
+		"mount": s.mount, "holy": false, "noInteract": false,
+		"noLoot": false, "from": "kit", "kit": m.kit,
+		"licence": m.licence, "second": s.get("second", false)})
+	return holder
+
+
+## The box of a thing in its holder's space, drawings included: a
+## billboard is counted as the square it sweeps as it turns.
+static func local_box(root: Node3D) -> AABB:
+	var meshes := root.find_children("*", "MeshInstance3D", true, false)
+	var box := ObitelLayout.local_aabb(root)
+	var first := meshes.is_empty()
+	for c in root.find_children("*", "Sprite3D", true, false):
+		var sp := c as Sprite3D
+		var xf := Transform3D.IDENTITY
+		var n: Node = sp
+		while n != root and n is Node3D:
+			xf = (n as Node3D).transform * xf
+			n = n.get_parent()
+		var w := sp.region_rect.size.x * sp.pixel_size
+		var h := sp.region_rect.size.y * sp.pixel_size
+		var b := AABB(Vector3(-w / 2.0, -h / 2.0, 0), Vector3(w, h, 0))
+		if sp.billboard != BaseMaterial3D.BILLBOARD_DISABLED:
+			b = AABB(Vector3(-w / 2.0, -h / 2.0, -w / 2.0), Vector3(w, h, w))
+		b = xf * b
+		box = b if first else box.merge(b)
+		first = false
+	return box
+
+
 ## Our own drawings that the builder makes (LocationCore.OWN).
 static func own(key: String) -> Node3D:
 	var g := Node3D.new()
@@ -547,7 +615,7 @@ static func _tag(s: Dictionary, node: Node3D) -> Label3D:
 	tag.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	tag.modulate = Color(0.95, 0.9, 0.8)
 	tag.visibility_range_end = LocationCore.TAG_RANGE_M
-	var bb := ObitelLayout.local_aabb(node)
+	var bb := local_box(node)
 	var top: float = s.pos.y + bb.end.y if s.layer != "wall" else s.pos.y
 	var above: float = 0.2 if s.layer != "wall" else 0.45
 	tag.position = Vector3(s.pos.x, top + above, s.pos.z)

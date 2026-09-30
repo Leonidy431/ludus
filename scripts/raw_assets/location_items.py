@@ -1135,8 +1135,27 @@ def _pick_repo_path(key):
     return entry['repo'], path, piece
 
 
+def px_m(meta, size_m):
+    """Metres per canvas pixel of a kit shown as a thing of size_m.
+
+    Every variant of a kit is drawn at the source's scale: the source's
+    longest side is side_px pixels (location_kit.SIDE).  That side is
+    the thing's longest real side (a card's width for a card), so a pair
+    shows two things of the real size, not two halves of one.
+    """
+    return round(max(float(v) for v in size_m) / float(meta['side_px']), 6)
+
+
 def location_items(kits, data):
-    """location id -> the things a location shows from the kits."""
+    """location id -> the things a location shows from the kits.
+
+    Each row carries what the headset needs to stand a variant in metres
+    without reading the kit's meta (it is not in the APK): px_m, the
+    metres of one canvas pixel, and for every file its alpha box
+    [x0, y0, x1, y1] on the canvas (the variant's hitbox bbox), so the
+    builder shows only the drawn part and stands its lowest pixel on the
+    floor or the bench.
+    """
     by_thing = {}
     for key, meta, _ in kits:
         for thing in meta['serves']:
@@ -1153,16 +1172,74 @@ def location_items(kits, data):
             queue = variant_queue(meta, loc['id'], thing,
                                   loc['shell']['type'])
             shown = queue[:count]
+            size = data['things'][thing]['size_m']
             rows.append({'item': thing, 'kit': meta['name'],
                          'kit_dir': f'res://art/derived/{meta["slot"]}',
                          'files': [v['file'] for v in shown],
                          'settings': [v['setting'] for v in shown],
                          'changes': [v['change'] for v in shown],
-                         'size_m': data['things'][thing]['size_m'],
+                         'bboxes': [v['hitbox']['bbox'] for v in shown],
+                         'size_m': size, 'px_m': px_m(meta, size),
                          'licence': meta['license']})
         if rows:
             out[loc['id']] = rows
     return out
+
+
+GODOT_NOTE = ('Things of the 99 locations from the 99 cloned repos '
+              '(TABOO 0.013 p. 3, 0.012, 0.1): kits passed by eye, '
+              'written by scripts/raw_assets/location_items.py ship (or '
+              'items, from the shipped metas). Only the variants a '
+              'location shows are in the APK; the full kits of twelve are '
+              'in public/ludus/art/derived. The builder stands each as a '
+              'sprite in metres (godot/scripts/location_core.gd).')
+
+
+def godot_items(kits, data):
+    """The text of godot/data/location-items.json for these kits."""
+    return json.dumps({
+        'note': GODOT_NOTE,
+        'kits': {m['name']: {'thing': m['thing'], 'serves': m['serves'],
+                             'dir': f'res://art/derived/{m["slot"]}',
+                             'licence': m['license'],
+                             'variants': len(m['variants']),
+                             'side_px': m['side_px']}
+                 for _, m, _ in kits},
+        'locations': location_items(kits, data)},
+        ensure_ascii=False, indent=1) + '\n'
+
+
+def shipped_metas_on_disk():
+    """The kits that shipped, read back from their metas in the build.
+
+    The same list shipped_kits() gives, but from public/ludus/art/
+    derived, so the headset's file can be rebuilt and checked without
+    the work folder or the props cache (CI has neither).
+    """
+    out = []
+    for path in sorted(DERIVED.glob('LOC-*/obj_*.json')):
+        meta = json.loads(path.read_text('utf-8'))
+        if EYE.get(meta['thing'], ('', ''))[0] == 'ship' \
+                and meta.get('eye', {}).get('verdict') == 'ship':
+            out.append((meta['thing'], meta, path.parent))
+    out.sort(key=lambda k: k[0])
+    return out
+
+
+def cmd_items(args):
+    """Rebuild (or with --check, compare) the headset's list of items."""
+    text = godot_items(shipped_metas_on_disk(), load_locations())
+    if args.check:
+        old = GODOT_ITEMS.read_text('utf-8') if GODOT_ITEMS.exists() else ''
+        if old != text:
+            print(f'{GODOT_ITEMS.relative_to(ROOT)} is stale: run '
+                  'python3 scripts/raw_assets/location_items.py items')
+            return 1
+        print(f'{GODOT_ITEMS.relative_to(ROOT)} up to date')
+        return 0
+    GODOT_ITEMS.write_text(text, 'utf-8')
+    print(f'wrote {GODOT_ITEMS.relative_to(ROOT)}')
+    return 0
 
 
 def append_notices(kits):
@@ -1259,18 +1336,7 @@ def cmd_ship(args):
         for f in sorted(files):
             shutil.copy2(DERIVED / slot / f, dest / f)
             godot_bytes += (dest / f).stat().st_size
-    GODOT_ITEMS.write_text(json.dumps({
-        'note': 'Things of the 99 locations from the 99 cloned repos '
-                '(TABOO 0.013 p. 3, 0.012, 0.1): kits passed by eye, '
-                'written by scripts/raw_assets/location_items.py ship. '
-                'Only the variants a location shows are in the APK; the '
-                'full kits of twelve are in public/ludus/art/derived.',
-        'kits': {m['name']: {'thing': m['thing'], 'serves': m['serves'],
-                             'dir': f'res://art/derived/{m["slot"]}',
-                             'licence': m['license'],
-                             'variants': len(m['variants'])}
-                 for m in shipped},
-        'locations': items}, ensure_ascii=False, indent=1) + '\n', 'utf-8')
+    GODOT_ITEMS.write_text(godot_items(kits, data), 'utf-8')
     rows = append_notices(kits)
     rolled = [{'kit': k, 'reason': why} for k, (v, why) in
               sorted(EYE.items()) if v != 'ship']
@@ -1686,16 +1752,18 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('command', choices=['search', 'props',
                                             'candidates', 'kits',
-                                            'meshes', 'ship'])
+                                            'meshes', 'ship', 'items'])
     parser.add_argument('--index', default=DEFAULT_INDEX)
     parser.add_argument('--cache', default=DEFAULT_CACHE)
     parser.add_argument('--pass-id', default='')
     parser.add_argument('--only', default='')
+    parser.add_argument('--check', action='store_true',
+                        help='items: fail if the headset file is stale')
     args = parser.parse_args(argv)
     return {'search': cmd_search, 'props': cmd_props,
             'candidates': cmd_candidates,
             'kits': cmd_kits, 'meshes': cmd_meshes,
-            'ship': cmd_ship}[args.command](args)
+            'ship': cmd_ship, 'items': cmd_items}[args.command](args)
 
 
 if __name__ == '__main__':
