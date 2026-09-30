@@ -65,9 +65,10 @@ const CHASE := Vector3(0.45, 0.85, 2.6)
 const CHASE_PITCH := -0.22
 const CHASE_YAW := 0.17
 var body: RovBody
-# The console's second screen (M8): the front camera's picture and the
-# sonar, in its own viewport so screen and headset share it.
-const SCREENS_PX := Vector2i(504, 196)
+# The console's second screen (M8): the front camera's picture, the
+# sonar and the posoh hydrophone (HLD_POSOH_HYDROPHONE), in its own
+# viewport so screen and headset share it.
+const SCREENS_PX := Vector2i(724, 196)
 const SONAR_HZ := 10.0
 var screens_view: SubViewport
 var screens: CockpitScreens
@@ -76,6 +77,9 @@ var screens_xr: MeshInstance3D
 var eye_view: SubViewport
 var eye: Camera3D
 var sonar_left := 0.0
+# The hydrophone card refreshes as the posoh firmware reports: every
+# PosohCore.REPORT_S seconds.
+var hydro_left := 0.0
 var third_person := true
 var view_was := false
 # The manipulator reached out this frame: the tether task needs it.
@@ -94,6 +98,8 @@ var lamp_was := false
 var shots_dir := ""
 var shot_plan := [3.0, 12.0, 35.0, 60.0, 120.0]
 var shot_frame := 0
+# After the plan, one close look at the hydrophone on the body.
+var shot_closeup := false
 
 
 func _ready() -> void:
@@ -537,7 +543,7 @@ func _build_screens(layer: CanvasLayer) -> void:
 	layer.add_child(screens_screen)
 	# In the headset: a panel to the right of the gaze, turned to it.
 	var quad := QuadMesh.new()
-	quad.size = Vector2(0.34, 0.34 * SCREENS_PX.y / SCREENS_PX.x)
+	quad.size = Vector2(0.47, 0.47 * SCREENS_PX.y / SCREENS_PX.x)
 	var mat := StandardMaterial3D.new()
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
@@ -546,15 +552,20 @@ func _build_screens(layer: CanvasLayer) -> void:
 	screens_xr = MeshInstance3D.new()
 	screens_xr.mesh = quad
 	screens_xr.material_override = mat
-	screens_xr.position = Vector3(0.42, -0.1, -0.7)
+	screens_xr.position = Vector3(0.5, -0.1, -0.7)
 	screens_xr.rotation_degrees = Vector3(0, -30, 0)
 	screens_xr.visible = false
 	camera.add_child(screens_xr)
 
 
 ## The camera follows the skid; the sonar pings SONAR_HZ times a second
-## (enough for the eye, and cheap on the Quest's CPU).
-func _update_screens(dt: float) -> void:
+## (enough for the eye, and cheap on the Quest's CPU); the hydrophone
+## hears the ROV's own thrusters at the command the sticks give.
+func _update_screens(dt: float, thrust: float) -> void:
+	hydro_left -= dt
+	if hydro_left <= 0.0:
+		hydro_left = PosohCore.REPORT_S
+		screens.hydro.show_reading(rov.depth, thrust)
 	eye.global_transform = body.global_transform \
 		* Transform3D(Basis(), RovBody.EYE)
 	sonar_left -= dt
@@ -827,7 +838,16 @@ func _process(dt: float) -> void:
 	shown["lamp"] = rov.lamp
 	console.show_cards(CockpitCore.cards(shown, bag, game.turns))
 	_fade_console(dt)
-	_update_screens(dt)
+	# Every thruster answers some stick, turning included: the largest
+	# command is what the hydrophone hears.
+	var thrust := 0.0
+	for k in ["forward", "strafe", "vertical", "turn"]:
+		thrust = maxf(thrust, absf(inp.get(k, 0.0)))
+	if rov.battery <= 0.0:
+		thrust = 0.0
+	_update_screens(dt, thrust)
+	if shot_closeup:
+		_closeup_view()
 	hud_label.text = text
 	hud_prompt.text = prompt
 	xr_label.text = text
@@ -858,7 +878,7 @@ func _shots() -> void:
 	# Each depth twice: from the ROV's eye, then from behind its body.
 	var n := shot_frame / 40
 	if n >= shot_plan.size():
-		get_tree().quit()
+		_shot_closeup(n)
 		return
 	var chase := shot_frame % 40 >= 20
 	if chase != third_person:
@@ -878,6 +898,37 @@ func _shots() -> void:
 		img.save_png("%s/dive-%03dm%s.png" % [shots_dir, roundi(depth),
 			"-3p" if chase else ""])
 	shot_frame += 1
+
+
+## The last proof frame: third person at 12 m, the camera beside the
+## top tube's bow end, looking at the hydrophone (docs/audit).
+func _shot_closeup(n: int) -> void:
+	var k := shot_frame - 40 * shot_plan.size()
+	if k >= 20:
+		get_tree().quit()
+		return
+	shot_closeup = true
+	if not third_person:
+		third_person = true
+		_place_view()
+	rov.x = DiveCore.x_for_depth(18.0) - 8.0
+	rov.z = 0.0
+	rov.depth = 12.0
+	rov.yaw = 0.0
+	t = 20.0 + n
+	if k == 19:
+		var img := get_viewport().get_texture().get_image()
+		img.save_png("%s/dive-posoh-closeup.png" % shots_dir)
+	shot_frame += 1
+
+
+func _closeup_view() -> void:
+	var target := body.to_global(PosohCore.MOUNT
+		+ Vector3(0, 0, -PosohCore.TUBE_LEN_M / 2.0))
+	rig.global_position = body.to_global(Vector3(0.42, 0.62, -0.62))
+	rig.rotation = Vector3.ZERO
+	camera.rotation = Vector3.ZERO
+	camera.look_at(target, Vector3.UP)
 
 
 func _build_audio() -> void:

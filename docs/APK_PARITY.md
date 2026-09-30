@@ -10,6 +10,7 @@
 | Диалоги 24 наставников | `public/ludus/data/dialogue-trees.json` | хаб, скрипторий (4 наставника врат) | частично: в шлеме 4 из 24 NPC |
 | Звук: исон, колокол по уставу, сонар | `ludus-sacred-synth.js`, `ludus-glas.js`, `ludus-liturgical-clock.js` | `godot/scripts/audio` | ✅ погружение; во дворе и на тропе — нет |
 | Кокпит, аппарат «Мангустик», трос | трос — `dive-core.js` (задача `tether`) | `godot/scripts/cockpit_*`, `rov_body.gd`, `dive_core.gd` | ✅ |
+| Гидрофон оператора (posoh «модель 1») на «Мангустике» | в вебе нет (сначала шлем) | `godot/models/posoh/hydrophone.glb`, `godot/scripts/posoh_core.gd`, карточка «ГИДРОФОН» на втором экране | ✅ 92 проверки; в веб-версию — следующей задачей, если нужно (HLD_POSOH_HYDROPHONE, открытый вопрос 4) |
 | Семь сцен «игрок — свидетель» | `public/vr/models/scene/sacrament-*.glb` | `godot/scenes/witness.tscn`, вход — арка во дворе | ✅ 77 проверок; исон и колокол на тропе — позже, через `LudusTypikon` |
 | Испытания врат (выбор на пороге) | `public/ludus/data/gate-trials.json`, `ludus-missions.js` | `godot/scripts/trial_core.gd`, хаб у лестницы | ✅ 205 проверок |
 | Восемь страстей, признак распознавания, падение и трезвение | `ludus-passion.js`, `data/passions.json`, `ludus-antagonist-factory.js` | `godot/scripts/passion_core.gd`, калитка на дорогу во дворе | ✅ логика 17 925 проверок, встреча 161 проверка, 132 спрайта |
