@@ -24,15 +24,10 @@ var schools: Array = []
 var bag := {"kept": [], "released": [], "handed_over": []}
 var game := DiveCore.new_game()
 var messages: Array = []
-# Sonar: a ping every few seconds and its echo from the floor after the
-# real 2 * range / c (1480 m/s above the thermocline, 1435 below).
-const PING_EVERY := 4.0
-const MIX_RATE := 22050.0
-var sonar: AudioStreamGeneratorPlayback
-var ping_clock := 0.0
-var pending: Array = []  # [seconds until sound, frequency, gain]
-var noise := 0.0
-var sample_clock := 0.0
+# Sound (scripts/audio): water, breath, sonar and its echo after the
+# real 2 * range / c, the ison and the shore bell, spatial water and
+# haptics.  This scene only calls its hooks.
+var audio: DiveAudio
 var t := 0.0
 var xr_active := false
 var mouse_look := false
@@ -83,7 +78,7 @@ func _ready() -> void:
 	_build_rig()
 	_build_hud()
 	_start_xr()
-	_build_sonar()
+	_build_audio()
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--shots="):
 			shots_dir = arg.trim_prefix("--shots=")
@@ -481,6 +476,7 @@ func _read_input() -> Dictionary:
 	interact_was = interact
 	if lamp_key and not lamp_was:
 		rov.lamp = not rov.lamp
+		audio.on_lamp_toggled(rov.lamp)
 	lamp_was = lamp_key
 	return inp
 
@@ -498,6 +494,7 @@ func _interact() -> void:
 	var res := DiveCore.loot_action(hit.thing, bag)
 	bag = res.bag
 	_save_bag()
+	audio.on_taken(res.rule)
 	_say("%s. %s" % [hit.thing.ru, res.text])
 
 
@@ -614,7 +611,7 @@ func _process(dt: float) -> void:
 	# A fall dims the world until the safety stop is held.
 	lamp.light_energy = 1.2 if game.fallen else 4.0
 	_update_water(tel)
-	_update_sonar(tel, dt)
+	audio.update(tel, rov, inp, schools, t, dt, xr_active)
 	if game.fallen:
 		env.ambient_light_energy *= 0.35
 		sun.light_energy *= 0.35
@@ -650,46 +647,14 @@ func _shots() -> void:
 	shot_frame += 1
 
 
-func _build_sonar() -> void:
-	var player := AudioStreamPlayer.new()
-	var gen := AudioStreamGenerator.new()
-	gen.mix_rate = MIX_RATE
-	gen.buffer_length = 0.25
-	player.stream = gen
-	player.volume_db = -6.0
-	add_child(player)
-	player.play()
-	sonar = player.get_stream_playback()
-
-
-## Fill the sonar buffer: a low room of water (brown noise, darker with
-## depth) and short sine clicks for the ping and its echo.
-func _update_sonar(tel: Dictionary, dt: float) -> void:
-	if sonar == null:
-		return
-	ping_clock += dt
-	if ping_clock >= PING_EVERY:
-		ping_clock = 0.0
-		pending.append([0.0, 2400.0, 0.35])
-		# The echo returns from the floor below after 2 * range / c.
-		pending.append([tel.echo_delay, 2400.0, 0.12])
-	var hush := clampf(1.0 - tel.depth / 150.0, 0.25, 1.0)
-	var frames := sonar.get_frames_available()
-	for i in frames:
-		# Brown noise: integrated white noise from a seeded hash, so the
-		# water sound is the same on every run (no randomness).
-		var h := fposmod(sin(sample_clock * 12.9898) * 43758.5453, 1.0)
-		noise = clampf(noise + (h - 0.5) * 0.02, -1.0, 1.0) * 0.998
-		var v := noise * 0.25 * hush
-		for p in pending:
-			var age: float = -p[0]
-			if age >= 0.0 and age < 0.03:
-				v += sin(TAU * p[1] * age) * p[2] * (1.0 - age / 0.03)
-		sonar.push_frame(Vector2(v, v))
-		sample_clock += 1.0 / MIX_RATE
-		for p in pending:
-			p[0] -= 1.0 / MIX_RATE
-	pending = pending.filter(func(p): return p[0] > -0.05)
+func _build_audio() -> void:
+	audio = DiveAudio.new()
+	add_child(audio)
+	var flows := []
+	for p in placed:
+		if p.where == "water" and p.shape in FLOW_SHAPES:
+			flows.append(p)
+	audio.build(camera, right_hand, schools, flows)
 
 
 func _hint() -> String:
