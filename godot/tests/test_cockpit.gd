@@ -122,6 +122,15 @@ func run(t: Object) -> void:
 		"depth": 20.0 + 11.2 * tan(CockpitCore.SONAR_TILT)}])
 	t._check(side.echoes.size() == 1 and side.echoes[0].angle > 0.0,
 		"starboard is a positive angle")
+	# The thermocline's echo: where the beam's centre crosses 50 m.
+	for row in [[35.0, 25.98], [45.0, 8.66]]:
+		var got := CockpitCore.thermocline_range(row[0])
+		t._check(absf(got - row[1]) < 0.05,
+			"thermocline from %.0f m at %.2f m" % [row[0], got])
+	t._check(CockpitCore.thermocline_range(12.0) == -1.0,
+		"thermocline out of range from 12 m")
+	t._check(CockpitCore.thermocline_range(60.0) == -1.0,
+		"no thermocline echo from below it")
 	var s0 := CockpitCore.sonar_sweep(0.0)
 	var s1 := CockpitCore.sonar_sweep(CockpitCore.SONAR_SWEEP)
 	t._check(absf(s0 + CockpitCore.SONAR_FAN / 2.0) < 1e-6

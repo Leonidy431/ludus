@@ -141,15 +141,20 @@ static func arm_phase(elapsed: float) -> float:
 const SONAR_RANGE := 30.0
 const SONAR_FAN := PI / 2.0
 const SONAR_BEAMS := 31
-const SONAR_TILT := 0.52  # 30 degrees, as ROV imaging sonars are set.
+const SONAR_TILT := 0.5235988  # 30 degrees, as ROV imaging sonars are set.
 const SONAR_STEP := 0.5
 ## Vertical beam width: the floor answers as soon as the beam's lower
-## edge touches it (imaging sonars spread about 20 degrees vertically).
-const SONAR_VBEAM := 0.35
+## edge touches it.  The operator's rov-platform/HLD.md puts a
+## Ping360-class scanning sonar under the camera; its beam is about 25
+## degrees tall.
+const SONAR_VBEAM := 0.44
 
 
 ## Returns {floor: [range or -1 per beam], echoes: [{angle, range,
-## strength}]}.  rov: the dive core state (x, z, depth, yaw); things:
+## strength}], layer: range or -1}.  layer is the thermocline: sound
+## slows from 1480 to 1435 m/s across it (DiveCore.sound_speed), and the
+## jump in the medium sends part of the ping back, so a sonar sees the
+## layer as a faint arc where its beam's centre crosses 50 m.  rov: the dive core state (x, z, depth, yaw); things:
 ## anything with x, z, depth and an optional size.  Angle 0 is ahead,
 ## positive to starboard.
 static func sonar_scan(rov: Dictionary, things: Array) -> Dictionary:
@@ -186,7 +191,17 @@ static func sonar_scan(rov: Dictionary, things: Array) -> Dictionary:
 		var size := float(th.get("size", 0.5))
 		echoes.append({"angle": a, "range": r,
 			"strength": clampf(0.3 + size * 0.5, 0.3, 1.0)})
-	return {"floor": floor, "echoes": echoes}
+	return {"floor": floor, "echoes": echoes, "layer": thermocline_range(
+		rov.depth)}
+
+
+## Where the tilted beam's centre crosses the thermocline, or -1 when it
+## never does within range (from below it, the beam points away).
+static func thermocline_range(depth: float) -> float:
+	if depth >= DiveCore.THERMOCLINE_M:
+		return -1.0
+	var r := (DiveCore.THERMOCLINE_M - depth) / tan(SONAR_TILT)
+	return r if r <= SONAR_RANGE else -1.0
 
 
 ## The sweep line's angle at time t: across the fan and back every

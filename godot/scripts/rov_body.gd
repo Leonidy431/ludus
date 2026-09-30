@@ -169,12 +169,51 @@ func _manipulator() -> void:
 	var wrist := Node3D.new()
 	wrist.position = Vector3(0, 0, -0.3)
 	arm_fore.add_child(wrist)
+	_tool_flange(wrist)
+	# The drawings stop at the flange: the claw below is a stand-in,
+	# not a drawn part (docs/HLD_MANGUSTIK_COCKPIT M11).
 	for side in [-1.0, 1.0]:
 		var f := _link(0.09, 0.012, STEEL)
 		f.rotation.y = side * 0.35
 		wrist.add_child(f)
 		fingers.append(f)
 	set_arm(0.0)
+
+
+## The tool flange of 09_manipulator_and_tool_interface.scad: six M6
+## bolts on a 90 mm pitch circle round a 30 mm pass-through, anodised
+## aluminium (LightSteelBlue in the drawing).
+func _tool_flange(wrist: Node3D) -> void:
+	var disc := MeshInstance3D.new()
+	var d := CylinderMesh.new()
+	d.top_radius = 0.06
+	d.bottom_radius = 0.06
+	d.height = 0.012
+	disc.mesh = d
+	disc.material_override = _metal(Color(0.69, 0.77, 0.87))
+	disc.rotation_degrees = Vector3(90, 0, 0)
+	wrist.add_child(disc)
+	var hole := MeshInstance3D.new()
+	var h := CylinderMesh.new()
+	h.top_radius = 0.015
+	h.bottom_radius = 0.015
+	h.height = 0.014
+	hole.mesh = h
+	hole.material_override = _unshaded(Color(0.05, 0.06, 0.08))
+	hole.rotation_degrees = Vector3(90, 0, 0)
+	wrist.add_child(hole)
+	for i in 6:
+		var bolt := MeshInstance3D.new()
+		var b := CylinderMesh.new()
+		b.top_radius = 0.005
+		b.bottom_radius = 0.005
+		b.height = 0.016
+		bolt.mesh = b
+		bolt.material_override = _metal(STEEL)
+		bolt.rotation_degrees = Vector3(90, 0, 0)
+		var a := TAU * i / 6.0
+		bolt.position = Vector3(cos(a), sin(a), 0) * 0.045
+		wrist.add_child(bolt)
 
 
 ## A link along -Z from its own origin (the joint).

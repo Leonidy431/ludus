@@ -97,6 +97,16 @@ class SonarScope:
 			# The floor answers from its first return to the range end.
 			draw_line(_point(a, r), _point(a, minf(CockpitCore.SONAR_RANGE,
 				r + 2.5)), c, 3.0)
+		var layer: float = scan.get("layer", -1.0)
+		if layer > 0.0:
+			# The thermocline: a faint, even arc across the whole fan.
+			var band := CockpitCore.ACCENT
+			band.a = 0.28
+			var pts := PackedVector2Array()
+			for i in 17:
+				pts.append(_point(-half + CockpitCore.SONAR_FAN * i / 16.0,
+					layer))
+			draw_polyline(pts, band, 4.0)
 		for e in scan.echoes:
 			var c := CockpitCore.ACCENT
 			c.a = e.strength * _glow(e.angle)
