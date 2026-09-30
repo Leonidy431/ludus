@@ -12,7 +12,7 @@
 | Кокпит, аппарат «Мангустик», трос | трос — `dive-core.js` (задача `tether`) | `godot/scripts/cockpit_*`, `rov_body.gd`, `dive_core.gd` | ✅ |
 | Семь сцен «игрок — свидетель» | `public/vr/models/scene/sacrament-*.glb` | `godot/scenes/witness.tscn`, вход — арка во дворе | ✅ 77 проверок; исон и колокол на тропе — позже, через `LudusTypikon` |
 | Испытания врат (выбор на пороге) | `public/ludus/data/gate-trials.json`, `ludus-missions.js` | `godot/scripts/trial_core.gd`, хаб у лестницы | ✅ 205 проверок; врата 3 (пост) в шлеме пока не открыть — нет практики поста |
-| Восемь страстей, признак распознавания, падение и трезвение | `ludus-passion.js`, `data/passions.json`, `ludus-antagonist-factory.js` | `godot/scripts/passion_core.gd` (логика) | частично: логика ✅ 17 925 проверок; встреча в сцене и спрайты — в работе |
+| Восемь страстей, признак распознавания, падение и трезвение | `ludus-passion.js`, `data/passions.json`, `ludus-antagonist-factory.js` | `godot/scripts/passion_core.gd`, калитка на дорогу во дворе | ✅ логика 17 925 проверок, встреча 161 проверка, 132 спрайта |
 | Практика поста (врата 3) | `ludus-actions.js` (`doPractice` fast, по дням) | — | нет: без неё лестница в шлеме останавливается на вратах 3 |
 | Миссии и хребет кампании | `ludus-missions.js`, `data/campaign-spine.json` | — | нет |
 | Журнал действий | `ludus-journal.js` | — | нет |

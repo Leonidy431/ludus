@@ -42,6 +42,19 @@ var trial := {}
 var trial_data := TrialCore.load_data()
 var trial_state := TrialCore.empty_state()
 var sun: DirectionalLight3D
+# The road beyond the wicket: a passion met as a thought (PassionCore,
+# ludus-passion.js).  record is the player's history with each passion;
+# encounter is the meeting in progress.
+const STILL_BREATH_SECONDS := 5.0  # As in ludus-game.js.
+const ROAD_AT := Vector3(-5.6, 0, 7.0)
+var passion_data: Dictionary = JSON.parse_string(
+	FileAccess.get_file_as_string("res://data/passions.json"))
+var manifest: Array = JSON.parse_string(FileAccess.get_file_as_string(
+	"res://data/antagonist-manifest.json")).manifest
+var passion_record := {}
+var encounter := {}
+var encounter_still := -1.0  # Seconds left of the three breaths.
+var road_sprite: Sprite3D
 var select_was := false
 var interact_was := false
 var stick_was := 0.0
@@ -159,6 +172,7 @@ func _build_world() -> void:
 	_build_ladder()
 	_build_practice(oak)
 	_build_witness_gate(oak)
+	_build_road(oak)
 
 
 ## The way out to the path of the witness: a plain oak arch on the south
@@ -170,6 +184,27 @@ func _build_witness_gate(oak: Color) -> void:
 	_box(Vector3(2.3, 0.25, 0.35), at + Vector3(0, 2.7, 0), oak)
 	things.append({"id": "witness", "kind": "witness", "pos": at,
 		"ru": "Тропа свидетеля: постоять у черты"})
+
+
+## The wicket to the road, in the south-west corner.  Beyond it the
+## passion shows itself as its figure from the antagonist factory, in
+## the cold palette of the passions, never as a monster to fight.
+func _build_road(oak: Color) -> void:
+	_box(Vector3(0.18, 1.6, 0.18), ROAD_AT + Vector3(-0.6, 0.8, 0), oak)
+	_box(Vector3(0.18, 1.6, 0.18), ROAD_AT + Vector3(0.6, 0.8, 0), oak)
+	_box(Vector3(1.4, 0.12, 0.2), ROAD_AT + Vector3(0, 1.62, 0), oak)
+	road_sprite = Sprite3D.new()
+	road_sprite.pixel_size = 0.008
+	road_sprite.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
+	# At eye height on the road; the words sit lower while it is met, so
+	# the figure and the words are seen together.  Unshaded, so the
+	# evening sun behind it does not turn it into a black cut-out.
+	road_sprite.position = ROAD_AT + Vector3(0, 1.75, 3.4)
+	road_sprite.shaded = false
+	road_sprite.visible = false
+	add_child(road_sprite)
+	things.append({"id": "road", "kind": "road", "pos": ROAD_AT,
+		"ru": "Калитка на дорогу"})
 
 
 func _build_scriptorium(oak: Color) -> void:
@@ -430,7 +465,7 @@ func _save() -> void:
 	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if f:
 		f.store_string(JSON.stringify({"form": form, "actions": actions,
-			"trials": trial_state}))
+			"trials": trial_state, "passions": passion_record}))
 
 
 func _load() -> void:
@@ -453,6 +488,8 @@ func _load() -> void:
 			var w = ts.get("trial_wait", {}).get(g)
 			if typeof(w) in [TYPE_INT, TYPE_FLOAT]:
 				trial_state.trial_wait[g] = int(w)
+		passion_record = PassionCore.normalize_record(data.get("passions",
+			{}))
 		var f = ts.get("fall")
 		if f is Dictionary and not TrialCore.passion_of(trial_data,
 				f.get("passion")).is_empty():
@@ -519,7 +556,10 @@ func _process(dt: float) -> void:
 		pos.z = clampf(pos.z, BOUNDS.position.y, BOUNDS.end.y)
 	else:
 		if absf(nav) > 0.6 and absf(stick_was) <= 0.6:
-			if not trial.is_empty():
+			if not encounter.is_empty():
+				encounter.choice = posmod(encounter.choice - int(signf(nav)),
+					maxi(1, _encounter_options().size()))
+			elif not trial.is_empty():
 				trial.choice = posmod(trial.choice - int(signf(nav)), 3)
 			else:
 				var n := HubCore.open_branches(talk.node, form).size()
@@ -529,7 +569,9 @@ func _process(dt: float) -> void:
 	rig.position = pos
 	rig.rotation.y = yaw
 	if interact and not interact_was:
-		if not trial.is_empty():
+		if not encounter.is_empty():
+			_select(encounter.choice)
+		elif not trial.is_empty():
 			_select(trial.choice)
 		elif talk.is_empty():
 			_interact()
@@ -538,6 +580,7 @@ func _process(dt: float) -> void:
 	interact_was = interact
 	_stillness(dt, move)
 	_check_fall()
+	_road_tick(dt)
 	hearth.light_energy = 1.3 + 0.15 * sin(t * 7.0) * sin(t * 2.3)
 	message_left = maxf(0.0, message_left - dt)
 	_refresh_boards()
@@ -580,6 +623,8 @@ func _interact() -> void:
 				return
 			_save()
 			get_tree().change_scene_to_file("res://scenes/dive.tscn")
+		"road":
+			_road()
 		"witness":
 			# Leaving for the path writes nothing about the visit.
 			_save()
@@ -626,6 +671,9 @@ func _bow() -> void:
 
 
 func _select(i: int) -> void:
+	if not encounter.is_empty():
+		_choose_on_road(i)
+		return
 	if not trial.is_empty():
 		_choose_threshold(i)
 		return
@@ -674,7 +722,84 @@ func _check_fall() -> void:
 
 
 func _panel_open() -> bool:
-	return not talk.is_empty() or not trial.is_empty()
+	return not talk.is_empty() or not trial.is_empty() \
+		or not encounter.is_empty()
+
+
+func _passion(id) -> Dictionary:
+	for p in passion_data.passions:
+		if p.id == id:
+			return p
+	return {}
+
+
+## Out through the wicket: the next passion of Evagrius' order that is
+## not yet overcome comes to meet the player (its variant from the
+## factory, the same as in the web game).
+func _road() -> void:
+	var next = PassionCore.next_passion(passion_data, passion_record,
+		manifest)
+	if next == null:
+		_say("Дорога тиха.")
+		return
+	encounter = PassionCore.start(next)
+	encounter["choice"] = 0
+	var file := str(next.get("art", "")).get_file()
+	var tex := load("res://art/derived/DEF-001/" + file) as Texture2D \
+		if file != "" else null
+	road_sprite.texture = tex
+	road_sprite.visible = tex != null
+
+
+func _encounter_options() -> Array:
+	return PassionCore.options(encounter, _passion(encounter.passionId),
+		form, actions)
+
+
+## A choice on the road.  "Be still" takes three breaths before it
+## counts; the end (virtue or captive) closes with one more press.
+func _choose_on_road(i: int) -> void:
+	var stage: String = encounter.stage
+	if stage in ["virtue", "captive"]:
+		var res := PassionCore.finish(passion_record, encounter)
+		passion_record = res.record
+		for a in res.attribute_bonuses:
+			if a in HubCore.ATTRIBUTES:
+				form[a] = int(form[a]) + int(res.attribute_bonuses[a])
+		encounter = {}
+		road_sprite.visible = false
+		_save()
+		return
+	if encounter_still >= 0.0:
+		return
+	var opts := _encounter_options()
+	if i >= opts.size():
+		return
+	if opts[i].get("breaths", 0) > 0:
+		encounter_still = float(opts[i].breaths) * STILL_BREATH_SECONDS
+		encounter["pending"] = opts[i].id
+		return
+	_take_on_road(opts[i].id)
+
+
+func _take_on_road(option_id: String) -> void:
+	var choice: int = encounter.get("choice", 0)
+	encounter = PassionCore.choose(encounter, option_id,
+		_passion(encounter.passionId), form, actions)
+	encounter["choice"] = 0 if choice >= _encounter_options().size() \
+		else choice
+	if encounter.stage == "virtue":
+		# The thought has passed: the figure is gone from the road.
+		road_sprite.visible = false
+
+
+func _road_tick(dt: float) -> void:
+	if encounter_still < 0.0:
+		return
+	encounter_still -= dt
+	if encounter_still <= 0.0:
+		encounter_still = -1.0
+		_take_on_road(encounter.get("pending", "still"))
 
 
 ## Stillness counts only while the body is truly still in the corner.
@@ -700,7 +825,30 @@ func _say(text: String) -> void:
 func _refresh_prompt() -> void:
 	panel.visible = _panel_open()
 	panel_bg.visible = panel.visible
-	if not trial.is_empty():
+	var low := -0.3 if not encounter.is_empty() else 0.0
+	panel.position.y = -0.05 + low
+	panel_bg.position.y = -0.05 + low
+	if not encounter.is_empty():
+		var p := _passion(encounter.passionId)
+		var lines := ["На дороге: %s" % p.name_ru, "", p.lure_ru, ""]
+		match encounter.stage:
+			"virtue":
+				lines += ["Помысел прошёл. %s — %s; %s." % [p.virtue_ru,
+					p.source, p.ladder], "", "(нажми — идти дальше)"]
+			"captive":
+				lines += ["Он повёл тебя. Он вернётся; наставники научат его признаку.",
+					"", "(нажми — идти дальше)"]
+			_:
+				if encounter_still >= 0.0:
+					lines.append("Помолчи… %d с" % ceili(encounter_still))
+				else:
+					var opts := _encounter_options()
+					for j in opts.size():
+						var mark := "▸ " if j == encounter.choice else "  "
+						lines.append("%s%d. %s" % [mark, j + 1,
+							opts[j].text_ru])
+		panel.text = "\n".join(lines)
+	elif not trial.is_empty():
 		var tv := TrialCore.trial_view(trial_data, trial_state, trial.gate,
 			form, actions)
 		var tr: Dictionary = tv.trial
@@ -794,6 +942,8 @@ func _shots() -> void:
 		{"name": "witness-gate", "pos": Vector3(1.2, 0, 3.4), "yaw": PI},
 		{"name": "threshold", "pos": Vector3(1.0, 0, -2.4), "yaw": 0.0,
 			"trial": "foundational"},
+		{"name": "road", "pos": Vector3(-5.6, 0, 4.6), "yaw": PI,
+			"road": true},
 	]
 	var n := shot_frame / 20
 	if n >= plan.size():
@@ -809,6 +959,10 @@ func _shots() -> void:
 			tree.startNode), "choice": 0}
 	elif not s.has("talk"):
 		talk = {}
+	if s.has("road"):
+		trial = {}
+		if encounter.is_empty():
+			_road()
 	if s.has("trial") and trial.is_empty():
 		# The first gate opened as the ladder asks: Wisdom 4, ten knots,
 		# a talk with Theodora (a proof frame only; nothing is saved).

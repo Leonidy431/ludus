@@ -60,9 +60,11 @@ jobs:
           node scripts/godot/make_hub_fixture.js
           node scripts/godot/make_trial_fixture.js
           node scripts/godot/make_passion_fixture.js
+          node scripts/godot/export_antagonist_manifest.js
           git diff --exit-code godot/tests/fixture.json \
             godot/tests/hub_fixture.json godot/tests/trial_fixture.json \
-            godot/tests/passion_fixture.json
+            godot/tests/passion_fixture.json \
+            godot/data/antagonist-manifest.json
 
       - name: Lake data in sync with the web build
         run: |
@@ -125,7 +127,9 @@ jobs:
           PCK=build/godot/web/index.pck
           missing=0
           for f in data/dialogue-trees.json data/issyk-kul-fish.json \
-              data/lake-objects-99.json scenes/hub.tscn.remap \
+              data/lake-objects-99.json data/gate-trials.json \
+              data/passions.json data/antagonist-manifest.json \
+              scenes/hub.tscn.remap \
               scenes/dive.tscn.remap scenes/witness.tscn.remap; do
             strings "$PCK" | grep -qF "$f" || { echo "missing: $f"; missing=1; }
           done

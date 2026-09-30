@@ -107,4 +107,9 @@ func _initialize() -> void:
 	load("res://tests/test_passion.gd").new().run(self)
 	print("passion: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	before = checks
+	fails = failures
+	load("res://tests/test_road.gd").new().run(self)
+	print("road: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	quit(1 if failures else 0)
