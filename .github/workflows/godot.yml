@@ -64,6 +64,8 @@ jobs:
           node scripts/godot/make_passion_fixture.js
           node scripts/godot/export_antagonist_manifest.js
           node scripts/godot/make_mission_fixture.js
+          node scripts/godot/make_journal_fixture.js
+          git diff --exit-code godot/tests/journal_fixture.json
           git diff --exit-code godot/tests/fixtures/missions.json
           git diff --exit-code godot/tests/fixture.json \
             godot/tests/hub_fixture.json godot/tests/trial_fixture.json \
