@@ -247,7 +247,10 @@ static func step_rov(state: Dictionary, input: Dictionary,
 		s.vz *= ROV.max_speed / h
 	s.vy = clampf(s.vy, -ROV.max_vertical, ROV.max_vertical)
 	s.x = clampf(s.x + s.vx * dt, 2.0, LENGTH_M - 2.0)
-	s.z = clampf(s.z + s.vz * dt, -HALF_WIDTH_M + 2.0, HALF_WIDTH_M - 2.0)
+	# The current carries the ROV whatever the thrusters do.
+	var drift: float = input.get("drift", 0.0)
+	s.z = clampf(s.z + (s.vz + drift) * dt, -HALF_WIDTH_M + 2.0,
+		HALF_WIDTH_M - 2.0)
 	s.depth -= s.vy * dt
 	var floor_lim: float = floor_depth(s.x, s.z) - ROV.min_clearance
 	s.depth = clampf(s.depth, 0.3, minf(floor_lim, ROV.max_depth))
@@ -342,3 +345,123 @@ static func nearest(state: Dictionary, things: Array,
 	if best.is_empty():
 		return {}
 	return {"thing": best, "distance": best_d}
+
+
+# --- The dive as a game (dive-core.js stepGame, HLD P2) -------------------
+
+const TASKS := [
+	{"id": "hover", "band": "shallows",
+		"ru": "Курс: зависнуть на месте 10 с, не уходя по глубине дальше 0,3 м."},
+	{"id": "heading", "band": "shallows",
+		"ru": "Курс: идти по компасу 10 с, не сбиваясь больше чем на 10°."},
+	{"id": "slowrise", "band": "shallows",
+		"ru": "Курс: подняться на 3 м не быстрее 10 м/мин."},
+	{"id": "finds", "band": "shelf",
+		"ru": "Шельф: найти три вещи затопленного посада для писца."},
+	{"id": "slope", "band": "slope",
+		"ru": "Свал: спуститься по тросу на 45 м против течения."},
+	{"id": "thermocline", "band": "thermocline",
+		"ru": "Термоклин: пересечь слой и услышать, как меняется звук."},
+	{"id": "silence", "band": "deep",
+		"ru": "Глубина: погасить лампу и замереть на 20 с ниже 100 м."},
+]
+const SCRIBE_RU := "Писец разложил находки на полотне: «Кирпич с глазурью, черепок, железо. Здесь жил не бедняк — мастер при дороге. Вода пришла, он ушёл, а дом остался говорить за него»."
+const SAFETY_STOP_SEC := 15.0
+const FALL_AFTER_SEC := 2.0
+
+
+static func new_game() -> Dictionary:
+	var progress := {}
+	for t in TASKS:
+		progress[t.id] = 0.0
+	return {"done": [], "progress": progress, "fallen": false,
+		"fast_for": 0.0, "still_for": 0.0, "hold_depth": null,
+		"hold_heading": null, "rise_from": null, "crossed_from": null,
+		"finds": 0, "scribe_told": false}
+
+
+static func step_game(game: Dictionary, rov: Dictionary, dt: float,
+		handed_over: int) -> Dictionary:
+	var g := game.duplicate(true)
+	var say := []
+	var tel := telemetry(rov)
+	var finish := func(id: String, text: String) -> void:
+		if not id in g.done:
+			g.done.append(id)
+			say.append(text)
+	g.fast_for = g.fast_for + dt if tel.ascent_too_fast else 0.0
+	if not g.fallen and g.fast_for >= FALL_AFTER_SEC:
+		g.fallen = true
+		g.still_for = 0.0
+		say.append("Слишком быстро вверх. Свет тускнеет. Остановись и постой: остановка безопасности снимет это.")
+	var still := Vector3(rov.vx, rov.vz, rov.vy).length() < 0.05
+	g.still_for = g.still_for + dt if still else 0.0
+	if g.fallen:
+		if g.still_for >= SAFETY_STOP_SEC:
+			g.fallen = false
+			g.still_for = 0.0
+			say.append("Остановка выдержана. Свет вернулся.")
+		return {"game": g, "say": say}
+	var d: float = rov.depth
+	if d < 6.0:
+		if still or absf(rov.vy) < 0.03:
+			if g.hold_depth == null:
+				g.hold_depth = d
+			var ok: bool = absf(d - g.hold_depth) <= 0.3
+			g.progress.hover = g.progress.hover + dt if ok else 0.0
+			if not ok:
+				g.hold_depth = d
+		else:
+			g.hold_depth = null
+			g.progress.hover = 0.0
+		if g.progress.hover >= 10.0:
+			finish.call("hover", "Зависание удалось: ты держишь глубину, а не она тебя.")
+		var moving := Vector2(rov.vx, rov.vz).length() > 0.2
+		if moving:
+			if g.hold_heading == null:
+				g.hold_heading = tel.heading
+			var diff := absf(fposmod(tel.heading - g.hold_heading + 540.0,
+				360.0) - 180.0)
+			g.progress.heading = g.progress.heading + dt if diff <= 10.0 \
+				else 0.0
+			if diff > 10.0:
+				g.hold_heading = tel.heading
+		else:
+			g.hold_heading = null
+			g.progress.heading = 0.0
+		if g.progress.heading >= 10.0:
+			finish.call("heading", "Курс выдержан: компас ведёт, когда глаз ничего не видит.")
+	if rov.vy > 0.01 and not tel.ascent_too_fast:
+		if g.rise_from == null:
+			g.rise_from = d
+		if g.rise_from - d >= 3.0:
+			finish.call("slowrise", "Медленное всплытие: воздух в теле успевает за тобой.")
+	else:
+		g.rise_from = null
+	if handed_over > 0:
+		g.finds = handed_over
+	if g.finds >= 3:
+		finish.call("finds", "Три находки у писца.")
+		if not g.scribe_told:
+			g.scribe_told = true
+			say.append(SCRIBE_RU)
+	if rov.x >= 260.0 and d >= 45.0:
+		finish.call("slope", "Свал пройден: трос держит, течение не унесло.")
+	if d < 45.0:
+		g.crossed_from = "above"
+	elif d > 55.0 and g.crossed_from == "above":
+		finish.call("thermocline", "Слой пройден. Вода стала холодной, а звук медленнее: 1480 → 1435 м/с. Эхо приходит позже.")
+	if d > 100.0 and not rov.lamp and still:
+		g.progress.silence += dt
+		if g.progress.silence >= 20.0:
+			finish.call("silence", "Тишина глубины. Здесь слышно только своё дыхание.")
+	else:
+		g.progress.silence = 0.0
+	return {"game": g, "say": say}
+
+
+static func current(x: float, t: float) -> float:
+	if x < 230.0 or x > 440.0:
+		return 0.0
+	var k := sin(PI * (x - 230.0) / 210.0)
+	return 0.18 * k * sin(t / 45.0)

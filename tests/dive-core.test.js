@@ -135,3 +135,110 @@ test('only what lies ahead within reach is offered', () => {
   assert.equal(D.nearest(s, [{ id: 'far', x: 120, z: 0, depth: 10 }], 4),
     null);
 });
+
+// --- The dive as a game (HLD P2) --------------------------------------
+
+function run(rov, game, input, seconds, events) {
+  let r = rov;
+  let g = game;
+  const said = [];
+  for (let i = 0; i < seconds * 10; i++) {
+    r = D.stepRov(r, input, 0.1);
+    const out = D.stepGame(g, r, 0.1, events);
+    g = out.game;
+    said.push(...out.say);
+  }
+  return { rov: r, game: g, said };
+}
+
+test('hovering still in the shallows completes the buoyancy drill', () => {
+  const res = run({ ...D.newRov(), depth: 2 }, D.newGame(), {}, 11);
+  assert.ok(res.game.done.includes('hover'));
+});
+
+test('a fast rise is a fall, lifted by a safety stop, not a death', () => {
+  let r = { ...D.newRov(), x: 400, depth: 70 };
+  let res = run(r, D.newGame(), { vertical: 1 }, 5);
+  assert.equal(res.game.fallen, true);
+  assert.ok(res.said.some((s) => /остановка безопасности/.test(s)));
+  // While fallen, nothing counts: a still hover earns no drill.
+  const before = res.game.done.length;
+  // Drag needs about two seconds to still the ROV, then 15 s of stop.
+  res = run(res.rov, res.game, {}, 20);
+  assert.equal(res.game.fallen, false);
+  assert.ok(res.said.some((s) => /Свет вернулся/.test(s)));
+  assert.equal(res.game.done.length, before);
+  assert.equal(res.rov.battery > 0, true);
+});
+
+test('crossing the thermocline tells the change of sound', () => {
+  let r = { ...D.newRov(), x: 450, depth: 40 };
+  const res = run(r, D.newGame(), { vertical: -1 }, 60);
+  assert.ok(res.game.done.includes('thermocline'));
+  assert.ok(res.said.some((s) => /1480 → 1435/.test(s)));
+});
+
+test('deep silence needs the lamp off and stillness', () => {
+  const deep = { ...D.newRov(), x: 600, depth: 120 };
+  let res = run(deep, D.newGame(), {}, 25);
+  assert.ok(!res.game.done.includes('silence'));
+  res = run({ ...deep, lamp: false }, D.newGame(), {}, 25);
+  assert.ok(res.game.done.includes('silence'));
+});
+
+test('three finds bring the scribe\'s line once, with its source', () => {
+  const r = { ...D.newRov(), depth: 10, x: 120 };
+  const res = run(r, D.newGame(), {}, 2, { handedOver: 3 });
+  assert.ok(res.game.done.includes('finds'));
+  assert.equal(res.said.filter((s) => s === D.SCRIBE.ru).length, 1);
+  assert.ok(D.SCRIBE.meaning && D.SCRIBE.source);
+});
+
+test('the game is deterministic and has no randomness', () => {
+  const a = run({ ...D.newRov() }, D.newGame(), { forward: 1 }, 12);
+  const b = run({ ...D.newRov() }, D.newGame(), { forward: 1 }, 12);
+  assert.deepEqual(a.game, b.game);
+  const src = require('fs').readFileSync(
+    require('path').join(__dirname, '../public/ludus/dive/dive-core.js'),
+    'utf8');
+  assert.doesNotMatch(src, /Math\.random\s*\(/);
+});
+
+test('the current drifts the ROV only on the slope', () => {
+  assert.equal(D.current(100, 30), 0);
+  assert.notEqual(D.current(330, 30), 0);
+  const r = D.stepRov({ ...D.newRov(), x: 330, depth: 60 },
+    { drift: 0.2 }, 1);
+  assert.ok(r.z > 0.19);
+});
+
+test('a whole dive 0 -> 60 -> 0 m: crossing, slow rise, no fall', () => {
+  // Down the slope to 60 m, then up at 0.15 m/s (9 m/min), inside the
+  // diver's limit, all the way to the surface.
+  let r = { ...D.newRov(), x: 340, depth: 0.5 };
+  let g = D.newGame();
+  const said = [];
+  let maxDepth = 0;
+  const step = (inp) => {
+    r = D.stepRov(r, { ...inp, drift: D.current(r.x, 0) }, 0.1);
+    const out = D.stepGame(g, r, 0.1, { handedOver: 0 });
+    g = out.game;
+    said.push(...out.say);
+    maxDepth = Math.max(maxDepth, r.depth);
+  };
+  for (let i = 0; i < 3000 && r.depth < 60; i++) {
+    step({ vertical: -1 });
+  }
+  // Hold vertical thrust so the rise settles at about 9 m/min.
+  const up = 0.15 * 1.2 / 0.8;
+  for (let i = 0; i < 6000 && r.depth > 0.5; i++) {
+    step({ vertical: up });
+  }
+  assert.ok(maxDepth >= 60);
+  assert.ok(r.depth <= 0.5);
+  assert.ok(g.done.includes('thermocline'));
+  assert.ok(g.done.includes('slope'));
+  assert.ok(g.done.includes('slowrise'));
+  assert.equal(g.fallen, false);
+  assert.ok(!said.some((s) => /Слишком быстро/.test(s)));
+});

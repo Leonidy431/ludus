@@ -22,6 +22,17 @@ var rov := DiveCore.new_rov()
 var placed: Array = []
 var schools: Array = []
 var bag := {"kept": [], "released": [], "handed_over": []}
+var game := DiveCore.new_game()
+var messages: Array = []
+# Sonar: a ping every few seconds and its echo from the floor after the
+# real 2 * range / c (1480 m/s above the thermocline, 1435 below).
+const PING_EVERY := 4.0
+const MIX_RATE := 22050.0
+var sonar: AudioStreamGeneratorPlayback
+var ping_clock := 0.0
+var pending: Array = []  # [seconds until sound, frequency, gain]
+var noise := 0.0
+var sample_clock := 0.0
 var t := 0.0
 var xr_active := false
 var mouse_look := false
@@ -72,6 +83,7 @@ func _ready() -> void:
 	_build_rig()
 	_build_hud()
 	_start_xr()
+	_build_sonar()
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--shots="):
 			shots_dir = arg.trim_prefix("--shots=")
@@ -380,7 +392,7 @@ func _build_hud() -> void:
 	hud_label = Label.new()
 	hud_label.anchor_top = 1.0
 	hud_label.anchor_bottom = 1.0
-	hud_label.offset_top = -120
+	hud_label.offset_top = -150
 	hud_label.offset_left = 24
 	hud_label.add_theme_font_size_override("font_size", 18)
 	layer.add_child(hud_label)
@@ -491,20 +503,32 @@ func _interact() -> void:
 
 func _say(text: String) -> void:
 	message = text
-	message_left = 5.0
+	message_left = 7.0
+
+
+## The next task not yet done, in the order of the bands downwards.
+func _task_line() -> String:
+	if game.fallen:
+		return "Остановка безопасности: стой на месте %d с." % maxi(0,
+			roundi(DiveCore.SAFETY_STOP_SEC - game.still_for))
+	for task in DiveCore.TASKS:
+		if not task.id in game.done:
+			return task.ru
+	return "Все задачи погружения пройдены."
 
 
 func _save_bag() -> void:
 	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if f:
-		f.store_string(JSON.stringify(bag))
+		f.store_string(JSON.stringify({"bag": bag, "done": game.done}))
 
 
 func _load_bag() -> void:
 	if FileAccess.file_exists(SAVE_PATH):
 		var data = JSON.parse_string(FileAccess.get_file_as_string(SAVE_PATH))
-		if data is Dictionary:
-			bag.merge(data, true)
+		if data is Dictionary and data.has("bag"):
+			bag.merge(data.bag, true)
+			game.done = data.get("done", [])
 
 
 # --- XR ---------------------------------------------------------------------
@@ -568,7 +592,17 @@ func _on_xr_started() -> void:
 func _process(dt: float) -> void:
 	dt = minf(dt, 0.1)
 	t += dt
-	rov = DiveCore.step_rov(rov, _read_input(), dt)
+	var inp := _read_input()
+	# The seiche current on the slope carries the ROV sideways.
+	inp["drift"] = DiveCore.current(rov.x, t)
+	rov = DiveCore.step_rov(rov, inp, dt)
+	var out := DiveCore.step_game(game, rov, dt, bag.handed_over.size())
+	if out.game.done.size() != game.done.size() or out.game.fallen != game.fallen:
+		game = out.game
+		_save_bag()
+	game = out.game
+	for text in out.say:
+		_say(text)
 	if shots_dir != "":
 		_shots()
 	var tel := DiveCore.telemetry(rov)
@@ -577,13 +611,19 @@ func _process(dt: float) -> void:
 	if not xr_active:
 		camera.rotation.x = pitch
 	lamp.visible = rov.lamp and rov.battery > 0.0
+	# A fall dims the world until the safety stop is held.
+	lamp.light_energy = 1.2 if game.fallen else 4.0
 	_update_water(tel)
+	_update_sonar(tel, dt)
+	if game.fallen:
+		env.ambient_light_energy *= 0.35
+		sun.light_energy *= 0.35
 	_update_fish()
 	_update_lines()
 	($Snow as CPUParticles3D).position = rig.position
 	message_left = maxf(0.0, message_left - dt)
 	var prompt := message if message_left > 0.0 else _hint()
-	var text := _telemetry_text(tel)
+	var text := _telemetry_text(tel) + "\n" + _task_line()
 	hud_label.text = text
 	hud_prompt.text = prompt
 	xr_label.text = text
@@ -608,6 +648,48 @@ func _shots() -> void:
 		var img := get_viewport().get_texture().get_image()
 		img.save_png("%s/dive-%03dm.png" % [shots_dir, roundi(depth)])
 	shot_frame += 1
+
+
+func _build_sonar() -> void:
+	var player := AudioStreamPlayer.new()
+	var gen := AudioStreamGenerator.new()
+	gen.mix_rate = MIX_RATE
+	gen.buffer_length = 0.25
+	player.stream = gen
+	player.volume_db = -6.0
+	add_child(player)
+	player.play()
+	sonar = player.get_stream_playback()
+
+
+## Fill the sonar buffer: a low room of water (brown noise, darker with
+## depth) and short sine clicks for the ping and its echo.
+func _update_sonar(tel: Dictionary, dt: float) -> void:
+	if sonar == null:
+		return
+	ping_clock += dt
+	if ping_clock >= PING_EVERY:
+		ping_clock = 0.0
+		pending.append([0.0, 2400.0, 0.35])
+		# The echo returns from the floor below after 2 * range / c.
+		pending.append([tel.echo_delay, 2400.0, 0.12])
+	var hush := clampf(1.0 - tel.depth / 150.0, 0.25, 1.0)
+	var frames := sonar.get_frames_available()
+	for i in frames:
+		# Brown noise: integrated white noise from a seeded hash, so the
+		# water sound is the same on every run (no randomness).
+		var h := fposmod(sin(sample_clock * 12.9898) * 43758.5453, 1.0)
+		noise = clampf(noise + (h - 0.5) * 0.02, -1.0, 1.0) * 0.998
+		var v := noise * 0.25 * hush
+		for p in pending:
+			var age: float = -p[0]
+			if age >= 0.0 and age < 0.03:
+				v += sin(TAU * p[1] * age) * p[2] * (1.0 - age / 0.03)
+		sonar.push_frame(Vector2(v, v))
+		sample_clock += 1.0 / MIX_RATE
+		for p in pending:
+			p[0] -= 1.0 / MIX_RATE
+	pending = pending.filter(func(p): return p[0] > -0.05)
 
 
 func _hint() -> String:

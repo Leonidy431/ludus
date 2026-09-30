@@ -265,8 +265,10 @@
     }
     s.vy = Math.max(-ROV.maxVertical, Math.min(ROV.maxVertical, s.vy));
     s.x = Math.max(2, Math.min(LENGTH_M - 2, s.x + s.vx * dt));
+    // inp.drift: the current along z in m/s (see current()); water
+    // carries the ROV whatever the thrusters do.
     s.z = Math.max(-HALF_WIDTH_M + 2, Math.min(HALF_WIDTH_M - 2,
-      s.z + s.vz * dt));
+      s.z + (s.vz + (inp.drift || 0)) * dt));
     s.depth -= s.vy * dt;
     const floor = floorDepth(s.x, s.z) - ROV.minClearance;
     s.depth = Math.max(0.3, Math.min(Math.min(floor, ROV.maxDepth),
@@ -387,7 +389,194 @@
     return best ? { thing: best, distance: bestD } : null;
   }
 
+  // --- The dive as a game (HLD P2): each depth band is a task. --------
+  //
+  // Shallows: a training course after PADI/EFR drills (buoyancy, a
+  // compass heading, a slow controlled ascent).  Shelf: finds for the
+  // scribe.  Slope: the tether and the current.  Thermocline: the
+  // crossing, heard as the speed of sound falling from 1480 to 1435 m/s.
+  // Deep: silence, lamp off and still.  A rise faster than 10 m/min is a
+  // fall, not a death: the lights dim and nothing counts until a safety
+  // stop is held (TABOO 0.35 rule 19; no sin counter, no lost points).
+  const TASKS = [
+    { id: 'hover', band: 'shallows',
+      ru: 'Курс: зависнуть на месте 10 с, не уходя по глубине дальше '
+        + '0,3 м.' },
+    { id: 'heading', band: 'shallows',
+      ru: 'Курс: идти по компасу 10 с, не сбиваясь больше чем на 10°.' },
+    { id: 'slowrise', band: 'shallows',
+      ru: 'Курс: подняться на 3 м не быстрее 10 м/мин.' },
+    { id: 'finds', band: 'shelf',
+      ru: 'Шельф: найти три вещи затопленного посада для писца.' },
+    { id: 'slope', band: 'slope',
+      ru: 'Свал: спуститься по тросу на 45 м против течения.' },
+    { id: 'thermocline', band: 'thermocline',
+      ru: 'Термоклин: пересечь слой и услышать, как меняется звук.' },
+    { id: 'silence', band: 'deep',
+      ru: 'Глубина: погасить лампу и замереть на 20 с ниже 100 м.' },
+  ];
+  // The scribe's line after three finds: whose house it was.  The
+  // underwater surveys of 2025 found brick walls, a millstone, glazed
+  // brick and smith's tongs of the 13th-15th centuries on the shelf.
+  const SCRIBE = {
+    ru: 'Писец разложил находки на полотне: «Кирпич с глазурью, '
+      + 'черепок, железо. Здесь жил не бедняк — мастер при дороге. Вода '
+      + 'пришла, он ушёл, а дом остался говорить за него».',
+    meaning: 'Things outlive their owners and testify for them; the '
+      + 'player learns to read a place, not to plunder it.',
+    source: 'International underwater archaeological expedition on '
+      + 'Issyk-Kul, 2025 (IA RAS): walls, millstone, glazed brick, '
+      + 'tongs, 13th-15th c.',
+  };
+  const SAFETY_STOP_SEC = 15;
+  const FALL_AFTER_SEC = 2;
+
+  function newGame() {
+    const progress = {};
+    TASKS.forEach((t) => { progress[t.id] = 0; });
+    return { done: [], progress, fallen: false, fastFor: 0, stillFor: 0,
+      holdDepth: null, holdHeading: null, riseFrom: null,
+      crossedFrom: null, finds: 0, scribeTold: false };
+  }
+
+  function speedOf(rov) {
+    return Math.hypot(rov.vx, rov.vz, rov.vy);
+  }
+
+  /**
+   * Advance the game by dt after the ROV moved.  events: {handedOver:
+   * number of finds handed over so far}.  Returns {game, say: [texts]}.
+   * Pure and deterministic like the rest of the core.
+   */
+  function stepGame(game, rov, dt, events) {
+    const g = { ...game, done: game.done.slice(),
+      progress: { ...game.progress } };
+    const say = [];
+    const tel = telemetry(rov);
+    const finish = (id, text) => {
+      if (!g.done.includes(id)) {
+        g.done.push(id);
+        say.push(text);
+      }
+    };
+    // Fall: a sustained rise faster than the diver's limit.
+    g.fastFor = tel.ascentTooFast ? g.fastFor + dt : 0;
+    if (!g.fallen && g.fastFor >= FALL_AFTER_SEC) {
+      g.fallen = true;
+      g.stillFor = 0;
+      say.push('Слишком быстро вверх. Свет тускнеет. Остановись и '
+        + 'постой: остановка безопасности снимет это.');
+    }
+    const still = speedOf(rov) < 0.05;
+    g.stillFor = still ? g.stillFor + dt : 0;
+    if (g.fallen) {
+      if (g.stillFor >= SAFETY_STOP_SEC) {
+        g.fallen = false;
+        g.stillFor = 0;
+        say.push('Остановка выдержана. Свет вернулся.');
+      }
+      return { game: g, say };
+    }
+    const d = rov.depth;
+    if (d < 6) {
+      // Buoyancy: stay within 0.3 m of where the hover began.
+      if (still || Math.abs(rov.vy) < 0.03) {
+        if (g.holdDepth === null) {
+          g.holdDepth = d;
+        }
+        const ok = Math.abs(d - g.holdDepth) <= 0.3;
+        g.progress.hover = ok ? g.progress.hover + dt : 0;
+        if (!ok) {
+          g.holdDepth = d;
+        }
+      } else {
+        g.holdDepth = null;
+        g.progress.hover = 0;
+      }
+      if (g.progress.hover >= 10) {
+        finish('hover', 'Зависание удалось: ты держишь глубину, а не '
+          + 'она тебя.');
+      }
+      // Heading: move forward within 10 degrees of one course.
+      const moving = Math.hypot(rov.vx, rov.vz) > 0.2;
+      if (moving) {
+        if (g.holdHeading === null) {
+          g.holdHeading = tel.heading;
+        }
+        const diff = Math.abs(((tel.heading - g.holdHeading) + 540)
+          % 360 - 180);
+        g.progress.heading = diff <= 10 ? g.progress.heading + dt : 0;
+        if (diff > 10) {
+          g.holdHeading = tel.heading;
+        }
+      } else {
+        g.holdHeading = null;
+        g.progress.heading = 0;
+      }
+      if (g.progress.heading >= 10) {
+        finish('heading', 'Курс выдержан: компас ведёт, когда глаз '
+          + 'ничего не видит.');
+      }
+    }
+    // Slow rise: three metres up without breaking 10 m/min.
+    if (rov.vy > 0.01 && !tel.ascentTooFast) {
+      if (g.riseFrom === null) {
+        g.riseFrom = d;
+      }
+      if (g.riseFrom - d >= 3) {
+        finish('slowrise', 'Медленное всплытие: воздух в теле успевает '
+          + 'за тобой.');
+      }
+    } else {
+      g.riseFrom = null;
+    }
+    // Shelf finds for the scribe.
+    g.finds = (events && events.handedOver) || g.finds;
+    if (g.finds >= 3) {
+      finish('finds', 'Три находки у писца.');
+      if (!g.scribeTold) {
+        g.scribeTold = true;
+        say.push(SCRIBE.ru);
+      }
+    }
+    // Slope: down the drop to 45 m.
+    if (rov.x >= 260 && d >= 45) {
+      finish('slope', 'Свал пройден: трос держит, течение не унесло.');
+    }
+    // Thermocline: from above 45 m to below 55 m.
+    if (d < 45) {
+      g.crossedFrom = 'above';
+    } else if (d > 55 && g.crossedFrom === 'above') {
+      finish('thermocline', 'Слой пройден. Вода стала холодной, а звук '
+        + 'медленнее: 1480 → 1435 м/с. Эхо приходит позже.');
+    }
+    // Deep silence: below 100 m, lamp off, still for 20 s.
+    if (d > 100 && !rov.lamp && still) {
+      g.progress.silence += dt;
+      if (g.progress.silence >= 20) {
+        finish('silence', 'Тишина глубины. Здесь слышно только своё '
+          + 'дыхание.');
+      }
+    } else {
+      g.progress.silence = 0;
+    }
+    return { game: g, say };
+  }
+
+  /**
+   * Lateral drift of the seiche current on the slope (m/s along z):
+   * slow, reversing every few minutes, strongest mid-slope.
+   */
+  function current(x, t) {
+    if (x < 230 || x > 440) {
+      return 0;
+    }
+    const k = Math.sin(Math.PI * (x - 230) / 210);
+    return 0.18 * k * Math.sin(t / 45);
+  }
+
   const api = { PROFILE, LENGTH_M, HALF_WIDTH_M, THERMOCLINE_M, CORRIDOR_M,
+    TASKS, SCRIBE, SAFETY_STOP_SEC, newGame, stepGame, current,
     ROV,
     rng, baseDepth, floorDepth, xForDepth, temperature, placeObjects,
     fishSchools, fishAt, newRov, stepRov, ascentRate, telemetry,

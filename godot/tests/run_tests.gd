@@ -86,5 +86,28 @@ func _initialize() -> void:
 			var bres := DiveCore.loot_action(p, {})
 			_check(bres.rule == null and bres.bag.kept.is_empty(),
 				"bulla not taken")
+	# The game scenario gives the same tasks, fall state and messages.
+	var r := DiveCore.new_rov()
+	r.x = 400.0
+	r.depth = 70.0
+	var g := DiveCore.new_game()
+	var said := 0
+	var plan := [[{"vertical": 1.0}, 50], [{}, 200], [{"vertical": -1.0}, 30],
+		[{"vertical": 1.0}, 80], [{"vertical": -1.0}, 400]]
+	for step in plan:
+		for i in step[1]:
+			var inp: Dictionary = step[0].duplicate()
+			inp["drift"] = DiveCore.current(r.x, i * 0.1)
+			r = DiveCore.step_rov(r, inp, 0.1)
+			var out := DiveCore.step_game(g, r, 0.1, 0)
+			g = out.game
+			said += out.say.size()
+	_check(g.done == fx.game.done, "game done %s vs %s" % [g.done,
+		fx.game.done])
+	_check(g.fallen == fx.game.fallen, "game fallen")
+	_check(said == int(fx.game.said), "game messages %d vs %s" % [said,
+		fx.game.said])
+	_near(r.depth, fx.game.depth, "game depth")
+	_near(r.z, fx.game.z, "game drift z")
 	print("dive_core: %d checks, %d failures" % [checks, failures])
 	quit(1 if failures else 0)
