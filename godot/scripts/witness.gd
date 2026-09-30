@@ -163,6 +163,9 @@ func _build_bays() -> void:
 		# from anywhere on the path and never lies on the ground.
 		plaque.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
 		add_child(plaque)
+		# The kit's static parts that are not holy are drawn together
+		# (Б-1: 100 draw calls a frame); holy objects keep their nodes.
+		WitnessBatch.batch_kit(kit, b.meta.get("holyObjects", []))
 	# B2 hook: the preparation sheet at the corner of repentance.
 	ConfessionSheet.place(self, bays[WitnessCore.ORDER.find("confession")])
 
@@ -174,8 +177,9 @@ func _build_bays() -> void:
 func _cut_away(kit: Node3D, witness_z: float) -> void:
 	for m in kit.find_children("*", "MeshInstance3D", true, false):
 		var mi := m as MeshInstance3D
-		var box := kit.global_transform.affine_inverse() \
-			* mi.global_transform * mi.get_aabb()
+		# In the kit's own frame, walked through the parents, so the path
+		# builds the same outside the tree (test_witness.gd).
+		var box := WitnessBatch.relative(mi, kit) * mi.get_aabb()
 		if box.get_center().z > witness_z + 0.2 and box.size.y > 1.6:
 			mi.visible = false
 
