@@ -17,7 +17,10 @@ func run(t: Object) -> void:
 			files += 1
 			t._check(ResourceLoader.exists("res://art/derived/DEF-001/"
 				+ v.file), "sprite %s in the build" % v.file)
-	t._check(files == 132, "132 sprites (%d)" % files)
+	# Twelve variants per shipped object (TABOO 0.3 rule 37); the count
+	# follows the manifest, so a new runner pass does not break the test.
+	t._check(files == 12 * manifest.size() and files >= 132,
+		"%d sprites = 12 x %d objects" % [files, manifest.size()])
 	for p in data.passions:
 		var s = PassionCore.sprite_for(p, {}, manifest)
 		t._check(s != null, "%s has a figure" % p.id)

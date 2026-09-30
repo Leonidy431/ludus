@@ -1,5 +1,5 @@
 {
- "next": 18,
+ "next": 21,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -2013,6 +2013,133 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 315
+  },
+  {
+   "time": "2026-09-30T16:51:02.540586+00:00",
+   "pass_id": "osint-2026-09-30T16:51:02Z",
+   "deficits": [
+    {
+     "id": "DEF-055",
+     "hits": 54,
+     "taken": 0,
+     "refused": {},
+     "to_props": 54,
+     "hits_uncapped": 54,
+     "props_uncapped": 54,
+     "props_uncapped_repos": 9,
+     "added_keywords": [],
+     "keywords_total": 6,
+     "keywords_not_searched": [],
+     "props": {
+      "other": 49,
+      "test": 3,
+      "example": 2
+     },
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-001",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "outline-helper": 4,
+      "sacred-never-raw": 2
+     },
+     "to_props": 3,
+     "hits_uncapped": 46112,
+     "props_uncapped": 15606,
+     "props_uncapped_repos": 46,
+     "added_keywords": [
+      "effect",
+      "powerscoal",
+      "industryl",
+      "rsi",
+      "speech",
+      "drill",
+      "dwarf",
+      "elf",
+      "madness",
+      "sword",
+      "tank",
+      "asteroid"
+     ],
+     "keywords_total": 62,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "java",
+      "mage",
+      "mindustry",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 3
+     },
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-039",
+     "hits": 200,
+     "taken": 6,
+     "refused": {},
+     "to_props": 0,
+     "hits_uncapped": 45913,
+     "props_uncapped": 25995,
+     "props_uncapped_repos": 36,
+     "added_keywords": [
+      "marauder",
+      "rider",
+      "rsi",
+      "dough",
+      "ingredients",
+      "metal",
+      "one",
+      "sealed",
+      "shoals",
+      "slimy",
+      "stone",
+      "way"
+     ],
+     "keywords_total": 30,
+     "keywords_not_searched": [],
+     "props": {},
+     "props_seen": 0
+    }
+   ],
+   "props_taken": {
+    "example": 2,
+    "other": 52,
+    "test": 3
+   },
+   "props_taken_by_index_kind": {
+    "code": 54,
+    "image": 3
+   },
+   "props_duplicates": 0,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 386693,
+   "props_store_files": 548,
+   "props_store_bytes": 3395235,
+   "props_cache_files_on_disk": 3759,
+   "props_cache_bytes_on_disk": 70609768,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 317185,
+   "props_register_growth_bytes": 32821,
+   "stage": "done",
+   "accepted_objects": 6,
+   "code_candidates": 18,
+   "reverted": [
+    {
+     "object": "ant_avarice_c12399d853",
+     "slot": "DEF-001",
+     "source": "wesnoth data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-defend2.png",
+     "reason": "duplicate animation frame of ant_avarice_055bf3b162 (defend1): aligned silhouette IoU 0.922 > 0.85; the per-file dedup list let it through, fixed in transform.py (per slot, bbox-cropped)",
+     "checked": "contact sheet by eye, 2026-09-30T17:00Z"
+    }
+   ]
   }
  ],
  "keywords": {
@@ -2235,7 +2362,19 @@
    "battleaxe",
    "beaconofreturning",
    "beam",
-   "beamingray"
+   "beamingray",
+   "effect",
+   "powerscoal",
+   "industryl",
+   "rsi",
+   "speech",
+   "drill",
+   "dwarf",
+   "elf",
+   "madness",
+   "sword",
+   "tank",
+   "asteroid"
   ],
   "DEF-049": [
    "terrain",
@@ -2557,7 +2696,19 @@
    "idle",
    "unoccupied",
    "working",
-   "down"
+   "down",
+   "marauder",
+   "rider",
+   "rsi",
+   "dough",
+   "ingredients",
+   "metal",
+   "one",
+   "sealed",
+   "shoals",
+   "slimy",
+   "stone",
+   "way"
   ]
  }
 }

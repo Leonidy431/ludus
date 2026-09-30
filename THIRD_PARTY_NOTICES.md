@@ -49,3 +49,11 @@ claimed: these are not raw material through the runner.
 
 Details: `third_party/posoh/SOURCES.md`. No colour/shape delta is
 claimed: these are not raw material through the runner.
+| ant_sadness_b6a55c4b0e | sadness | 12/12 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | data/core/images/units/monsters/deep-tentacle-melee-defend-1.png #0 | GPL | 52.1% |
+| ant_sadness_5272495b7e | sadness | 12/12 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | data/core/images/units/monsters/deep-tentacle-melee-defend-2.png #0 | GPL | 51.7% |
+| ant_avarice_055bf3b162 | avarice | 12/12 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-defend1.png #0 | GPL | 35.1% |
+| ant_avarice_c12399d853 | avarice | 12/12 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-defend2.png #0 | GPL | 35.1% |
+| ant_sadness_f52ff4a292 | sadness | 12/12 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-sword2.png #0 | GPL | 44.3% |
+| ant_avarice_e795010b0e | avarice | 12/12 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-sword3.png #0 | GPL | 45.4% |
+
+Withdrawn 2026-09-30 (row kept, the register only grows): `ant_avarice_c12399d853` was not shipped. It is a duplicate animation frame of `ant_avarice_055bf3b162` (aligned silhouette IoU 0.922). See docs/RAW_OSINT_CURSOR.json, pass 2026-09-30T16:51, field `reverted`.
