@@ -1,5 +1,5 @@
 {
- "next": 4,
+ "next": 7,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -674,6 +674,82 @@
    "code_candidates": 27,
    "shipped": [],
    "note": "Run in a scratch copy to fetch raw pieces for the neutral age-and-pose family (scripts/raw_assets/neutral_variants.py). Nothing shipped: no object reached 12/12 variants at >= 35 % while fitting its real object profile; DEF-056 had no fish piece of at least 12 px; DEF-059 pieces are Mindustry power-beam blocks, not wood or pottery. Numbers in docs/audit/2026-09-30/neutral-variants-report.json, sheet in docs/audit/2026-09-30/neutral-contact.png."
+  },
+  {
+   "time": "2026-09-30T04:51:48.106042+00:00",
+   "deficits": [
+    {
+     "id": "DEF-049",
+     "hits": 200,
+     "taken": 6,
+     "refused": {},
+     "added_keywords": [
+      "terrain",
+      "internal",
+      "fast",
+      "slow",
+      "crawl",
+      "ref",
+      "source",
+      "rltiles",
+      "floor",
+      "dngn",
+      "litter",
+      "raw"
+     ],
+     "keywords_total": 20
+    },
+    {
+     "id": "DEF-052",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "sacred-never-raw": 82
+     },
+     "added_keywords": [
+      "water",
+      "crawl",
+      "ref",
+      "source",
+      "rltiles",
+      "terrain",
+      "dngn",
+      "waves",
+      "amazons",
+      "booth",
+      "buildings",
+      "productionsites"
+     ],
+     "keywords_total": 20
+    },
+    {
+     "id": "DEF-058",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "hostile-for-neutral-slot": 74,
+      "not-a-game-object": 126
+     },
+     "added_keywords": [
+      "lichen",
+      "herb",
+      "weeds",
+      "grasses",
+      "duckweed",
+      "hornwort",
+      "sponge",
+      "plants",
+      "foliage",
+      "vegetation",
+      "swamp",
+      "marsh"
+     ],
+     "keywords_total": 43
+    }
+   ],
+   "accepted_objects": 10,
+   "code_candidates": 0,
+   "reverted": "Eye check (docs/audit/2026-09-30/raw-hourly-contact-rejected.png): DEF-049 grass tiles became abstract magenta shapes and DEF-052 water-wave tiles became brown blobs. Neither slot has a real-object profile, so the neutral path fell back to a passion palette. Fixes: a neutral slot without a profile is now refused before variants; generic path words (ref, source, rltiles, dngn, ...) never become keywords. Nothing shipped."
   }
  ],
  "keywords": {
@@ -753,7 +829,19 @@
    "stem",
    "tallgrass",
    "flora",
-   "underwater"
+   "underwater",
+   "lichen",
+   "herb",
+   "weeds",
+   "grasses",
+   "duckweed",
+   "hornwort",
+   "sponge",
+   "plants",
+   "foliage",
+   "vegetation",
+   "swamp",
+   "marsh"
   ],
   "DEF-059": [
    "jar",
@@ -782,18 +870,25 @@
    "rope"
   ],
   "DEF-001": [
-   "gui",
-   "adventure",
-   "forge",
-   "common",
    "beast",
    "units",
    "aberration",
    "java",
-   "deep",
-   "crawl",
-   "ref",
-   "rltiles"
+   "deep"
+  ],
+  "DEF-049": [
+   "terrain",
+   "floor",
+   "litter"
+  ],
+  "DEF-052": [
+   "water",
+   "terrain",
+   "waves",
+   "amazons",
+   "booth",
+   "buildings",
+   "productionsites"
   ]
  }
 }

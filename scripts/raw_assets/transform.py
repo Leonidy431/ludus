@@ -361,6 +361,15 @@ def process_piece(item, index, piece, threshold=0.35):
     # passions out of a jellyfish and pikemen for the fish slot).
     feat = ant.source_features(piece, canvas, src_mask, item['path'])
     natural = item.get('neutral') and item.get('slot') in reference.PROFILES
+    if item.get('neutral') and not natural:
+        # A neutral slot without a real-object profile has no natural
+        # palette and no way to check the thing stays recognisable; the
+        # hourly pass of 2026-09-30 turned grass into magenta shapes that
+        # way.  Such a slot waits for its profile.
+        record['status'] = 'unlike-real-object'
+        record['reference'] = {'slot': item.get('slot'),
+                               'reason': 'no-real-object-profile'}
+        return record, images
     if natural:
         # Operator, 2026-09-30: "изучи на реальных объектах".  A neutral
         # piece must first look like the real thing of its slot; a

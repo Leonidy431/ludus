@@ -53,7 +53,13 @@ PLAIN_WORDS = {'png', 'svg', 'jpg', 'gif', 'img', 'image', 'images', 'res',
                'main', 'resources', 'textures', 'texture', 'sprites',
                'sprite', 'tiles', 'tile', 'items', 'item', 'objects',
                'object', 'png', 'core', 'base', 'default', 'small', 'large',
-               'big', 'icon', 'icons', 'the', 'and', 'of', 'new', 'old'}
+               'big', 'icon', 'icons', 'the', 'and', 'of', 'new', 'old',
+               # Folder names of engines and repos, not things (the
+               # hourly pass of 2026-09-30 added ref, source, rltiles).
+               'ref', 'source', 'sources', 'internal', 'raw', 'rltiles',
+               'dngn', 'crawl', 'fast', 'slow', 'common', 'misc', 'gui',
+               'forge', 'adventure', 'mods', 'mod', 'build', 'dist',
+               'public', 'static', 'lib', 'libs', 'game', 'games'}
 
 # Rule 5: paths that must never enter the pipeline at all.
 DOGMA_STOP = re.compile(

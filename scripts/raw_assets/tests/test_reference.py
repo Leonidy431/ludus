@@ -76,3 +76,16 @@ class KeywordLadderTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class NoProfileTest(unittest.TestCase):
+    def test_neutral_slot_without_profile_is_refused(self):
+        import transform
+        img = Image.new('RGBA', (32, 32), (0, 0, 0, 0))
+        ImageDraw.Draw(img).ellipse((4, 8, 28, 24), fill=(40, 120, 40, 255))
+        item = {'repo': 'r', 'path': 'grass.png', 'commit': 'c',
+                'license': 'MIT', 'neutral': True, 'slot': 'DEF-049'}
+        record, _ = transform.process_piece(item, 0, img)
+        self.assertEqual(record['status'], 'unlike-real-object')
+        self.assertEqual(record['reference']['reason'],
+                         'no-real-object-profile')
