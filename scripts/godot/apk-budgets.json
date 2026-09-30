@@ -130,7 +130,7 @@
     },
     "script_host_max_load_per_core": {
       "limit": 1.5,
-      "why": "time is not judged when the host's one-minute load per core is above this when the run begins: at 1.2-1.35 per core five dive runs gave a mean of 2.68-3.05 ms; at 2.3-3.1 per core the mean reached 4.38 ms and the peak 35 ms (docs/APK_REQUIREMENTS.md, row 17)"
+      "why": "time is not judged when the host's one-minute load per core is above this as the run begins: at 0.6-0.75 per core five dive runs gave a mean of 2.70-3.07 ms and a peak of 7.39-11.34 ms; at 2.1-2.9 per core (eight extra busy loops) the mean was 2.73-3.62 ms and the peak 7.38-32.45 ms (docs/APK_REQUIREMENTS.md, row 17)"
     },
     "audio_generators": {
       "limit": 2,
@@ -147,11 +147,11 @@
   "audio": {
     "synth_ms_per_second_host": {
       "limit": 50,
-      "why": "5% of one host core per second of audio, net of run-queue wait; see docs/APK_REQUIREMENTS.md row 15 for the measured medians"
+      "why": "5% of one host core per second of audio, net of run-queue wait (close to CPU time); medians of 8 calls: DiveSynth 22.1-25.2 ms, WitnessAudio 23.1-24.2 ms with the ison near a kit"
     },
     "pcm_clips_bytes": {
       "limit": 16777216,
-      "why": "16 MiB of float32 bell clips in RAM, checked against the worst two consecutive days of a year's Typikon plan (clips are kept once made, so a stay across a day boundary holds both days)"
+      "why": "16 MiB of float32 bell clips in RAM, checked against the worst two consecutive days of the 366 days from the scene's date (clips are kept once made, so a stay across a day boundary holds both days); 9,811,704 B from 2026-09-30"
     },
     "checked_by": "godot/tools/measure_budgets.gd --check, headless (the revisor; not in CI, since time does not reproduce on a shared runner)"
   }
