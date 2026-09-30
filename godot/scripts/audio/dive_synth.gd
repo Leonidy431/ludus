@@ -117,6 +117,19 @@ const DUCK_SEC := 1.5
 const SURFACE_M := 2.0
 const SHORE_REF_M := 30.0
 
+## Spectral references of the audio pass (docs/HLD_AUDIO_299_2026-09-30,
+## scripts/raw_assets/audio_pass.py): per sound slot, medians measured
+## from sounds of the 99 repos.  TABOO 0.35 rule 8: a reference, never a
+## sample; the file holds numbers only.  A cue takes a median only where
+## one is published (at least three single blows); otherwise it keeps its
+## own constant, so a thin slot never bends the sound.
+const REFERENCES_PATH := "res://data/audio-references.json"
+const REFERENCE_MIN_BLOWS := 3
+## event_take is the knock of a find at the lens (slot lake.splash); its
+## own decay is exp(-age / TAKE_TAU), a T60 of 0.207 s.
+const TAKE_SLOT := "lake.splash"
+const TAKE_TAU := 0.03
+
 # Which layers are mixed; tests switch single layers on to measure them.
 var layers := {"room": true, "hum": true, "breath": true, "sonar": true,
 	"ison": true, "bell": true, "events": true}
@@ -165,11 +178,45 @@ var echo_started := false
 var crossings: Array = []
 var prev_depth := -1.0
 var shimmer_lp := 0.0
+## The slot medians read at start, and the decay the take cue uses.
+var references := {}
+var take_tau := TAKE_TAU
 
 
 func _init() -> void:
 	noise_state = DiveCore._hash("dive:water") | 1
 	bell_spec = make_bell_spec()
+	use_references(load_references())
+
+
+## The "slots" table of the references file, or {} if it is missing or
+## malformed (the synth then keeps every constant of its own).
+static func load_references(path := REFERENCES_PATH) -> Dictionary:
+	if not FileAccess.file_exists(path):
+		return {}
+	var data: Variant = JSON.parse_string(
+		FileAccess.get_file_as_string(path))
+	if typeof(data) != TYPE_DICTIONARY or not data.has("slots") \
+			or typeof(data.slots) != TYPE_DICTIONARY:
+		return {}
+	return data.slots
+
+
+## The published T60 median of a slot in seconds, or -1.0 when fewer
+## than REFERENCE_MIN_BLOWS single blows stand behind it.
+static func reference_t60(refs: Dictionary, slot: String) -> float:
+	var s: Dictionary = refs.get(slot, {})
+	var v: Variant = s.get("t60_median_s")
+	if v == null or int(s.get("t60_n", 0)) < REFERENCE_MIN_BLOWS:
+		return -1.0
+	return float(v)
+
+
+## Let the cues follow the references: T60 = tau * ln(1000).
+func use_references(refs: Dictionary) -> void:
+	references = refs
+	var t60 := reference_t60(refs, TAKE_SLOT)
+	take_tau = t60 / log(1000.0) if t60 > 0.0 else TAKE_TAU
 
 
 # --- Pure helpers -----------------------------------------------------------
@@ -607,8 +654,8 @@ func _event_sample(w: float) -> float:
 			shimmer_lp += SHIMMER_LP * (w - shimmer_lp)
 			v += shimmer_lp * sin(TAU * PING_HZ * age) * SHIMMER_GAIN * env
 			keep = true
-		elif e.kind == "take" and age < 0.12:
-			v += sin(TAU * 150.0 * age) * 0.05 * exp(-age / 0.03)
+		elif e.kind == "take" and age < 4.0 * take_tau:
+			v += sin(TAU * 150.0 * age) * 0.05 * exp(-age / take_tau)
 			keep = true
 	if not keep:
 		events.clear()

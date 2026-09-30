@@ -12,25 +12,37 @@ audio file inside the repository, godot/ or public/.
 
 The three parameters, each scored 0-10 in code and deterministic:
 
-  ПРАВО     the licence: the repository licence, overridden by a
-            per-file licence hint (attributions.yml, copyrights.csv,
-            a Debian copyright file, CREDITS tables) when one exists.
-            NC or ND terms and repositories without a licence exclude.
+  ПРАВО     the licence: a per-file licence hint when one exists
+            (attributions.yml, copyrights.csv, a Debian copyright file,
+            CREDITS tables, a sources.txt line, the widelands sound
+            register, a credits page naming the sound "as '<stem>'"),
+            else the asset licence the README states, else the
+            repository licence.  NC or ND terms, repositories without a
+            licence, a per-file register that says UNKNOWN, an
+            ambiguous "CC-3", and files that fall back on a README
+            default in a repository that declares non-commercial assets
+            (NC cannot be ruled out) are all held out.
   СМЫСЛ     the fit to a neutral sound slot of the game (ROV, lake,
             obitel workshop, road) by path words.  Sacred and dogma
-            words, music, reward dings, voices, combat and hostile
-            creatures are excluded before any slot is scored.
-  АКУСТИКА  measured from the decoded file: sample rate, duration,
-            clipping, noise floor, and the reference triad of rule 8:
-            amplitude envelope, T60 by Schroeder backward integration,
-            spectral centroid and a coarse decay profile.
+            words, magic, music, reward dings, voices, combat, hostile
+            creatures and things that do not exist in the world of the
+            game (space stations, vending machines, foreign fauna) are
+            excluded before any slot is scored; the credit line of a
+            file is checked for combat and sacred roles too.
+  АКУСТИКА  measured from the decoded file after a 20 Hz high-pass:
+            sample rate, duration, clipping, noise floor, and the
+            reference triad of rule 8: amplitude envelope, T60 by
+            Schroeder backward integration, spectral centroid and a
+            coarse decay profile.
 
 A sound joins the honest pool only when all three scores are at least
 PASS_SCORE.  Selection takes up to K in two tiers: tier 1 keeps the
 caps of the task (per source folder, per repository, a minimum per
-slot); tier 2 fills up to K only under TABOO 0.07 item 4 (at most two
-states of one thing).  If fewer than K pass honestly, the real number
-is reported and nothing is padded (TABOO 0.07).
+slot); tier 2 fills up to K only with sounds whose file name itself
+names the slot's thing (СМЫСЛ >= TIER2_MEANING) and only under TABOO
+0.07 item 4 (at most two states of one thing).  If fewer than K pass
+honestly, the real number is reported and nothing is padded (TABOO
+0.07).
 
 Bytes are fetched only for candidates that passed the path and
 licence filters, one batched fetch per blobless clone, into a cache
@@ -42,9 +54,11 @@ Usage:
 """
 
 import argparse
+import csv
 import datetime
 import fnmatch
 import hashlib
+import io
 import json
 import math
 import re
@@ -61,7 +75,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from osint_cycle import DOGMA_STOP, SACRED  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
-PASS_ID = 'audio-299-2026-09-30'
+# The second run of the pass (review fixes of 2026-09-30); the first,
+# 'audio-299-2026-09-30', stays in the journal and the licence register
+# (both only grow) and is marked superseded there.
+PASS_ID = 'audio-299-2026-09-30-r2'
+FIRST_PASS_ID = 'audio-299-2026-09-30'
 DEFICIT_ID = 'DEF-027'
 K = 299
 PASS_SCORE = 5
@@ -72,13 +90,23 @@ SLOT_MIN = 3
 THING_CAP = 2
 # The second tier opens only when the first tier (the caps of the task)
 # leaves fewer than K although the honest pool holds more; see select().
-# It lifts the folder and repository caps (10 ** 6 = no cap) and keeps
-# only the rule of TABOO 0.07: at most two states of one thing.
+# It lifts the folder and repository caps (10 ** 6 = no cap), keeps the
+# rule of TABOO 0.07 (at most two states of one thing) and takes only
+# sounds whose file name names the thing: a strong slot word in the
+# name gives СМЫСЛ 8, a strong word only in the folder gives 5, and a
+# folder named Animals/ or Footsteps/ says nothing about which animal
+# or which floor (TABOO 0.07 item 1: the register of the real).
 TIER2_FOLDER_CAP = 10 ** 6
 TIER2_REPO_CAP = 10 ** 6
+TIER2_MEANING = 7
+# A slot median of T60 is published only over this many single blows;
+# fewer is an anecdote, not a reference.
+SLOT_T60_MIN = 3
 SHEET_SAMPLE = 48
 # Bump when the measurement changes, so cached profiles are redone.
-MEASURE_VERSION = 4
+# 5: 20 Hz high-pass before envelope and spectrum; onset count; peak
+# time.  6: centroid, roll-off and bands from the whole-file spectrum.
+MEASURE_VERSION = 6
 
 DECODABLE = {'.ogg', '.wav', '.mp3', '.flac', '.opus'}
 AUDIO_EXT = DECODABLE | {'.mid', '.midi', '.it', '.xm', '.mod', '.s3m',
@@ -89,11 +117,14 @@ OUT_REFS = ROOT / 'docs' / 'RAW_AUDIO_REFERENCES.json'
 OUT_PROPS = ROOT / 'docs' / 'RAW_AUDIO_PROPS.json'
 OUT_SHEET = ROOT / 'docs' / 'audit' / '2026-09-30' / \
     'raw-audio-299-spectra.png'
+# The headset copy: slot medians only (phase P8 of the HLD).
+OUT_GODOT = ROOT / 'godot' / 'data' / 'audio-references.json'
 NOTICES = ROOT / 'THIRD_PARTY_NOTICES.md'
 CURSOR = ROOT / 'docs' / 'RAW_OSINT_CURSOR.json'
 # Everything this pass writes inside the repository is text or one PNG;
 # the test suite checks that no audio extension ever appears here.
-OUTPUTS = (OUT_TABLE, OUT_REFS, OUT_PROPS, OUT_SHEET, NOTICES, CURSOR)
+OUTPUTS = (OUT_TABLE, OUT_REFS, OUT_PROPS, OUT_SHEET, OUT_GODOT, NOTICES,
+           CURSOR)
 
 
 # --- Slots -------------------------------------------------------------
@@ -102,26 +133,35 @@ OUTPUTS = (OUT_TABLE, OUT_REFS, OUT_PROPS, OUT_SHEET, NOTICES, CURSOR)
 # the thing itself; "weak" words only suggest it.  A trailing * is a
 # prefix match; other words match whole path tokens (with plural s/es).
 # "use" names the cue of the headset build that may read the profile.
+# "deny" (optional) lists patterns of the lower-cased path that keep a
+# file out of that one slot: a footstep on a hull is no hull creak.
+# The words name real things of the four places (TABOO 0.07 item 1):
+# a 14th-century obitel workshop, the lake, the caravan road and the
+# ROV of 2026.  Modern hand tools, appliances, zips and matches are not
+# obitel material (TABOO 0.38 point 2), and a UI whoosh is not wind.
 SLOTS = {
     'rov.motor': dict(
         place='ROV', use='dive_synth.gd HUM (thrusters), event_servo',
         strong=['motor*', 'servo*', 'thruster*', 'engine*', 'pump*',
                 'turbine*', 'generator*', 'hydraulic*', 'drill*', 'fan',
-                'compressor*', 'propeller*', 'machine*', 'hum', 'humming',
+                'compressor*', 'propeller*', 'hum', 'humming',
                 'conveyor*', 'combust*'],
-        weak=['whir*', 'buzz*', 'mechan*',
+        weak=['whir*', 'buzz*', 'mechan*', 'machine*',
               'gear*', 'electric*', 'drone', 'spin*', 'rotor*']),
     'rov.sonar': dict(
         place='ROV', use='dive_synth.gd PING and ECHO (t = 2d/c)',
-        strong=['sonar*', 'ping*', 'radar*', 'beep*', 'blip*', 'bleep*',
-                'scan*', 'echo*'],
-        weak=['signal*', 'geiger*', 'detector*', 'sweep*', 'boop*',
-              'pulse*']),
+        # A beep of a microwave or a floor sign is a tone blip, and a
+        # medical or cargo scanner is no sonar: only the name of a
+        # sounding device is strong here.
+        strong=['sonar*', 'ping*', 'radar*', 'echo*'],
+        weak=['beep*', 'blip*', 'bleep*', 'scan*', 'signal*', 'geiger*',
+              'detector*', 'sweep*', 'boop*', 'pulse*']),
     'rov.hull': dict(
         place='ROV', use='hull creak under pressure (Atlas node 63)',
         strong=['hull*', 'clank*', 'clang*', 'metal*', 'steel*', 'iron*',
-                'pipe*', 'valve*', 'hatch', 'airlock*', 'pressure*'],
-        weak=['hiss*', 'latch*', 'vent*', 'tank*', 'rivet*']),
+                'pipe*', 'valve*', 'hatch', 'pressure*'],
+        weak=['hiss*', 'latch*', 'vent*', 'tank*', 'rivet*'],
+        deny=[r'footstep', r'(?<![a-z])steps?(?![a-z])']),
     'rov.bubbles': dict(
         place='ROV', use='bubble cadence (TABOO 0.35 rule 19)',
         strong=['bubble*', 'bubbl*', 'gurgl*', 'underwater*', 'submerg*',
@@ -143,7 +183,7 @@ SLOTS = {
         strong=['water*', 'wave*', 'lake*', 'sea', 'ocean*', 'shore*',
                 'surf', 'river*', 'stream*', 'drip*', 'puddle*', 'fluid*',
                 'liquid*', 'pour*', 'slosh*', 'fountain*', 'brook*',
-                'tide*', 'harbor*', 'harbour*', 'pier', 'drain*'],
+                'tide*', 'harbor*', 'harbour*', 'pier'],
         weak=['flow*', 'drop', 'droplet*', 'spill*', 'wet*']),
     'lake.splash': dict(
         place='lake', use='dive_synth.gd event_take, fish at the lens',
@@ -157,16 +197,14 @@ SLOTS = {
     'lake.wind': dict(
         place='lake', use='shore and road wind',
         strong=['wind', 'windy', 'gust*', 'breez*', 'blizzard*',
-                'snowstorm*', 'sandstorm*', 'windstorm*', 'whoosh*',
-                'swoosh*'],
+                'snowstorm*', 'sandstorm*', 'windstorm*'],
         weak=['air', 'gale*', 'draft']),
     'lake.birds': dict(
         place='lake', use='shore birds, eagle and pigeons (Atlas 45, 70)',
         strong=['bird*', 'gull*', 'seagull*', 'crow', 'raven*', 'owl',
                 'sparrow*', 'chirp*', 'tweet*', 'duck*', 'goose', 'geese',
                 'swan*', 'heron*', 'hawk*', 'eagle*', 'pigeon*', 'dove',
-                'songbird*', 'cuckoo*', 'woodpecker*', 'finch*',
-                'parrot*'],
+                'songbird*', 'cuckoo*', 'woodpecker*', 'finch*'],
         weak=['wing*', 'flap*', 'flutter*', 'feather*', 'caw*', 'coo',
               'quack*', 'peck*']),
     'lake.insects': dict(
@@ -195,44 +233,38 @@ SLOTS = {
         place='obitel workshop', use='smithy hammer rhythm (Atlas 16, 54)',
         strong=['anvil*', 'hammer*', 'smith*', 'blacksmith*', 'forge',
                 'forging', 'chisel*', 'tongs', 'whetstone*', 'sharpen*',
-                'grinder*', 'metalwork*', 'tool', 'wrench*',
-                'screwdriver*', 'weld*', 'toolbox*', 'crowbar*',
-                'ratchet*', 'scissors', 'wirecutter*', 'wirebrush*',
-                'smelt*'],
-        weak=['clink*', 'tink*', 'workshop*', 'craft*', 'construct*',
-              'repair*']),
+                'metalwork*', 'smelt*', 'bellows*'],
+        weak=['clink*', 'tink*', 'workshop*', 'craft*', 'repair*']),
     'workshop.hearth': dict(
         place='obitel workshop', use='hearth and torch, 1900-2500 K class',
         strong=['fire', 'fireplace*', 'campfire*', 'bonfire*', 'hearth*',
                 'flame*', 'crackl*', 'ember*', 'torch*', 'stove*', 'oven*',
-                'burn', 'burning', 'match', 'sizzl*'],
-        weak=['kettle*', 'steam*', 'lighter*',
-              'ignit*', 'heat*', 'smoke*']),
+                'burn', 'burning', 'sizzl*'],
+        weak=['kettle*', 'steam*', 'ignit*', 'heat*', 'smoke*']),
     'workshop.scroll': dict(
         place='obitel workshop', use='quill on parchment (Atlas 64)',
         strong=['paper*', 'page*', 'book*', 'scroll*', 'parchment*',
                 'quill*', 'pen', 'pencil*', 'writ*', 'scribbl*', 'ink',
-                'letter*', 'envelope*', 'stamp*', 'map', 'read',
-                'reading'],
+                'letter*', 'envelope*', 'map', 'read', 'reading'],
         weak=['flip*', 'fold*', 'sheet*']),
     'workshop.cloth': dict(
         place='obitel workshop', use='linen, leather and bags',
         strong=['cloth*', 'fabric*', 'rustl*', 'cloak*', 'leather*', 'bag',
                 'sack*', 'backpack*', 'linen*', 'wool*', 'canvas*', 'tent*',
-                'zip', 'zipper*', 'velcro*', 'equip*', 'unequip*',
-                'weav*', 'buckl*'],
+                'weav*'],
         weak=['belt*', 'pouch*', 'drape*', 'curtain*', 'blanket*']),
     'workshop.door': dict(
         place='obitel workshop', use='wooden doors, lids, chests',
         strong=['door*', 'hinge*', 'drawer*', 'lid', 'chest', 'cabinet*',
-                'locker*', 'shutter*', 'gate', 'knock*'],
+                'shutter*', 'gate', 'knock*'],
         weak=['open*', 'close*', 'shut*', 'lock']),
     'road.footsteps': dict(
         place='road', use='caravan road and cell floors',
         strong=['footstep*', 'step', 'walk*', 'foot', 'feet', 'stomp*',
                 'shoe*', 'boot', 'stride*', 'sneak*', 'tread*',
                 'trampl*'],
-        weak=['grass*', 'snow*', 'jump*', 'move*', 'movement*']),
+        weak=['grass*', 'snow*', 'jump*', 'move*', 'movement*'],
+        deny=[r'glass']),
     'road.animals': dict(
         place='road', use='horses, camels, sheep of the shepherd (node 33)',
         strong=['horse*', 'hoof*', 'hooves', 'gallop*', 'neigh*',
@@ -240,8 +272,8 @@ SLOTS = {
                 'cow', 'cattle*', 'ox', 'oxen', 'yak*', 'dog', 'bark',
                 'barking', 'cat', 'meow*', 'pig', 'chicken*', 'rooster*',
                 'hen', 'animal*', 'livestock*', 'graz*', 'bleat*', 'moo',
-                'wolf*', 'deer*', 'bear', 'farm'],
-        weak=['paw*', 'sniff*', 'snort*', 'purr*']),
+                'wolf*', 'deer*', 'bear'],
+        weak=['paw*', 'sniff*', 'snort*', 'purr*', 'farm']),
     'road.caravan': dict(
         place='road', use='carts and harness of the caravan road',
         strong=['cart*', 'wagon*', 'wheel*', 'carriage*', 'axle*',
@@ -284,7 +316,12 @@ AUDIO_SACRED = _any(
     'hellfire', 'wizard', 'witch', 'voodoo', 'exorc', _w('gods?'),
     'goddess', 'deity', 'oracle', 'shaman', 'totem', r'heal(?!th)',
     'sacrific', _w('mana'), 'cerberus', 'narsie', 'ratvar', 'desecrat',
-    _w('tombs?'))
+    _w('tombs?'),
+    # A mage client (a Magic: The Gathering engine), a sylph's water
+    # orb and a wesnoth campaign skill are spells by another name; an
+    # inquisitor's "remove heresy" is religious persecution in its game.
+    _w('mages?'), 'sylph', _w('orbs?'), r'(?<![a-z])skills?[-_]',
+    r'(?<![a-z])heres', 'inquisit')
 
 MUSIC = _any(
     _w('music'), _w('musics'), 'song', _w('themes?'), _w('bgm'), _w('ost'),
@@ -354,7 +391,7 @@ COMBAT = _any(
     r'tank(move|shot)', 'landmine', 'shield',
     # Weapon outfits of endless-sky and wesnoth named after weather or
     # fire: the path alone reads as rain or a hearth, the game does not.
-    'firestorm', r'ion.?(rain|torch|cannon)', 'thunderhead',
+    'firestorm', r'ion.?(rain|torch|cannon)', 'thunderhead', r'fire.?lance',
     r'fate.?fire', 'plankton', 'thunderstick', 'sidewinder', 'meteor',
     'sheath', 'cavalry', 'warhorn', 'wardrum')
 
@@ -364,6 +401,21 @@ HOSTILE = _any(
     'troll', 'dragon', 'undead', 'skeleton', _w('lich'), 'ghoul',
     'vampire', 'werewolf', 'changeling', _w('antag'), 'syndicate',
     _w('nuke'), 'spider', 'arachnid', 'spawn')
+
+# Things that do not exist in the four places of the game (TABOO 0.07
+# item 1, the register of the real; TABOO 0.38 point 2, one material
+# logic): a space station's cyborgs, asteroids, catwalks and hull
+# plating, vending machines, microwaves and toilets, a mech walker,
+# jetpacks and holograms, and animals that never lived on the shores
+# of Issyk-Kul or on its roads (penguins, parrots, raccoons, ferrets).
+# An airlock that denies or is electrified is a game mechanic.
+NOT_REAL = _any(
+    r'(?<![a-z])vend', 'microwave', 'toilet', _w('flush'), 'borg',
+    'walker', 'asteroid', r'(?<![a-z])space(?!bar)', 'penguin', 'parrot',
+    'raccoon', 'ferret', r'(?<![a-z])heels?', _w('deny'), 'plating',
+    'catwalk', 'jetpack', 'hologra', 'anomaly', 'electrif', 'teleport',
+    'supermatter', 'singularity', _w('emag'), r'floor.?sign', 'janitor',
+    'jumpsuit', r'circular.?saw', r'mine.?beam', r'impulse.?engine')
 
 # Order matters only for the reason recorded; a path is refused by the
 # first family it touches.
@@ -378,6 +430,32 @@ PATH_FILTERS = (
     ('voice', VOICE),
     ('combat', COMBAT),
     ('hostile', HOSTILE),
+    ('not-real-thing', NOT_REAL),
+)
+
+# The credit line of a file (a credits page, a register row, an
+# attributions entry) says what the sound was made for in its own game:
+# Unciv's "metalhit" is "for metal melee sounds", its "horse" is "for
+# mounted unit attack sounds", its "fire" is "for 'remove heresy' action
+# of inquisitor".  Combat, hostile and sacred roles in that line refuse
+# the file as its path would.  'magic' is not checked here: author
+# names such as "SlavicMagic" carry it.
+SACRED_ROLE = _any(
+    r'(?<![a-z])heres', 'inquisit', 'relig', 'missionar', 'prophet',
+    'apostle', 'pray', 'church', 'temple', 'shrine', 'altar', 'priest',
+    _w('holy'), 'sacred', 'pilgrim', 'crusade', 'choir', 'chant',
+    _w('spells?'), 'ritual', _w('cults?'))
+# Modern tools and appliances named only in the credit line: SS14's
+# "saw.ogg" and "grind.ogg" are both an "Angle Grinder" recording.  The
+# path family NOT_REAL is not applied to credit lines, whose source
+# URLs name space-station repositories.
+CREDIT_NOT_REAL = _any(r'angle.?grinder', r'circular.?saw', 'vending',
+                       'microwave', 'toilet', r'vacuum.?cleaner')
+CREDIT_FILTERS = (
+    ('credit-combat', COMBAT),
+    ('credit-hostile', HOSTILE),
+    ('credit-sacred-role', SACRED_ROLE),
+    ('credit-not-real-thing', CREDIT_NOT_REAL),
 )
 
 # Short manual review of names the families cannot read, each with its
@@ -385,11 +463,60 @@ PATH_FILTERS = (
 _ROCK_LOOP = 'a test music loop ("rock"), not stone'
 _SS14 = 'space-wizards__space-station-14'
 _MGA = 'Tests/Assets/Audio/'
+_UNCIV = 'yairm210__Unciv'
+_UNCIV_SND = 'android/assets/sounds/'
+_SPD = '00-Evan__shattered-pixel-dungeon'
+_ES = 'endless-sky__endless-sky'
 REVIEW_DROPS = {
     (_SS14, 'Resources/Audio/Items/Medical/paper_centrifuge.ogg'):
         'a centrifuge, not paper',
     (_SS14, 'Resources/Audio/Effects/Fluids/vacuum-cleaner-fast.ogg'):
         'a vacuum cleaner, not water',
+    # Source roles read in the source games themselves.
+    (_UNCIV, _UNCIV_SND + 'fire.mp3'):
+        "Inquisitor 'Remove Heresy' cue in its source game (TABOO 0.2; "
+        'Unciv docs/Credits.md, UnitAction.kt RemoveHeresy)',
+    (_UNCIV, _UNCIV_SND + 'metalhit.mp3'):
+        "'for metal melee sounds' in its source game (Unciv "
+        'docs/Credits.md): a weapon hit, and the game has no combat',
+    (_UNCIV, _UNCIV_SND + 'horse.mp3'):
+        "'for mounted unit attack sounds' in its source game (Unciv "
+        'docs/Credits.md): an attack cue, not a road animal',
+    (_UNCIV, _UNCIV_SND + 'whoosh.mp3'):
+        "'fast simple chop' used 'for moving units around' (Unciv "
+        'docs/Credits.md): a chop swish, not wind',
+    (_SPD, 'core/src/main/assets/sounds/chains.mp3'):
+        "the Guard's chain-pull attack (actors/mobs/Guard.java) and the "
+        'Ethereal Chains artifact in its source game, not a tether',
+    (_SPD, 'core/src/main/assets/sounds/scan.mp3'):
+        'played by the Talisman of Foresight (a magic artifact) and a '
+        'monk ability in its source game, not a sonar',
+    (_SPD, 'core/src/main/assets/sounds/burning.mp3'):
+        'played by fire wands, firebombs, burning traps, the sacrificial '
+        'fire and a holy dart in its source game',
+    (_SPD, 'core/src/main/assets/sounds/rocks.mp3'):
+        'played by rockfall traps and the DM-300 and gnoll geomancer '
+        'bosses in its source game',
+    (_SPD, 'core/src/main/assets/sounds/bee.mp3'):
+        "the bee mob released from a honeypot (items/Honeypot.java)",
+    (_SPD, 'core/src/main/assets/sounds/sheep.mp3'):
+        'sheep only appear summoned by a flock stone, a woolly bomb, a '
+        'flock trap or a cursed wand (magic) in its source game',
+    (_ES, 'sounds/drill~.wav'):
+        "a weapon: 'sound \"drill\"' of coalition weapons and the gegno "
+        'burrower hardpoint (endless-sky data)',
+    (_ES, 'sounds/crunch.wav'):
+        "the weapon sound of void sprites' mouthparts as well as timber "
+        'flotsam (endless-sky data/persons.txt, harvesting.txt)',
+    ('wesnoth__wesnoth', 'data/campaigns/Winds_of_Fate/sounds/gust.wav'):
+        "the Storm Wisp unit's attack sound (Winds_of_Fate "
+        'units/Storm_Wisp.cfg), not wind',
+}
+# Manual reslotting after the eye check, each with its reason.
+SLOT_OVERRIDES = {
+    (_SS14, 'Resources/Audio/Effects/paperdoor_openclose.ogg'):
+        ('workshop.door', 'a sliding paper door opened and closed: a '
+         'door, not paper'),
 }
 REVIEW_DROPS.update({
     ('MonoGame__MonoGame', _MGA + name): _ROCK_LOOP
@@ -448,9 +575,10 @@ def slot_of(path, noise=()):
     weak word weighs 0.75 in the name and 0.25 in its own folder.  Words
     of the repository name are noise (Card-Forge keeps its files under
     forge-gui/, which is not a forge).  Score = min(10, int(2 + 3 w)):
-    a strong word in the name gives 8, in the own folder 5, a weak word
-    alone gives 4 and fails, as does a strong word only far up the tree
-    (defold keeps test sounds under engine/, which is not an engine).
+    a strong word in the name gives 8, in the own folder 5, weak words
+    alone give at most 4 and fail, as does a strong word only far up the
+    tree (defold keeps test sounds under engine/, which is not an
+    engine).  A slot whose "deny" pattern matches the path is skipped.
     """
     parts = PurePosixPath(path)
     name_tokens = set(tokens(parts.stem))
@@ -458,9 +586,12 @@ def slot_of(path, noise=()):
                for f in parts.parts[:-1]]
     own = folders[-1] if folders else set()
     upper = set().union(*folders[:-1]) if len(folders) > 1 else set()
-    best = (None, 0.0, [])
+    low = path.lower()
+    best = (None, 0.0, [], False)
     for slot, spec in SLOTS.items():
-        weight, found = 0.0, []
+        if any(re.search(d, low) for d in spec.get('deny', ())):
+            continue
+        weight, found, strong = 0.0, [], False
         for words, w_name, w_own, w_up in (
                 (spec['strong'], 2.0, 1.0, 0.5),
                 (spec['weak'], 0.75, 0.25, 0.0)):
@@ -474,12 +605,18 @@ def slot_of(path, noise=()):
                 else:
                     continue
                 found.append(kw.rstrip('*'))
+                strong = strong or words is spec['strong']
         if weight > best[1]:
-            best = (slot, weight, found)
-    slot, weight, found = best
-    if slot is None:
+            best = (slot, weight, found, strong)
+    if best[0] is None:
         return None, 0, []
-    return slot, min(10, int(2 + 3 * weight)), sorted(set(found))
+    slot, weight, found, strong = best
+    score = min(10, int(2 + 3 * weight))
+    if not strong:
+        # Weak words only suggest a thing: "shipMoveBig" in a movement/
+        # folder is a weak word twice, and a ship is no footstep.
+        score = min(score, PASS_SCORE - 1)
+    return slot, score, sorted(set(found))
 
 
 # --- Licence -----------------------------------------------------------
@@ -491,9 +628,19 @@ NC_ND = re.compile(
     r'cc[- ]by[- ]nc|cc[- ]by[- ]nd|(?<![a-z])by-n[cd](?![a-z])|'
     r'creativecommons\.org/licenses/by-n[cd]|no derivative works',
     re.IGNORECASE)
+# A README that warns of non-commercial assets somewhere in its tree
+# (space-station-14: "Some assets are licensed under the non-commercial
+# CC-BY-NC-SA 3.0 ... and will need to be removed").
+NC_DECLARED = re.compile(r'non-?commercial|' + NC_ND.pattern,
+                         re.IGNORECASE)
+# "CC-3" (the widelands sound register) names a Creative Commons 3.0
+# licence without saying which: BY and BY-NC are both 3.0.  NC cannot
+# be ruled out, so such a file waits for the lawyer.
+AMBIGUOUS_CC = re.compile(r'(?<![a-z])cc[- ]?[1-4](?![0-9])',
+                          re.IGNORECASE)
 
 LICENCE_CLASSES = (
-    ('PD', r'cc0|public[- ]domain|unlicense'),
+    ('PD', r'cc-?0|public[- ]domain|unlicense'),
     ('CC-BY-SA', r'attribution-sharealike|cc[- ]by[- ]sa|'
                  r'(?<![a-z])by-sa(?![a-z])'),
     ('CC-BY', r'cc[- ]by(?![- ]?(sa|nc|nd))|'
@@ -522,6 +669,10 @@ LICENCE_BASE = {'PD': 10, 'MIT': 9, 'BSD': 9, 'Zlib': 9, 'Apache': 9,
                 'UNKNOWN': 3}
 SHARE_ALIKE = {'GPL', 'LGPL', 'AGPL', 'CC-BY-SA', 'MPL'}
 CODE_LICENCES = {'MIT', 'BSD', 'Zlib', 'Apache', 'Ms-PL', 'MPL'}
+# Reasons a file is held out on its licence; the document lists them
+# for the lawyer, since a decision could bring some of them back.
+LAWYER_REASONS = ('licence-nc-unknown', 'licence-ambiguous',
+                  'licence-unknown')
 
 
 def classify_short(text):
@@ -545,20 +696,33 @@ def classify_long(text):
     return (first[0] if first else 'UNKNOWN'), bool(NC_ND.search(text))
 
 
-def right_score(repo_class, repo_nc, hint, repo_mentions_assets):
-    """ПРАВО 0-10 as (score, reason, class); reason set = excluded."""
+def right_score(repo_class, repo_nc, hint, repo_mentions_assets,
+                readme_default=None, readme_nc=False):
+    """ПРАВО 0-10 as (score, reason, class); reason set = held out.
+
+    Order of evidence: a per-file hint, then the asset licence the
+    README states, then the repository licence.  A README default in a
+    repository whose README also warns of non-commercial assets is not
+    enough: without a per-file entry NC cannot be ruled out."""
     if hint:
         cls = classify_short(hint)
         if cls == 'NC-ND':
             return None, 'licence-nc-nd', cls
         if cls is None:
-            cls = 'UNKNOWN'
+            reason = ('licence-ambiguous' if AMBIGUOUS_CC.search(hint)
+                      else 'licence-unknown')
+            return None, reason, 'UNKNOWN'
         # A per-file licence is documented provenance: one point more.
         return min(10, LICENCE_BASE[cls] + 1), None, cls
     if repo_class is None:
         return None, 'no-licence-repo', None
     if repo_nc:
         return None, 'licence-nc-nd', 'NC-ND'
+    if readme_default:
+        cls = classify_short(readme_default) or 'UNKNOWN'
+        if readme_nc:
+            return None, 'licence-nc-unknown', cls
+        return LICENCE_BASE.get(cls, 3), None, cls
     score = LICENCE_BASE.get(repo_class, 3)
     if repo_class in CODE_LICENCES and not repo_mentions_assets:
         # A code licence says nothing sure about sound assets.
@@ -566,59 +730,154 @@ def right_score(repo_class, repo_nc, hint, repo_mentions_assets):
     return score, None, repo_class
 
 
+# README asset clause: "Most assets are licensed under CC-BY-SA 3.0",
+# "Most art and music is also licensed under the GNU GPL v2+".  A
+# clause about "some assets" names no default and is skipped.
+README_ASSETS = re.compile(
+    r'(?:(some|most|all)\s+(?:of\s+the\s+)?)?(?:assets|art(?:work)?|'
+    r'sounds?|audio|media)\b[^.\n]{0,40}?\b(?:are|is)(?:\s+also)?\s+'
+    r'(?:licensed|released)\s+under\s+(?:the\s+)?\[?([^\]\n;]+)',
+    re.IGNORECASE)
+
+
+def readme_asset_licence(text):
+    """(default asset licence or None, README declares NC assets)."""
+    default = None
+    for found in README_ASSETS.finditer(text):
+        if (found.group(1) or '').lower() == 'some':
+            continue
+        token = licence_token(found.group(2))
+        if token and classify_short(token) not in (None, 'NC-ND'):
+            default = token
+            break
+    return default, bool(NC_DECLARED.search(text))
+
+
 # Per-file licence hints ------------------------------------------------
 
 HINT_NAME = re.compile(
-    r'(^|/)((attributions?|credits|copying|licen[cs]e|authors|copyright)'
-    r'[^/]*|copyrights\.csv)$', re.IGNORECASE)
+    r'(^|/)((attributions?|credits|copying|licen[cs]e|authors|copyright|'
+    r'sources)[^/]*|copyrights\.csv|[^/]*sound[^/]*docu[^/]*\.csv)$',
+    re.IGNORECASE)
+# Credits kept in a docs folder at the top speak for the whole tree
+# (Unciv docs/Credits.md names its sounds by stem).
+REPO_LEVEL_DIRS = {'doc', 'docs'}
+
+
+def _hint(licence, author=None, credit=None):
+    return {'licence': licence, 'author': author or None,
+            'credit': credit or ''}
+
+
+def _yml_field(block, key):
+    """A scalar of a YAML block, with its outer quotes removed: SS14
+    writes copyright: '"01-1 Angle Grinder.wav" by domiscz', and the
+    inner double quotes belong to the value."""
+    found = re.search(rf'^\s*{key}:\s*(.*)$', block, re.M)
+    if not found:
+        return None
+    value = found.group(1).strip()
+    if len(value) > 1 and value[0] == value[-1] and value[0] in '\'"':
+        value = value[1:-1]
+    return value.strip() or None
 
 
 def hints_attributions_yml(folder, text):
-    """space-station-14 style: '- files: [...]' blocks with 'license:'."""
+    """space-station-14 style: '- files: [...]' blocks with 'license:',
+    'copyright:' and 'source:'."""
     out = {}
     for block in re.split(r'\n(?=- files)', '\n' + text):
         lic = re.search(r'license:\s*"?([^"\n]+)"?', block)
         if not lic:
             continue
         head = block[:lic.start()]
+        author = _yml_field(block, 'copyright')
+        source = _yml_field(block, 'source')
+        credit = ' '.join(filter(None, (author, source)))
         for name in re.findall(r'([\w\-.()]+\.(?:ogg|wav|mp3|flac|opus))',
                                head):
-            out[f'{folder}/{name}' if folder else name] = lic.group(1)
+            key = f'{folder}/{name}' if folder else name
+            out[key] = _hint(lic.group(1), author, credit)
     return out
 
 
 def hints_copyrights_csv(text):
-    """wesnoth style: Date,File,License,... rows with exact paths."""
+    """wesnoth style: Date,File,License,Author,Notes rows, exact paths."""
     out = {}
     for line in text.splitlines()[1:]:
         cols = line.split(',')
         if len(cols) > 2 and '/' in cols[1]:
-            out[cols[1].strip()] = cols[2].strip()
+            author = cols[3].strip() if len(cols) > 3 else None
+            notes = cols[4].strip() if len(cols) > 4 else ''
+            out[cols[1].strip()] = _hint(cols[2].strip(), author, notes)
+    return out
+
+
+# The widelands sound register writes licences its own way.
+_REGISTER_LICENCE = {'CC-0': 'CC0-1.0', 'PD': 'public domain',
+                     '': 'UNKNOWN'}
+
+
+def hints_sound_register(text):
+    """widelands data/sound/wl-sound-docu.csv: rows of File Name,
+    Location, Usage, Author, License, ..., Original File Name, Source.
+    Returns (path suffix, hint) pairs; the Location column omits the
+    leading 'data/' on some rows, so the suffix is matched."""
+    rows = list(csv.reader(io.StringIO(text)))
+    head = next((i for i, r in enumerate(rows)
+                 if r and r[0].strip().lower() == 'file name'), None)
+    if head is None:
+        return []
+    cols = {c.strip().lower(): j for j, c in enumerate(rows[head])}
+
+    def get(row, key):
+        j = cols.get(key)
+        return row[j].strip() if j is not None and j < len(row) else ''
+
+    out = []
+    for row in rows[head + 1:]:
+        name = get(row, 'file name')
+        if not name:
+            continue
+        loc = re.sub(r'^data/', '', get(row, 'location').strip('/'))
+        lic = get(row, 'license')
+        lic = _REGISTER_LICENCE.get(lic.upper(), lic)
+        author = get(row, 'author')
+        credit = ' '.join(filter(None, (get(row, 'usage'),
+                                        get(row, 'original file name'))))
+        out.append((f'{loc}/{name}',
+                    _hint(lic, None if author == 'UNKNOWN' else author,
+                          credit)))
     return out
 
 
 def hints_debian(text):
-    """Debian copyright format: (glob patterns, licence) stanzas; the
-    last matching stanza wins, as the format prescribes."""
+    """Debian copyright format: (glob patterns, hint) stanzas; the last
+    matching stanza wins, as the format prescribes."""
     rules = []
     for stanza in re.split(r'\n\s*\n', text):
         files = re.search(r'^Files:(.*(?:\n[ \t]+.*)*)', stanza, re.M)
         lic = re.search(r'^License:\s*(.+)$', stanza, re.M)
+        owner = re.search(r'^Copyright:\s*(.+)$', stanza, re.M)
         if files and lic:
             globs = files.group(1).split()
-            rules.append((globs, lic.group(1).strip()))
+            author = owner.group(1).strip() if owner else None
+            rules.append((globs, _hint(lic.group(1).strip(), author,
+                                       author)))
     return rules
 
 
 LICENCE_TOKEN = re.compile(
-    r'(CC0[\w.-]*|CC[- ]BY[- ]N[CD][\w .-]*?\d\.\d|'
+    r'(CC-?0[\w.-]*|CC[- ]BY[- ]N[CD][\w .-]*?\d\.\d|'
     r'CC[- ]BY[- ]SA[\w .-]*?\d\.\d|CC[- ]BY[- ]SA|CC[- ]BY[\w .-]*?\d\.\d|'
     r'CC[- ]BY|OGA-BY[\w .-]*|public[- ]domain|(?:GNU )?[AL]?GPL[\w .+-]*|'
-    r'MIT|Apache[\w .-]*\d|(?<![A-Za-z])BY(?![A-Za-z]))', re.IGNORECASE)
+    r'MIT|Apache[\w .-]*\d|(?-i:(?<![A-Za-z])BY(?![A-Za-z])))',
+    re.IGNORECASE)
 
 
 def licence_token(text):
-    """The licence named in a line of a credits text, as written."""
+    """The licence named in a line of a credits text, as written.  A
+    bare "BY" counts only in capitals: "by D001447733" is an author."""
     found = LICENCE_TOKEN.search(text)
     return found.group(1).strip(' .,') if found else None
 
@@ -637,75 +896,136 @@ def hints_credits_table(text):
         item = re.match(r'^->\s+(\S+)\s+(.*)$', line)
         if item and classify_short(item.group(2)):
             rules.append((prefix + folder + item.group(1),
-                          licence_token(item.group(2))
-                          or classify_short(item.group(2))))
+                          _hint(licence_token(item.group(2))
+                                or classify_short(item.group(2)),
+                                None, item.group(2).strip())))
     return rules
+
+
+# "By EathanMarkson as 'click' for most clicks (CC0)": a credits page
+# that names a sound by the stem its game loads, not by the file name.
+CREDIT_STEM = re.compile(r"\bas (?:part of )?'([\w-]+)'")
+
+
+def hints_credit_stems(text):
+    """{stem: hint} from lines naming a sound "as '<stem>'"; the
+    licence is the last parenthesised licence on the line."""
+    out = {}
+    for line in text.splitlines():
+        stems = CREDIT_STEM.findall(line)
+        if not stems:
+            continue
+        lic = None
+        for group in reversed(re.findall(r'\(([^()]*)\)', line)):
+            if classify_short(group):
+                lic = licence_token(group) or group.strip()
+                break
+        if not lic:
+            continue
+        by = re.search(r'\b[Bb]y ([^()\[\]]+?) (?:as|for)\b', line)
+        for stem in stems:
+            out.setdefault(stem.lower(), _hint(
+                lic, by.group(1).strip() if by else None, line.strip()))
+    return out
 
 
 def hints_generic(text, names):
     """Any credits or licence text: a line naming the file, with a
-    licence on it or on the next two lines."""
+    licence on that line or, failing that, on the next two lines."""
     out = {}
     lines = text.splitlines()
     for i, line in enumerate(lines):
         for name in names:
-            if re.search(r'(?<![\w.-])' + re.escape(name) + r'(?![\w.-])',
-                         line):
-                near = ' '.join(lines[i:i + 3])
+            if name in out or not re.search(
+                    r'(?<![\w.-])' + re.escape(name) + r'(?![\w.-])', line):
+                continue
+            for near in (line, ' '.join(lines[i:i + 3])):
                 cls = classify_short(near)
                 if cls:
-                    out[name] = licence_token(near) or cls
+                    out[name] = _hint(licence_token(near) or cls, None,
+                                      line.strip())
+                    break
     return out
 
 
 def file_hints(candidate_paths, hint_texts):
-    """Map each candidate path to the licence its hint files state."""
-    exact, globbed = {}, []
+    """Map each candidate path to {licence, source, author, credit}
+    from the hint files of its repository."""
+    exact, globbed, suffixed, stems = {}, [], [], {}
     for hint_path, text in sorted(hint_texts.items()):
         name = PurePosixPath(hint_path).name.lower()
         folder = str(PurePosixPath(hint_path).parent)
-        folder = '' if folder == '.' else folder
+        folder = '' if folder in ('.', *REPO_LEVEL_DIRS) else folder
         if name.startswith('attributions') and name.endswith('.yml'):
-            exact.update(hints_attributions_yml(folder, text))
+            for p, h in hints_attributions_yml(folder, text).items():
+                exact[p] = dict(h, source='per-file')
         elif name == 'copyrights.csv':
-            exact.update(hints_copyrights_csv(text))
+            for p, h in hints_copyrights_csv(text).items():
+                exact[p] = dict(h, source='per-file')
+        elif name.endswith('.csv') and 'sound' in name:
+            suffixed += hints_sound_register(text)
         elif text.startswith('Format:') and 'Files:' in text:
             globbed.append(('debian', folder, hints_debian(text)))
         elif re.search(r'^->\s', text, re.M):
             globbed.append(('credits', folder, hints_credits_table(text)))
         else:
+            if CREDIT_STEM.search(text):
+                for stem, h in hints_credit_stems(text).items():
+                    stems.setdefault(stem, h)
             scope = [p for p in candidate_paths
                      if not folder or p.startswith(folder + '/')]
             names = sorted({PurePosixPath(p).name for p in scope})
-            for fname, lic in hints_generic(text, names).items():
+            for fname, h in hints_generic(text, names).items():
                 for p in scope:
                     if PurePosixPath(p).name == fname:
-                        exact.setdefault(p, lic)
+                        exact.setdefault(p, dict(h, source='per-file'))
     result = {}
     for path in candidate_paths:
         if path in exact:
-            result[path] = (exact[path], 'per-file')
+            result[path] = exact[path]
+            continue
+        for suffix, h in suffixed:
+            if path == 'data/' + suffix or path.endswith('/' + suffix):
+                result[path] = dict(h, source='sound-register')
+        if path in result:
+            continue
+        stem = PurePosixPath(path).stem.lower()
+        if stem in stems:
+            result[path] = dict(stems[stem], source='credits-page')
             continue
         for kind, folder, rules in globbed:
             rel = path[len(folder) + 1:] if folder else path
             if kind == 'debian':
                 match = None
-                for globs, lic in rules:
+                for globs, h in rules:
                     if any(fnmatch.fnmatchcase(rel, g) for g in globs):
-                        match = (globs, lic)
+                        match = (globs, h)
                 # "Files: *" is the whole repository, not a file hint.
                 if match and match[0] != ['*']:
-                    result[path] = (match[1], 'debian-copyright')
+                    result[path] = dict(match[1], source='debian-copyright')
             else:
-                for pattern, lic in rules:
+                for pattern, h in rules:
                     if fnmatch.fnmatchcase(rel, pattern):
-                        result[path] = (lic, 'credits-table')
+                        result[path] = dict(h, source='credits-table')
     return result
 
 
 # --- Acoustics ---------------------------------------------------------
 
 BANDS = (125, 250, 500, 1000, 2000, 4000, 8000)
+# Below 20 Hz no ear hears anything, but a drifting offset there (keyboard
+# and step recordings: up to 94 % of their energy) ruled the envelope,
+# the Schroeder decay and the centroid.  A 2nd-order Butterworth
+# high-pass at HP_HZ takes it out before anything is measured.
+HP_HZ = 20.0
+# Onsets are counted on a 10 ms RMS envelope: a new onset is a rise of
+# at least ONSET_RISE_DB from the lowest point since the last fall to
+# above ONSET_LEVEL_DB (relative to the peak), or any return above
+# ONSET_TOP_DB after the envelope has fallen below ONSET_LEVEL_DB.
+ONSET_FRAME_S = 0.010
+ONSET_RISE_DB = 10.0
+ONSET_LEVEL_DB = -20.0
+ONSET_TOP_DB = -15.0
 
 
 def _fit_decay(t, edc_db, top, bottom):
@@ -763,6 +1083,42 @@ def schroeder(energy, dt, floor_rel_db):
     return out
 
 
+def highpass(x, sr, fc=HP_HZ):
+    """Zero-phase high-pass with the magnitude of a 2nd-order
+    Butterworth (12 dB per octave, -3 dB at fc), applied by FFT to the
+    even extension of x: the extension joins end to end without a step,
+    so a drift or offset leaves no click at the edges.  Pure numpy."""
+    x = np.asarray(x, dtype=np.float64)
+    n = len(x)
+    if n < 4:
+        return x - x.mean()
+    ext = np.concatenate([x, x[::-1]])
+    freqs = np.fft.rfftfreq(len(ext), 1.0 / sr)
+    gain = np.zeros_like(freqs)
+    pos = freqs > 0
+    gain[pos] = 1.0 / np.sqrt(1.0 + (fc / freqs[pos]) ** 4)
+    return np.fft.irfft(np.fft.rfft(ext) * gain, len(ext))[:n]
+
+
+def count_onsets(env_db):
+    """Onsets in an envelope in dB relative to its peak (see the
+    ONSET_* constants).  Before the file there is silence, so a file
+    that starts loud has one onset."""
+    onsets, falling, lo, hi = 0, True, -math.inf, -math.inf
+    for v in env_db:
+        if falling:
+            lo = min(lo, v)
+            if (v > ONSET_LEVEL_DB and v - lo >= ONSET_RISE_DB) or \
+                    (v > ONSET_TOP_DB and lo < ONSET_LEVEL_DB):
+                onsets += 1
+                falling, hi = False, v
+        else:
+            hi = max(hi, v)
+            if hi - v >= ONSET_RISE_DB:
+                falling, lo = True, v
+    return onsets
+
+
 def envelope_points(env_db, n=16):
     """n points of the envelope in dB relative to the peak (max-pooled)."""
     parts = np.array_split(env_db, n) if len(env_db) >= n else [env_db]
@@ -798,9 +1154,9 @@ def measure(samples, sr):
     prof['peak_dbfs'] = round(20 * math.log10(peak + 1e-12), 2)
     prof['clipped_pct'] = round(
         100.0 * float((np.abs(x) >= 0.999).mean()) if n else 0.0, 4)
-    # A DC offset (found in some keyboard and step files) is energy at
-    # 0 Hz that no ear hears; it is removed before envelope and spectrum.
-    mono = (x - x.mean(axis=0)).mean(axis=1)
+    # Offset, drift and steps below 20 Hz are energy no ear hears; a
+    # high-pass removes them before envelope and spectrum (HP_HZ).
+    mono = highpass(x.mean(axis=1), sr)
     frame = max(1, int(sr * 0.020))
     count = max(1, n // frame)
     rms = np.sqrt((mono[:count * frame] ** 2).reshape(count, frame)
@@ -831,18 +1187,34 @@ def measure(samples, sr):
     prof['decay40_ms'] = round(d40[0] * blk / sr * 1000, 1) \
         if len(d40) else None
     prof['envelope_db'] = envelope_points(env_db)
+    prof['peak_s'] = round(p * blk / sr, 3)
+    of = max(1, int(sr * ONSET_FRAME_S))
+    no = max(1, n // of)
+    orms = np.sqrt((mono[:no * of] ** 2).reshape(no, of).mean(axis=1)
+                   + 1e-24) if n >= of else \
+        np.array([math.sqrt(float((mono ** 2).mean()) + 1e-24)])
+    prof['onsets'] = count_onsets(20 * np.log10(orms / orms.max()))
     floor_rel = floor - 20 * math.log10(pk + 1e-12)
     prof.update(schroeder(energy, blk / sr, floor_rel))
-    # Spectrum: centroid, 95 % roll-off, flatness, octave bands.
+    # Spectrum.  Centroid, 95 % roll-off and octave-band energy come from
+    # the energy spectrum of the whole file (one FFT, Parseval): no frame
+    # size decides how a short click is weighed, so the values do not
+    # move with n_fft.  Flatness (a texture measure) and the band T60
+    # (a decay in time) come from the STFT, which averages frames.
+    whole = np.abs(np.fft.rfft(mono)) ** 2
+    wf = np.fft.rfftfreq(len(mono), 1.0 / sr)
+    keep = wf >= HP_HZ
+    whole, wf = whole[keep], wf[keep]
+    wsum = float(whole.sum()) or 1e-20
+    prof['centroid_hz'] = round(float((wf * whole).sum() / wsum), 1)
+    cum = np.cumsum(whole) / wsum
+    prof['rolloff95_hz'] = round(float(wf[min(len(wf) - 1, int(
+        np.searchsorted(cum, 0.95)))]) if len(wf) and cum[-1] > 0
+        else 0.0, 1)
     power, freqs, hop_s = stft_power(mono, sr)
-    audible = freqs >= 20.0
+    audible = freqs >= HP_HZ
     power, freqs = power[:, audible], freqs[audible]
     total = power.sum(axis=0)
-    tsum = float(total.sum()) or 1e-20
-    prof['centroid_hz'] = round(float((freqs * total).sum() / tsum), 1)
-    cum = np.cumsum(total) / tsum
-    prof['rolloff95_hz'] = round(float(freqs[int(np.searchsorted(
-        cum, 0.95))]) if cum[-1] > 0 else 0.0, 1)
     band = (freqs >= 100) & (freqs <= min(16000, sr / 2))
     spec = total[band] + 1e-20
     prof['flatness'] = round(float(np.exp(np.log(spec).mean())
@@ -854,10 +1226,10 @@ def measure(samples, sr):
         if hi > sr / 2:
             bands[key], band_t60[key] = None, None
             continue
-        sel = (freqs >= lo) & (freqs < hi)
-        be = power[:, sel].sum(axis=1)
-        bands[key] = round(10 * math.log10(float(be.sum()) / tsum
+        wsel = (wf >= lo) & (wf < hi)
+        bands[key] = round(10 * math.log10(float(whole[wsel].sum()) / wsum
                                            + 1e-20), 1)
+        be = power[:, (freqs >= lo) & (freqs < hi)].sum(axis=1)
         bfloor = 10 * math.log10(
             np.percentile(be, 10) / (be.max() + 1e-20) + 1e-20)
         band_t60[key] = schroeder(be, hop_s, bfloor)['t60_s'] \
@@ -868,20 +1240,57 @@ def measure(samples, sr):
 
 
 def is_impulsive(prof):
-    """True when the sound is one blow that dies away: at most a quarter
-    of its 16 envelope points lie within 10 dB of the peak, and after
-    the peak it falls below -20 dB.  Only then is its T60 a decay of the
-    thing (or the room); for a sustained wind, rain or hum, and for a
-    train of hammer blows, the fitted "T60" is the file's fade-out."""
+    """True when the sound is one blow that dies away, so that its T60
+    is a decay of the thing (or the room) and not of the file.  All of:
+    one onset (no second blow, no re-rise); a T20 or T30 fit with r2 of
+    at least 0.9 (the bar acoustic_score uses) and EDT/T60 within 0.5-2
+    (one slope, not a double slope or a plateau); at most a quarter of
+    the 16 envelope points within 10 dB of the peak and a fall below
+    -20 dB after it; and, in a file longer than 1.5 s, the decay tail
+    covers half the file or what follows the tail is quiet (below -30
+    dB).  For a wind, rain or hum, and for a train of hammer blows, the
+    fitted "T60" is the file's fade-out."""
+    if prof.get('onsets') != 1:
+        return False
+    if prof['t60_method'] not in ('T20', 'T30') or \
+            (prof['t60_r2'] or 0) < 0.9:
+        return False
+    edt, t60 = prof['edt_s'], prof['t60_s']
+    if not edt or not t60 or not 0.5 <= edt / t60 <= 2.0:
+        return False
     env = prof['envelope_db']
     loud = sum(1 for v in env if v > -10.0)
     peak = env.index(max(env))
-    return loud <= len(env) // 4 and any(v <= -20.0
-                                         for v in env[peak + 1:])
+    if loud > len(env) // 4 or not any(v <= -20.0 for v in env[peak + 1:]):
+        return False
+    dur = prof['duration_s']
+    if dur > 1.5 and prof['tail_s'] < 0.5 * dur:
+        end = prof.get('peak_s', 0.0) + prof['tail_s']
+        after = [v for i, v in enumerate(env)
+                 if (i + 1) * dur / len(env) > end + dur / len(env)]
+        if any(v > -30.0 for v in after):
+            return False
+    return True
+
+
+def is_steady(prof):
+    """True for a sustained bed (rain, wind, hum, a loop): a second or
+    longer, and the 12 inner envelope points lie within 6 dB of each
+    other and above -12 dB.  Its level and spectrum are the reference;
+    its "T60" is not."""
+    env = prof['envelope_db']
+    inner = env[2:-2]
+    return (prof['duration_s'] >= 1.0 and len(inner) >= 8
+            and max(inner) - min(inner) <= 6.0 and min(inner) >= -12.0)
 
 
 def acoustic_score(prof):
-    """АКУСТИКА 0-10, or (None, reason) for a hard failure."""
+    """АКУСТИКА 0-10, or (None, reason) for a hard failure.
+
+    The decay term rewards a measurement only where it means something:
+    +2 for a single blow whose T60 is trustworthy (is_impulsive), +2 for
+    a steady bed whose level and spectrum are the reference (is_steady),
+    +1 when there is at least an early decay to read."""
     if prof['sr'] < 22050:
         return None, 'sample-rate'
     if not 0.05 <= prof['duration_s'] <= 30.0:
@@ -897,8 +1306,7 @@ def acoustic_score(prof):
                                              else 0)
     if prof['attack_ms'] is not None and prof['decay20_ms'] is not None:
         score += 1
-    if prof['t60_method'] in ('T20', 'T30') and \
-            (prof['t60_r2'] or 0) >= 0.9:
+    if is_impulsive(prof) or is_steady(prof):
         score += 2
     elif prof['t60_method'] == 'T10' or prof['edt_s']:
         score += 1
@@ -953,29 +1361,56 @@ STATE_WORDS = {
     'happy', 'weak', 'strong', 'short', 'long', 'ext', 'in', 'out', 'up',
     'down', 'high', 'low', 'tiny', 'mono', 'stereo', 'alt', 'var', 'v',
     'variant', 'mix', 'sub', 'quick', 'hz', 'bit', 'a', 'b', 'c', 'x'}
+# Words that name what is done to a thing or the sound it makes, not the
+# thing: toolbox_drop, toolbox_insert and toolbox_remove are one toolbox,
+# airlock_deny and airlock_creaking one airlock, cat_meow and cat_hiss
+# one cat, impactWood and impactPlank two things knocked.
+ACTION_WORDS = {
+    'drop', 'dropped', 'insert', 'remove', 'use', 'used', 'deny',
+    'electrify', 'creak', 'creaks', 'creaking', 'pickup', 'pick', 'put',
+    'place', 'equip', 'unequip', 'meow', 'hiss', 'purr', 'bark', 'growl',
+    'chirp', 'squawk', 'chatter', 'click', 'clack', 'thud', 'impact',
+    'hit', 'tap', 'knock', 'squeak', 'rattle', 'rustle', 'step', 'steps'}
+# A state fused onto the name ("screwdriveropen", "woodenclosetclose").
+FUSED_STATE = re.compile(r'^(.{4,}?)(opening|closing|open|closed|close)$')
 
 
 def thing_of(path):
     """The thing a file sounds: its folder and the words of its name
-    without take numbers and state words, so grass1..grass4 are one
-    thing, and so are door_open and door_close."""
+    without take numbers, state words and action words; a state fused
+    onto a word is split off.  So grass1..grass4 are one thing, and so
+    are door_open and door_close, toolbox_drop and toolbox_insert,
+    screwdriver and screwdriveropen."""
     parts = PurePosixPath(path)
-    words = [w for w in tokens(parts.stem) if w not in STATE_WORDS]
-    return str(parts.parent), ' '.join(words) or parts.stem.lower()
+    words = []
+    for w in tokens(parts.stem):
+        fused = FUSED_STATE.match(w)
+        if fused and w not in STATE_WORDS:
+            w = fused.group(1)
+        if w not in STATE_WORDS and w not in ACTION_WORDS:
+            words.append(w)
+    return str(parts.parent), ' '.join(words) or ' '.join(
+        tokens(parts.stem)) or parts.stem.lower()
 
 
 def select(pool, k=K, tiers=((FOLDER_CAP, REPO_CAP),
                              (TIER2_FOLDER_CAP, TIER2_REPO_CAP)),
-           slot_min=SLOT_MIN, thing_cap=THING_CAP):
-    """Take up to k with diversity; return (chosen, tier of each, cut).
+           slot_min=SLOT_MIN, thing_cap=THING_CAP,
+           tier2_meaning=TIER2_MEANING):
+    """Take up to k with diversity; return (chosen, stats).
 
-    Tier 1 keeps the caps of the task: a minimum per slot first, then
-    rank order, at most tiers[0] per source folder and per repository.
-    Tier 2 runs only if tier 1 leaves fewer than k while the honest pool
-    holds more: it continues in rank order under looser folder and
-    repository caps.  Both tiers keep at most thing_cap states of one
-    thing (TABOO 0.07 item 4).  cut = pool members left out when fewer
-    than k were chosen.
+    Tier 1 keeps the caps of the task.  It first takes a minimum per
+    slot in rank order under the repository cap and the rule of two
+    states per thing, but before the folder cap: one space-station-14
+    folder serves several slots, and a slot must not starve because
+    another slot filled that folder first.  Then it continues in rank
+    order with at most tiers[0] per folder and per repository.  Tier 2
+    runs only if tier 1 leaves fewer than k while the honest pool holds
+    more: it continues in rank order under looser folder and repository
+    caps, and only with sounds whose file name names the thing (meaning
+    of at least tier2_meaning).  Both tiers keep at most thing_cap
+    states of one thing (TABOO 0.07 item 4).  stats counts what each
+    rule left out.
     """
     ranked = sorted(pool, key=rank_key)
     chosen, taken = [], set()
@@ -1002,20 +1437,28 @@ def select(pool, k=K, tiers=((FOLDER_CAP, REPO_CAP),
         for c in ranked:
             if got >= slot_min or len(chosen) >= k:
                 break
-            if c['slot'] == slot and fits(c, folder_cap, repo_cap):
+            if c['slot'] == slot and (c['repo'], c['path']) not in taken \
+                    and fits(c, 10 ** 6, repo_cap):
                 take(c, 1)
                 got += 1
     for tier, (folder_cap, repo_cap) in enumerate(tiers, 1):
         for c in ranked:
             if len(chosen) >= k:
                 break
-            if (c['repo'], c['path']) not in taken and \
-                    fits(c, folder_cap, repo_cap):
+            if (c['repo'], c['path']) in taken:
+                continue
+            if tier > 1 and c['scores']['meaning'] < tier2_meaning:
+                continue
+            if fits(c, folder_cap, repo_cap):
                 take(c, tier)
     chosen.sort(key=lambda c: (list(SLOTS).index(c['slot']),
                                rank_key(c)))
-    cut = len(pool) - len(chosen) if len(chosen) < k else 0
-    return chosen, cut
+    left = [c for c in pool if (c['repo'], c['path']) not in taken]
+    stats = {'not-chosen': len(left)}
+    if len(tiers) > 1:
+        stats['tier2-meaning-below'] = sum(
+            c['scores']['meaning'] < tier2_meaning for c in left)
+    return chosen, stats
 
 
 def sheet_sample(chosen, n=SHEET_SAMPLE):
@@ -1094,20 +1537,30 @@ def load_index(index_root):
 
 
 def repo_licence(index_root, name, header, records):
-    """Class, NC flag and asset mention of the top-level licence files.
+    """What the top of a repository says about its licence.
 
-    The index header keeps only the first licence file; this reads all
-    of them (Cataclysm-DDA lists a font licence first, while its game
-    licence is CC-BY-SA), skipping font licences.
+    Returns a dict: class, NC flag and asset mention of the top-level
+    licence files (the index header keeps only the first licence file;
+    this reads all of them, since Cataclysm-DDA lists a font licence
+    first while its game licence is CC-BY-SA, and skips font licences),
+    the default asset licence its README states and whether the README
+    declares non-commercial assets, and whether the root holds a .noai
+    marker (an opt-out signal against AI use, recorded for the lawyer).
     """
+    out = {'class': None, 'nc': False, 'assets': False, 'files': [],
+           'readme_default': None, 'readme_nc': False,
+           'noai': any(r['path'].lower() in ('.noai', '.noai.txt')
+                       for r in records)}
     if not header['license_file']:
-        return None, False, False, []
+        return out
     tops = [r['path'] for r in records if '/' not in r['path']
             and r['path'].upper().startswith(
                 ('LICENSE', 'LICENCE', 'COPYING', 'COPYRIGHT'))
             and 'FONT' not in r['path'].upper()]
+    readmes = [r['path'] for r in records if '/' not in r['path']
+               and r['path'].upper().startswith('README')]
     clone = Path(index_root) / 'clones' / name
-    texts = fetch_blobs(clone, header['commit'], tops)
+    texts = fetch_blobs(clone, header['commit'], tops + readmes)
     classes, nc, assets = [], False, False
     for path in tops:
         text = texts[path].decode('utf-8', 'replace')
@@ -1123,18 +1576,39 @@ def repo_licence(index_root, name, header, records):
         nc = nc or (flag and not register)
         assets = assets or bool(re.search(
             r'sound|audio|asset|artwork|data files', text, re.I))
+    for path in sorted(readmes):
+        default, readme_nc = readme_asset_licence(
+            texts[path].decode('utf-8', 'replace'))
+        out['readme_default'] = out['readme_default'] or default
+        out['readme_nc'] = out['readme_nc'] or (readme_nc and bool(default))
     known = [c for c in classes if c != 'UNKNOWN']
+    out.update(nc=nc, assets=assets, files=tops,
+               **{'class': known[0] if known else 'UNKNOWN'})
     # A data licence file (COPYING-data) speaks for sound first.
     for path, cls in zip(tops, classes):
         if 'DATA' in path.upper() and cls != 'UNKNOWN':
-            return cls, nc, True, tops
-    return (known[0] if known else 'UNKNOWN'), nc, assets, tops
+            out.update(assets=True, **{'class': cls})
+            break
+    return out
+
+
+def credit_refusal(hint):
+    """First combat, hostile, sacred or not-real role in a file's credit
+    line.  URLs and "by <name>" are removed first: an author called
+    "el_boss" or "SlavicMagic" says nothing about the sound."""
+    text = (hint or {}).get('credit', '').lower()
+    text = re.sub(r'https?://\S+', ' ', text)
+    text = re.sub(r'\bby\s+[^\s,;()]+', ' ', text)
+    for reason, pattern in CREDIT_FILTERS:
+        if text and pattern.search(text):
+            return reason
+    return None
 
 
 def run_pass(index_root, cache_root, jobs=4, log=print):
     """Build the pool, measure it and return everything main() writes."""
     stats = Counter()
-    candidates, repos = [], {}
+    candidates, repos, held = [], {}, []
     measure_cache_file = Path(cache_root) / '_measure.json'
     cache_path(cache_root, 'x', 'y')  # refuse a cache inside the repo
     try:
@@ -1149,11 +1623,15 @@ def run_pass(index_root, cache_root, jobs=4, log=print):
         if not audio:
             continue
         stats['index-audio'] += len(audio)
+        stats['index-audio-repos'] += 1
         noise = set(tokens(name.replace('__', ' ')))
-        rclass, rnc, rassets, rfiles = repo_licence(index_root, name,
-                                                    header, records)
+        lic = repo_licence(index_root, name, header, records)
+        rclass = lic['class']
         repos[name] = {'url': header['repo'], 'commit': header['commit'],
-                       'class': rclass, 'nc': rnc, 'files': rfiles}
+                       'class': rclass, 'nc': lic['nc'],
+                       'files': lic['files'],
+                       'readme_default': lic['readme_default'],
+                       'readme_nc': lic['readme_nc'], 'noai': lic['noai']}
         staged = []
         siblings = defaultdict(set)
         for path in audio:
@@ -1177,6 +1655,9 @@ def run_pass(index_root, cache_root, jobs=4, log=print):
                 stats[f'excluded:{reason}'] += 1
                 continue
             slot, meaning, keys = slot_of(path, noise)
+            if (name, path) in SLOT_OVERRIDES:
+                slot, meaning = SLOT_OVERRIDES[(name, path)][0], 8
+                keys = ['review: ' + SLOT_OVERRIDES[(name, path)][1]]
             if slot is None:
                 stats['excluded:no-neutral-slot'] += 1
                 continue
@@ -1195,30 +1676,51 @@ def run_pass(index_root, cache_root, jobs=4, log=print):
                            for i in range(len(parts) + 1))
         hint_paths = [r['path'] for r in records
                       if HINT_NAME.search(r['path'])
-                      and parent_of(r['path']) in folders
+                      and (parent_of(r['path']) in folders
+                           or parent_of(r['path']) in REPO_LEVEL_DIRS)
                       and r['kind'] in ('data', 'other')]
         texts = {p: b.decode('utf-8', 'replace') for p, b in fetch_blobs(
             clone, header['commit'], hint_paths).items()}
         hints = file_hints([c['path'] for c in staged], texts)
         for c in staged:
-            hint, source = hints.get(c['path'], (None, None))
-            right, reason, cls = right_score(rclass, rnc, hint, rassets)
+            hint = hints.get(c['path'])
+            role = credit_refusal(hint)
+            if role:
+                stats[f'excluded:{role}'] += 1
+                continue
+            right, reason, cls = right_score(
+                rclass, lic['nc'], hint and hint['licence'], lic['assets'],
+                lic['readme_default'], lic['readme_nc'])
             if reason:
                 stats[f'excluded:{reason}'] += 1
+                if reason in LAWYER_REASONS:
+                    held.append({'repo': name, 'path': c['path'],
+                                 'slot': c['slot'], 'reason': reason,
+                                 'licence': (hint and hint['licence'])
+                                 or lic['readme_default']})
                 continue
             if right < PASS_SCORE:
                 stats['excluded:licence-weak'] += 1
                 continue
-            c.update({'right': right, 'licence': hint or rclass,
-                      'licence_class': cls,
-                      'licence_source': source or 'repository',
+            if hint:
+                source, licence = hint['source'], hint['licence']
+            elif lic['readme_default']:
+                source, licence = 'readme-default', lic['readme_default']
+            else:
+                source, licence = 'repository', rclass
+            c.update({'right': right, 'licence': licence,
+                      'licence_class': cls, 'licence_source': source,
+                      'author': hint and hint['author'],
                       'share_alike': cls in SHARE_ALIKE,
+                      'noai_marker': lic['noai'],
                       'revision': header['commit'],
                       'url': header['repo']})
             candidates.append(c)
         log(f'{name}: audio={len(audio)} staged={len(staged)} '
-            f'licence={rclass}{" NC/ND" if rnc else ""} '
-            f'hints={len(hints)}')
+            f'licence={rclass}{" NC/ND" if lic["nc"] else ""} '
+            f'readme={lic["readme_default"]}'
+            f'{" (NC declared)" if lic["readme_nc"] else ""} '
+            f'noai={lic["noai"]} hints={len(hints)}')
 
     # Fetch the candidates, one batch per clone, into the cache.
     by_repo = defaultdict(list)
@@ -1299,9 +1801,9 @@ def run_pass(index_root, cache_root, jobs=4, log=print):
         c['scores'] = {'right': c['right'], 'meaning': c['meaning'],
                        'acoustics': score}
         pool.append(c)
-    stats['pool'] = len(pool)
+    stats['pool-before-eye-check'] = len(pool)
     return {'stats': stats, 'repos': repos, 'candidates': candidates,
-            'unique': unique, 'pool': pool}
+            'unique': unique, 'pool': pool, 'held': held}
 
 
 # Eye check of the contact sheets (every chosen sound, drawn with
@@ -1313,6 +1815,11 @@ _CHIME = 'a tonal UI chime (decaying harmonic stack), not a switch'
 _RING = ('rings with a few inharmonic partials and a long tail: the ear '
          'hears a small bell (no bell from raw material, TABOO 0.4 p. 4)')
 _UNIT = 'part of a wesnoth unit attack set (attack, hit, die)'
+_TONE = ('a tonal UI tone (a few steady partials with a decay), not a '
+         'switch click')
+_SCIFI = ('a sci-fi factory block of its source game, not obitel '
+          'material (TABOO 0.38 point 2)')
+_MD = 'Anuken__Mindustry'
 _TC = 'drwhut__tabletop-club'
 EYE_CHECK_DROPS = {
     (_SS14, 'Resources/Audio/Machines/warning_buzzer.ogg'): _ALARM,
@@ -1345,6 +1852,16 @@ EYE_CHECK_DROPS = {
         'a tonal beep sequence, not a motor',
     ('widelands__widelands', 'data/sound/farm/scythe_00.ogg'):
         'a scythe mowing in the farm folder, not an animal',
+    # Second eye check (pass r2), against each slot's "use" text.
+    (_ES, 'sounds/ui/click.wav'): _TONE,
+    ('raysan5__raylib', 'examples/textures/resources/buttonfx.wav'): _TONE,
+    (_MD, 'core/assets/sounds/ui/uiButton.ogg'): _TONE,
+    (_MD, 'core/assets/sounds/loops/loopGrind.ogg'): _SCIFI,
+    (_MD, 'core/assets/sounds/loops/loopSmelter.ogg'): _SCIFI,
+    (_MD, 'core/assets/sounds/block/door.ogg'): _SCIFI,
+    (_SS14, 'Resources/Audio/Machines/shutter.ogg'):
+        'a motor rattle with a rising band: a machine shutter of a '
+        'station, not a wooden door',
 }
 EYE_CHECK_DROPS.update({
     (_TC, f'game/Sounds/{folder}/impactMetal_{weight}_{n:03d}.ogg'): _RING
@@ -1442,41 +1959,97 @@ def reference_row(c):
             'revision': c['revision'], 'path': c['path'],
             'licence': c['licence'], 'licence_class': c['licence_class'],
             'licence_source': c['licence_source'],
-            'share_alike': c['share_alike'], 'tier': c['tier'],
+            'author': c.get('author'),
+            'share_alike': c['share_alike'],
+            'noai_marker': c.get('noai_marker', False), 'tier': c['tier'],
             'scores': c['scores'],
             'sha1': c['sha1'], 'bytes': c['bytes'],
             'profile': dict(c['profile'],
-                            impulsive=is_impulsive(c['profile']))}
+                            impulsive=is_impulsive(c['profile']),
+                            steady=is_steady(c['profile']))}
+
+
+# The "вид" of a props item (TABOO 0.012 item 1: example, screenshot,
+# editor, document), read from its folders; everything else is 'game'.
+VID_WORDS = (
+    ('test', {'test', 'tests', 'testing', 'testdata', 'unittest'}),
+    ('example', {'example', 'examples', 'demo', 'demos'}),
+    ('editor', {'editor', 'editors'}),
+    ('doc', {'doc', 'docs', 'documentation', 'manual'}),
+)
+
+
+def vid_of(path):
+    """Kind of a props item by its folders: test, example, editor, doc,
+    or game."""
+    folders = set()
+    for part in PurePosixPath(path).parts[:-1]:
+        folders.update(tokens(part))
+    for vid, words in VID_WORDS:
+        if folders & words:
+            return vid
+    return 'game'
 
 
 def props_row(c):
-    """Props register row of TABOO 0.012 (schema shared with the image
-    props register: do not add fields here)."""
+    """Props register row of TABOO 0.012: repository, revision, path,
+    licence, media kind, "вид" (vid), deficit, keywords, pass, bytes."""
     return {'repo': c['url'], 'revision': c['revision'], 'path': c['path'],
             'licence': c['licence'], 'kind': 'audio',
+            'vid': vid_of(c['path']),
             'deficit_id': DEFICIT_ID, 'keywords': c['keywords'],
             'pass_id': PASS_ID, 'sha1': c['sha1'], 'bytes': c['bytes']}
 
 
 def slot_profiles(chosen):
-    """Median reference values per slot, the first thing a synth reads."""
+    """Median reference values per slot, the first thing a synth reads.
+    A T60 median is published only over SLOT_T60_MIN single blows or
+    more; below that the slot says None and the synth keeps its own."""
     out = {}
     for slot, spec in SLOTS.items():
         rows = [c['profile'] for c in chosen if c['slot'] == slot]
         # Only blows that die away give a T60 of the thing itself.
-        t60 = [p['t60_s'] for p in rows if p['t60_s'] is not None
-               and p['t60_method'] in ('T20', 'T30') and is_impulsive(p)]
+        t60 = [p['t60_s'] for p in rows if is_impulsive(p)]
         out[slot] = {
             'place': spec['place'], 'use': spec['use'], 'n': len(rows),
-            't60_median_s': round(float(np.median(t60)), 3) if t60
-            else None,
+            't60_median_s': round(float(np.median(t60)), 3)
+            if len(t60) >= SLOT_T60_MIN else None,
             't60_n': len(t60),
+            'steady_n': sum(is_steady(p) for p in rows),
             'centroid_median_hz': round(float(np.median(
                 [p['centroid_hz'] for p in rows])), 1) if rows else None,
             'attack_median_ms': round(float(np.median(
                 [p['attack_ms'] for p in rows])), 1) if rows else None,
         }
     return out
+
+
+def godot_references(chosen):
+    """The headset copy (P8): slot medians only, no path, no licence of
+    a file and no sound, so nothing of the 99 repos ships in the APK but
+    numbers measured from them (TABOO 0.35 rule 8)."""
+    slots = {}
+    for slot, p in slot_profiles(chosen).items():
+        slots[slot] = {k: p[k] for k in (
+            'use', 'n', 't60_n', 't60_median_s', 'centroid_median_hz',
+            'attack_median_ms')}
+    return {'pass_id': PASS_ID,
+            'rule': 'Medians of spectral references (TABOO 0.35 rule 8); '
+                    't60_median_s is null below %d single blows.'
+                    % SLOT_T60_MIN,
+            'source': 'docs/RAW_AUDIO_REFERENCES.json',
+            'slots': slots}
+
+
+def index_report(index_root):
+    """(indexed, failed names) from the index report, if there is one."""
+    try:
+        rows = json.loads(Path(index_root, 'index-report.json')
+                          .read_text('utf-8'))
+    except (OSError, ValueError):
+        return None, []
+    failed = sorted(r['repo'] for r in rows if r.get('status') == 'error')
+    return len(rows) - len(failed), failed
 
 
 def main():
@@ -1495,16 +2068,30 @@ def main():
     pool = [c for c in pool
             if (c['repo'], c['path']) not in EYE_CHECK_DROPS]
     stats['excluded:eye-check'] = len(result['pool']) - len(pool)
+    stats['pool'] = len(pool)
+    indexed, failed = index_report(args.index)
+    if indexed is not None:
+        stats['index-repos-ok'] = indexed
+        stats['index-repos-failed'] = len(failed)
+    result['index-failed'] = failed
     tier1, _ = select(pool, tiers=((FOLDER_CAP, REPO_CAP),))
     stats['chosen-tier1-only'] = len(tier1)
+    caps_alone, _ = select(pool, k=len(pool),
+                           tiers=((FOLDER_CAP, REPO_CAP),))
+    stats['cut-by-tier1-caps'] = len(pool) - len(caps_alone)
     ceiling, _ = select(pool, k=len(pool), tiers=((10 ** 6, 10 ** 6),))
     stats['ceiling-two-states-per-thing'] = len(ceiling)
-    chosen, cut = select(pool)
+    tiered, _ = select(pool, k=len(pool))
+    stats['ceiling-two-tiers'] = len(tiered)
+    chosen, sel = select(pool)
     for i, c in enumerate(chosen, 1):
         c['n'] = i
     stats['chosen'] = len(chosen)
     stats['chosen-tier2'] = sum(c['tier'] == 2 for c in chosen)
-    stats['cut-by-diversity-caps'] = cut
+    stats['not-chosen'] = sel['not-chosen']
+    stats['not-chosen-name-lacks-slot-word'] = sel['tier2-meaning-below']
+    stats['impulsive'] = sum(is_impulsive(c['profile']) for c in chosen)
+    stats['held-for-lawyer'] = len(result['held'])
     for key in sorted(stats):
         print(f'{key}: {stats[key]}')
     print('by slot:', dict(Counter(c['slot'] for c in chosen)))
@@ -1518,7 +2105,7 @@ def main():
             print('sheet', out)
     if not args.write:
         return
-    write_outputs(result, chosen, stats, args.cache)
+    write_outputs(result, chosen, stats, args.cache, pool)
 
 
 def cache_mb(cache_root):
@@ -1542,20 +2129,35 @@ def prune_cache(cache_root, candidates):
     return removed
 
 
-def write_outputs(result, chosen, stats, cache_root):
-    """Write the table, references, props, notices, sheet and journal."""
+def write_outputs(result, chosen, stats, cache_root, pool):
+    """Write the table, references, props, notices, sheet, the headset
+    copy of the slot medians and the journal entry."""
     stamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
     refs = {
         'pass_id': PASS_ID, 'deficit_id': DEFICIT_ID, 'generated': stamp,
+        'supersedes': FIRST_PASS_ID,
         'rule': 'CLAUDE.md TABOO 0.35 rule 8: audio from the 99 repos is '
                 'a spectral reference only (envelope, T60, IR) and never '
                 'a sample in the game. No audio file ships.',
-        'units': {'t60_s': 'Schroeder backward integration, fit -5..-25 '
+        'units': {'measure': 'mono mix, 2nd-order Butterworth high-pass '
+                  'at %g Hz (zero phase) before every value' % HP_HZ,
+                  't60_s': 'Schroeder backward integration, fit -5..-25 '
                   'dB (T20) or -5..-35 dB (T30); T10 is partial',
                   'edc_db': '12 points of the energy decay curve from the '
                   'peak to where the decay meets the noise floor',
                   'envelope_db': '16 max-pooled points over the duration, '
                   'dB relative to the peak (2 ms blocks)',
+                  'onsets': 'blows on a 10 ms RMS envelope: a rise of 10 '
+                  'dB to above -20 dB, or a return above -15 dB after a '
+                  'fall below -20 dB',
+                  'impulsive': 'one onset, T20/T30 with r2 >= 0.9, EDT/T60 '
+                  'in 0.5..2, and a decay after the peak; only these T60 '
+                  'values feed slot medians',
+                  'steady': 'a sustained bed: 12 inner envelope points '
+                  'within 6 dB and above -12 dB',
+                  'centroid_hz': 'energy-weighted mean frequency of the '
+                  'whole-file spectrum (one FFT, >= 20 Hz); rolloff95_hz '
+                  'and bands_db likewise',
                   'bands_db': 'octave-band energy relative to the total',
                   'band_t60_s': 'Schroeder T60 per octave band (STFT)'},
         'slot_profiles': slot_profiles(chosen),
@@ -1564,24 +2166,31 @@ def write_outputs(result, chosen, stats, cache_root):
     text = text[:-2] + ',\n "references": ' + \
         _rows_json([reference_row(c) for c in chosen]).rstrip('\n') + '\n}\n'
     OUT_REFS.write_text(text, 'utf-8')
+    OUT_GODOT.write_text(json.dumps(godot_references(chosen),
+                                    ensure_ascii=False, indent=1) + '\n',
+                         'utf-8')
     props = [props_row(c) for c in sorted(
         result['candidates'], key=lambda c: (c['repo'], c['path']))]
     OUT_PROPS.write_text(_rows_json(props), 'utf-8')
     sample = sheet_sample(chosen)
     contact_sheet(sample, OUT_SHEET)
-    write_notices(chosen, result['repos'])
-    write_table(chosen, stats, result, sample)
+    write_notices(chosen, result['repos'], result['held'])
+    write_table(chosen, stats, result, sample, pool)
     growth = {p.name: p.stat().st_size for p in (OUT_REFS, OUT_PROPS,
-                                                 OUT_SHEET, OUT_TABLE)}
+                                                 OUT_SHEET, OUT_TABLE,
+                                                 OUT_GODOT)}
     pruned = prune_cache(cache_root, result['candidates'])
     taken_mb = round(sum(c['bytes'] for c in result['candidates']) / 1e6,
                      1)
     entry = {
         'time': stamp, 'type': 'audio-pass', 'pass_id': PASS_ID,
+        'supersedes': FIRST_PASS_ID,
         'deficits': [{'id': DEFICIT_ID, 'taken': len(chosen)}],
         'accepted_objects': 0, 'code_candidates': 0,
         'counts': {k: v for k, v in sorted(stats.items())},
-        'props_taken': {'audio': len(result['candidates'])},
+        'props_media': 'audio',
+        'props_taken': dict(sorted(Counter(
+            row['vid'] for row in props).items())),
         'by_slot': dict(Counter(c['slot'] for c in chosen)),
         'by_repo': dict(Counter(c['repo'] for c in chosen)),
         'cache_mb': cache_mb(cache_root),
@@ -1589,10 +2198,23 @@ def write_outputs(result, chosen, stats, cache_root):
         'cache_pruned_files': pruned,
         'written_bytes': growth,
         'note': 'Spectral references only (TABOO 0.35 rule 8): no audio '
-                'file in the repository, godot/ or public/. Props rows '
-                'in docs/RAW_AUDIO_PROPS.json (TABOO 0.012).',
+                'file in the repository or public/; godot/data holds slot '
+                'medians only. Props rows in docs/RAW_AUDIO_PROPS.json '
+                '(TABOO 0.012).',
     }
     cursor = json.loads(CURSOR.read_text('utf-8'))
+    for old in cursor['log']:
+        if old.get('pass_id') == FIRST_PASS_ID and \
+                old.get('type') == 'audio-pass' and 'reverted' not in old:
+            # The journal only grows (TABOO 0.25 item 5): the first run
+            # stays, marked with why it was redone (TABOO 0.15 item 8).
+            old['reverted'] = (
+                'superseded by %s after review: 86 space-station-14 files '
+                'without per-file metadata were recorded as MIT (the '
+                'README makes assets CC-BY-SA 3.0 and warns of NC), '
+                'Unciv as MPL; combat, magic and sci-fi things passed '
+                'as neutral; the single-blow test let trains of blows '
+                'and sustained sounds into slot T60 medians' % PASS_ID)
     cursor['log'].append(entry)
     CURSOR.write_text(json.dumps(cursor, ensure_ascii=False, indent=1),
                       'utf-8')
@@ -1600,8 +2222,10 @@ def write_outputs(result, chosen, stats, cache_root):
           'taken MB', taken_mb, 'pruned', pruned)
 
 
-def write_notices(chosen, repos):
-    """Append one section naming the repositories used as references."""
+def write_notices(chosen, repos, held):
+    """Append one section naming the repositories used as references.
+    The register only grows: the section of the first run stays, and
+    this one says what it corrects."""
     head = f'## Spectral references of the audio pass {PASS_ID}'
     existing = NOTICES.read_text('utf-8')
     if head in existing:
@@ -1610,111 +2234,244 @@ def write_notices(chosen, repos):
     for c in chosen:
         per[c['repo']].append(c)
     lines = ['', head, '',
+             f'Supersedes the section "Spectral references of the audio '
+             f'pass {FIRST_PASS_ID}"', 'above. That section recorded 86 '
+             'space-station-14 files without per-file', 'metadata as MIT '
+             '(the code licence; the README makes assets CC-BY-SA 3.0',
+             'by default and warns that some are non-commercial) and the '
+             'Unciv files as', 'MPL (their credits page names CC0 and CC '
+             'BY 4.0). Files that fall back on', 'a README default in a '
+             'repository that declares non-commercial assets are', 'now '
+             'held out for the lawyer.', '',
              'Measured profiles only (envelope, T60, spectral centroid, '
              'decay), CLAUDE.md', 'TABOO 0.35 rule 8: no sound from these '
-             'repositories is shipped or', 'sampled. Per-file licences '
-             'and paths: docs/RAW_AUDIO_REFERENCES.json.', '',
+             'repositories is shipped or', 'sampled. Per-file licences, '
+             'authors and paths: docs/RAW_AUDIO_REFERENCES.json.', '',
              '| Repository | Commit | Licences of the used files | '
-             'Files | Share-alike |', '|---|---|---|---|---|']
+             'Licence sources | Files | Share-alike | .noai |',
+             '|---|---|---|---|---|---|---|']
     for name in sorted(per):
         rows = per[name]
         lic = ', '.join(sorted({c['licence_class'] for c in rows}))
+        src = ', '.join(f'{k} {v}' for k, v in sorted(Counter(
+            c['licence_source'] for c in rows).items()))
         sa = sum(c['share_alike'] for c in rows)
+        noai = 'yes' if repos[name].get('noai') else ''
         lines.append(f'| {repos[name]["url"]} | '
-                     f'{repos[name]["commit"][:10]} | {lic} | {len(rows)} '
-                     f'| {sa} |')
+                     f'{repos[name]["commit"][:10]} | {lic} | {src} | '
+                     f'{len(rows)} | {sa} | {noai} |')
+    by = Counter((h['repo'], h['reason']) for h in held)
+    if by:
+        lines += ['', 'Held out for the lawyer (not used, not fetched): '
+                  + '; '.join(f'{repos[r]["url"].split("github.com/")[-1]}'
+                              f' {why} {n}' for (r, why), n
+                              in sorted(by.items())) + '.']
+    noai = sorted(r for r, v in repos.items() if v.get('noai'))
+    if noai:
+        lines += ['', 'A root `.noai` marker (an opt-out signal against '
+                  'AI use) is present in: ' + ', '.join(
+                      repos[r]['url'] for r in noai) + '. It is recorded '
+                  'for the lawyer and the operator; the pass has not '
+                  'decided whether it binds.']
     NOTICES.write_text(existing.rstrip('\n') + '\n' + '\n'.join(lines)
                        + '\n', 'utf-8')
 
 
-def write_table(chosen, stats, result, sample):
+# Russian names of the exclusion reasons in the document.
+REASON_RU = {
+    'no-neutral-slot': 'нет нейтрального слота',
+    'combat': 'бой и оружие',
+    'no-licence-repo': 'репо без лицензии в корне',
+    'music': 'музыка',
+    'voice': 'голос',
+    'sacred-sound': 'святое и магия по слову пути',
+    'meaning-weak': 'смысл слаб (нет сильного слова)',
+    'not-real-thing': 'вещи нет в мире игры',
+    'licence-nc-unknown': 'юристу: README-лицензия, а NC не исключён',
+    'chance-or-card-game': 'стол случая, карточные фазы',
+    'toy-or-joke': 'игрушки и шутки',
+    'hostile': 'враги',
+    'sacred-never-raw': 'святыня не из сырья',
+    'reward-ding': '«награды»',
+    'licence-nc-nd': 'NC или ND',
+    'licence-unknown': 'юристу: в реестре файла UNKNOWN или Custom',
+    'licence-ambiguous': 'юристу: «CC-3» без BY/NC',
+    'review': 'ревью: роль в игре-источнике',
+    'eye-check': 'глазами по контактному листу',
+    'credit-combat': 'бой в строке автора',
+    'credit-hostile': 'враг в строке автора',
+    'credit-sacred-role': 'святое в строке автора',
+    'credit-not-real-thing': 'вещи нет в мире игры (строка автора)',
+    'not-decodable-format': 'не декодируемый формат',
+    'acoustic-sample-rate': 'частота ниже 22,05 кГц',
+    'acoustic-clipping': 'клиппинг',
+    'acoustic-duration': 'длина вне 0,05–30 с',
+    'acoustic-weak': 'акустика слаба',
+    'acoustic-silent': 'тишина',
+    'decode-error': 'ошибка декодирования',
+    'duplicate-content': 'дубль по байтам',
+    'duplicate-encoding': 'дубль в другом формате',
+    'licence-weak': 'лицензия слаба',
+}
+
+
+def write_table(chosen, stats, result, sample, pool):
     """The document for the operator, the sound designer and the lawyer."""
     ex = {k.split(':', 1)[1]: v for k, v in stats.items()
           if k.startswith('excluded:') and v}
+    prof = slot_profiles(chosen)
+    tier1 = Counter(c['slot'] for c in chosen if c['tier'] == 1)
+    in_pool = Counter(c['slot'] for c in pool)
+    failed = result.get('index-failed', [])
+    vids = Counter(vid_of(c['path']) for c in result['candidates'])
     lines = [
         '# RAW_AUDIO_299 — звуки из 99 репо как спектральные эталоны '
         '(2026-09-30)', '',
-        f'Проход `{PASS_ID}`, дефицит {DEFICIT_ID}. Скрипт: '
-        '`scripts/raw_assets/audio_pass.py`; HLD: '
+        f'Проход `{PASS_ID}` (второй; заменяет `{FIRST_PASS_ID}`, тот '
+        'остался в журнале с пометкой `reverted`), дефицит '
+        f'{DEFICIT_ID}. Скрипт: `scripts/raw_assets/audio_pass.py`; HLD: '
         '`docs/HLD_AUDIO_299_2026-09-30.md`.', '',
         '**Главное.** ТАБУ №0.35 п. 8: звук из 99 репо — только '
         'спектральный эталон (огибающая, T60, IR), никогда не сэмпл. '
-        'Поэтому «добавить 299 звуков» значит: отобрать, замерить и '
-        'записать профили в `docs/RAW_AUDIO_REFERENCES.json`. '
-        'Проход не кладёт ни одного аудиофайла в репо, `godot/` и '
-        '`public/`; сами файлы лежат в кэше вне репо '
-        '(`/home/user/raw-audio`).', '',
-        '## Честный счёт', '',
-        f'- аудиофайлов в индексе: **{stats["index-audio"]}**;',
+        'Поэтому «добавить звуки» значит: отобрать, замерить и записать '
+        'профили в `docs/RAW_AUDIO_REFERENCES.json`. Аудиофайлов проход '
+        'в репо не кладёт; в `godot/data/audio-references.json` идут '
+        'только медианы слотов (числа). Сами файлы лежат в кэше вне '
+        'репо (`/home/user/raw-audio`).', '',
+        '## Честный счёт', '']
+    if 'index-repos-ok' in stats:
+        lines.append(
+            f'- репо в индексе: **{stats["index-repos-ok"]} из '
+            f'{stats["index-repos-ok"] + stats["index-repos-failed"]}**; '
+            f'{stats["index-repos-failed"]} не клонировались (git просит '
+            'учётные данные: репо недоступно через прокси песочницы) и не '
+            'просматривались: ' + ', '.join(
+                f'`{r.replace("__", "/")}`' for r in failed) + ';')
+    lines += [
+        f'- аудио есть в **{stats["index-audio-repos"]}** репо из '
+        f'индекса, аудиофайлов **{stats["index-audio"]}**;',
         f'- взято в кэш (прошли путь и лицензию): **{stats["fetched"]}** '
         '— это реквизит (ТАБУ №0.012), строки в '
-        '`docs/RAW_AUDIO_PROPS.json`;',
-        f'- честный пул N (все три параметра ≥ {PASS_SCORE}): '
-        f'**{stats["pool"]}**;',
-        f'- отобрано K: **{stats["chosen"]}** из просимых {K};',
+        '`docs/RAW_AUDIO_PROPS.json`; по видам: ' + ', '.join(
+            f'{k} {v}' for k, v in sorted(vids.items())) + ';',
+        f'- честный пул (все три параметра ≥ {PASS_SCORE}): '
+        f'**{stats["pool-before-eye-check"]}** до проверки глазами, '
+        f'**N = {stats["pool"]}** после неё;',
+        f'- отобрано **K = {stats["chosen"]}** из просимых {K};',
         f'  - ярус 1 — ограничения задачи (≤ {FOLDER_CAP} на папку, '
         f'≤ {REPO_CAP} на репо, минимум {SLOT_MIN} на слот, ≤ '
         f'{THING_CAP} состояния одной вещи): '
         f'**{stats["chosen"] - stats["chosen-tier2"]}**;',
-        f'  - ярус 2 — только правило ТАБУ №0.07 п. 4 (≤ {THING_CAP} '
-        'состояния одной вещи), без потолков папки и репо: '
+        f'  - ярус 2 — без потолков папки и репо, только звук, в имени '
+        f'которого есть сильное слово слота (СМЫСЛ ≥ {TIER2_MEANING}), и '
+        f'не больше {THING_CAP} состояний одной вещи: '
         f'**{stats["chosen-tier2"]}**;',
-        f'- честный потолок при ≤ {THING_CAP} состояниях на вещь: '
-        f'**{stats["ceiling-two-states-per-thing"]}**; один ярус 1 '
-        f'дал бы {stats["chosen-tier1-only"]}.', '',
-        'Почему два яруса: оператор просил 299, честный пул больше, а '
-        'потолки задачи (3 на папку, 40 на репо) дают меньше. Ярус 1 '
-        'сохраняет их разнообразие; ярус 2 добирает до 299 без повторов '
-        'одной вещи. У каждой строки в `docs/RAW_AUDIO_REFERENCES.json` '
-        'есть поле `tier`: кому нужен строгий набор — берёт ярус 1.', '',
-    ]
+        f'- не отобрано из пула: **{stats["not-chosen"]}**. Одни потолки '
+        f'яруса 1 оставили бы вне выбора {stats["cut-by-tier1-caps"]}; '
+        f'правило «≤ {THING_CAP} состояния одной вещи» само по себе даёт '
+        f'потолок **{stats["ceiling-two-states-per-thing"]}**, оба яруса '
+        f'вместе — **{stats["ceiling-two-tiers"]}**; из оставшихся '
+        f'{stats["not-chosen-name-lacks-slot-word"]} не взяты ярусом 2, '
+        'потому что имя файла не называет вещь слота;',
+        f'- одиночных ударов с надёжным T60 (`impulsive`): '
+        f'**{stats["impulsive"]}** из {stats["chosen"]};',
+        f'- ждут юриста (не взяты, не скачаны): '
+        f'**{stats["held-for-lawyer"]}** — список ниже.', '']
     if stats['chosen'] < K:
         lines += [
             f'**{K} честно не набирается.** Добивать выдумкой запрещено '
-            '(ТАБУ №0.07): пишется реальное число и причина — ниже '
-            'таблица исключений.', '']
+            '(ТАБУ №0.07). Главные причины — в таблице исключений: '
+            'лицензии, которые должен решить юрист (NC не исключён), '
+            'вещи, которых нет в мире игры (космос, автоматы, чужая '
+            'фауна), бой и магия по роли в игре-источнике, и правило '
+            '«≤ 2 состояния одной вещи».', '']
     lines += ['## Исключено, по причинам', '',
-              '| Причина | Файлов |', '|---|---|']
-    for k in sorted(ex, key=lambda k: -ex[k]):
-        lines.append(f'| {k} | {ex[k]} |')
-    lines += ['', '## Три параметра (0–10, в коде, детерминированно)', '',
-              '- **ПРАВО** — лицензия: по файлу (attributions.yml, '
-              'copyrights.csv, Debian copyright, таблицы CREDITS) +1, '
-              'иначе по репо; кодовая лицензия без слова об ассетах −2; '
-              'NC/ND и репо без лицензии — исключены.',
+              '| Причина | Код | Файлов |', '|---|---|---|']
+    for k in sorted(ex, key=lambda k: (-ex[k], k)):
+        lines.append(f'| {REASON_RU.get(k, k)} | `{k}` | {ex[k]} |')
+    held = result['held']
+    lines += ['', '## Ждут юриста', '',
+              'Файлы не взяты и не скачаны. Решение юриста может вернуть '
+              'часть из них.', '',
+              '- `licence-nc-unknown` — у файла нет своей записи о '
+              'лицензии, а README репо говорит: ассеты по умолчанию '
+              'CC-BY-SA 3.0, **но часть — некоммерческие** (space-station-'
+              '14: «Some assets are licensed under the non-commercial '
+              'CC-BY-NC-SA 3.0 … and will need to be removed»). Для файла '
+              'без записи NC исключить нельзя;',
+              '- `licence-ambiguous` — реестр звуков widelands пишет '
+              '«CC-3»: версия 3.0, но не сказано, BY это или BY-NC; '
+              'проверить по ссылке freesound в реестре (из песочницы '
+              'freesound недоступен);',
+              '- `licence-unknown` — реестр файла пишет UNKNOWN, '
+              '«personal» или «Custom».', '',
+              '| Репо | Причина | Файлов |', '|---|---|---|']
+    for (repo, why), n in sorted(Counter(
+            (h['repo'], h['reason']) for h in held).items()):
+        lines.append(f'| {repo.replace("__", "/")} | `{why}` | {n} |')
+    lines += ['', '<details><summary>Все файлы, ждущие юриста</summary>',
+              '', '| Репо | Путь | Слот | Причина | Лицензия по записи |',
+              '|---|---|---|---|---|']
+    for h in sorted(held, key=lambda h: (h['repo'], h['path'])):
+        lines.append(f'| {h["repo"].replace("__", "/")} | `{h["path"]}` | '
+                     f'{h["slot"]} | `{h["reason"]}` | {h["licence"]} |')
+    lines += ['', '</details>', '',
+              '## Три параметра (0–10, в коде, детерминированно)', '',
+              '- **ПРАВО** — лицензия файла по его записи '
+              '(attributions.yml, copyrights.csv, Debian copyright, '
+              'таблицы CREDITS, строка sources.txt, реестр звуков '
+              'widelands, страница титров «as \'<имя>\'») +1; без записи '
+              '— лицензия ассетов из README, затем лицензия репо; кодовая '
+              'лицензия без слова об ассетах −2. NC/ND, репо без '
+              'лицензии, UNKNOWN и «CC-3» в записи, README-лицензия при '
+              'объявленных NC-ассетах — не берутся.',
               '- **СМЫСЛ** — нейтральный слот по словам пути; сильное '
-              'слово в имени файла 8, в папке 5; святое, стоп-лист, '
-              'музыка, «награды», голоса, бой, враги — исключены до '
-              'подсчёта.',
-              '- **АКУСТИКА** — из декодированного файла: частота ≥ 22,05 '
-              'кГц, длина 0,05–30 с, без клиппинга, шумовой пол, '
-              'огибающая, T60 по Шрёдеру, центроид, спад по полосам.', '',
+              'слово в имени файла 8, в папке 5; одни слабые слова — не '
+              'больше 4 (не проходит). До подсчёта исключаются святое и '
+              'магия (в том числе `mage`, `sylph`, `orb`, `skill-`, '
+              '`heresy`), стоп-лист, музыка, «награды», голоса, бой, '
+              'враги и вещи, которых нет в мире игры; строка автора '
+              'проверяется на бой, святое и современные приборы.',
+              '- **АКУСТИКА** — из декодированного файла после фильтра '
+              f'высоких частот {HP_HZ:g} Гц: частота ≥ 22,05 кГц, длина '
+              '0,05–30 с, без клиппинга, шумовой пол, огибающая, T60 по '
+              'Шрёдеру, центроид, спад по полосам. +2 за спад дают только '
+              'одиночному удару (`impulsive`) или ровной подложке '
+              '(`steady`); иначе +1, если есть ранний спад.', '',
               '## Слоты', '',
-              'T60 медиана — только по одиночным ударам (не больше '
-              'четверти огибающей в пределах 10 дБ от пика, после пика '
-              'спад ниже −20 дБ; поле `impulsive`): у ветра, дождя, гула '
-              'и серии ударов подогнанный «T60» — это затухание файла, а '
-              'не вещи и не помещения. «—» — в слоте нет одиночных '
-              'ударов.', '',
-              '| Слот | Где | Для чего в игре | K | T60 медиана (удары), '
-              'с | Центроид медиана, Гц |', '|---|---|---|---|---|---|']
-    prof = slot_profiles(chosen)
+              'T60 медиана — только по одиночным ударам (`impulsive`: '
+              'одно начало, подгонка T20/T30 с r² ≥ 0,9, EDT/T60 в '
+              '0,5–2, спад после пика) и только когда их не меньше '
+              f'{SLOT_T60_MIN}; иначе «—». У ветра, дождя, гула и серии '
+              'ударов подогнанный «T60» — это затухание файла, а не вещи.',
+              '', '| Слот | Где | Для чего в игре | K | из них ярус 1 | '
+              'в пуле | ударов | T60 медиана, с | Центроид медиана, Гц |',
+              '|---|---|---|---|---|---|---|---|---|']
     for slot, spec in SLOTS.items():
         p = prof[slot]
         t60 = '—' if p['t60_median_s'] is None else p['t60_median_s']
+        cen = '—' if p['centroid_median_hz'] is None \
+            else p['centroid_median_hz']
         lines.append(f'| {slot} | {spec["place"]} | {spec["use"]} | '
-                     f'{p["n"]} | {t60} | {p["centroid_median_hz"]} |')
-    empty = [s for s in SLOTS if prof[s]['n'] == 0]
-    if empty:
-        lines += ['', 'Слоты без единого звука: ' + ', '.join(empty)
-                  + ' — в 99 репо нет честного материала под них.']
+                     f'{p["n"]} | {tier1[slot]} | {in_pool[slot]} | '
+                     f'{p["t60_n"]} | {t60} | {cen} |')
+    short = [s for s in SLOTS if tier1[s] < SLOT_MIN]
+    if short:
+        lines += ['', f'Минимум {SLOT_MIN} на слот в ярусе 1 не набран в '
+                  'слотах: ' + ', '.join(
+                      f'{s} ({tier1[s]} из {in_pool[s]} в пуле)'
+                      for s in short) + '. Минимум слота берётся раньше '
+                  'потолка папки; нехватку дают малый пул и правило '
+                  f'«≤ {THING_CAP} состояния одной вещи» (два дубля одной '
+                  'вещи не делают третий звук).']
     lines += ['', '## Таблица K', '',
-              'П — право, С — смысл, А — акустика; T60 — метод T20/T30 '
-              '(T10 — частичный), «—» — нет хвоста спада, «ф» — спад '
-              'файла у сплошного звука, не помещения; Я — ярус.', '',
-              '| # | Слот | Репо | Путь | Лицензия | П | С | А | Я | '
-              'T60, с | Центроид, Гц |',
-              '|---|---|---|---|---|---|---|---|---|---|---|']
+              'П — право, С — смысл, А — акустика; Я — ярус; T60 — метод '
+              'T20/T30 (T10 — частичный), «—» — нет хвоста спада, «ф» — '
+              'затухание файла, не одиночный удар (в медиану слота не '
+              'идёт). Автор и источник лицензии каждой строки — в JSON.',
+              '', '| # | Слот | Репо | Путь | Лицензия | Источник | П | С '
+              '| А | Я | T60, с | Центроид, Гц |',
+              '|---|---|---|---|---|---|---|---|---|---|---|---|']
     for c in chosen:
         p = c['profile']
         t60 = f'{p["t60_s"]} {p["t60_method"]}' if p['t60_s'] else '—'
@@ -1723,45 +2480,64 @@ def write_table(chosen, stats, result, sample):
         s = c['scores']
         lines.append(
             f'| {c["n"]} | {c["slot"]} | {c["repo"].replace("__", "/")} | '
-            f'`{c["path"]}` | {c["licence"]} | {s["right"]} | '
-            f'{s["meaning"]} | {s["acoustics"]} | {c["tier"]} | {t60} | '
-            f'{p["centroid_hz"]} |')
+            f'`{c["path"]}` | {c["licence"]} | {c["licence_source"]} | '
+            f'{s["right"]} | {s["meaning"]} | {s["acoustics"]} | '
+            f'{c["tier"]} | {t60} | {p["centroid_hz"]} |')
     lines += [
         '', '## Контактный лист', '',
         f'`docs/audit/2026-09-30/raw-audio-299-spectra.png` — '
         f'{len(sample)} спектрограмм (по кругу слотов, в порядке ранга). '
         'Глазами просмотрены спектрограммы всех выбранных звуков '
-        '(полные листы — в кэше, `/home/user/raw-audio/_sheets/`); '
-        'снятое ниже, следующий по рангу занял место.', '',
+        '(полные листы — в кэше, `/home/user/raw-audio/_sheets/`) и '
+        'сверены со строкой «для чего в игре» каждого слота; снятое '
+        'ниже, следующий по рангу занял место.', '',
         '## Снято ревью и глазами', '',
         '| Репо | Путь | Почему |', '|---|---|---|']
     for (repo, path), why in sorted({**REVIEW_DROPS,
                                      **EYE_CHECK_DROPS}.items()):
         lines.append(f'| {repo.replace("__", "/")} | `{path}` | {why} |')
+    for (repo, path), (slot, why) in sorted(SLOT_OVERRIDES.items()):
+        lines.append(f'| {repo.replace("__", "/")} | `{path}` | '
+                     f'переложен в {slot}: {why} |')
     share = sum(c['share_alike'] for c in chosen)
-    by_repo_only = sum(c['licence_source'] == 'repository' for c in chosen)
+    sources = Counter(c['licence_source'] for c in chosen)
+    classes = Counter(c['licence_class'] for c in chosen)
+    noai = [r for r, v in result['repos'].items() if v.get('noai')]
+    noai_rows = sum(c.get('noai_marker', False) for c in chosen)
     lines += [
         '', '## Что проверить до релиза', '',
-        '**Звукорежиссёр:** прослушать хотя бы лист из 48; проверить, что '
-        'T60 одиночных ударов (`impulsive: true`) в слотах rov.hull, '
-        'workshop.stone и workshop.wood правдоподобны для синтеза (у '
-        'игровых эффектов хвост часто обрезан редактором); решить, какие '
-        'профили берёт `dive_synth.gd` (гул, пинг, пузыри) — это шаг '
-        'в APK, он в HLD.', '',
+        '**Звукорежиссёр:** прослушать хотя бы лист из 48; решить, '
+        'какие медианы берёт `dive_synth.gd` (сейчас он читает '
+        '`godot/data/audio-references.json` и берёт только медианы, '
+        f'опубликованные по ≥ {SLOT_T60_MIN} ударам); проверить, что '
+        'одиночные удары (`impulsive: true`) правдоподобны: у игровых '
+        'эффектов хвост часто обрезан редактором.', '',
         '**Юрист:** (1) замер эталона не распространяет звук, но реестр '
-        'ведётся как для сырья; (2) share-alike (GPL, CC-BY-SA, MPL) — '
-        f'{share} из {len(chosen)} строк, отмечен в каждой: если звук '
-        'когда-нибудь станет сэмплом, обязанности share-alike вернутся; '
-        '(3) строки с `licence_source: repository` '
-        f'({by_repo_only} из {len(chosen)}) — лицензия ассета не '
-        'подтверждена отдельным файлом (для MIT-репо '
-        'это лицензия кода, ПРАВО снижено на 2); (4) репо без лицензии '
-        'в корне (freeorion, micropolis, unknown-horizons, angband, '
-        'cocos2d-x, urho3d, ja2-stracciatella) исключены целиком, хотя '
-        'у некоторых есть лицензия в подпапке — решение за юристом; '
-        '(5) Custom — лицензия Defold (Apache-подобная с оговорками), '
-        'проверить.', '',
-    ]
+        'ведётся как для сырья; (2) классы лицензий: ' + ', '.join(
+            f'{k} {v}' for k, v in sorted(classes.items())) +
+        f'; share-alike (GPL, CC-BY-SA, MPL) — {share} из {len(chosen)} '
+        'строк, отмечен в каждой: если звук станет сэмплом, обязанности '
+        'share-alike вернутся; (3) источник лицензии: ' + ', '.join(
+            f'`{k}` {v}' for k, v in sorted(sources.items())) +
+        '; `repository` значит, что лицензия ассета не подтверждена '
+        'отдельной записью (для MIT/MPL-репо это лицензия кода, ПРАВО '
+        'снижено на 2); (4) раздел «Ждут юриста» выше; (5) репо без '
+        'лицензии в корне (freeorion, micropolis, unknown-horizons, '
+        'angband, cocos2d-x, urho3d, ja2-stracciatella) исключены '
+        'целиком, хотя у некоторых есть лицензия в подпапке; (6) Custom '
+        '— лицензия Defold (Apache-подобная с оговорками), проверить; '
+        '(7) у CC-BY строк автор записан в поле `author`, без него '
+        'указание автора невозможно.', '']
+    if noai:
+        lines += [
+            '**`.noai`.** В корне ' + ', '.join(
+                f'`{result["repos"][r]["url"].split("github.com/")[-1]}`'
+                for r in sorted(noai)) + ' лежит пустой файл `.noai` — '
+            'сигнал отказа от использования репо ИИ. Этот проход '
+            f'отбирал звуки программой; {noai_rows} из {len(chosen)} '
+            'строк — из этого репо (поле `noai_marker`). Связывает ли '
+            'маркер замер эталона, решают оператор и юрист; проход его '
+            'записывает, но не решает.', '']
     OUT_TABLE.write_text('\n'.join(lines), 'utf-8')
 
 

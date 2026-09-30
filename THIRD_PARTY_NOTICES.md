@@ -73,3 +73,37 @@ sampled. Per-file licences and paths: docs/RAW_AUDIO_REFERENCES.json.
 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | CC-BY-SA, GPL | 7 | 7 |
 | https://github.com/widelands/widelands | 6c21c892e8 | GPL | 45 | 45 |
 | https://github.com/yairm210/Unciv | eba5356202 | MPL | 7 | 7 |
+
+## Spectral references of the audio pass audio-299-2026-09-30-r2
+
+Supersedes the section "Spectral references of the audio pass audio-299-2026-09-30"
+above. That section recorded 86 space-station-14 files without per-file
+metadata as MIT (the code licence; the README makes assets CC-BY-SA 3.0
+by default and warns that some are non-commercial) and the Unciv files as
+MPL (their credits page names CC0 and CC BY 4.0). Files that fall back on
+a README default in a repository that declares non-commercial assets are
+now held out for the lawyer.
+
+Measured profiles only (envelope, T60, spectral centroid, decay), CLAUDE.md
+TABOO 0.35 rule 8: no sound from these repositories is shipped or
+sampled. Per-file licences, authors and paths: docs/RAW_AUDIO_REFERENCES.json.
+
+| Repository | Commit | Licences of the used files | Licence sources | Files | Share-alike | .noai |
+|---|---|---|---|---|---|---|
+| https://github.com/00-Evan/shattered-pixel-dungeon | 2bb34a4e91 | GPL | repository 6 | 6 | 6 |  |
+| https://github.com/Anuken/Mindustry | f3bfa418a5 | GPL | repository 17 | 17 | 17 |  |
+| https://github.com/FyroxEngine/Fyrox | c4ead6b99c | MIT | repository 2 | 2 | 0 |  |
+| https://github.com/OpenDungeons/OpenDungeons | a9efe49a6f | CC-BY-SA, GPL | credits-table 5 | 5 | 5 |  |
+| https://github.com/defold/defold | cbca1e163f | Custom | repository 2 | 2 | 0 |  |
+| https://github.com/drwhut/tabletop-club | a4fb379b0f | MIT | repository 6 | 6 | 0 |  |
+| https://github.com/endless-sky/endless-sky | 748d56c3c7 | PD | debian-copyright 1 | 1 | 0 |  |
+| https://github.com/lincity-ng/lincity-ng | 69bff77dad | GPL | repository 4 | 4 | 4 |  |
+| https://github.com/panda3d/panda3d | ec9ea0a93a | BSD | repository 1 | 1 | 0 |  |
+| https://github.com/space-wizards/space-station-14 | d4d4696248 | CC-BY, CC-BY-SA, PD | per-file 55 | 55 | 18 | yes |
+| https://github.com/wesnoth/wesnoth | 7747be0ff7 | CC-BY-SA, GPL | per-file 7 | 7 | 7 |  |
+| https://github.com/widelands/widelands | 6c21c892e8 | GPL, PD | repository 26, sound-register 5 | 31 | 26 |  |
+| https://github.com/yairm210/Unciv | eba5356202 | MPL, PD | credits-page 2, repository 1 | 3 | 1 |  |
+
+Held out for the lawyer (not used, not fetched): space-wizards/space-station-14 licence-nc-unknown 82; space-wizards/space-station-14 licence-unknown 4; widelands/widelands licence-ambiguous 12; widelands/widelands licence-unknown 9.
+
+A root `.noai` marker (an opt-out signal against AI use) is present in: https://github.com/space-wizards/space-station-14. It is recorded for the lawyer and the operator; the pass has not decided whether it binds.

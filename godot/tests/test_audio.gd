@@ -105,6 +105,7 @@ func run(tree: Object) -> void:
 	_sonar()
 	_haptics()
 	_determinism()
+	_references()
 	for line in report:
 		print("  audio: ", line)
 
@@ -349,3 +350,54 @@ func _determinism() -> void:
 	var a := _run(DiveSynth.new(), scene, 2.0)
 	var b := _run(DiveSynth.new(), scene, 2.0)
 	t._check(a == b, "the same scene sounds the same, sample for sample")
+
+
+## The spectral references of the audio pass reach the synth
+## (HLD_AUDIO_299 phase P8): numbers only, a median only over three
+## single blows, a cue follows a published median, and an unpublished
+## one changes nothing.
+func _references() -> void:
+	var raw := FileAccess.get_file_as_string(DiveSynth.REFERENCES_PATH)
+	t._check(raw != "", "audio-references.json ships in data/")
+	t._check(not ".ogg" in raw and not ".wav" in raw and not ".mp3" in raw
+		and not "\"path\"" in raw, "references hold numbers, no file paths")
+	var refs := DiveSynth.load_references()
+	t._check(refs.size() == 23, "23 sound slots: %d" % refs.size())
+	var published := 0
+	for slot in refs:
+		var r: Dictionary = refs[slot]
+		if r.t60_median_s != null:
+			published += 1
+			t._check(int(r.t60_n) >= DiveSynth.REFERENCE_MIN_BLOWS,
+				"%s: a median over %d blows" % [slot, int(r.t60_n)])
+	var s := DiveSynth.new()
+	t._check(s.references == refs, "the synth reads the file at start")
+	var t60 := DiveSynth.reference_t60(refs, DiveSynth.TAKE_SLOT)
+	if t60 < 0.0:
+		t._check(s.take_tau == DiveSynth.TAKE_TAU,
+			"no median for the take slot: the take keeps its own decay")
+	else:
+		t._check(absf(s.take_tau - t60 / log(1000.0)) < 1e-9,
+			"the take decays with the published median")
+	t._check(DiveSynth.load_references("res://data/missing.json").is_empty(),
+		"a missing file leaves every constant as it is")
+	# A published median moves the cue; two blows publish nothing.
+	var long := _only("events")
+	long.use_references({DiveSynth.TAKE_SLOT:
+		{"t60_n": 3, "t60_median_s": 0.5}})
+	var thin := _only("events")
+	thin.use_references({DiveSynth.TAKE_SLOT:
+		{"t60_n": 2, "t60_median_s": 0.5}})
+	t._check(thin.take_tau == DiveSynth.TAKE_TAU, "two blows publish nothing")
+	t._check(absf(long.take_tau - 0.5 / log(1000.0)) < 1e-9,
+		"T60 0.5 s gives tau %.4f s" % long.take_tau)
+	long.event_take()
+	thin.event_take()
+	var a := long.generate(int(0.3 * RATE))
+	var b := thin.generate(int(0.3 * RATE))
+	var tail_a := _rms(a, int(0.15 * RATE), int(0.3 * RATE))
+	var tail_b := _rms(b, int(0.15 * RATE), int(0.3 * RATE))
+	t._check(tail_a > 0.0 and tail_b == 0.0,
+		"a 0.5 s median rings past 0.15 s, the own decay does not")
+	report.append("references: %d slots, %d medians published; take tau %.4f s"
+		% [refs.size(), published, s.take_tau])
