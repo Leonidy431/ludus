@@ -59,6 +59,18 @@ var road_sprite: Sprite3D
 var atlas: Dictionary = AtlasCore.load_data()
 var atlas_page := 0
 var atlas_board: Label3D
+# The road of the obitel: the campaign of missions (MissionCore,
+# ludus-missions.js) on a birch-bark board in the courtyard.  The fall
+# and the crossed thresholds stay in trial_state (one state in the web);
+# mission_state keeps the rest.  mission is the open panel: {choice,
+# start}, where start is the mission offered at the board (-1 once one
+# is under way).
+const MISSION_BOARD_AT := Vector3(3.6, 0, 1.2)
+var mission_data: Dictionary = MissionCore.load_data()
+var mission_state := {"done": {}, "current": null, "flags": {},
+	"lines": {}}
+var mission := {}
+var mission_board: Label3D
 var select_was := false
 var interact_was := false
 var stick_was := 0.0
@@ -179,6 +191,7 @@ func _build_world() -> void:
 	_build_road(oak)
 	_build_refectory(oak)
 	_build_atlas(oak)
+	_build_mission_board(oak)
 
 
 ## The way out to the path of the witness: a plain oak arch on the south
@@ -213,6 +226,39 @@ func _build_atlas(oak: Color) -> void:
 	atlas_board.text = AtlasCore.page_text(atlas, atlas_page)
 	things.append({"id": "atlas", "kind": "atlas", "pos": at,
 		"ru": "Аналой: «Атлас воды» — читать дальше"})
+
+
+## The board of the road: birch bark on two oak posts with a lantern of
+## the hearth (about 2200 K), the same material logic as the other
+## boards (TABOO 0.38).  It lists the acts, their locks and the open
+## missions of the act under way; at the board the player sets out.
+func _build_mission_board(oak: Color) -> void:
+	var at := MISSION_BOARD_AT
+	_box(Vector3(0.14, 2.4, 0.14), at + Vector3(0.1, 1.2, -1.05), oak)
+	_box(Vector3(0.14, 2.4, 0.14), at + Vector3(0.1, 1.2, 1.05), oak)
+	_box(Vector3(0.14, 0.12, 2.3), at + Vector3(0.1, 2.42, 0), oak)
+	mission_board = Label3D.new()
+	mission_board.font_size = 26
+	mission_board.pixel_size = 0.0021
+	mission_board.width = 900
+	mission_board.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	mission_board.modulate = Color(0.2, 0.15, 0.1)
+	mission_board.outline_size = 0
+	mission_board.position = at + Vector3(0, 1.45, 0)
+	mission_board.rotation_degrees = Vector3(0, -90, 0)
+	add_child(mission_board)
+	_board_back(at + Vector3(0.03, 1.45, 0), Vector2(2.0, 1.8),
+		mission_board.rotation_degrees)
+	var lantern := OmniLight3D.new()
+	lantern.light_color = HEARTH_K
+	lantern.light_energy = 0.5
+	lantern.omni_range = 3.2
+	lantern.position = at + Vector3(-0.5, 2.3, 1.05)
+	add_child(lantern)
+	things.append({"id": "missions", "kind": "missions",
+		"pos": at + Vector3(-0.6, 0, 0),
+		"ru": "Доска дороги: миссии обители"})
+	_refresh_mission_board()
 
 
 ## The refectory table, bare: today's fast is kept here once a day,
@@ -506,7 +552,8 @@ func _save() -> void:
 	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if f:
 		f.store_string(JSON.stringify({"form": form, "actions": actions,
-			"trials": trial_state, "passions": passion_record}))
+			"trials": trial_state, "passions": passion_record,
+			"missions": mission_state}))
 
 
 func _load() -> void:
@@ -523,6 +570,9 @@ func _load() -> void:
 		actions.lastFastDay = lfd if typeof(lfd) == TYPE_STRING else null
 		actions.met = act.get("met", {})
 		actions.gifts = act.get("gifts", {})
+		# The deeds of the rule that missions ask (MissionCore.do_practice).
+		var pr = act.get("practices", {})
+		actions.practices = pr if pr is Dictionary else {}
 		# Only known shapes come back, as normalizeState does in JS.
 		var ts: Dictionary = data.get("trials", {})
 		for g in TrialCore.GATE_IDS:
@@ -537,6 +587,10 @@ func _load() -> void:
 		if f is Dictionary and not TrialCore.passion_of(trial_data,
 				f.get("passion")).is_empty():
 			trial_state.fall = f
+		# The road of missions: only known shapes come back.
+		var ms := MissionCore.normalize_state(data.get("missions", {}))
+		mission_state = {"done": ms.done, "current": ms.current,
+			"flags": ms.flags, "lines": ms.lines}
 
 
 # --- Controls -----------------------------------------------------------------
@@ -604,6 +658,9 @@ func _process(dt: float) -> void:
 					maxi(1, _encounter_options().size()))
 			elif not trial.is_empty():
 				trial.choice = posmod(trial.choice - int(signf(nav)), 3)
+			elif not mission.is_empty():
+				mission.choice = posmod(mission.choice - int(signf(nav)),
+					maxi(1, _mission_choices().size()))
 			else:
 				var n := HubCore.open_branches(talk.node, form).size()
 				talk.choice = posmod(talk.choice - int(signf(nav)),
@@ -616,6 +673,8 @@ func _process(dt: float) -> void:
 			_select(encounter.choice)
 		elif not trial.is_empty():
 			_select(trial.choice)
+		elif not mission.is_empty():
+			_select(mission.choice)
 		elif talk.is_empty():
 			_interact()
 		else:
@@ -686,6 +745,8 @@ func _interact() -> void:
 			get_tree().change_scene_to_file("res://scenes/witness.tscn")
 		"ladder":
 			_ladder()
+		"missions":
+			_open_missions()
 		"stillness":
 			_say("Постой здесь, не двигаясь. Время идёт само.")
 
@@ -731,6 +792,9 @@ func _select(i: int) -> void:
 		return
 	if not trial.is_empty():
 		_choose_threshold(i)
+		return
+	if not mission.is_empty():
+		_choose_mission(i)
 		return
 	var open := HubCore.open_branches(talk.node, form)
 	if i >= open.size():
@@ -778,7 +842,136 @@ func _check_fall() -> void:
 
 func _panel_open() -> bool:
 	return not talk.is_empty() or not trial.is_empty() \
-		or not encounter.is_empty()
+		or not encounter.is_empty() or not mission.is_empty()
+
+
+# --- The road of missions ---------------------------------------------------
+
+## The campaign state as MissionCore reads it: the road's own keys with
+## the thresholds and the fall of trial_state.
+func _mstate() -> Dictionary:
+	var st := mission_state.duplicate(true)
+	st.trials = trial_state.trials.duplicate()
+	st.trial_wait = trial_state.trial_wait.duplicate()
+	st.fall = trial_state.fall
+	return st
+
+
+## Keep a new campaign state.  The fall is written back only when a
+## choice has just produced it, so a fall from a threshold is never
+## touched by the road.
+func _mkeep(st: Dictionary, fell: bool) -> void:
+	mission_state = {"done": st.done, "current": st.current,
+		"flags": st.flags, "lines": st.lines}
+	if fell:
+		trial_state.fall = st.fall
+	_refresh_mission_board()
+
+
+## At the board: the mission under way, else the next one to set out on,
+## else why the road waits (an act not yet crossed, or all walked).
+func _open_missions() -> void:
+	var st := _mstate()
+	if st.current != null:
+		mission = {"choice": 0, "start": -1}
+		return
+	var nxt := MissionCore.next_mission(mission_data, st)
+	if nxt >= 0:
+		mission = {"choice": 0, "start": nxt}
+		return
+	for act in MissionCore.catalog(mission_data, st):
+		if act.lock != "" and not act.complete:
+			_say("%s: %s." % [act.title, act.lock])
+			return
+	_say("Все миссии, что можно пройти, пройдены.")
+
+
+## The lines of the open panel to choose from: {id, text, disabled,
+## reason, cue}.  The last one always steps away from the board.
+func _mission_choices() -> Array:
+	var away := {"id": "away", "text": "Отойти: дорога подождёт.",
+		"disabled": false, "reason": "", "cue": ""}
+	if mission.is_empty():
+		return []
+	if mission.start >= 0:
+		var can := MissionCore.can_start(mission_data, _mstate(),
+			mission.start)
+		return [{"id": "set_out", "text": "Выйти в путь",
+			"disabled": not can.ok, "reason": can.reason, "cue": ""}, away]
+	var v := MissionCore.view(mission_data, _mstate(), form, actions)
+	if v.is_empty():
+		return [away]
+	if v.scene != null:
+		return [{"id": "next", "text": "Завершить миссию" if v.last
+			else "Дальше", "disabled": false, "reason": "", "cue": ""}]
+	return v.step.choices + [away]
+
+
+func _choose_mission(i: int) -> void:
+	var choices := _mission_choices()
+	if i >= choices.size():
+		return
+	var c: Dictionary = choices[i]
+	if c.disabled:
+		_say(c.reason)
+		return
+	match c.id:
+		"away":
+			mission = {}
+		"set_out":
+			_mkeep(MissionCore.start(mission_data, _mstate(), mission.start),
+				false)
+			mission = {"choice": 0, "start": -1}
+			_save()
+		"next":
+			var res := MissionCore.advance(mission_data, _mstate())
+			_mkeep(res.state, false)
+			mission.choice = 0
+			if res.completed != null:
+				mission = {}
+				_say("Миссия %d пройдена." % res.completed)
+			_save()
+		_:
+			var res := MissionCore.choose(mission_data, _mstate(), c.id,
+				form, actions)
+			var ap := MissionCore.apply_effects(form, actions, res.effects,
+				Time.get_date_string_from_system())
+			form = ap.form
+			actions = ap.actions
+			_mkeep(res.state, res.effects.fall != null)
+			mission.choice = 0
+			_save()
+
+
+func _refresh_mission_board() -> void:
+	if mission_board == null:
+		return
+	var st := _mstate()
+	var lines := ["ДОРОГА ОБИТЕЛИ"]
+	if st.fall != null:
+		lines.append("Свет приглушён: дорога ждёт трезвения и беседы.")
+	for act in MissionCore.catalog(mission_data, st):
+		var runnable := 0
+		var walked := 0
+		for m in act.missions:
+			if m.status != "chorus":
+				runnable += 1
+			if m.status == "done":
+				walked += 1
+		if act.complete:
+			lines.append("%s — пройден" % act.title)
+		elif act.lock != "":
+			lines.append("%s — %s" % [act.title, act.lock])
+		else:
+			lines.append("%s — %d из %d" % [act.title, walked, runnable])
+			var shown := 0
+			for m in act.missions:
+				if m.status in ["done", "chorus"] or shown >= 5:
+					continue
+				var mark := "▸" if m.status in ["next", "current"] else "·"
+				lines.append("   %s %d. %s" % [mark, m.id, m.title])
+				shown += 1
+	mission_board.text = "\n".join(lines)
 
 
 func _passion(id) -> Dictionary:
@@ -877,8 +1070,52 @@ func _say(text: String) -> void:
 	message_left = 5.0
 
 
+## The panel of a mission, like the threshold's: the step, its source
+## and the choices; a closed choice says why, a lure shows its sign once
+## the player has learnt it.
+func _mission_panel_text() -> String:
+	var choices := _mission_choices()
+	var lines := []
+	if mission.start >= 0:
+		var m := MissionCore.build_mission(mission_data, mission.start)
+		lines += [m.actTitle, "%d. %s" % [m.id, m.title], "", m.intro,
+			"Источник: " + m.source, ""]
+	else:
+		var v := MissionCore.view(mission_data, _mstate(), form, actions)
+		if v.is_empty():
+			return ""
+		var s: Dictionary = v.step
+		lines += ["%d. %s — шаг %d из %d: %s" % [v.mission.id,
+			v.mission.title, v.index + 1, v.total, v.kind_ru], "",
+			s.title, s.text]
+		if s.source != "":
+			lines.append("Источник: " + s.source)
+		lines.append("")
+		if v.scene != null:
+			lines.append("— " + v.scene.choice)
+			if v.scene.speaker != "":
+				lines.append(v.scene.speaker + ":")
+			lines.append(v.scene.text)
+			if v.scene.source != "":
+				lines.append("Источник: " + v.scene.source)
+			lines.append("")
+	for j in choices.size():
+		var c: Dictionary = choices[j]
+		var mark := "▸ " if j == mission.choice else "  "
+		var line := "%s%d. %s" % [mark, j + 1, c.text]
+		if c.disabled and c.reason != "":
+			line += "  (%s)" % c.reason
+		lines.append(line)
+		if c.cue != "":
+			lines.append("      " + c.cue)
+	return "\n".join(lines)
+
+
 func _refresh_prompt() -> void:
 	panel.visible = _panel_open()
+	# A mission step says more than a talk; its charter uses a smaller
+	# hand so it stays inside the birch bark.
+	panel.font_size = 36 if not mission.is_empty() else 40
 	panel_bg.visible = panel.visible
 	var low := -0.3 if not encounter.is_empty() else 0.0
 	panel.position.y = -0.05 + low
@@ -915,6 +1152,8 @@ func _refresh_prompt() -> void:
 				var mark := "▸ " if j == trial.choice else "  "
 				lines.append("%s%d. %s" % [mark, j + 1, tv.options[j].text])
 		panel.text = "\n".join(lines)
+	elif not mission.is_empty():
+		panel.text = _mission_panel_text()
 	elif not talk.is_empty():
 		var tree: Dictionary = trees[talk.npc]
 		var lines := [tree.get("npcName_ru", talk.npc) + ":",
@@ -985,7 +1224,8 @@ func _on_webxr_started() -> void:
 
 # --- Proof frames -------------------------------------------------------------
 
-## --shots=<dir>: the courtyard, the mentors, a talk, the pier, the ladder.
+## --shots=<dir>: the courtyard, the mentors, a talk, the pier, the ladder,
+## the thresholds, the road, the atlas and the board of missions.
 func _shots() -> void:
 	var plan := [
 		{"name": "courtyard", "pos": Vector3(0, 0, 5.5), "yaw": 0.0},
@@ -1000,6 +1240,10 @@ func _shots() -> void:
 		{"name": "road", "pos": Vector3(-5.6, 0, 4.6), "yaw": PI,
 			"road": true},
 		{"name": "atlas", "pos": Vector3(-4.4, 0, 6.2), "yaw": 0.0},
+		{"name": "mission-board", "pos": Vector3(0.9, 0, 1.2),
+			"yaw": -PI / 2.0},
+		{"name": "missions", "pos": Vector3(1.0, 0, 1.2), "yaw": -PI / 2.0,
+			"mission": true},
 	]
 	var n := shot_frame / 20
 	if n >= plan.size():
@@ -1031,6 +1275,17 @@ func _shots() -> void:
 		actions.prayerCount = 10.0
 		actions.met["theodora"] = 1
 		trial = {"gate": s.trial, "choice": 1, "reply": ""}
+	if s.has("mission") and mission.is_empty():
+		# The first mission set out on at the board, its first step open
+		# (a proof frame only; nothing is saved).
+		trial = {}
+		var st := MissionCore.start(mission_data, _mstate(),
+			MissionCore.next_mission(mission_data, _mstate()))
+		mission_state = {"done": st.done, "current": st.current,
+			"flags": st.flags, "lines": st.lines}
+		mission = {"choice": 0, "start": -1}
+	elif not s.has("mission"):
+		mission = {}
 	if shot_frame % 20 == 19:
 		get_viewport().get_texture().get_image().save_png(
 			"%s/hub-%s.png" % [shots_dir, s.name])

@@ -123,4 +123,10 @@ func _initialize() -> void:
 	load("res://tests/test_atlas.gd").new().run(self)
 	print("atlas: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# The campaign of missions (MissionCore, ludus-missions.js).
+	before = checks
+	fails = failures
+	load("res://tests/test_mission.gd").new().run(self)
+	print("mission: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	quit(1 if failures else 0)
