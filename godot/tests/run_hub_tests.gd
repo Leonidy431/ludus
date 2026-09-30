@@ -89,4 +89,10 @@ func _initialize() -> void:
 	high.wisdom = 9
 	_check(walk.call(high)[0] != [] , "walk moves")
 	print("hub: %d checks, %d failures" % [checks, failures])
+	# The path of the witness (docs/HLD_APK_PRIORITY A3).
+	var before := checks
+	var fails := failures
+	load("res://tests/test_witness.gd").new().run(self)
+	print("witness: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	quit(1 if failures else 0)

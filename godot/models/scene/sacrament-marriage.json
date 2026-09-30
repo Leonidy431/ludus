@@ -1,0 +1,60 @@
+{
+ "id": "sacrament-marriage",
+ "kind": "scene",
+ "lod": "proxy",
+ "tris": 556,
+ "bbox_m": [
+  8,
+  2.7,
+  10
+ ],
+ "title": "Среди гостей",
+ "mood": "posad parish church, afternoon",
+ "microphone": false,
+ "speechRecognition": false,
+ "logPresence": false,
+ "reward": null,
+ "attributes": null,
+ "gate": null,
+ "playerCan": [
+  "approach to the witness line",
+  "stand",
+  "bow the head (no effect)",
+  "leave"
+ ],
+ "audio": {
+  "roomTone_dBFS": -48,
+  "ison": "a cappella, vowels only",
+  "digitalZero": false
+ },
+ "light": {
+  "lampada_K": 1800,
+  "instrumentLightFadeSeconds": 1.75
+ },
+ "bells": [
+  {
+   "order": "трезвон",
+   "service": "венчание",
+   "dayRankCondition": "только в день, разрешённый для венчания; не в посты, Святки, Масленую и Светлую седмицы, не накануне ср/пт/вс и праздников, не 29.08 и 27.09"
+  }
+ ],
+ "internalRite": "Брак",
+ "source": "scripts/meta3d/sacrament-scenes.json",
+ "method": "scene-kit-primitives",
+ "holyObjects": [
+  "analoy-stand",
+  "analoy-top",
+  "analoy-cloth",
+  "crown-1",
+  "crown-2",
+  "common-cup",
+  "icon-board",
+  "lampada-glass",
+  "lampada-chain",
+  "crown-cross-1",
+  "crown-cross-2"
+ ],
+ "lights": [
+  "lampada-1800K"
+ ]
+}

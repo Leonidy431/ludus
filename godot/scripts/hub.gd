@@ -153,6 +153,18 @@ func _build_world() -> void:
 	_build_pier(oak)
 	_build_ladder()
 	_build_practice(oak)
+	_build_witness_gate(oak)
+
+
+## The way out to the path of the witness: a plain oak arch on the south
+## side of the courtyard, lit by nothing but the evening.
+func _build_witness_gate(oak: Color) -> void:
+	var at := Vector3(1.2, 0, 7.2)
+	_box(Vector3(0.25, 2.6, 0.25), at + Vector3(-0.9, 1.3, 0), oak)
+	_box(Vector3(0.25, 2.6, 0.25), at + Vector3(0.9, 1.3, 0), oak)
+	_box(Vector3(2.3, 0.25, 0.35), at + Vector3(0, 2.7, 0), oak)
+	things.append({"id": "witness", "kind": "witness", "pos": at,
+		"ru": "Тропа свидетеля: постоять у черты"})
 
 
 func _build_scriptorium(oak: Color) -> void:
@@ -537,6 +549,10 @@ func _interact() -> void:
 		"pier":
 			_save()
 			get_tree().change_scene_to_file("res://scenes/dive.tscn")
+		"witness":
+			# Leaving for the path writes nothing about the visit.
+			_save()
+			get_tree().change_scene_to_file("res://scenes/witness.tscn")
 		"ladder":
 			_bow()
 		"stillness":
@@ -673,6 +689,7 @@ func _shots() -> void:
 			"talk": "elder_sergius"},
 		{"name": "pier", "pos": Vector3(5.5, 0, 0.6), "yaw": -PI / 2.0},
 		{"name": "ladder", "pos": Vector3(1.0, 0, -1.0), "yaw": 0.0},
+		{"name": "witness-gate", "pos": Vector3(1.2, 0, 3.4), "yaw": PI},
 	]
 	var n := shot_frame / 20
 	if n >= plan.size():
