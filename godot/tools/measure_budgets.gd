@@ -381,25 +381,35 @@ static func _mean(a: Array) -> float:
 
 ## CPU per second of sound of the scene's synth, called SYNTH_CALLS
 ## times in a row after the views (the synth's state no longer matters).
+## The synth's class is reached through the scene's own object, never
+## named here: a class named in this script is loaded with the script,
+## before the baseline, and its memory would drop out of the scene's.
 func _synth_probe() -> Dictionary:
-	var gen: Callable
-	var synth_name := ""
+	var target: Object
 	match scene_name:
 		"dive":
-			synth_name = "DiveSynth"
-			gen = func(): node.audio.synth.generate(int(DiveSynth.MIX_RATE))
+			target = node.audio.synth
 		"witness":
-			synth_name = "WitnessAudio"
-			gen = func(): node.audio.generate(int(WitnessAudio.MIX_RATE))
+			target = node.audio
 		_:
 			return {}
+	var cls = target.get_script()
+	var frames := int(cls.MIX_RATE)
 	var net := []
 	var wall := []
 	for i in SYNTH_CALLS:
-		var ms := _timed(gen)
+		var ms := _timed(func(): target.generate(frames))
 		wall.append(ms[0])
 		net.append(ms[1])
-	return {"synth": synth_name, "calls": SYNTH_CALLS,
+	# The synth's cost depends on what sounds: the state it was timed in.
+	var state := {"view": views.back().name if views.size() else ""}
+	if scene_name == "witness":
+		state["kit"] = node.audio.kit
+		state["bells_ringing"] = node.audio.bells.ringing.size()
+		state["clock"] = Time.get_datetime_string_from_datetime_dict(
+			node.audio.now(), false)
+	return {"synth": cls.get_global_name(), "calls": SYNTH_CALLS,
+		"state": state,
 		"ms_per_second_median": snappedf(_median(net), 0.01),
 		"ms_per_second_max": snappedf(net.max(), 0.01),
 		"wall_ms_per_second_median": snappedf(_median(wall), 0.01),
@@ -408,18 +418,19 @@ func _synth_probe() -> Dictionary:
 
 ## Bytes of one rendered bell clip (float32): the clip is as long as
 ## its longest mode rings (BellSynth._job), whatever the strength.
-static func _clip_bytes(index: int) -> int:
+static func _clip_bytes(bell, index: int) -> int:
 	var frames := 0
-	for m in BellSynth.modes(BellSynth.spec(index), 1.0):
-		frames = maxi(frames, int(ceil(m[2] * BellSynth.MIX_RATE)))
+	for m in bell.modes(bell.spec(index), 1.0):
+		frames = maxi(frames, int(ceil(m[2] * bell.MIX_RATE)))
 	return 4 * frames
 
 
-static func _day_keys(civil: Dictionary) -> Dictionary:
+static func _day_keys(typikon, bell,
+		civil: Dictionary) -> Dictionary:
 	var keys := {}
-	for p in TypikonCore.day_plan(civil):
+	for p in typikon.day_plan(civil):
 		for s in p.strokes:
-			keys[BellSynth.key_of(s[1], s[2])] = int(s[1])
+			keys[bell.key_of(s[1], s[2])] = int(s[1])
 	return keys
 
 
@@ -439,6 +450,10 @@ func _pcm_probe() -> Dictionary:
 	if scene_name != "witness":
 		return {}
 	var b = node.audio.bells
+	var bell = b.get_script()
+	# The Typikon's day plan is loaded now, after the measurement, for
+	# the same reason the synth's class is not named in this script.
+	var typikon = load("res://scripts/typikon_core.gd")
 	var until := Time.get_ticks_msec() + PCM_WAIT_MS
 	while Time.get_ticks_msec() < until:
 		b.warm_async()
@@ -449,8 +464,8 @@ func _pcm_probe() -> Dictionary:
 	for k in b.clips:
 		rendered += b.clips[k].size() * 4
 	var per_bell := {}
-	for i in BellSynth.ENSEMBLE.size():
-		per_bell[i] = _clip_bytes(i)
+	for i in bell.ENSEMBLE.size():
+		per_bell[i] = _clip_bytes(bell, i)
 	var now: Dictionary = node.audio.now()
 	var t0 := int(Time.get_unix_time_from_datetime_dict({
 		"year": now.year, "month": now.month, "day": now.day,
@@ -464,8 +479,8 @@ func _pcm_probe() -> Dictionary:
 	var today := 0
 	for i in PCM_DAYS:
 		var civil := Time.get_datetime_dict_from_unix_time(t0 + i * 86400)
-		var date := TypikonCore.day_key(civil)
-		var keys := _day_keys(civil)
+		var date: String = typikon.day_key(civil)
+		var keys := _day_keys(typikon, bell, civil)
 		var bytes := _keys_bytes(keys, per_bell)
 		if i == 0:
 			today = bytes
@@ -481,7 +496,7 @@ func _pcm_probe() -> Dictionary:
 				two_max_dates = prev_date + ".." + date
 		prev = keys
 		prev_date = date
-	return {"date": TypikonCore.day_key(now),
+	return {"date": typikon.day_key(now),
 		"rendered_bytes": rendered, "rendered_clips": b.clips.size(),
 		"jobs_left": b.jobs.size(), "counted_bytes_same_day": today,
 		"days_scanned": PCM_DAYS, "day_max_bytes": day_max,

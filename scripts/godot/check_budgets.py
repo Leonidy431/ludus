@@ -4,34 +4,44 @@
     python3 scripts/godot/check_budgets.py --tree
     python3 scripts/godot/check_budgets.py \
         --apk build/godot/ludus-dive-quest.apk
+    python3 scripts/godot/check_budgets.py \
+        --pck build/godot/web/index.pck
 
 --tree checks the source side in godot/ before the build: the triangles
-of every .glb (counted in the file itself and compared with the
-"triangles"/"tris" field of its .json, the field the GDScript tests
-read), the largest single file the export would ship, and the total
-bytes of godot/art, godot/models and godot/data.
+of every .glb and .gltf (counted in the file itself and compared with
+the "triangles"/"tris" field of its .json, the field the GDScript tests
+read), mesh files in formats the gate cannot count, the largest single
+file the export would ship, and the total bytes of every file the
+export would ship.
 
 --apk checks a built APK: its size, the native libraries and their
 ABIs, the dex files, the game content under assets/ and its largest
 single file.
 
---pck checks a pack made with `godot --export-pack "Meta Quest"`: the
-same content and largest-file budgets as assets/ in the APK, with the
-bytes per top folder.  It is how a PR measures its APK delta when the
-APK itself cannot be downloaded: export the pack before and after and
-compare the --json outputs.
+--pck checks a pack made with `godot --export-pack "Meta Quest"` (or
+the Web pack, which uses the same filters): the same content and
+largest-file budgets as assets/ in the APK, with the bytes per top
+folder.  It is how a PR measures its APK delta when the APK itself
+cannot be downloaded: export the pack before and after and compare the
+--json outputs.
+
+Every mode also has floors: a gate that finds no models, no exported
+files, an empty pack or an APK without assets/ has measured nothing,
+and that is reported as a breach, not as a pass.
 
 The limits live in scripts/godot/apk-budgets.json, outside godot/, so
 that the budget file itself does not ship in the headset build.  Exit
 code 0 means every budget holds, 1 means at least one is breached, 2
-means the input could not be read.  Messages for people are in Russian
-(the project's chat language); the code and its comments are English.
-Standard library only, so the gate runs on a bare CI runner.
+means the input or the budgets file could not be read or is not
+usable.  Messages for people are in Russian (the project's chat
+language); the code and its comments are English.  Standard library
+only, so the gate runs on a bare CI runner.
 """
 
 import argparse
 import fnmatch
 import json
+import numbers
 import os
 import re
 import struct
@@ -42,12 +52,23 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(
     os.path.abspath(__file__))))
 GODOT = os.path.join(ROOT, 'godot')
 BUDGETS = os.path.join(ROOT, 'scripts', 'godot', 'apk-budgets.json')
+# CLAUDE.md TABOO 0.011 once named this path for the budgets.  The gate
+# does not read it, and anything in godot/data/*.json ships in the APK,
+# so a file there would drift from the real limits unseen.
+STRAY_BUDGETS = os.path.join('data', 'apk-budgets.json')
 PRESET = 'Meta Quest'
 
 # Files Godot never packs as resources; they are dropped before the
 # "largest file" check so a README or a Python helper does not count.
+# Compared in lower case.
 NOT_RESOURCES = ('.import', '.uid', '.md', '.py', '.txt', '.cfg', '.sh',
                  '.js', '.orig', '.blend1')
+
+# Mesh formats: the gate counts triangles in glTF (binary and text);
+# the others Godot can import too, but the gate cannot read them, so a
+# model in one of them would ship unchecked.
+MODELS_COUNTED = ('.glb', '.gltf')
+MODELS_NOT_COUNTED = ('.obj', '.fbx', '.dae', '.blend')
 
 GLB_MAGIC = 0x46546C67
 GLB_JSON = 0x4E4F534A
@@ -55,6 +76,10 @@ GLB_JSON = 0x4E4F534A
 # A headroom below this share of the limit is reported as a warning,
 # so a budget is seen coming before it breaks the build.
 WARN_SHARE = 0.10
+
+
+class BudgetsError(Exception):
+    """The budgets file is readable but not usable."""
 
 
 class Report:
@@ -65,6 +90,7 @@ class Report:
         self.breaches = []
         self.notes = []
         self.folders = {}
+        self.exceptions = []
 
     def check(self, name, value, limit, unit='Б', record=True):
         """Record one metric against its limit; value > limit breaches.
@@ -82,6 +108,22 @@ class Report:
             status = 'мало запаса'
         else:
             status = 'ок'
+        self._row(name, value, limit, unit, headroom, status)
+
+    def floor(self, name, value, least, unit='шт.'):
+        """Record a floor: value < least means nothing was measured."""
+        margin = (value - least) / least if least else 0.0
+        if value < least:
+            status = 'НАРУШЕНО'
+            self.breaches.append(
+                '%s: %s %s меньше нижней границы %s %s — ворота почти '
+                'ничего не измерили' % (
+                    name, fmt(value), unit, fmt(least), unit))
+        else:
+            status = 'ок'
+        self._row(name + ' (не меньше)', value, least, unit, margin, status)
+
+    def _row(self, name, value, limit, unit, headroom, status):
         self.rows.append({'metric': name, 'value': value, 'limit': limit,
                           'unit': unit, 'headroom_pct': round(
                               headroom * 100.0, 1), 'status': status})
@@ -114,19 +156,113 @@ def load_budgets(path):
         return json.load(f)
 
 
-def glb_triangles(path):
-    """Triangles a .glb draws, read from its JSON chunk.
+def _get(budgets, dotted):
+    """The value at a dotted path, or raise BudgetsError naming it."""
+    node = budgets
+    for part in dotted.split('.'):
+        if not isinstance(node, dict) or part not in node:
+            raise BudgetsError('нет ключа %s' % dotted)
+        node = node[part]
+    return node
+
+
+def _positive(budgets, dotted, integer=True):
+    value = _get(budgets, dotted)
+    kind = numbers.Integral if integer else numbers.Real
+    if isinstance(value, bool) or not isinstance(value, kind) \
+            or value <= 0:
+        raise BudgetsError('%s должен быть %s больше нуля, а не %r' % (
+            dotted, 'целым числом' if integer else 'числом', value))
+    return value
+
+
+def _check_exceptions(budgets, dotted, base):
+    """Every exception names its reason, approval and blocker, and
+    stays within exception_policy.max_factor of its base limit."""
+    required = _get(budgets, 'exception_policy.required')
+    factor = _positive(budgets, 'exception_policy.max_factor', False)
+    if not isinstance(required, list) or 'limit' not in required:
+        raise BudgetsError('exception_policy.required должен быть списком '
+                           'полей, и limit в нём обязателен')
+    try:
+        exceptions = _get(budgets, dotted)
+    except BudgetsError:
+        return
+    if not isinstance(exceptions, dict):
+        raise BudgetsError('%s должен быть объектом' % dotted)
+    for key, exc in exceptions.items():
+        where = '%s["%s"]' % (dotted, key)
+        if not isinstance(exc, dict):
+            raise BudgetsError('%s должен быть объектом' % where)
+        for field in required:
+            if field not in exc or exc[field] in ('', None):
+                raise BudgetsError('%s: нет поля %s' % (where, field))
+        limit = exc['limit']
+        if isinstance(limit, bool) or not isinstance(limit, numbers.Real) \
+                or limit <= 0:
+            raise BudgetsError('%s.limit должен быть числом больше нуля'
+                               % where)
+        if limit > factor * base:
+            raise BudgetsError(
+                '%s.limit %s больше %s — это %s базы %s; исключение выше '
+                'этого — уже другой бюджет, его меняют строкой хора '
+                '(docs/APK_REQUIREMENTS.md, п. (d) 4)' % (
+                    where, fmt(limit), fmt(factor * base),
+                    'x%s' % fmt(factor), fmt(base)))
+
+
+def validate_budgets(budgets):
+    """Raise BudgetsError when the file cannot drive the gate.
+
+    Every limit either gate reads is checked here, the scene section of
+    godot/tools/measure_budgets.gd included, so a broken budgets file
+    turns the source step red before any scene is measured.
+    """
+    if not isinstance(budgets, dict):
+        raise BudgetsError('ожидался объект JSON, а не %s' %
+                           type(budgets).__name__)
+    for dotted in ('apk.total_bytes.limit', 'apk.native_libs_bytes.limit',
+                   'apk.dex_bytes.limit', 'apk.assets_bytes.limit',
+                   'apk.largest_asset_bytes.limit',
+                   'apk.min_assets_entries.limit', 'pck.min_files.limit',
+                   'tree.content_bytes.limit',
+                   'tree.largest_resource_bytes.limit',
+                   'tree.model_triangles.limit', 'tree.min_models.limit',
+                   'tree.min_exported_files.limit',
+                   'scene.draw_calls_frame.limit',
+                   'scene.primitives_two_eyes_est.limit',
+                   'scene.static_memory_delta_bytes.limit',
+                   'scene.texture_memory_over_empty_bytes.limit',
+                   'scene.subviewport_bytes.limit',
+                   'scene.audio_generators.limit',
+                   'audio.pcm_clips_bytes.limit'):
+        _positive(budgets, dotted)
+    for dotted in ('scene.script_ms_mean_host.limit',
+                   'scene.script_ms_max_host.limit',
+                   'scene.script_host_max_load_per_core.limit',
+                   'audio.synth_ms_per_second_host.limit'):
+        _positive(budgets, dotted, integer=False)
+    for dotted in ('apk.abis', 'apk.required_entries'):
+        value = _get(budgets, dotted)
+        if not isinstance(value, list) or not value or not all(
+                isinstance(v, str) and v for v in value):
+            raise BudgetsError('%s должен быть непустым списком строк'
+                               % dotted)
+    _check_exceptions(budgets, 'tree.model_triangles.exceptions',
+                      _get(budgets, 'tree.model_triangles.limit'))
+    for key, entry in _get(budgets, 'scene').items():
+        if isinstance(entry, dict) and 'exceptions' in entry:
+            _check_exceptions(budgets, 'scene.%s.exceptions' % key,
+                              _positive(budgets, 'scene.%s.limit' % key,
+                                        False))
+
+
+def _gltf_triangles(gltf):
+    """Triangles a parsed glTF draws.
 
     Every node that uses a mesh draws it once more, so a mesh is counted
     per use.  Only triangle modes count; points and lines draw none.
     """
-    with open(path, 'rb') as f:
-        head = f.read(20)
-        magic, _version, _length, clen, ctype = struct.unpack('<IIIII',
-                                                              head)
-        if magic != GLB_MAGIC or ctype != GLB_JSON:
-            raise ValueError('не GLB 2.0: ' + path)
-        gltf = json.loads(f.read(clen))
     accessors = gltf.get('accessors', [])
     per_mesh = []
     for mesh in gltf.get('meshes', []):
@@ -148,16 +284,52 @@ def glb_triangles(path):
     return sum(per_mesh[m] for m in uses)
 
 
+def model_triangles(path):
+    """Triangles of a .glb (its JSON chunk) or a .gltf (the file)."""
+    if path.lower().endswith('.gltf'):
+        with open(path, encoding='utf-8') as f:
+            return _gltf_triangles(json.load(f))
+    with open(path, 'rb') as f:
+        head = f.read(20)
+        if len(head) < 20:
+            raise ValueError('файл короче заголовка GLB (%d Б)' % len(head))
+        magic, _version, _length, clen, ctype = struct.unpack('<IIIII',
+                                                              head)
+        if magic != GLB_MAGIC or ctype != GLB_JSON:
+            raise ValueError('не GLB 2.0')
+        chunk = f.read(clen)
+        if len(chunk) < clen:
+            raise ValueError('JSON-блок GLB обрезан')
+    return _gltf_triangles(json.loads(chunk))
+
+
 def meta_triangles(json_path):
-    """The triangle field of a model's .json, or None without one."""
+    """The triangle field of a model's .json: (value, problem).
+
+    (None, '') without a passport or without the field; a field that is
+    there but not a whole number is a problem, not a missing passport.
+    """
     if not os.path.exists(json_path):
-        return None
-    with open(json_path, encoding='utf-8') as f:
-        meta = json.load(f)
+        return None, ''
+    try:
+        with open(json_path, encoding='utf-8') as f:
+            meta = json.load(f)
+    except (OSError, ValueError) as err:
+        return None, 'паспорт не читается (%s)' % err
     if not isinstance(meta, dict):
-        return None
-    value = meta.get('triangles', meta.get('tris'))
-    return None if value is None else int(value)
+        return None, ''
+    key = 'triangles' if 'triangles' in meta else 'tris'
+    if key not in meta:
+        return None, ''
+    value = meta[key]
+    try:
+        whole = not isinstance(value, bool) and isinstance(
+            value, numbers.Real) and value == int(value) and value >= 0
+    except (ValueError, OverflowError):
+        whole = False
+    if not whole:
+        return None, 'поле %s = %r — не целое число' % (key, value)
+    return int(value), ''
 
 
 def export_excludes(godot_dir):
@@ -200,7 +372,7 @@ def exported_files(godot_dir):
             rel = rel.replace(os.sep, '/')
             if rel in ('project.godot', 'export_presets.cfg'):
                 continue
-            if rel.endswith(NOT_RESOURCES):
+            if rel.lower().endswith(NOT_RESOURCES):
                 continue
             if any(fnmatch.fnmatch(rel, pat) for pat in excludes):
                 continue
@@ -215,29 +387,50 @@ def check_tree(budgets, godot_dir, rep):
     exceptions = tri.get('exceptions', {})
     files = exported_files(godot_dir)
 
+    if os.path.exists(os.path.join(godot_dir, STRAY_BUDGETS)):
+        rep.breach('godot/%s существует, но ворота читают %s; файл в '
+                   'godot/data ещё и уходит в APK. Удалить его; путь в '
+                   'CLAUDE.md правит лид' % (
+                       STRAY_BUDGETS, os.path.relpath(BUDGETS, ROOT)))
+
     worst = (0, '')
     seen_exc = set()
-    glbs = [p for p in files if p.endswith('.glb')]
-    for rel in glbs:
+    models = [p for p in files if p.lower().endswith(MODELS_COUNTED)]
+    for rel in files:
+        if rel.lower().endswith(MODELS_NOT_COUNTED):
+            rep.breach('%s: модель в формате %s не считается воротами '
+                       '(считаются только %s); перевести в .glb' % (
+                           rel, os.path.splitext(rel)[1],
+                           ', '.join(MODELS_COUNTED)))
+    for rel in models:
         path = os.path.join(godot_dir, rel)
         try:
-            tris = glb_triangles(path)
-        except (OSError, ValueError, KeyError, IndexError) as err:
+            tris = model_triangles(path)
+        except (OSError, ValueError, KeyError, IndexError, TypeError,
+                struct.error) as err:
             rep.breach('%s: модель не читается (%s)' % (rel, err))
             continue
-        meta = meta_triangles(path[:-4] + '.json')
-        if meta is not None and meta != tris:
+        meta, problem = meta_triangles(os.path.splitext(path)[0] + '.json')
+        if problem:
+            rep.breach('%s: %s' % (os.path.splitext(rel)[0] + '.json',
+                                   problem))
+        elif meta is not None and meta != tris:
             rep.breach('%s: в .json записано %s треугольников, в самой '
                        'модели %s — паспорт модели врёт' % (
                            rel, fmt(meta), fmt(tris)))
         if rel in exceptions:
             seen_exc.add(rel)
-            limit = int(exceptions[rel]['limit'])
+            exc = exceptions[rel]
+            limit = int(exc['limit'])
             if tris > base:
+                rep.exceptions.append({'what': rel, 'value': tris,
+                                       'base': base, 'limit': limit,
+                                       'blocker': exc['blocker'],
+                                       'approval': exc['approval']})
                 rep.note('ИСКЛЮЧЕНИЕ %s: %s треугольников при пределе '
-                         'ТАБУ 0.32 п. 4 в %s; допущено до %s до решения '
-                         'оператора (docs/APK_REQUIREMENTS.md, блокеры)' %
-                         (rel, fmt(tris), fmt(base), fmt(limit)))
+                         'ТАБУ 0.32 п. 4 в %s; допущено до %s (%s, %s)' %
+                         (rel, fmt(tris), fmt(base), fmt(limit),
+                          exc['blocker'], exc['approval']))
             if tris > limit:
                 rep.breach('%s: %s треугольников больше предела '
                            'исключения %s' % (rel, fmt(tris), fmt(limit)))
@@ -252,22 +445,29 @@ def check_tree(budgets, godot_dir, rep):
                  rel)
     rep.check('треугольники: худшая модель вне исключений', worst[0],
               base, 'тр.', record=False)
-    rep.note('худшая модель: %s; моделей .glb: %d' % (worst[1], len(glbs)))
+    rep.floor('моделей .glb/.gltf', len(models),
+              int(tree['min_models']['limit']))
+    rep.note('худшая модель: %s; моделей .glb/.gltf: %d' % (
+        worst[1], len(models)))
 
     biggest = max(((os.path.getsize(os.path.join(godot_dir, p)), p)
                    for p in files), default=(0, ''))
     rep.check('самый большой файл экспорта (исходник)', biggest[0],
               int(tree['largest_resource_bytes']['limit']))
+    rep.floor('файлов в экспорте', len(files),
+              int(tree['min_exported_files']['limit']))
     rep.note('самый большой файл: %s; файлов в экспорте: %d' % (
         biggest[1], len(files)))
 
-    total = 0
-    for sub in tree['content_dirs']:
-        for dirpath, _dirs, names in os.walk(os.path.join(godot_dir, sub)):
-            for name in names:
-                total += os.path.getsize(os.path.join(dirpath, name))
-    rep.check('godot/%s вместе' % '+'.join(tree['content_dirs']), total,
+    by_top = {}
+    for rel in files:
+        top = rel.split('/', 1)[0] if '/' in rel else '.'
+        by_top[top] = by_top.get(top, 0) + os.path.getsize(
+            os.path.join(godot_dir, rel))
+    rep.check('файлы экспорта вместе (исходники)', sum(by_top.values()),
               int(tree['content_bytes']['limit']))
+    for top, size in sorted(by_top.items(), key=lambda x: -x[1]):
+        rep.note('  godot/%-33s %14s Б' % (top, fmt(size)))
 
 
 def read_pck(path):
@@ -323,6 +523,8 @@ def read_pck(path):
 def check_pck(budgets, pck_path, rep):
     apk = budgets['apk']
     files = read_pck(pck_path)
+    rep.floor('файлов в PCK', len(files),
+              int(budgets['pck']['min_files']['limit']))
     rep.check('контент PCK (без сжатия)', sum(f[1] for f in files),
               int(apk['assets_bytes']['limit']))
     big = max(files, key=lambda f: f[1], default=('', 0, ''))
@@ -344,6 +546,15 @@ def check_apk(budgets, apk_path, rep):
               int(apk['total_bytes']['limit']))
     with zipfile.ZipFile(apk_path) as z:
         entries = z.infolist()
+    names = [e.filename for e in entries]
+    for need in apk['required_entries']:
+        if need.endswith('/'):
+            found = any(n.startswith(need) for n in names)
+        else:
+            found = need in names
+        if not found:
+            rep.breach('в APK нет %s — сборка потеряла %s' % (
+                need, 'контент игры' if need.endswith('/') else 'код'))
     libs = [e for e in entries
             if e.filename.startswith('lib/') and e.filename.endswith('.so')]
     abis = sorted({e.filename.split('/')[1] for e in libs})
@@ -365,6 +576,8 @@ def check_apk(budgets, apk_path, rep):
     rep.check('classes*.dex', sum(e.file_size for e in dex),
               int(apk['dex_bytes']['limit']))
     assets = [e for e in entries if e.filename.startswith('assets/')]
+    rep.floor('файлов в assets/', len(assets),
+              int(apk['min_assets_entries']['limit']))
     rep.check('контент assets/ (без сжатия)',
               sum(e.file_size for e in assets),
               int(apk['assets_bytes']['limit']))
@@ -377,6 +590,28 @@ def check_apk(budgets, apk_path, rep):
     rep.note('записей в APK: %d; ABI: %s; контент в сжатом виде: %s Б' % (
         len(entries), ', '.join(abis),
         fmt(sum(e.compress_size for e in assets))))
+
+
+def summary(rep):
+    """The last line: breaches, or a pass that names its exceptions."""
+    if rep.breaches:
+        print('ИТОГ: нарушено бюджетов — %d. Сборка остановлена; причина '
+              'и путь исправления — docs/APK_REQUIREMENTS.md.' %
+              len(rep.breaches))
+        for b in rep.breaches:
+            print('  ✗ ' + b)
+        return 1
+    if rep.exceptions:
+        waiting = [e['blocker'] + (', ждёт оператора'
+                                   if str(e['approval']).startswith(
+                                       'pending') else '')
+                   for e in rep.exceptions]
+        print('ИТОГ: бюджеты соблюдены; действуют исключения: %d (%s) — '
+              'выше базового предела, docs/APK_REQUIREMENTS.md.' % (
+                  len(rep.exceptions), '; '.join(waiting)))
+        return 0
+    print('ИТОГ: все бюджеты соблюдены.')
+    return 0
 
 
 def main(argv=None):
@@ -399,7 +634,8 @@ def main(argv=None):
         ap.error('нужен хотя бы один из --tree, --apk PATH, --pck PATH')
     try:
         budgets = load_budgets(args.budgets)
-    except (OSError, ValueError) as err:
+        validate_budgets(budgets)
+    except (OSError, ValueError, BudgetsError) as err:
         print('Не читается файл бюджетов %s: %s' % (args.budgets, err))
         return 2
 
@@ -425,17 +661,10 @@ def main(argv=None):
         print('  · ' + n)
     if args.json:
         print(json.dumps({'rows': rep.rows, 'breaches': rep.breaches,
-                          'notes': rep.notes, 'folders': rep.folders},
+                          'notes': rep.notes, 'folders': rep.folders,
+                          'exceptions': rep.exceptions},
                          ensure_ascii=False))
-    if rep.breaches:
-        print('ИТОГ: нарушено бюджетов — %d. Сборка остановлена; причина '
-              'и путь исправления — docs/APK_REQUIREMENTS.md.' %
-              len(rep.breaches))
-        for b in rep.breaches:
-            print('  ✗ ' + b)
-        return 1
-    print('ИТОГ: все бюджеты соблюдены.')
-    return 0
+    return summary(rep)
 
 
 if __name__ == '__main__':
