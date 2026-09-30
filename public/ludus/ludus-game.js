@@ -679,8 +679,11 @@
       + '</div>' : '';
 
     const gate = currentGateFor(form);
+    // Images, not church words, in the interface (TABOO 0.39 item 3):
+    // "redemption" was a church term on a label.
     const goalText = (state.playerNode && state.playerNode.causality
-      && state.playerNode.causality.goal) || 'Redemption and wisdom';
+      && state.playerNode.causality.goal)
+      || 'To reach still water, step by step';
     const gateText = gate ? gate.label
       : 'Not yet through the first gate';
 
