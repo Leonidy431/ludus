@@ -17,12 +17,12 @@ on:
   push:
     branches: [main, 'claude/**']
     paths: ['godot/**', 'public/ludus/dive/**', 'public/ludus/data/**',
-            'scripts/godot/**', 'scripts/story/**', 'CLAUDE.md',
-            '.github/workflows/godot.yml']
+            'scripts/godot/**', 'scripts/story/**', 'scripts/locations/**',
+            'CLAUDE.md', '.github/workflows/godot.yml']
   pull_request:
     paths: ['godot/**', 'public/ludus/dive/**', 'public/ludus/data/**',
-            'scripts/godot/**', 'scripts/story/**', 'CLAUDE.md',
-            '.github/workflows/godot.yml']
+            'scripts/godot/**', 'scripts/story/**', 'scripts/locations/**',
+            'CLAUDE.md', '.github/workflows/godot.yml']
   workflow_dispatch:
 
 permissions:
@@ -93,6 +93,11 @@ jobs:
           # every node with its Constitution line (TABOO 0.03).
           python3 scripts/story/render.py --check
           cmp public/ludus/data/atlas-99.json godot/data/atlas-99.json
+          # The 99 locations of our plots: pool, K and data current, and
+          # the selection keeps the standard of the evening-watch cell
+          # (TABOO 0.013, 0.07; docs/HLD_LOCATIONS_99_2026-09-30.md).
+          python3 scripts/locations/locations_99.py --check
+          python3 -m unittest discover scripts/locations/tests
           # One bell table for the web clock and the headset's bells,
           # every rule with its source (docs/HLD_BELL_RULES_TYPIKON_*).
           cmp public/ludus/data/bell-rules.json godot/data/bell-rules.json

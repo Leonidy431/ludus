@@ -1,0 +1,1605 @@
+{
+ "note": "Hits of each wished thing in the index of the 99 cloned repos (images and 3D models; licensed repos only; dogma stop-list and holy words refused). A hit is a candidate for the props store (TABOO 0.012), not a thing in a scene: that needs the pipeline of TABOO 0.1 and an eye check.",
+ "index": "/home/user/raw-repos",
+ "things": {
+  "abacus": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "adze": {
+   "images": 132,
+   "models": 0,
+   "repos": 5,
+   "examples": [
+    "Azgaar/Fantasy-Map-Generator:public/charges/axe.svg (LICENSE)",
+    "Card-Forge/forge:forge-gui/res/adventure/common/custom_card_pics/Garruk's Mighty Axe.fullborder.jpg (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/UNUSED/weapons/battle_axe4.png (LICENSE)"
+   ]
+  },
+  "anchor-stone": {
+   "images": 9,
+   "models": 0,
+   "repos": 5,
+   "examples": [
+    "Azgaar/Fantasy-Map-Generator:public/charges/anchor.svg (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/gui/spells/monster/dimensional_anchor.png (LICENSE)",
+    "godotengine/godot:editor/icons/Anchor.svg (COPYRIGHT.txt)"
+   ]
+  },
+  "antenna-mast": {
+   "images": 21,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "space-wizards/space-station-14:Resources/Textures/Mobs/Customization/Moth/moth_antennas.rsi/charred.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Mobs/Customization/Moth/moth_antennas.rsi/dbushy.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Mobs/Customization/Moth/moth_antennas.rsi/dcurvy.png (LICENSE.TXT)"
+   ]
+  },
+  "anvil": {
+   "images": 4,
+   "models": 1,
+   "repos": 4,
+   "examples": [
+    "Azgaar/Fantasy-Map-Generator:public/charges/anvil.svg (LICENSE)",
+    "OpenDungeons/OpenDungeons:materials/textures/Anvil.png (LICENSE.md)",
+    "OpenDungeons/OpenDungeons:models/Anvil.mesh (LICENSE.md)"
+   ]
+  },
+  "apprentice-deed": {
+   "images": 54,
+   "models": 0,
+   "repos": 8,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/sprites/ui/scroll-horizontal.9.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/ui/scroll-knob-horizontal-black.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/ui/scroll-knob-vertical-black.png (LICENSE)"
+   ]
+  },
+  "archive-chest": {
+   "images": 62,
+   "models": 4,
+   "repos": 3,
+   "examples": [
+    "defold/defold:editor/test/resources/build_project/SideScroller/model/treasure_chest.gltf (LICENSE.txt)",
+    "defold/defold:editor/test/resources/build_project/SideScroller/model/treasure_chest_anim_out.gltf (LICENSE.txt)",
+    "defold/defold:editor/test/resources/test_project/mesh/treasure_chest.gltf (LICENSE.txt)"
+   ]
+  },
+  "atlas-amphora": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "atlas-astrolabe": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "atlas-diary": {
+   "images": 131,
+   "models": 1,
+   "repos": 8,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/icons/book.png (LICENSE)",
+    "amethyst/amethyst:book/src/images/amethyst_emblem.png (COPYING)",
+    "amethyst/amethyst:book/src/images/design/renderer_0.png (COPYING)"
+   ]
+  },
+  "atlas-shield": {
+   "images": 1376,
+   "models": 1,
+   "repos": 12,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/defense/large-shield-projector-team.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/defense/large-shield-projector.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/defense/shield-projector-team.png (LICENSE)"
+   ]
+  },
+  "awning": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "bandage": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "banner": {
+   "images": 3469,
+   "models": 0,
+   "repos": 17,
+   "examples": [
+    "00-Evan/shattered-pixel-dungeon:core/src/main/assets/interfaces/banners.png (LICENSE.txt)",
+    "00-Evan/shattered-pixel-dungeon:ios/assets/Assets.xcassets/Banner.imageset/Banner.png (LICENSE.txt)",
+    "00-Evan/shattered-pixel-dungeon:ios/assets/Assets.xcassets/Banner.imageset/Banner@2x.png (LICENSE.txt)"
+   ]
+  },
+  "barge": {
+   "images": 23,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "endless-sky/endless-sky:images/ship/star barge.png (copyright)",
+    "endless-sky/endless-sky:images/thumbnail/star barge.png (copyright)",
+    "wesnoth/wesnoth:data/core/images/portraits/transport/orcish-barge.webp (COPYING)"
+   ]
+  },
+  "barrel": {
+   "images": 23,
+   "models": 0,
+   "repos": 4,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/turrets/cyclone/cyclone-barrel-1.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/turrets/cyclone/cyclone-barrel-2.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/turrets/cyclone/cyclone-barrel-3.png (LICENSE)"
+   ]
+  },
+  "basket": {
+   "images": 2,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "widelands/widelands:data/tribes/wares/basket/idle.png (COPYING)",
+    "widelands/widelands:data/tribes/wares/basket/menu.png (COPYING)"
+   ]
+  },
+  "battery": {
+   "images": 323,
+   "models": 0,
+   "repos": 5,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/power/battery-large-top.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/power/battery-large.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/power/battery-top.png (LICENSE)"
+   ]
+  },
+  "beehive": {
+   "images": 20,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "Card-Forge/forge:forge-gui/res/adventure/common/custom_card_pics/Xira's Hive.fullborder.jpg (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/UNUSED/features/hive_gone.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/UNUSED/features/hive_portal.png (LICENSE)"
+   ]
+  },
+  "bench": {
+   "images": 5,
+   "models": 1,
+   "repos": 2,
+   "examples": [
+    "drwhut/tabletop-club:assets/TabletopClub/tables/Picnic Bench.obj (LICENSE)",
+    "space-wizards/space-station-14:Resources/Textures/Structures/Furniture/Bench/comf_bench.rsi/bench_solo_base.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Structures/Furniture/Bench/comf_bench.rsi/bench_solo_cover.png (LICENSE.TXT)"
+   ]
+  },
+  "binding-press": {
+   "images": 9,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/production/graphite-press.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/production/multi-press.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/production/spore-press-bottom.png (LICENSE)"
+   ]
+  },
+  "birch-bark": {
+   "images": 17,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "love2d/love:testing/resources/font-letters-ab.png (license.txt)",
+    "love2d/love:testing/resources/font-letters-cd.png (license.txt)",
+    "space-wizards/space-station-14:Resources/Textures/Interface/Ashen/Slots/hand_l_no_letter.png (LICENSE.TXT)"
+   ]
+  },
+  "boat": {
+   "images": 32,
+   "models": 1,
+   "repos": 5,
+   "examples": [
+    "Azgaar/Fantasy-Map-Generator:public/charges/boat.svg (LICENSE)",
+    "Azgaar/Fantasy-Map-Generator:public/charges/boat2.svg (LICENSE)",
+    "OpenRA/OpenRA:mods/cnc/uibits/encyclopedia/boat.png (COPYING)"
+   ]
+  },
+  "boat-hull": {
+   "images": 37,
+   "models": 1,
+   "repos": 6,
+   "examples": [
+    "Azgaar/Fantasy-Map-Generator:public/charges/boat.svg (LICENSE)",
+    "Azgaar/Fantasy-Map-Generator:public/charges/boat2.svg (LICENSE)",
+    "OpenRA/OpenRA:mods/cnc/uibits/encyclopedia/boat.png (COPYING)"
+   ]
+  },
+  "bread-loaf": {
+   "images": 111,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/item/food/bread_ration.png (LICENSE)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Consumable/Food/Baked/bread.rsi/alpha-filling.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Consumable/Food/Baked/bread.rsi/alpha-filling2.png (LICENSE.TXT)"
+   ]
+  },
+  "bread-table": {
+   "images": 111,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/item/food/bread_ration.png (LICENSE)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Consumable/Food/Baked/bread.rsi/alpha-filling.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Consumable/Food/Baked/bread.rsi/alpha-filling2.png (LICENSE.TXT)"
+   ]
+  },
+  "brick-mould": {
+   "images": 185,
+   "models": 0,
+   "repos": 6,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/dngn/vaults/brick_dark_eyes.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/dngn/vaults/brick_dark_leak.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/dngn/vaults/brick_dark_skeleton.png (LICENSE)"
+   ]
+  },
+  "bridge-log": {
+   "images": 83,
+   "models": 0,
+   "repos": 7,
+   "examples": [
+    "00-Evan/shattered-pixel-dungeon:core/src/main/assets/sprites/ninja_log.png (LICENSE.txt)",
+    "Azgaar/Fantasy-Map-Generator:public/charges/log.svg (LICENSE)",
+    "endless-sky/endless-sky:images/ui/message log key@1x.png (copyright)"
+   ]
+  },
+  "bulla": {
+   "images": 1,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/gui/spells/monster/seal_doors.png (LICENSE)"
+   ]
+  },
+  "camel-saddle": {
+   "images": 13,
+   "models": 0,
+   "repos": 4,
+   "examples": [
+    "Azgaar/Fantasy-Map-Generator:public/charges/camel.svg (LICENSE)",
+    "Card-Forge/forge:forge-gui/res/adventure/common/sprites/enemy/beast/largemammals/camel.png (LICENSE)",
+    "defold/defold:editor/test/resources/build_project/SideScroller/raptor/images/raptor_saddle_noshadow.png (LICENSE.txt)"
+   ]
+  },
+  "campfire": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "candle-blank": {
+   "images": 37,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "space-wizards/space-station-14:Resources/Textures/Objects/Misc/candles.rsi/candle-big.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Misc/candles.rsi/candle-small.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Misc/candles.rsi/fire-big.png (LICENSE.TXT)"
+   ]
+  },
+  "caravan-bells": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "caravan-lantern": {
+   "images": 19,
+   "models": 0,
+   "repos": 4,
+   "examples": [
+    "Card-Forge/forge:forge-gui/res/adventure/common/custom_card_pics/Zedruu's Lantern.fullborder.jpg (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/UNUSED/worn/misc/bone_lantern.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/UNUSED/worn/misc/lantern.png (LICENSE)"
+   ]
+  },
+  "caravan-staff": {
+   "images": 134,
+   "models": 1,
+   "repos": 7,
+   "examples": [
+    "Card-Forge/forge:forge-gui/res/adventure/common/custom_card_pics/Slimefoot's Slimy Staff.fullborder.jpg (LICENSE)",
+    "Card-Forge/forge:forge-gui/res/adventure/common/custom_card_pics/Teferi's Staff.fullborder.jpg (LICENSE)",
+    "OpenDungeons/OpenDungeons:materials/textures/Staff.png (LICENSE.md)"
+   ]
+  },
+  "caravel": {
+   "images": 1973,
+   "models": 3,
+   "repos": 10,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/units/ship-assembler-side1.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/units/ship-assembler-side2.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/units/ship-assembler-top.png (LICENSE)"
+   ]
+  },
+  "casket": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "cauldron-camp": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "cauldron-common": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "caulker": {
+   "images": 5,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "widelands/widelands:data/tribes/wares/chisel/idle_0.5.png (COPYING)",
+    "widelands/widelands:data/tribes/wares/chisel/idle_1.png (COPYING)",
+    "widelands/widelands:data/tribes/wares/chisel/idle_2.png (COPYING)"
+   ]
+  },
+  "chebak-net": {
+   "images": 18,
+   "models": 0,
+   "repos": 4,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/dngn/traps/net.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/effect/net_trap.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/effect/throwing_net0.png (LICENSE)"
+   ]
+  },
+  "chronicle": {
+   "images": 131,
+   "models": 1,
+   "repos": 8,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/icons/book.png (LICENSE)",
+    "amethyst/amethyst:book/src/images/amethyst_emblem.png (COPYING)",
+    "amethyst/amethyst:book/src/images/design/renderer_0.png (COPYING)"
+   ]
+  },
+  "clay-lamp": {
+   "images": 21,
+   "models": 1,
+   "repos": 6,
+   "examples": [
+    "OpenDungeons/OpenDungeons:materials/textures/Lamp.png (LICENSE.md)",
+    "OpenDungeons/OpenDungeons:models/Lamp.mesh (LICENSE.md)",
+    "crawl/crawl:crawl-ref/source/rltiles/UNUSED/other/magic_lamp.png (LICENSE)"
+   ]
+  },
+  "cloth": {
+   "images": 32,
+   "models": 0,
+   "repos": 6,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/sprites/items/item-phase-fabric.png (LICENSE)",
+    "Cockatrice/Cockatrice:cockatrice/themes/Fabric/backgrounds/home-dark.jpg (LICENSE)",
+    "Cockatrice/Cockatrice:cockatrice/themes/Fabric/backgrounds/home-light.jpg (LICENSE)"
+   ]
+  },
+  "coin-purse": {
+   "images": 32,
+   "models": 1,
+   "repos": 6,
+   "examples": [
+    "Card-Forge/forge:forge-gui/res/adventure/common/custom_card_pics/Coin-Operated Pony.fullborder.png (LICENSE)",
+    "Cockatrice/Cockatrice:cockatrice/resources/tips/images/coin_flip.png (LICENSE)",
+    "drwhut/tabletop-club:assets/TabletopClub/containers/Purse.gltf (LICENSE)"
+   ]
+  },
+  "compass": {
+   "images": 7,
+   "models": 0,
+   "repos": 4,
+   "examples": [
+    "Card-Forge/forge:forge-gui/res/adventure/common/maps/tileset/compass.png (LICENSE)",
+    "endless-sky/endless-sky:images/_menu/compass@1x.png (copyright)",
+    "simutrans/simutrans:themes.src/pak64german/files/compass-iso.png (LICENSE.txt)"
+   ]
+  },
+  "crayfish-trap": {
+   "images": 51,
+   "models": 0,
+   "repos": 4,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/UNUSED/features/gas_trap.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/UNUSED/features/trap_magical.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/UNUSED/features/trap_mechanical.png (LICENSE)"
+   ]
+  },
+  "credentials": {
+   "images": 11,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "slint-ui/slint:ui-libraries/material/docs/src/assets/images/material-tablet.webp (LICENSE.md)",
+    "slint-ui/slint:ui-libraries/material/examples/gallery/frame-tablet.webp (LICENSE.md)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Devices/tablets.rsi/generic.png (LICENSE.TXT)"
+   ]
+  },
+  "crucible": {
+   "images": 20,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/production/carbide-crucible-bottom.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/production/carbide-crucible-heat.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/production/carbide-crucible.png (LICENSE)"
+   ]
+  },
+  "crypt-case": {
+   "images": 53,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "space-wizards/space-station-14:Resources/Textures/Structures/Storage/Closets/service-secure-cabinet.rsi/closed.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Structures/Storage/Closets/service-secure-cabinet.rsi/locked.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Structures/Storage/Closets/service-secure-cabinet.rsi/open.png (LICENSE.TXT)"
+   ]
+  },
+  "current-map": {
+   "images": 923,
+   "models": 0,
+   "repos": 17,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/icons/map.png (LICENSE)",
+    "Card-Forge/forge:forge-gui/res/adventure/Innistrad/maps/tileset/INN_tiles/dungen_crawler.png (LICENSE)",
+    "Card-Forge/forge:forge-gui/res/adventure/Innistrad/maps/tileset/INN_tiles/dungen_crawler.xcf (LICENSE)"
+   ]
+  },
+  "depth-gauge": {
+   "images": 1,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "slint-ui/slint:examples/safe-ui/app/assets/pressure-gauge.png (LICENSE.md)"
+   ]
+  },
+  "dove": {
+   "images": 1,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "Azgaar/Fantasy-Map-Generator:public/charges/dove.svg (LICENSE)"
+   ]
+  },
+  "drone-wreck": {
+   "images": 18,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/sprites/units/assembly-drone-cell.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/units/assembly-drone.png (LICENSE)",
+    "endless-sky/endless-sky:images/ship/combat drone.png (copyright)"
+   ]
+  },
+  "drying-rack": {
+   "images": 6,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "endless-sky/endless-sky:images/outfit/emp rack.png (copyright)",
+    "endless-sky/endless-sky:images/outfit/firelight rack.png (copyright)",
+    "endless-sky/endless-sky:images/outfit/firestorm torpedo rack.png (copyright)"
+   ]
+  },
+  "duty-decree": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "dye-vat": {
+   "images": 23,
+   "models": 0,
+   "repos": 4,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/turrets/cyclone/cyclone-barrel-1.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/turrets/cyclone/cyclone-barrel-2.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/turrets/cyclone/cyclone-barrel-3.png (LICENSE)"
+   ]
+  },
+  "exoskeleton": {
+   "images": 256,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/units/mech-assembler-side1.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/units/mech-assembler-side2.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/units/mech-assembler-top.png (LICENSE)"
+   ]
+  },
+  "felt": {
+   "images": 285,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "00-Evan/shattered-pixel-dungeon:core/src/main/assets/environment/custom_tiles/carpet.png (LICENSE.txt)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Tiles/tile.rsi/carpet-black-inhand-left.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Tiles/tile.rsi/carpet-black-inhand-right.png (LICENSE.TXT)"
+   ]
+  },
+  "field-tent": {
+   "images": 26,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "wesnoth/wesnoth:data/core/images/scenery/tent-fancy-red.png (COPYING)",
+    "wesnoth/wesnoth:data/core/images/scenery/tent-ruin-1.png (COPYING)",
+    "wesnoth/wesnoth:data/core/images/scenery/tent-shop-weapons.png (COPYING)"
+   ]
+  },
+  "firewood": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "fish-basket": {
+   "images": 2,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "widelands/widelands:data/tribes/wares/basket/idle.png (COPYING)",
+    "widelands/widelands:data/tribes/wares/basket/menu.png (COPYING)"
+   ]
+  },
+  "float": {
+   "images": 15,
+   "models": 0,
+   "repos": 4,
+   "examples": [
+    "OpenRA/OpenRA:mods/ts/maps/float/map.png (COPYING)",
+    "crawl/crawl:crawl-ref/source/rltiles/gui/mutations/float.png (LICENSE)",
+    "godotengine/godot:editor/icons/float.svg (COPYRIGHT.txt)"
+   ]
+  },
+  "foot-basin": {
+   "images": 1,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/sprites/ui/sectors/sector-basin.png (LICENSE)"
+   ]
+  },
+  "forge": {
+   "images": 13,
+   "models": 1,
+   "repos": 4,
+   "examples": [
+    "OpenDungeons/OpenDungeons:materials/textures/Forge.png (LICENSE.md)",
+    "OpenDungeons/OpenDungeons:models/Forge.mesh (LICENSE.md)",
+    "crawl/crawl:crawl-ref/source/rltiles/gui/spells/forgecraft/forge_blazeheart_golem.png (LICENSE)"
+   ]
+  },
+  "fruit-crate": {
+   "images": 269,
+   "models": 0,
+   "repos": 4,
+   "examples": [
+    "FyroxEngine/Fyrox:examples/Crate.png (LICENSE.md)",
+    "amethyst/amethyst:examples/rendy/assets/texture/crate.png (COPYING)",
+    "bevyengine/bevy:assets/textures/rpg/props/generic-rpg-crate01.png (LICENSE-APACHE)"
+   ]
+  },
+  "girth-strap": {
+   "images": 3,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "defold/defold:editor/test/resources/build_project/SideScroller/raptor/images/raptor_saddle_strap_front.png (LICENSE.txt)",
+    "defold/defold:editor/test/resources/build_project/SideScroller/raptor/images/raptor_saddle_strap_rear.png (LICENSE.txt)",
+    "defold/defold:editor/test/resources/build_project/SideScroller/raptor/images/stirrup_strap.png (LICENSE.txt)"
+   ]
+  },
+  "glossary": {
+   "images": 131,
+   "models": 1,
+   "repos": 8,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/icons/book.png (LICENSE)",
+    "amethyst/amethyst:book/src/images/amethyst_emblem.png (COPYING)",
+    "amethyst/amethyst:book/src/images/design/renderer_0.png (COPYING)"
+   ]
+  },
+  "grain-pit": {
+   "images": 2,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "freeciv/freeciv:data/buildings/granary.png (COPYING)",
+    "yairm210/Unciv:android/Images.ConstructionIcons/BuildingIcons/Granary.png (LICENSE)"
+   ]
+  },
+  "grain-sack": {
+   "images": 3,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/item/misc/misc_sack.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/item/misc/misc_sack_inert.png (LICENSE)",
+    "wesnoth/wesnoth:data/core/images/items/grain-sheaf.png (COPYING)"
+   ]
+  },
+  "grapes": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "hand-candle": {
+   "images": 37,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "space-wizards/space-station-14:Resources/Textures/Objects/Misc/candles.rsi/candle-big.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Misc/candles.rsi/candle-small.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Misc/candles.rsi/fire-big.png (LICENSE.TXT)"
+   ]
+  },
+  "hand-mill": {
+   "images": 1,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "Azgaar/Fantasy-Map-Generator:public/charges/millstone.svg (LICENSE)"
+   ]
+  },
+  "herbs": {
+   "images": 3,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "space-wizards/space-station-14:Resources/Textures/Objects/Consumable/Food/bowl.rsi/herb.png (LICENSE.TXT)",
+    "wesnoth/wesnoth:data/campaigns/Eastern_Invasion/images/items/swamp_herb.png (COPYING)",
+    "wesnoth/wesnoth:data/core/images/icons/herb-bag.png (COPYING)"
+   ]
+  },
+  "horn": {
+   "images": 49,
+   "models": 0,
+   "repos": 4,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/UNUSED/worn/misc/horn.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/gui/mutations/horns_1.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/gui/mutations/horns_2.png (LICENSE)"
+   ]
+  },
+  "hourglass": {
+   "images": 4,
+   "models": 0,
+   "repos": 4,
+   "examples": [
+    "Azgaar/Fantasy-Map-Generator:public/charges/hourglass.svg (LICENSE)",
+    "FyroxEngine/Fyrox:editor/resources/hourglass.png (LICENSE.md)",
+    "space-wizards/space-station-14:Resources/Textures/Mobs/Customization/Arachnid/chest.rsi/hourglass.png (LICENSE.TXT)"
+   ]
+  },
+  "hydrophone": {
+   "images": 3,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "space-wizards/space-station-14:Resources/Textures/Objects/Fun/Instruments/microphone.rsi/inhand-left.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Fun/Instruments/microphone.rsi/inhand-right.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Fun/Instruments/microphone.rsi/storage.png (LICENSE.TXT)"
+   ]
+  },
+  "inkwell": {
+   "images": 9,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/item/talisman/inkwell.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/item/talisman/quill.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/player/transform/quill_form_djinn.png (LICENSE)"
+   ]
+  },
+  "jeweller-crucible": {
+   "images": 20,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/production/carbide-crucible-bottom.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/production/carbide-crucible-heat.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/production/carbide-crucible.png (LICENSE)"
+   ]
+  },
+  "karas": {
+   "images": 20,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "space-wizards/space-station-14:Resources/Textures/Objects/Consumable/Drinks/jar.rsi/fill-1.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Consumable/Drinks/jar.rsi/fill-2.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Consumable/Drinks/jar.rsi/fill-3.png (LICENSE.TXT)"
+   ]
+  },
+  "keyboard": {
+   "images": 20,
+   "models": 0,
+   "repos": 6,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/gui/commands/keyboard.png (LICENSE)",
+    "godotengine/godot:editor/icons/Keyboard.svg (COPYRIGHT.txt)",
+    "raysan5/raylib:examples/core/core_keyboard_testbed.png (LICENSE)"
+   ]
+  },
+  "khadak": {
+   "images": 87,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/UNUSED/effects/geist_lash_scarf.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/item/armour/artefact/urand_scarf_invisibility.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/item/armour/scarf1.png (LICENSE)"
+   ]
+  },
+  "kiln": {
+   "images": 124,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/production/kiln-top.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/production/kiln.png (LICENSE)",
+    "widelands/widelands:data/tribes/buildings/productionsites/amazons/charcoal_kiln/idle_0.5.png (COPYING)"
+   ]
+  },
+  "knotted-line": {
+   "images": 39,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "space-wizards/space-station-14:Resources/Textures/Objects/Consumable/Food/ingredients.rsi/cotton-dough-rope.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Consumable/Food/ingredients.rsi/dough-rope.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Weapons/Guns/Launchers/grappling_gun.rsi/rope.png (LICENSE.TXT)"
+   ]
+  },
+  "kumys-skin": {
+   "images": 10,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/effect/meph_flask0.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/effect/meph_flask1.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/effect/meph_flask2.png (LICENSE)"
+   ]
+  },
+  "languages": {
+   "images": 54,
+   "models": 0,
+   "repos": 8,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/sprites/ui/scroll-horizontal.9.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/ui/scroll-knob-horizontal-black.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/ui/scroll-knob-vertical-black.png (LICENSE)"
+   ]
+  },
+  "lectern": {
+   "images": 1,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/dngn/vaults/lectern.png (LICENSE)"
+   ]
+  },
+  "ledger": {
+   "images": 131,
+   "models": 1,
+   "repos": 8,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/icons/book.png (LICENSE)",
+    "amethyst/amethyst:book/src/images/amethyst_emblem.png (COPYING)",
+    "amethyst/amethyst:book/src/images/design/renderer_0.png (COPYING)"
+   ]
+  },
+  "letter": {
+   "images": 17,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "love2d/love:testing/resources/font-letters-ab.png (license.txt)",
+    "love2d/love:testing/resources/font-letters-cd.png (license.txt)",
+    "space-wizards/space-station-14:Resources/Textures/Interface/Ashen/Slots/hand_l_no_letter.png (LICENSE.TXT)"
+   ]
+  },
+  "level-mark": {
+   "images": 109,
+   "models": 0,
+   "repos": 8,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/sprites/effects/scale_marker.png (LICENSE)",
+    "Azgaar/Fantasy-Map-Generator:public/images/markers/ship.svg (LICENSE)",
+    "Azgaar/Fantasy-Map-Generator:public/images/markers/wagon.svg (LICENSE)"
+   ]
+  },
+  "levels-chronicle": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "loom": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "marker-buoy": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "marking-cord": {
+   "images": 39,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "space-wizards/space-station-14:Resources/Textures/Objects/Consumable/Food/ingredients.rsi/cotton-dough-rope.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Consumable/Food/ingredients.rsi/dough-rope.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Weapons/Guns/Launchers/grappling_gun.rsi/rope.png (LICENSE.TXT)"
+   ]
+  },
+  "measuring-ell": {
+   "images": 18,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "godotengine/godot:editor/icons/Ruler.svg (COPYRIGHT.txt)",
+    "wesnoth/wesnoth:data/core/images/portraits/orcs/ruler-2.webp (COPYING)",
+    "wesnoth/wesnoth:data/core/images/portraits/orcs/ruler.webp (COPYING)"
+   ]
+  },
+  "measuring-rod": {
+   "images": 37,
+   "models": 0,
+   "repos": 4,
+   "examples": [
+    "bevyengine/bevy:assets/textures/rpg/props/generic-rpg-rod.png (LICENSE-APACHE)",
+    "crawl/crawl:crawl-ref/source/rltiles/UNUSED/other/i-rod_destruction_ice.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/UNUSED/other/i-rod_discovery.png (LICENSE)"
+   ]
+  },
+  "mill-wheel": {
+   "images": 1,
+   "models": 1,
+   "repos": 1,
+   "examples": [
+    "raysan5/raylib:examples/shaders/resources/models/watermill.obj (LICENSE)",
+    "raysan5/raylib:examples/shaders/resources/models/watermill_diffuse.png (LICENSE)"
+   ]
+  },
+  "mission-map": {
+   "images": 923,
+   "models": 0,
+   "repos": 17,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/icons/map.png (LICENSE)",
+    "Card-Forge/forge:forge-gui/res/adventure/Innistrad/maps/tileset/INN_tiles/dungen_crawler.png (LICENSE)",
+    "Card-Forge/forge:forge-gui/res/adventure/Innistrad/maps/tileset/INN_tiles/dungen_crawler.xcf (LICENSE)"
+   ]
+  },
+  "money-scales": {
+   "images": 32,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "Cockatrice/Cockatrice:cockatrice/resources/icons/scales.svg (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/gui/mutations/blue_scales_1.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/gui/mutations/blue_scales_2.png (LICENSE)"
+   ]
+  },
+  "mortar": {
+   "images": 14,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/UNUSED/spells/hellfire_mortar.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/gui/spells/fire/hellfire_mortar.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/mon/statues/hellfire_mortar.png (LICENSE)"
+   ]
+  },
+  "net": {
+   "images": 47,
+   "models": 0,
+   "repos": 5,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/dngn/traps/net.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/effect/net_trap.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/effect/throwing_net0.png (LICENSE)"
+   ]
+  },
+  "nomad-map": {
+   "images": 923,
+   "models": 0,
+   "repos": 17,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/icons/map.png (LICENSE)",
+    "Card-Forge/forge:forge-gui/res/adventure/Innistrad/maps/tileset/INN_tiles/dungen_crawler.png (LICENSE)",
+    "Card-Forge/forge:forge-gui/res/adventure/Innistrad/maps/tileset/INN_tiles/dungen_crawler.xcf (LICENSE)"
+   ]
+  },
+  "oar": {
+   "images": 4,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "amethyst/amethyst:book/src/images/pong_tutorial/pong_paddle_collision.png (COPYING)",
+    "defold/defold:editor/test/resources/test_project/graphics/paddle.png (LICENSE.txt)",
+    "widelands/widelands:data/tribes/wares/bread_paddle/idle.png (COPYING)"
+   ]
+  },
+  "order-report": {
+   "images": 6,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "RayFowler/rotp-public:src/rotp/images/spy-report.png (LICENSE)",
+    "defold/defold:share/report_libs/images/sort_asc.png (LICENSE.txt)",
+    "defold/defold:share/report_libs/images/sort_asc_disabled.png (LICENSE.txt)"
+   ]
+  },
+  "paiza": {
+   "images": 11,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "slint-ui/slint:ui-libraries/material/docs/src/assets/images/material-tablet.webp (LICENSE.md)",
+    "slint-ui/slint:ui-libraries/material/examples/gallery/frame-tablet.webp (LICENSE.md)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Devices/tablets.rsi/generic.png (LICENSE.TXT)"
+   ]
+  },
+  "paper-bale": {
+   "images": 160,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "Azgaar/Fantasy-Map-Generator:public/images/textures/folded-paper-big.jpg (LICENSE)",
+    "Azgaar/Fantasy-Map-Generator:public/images/textures/folded-paper-small.jpg (LICENSE)",
+    "Azgaar/Fantasy-Map-Generator:public/images/textures/gray-paper.jpg (LICENSE)"
+   ]
+  },
+  "parchment": {
+   "images": 71,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/item/book/parchment.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/item/parchment/base_parchment_high_level.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/item/parchment/base_parchment_low_level.png (LICENSE)"
+   ]
+  },
+  "phone": {
+   "images": 4,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "Immediate-Mode-UI/Nuklear:demo/common/filebrowser/icon/phone.png (LICENSE)",
+    "Immediate-Mode-UI/Nuklear:example/icon/phone.png (LICENSE)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Fun/Instruments/otherinstruments.rsi/banana_phone.png (LICENSE.TXT)"
+   ]
+  },
+  "pile": {
+   "images": 64,
+   "models": 0,
+   "repos": 5,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/mon/statues/pile_of_debris_00.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/mon/statues/pile_of_debris_01.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/mon/statues/pile_of_flesh0.png (LICENSE)"
+   ]
+  },
+  "portolan": {
+   "images": 923,
+   "models": 0,
+   "repos": 17,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/icons/map.png (LICENSE)",
+    "Card-Forge/forge:forge-gui/res/adventure/Innistrad/maps/tileset/INN_tiles/dungen_crawler.png (LICENSE)",
+    "Card-Forge/forge:forge-gui/res/adventure/Innistrad/maps/tileset/INN_tiles/dungen_crawler.xcf (LICENSE)"
+   ]
+  },
+  "potter-stamp": {
+   "images": 52,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "space-wizards/space-station-14:Resources/Textures/Interface/Paper/paper_heading_postage_stamp.svg.96dpi.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Interface/Paper/paper_stamp_border.svg (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Interface/Paper/paper_stamp_border.svg.96dpi.png (LICENSE.TXT)"
+   ]
+  },
+  "potter-wheel": {
+   "images": 15,
+   "models": 1,
+   "repos": 3,
+   "examples": [
+    "freeciv/freeciv:data/graphics/tech/pottery.jpg (COPYING)",
+    "lincity-ng/lincity-ng:data/images/gui/buttonpanel/industry/pottery.png (COPYING-data.txt)",
+    "lincity-ng/lincity-ng:data/images/gui/buttonpanel/industry/pottery.svg (COPYING-data.txt)"
+   ]
+  },
+  "print-block": {
+   "images": 2,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "space-wizards/space-station-14:Resources/Textures/Objects/Fun/Instruments/woodblock.rsi/inhand-left.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Fun/Instruments/woodblock.rsi/inhand-right.png (LICENSE.TXT)"
+   ]
+  },
+  "probe-staff": {
+   "images": 134,
+   "models": 1,
+   "repos": 7,
+   "examples": [
+    "Card-Forge/forge:forge-gui/res/adventure/common/custom_card_pics/Slimefoot's Slimy Staff.fullborder.jpg (LICENSE)",
+    "Card-Forge/forge:forge-gui/res/adventure/common/custom_card_pics/Teferi's Staff.fullborder.jpg (LICENSE)",
+    "OpenDungeons/OpenDungeons:materials/textures/Staff.png (LICENSE.md)"
+   ]
+  },
+  "prostration-mat": {
+   "images": 144,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "wesnoth/wesnoth:data/core/images/terrain/interior/cave-rug/rug-corner-n-ne-se-s.png (COPYING)",
+    "wesnoth/wesnoth:data/core/images/terrain/interior/cave-rug/rug-corner-nw-n-ne.png (COPYING)",
+    "wesnoth/wesnoth:data/core/images/terrain/interior/cave-rug/rug-corner-s-sw-nw-n.png (COPYING)"
+   ]
+  },
+  "ransom-charter": {
+   "images": 54,
+   "models": 0,
+   "repos": 8,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/sprites/ui/scroll-horizontal.9.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/ui/scroll-knob-horizontal-black.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/ui/scroll-knob-vertical-black.png (LICENSE)"
+   ]
+  },
+  "receipt": {
+   "images": 4,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "space-wizards/space-station-14:Resources/Textures/Objects/Misc/bureaucracy.rsi/paper_receipt.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Misc/bureaucracy.rsi/paper_receipt_horizontal.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Misc/bureaucracy.rsi/paper_receipt_horizontal_words.png (LICENSE.TXT)"
+   ]
+  },
+  "reed-bed": {
+   "images": 174,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "panda3d/panda3d:models/maps/envir-reeds.png (LICENSE)",
+    "wesnoth/wesnoth:data/campaigns/Eastern_Invasion/images/scenery/swamp-reeds1.png (COPYING)",
+    "wesnoth/wesnoth:data/campaigns/Eastern_Invasion/images/scenery/swamp-reeds2.png (COPYING)"
+   ]
+  },
+  "refugee-cart": {
+   "images": 62,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "Azgaar/Fantasy-Map-Generator:public/images/markers/wagon.svg (LICENSE)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Devices/cartridge.rsi/cart-a.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Devices/cartridge.rsi/cart-b.png (LICENSE.TXT)"
+   ]
+  },
+  "ring-table": {
+   "images": 248,
+   "models": 2,
+   "repos": 7,
+   "examples": [
+    "Elttob/Fusion:docs/tutorials/tables/forpairs/Optimisation-KeyValueChange-Dark.svg (LICENSE)",
+    "Elttob/Fusion:docs/tutorials/tables/forpairs/Optimisation-KeyValueChange-Light.svg (LICENSE)",
+    "Elttob/Fusion:docs/tutorials/tables/forpairs/Optimisation-KeyValuePreserve-Dark.svg (LICENSE)"
+   ]
+  },
+  "rope-coil": {
+   "images": 39,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "space-wizards/space-station-14:Resources/Textures/Objects/Consumable/Food/ingredients.rsi/cotton-dough-rope.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Consumable/Food/ingredients.rsi/dough-rope.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Weapons/Guns/Launchers/grappling_gun.rsi/rope.png (LICENSE.TXT)"
+   ]
+  },
+  "route-map": {
+   "images": 923,
+   "models": 0,
+   "repos": 17,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/icons/map.png (LICENSE)",
+    "Card-Forge/forge:forge-gui/res/adventure/Innistrad/maps/tileset/INN_tiles/dungen_crawler.png (LICENSE)",
+    "Card-Forge/forge:forge-gui/res/adventure/Innistrad/maps/tileset/INN_tiles/dungen_crawler.xcf (LICENSE)"
+   ]
+  },
+  "rov-card": {
+   "images": 27,
+   "models": 4,
+   "repos": 4,
+   "examples": [
+    "freeciv/freeciv:data/graphics/cimpletoon/submarine.blend (COPYING)",
+    "raysan5/raylib:examples/models/resources/models/gltf/robot.blend (LICENSE)",
+    "raysan5/raylib:examples/models/resources/models/gltf/robot.glb (LICENSE)"
+   ]
+  },
+  "rov-log": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "rov-tether": {
+   "images": 112,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "space-wizards/space-station-14:Resources/Textures/Interface/Radial/RCD/cable_terminal.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Tools/cable-coils.rsi/coil-10.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Tools/cable-coils.rsi/coil-20.png (LICENSE.TXT)"
+   ]
+  },
+  "salt-sack": {
+   "images": 28,
+   "models": 0,
+   "repos": 4,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/environment/salt-wall-large.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/environment/salt-wall1.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/blocks/environment/salt-wall2.png (LICENSE)"
+   ]
+  },
+  "sample-basket": {
+   "images": 2,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "widelands/widelands:data/tribes/wares/basket/idle.png (COPYING)",
+    "widelands/widelands:data/tribes/wares/basket/menu.png (COPYING)"
+   ]
+  },
+  "scales": {
+   "images": 34,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "Cockatrice/Cockatrice:cockatrice/resources/icons/scales.svg (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/gui/mutations/blue_scales_1.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/gui/mutations/blue_scales_2.png (LICENSE)"
+   ]
+  },
+  "screen": {
+   "images": 79,
+   "models": 0,
+   "repos": 8,
+   "examples": [
+    "CleverRaven/Cataclysm-DDA:data/mods/hunvre/json/loading_screens/hunvre_loading_screen.png (LICENSE-Apache-Robot-Font.txt)",
+    "CleverRaven/Cataclysm-DDA:data/mods/hunvre/json/loading_screens/hunvre_loading_screen_1.png (LICENSE-Apache-Robot-Font.txt)",
+    "CleverRaven/Cataclysm-DDA:data/mods/hunvre/json/loading_screens/hunvre_loading_screen_2.png (LICENSE-Apache-Robot-Font.txt)"
+   ]
+  },
+  "scroll-niche": {
+   "images": 54,
+   "models": 0,
+   "repos": 8,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/sprites/ui/scroll-horizontal.9.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/ui/scroll-knob-horizontal-black.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/ui/scroll-knob-vertical-black.png (LICENSE)"
+   ]
+  },
+  "sealed-case": {
+   "images": 27,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "defold/defold:engine/dlib/src/test/data/case2319.jpg (LICENSE.txt)",
+    "slint-ui/slint:api/slint-sc/tests/cases/expr/image_2x2.png (LICENSE.md)",
+    "slint-ui/slint:tests/screenshots/cases/image/border-image-rect.png (LICENSE.md)"
+   ]
+  },
+  "server-rack": {
+   "images": 15,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "freeciv/freeciv:data/freeciv-server.png (COPYING)",
+    "freeciv/freeciv:data/icons/128x128/freeciv-server.png (COPYING)",
+    "freeciv/freeciv:data/icons/16x16/freeciv-server.png (COPYING)"
+   ]
+  },
+  "shackles": {
+   "images": 2,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "Azgaar/Fantasy-Map-Generator:docs/updates/v1.124.0/screenshots/production-chains.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/gui/invocations/yred_fathomless_shackles.png (LICENSE)"
+   ]
+  },
+  "signal-fire": {
+   "images": 23,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "space-wizards/space-station-14:Resources/Textures/Objects/Devices/communication.rsi/beacon.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Devices/communication.rsi/beacon_dead.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Devices/singularity_beacon.rsi/inhand-left.png (LICENSE.TXT)"
+   ]
+  },
+  "silk-bale": {
+   "images": 13,
+   "models": 0,
+   "repos": 4,
+   "examples": [
+    "space-wizards/space-station-14:Resources/Textures/Objects/Materials/silk.rsi/silk-inhand-left.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Materials/silk.rsi/silk-inhand-right.png (LICENSE.TXT)",
+    "wesnoth/wesnoth:data/core/images/icons/dress_silk_green.png (COPYING)"
+   ]
+  },
+  "silver-ingot": {
+   "images": 33,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "space-wizards/space-station-14:Resources/Textures/Objects/Materials/ingots.rsi/adamantine-inhand-left.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Materials/ingots.rsi/adamantine-inhand-right.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Materials/ingots.rsi/adamantine.png (LICENSE.TXT)"
+   ]
+  },
+  "sinker-basket": {
+   "images": 2,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "widelands/widelands:data/tribes/wares/basket/idle.png (COPYING)",
+    "widelands/widelands:data/tribes/wares/basket/menu.png (COPYING)"
+   ]
+  },
+  "sluice": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "sonar": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "sounding-lead": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "spade": {
+   "images": 21,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "drwhut/tabletop-club:assets/TabletopClub/cards/Ace of Spades.png (LICENSE)",
+    "drwhut/tabletop-club:assets/TabletopClub/cards/Eight of Spades.png (LICENSE)",
+    "drwhut/tabletop-club:assets/TabletopClub/cards/Five of Spades.png (LICENSE)"
+   ]
+  },
+  "spice-sack": {
+   "images": 9,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/item/misc/misc_sack.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/item/misc/misc_sack_inert.png (LICENSE)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Consumable/Food/ingredients.rsi/spice.png (LICENSE.TXT)"
+   ]
+  },
+  "spindle": {
+   "images": 2,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "endless-sky/endless-sky:images/ship/arach spindle.png (copyright)",
+    "endless-sky/endless-sky:images/thumbnail/arach spindle.png (copyright)"
+   ]
+  },
+  "spring-flask": {
+   "images": 10,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/effect/meph_flask0.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/effect/meph_flask1.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/effect/meph_flask2.png (LICENSE)"
+   ]
+  },
+  "spruce-log": {
+   "images": 25,
+   "models": 0,
+   "repos": 7,
+   "examples": [
+    "00-Evan/shattered-pixel-dungeon:core/src/main/assets/sprites/ninja_log.png (LICENSE.txt)",
+    "Azgaar/Fantasy-Map-Generator:public/charges/log.svg (LICENSE)",
+    "endless-sky/endless-sky:images/ui/message log key@1x.png (copyright)"
+   ]
+  },
+  "stakes": {
+   "images": 5,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "space-wizards/space-station-14:Resources/Textures/Objects/Specific/Security/target.rsi/target_stake.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Structures/Decoration/bonfire_stake.rsi/bonfire.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Structures/Decoration/bonfire_stake.rsi/bonfire_extinguished.png (LICENSE.TXT)"
+   ]
+  },
+  "star-card": {
+   "images": 428,
+   "models": 0,
+   "repos": 14,
+   "examples": [
+    "Anuken/Mindustry:core/assets/cubemaps/stars/back.png (LICENSE)",
+    "Anuken/Mindustry:core/assets/cubemaps/stars/bottom.png (LICENSE)",
+    "Anuken/Mindustry:core/assets/cubemaps/stars/front.png (LICENSE)"
+   ]
+  },
+  "stone-pile": {
+   "images": 105,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/sprites/rubble/rubble-1-0.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/rubble/rubble-1-1.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/rubble/rubble-2-0.png (LICENSE)"
+   ]
+  },
+  "store-key": {
+   "images": 79,
+   "models": 0,
+   "repos": 9,
+   "examples": [
+    "Azgaar/Fantasy-Map-Generator:public/charges/key.svg (LICENSE)",
+    "Card-Forge/forge:forge-gui/res/adventure/common/skin/keys.png (LICENSE)",
+    "FyroxEngine/Fyrox:editor/resources/key.png (LICENSE.md)"
+   ]
+  },
+  "tally-stick": {
+   "images": 6,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/gui/spells/monster/sticks_to_snakes.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/player/hand1/flail_stick.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/player/hand1/flail_stick_slant.png (LICENSE)"
+   ]
+  },
+  "tamga": {
+   "images": 53,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/gui/spells/monster/seal_doors.png (LICENSE)",
+    "space-wizards/space-station-14:Resources/Textures/Interface/Paper/paper_heading_postage_stamp.svg.96dpi.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Interface/Paper/paper_stamp_border.svg (LICENSE.TXT)"
+   ]
+  },
+  "tent-parley": {
+   "images": 26,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "wesnoth/wesnoth:data/core/images/scenery/tent-fancy-red.png (COPYING)",
+    "wesnoth/wesnoth:data/core/images/scenery/tent-ruin-1.png (COPYING)",
+    "wesnoth/wesnoth:data/core/images/scenery/tent-shop-weapons.png (COPYING)"
+   ]
+  },
+  "thermometer": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "tongs": {
+   "images": 4,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "widelands/widelands:data/tribes/wares/fire_tongs/idle.png (COPYING)",
+    "widelands/widelands:data/tribes/wares/fire_tongs/menu.png (COPYING)",
+    "widelands/widelands:data/tribes/wares/milking_tongs/idle.png (COPYING)"
+   ]
+  },
+  "tonir": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "tools": {
+   "images": 832,
+   "models": 0,
+   "repos": 14,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/icons/hammer.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/icons/tools.png (LICENSE)",
+    "Card-Forge/forge:forge-gui/res/adventure/common/custom_card_pics/Farmer's Tools.fullborder.jpg (LICENSE)"
+   ]
+  },
+  "torch": {
+   "images": 46,
+   "models": 0,
+   "repos": 5,
+   "examples": [
+    "bevyengine/bevy:assets/lightmaps/torch_spotlight_texture.png (LICENSE-APACHE)",
+    "crawl/crawl:crawl-ref/source/rltiles/gui/invocations/yred_light_the_torch.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/player/hand2/misc/torch.png (LICENSE)"
+   ]
+  },
+  "touchstone": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "trade-contract": {
+   "images": 1,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "Card-Forge/forge:forge-gui/res/adventure/common/custom_card_pics/Demonic Contract.fullborder.jpg (LICENSE)"
+   ]
+  },
+  "treasury-chest": {
+   "images": 62,
+   "models": 4,
+   "repos": 3,
+   "examples": [
+    "defold/defold:editor/test/resources/build_project/SideScroller/model/treasure_chest.gltf (LICENSE.txt)",
+    "defold/defold:editor/test/resources/build_project/SideScroller/model/treasure_chest_anim_out.gltf (LICENSE.txt)",
+    "defold/defold:editor/test/resources/test_project/mesh/treasure_chest.gltf (LICENSE.txt)"
+   ]
+  },
+  "vine": {
+   "images": 96,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/dngn/floor/floor_vines0.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/dngn/floor/floor_vines1.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/dngn/floor/floor_vines2.png (LICENSE)"
+   ]
+  },
+  "water-gauge": {
+   "images": 1,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "slint-ui/slint:examples/safe-ui/app/assets/pressure-gauge.png (LICENSE.md)"
+   ]
+  },
+  "water-jug": {
+   "images": 32,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "space-wizards/space-station-14:Resources/Textures/Objects/Consumable/Drinks/generic_jug.rsi/inhand-left.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Consumable/Drinks/generic_jug.rsi/inhand-right.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Consumable/Drinks/pitcher.rsi/fill-1.png (LICENSE.TXT)"
+   ]
+  },
+  "water-sampler": {
+   "images": 167,
+   "models": 0,
+   "repos": 2,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/UNUSED/gui/bottle_blood.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/UNUSED/worn/misc/bottle.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/item/misc/misc_bottle.png (LICENSE)"
+   ]
+  },
+  "water-skin": {
+   "images": 10,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "crawl/crawl:crawl-ref/source/rltiles/effect/meph_flask0.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/effect/meph_flask1.png (LICENSE)",
+    "crawl/crawl:crawl-ref/source/rltiles/effect/meph_flask2.png (LICENSE)"
+   ]
+  },
+  "wax-bar": {
+   "images": 0,
+   "models": 0,
+   "repos": 0,
+   "examples": []
+  },
+  "wax-tablet": {
+   "images": 11,
+   "models": 0,
+   "repos": 3,
+   "examples": [
+    "slint-ui/slint:ui-libraries/material/docs/src/assets/images/material-tablet.webp (LICENSE.md)",
+    "slint-ui/slint:ui-libraries/material/examples/gallery/frame-tablet.webp (LICENSE.md)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Devices/tablets.rsi/generic.png (LICENSE.TXT)"
+   ]
+  },
+  "weights": {
+   "images": 0,
+   "models": 3,
+   "repos": 1,
+   "examples": [
+    "defold/defold:editor/test/resources/test_project/mesh/morph_weights_anim.gltf (LICENSE.txt)",
+    "defold/defold:engine/gamesys/src/gamesys/test/model/morph_weights_anim.gltf (LICENSE.txt)",
+    "defold/defold:engine/modelc/src/test/assets/morph_weights_anim.gltf (LICENSE.txt)"
+   ]
+  },
+  "well-bucket": {
+   "images": 19,
+   "models": 0,
+   "repos": 4,
+   "examples": [
+    "Azgaar/Fantasy-Map-Generator:public/charges/bucket.svg (LICENSE)",
+    "godotengine/godot:editor/icons/Bucket.svg (COPYRIGHT.txt)",
+    "space-wizards/space-station-14:Resources/Textures/Objects/Fun/candy_bucket.rsi/empty-inhand-left.png (LICENSE.TXT)"
+   ]
+  },
+  "world-map": {
+   "images": 923,
+   "models": 0,
+   "repos": 17,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/icons/map.png (LICENSE)",
+    "Card-Forge/forge:forge-gui/res/adventure/Innistrad/maps/tileset/INN_tiles/dungen_crawler.png (LICENSE)",
+    "Card-Forge/forge:forge-gui/res/adventure/Innistrad/maps/tileset/INN_tiles/dungen_crawler.xcf (LICENSE)"
+   ]
+  },
+  "yard-fire": {
+   "images": 8,
+   "models": 0,
+   "repos": 1,
+   "examples": [
+    "space-wizards/space-station-14:Resources/Textures/Structures/Decoration/bonfire.rsi/bonfire.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Structures/Decoration/bonfire.rsi/bonfire_extinguished.png (LICENSE.TXT)",
+    "space-wizards/space-station-14:Resources/Textures/Structures/Decoration/bonfire.rsi/burning.png (LICENSE.TXT)"
+   ]
+  },
+  "yarlyk": {
+   "images": 54,
+   "models": 0,
+   "repos": 8,
+   "examples": [
+    "Anuken/Mindustry:core/assets-raw/sprites/ui/scroll-horizontal.9.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/ui/scroll-knob-horizontal-black.png (LICENSE)",
+    "Anuken/Mindustry:core/assets-raw/sprites/ui/scroll-knob-vertical-black.png (LICENSE)"
+   ]
+  }
+ }
+}
