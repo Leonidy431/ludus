@@ -4322,5 +4322,87 @@
   "score": 1,
   "attribution": [],
   "slot": "DEF-025"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/armor/PlateArmor.java",
+  "kind": "code",
+  "hits": [
+   "tear"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Cnc/Projectiles/DropPodImpact.cs",
+  "kind": "code",
+  "hits": [
+   "drop"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Effects/ContrailFader.cs",
+  "kind": "code",
+  "hits": [
+   "fade"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/ParadropProperties.cs",
+  "kind": "code",
+  "hits": [
+   "drop"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/ProductionAirdrop.cs",
+  "kind": "code",
+  "hits": [
+   "drop"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/bevyengine/bevy",
+  "commit": "157e1ce6bc66fadca9f57260c18a16d743c11ed5",
+  "license_file": "LICENSE-APACHE",
+  "path": "crates/bevy_post_process/src/effect_stack/vignette.rs",
+  "kind": "code",
+  "hits": [
+   "vignette"
+  ],
+  "score": 1,
+  "attribution": [
+   "CREDITS.md"
+  ],
+  "slot": "DEF-028"
  }
 ]
