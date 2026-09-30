@@ -265,6 +265,10 @@ func _views() -> Array:
 			for i in [0, 3, 6]:
 				out.append({"name": "bay-%d" % i,
 					"pos": Vector3(8.0 + 15.0 * i, 0, 0)})
+			# The far end looking back: the whole path is in sight, and
+			# before batching it drew more than the entrance (131 vs 129).
+			out.append({"name": "end-back", "pos": Vector3(104, 0, 0),
+				"yaw": PI / 2.0})
 			return out
 	return []
 
@@ -277,7 +281,7 @@ func _apply(v: Dictionary) -> void:
 			node.yaw = v.yaw
 		"witness":
 			node.pos = v.pos
-			node.yaw = -PI / 2.0
+			node.yaw = v.get("yaw", -PI / 2.0)
 		"dive":
 			var rov: Dictionary = node.rov
 			if v.has("trace"):

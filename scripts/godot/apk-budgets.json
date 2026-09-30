@@ -95,9 +95,9 @@
           "blocker": "Б-1"
         },
         "witness": {
-          "limit": 129,
-          "why": "measured 129 (start), llvmpipe 1280x720; ratchet: may only go down",
-          "approval": "pending: the operator decides on Quest 2 and on the strict limit",
+          "limit": 85,
+          "why": "measured 85 (end-back: the far end looking back, the whole path in sight; start 83), llvmpipe 1280x720, after the static batching of the kits (godot/scripts/witness_batch.gd); was 131 at end-back and 129 at start. Below the base 100, kept as a ratchet so the saving is not spent unnoticed; may only go down",
+          "approval": "pending: the operator decides whether the witness keeps this ratchet or returns to the base 100",
           "blocker": "Б-1"
         }
       }
