@@ -127,13 +127,29 @@ test('BREATH equals hesychasm-meditation-module breathing_patterns.py',
     }
   });
 
-test('readability in five biomes matches the measured list', () => {
-  const things = objects.map((o) => [`lake:${o.id}`, o.colour])
-    .concat(atlas.traces.map((tr) => [`atlas:${tr.id}`, tr.colour]))
-    // The passage of the chronicle (godot/scripts/atlas_traces.gd).
-    .concat([['atlas:passage', '#6f6a60']]);
-  for (const [key, hex] of things) {
-    const low = D.BIOMES.filter((b) => D.biomeContrast(hex, b) < 1.5);
-    assert.deepEqual(low, known.failures[key] || [], key);
-  }
-});
+test('readability in five biomes: things read by lamp or rim, not paint',
+  () => {
+    // Operator, 2026-09-30: a thing is read by the lamp's highlight when
+    // there is a lamp, else by the rim light, never by repainting it
+    // (godot/scripts/rim_light.gd).  Paint contrast below 1.5 is still
+    // measured here, but it is no longer a failure: the headset fixture
+    // must show nothing unread under the lamp, and under the rim only
+    // the holy things, which by rule get no band.
+    const things = objects.map((o) => [`lake:${o.id}`, o.colour])
+      .concat(atlas.traces.map((tr) => [`atlas:${tr.id}`, tr.colour]))
+      .concat([['atlas:passage', '#6f6a60']]);
+    let paintLow = 0;
+    for (const [, hex] of things) {
+      const low = D.BIOMES.filter((b) => D.biomeContrast(hex, b) < 1.5);
+      for (const b of low) assert.ok(D.BIOMES.includes(b));
+      paintLow += low.length;
+    }
+    assert.ok(paintLow > 0, 'paint alone leaves some pairs unread');
+    assert.deepEqual(known.lamp, {});
+    const holy = new Set(['atlas:khachkar'].concat(objects
+      .filter((o) => o.item === 'bulla' || (o.flags && (o.flags.holy
+        || o.flags.noInteract))).map((o) => `lake:${o.id}`)));
+    for (const key of Object.keys(known.rim)) {
+      assert.ok(holy.has(key), `${key} unread under the rim is holy`);
+    }
+  });
