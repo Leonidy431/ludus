@@ -63,6 +63,8 @@ jobs:
           node scripts/godot/make_trial_fixture.js
           node scripts/godot/make_passion_fixture.js
           node scripts/godot/export_antagonist_manifest.js
+          node scripts/godot/make_mission_fixture.js
+          git diff --exit-code godot/tests/fixtures/missions.json
           git diff --exit-code godot/tests/fixture.json \
             godot/tests/hub_fixture.json godot/tests/trial_fixture.json \
             godot/tests/passion_fixture.json \
@@ -80,6 +82,9 @@ jobs:
           # Thresholds and passions read the same data as the web game.
           cmp public/ludus/data/gate-trials.json godot/data/gate-trials.json
           cmp public/ludus/data/passions.json godot/data/passions.json
+          # The campaign of missions reads the same spine as the web game.
+          cmp public/ludus/data/campaign-spine.json \
+              godot/data/campaign-spine.json
           # The Water Atlas: one list of nodes, its copies current and
           # every node with its Constitution line (TABOO 0.03).
           python3 scripts/story/render.py --check
@@ -136,6 +141,7 @@ jobs:
               data/lake-objects-99.json data/gate-trials.json \
               data/passions.json data/antagonist-manifest.json \
               data/atlas-99.json \
+              data/campaign-spine.json \
               scenes/hub.tscn.remap \
               scenes/dive.tscn.remap scenes/witness.tscn.remap; do
             strings "$PCK" | grep -qF "$f" || { echo "missing: $f"; missing=1; }
