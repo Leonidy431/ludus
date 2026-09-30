@@ -31,12 +31,13 @@ const INSTRUMENT_K := Color(0.95, 0.97, 1.0)  # About 6500 K.
 ## The cell of the evening watch behind its partition (RuleCell): its
 ## still geometry is batched apart from the yard's.
 const CELL_ZONE := AABB(Vector3(-7.0, -0.1, -8.5), Vector3(3.8, 3.2, 3.0))
-## Occluders [size, centre], each 5 cm inside its wall: the cell's
-## partition (RuleCell) and the courtyard's west and north walls.
+## Occluders [size, centre], 5 cm inside the wall they stand for.  Only
+## the cell's partition (RuleCell): it hides the workshop and the yard
+## from the cell.  Nothing stands behind the yard's west or north wall,
+## so occluders there would cost the CPU buffer every frame and hide
+## nothing (the counts were the same with and without them).
 const OCCLUDERS := [
 	[Vector3(0.1, 2.3, 3.1), Vector3(-3.3, 1.15, -7.1)],
-	[Vector3(0.3, 3.1, 15.9), Vector3(-7.2, 1.55, -0.5)],
-	[Vector3(15.9, 3.1, 0.3), Vector3(1.0, 1.55, -8.7)],
 ]
 
 var trees: Dictionary = {}

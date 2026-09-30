@@ -83,8 +83,8 @@
       "why": "the project's own choice, stricter than Meta's load-dependent ranges: Meta recommends < 100 for Quest 2 and < 200 for Quest 3 (device-optimization-comparison), and export_presets.cfg has quest_2_support=true. Counted over the whole frame: the main view (one call covers both eyes under multiview) and every SubViewport, 3D and canvas. Known breaches are exceptions until blocker Б-1 is lifted; a new call above them turns CI red",
       "exceptions": {
         "hub": {
-          "limit": 72,
-          "why": "measured 72 (courtyard, 71 main 3D + 1 canvas; three runs), llvmpipe 1280x720, after the still geometry was merged (godot/scripts/static_batch.gd) and the cell's partition became an occluder; was 438. Now under the base 100, so Б-1 no longer holds for the hub: kept as a ratchet at the measured value (may only go down) until the lead drops it",
+          "limit": 99,
+          "why": "measured 99 (yard-se-ne: the worst reachable view of a 5x5 grid over the yard x 8 headings, main 3D only; first measurement of this view, not a raise), llvmpipe 1280x720, camera 75 deg, after the still geometry was merged (godot/scripts/static_batch.gd) and the cell's partition became an occluder; the same view was 558 before. The fixed views give at most 72 (courtyard). At the limit, not with headroom: at a 96 deg vertical field the worst view is about 101, so Б-1 stays open for the hub until a headset frame (Б-7). Ratchet: may only go down",
           "approval": "pending: the operator decides on Quest 2 and on the strict limit",
           "blocker": "Б-1"
         },
