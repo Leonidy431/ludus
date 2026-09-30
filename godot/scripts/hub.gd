@@ -1160,8 +1160,8 @@ func _say(text: String) -> void:
 
 
 ## The panel of a mission, like the threshold's: the step, its source
-## (in its Russian form, SourceLabels) and the choices; a closed choice says why, a lure shows its sign once
-## the player has learnt it.
+## (in its Russian form, SourceLabels) and the choices; a closed choice
+## says why, a lure shows its sign once the player has learnt it.
 func _mission_panel_text() -> String:
 	var choices := _mission_choices()
 	var lines := []

@@ -140,7 +140,7 @@
       "ru": "Мф. 13:33"
     },
     "St John of Damascus, Treatises on the Divine Images": {
-      "ru": "прп. Иоанн Дамаскин, Слова в защиту святых икон"
+      "ru": "прп. Иоанн Дамаскин, «Три защитительных слова против порицающих святые иконы»"
     },
     "Colossians 3:16; Synaxarion, 7 September (commemoration of St Kassia)": {
       "ru": "Кол. 3:16; Синаксарь, 7 сентября (память прп. Кассии)"
@@ -171,13 +171,15 @@
       "why": "Russian editions: «Ерминия, или Наставление в живописном искусстве» (1868); confirm the short form."
     },
     "Sirach 38:27-34; Stoglav Council (1551), ch. 43 (on iconographers)": {
-      "ru": "Сир. 38:27–34; Стоглавый собор (1551), гл. 43 (об иконописцах)"
+      "ru": "Сир. 38:27–34; Стоглавый собор (1551), гл. 43 (об иконописцах)",
+      "check": true,
+      "why": "The verses follow the English numbering the source cites; the Synodal Sirach 38 is offset by about one verse (English 38:24 is Synodal 38:25), so the passage on craftsmen is likely Сир. 38:28–39 there. Confirm the Synodal range before release."
     },
     "St Basil the Great, On the Holy Spirit 18.45; Seventh Ecumenical Council (Nicaea II, 787), Definition (Horos); St John of Damascus, Treatises on the Divine Images": {
-      "ru": "свт. Василий Великий, «О Святом Духе», 18.45; VII Вселенский собор (II Никейский, 787), орос; прп. Иоанн Дамаскин, Слова в защиту святых икон"
+      "ru": "свт. Василий Великий, «О Святом Духе», 18.45; VII Вселенский собор (II Никейский, 787), орос; прп. Иоанн Дамаскин, «Три защитительных слова против порицающих святые иконы»"
     },
     "St John of Damascus, Treatises on the Divine Images; Deuteronomy 18:10-12": {
-      "ru": "прп. Иоанн Дамаскин, Слова в защиту святых икон; Втор. 18:10–12"
+      "ru": "прп. Иоанн Дамаскин, «Три защитительных слова против порицающих святые иконы»; Втор. 18:10–12"
     },
     "St John Climacus, The Ladder of Divine Ascent, Step 22 (on vainglory); Matthew 6:1": {
       "ru": "прп. Иоанн Лествичник, Лествица, слово 22 (о тщеславии); Мф. 6:1"
@@ -203,19 +205,19 @@
       "ru": "Достопамятные сказания (Азбучный патерик), авва Моисей (набег варваров на Скит); Мф. 26:52; Синаксарь, 28 августа"
     },
     "Psalm 45:11 (LXX; 46:10 in Hebrew numbering); Apophthegmata Patrum, systematic collection, book On stillness (hesychia): the saying of the three friends and the basin of water.": {
-      "ru": "Пс. 45:11 (по LXX; 46:10 по еврейскому счёту); Систематический патерик, глава «О безмолвии» (исихия): сказание о трёх друзьях и сосуде с водой.",
+      "ru": "Пс. 45:11 (по LXX; 46:10 по еврейскому счёту); Древний патерик (систематическое собрание), глава «О безмолвии» (исихия): сказание о трёх друзьях и сосуде с водой.",
       "check": true,
-      "why": "Chapter title of the Russian systematic patericon and the wording of the saying need confirming."
+      "why": "Chapter title of the Russian Древний патерик (the systematic collection; the chapter on stillness is its second) and the wording of the saying need confirming."
     },
     "Apophthegmata Patrum, systematic collection, book On stillness (hesychia): the saying of the three friends and the basin of water; Matthew 6:6.": {
-      "ru": "Систематический патерик, глава «О безмолвии» (исихия): сказание о трёх друзьях и сосуде с водой; Мф. 6:6.",
+      "ru": "Древний патерик (систематическое собрание), глава «О безмолвии» (исихия): сказание о трёх друзьях и сосуде с водой; Мф. 6:6.",
       "check": true,
-      "why": "Chapter title of the Russian systematic patericon and the wording of the saying need confirming."
+      "why": "Chapter title of the Russian Древний патерик (the systematic collection; the chapter on stillness is its second) and the wording of the saying need confirming."
     },
     "Proverbs 4:23; Hesychius of Sinai, On Watchfulness and Holiness (Philokalia, vol. 1).": {
-      "ru": "Притч. 4:23; Исихий Синаит, «О трезвении и добродетели» (Добротолюбие, т. 1).",
+      "ru": "Притч. 4:23; Исихий Синаит, «О трезвении и добродетели» (Добротолюбие; в англ. изд. т. 1).",
       "check": true,
-      "why": "The volume number follows the English Philokalia the source cites; the Russian Dobrotolyubie of St Theophan seems to hold Hesychius in volume 2 (to confirm), and his Russian title and the name \"Исихий Синаит\" (or \"Иерусалимский\") need confirming."
+      "why": "The volume is marked as the English Philokalia's, which the source cites; the Russian Dobrotolyubie of St Theophan seems to hold him in volume 2 as «прп. Исихий Иерусалимский», «Душеполезное слово о трезвении и добродетели». Confirm the Russian volume, name and title, then cite the Russian edition."
     },
     "Luke 18:38; Luke 18:13; John Climacus, The Ladder of Divine Ascent, Step 27 (on stillness: the remembrance of Jesus joined to the breath).": {
       "ru": "Лк. 18:38; Лк. 18:13; прп. Иоанн Лествичник, Лествица, слово 27 (о безмолвии: память Иисусова да соединится с дыханием)."
@@ -239,7 +241,7 @@
       "ru": "свт. Василий Великий, «К юношам о том, как пользоваться языческими сочинениями» (образ пчелы); свт. Фотий, «Библиотека» (разборы светских сочинений)"
     },
     "Acts 2:6-8; Life of Constantine-Cyril (Vita Constantini); St Photius, Letter to Boris-Michael of Bulgaria": {
-      "ru": "Деян. 2:6–8; Житие Константина-Кирилла (Vita Constantini); свт. Фотий, Послание к Борису-Михаилу, князю болгарскому",
+      "ru": "Деян. 2:6–8; Пространное житие Константина-Кирилла; свт. Фотий, Послание к Борису-Михаилу, князю болгарскому",
       "check": true,
       "why": "Russian editions title it «Послание к Михаилу, князю Болгарии»; confirm the wording."
     },
@@ -252,9 +254,9 @@
       "why": "The dating note of the recension needs confirming."
     },
     "John 15:26; Council of Ephesus (431), canon 7; St Photius, Mystagogy of the Holy Spirit; St Photius, Encyclical Letter to the Eastern Patriarchs (867)": {
-      "ru": "Ин. 15:26; Ефесский собор (431), правило 7; свт. Фотий, «Тайноводство о Святом Духе»; свт. Фотий, Окружное послание к восточным патриархам (867)",
+      "ru": "Ин. 15:26; Ефесский собор (431), правило 7; свт. Фотий, «Тайноводство о Святом Духе»; свт. Фотий, «Окружное послание к восточным архиерейским престолам» (867)",
       "check": true,
-      "why": "Russian editions also title it «О тайноводстве Святого Духа»; confirm which title to use."
+      "why": "Russian editions also title it «О тайноводстве Святого Духа»; confirm which title to use. The Encyclical is given by its established Russian title «Окружное послание к восточным архиерейским престолам»; confirm it too."
     },
     "St John Climacus, The Ladder, Step 22 (On vainglory); Matthew 6:1": {
       "ru": "прп. Иоанн Лествичник, Лествица, слово 22 (о тщеславии); Мф. 6:1"
@@ -275,7 +277,7 @@
       "ru": "Притч. 20:17"
     },
     "1 Jn 1:9; Jas 5:16; Jn 20:22-23; Extended Catechism of St Philaret, on the Mystery of Penance; Ladder, step 4": {
-      "ru": "1 Ин. 1:9; Иак. 5:16; Ин. 20:22–23; Пространный катехизис свт. Филарета, о таинстве покаяния; Лествица, слово 4"
+      "ru": "1 Ин. 1:9; Иак. 5:16; Ин. 20:22–23; Пространный христианский катехизис свт. Филарета, о таинстве покаяния; Лествица, слово 4"
     },
     "Ladder, steps 16-17; 1 Tim 6:6-10": {
       "ru": "Лествица, слова 16–17; 1 Тим. 6:6–10"
@@ -341,7 +343,7 @@
       "ru": "свт. Григорий Нисский, «О душе и воскресении» (начало); 1 Фес. 4:13; 2 Кор. 7:10; Евагрий, «Практик» (о печали); прп. Иоанн Кассиан, «О постановлениях киновитян», кн. IX; прп. Иоанн Лествичник, Лествица, слово 7 (о радостотворном плаче)"
     },
     "Gregory of Nyssa, On the Soul and Resurrection; Longer Catechism of St Philaret (on article 11 of the Creed)": {
-      "ru": "свт. Григорий Нисский, «О душе и воскресении»; Пространный катехизис свт. Филарета (об 11-м члене Символа веры)"
+      "ru": "свт. Григорий Нисский, «О душе и воскресении»; Пространный христианский катехизис свт. Филарета (об 11-м члене Символа веры)"
     },
     "Gregory of Nyssa, Life of Macrina (Basil's return from the schools); 1 Cor 8:1": {
       "ru": "свт. Григорий Нисский, «Жизнь святой Макрины» (возвращение Василия из училищ); 1 Кор. 8:1"
@@ -353,7 +355,7 @@
       "ru": "Достопамятные сказания (Азбучный патерик), авва Антоний Великий, 1"
     },
     "The Ladder of Divine Ascent, step 27 (on stillness); Psalm 46:10 (45:11 LXX)": {
-      "ru": "Лествица, слово 27 (о безмолвии); Пс. 46:10 (45:11 по LXX)"
+      "ru": "Лествица, слово 27 (о безмолвии); Пс. 45:11 (по LXX; 46:10 по еврейскому счёту)"
     },
     "Ephesians 2:8-10; Extended Christian Catechism of St Philaret": {
       "ru": "Еф. 2:8–10; Пространный христианский катехизис свт. Филарета"
@@ -449,9 +451,9 @@
       "ru": "Лествица, слово 27; Пс. 45:11 (по LXX; 46:10 по еврейскому счёту)"
     },
     "Apophthegmata Patrum, systematic collection, book On stillness (hesychia)": {
-      "ru": "Систематический патерик, глава «О безмолвии» (исихия)",
+      "ru": "Древний патерик (систематическое собрание), глава «О безмолвии» (исихия)",
       "check": true,
-      "why": "Chapter title of the Russian systematic patericon and the wording of the saying need confirming."
+      "why": "Chapter title of the Russian Древний патерик (the systematic collection; the chapter on stillness is its second) and the wording of the saying need confirming."
     },
     "Ladder, step 27": {
       "ru": "Лествица, слово 27"

@@ -111,6 +111,11 @@ test('labels are Russian and uncertain ones say what to check', () => {
     assert.ok(e.ru.length > 0, src);
     assert.ok(/[а-яё]/i.test(e.ru), `not Russian: ${e.ru}`);
     assert.equal(english.test(e.ru), false, `English left in: ${e.ru}`);
+    // No Latin word of three letters or more either: only the siglum
+    // LXX and Roman numerals of books and councils are kept.
+    const latin = (e.ru.match(/[A-Za-z]{3,}/g) || [])
+      .filter((w) => w !== 'LXX' && !/^[IVXLC]+$/.test(w));
+    assert.deepEqual(latin, [], `Latin left in: ${e.ru}`);
     if (e.check) {
       assert.ok(typeof e.why === 'string' && e.why.length > 20,
         `check without why: ${src}`);
@@ -156,6 +161,13 @@ test('the web panels show sources through the formatter', () => {
     'utf8');
   assert.ok(page.indexOf('ludus-source-labels.js')
     < page.indexOf('ludus-missions.js"'), 'labels load before missions');
+  // The road panel of the passions shows its sources the same way, as
+  // the headset does (SourceLabels.ru in hub.gd).
+  const game = fs.readFileSync(path.join(ROOT,
+    'public/ludus/ludus-game.js'), 'utf8');
+  assert.ok(game.includes('sourceRu(passion.source)')
+    && game.includes('sourceRu(passion.ladder)'),
+    'the road panel formats the passion sources');
   // The canonical data keeps its English sources (it mirrors the
   // webtypicon2 game source): the labels live only in the display table.
   assert.equal(M.ACT_PLAN.prologue.source, 'Ladder, step 3');
