@@ -20,6 +20,9 @@ on:
       threshold:
         description: 'minimum alpha shape change of every variant'
         default: '0.35'
+      props_slot:
+        description: 'deficit id (DEF-nnn) the non-game images are taken for (TABOO 0.012); empty = only listed'
+        default: ''
 
   # The gate also runs on every change that could ship derived art or
   # alter the pipeline; the heavy intake steps stay manual (see below).
@@ -115,9 +118,16 @@ jobs:
           ONLY: ${{ inputs.only }}
           MAX_REPOS: ${{ inputs.max_repos }}
           PER_REPO: ${{ inputs.per_repo }}
+          PROPS_SLOT: ${{ inputs.props_slot }}
+        # Non-game images go to the props store (TABOO 0.012) when a slot
+        # is named; the bytes stay in the runner's temp folder and are
+        # never uploaded (that would be distribution), only the register
+        # lines are.
         run: |
           python scripts/raw_assets/intake.py --out build/raw \
             --max-repos "$MAX_REPOS" --per-repo "$PER_REPO" \
+            --props-cache "$RUNNER_TEMP/raw-props" \
+            ${PROPS_SLOT:+--props-slot $PROPS_SLOT} \
             ${ONLY:+--only $ONLY}
 
       - name: Transform and measure
@@ -143,4 +153,6 @@ jobs:
             build/derived
             build/THIRD_PARTY_NOTICES.md
             build/raw/manifest.json
+            build/raw/props-pending.json
+            docs/RAW_PROPS_REGISTER.jsonl
           retention-days: 14

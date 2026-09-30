@@ -24,7 +24,7 @@ Props (CLAUDE.md TABOO 0.012, operator 2026-09-30: "бери все даже н�
 игровое нам в реквизит"): a hit refused only because it is not a game
 object (examples, docs, tests, screenshots, editors, promo) is no longer
 dropped.  Its bytes go to a props cache outside the repo and a line to
-the append-only register docs/RAW_PROPS_REGISTER.json (props.py).
+the append-only register docs/RAW_PROPS_REGISTER.jsonl (props.py).
 Holy things, the stop-list, fonts and unlicensed repos stay refused.
 Nothing reaches derived/, godot/ or the APK from the shelf by itself;
 --props-to-slot prepares one prop through the pipeline for review.
@@ -44,6 +44,7 @@ import subprocess
 import sys
 from pathlib import Path
 
+import licences
 import props
 from intake import is_game_object
 from search_index import search
@@ -85,6 +86,62 @@ SACRED = re.compile(
     r'bible|gospel|chalice|censer|bell|vestment|monk|nun|saint|angel|'
     r'christ|madonna|holy',
     re.IGNORECASE)
+
+# The two lists above match substrings of the raw path, and they missed
+# much (review of 2026-09-30): Theotokos, the censer as "thurible", the
+# bilo as "semantron", vestments by name, the Eucharist, prayer, the
+# cleric and his "Bless.java" buff (on the shelf by then), every
+# Cyrillic and foreign spelling, astrology and other-faith cult objects.
+# These additions match whole words of the path, CamelCase split
+# (path_words), so "spray", "summary", "patent", "diving" and "godot"
+# stay free.  Chorus line: docs/HLD_PROPS_STORE_2026-09-30.md.
+DOGMA_WORDS = re.compile(
+    r'(?<![a-z])(pentacles?|tarot\w*|horoscop\w*|astrolog\w*|ouija|'
+    r'baphomet|lucifer\w*|voodoo\w*|vodou|grimoires?|necronomicon|'
+    r'pagan\w*|mosques?|minarets?|buddhas?|pagodas?|torii|'
+    r'synagogues?|mandalas?|divination\w*|witchcraft)(?![a-z])')
+DOGMA_NATIVE = re.compile(
+    r'пентаграм|пентакл|зодиак|оккульт|идол|сатан|гороскоп|астролог|'
+    r'таро(?![а-я])|руны|мечеть|будд', re.IGNORECASE)
+SACRED_WORDS = re.compile(
+    r'(?<![a-z])(jesus|messiah|theotok\w*|virgin\w*|cathedral\w*|'
+    r'chapels?|monaster\w*|abbey\w*|abbots?|basilica\w*|clerics?|'
+    r'clergy|bishops?|popes?|papal|mitres?|cassocks?|thuribles?|'
+    r'incense\w*|semantron\w*|patens?|diskos|prosphora|eucharist\w*|'
+    r'communion|baptis\w*|pray\w*|rosar(y|ies)|relics?|reliquar\w*|'
+    r'bless\w*|templars?|crusade\w*|divine\w*|divinity|deity|deities|'
+    r'gods|god(?!_?rays?)|goddess\w*|apostles?|psalm\w*|psalter\w*|'
+    r'hymn\w*|liturg\w*|sacrament\w*|sacred|sanctuar\w*|sanctif\w*|'
+    r'consecrat\w*|paladin\w*|inquisit\w*|exorcis\w*|miracle\w*|'
+    r'worship\w*|pantheon|kreuz\w*|kirche\w*|kloster\w*|heilig\w*|'
+    r'iglesia\w*|cruz|chiesa|eglise|croix)(?![a-z])')
+SACRED_NATIVE = re.compile(
+    r'крест|икон|церк|храм|свят|колокол|кадил|потир|евангел|молитв|'
+    r'монах|монаст|ангел|христ|богородиц|господ|литург|причаст|алтар|'
+    r'ладан|облачен|епископ|священ', re.IGNORECASE)
+
+
+def path_words(text):
+    """A path in lowercase with CamelCase split into words.
+
+    "BlessedAnkh.java" reads "blessed_ankh.java", so whole-word
+    patterns see "blessed" as a word of its own.
+    """
+    return re.sub(r'([a-z0-9])([A-Z])', r'\1_\2', str(text)).lower()
+
+
+def is_stop_listed(text):
+    """Rule 5: the dogmatic stop-list, substrings and whole words."""
+    return bool(DOGMA_STOP.search(text)
+                or DOGMA_WORDS.search(path_words(text))
+                or DOGMA_NATIVE.search(text))
+
+
+def is_sacred(text):
+    """Rule 6: holy things, substrings and whole words."""
+    return bool(SACRED.search(text) or SACRED_WORDS.search(path_words(text))
+                or SACRED_NATIVE.search(text))
+
 
 ROW = re.compile(r'^\| (DEF-\d{3}) \| (P\d) \| ([^|]+) \| ([^|]+) \| '
                  r'([^|]+) \| ([^|]+) \|.*\| ([^|]*) \| [^|]* \|$')
@@ -200,9 +257,9 @@ def reasons(path):
     exclusion under their own name.
     """
     found = []
-    if DOGMA_STOP.search(path):
+    if is_stop_listed(path):
         found.append('dogma-stop-list')
-    if SACRED.search(path):
+    if is_sacred(path):
         found.append('sacred-never-raw')
     if props.is_font(path):
         found.append('font')
@@ -219,10 +276,22 @@ def allowed(path):
     return found[0] if found else None
 
 
+# Reasons that only keep a thing out of the pipeline, not off the
+# shelf: a one-pixel selection outline is useless as a sprite but is
+# still a thing of the repo (TABOO 0.012 p. 2 bars only holy things,
+# the stop-list and unlicensed repos; fonts stay barred by TABOO 0.1).
+PIPELINE_ONLY = ('outline-helper',)
+
+
+def prop_reasons(found):
+    """The refusals that count for the shelf."""
+    return [r for r in found if r not in PIPELINE_ONLY]
+
+
 def is_prop(path):
     """True when the only thing wrong with a path is that it is not a
     game object: such a thing goes to the props store (TABOO 0.012)."""
-    return reasons(path) == ['not-a-game-object']
+    return prop_reasons(reasons(path)) == ['not-a-game-object']
 
 
 def sort_hits(hits, neutral):
@@ -236,7 +305,7 @@ def sort_hits(hits, neutral):
         found = reasons(hit['path'])
         if not hit.get('license_file'):
             found.insert(0, 'no-licence')
-        if found == ['not-a-game-object']:
+        if prop_reasons(found) == ['not-a-game-object']:
             shelf.append(hit)
             continue
         reason = found[0] if found else None
@@ -264,22 +333,12 @@ def fetch(index_root, hit, dest_root):
 
 
 def licence_of(index_root, hit):
-    """Read the SPDX guess from the index header of the hit's repo."""
-    repo = hit['repo'].split('github.com/')[-1].replace('/', '__')
-    header = json.loads((Path(index_root) / 'index' / f'{repo}.jsonl')
-                        .read_text(encoding='utf-8').splitlines()[0])
-    head = header['header']['license_head'].upper()
-    for spdx, mark in (('AGPL-3.0', 'AFFERO'), ('LGPL', 'LESSER GENERAL'),
-                       ('GPL', 'GNU GENERAL PUBLIC'),
-                       ('MIT', 'PERMISSION IS HEREBY GRANTED'),
-                       ('Apache-2.0', 'APACHE LICENSE'),
-                       ('MPL-2.0', 'MOZILLA PUBLIC'),
-                       ('CC-BY-SA', 'ATTRIBUTION-SHAREALIKE'),
-                       ('CC0-1.0', 'CC0'), ('BSD', 'REDISTRIBUTION AND USE'),
-                       ('Zlib', 'ALTERED SOURCE')):
-        if mark in head:
-            return spdx
-    return 'UNKNOWN'
+    """The licence of the hit's own file (licences.py).
+
+    One label per repo from the licence head used to call rotp-public's
+    CC BY-NC-ND art "GPL"; the label is now per file.
+    """
+    return licences.licence_for(index_root, hit)
 
 
 def ladder_words(def_id):
@@ -301,7 +360,7 @@ def neighbour_words(hits, known):
     for hit in hits:
         for word in re.split(r'[^a-z]+', hit['path'].lower()):
             if (len(word) < 3 or word in PLAIN_WORDS or word in known
-                    or DOGMA_STOP.search(word) or SACRED.search(word)
+                    or is_stop_listed(word) or is_sacred(word)
                     or HOSTILE.search(word) or word.isdigit()):
                 continue
             counts[word] = counts.get(word, 0) + 1
@@ -377,6 +436,9 @@ def main():
 
     now = datetime.datetime.now(datetime.timezone.utc)
     stamp = now.isoformat()
+    # pass_id names the run, so it differs between two runs over the
+    # same index; everything else a pass writes follows from the index,
+    # the cursor and the register.
     pass_id = 'osint-' + now.strftime('%Y-%m-%dT%H:%M:%SZ')
     manifest, code_hits, shelf = [], [], []
     entry = {'time': stamp, 'pass_id': pass_id, 'deficits': []}
@@ -389,14 +451,26 @@ def main():
             print(f'{deficit["id"]}: skipped ({reason})')
             continue
         grown = grow_keywords(deficit, cursor, args.index, kinds)
-        keys = deficit['keywords'] + cursor['keywords'][deficit['id']]
+        # Added words that a grown holy list or stop-list now covers
+        # ("cleric" was added before the list knew it) stay in the
+        # journal but are no longer searched (TABOO 0.15 p. 3).
+        added = [k for k in cursor['keywords'][deficit['id']]
+                 if not (is_sacred(k) or is_stop_listed(k))]
+        keys = deficit['keywords'] + added
         print(f'{deficit["id"]}: +{len(grown)} keywords {grown}')
+        everything = []
         hits = search(args.index, kinds, keys, limit=200,
-                      allow_unlicensed=False)
+                      allow_unlicensed=False, uncapped=everything)
         taken = 0
         neutral = deficit['id'] not in ANTAGONIST_SLOTS
         usable, to_shelf, refused = sort_hits(hits, neutral)
-        # All of them, no per-deficit cap: the operator said "всё".
+        # The shelf takes the non-game hits among the 200 best of the
+        # search, not "all" of them: the uncapped count below is
+        # journaled so the gap is written, not hidden.  Every non-game
+        # hit of the index would be tens of MB of register a pass
+        # (DEF-040 alone: 64 564), past the 8 MB budget; where a larger
+        # register lives is the operator's decision (HLD).
+        _u, uncapped_shelf, _r = sort_hits(everything, neutral)
         shelf += [(hit, deficit['id']) for hit in to_shelf]
         for hit in usable:
             if hit['kind'] in CODE_KINDS:
@@ -404,6 +478,13 @@ def main():
                 continue
             if taken >= args.per_deficit or not hit['path'].lower() \
                     .endswith('.png'):
+                continue
+            licence = licence_of(args.index, hit)
+            if not licences.derivable(licence):
+                # CC BY-NC-ND art (rotp-public) and unread licences
+                # never enter the derivative pipeline.
+                refused['licence-not-derivable'] = \
+                    refused.get('licence-not-derivable', 0) + 1
                 continue
             try:
                 local = fetch(args.index, hit, raw_dir)
@@ -413,7 +494,7 @@ def main():
                 continue
             manifest.append({
                 'repo': hit['repo'], 'commit': hit['commit'],
-                'license': licence_of(args.index, hit),
+                'license': licence,
                 'license_file': hit['license_file'],
                 'attribution': hit['attribution'],
                 'path': hit['path'], 'local': str(local),
@@ -421,13 +502,17 @@ def main():
                 'neutral': neutral,
             })
             taken += 1
-        entry['deficits'].append({'id': deficit['id'], 'hits': len(hits),
-                                  'taken': taken, 'refused': refused,
-                                  'to_props': len(to_shelf),
-                                  'added_keywords': grown,
-                                  'keywords_total': len(keys)})
-        print(f'{deficit["id"]}: hits={len(hits)} taken={taken} '
-              f'to_props={len(to_shelf)} refused={refused}')
+        entry['deficits'].append({
+            'id': deficit['id'], 'hits': len(hits), 'taken': taken,
+            'refused': refused, 'to_props': len(to_shelf),
+            'hits_uncapped': len(everything),
+            'props_uncapped': len(uncapped_shelf),
+            'props_uncapped_repos': len({h['repo']
+                                         for h in uncapped_shelf}),
+            'added_keywords': grown, 'keywords_total': len(keys)})
+        print(f'{deficit["id"]}: hits={len(hits)} of {len(everything)} '
+              f'taken={taken} to_props={len(to_shelf)} of '
+              f'{len(uncapped_shelf)} refused={refused}')
 
     # The props store (TABOO 0.012): every non-game hit of the pass is
     # really taken (bytes in the cache, sha1 in the register) before the
@@ -440,24 +525,80 @@ def main():
                        is_prop)
     after = props.save_register(register) if shelf else before
     for rec in entry['deficits']:
-        if rec['id'] in stats['by_deficit']:
-            rec['props'] = stats['by_deficit'][rec['id']]
+        if 'skipped' in rec:
+            continue
+        # Every deficit is credited: what it put on the shelf and how
+        # many of its hits were on the shelf already (a thing found by
+        # three deficits is one line, under the first).
+        rec['props'] = stats['by_deficit'].get(rec['id'], {})
+        rec['props_seen'] = stats['seen_by_deficit'].get(rec['id'], 0)
     totals = props.store_totals(register)
+    disk = props.cache_on_disk(register, args.props_cache)
     entry.update({
         'props_taken': stats['taken'],
+        'props_taken_by_index_kind': stats['taken_by_index_kind'],
         'props_duplicates': stats['duplicates'],
         'props_errors': stats['errors'],
         'props_refused': stats['refused'],
         'props_new_bytes': stats['new_bytes'],
+        # What the register names...
         'props_store_files': totals['files'],
         'props_store_bytes': totals['bytes'],
+        # ...and what this machine's cache really holds.
+        'props_cache_files_on_disk': disk['files'],
+        'props_cache_bytes_on_disk': disk['bytes'],
+        'props_cache_missing': disk['missing'],
+        'props_cache_unnamed': disk['unnamed'],
         'props_register_bytes': after,
         'props_register_growth_bytes': after - before,
+        'stage': 'props-saved',
     })
     print(f'props: taken {stats["taken"]} duplicates {stats["duplicates"]}'
-          f' errors {stats["errors"]}; store {totals["files"]} files, '
-          f'{totals["bytes"] / 1e6:.2f} MB; register +{after - before} B')
+          f' errors {stats["errors"]}; register names {totals["files"]} '
+          f'files, {totals["bytes"] / 1e6:.2f} MB; cache on disk '
+          f'{disk["files"]} files, {disk["bytes"] / 1e6:.2f} MB, '
+          f'{disk["missing"]} missing, {disk["unnamed"]} not in the '
+          f'register; register +{after - before} B')
+    # The journal gets this pass now, so the register's new lines always
+    # have their pass in the journal even if the pipeline below fails.
+    cursor['log'].append(entry)
+    CURSOR.write_text(json.dumps(cursor, ensure_ascii=False, indent=1),
+                      'utf-8')
+    try:
+        accepted = pipeline(manifest, raw_dir, out_dir, work)
+    except Exception as exc:
+        entry['stage'] = 'pipeline-failed'
+        entry['error'] = f'{type(exc).__name__}: {exc}'[:300]
+        CURSOR.write_text(json.dumps(cursor, ensure_ascii=False, indent=1),
+                          'utf-8')
+        raise
 
+    if code_hits:
+        known = (json.loads(CODE_CANDIDATES.read_text('utf-8'))
+                 if CODE_CANDIDATES.exists() else [])
+        seen = {(c['repo'], c['path']) for c in known}
+        fresh = []
+        for c in code_hits:
+            # One line per file: a file three deficits found is listed
+            # once, under the first, as across passes.
+            if (c['repo'], c['path']) not in seen:
+                seen.add((c['repo'], c['path']))
+                fresh.append(c)
+        known += fresh
+        CODE_CANDIDATES.write_text(
+            json.dumps(known, ensure_ascii=False, indent=1), 'utf-8')
+
+    entry['stage'] = 'done'
+    entry['accepted_objects'] = accepted
+    entry['code_candidates'] = len(code_hits)
+    CURSOR.write_text(json.dumps(cursor, ensure_ascii=False, indent=1),
+                      'utf-8')
+    print(f'pass done: {accepted} objects accepted, '
+          f'{len(code_hits)} code candidates listed')
+
+
+def pipeline(manifest, raw_dir, out_dir, work):
+    """Run the TABOO 0.1 pipeline over the pass; return what shipped."""
     (raw_dir / 'manifest.json').write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2), 'utf-8')
     accepted = 0
@@ -499,22 +640,7 @@ def main():
         NOTICES.write_text(existing.rstrip('\n') + '\n'
                            + '\n'.join(new) + ('\n' if new else ''),
                            'utf-8')
-
-    if code_hits:
-        known = (json.loads(CODE_CANDIDATES.read_text('utf-8'))
-                 if CODE_CANDIDATES.exists() else [])
-        seen = {(c['repo'], c['path']) for c in known}
-        known += [c for c in code_hits if (c['repo'], c['path']) not in seen]
-        CODE_CANDIDATES.write_text(
-            json.dumps(known, ensure_ascii=False, indent=1), 'utf-8')
-
-    entry['accepted_objects'] = accepted
-    entry['code_candidates'] = len(code_hits)
-    cursor['log'].append(entry)
-    CURSOR.write_text(json.dumps(cursor, ensure_ascii=False, indent=1),
-                      'utf-8')
-    print(f'pass done: {accepted} objects accepted, '
-          f'{len(code_hits)} code candidates listed')
+    return accepted
 
 
 if __name__ == '__main__':

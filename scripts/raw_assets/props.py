@@ -6,14 +6,17 @@ because it is not a game object (an engine example, a screenshot, an
 editor image, a test fixture, a promo page, a tool) is no longer
 dropped.  Its bytes are read from the blobless clone into a props cache
 outside the repository, and the thing is written into the append-only
-register docs/RAW_PROPS_REGISTER.json with its repo, revision, path,
-licence, kind, deficit, keywords, sha1 and size.
+register docs/RAW_PROPS_REGISTER.jsonl (JSON Lines: a header line, then
+one line per thing or withdrawal, only ever appended) with its repo,
+revision, path, git blob id, licence, kind, deficit, keywords, sha1 and
+size.
 
 Three things never become props, exactly as before (TABOO 0.2 and
 0.35 rules 5-6): holy things, the dogmatic stop-list and fonts.
-Nothing at all is taken from a repository without a licence file.
-The routing that decides this lives in osint_cycle.py; this module
-checks it again through a guard, so a caller cannot slip past it.
+Nothing at all is taken from a repository without a licence file, nor
+a file whose own licence cannot be read (licences.py).  The routing
+lives in osint_cycle.py; take() asks osint_cycle.is_prop itself as
+well as the caller's guard, so a guard can only narrow the shelf.
 
 Nothing from the store enters public/ludus/art/derived, godot/ or the
 APK by itself.  A slot that wants a prop asks for it by key:
@@ -37,16 +40,24 @@ import subprocess
 import sys
 from pathlib import Path
 
+import licences
+
 ROOT = Path(__file__).resolve().parents[2]
-REGISTER = ROOT / 'docs' / 'RAW_PROPS_REGISTER.json'
+REGISTER = ROOT / 'docs' / 'RAW_PROPS_REGISTER.jsonl'
 DERIVED = ROOT / 'public' / 'ludus' / 'art' / 'derived'
 GODOT = ROOT / 'godot'
 WORK = ROOT / 'build' / 'props'
 DEFAULT_CACHE = os.environ.get('LUDUS_PROPS_CACHE', '/home/user/raw-props')
 
-SCHEMA = 'ludus.raw-props.v1'
-RULE = ('CLAUDE.md TABOO 0.012: append-only; entries are never edited or '
-        'deleted. Bytes live in the props cache outside the repo.')
+# v2 (2026-09-30): JSON Lines instead of one JSON document.  In v1 an
+# appended entry also rewrote the previous last line (its comma), so
+# two branches appending always conflicted; now a pass is appended
+# lines only and journal_merge.py joins two sides line by line.
+SCHEMA = 'ludus.raw-props.v2'
+RULE = ('CLAUDE.md TABOO 0.012: append-only JSON Lines. This header, then '
+        'one line per thing taken and one per withdrawal, in the order '
+        'they happened; lines are never edited or deleted. Bytes live in '
+        'the props cache outside the repo.')
 
 # The kinds a prop may have, in the order they are tested: the more
 # specific place wins, so docs/screenshots/x.png is a screenshot.
@@ -82,14 +93,22 @@ _KIND_PATTERNS = (
 FIELDS = ('key', 'repo', 'revision', 'path', 'licence', 'licence_file',
           'attribution', 'kind', 'index_kind', 'deficit_id', 'keywords',
           'pass_id', 'sha1', 'bytes')
+# The git blob id, recorded since 2026-09-30: with it a file already on
+# the shelf is known before any fetch when upstream moves (the key holds
+# the revision, so the key alone saw the same bytes as a new thing).
+OPTIONAL_FIELDS = ('blob',)
 
 # TABOO 0.011 and 0.012 p. 4: the store must not swell the repo.  The
 # bytes live outside it; only this text register travels with the code.
 # Measured on the pass of 2026-09-30T13:38Z: 127 new lines, 579 bytes a
-# line on average (73 668 bytes), so a pass of three deficits adds at
-# most 3 x 200 lines, about 0.35 MB.  8 MB holds about 13 800 things;
-# past it the runner stops shelving and says so in the journal, and the
-# operator decides where a larger register lives
+# line on average (73 668 bytes).  A pass shelves at most the 200 hits
+# the search returns per deficit, so three deficits add at most 600
+# lines, about 0.35 MB: 8 MB lasts at least 23 hourly passes (a day),
+# about 108 (4.5 days) at the measured rate.  The uncapped number of
+# props is far larger (64 564 for DEF-040 alone, about 37 MB), which is
+# why "take everything" and an 8 MB text register cannot both hold; the
+# operator decides where a larger register lives, and until then past
+# the budget the runner stops shelving and says so in the journal
 # (docs/HLD_PROPS_STORE_2026-09-30.md).
 REGISTER_BUDGET_BYTES = 8_000_000
 
@@ -155,34 +174,67 @@ def check_cache_outside(cache_root):
 # --- Register ------------------------------------------------------------
 
 def empty_register():
-    return {'schema': SCHEMA, 'rule': RULE, 'entries': []}
+    return {'schema': SCHEMA, 'rule': RULE, 'entries': [], 'withdrawn': []}
+
+
+def _head_line(register):
+    return json.dumps({'schema': register['schema'],
+                       'rule': register['rule']}, ensure_ascii=False)
+
+
+def _entry_line(entry):
+    return json.dumps(entry, ensure_ascii=False, sort_keys=True)
+
+
+def _withdrawal_line(item):
+    return json.dumps({'withdrawn': item['key'], 'reason': item['reason'],
+                       'date': item['date']}, ensure_ascii=False)
+
+
+def parse_register(text):
+    """Read JSON Lines into {schema, rule, entries, withdrawn}.
+
+    A key seen twice (two branches joined by a plain union merge) keeps
+    its first line; the merge driver refuses two different lines of one
+    key, so a repeat is always the same line.
+    """
+    lines = [line for line in text.splitlines() if line.strip()]
+    if not lines:
+        return empty_register()
+    head = json.loads(lines[0])
+    register = {'schema': head['schema'], 'rule': head['rule'],
+                'entries': [], 'withdrawn': []}
+    keys = set()
+    for line in lines[1:]:
+        row = json.loads(line)
+        if 'withdrawn' in row:
+            item = {'key': row['withdrawn'], 'reason': row['reason'],
+                    'date': row['date']}
+            if item not in register['withdrawn']:
+                register['withdrawn'].append(item)
+        elif row['key'] not in keys:
+            keys.add(row['key'])
+            register['entries'].append(row)
+    return register
 
 
 def load_register(path=REGISTER):
     path = Path(path)
     if not path.exists():
         return empty_register()
-    return json.loads(path.read_text('utf-8'))
-
-
-def _lines(key, rows):
-    if not rows:
-        return ''
-    body = ',\n'.join(json.dumps(r, ensure_ascii=False, sort_keys=True)
-                      for r in rows)
-    return f',\n"{key}": [\n{body}\n]'
+    return parse_register(path.read_text('utf-8'))
 
 
 def dump_register(register):
-    """One entry per line: a pass shows in git as appended lines only."""
-    head = json.dumps({'schema': register['schema'],
-                       'rule': register['rule']}, ensure_ascii=False)
-    lines = [json.dumps(e, ensure_ascii=False, sort_keys=True)
-             for e in register['entries']]
-    body = ',\n'.join(lines)
-    return (head[:-1] + ',\n"entries": [\n' + body
-            + ('\n' if lines else '') + ']'
-            + _lines('withdrawn', register.get('withdrawn')) + '}\n')
+    """The whole register as JSON Lines (header, entries, withdrawals).
+
+    save_register never rewrites a file with this: it appends only the
+    new lines, so on disk the lines keep the order they happened in.
+    """
+    lines = [_head_line(register)]
+    lines += [_entry_line(e) for e in register['entries']]
+    lines += [_withdrawal_line(w) for w in register.get('withdrawn', [])]
+    return '\n'.join(lines) + '\n'
 
 
 def withdraw(register, key, reason, date):
@@ -199,26 +251,35 @@ def withdraw(register, key, reason, date):
 
 
 def save_register(register, path=REGISTER):
-    """Write the register; refuse anything but appended entries.
+    """Append the new lines of the register to its file.
 
     The journal rule (TABOO 0.25 p. 5, 0.012 p. 5) says what was taken
     stays written, so every earlier entry and withdrawal must come back
-    unchanged and in its place.
+    unchanged and in its place; the file itself is only appended to,
+    never rewritten.
     """
     path = Path(path)
-    loaded = load_register(path)
+    text = path.read_text('utf-8') if path.exists() else ''
+    loaded = parse_register(text)
     for part in ('entries', 'withdrawn'):
         old, new = loaded.get(part, []), register.get(part, [])
         if new[:len(old)] != old:
             raise AppendOnlyError(f'{path}: an existing {part} line was '
                                   'changed or removed; the props register '
                                   'only grows')
-    new = register['entries']
-    keys = [e['key'] for e in new]
+    keys = [e['key'] for e in register['entries']]
     if len(keys) != len(set(keys)):
         raise AppendOnlyError(f'{path}: duplicate key')
+    if not text.strip():
+        text = _head_line(register) + '\n'
+    elif not text.endswith('\n'):
+        text += '\n'
+    add = [_entry_line(e)
+           for e in register['entries'][len(loaded['entries']):]]
+    add += [_withdrawal_line(w)
+            for w in register.get('withdrawn', [])[len(loaded['withdrawn']):]]
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(dump_register(register), 'utf-8')
+    path.write_text(text + ''.join(line + '\n' for line in add), 'utf-8')
     return path.stat().st_size
 
 
@@ -227,8 +288,11 @@ def validate_entry(entry):
     problems = [f'missing {f}' for f in FIELDS if f not in entry]
     if problems:
         return problems
-    if set(entry) - set(FIELDS):
-        problems.append(f'unknown fields {sorted(set(entry) - set(FIELDS))}')
+    unknown = set(entry) - set(FIELDS) - set(OPTIONAL_FIELDS)
+    if unknown:
+        problems.append(f'unknown fields {sorted(unknown)}')
+    if 'blob' in entry and len(entry['blob']) != 40:
+        problems.append('blob id malformed')
     if entry['kind'] not in PROP_KINDS:
         problems.append(f'kind {entry["kind"]!r}')
     if not entry['licence_file']:
@@ -244,13 +308,20 @@ def validate_entry(entry):
 
 
 def store_totals(register):
-    """Files and bytes of the store by the register, and by kind."""
-    by_kind = {}
+    """Files and bytes the register names, by kind and by index kind.
+
+    These are the register's claims; cache_on_disk() says what is
+    really in a given cache.
+    """
+    by_kind, by_index_kind = {}, {}
     for e in register['entries']:
         by_kind[e['kind']] = by_kind.get(e['kind'], 0) + 1
+        by_index_kind[e['index_kind']] = \
+            by_index_kind.get(e['index_kind'], 0) + 1
     return {'files': len(register['entries']),
             'bytes': sum(e['bytes'] for e in register['entries']),
-            'by_kind': dict(sorted(by_kind.items()))}
+            'by_kind': dict(sorted(by_kind.items())),
+            'by_index_kind': dict(sorted(by_index_kind.items()))}
 
 
 # --- Reading the bytes ---------------------------------------------------
@@ -260,14 +331,11 @@ def _git(clone, *args, data=None):
                           capture_output=True, timeout=900)
 
 
-def read_blobs(clone, revision, paths):
-    """Read many files of one revision; return {path: bytes}.
+def list_blobs(clone, revision, paths):
+    """The git blob id of each path at a revision, from local trees.
 
-    One `git show` per file makes the blobless clone fetch every blob
-    on its own (about 0.6 s each through the proxy).  Here the blob ids
-    come from the local trees, the missing blobs arrive in one fetch,
-    and `git cat-file --batch` reads them all; a probe on BrogueCE read
-    four files in 0.5 s instead of 1.7 s for three.
+    A blobless clone holds every tree, so this needs no network unless
+    the revision itself is missing.
     """
     listing = _git(clone, '--literal-pathspecs', 'ls-tree', '-z',
                    revision, '--', *paths)
@@ -289,7 +357,19 @@ def read_blobs(clone, revision, paths):
         _mode, otype, oid = meta.split()
         if otype == b'blob':
             oids[name.decode('utf-8', 'surrogateescape')] = oid.decode()
-    wanted = [oids[p] for p in paths if p in oids]
+    return oids
+
+
+def read_oids(clone, wanted):
+    """Read blobs by id; return {oid: bytes}.
+
+    One `git show` per file makes the blobless clone fetch every blob
+    on its own (about 0.6 s each through the proxy).  Here the missing
+    blobs arrive in one fetch and `git cat-file --batch` reads them
+    all; a probe on BrogueCE read four files in 0.5 s instead of 1.7 s
+    for three.
+    """
+    wanted = list(dict.fromkeys(wanted))
     if not wanted:
         return {}
     promisor = _git(clone, 'config', '--get', 'remote.origin.promisor')
@@ -315,13 +395,20 @@ def read_blobs(clone, revision, paths):
         size = int(head[2])
         blobs[oid] = out[pos:pos + size]
         pos += size + 1
+    return blobs
+
+
+def read_blobs(clone, revision, paths):
+    """Read many files of one revision; return {path: bytes}."""
+    oids = list_blobs(clone, revision, paths)
+    blobs = read_oids(clone, [oids[p] for p in paths if p in oids])
     return {p: blobs[o] for p, o in oids.items() if o in blobs}
 
 
 # --- Taking props --------------------------------------------------------
 
-def _entry(key, hit, deficit_id, licence, pass_id, data):
-    return {
+def _entry(key, hit, deficit_id, licence, pass_id, data, blob=None):
+    entry = {
         'key': key, 'repo': hit['repo'], 'revision': hit['commit'],
         'path': hit['path'], 'licence': licence,
         'licence_file': hit['license_file'],
@@ -332,12 +419,18 @@ def _entry(key, hit, deficit_id, licence, pass_id, data):
         'pass_id': pass_id,
         'sha1': hashlib.sha1(data).hexdigest(), 'bytes': len(data),
     }
+    if blob:
+        entry['blob'] = blob
+    return entry
 
 
 def _line_bytes(entry):
-    # One register line plus its ",\n" separator.
-    return len(json.dumps(entry, ensure_ascii=False, sort_keys=True)
-               .encode('utf-8')) + 2
+    # One register line plus its newline.
+    return len(_entry_line(entry).encode('utf-8')) + 1
+
+
+def _count(table, key, n=1):
+    table[key] = table.get(key, 0) + n
 
 
 def take(candidates, register, index_root, cache_root, pass_id,
@@ -345,66 +438,109 @@ def take(candidates, register, index_root, cache_root, pass_id,
     """Fetch every candidate prop into the cache and register it.
 
     candidates: list of (hit, deficit_id) in the runner's own order,
-    which is deterministic (score, repo, path).  guard(path) must say
-    True for a path that is a prop and nothing else; it is checked
-    again here so a caller cannot put a holy or stop-listed thing on
-    the shelf.  A thing that would push the register past its budget
-    is not fetched at all, so the cache never holds what the register
-    does not name.  Returns the counts for the journal.
-    """
-    cache = check_cache_outside(cache_root)
-    known = {e['key'] for e in register['entries']}
-    stats = {'taken': {}, 'duplicates': 0, 'errors': 0, 'refused': {},
-             'new_bytes': 0, 'by_deficit': {}}
-    licences = {}
-    room = budget - len(dump_register(register).encode('utf-8'))
-    todo = {}
+    which is deterministic (score, repo, path).  A thing is shelved only
+    when osint_cycle.is_prop says so AND guard(path) says so: the holy
+    list and the stop-list are asked here, whatever guard a caller
+    passes.  licence_of(hit) names the licence of the hit's own file; a
+    licence that does not allow a verbatim copy (UNKNOWN, custom) is
+    refused and counted.
 
-    def refuse(reason):
-        stats['refused'][reason] = stats['refused'].get(reason, 0) + 1
+    A thing already on the shelf is a duplicate three ways: the same
+    key (repo, revision, path); the same git blob at the same path
+    (upstream moved, the file did not; known before any fetch); the
+    same sha1 at the same path (for lines written before blob ids were
+    recorded).  A duplicate is counted for its deficit and never
+    written twice.  A thing that would push the register past its
+    budget is not fetched at all, so the cache never holds what the
+    register does not name.
+
+    Two runs over the same index write the same entries apart from
+    pass_id, which names the run.  Returns the counts for the journal.
+    """
+    # Imported here: osint_cycle imports this module.
+    import osint_cycle
+
+    cache = check_cache_outside(cache_root)
+    entries = register['entries']
+    known = {e['key'] for e in entries}
+    seen_blob = {(e['repo'], e['path'], e['blob']) for e in entries
+                 if e.get('blob')}
+    seen_sha = {(e['repo'], e['path'], e['sha1']) for e in entries}
+    stats = {'taken': {}, 'taken_by_index_kind': {}, 'duplicates': 0,
+             'errors': 0, 'refused': {}, 'new_bytes': 0, 'by_deficit': {},
+             'seen_by_deficit': {}}
+    room = budget - len(dump_register(register).encode('utf-8'))
+    groups = {}
+
+    def seen(deficit_id):
+        stats['duplicates'] += 1
+        _count(stats['seen_by_deficit'], deficit_id)
 
     for hit, deficit_id in candidates:
         if not hit.get('license_file'):
-            refuse('no-licence')
+            _count(stats['refused'], 'no-licence')
             continue
-        if not guard(hit['path']):
-            refuse('not-a-prop')
+        if not osint_cycle.is_prop(hit['path']) or not guard(hit['path']):
+            _count(stats['refused'], 'not-a-prop')
             continue
         key = prop_key(hit['repo'], hit['commit'], hit['path'])
         if key in known:
-            stats['duplicates'] += 1
+            seen(deficit_id)
             continue
-        if hit['repo'] not in licences:
-            # One read of the index header per repo, not per file.
-            licences[hit['repo']] = licence_of(hit)
-        # The size of the line is known before the fetch: sha1 and a
-        # ten-digit size stand in for the real ones.
-        guess = _line_bytes(_entry(key, hit, deficit_id,
-                                   licences[hit['repo']], pass_id,
-                                   b'')) + 10
-        if guess > room:
-            refuse('props-budget')
+        licence = licence_of(hit)
+        if not licences.shelvable(licence):
+            _count(stats['refused'], f'licence-{licence}')
             continue
-        room -= guess
         known.add(key)
-        todo.setdefault((hit['repo'], hit['commit']), []).append(
-            (key, hit, deficit_id))
+        groups.setdefault((hit['repo'], hit['commit']), []).append(
+            (key, hit, deficit_id, licence))
     # Repos in sorted order, entries in the runner's order within each,
-    # so two runs over the same index write the same register.
+    # so two runs over the same index take the same things.
     new_entries = {}
-    for (repo, revision), items in sorted(todo.items()):
+    for (repo, revision), items in sorted(groups.items()):
         clone = Path(index_root) / 'clones' / repo_dir(repo)
         try:
-            blobs = read_blobs(clone, revision, [h['path'] for _, h, _ in
-                                                 items])
+            oids = list_blobs(clone, revision,
+                              [h['path'] for _, h, _, _ in items])
+        except (subprocess.SubprocessError, OSError, ValueError) as exc:
+            print(f'props: cannot list {repo}: {exc}', file=sys.stderr)
+            oids = {}
+        todo = []
+        for key, hit, deficit_id, licence in items:
+            oid = oids.get(hit['path'])
+            if oid is None:
+                stats['errors'] += 1
+                continue
+            if (repo, hit['path'], oid) in seen_blob:
+                seen(deficit_id)
+                continue
+            seen_blob.add((repo, hit['path'], oid))
+            # The size of the line is known before the fetch: a sha1
+            # and a ten-digit size stand in for the real ones.
+            guess = _line_bytes(_entry(key, hit, deficit_id, licence,
+                                       pass_id, b'', oid)) + 10
+            if guess > room:
+                _count(stats['refused'], 'props-budget')
+                continue
+            room -= guess
+            todo.append((key, hit, deficit_id, licence, oid, guess))
+        try:
+            blobs = read_oids(clone, [t[4] for t in todo])
         except (subprocess.SubprocessError, OSError, ValueError) as exc:
             print(f'props: cannot read {repo}: {exc}', file=sys.stderr)
             blobs = {}
-        for key, hit, deficit_id in items:
-            data = blobs.get(hit['path'])
+        for key, hit, deficit_id, licence, oid, guess in todo:
+            data = blobs.get(oid)
             if data is None:
                 stats['errors'] += 1
+                room += guess
                 continue
+            sha = hashlib.sha1(data).hexdigest()
+            if (repo, hit['path'], sha) in seen_sha:
+                seen(deficit_id)
+                room += guess
+                continue
+            seen_sha.add((repo, hit['path'], sha))
             dest = cache / cache_rel(repo, revision, hit['path'])
             try:
                 dest.parent.mkdir(parents=True, exist_ok=True)
@@ -414,30 +550,45 @@ def take(candidates, register, index_root, cache_root, pass_id,
                 # thing is not taken, so it is not registered either.
                 print(f'props: cannot write {dest}: {exc}', file=sys.stderr)
                 stats['errors'] += 1
+                room += guess
                 continue
-            new_entries[key] = _entry(key, hit, deficit_id,
-                                      licences[repo], pass_id, data)
-            kind = new_entries[key]['kind']
-            stats['taken'][kind] = stats['taken'].get(kind, 0) + 1
-            per = stats['by_deficit'].setdefault(deficit_id, {})
-            per[kind] = per.get(kind, 0) + 1
+            entry = _entry(key, hit, deficit_id, licence, pass_id, data,
+                           oid)
+            new_entries[key] = entry
+            _count(stats['taken'], entry['kind'])
+            _count(stats['taken_by_index_kind'], entry['index_kind'])
+            _count(stats['by_deficit'].setdefault(deficit_id, {}),
+                   entry['kind'])
             stats['new_bytes'] += len(data)
     # Append in the candidates' order, not the per-repo fetch order.
     for hit, _deficit_id in candidates:
         key = prop_key(hit['repo'], hit['commit'], hit['path'])
         if key in new_entries:
-            register['entries'].append(new_entries.pop(key))
-    stats['taken'] = dict(sorted(stats['taken'].items()))
+            entries.append(new_entries.pop(key))
+    for table in ('taken', 'taken_by_index_kind', 'seen_by_deficit'):
+        stats[table] = dict(sorted(stats[table].items()))
     return stats
 
 
-def cache_bytes_on_disk(cache_root):
-    """What the store really weighs on disk (the register may be ahead
-    of a fresh cache on a CI runner, see restore())."""
+def cache_on_disk(register, cache_root):
+    """What a cache really holds against what the register names.
+
+    On the free CI runner the cache starts empty every hour, so the
+    register runs ahead of it; restore() takes any missing file again.
+    """
     root = Path(cache_root)
-    if not root.exists():
-        return 0
-    return sum(p.stat().st_size for p in root.rglob('*') if p.is_file())
+    files = [p for p in root.rglob('*') if p.is_file()] \
+        if root.exists() else []
+    named = {cache_rel(e['repo'], e['revision'], e['path'])
+             for e in register['entries']}
+    present = {str(p.relative_to(root)) for p in files}
+    # "unnamed": files some other writer put in a shared cache (the
+    # session cache of 2026-09-30 held 3 209 from review probes); take()
+    # itself never writes a file it does not register.
+    return {'files': len(files),
+            'bytes': sum(p.stat().st_size for p in files),
+            'missing': len(named - present),
+            'unnamed': len(present - named)}
 
 
 def restore(entry, index_root, cache_root):
@@ -507,8 +658,27 @@ def to_slot(key, deficit_id, index_root, cache_root, work=WORK,
         raise ValueError(f'{deficit_id} ({deficit["category"]}, '
                          f'{deficit["fill"]}) takes {sorted(kinds)}; this '
                          f'prop is {entry["index_kind"]}')
+    # The licence of the file itself, with the reviewed per-path rules
+    # applied again: a line written before them may carry the repo's
+    # code licence for art that is CC BY-NC-ND (rotp-public).
+    licence = licences.path_licence(entry['repo'], entry['path'],
+                                    entry['licence'])
+    if not licences.derivable(licence):
+        raise ValueError(f'{key} ({entry["path"]}) is {licence}: no '
+                         'derivative may be made of it (NC, ND or unread '
+                         'licence); it stays on the shelf')
+    if entry['index_kind'] not in osint_cycle.CODE_KINDS:
+        # The pass keeps these rules for images (TABOO 0.15 p. 4): no
+        # weapon, turret, monster or skull in a neutral slot, and no
+        # one-pixel selection outline in any slot.
+        if (deficit_id not in osint_cycle.ANTAGONIST_SLOTS
+                and osint_cycle.HOSTILE.search(entry['path'])):
+            raise ValueError(f'{key} ({entry["path"]}): '
+                             'hostile-for-neutral-slot')
+        if osint_cycle.OUTLINE.search(entry['path']):
+            raise ValueError(f'{key} ({entry["path"]}): outline-helper')
     plan = {'key': key, 'deficit_id': deficit_id, 'path': entry['path'],
-            'licence': entry['licence'], 'index_kind': entry['index_kind'],
+            'licence': licence, 'index_kind': entry['index_kind'],
             'shipped': False}
     if entry['index_kind'] in osint_cycle.CODE_KINDS:
         # Code is never copied into the game (TABOO 0.15 p. 7): it is
@@ -518,7 +688,7 @@ def to_slot(key, deficit_id, index_root, cache_root, work=WORK,
         plan['next'] = (f'rewrite as our own module, then: python3 '
                         f'scripts/raw_assets/code_delta.py {local} <ours> '
                         f'--source-repo {entry["repo"]} --license '
-                        f'{entry["licence"]} (>= 35 % or it is not ours)')
+                        f'{licence} (>= 35 % or it is not ours)')
         return plan
     if not entry['path'].lower().endswith('.png'):
         raise ValueError(f'{entry["path"]}: the pipeline reads PNG only')
@@ -532,7 +702,7 @@ def to_slot(key, deficit_id, index_root, cache_root, work=WORK,
     shutil.copy2(local, copy)
     manifest = [{
         'repo': entry['repo'], 'commit': entry['revision'],
-        'license': entry['licence'], 'license_file': entry['licence_file'],
+        'license': licence, 'license_file': entry['licence_file'],
         'attribution': entry['attribution'], 'path': entry['path'],
         'local': str(copy), 'bytes': entry['bytes'], 'slot': deficit_id,
         'neutral': deficit_id not in osint_cycle.ANTAGONIST_SLOTS,
@@ -596,7 +766,7 @@ def main():
     totals = store_totals(register)
     totals['register_bytes'] = (REGISTER.stat().st_size
                                 if REGISTER.exists() else 0)
-    totals['cache_bytes_on_disk'] = cache_bytes_on_disk(args.props_cache)
+    totals['cache_on_disk'] = cache_on_disk(register, args.props_cache)
     print(json.dumps(totals, ensure_ascii=False, indent=2))
 
 

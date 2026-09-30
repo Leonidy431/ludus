@@ -1712,6 +1712,102 @@
    ],
    "accepted_objects": 0,
    "code_candidates": 50
+  },
+  {
+   "time": "2026-09-30T14:45:49.916687+00:00",
+   "pass_id": "osint-2026-09-30T14:45:49Z",
+   "deficits": [
+    {
+     "id": "DEF-035",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 1
+     },
+     "to_props": 170,
+     "hits_uncapped": 53990,
+     "props_uncapped": 48893,
+     "props_uncapped_repos": 59,
+     "added_keywords": [
+      "idleunitbutton",
+      "pickerscreens",
+      "quest",
+      "smallunitbutton",
+      "spypresenter",
+      "status",
+      "summarypresenter",
+      "tileinfotable",
+      "unitactionmodifiers",
+      "unitactions",
+      "unitactionsfromuniques",
+      "unitactionsgreatperson"
+     ],
+     "keywords_total": 44,
+     "props": {
+      "other": 166,
+      "promo": 4
+     },
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-036",
+     "hits": 200,
+     "taken": 0,
+     "refused": {},
+     "to_props": 168,
+     "hits_uncapped": 12242,
+     "props_uncapped": 9080,
+     "props_uncapped_repos": 44,
+     "added_keywords": [
+      "lobby",
+      "disposal",
+      "absorbentitemstatus",
+      "channelitem",
+      "characterpickerbutton",
+      "charactersetupgui",
+      "charactersetupguisavepanel",
+      "chemistry",
+      "clientinnerbodysystem",
+      "colorflasheffectsystem",
+      "disposalunitwindow",
+      "effectvisualizersystem"
+     ],
+     "keywords_total": 38,
+     "props": {
+      "other": 167,
+      "editor": 1
+     },
+     "props_seen": 0
+    }
+   ],
+   "props_taken": {
+    "editor": 1,
+    "other": 333,
+    "promo": 4
+   },
+   "props_taken_by_index_kind": {
+    "code": 338
+   },
+   "props_duplicates": 0,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 2148923,
+   "props_store_files": 465,
+   "props_store_bytes": 2631599,
+   "props_cache_files_on_disk": 3674,
+   "props_cache_bytes_on_disk": 69829661,
+   "props_cache_missing": 0,
+   "props_register_bytes": 268393,
+   "props_register_growth_bytes": 194497,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 61
+  },
+  {
+   "time": "2026-09-30T14:50:06.309757+00:00",
+   "note_for": "osint-2026-09-30T13:31:00Z",
+   "note": "Correction to pass osint-2026-09-30T13:31:00Z (its entry stays as written). Its 'reverted' text says the props register and cache 'were removed and rebuilt by the next pass'. They were not rebuilt: the next pass (13:38Z) covered DEF-040, DEF-047 and DEF-048, so nothing of DEF-035 or DEF-036 reached the register. The uncommitted register file of 13:31Z was deleted outright instead of being kept with a reverted mark, against TABOO 0.25 p. 5; its numbers survive only in that entry (350 things, 2 205 163 B). The pass of 13:51Z on the integration branch, run with the code before TABOO 0.012, refused the same hits as not-a-game-object. The props of DEF-035 and DEF-036 were taken by pass osint-2026-09-30T14:45:49Z (--only, cursor unchanged): 170 and 168 things, 338 lines, 2 148 923 B; the 200-hit cap per deficit is the same, the 12 new keywords of each deficit changed which 200 hits came first, and one sacred hit was refused.",
+   "deficits": []
   }
  ],
  "keywords": {
@@ -2082,7 +2178,19 @@
    "cityscreen",
    "cityscreentiletable",
    "consoletilecommands",
-   "consoleunitcommands"
+   "consoleunitcommands",
+   "idleunitbutton",
+   "pickerscreens",
+   "quest",
+   "smallunitbutton",
+   "spypresenter",
+   "status",
+   "summarypresenter",
+   "tileinfotable",
+   "unitactionmodifiers",
+   "unitactions",
+   "unitactionsfromuniques",
+   "unitactionsgreatperson"
   ],
   "DEF-036": [
    "building",
@@ -2103,7 +2211,19 @@
    "cartridgeloader",
    "cartridges",
    "clear",
-   "effects"
+   "effects",
+   "lobby",
+   "disposal",
+   "absorbentitemstatus",
+   "channelitem",
+   "characterpickerbutton",
+   "charactersetupgui",
+   "charactersetupguisavepanel",
+   "chemistry",
+   "clientinnerbodysystem",
+   "colorflasheffectsystem",
+   "disposalunitwindow",
+   "effectvisualizersystem"
   ],
   "DEF-040": [
    "java",

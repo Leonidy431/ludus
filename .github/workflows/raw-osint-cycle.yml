@@ -45,7 +45,7 @@ jobs:
     env:
       INDEX: ${{ github.workspace }}/../raw-repos
       # Props store (CLAUDE.md TABOO 0.012): bytes live outside the repo
-      # and the APK; only docs/RAW_PROPS_REGISTER.json is committed.  On
+      # and the APK; only docs/RAW_PROPS_REGISTER.jsonl is committed.  On
       # the free runner this folder is empty every hour and is not kept:
       # a register line pins repo, revision, path and sha1, so
       # props.restore() takes exactly the same bytes again when a slot
@@ -133,7 +133,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           git add docs/RAW_OSINT_CURSOR.json docs/RAW_CODE_CANDIDATES.json \
-            docs/RAW_PROPS_REGISTER.json \
+            docs/RAW_PROPS_REGISTER.jsonl \
             public/ludus/art/derived THIRD_PARTY_NOTICES.md 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "nothing new this pass"; exit 0
