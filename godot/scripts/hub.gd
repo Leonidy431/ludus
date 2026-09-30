@@ -1210,15 +1210,15 @@ func _say(text: String) -> void:
 
 
 ## The panel of a mission, like the threshold's: the step, its source
-## and the choices; a closed choice says why, a lure shows its sign once
-## the player has learnt it.
+## (in its Russian form, SourceLabels) and the choices; a closed choice
+## says why, a lure shows its sign once the player has learnt it.
 func _mission_panel_text() -> String:
 	var choices := _mission_choices()
 	var lines := []
 	if mission.start >= 0:
 		var m := MissionCore.build_mission(mission_data, mission.start)
 		lines += [m.actTitle, "%d. %s" % [m.id, m.title], "", m.intro,
-			"Источник: " + m.source, ""]
+			SourceLabels.line(m.source), ""]
 	else:
 		var v := MissionCore.view(mission_data, _mstate(), form, actions)
 		if v.is_empty():
@@ -1228,7 +1228,7 @@ func _mission_panel_text() -> String:
 			v.mission.title, v.index + 1, v.total, v.kind_ru], "",
 			s.title, s.text]
 		if s.source != "":
-			lines.append("Источник: " + s.source)
+			lines.append(SourceLabels.line(s.source))
 		lines.append("")
 		if v.scene != null:
 			lines.append("— " + v.scene.choice)
@@ -1236,7 +1236,7 @@ func _mission_panel_text() -> String:
 				lines.append(v.scene.speaker + ":")
 			lines.append(v.scene.text)
 			if v.scene.source != "":
-				lines.append("Источник: " + v.scene.source)
+				lines.append(SourceLabels.line(v.scene.source))
 			lines.append("")
 	for j in choices.size():
 		var c: Dictionary = choices[j]
@@ -1265,7 +1265,8 @@ func _refresh_prompt() -> void:
 		match encounter.stage:
 			"virtue":
 				lines += ["Помысел прошёл. %s — %s; %s." % [p.virtue_ru,
-					p.source, p.ladder], "", "(нажми — идти дальше)"]
+					SourceLabels.ru(p.source), SourceLabels.ru(p.ladder)],
+					"", "(нажми — идти дальше)"]
 			"captive":
 				lines += ["Он повёл тебя. Он вернётся; наставники научат его признаку.",
 					"", "(нажми — идти дальше)"]

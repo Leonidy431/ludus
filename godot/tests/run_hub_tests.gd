@@ -135,6 +135,12 @@ func _initialize() -> void:
 	load("res://tests/test_mission.gd").new().run(self)
 	print("mission: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# The Russian labels of the sources in the panel of missions.
+	before = checks
+	fails = failures
+	load("res://tests/test_source_labels.gd").new().run(self)
+	print("source labels: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	# The journal of the way (JournalCore, ludus-journal.js).
 	before = checks
 	fails = failures
