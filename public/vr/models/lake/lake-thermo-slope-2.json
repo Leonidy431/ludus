@@ -1,0 +1,23 @@
+{
+ "id": "lake-thermo-slope-2",
+ "kind": "lake",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  6,
+  0.02,
+  6
+ ],
+ "name": "Мерцание термоклина: переход",
+ "category": "water",
+ "band": "slope",
+ "depth_m": [
+  40,
+  50
+ ],
+ "flags": {
+  "noLoot": true
+ },
+ "source": "public/ludus/data/lake-objects-99.json",
+ "method": "lake-kit-primitives"
+}

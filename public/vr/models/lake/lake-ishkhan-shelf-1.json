@@ -1,0 +1,23 @@
+{
+ "id": "lake-ishkhan-shelf-1",
+ "kind": "lake",
+ "lod": "proxy",
+ "tris": 24,
+ "bbox_m": [
+  0.674,
+  0.165,
+  0.066
+ ],
+ "name": "Севанская форель: на границе слоя",
+ "category": "fish",
+ "band": "shelf",
+ "depth_m": [
+  15,
+  20
+ ],
+ "flags": {
+  "noLoot": true
+ },
+ "source": "public/ludus/data/lake-objects-99.json",
+ "method": "lake-kit-primitives"
+}

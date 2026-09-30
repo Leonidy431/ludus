@@ -85,7 +85,22 @@
     for (let i = 0; i < 40; i++) {
       stones.push({ azimuth: r() * 360, size: 4 + r() * 14, y: r() });
     }
-    return { band, fish, finds, stones };
+    // The 99 objects of the lake (scripts/lake/lake_objects.py), except
+    // fish, which come from the species list above.  At most one state
+    // of an item at a time, each in its depth range.
+    const objects = [];
+    const seenItems = new Set();
+    (data.objects || []).forEach((o) => {
+      if (o.category === 'fish' || depth < o.depth[0] || depth > o.depth[1]
+          || seenItems.has(o.item)) {
+        return;
+      }
+      seenItems.add(o.item);
+      if (r() < 0.55) {
+        objects.push({ id: o.id, azimuth: r() * 360, y: r() });
+      }
+    });
+    return { band, fish, finds, stones, objects };
   }
 
   function waterColour(depth, water) {
@@ -119,6 +134,134 @@
     ctx.beginPath();
     ctx.arc(len * 0.6, -len * 0.06, Math.max(1, len * 0.07), 0, Math.PI * 2);
     ctx.fill();
+    ctx.restore();
+  }
+
+  // One simple drawing per shape family; colours come from the data.
+  function drawObject(ctx, o, x, floorY, t) {
+    const c = o.colour;
+    // Small things are drawn at least 28 px wide, or they vanish in the
+    // 90-degree window (the first test showed a caption of six objects
+    // over an almost empty floor).
+    const s = Math.max(28, Math.min(160, o.size_m * 70));
+    const y = floorY + 10;
+    ctx.save();
+    ctx.fillStyle = c;
+    ctx.strokeStyle = c;
+    switch (o.shape) {
+      case 'boulder': case 'outcrop':
+        ctx.beginPath();
+        ctx.ellipse(x, y + s * 0.2, s * 0.6, s * 0.35, 0, Math.PI, 0);
+        ctx.fill();
+        break;
+      case 'jar': case 'bottle':
+        ctx.beginPath();
+        ctx.ellipse(x, y, s * 0.3, s * 0.45, 0.4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillRect(x - s * 0.08, y - s * 0.6, s * 0.16, s * 0.25);
+        break;
+      case 'disc': case 'ring':
+        ctx.lineWidth = Math.max(2, s * 0.12);
+        ctx.beginPath();
+        ctx.ellipse(x, y + 6, s * 0.4, s * 0.14, 0, 0, Math.PI * 2);
+        o.shape === 'ring' ? ctx.stroke() : ctx.fill();
+        break;
+      case 'slab': case 'brick': case 'sinker': case 'anchor': case 'shard':
+      case 'shell': case 'sherds':
+        for (let i = 0; i < (o.shape === 'sherds' ? 6 : 1); i++) {
+          ctx.fillRect(x + i * 9 - 20 * (o.shape === 'sherds'),
+            y + (i % 3) * 5, s * 0.5, s * 0.22);
+        }
+        break;
+      case 'pile': case 'stems': case 'reeds': case 'chain': case 'rope':
+        ctx.lineWidth = o.shape === 'pile' ? 6 : 2;
+        for (let i = 0; i < (o.shape === 'pile' ? 1 : 6); i++) {
+          const sway = o.shape === 'pile' ? 0 : 6 * Math.sin(t + i);
+          ctx.beginPath();
+          ctx.moveTo(x + i * 7, y + 12);
+          ctx.quadraticCurveTo(x + i * 7 + sway, y - s, x + i * 7
+            + sway * 1.5, y - s * 2.2);
+          ctx.stroke();
+        }
+        break;
+      case 'wall': case 'beam': case 'terrace': case 'edge':
+        ctx.fillRect(x - s * 1.2, y + 2, s * 2.4, 8);
+        break;
+      case 'bird':
+        ctx.beginPath();
+        ctx.ellipse(x, floorY * 0.2, 16, 6, 0.2, 0, Math.PI * 2);
+        ctx.fill();
+        break;
+      case 'bubbles':
+        ctx.globalAlpha = 0.6;
+        for (let i = 0; i < 14; i++) {
+          const by = (floorY - ((t * 40 + i * 37) % floorY));
+          ctx.beginPath();
+          ctx.arc(x + 4 * Math.sin(i + t), by, 2 + (i % 3), 0, Math.PI * 2);
+          ctx.stroke();
+        }
+        break;
+      case 'light':
+        ctx.globalAlpha = 0.12;
+        for (let i = 0; i < 4; i++) {
+          ctx.beginPath();
+          ctx.moveTo(x + i * 30, 0);
+          ctx.lineTo(x + i * 30 + 40, floorY);
+          ctx.lineTo(x + i * 30 + 55, floorY);
+          ctx.lineTo(x + i * 30 + 10, 0);
+          ctx.fill();
+        }
+        break;
+      case 'layer':
+        ctx.globalAlpha = 0.18;
+        ctx.fillRect(x - 200, floorY * 0.45 + 3 * Math.sin(t), 400, 10);
+        break;
+      case 'net':
+        ctx.globalAlpha = 0.8;
+        ctx.lineWidth = 1;
+        for (let i = 0; i <= 8; i++) {
+          ctx.beginPath();
+          ctx.moveTo(x - s + i * s / 4, y - s * 0.6);
+          ctx.lineTo(x - s + i * s / 4 + 10, y + 14);
+          ctx.moveTo(x - s, y - s * 0.6 + i * (s * 0.6 + 14) / 8);
+          ctx.lineTo(x + s, y - s * 0.6 + i * (s * 0.6 + 14) / 8);
+          ctx.stroke();
+        }
+        break;
+      case 'swarm': case 'particles': case 'shells': case 'gravel':
+        for (let i = 0; i < 26; i++) {
+          const px = x + ((i * 53) % 90) - 45 + 3 * Math.sin(t * 2 + i);
+          const py = y + ((i * 31) % 22) - 6;
+          ctx.beginPath();
+          ctx.ellipse(px, py, o.shape === 'gravel' ? 5 : 3, 2.2, i, 0,
+            Math.PI * 2);
+          ctx.fill();
+        }
+        break;
+      case 'seep': case 'current':
+        ctx.globalAlpha = 0.7;
+        ctx.lineWidth = 2;
+        for (let i = 0; i < 5; i++) {
+          ctx.beginPath();
+          for (let k = 0; k < 12; k++) {
+            const px = o.shape === 'seep' ? x + i * 8 + 4 * Math.sin(k + t * 3)
+              : x - s + k * s / 6;
+            const py = o.shape === 'seep' ? y + 10 - k * 9
+              : y - 40 - i * 10 + 4 * Math.sin(k + t * 2);
+            k ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
+          }
+          ctx.stroke();
+        }
+        break;
+      default:
+        // Fields and clouds: a patch on or near the floor, outlined.
+        ctx.globalAlpha = 0.55;
+        ctx.beginPath();
+        ctx.ellipse(x, y + 8, s * 0.9, 12, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 0.9;
+        ctx.stroke();
+    }
     ctx.restore();
   }
 
@@ -170,6 +313,11 @@
         ctx.globalAlpha = 1;
       }
     });
+    const objById = {};
+    (data.objects || []).forEach((o) => { objById[o.id] = o; });
+    s.objects.forEach((o) => {
+      drawObject(ctx, objById[o.id], o.azimuth / 360 * PANO_W, floorY, t);
+    });
     // Marine snow: fixed flakes drifting down slowly.
     const snow = rng(hash(`snow:${s.band}`));
     ctx.fillStyle = 'rgba(230,240,240,0.25)';
@@ -214,7 +362,9 @@
       .map((f) => (data.fish.find((x) => x.id === f.id) || {}));
     const finds = s.finds.filter((f) => near(f.azimuth))
       .map((f) => (data.finds.find((x) => x.id === f.id) || {}));
-    return { fish, finds };
+    const objects = (s.objects || []).filter((o) => near(o.azimuth))
+      .map((o) => ((data.objects || []).find((x) => x.id === o.id) || {}));
+    return { fish, finds, objects };
   }
 
   const api = { scene, inView, waterColour, drawPanorama, panorama,
@@ -238,6 +388,8 @@
     }
     const res = await fetch('/ludus/data/issyk-kul-fish.json');
     view.data = res.ok ? await res.json() : { fish: [], finds: [] };
+    const more = await fetch('/ludus/data/lake-objects-99.json');
+    view.data.objects = more.ok ? (await more.json()).objects : [];
     view.data.finds.forEach((f) => {
       const img = new root.Image();
       img.src = f.art;
@@ -271,7 +423,8 @@
     }
     const seen = inView(view.lastScene, view.heading, view.data);
     const names = seen.fish.map((f) => f.ru)
-      .concat(seen.finds.map((f) => `находка: ${f.ru}`));
+      .concat(seen.finds.map((f) => `находка: ${f.ru}`))
+      .concat(seen.objects.map((o) => o.ru));
     view.caption.textContent = `${Math.round(view.heading)}° · `
       + `${view.depth.toFixed(1)} м · `
       + (names.length ? names.join(', ') : 'песок шельфа');
