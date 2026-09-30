@@ -54,10 +54,12 @@ jobs:
 
       # The GDScript port is checked against the JS reference, and the
       # fixture itself must be current with the JS core.
-      - name: Fixture is current
+      - name: Fixtures are current
         run: |
           node scripts/godot/make_fixture.js
-          git diff --exit-code godot/tests/fixture.json
+          node scripts/godot/make_hub_fixture.js
+          git diff --exit-code godot/tests/fixture.json \
+            godot/tests/hub_fixture.json
 
       - name: Lake data in sync with the web build
         run: |
@@ -65,19 +67,27 @@ jobs:
               godot/data/lake-objects-99.json
           cmp public/ludus/data/issyk-kul-fish.json \
               godot/data/issyk-kul-fish.json
+          # The hub reads the same talks as the web game (TABOO 0.39).
+          cmp public/ludus/data/dialogue-trees.json \
+              godot/data/dialogue-trees.json
 
       - name: Import and test
         working-directory: godot
         run: |
           "$GODOT" --headless --path . --import || true
           "$GODOT" --headless --path . --script res://tests/run_tests.gd
+          "$GODOT" --headless --path . --script res://tests/run_hub_tests.gd
 
       - name: Proof frames at 3-120 m
         working-directory: godot
         run: |
           sudo apt-get install -y -qq xvfb libgl1-mesa-dri >/dev/null
           xvfb-run -a -s "-screen 0 1280x720x24" "$GODOT" --path . \
-            --rendering-driver opengl3 -- --shots="$PWD/../build/shots"
+            --rendering-driver opengl3 res://scenes/dive.tscn \
+            -- --shots="$PWD/../build/shots"
+          xvfb-run -a -s "-screen 0 1280x720x24" "$GODOT" --path . \
+            --rendering-driver opengl3 res://scenes/hub.tscn \
+            -- --shots="$PWD/../build/shots"
           ls ../build/shots
 
       - name: Export Web (WebXR)
