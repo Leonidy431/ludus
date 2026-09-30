@@ -19,6 +19,12 @@ window/size/viewport_height=720
 
 pointing/emulate_touch_from_mouse=true
 
+[physics]
+
+; Jolt is built into Godot since 4.4, so the archived godot-jolt
+; extension (vendor/godot/godot-jolt) is kept only as a reference.
+3d/physics_engine="Jolt Physics"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

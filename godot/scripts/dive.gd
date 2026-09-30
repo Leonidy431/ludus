@@ -13,6 +13,8 @@ const THERMO_Y := -DiveCore.THERMOCLINE_M
 const LAMP_COLOUR := Color(0.95, 0.97, 1.0)  # Instrument light, 6500 K.
 const FLOW_SHAPES := ["current", "eddy", "intwave", "plume", "langmuir",
 	"upwelling", "layer", "cloud"]
+const ZONE_SHAPES := ["ripples", "gravel", "silt", "meadow", "swarm",
+	"fuzz", "shells", "particles", "cloud", "light", "bubbles", "sherds"]
 const SAVE_PATH := "user://dive.json"
 const REACH_M := 4.0
 
@@ -140,6 +142,8 @@ func _build_floor() -> void:
 	var mat := StandardMaterial3D.new()
 	mat.vertex_color_use_as_albedo = true
 	mat.roughness = 1.0
+	# Both faces: the first web frame showed water through the floor.
+	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
 	var mesh := MeshInstance3D.new()
 	mesh.mesh = st.commit()
 	mesh.material_override = mat
@@ -181,8 +185,11 @@ func _build_thermocline() -> void:
 
 func _build_objects() -> void:
 	for p in placed:
-		if p.where == "water":
-			continue  # Water phenomena are drawn as flow lines.
+		if p.where == "water" or p.shape in ZONE_SHAPES:
+			# Water phenomena are flow lines, and flat fields (ripples,
+			# silt, meadows) are the floor itself: their slab proxies
+			# lay on the sand as huge pale wedges in the first frame.
+			continue
 		var node: Node3D
 		if p.category == "bird":
 			node = _blob(Color(p.colour), Vector3(0.45, 0.18, 0.2))
@@ -342,8 +349,8 @@ func _build_rig() -> void:
 	add_child(rig)
 	camera = XRCamera3D.new()
 	camera.current = true
-	camera.near = 0.05
-	camera.far = 400.0
+	camera.near = 0.1
+	camera.far = 300.0
 	rig.add_child(camera)
 	lamp = SpotLight3D.new()
 	lamp.light_color = LAMP_COLOUR
