@@ -16,7 +16,7 @@
 | Файл | Что |
 |---|---|
 | `godot/scripts/journal_core.gd` | `JournalCore`: `normalize` и `practice_tally` из `ludus-actions.js`, `to_markdown` из `ludus-journal.js` (буква в букву), `pages_ru` для книги, `dive_summary` (раздел «Под водой» — только в шлеме), `export_path` (свободное имя, прежний файл не перезаписывается) |
-| `godot/scripts/journal_book.gd` | `JournalBook`: аналой из дуба с берестой в северном конце скриптория; читает `user://hub.json` и `user://dive.json` только на чтение; шесть листов; на шестом нажатие пишет `user://journal-<дата>.md` |
+| `godot/scripts/journal_book.gd` | `JournalBook`: аналой из дуба с берестой у северной стены двора, между лестницей врат и кельей правила; читает `user://hub.json` и `user://dive.json` только на чтение; шесть листов; на шестом нажатие пишет `user://journal-<дата>.md` |
 | `godot/scripts/confession_sheet.gd` | `ConfessionSheet`: берестяной листок у угла покаяния на тропе свидетеля; восемь вопросов, «Это не таинство…», совет бумаги и тишины сердца, «Сжечь листок»; поля ввода нет |
 | `godot/scripts/hub.gd` | крючок из трёх строк: `things.append(JournalBook.place(self))`, ветка `"node"` в `_interact`, кадр `journal` |
 | `godot/scripts/witness.gd` | крючок из двух строк: `ConfessionSheet.place(...)`, кадр `confession-sheet` |

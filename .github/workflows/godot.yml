@@ -67,6 +67,8 @@ jobs:
           node scripts/godot/make_journal_fixture.js
           git diff --exit-code godot/tests/journal_fixture.json
           git diff --exit-code godot/tests/fixtures/missions.json
+          node scripts/godot/make_rule_fixture.js
+          git diff --exit-code godot/tests/fixtures/rule.json
           git diff --exit-code godot/tests/fixture.json \
             godot/tests/hub_fixture.json godot/tests/trial_fixture.json \
             godot/tests/passion_fixture.json \

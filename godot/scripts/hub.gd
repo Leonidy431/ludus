@@ -6,8 +6,10 @@
 ##                 as the web game (TABOO 0.39 point 6);
 ##   pier        - the ROV on its birch stand; it leads into the dive;
 ##   gate ladder - six steps whose lanterns burn when a gate is open.
-## Beside them: the prayer rope on the lectern (a knot is counted and
-## shown, never scored, TABOO 0.35 rule 16) and the corner of stillness.
+## Beside them: the prayer rope on the lectern, kept in the pace of the
+## breath (RopeCore; a knot is counted and shown, never scored, TABOO
+## 0.35 rule 16), the corner of stillness and the cell of the evening
+## watch over thoughts (RuleCell, RuleCore).
 ##
 ## Three classes of light (TABOO 0.38 point 1): the lampada at 1800 K,
 ## the hearth at about 2200 K, the instrument light of the pier at
@@ -80,6 +82,14 @@ var select_was := false
 var interact_was := false
 var stick_was := 0.0
 var still_for := 0.0
+# The rule's cell and the rope (RuleCell, RuleCore, RopeCore): rule is
+# the open panel, {kind: "watch" | "rope", choice}; rope keeps the
+# breath the rope is tied in, and the breath heard while it is held.
+var rule := {}
+var rope := RopeCore.new_state()
+var rope_breath: AudioStreamPlayer
+var rope_streams := {}
+var rope_ring: Node3D
 var message := ""
 var message_left := 0.0
 
@@ -200,6 +210,8 @@ func _build_world() -> void:
 	_build_mission_board(oak)
 	# B2 hook: the journal of the way on its lectern (JournalBook).
 	things.append(JournalBook.place(self))
+	things.append(RuleCell.build(self, oak))
+	rope_ring = RuleCell.build_rope(self)
 
 
 ## The way out to the path of the witness: a plain oak arch on the south
@@ -452,7 +464,7 @@ func _build_practice(oak: Color) -> void:
 	# The lectern with the prayer rope, and the corner of stillness.
 	_box(Vector3(0.5, 1.1, 0.4), Vector3(-3.0, 0.55, 3.2), oak)
 	things.append({"id": "rope", "kind": "rope",
-		"pos": Vector3(-3.0, 0, 3.2), "ru": "Вервица: завязать узел"})
+		"pos": Vector3(-3.0, 0, 3.2), "ru": "Вервица: взять в руку"})
 	_box(Vector3(1.6, 0.45, 0.4), Vector3(4.0, 0.22, 4.4), oak)
 	hearth = OmniLight3D.new()
 	hearth.light_color = HEARTH_K
@@ -604,8 +616,9 @@ func _load() -> void:
 		actions.met = act.get("met", {})
 		actions.gifts = act.get("gifts", {})
 		# The deeds of the rule that missions ask (MissionCore.do_practice).
-		var pr = act.get("practices", {})
-		actions.practices = pr if pr is Dictionary else {}
+		# Only known practices and shapes come back (RuleCore.normalize).
+		actions.practices = RuleCore.normalize({"practices":
+			act.get("practices", {})}).practices
 		# Only known shapes come back, as normalizeState does in JS.
 		var ts: Dictionary = data.get("trials", {})
 		for g in TrialCore.GATE_IDS:
@@ -698,6 +711,9 @@ func _process(dt: float) -> void:
 			elif not mission.is_empty():
 				mission.choice = posmod(mission.choice - int(signf(nav)),
 					maxi(1, _mission_choices().size()))
+			elif not rule.is_empty():
+				rule.choice = posmod(rule.choice - int(signf(nav)),
+					_rule_choices().size())
 			else:
 				var n := HubCore.open_branches(talk.node, form).size()
 				talk.choice = posmod(talk.choice - int(signf(nav)),
@@ -714,6 +730,8 @@ func _process(dt: float) -> void:
 			_select(trial.choice)
 		elif not mission.is_empty():
 			_select(mission.choice)
+		elif not rule.is_empty():
+			_select(rule.choice)
 		elif talk.is_empty():
 			_interact()
 		else:
@@ -722,6 +740,7 @@ func _process(dt: float) -> void:
 	_stillness(dt, move)
 	_check_fall()
 	_road_tick(dt)
+	_rope_tick(dt)
 	hearth.light_energy = 1.3 + 0.15 * sin(t * 7.0) * sin(t * 2.3)
 	message_left = maxf(0.0, message_left - dt)
 	_refresh_boards()
@@ -753,14 +772,14 @@ func _interact() -> void:
 				tree.startNode), "choice": 0}
 			_save()
 		"rope":
-			actions = HubCore.pray_knot(actions)
-			_say("Узел завязан. Узлов: %d." % int(actions.prayerCount))
-			_save()
+			_open_rope()
+		"watch":
+			rule = {"kind": "watch", "choice": 0}
 		"pier":
 			# A fall closes the road to the deep until it is lifted.
 			var fs := TrialCore.fall_status(trial_data, trial_state, actions)
 			if fs.fallen:
-				_say("Путь в глубину закрыт: %s. Признак: %s Открывают трезвение (угол безмолвия) и беседа с наставником." % [fs.passion_ru, fs.cue])
+				_say("Путь в глубину закрыт: %s. Признак: %s Открывают трезвение (угол безмолвия или вечерний дозор в келье) и беседа с наставником." % [fs.passion_ru, fs.cue])
 				return
 			_save()
 			get_tree().change_scene_to_file("res://scenes/dive.tscn")
@@ -846,6 +865,9 @@ func _select(i: int) -> void:
 	if not mission.is_empty():
 		_choose_mission(i)
 		return
+	if not rule.is_empty():
+		_rule_select(i)
+		return
 	var open := HubCore.open_branches(talk.node, form)
 	if i >= open.size():
 		return
@@ -906,7 +928,8 @@ func _check_fall() -> void:
 
 func _panel_open() -> bool:
 	return not talk.is_empty() or not trial.is_empty() \
-		or not encounter.is_empty() or not chron.is_empty() or not mission.is_empty()
+		or not encounter.is_empty() or not chron.is_empty() or not mission.is_empty() \
+		or not rule.is_empty()
 
 
 # --- The road of missions ---------------------------------------------------
@@ -1228,6 +1251,8 @@ func _refresh_prompt() -> void:
 		panel.text = "\n".join(lines)
 	elif not mission.is_empty():
 		panel.text = _mission_panel_text()
+	elif not rule.is_empty():
+		panel.text = _rule_panel_text()
 	elif not talk.is_empty():
 		var tree: Dictionary = trees[talk.npc]
 		var lines := [tree.get("npcName_ru", talk.npc) + ":",
@@ -1245,6 +1270,108 @@ func _refresh_prompt() -> void:
 			text = th.ru
 	prompt3d.text = text
 	hud.text = text
+
+
+# --- The rule's cell and the rope (RuleCell) ----------------------------------
+
+func _rule_choices() -> Array:
+	if rule.get("kind") == "rope":
+		return RuleCell.rope_choices(rope)
+	return RuleCell.watch_choices(actions, Time.get_date_string_from_system())
+
+
+func _rule_panel_text() -> String:
+	var lines := []
+	if rule.kind == "rope":
+		lines = RuleCell.rope_lines(rope, actions)
+	else:
+		var fs := TrialCore.fall_status(trial_data, trial_state, actions)
+		var tree: Dictionary = trees.get(fs.get("teacher", ""), {})
+		lines = RuleCell.watch_lines(actions,
+			Time.get_date_string_from_system(), fs,
+			tree.get("npcName_ru", fs.get("teacher", "")))
+	return "\n".join(lines + RuleCell.choice_lines(_rule_choices(),
+		rule.choice))
+
+
+## The rope taken in hand: the breath starts with an inhale.
+func _open_rope() -> void:
+	rope = RopeCore.new_state(rope.pattern)
+	rule = {"kind": "rope", "choice": 0}
+	_breathe()
+
+
+## One's own breath, one cycle, started at each inhale (RopeBreath).
+func _breathe() -> void:
+	if rope_breath == null:
+		rope_breath = AudioStreamPlayer.new()
+		add_child(rope_breath)
+	if not rope_streams.has(rope.pattern):
+		rope_streams[rope.pattern] = RopeBreath.stream(rope.pattern)
+	rope_breath.stream = rope_streams[rope.pattern]
+	rope_breath.play()
+
+
+func _pulse(amplitude: float, seconds: float) -> void:
+	# The touch of the knot in the hand that holds the rope (Quest).
+	if xr_active:
+		right_hand.trigger_haptic_pulse("haptic", 0.0, amplitude, seconds,
+			0.0)
+
+
+func _rule_select(i: int) -> void:
+	var choices := _rule_choices()
+	if i >= choices.size():
+		return
+	var c: Dictionary = choices[i]
+	if c.disabled:
+		_say(c.reason)
+		return
+	match c.id:
+		"away":
+			rule = {}
+			if rope_breath:
+				rope_breath.stop()
+		"turn":
+			rope = RopeCore.turn(rope, 1)
+			_breathe()
+		"knot":
+			var r := RopeCore.tie(rope, actions)
+			rope = r.state
+			actions = r.actions
+			if r.tied:
+				rope_ring.rotation.y += TAU / RuleCell.ROPE_KNOTS
+				_pulse(0.5, 0.05)
+				_say("Узел.")
+				_save()
+			elif r.why == "inhale":
+				_say("Узел — на выдохе.")
+			else:
+				_say("У этого дыхания узел уже есть.")
+		"keep":
+			var before := TrialCore.fall_status(trial_data, trial_state,
+				actions)
+			actions = RuleCore.do_practice(actions, RuleCell.WATCH_ID,
+				{"day": Time.get_date_string_from_system()})
+			_save()
+			if before.get("fallen", false) and not before.taught:
+				_say("Дозор держан. Осталась беседа с наставником.")
+			else:
+				_say("Дозор держан. Сторож не спал.")
+
+
+## The breath goes on while the rope is in hand: the hand is touched as
+## the breath turns outward, and the breath is heard from each inhale.
+func _rope_tick(dt: float) -> void:
+	if rule.get("kind") != "rope":
+		return
+	var t0: float = rope.clock
+	rope.clock += dt
+	for cue in RopeCore.cues_between(rope.pattern, t0, rope.clock):
+		if cue.kind == "exhale":
+			_pulse(0.2, 0.08)
+		else:
+			_breathe()
 
 
 # --- XR -----------------------------------------------------------------------
@@ -1299,7 +1426,8 @@ func _on_webxr_started() -> void:
 # --- Proof frames -------------------------------------------------------------
 
 ## --shots=<dir>: the courtyard, the mentors, a talk, the pier, the ladder,
-## the thresholds, the road, the atlas and the board of missions.
+## the thresholds, the road, the atlas, the board of missions, the cell
+## of the evening watch with its panel, and the rope in hand.
 func _shots() -> void:
 	var plan := [
 		{"name": "courtyard", "pos": Vector3(0, 0, 5.5), "yaw": 0.0},
@@ -1320,7 +1448,12 @@ func _shots() -> void:
 			"yaw": -PI / 2.0},
 		{"name": "missions", "pos": Vector3(1.0, 0, 1.2), "yaw": -PI / 2.0,
 			"mission": true},
-		{"name": "journal", "pos": Vector3(-4.3, 0, -5.0), "yaw": PI / 2.0},
+		{"name": "journal", "pos": Vector3(0.1, 0, -7.6), "yaw": PI / 2.0},
+		{"name": "evening-cell", "pos": Vector3(-5.0, 0, -5.0), "yaw": 0.0},
+		{"name": "rope", "pos": Vector3(-3.0, 0, 4.0), "yaw": 0.0,
+			"rope": true},
+		{"name": "evening-watch", "pos": Vector3(-5.0, 0, -5.4), "yaw": 0.0,
+			"watch": true},
 	]
 	var n := shot_frame / 20
 	if n >= plan.size():
@@ -1365,6 +1498,23 @@ func _shots() -> void:
 		mission = {"choice": 0, "start": -1}
 	elif not s.has("mission"):
 		mission = {}
+	if s.has("rope") and rule.is_empty():
+		# The rope in hand on the Athonite breath (a proof frame only;
+		# nothing is saved).
+		mission = {}
+		rope = RopeCore.new_state("athonite")
+		rule = {"kind": "rope", "choice": 0}
+	if s.has("rope"):
+		# Held at seven seconds: the breath going out, the knot's moment.
+		rope.clock = 7.0
+	elif s.has("watch") and rule.get("kind") != "watch":
+		# After a fall on the road of lust: the watch shows what lifts it
+		# (a proof frame only; nothing is saved).
+		trial_state.fall = null
+		TrialCore._fall_into(trial_data, trial_state, "lust", actions)
+		rule = {"kind": "watch", "choice": 0}
+	elif not s.has("rope") and not s.has("watch"):
+		rule = {}
 	if shot_frame % 20 == 19:
 		get_viewport().get_texture().get_image().save_png(
 			"%s/hub-%s.png" % [shots_dir, s.name])
