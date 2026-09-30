@@ -127,6 +127,7 @@ func _ready() -> void:
 	_build_objects()
 	_build_stones()
 	_build_traces()
+	_build_own_drawings()
 	_build_fish()
 	_build_lines()
 	_build_snow()
@@ -377,6 +378,56 @@ func _part(parent: Node3D, kind, size: Vector3, at: Vector3, colour: Color,
 	m.position = at
 	parent.add_child(m)
 	return m
+
+
+## The neutral things of the shore drawn by our own generator (D6,
+## scripts/raw_assets/neutral_procedural.py): each kit has 12 variants,
+## laid out in a deterministic queue so no two neighbours repeat
+## (TABOO 0.3 rule 53).  Real size in metres and the depth band where
+## the thing lives on this shore; scenery only, never loot.
+const OWN_DRAWINGS := [
+	{"dir": "DEF-057", "kit": "own_boulder", "size": 0.9, "depth": [3.0, 25.0], "n": 24},
+	{"dir": "DEF-057", "kit": "own_quartz", "size": 0.25, "depth": [0.5, 6.0], "n": 24},
+	{"dir": "DEF-058", "kit": "own_trostnik", "size": 1.6, "depth": [0.3, 2.0], "n": 36},
+	{"dir": "DEF-058", "kit": "own_rdest", "size": 0.9, "depth": [1.5, 8.0], "n": 30},
+	{"dir": "DEF-059", "kit": "own_balka", "size": 1.8, "depth": [4.0, 18.0], "n": 12},
+	{"dir": "DEF-059", "kit": "own_khum", "size": 0.8, "depth": [8.0, 22.0], "n": 8},
+]
+
+
+func _build_own_drawings() -> void:
+	for kit in OWN_DRAWINGS:
+		var files := _kit_files("res://art/derived/%s" % kit.dir, kit.kit)
+		if files.is_empty():
+			continue
+		var r := DiveCore.rng("own:" + str(kit.kit))
+		for i in int(kit.n):
+			var tex := load(files[i % files.size()]) as Texture2D
+			var d: float = lerpf(kit.depth[0], kit.depth[1], r.call())
+			var z: float = (r.call() * 2.0 - 1.0) * DiveCore.CORRIDOR_M
+			var x := DiveCore.x_for_depth(d)
+			var sp := Sprite3D.new()
+			sp.texture = tex
+			sp.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
+			sp.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
+			sp.pixel_size = float(kit.size) / 256.0
+			# The drawing stands on its lower edge, on the floor.
+			sp.position = Vector3(x, -DiveCore.floor_depth(x, z)
+				+ float(kit.size) * 0.45, z)
+			add_child(sp)
+
+
+## The kit's variant files, sorted; in an exported build the folder
+## lists the ".import" stubs, so the suffix is dropped.
+func _kit_files(dir: String, kit: String) -> Array:
+	var out := []
+	for f in DirAccess.get_files_at(dir):
+		var name := f.trim_suffix(".import").trim_suffix(".remap")
+		if name.begins_with(kit) and name.ends_with(".png") \
+				and not dir.path_join(name) in out:
+			out.append(dir.path_join(name))
+	out.sort()
+	return out
 
 
 ## After the depth frames: the knight's diary, the khachkar (the console
