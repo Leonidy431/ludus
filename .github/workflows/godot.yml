@@ -102,6 +102,12 @@ jobs:
             cmp "$f" "godot/models/scene/$(basename "$f")"
           done
 
+      # Budgets of the headset build on the source side: triangles per
+      # model, the largest file and the content folders against
+      # scripts/godot/apk-budgets.json (docs/APK_REQUIREMENTS.md).
+      - name: Budgets of the headset build (source)
+        run: python3 scripts/godot/check_budgets.py --tree
+
       - name: Import and test
         working-directory: godot
         run: |
@@ -300,6 +306,15 @@ jobs:
           name: ludus-dive-quest-apk
           path: build/godot/ludus-dive-quest.apk
           retention-days: 30
+
+      # The built APK against its budgets: size, native libraries and
+      # their ABI, dex, content.  After the artifact upload, so an APK
+      # over budget can still be inspected; before the release, so it
+      # does not reach headset-latest (docs/APK_REQUIREMENTS.md).
+      - name: Budgets of the headset build (APK)
+        run: |
+          python3 scripts/godot/check_budgets.py \
+            --apk build/godot/ludus-dive-quest.apk
 
       # From main the APK goes to the release "headset-latest", one link
       # for the operator, with its SHA-256 (TABOO 0.01 point 4).
