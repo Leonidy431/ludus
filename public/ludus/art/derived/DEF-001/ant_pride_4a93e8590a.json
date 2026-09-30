@@ -1,0 +1,1211 @@
+{
+  "id": "4a93e8590a",
+  "seed": "4a93e8590a893fbd528e60b90a319a3d6482b2fe",
+  "piece": 1,
+  "source": {
+    "repo": "https://github.com/Card-Forge/forge",
+    "path": "forge-gui/res/adventure/common/sprites/enemy/aberration/beholder.png",
+    "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+    "piece": 1
+  },
+  "repo": "https://github.com/Card-Forge/forge",
+  "path": "forge-gui/res/adventure/common/sprites/enemy/aberration/beholder.png",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license": "GPL",
+  "license_file": "LICENSE",
+  "threshold": 0.35,
+  "redraw": {
+    "shape_change": 0.0,
+    "iou_change": 0.0,
+    "colour_change": 0.4396,
+    "silhouette_loss": 0.0,
+    "is_recolour": true
+  },
+  "name": "ant_pride_4a93e8590a",
+  "passion": "pride",
+  "passion_reason": "dominant hue 295 deg",
+  "features": {
+    "hue": 295,
+    "chromatic": true,
+    "mean_value": 0.2482,
+    "roughness": 61.64,
+    "glyph": null,
+    "glyph_iou": 0.0,
+    "glyph_margin": 0.0,
+    "words": [
+      "forge",
+      "gui",
+      "res",
+      "adventure",
+      "common",
+      "sprites",
+      "enemy",
+      "aberration",
+      "beholder",
+      "png"
+    ]
+  },
+  "behaviour": {
+    "source_role": "reward",
+    "antagonist": "hazard_mimicking_reward"
+  },
+  "palette": {
+    "hue": 115,
+    "basis": "complement",
+    "stops": [
+      "#1b4c17",
+      "#309926",
+      "#62d957",
+      "#b2ffc6"
+    ]
+  },
+  "texture": {
+    "source": "rough",
+    "antagonist": "smooth"
+  },
+  "reference_strength": 1,
+  "variants": [
+    {
+      "slot": "v01",
+      "kind": "reference",
+      "amplified": false,
+      "shape_change": 0.399,
+      "iou_change": 0.402,
+      "colour_change": 0.9972,
+      "silhouette_loss": 0.3703,
+      "hitbox": {
+        "bbox": [
+          36,
+          5,
+          220,
+          232
+        ],
+        "area": 18185,
+        "radius": 76.08,
+        "hull": [
+          [
+            36,
+            215
+          ],
+          [
+            38,
+            209
+          ],
+          [
+            70,
+            118
+          ],
+          [
+            74,
+            107
+          ],
+          [
+            113,
+            8
+          ],
+          [
+            114,
+            6
+          ],
+          [
+            128,
+            5
+          ],
+          [
+            129,
+            5
+          ],
+          [
+            143,
+            7
+          ],
+          [
+            144,
+            9
+          ],
+          [
+            179,
+            98
+          ],
+          [
+            219,
+            212
+          ],
+          [
+            220,
+            217
+          ],
+          [
+            220,
+            218
+          ],
+          [
+            211,
+            232
+          ],
+          [
+            45,
+            232
+          ],
+          [
+            36,
+            218
+          ]
+        ]
+      },
+      "file": "ant_pride_4a93e8590a_v01.png",
+      "analytics_id": "ludus.variant.pride.4a93e8590a.v01"
+    },
+    {
+      "slot": "v02",
+      "kind": "erosion",
+      "amplified": false,
+      "shape_change": 0.4705,
+      "iou_change": 0.4939,
+      "colour_change": 0.9999,
+      "silhouette_loss": 0.487,
+      "hitbox": {
+        "bbox": [
+          40,
+          17,
+          217,
+          230
+        ],
+        "area": 14025,
+        "radius": 66.82,
+        "hull": [
+          [
+            40,
+            211
+          ],
+          [
+            76,
+            109
+          ],
+          [
+            113,
+            17
+          ],
+          [
+            115,
+            17
+          ],
+          [
+            146,
+            40
+          ],
+          [
+            175,
+            95
+          ],
+          [
+            177,
+            100
+          ],
+          [
+            217,
+            214
+          ],
+          [
+            217,
+            216
+          ],
+          [
+            207,
+            230
+          ],
+          [
+            48,
+            230
+          ],
+          [
+            40,
+            216
+          ]
+        ]
+      },
+      "file": "ant_pride_4a93e8590a_v02.png",
+      "analytics_id": "ludus.variant.pride.4a93e8590a.v02"
+    },
+    {
+      "slot": "v03",
+      "kind": "crystallisation",
+      "amplified": false,
+      "cell": 16,
+      "shape_change": 0.4071,
+      "iou_change": 0.467,
+      "colour_change": 0.9979,
+      "silhouette_loss": 0.4125,
+      "hitbox": {
+        "bbox": [
+          32,
+          16,
+          224,
+          240
+        ],
+        "area": 18365,
+        "radius": 76.46,
+        "hull": [
+          [
+            32,
+            217
+          ],
+          [
+            96,
+            48
+          ],
+          [
+            112,
+            25
+          ],
+          [
+            121,
+            16
+          ],
+          [
+            144,
+            16
+          ],
+          [
+            176,
+            80
+          ],
+          [
+            224,
+            208
+          ],
+          [
+            224,
+            224
+          ],
+          [
+            208,
+            240
+          ],
+          [
+            48,
+            240
+          ],
+          [
+            32,
+            224
+          ]
+        ]
+      },
+      "file": "ant_pride_4a93e8590a_v03.png",
+      "analytics_id": "ludus.variant.pride.4a93e8590a.v03"
+    },
+    {
+      "slot": "v04",
+      "kind": "amorphous",
+      "amplified": false,
+      "blur_radius": 13,
+      "alpha_pulse_frames": [
+        1.0,
+        0.85,
+        0.7,
+        0.85
+      ],
+      "shape_change": 0.3592,
+      "iou_change": 0.375,
+      "colour_change": 0.9985,
+      "silhouette_loss": 0.2705,
+      "hitbox": {
+        "bbox": [
+          38,
+          14,
+          218,
+          240
+        ],
+        "area": 23884,
+        "radius": 87.19,
+        "hull": [
+          [
+            38,
+            208
+          ],
+          [
+            69,
+            112
+          ],
+          [
+            71,
+            106
+          ],
+          [
+            90,
+            62
+          ],
+          [
+            95,
+            52
+          ],
+          [
+            114,
+            22
+          ],
+          [
+            117,
+            18
+          ],
+          [
+            118,
+            17
+          ],
+          [
+            121,
+            15
+          ],
+          [
+            124,
+            14
+          ],
+          [
+            132,
+            14
+          ],
+          [
+            135,
+            15
+          ],
+          [
+            137,
+            16
+          ],
+          [
+            141,
+            20
+          ],
+          [
+            143,
+            23
+          ],
+          [
+            178,
+            90
+          ],
+          [
+            181,
+            96
+          ],
+          [
+            183,
+            102
+          ],
+          [
+            218,
+            208
+          ],
+          [
+            218,
+            221
+          ],
+          [
+            215,
+            227
+          ],
+          [
+            208,
+            234
+          ],
+          [
+            202,
+            237
+          ],
+          [
+            199,
+            238
+          ],
+          [
+            195,
+            239
+          ],
+          [
+            189,
+            240
+          ],
+          [
+            67,
+            240
+          ],
+          [
+            61,
+            239
+          ],
+          [
+            57,
+            238
+          ],
+          [
+            54,
+            237
+          ],
+          [
+            50,
+            235
+          ],
+          [
+            47,
+            233
+          ],
+          [
+            41,
+            227
+          ],
+          [
+            39,
+            223
+          ],
+          [
+            38,
+            220
+          ]
+        ]
+      },
+      "file": "ant_pride_4a93e8590a_v04.png",
+      "analytics_id": "ludus.variant.pride.4a93e8590a.v04"
+    },
+    {
+      "slot": "v05",
+      "kind": "symbiote",
+      "amplified": false,
+      "shape_change": 0.3513,
+      "iou_change": 0.3545,
+      "colour_change": 0.9977,
+      "silhouette_loss": 0.2739,
+      "hitbox": {
+        "bbox": [
+          36,
+          0,
+          220,
+          232
+        ],
+        "area": 22662,
+        "radius": 84.93,
+        "hull": [
+          [
+            36,
+            215
+          ],
+          [
+            71,
+            46
+          ],
+          [
+            74,
+            40
+          ],
+          [
+            78,
+            36
+          ],
+          [
+            114,
+            6
+          ],
+          [
+            144,
+            0
+          ],
+          [
+            151,
+            0
+          ],
+          [
+            155,
+            2
+          ],
+          [
+            157,
+            4
+          ],
+          [
+            159,
+            8
+          ],
+          [
+            201,
+            128
+          ],
+          [
+            217,
+            196
+          ],
+          [
+            220,
+            217
+          ],
+          [
+            220,
+            218
+          ],
+          [
+            211,
+            232
+          ],
+          [
+            45,
+            232
+          ],
+          [
+            36,
+            218
+          ]
+        ]
+      },
+      "file": "ant_pride_4a93e8590a_v05.png",
+      "analytics_id": "ludus.variant.pride.4a93e8590a.v05"
+    },
+    {
+      "slot": "v06",
+      "kind": "techno",
+      "amplified": false,
+      "outline_px": 4,
+      "shape_change": 0.4425,
+      "iou_change": 0.865,
+      "colour_change": 0.991,
+      "silhouette_loss": 0.8586,
+      "hitbox": {
+        "bbox": [
+          36,
+          5,
+          220,
+          232
+        ],
+        "area": 5025,
+        "radius": 39.99,
+        "hull": [
+          [
+            36,
+            215
+          ],
+          [
+            38,
+            209
+          ],
+          [
+            70,
+            118
+          ],
+          [
+            74,
+            107
+          ],
+          [
+            113,
+            8
+          ],
+          [
+            114,
+            6
+          ],
+          [
+            128,
+            5
+          ],
+          [
+            129,
+            5
+          ],
+          [
+            143,
+            7
+          ],
+          [
+            144,
+            9
+          ],
+          [
+            179,
+            98
+          ],
+          [
+            219,
+            212
+          ],
+          [
+            220,
+            217
+          ],
+          [
+            220,
+            218
+          ],
+          [
+            211,
+            232
+          ],
+          [
+            45,
+            232
+          ],
+          [
+            36,
+            218
+          ]
+        ]
+      },
+      "file": "ant_pride_4a93e8590a_v06.png",
+      "analytics_id": "ludus.variant.pride.4a93e8590a.v06"
+    },
+    {
+      "slot": "v07",
+      "kind": "dark_matter",
+      "amplified": false,
+      "shape_change": 0.3756,
+      "iou_change": 0.3917,
+      "colour_change": 0.4605,
+      "silhouette_loss": 0.3027,
+      "hitbox": {
+        "bbox": [
+          33,
+          2,
+          223,
+          235
+        ],
+        "area": 22467,
+        "radius": 84.57,
+        "hull": [
+          [
+            33,
+            212
+          ],
+          [
+            35,
+            206
+          ],
+          [
+            67,
+            115
+          ],
+          [
+            71,
+            104
+          ],
+          [
+            110,
+            5
+          ],
+          [
+            111,
+            3
+          ],
+          [
+            125,
+            2
+          ],
+          [
+            132,
+            2
+          ],
+          [
+            146,
+            4
+          ],
+          [
+            147,
+            6
+          ],
+          [
+            182,
+            95
+          ],
+          [
+            222,
+            209
+          ],
+          [
+            223,
+            214
+          ],
+          [
+            223,
+            221
+          ],
+          [
+            214,
+            235
+          ],
+          [
+            42,
+            235
+          ],
+          [
+            33,
+            221
+          ]
+        ]
+      },
+      "file": "ant_pride_4a93e8590a_v07.png",
+      "analytics_id": "ludus.variant.pride.4a93e8590a.v07"
+    },
+    {
+      "slot": "v08",
+      "kind": "swarm",
+      "amplified": false,
+      "particle_step": 11,
+      "shape_change": 0.7595,
+      "iou_change": 0.7628,
+      "colour_change": 0.9755,
+      "silhouette_loss": 0.7565,
+      "hitbox": {
+        "bbox": [
+          39,
+          16,
+          213,
+          235
+        ],
+        "area": 7198,
+        "radius": 47.87,
+        "hull": [
+          [
+            39,
+            213
+          ],
+          [
+            71,
+            111
+          ],
+          [
+            107,
+            37
+          ],
+          [
+            123,
+            20
+          ],
+          [
+            126,
+            17
+          ],
+          [
+            142,
+            16
+          ],
+          [
+            146,
+            16
+          ],
+          [
+            148,
+            18
+          ],
+          [
+            213,
+            205
+          ],
+          [
+            213,
+            209
+          ],
+          [
+            205,
+            226
+          ],
+          [
+            203,
+            228
+          ],
+          [
+            191,
+            233
+          ],
+          [
+            86,
+            235
+          ],
+          [
+            64,
+            235
+          ],
+          [
+            41,
+            219
+          ],
+          [
+            39,
+            217
+          ]
+        ]
+      },
+      "file": "ant_pride_4a93e8590a_v08.png",
+      "analytics_id": "ludus.variant.pride.4a93e8590a.v08"
+    },
+    {
+      "slot": "v09",
+      "kind": "echo",
+      "amplified": false,
+      "alpha": 0.5,
+      "echo_alpha": 0.25,
+      "echo_offset": [
+        21,
+        3
+      ],
+      "shape_change": 0.3523,
+      "iou_change": 0.3644,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.2698,
+      "hitbox": {
+        "bbox": [
+          36,
+          5,
+          241,
+          235
+        ],
+        "area": 23408,
+        "radius": 86.32,
+        "hull": [
+          [
+            36,
+            215
+          ],
+          [
+            38,
+            209
+          ],
+          [
+            70,
+            118
+          ],
+          [
+            74,
+            107
+          ],
+          [
+            113,
+            8
+          ],
+          [
+            114,
+            6
+          ],
+          [
+            128,
+            5
+          ],
+          [
+            129,
+            5
+          ],
+          [
+            164,
+            10
+          ],
+          [
+            165,
+            12
+          ],
+          [
+            200,
+            101
+          ],
+          [
+            240,
+            215
+          ],
+          [
+            241,
+            220
+          ],
+          [
+            241,
+            221
+          ],
+          [
+            232,
+            235
+          ],
+          [
+            66,
+            235
+          ],
+          [
+            45,
+            232
+          ],
+          [
+            36,
+            218
+          ]
+        ]
+      },
+      "file": "ant_pride_4a93e8590a_v09.png",
+      "analytics_id": "ludus.variant.pride.4a93e8590a.v09"
+    },
+    {
+      "slot": "v10",
+      "kind": "inverted_gravity",
+      "amplified": false,
+      "stretch": 1.2995594713656389,
+      "shape_change": 0.4619,
+      "iou_change": 0.4931,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.4407,
+      "hitbox": {
+        "bbox": [
+          40,
+          0,
+          216,
+          232
+        ],
+        "area": 17653,
+        "radius": 74.96,
+        "hull": [
+          [
+            40,
+            210
+          ],
+          [
+            114,
+            0
+          ],
+          [
+            137,
+            0
+          ],
+          [
+            214,
+            206
+          ],
+          [
+            216,
+            213
+          ],
+          [
+            216,
+            214
+          ],
+          [
+            211,
+            232
+          ],
+          [
+            45,
+            232
+          ],
+          [
+            40,
+            214
+          ]
+        ]
+      },
+      "file": "ant_pride_4a93e8590a_v10.png",
+      "analytics_id": "ludus.variant.pride.4a93e8590a.v10"
+    },
+    {
+      "slot": "v11",
+      "kind": "hybrid",
+      "amplified": false,
+      "parents": [
+        "v02",
+        "v08"
+      ],
+      "op": "union",
+      "shape_change": 0.4426,
+      "iou_change": 0.4624,
+      "colour_change": 0.997,
+      "silhouette_loss": 0.4443,
+      "hitbox": {
+        "bbox": [
+          39,
+          16,
+          217,
+          235
+        ],
+        "area": 15700,
+        "radius": 70.69,
+        "hull": [
+          [
+            39,
+            213
+          ],
+          [
+            71,
+            111
+          ],
+          [
+            113,
+            17
+          ],
+          [
+            142,
+            16
+          ],
+          [
+            146,
+            16
+          ],
+          [
+            148,
+            18
+          ],
+          [
+            177,
+            100
+          ],
+          [
+            217,
+            214
+          ],
+          [
+            217,
+            216
+          ],
+          [
+            207,
+            230
+          ],
+          [
+            191,
+            233
+          ],
+          [
+            86,
+            235
+          ],
+          [
+            64,
+            235
+          ],
+          [
+            48,
+            230
+          ],
+          [
+            39,
+            217
+          ]
+        ]
+      },
+      "file": "ant_pride_4a93e8590a_v11.png",
+      "analytics_id": "ludus.variant.pride.4a93e8590a.v11"
+    },
+    {
+      "slot": "v12",
+      "kind": "hybrid",
+      "amplified": false,
+      "parents": [
+        "v05",
+        "v08"
+      ],
+      "op": "xor",
+      "shape_change": 0.404,
+      "iou_change": 0.5536,
+      "colour_change": 0.5951,
+      "silhouette_loss": 0.5047,
+      "hitbox": {
+        "bbox": [
+          36,
+          0,
+          220,
+          235
+        ],
+        "area": 16106,
+        "radius": 71.6,
+        "hull": [
+          [
+            36,
+            215
+          ],
+          [
+            71,
+            46
+          ],
+          [
+            74,
+            40
+          ],
+          [
+            78,
+            36
+          ],
+          [
+            114,
+            6
+          ],
+          [
+            144,
+            0
+          ],
+          [
+            151,
+            0
+          ],
+          [
+            155,
+            2
+          ],
+          [
+            157,
+            4
+          ],
+          [
+            159,
+            8
+          ],
+          [
+            201,
+            128
+          ],
+          [
+            217,
+            196
+          ],
+          [
+            220,
+            217
+          ],
+          [
+            220,
+            218
+          ],
+          [
+            211,
+            232
+          ],
+          [
+            191,
+            233
+          ],
+          [
+            86,
+            235
+          ],
+          [
+            64,
+            235
+          ],
+          [
+            45,
+            232
+          ],
+          [
+            36,
+            218
+          ]
+        ]
+      },
+      "file": "ant_pride_4a93e8590a_v12.png",
+      "analytics_id": "ludus.variant.pride.4a93e8590a.v12"
+    }
+  ],
+  "rejected_variants": [],
+  "shortfall": 0,
+  "status": "ok",
+  "file": "ant_pride_4a93e8590a_v01.png",
+  "shape_change": 0.3513,
+  "colour_change": 0.9972,
+  "claim_features": [
+    "форма-антагонист страсти «pride» (по Евагрию и Иоанну Лествичнику), выведенная из альфа-силуэта источника",
+    "палитра complement (тон 115°) и инверсия фактуры rough -> smooth",
+    "инвертированное поведение reward -> hazard_mimicking_reward; 12 вариантов с попарно различными хитбоксами",
+    "изменение формы по альфа-маскам (|A xor B| / |A or B|): от 35.1% до 75.9%",
+    "источник: https://github.com/Card-Forge/forge @ 647b5eac95, forge-gui/res/adventure/common/sprites/enemy/aberration/beholder.png #1 (GPL)"
+  ],
+  "opposing_virtue": "Humility",
+  "ladder_step": "Ladder, step 23",
+  "patristic_source": "Evagrius, Praktikos 14",
+  "discernment_cue": "It says: this was your own doing.",
+  "discernment_cue_ru": "Она говорит: это твоё собственное дело.",
+  "teacher_npc": "sister_catherine"
+}
