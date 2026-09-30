@@ -183,4 +183,15 @@ func _initialize() -> void:
 	built.in_scene(self)
 	print("location build: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# Static batching of the hub (StaticBatch, Б-1); a frame first, so
+	# the obitel's hub has left the tree, as one hub does in the game.
+	await process_frame
+	before = checks
+	fails = failures
+	var batch = load("res://tests/test_static_batch.gd").new()
+	batch.run(self)
+	await process_frame
+	batch.in_hub(self)
+	print("static batch: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	quit(1 if failures else 0)

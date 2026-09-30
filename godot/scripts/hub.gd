@@ -28,6 +28,17 @@ const RU_ATTR := {"wisdom": "Мудрость", "faith": "Вера",
 const LAMPADA_K := Color(1.0, 0.52, 0.16)   # About 1800 K.
 const HEARTH_K := Color(1.0, 0.62, 0.3)     # About 2200 K.
 const INSTRUMENT_K := Color(0.95, 0.97, 1.0)  # About 6500 K.
+## The cell of the evening watch behind its partition (RuleCell): its
+## still geometry is batched apart from the yard's.
+const CELL_ZONE := AABB(Vector3(-7.0, -0.1, -8.5), Vector3(3.8, 3.2, 3.0))
+## Occluders [size, centre], 5 cm inside the wall they stand for.  Only
+## the cell's partition (RuleCell): it hides the workshop and the yard
+## from the cell.  Nothing stands behind the yard's west or north wall,
+## so occluders there would cost the CPU buffer every frame and hide
+## nothing (the counts were the same with and without them).
+const OCCLUDERS := [
+	[Vector3(0.1, 2.3, 3.1), Vector3(-3.3, 1.15, -7.1)],
+]
 
 var trees: Dictionary = {}
 var form := HubCore.new_form()
@@ -109,6 +120,8 @@ var webxr: XRInterface
 var vr_button: Button
 
 var shots_dir := ""
+# The viewport's occlusion culling before the hub turned it on.
+var occlusion_was := false
 var shot_frame := 0
 
 
@@ -215,7 +228,42 @@ func _build_world() -> void:
 	things.append(RuleCell.build(self, oak))
 	rope_ring = RuleCell.build_rope(self)
 	# The K things of the obitel (TABOO 0.07, scripts/obitel_layout.gd).
-	ObitelLayout.build_obitel_objects(self)
+	var obitel := ObitelLayout.build_obitel_objects(self)
+	# Б-1 (docs/APK_REQUIREMENTS.md): the still geometry above is baked
+	# into a few meshes, one per material and place (StaticBatch), and
+	# the cell stays its own zone.  The rope turns, and the holy image is
+	# never baked into one mesh with the things around it (TABOO 0.2):
+	# each is merged only within itself.  Anything built after this line
+	# is drawn as built.
+	var apart: Array = [rope_ring]
+	for h in obitel.get_children():
+		if h.has_meta("obitel") and h.get_meta("obitel").flags.get("holy",
+				false):
+			apart.append(h)
+	StaticBatch.merge(self, {"scopes": apart, "zones": [CELL_ZONE]})
+	_build_occluders()
+
+
+## Б-1: occluders for the renderer's occlusion culling, a little inside
+## the walls they stand for, so nothing seen past an edge is hidden.
+## The culling runs on the CPU (the raycast module, which the Android
+## export has and the web export lacks: there it draws everything, as
+## before), and only in this scene's viewport.
+func _build_occluders() -> void:
+	for o in OCCLUDERS:
+		var oi := OccluderInstance3D.new()
+		var box := BoxOccluder3D.new()
+		box.size = o[0]
+		oi.occluder = box
+		oi.position = o[1]
+		add_child(oi)
+	occlusion_was = get_viewport().use_occlusion_culling
+	get_viewport().use_occlusion_culling = true
+
+
+func _exit_tree() -> void:
+	# The next scene (the dive, the witness) has no occluders.
+	get_viewport().use_occlusion_culling = occlusion_was
 
 
 ## The way out to the path of the witness: a plain oak arch on the south

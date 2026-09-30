@@ -242,6 +242,14 @@ func _views() -> Array:
 				# hub.gd --shots "evening-cell".
 				{"name": "evening-cell", "pos": Vector3(-5.0, 0, -5.0),
 					"yaw": 0.0},
+				# The worst reachable views of the yard (a 5 x 5 grid
+				# over BOUNDS, eight headings each): from the south-east
+				# corner by the pier towards the north-east, and from the
+				# south wall towards the north.
+				{"name": "yard-se-ne", "pos": Vector3(8.0, 0, 7.0),
+					"yaw": PI / 4.0},
+				{"name": "yard-south", "pos": Vector3(-2.0, 0, 7.0),
+					"yaw": 0.0},
 			]
 		"dive":
 			var out := []
