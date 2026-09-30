@@ -119,6 +119,14 @@
               "attributeBonuses": {
                 "wisdom": 1
               }
+            },
+            {
+              "text": "When the brothers watch me, my work goes better. Is that wrong?",
+              "text_ru": "Когда братья смотрят, у меня работа идёт лучше. Это плохо?",
+              "nextNodeId": "seen_knot",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
             }
           ]
         },
@@ -177,6 +185,14 @@
               "nextNodeId": "name_breath",
               "attributeBonuses": {
                 "wisdom": 2
+              }
+            },
+            {
+              "text": "And if the same knock comes back every night?",
+              "text_ru": "А если один и тот же стук возвращается каждую ночь?",
+              "nextNodeId": "returning_knock",
+              "attributeBonuses": {
+                "wisdom": 1
               }
             }
           ]
@@ -241,6 +257,62 @@
               "attributeBonuses": {
                 "wisdom": 1
               }
+            }
+          ]
+        },
+        {
+          "id": "seen_knot",
+          "voice": "own",
+          "text": "When the novices sit and watch me, my knots come out tight and even. Alone at night the fingers go slack. Which rope is mine? The one tied in the dark. There is a thought that says: let them see how well you tie. It is a thief that comes after the work is done and carries off the rope while leaving it in your hand. Know it by one mark: you do it so that it is seen, and when nobody looks the zeal goes out like a wick without oil. So I tie my best knots after the lamp in the passage is put out.",
+          "text_ru": "Когда послушники сидят и смотрят, узлы у меня выходят тугие и ровные. Ночью, одному, пальцы слабеют. Какая же верёвка моя? Та, что связана в темноте. Есть помысел, который говорит: пусть видят, как ладно ты вяжешь. Это вор, он приходит после работы и уносит верёвку, оставив её у тебя в руке. Узнаёшь его по одной примете: делаешь, чтобы видели, а когда никто не смотрит, усердие гаснет, как фитиль без масла. Потому свои лучшие узлы я вяжу, когда лампу в сенях уже погасили.",
+          "meaning": "Discernment cue for the passion of vainglory: doing the work so that it is seen; zeal that rises before onlookers and falls when no one watches. St John Climacus describes vainglory as a thief that spoils good work by turning it towards the eyes of others; the remedy is hidden doing (Mt 6:1-6) and humility, not any holy object. The elder retells the teaching in his own craft and does not sign it with the Father's name.",
+          "source": "John Climacus, The Ladder of Divine Ascent, Step 22; Matthew 6:1-6",
+          "branches": [
+            {
+              "text": "Then I will tie the best knot where no one sees it.",
+              "text_ru": "Тогда лучший узел я завяжу там, где его никто не увидит.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "wisdom": 2,
+                "faith": 1
+              },
+              "narrativeEffect": "The elder blows out the lamp. In the dark you hear him tie one more knot."
+            },
+            {
+              "text": "But good work should be seen, so that others learn.",
+              "text_ru": "Но хорошую работу ведь надо показать, чтобы другие учились.",
+              "nextNodeId": "still_water",
+              "attributeBonuses": {
+                "wisdom": 1
+              },
+              "narrativeEffect": "He sets the rope down unfinished and points at the jug: \"Let it settle first, then we will see who is teaching whom.\""
+            }
+          ]
+        },
+        {
+          "id": "returning_knock",
+          "voice": "own",
+          "text": "Most knocks come once and go. One comes back. You send it off at dusk, and the next night at the same hour it knocks the same way, softly, as if it had a key. It never asks for much: only to look once through the crack. That is its mark, brother: it returns. Do not open the door to argue with it; whoever argues is already talking at the threshold. Do not count how many times it came. Tie a knot, call on the Master of the house, and at first light tell your elder what knocked. A knock that has been told loses its key.",
+          "text_ru": "Большинство стуков приходят раз и уходят. А один возвращается. Прогонишь его в сумерки, а на другую ночь в тот же час он стучит так же, тихо, будто у него есть ключ. Он никогда не просит многого: только разок глянуть в щёлку. Это его примета, брат: он возвращается. Не открывай дверь, чтобы с ним спорить: кто спорит, тот уже беседует у порога. Не считай, сколько раз он приходил. Завяжи узел, позови Хозяина дома, а на рассвете расскажи старцу, что стучало. Стук, о котором рассказали, теряет ключ.",
+          "meaning": "Discernment cue for the passion of lust (fornication), told without any image of the body: the thought that keeps returning at the same hour and asks only for 'one look'. St John Climacus teaches that this warfare is not won by debating the thought but by flight, humility and calling on God, and Evagrius names the demon of fornication by its insistence; the thought loses its hold when it is revealed to the elder. The mentor teaches the sign, not a weapon; the rope is not counted and is not a charm. The elder retells the teaching in his own craft and does not sign it with the Fathers' names.",
+          "source": "John Climacus, The Ladder of Divine Ascent, Step 15; Evagrius Ponticus, Praktikos, ch. 8",
+          "branches": [
+            {
+              "text": "Then I will not argue at the door. I will tell it at first light.",
+              "text_ru": "Тогда я не стану спорить у двери. Расскажу на рассвете.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "wisdom": 2,
+                "constitution": 1
+              },
+              "narrativeEffect": "The elder ties one knot and does not count it."
+            },
+            {
+              "text": "Surely one look through the crack harms no one.",
+              "text_ru": "Один взгляд в щёлку ведь никому не вредит.",
+              "nextNodeId": "ladder_of_thought",
+              "attributeBonuses": {},
+              "narrativeEffect": "He says nothing and trims the wick. Somewhere a knock sounds again."
             }
           ]
         },

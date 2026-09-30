@@ -750,6 +750,115 @@
    "accepted_objects": 10,
    "code_candidates": 0,
    "reverted": "Eye check (docs/audit/2026-09-30/raw-hourly-contact-rejected.png): DEF-049 grass tiles became abstract magenta shapes and DEF-052 water-wave tiles became brown blobs. Neither slot has a real-object profile, so the neutral path fell back to a passion palette. Fixes: a neutral slot without a profile is now refused before variants; generic path words (ref, source, rltiles, dngn, ...) never become keywords. Nothing shipped."
+  },
+  {
+   "time": "2026-09-30T05:15:18.472118+00:00",
+   "deficits": [
+    {
+     "id": "DEF-001",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 152,
+      "sacred-never-raw": 3,
+      "dogma-stop-list": 1
+     },
+     "added_keywords": [
+      "smallmammals",
+      "unused",
+      "actors",
+      "com",
+      "npcs",
+      "shatteredpixel",
+      "shatteredpixeldungeon",
+      "spells",
+      "melee",
+      "mindustry",
+      "phyrexian",
+      "cat"
+     ],
+     "keywords_total": 31
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 44,
+   "note": "Run in a scratch copy for the missing passions (avarice, vainglory): --only DEF-001 --per-deficit 8. No image among the first 200 hits passed the stop-lists (the grown keywords pull code and non-game paths to the top). Nothing shipped."
+  },
+  {
+   "time": "2026-09-30T05:20:04.482853+00:00",
+   "deficits": [
+    {
+     "id": "DEF-001",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 126,
+      "sacred-never-raw": 3,
+      "dogma-stop-list": 1
+     },
+     "added_keywords": [
+      "hero",
+      "effects",
+      "particles",
+      "abilities",
+      "cleric",
+      "duelist",
+      "huntress",
+      "mage",
+      "rogue",
+      "warrior",
+      "buffs",
+      "defend"
+     ],
+     "keywords_total": 45
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 70,
+   "note": "Same, after adding the passion words \"mimic\" (avarice, new in antagonist.PASSION_WORDS) and \"mirror\" (vainglory) to the DEF-001 keys by hand; still no image in the first 200 hits. Nothing shipped."
+  },
+  {
+   "time": "2026-09-30T05:31:08.416134+00:00",
+   "deficits": [
+    {
+     "id": "DEF-001",
+     "hits": 41,
+     "taken": 8,
+     "refused": {
+      "not-a-game-object": 19,
+      "sacred-never-raw": 3
+     },
+     "added_keywords": [],
+     "keywords_total": 45
+    }
+   ],
+   "accepted_objects": 7,
+   "code_candidates": 0,
+   "note": "Scratch driver passion_pass.py: osint_cycle.main() unchanged but the search narrowed to the two passion words and no keyword growth; every stop-list still applied. 7 objects 12/12.",
+   "reverted": "Eye check: every vainglory kit wore a ring round the whole form (shape_vainglory drew a \"counterfeit halo\"); a ring round a figure reads as a halo (TABOO 0.35 rule 7). shape_vainglory now spreads a fan of quills upward instead. Nothing from this run shipped."
+  },
+  {
+   "time": "2026-09-30T05:32:30.982371+00:00",
+   "deficits": [
+    {
+     "id": "DEF-001",
+     "hits": 41,
+     "taken": 8,
+     "refused": {
+      "not-a-game-object": 19,
+      "sacred-never-raw": 3
+     },
+     "added_keywords": [],
+     "keywords_total": 45
+    }
+   ],
+   "accepted_objects": 7,
+   "code_candidates": 0,
+   "note": "Rerun after the vainglory fix; 7 objects 12/12. Shipped after the eye check (docs/audit/2026-09-30/passions-contact.png): ant_avarice_f14d9c7468 (crawl ravenous_mimic, min shape 40.2 %) and ant_vainglory_12f32bbb0f (crawl misc_phantom_mirror, min shape 56.6 %). Not shipped: the other two mimics (a flat sheet and a mound shape less readable), and three mirror kits: injury_mirror (its source is a cross-shaped icon), phantom_mirror (gold square in the canon colour), vault_mirror (thin fragments, v02 nearly empty). Lust is not from the runner: our own drawing, scripts/raw_assets/own_passion.py, ant_lust_fc98bcfdb9 (chorus docs/CHORUS_LUST_2026-09-30.md).",
+   "shipped": [
+    "ant_avarice_f14d9c7468",
+    "ant_vainglory_12f32bbb0f"
+   ]
   }
  ],
  "keywords": {
@@ -874,7 +983,33 @@
    "units",
    "aberration",
    "java",
-   "deep"
+   "deep",
+   "smallmammals",
+   "unused",
+   "actors",
+   "com",
+   "npcs",
+   "shatteredpixel",
+   "shatteredpixeldungeon",
+   "spells",
+   "melee",
+   "mindustry",
+   "phyrexian",
+   "cat",
+   "mimic",
+   "mirror",
+   "hero",
+   "effects",
+   "particles",
+   "abilities",
+   "cleric",
+   "duelist",
+   "huntress",
+   "mage",
+   "rogue",
+   "warrior",
+   "buffs",
+   "defend"
   ],
   "DEF-049": [
    "terrain",

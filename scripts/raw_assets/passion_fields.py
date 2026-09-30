@@ -18,6 +18,20 @@ DATA = ROOT / 'public' / 'ludus' / 'data' / 'passions.json'
 REQUIRED = ('passion', 'opposing_virtue', 'ladder_step',
             'patristic_source', 'discernment_cue')
 
+# The mentor node that teaches each passion's sign in the teacher's own
+# idiom (rule 13: "at least one mentor node that teaches the sign").
+# Node ids are in functions/src/data/npc-dialogues-24.json; the tests
+# check that each one exists in the teacher's tree and is a
+# discernment node.  A passion whose teacher has no such node yet is
+# left out rather than pointed at a node that teaches something else.
+MENTOR_NODES = {
+    'avarice': 'avarice_cue',
+    'vainglory': 'seen_knot',
+    'lust': 'returning_knock',
+    'pride': 'own_light',
+    'acedia': 'noonday_thief',
+}
+
 
 def load(path=DATA):
     doc = json.loads(Path(path).read_text(encoding='utf-8'))
@@ -38,6 +52,9 @@ def enrich(meta, passions=None):
         'discernment_cue_ru': entry['cue_ru'],
         'teacher_npc': entry['teacher'],
     })
+    node = MENTOR_NODES.get(meta['passion'])
+    if node:
+        meta['mentor_node'] = f"{entry['teacher']}:{node}"
     return meta
 
 

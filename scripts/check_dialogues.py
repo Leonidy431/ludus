@@ -5,8 +5,9 @@ this check keeps every later edit inside the same contract, and fails
 the build with the first problems it finds:
   - every NPC has an idiom: worldview, craft, 6-10 images, 3-5
     metaphors and a way of falling silent (Aesopian language, 0.39);
-  - 6-8 nodes, unique ids, a real start node, every nextNodeId
-    resolves or is null;
+  - 6-8 teaching nodes, plus one more for each passion the NPC teaches
+    beyond the first (see max_nodes), unique ids, a real start node,
+    every nextNodeId resolves or is null;
   - every node carries text, text_ru, meaning and source (0.35 rule 18);
   - saints speak in paraphrase (voice "paraphrase"), never in invented
     quotations (0.37);
@@ -51,6 +52,26 @@ def is_refusal(node):
     return True
 
 
+def is_discernment(node):
+    """A node that teaches the sign of one passion (rule 13)."""
+    return str(node.get('meaning') or '').startswith('Discernment cue')
+
+
+def max_nodes(nodes):
+    """Eight nodes, and one more for each passion beyond the first.
+
+    TABOO 0.35 rule 13 asks for a mentor node teaching the sign of each
+    passion, and some mentors teach the signs of two or three passions
+    (Sister Catherine: vainglory and pride; Elder Sergius, the teacher
+    of lust and vainglory in public/ludus/data/passions.json: acedia,
+    vainglory and lust).  Folding a sign into another node would delete
+    teaching, which is worse than a longer tree, so only discernment
+    nodes may go past eight; any other growth still fails.
+    """
+    cues = sum(1 for node in nodes if is_discernment(node))
+    return 8 + max(0, cues - 1)
+
+
 def check_tree(tree):
     errors = []
     nid = tree.get('npcId', '?')
@@ -69,8 +90,8 @@ def check_tree(tree):
 
     nodes = tree.get('nodes') or []
     ids = [n.get('id') for n in nodes]
-    if not 6 <= len(nodes) <= 8:
-        err(f'{len(nodes)} nodes, expected 6-8')
+    if not 6 <= len(nodes) <= max_nodes(nodes):
+        err(f'{len(nodes)} nodes, expected 6-{max_nodes(nodes)}')
     if len(set(ids)) != len(ids):
         err('duplicate node ids')
     if tree.get('startNode') not in ids:
