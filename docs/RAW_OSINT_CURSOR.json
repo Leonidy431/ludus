@@ -2358,6 +2358,31 @@
     "audio-references.json": 4498
    },
    "note": "Spectral references only (TABOO 0.35 rule 8): no audio file in the repository or public/; godot/data holds slot medians only. Props rows in docs/RAW_AUDIO_PROPS.json (TABOO 0.012)."
+  },
+  {
+   "time": "2026-09-30T17:19:59.717166+00:00",
+   "type": "own-drawing",
+   "pass_id": "own-fish-DEF-056-2026-09-30",
+   "deficits": [
+    {
+     "id": "DEF-056",
+     "own_drawing": true
+    }
+   ],
+   "accepted_objects": 9,
+   "code_candidates": 0,
+   "note": "Track C, not a raw pass: DEF-056 (fish) follows D6 and moves to own drawing, because the raw passes never gave a recognisable fish (a jellyfish, a fiend and pikemen for \"pike\"; later fish-like pieces failed the real-object profile). scripts/raw_assets/fish_procedural.py draws nine species of the lake register side-on by genus shape (length, body depth, dorsal and adipose fins, barbels, tail fork, skin pattern from godot/data/issyk-kul-fish.json and docs/ISSYK_KUL_FISH.md; proportions approximate, for an ichthyologist to check), 12 variants each from age classes x register poses, every pair >= 35 % apart by alpha, each fitting the fish profile. Eye check docs/audit/2026-09-30/fish-own-DEF-056-contact.png on five biomes: all nine recognisable after two fixes (eyes drawn at full radius read as cartoons and were reduced; fins first hung as spikes and were swept back, which also lifted the fill into the profile). School and young as one sprite are refused by the fish profile (fill 0.21-0.26); a scene builds a school from several sprites. No headset copy: the dive already shows 3D fish and no Godot scene loads the sprites (TABOO 0.011). No third-party material, so no NOTICES rows.",
+   "shipped": [
+    "own_chebachok_4a8e60a860",
+    "own_marinka_877962c94d",
+    "own_osman_dac0c4d124",
+    "own_gubach_035ddd127e",
+    "own_ishkhan_e07c061221",
+    "own_sudak_622aadc00f",
+    "own_leshch_c96de5267b",
+    "own_sazan_9a7d5cf44c",
+    "own_sig_9979af3a69"
+   ]
   }
  ],
  "keywords": {

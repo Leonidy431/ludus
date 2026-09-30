@@ -1,0 +1,1206 @@
+{
+  "name": "own_sig_9979af3a69",
+  "id": "9979af3a69",
+  "seed": "9979af3a697db5a5c66b613d0671945d59af1af4",
+  "slot": "DEF-056",
+  "thing": "sig",
+  "register": {
+    "id": "sig",
+    "category": "fish",
+    "ru": "Сиг",
+    "en": "Whitefish",
+    "depth_m": [
+      10,
+      80
+    ],
+    "shape": "fish",
+    "size_m": 0.4,
+    "colour": "#c6ccce",
+    "states": [
+      "стайка",
+      "на границе слоя",
+      "в глубине",
+      "одиночка",
+      "пара"
+    ]
+  },
+  "species": {
+    "ru": "Сиг-лудога",
+    "en": "Whitefish (ludoga)",
+    "latin": "Coregonus lavaretus ludoga",
+    "status": "introduced 1970s from Sevan",
+    "loot": "keep",
+    "length": 0.4,
+    "depth": [
+      10,
+      80
+    ],
+    "colour": "#c6ccce"
+  },
+  "morphology": {
+    "depth": 0.24,
+    "top": 0.54,
+    "peak": 0.42,
+    "head": 0.6,
+    "stalk": 0.3,
+    "tail": 0.2,
+    "fork": 0.7,
+    "dorsal": [
+      0.4,
+      0.52,
+      0.15,
+      "short"
+    ],
+    "anal": [
+      0.7,
+      0.8,
+      0.07
+    ],
+    "adipose": 0.83,
+    "barbels": 0,
+    "marks": "silver",
+    "eye": 0.06,
+    "mouth": "under",
+    "fins": [
+      140,
+      146,
+      146
+    ],
+    "note": "genus shape from general ichthyology, approximate; to be checked by an ichthyologist (docs/ISSYK_KUL_FISH.md)"
+  },
+  "origin": "own-procedural-drawing",
+  "method": "own-procedural",
+  "raw_material": false,
+  "source": {
+    "repo": "ludus (own drawing)",
+    "path": "scripts/raw_assets/fish_procedural.py",
+    "commit": "fish-drawing-r1"
+  },
+  "repo": "ludus (own drawing)",
+  "path": "scripts/raw_assets/fish_procedural.py",
+  "commit": "fish-drawing-r1",
+  "license": "project (own drawing, no third-party material)",
+  "license_file": null,
+  "threshold": 0.35,
+  "shape_basis": "nearest-sibling",
+  "facing": "left (the game turns the sprite; no mirrored variant)",
+  "reference_profile": {
+    "name": "fish",
+    "aspect": [
+      1.8,
+      6.5
+    ],
+    "fill": [
+      0.35,
+      0.85
+    ],
+    "category": "fish"
+  },
+  "pool": {
+    "size": 51,
+    "fitting_seen": 19,
+    "refused": {
+      "unlike-real-object": 26,
+      "too-close-to-a-sibling": 7
+    },
+    "chosen": 12
+  },
+  "constitution": "FORM: a real species of Issyk-Kul in its real states -> ACTION: the ROV operator tells it apart, logs it and releases the endemics -> GOAL: knowing the living lake by its real creatures (TABOO 0.03 rule 6)",
+  "variants": [
+    {
+      "slot": "v01",
+      "file": "own_sig_9979af3a69_v01.png",
+      "state": "single",
+      "params": {
+        "pose": "single",
+        "state": "single",
+        "length": 236,
+        "tilt": 0,
+        "key": "sig:single:236:0"
+      },
+      "shape_change": 0.4051,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.81,
+        "fill": 0.395,
+        "base": 0.131
+      },
+      "area": 7823,
+      "hitbox": {
+        "bbox": [
+          10,
+          75,
+          246,
+          159
+        ],
+        "area": 7823,
+        "radius": 49.9,
+        "hull": [
+          [
+            10,
+            126
+          ],
+          [
+            11,
+            124
+          ],
+          [
+            15,
+            120
+          ],
+          [
+            18,
+            118
+          ],
+          [
+            87,
+            75
+          ],
+          [
+            89,
+            75
+          ],
+          [
+            246,
+            103
+          ],
+          [
+            246,
+            152
+          ],
+          [
+            108,
+            159
+          ],
+          [
+            106,
+            159
+          ],
+          [
+            66,
+            150
+          ],
+          [
+            40,
+            144
+          ],
+          [
+            36,
+            143
+          ],
+          [
+            29,
+            141
+          ],
+          [
+            26,
+            140
+          ],
+          [
+            21,
+            138
+          ],
+          [
+            15,
+            135
+          ],
+          [
+            10,
+            130
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.sig.9979af3a69.v01"
+    },
+    {
+      "slot": "v02",
+      "file": "own_sig_9979af3a69_v02.png",
+      "state": "feeding",
+      "params": {
+        "pose": "feeding",
+        "state": "feeding",
+        "length": 236,
+        "tilt": 13,
+        "key": "sig:feeding:236:13"
+      },
+      "shape_change": 0.4038,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.744,
+        "fill": 0.39,
+        "base": 0.629
+      },
+      "area": 7910,
+      "hitbox": {
+        "bbox": [
+          12,
+          77,
+          248,
+          163
+        ],
+        "area": 7910,
+        "radius": 50.18,
+        "hull": [
+          [
+            12,
+            153
+          ],
+          [
+            14,
+            148
+          ],
+          [
+            77,
+            85
+          ],
+          [
+            237,
+            77
+          ],
+          [
+            238,
+            77
+          ],
+          [
+            248,
+            123
+          ],
+          [
+            248,
+            125
+          ],
+          [
+            115,
+            163
+          ],
+          [
+            35,
+            163
+          ],
+          [
+            27,
+            162
+          ],
+          [
+            22,
+            161
+          ],
+          [
+            19,
+            160
+          ],
+          [
+            15,
+            158
+          ],
+          [
+            12,
+            155
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.sig.9979af3a69.v02"
+    },
+    {
+      "slot": "v03",
+      "file": "own_sig_9979af3a69_v03.png",
+      "state": "feeding",
+      "params": {
+        "pose": "feeding",
+        "state": "feeding",
+        "length": 188,
+        "tilt": 13,
+        "key": "sig:feeding:188:13"
+      },
+      "shape_change": 0.4015,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.71,
+        "fill": 0.395,
+        "base": 0.624
+      },
+      "area": 5096,
+      "hitbox": {
+        "bbox": [
+          36,
+          87,
+          223,
+          156
+        ],
+        "area": 5096,
+        "radius": 40.28,
+        "hull": [
+          [
+            36,
+            146
+          ],
+          [
+            37,
+            144
+          ],
+          [
+            87,
+            94
+          ],
+          [
+            214,
+            87
+          ],
+          [
+            216,
+            87
+          ],
+          [
+            223,
+            124
+          ],
+          [
+            223,
+            126
+          ],
+          [
+            118,
+            156
+          ],
+          [
+            53,
+            156
+          ],
+          [
+            45,
+            155
+          ],
+          [
+            39,
+            153
+          ],
+          [
+            36,
+            151
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.sig.9979af3a69.v03"
+    },
+    {
+      "slot": "v04",
+      "file": "own_sig_9979af3a69_v04.png",
+      "state": "single",
+      "params": {
+        "pose": "single",
+        "state": "single",
+        "length": 188,
+        "tilt": 0,
+        "key": "sig:single:188:0"
+      },
+      "shape_change": 0.3732,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.821,
+        "fill": 0.397,
+        "base": 0.117
+      },
+      "area": 5030,
+      "hitbox": {
+        "bbox": [
+          33,
+          86,
+          222,
+          153
+        ],
+        "area": 5030,
+        "radius": 40.01,
+        "hull": [
+          [
+            33,
+            127
+          ],
+          [
+            35,
+            124
+          ],
+          [
+            37,
+            122
+          ],
+          [
+            40,
+            120
+          ],
+          [
+            96,
+            86
+          ],
+          [
+            97,
+            86
+          ],
+          [
+            222,
+            108
+          ],
+          [
+            222,
+            147
+          ],
+          [
+            113,
+            153
+          ],
+          [
+            111,
+            153
+          ],
+          [
+            62,
+            142
+          ],
+          [
+            54,
+            140
+          ],
+          [
+            42,
+            136
+          ],
+          [
+            40,
+            135
+          ],
+          [
+            37,
+            133
+          ],
+          [
+            34,
+            130
+          ],
+          [
+            33,
+            128
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.sig.9979af3a69.v04"
+    },
+    {
+      "slot": "v05",
+      "file": "own_sig_9979af3a69_v05.png",
+      "state": "single",
+      "params": {
+        "pose": "single",
+        "state": "single",
+        "length": 188,
+        "tilt": -7,
+        "key": "sig:single:188:-7"
+      },
+      "shape_change": 0.3732,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.5,
+        "fill": 0.352,
+        "base": 0.054
+      },
+      "area": 5082,
+      "hitbox": {
+        "bbox": [
+          34,
+          82,
+          224,
+          158
+        ],
+        "area": 5082,
+        "radius": 40.22,
+        "hull": [
+          [
+            34,
+            115
+          ],
+          [
+            38,
+            111
+          ],
+          [
+            101,
+            82
+          ],
+          [
+            103,
+            82
+          ],
+          [
+            224,
+            119
+          ],
+          [
+            224,
+            121
+          ],
+          [
+            219,
+            158
+          ],
+          [
+            217,
+            158
+          ],
+          [
+            108,
+            151
+          ],
+          [
+            63,
+            135
+          ],
+          [
+            55,
+            132
+          ],
+          [
+            48,
+            129
+          ],
+          [
+            39,
+            124
+          ],
+          [
+            36,
+            121
+          ],
+          [
+            34,
+            118
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.sig.9979af3a69.v05"
+    },
+    {
+      "slot": "v06",
+      "file": "own_sig_9979af3a69_v06.png",
+      "state": "feeding",
+      "params": {
+        "pose": "feeding",
+        "state": "feeding",
+        "length": 150,
+        "tilt": 13,
+        "key": "sig:feeding:150:13"
+      },
+      "shape_change": 0.3952,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.679,
+        "fill": 0.391,
+        "base": 0.552
+      },
+      "area": 3288,
+      "hitbox": {
+        "bbox": [
+          54,
+          95,
+          204,
+          151
+        ],
+        "area": 3288,
+        "radius": 32.35,
+        "hull": [
+          [
+            54,
+            143
+          ],
+          [
+            56,
+            140
+          ],
+          [
+            95,
+            100
+          ],
+          [
+            197,
+            95
+          ],
+          [
+            198,
+            95
+          ],
+          [
+            204,
+            125
+          ],
+          [
+            204,
+            126
+          ],
+          [
+            203,
+            127
+          ],
+          [
+            121,
+            150
+          ],
+          [
+            94,
+            151
+          ],
+          [
+            75,
+            151
+          ],
+          [
+            65,
+            150
+          ],
+          [
+            60,
+            149
+          ],
+          [
+            57,
+            148
+          ],
+          [
+            54,
+            145
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.sig.9979af3a69.v06"
+    },
+    {
+      "slot": "v07",
+      "file": "own_sig_9979af3a69_v07.png",
+      "state": "single",
+      "params": {
+        "pose": "single",
+        "state": "single",
+        "length": 150,
+        "tilt": 0,
+        "key": "sig:single:150:0"
+      },
+      "shape_change": 0.3719,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.778,
+        "fill": 0.4,
+        "base": 0.124
+      },
+      "area": 3243,
+      "hitbox": {
+        "bbox": [
+          53,
+          94,
+          203,
+          148
+        ],
+        "area": 3243,
+        "radius": 32.13,
+        "hull": [
+          [
+            53,
+            126
+          ],
+          [
+            57,
+            122
+          ],
+          [
+            102,
+            94
+          ],
+          [
+            103,
+            94
+          ],
+          [
+            203,
+            112
+          ],
+          [
+            203,
+            143
+          ],
+          [
+            116,
+            148
+          ],
+          [
+            114,
+            148
+          ],
+          [
+            74,
+            139
+          ],
+          [
+            70,
+            138
+          ],
+          [
+            63,
+            136
+          ],
+          [
+            55,
+            132
+          ],
+          [
+            53,
+            130
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.sig.9979af3a69.v07"
+    },
+    {
+      "slot": "v08",
+      "file": "own_sig_9979af3a69_v08.png",
+      "state": "feeding",
+      "params": {
+        "pose": "feeding",
+        "state": "feeding",
+        "length": 120,
+        "tilt": 13,
+        "key": "sig:feeding:120:13"
+      },
+      "shape_change": 0.394,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.727,
+        "fill": 0.407,
+        "base": 0.62
+      },
+      "area": 2149,
+      "hitbox": {
+        "bbox": [
+          69,
+          102,
+          189,
+          146
+        ],
+        "area": 2149,
+        "radius": 26.15,
+        "hull": [
+          [
+            69,
+            140
+          ],
+          [
+            71,
+            136
+          ],
+          [
+            72,
+            135
+          ],
+          [
+            102,
+            106
+          ],
+          [
+            183,
+            102
+          ],
+          [
+            184,
+            102
+          ],
+          [
+            189,
+            125
+          ],
+          [
+            189,
+            127
+          ],
+          [
+            122,
+            146
+          ],
+          [
+            78,
+            146
+          ],
+          [
+            73,
+            145
+          ],
+          [
+            69,
+            143
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.sig.9979af3a69.v08"
+    },
+    {
+      "slot": "v09",
+      "file": "own_sig_9979af3a69_v09.png",
+      "state": "single",
+      "params": {
+        "pose": "single",
+        "state": "single",
+        "length": 150,
+        "tilt": -7,
+        "key": "sig:single:150:-7"
+      },
+      "shape_change": 0.3719,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.492,
+        "fill": 0.354,
+        "base": 0.061
+      },
+      "area": 3284,
+      "hitbox": {
+        "bbox": [
+          53,
+          91,
+          205,
+          152
+        ],
+        "area": 3284,
+        "radius": 32.33,
+        "hull": [
+          [
+            53,
+            117
+          ],
+          [
+            54,
+            116
+          ],
+          [
+            57,
+            114
+          ],
+          [
+            61,
+            112
+          ],
+          [
+            106,
+            91
+          ],
+          [
+            107,
+            91
+          ],
+          [
+            205,
+            121
+          ],
+          [
+            205,
+            123
+          ],
+          [
+            200,
+            152
+          ],
+          [
+            198,
+            152
+          ],
+          [
+            112,
+            146
+          ],
+          [
+            74,
+            133
+          ],
+          [
+            64,
+            129
+          ],
+          [
+            57,
+            125
+          ],
+          [
+            54,
+            122
+          ],
+          [
+            53,
+            120
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.sig.9979af3a69.v09"
+    },
+    {
+      "slot": "v10",
+      "file": "own_sig_9979af3a69_v10.png",
+      "state": "feeding",
+      "params": {
+        "pose": "feeding",
+        "state": "feeding",
+        "length": 96,
+        "tilt": 13,
+        "key": "sig:feeding:96:13"
+      },
+      "shape_change": 0.394,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.667,
+        "fill": 0.409,
+        "base": 0.527
+      },
+      "area": 1413,
+      "hitbox": {
+        "bbox": [
+          81,
+          107,
+          177,
+          143
+        ],
+        "area": 1413,
+        "radius": 21.21,
+        "hull": [
+          [
+            81,
+            136
+          ],
+          [
+            85,
+            132
+          ],
+          [
+            107,
+            111
+          ],
+          [
+            171,
+            107
+          ],
+          [
+            173,
+            107
+          ],
+          [
+            177,
+            126
+          ],
+          [
+            177,
+            127
+          ],
+          [
+            124,
+            142
+          ],
+          [
+            106,
+            143
+          ],
+          [
+            92,
+            143
+          ],
+          [
+            84,
+            142
+          ],
+          [
+            82,
+            141
+          ],
+          [
+            81,
+            140
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.sig.9979af3a69.v10"
+    },
+    {
+      "slot": "v11",
+      "file": "own_sig_9979af3a69_v11.png",
+      "state": "single",
+      "params": {
+        "pose": "single",
+        "state": "single",
+        "length": 120,
+        "tilt": 0,
+        "key": "sig:single:120:0"
+      },
+      "shape_change": 0.3932,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.791,
+        "fill": 0.411,
+        "base": 0.118
+      },
+      "area": 2122,
+      "hitbox": {
+        "bbox": [
+          68,
+          101,
+          188,
+          144
+        ],
+        "area": 2122,
+        "radius": 25.99,
+        "hull": [
+          [
+            68,
+            126
+          ],
+          [
+            71,
+            123
+          ],
+          [
+            107,
+            101
+          ],
+          [
+            109,
+            101
+          ],
+          [
+            188,
+            115
+          ],
+          [
+            188,
+            140
+          ],
+          [
+            119,
+            144
+          ],
+          [
+            117,
+            144
+          ],
+          [
+            89,
+            138
+          ],
+          [
+            81,
+            136
+          ],
+          [
+            72,
+            133
+          ],
+          [
+            69,
+            131
+          ],
+          [
+            68,
+            130
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.sig.9979af3a69.v11"
+    },
+    {
+      "slot": "v12",
+      "file": "own_sig_9979af3a69_v12.png",
+      "state": "rising",
+      "params": {
+        "pose": "rising",
+        "state": "rising",
+        "length": 96,
+        "tilt": -9,
+        "key": "sig:rising:96:-9"
+      },
+      "shape_change": 0.4787,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.366,
+        "fill": 0.357,
+        "base": 0.072
+      },
+      "area": 1418,
+      "hitbox": {
+        "bbox": [
+          80,
+          104,
+          177,
+          145
+        ],
+        "area": 1418,
+        "radius": 21.25,
+        "hull": [
+          [
+            80,
+            119
+          ],
+          [
+            83,
+            117
+          ],
+          [
+            114,
+            104
+          ],
+          [
+            116,
+            104
+          ],
+          [
+            177,
+            125
+          ],
+          [
+            177,
+            127
+          ],
+          [
+            174,
+            145
+          ],
+          [
+            172,
+            145
+          ],
+          [
+            117,
+            139
+          ],
+          [
+            98,
+            132
+          ],
+          [
+            90,
+            129
+          ],
+          [
+            84,
+            126
+          ],
+          [
+            80,
+            122
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.sig.9979af3a69.v12"
+    }
+  ],
+  "status": "ok",
+  "shortfall": 0,
+  "shape_change": 0.3719
+}
