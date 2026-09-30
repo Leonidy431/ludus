@@ -78,6 +78,8 @@ var eye: Camera3D
 var sonar_left := 0.0
 var third_person := true
 var view_was := false
+# The manipulator reached out this frame: the tether task needs it.
+var arm_now := false
 var left_hand: XRController3D
 var right_hand: XRController3D
 var fish_meshes: Array = []
@@ -644,6 +646,7 @@ func _interact() -> void:
 	# "nothing here" too.
 	body.reach(t)
 	audio.on_arm()
+	arm_now = true
 	var things: Array = placed.duplicate()
 	for s in schools:
 		var p := DiveCore.fish_at(s, 0, t)
@@ -651,6 +654,11 @@ func _interact() -> void:
 			"depth": p.depth, "ru": s.ru, "category": "fish"})
 	var hit := DiveCore.nearest(rov, things, REACH_M)
 	if hit.is_empty():
+		# With the tether unwound the empty reach lifts the loop, and the
+		# core says so itself this frame.
+		if game.wound and absf(game.turns) <= DiveCore.UNWOUND_TURNS \
+				and not "tether" in game.done:
+			return
 		_say("Рядом ничего нет. Подойди ближе.")
 		return
 	var res := DiveCore.loot_action(hit.thing, bag)
@@ -769,7 +777,9 @@ func _process(dt: float) -> void:
 	# The seiche current on the slope carries the ROV sideways.
 	inp["drift"] = DiveCore.current(rov.x, t)
 	rov = DiveCore.step_rov(rov, inp, dt)
-	var out := DiveCore.step_game(game, rov, dt, bag.handed_over.size())
+	var out := DiveCore.step_game(game, rov, dt, bag.handed_over.size(),
+		arm_now)
+	arm_now = false
 	if out.game.done.size() != game.done.size() or out.game.fallen != game.fallen:
 		game = out.game
 		_save_bag()
@@ -815,7 +825,7 @@ func _process(dt: float) -> void:
 	var text := _console_line(tel)
 	var shown := tel.duplicate()
 	shown["lamp"] = rov.lamp
-	console.show_cards(CockpitCore.cards(shown, bag))
+	console.show_cards(CockpitCore.cards(shown, bag, game.turns))
 	_fade_console(dt)
 	_update_screens(dt)
 	hud_label.text = text

@@ -9,7 +9,7 @@
 | Врата знания, вервица, безмолвие, поклон | `public/ludus/ludus-actions.js` | `godot/scripts/hub_core.gd` | ✅ 792 проверки |
 | Диалоги 24 наставников | `public/ludus/data/dialogue-trees.json` | хаб, скрипторий (4 наставника врат) | частично: в шлеме 4 из 24 NPC |
 | Звук: исон, колокол по уставу, сонар | `ludus-sacred-synth.js`, `ludus-glas.js`, `ludus-liturgical-clock.js` | `godot/scripts/audio` | ✅ погружение; во дворе и на тропе — нет |
-| Кокпит, аппарат «Мангустик» | — (только шлем) | `godot/scripts/cockpit_*`, `rov_body.gd` | ✅ |
+| Кокпит, аппарат «Мангустик», трос | трос — `dive-core.js` (задача `tether`) | `godot/scripts/cockpit_*`, `rov_body.gd`, `dive_core.gd` | ✅ |
 | Семь сцен «игрок — свидетель» | `public/vr/models/scene/sacrament-*.glb` | `godot/scenes/witness.tscn`, вход — арка во дворе | ✅ 77 проверок; исон и колокол на тропе — позже, через `LudusTypikon` |
 | Испытания врат (выбор на пороге) | `public/ludus/data/gate-trials.json` | — | нет: нужен порт с эталоном из JS |
 | Восемь страстей, признак распознавания, падение и трезвение | `ludus-passion.js`, `data/passions.json`, `ludus-antagonist-factory.js` | — | нет: нужен порт с эталоном из JS |

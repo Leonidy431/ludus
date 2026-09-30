@@ -72,8 +72,19 @@ static func compass_point(heading: float) -> String:
 	return POINTS[posmod(roundi(fposmod(heading, 360.0) / 45.0), 8)]
 
 
+## Tether turns: the cable kinks at DiveCore.KINK_TURNS; a warning a
+## turn before that.
+static func tether_state(turns: float) -> String:
+	if absf(turns) >= DiveCore.KINK_TURNS:
+		return "critical"
+	if absf(turns) >= DiveCore.KINK_TURNS - 1.0:
+		return "warn"
+	return "info"
+
+
 ## The cards, left to right.  Each is {title, value, sub, state}.
-static func cards(tel: Dictionary, bag: Dictionary) -> Array:
+static func cards(tel: Dictionary, bag: Dictionary,
+		turns := 0.0) -> Array:
 	var clearance: float = tel.floor - tel.depth
 	var up: float = maxf(0.0, tel.ascent_m_per_min)
 	return [
@@ -87,12 +98,15 @@ static func cards(tel: Dictionary, bag: Dictionary) -> Array:
 		{"title": "СОНАР", "value": "%d м/с" % roundi(tel.sound_speed),
 			"sub": "эхо %.3f с" % tel.echo_delay, "state": "info"},
 		{"title": "ВСПЛЫТИЕ", "value": "%.1f" % up,
-			"sub": "м/мин · предел 10", "state": ascent_state(up)},
+			"sub": "м/мин · до 10", "state": ascent_state(up)},
 		{"title": "ЗАРЯД", "value": "%d %%" % roundi(tel.battery * 100.0),
 			"sub": "лампа" if tel.get("lamp", true) else "лампа выкл.",
 			"state": battery_state(tel.battery)},
+		{"title": "ТРОС", "value": "%+.1f об." % turns,
+			"sub": "распутан" if absf(turns) <= DiveCore.UNWOUND_TURNS
+				else "залом на 3", "state": tether_state(turns)},
 		{"title": "СУМКА", "value": "%d" % bag.kept.size(),
-			"sub": "отпущ. %d · писцу %d" % [bag.released.size(),
+			"sub": "отп. %d · писцу %d" % [bag.released.size(),
 				bag.handed_over.size()], "state": "info"},
 	]
 

@@ -16,19 +16,29 @@ func _tel(over: Dictionary) -> Dictionary:
 func run(t: Object) -> void:
 	var bag := {"kept": [1, 2], "released": [3], "handed_over": []}
 	var cards := CockpitCore.cards(_tel({}), bag)
-	t._check(cards.size() == 7, "seven cards")
+	t._check(cards.size() == 8, "eight cards")
 	var titles := []
 	for c in cards:
 		titles.append(c.title)
 		t._check(c.state in CockpitCore.STATE_COLOUR, "state %s" % c.state)
 	t._check(titles == ["ГЛУБИНА", "ВОДА", "КУРС", "СОНАР", "ВСПЛЫТИЕ",
-		"ЗАРЯД", "СУМКА"], "card order %s" % [titles])
+		"ЗАРЯД", "ТРОС", "СУМКА"], "card order %s" % [titles])
 	# The console counts no points: nothing like a score on any card.
 	for c in cards:
 		for word in ["очк", "балл", "score", "xp", "благодат"]:
 			t._check(not (c.title + c.value + c.sub).to_lower().contains(
 				word), "no '%s' on %s" % [word, c.title])
-	t._check(cards[6].value == "2", "bag shows kept things")
+	t._check(cards[7].value == "2", "bag shows kept things")
+	# Tether turns: calm, a warning a turn before the kink, red at it.
+	for row in [[0.0, "info"], [1.5, "info"], [-2.0, "warn"],
+			[3.0, "critical"], [-3.4, "critical"]]:
+		t._check(CockpitCore.tether_state(row[0]) == row[1],
+			"tether %.1f -> %s" % row)
+	var wound := CockpitCore.cards(_tel({}), bag, 1.25)
+	t._check(wound[6].value == "+1.2 об." or wound[6].value == "+1.3 об.",
+		"tether card shows turns (%s)" % wound[6].value)
+	t._check(CockpitCore.cards(_tel({}), bag, 0.05)[6].sub == "распутан",
+		"tether card says unwound")
 
 	# Battery: the yacht panel's fuel thresholds, 15 % and 25 %.
 	for row in [[1.0, "safe"], [0.25, "safe"], [0.249, "warn"],

@@ -6,14 +6,14 @@
 class_name CockpitPanel
 extends HBoxContainer
 
-const CARD_SIZE := Vector2(168, 104)
+const CARD_SIZE := Vector2(148, 104)
 
 var _cards: Array = []
 
 
 func _init() -> void:
 	add_theme_constant_override("separation", 8)
-	for i in 7:
+	for i in 8:
 		_cards.append(_make_card())
 
 
@@ -38,7 +38,7 @@ func _make_card() -> Dictionary:
 	for part in ["title", "value", "sub"]:
 		var l := Label.new()
 		l.add_theme_font_size_override("font_size",
-			30 if part == "value" else 15)
+			27 if part == "value" else 14)
 		l.add_theme_color_override("font_color", CockpitCore.MUTED)
 		l.clip_text = true
 		column.add_child(l)

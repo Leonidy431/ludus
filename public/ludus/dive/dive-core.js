@@ -404,6 +404,9 @@
         + '0,3 м.' },
     { id: 'heading', band: 'shallows',
       ru: 'Курс: идти по компасу 10 с, не сбиваясь больше чем на 10°.' },
+    { id: 'tether', band: 'shallows',
+      ru: 'Трос: сделай полный оборот, вернись обратными поворотами к '
+        + 'нулю и сними петлю манипулятором.' },
     { id: 'slowrise', band: 'shallows',
       ru: 'Курс: подняться на 3 м не быстрее 10 м/мин.' },
     { id: 'finds', band: 'shelf',
@@ -436,16 +439,28 @@
     TASKS.forEach((t) => { progress[t.id] = 0; });
     return { done: [], progress, fallen: false, fastFor: 0, stillFor: 0,
       holdDepth: null, holdHeading: null, riseFrom: null,
-      crossedFrom: null, finds: 0, scribeTold: false };
+      crossedFrom: null, finds: 0, scribeTold: false,
+      turns: 0, lastYaw: null, wound: false, kinkWarned: false };
   }
 
   function speedOf(rov) {
     return Math.hypot(rov.vx, rov.vz, rov.vy);
   }
 
+  // Tether turns, as a real ROV console counts them: every full turn
+  // of the vehicle twists the cable once more.  Three turns kink it.
+  const KINK_TURNS = 3;
+  const UNWOUND_TURNS = 0.1;
+
+  function wrapAngle(a) {
+    const tau = Math.PI * 2;
+    return ((a + Math.PI) % tau + tau) % tau - Math.PI;
+  }
+
   /**
    * Advance the game by dt after the ROV moved.  events: {handedOver:
-   * number of finds handed over so far}.  Returns {game, say: [texts]}.
+   * number of finds handed over so far, arm: true on the step the
+   * manipulator reached out}.  Returns {game, say: [texts]}.
    * Pure and deterministic like the rest of the core.
    */
   function stepGame(game, rov, dt, events) {
@@ -459,6 +474,22 @@
         say.push(text);
       }
     };
+    // The tether twists with every turn, fallen or not: the cable does
+    // not know about the light.
+    if (g.lastYaw !== null) {
+      g.turns += wrapAngle(rov.yaw - g.lastYaw) / (Math.PI * 2);
+    }
+    g.lastYaw = rov.yaw;
+    if (Math.abs(g.turns) >= 1) {
+      g.wound = true;
+    }
+    if (!g.kinkWarned && Math.abs(g.turns) >= KINK_TURNS) {
+      g.kinkWarned = true;
+      say.push('Трос закручен на три оборота: так ломают кабель. '
+        + 'Разверни его обратно.');
+    } else if (Math.abs(g.turns) < KINK_TURNS - 1) {
+      g.kinkWarned = false;
+    }
     // Fall: a sustained rise faster than the diver's limit.
     g.fastFor = tel.ascentTooFast ? g.fastFor + dt : 0;
     if (!g.fallen && g.fastFor >= FALL_AFTER_SEC) {
@@ -518,6 +549,13 @@
           + 'ничего не видит.');
       }
     }
+    // Tether: wound a full turn, brought back to zero the same way, and
+    // the loop lifted off with the manipulator.
+    if (g.wound && Math.abs(g.turns) <= UNWOUND_TURNS && events
+        && events.arm) {
+      finish('tether', 'Петля снята: трос не рвут, его разворачивают тем '
+        + 'же путём.');
+    }
     // Slow rise: three metres up without breaking 10 m/min.
     if (rov.vy > 0.01 && !tel.ascentTooFast) {
       if (g.riseFrom === null) {
@@ -576,7 +614,8 @@
   }
 
   const api = { PROFILE, LENGTH_M, HALF_WIDTH_M, THERMOCLINE_M, CORRIDOR_M,
-    TASKS, SCRIBE, SAFETY_STOP_SEC, newGame, stepGame, current,
+    TASKS, SCRIBE, SAFETY_STOP_SEC, KINK_TURNS, UNWOUND_TURNS, newGame,
+    stepGame, current,
     ROV,
     rng, baseDepth, floorDepth, xForDepth, temperature, placeObjects,
     fishSchools, fishAt, newRov, stepRov, ascentRate, telemetry,
