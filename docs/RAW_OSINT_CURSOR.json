@@ -1619,6 +1619,277 @@
    ],
    "accepted_objects": 0,
    "code_candidates": 234
+  },
+  {
+   "time": "2026-09-30T13:31:00.540801+00:00",
+   "pass_id": "osint-2026-09-30T13:31:00Z",
+   "deficits": [
+    {
+     "id": "DEF-031",
+     "skipped": "not-raw-material"
+    },
+    {
+     "id": "DEF-035",
+     "hits": 200,
+     "taken": 0,
+     "refused": {},
+     "to_props": 171,
+     "added_keywords": [
+      "unit",
+      "actions",
+      "overviewscreen",
+      "presenter",
+      "devconsole",
+      "autoplay",
+      "bottombar",
+      "citypresenter",
+      "cityscreen",
+      "cityscreentiletable",
+      "consoletilecommands",
+      "consoleunitcommands"
+     ],
+     "keywords_total": 32,
+     "props": {
+      "screenshot": 171
+     }
+    },
+    {
+     "id": "DEF-036",
+     "hits": 200,
+     "taken": 0,
+     "refused": {},
+     "to_props": 179,
+     "added_keywords": [
+      "atmos",
+      "xaml",
+      "entitysystems",
+      "objectstab",
+      "overlays",
+      "administration",
+      "tabs",
+      "anomaly",
+      "cartridgeloader",
+      "cartridges",
+      "clear",
+      "effects"
+     ],
+     "keywords_total": 26,
+     "props": {
+      "other": 179
+     }
+    }
+   ],
+   "props_taken": {
+    "other": 179,
+    "screenshot": 171
+   },
+   "props_duplicates": 0,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 2205163,
+   "props_store_files": 350,
+   "props_store_bytes": 2205163,
+   "props_register_bytes": 225398,
+   "props_register_growth_bytes": 225398,
+   "accepted_objects": 0,
+   "code_candidates": 50,
+   "reverted": "Props part only (first pass with the TABOO 0.012 props store): props.prop_kind read \"ui/screens/\" as screenshots, so 171 Unciv and Forge UI classes (*.kt, *.java) were filed as \"screenshot\"; the register also stored the derivable cache path (116 of 641 bytes a line). The register and the cache were never committed; both were removed and rebuilt by the next pass with the fixed kinds. Keywords and the 50 code candidates of this pass stand."
+  },
+  {
+   "time": "2026-09-30T13:38:01.579690+00:00",
+   "pass_id": "osint-2026-09-30T13:38:01Z",
+   "deficits": [
+    {
+     "id": "DEF-040",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 4,
+      "dogma-stop-list": 1
+     },
+     "to_props": 125,
+     "added_keywords": [
+      "actors",
+      "hero",
+      "spells",
+      "effects",
+      "abilities",
+      "npcs",
+      "cleric",
+      "duelist",
+      "huntress",
+      "mage",
+      "rogue",
+      "warrior"
+     ],
+     "keywords_total": 31,
+     "props": {
+      "other": 125
+     }
+    },
+    {
+     "id": "DEF-047",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 4,
+      "dogma-stop-list": 1
+     },
+     "to_props": 125,
+     "added_keywords": [
+      "actors",
+      "hero",
+      "spells",
+      "effects",
+      "abilities",
+      "npcs",
+      "cleric",
+      "duelist",
+      "huntress",
+      "mage",
+      "rogue",
+      "warrior"
+     ],
+     "keywords_total": 30
+    },
+    {
+     "id": "DEF-048",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 5,
+      "dogma-stop-list": 1
+     },
+     "to_props": 100,
+     "added_keywords": [
+      "actors",
+      "hero",
+      "effects",
+      "spells",
+      "abilities",
+      "npcs",
+      "particles",
+      "cleric",
+      "duelist",
+      "huntress",
+      "mage",
+      "rogue"
+     ],
+     "keywords_total": 32,
+     "props": {
+      "other": 2
+     }
+    }
+   ],
+   "props_taken": {
+    "other": 127
+   },
+   "props_duplicates": 223,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 482676,
+   "props_store_files": 127,
+   "props_store_bytes": 482676,
+   "props_register_bytes": 73668,
+   "props_register_growth_bytes": 73668,
+   "accepted_objects": 0,
+   "code_candidates": 234
+  },
+  {
+   "time": "2026-09-30T14:45:49.916687+00:00",
+   "pass_id": "osint-2026-09-30T14:45:49Z",
+   "deficits": [
+    {
+     "id": "DEF-035",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 1
+     },
+     "to_props": 170,
+     "hits_uncapped": 53990,
+     "props_uncapped": 48893,
+     "props_uncapped_repos": 59,
+     "added_keywords": [
+      "idleunitbutton",
+      "pickerscreens",
+      "quest",
+      "smallunitbutton",
+      "spypresenter",
+      "status",
+      "summarypresenter",
+      "tileinfotable",
+      "unitactionmodifiers",
+      "unitactions",
+      "unitactionsfromuniques",
+      "unitactionsgreatperson"
+     ],
+     "keywords_total": 44,
+     "props": {
+      "other": 166,
+      "promo": 4
+     },
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-036",
+     "hits": 200,
+     "taken": 0,
+     "refused": {},
+     "to_props": 168,
+     "hits_uncapped": 12242,
+     "props_uncapped": 9080,
+     "props_uncapped_repos": 44,
+     "added_keywords": [
+      "lobby",
+      "disposal",
+      "absorbentitemstatus",
+      "channelitem",
+      "characterpickerbutton",
+      "charactersetupgui",
+      "charactersetupguisavepanel",
+      "chemistry",
+      "clientinnerbodysystem",
+      "colorflasheffectsystem",
+      "disposalunitwindow",
+      "effectvisualizersystem"
+     ],
+     "keywords_total": 38,
+     "props": {
+      "other": 167,
+      "editor": 1
+     },
+     "props_seen": 0
+    }
+   ],
+   "props_taken": {
+    "editor": 1,
+    "other": 333,
+    "promo": 4
+   },
+   "props_taken_by_index_kind": {
+    "code": 338
+   },
+   "props_duplicates": 0,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 2148923,
+   "props_store_files": 465,
+   "props_store_bytes": 2631599,
+   "props_cache_files_on_disk": 3674,
+   "props_cache_bytes_on_disk": 69829661,
+   "props_cache_missing": 0,
+   "props_register_bytes": 268393,
+   "props_register_growth_bytes": 194497,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 61
+  },
+  {
+   "time": "2026-09-30T14:50:06.309757+00:00",
+   "note_for": "osint-2026-09-30T13:31:00Z",
+   "note": "Correction to pass osint-2026-09-30T13:31:00Z (its entry stays as written). Its 'reverted' text says the props register and cache 'were removed and rebuilt by the next pass'. They were not rebuilt: the next pass (13:38Z) covered DEF-040, DEF-047 and DEF-048, so nothing of DEF-035 or DEF-036 reached the register. The uncommitted register file of 13:31Z was deleted outright instead of being kept with a reverted mark, against TABOO 0.25 p. 5; its numbers survive only in that entry (350 things, 2 205 163 B). The pass of 13:51Z on the integration branch, run with the code before TABOO 0.012, refused the same hits as not-a-game-object. The props of DEF-035 and DEF-036 were taken by pass osint-2026-09-30T14:45:49Z (--only, cursor unchanged): 170 and 168 things, 338 lines, 2 148 923 B; the 200-hit cap per deficit is the same, the 12 new keywords of each deficit changed which 200 hits came first, and one sacred hit was refused.",
+   "deficits": []
   }
  ],
  "keywords": {
@@ -1989,7 +2260,19 @@
    "cityscreen",
    "cityscreentiletable",
    "consoletilecommands",
-   "consoleunitcommands"
+   "consoleunitcommands",
+   "idleunitbutton",
+   "pickerscreens",
+   "quest",
+   "smallunitbutton",
+   "spypresenter",
+   "status",
+   "summarypresenter",
+   "tileinfotable",
+   "unitactionmodifiers",
+   "unitactions",
+   "unitactionsfromuniques",
+   "unitactionsgreatperson"
   ],
   "DEF-036": [
    "building",
@@ -2010,7 +2293,19 @@
    "cartridgeloader",
    "cartridges",
    "clear",
-   "effects"
+   "effects",
+   "lobby",
+   "disposal",
+   "absorbentitemstatus",
+   "channelitem",
+   "characterpickerbutton",
+   "charactersetupgui",
+   "charactersetupguisavepanel",
+   "chemistry",
+   "clientinnerbodysystem",
+   "colorflasheffectsystem",
+   "disposalunitwindow",
+   "effectvisualizersystem"
   ],
   "DEF-040": [
    "java",
