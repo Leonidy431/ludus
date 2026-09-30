@@ -11,7 +11,7 @@
 
 // Bump CACHE_VERSION whenever PRECACHE_PATHS changes or a release must
 // evict every stale copy at once; activate() drops all other versions.
-const CACHE_VERSION = "2026-09-29.15";
+const CACHE_VERSION = "2026-09-30.1";
 const CACHE_PREFIX = "ludus-";
 const STATIC_CACHE = `${CACHE_PREFIX}static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `${CACHE_PREFIX}runtime-${CACHE_VERSION}`;
@@ -39,6 +39,7 @@ const PRECACHE_PATHS = [
   "ludus-glas.js",
   "ludus-rest.js",
   "ludus-outbox.js",
+  "ludus-journal.js",
   "data/passions.json",
   "data/rights.json",
   "ludus-game.js",

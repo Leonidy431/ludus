@@ -862,6 +862,34 @@
   // speaks the language of profit (TABOO 0.39); the options walk the
   // ladder of a thought (ludus-passion.js).  A cold palette marks the
   // passion, never the warm lamp of holy things (TABOO 0.38).
+  // The player's own journal as a Markdown file, built on the device and
+  // handed over as a download; nothing is sent (ludus-journal.js).
+  async function saveJournal() {
+    const journal = window.LudusJournal;
+    const api = actionsApi();
+    if (!journal || !api) {
+      return;
+    }
+    await loadPassionData();
+    const text = journal.toMarkdown({
+      form: state.playerForm || {},
+      actions: state.actions || {},
+      passions: state.passionRecord || {},
+      passionData: state.passionData,
+      now: new Date(),
+    }, api);
+    const url = URL.createObjectURL(new Blob([text],
+      { type: 'text/markdown;charset=utf-8' }));
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `ludus-journal-${new Date().toISOString()
+      .slice(0, 10)}.md`;
+    document.body.append(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
   // The Manuscript of rights: the licence register generated from the
   // shipped files (scripts/build_rights_manifest.py).  Copyleft notes
   // and missing licence files are shown as they are, not smoothed over.
@@ -1085,6 +1113,8 @@
       // The register of rights is a plain link at the foot, not part of
       // the path (HLD F5, improvement 95).
       + '<p class="ludus-rights-link"><button type="button"'
+      + ' class="ludus-link-btn" data-action="journal">'
+      + 'Save my journal (Markdown)</button> · <button type="button"'
       + ' class="ludus-link-btn" data-action="rights">'
       + 'Manuscript of rights (licences)</button></p>'
       + '</div>';
@@ -1717,6 +1747,8 @@
         doAction('practice', target.getAttribute('data-practice-id'));
       } else if (action === 'rights') {
         openRights();
+      } else if (action === 'journal') {
+        saveJournal();
       } else if (action === 'confession') {
         // Nothing is passed in or read back: the page is private.
         if (window.LudusConfession) {
