@@ -538,6 +538,12 @@ func _start_xr() -> void:
 		_on_xr_started()
 		return
 	webxr = XRServer.find_interface("WebXR")
+	if webxr and webxr.is_initialized():
+		# The session survives a scene change: coming back from the hub
+		# in the headset, the dive goes straight into it, no button.
+		webxr.session_ended.connect(_on_webxr_ended)
+		_on_webxr_started()
+		return
 	if webxr:
 		webxr.session_supported.connect(_on_webxr_supported)
 		webxr.session_started.connect(_on_webxr_started)
