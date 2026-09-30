@@ -135,4 +135,16 @@ func _initialize() -> void:
 	load("res://tests/test_mission.gd").new().run(self)
 	print("mission: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# The rule of prayer and the evening watch (RuleCore, ludus-actions.js).
+	before = checks
+	fails = failures
+	load("res://tests/test_rule.gd").new().run(self)
+	print("rule: %d checks, %d failures" % [checks - before,
+		failures - fails])
+	# The prayer rope as a breath metronome (RopeCore, RopeBreath).
+	before = checks
+	fails = failures
+	load("res://tests/test_rope.gd").new().run(self)
+	print("rope: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	quit(1 if failures else 0)
