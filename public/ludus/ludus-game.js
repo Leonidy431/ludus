@@ -1075,7 +1075,15 @@
       const gate = check.gate;
       const open = check.open;
       const isOpening = opening.includes(gate.id);
-      const status = open ? 'Open'
+      // An open gate shows its threshold (ludus-missions.js and
+      // data/gate-trials.json): a choice by understanding, not a quiz.
+      const passed = open && window.LudusMissionsUI
+        && window.LudusMissionsUI.hasPassed(gate.id);
+      const threshold = open ? '<button type="button"'
+        + ' class="ludus-gate-btn ludus-threshold-btn" data-action="open-gate"'
+        + ` data-gate-id="${escapeHtml(gate.id)}">`
+        + `${passed ? 'Порог пройден' : 'Встать у порога'}</button>` : '';
+      const status = open ? `Open ${threshold}`
         : '<ul class="ludus-gate-missing">'
           + check.missing.map((m) => '<li>'
             + `${escapeHtml(missingText(m))}</li>`).join('')
@@ -1102,7 +1110,8 @@
         + '<p class="ludus-gate-question">'
         + `&ldquo;${escapeHtml(g.question || '')}&rdquo;</p>`
         + '<button type="button" class="ludus-gate-btn"'
-        + ` data-action="open-gate" data-gate-id="${escapeHtml(g.id)}">`
+        + ` data-action="open-gate" data-gate-id="${escapeHtml(g.id)}"`
+        + ` data-tier="${tier}">`
         + 'Answer Question</button>'
         + '</div>';
     }).join('');
@@ -1763,11 +1772,13 @@
       } else if (action === 'bow') {
         doAction('bow', target.getAttribute('data-gate-id'));
       } else if (action === 'open-gate') {
-        // The gate quiz lives in the dialogue layer; this module only
-        // reports which gate the player chose.
+        // The threshold lives in ludus-missions.js; this module only
+        // reports which gate the player chose.  A Firestore card also
+        // carries its tier, so its trial is found by the ladder's rank.
         document.dispatchEvent(new CustomEvent('ludus:gate-selected', {
           detail: {
             gateId: target.getAttribute('data-gate-id'),
+            tier: target.getAttribute('data-tier'),
             playerId: state.playerId,
           },
         }));
@@ -1850,6 +1861,22 @@
     getMode: () => state.mode,
     getActions: () => (state.actions ? { ...state.actions } : null),
     getReachableNodes: () => state.reachableNodes,
+    // The missions module (ludus-missions.js) acts through these, so
+    // FORM and the rule keep one owner and one sync path: guest storage
+    // or /api/ludus/actions with the offline outbox.
+    getPlayerId: () => state.playerId,
+    applyBonuses: (bonuses) => applyDialogueResult({
+      attributeBonuses: bonuses, playSound: true }),
+    recordMeeting: (npcId) => {
+      const api = actionsApi();
+      if (api && state.actions) {
+        commitActions('meeting', api.recordMeeting(state.actions, npcId),
+          { op: 'recordMeeting', npcId });
+      }
+    },
+    doPractice: (id) => doAction('practice', id),
+    talkTo,
+    refreshGates: () => renderKnowledgeGates(),
   };
 
   console.log('[Ludus] Module registered as window.__LudusModule');

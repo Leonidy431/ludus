@@ -1145,3 +1145,220 @@
   white-space: nowrap;
 }
 
+/* ------------------------------------------------------------------
+   Missions of the campaign spine (ludus-missions.js).
+   The card is a birch-bark page of the monastery: warm hearth light for
+   human work, a cold edge only on the passion's lure (TABOO 0.38).
+   ------------------------------------------------------------------ */
+.ludus-missions {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #5a4a30;
+  border-radius: var(--lg-radius);
+  background: #17130e;
+}
+
+.ludus-missions h3 {
+  margin-top: 0;
+  color: var(--lg-gold);
+}
+
+.ludus-mission-card h4,
+.ludus-mission-card h5 {
+  margin: 0.25rem 0;
+}
+
+.ludus-mission-intro,
+.ludus-mission-text,
+.ludus-mission-reply {
+  line-height: 1.5;
+}
+
+.ludus-mission-step {
+  margin: 0.25rem 0;
+  color: var(--lg-muted);
+  font-size: 0.9em;
+}
+
+.ludus-mission-source {
+  margin: 0.25rem 0 0.75rem;
+  color: var(--lg-muted);
+  font-size: 0.85em;
+  font-style: italic;
+}
+
+.ludus-mission-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.ludus-mission-option {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+/* Choices keep the 48 px target of the rule buttons (Quest 3 rays). */
+.ludus-mission-choice,
+.ludus-mission-next {
+  min-height: 48px;
+  padding: 0.5rem 1rem;
+  border: 1px solid #8a6a34;
+  border-radius: 6px;
+  color: var(--lg-text);
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ludus-mission-next {
+  align-self: flex-start;
+  border-color: var(--lg-gold);
+}
+
+.ludus-mission-choice:hover:not(:disabled),
+.ludus-mission-next:hover:not(:disabled) {
+  background-color: rgba(255, 179, 71, 0.10);
+}
+
+.ludus-mission-choice:focus-visible,
+.ludus-mission-next:focus-visible {
+  outline: 3px solid var(--lg-gold);
+  outline-offset: 2px;
+}
+
+.ludus-mission-choice:disabled,
+.ludus-mission-next:disabled {
+  border-color: var(--lg-border);
+  color: var(--lg-muted);
+  cursor: default;
+}
+
+/* The lure looks inviting, as prelest does; only its cold edge and the
+   sign under it tell what it is (TABOO 0.2 item 8). */
+.ludus-mission-choice.is-lure {
+  border-color: #3a4a66;
+}
+
+.ludus-mission-reason,
+.ludus-mission-cue {
+  color: var(--lg-muted);
+  font-size: 0.85em;
+}
+
+.ludus-mission-cue {
+  color: #9fb4d9;
+}
+
+.ludus-mission-scene {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border-left: 3px solid #8a6a34;
+  background: rgba(255, 179, 71, 0.05);
+}
+
+.ludus-mission-chosen,
+.ludus-mission-speaker {
+  margin: 0 0 0.25rem;
+  color: var(--lg-muted);
+}
+
+.ludus-mission-done {
+  color: var(--lg-gold);
+}
+
+.ludus-mission-acts {
+  margin-top: 1rem;
+}
+
+.ludus-mission-acts summary {
+  min-height: 48px;
+  line-height: 48px;
+  cursor: pointer;
+}
+
+.ludus-mission-act.is-locked h5 {
+  color: var(--lg-muted);
+}
+
+.ludus-mission-item span {
+  color: var(--lg-muted);
+  font-size: 0.85em;
+}
+
+.ludus-mission-item.is-done {
+  color: var(--lg-muted);
+}
+
+.ludus-mission-item.is-next,
+.ludus-mission-item.is-current {
+  color: var(--lg-gold);
+}
+
+.ludus-mission-item.is-chorus span {
+  font-style: italic;
+}
+
+/* The fall: the passion took its own.  The whole view dims, never to
+   black and never with a shake or a red flash; nothing is counted. */
+#ludus-game-container {
+  transition: filter 1.5s ease;
+}
+
+#ludus-game-container.ludus-is-fallen {
+  filter: brightness(0.72) saturate(0.55);
+}
+
+.ludus-fall {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #3a4a66;
+  border-radius: 8px;
+  background: #10141c;
+}
+
+.ludus-fall h4 {
+  margin-top: 0;
+  color: #9fb4d9;
+}
+
+.ludus-fall-steps li {
+  margin-bottom: 0.5rem;
+}
+
+.ludus-fall-steps li.is-done {
+  color: var(--lg-muted);
+}
+
+/* The threshold dialog of a gate. */
+.ludus-trial {
+  max-width: min(40rem, calc(100vw - 2rem));
+  padding: 1.25rem;
+  border: 1px solid #8a6a34;
+  border-radius: var(--lg-radius);
+  color: var(--lg-text);
+  background: #17130e;
+}
+
+.ludus-trial::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.ludus-trial h3 {
+  margin-top: 0;
+  color: var(--lg-gold);
+}
+
+.ludus-threshold-btn {
+  margin-left: 0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #ludus-game-container {
+    transition: none;
+  }
+}
+
