@@ -198,6 +198,8 @@ func _build_world() -> void:
 	_build_atlas(oak)
 	_build_chronicle(oak)
 	_build_mission_board(oak)
+	# The K things of the obitel (TABOO 0.07, scripts/obitel_layout.gd).
+	ObitelLayout.build_obitel_objects(self)
 
 
 ## The way out to the path of the witness: a plain oak arch on the south
