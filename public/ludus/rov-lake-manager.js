@@ -239,6 +239,12 @@
     telemetry.appendChild(empty);
     const timestamp = el('p', 'rov-timestamp');
     telemetry.appendChild(timestamp);
+    // Ascent faster than 10 m/min is a diver's error, not a score: the
+    // line says so plainly and nothing is taken away (ludus-water.js).
+    const ascentWarn = el('p', 'rov-ascent-warning');
+    ascentWarn.setAttribute('role', 'alert');
+    ascentWarn.hidden = true;
+    telemetry.appendChild(ascentWarn);
 
     const insight = el('div', 'rov-attribute-mapping-panel');
     insight.appendChild(el('h3', null, 'Observation insight'));
@@ -294,7 +300,7 @@
 
     state.dom = {
       panel, values, empty, timestamp, bonus, bar, fill, source, lesson,
-      indicator, player, age,
+      indicator, player, age, ascentWarn,
     };
     return state.dom;
   }
@@ -340,6 +346,13 @@
     dom.source.textContent = 'From depth: ' + depthText
       + (next === null ? ' (deepest band reached)'
         : ' · next insight at ' + next + ' m');
+
+    const rate = state.ascent;
+    dom.ascentWarn.hidden = !(rate && rate.tooFast);
+    dom.ascentWarn.textContent = rate && rate.tooFast
+      ? 'Rising at ' + rate.mPerMin.toFixed(1) + ' m/min: slow down to '
+        + '10 m/min or less, as a diver would.'
+      : '';
 
     const layer = layerForTemperature(t ? t.temperature : null);
     dom.lesson.hidden = !layer;
@@ -400,8 +413,16 @@
     if (!telemetry) {
       return;
     }
+    const prev = state.currentTelemetry;
+    const now = new Date();
+    const water = window.LudusWater;
+    state.ascent = water && prev && prev.depth !== null
+      && telemetry.depth !== null && state.lastUpdate
+      ? water.ascent(prev.depth, telemetry.depth,
+        (now - state.lastUpdate) / 1000)
+      : null;
     state.currentTelemetry = telemetry;
-    state.lastUpdate = new Date();
+    state.lastUpdate = now;
 
     const bonus = wisdomBonusForDepth(telemetry.depth);
     const changed = bonus !== state.insight.bonus;
@@ -565,6 +586,8 @@
     renderTelemetry: scheduleRender,
     renderAttributes: scheduleRender,
     renderStatus: scheduleRender,
+    // The audit harness feeds samples without a live dive.
+    _feed: handleTelemetryUpdate,
   };
 
   console.log('[ROVLake] Manager registered as window.__ROVLakeManager');

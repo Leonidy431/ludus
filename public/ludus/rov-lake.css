@@ -367,3 +367,14 @@
     transition: none;
   }
 }
+
+/* Ascent too fast: an instrument warning, so instrument light (TABOO
+   0.38), steady, not flashing. */
+.rov-ascent-warning {
+  margin: 0.5rem 0 0;
+  padding: 0.4rem 0.6rem;
+  border-left: 3px solid var(--ludus-light-instrument, #c9e4ff);
+  color: var(--lg-text, #eee);
+  font-size: 0.875rem;
+}
+

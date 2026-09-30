@@ -3820,5 +3820,463 @@
   "score": 1,
   "attribution": [],
   "slot": "DEF-021"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/hero/spells/BeamingRay.java",
+  "kind": "code",
+  "hits": [
+   "ray"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/hero/spells/GuidingLight.java",
+  "kind": "code",
+  "hits": [
+   "light"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/hero/spells/MnemonicPrayer.java",
+  "kind": "code",
+  "hits": [
+   "ray"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/hero/spells/ShieldOfLight.java",
+  "kind": "code",
+  "hits": [
+   "light"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/hero/spells/Sunray.java",
+  "kind": "code",
+  "hits": [
+   "ray"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/hero/spells/WallOfLight.java",
+  "kind": "code",
+  "hits": [
+   "light"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/Flare.java",
+  "kind": "code",
+  "hits": [
+   "flare"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/GlowBlock.java",
+  "kind": "code",
+  "hits": [
+   "glow"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/effects/Lightning.java",
+  "kind": "code",
+  "hits": [
+   "light"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/wands/WandOfLightning.java",
+  "kind": "code",
+  "hits": [
+   "light"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/wands/WandOfPrismaticLight.java",
+  "kind": "code",
+  "hits": [
+   "light"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/weapon/enchantments/Blooming.java",
+  "kind": "code",
+  "hits": [
+   "bloom"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/BlightEffect.java",
+  "kind": "code",
+  "hits": [
+   "light"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-gui-desktop/src/main/java/forge/itemmanager/views/AttractionLightRenderer.java",
+  "kind": "code",
+  "hits": [
+   "light"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/CleverRaven/Cataclysm-DDA",
+  "commit": "fe6a10c2b1425882574b4ad7bfbebc4c6170dbf8",
+  "license_file": "LICENSE-Apache-Robot-Font.txt",
+  "path": "src/tileray.cpp",
+  "kind": "code",
+  "hits": [
+   "ray"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE-Apache-Robot-Font.txt",
+   "LICENSE-OFL-Terminus-Font.txt",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/CleverRaven/Cataclysm-DDA",
+  "commit": "fe6a10c2b1425882574b4ad7bfbebc4c6170dbf8",
+  "license_file": "LICENSE-Apache-Robot-Font.txt",
+  "path": "src/tileray.h",
+  "kind": "code",
+  "hits": [
+   "ray"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE-Apache-Robot-Font.txt",
+   "LICENSE-OFL-Terminus-Font.txt",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/CorsixTH/CorsixTH",
+  "commit": "c0435336e3926b7d602485ff6739da3ac142bfd5",
+  "license_file": "LICENSE.txt",
+  "path": "CorsixTH/Lua/objects/machines/x_ray.lua",
+  "kind": "code",
+  "hits": [
+   "ray"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/CorsixTH/CorsixTH",
+  "commit": "c0435336e3926b7d602485ff6739da3ac142bfd5",
+  "license_file": "LICENSE.txt",
+  "path": "CorsixTH/Lua/objects/x_ray_viewer.lua",
+  "kind": "code",
+  "hits": [
+   "ray"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/MonoGame/MonoGame",
+  "commit": "9cce5c73ad5869a8abe54dad9ed201d0678fa8fe",
+  "license_file": "LICENSE.txt",
+  "path": "MonoGame.Framework/Graphics/Effect/IEffectLights.cs",
+  "kind": "code",
+  "hits": [
+   "light"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/OpenTTD/OpenTTD",
+  "commit": "6059ce2bbb27afdd73d45153657fe9bc087d1c01",
+  "license_file": "COPYING.md",
+  "path": "src/tilehighlight_func.h",
+  "kind": "code",
+  "hits": [
+   "light"
+  ],
+  "score": 1,
+  "attribution": [
+   "COPYING.md",
+   "CREDITS.md"
+  ],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/OpenTTD/OpenTTD",
+  "commit": "6059ce2bbb27afdd73d45153657fe9bc087d1c01",
+  "license_file": "COPYING.md",
+  "path": "src/tilehighlight_type.h",
+  "kind": "code",
+  "hits": [
+   "light"
+  ],
+  "score": 1,
+  "attribution": [
+   "COPYING.md",
+   "CREDITS.md"
+  ],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/RayFowler/rotp-public",
+  "commit": "e3726fc22c2c44316306c50c79779e3da1c4c140",
+  "license_file": "LICENSE",
+  "path": "src/rotp/ui/sprites/FlightPathDisplaySprite.java",
+  "kind": "code",
+  "hits": [
+   "light"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/RayFowler/rotp-public",
+  "commit": "e3726fc22c2c44316306c50c79779e3da1c4c140",
+  "license_file": "LICENSE",
+  "path": "src/rotp/ui/sprites/FlightPathSprite.java",
+  "kind": "code",
+  "hits": [
+   "light"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-023"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/GhostKickOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "ghost"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/armor/glyphs/Camouflage.java",
+  "kind": "code",
+  "hits": [
+   "flag"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/trinkets/MimicTooth.java",
+  "kind": "code",
+  "hits": [
+   "mimic"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/sprites/GhostSprite.java",
+  "kind": "code",
+  "hits": [
+   "ghost"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/sprites/MimicSprite.java",
+  "kind": "code",
+  "hits": [
+   "mimic"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/CamouflageEffect.java",
+  "kind": "code",
+  "hits": [
+   "flag"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/DelayedTriggerEffect.java",
+  "kind": "code",
+  "hits": [
+   "trigger"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/ImmediateTriggerEffect.java",
+  "kind": "code",
+  "hits": [
+   "trigger"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-024"
  }
 ]
