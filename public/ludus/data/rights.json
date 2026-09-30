@@ -14,7 +14,7 @@
    "name": "three.js 0.169 (Meta 3D proxies, scripts/meta3d)",
    "licence": "MIT",
    "licence_file": "scripts/meta3d/node_modules/three/LICENSE",
-   "licence_file_present": false
+   "licence_file_present": true
   },
   {
    "name": "Needle Engine 5.1.12 (VR scene)",

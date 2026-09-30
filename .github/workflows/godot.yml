@@ -145,8 +145,9 @@ jobs:
             --rendering-driver opengl3 res://scenes/witness.tscn \
             -- --shots="$PWD/../build/shots"
           # Nine of the 99 locations, one per kind of shell and light and
-          # one with a drawing of the repos (the court-yard bench),
-          # as entered and with the heart's panel open (TABOO 0.013 p. 7).
+          # one with a drawing of the repos (the court-yard bench), each
+          # as entered, at the heart with its prompt read, and with the
+          # heart's panel open (TABOO 0.013 p. 7).
           xvfb-run -a -s "-screen 0 1280x720x24" "$GODOT" --path . \
             --rendering-driver opengl3 res://scenes/location.tscn \
             -- --shots="$PWD/../build/shots" \
@@ -171,6 +172,13 @@ jobs:
               -s res://tools/measure_budgets.gd -- --scene=$s --check \
               || rc=1
           done
+          # The 99 locations in the real location.tscn, four views each
+          # (door, both side walls, the heart's panel open), held to the
+          # same scene budgets with no exception (TABOO 0.011 item 4).
+          timeout 1200 xvfb-run -a -s "-screen 0 1280x720x24" \
+            "$GODOT" --path . --rendering-driver opengl3 \
+            -s res://tools/measure_locations.gd -- --check \
+            --out="$PWD/../build/locations-budgets.json" || rc=1
           exit $rc
 
       - name: Export Web (WebXR)

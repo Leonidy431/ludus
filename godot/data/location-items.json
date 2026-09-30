@@ -50,19 +50,19 @@
     "kit": "obj_bench_41042cf8fd",
     "kit_dir": "res://art/derived/LOC-court-yard",
     "files": [
-     "obj_bench_41042cf8fd_v08.png"
+     "obj_bench_41042cf8fd_v03.png"
     ],
     "settings": [
      "any"
     ],
     "changes": [
-     "stack"
+     "pair"
     ],
     "bboxes": [
      [
-      69,
-      66,
-      187,
+      37,
+      151,
+      219,
       238
      ]
     ],
@@ -81,7 +81,7 @@
     "kit": "obj_bench_41042cf8fd",
     "kit_dir": "res://art/derived/LOC-court-yard",
     "files": [
-     "obj_bench_41042cf8fd_v12.png"
+     "obj_bench_41042cf8fd_v03.png"
     ],
     "settings": [
      "any"
@@ -91,9 +91,9 @@
     ],
     "bboxes": [
      [
-      13,
+      37,
       151,
-      243,
+      219,
       238
      ]
     ],
@@ -112,19 +112,19 @@
     "kit": "obj_bridge_log_40b14237a3",
     "kit_dir": "res://art/derived/LOC-mountain-bridge",
     "files": [
-     "obj_bridge_log_40b14237a3_v07.png"
+     "obj_bridge_log_40b14237a3_v02.png"
     ],
     "settings": [
      "any"
     ],
     "changes": [
-     "leans -12, broken"
+     "leans +12, chipped"
     ],
     "bboxes": [
      [
-      36,
-      141,
-      166,
+      65,
+      168,
+      190,
       237
      ]
     ],
@@ -143,7 +143,7 @@
     "kit": "obj_bench_41042cf8fd",
     "kit_dir": "res://art/derived/LOC-court-yard",
     "files": [
-     "obj_bench_41042cf8fd_v04.png"
+     "obj_bench_41042cf8fd_v03.png"
     ],
     "settings": [
      "any"
@@ -154,8 +154,8 @@
     "bboxes": [
      [
       37,
-      120,
-      204,
+      151,
+      219,
       238
      ]
     ],
@@ -174,19 +174,19 @@
     "kit": "obj_bench_41042cf8fd",
     "kit_dir": "res://art/derived/LOC-court-yard",
     "files": [
-     "obj_bench_41042cf8fd_v10.png"
+     "obj_bench_41042cf8fd_v03.png"
     ],
     "settings": [
      "any"
     ],
     "changes": [
-     "leans -12, broken"
+     "pair"
     ],
     "bboxes": [
      [
-      80,
-      136,
-      243,
+      37,
+      151,
+      219,
       238
      ]
     ],
@@ -292,37 +292,6 @@
     "licence": "GPL-2.0-or-later"
    }
   ],
-  "shipyard": [
-   {
-    "item": "spruce-log",
-    "kit": "obj_bridge_log_40b14237a3",
-    "kit_dir": "res://art/derived/LOC-mountain-bridge",
-    "files": [
-     "obj_bridge_log_40b14237a3_v05.png"
-    ],
-    "settings": [
-     "any"
-    ],
-    "changes": [
-     "leans -24, broken"
-    ],
-    "bboxes": [
-     [
-      95,
-      132,
-      213,
-      238
-     ]
-    ],
-    "size_m": [
-     0.4,
-     0.4,
-     4.0
-    ],
-    "px_m": 0.033898,
-    "licence": "GPL-2.0-or-later"
-   }
-  ],
   "silversmith": [
    {
     "item": "tools",
@@ -360,19 +329,19 @@
     "kit": "obj_bench_41042cf8fd",
     "kit_dir": "res://art/derived/LOC-court-yard",
     "files": [
-     "obj_bench_41042cf8fd_v08.png"
+     "obj_bench_41042cf8fd_v03.png"
     ],
     "settings": [
      "any"
     ],
     "changes": [
-     "stack"
+     "pair"
     ],
     "bboxes": [
      [
-      69,
-      66,
-      187,
+      37,
+      151,
+      219,
       238
      ]
     ],
@@ -391,19 +360,19 @@
     "kit": "obj_bench_41042cf8fd",
     "kit_dir": "res://art/derived/LOC-court-yard",
     "files": [
-     "obj_bench_41042cf8fd_v07.png"
+     "obj_bench_41042cf8fd_v01.png"
     ],
     "settings": [
      "any"
     ],
     "changes": [
-     "leans -24, chipped"
+     "leans +12, chipped"
     ],
     "bboxes": [
      [
-      58,
-      126,
-      199,
+      65,
+      130,
+      191,
       238
      ]
     ],
@@ -422,19 +391,19 @@
     "kit": "obj_bench_41042cf8fd",
     "kit_dir": "res://art/derived/LOC-court-yard",
     "files": [
-     "obj_bench_41042cf8fd_v02.png"
+     "obj_bench_41042cf8fd_v03.png"
     ],
     "settings": [
      "any"
     ],
     "changes": [
-     "upended, chipped"
+     "pair"
     ],
     "bboxes": [
      [
-      69,
+      37,
       151,
-      187,
+      219,
       238
      ]
     ],
@@ -453,20 +422,20 @@
     "kit": "obj_hourglass_e49ab22431",
     "kit_dir": "res://art/derived/LOC-rock-island",
     "files": [
-     "obj_hourglass_e49ab22431_v03.png"
+     "obj_hourglass_e49ab22431_v01.png"
     ],
     "settings": [
      "any"
     ],
     "changes": [
-     "leans -24, chipped"
+     "leans -12, chipped"
     ],
     "bboxes": [
      [
-      67,
-      111,
-      190,
-      237
+      85,
+      106,
+      171,
+      238
      ]
     ],
     "size_m": [
@@ -515,19 +484,19 @@
     "kit": "obj_bench_41042cf8fd",
     "kit_dir": "res://art/derived/LOC-court-yard",
     "files": [
-     "obj_bench_41042cf8fd_v10.png"
+     "obj_bench_41042cf8fd_v03.png"
     ],
     "settings": [
      "any"
     ],
     "changes": [
-     "leans -12, broken"
+     "pair"
     ],
     "bboxes": [
      [
-      80,
-      136,
-      243,
+      37,
+      151,
+      219,
       238
      ]
     ],
@@ -538,6 +507,24 @@
     ],
     "px_m": 0.010169,
     "licence": "CC-BY-SA-3.0"
+   }
+  ]
+ },
+ "not_shown": {
+  "shipyard": [
+   {
+    "item": "spruce-log",
+    "kit": "obj_bridge_log_40b14237a3",
+    "why": [
+     "leans -24",
+     "proportions 0.10",
+     "proportions 0.13",
+     "proportions 0.14",
+     "proportions 0.17",
+     "proportions 0.18",
+     "proportions 0.22",
+     "stack"
+    ]
    }
   ]
  }

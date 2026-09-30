@@ -13,7 +13,8 @@
 ## scene, save asks it to write st.  Nothing here reads a clock or draws
 ## a random number: the day comes in st.day and time in tick's dt.
 ##
-## The 23 new small actions of the places (docs/LOCATIONS_99_SELECTION,
+## The shore of Svetloyar is listened to and records nothing (Kiberslav
+## node 76).  The 23 new small actions of the places (docs/LOCATIONS_99_SELECTION,
 ## "Сердца", HLD phase L3) have no logic yet: their panel names the
 ## action and its teaching, and doing it counts nothing and pays nothing.
 ## Prayer never pays (TABOO 0.35 rule 16): a practice changes a counter
@@ -27,6 +28,11 @@ const AWAY := {"id": "away", "text": "Отойти", "disabled": false,
 	"reason": ""}
 ## Practices done by standing still: moving starts the count again.
 const STILL_PRACTICES := ["stillness", "vigil"]
+## The shore of Svetloyar (Kiberslav node 76): the lake is listened to
+## by one who stands still, for this long; then the shore is quiet.
+## Nothing is counted, paid, saved or said as done: no marker, no
+## reward, no record.
+const LISTEN_SECONDS := 60.0
 
 
 ## What the hearts read, loaded once per place.
@@ -63,6 +69,8 @@ static func kind_of(h: Dictionary) -> String:
 			return "atlas-" + str(h.id)
 		"WitnessCore":
 			return "witness"
+		"listen":
+			return "listen"
 	return "new"
 
 
@@ -112,6 +120,9 @@ static func open(loc: Dictionary, st: Dictionary,
 		"passion":
 			p["enc"] = PassionCore.start(_passion(ctx, h.id))
 			p["still"] = -1.0
+		"listen":
+			p["still"] = -1.0
+			p["heard"] = false
 	return _result(p, s)
 
 
@@ -254,6 +265,12 @@ static func lines(p: Dictionary, loc: Dictionary, st: Dictionary,
 				page if page != ""
 					else "Писцу пока ничего не передано со дна: книга ждёт.",
 				"", teaching(loc), ""]
+		"listen":
+			out = ["Берег", "", teaching(loc), ""]
+			if p.still >= 0.0:
+				out += ["Стой, не двигаясь: слушай воду.", ""]
+			elif p.heard:
+				out += ["Тихо. Берег молчит, вода слышна.", ""]
 		"witness":
 			out = ["Черта", "",
 				"Стой у черты. Подойти можно — до черты; склонить голову; уйти.",
@@ -354,6 +371,11 @@ static func choices(p: Dictionary, loc: Dictionary, st: Dictionary,
 		"witness":
 			return [{"id": "bow", "text": "Склонить голову", "disabled": false,
 				"reason": ""}, AWAY]
+		"listen":
+			if p.still >= 0.0:
+				return [AWAY]
+			return [{"id": "listen", "text": "Стоять и слушать",
+				"disabled": false, "reason": ""}, AWAY]
 	if p.reply != "":
 		return [AWAY]
 	return [{"id": "do", "text": str(h.get("ru", "")), "disabled": false,
@@ -452,6 +474,11 @@ static func choose(p: Dictionary, loc: Dictionary, st: Dictionary,
 		"witness":
 			# Nothing is written about standing at the line.
 			return _result({}, st)
+		"listen":
+			# The time of standing lives only in the open panel.
+			q.still = LISTEN_SECONDS
+			q.choice = 0
+			return _result(q, st)
 	q.reply = "Сделано."
 	q.choice = 0
 	return _result(q, s)
@@ -479,6 +506,15 @@ static func tick(p: Dictionary, loc: Dictionary, st: Dictionary,
 			{"minutes": int(pr.minutes), "day": s.day})
 		return _result(q, s, "Сделано: %s, %d мин." % [pr.ru,
 			int(pr.minutes)], true)
+	if p.get("kind") == "listen" and p.still >= 0.0:
+		var q := p.duplicate(true)
+		q.still = LISTEN_SECONDS if not still else q.still - dt
+		if q.still <= 0.0:
+			q.still = -1.0
+			q.heard = true
+			q.choice = 0
+		# The state is handed back as it came: nothing is recorded.
+		return _result(q, st)
 	if p.get("kind") == "passion" and p.still >= 0.0:
 		var q := p.duplicate(true)
 		q.still -= dt

@@ -146,9 +146,22 @@ class PropsRegisterTest(unittest.TestCase):
             self.assertEqual(len(e['sha1']), 40)
             self.assertIn(e['kind'], ('image', 'model'))
             self.assertTrue(e['location_ids'])
-            self.assertIsNone(li.never(e['path']), e['path'])
+            # A line never() now refuses stays, marked withdrawn.
+            if e['key'] not in li.withdrawn_keys(self.register):
+                self.assertIsNone(li.never(e['path']), e['path'])
             repo = self.register['repos'][e['repo']]
             self.assertTrue(repo['licence_file'], e['repo'])
+            # TABOO 0.012 p. 1: every line names its licence (with its
+            # appended corrections); a bare "GPL" has its version.
+            now = li.licence_now(self.register, e['key'], e['licence'])
+            self.assertNotIn(now, li.NO_LICENCE, e['path'])
+            self.assertNotEqual(now, 'GPL', e['path'])
+
+    def test_demonic_imagery_is_never_taken(self):
+        self.assertEqual(li.never('mon/panlord/demon_head_horn.png'),
+                         'demonic')
+        self.assertEqual(li.never('hand1/staff_skull.png'), 'demonic')
+        self.assertIsNone(li.never('wares/seashell.png'))
 
     def test_register_only_grows(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -162,6 +175,20 @@ class PropsRegisterTest(unittest.TestCase):
                 li.save_props(reg, path)
             reg = li.load_props(path)
             reg['entries'].append({'key': 'p_1', 'path': 'c'})
+            with self.assertRaises(RuntimeError):
+                li.save_props(reg, path)
+            # A new line without a licence is refused; corrections and
+            # withdrawals only grow.
+            reg = li.load_props(path)
+            reg['entries'].append({'key': 'p_2', 'path': 'd',
+                                   'licence': 'UNKNOWN'})
+            with self.assertRaises(RuntimeError):
+                li.save_props(reg, path)
+            reg = li.load_props(path)
+            reg['corrections'] = [{'key': 'p_1', 'licence': 'MIT'}]
+            li.save_props(reg, path)
+            reg = li.load_props(path)
+            reg['corrections'][0]['licence'] = 'GPL-3.0'
             with self.assertRaises(RuntimeError):
                 li.save_props(reg, path)
 
@@ -316,6 +343,30 @@ class ShippedTest(unittest.TestCase):
                         .getchannel('A').point(lambda a: 255 if a > 16
                                                else 0)
                     self.assertEqual(list(alpha.getbbox()), box, rel)
+
+    def test_a_place_shows_only_variants_like_the_thing(self):
+        # TABOO 0.013 p. 3: the review of 2026-09-30 found a stack of
+        # benches read as a rack, broken pieces as clutter and a grey
+        # log as a pipe; none of them may stand in a place again.
+        items = json.loads((GODOT / 'data' / 'location-items.json')
+                           .read_text('utf-8'))
+        metas = {m['name']: m for _p, m in shipped_metas()}
+        data = li.load_locations()
+        for rows in items['locations'].values():
+            for row in rows:
+                meta = metas[row['kit']]
+                size = data['things'][row['item']]['size_m']
+                for f in row['files']:
+                    v = next(v for v in meta['variants'] if v['file'] == f)
+                    self.assertEqual(li.unlike(meta, v, size), '', f)
+                    self.assertNotIn('stack', v['change'])
+                    self.assertNotIn('upended', v['change'])
+        bench = metas['obj_bench_41042cf8fd']
+        by_change = {v['change']: v for v in bench['variants']}
+        self.assertEqual(li.unlike(bench, by_change['stack'],
+                                   [1.2, 0.45, 0.35]), 'stack')
+        self.assertIn('spruce-log', [r['item'] for r in
+                                     items['not_shown']['shipyard']])
 
     def test_queue_is_deterministic_and_fits_rooms(self):
         meta = shipped_metas()[0][1]

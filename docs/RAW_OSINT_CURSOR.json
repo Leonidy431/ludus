@@ -2246,6 +2246,30 @@
      }
     }
    ]
+  },
+  {
+   "time": "2026-09-30T17:54:31+00:00",
+   "pass": "loc-props-licences-2026-09-30",
+   "kind": "props register licences and withdrawals (TABOO 0.012 p. 1-2; review 2026-09-30)",
+   "licence_corrections": 1814,
+   "by_change": {
+    "GPL -> GPL-3.0": 137,
+    "GPL -> GPL-2.0": 1532,
+    "GPL -> CC-BY-NC-ND-4.0": 40,
+    "UNKNOWN -> LicenseRef-Defold-1.0": 20,
+    "UNKNOWN -> CC-BY-SA-4.0": 38,
+    "UNKNOWN -> MIT": 18,
+    "UNKNOWN -> Zlib": 11,
+    "UNKNOWN -> Artistic-1.0": 8,
+    "UNKNOWN -> CC-BY-4.0": 4,
+    "UNKNOWN -> LicenseRef-qskinny": 2,
+    "UNKNOWN -> Apache-2.0": 4
+   },
+   "withdrawn": 7,
+   "withdrawn_why": [
+    "demonic"
+   ],
+   "without_licence_after": 0
   }
  ],
  "keywords": {

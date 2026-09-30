@@ -93,6 +93,9 @@ static func heart_ok(h: Dictionary, ctx: Dictionary) -> bool:
 			return h.id in WitnessCore.ORDER
 		"TypikonCore":
 			return h.id == "hear" and not TypikonCore.cues().is_empty()
+		"listen":
+			# The shore of Svetloyar (LocationHeart.LISTEN_SECONDS).
+			return h.id == "kitezh"
 		"new":
 			return _has_words(String(h.get("constitution", "")))
 	return false

@@ -60,6 +60,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 sys.path.insert(0, str(HERE))
 
+import licences  # noqa: E402
 import osint_cycle  # noqa: E402
 import search_index  # noqa: E402
 
@@ -260,10 +261,19 @@ def tokens(path, own=frozenset()):
         {t[:-2] for t in toks if t.endswith('es')}
 
 
+# Demonic imagery is not neutral matter even on the shelf (TABOO 0.012
+# p. 2, 0.35 p. 5): the stop-list's "demon-summon" let crawl's
+# demon_head_horn and space-station-14's horns_demonic in under "horn",
+# and crawl's staff_skull under the caravan staff (review 2026-09-30).
+DEMONIC = re.compile(r'demon|devil|skull', re.I)
+
+
 def never(path):
     """Paths that never enter even the props store, with the reason."""
     if osint_cycle.DOGMA_STOP.search(path):
         return 'dogma-stop-list'
+    if DEMONIC.search(path):
+        return 'demonic'
     if osint_cycle.SACRED.search(path):
         return 'sacred-never-raw'
     if FONT.search(path):
@@ -431,16 +441,33 @@ def dump_props(register):
                        sort_keys=True, indent=0)
     lines = [json.dumps(e, ensure_ascii=False, sort_keys=True)
              for e in register['entries']]
-    return (head[:-1] + ',\n"repos": ' + repos + ',\n"entries": [\n'
-            + ',\n'.join(lines) + ('\n' if lines else '') + ']}\n')
+    text = (head[:-1] + ',\n"repos": ' + repos + ',\n"entries": [\n'
+            + ',\n'.join(lines) + ('\n' if lines else '') + ']')
+    for extra in ('corrections', 'withdrawn'):
+        if extra not in register:
+            continue
+        rows = [json.dumps(c, ensure_ascii=False, sort_keys=True)
+                for c in register[extra]]
+        text += (f',\n"{extra}": [\n' + ',\n'.join(rows)
+                 + ('\n' if rows else '') + ']')
+    return text + '}\n'
 
 
 def save_props(register, path=PROPS_REGISTER):
     """Write the register; refuse anything but appended entries."""
-    old = load_props(path)['entries']
+    before = load_props(path)
+    old = before['entries']
     if register['entries'][:len(old)] != old:
         raise RuntimeError(f'{path}: an existing line was changed or '
                            'removed; the props register only grows')
+    for extra in ('corrections', 'withdrawn'):
+        fixes = before.get(extra, [])
+        if register.get(extra, [])[:len(fixes)] != fixes:
+            raise RuntimeError(f'{path}: a line of {extra} was changed or '
+                               'removed')
+    if any(e.get('licence', 'x') in NO_LICENCE
+           for e in register['entries'][len(old):]):
+        raise RuntimeError(f'{path}: a new line without a licence')
     keys = [e['key'] for e in register['entries']]
     if len(keys) != len(set(keys)):
         raise RuntimeError(f'{path}: duplicate key')
@@ -450,6 +477,108 @@ def save_props(register, path=PROPS_REGISTER):
 
 def licence_of(index_root, repo):
     return osint_cycle.licence_of(index_root, {'repo': repo})
+
+
+# Labels the licence classifier gives, as SPDX ids (licences.py reads
+# DEP-5 and heads in their own words).
+SPDX_OF = {'Expat': 'MIT', 'Artistic': 'Artistic-1.0',
+           'GPL-3+': 'GPL-3.0-or-later', 'GPL-2+': 'GPL-2.0-or-later',
+           'Defold-1.0': 'LicenseRef-Defold-1.0'}
+# A licence a props line may not be written without (TABOO 0.012 p. 1:
+# every line names its licence; p. 2: without one, nothing is taken).
+NO_LICENCE = ('', 'UNKNOWN', 'NOASSERTION')
+
+
+def _reuse_licence(clone, revision, path):
+    """The licence REUSE.toml gives a file (the last matching wins)."""
+    import fnmatch
+    import tomllib
+    out = subprocess.run(['git', 'show', f'{revision}:REUSE.toml'],
+                         cwd=clone, capture_output=True, timeout=300)
+    if out.returncode:
+        return ''
+    found = ''
+    reuse = tomllib.loads(out.stdout.decode('utf-8'))
+    for a in reuse.get('annotations', []):
+        pats = a['path'] if isinstance(a['path'], list) else [a['path']]
+        if any(fnmatch.fnmatchcase(path, p.replace('**', '*'))
+               for p in pats):
+            found = a.get('SPDX-License-Identifier', found)
+    return found
+
+
+def props_licence(index_root, repo, revision, path):
+    """The licence of one file of the props store, as an SPDX id.
+
+    The first pass (2026-09-30) wrote one label per repository, which
+    left 105 lines UNKNOWN (defold, endless-sky, godot, raylib,
+    simutrans, slint), every GPL without its version and rotp-public's
+    art "GPL" where it is CC BY-NC-ND 4.0.  The label is now per file:
+    REUSE.toml where the repository keeps one, else licences.py (DEP-5
+    stanzas, per-path rules), a bare GPL with the version its licence
+    file states ("or later" is in the source headers and is not
+    asserted here).
+    """
+    name = repo_dir(repo)
+    clone = Path(index_root) / 'clones' / name
+    label = ''
+    if (clone / '.git').exists() or clone.exists():
+        label = _reuse_licence(clone, revision, path)
+    if not label:
+        label = licences.licence_for(index_root, {'repo': repo,
+                                                  'path': path})
+    if label == 'GPL':
+        head = licences._header(str(index_root), name).get(
+            'license_head') or ''
+        ver = re.search(r'VERSION (\d)', head.upper())
+        label = f'GPL-{ver.group(1)}.0' if ver else label
+    return SPDX_OF.get(label, label)
+
+
+def licence_corrections(register, index_root, pass_id, when):
+    """Append a correction for every props line whose file's licence
+    differs from its label.  The lines themselves are never rewritten
+    (the register only grows); a correction names the line's key, the
+    old label, the licence and why."""
+    done = {c['key'] for c in register.get('corrections', [])}
+    added = []
+    for e in register['entries']:
+        if e['key'] in done:
+            continue
+        now = props_licence(index_root, e['repo'], e['revision'],
+                            e['path'])
+        if now != e['licence']:
+            added.append({'key': e['key'], 'was': e['licence'],
+                          'licence': now, 'pass_id': pass_id,
+                          'time': when,
+                          'why': 'per-file licence (props_licence)'})
+    register.setdefault('corrections', []).extend(added)
+    return added
+
+
+def withdraw_never(register, pass_id, when):
+    """Append a withdrawal for every line never() now refuses: the line
+    stays (append-only), marked withdrawn with why, and no kit, sheet or
+    headset file may take it."""
+    done = {w['key'] for w in register.get('withdrawn', [])}
+    added = [{'key': e['key'], 'why': never(e['path']),
+              'pass_id': pass_id, 'time': when}
+             for e in register['entries']
+             if e['key'] not in done and never(e['path'])]
+    register.setdefault('withdrawn', []).extend(added)
+    return added
+
+
+def withdrawn_keys(register):
+    return {w['key'] for w in register.get('withdrawn', [])}
+
+
+def licence_now(register, key, label):
+    """A line's licence with its corrections applied."""
+    for c in register.get('corrections', []):
+        if c['key'] == key:
+            label = c['licence']
+    return label
 
 
 def take_props(hits, eligible, index_root, cache_root, pass_id,
@@ -488,6 +617,13 @@ def take_props(hits, eligible, index_root, cache_root, pass_id,
             if data is None:
                 stats['errors'] += 1
                 continue
+            licence = props_licence(index_root, repo, revision,
+                                    hit['path'])
+            if licence in NO_LICENCE:
+                # TABOO 0.012 p. 1-2: no line without its licence.
+                stats['refused_licence'] = \
+                    stats.get('refused_licence', 0) + 1
+                continue
             dest = cache_path(cache, repo, revision, hit['path'])
             dest.parent.mkdir(parents=True, exist_ok=True)
             dest.write_bytes(data)
@@ -496,7 +632,7 @@ def take_props(hits, eligible, index_root, cache_root, pass_id,
             entry = {
                 'key': key, 'repo': repo, 'revision': revision,
                 'path': hit['path'],
-                'licence': register['repos'][repo]['licence'],
+                'licence': licence,
                 'kind': hit['kind'], 'place': prop_place(hit['path']),
                 'things': hit['things'], 'location_ids': locs,
                 'keywords': hit['keywords'], 'pass_id': pass_id,
@@ -1099,15 +1235,102 @@ variant is also 35 % or more from each of its siblings.
 INDOOR = {'room', 'cave'}
 
 
-def variant_queue(kit, loc, thing, shell):
+# How a variant must look to stand in a place as its thing (TABOO 0.013
+# p. 3: a thing that does not look like itself is not placed).  The
+# review of 2026-09-30 found by eye a stack of benches read as a rack,
+# a bench and an upturned one as a bracket, broken pieces as floating
+# clutter, a grey log as a steel pipe and a leaning hourglass that
+# could not stand.  The kit keeps all twelve (the data set, TABOO 0.3
+# rule 70); a location only shows the ones that pass here.
+# Changes a location never shows: a thing in use stands on its feet.
+NOT_IN_A_PLACE = ('stack', 'upended')
+# A thing standing on its own leans at most this much.
+MAX_LEAN_DEG = 12
+# Pieces smaller than this share of the drawing are specks, not parts.
+SPECK = 0.02
+# The drawn width over height, against the thing's longest ground side
+# over its height (as godot/scripts/location_core.gd LIKE_MIN/MAX).
+LIKE_MIN, LIKE_MAX = 0.4, 3.0
+# Wood reads as wood only warm: red over blue by at least this much in
+# the mean of the drawn pixels (the grey weathered variants read as
+# metal, TABOO 0.38 p. 2).
+WOOD_WARM = 40
+
+
+def _pieces_and_mean(path):
+    """Connected pieces (4-neighbour, alpha > 16) and the mean colour."""
+    from PIL import Image
+    im = Image.open(path).convert('RGBA')
+    w, h = im.size
+    px = im.load()
+    solid = [[px[x, y][3] > 16 for x in range(w)] for y in range(h)]
+    total, r, g, b = 0, 0, 0, 0
+    for y in range(h):
+        for x in range(w):
+            if solid[y][x]:
+                total += 1
+                c = px[x, y]
+                r, g, b = r + c[0], g + c[1], b + c[2]
+    seen = [[False] * w for _ in range(h)]
+    sizes = []
+    for y in range(h):
+        for x in range(w):
+            if not solid[y][x] or seen[y][x]:
+                continue
+            seen[y][x] = True
+            stack, n = [(x, y)], 0
+            while stack:
+                cx, cy = stack.pop()
+                n += 1
+                for nx, ny in ((cx + 1, cy), (cx - 1, cy), (cx, cy + 1),
+                               (cx, cy - 1)):
+                    if 0 <= nx < w and 0 <= ny < h and solid[ny][nx] \
+                            and not seen[ny][nx]:
+                        seen[ny][nx] = True
+                        stack.append((nx, ny))
+            sizes.append(n)
+    pieces = sum(1 for n in sizes if n >= SPECK * max(total, 1))
+    mean = (r / max(total, 1), g / max(total, 1), b / max(total, 1))
+    return pieces, mean
+
+
+def unlike(kit, v, size):
+    """Why a variant does not look like its thing in a place, or ''."""
+    change = v['change']
+    for word in NOT_IN_A_PLACE:
+        if word in change:
+            return word
+    lean = re.search(r'leans ([+-]?\d+)', change)
+    if lean and abs(int(lean.group(1))) > MAX_LEAN_DEG:
+        return f'leans {lean.group(1)}'
+    x0, y0, x1, y1 = v['hitbox']['bbox']
+    real = max(size[0], size[2]) / max(size[1], 1e-3)
+    like = ((x1 - x0) / max(y1 - y0, 1)) / real
+    if not LIKE_MIN <= like <= LIKE_MAX:
+        return f'proportions {like:.2f}'
+    pieces, mean = _pieces_and_mean(DERIVED / kit['slot'] / v['file'])
+    if pieces != 1:
+        return f'{pieces} pieces'
+    if kit.get('material') == 'wood' and mean[0] - mean[2] < WOOD_WARM:
+        return 'grey wood'
+    return ''
+
+
+def variant_queue(kit, loc, thing, shell, size=None):
     """The variants a location shows of a thing, deterministically.
 
     The queue starts where sha1(location id + thing) points and keeps
     the kit's order, so two places do not show the same variant first
     and one place never shows two alike in a row (TABOO 0.3 rule 53).
+    With the thing's size, only variants like the thing are queued
+    (unlike()); the queue may then be empty.
     """
     fit = [v for v in kit['variants']
            if shell not in INDOOR or v['setting'] == 'any']
+    if size is not None:
+        fit = [v for v in fit if not unlike(kit, v, size)]
+    if not fit:
+        return []
     start = int(hashlib.sha1(f'{loc}:{thing}'.encode()).hexdigest()[:8],
                 16) % len(fit)
     return fit[start:] + fit[:start]
@@ -1169,10 +1392,15 @@ def location_items(kits, data):
                 continue
             count = max(1, sum(1 for s in loc['slots']
                                if s['object'] == thing))
-            queue = variant_queue(meta, loc['id'], thing,
-                                  loc['shell']['type'])
-            shown = queue[:count]
             size = data['things'][thing]['size_m']
+            queue = variant_queue(meta, loc['id'], thing,
+                                  loc['shell']['type'], size)
+            if not queue:
+                # No variant of the kit looks like this thing here (a
+                # 4 m spruce log drawn aslant is not a log lying on the
+                # ground): the place shows none, and the thing waits.
+                continue
+            shown = queue[:count]
             rows.append({'item': thing, 'kit': meta['name'],
                          'kit_dir': f'res://art/derived/{meta["slot"]}',
                          'files': [v['file'] for v in shown],
@@ -1183,6 +1411,31 @@ def location_items(kits, data):
                          'licence': meta['license']})
         if rows:
             out[loc['id']] = rows
+    return out
+
+
+def not_shown(kits, data):
+    """location id -> the kit things no variant of which is like the
+    thing there, each variant with why (unlike()), so the file says
+    what waits and why rather than leave it out silently."""
+    by_thing = {}
+    for _key, meta, _ in kits:
+        for thing in meta['serves']:
+            by_thing[thing] = meta
+    out = {}
+    for loc in data['locations']:
+        for thing in loc['wishlist']:
+            meta = by_thing.get(thing)
+            if meta is None:
+                continue
+            size = data['things'][thing]['size_m']
+            if variant_queue(meta, loc['id'], thing,
+                             loc['shell']['type'], size):
+                continue
+            why = sorted({unlike(meta, v, size) or 'setting'
+                          for v in meta['variants']})
+            out.setdefault(loc['id'], []).append(
+                {'item': thing, 'kit': meta['name'], 'why': why})
     return out
 
 
@@ -1205,7 +1458,8 @@ def godot_items(kits, data):
                              'variants': len(m['variants']),
                              'side_px': m['side_px']}
                  for _, m, _ in kits},
-        'locations': location_items(kits, data)},
+        'locations': location_items(kits, data),
+        'not_shown': not_shown(kits, data)},
         ensure_ascii=False, indent=1) + '\n'
 
 
@@ -1748,11 +2002,43 @@ def cmd_kits(args):
     return 0
 
 
+def cmd_licences(args):
+    """Append the per-file licence corrections and the withdrawals of
+    lines never() now refuses to the props register (append-only), and
+    journal the pass."""
+    register = load_props()
+    pass_id = args.pass_id or 'loc-props-licences-2026-09-30'
+    when = now()
+    fixes = licence_corrections(register, args.index, pass_id, when)
+    gone = withdraw_never(register, pass_id, when)
+    left = [e['key'] for e in register['entries']
+            if licence_now(register, e['key'], e['licence']) in NO_LICENCE
+            and e['key'] not in withdrawn_keys(register)]
+    save_props(register)
+    by = {}
+    for c in fixes:
+        pair = f'{c["was"]} -> {c["licence"]}'
+        by[pair] = by.get(pair, 0) + 1
+    print(f'licence corrections +{len(fixes)}, withdrawn +{len(gone)}, '
+          f'lines still without a licence: {len(left)}')
+    for pair, n in sorted(by.items()):
+        print(f'  {n:5d}  {pair}')
+    journal({'time': when, 'pass': pass_id,
+             'kind': 'props register licences and withdrawals '
+                     '(TABOO 0.012 p. 1-2; review 2026-09-30)',
+             'licence_corrections': len(fixes), 'by_change': by,
+             'withdrawn': len(gone),
+             'withdrawn_why': sorted({w['why'] for w in gone}),
+             'without_licence_after': len(left)})
+    return 1 if left else 0
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('command', choices=['search', 'props',
                                             'candidates', 'kits',
-                                            'meshes', 'ship', 'items'])
+                                            'meshes', 'ship', 'items',
+                                            'licences'])
     parser.add_argument('--index', default=DEFAULT_INDEX)
     parser.add_argument('--cache', default=DEFAULT_CACHE)
     parser.add_argument('--pass-id', default='')
@@ -1763,7 +2049,8 @@ def main(argv=None):
     return {'search': cmd_search, 'props': cmd_props,
             'candidates': cmd_candidates,
             'kits': cmd_kits, 'meshes': cmd_meshes,
-            'ship': cmd_ship, 'items': cmd_items}[args.command](args)
+            'ship': cmd_ship, 'items': cmd_items,
+            'licences': cmd_licences}[args.command](args)
 
 
 if __name__ == '__main__':

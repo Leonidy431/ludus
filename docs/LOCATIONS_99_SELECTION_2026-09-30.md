@@ -129,7 +129,7 @@
 | 91 | Изба Ильи: странники просят воды | izba | Киберслав | K13, K22, K79, K80, KM | MissionCore `alms` | hearth 1900 K | — | 6 | 9 | 8 | 9 | 10 | 42 |
 | 92 | Корчма с одним проводным телефоном | tavern | Киберслав | K84, KM | RuleCore `stillness` | hearth 2100 K | — | 5 | 9 | 8 | 9 | 10 | 41 |
 | 93 | Реакторная изба с маревом | reactor-izba | Киберслав | K33, K41 | new `spot-the-haze` | instrument 6500 K | — | 5 | 7 | 7 | 9 | 10 | 38 |
-| 94 | Берег Светлояра: слышно, не найти | kitezh-shore | Киберслав | K76, KM | RuleCore `stillness` | hearth 1900 K | — | 7 | 10 | 5 | 9 | 9 | 40 |
+| 94 | Берег Светлояра: слышно, не найти | kitezh-shore | Киберслав | K76, KM | listen `kitezh` | hearth 1900 K | — | 7 | 10 | 5 | 9 | 9 | 40 |
 | 95 | Нулевая плата, где Илья называет себя | server-vault | Киберслав | K6, K12, K82, K91, K92 | new `type-by-memory` | instrument 6500 K | — | 5 | 9 | 8 | 9 | 10 | 41 |
 | 96 | Пасека за стеной ульев | apiary | Пороги | T:mystical | TrialCore `mystical` | hearth 2000 K | — | 8 | 10 | 5 | 9 | 10 | 42 |
 | 97 | Родник у скита, где стоит мутный кувшин | spring | Пороги | T:contemplative | TrialCore `contemplative` | hearth 2100 K | — | 8 | 10 | 5 | 9 | 10 | 42 |
@@ -160,7 +160,7 @@
 
 ## Сердца
 
-- По ядрам: AtlasTraces — 3, DiveCore — 4, MissionCore — 45, PassionCore — 5, RuleCore — 12, TrialCore — 6, WitnessCore — 1, new — 23.
+- По ядрам: AtlasTraces — 3, DiveCore — 4, MissionCore — 45, PassionCore — 5, RuleCore — 11, TrialCore — 6, WitnessCore — 1, listen — 1, new — 23.
 - Новых малых действий (логику писать и покрывать тестом): 23 — carry-archive-up, caulk-seam, compare-forms, find-pole-star, forge-nail, hear-both-sides, lay-a-stone, proof-the-block, prune-vine, read-waterline, rope-right-angle, seal-the-chronicle, separate-contract, share-water, speak-of-maker, spot-the-haze, take-core, teach-a-letter, tell-custom-from-faith, tell-only-true, test-ice, type-by-memory, wait-out-storm.
 
 ## Бюджет каждой локации (ТАБУ №0.011, план по файлам прокси)

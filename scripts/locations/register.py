@@ -34,6 +34,8 @@ road, W:<sacrament> witness scene.  Hearts reuse the game's cores:
   passion:<id>           PassionCore (data/passions.json)
   witness:<sacrament>    WitnessCore.ORDER
   typikon:hear           TypikonCore (the bells by clock and rule)
+  listen:<id>            stand still and listen; nothing is counted,
+                         paid or written (Kiberslav node 76)
   new:<id>               a new small action, NEW_ACTIONS below.
 """
 
@@ -1522,12 +1524,12 @@ place('dream-cell', 'Келья, где начинается долгий сон
       '«было на самом деле».', 8, 8, sky='indoor', safety=9,
       exists='hub-cell')
 place('svetloyar', 'Берег Светлояра: слышно, не найти', 'kitezh-shore',
-      'shore', (14, 10, 0), ['K76', 'KM'], 'rule:stillness',
+      'shore', (14, 10, 0), ['K76', 'KM'], 'listen:kitezh',
       (H, 1900, 'свеча в руках паломника'),
       ['hand-candle', 'reed-bed', 'boat'],
-      'Благовест слышно, если стоять неподвижно; Китеж не находят и не '
-      'взламывают: ни маркера, ни награды, ни записи.', 7, 10,
-      sky='night', safety=9)
+      'Кто стоит неподвижно, тот слушает озеро; город под водой не '
+      'находят и не взламывают: ни маркера, ни награды, ни записи.', 7,
+      10, sky='night', safety=9)
 place('offline-tavern', 'Корчма с одним проводным телефоном', 'tavern',
       'room', (8, 6, 3), ['K84', 'KM'], 'rule:stillness',
       (H, 2100, 'лучина за стойкой'),

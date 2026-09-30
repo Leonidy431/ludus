@@ -43,6 +43,18 @@ const CARD_M := 0.6
 ## How near the heart and the way back answer a press.
 const REACH_M := 2.2
 const EXIT_REACH_M := 0.9
+## The player starts this far inside the way back, well outside its
+## reach, so on arrival the heart (or nothing) answers, never the door
+## (TABOO 0.013 item 1: a neighbour does not take over the choice).
+const START_IN_M := 1.2
+## Near the holy thing the interface goes (TABOO 0.4 item 2, 0.38
+## item 3; Atlas node 5): full beyond HOLY_FAR_M from its slot, gone
+## inside HOLY_NEAR_M, over CockpitCore.FADE_SECONDS (1.75 s).  The
+## dive's 3-6 m is for open water; a cell of 4 m needs room scale, and
+## every heart stands beyond HOLY_FAR_M of its place's holy thing, so
+## the heart's own words are never faded (tests/test_location_build).
+const HOLY_NEAR_M := 1.0
+const HOLY_FAR_M := 1.8
 ## A thing keeps this much room from every place the player acts at.
 const CLEAR_M := 0.75
 const MAX_TRIS := 5000
@@ -246,7 +258,7 @@ static func plan(loc: Dictionary, things: Dictionary,
 	# The way back stands at the entrance; the player starts a little
 	# inside it, facing the heart.
 	var exit := Vector3(0.0, 0.0, d / 2.0 - 0.3)
-	var start := Vector3(0.0, 0.0, d / 2.0 - 1.2)
+	var start := exit - Vector3(0.0, 0.0, START_IN_M)
 	var slots := []
 	var missing := []
 	var holy_key := ""
@@ -283,8 +295,13 @@ static func plan(loc: Dictionary, things: Dictionary,
 			"crate": sh.type in ["shore", "open"]}
 	var skipped := _place_kits(loc, things, kits.get(loc.id, []), slots,
 		missing, {"w": w, "d": d, "h": h, "heart": heart, "exit": exit,
-			"passage": sh.passage, "bench": sh.bench})
+			"start": start, "type": sh.type, "passage": sh.passage,
+			"bench": sh.bench})
 	var light: Dictionary = loc.light
+	var holy_at = null
+	for s in slots:
+		if s.holy:
+			holy_at = s.pos
 	return {"id": loc.id, "title": loc.title_ru, "kind": loc.kind,
 		"families": loc.families, "type": sh.type, "w": w, "d": d, "h": h,
 		"heart": heart, "heart_spec": loc.heart, "hint": loc.heart.ru,
@@ -293,10 +310,28 @@ static func plan(loc: Dictionary, things: Dictionary,
 		"colour": kelvin(int(light.kelvin)) if light["class"] == "hearth"
 			else LAMPADA_K if light["class"] == "lampada" else INSTRUMENT_K,
 		"lampada": holy_key != "" and loc.holy_place.lampada,
-		"holy_key": holy_key, "slots": slots, "missing": missing,
+		"holy_key": holy_key, "holy_at": holy_at, "slots": slots,
+		"missing": missing,
 		"kits_skipped": skipped,
 		"lesson": loc.lesson, "constitution": loc.constitution,
 		"kiberslav": "kiberslav" in loc.families}
+
+
+## How visible the interface should be with the player at pos: 1 far
+## from the place's holy thing, 0 beside it, linear between (the
+## dive's console does the same at open-water scale, CockpitCore).
+## The holy thing's slot is measured on the ground, as the player
+## walks.  A place with no holy thing keeps its interface.
+static func holy_fade_target(p: Dictionary, pos: Vector3) -> float:
+	if p.get("holy_at") == null:
+		return 1.0
+	var at: Vector3 = p.holy_at
+	var d := Vector2(at.x - pos.x, at.z - pos.z).length()
+	if d >= HOLY_FAR_M:
+		return 1.0
+	if d <= HOLY_NEAR_M:
+		return 0.0
+	return (d - HOLY_NEAR_M) / (HOLY_FAR_M - HOLY_NEAR_M)
 
 
 # --- The kits of the props store ---------------------------------------------
@@ -337,10 +372,25 @@ static func load_kits(path := ITEMS) -> Dictionary:
 	return out
 
 
-## A drawing stands no taller than this many times its thing's height:
-## a lying thing drawn aslant (a log, a pair of benches seen from above)
-## would otherwise stand as a wall.
-const KIT_TALL := 2.5
+## A drawing stands no taller than this many times its thing's height.
+## The drawings are three-quarter views, so the seat of a bench seen
+## from above adds to its drawn height; 1.6 keeps a 0.45 m bench under
+## 0.72 m.  The review of 2026-09-30 found 2.5 let a bench stand 1.1 m
+## tall, a rack rather than a bench (TABOO 0.013 item 3).
+const KIT_TALL := 1.6
+## A drawing is like its thing only if its drawn width over height is
+## within these factors of the thing's own (its longest ground side
+## over its height): a stack of benches (0.69 against 2.67) or a 4 m
+## log drawn upright (1.1 against 10) is not stood; the thing waits,
+## listed with why, rather than stand as something else.
+const LIKE_MIN := 0.4
+const LIKE_MAX := 3.0
+## A drawing hung on a wall is seen whole from the door: every corner
+## within this half-angle of the view ahead (the door frame at
+## 1280x720 sees about 53 degrees each way; the margin keeps the whole
+## drawing inside it).  The frames of 2026-09-30 showed the tools cut by
+## the edge in the forge, the silversmith's and the armourer's.
+const KIT_VIEW_DEG := 40.0
 ## Margin between a drawing and anything else, and the step and reach of
 ## the search for its spot around its slot.
 const KIT_GAP := 0.08
@@ -415,6 +465,8 @@ static func _kit_fits(r: Rect2, layer: String, room: Dictionary,
 		room.w - 0.2, room.d - 0.2)
 	if layer == "wall":
 		inner = inner.grow(0.15)
+		if not _in_view(r, room):
+			return false
 	if not inner.encloses(r):
 		return false
 	var heart := Vector2(room.heart.x, room.heart.z)
@@ -435,6 +487,28 @@ static func _kit_fits(r: Rect2, layer: String, room: Dictionary,
 			and _rect_of(room.bench).grow(KIT_GAP).intersects(r):
 		return false
 	return true
+
+
+## Whether all of a ground rectangle lies ahead of the door within
+## KIT_VIEW_DEG of the view.
+static func _in_view(r: Rect2, room: Dictionary) -> bool:
+	var st: Vector3 = room.start
+	var k := tan(deg_to_rad(KIT_VIEW_DEG))
+	for c in [r.position, Vector2(r.end.x, r.position.y), r.end,
+			Vector2(r.position.x, r.end.y)]:
+		var ahead: float = st.z - c.y
+		if ahead < 0.3 or absf(c.x - st.x) > ahead * k:
+			return false
+	return true
+
+
+## How a drawing's proportions stand to its thing's: drawn width over
+## height, divided by the thing's longest ground side over its height.
+## 1 is the thing's own; LIKE_MIN and LIKE_MAX bound what is stood.
+static func likeness(km: Dictionary, thing: Dictionary) -> float:
+	var sz: Array = thing.size_m
+	var real := maxf(float(sz[0]), float(sz[2])) / maxf(float(sz[1]), 1e-3)
+	return (float(km.w) / maxf(float(km.h), 1e-4)) / real
 
 
 ## The first spot around base where a drawing fits, nearest first: along
@@ -514,14 +588,30 @@ static func _place_kits(loc: Dictionary, things: Dictionary, rows: Array,
 		var base := Vector3(float(p[0]), 0.0 if layer == "ground"
 			else float(p[1]), float(p[2]))
 		var km := kit_model(row, th, layer == "wall", room.h)
-		var at = _kit_spot(base, float(slot.yaw), km, layer, room, taken)
+		var like := likeness(km, th)
+		if like < LIKE_MIN or like > LIKE_MAX:
+			skipped.append({"object": key, "why":
+				"not like its thing (drawn %.2f of its proportions)" % like})
+			continue
+		var yaw := float(slot.yaw)
+		var at = _kit_spot(base, yaw, km, layer, room, taken)
+		if at == null and layer == "wall" \
+				and room.type in ["room", "cave", "yard"]:
+			# A side wall near the door is not seen whole from it; the
+			# back wall, facing the door, is (KIT_VIEW_DEG).
+			# It starts a quarter of the room off the middle, on its own
+			# wall's side: the middle of the back wall is behind the heart,
+			# and a drawing there stood behind the person's head.
+			yaw = 0.0
+			at = _kit_spot(Vector3(signf(base.x) * room.w / 4.0, base.y,
+				-room.d / 2.0 + 0.05), yaw, km, layer, room, taken)
 		if at == null:
 			skipped.append({"object": key,
 				"why": "no clear ground near its slot"})
 			continue
 		var s := {"object": key, "ru": th.ru, "mount": slot.mount if fill
 			else "beside", "layer": layer, "pos": at, "plinth": null,
-			"yaw": float(slot.yaw), "holy": false,
+			"yaw": yaw, "holy": false,
 			"flags": {"noInteract": false, "noLoot": false}, "tag": fill,
 			"stand": false, "model": km, "thing": th, "second": not fill}
 		slots.append(s)

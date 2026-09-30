@@ -306,6 +306,12 @@ def heart_of(spec, inv):
     if kind == 'typikon' and rest == 'hear':
         return {'core': 'TypikonCore', 'id': 'hear',
                 'ru': 'Слушать звон дня: по уставу и часам'}
+    if kind == 'listen' and rest == 'kitezh':
+        # Kiberslav node 76: the lake is listened to, never found; the
+        # heart counts, pays and writes nothing (not RuleCore, whose
+        # stillness is recorded and lifts a fall).
+        return {'core': 'listen', 'id': rest,
+                'ru': 'Стоять неподвижно и слушать озеро'}
     if kind == 'new' and rest in reg.NEW_ACTIONS:
         ru, line = reg.NEW_ACTIONS[rest]
         return {'core': 'new', 'id': rest, 'ru': ru, 'constitution': line}
@@ -649,6 +655,14 @@ def _bench(shell, w, d):
     return (-w / 2 + 1.2, -0.9, -w / 2 + 1.2 + BENCH_W, 0.9)
 
 
+# Clear ground round the holy thing, on every layer.
+HOLY_CLEAR_M = 0.3
+
+
+def _grow(r, m):
+    return (r[0] - m, r[1] - m, r[2] + m, r[3] + m)
+
+
 def _turn(x, z, fw, fd, yaw):
     return _rect(x, z, fd, fw) if yaw in (90, -90) else \
         _rect(x, z, fw, fd)
@@ -673,10 +687,20 @@ def layout(c):
         bench = _bench(shell, w, d)
         layers['ground'].append(bench)
 
+    # The holy thing keeps a clear margin to every other thing, whatever
+    # its layer (TABOO 0.013 p. 5: only on its own place): the review of
+    # 2026-09-30 found the silversmith's chalice card overlapping the
+    # silver-ingot card on the wall behind it.
+    holy_clear = []
+
+    def clear_of_holy(r):
+        return not any(_overlap(r, h) for h in holy_clear)
+
     def on_wall(fw, fd):
         for x, y, z, yaw in wall_anchors(shell, w, d):
             r = _turn(x, z, fw, fd, yaw)
-            if rect_ok(shell, w, d, r, layers['wall'], ground=False):
+            if rect_ok(shell, w, d, r, layers['wall'], ground=False) \
+                    and clear_of_holy(r):
                 mount = 'wall' if shell in ('room', 'cave', 'yard') \
                     else 'stand'
                 return ('wall', mount, x, y, z, yaw, r)
@@ -689,7 +713,8 @@ def layout(c):
         for z in _frange(bench[1] + 0.25, bench[3] - 0.25, 0.45):
             r = _rect(x, z, fw, fd)
             if r[0] >= bench[0] - 1e-9 and r[2] <= bench[2] + 1e-9 and \
-                    rect_ok(shell, w, d, r, layers['top'], ground=False):
+                    rect_ok(shell, w, d, r, layers['top'], ground=False) \
+                    and clear_of_holy(r):
                 return ('top', 'table', x, TABLE_TOP[shell], z, 0, r)
         return None
 
@@ -698,7 +723,8 @@ def layout(c):
         for x, z in ground_anchors(shell, w, d):
             for yaw in (0, 90):
                 r = _turn(x, z, fw, fd, yaw)
-                if rect_ok(shell, w, d, r, layers['ground']):
+                if rect_ok(shell, w, d, r, layers['ground']) and \
+                        clear_of_holy(r):
                     return ('ground', mount, x, 0.0, z, yaw, r)
         return None
 
@@ -708,8 +734,11 @@ def layout(c):
             if where == 'table' and bench is None:
                 continue
             r = _turn(x, z, fw, fd, yaw)
+            near = _grow(r, HOLY_CLEAR_M)
             if rect_ok(shell, w, d, r, layers[layer],
-                       ground=layer == 'ground'):
+                       ground=layer == 'ground') and not any(
+                    _overlap(near, t) for lay in layers.values()
+                    for t in lay if t is not bench):
                 return (layer, 'holy', x, y, z, yaw, r)
         return None
 
@@ -734,6 +763,8 @@ def layout(c):
         layer, mount, x, y, z, yaw, r = got
         if layer in layers:
             layers[layer].append(r)
+        if mount == 'holy':
+            holy_clear.append(_grow(r, HOLY_CLEAR_M))
         placed.append({'object': key, 'mount': mount,
                        'pos': [round(x, 3), round(y, 3), round(z, 3)],
                        'yaw': yaw, 'rect': [round(v, 3) for v in r]})

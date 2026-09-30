@@ -116,9 +116,17 @@ class HeartTest(unittest.TestCase):
     def test_one_heart_from_a_real_core(self):
         cores = {'RuleCore', 'MissionCore', 'DiveCore', 'AtlasTraces',
                  'TrialCore', 'PassionCore', 'WitnessCore', 'TypikonCore',
-                 'new'}
+                 'listen', 'new'}
         for x in LOCS:
             self.assertIn(x['heart']['core'], cores, x['id'])
+
+    def test_kitezh_is_listened_to_not_counted(self):
+        # Kiberslav node 76: no marker, no reward, no record.  RuleCore's
+        # stillness is recorded (and lifts a fall), so it is not the
+        # heart of Svetloyar.
+        x = next(x for x in LOCS if x['id'] == 'svetloyar')
+        self.assertEqual(x['heart']['core'], 'listen')
+        self.assertNotIn('слышно', x['lesson'])
 
     def test_reuse_first(self):
         new = sum(1 for x in LOCS if x['heart']['core'] == 'new')

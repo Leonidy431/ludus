@@ -16,14 +16,18 @@
 ## right stick or Q/E to turn, trigger, E or Space to act, the stick or
 ## the arrows and 1-4 to choose on a panel.
 ##
-## --shots=<dir> --locations=a,b,c renders each place as it is entered
-## and with its heart's panel open, for the eye check (TABOO 0.013 item
-## 7); nothing is saved while proof frames are taken.
+## --shots=<dir> --locations=a,b,c renders each place as it is entered,
+## at its heart with the prompt read, and with its heart's panel open,
+## for the eye check (TABOO 0.013 item 7); nothing is saved while proof
+## frames are taken.
 extends Node3D
 
 const WALK_MPS := 1.4
 const HUB := "res://scenes/hub.tscn"
 const SHOT_FRAMES := 20
+## Where the frames at the heart are taken: inside its reach (2.2 m),
+## in front of it, as a player stands to act.
+const SHOT_NEAR_M := 1.3
 
 ## Set by a caller before the node enters the tree (tests, tools).
 var location_id := ""
@@ -47,6 +51,9 @@ var keys_was := {}
 var message := ""
 var message_left := 0.0
 var proof := false
+## How visible the interface is: it goes near the place's holy thing
+## (LocationCore.holy_fade_target) over 1.75 s and comes back after.
+var ui_alpha := 1.0
 
 var rig: XROrigin3D
 var camera: XRCamera3D
@@ -119,6 +126,7 @@ func open_place(id: String) -> void:
 	pos = p.start
 	yaw = 0.0
 	heart_panel = {}
+	ui_alpha = LocationCore.holy_fade_target(p, pos)
 	_say(p.title)
 
 
@@ -266,7 +274,19 @@ func _process(dt: float) -> void:
 		_apply(LocationHeart.tick(heart_panel, loc, st, ctx, dt,
 			move.length() < 0.1))
 	message_left = maxf(0.0, message_left - dt)
+	_fade(dt)
 	_refresh()
+
+
+## The interface goes near the holy thing and returns after, never
+## faster than CockpitCore.FADE_SECONDS for the whole way (TABOO 0.4
+## item 2).  At the holy thing an open panel closes: nothing there is
+## counted, offered or named.
+func _fade(dt: float) -> void:
+	ui_alpha = CockpitCore.fade_step(ui_alpha,
+		LocationCore.holy_fade_target(p, pos), dt)
+	if ui_alpha <= 0.0 and not heart_panel.is_empty():
+		heart_panel = {}
 
 
 func _nearest() -> Dictionary:
@@ -281,6 +301,9 @@ func _nearest() -> Dictionary:
 
 
 func _interact() -> void:
+	# Beside the holy thing nothing answers a press.
+	if LocationCore.holy_fade_target(p, pos) <= 0.0:
+		return
 	var th := _nearest()
 	if th.is_empty():
 		return
@@ -346,6 +369,12 @@ func _refresh() -> void:
 			text = th.ru
 	prompt3d.text = text
 	hud.text = text
+	prompt3d.modulate.a = ui_alpha
+	hud.modulate.a = ui_alpha
+	panel.modulate.a = ui_alpha
+	panel_bg.transparency = 1.0 - ui_alpha
+	panel.visible = open and ui_alpha > 0.0
+	panel_bg.visible = panel.visible
 
 
 # --- XR (as in the hub) -------------------------------------------------------
@@ -398,34 +427,44 @@ func _on_webxr_started() -> void:
 
 # --- Proof frames ---------------------------------------------------------------
 
-## Two frames a place: as it is entered (from the door, facing the
-## heart) and with the heart's panel open in front of it.  The panel is
-## opened on the saved state and nothing is written.
+## Three frames a place: as it is entered (from the door, facing the
+## heart: "heart"), standing at the heart with its prompt read and the
+## panel closed ("near", TABOO 0.013 item 7: the prompt at the heart
+## reads right), and with the heart's panel open ("panel").  The panel
+## is opened on the saved state and nothing is written.
+const SHOT_VIEWS := ["heart", "near", "panel"]
+
+
 func _shots() -> void:
-	var n := shot_frame / (2 * SHOT_FRAMES)
+	var views := SHOT_VIEWS.size()
+	var n := shot_frame / (views * SHOT_FRAMES)
 	if n >= shot_list.size():
 		get_tree().quit()
 		return
 	if p.id != shot_list[n]:
 		open_place(shot_list[n])
-	var second := (shot_frame / SHOT_FRAMES) % 2 == 1
+	var view: String = SHOT_VIEWS[(shot_frame / SHOT_FRAMES) % views]
 	camera.rotation.x = -0.12
-	if not second:
-		pos = p.start
-		yaw = 0.0
-		heart_panel = {}
-		message_left = 0.0
-	else:
-		pos = p.heart + Vector3(0, 0, 1.3)
-		yaw = 0.0
-		if heart_panel.is_empty():
+	yaw = 0.0
+	match view:
+		"heart":
+			pos = p.start
+			heart_panel = {}
 			message_left = 0.0
-			_apply(LocationHeart.open(loc, st, ctx))
+		"near":
+			pos = p.heart + Vector3(0, 0, SHOT_NEAR_M)
+			heart_panel = {}
+			message_left = 0.0
+		"panel":
+			pos = p.heart + Vector3(0, 0, SHOT_NEAR_M)
+			if heart_panel.is_empty():
+				message_left = 0.0
+				_apply(LocationHeart.open(loc, st, ctx))
+	ui_alpha = LocationCore.holy_fade_target(p, pos)
 	rig.position = pos
 	rig.rotation.y = yaw
 	_refresh()
 	if shot_frame % SHOT_FRAMES == SHOT_FRAMES - 1:
 		get_viewport().get_texture().get_image().save_png(
-			"%s/godot-loc-%s-%s.png" % [shots_dir, p.id,
-				"panel" if second else "heart"])
+			"%s/godot-loc-%s-%s.png" % [shots_dir, p.id, view])
 	shot_frame += 1

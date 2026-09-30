@@ -288,7 +288,16 @@ static func _environment(world: Node3D, p: Dictionary) -> void:
 		s.sky_material = sm
 		env.sky = s
 		env.ambient_light_source = Environment.AMBIENT_SOURCE_SKY
-		env.ambient_light_energy = 0.25 if sky == "night" else 0.5
+		env.ambient_light_energy = 0.5
+		if sky == "night":
+			# A night sky gives almost no ambient light, and the frames of
+			# 2026-09-30 showed the heart's lectern and the cards on their
+			# posts black on arrival.  A dim cool fill, as starlight on
+			# snow, keeps the shapes readable while the lamp stays the one
+			# warm light (TABOO 0.38 item 1).
+			env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
+			env.ambient_light_color = Color(0.46, 0.5, 0.62)
+			env.ambient_light_energy = 0.5
 		env.fog_enabled = true
 		env.fog_mode = Environment.FOG_MODE_EXPONENTIAL
 		env.fog_density = 0.004
@@ -769,6 +778,9 @@ static func _person(world: Node3D, p: Dictionary) -> void:
 	name_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	name_label.position = at + Vector3(0, 2.0, 0)
 	name_label.modulate = Color(0.95, 0.9, 0.8)
+	# Seen only near, as every name tag (TABOO 0.013 item 4): from the
+	# door it was a few pixels high and could not be read.
+	name_label.visibility_range_end = LocationCore.TAG_RANGE_M
 	world.add_child(name_label)
 
 

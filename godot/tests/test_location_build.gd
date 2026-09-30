@@ -16,6 +16,15 @@ const DAY := "2026-09-30"
 ## bonus) and a thought on the road named at its suggestion (PassionCore).
 ## A practice, a deed, a new action or the witness's line never does.
 const FORM_MAY_CHANGE := ["talk", "passion"]
+## Lessons of places that still say a church word as the narrator's
+## line (TABOO 0.39 item 3: such a word belongs in a hero's live speech
+## with its source).  Their rewording is content, so it is the chorus
+## of 12's (TABOO 0.37; docs/HLD_LOCATIONS_99_2026-09-30.md, "Хору"):
+## this list is frozen, so no new one enters, and it only shrinks.
+const LESSONS_FOR_THE_CHORUS := ["factory", "sarai-hall", "tana-port",
+	"deacon-cell", "ichthys-pier", "kairak-valley", "naos", "obitel-shore",
+	"santash-pass", "sunken-chapel", "crypt-museum", "storm-bay",
+	"dream-cell"]
 
 var data: Dictionary = {}
 var scene: Node
@@ -81,6 +90,15 @@ func run(t: Object) -> void:
 				* float(s.thing.size_m[1]), 0.6) + 1e-4,
 				"%s: %s drawing no taller than its thing allows (%.2f m)"
 				% [id, s.object, s.model.h])
+			var like := LocationCore.likeness(s.model, s.thing)
+			t._check(like >= LocationCore.LIKE_MIN
+				and like <= LocationCore.LIKE_MAX,
+				"%s: %s drawing keeps its thing's proportions (%.2f)"
+				% [id, s.object, like])
+			if s.layer == "wall":
+				t._check(LocationCore._in_view(LocationCore.slot_rect(s),
+					{"start": a.start}), "%s: %s on the wall is seen whole "
+					% [id, s.object] + "from the door")
 			t._check(s.tag == not s.second, "%s: only a filled slot of %s "
 				% [id, s.object] + "has a tag")
 			if s.second:
@@ -109,6 +127,26 @@ func run(t: Object) -> void:
 		for text in LocationCore.labels(a):
 			t._check(not LocationsCore.has_church_word(text),
 				"%s: no church word on a label: %s" % [id, text])
+		var lesson := LocationHeart.teaching(loc)
+		t._check(not LocationsCore.has_church_word(lesson)
+			or id in LESSONS_FOR_THE_CHORUS,
+			"%s: the lesson's line has no church word, or waits for the "
+			% id + "chorus: " + lesson)
+		# The arrival: the door is well outside its reach from the start,
+		# and the heart stands beyond the holy thing's fade, so its words
+		# are never taken away at the heart.
+		t._check(Vector2(a.start.x - a.exit.x, a.start.z - a.exit.z).length()
+			> LocationCore.EXIT_REACH_M + 0.2,
+			id + ": the start is outside the reach of the way back")
+		if a.holy_at != null:
+			var hd := Vector2(a.holy_at.x - a.heart.x,
+				a.holy_at.z - a.heart.z).length()
+			t._check(hd > LocationCore.HOLY_FAR_M,
+				"%s: the heart stands beyond the holy thing's fade (%.2f m)"
+				% [id, hd])
+			t._check(LocationCore.holy_fade_target(a, a.holy_at) == 0.0
+				and LocationCore.holy_fade_target(a, a.heart) == 1.0,
+				id + ": the interface goes at the holy thing, stays at the heart")
 		# The headset decides how a proxy is scaled from the data alone
 		# (the proxies' .json are not packed); the rule must agree with
 		# what each proxy's .json says it is.
@@ -170,13 +208,39 @@ func _panel(t: Object, loc: Dictionary, ctx: Dictionary) -> void:
 	if not p.kind in FORM_MAY_CHANGE:
 		t._check(var_to_str(res.st.form) == var_to_str(st.form),
 			"%s: %s changes no FORM" % [id, p.kind])
-	if p.kind in ["witness", "new", "find", "atlas-scribe"]:
+	if p.kind in ["witness", "new", "find", "atlas-scribe", "listen"]:
 		t._check(var_to_str(res.st) == var_to_str(st) and not res.save,
 			"%s: %s records nothing" % [id, p.kind])
 	if p.kind == "trial":
 		t._check(list.size() == 1, id + ": a closed threshold only lets go")
 	if p.kind == "rule" and RuleCore.practice(loc.heart.id).kind == "timer":
 		_timer(t, loc, ctx, p)
+	if p.kind == "listen":
+		_listen(t, loc, ctx, p)
+
+
+## The shore of Svetloyar: standing still through the whole time, or
+## walking off, leaves the state as it was, asks for no save and says
+## nothing done (Kiberslav node 76: no marker, no reward, no record).
+func _listen(t: Object, loc: Dictionary, ctx: Dictionary,
+		p: Dictionary) -> void:
+	var id: String = loc.id
+	var st := fresh()
+	var r := LocationHeart.choose(p, loc, st, ctx, 0)
+	t._check(r.panel.still > 0.0 and not r.save and r.say == "",
+		id + " listening starts and records nothing")
+	var moved := LocationHeart.tick(r.panel, loc, r.st, ctx, 1.0, false)
+	t._check(is_equal_approx(moved.panel.still,
+		LocationHeart.LISTEN_SECONDS), id + " a movement starts it again")
+	var done := LocationHeart.tick(moved.panel, loc, moved.st, ctx,
+		LocationHeart.LISTEN_SECONDS + 1.0, true)
+	t._check(done.panel.heard and done.panel.still < 0.0,
+		id + " the shore is quiet after the whole time")
+	t._check(var_to_str(done.st) == var_to_str(st) and not done.save
+		and done.say == "" and done.scene == "",
+		id + " standing at the lake leaves no count, save or word")
+	t._check(var_to_str(done.st.actions) == var_to_str(st.actions),
+		id + " the actions are untouched (stillness does not count here)")
 
 
 ## A practice of whole minutes counts only when the minutes are whole,
@@ -286,6 +350,9 @@ func in_scene(t: Object) -> void:
 	t._check(scene.heart_panel.is_empty(), "away closes the panel")
 	scene.pos = scene.p.exit
 	t._check(scene._nearest().get("id") == "exit", "the way back answers")
+	scene.pos = scene.p.start
+	t._check(scene._nearest().get("id") == "heart",
+		"on arrival in the cell the heart answers, not the door")
 	print("locations built: worst place %d triangles in the whole scene; %d failures in the scene checks"
 		% [worst_tris, t.failures - fails_before])
 	scene.free()
@@ -302,6 +369,12 @@ func _built(t: Object, loc: Dictionary) -> void:
 		hearts += int(th.id == "heart")
 		exits += int(th.id == "exit")
 	t._check(hearts == 1 and exits == 1, id + ": one heart, one way back")
+	# On arrival the door never answers: a first press does not take the
+	# player straight out (the review found it did in 47 places).
+	scene.pos = p.start
+	t._check(scene._nearest().get("id", "") != "exit",
+		id + ": at the start the way back does not answer")
+	_holy_fade(t, id, p)
 	var things: Node = world.get_node("Things")
 	t._check(things.get_child_count() == p.slots.size(),
 		"%s: every placed thing is in the scene (%d of %d)" % [id,
@@ -374,6 +447,32 @@ func _built(t: Object, loc: Dictionary) -> void:
 	t._check(lampada == (p.lampada and p.holy_key != ""
 		and not p.missing.any(func(m): return m.object == p.holy_key)),
 		"%s: a lampada only beside its holy thing" % id)
+
+
+## Beside the holy thing the prompt, the words and the panel go within
+## the fade's time and a press opens nothing; back at the heart they
+## return (TABOO 0.4 item 2, Atlas node 5).
+func _holy_fade(t: Object, id: String, p: Dictionary) -> void:
+	if p.holy_at == null:
+		return
+	scene.pos = Vector3(p.holy_at.x, 0.0, p.holy_at.z)
+	scene.heart_panel = {}
+	scene.message_left = 0.0
+	scene.ui_alpha = 1.0
+	scene._fade(1.0)
+	t._check(scene.ui_alpha > 0.0,
+		id + ": the interface does not vanish at once (1.75 s)")
+	scene._fade(1.0)
+	scene._refresh()
+	t._check(scene.ui_alpha == 0.0 and scene.prompt3d.modulate.a == 0.0
+		and scene.hud.modulate.a == 0.0,
+		id + ": at the holy thing the interface is gone within 2 s")
+	scene._interact()
+	t._check(scene.heart_panel.is_empty(),
+		id + ": at the holy thing a press opens nothing")
+	scene.pos = p.heart + Vector3(0, 0, 1.3)
+	scene._fade(2.0)
+	t._check(scene.ui_alpha == 1.0, id + ": at the heart it is back")
 
 
 ## A drawing of the props store in the scene: one Sprite3D and no mesh,
