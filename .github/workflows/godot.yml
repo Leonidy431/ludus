@@ -106,8 +106,9 @@ jobs:
           python3 scripts/locations/ship_models.py --check
           # The drawings of the 99 repos each place stands (their boxes
           # and metres) match the kits passed by eye (TABOO 0.012, 0.1).
-          # The check reads the variant images, so it needs Pillow.
-          python3 -m pip install --quiet pillow
+          # The check reads the variant images, so it needs Pillow (from
+          # apt: the runner's system Python refuses pip installs).
+          sudo apt-get install -y -qq python3-pil >/dev/null
           python3 scripts/raw_assets/location_items.py items --check
           # One bell table for the web clock and the headset's bells,
           # every rule with its source (docs/HLD_BELL_RULES_TYPIKON_*).
