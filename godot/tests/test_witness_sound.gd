@@ -4,8 +4,10 @@
 ##
 ##   - the bell is the kolokol ch. 12 bell: five partials, hum and prime
 ##     doublets, the same благовестник as the dive and the web;
-##   - every bell cue declares {order, service, dayRankCondition,
-##     meaning} and is started by the clock only;
+##   - every bell cue comes from godot/data/bell-rules.json, declares
+##     {order, service, dayRankCondition, meaning}, keeps a rule with
+##     a sourced quote (docs/HLD_BELL_RULES_TYPIKON_2026-09-30.md) and
+##     is started by the clock only;
 ##   - over nine years of days no трезвон rings on Great Friday, Great
 ##     Saturday or a weekday of Great Lent, and every day of Bright
 ##     Week has one (TABOO 0.35 rule 9);
@@ -107,13 +109,16 @@ func _bell_model(t: Object) -> void:
 
 
 func _cues(t: Object) -> void:
-	var orders := ["благовест", "трезвон", "перезвон", "перебор", "двои",
-		"било"]
-	for c in TypikonCore.CUES:
+	var rules: Dictionary = LudusTypikon.rules()
+	var orders: Dictionary = rules.orders
+	var rule_by_id := {}
+	for r in rules.rules:
+		rule_by_id[r.id] = r
+	for c in TypikonCore.cues():
 		var keys_ok: bool = c.has("order") and c.has("service") \
 			and c.has("dayRankCondition") and c.has("meaning") \
 			and String(c.meaning).length() > 10
-		t._check(keys_ok and c.order in orders,
+		t._check(keys_ok and orders.has(c.order),
 			"cue %s declares order, service, dayRankCondition, meaning"
 			% c.id)
 		t._check(c.trigger == "clock", "cue %s is started by the clock"
@@ -124,6 +129,44 @@ func _cues(t: Object) -> void:
 					"achievement", "xp"]:
 				bad = bad or String(k).to_lower().begins_with(w)
 		t._check(not bad, "cue %s has no reward, UI or level-up key" % c.id)
+		# Every cue keeps a rule of the table, and the rule names it.
+		var r: Dictionary = rule_by_id.get(c.rule, {})
+		t._check(not r.is_empty() and c.id in r.cues,
+			"cue %s keeps rule %s" % [c.id, c.rule])
+	# Every rule and every order carries a source with a short quote.
+	var books: Dictionary = rules.books
+	var sourced := []
+	for r in rules.rules:
+		sourced.append([r.id, r.sources])
+	for o in orders:
+		sourced.append([o, orders[o].sources])
+	for p in rules.periodOrders:
+		sourced.append([p, rules.periodOrders[p].sources])
+	for row in sourced:
+		var ok: bool = row[1].size() > 0
+		for s in row[1]:
+			var words := 0
+			for w in String(s.quote).split(" ", false):
+				if w != "—" and w != "–":
+					words += 1
+			ok = ok and books.has(s.book) and words > 0 and words <= 25 \
+				and (s.has("paragraph") or s.has("footnote"))
+		t._check(ok, "%s: every source has a book, a place and a quote "
+			% row[0] + "of at most 25 words")
+	# The guard of rule 9 cannot be switched off by the table: grief
+	# days and Lenten weekdays name no трезвон.
+	for p in ["great-friday", "great-saturday", "great-lent/daily",
+			"holy-week"]:
+		t._check(not "трезвон" in rules.periodOrders[p].orders,
+			"the table names no трезвон for %s" % p)
+	for p in ["pascha", "bright-week"]:
+		t._check("трезвон" in rules.periodOrders[p].orders,
+			"the table names трезвон for %s" % p)
+	for c in rules.never.triggers:
+		var tied := false
+		for x in rules.cues:
+			tied = tied or String(x.id).contains(c)
+		t._check(not tied, "no cue is tied to %s" % c)
 
 
 ## Nine years of days, every cue of every day: the rules of rule 9.
@@ -136,7 +179,10 @@ func _calendar(t: Object) -> void:
 	var lent_sunday_trezvon := 0
 	var days := 0
 	var blagovest_days := 0
-	var perebor_or_other := 0
+	var other := {}
+	var weekday_dvoi := 0
+	var weekdays := 0
+	var lent_hours_ok := true
 	for y in range(2024, 2033):
 		var start := LudusTypikon._day(y, 1, 1)
 		var end := LudusTypikon._day(y + 1, 1, 1)
@@ -146,23 +192,26 @@ func _calendar(t: Object) -> void:
 			var civil := _date(c.year, c.month, c.day)
 			var plan := TypikonCore.day_plan(civil)
 			var noon := LudusTypikon.describe(TypikonCore._moment(civil, 720))
+			var eve := LudusTypikon.describe(TypikonCore._moment(civil,
+				1080))
 			var has_trezvon := false
 			var has_blagovest := false
+			var ids := []
 			for p in plan:
 				var lit: Dictionary = p.lit
+				ids.append(p.cue.id)
 				if p.cue.order == "трезвон":
 					has_trezvon = true
 					if lit.period in ["great-friday", "great-saturday"] \
 							or noon.period in ["great-friday",
 								"great-saturday"]:
 						grief_trezvon += 1
-					if lit.period == "great-lent" and lit.rank == "daily" \
-							and lit.weekday >= 1 and lit.weekday <= 5:
+					if lit.period == "great-lent" and lit.rank == "daily":
 						lent_trezvon += 1
 				elif p.cue.order == "благовест":
 					has_blagovest = true
-				else:
-					perebor_or_other += 1
+				elif p.cue.order != "двои":
+					other[p.cue.order] = true
 			if noon.period in ["pascha", "bright-week"]:
 				bright_days += 1
 				if not has_trezvon:
@@ -170,9 +219,24 @@ func _calendar(t: Object) -> void:
 			if noon.period == "great-lent" and noon.weekday == 6:
 				# The vigil of a Sunday of Lent keeps its трезвон.
 				lent_sundays += 1
-				for p in plan:
-					if p.cue.id == "vigil-trezvon":
-						lent_sunday_trezvon += 1
+				if "vigil-trezvon" in ids:
+					lent_sunday_trezvon += 1
+			# An ordinary weekday evening (no vigil) rings the двои of
+			# the Typikon after the call (rule weekday-vespers).
+			if eve.period == "ordinary" and eve.rank == "daily":
+				weekdays += 1
+				if "vespers-dvoi" in ids and not "vigil-trezvon" in ids:
+					weekday_dvoi += 1
+			# Lenten weekdays: 3, 6 and 9 strokes; never on a feast.
+			var lw: bool = "lent-weekday" in LudusTypikon.day_classes(noon)
+			for h in [["lent-hour-3", 3], ["lent-hour-6", 6],
+					["lent-hour-9", 9]]:
+				var got := plan.filter(func(p): return p.cue.id == h[0])
+				if lw:
+					lent_hours_ok = lent_hours_ok and got.size() == 1 \
+						and got[0].strokes.size() == h[1]
+				else:
+					lent_hours_ok = lent_hours_ok and got.is_empty()
 			if has_blagovest:
 				blagovest_days += 1
 			days += 1
@@ -189,7 +253,13 @@ func _calendar(t: Object) -> void:
 		% [lent_sunday_trezvon, lent_sundays])
 	t._check(blagovest_days == days, "the call to Vespers every day "
 		+ "(%d of %d)" % [blagovest_days, days])
-	t._check(perebor_or_other == 0, "the path rings no other order")
+	t._check(other.is_empty(), "the path rings no перебор or перезвон: %s"
+		% [other.keys()])
+	t._check(weekdays > 0 and weekday_dvoi == weekdays,
+		"двои after the call on ordinary weekdays: %d of %d"
+		% [weekday_dvoi, weekdays])
+	t._check(lent_hours_ok, "Lenten hours: 3, 6, 9 strokes on weekdays "
+		+ "of Lent only")
 	# The guard itself, on the days of 2026 (Pascha 2026-04-12).
 	for m in [[4, 10, 12], [4, 10, 19], [4, 11, 12], [4, 11, 19],
 			[3, 11, 12], [3, 11, 19]]:
@@ -200,26 +270,65 @@ func _calendar(t: Object) -> void:
 			_date(2026, m[0], m[1]), 720))
 		t._check(TypikonCore.trezvon_forbidden(lit, noon) != "",
 			"трезвон forbidden at %s (%s)" % [at, lit.period])
-	# Known days, by hand: Great Friday 2026-04-10 and Great Saturday
-	# 2026-04-11 ring only благовест; Pascha 2026-04-12 rings трезвон;
-	# a Lenten Wednesday (2026-03-11) has twelve strokes to Vespers.
-	for day in [[2026, 4, 10], [2026, 4, 11]]:
-		var orders := []
-		for p in TypikonCore.day_plan(_date(day[0], day[1], day[2])):
-			orders.append(p.cue.order)
-		t._check(not "трезвон" in orders, "%s: %s" % [day, orders])
-	var pascha := []
-	for p in TypikonCore.day_plan(_date(2026, 4, 12)):
-		pascha.append(p.cue.id)
-	t._check("bright-trezvon" in pascha and "vigil-trezvon" in pascha,
-		"Pascha 2026-04-12: %s" % [pascha])
+	# Known days, by hand (Pascha 2026-04-12).
+	var want := {
+		# Great Friday: двои to the Royal Hours, the great bell to
+		# Vespers (Typikon: «звон в двои, един долгий»; «клеплет в
+		# великое»).
+		"2026-04-10": ["royal-hours-dvoi", "vespers-call"],
+		# Great Saturday: the great bell to Vespers, then the call to
+		# the matins of Pascha late in the evening.
+		"2026-04-11": ["vespers-call", "pascha-call"],
+		# Pascha: the procession at midnight, трезвон at noon, the call
+		# to the Vespers of Bright Monday.
+		"2026-04-12": ["pascha-trezvon", "bright-trezvon",
+			"vespers-call"],
+		# Bright Tuesday: matins call, трезвон, noon, Vespers.
+		"2026-04-14": ["bright-matins-call", "bright-matins-trezvon",
+			"bright-trezvon", "vespers-call"],
+		# A Lenten Wednesday: the hours, twelve strokes, двои.
+		"2026-03-11": ["lent-hour-3", "lent-hour-6", "lent-hour-9",
+			"vespers-call", "vespers-dvoi"],
+		# Saturday before a Sunday of Lent: call and vigil.
+		"2026-03-14": ["vespers-call", "vigil-trezvon", "vigil-gospel"],
+		# An ordinary Sunday: liturgy, then Vespers of Monday and двои.
+		"2026-10-04": ["liturgy-call", "liturgy-trezvon", "vespers-call",
+			"vespers-dvoi"],
+		# The eve of the Annunciation on a Lenten Tuesday (2027-04-06):
+		# the call is «довольно», not twelve, and the vigil rings.
+		"2027-04-06": ["lent-hour-3", "lent-hour-6", "lent-hour-9",
+			"vespers-call", "vigil-trezvon", "vigil-gospel"],
+		# The Annunciation itself (Wednesday of Lent, polyeleos): no
+		# strokes at the hours, the liturgy rings.
+		"2027-04-07": ["liturgy-call", "liturgy-trezvon", "vespers-call",
+			"vespers-dvoi"],
+	}
+	for k in want:
+		var p := String(k).split("-")
+		var ids := []
+		for x in TypikonCore.day_plan(_date(int(p[0]), int(p[1]),
+				int(p[2]))):
+			ids.append(x.cue.id)
+		t._check(ids == want[k], "%s: %s, want %s" % [k, ids, want[k]])
 	for p in TypikonCore.day_plan(_date(2026, 3, 11)):
 		if p.cue.id == "vespers-call":
 			t._check(p.strokes.size() == 12,
 				"Lenten Wednesday: %d strokes to Vespers" % p.strokes.size())
+	for p in TypikonCore.day_plan(_date(2027, 4, 6)):
+		if p.cue.id == "vespers-call":
+			t._check(p.strokes.size() == 96,
+				"eve of a feast in Lent: %d strokes" % p.strokes.size())
+	# Звон в двои is two bells, the постовой and the next, in turn.
+	var dv := TypikonCore.strokes(TypikonCore.cue("vespers-dvoi"),
+		_date(2026, 10, 5))
+	var two := dv.all(func(s): return s[1] == 1 or s[1] == 2)
+	t._check(dv.size() == 48 and two and dv[0][1] != dv[1][1],
+		"двои: 48 strokes on bells 1 and 2 in turn")
 	# Deterministic: the same day gives the same strokes.
-	var a := TypikonCore.strokes(TypikonCore.CUES[4], _date(2026, 10, 3))
-	var b := TypikonCore.strokes(TypikonCore.CUES[4], _date(2026, 10, 3))
+	var a := TypikonCore.strokes(TypikonCore.cue("vigil-trezvon"),
+		_date(2026, 10, 3))
+	var b := TypikonCore.strokes(TypikonCore.cue("vigil-trezvon"),
+		_date(2026, 10, 3))
 	t._check(a == b and a.size() > 100, "трезвон strokes deterministic "
 		+ "(%d strokes)" % a.size())
 
@@ -287,6 +396,16 @@ func _mix(t: Object, bays: Array) -> void:
 		"the call to Vespers rang: %s" % [c.rung])
 	t._check(call.peak_db <= -1.0 and call.longest_zero < 4,
 		"call to Vespers: peak %.1f dBFS" % call.peak_db)
+	# Then the звон в двои of a weekday (Typikon: «в два, или 4
+	# кампана»), still never with the ison.
+	var dv := WitnessAudio.new()
+	dv.set_now({"year": 2026, "month": 9, "day": 30, "hour": 17,
+		"minute": 57, "second": 57})
+	var dvs := _stats(_render(dv, at_font, bays, 30.0))
+	t._check(dv.overlap_samples == 0 and dv.rung.size() == 1
+		and dv.rung[0].order == "двои" and dvs.peak_db <= -1.0,
+		"двои before Vespers: %s, peak %.1f dBFS" % [dv.rung,
+			dvs.peak_db])
 	# The loudest moment: the трезвон of Pascha day at noon, with its
 	# удар во вся.
 	var e := WitnessAudio.new()
@@ -315,7 +434,7 @@ func _mix(t: Object, bays: Array) -> void:
 		"the ison's tone turns at Vespers: %d -> %d" % [tone_before,
 			tone_after])
 	# The headset renders the clips on a worker thread: the same samples.
-	var strokes := TypikonCore.strokes(TypikonCore.CUES[2],
+	var strokes := TypikonCore.strokes(TypikonCore.cue("bright-trezvon"),
 		_date(2026, 4, 12))
 	var w1 := BellSynth.new()
 	var w2 := BellSynth.new()

@@ -28,9 +28,56 @@ test('the liturgical day begins at Vespers', () => {
 test('no трезвон on Great Friday or Great Saturday', () => {
   assert.equal(C.describe(noon('2026-04-10')).period, 'great-friday');
   assert.equal(C.mayRing('трезвон', noon('2026-04-10')), false);
-  assert.equal(C.mayRing('перебор', noon('2026-04-10')), true);
+  // The Typikon rings звон в двои to the Royal Hours of Great Friday;
+  // no source names a перебор that day (open question q-shroud-vespers
+  // in bell-rules.json), so it is not allowed.
+  assert.equal(C.mayRing('двои', noon('2026-04-10')), true);
+  assert.equal(C.mayRing('перебор', noon('2026-04-10')), false);
   assert.equal(C.mayRing('трезвон', noon('2026-04-11')), false);
+  assert.equal(C.mayRing('двои', noon('2026-04-11')), false);
 });
+
+test('the orders of each period are the periodOrders of bell-rules.json',
+  () => {
+    const fs = require('fs');
+    const path = require('path');
+    const web = path.join(__dirname, '../public/ludus/data/bell-rules.json');
+    const headset = path.join(__dirname, '../godot/data/bell-rules.json');
+    const text = fs.readFileSync(web, 'utf8');
+    // The headset reads the same file byte for byte.
+    assert.equal(fs.readFileSync(headset, 'utf8'), text);
+    const table = JSON.parse(text);
+    const fromTable = {};
+    for (const [k, v] of Object.entries(table.periodOrders)) {
+      fromTable[k] = v.orders;
+      // Every list carries a source with a short quote.
+      assert.ok(v.sources.length > 0, k);
+      for (const s of v.sources) {
+        assert.ok(table.books[s.book], `${k}: book ${s.book}`);
+        const words = s.quote.split(' ').filter((w) => /[\wа-яё]/i
+          .test(w));
+        assert.ok(words.length > 0 && words.length <= 25, `${k}: quote`);
+      }
+    }
+    assert.deepEqual(C.PERIOD_ORDERS, fromTable);
+    // Rule 9 of the chorus: the table itself names no трезвон on grief
+    // days or Lenten weekdays, and names it in Bright Week.
+    for (const k of ['great-friday', 'great-saturday', 'great-lent/daily',
+      'holy-week']) {
+      assert.ok(!fromTable[k].includes('трезвон'), k);
+    }
+    for (const k of ['pascha', 'bright-week']) {
+      assert.ok(fromTable[k].includes('трезвон'), k);
+    }
+  });
+
+test('Holy Week (Monday to Thursday): благовест and двои, no трезвон',
+  () => {
+    const wed = noon('2026-04-08');
+    assert.equal(C.describe(wed).period, 'holy-week');
+    assert.equal(C.mayRing('двои', wed), true);
+    assert.equal(C.mayRing('трезвон', wed), false);
+  });
 
 test('Lenten weekdays: благовест only; a Lenten Sunday keeps трезвон',
   () => {
@@ -76,7 +123,8 @@ test('the audio manager refuses трезвон on Great Friday', async () => {
   const sunday = noon('2026-04-19');
   assert.equal(audio.bellAllowed('trezvon', friday), false);
   assert.equal(audio.bellAllowed('trezvon_motif', friday), false);
-  assert.equal(audio.bellAllowed('perebor', friday), true);
+  assert.equal(audio.bellAllowed('perebor', friday), false);
+  assert.equal(audio.bellAllowed('zvon_v_dvoi', friday), true);
   assert.equal(audio.bellAllowed('trezvon', sunday), true);
   assert.equal(audio.bellAllowed('choice', friday), true);
   assert.equal(await audio.playCue('trezvon', { now: friday }), null);

@@ -89,6 +89,9 @@ jobs:
           # every node with its Constitution line (TABOO 0.03).
           python3 scripts/story/render.py --check
           cmp public/ludus/data/atlas-99.json godot/data/atlas-99.json
+          # One bell table for the web clock and the headset's bells,
+          # every rule with its source (docs/HLD_BELL_RULES_TYPIKON_*).
+          cmp public/ludus/data/bell-rules.json godot/data/bell-rules.json
           # The path of the witness uses the same scene kits as the web
           # VR scene (docs/SACRAMENTS_VR_SCENES.md).
           for f in public/vr/models/scene/sacrament-*; do
@@ -141,6 +144,7 @@ jobs:
               data/lake-objects-99.json data/gate-trials.json \
               data/passions.json data/antagonist-manifest.json \
               data/atlas-99.json \
+              data/bell-rules.json \
               data/campaign-spine.json \
               scenes/hub.tscn.remap \
               scenes/dive.tscn.remap scenes/witness.tscn.remap; do

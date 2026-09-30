@@ -9,7 +9,9 @@
 ##          on the tone of the week and the vowel of the scene
 ##          (docs/SACRAMENTS_VR_SCENES.md), wordless (IsonSynth);
 ##   bell   the far monastery's bells, started by the clock and the
-##          Typikon only (TypikonCore, BellSynth).
+##          Typikon only (TypikonCore, BellSynth), by the cues of the
+##          one bell table godot/data/bell-rules.json, each with its
+##          source (docs/HLD_BELL_RULES_TYPIKON_2026-09-30.md).
 ##
 ## The ison and the bell never sound together (TABOO 0.35 rule 10).
 ## The bell keeps the hour: when a cue begins, the ison ends its breath
