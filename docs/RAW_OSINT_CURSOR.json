@@ -1,5 +1,5 @@
 {
- "next": 24,
+ "next": 4,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -262,6 +262,171 @@
    ],
    "accepted_objects": 0,
    "code_candidates": 68
+  },
+  {
+   "time": "2026-09-30T04:00:00+00:00",
+   "note": "rotation reset: statuses synced with merged PR 8 (14 closed, 5 partial), four lake raw-material deficits added (DEF-056..059), rotation now holds only raw-material and code deficits; cursor restarts at 0",
+   "deficits": []
+  },
+  {
+   "time": "2026-09-30T03:17:37.125263+00:00",
+   "deficits": [
+    {
+     "id": "DEF-001",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "not-a-game-object": 99,
+      "sacred-never-raw": 2
+     }
+    },
+    {
+     "id": "DEF-039",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "sacred-never-raw": 17,
+      "not-a-game-object": 76
+     }
+    },
+    {
+     "id": "DEF-056",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "not-a-game-object": 129,
+      "sacred-never-raw": 1
+     }
+    }
+   ],
+   "accepted_objects": 34,
+   "code_candidates": 91,
+   "reverted": "DEF-039 and DEF-056 did not match their slots: dungeon stairs and a carpet for the Ladder, a jellyfish, a fiend and pikemen (\"pike\") for Issyk-Kul fish; transform.py also turns every object into a passion antagonist, which is wrong for neutral lake matter. Nothing shipped for these two; DEF-001 re-took the seven objects already in the game. Fix before the next round: whole-word keys with a negative list for fauna, and a neutral (non-antagonist) mode for raw-material slots that are not passions."
+  },
+  {
+   "time": "2026-09-30T04:30:00+00:00",
+   "note": "cursor set back to 1 to repeat DEF-039 and DEF-056 after the fixes (whole-word keys, hostile filter, neutral mode); DEF-057 follows",
+   "deficits": []
+  },
+  {
+   "time": "2026-09-30T03:21:19.521628+00:00",
+   "deficits": [
+    {
+     "id": "DEF-039",
+     "hits": 116,
+     "taken": 6,
+     "refused": {
+      "sacred-never-raw": 11,
+      "not-a-game-object": 50
+     }
+    },
+    {
+     "id": "DEF-056",
+     "hits": 155,
+     "taken": 6,
+     "refused": {
+      "not-a-game-object": 83,
+      "hostile-for-neutral-slot": 25,
+      "sacred-never-raw": 9
+     }
+    },
+    {
+     "id": "DEF-057",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "not-a-game-object": 45,
+      "dogma-stop-list": 1
+     }
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 16,
+   "reverted": "0 objects: neutral recolours were refused outright; now they go through the twelve variants without a passion. skull_pike and abyssal stairs were still chosen; the hostile filter now covers skull, abyss and vault. Repeated at once."
+  },
+  {
+   "time": "2026-09-30T04:45:00+00:00",
+   "note": "cursor set back to 1 again to repeat DEF-039, DEF-056, DEF-057 with the neutral variants route",
+   "deficits": []
+  },
+  {
+   "time": "2026-09-30T03:22:56.066426+00:00",
+   "deficits": [
+    {
+     "id": "DEF-039",
+     "hits": 116,
+     "taken": 6,
+     "refused": {
+      "sacred-never-raw": 11,
+      "not-a-game-object": 50,
+      "hostile-for-neutral-slot": 1
+     }
+    },
+    {
+     "id": "DEF-056",
+     "hits": 155,
+     "taken": 6,
+     "refused": {
+      "not-a-game-object": 83,
+      "hostile-for-neutral-slot": 27,
+      "sacred-never-raw": 9
+     }
+    },
+    {
+     "id": "DEF-057",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "not-a-game-object": 45,
+      "dogma-stop-list": 1
+     }
+    }
+   ],
+   "accepted_objects": 13,
+   "code_candidates": 16,
+   "reverted": "Shortfall objects (under 12 variants) were shipped and neutral obj_ rows were missing from the register; both fixed (ship only ok, register only shipped). rock_fish came from crawl monsters (mon/), now filtered. Repeated at once."
+  },
+  {
+   "time": "2026-09-30T05:00:00+00:00",
+   "note": "cursor set back to 1: third run of DEF-039, DEF-056, DEF-057 with ship-only-ok and full register",
+   "deficits": []
+  },
+  {
+   "time": "2026-09-30T03:25:10.860459+00:00",
+   "deficits": [
+    {
+     "id": "DEF-039",
+     "hits": 116,
+     "taken": 6,
+     "refused": {
+      "sacred-never-raw": 11,
+      "not-a-game-object": 50,
+      "hostile-for-neutral-slot": 3
+     }
+    },
+    {
+     "id": "DEF-056",
+     "hits": 155,
+     "taken": 6,
+     "refused": {
+      "not-a-game-object": 83,
+      "hostile-for-neutral-slot": 28,
+      "sacred-never-raw": 9
+     }
+    },
+    {
+     "id": "DEF-057",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "not-a-game-object": 45,
+      "dogma-stop-list": 1
+     }
+    }
+   ],
+   "accepted_objects": 3,
+   "code_candidates": 16,
+   "reverted": "Contact sheet by eye: the three shipped objects (two dungeon stairs for DEF-039, a boulder for DEF-057) read as abstract diamonds and chevrons in the cold passion palette, neither a ladder nor a stone. The neutral mode still uses the antagonist variant family and palette. Nothing ships for neutral lake slots until a neutral variant family exists (natural palette, recognisable silhouette, shape change >= 35 %)."
   }
  ]
 }

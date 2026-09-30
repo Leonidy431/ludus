@@ -4278,5 +4278,1418 @@
   "score": 1,
   "attribution": [],
   "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-gui/src/main/java/forge/localinstance/properties/AbstractPreferences.java",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "forge-gui/LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-gui/src/main/java/forge/localinstance/properties/FileLocation.java",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "forge-gui/LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-gui/src/main/java/forge/localinstance/properties/ForgeConstants.java",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "forge-gui/LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-gui/src/main/java/forge/localinstance/properties/ForgeNetPreferences.java",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "forge-gui/LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-gui/src/main/java/forge/localinstance/properties/ForgePreferences.java",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "forge-gui/LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-gui/src/main/java/forge/localinstance/properties/ForgeProfileProperties.java",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "forge-gui/LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-gui/src/main/java/forge/localinstance/properties/IPreferences.java",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "forge-gui/LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-gui/src/main/java/forge/localinstance/properties/package-info.java",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "forge-gui/LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-lda/src/forge/lda/lda/inference/InferenceProperties.java",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/Cockatrice/Cockatrice",
+  "commit": "1365f3cb492c788e1ae3a3927e9fb00dcf7f9033",
+  "license_file": "LICENSE",
+  "path": "libcockatrice_card/libcockatrice/card/lazy_properties_hash.cpp",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/Cockatrice/Cockatrice",
+  "commit": "1365f3cb492c788e1ae3a3927e9fb00dcf7f9033",
+  "license_file": "LICENSE",
+  "path": "libcockatrice_card/libcockatrice/card/lazy_properties_hash.h",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/FyroxEngine/Fyrox",
+  "commit": "c4ead6b99c81134f021053224975e30d54d7bdcb",
+  "license_file": "LICENSE.md",
+  "path": "fyrox-impl/src/scene/tilemap/property.rs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.md"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/Immediate-Mode-UI/Nuklear",
+  "commit": "9f7750296f176e506c2b24ff55bc24495e2db750",
+  "license_file": "LICENSE",
+  "path": "src/nuklear_property.c",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/MonoGame/MonoGame",
+  "commit": "9cce5c73ad5869a8abe54dad9ed201d0678fa8fe",
+  "license_file": "LICENSE.txt",
+  "path": "MonoGame.Framework/Platform/Properties/AssemblyInfo.Android.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/MonoGame/MonoGame",
+  "commit": "9cce5c73ad5869a8abe54dad9ed201d0678fa8fe",
+  "license_file": "LICENSE.txt",
+  "path": "MonoGame.Framework/Platform/Properties/AssemblyInfo.Angle.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/MonoGame/MonoGame",
+  "commit": "9cce5c73ad5869a8abe54dad9ed201d0678fa8fe",
+  "license_file": "LICENSE.txt",
+  "path": "MonoGame.Framework/Platform/Properties/AssemblyInfo.DesktopGL.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/MonoGame/MonoGame",
+  "commit": "9cce5c73ad5869a8abe54dad9ed201d0678fa8fe",
+  "license_file": "LICENSE.txt",
+  "path": "MonoGame.Framework/Platform/Properties/AssemblyInfo.Mac.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/MonoGame/MonoGame",
+  "commit": "9cce5c73ad5869a8abe54dad9ed201d0678fa8fe",
+  "license_file": "LICENSE.txt",
+  "path": "MonoGame.Framework/Platform/Properties/AssemblyInfo.TVOS.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/MonoGame/MonoGame",
+  "commit": "9cce5c73ad5869a8abe54dad9ed201d0678fa8fe",
+  "license_file": "LICENSE.txt",
+  "path": "MonoGame.Framework/Platform/Properties/AssemblyInfo.Web.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/MonoGame/MonoGame",
+  "commit": "9cce5c73ad5869a8abe54dad9ed201d0678fa8fe",
+  "license_file": "LICENSE.txt",
+  "path": "MonoGame.Framework/Platform/Properties/AssemblyInfo.Windows.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/MonoGame/MonoGame",
+  "commit": "9cce5c73ad5869a8abe54dad9ed201d0678fa8fe",
+  "license_file": "LICENSE.txt",
+  "path": "MonoGame.Framework/Platform/Properties/AssemblyInfo.iOS.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/MonoGame/MonoGame",
+  "commit": "9cce5c73ad5869a8abe54dad9ed201d0678fa8fe",
+  "license_file": "LICENSE.txt",
+  "path": "MonoGame.Framework/Properties/AssemblyInfo.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Cnc/Scripting/Properties/ChronosphereProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Cnc/Scripting/Properties/DisguiseProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Cnc/Scripting/Properties/InfiltrateProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Cnc/Scripting/Properties/IonCannonProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/AircraftProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/AirstrikeProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/AmmoPoolProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/CaptureProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/CarryallProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/CloakProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/CombatProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/ConditionProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/DeliveryProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/DemolitionProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/DiplomacyProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/GainsExperienceProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/GeneralProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/GuardProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/HarvesterProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/HealthProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/InstantlyRepairsProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/MissionObjectiveProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/MobileProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/NukeProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/ParadropProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/ParatroopersProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/PlayerConditionProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/PlayerExperienceProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/PlayerProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/PlayerStatsProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/PowerProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/ProductionProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/RepairableBuildingProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/ResourceProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/ScaredCatProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/SellableProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/TransformProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Scripting/Properties/TransportProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/UpdateRules/Rules/20231010/RemoveEditorSelectionLayerProperties.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/UpdateRules/Rules/20250330/WithDamageOverlayPropertyRename.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/OpenTTD/OpenTTD",
+  "commit": "6059ce2bbb27afdd73d45153657fe9bc087d1c01",
+  "license_file": "COPYING.md",
+  "path": "src/newgrf_properties.h",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "COPYING.md",
+   "CREDITS.md"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/Return-To-The-Roots/s25client",
+  "commit": "d9a4572723e27e8ecb1fdecba9598465702565a5",
+  "license_file": "LICENSE",
+  "path": "libs/s25main/gameData/BuildingProperties.cpp",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/Return-To-The-Roots/s25client",
+  "commit": "d9a4572723e27e8ecb1fdecba9598465702565a5",
+  "license_file": "LICENSE",
+  "path": "libs/s25main/gameData/BuildingProperties.h",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/Roblox/roact",
+  "commit": "1676d95c4886d51ee2b21bfcd55c6e50ece799e5",
+  "license_file": "LICENSE.txt",
+  "path": "src/getDefaultInstanceProperty.lua",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/Roblox/roact",
+  "commit": "1676d95c4886d51ee2b21bfcd55c6e50ece799e5",
+  "license_file": "LICENSE.txt",
+  "path": "src/getDefaultInstanceProperty.spec.lua",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/bvschaik/julius",
+  "commit": "34d1ecd54befb845c0139b371fa8a0438210dac1",
+  "license_file": "LICENSE.txt",
+  "path": "src/building/properties.c",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/bvschaik/julius",
+  "commit": "34d1ecd54befb845c0139b371fa8a0438210dac1",
+  "license_file": "LICENSE.txt",
+  "path": "src/building/properties.h",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/bvschaik/julius",
+  "commit": "34d1ecd54befb845c0139b371fa8a0438210dac1",
+  "license_file": "LICENSE.txt",
+  "path": "src/figure/properties.c",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/bvschaik/julius",
+  "commit": "34d1ecd54befb845c0139b371fa8a0438210dac1",
+  "license_file": "LICENSE.txt",
+  "path": "src/figure/properties.h",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/bvschaik/julius",
+  "commit": "34d1ecd54befb845c0139b371fa8a0438210dac1",
+  "license_file": "LICENSE.txt",
+  "path": "src/map/property.c",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/bvschaik/julius",
+  "commit": "34d1ecd54befb845c0139b371fa8a0438210dac1",
+  "license_file": "LICENSE.txt",
+  "path": "src/map/property.h",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/bvschaik/julius",
+  "commit": "34d1ecd54befb845c0139b371fa8a0438210dac1",
+  "license_file": "LICENSE.txt",
+  "path": "src/scenario/property.c",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/bvschaik/julius",
+  "commit": "34d1ecd54befb845c0139b371fa8a0438210dac1",
+  "license_file": "LICENSE.txt",
+  "path": "src/scenario/property.h",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/crawl/crawl",
+  "commit": "7c31f6e79758706fc67dede5080d3270381f6fb4",
+  "license_file": "LICENSE",
+  "path": "crawl-ref/source/MSVC/webserver/Properties/AssemblyInfo.cs",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "crawl-ref/CREDITS.txt"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/defold/defold",
+  "commit": "cbca1e163f673587e3e6f71270060aa497fee9d7",
+  "license_file": "LICENSE.txt",
+  "path": "com.dynamo.cr/com.dynamo.cr.bob/src/com/dynamo/bob/util/BobProjectProperties.java",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "COMPLYING_WITH_LICENSES.md",
+   "LICENSE.txt",
+   "TOOLS_LICENSES.md"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/defold/defold",
+  "commit": "cbca1e163f673587e3e6f71270060aa497fee9d7",
+  "license_file": "LICENSE.txt",
+  "path": "com.dynamo.cr/com.dynamo.cr.bob/src/com/dynamo/bob/util/PropertiesUtil.java",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "COMPLYING_WITH_LICENSES.md",
+   "LICENSE.txt",
+   "TOOLS_LICENSES.md"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/defold/defold",
+  "commit": "cbca1e163f673587e3e6f71270060aa497fee9d7",
+  "license_file": "LICENSE.txt",
+  "path": "engine/gamesys/src/dmsdk/gamesys/property.h",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "COMPLYING_WITH_LICENSES.md",
+   "LICENSE.txt",
+   "TOOLS_LICENSES.md"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/defold/defold",
+  "commit": "cbca1e163f673587e3e6f71270060aa497fee9d7",
+  "license_file": "LICENSE.txt",
+  "path": "external/libunibreak/package/libunibreak-6.1/src/unicode_data_property.py",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [
+   "COMPLYING_WITH_LICENSES.md",
+   "LICENSE.txt",
+   "TOOLS_LICENSES.md"
+  ],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/food/FrozenCarpaccio.java",
+  "kind": "code",
+  "hits": [
+   "carp"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-056"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/weapon/missiles/FishingSpear.java",
+  "kind": "code",
+  "hits": [
+   "fish"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-056"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/weapon/missiles/ThrowingSpike.java",
+  "kind": "code",
+  "hits": [
+   "pike"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-056"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/tiles/custom/Carpet.java",
+  "kind": "code",
+  "hits": [
+   "carp"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-056"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/rope_weaver_booth/init.lua",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/rope_weaver_booth/register.lua",
+  "kind": "code",
+  "hits": [
+   "rope"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/armor/glyphs/Stone.java",
+  "kind": "code",
+  "hits": [
+   "stone"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-057"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/stones/InventoryStone.java",
+  "kind": "code",
+  "hits": [
+   "stone"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-057"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/stones/StoneOfAggression.java",
+  "kind": "code",
+  "hits": [
+   "stone"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-057"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/stones/StoneOfAugmentation.java",
+  "kind": "code",
+  "hits": [
+   "stone"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-057"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/stones/StoneOfBlast.java",
+  "kind": "code",
+  "hits": [
+   "stone"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-057"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/stones/StoneOfBlink.java",
+  "kind": "code",
+  "hits": [
+   "stone"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-057"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/stones/StoneOfClairvoyance.java",
+  "kind": "code",
+  "hits": [
+   "stone"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-057"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/stones/StoneOfDeepSleep.java",
+  "kind": "code",
+  "hits": [
+   "stone"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-057"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/stones/StoneOfDetectMagic.java",
+  "kind": "code",
+  "hits": [
+   "stone"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-057"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/stones/StoneOfEnchantment.java",
+  "kind": "code",
+  "hits": [
+   "stone"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-057"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/stones/StoneOfFear.java",
+  "kind": "code",
+  "hits": [
+   "stone"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-057"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/stones/StoneOfFlock.java",
+  "kind": "code",
+  "hits": [
+   "stone"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-057"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/stones/StoneOfIntuition.java",
+  "kind": "code",
+  "hits": [
+   "stone"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-057"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/stones/StoneOfShock.java",
+  "kind": "code",
+  "hits": [
+   "stone"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-057"
  }
 ]

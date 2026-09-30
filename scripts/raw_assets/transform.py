@@ -352,9 +352,19 @@ def process_piece(item, index, piece, threshold=0.35):
     recolour = stats['shape_change'] < threshold
     record['redraw']['is_recolour'] = recolour
 
-    # Step 2: a recolour is replaced by the passion it serves.
+    # Step 2: a recolour is replaced by the passion it serves -- but only
+    # in a passion slot.  A neutral slot (fish, stones, wood of the lake)
+    # needs the thing itself, so there it is not turned into an
+    # antagonist (round 1 of 2026-09-30 made
+    # passions out of a jellyfish and pikemen for the fish slot).
     feat = ant.source_features(piece, canvas, src_mask, item['path'])
-    if recolour:
+    if recolour and item.get('neutral'):
+        # The thing stays itself: no passion, and the twelve variants
+        # below must each reshape it by at least the threshold, measured
+        # against the source like every other object.
+        passion, reason = None, 'neutral slot: reshaped by the variants'
+        prefix = f'obj_{oid}'
+    elif recolour:
         passion, reason = ant.choose_passion(feat)
         prefix = f'ant_{passion}_{oid}'
     else:

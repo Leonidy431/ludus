@@ -25,10 +25,10 @@ on:
       per_deficit:
         description: 'files per deficit'
         default: '6'
-  # Two crons give an exact 90-minute cadence: 00:00, 01:30, 03:00, ...
+  # Hourly (operator 2026-09-30, CLAUDE.md TABOO 0.15), at minute 17 so
+  # the run does not queue with every other workflow at the full hour.
   schedule:
-    - cron: '0 0-21/3 * * *'
-    - cron: '30 1-22/3 * * *'
+    - cron: '17 * * * *'
 
 permissions:
   contents: write

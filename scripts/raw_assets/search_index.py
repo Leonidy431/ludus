@@ -48,6 +48,10 @@ def attribution_files(records, folder):
 def search(root, kinds, keywords, limit, allow_unlicensed):
     """Score every file by how many keywords its path contains."""
     words = [w.lower() for w in keywords]
+    # Whole words only: "pike" once matched "pikeman", so a fish slot got
+    # soldiers.  A key may carry a plural ending (fish -> fishes).
+    patterns = {w: re.compile(r'(^|[^a-z])' + re.escape(w)
+                              + r'(e?s)?([^a-z]|$)') for w in words}
     results = []
     for header, records in load_index(root):
         if not header['license_file'] and not allow_unlicensed:
@@ -56,7 +60,7 @@ def search(root, kinds, keywords, limit, allow_unlicensed):
             if kinds and rec['kind'] not in kinds:
                 continue
             low = rec['path'].lower()
-            hits = [w for w in words if w in low]
+            hits = [w for w in words if patterns[w].search(low)]
             if not hits:
                 continue
             results.append({
