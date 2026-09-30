@@ -1459,5 +1459,11 @@
     "инвертированное поведение reward -> hazard_mimicking_reward; 12 вариантов с попарно различными хитбоксами",
     "изменение формы по альфа-маскам (|A xor B| / |A or B|): от 37.2% до 100.0%",
     "источник: https://github.com/Card-Forge/forge @ 647b5eac95, forge-gui/res/adventure/common/sprites/enemy/ooze/giant_slime.png #0 (GPL)"
-  ]
+  ],
+  "opposing_virtue": "Temperance",
+  "ladder_step": "Ladder, step 14",
+  "patristic_source": "Evagrius, Praktikos 7",
+  "discernment_cue": "It begins by talking about your health.",
+  "discernment_cue_ru": "Он начинает с заботы о твоём здоровье.",
+  "teacher_npc": "abba_john"
 }

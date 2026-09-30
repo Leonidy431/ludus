@@ -6,6 +6,9 @@
     <meta name="description" content="Ludus — Theological RPG with NPC Dialogue, Attribute System, and Spatial Audio">
 
     <title>Ludus — The Demiurgic Dialogue System</title>
+    <!-- No favicon file ships yet; an empty data icon stops the
+         browser's automatic /favicon.ico request and its 404. -->
+    <link rel="icon" href="data:,">
 
     <!--
         Asset URLs are root-absolute on purpose. Hosting rewrites every
@@ -328,10 +331,20 @@
 
     <!-- Load Ludus Modules (in correct order) -->
     <script src="/ludus/ludus-npc-dialogue-manager.js"></script>
+    <script src="/ludus/ludus-liturgical-clock.js"></script>
+    <script src="/ludus/ludus-glas.js"></script>
     <script src="/ludus/ludus-sacred-synth.js"></script>
     <script src="/ludus/ludus-audio-manager.js"></script>
     <script src="/ludus/ludus-npc-dialogue-ui.js"></script>
+    <script src="/ludus/ludus-water.js"></script>
     <script src="/ludus/rov-lake-manager.js"></script>
+    <!-- The ACTION layer must exist before ludus-game.js renders gates. -->
+    <script src="/ludus/ludus-actions.js"></script>
+    <script src="/ludus/ludus-confession.js"></script>
+    <script src="/ludus/ludus-rest.js"></script>
+    <script src="/ludus/ludus-outbox.js"></script>
+    <script src="/ludus/ludus-journal.js"></script>
+    <script src="/ludus/ludus-passion.js"></script>
     <script src="/ludus/ludus-game.js"></script>
 </body>
 </html>

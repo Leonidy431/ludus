@@ -5,12 +5,15 @@
  * and a brick-wall limiter.  Every sound is tied to a meaning from the
  * constitution ("sound is a language"), NPC voices are placed at the
  * NPC's position with HRTF panning, and a missing or undecodable asset
- * never throws into the game.  No recordings exist yet, so a catalogue
- * file that fails to load (404 or decode error) is replaced by the
- * deterministic procedural rendering of the same key from
- * ludus-sacred-synth.js (window.LudusSacredSynth), cached after the
- * first render.  Only when that is unavailable does a call resolve to
- * null.  Sound rules: docs/SOUND_THEOLOGY_RULES.md.
+ * never throws into the game.  No recordings exist yet, so every key
+ * is rendered by the deterministic procedural synth of the same name
+ * (ludus-sacred-synth.js, window.LudusSacredSynth), cached after the
+ * first render.  A file is fetched only when its path is listed in
+ * SHIPPED_AUDIO, i.e. when it really is in the repository; asking for
+ * a file that does not exist only produced a 404 in the console on
+ * every guest session (TABOO 0.35 rule 8).  Only when the synth is
+ * unavailable does a call resolve to null.  Sound rules:
+ * docs/SOUND_THEOLOGY_RULES.md.
  *
  * Public global: window.LudusAudioManager (name is part of the shared
  * contract with ludus-npc-dialogue-ui.js and must not change).
@@ -77,35 +80,48 @@ window.LudusAudioManager = (function () {
   // stands without every caller having to pass coordinates.
   const npcPositions = new Map();
 
-  // Music track catalog (from SOUND_DESIGN_SYSTEM.md).
+  // Recorded files that really ship under AUDIO_PATH, as paths
+  // relative to it (for example 'npc-themes/theodora.mp3').  It is
+  // empty because no recording exists yet.  Add a path here in the
+  // same commit that adds the file; until then the synth renders the
+  // key and no request is made.
+  const SHIPPED_AUDIO = Object.freeze(new Set([]));
+
+  function isShipped(filePath) {
+    return Boolean(filePath) && SHIPPED_AUDIO.has(filePath);
+  }
+
+  // Music track catalog (from SOUND_DESIGN_SYSTEM.md).  plannedFile is
+  // where a future recording will live; it is documentation only and
+  // is never fetched unless it is also listed in SHIPPED_AUDIO.
   const MUSIC_CATALOG = {
     // Ambient and exploration tracks.
     desert_silence: {
-      file: 'ambient/desert-silence.mp3',
+      plannedFile: 'ambient/desert-silence.mp3',
       duration: 300,
       theme: 'exploration',
       intensity: 0.3,
     },
     monastery_bells: {
-      file: 'ambient/monastery-bells.mp3',
+      plannedFile: 'ambient/monastery-bells.mp3',
       duration: 240,
       theme: 'prayer',
       intensity: 0.4,
     },
     hesychasm_flow: {
-      file: 'ambient/hesychasm-flow.mp3',
+      plannedFile: 'ambient/hesychasm-flow.mp3',
       duration: 360,
       theme: 'meditation',
       intensity: 0.35,
     },
     theoria_ascending: {
-      file: 'ambient/theoria-ascending.mp3',
+      plannedFile: 'ambient/theoria-ascending.mp3',
       duration: 420,
       theme: 'revelation',
       intensity: 0.6,
     },
     apophatic_void: {
-      file: 'ambient/apophatic-void.mp3',
+      plannedFile: 'ambient/apophatic-void.mp3',
       duration: 480,
       theme: 'mystical',
       intensity: 0.5,
@@ -113,31 +129,31 @@ window.LudusAudioManager = (function () {
 
     // NPC character themes.
     elder_sergius_theme: {
-      file: 'npc-themes/elder-sergius.mp3',
+      plannedFile: 'npc-themes/elder-sergius.mp3',
       duration: 180,
       npc: 'elder_sergius',
       intensity: 0.5,
     },
     theodora_theme: {
-      file: 'npc-themes/theodora.mp3',
+      plannedFile: 'npc-themes/theodora.mp3',
       duration: 150,
       npc: 'theodora',
       intensity: 0.45,
     },
     isaias_theme: {
-      file: 'npc-themes/isaias.mp3',
+      plannedFile: 'npc-themes/isaias.mp3',
       duration: 170,
       npc: 'isaias',
       intensity: 0.55,
     },
     abbot_moses_theme: {
-      file: 'npc-themes/abbot-moses.mp3',
+      plannedFile: 'npc-themes/abbot-moses.mp3',
       duration: 160,
       npc: 'abbot_moses',
       intensity: 0.48,
     },
     sister_catherine_theme: {
-      file: 'npc-themes/sister-catherine.mp3',
+      plannedFile: 'npc-themes/sister-catherine.mp3',
       duration: 140,
       npc: 'sister_catherine',
       intensity: 0.52,
@@ -145,19 +161,19 @@ window.LudusAudioManager = (function () {
 
     // Knowledge gate challenge themes.
     foundational_gate: {
-      file: 'knowledge-gates/foundational-challenge.mp3',
+      plannedFile: 'knowledge-gates/foundational-challenge.mp3',
       duration: 120,
       gate: 1,
       intensity: 0.4,
     },
     liturgical_gate: {
-      file: 'knowledge-gates/liturgical-challenge.mp3',
+      plannedFile: 'knowledge-gates/liturgical-challenge.mp3',
       duration: 150,
       gate: 2,
       intensity: 0.5,
     },
     ascetic_gate: {
-      file: 'knowledge-gates/ascetic-challenge.mp3',
+      plannedFile: 'knowledge-gates/ascetic-challenge.mp3',
       duration: 180,
       gate: 3,
       intensity: 0.6,
@@ -165,82 +181,89 @@ window.LudusAudioManager = (function () {
 
     // Story moments.
     encounter_theme: {
-      file: 'story/first-encounter.mp3',
+      plannedFile: 'story/first-encounter.mp3',
       duration: 200,
       scene: 'first_encounter',
       intensity: 0.55,
     },
     victory_theme: {
-      file: 'story/victory-enlightenment.mp3',
+      plannedFile: 'story/victory-enlightenment.mp3',
       duration: 240,
       scene: 'victory',
       intensity: 0.7,
     },
   };
 
-  // SFX library.  The "cue" field links each file to its meaning in
+  // SFX library.  The "cue" field links each key to its meaning in
   // SEMANTIC_CUES.  While the recorded asset does not exist, the sacred
-  // synth renders the SFX key itself (it knows every key here).
+  // synth renders the SFX key itself (it knows every key here), and
+  // plannedFile, as above, is never fetched unless shipped.
   const SFX_CATALOG = {
     // Environmental.
     desert_wind: {
-      file: 'sfx/environment/desert-wind.wav', duration: 8,
+      plannedFile: 'sfx/environment/desert-wind.wav', duration: 8,
       cue: 'world_change',
     },
     sand_footsteps: {
-      file: 'sfx/environment/sand-footsteps.wav', duration: 3,
+      plannedFile: 'sfx/environment/sand-footsteps.wav', duration: 3,
     },
     monastery_bell_toll: {
-      file: 'sfx/environment/monastery-bell.wav', duration: 4,
+      plannedFile: 'sfx/environment/monastery-bell.wav', duration: 4,
       cue: 'prayer_delivered',
     },
-    water_flow: { file: 'sfx/environment/water-flow.wav', duration: 6 },
+    water_flow: {
+      plannedFile: 'sfx/environment/water-flow.wav', duration: 6,
+    },
 
     // Character actions.
     character_breathing: {
-      file: 'sfx/character/breathing.wav', duration: 2,
+      plannedFile: 'sfx/character/breathing.wav', duration: 2,
     },
     character_footsteps: {
-      file: 'sfx/character/footsteps.wav', duration: 3,
+      plannedFile: 'sfx/character/footsteps.wav', duration: 3,
     },
-    robe_rustle: { file: 'sfx/character/robe-rustle.wav', duration: 2 },
+    robe_rustle: {
+      plannedFile: 'sfx/character/robe-rustle.wav', duration: 2,
+    },
     kneeling_sound: {
-      file: 'sfx/character/kneeling.wav', duration: 1.5,
+      plannedFile: 'sfx/character/kneeling.wav', duration: 1.5,
       cue: 'constitution',
     },
 
     // Spiritual actions.
     prayer_vocalization: {
-      file: 'sfx/spiritual/prayer-vocalization.wav', duration: 4,
+      plannedFile: 'sfx/spiritual/prayer-vocalization.wav', duration: 4,
     },
     blessing_sound: {
-      file: 'sfx/spiritual/blessing.wav', duration: 3,
+      plannedFile: 'sfx/spiritual/blessing.wav', duration: 3,
       cue: 'teaching_complete',
     },
     transformation_effect: {
-      file: 'sfx/spiritual/transformation.wav', duration: 2.5,
+      plannedFile: 'sfx/spiritual/transformation.wav', duration: 2.5,
       cue: 'world_change',
     },
     meditation_bell: {
-      file: 'sfx/spiritual/meditation-bell.wav', duration: 3,
+      plannedFile: 'sfx/spiritual/meditation-bell.wav', duration: 3,
       cue: 'prayer_delivered',
     },
 
     // UI feedback.
-    ui_positive: {
-      file: 'sfx/ui/positive-tone.wav', duration: 0.5,
-      cue: 'wisdom',
-    },
+    // No recording is planned for this key.  A "positive tone" would
+    // be a reward ding, and the Wisdom voice it used to borrow made a
+    // chant-like voice answer every bonus (TABOO 0.2 item 5, rule 16).
+    // It is a plucked gusli string rising a step, rendered by the
+    // synth under the same key (recipe form_growth).
+    ui_positive: { duration: 1.3, cue: 'form_growth' },
     ui_negative: {
-      file: 'sfx/ui/negative-tone.wav', duration: 0.5,
+      plannedFile: 'sfx/ui/negative-tone.wav', duration: 0.5,
       cue: 'gate_locked',
     },
     ui_neutral: {
-      file: 'sfx/ui/neutral-tone.wav', duration: 0.4,
+      plannedFile: 'sfx/ui/neutral-tone.wav', duration: 0.4,
       cue: 'choice',
     },
     ui_confirm: {
-      file: 'sfx/ui/confirm.wav', duration: 0.6, cue: 'choice',
+      plannedFile: 'sfx/ui/confirm.wav', duration: 0.6, cue: 'choice',
     },
   };
 
@@ -261,15 +284,19 @@ window.LudusAudioManager = (function () {
       layer: 'ambience',
     },
     teaching_complete: {
-      meaning: 'Short трезвон motif: a teaching has been received.',
+      // Stillness, not a peal: a bell never answers a UI event (TABOO
+      // 0.35 rule 9); the silence after a word is the teaching's echo.
+      meaning: 'Stillness after the word: a teaching has been received.',
       layer: 'sfx',
     },
     choice: {
-      meaning: 'One light semantron tap: a word was chosen.',
+      // The semantron (било) is a sacred object (TABOO 0.35 rule 6), so the
+      // interface knocks are ordinary wood, not the monastery's board.
+      meaning: 'One light tap on a wooden desk: a word was chosen.',
       layer: 'sfx',
     },
     gate_locked: {
-      meaning: 'Muted knock on the било: FORM is not yet sufficient.',
+      meaning: 'Muted knock on a wooden door: FORM is not yet sufficient.',
       layer: 'sfx',
     },
     // One cue per constitutional attribute, ordered high to low.  They
@@ -300,6 +327,12 @@ window.LudusAudioManager = (function () {
     },
     constitution: {
       meaning: 'Low steady ison with октавист: Constitution, roots.',
+      layer: 'sfx',
+    },
+    // Any FORM growth after a choice.  A folk string, not a voice or a
+    // bell, so an ordinary game event never borrows a sacred sound.
+    form_growth: {
+      meaning: 'Two gusli plucks rising a step: FORM has grown.',
       layer: 'sfx',
     },
     // Ringing orders of the Typikon (kolokol research, chapter 25).
@@ -791,8 +824,10 @@ window.LudusAudioManager = (function () {
    * layer: 'music' | 'dialogue' | 'sfx' | 'ambience'
    * options: { fadeIn, loop, volume, position: {x, y, z}, spatialize,
    *            x, y, z, synthKey, fallbackCue }
-   * synthKey is the catalogue key rendered procedurally when the file
-   * is missing; fallbackCue (a SEMANTIC_CUES key) is tried after it.
+   * filePath is fetched only when it is listed in SHIPPED_AUDIO.
+   * synthKey is the catalogue key rendered procedurally when there is
+   * no shipped file; fallbackCue (a SEMANTIC_CUES key) is tried after
+   * it.
    */
   async function playAudio(filePath, layer = 'sfx', options = {}) {
     if (!layers[layer]) {
@@ -806,7 +841,10 @@ window.LudusAudioManager = (function () {
       return null;
     }
 
-    let buffer = filePath ? await loadAudioBuffer(filePath) : null;
+    // Only shipped files are requested; a missing one goes straight to
+    // the synth instead of costing a 404 first.
+    let buffer = isShipped(filePath) ? await loadAudioBuffer(filePath) :
+      null;
     if (!buffer && options.synthKey) {
       buffer = await sacredBuffer(options.synthKey);
     }
@@ -836,13 +874,16 @@ window.LudusAudioManager = (function () {
     if (!track) {
       throw new Error(`Unknown track: ${trackKey}`);
     }
-    return playAudio(track.file, 'music',
+    return playAudio(track.plannedFile, 'music',
       { fadeIn, loop: true, synthKey: trackKey });
   }
 
   /**
    * Plays an NPC voice line.  Without an explicit position the voice is
-   * placed where setNpcPosition() last saw the NPC.
+   * placed where setNpcPosition() last saw the NPC.  No voice has
+   * been recorded and the synth does not speak (a machine must not
+   * imitate a mentor's voice), so until a line is listed in
+   * SHIPPED_AUDIO this resolves to null without any request.
    */
   async function playDialogue(npcId, dialogueKey, options = {}) {
     const filePath = `dialogue/${npcId}/${dialogueKey}.mp3`;
@@ -855,26 +896,68 @@ window.LudusAudioManager = (function () {
 
   /** Plays a catalogued SFX, falling back to its semantic cue. */
   async function playSfx(sfxKey, options = {}) {
+    const synthKey = (SFX_CATALOG[sfxKey] && SFX_CATALOG[sfxKey].cue)
+      || sfxKey;
+    if (!bellAllowed(sfxKey, options.now)
+        || !bellAllowed(synthKey, options.now)) {
+      return null;
+    }
     const sfx = SFX_CATALOG[sfxKey];
     if (!sfx) {
       throw new Error(`Unknown SFX: ${sfxKey}`);
     }
     const merged = Object.assign(
       { synthKey: sfxKey, fallbackCue: sfx.cue }, options);
-    return playAudio(sfx.file, 'sfx', merged);
+    return playAudio(sfx.plannedFile, 'sfx', merged);
   }
 
   /**
    * Plays a sound by meaning (a key of SEMANTIC_CUES, for example
    * 'prayer_delivered' or an attribute name such as 'wisdom').
    */
+  // Which ringing order each bell cue belongs to.  Before any of them
+  // sounds, the liturgical clock is asked whether the Typikon allows that
+  // order today (CLAUDE.md TABOO 0.35 rule 9): no трезвон on Great Friday
+  // or Great Saturday, the Lenten call only on Lenten weekdays.  A cue the
+  // day does not allow is not replaced by another sound; silence is the
+  // right answer (TABOO 0.2 item 6).
+  const BELL_ORDER = {
+    blagovest: 'благовест',
+    blagovest_stroke: 'благовест',
+    monastery_bell_toll: 'благовест',
+    prayer_delivered: 'благовест',
+    meditation_bell: 'благовест',
+    trezvon: 'трезвон',
+    trezvon_motif: 'трезвон',
+    perezvon: 'перезвон',
+    perebor: 'перебор',
+    zvon_v_dvoi: 'двои',
+  };
+
+  function bellAllowed(key, now) {
+    const order = BELL_ORDER[key];
+    const clock = window.LudusLiturgicalClock;
+    if (!order || !clock) {
+      return true;
+    }
+    const allowed = clock.mayRing(order, now || new Date());
+    if (allowed) {
+      // Bell and ison never sound together (TABOO 0.35 rule 10).
+      stopIson();
+    }
+    return allowed;
+  }
+
   async function playCue(cueKey, options = {}) {
+    if (!bellAllowed(cueKey, options.now)) {
+      return null;
+    }
     const cue = SEMANTIC_CUES[cueKey];
     if (!cue) {
       throw new Error(`Unknown cue: ${cueKey}`);
     }
     const merged = Object.assign({ synthKey: cueKey }, options);
-    return playAudio(cue.file || null, cue.layer, merged);
+    return playAudio(cue.plannedFile || null, cue.layer, merged);
   }
 
   // ── Mixing ─────────────────────────────────────────────────────────
@@ -905,6 +988,86 @@ window.LudusAudioManager = (function () {
    */
   function updateLayerDucking(playingLayers) {
     applyDucking(playingLayers);
+  }
+
+  // ── Stillness ──────────────────────────────────────────────────────
+  // Silence is a state of the mixer, not the absence of sound (TABOO
+  // 0.35 rule 8; TABOO 0.4 rule 2): at a holy place, in the apophatic
+  // gate or during the pause before a gate opens, the machine layers
+  // fall to -60 dBFS while room tone and breath stay near -45 dBFS.
+  // A digital zero in a headset feels like a dropout, not like peace.
+  const STILL_DUCK = 0.001;
+  let stillSource = null;
+  let stillDepth = 0;
+
+  async function enterStillness() {
+    stillDepth += 1;
+    if (stillDepth > 1 || !audioContext) {
+      return stillSource;
+    }
+    for (const name of ['music', 'sfx', 'dialogue']) {
+      smoothSet(layers[name].duck.gain, STILL_DUCK, 1.5);
+    }
+    stillSource = await playAudio(null, 'ambience',
+      { loop: true, fadeIn: 1.5, synthKey: 'room_tone' });
+    return stillSource;
+  }
+
+  // Calls nest: leaving one sacred zone inside another keeps the quiet.
+  function leaveStillness() {
+    if (stillDepth === 0) {
+      return;
+    }
+    stillDepth -= 1;
+    if (stillDepth > 0) {
+      return;
+    }
+    if (stillSource) {
+      try {
+        stillSource.stop();
+      } catch (err) {
+        // Already stopped.
+      }
+      stillSource = null;
+    }
+    applyDucking(dialogueVoices > 0 ? ['dialogue'] : []);
+  }
+
+  function isStill() {
+    return stillDepth > 0;
+  }
+
+  // The ison of the tone of the week (ludus-glas.js): the machine
+  // holds the base note only, never a text (TABOO 0.35 rule 10), and it
+  // is silent in Holy Week, when the Octoechos is not sung.  A bell and
+  // the ison never sound together, so a bell cue stops it first.
+  let isonSource = null;
+
+  async function playIsonOfTheWeek(now = new Date()) {
+    const glas = window.LudusGlas;
+    const clock = window.LudusLiturgicalClock;
+    if (!glas || !clock) {
+      return null;
+    }
+    const tone = glas.describe(now, clock);
+    stopIson();
+    if (!tone.cue) {
+      return null;
+    }
+    isonSource = await playAudio(null, 'music',
+      { loop: true, fadeIn: 3, synthKey: tone.cue });
+    return tone;
+  }
+
+  function stopIson() {
+    if (isonSource) {
+      try {
+        isonSource.stop();
+      } catch (err) {
+        // Already stopped.
+      }
+      isonSource = null;
+    }
   }
 
   /** Stops every voice with a short fade and releases its nodes. */
@@ -1023,7 +1186,13 @@ window.LudusAudioManager = (function () {
     playDialogue,
     playSfx,
     playCue,
+    bellAllowed,
     stopAll,
+    enterStillness,
+    playIsonOfTheWeek,
+    stopIson,
+    leaveStillness,
+    isStill,
     setMasterVolume,
     getMasterVolume,
     setLayerVolume,

@@ -10,7 +10,10 @@
  * Demiurgic Causality (CLAUDE.md, taboo 0):
  *   FORM (7 attributes) -> ACTION (dialogue choices) -> GOAL (gates).
  * The UI therefore shows exactly the seven constitutional attributes and
- * derives gate access deterministically from Wisdom; nothing is random.
+ * derives gate access deterministically; nothing is random.  A gate
+ * opens only on three conditions at once (Wisdom, mentors met and a
+ * rite from actions{}), which window.LudusActions evaluates; gates 4-6
+ * also wait for a bow, "not to me" (CLAUDE.md TABOO 0.35 rule 14).
  *
  * Data sources (field-name adapter, see readPlayerForm()):
  *   - ludus_players/{playerId}.form.*    canonical FORM, written by the
@@ -64,8 +67,9 @@
       tooltip: 'Knowledge of texts (Synaxarion tradition)' },
   ];
 
-  // The six knowledge gates and their Wisdom thresholds (CLAUDE.md,
-  // section 4).  Order matters: each level presupposes the previous one.
+  // The Wisdom thresholds of the six gates (CLAUDE.md, section 4).  They
+  // only draw the ticks on the Wisdom bar: Wisdom is one condition of
+  // three, and whether a gate is open is decided by LudusActions.
   const GATE_LADDER = [
     { id: 'foundational', label: 'Foundational', wisdom: 4 },
     { id: 'liturgical', label: 'Liturgical', wisdom: 6 },
@@ -136,6 +140,22 @@
   // dialogue survives a reload even without an account.
   const GUEST_FORM_KEY = 'ludus.guest.form';
 
+  // The guest's ACTION counters (prayer rope, fasts, stillness, mentors
+  // met, bows) live beside the FORM for the same reason.
+  const GUEST_ACTIONS_KEY = 'ludus.guest.actions';
+  // Meetings with the eight passions (outcomes only, never what was
+  // "said" to a thought) and the data that describes them.
+  const GUEST_PASSIONS_KEY = 'ludus.guest.passions';
+  const PASSIONS_URL = '/ludus/data/passions.json';
+  // Three breaths of stillness close a good encounter; five seconds a
+  // breath keeps it short enough for a headset and long enough to be a
+  // pause rather than a click.
+  const STILL_BREATH_SECONDS = 5;
+
+  // Seconds in a minute of a timed practice.  A constant, so a test can
+  // read how long a session is; it is never shortened in play.
+  const PRACTICE_MINUTE_SECONDS = 60;
+
   const RESOURCES = [
     { key: 'gold', label: 'Gold', emoji: '💰' },
     { key: 'faith', label: 'Faith', emoji: '⛪' },
@@ -172,6 +192,21 @@
     playerNode: null,
     playerForm: null,
     formSource: null,
+    // ACTION counters, always in the normalised LudusActions shape.
+    actions: null,
+    // A running timed practice (stillness, vigil, handiwork):
+    // { id, endsAt, timer } or null.  Only one runs at a time.
+    practiceTimer: null,
+    passionData: null,
+    passionRecord: {},
+    encounter: null,
+    stillTimer: null,
+    // Gates already open when the page was drawn; a gate is announced
+    // only when it opens in play, never again on a reload.
+    openGates: null,
+    // The other NPCs of the valley, read from the offline dialogue pack
+    // (the chorus of 12 editors, CLAUDE.md TABOO 0.37).
+    valley: [],
     reachableNodes: [],
     knowledgeGates: [],
     // One of 'loading', 'online', 'offline'.
@@ -362,10 +397,22 @@
     state.playerNode = null;
     state.playerForm = null;
     state.formSource = null;
+    state.actions = null;
+    stopPracticeTimer();
     state.reachableNodes = [];
     state.knowledgeGates = [];
     if (user) {
       await loadPlayerData();
+      // The stored rule comes from the backend, which can read the
+      // player's document; the direct read above may be refused.
+      await loadServerActions();
+      await flushOutbox().catch(() => {});
+      // The passion record comes back with the rule (actions.passions);
+      // a guest keeps it on the device.
+      state.passionRecord = (state.actions && state.actions.passions)
+        || loadGuestPassions();
+      loadPassionData();
+      loadValley();
     } else {
       renderGameUI();
     }
@@ -435,6 +482,10 @@
     const adapted = readPlayerForm(playerDoc, state.playerNode);
     state.playerForm = adapted.form;
     state.formSource = adapted.source;
+    // The ACTION layer is read beside FORM (players.actions in the
+    // "Firestore as Heaven" shape) and normalised, so a tampered or
+    // older record can neither crash the ladder nor add counters.
+    state.actions = normalizeActions(playerDoc && playerDoc.actions);
 
     const nodes = {};
     if (nodesRes.status === 'fulfilled') {
@@ -499,16 +550,48 @@
     return reachable;
   }
 
-  // The highest gate whose Wisdom threshold the FORM satisfies, or null.
+  // The ACTION layer is a separate script.  If it failed to load, the
+  // gates stay closed and say so, rather than falling back to the old
+  // Wisdom-only check that TABOO 0.35 rule 14 calls a bug.
+  function actionsApi() {
+    const api = window.LudusActions;
+    return api && typeof api.evaluateLadder === 'function' ? api : null;
+  }
+
+  function normalizeActions(raw) {
+    const api = actionsApi();
+    return api ? api.normalize(raw) : null;
+  }
+
+  // The highest open gate, judged on all three conditions, or null.
   function currentGateFor(form) {
-    const wisdom = toScore(form && form.wisdom);
-    let current = null;
-    GATE_LADDER.forEach((gate) => {
-      if (wisdom >= gate.wisdom) {
-        current = gate;
-      }
-    });
-    return current;
+    const api = actionsApi();
+    return api && state.actions ? api.currentGate(form, state.actions)
+      : null;
+  }
+
+  // Mentor ids become the names the player sees on the mentor cards.
+  function mentorName(npcId) {
+    const mentor = MENTORS.find((m) => m.npcId === npcId);
+    return mentor ? mentor.name : npcId;
+  }
+
+  // The text of one missing condition.  Dialogue items are rebuilt from
+  // the mentor list so the player reads "Theodora", not "theodora".
+  function missingText(item) {
+    if (item.kind === 'dialogue' && Array.isArray(item.mentors)) {
+      return `Speak with ${item.mentors.map(mentorName).join(', ')}`;
+    }
+    return item.text;
+  }
+
+  // Today's date on the player's own calendar, as YYYY-MM-DD.  A fast
+  // belongs to the local day, not to the UTC one.
+  function localIsoDay(date) {
+    const d = date || new Date();
+    const pad = (n) => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-`
+      + pad(d.getDate());
   }
 
   function renderAuthPanel() {
@@ -569,7 +652,9 @@
 
     // The drawn badge replaces the emoji: emoji glyphs differ between
     // headsets and some Quest fonts lack them entirely.
-    const attrHtml = ATTRIBUTES.map((attr) => '<div class="ludus-attr-item">'
+    const grown = state.lastGrowth || {};
+    const attrHtml = ATTRIBUTES.map((attr) => '<div class="ludus-attr-item'
+      + `${grown[attr.key] ? ' is-growing' : ''}" data-attr="${attr.key}">`
       + `<img class="ludus-attr-icon" src="${ART}attr-${attr.key}.svg"`
       + ` alt="" title="${escapeHtml(attr.tooltip)}" width="40"`
       + ' height="40">'
@@ -594,10 +679,13 @@
       + '</div>' : '';
 
     const gate = currentGateFor(form);
+    // Images, not church words, in the interface (TABOO 0.39 item 3):
+    // "redemption" was a church term on a label.
     const goalText = (state.playerNode && state.playerNode.causality
-      && state.playerNode.causality.goal) || 'Redemption and wisdom';
-    const gateText = gate ? `${gate.label} (Wisdom ${gate.wisdom}+)`
-      : `Not yet at the first gate (Wisdom ${GATE_LADDER[0].wisdom})`;
+      && state.playerNode.causality.goal)
+      || 'To reach still water, step by step';
+    const gateText = gate ? gate.label
+      : 'Not yet through the first gate';
 
     container.innerHTML = '<div class="ludus-profile-card">'
       + '<div class="ludus-hero">'
@@ -657,12 +745,31 @@
       + '</div>';
     }).join('');
 
+    // Each person of the valley is shown by their craft, in their own
+    // idiom, not by a title (TABOO 0.39); a saint is a person here too.
+    const valleyHtml = state.valley.length ? '<section class="ludus-valley">'
+      + '<h3>People of the valley</h3><div class="ludus-mentor-grid">'
+      + state.valley.map((p) => '<div class="ludus-node-card'
+        + ' ludus-mentor-card">'
+        + `<img class="ludus-mentor-portrait" src="${ART}npc-${
+          escapeHtml(p.npcId.replace(/_/g, '-'))}.svg" alt="" width="100"`
+        + ' height="140" loading="lazy">'
+        + `<h4>${escapeHtml(p.name)}</h4>`
+        + `<p class="ludus-node-role">${escapeHtml(p.craft)}</p>`
+        + '<button type="button" class="ludus-talk-btn" data-action="talk"'
+        + ` data-npc-id="${escapeHtml(p.npcId)}">Talk with `
+        // Buttons carry no church titles (TABOO 0.39): the card's heading
+        // keeps "St …", the button speaks to the person by name.
+        + `${escapeHtml(p.name.replace(/^(St\.?|Saint)\s+/i, ''))}`
+        + '</button></div>').join('')
+      + '</div></section>' : '';
+
     if (state.mode !== 'online' || !state.user) {
       container.innerHTML = '<div class="ludus-network">'
         + '<section class="ludus-mentors">'
         + `<h3 data-i18n="ludus.mentor">${escapeHtml(t('ludus.mentor'))}`
         + `</h3><div class="ludus-mentor-grid">${coreHtml}</div>`
-        + '</section></div>';
+        + '</section>' + valleyHtml + '</div>';
       return;
     }
 
@@ -695,6 +802,7 @@
       + `<h3 data-i18n="ludus.mentor">${escapeHtml(t('ludus.mentor'))}</h3>`
       + `<div class="ludus-mentor-grid">${coreHtml}${mentorHtml}</div>`
       + '</section>'
+      + valleyHtml
       + '<section class="ludus-quests">'
       + `<h3 data-i18n="ludus.quests">${escapeHtml(t('ludus.quests'))}</h3>`
       + (questHtml || '<p class="ludus-empty">No quests available</p>')
@@ -702,8 +810,243 @@
       + '</div>';
   }
 
-  // The gate ladder is derived from FORM alone, so it renders offline
-  // too; Firestore gate questions are appended when they exist.
+  // The label of a timed practice.  While it runs it shows the time
+  // left, so the player sees that only a whole session counts; a second
+  // press stops it and nothing is recorded.
+  function timerLabel(practice) {
+    const run = state.practiceTimer;
+    if (!run || run.id !== practice.id) {
+      return `${practice.label}: ${practice.minutes} min`;
+    }
+    const left = Math.max(0, Math.ceil((run.endsAt - Date.now()) / 1000));
+    const mm = Math.floor(left / 60);
+    const ss = String(left % 60).padStart(2, '0');
+    return `${practice.label}: ${mm}:${ss} (press to stop)`;
+  }
+
+  // One button of the rule.  Daily practices lock once kept today;
+  // a secret good deed shows no number at all (Mt 6:3-4).
+  function practiceButton(api, practice) {
+    const today = localIsoDay();
+    const kept = practice.kind === 'daily'
+      && api.keptToday(state.actions, practice.id, today);
+    const running = state.practiceTimer
+      && state.practiceTimer.id === practice.id;
+    const busy = state.practiceTimer && !running;
+    const tally = api.practiceTally(state.actions, practice.id);
+    let label = practice.label;
+    if (practice.kind === 'timer') {
+      label = timerLabel(practice);
+    } else if (kept) {
+      // The same words stay on the button; only its state says "done",
+      // so the rule reads as a rule and not as a checklist of trophies.
+      label = `${practice.label} (today: done)`;
+    }
+    const title = `Against ${practice.passion}; ${practice.virtue}. `
+      + `${practice.source}`;
+    return '<div class="ludus-practice">'
+      + `<button type="button" class="ludus-rule-btn${running
+        ? ' is-running' : ''}" data-action="practice"`
+      + ` data-practice-id="${escapeHtml(practice.id)}"`
+      + ` title="${escapeHtml(title)}"`
+      + (practice.kind === 'timer'
+        ? ` aria-pressed="${running ? 'true' : 'false'}"` : '')
+      + (kept || busy ? ' disabled' : '')
+      + `>${escapeHtml(label)}</button>`
+      + `<span class="ludus-practice-tally">${escapeHtml(tally.text)}</span>`
+      + '</div>';
+  }
+
+  // The rule of prayer: twelve practices from LudusActions.PRACTICES.
+  // Counters are shown plainly and never turn into points: TABOO 0.35
+  // rule 16 forbids XP from prayer, so the panel says what was done and
+  // nothing about what it "earned".
+  // "On the road": one passion at a time, in Evagrius' order.  The lure
+  // speaks the language of profit (TABOO 0.39); the options walk the
+  // ladder of a thought (ludus-passion.js).  A cold palette marks the
+  // passion, never the warm lamp of holy things (TABOO 0.38).
+  // The player's own journal as a Markdown file, built on the device and
+  // handed over as a download; nothing is sent (ludus-journal.js).
+  async function saveJournal() {
+    const journal = window.LudusJournal;
+    const api = actionsApi();
+    if (!journal || !api) {
+      return;
+    }
+    await loadPassionData();
+    const text = journal.toMarkdown({
+      form: state.playerForm || {},
+      actions: state.actions || {},
+      passions: state.passionRecord || {},
+      passionData: state.passionData,
+      now: new Date(),
+    }, api);
+    const url = URL.createObjectURL(new Blob([text],
+      { type: 'text/markdown;charset=utf-8' }));
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `ludus-journal-${new Date().toISOString()
+      .slice(0, 10)}.md`;
+    document.body.append(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  // The Manuscript of rights: the licence register generated from the
+  // shipped files (scripts/build_rights_manifest.py).  Copyleft notes
+  // and missing licence files are shown as they are, not smoothed over.
+  async function openRights() {
+    let data = null;
+    try {
+      const res = await fetch('/ludus/data/rights.json');
+      data = res.ok ? await res.json() : null;
+    } catch (error) {
+      console.warn('[Ludus] Rights register unavailable:', error.message);
+    }
+    const dialog = document.createElement('dialog');
+    dialog.className = 'ludus-rights';
+    dialog.setAttribute('aria-labelledby', 'ludus-rights-h');
+    const pct = (x) => (typeof x === 'number'
+      ? `${(x * 100).toFixed(1)} %` : '—');
+    const lib = (item) => '<li><strong>' + escapeHtml(item.name)
+      + '</strong> — ' + escapeHtml(item.licence)
+      + (item.licence_file_present ? ''
+        : ' <em>(no licence file in the repository)</em>')
+      + (item.note ? `<br><span class="ludus-rights-note">${
+        escapeHtml(item.note)}</span>` : '') + '</li>';
+    const raw = (item) => '<tr><td>' + escapeHtml(item.object)
+      + '</td><td>' + escapeHtml(item.passion || '') + '</td><td>'
+      + escapeHtml(item.licence) + '</td><td>' + pct(item.min_shape_change)
+      + '</td><td>' + pct(item.colour_change) + '</td><td><a href="'
+      + escapeHtml(item.repo) + '" rel="noopener" target="_blank">'
+      + escapeHtml(item.repo.replace('https://github.com/', ''))
+      + '</a> @' + escapeHtml(item.commit) + '<br><code>'
+      + escapeHtml(item.path) + '</code></td></tr>';
+    dialog.innerHTML = '<h3 id="ludus-rights-h">Manuscript of rights</h3>'
+      + (data ? '<h4>This work</h4><ul>' + lib(data.own) + '</ul>'
+        + '<h4>Engines and libraries</h4><ul>'
+        + data.libraries.map(lib).join('') + '</ul>'
+        + '<h4>Raw material, reworked through the runner</h4>'
+        + '<p class="ludus-rights-note">Copyleft sources keep their '
+        + 'attribution and share-alike duties whatever the 35 % rule '
+        + 'says; the final word is the lawyer\'s.</p>'
+        + '<div class="ludus-rights-scroll"><table><thead><tr>'
+        + '<th>Object</th><th>Passion</th><th>Licence</th><th>Shape</th>'
+        + '<th>Colour</th><th>Source</th></tr></thead><tbody>'
+        + data.raw_material.map(raw).join('') + '</tbody></table></div>'
+        : '<p>The register could not be loaded.</p>')
+      + '<div class="ludus-rule-actions"><button type="button"'
+      + ' class="ludus-rule-btn" data-close>Close</button></div>';
+    const close = () => {
+      dialog.close();
+      dialog.remove();
+    };
+    dialog.querySelector('[data-close]').addEventListener('click', close);
+    dialog.addEventListener('cancel', (event) => {
+      event.preventDefault();
+      close();
+    });
+    document.body.append(dialog);
+    dialog.showModal();
+  }
+
+  function renderRoadPanel() {
+    const api = window.LudusPassion;
+    const data = state.passionData;
+    if (!api || !data || !state.playerForm) {
+      return '';
+    }
+    const passion = state.encounter
+      ? data.passions.find((p) => p.id === state.encounter.passionId)
+      : api.nextPassion(data, state.passionRecord);
+    if (!passion) {
+      return '<section class="ludus-road"><h4>On the road</h4>'
+        + '<p>The road is quiet.</p></section>';
+    }
+    const art = passion.art ? `<img class="ludus-road-art" src="${
+      escapeHtml(passion.art)}" alt="" width="96" height="96">` : '';
+    if (!state.encounter) {
+      return '<section class="ludus-road" aria-labelledby="ludus-road-h">'
+        + '<h4 id="ludus-road-h">On the road</h4>'
+        + `<div class="ludus-road-card">${art}`
+        + `<p class="ludus-road-lure">${escapeHtml(passion.lure)}</p></div>`
+        + '<button type="button" class="ludus-rule-btn"'
+        + ' data-action="passion-meet">Stop and look at what is offered'
+        + '</button></section>';
+    }
+    const stage = state.encounter.stage;
+    let body = '';
+    if (stage === 'virtue') {
+      // Rays of sobriety over the road: decorative only, no count, no
+      // reward, hidden from screen readers (the text says it all).
+      body = '<div class="ludus-light-nepsis" aria-hidden="true"></div>'
+        + `<p class="ludus-road-end">The thought has passed. `
+        + `${escapeHtml(passion.virtue)} — ${escapeHtml(passion.source)}; `
+        + `${escapeHtml(passion.ladder)}.</p>`
+        + '<button type="button" class="ludus-rule-btn"'
+        + ' data-action="passion-close">Walk on</button>';
+    } else if (stage === 'captive') {
+      body = '<p class="ludus-road-end">It led you. It will come back; '
+        + 'the mentors can teach its sign.</p>'
+        + '<button type="button" class="ludus-rule-btn"'
+        + ' data-action="passion-close">Walk on</button>';
+    } else if (state.stillTimer) {
+      const left = Math.max(0, Math.ceil((state.stillTimer.endsAt
+        - Date.now()) / 1000));
+      body = `<p class="ludus-road-still" aria-live="polite">Be still… ${
+        left} s</p>`;
+    } else {
+      const opts = api.options(state.encounter, passion, state.playerForm,
+        state.actions);
+      body = '<div class="ludus-rule-actions">'
+        + opts.map((o) => '<button type="button" class="ludus-rule-btn'
+          + ' ludus-road-btn" data-action="passion-choice"'
+          + ` data-option-id="${escapeHtml(o.id)}">${escapeHtml(o.text)}`
+          + '</button>').join('')
+        + '</div>';
+    }
+    return '<section class="ludus-road is-meeting"'
+      + ' aria-labelledby="ludus-road-h">'
+      + `<h4 id="ludus-road-h">On the road: ${escapeHtml(passion.name)}</h4>`
+      + `<div class="ludus-road-card">${art}`
+      + `<p class="ludus-road-lure">${escapeHtml(passion.lure)}</p></div>`
+      + body + '</section>';
+  }
+
+  function renderRulePanel(ladder) {
+    const api = actionsApi();
+    // The bow is offered only where every other condition already
+    // holds and the lower gates are passed, so it can never be taken
+    // for a shortcut past a missing step.
+    const bows = ladder.filter((check) => check.readyForGift
+      && check.missing.some((m) => m.kind === 'gift')
+      && !check.missing.some((m) => m.kind === 'ladder'))
+      .map((check) => '<button type="button"'
+        + ' class="ludus-rule-btn ludus-bow-btn" data-action="bow"'
+        + ` data-gate-id="${escapeHtml(check.gate.id)}">`
+        + `Bow: not to me (${escapeHtml(check.gate.label)})</button>`)
+      .join('');
+
+    return '<section class="ludus-rule" aria-labelledby="ludus-rule-h">'
+      + '<h4 id="ludus-rule-h">Rule of prayer</h4>'
+      + '<div class="ludus-rule-actions ludus-practice-grid">'
+      + api.PRACTICES.map((pr) => practiceButton(api, pr)).join('')
+      + '</div>'
+      + (bows ? `<div class="ludus-rule-actions">${bows}</div>` : '')
+      // Preparation for confession is not a practice: it has no counter
+      // and nothing about it is stored (TABOO 0.26), so it stands apart
+      // from the twelve and is handled by its own isolated module.
+      + '<div class="ludus-rule-actions">'
+      + '<button type="button" class="ludus-rule-btn ludus-confession-btn"'
+      + ' data-action="confession">Before confession: a page that burns'
+      + '</button></div>'
+      + '</section>';
+  }
+
+  // The ladder is judged on three conditions (FORM, mentors met and a
+  // rite), all of which live on the device for a guest, so it renders
+  // offline too; Firestore gate questions are appended when they exist.
   function renderKnowledgeGates() {
     const container = document.getElementById('ludus-gates');
     if (!container) {
@@ -714,16 +1057,39 @@
       return;
     }
 
-    const wisdom = toScore(state.playerForm.wisdom);
-    const ladderHtml = GATE_LADDER.map((gate, index) => {
-      const open = wisdom >= gate.wisdom;
-      const status = open ? 'Open' : `Needs Wisdom ${gate.wisdom}`;
-      return `<li class="ludus-gate-step ${open ? 'is-open' : 'is-locked'}">`
+    const api = actionsApi();
+    if (!api || !state.actions) {
+      container.innerHTML = '<div class="ludus-gates-panel">'
+        + `<h3 data-i18n="ludus.gates">${escapeHtml(t('ludus.gates'))}</h3>`
+        + '<p class="ludus-empty">The gates cannot be read right now.'
+        + ' Please reload the page.</p></div>';
+      return;
+    }
+
+    const ladder = api.evaluateLadder(state.playerForm, state.actions);
+    const nowOpen = ladder.filter((c) => c.open).map((c) => c.gate.id);
+    const opening = state.openGates
+      ? nowOpen.filter((id) => !state.openGates.includes(id)) : [];
+    state.openGates = nowOpen;
+    const ladderHtml = ladder.map((check, index) => {
+      const gate = check.gate;
+      const open = check.open;
+      const isOpening = opening.includes(gate.id);
+      const status = open ? 'Open'
+        : '<ul class="ludus-gate-missing">'
+          + check.missing.map((m) => '<li>'
+            + `${escapeHtml(missingText(m))}</li>`).join('')
+          + '</ul>';
+      // The mystical gate opens in the light of Tabor (see the CSS).
+      const tabor = isOpening && gate.id === 'mystical' ? ' is-tabor' : '';
+      return `<li class="ludus-gate-step ${open ? 'is-open' : 'is-locked'}${
+        isOpening ? ' is-opening' : ''}${tabor}"`
+        + ` data-gate-id="${escapeHtml(gate.id)}">`
         + `<img class="ludus-gate-icon" src="${ART}gate-${index + 1}-`
-        + `${gate.id}.svg" alt="" width="48" height="48">`
+        + `${escapeHtml(gate.id)}.svg" alt="" width="48" height="48">`
         + `<span class="ludus-gate-level">${index + 1}</span>`
         + `<span class="ludus-gate-name">${escapeHtml(gate.label)}</span>`
-        + `<span class="ludus-gate-status">${escapeHtml(status)}</span>`
+        + `<div class="ludus-gate-status">${status}</div>`
         + '</li>';
     }).join('');
 
@@ -744,8 +1110,63 @@
     container.innerHTML = '<div class="ludus-gates-panel">'
       + `<h3 data-i18n="ludus.gates">${escapeHtml(t('ludus.gates'))}</h3>`
       + `<ol class="ludus-gate-ladder">${ladderHtml}</ol>`
+      + renderRulePanel(ladder)
+      + renderRoadPanel()
       + gateHtml
+      // The register of rights is a plain link at the foot, not part of
+      // the path (HLD F5, improvement 95).
+      + '<p class="ludus-rights-link"><button type="button"'
+      + ' class="ludus-link-btn" data-action="journal">'
+      + 'Save my journal (Markdown)</button> · <button type="button"'
+      + ' class="ludus-link-btn" data-action="rights">'
+      + 'Manuscript of rights (licences)</button></p>'
       + '</div>';
+    opening.forEach(openGateRitual);
+  }
+
+  // A gate opens as a rite, not as a pop-up (DEF-004): silence first,
+  // then the lamp's light on the gate's icon, then the call of the bell.
+  // The bell is asked of the liturgical clock through the audio manager,
+  // so on Great Friday the rite is silence and light only.  The last,
+  // apophatic gate has no bell at all: its sound is near-silence (TABOO
+  // 0.2 item 6).  Nothing here adds to FORM.
+  const GATE_SILENCE_MS = 2000;
+  // The apophatic gate: stillness only, a little longer than a breath
+  // cycle of the Athonite pattern (5 + 1 + 8 + 1 s).
+  const APOPHATIC_STILL_MS = 15000;
+  function openGateRitual(gateId) {
+    const clock = window.LudusLiturgicalClock;
+    const day = clock ? clock.describe(new Date()) : null;
+    document.dispatchEvent(new CustomEvent('ludus:gate-opened', {
+      detail: { gateId, day },
+    }));
+    // The pause before the bell is stillness, not a dropout: the
+    // mixer holds room tone and breath (TABOO 0.35 rule 8).  The
+    // apophatic gate never rings; its stillness simply lasts longer.
+    const audio = window.LudusAudioManager;
+    const still = audio && typeof audio.enterStillness === 'function';
+    if (still) {
+      audio.enterStillness().catch(() => {});
+    }
+    if (gateId === 'apophatic') {
+      if (still) {
+        setTimeout(() => audio.leaveStillness(), APOPHATIC_STILL_MS);
+      }
+      return;
+    }
+    setTimeout(() => {
+      try {
+        if (still) {
+          audio.leaveStillness();
+        }
+        if (audio && typeof audio.playCue === 'function') {
+          audio.playCue('blagovest').catch(() => {});
+        }
+      } catch (error) {
+        // A blocked audio context leaves the rite silent, which is
+        // still a true rite.
+      }
+    }, GATE_SILENCE_MS);
   }
 
   function renderGameUI() {
@@ -819,6 +1240,370 @@
     }
   }
 
+  // Read the guest's saved ACTION counters.  normalize() keeps only the
+  // known counters, so a hand-edited record cannot add new ones.
+  function loadGuestActions() {
+    let saved = null;
+    try {
+      saved = JSON.parse(
+        window.localStorage.getItem(GUEST_ACTIONS_KEY) || 'null');
+    } catch (error) {
+      console.warn('[Ludus] Guest actions unavailable:', error.message);
+    }
+    return normalizeActions(saved);
+  }
+
+  function saveGuestActions() {
+    try {
+      window.localStorage.setItem(GUEST_ACTIONS_KEY,
+        JSON.stringify(state.actions));
+    } catch (error) {
+      // As with FORM, a refused write keeps the counters for this
+      // session only; the action itself must not fail.
+      console.warn('[Ludus] Guest actions not saved:', error.message);
+    }
+  }
+
+  // Store new counters, re-render what depends on them and tell other
+  // modules (sound, analytics) what was done.  Nothing here adds to
+  // FORM: an action is recorded and shown, never paid for.
+  function commitActions(kind, next, op) {
+    if (!next) {
+      return;
+    }
+    if (op) {
+      syncAction(op);
+    }
+    // Re-rendering replaces the buttons, so the focused one is noted
+    // and focused again; a pointer or keyboard user keeps their place.
+    const active = document.activeElement;
+    const focusKey = active && active.getAttribute
+      ? active.getAttribute('data-action') : null;
+    const focusGate = focusKey ? active.getAttribute('data-gate-id') : null;
+    const focusPractice = focusKey
+      ? active.getAttribute('data-practice-id') : null;
+
+    state.actions = next;
+    if (state.formSource === 'guest') {
+      saveGuestActions();
+    }
+    renderPlayerProfile();
+    renderKnowledgeGates();
+
+    if (focusKey) {
+      const selector = `#ludus-gates [data-action="${focusKey}"]`
+        + (focusGate ? `[data-gate-id="${focusGate}"]` : '')
+        + (focusPractice ? `[data-practice-id="${focusPractice}"]` : '');
+      let target = null;
+      try {
+        target = document.querySelector(selector);
+      } catch (error) {
+        target = null;
+      }
+      if (target && !target.disabled) {
+        target.focus();
+      }
+    }
+    try {
+      document.dispatchEvent(new CustomEvent('ludus:action', {
+        detail: { kind, actions: { ...state.actions } },
+      }));
+    } catch (error) {
+      console.warn('[Ludus] Could not announce action:', error);
+    }
+  }
+
+  // Signed-in players keep their rule in the database: every accepted
+  // act is sent to /api/ludus/actions, which re-applies it with the same
+  // rules, journals it and answers with the stored counters.  The local
+  // state is shown at once; the server's answer then replaces it, so a
+  // rejected act (for example a second vigil in the same ten minutes)
+  // does not linger on screen.
+  async function syncAction(op) {
+    if (state.mode !== 'online' || !state.user) {
+      return;
+    }
+    try {
+      const token = await state.user.getIdToken();
+      const res = await fetch('/api/ludus/actions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}` },
+        body: JSON.stringify(op),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        showError(body.error || 'The rule could not be saved.');
+      }
+      if (body && body.actions) {
+        state.actions = normalizeActions(body.actions);
+        renderPlayerProfile();
+        renderKnowledgeGates();
+      }
+    } catch (error) {
+      // No network: the act waits in the outbox and is sent when the
+      // connection returns (ludus-outbox.js); the server still judges it.
+      const box = window.LudusOutbox;
+      if (box && box.enqueue(window.localStorage, op, Date.now())) {
+        showError('Offline: kept, it will be sent when the network '
+          + 'returns.');
+      } else {
+        console.warn('[Ludus] Action not saved:', error.message);
+        showError('Offline: the rule is kept on screen until reload.');
+      }
+    }
+  }
+
+  // Send what waited offline, in order.  Called after sign-in and when
+  // the browser says the network is back.
+  async function flushOutbox() {
+    const box = window.LudusOutbox;
+    if (!box || state.mode !== 'online' || !state.user
+        || box.size(window.localStorage) === 0) {
+      return;
+    }
+    const token = await state.user.getIdToken();
+    const result = await box.flush(window.localStorage, async (op) => {
+      const res = await fetch('/api/ludus/actions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}` },
+        body: JSON.stringify(op),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (res.ok && body && body.actions) {
+        state.actions = normalizeActions(body.actions);
+      }
+      return { ok: res.ok, status: res.status };
+    }, Date.now());
+    if (result.dropped) {
+      showError(`${result.dropped} act(s) kept offline were too old `
+        + 'or refused by the server and were not counted.');
+    }
+    renderPlayerProfile();
+    renderKnowledgeGates();
+  }
+
+  window.addEventListener('online', () => {
+    flushOutbox().catch(() => {});
+  });
+
+  // Read a signed-in player's rule from the backend.  The client cannot
+  // read ludus_players itself (the rules compare uid with the document
+  // id, and ids are "player-<uid16>"), so the server answers for it.
+  async function loadServerActions() {
+    if (state.mode !== 'online' || !state.user) {
+      return;
+    }
+    try {
+      const token = await state.user.getIdToken();
+      const res = await fetch('/api/ludus/actions', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (res.ok) {
+        const body = await res.json();
+        state.actions = normalizeActions(body.actions);
+        renderPlayerProfile();
+        renderKnowledgeGates();
+      }
+    } catch (error) {
+      console.warn('[Ludus] Could not load the rule:', error.message);
+    }
+  }
+
+  function loadGuestPassions() {
+    try {
+      const api = window.LudusPassion;
+      const raw = JSON.parse(
+        window.localStorage.getItem(GUEST_PASSIONS_KEY) || 'null');
+      return api ? api.normalizeRecord(raw) : {};
+    } catch (error) {
+      console.warn('[Ludus] Passion record unavailable:', error.message);
+      return {};
+    }
+  }
+
+  function saveGuestPassions() {
+    try {
+      window.localStorage.setItem(GUEST_PASSIONS_KEY,
+        JSON.stringify(state.passionRecord));
+    } catch (error) {
+      console.warn('[Ludus] Passion record not saved:', error.message);
+    }
+  }
+
+  // Read the other NPCs from the offline pack: the same file the dialogue
+  // manager uses, so a person listed here can always be talked to.
+  async function loadValley() {
+    if (state.valley.length) {
+      return;
+    }
+    try {
+      const res = await fetch('/ludus/data/dialogue-trees.json');
+      if (!res.ok) {
+        return;
+      }
+      const pack = await res.json();
+      const mentorIds = MENTORS.map((m) => m.npcId);
+      state.valley = Object.values(pack.trees || {})
+        .filter((tree) => !mentorIds.includes(tree.npcId))
+        .map((tree) => ({
+          npcId: String(tree.npcId),
+          name: String(tree.npcName || tree.npcId),
+          craft: String((tree.idiom && tree.idiom.craft) || '')
+            .split(/[.;]/)[0],
+        }));
+      renderReachableNodes();
+    } catch (error) {
+      console.warn('[Ludus] Valley unavailable offline:', error.message);
+    }
+  }
+
+  async function loadPassionData() {
+    if (state.passionData) {
+      return;
+    }
+    try {
+      const res = await fetch(PASSIONS_URL);
+      if (res.ok) {
+        state.passionData = await res.json();
+        renderKnowledgeGates();
+      }
+    } catch (error) {
+      console.warn('[Ludus] Passions unavailable offline:', error.message);
+    }
+  }
+
+  // One step of an encounter.  "still" runs three breaths before the
+  // encounter can end, and nothing is counted until it ends.
+  function passionAction(kind, optionId) {
+    const api = window.LudusPassion;
+    const data = state.passionData;
+    if (!api || !data) {
+      return;
+    }
+    if (kind === 'passion-meet') {
+      const next = api.nextPassion(data, state.passionRecord);
+      if (next) {
+        state.encounter = api.start(next);
+      }
+    } else if (kind === 'passion-choice' && state.encounter) {
+      const passion = data.passions.find(
+        (p) => p.id === state.encounter.passionId);
+      const opt = api.options(state.encounter, passion, state.playerForm,
+        state.actions).find((o) => o.id === optionId);
+      if (opt && opt.breaths) {
+        const endsAt = Date.now() + opt.breaths * STILL_BREATH_SECONDS * 1000;
+        const timer = setInterval(() => {
+          if (Date.now() >= endsAt) {
+            clearInterval(timer);
+            state.stillTimer = null;
+            state.encounter = api.choose(state.encounter, optionId, passion,
+              state.playerForm, state.actions);
+          }
+          renderKnowledgeGates();
+        }, 1000);
+        state.stillTimer = { endsAt, timer };
+      } else {
+        state.encounter = api.choose(state.encounter, optionId, passion,
+          state.playerForm, state.actions);
+      }
+    } else if (kind === 'passion-close' && state.encounter) {
+      const ended = state.encounter;
+      const result = api.finish(state.passionRecord, ended);
+      state.passionRecord = result.record;
+      state.encounter = null;
+      if (state.formSource === 'guest') {
+        saveGuestPassions();
+      } else {
+        const end = ended.stage === 'virtue' || ended.stage === 'captive'
+          ? ended.stage : 'left';
+        syncAction({ op: 'passionEnd', passion: ended.passionId, end,
+          named: Boolean(ended.named) });
+      }
+      applyDialogueResult({ attributeBonuses: result.attributeBonuses,
+        playSound: true });
+    }
+    renderKnowledgeGates();
+  }
+
+  // Run one ACTION through the pure LudusActions layer.
+  function doAction(kind, id) {
+    const api = actionsApi();
+    if (!api || !state.actions || !state.playerForm) {
+      showError('The rule of prayer is not available right now.');
+      return;
+    }
+    if (kind === 'bow') {
+      commitActions(kind, api.acceptGift(state.actions, state.playerForm, id),
+        { op: 'acceptGift', gateId: id });
+      return;
+    }
+    const practice = api.PRACTICES.find((p) => p.id === id);
+    if (!practice) {
+      return;
+    }
+    if (practice.kind === 'timer') {
+      togglePracticeTimer(practice);
+      return;
+    }
+    const day = localIsoDay();
+    commitActions(practice.id, api.doPractice(state.actions, practice.id,
+      { day }), { op: 'practice', id: practice.id, day });
+  }
+
+  function stopPracticeTimer() {
+    if (state.practiceTimer) {
+      clearInterval(state.practiceTimer.timer);
+      state.practiceTimer = null;
+    }
+  }
+
+  // Refresh only the running button's text each second.  Re-rendering
+  // the panel would steal focus and flicker.
+  function updateTimerButton(practice) {
+    const button = document.querySelector('#ludus-gates [data-action='
+      + `"practice"][data-practice-id="${practice.id}"]`);
+    if (button) {
+      button.textContent = timerLabel(practice);
+      const running = Boolean(state.practiceTimer
+        && state.practiceTimer.id === practice.id);
+      button.setAttribute('aria-pressed', running ? 'true' : 'false');
+      button.classList.toggle('is-running', running);
+    }
+  }
+
+  // A timed practice counts only when it is completed: stopping early
+  // records nothing, and while one runs the other timers wait.
+  function togglePracticeTimer(practice) {
+    if (state.practiceTimer) {
+      const same = state.practiceTimer.id === practice.id;
+      stopPracticeTimer();
+      renderKnowledgeGates();
+      if (same) {
+        return;
+      }
+    }
+    const endsAt = Date.now()
+      + practice.minutes * PRACTICE_MINUTE_SECONDS * 1000;
+    const timer = setInterval(() => {
+      const run = state.practiceTimer;
+      if (!run || Date.now() < run.endsAt) {
+        updateTimerButton(practice);
+        return;
+      }
+      stopPracticeTimer();
+      const api = actionsApi();
+      if (api && state.actions) {
+        commitActions(practice.id, api.doPractice(state.actions,
+          practice.id, { minutes: practice.minutes }),
+          { op: 'practice', id: practice.id });
+      }
+    }, 1000);
+    state.practiceTimer = { id: practice.id, endsAt, timer };
+    renderKnowledgeGates();
+  }
+
   // A dialogue choice is the only source of growth: its bonuses come
   // from the tree data, so FORM -> ACTION -> GOAL stays deterministic.
   function applyDialogueResult(result) {
@@ -833,6 +1618,16 @@
         next[attr.key] = Math.min(ATTR_MAX, toScore(next[attr.key]) + bonus);
       }
     });
+    // Note what grew, before the form is replaced, for the feedback.
+    const growth = {};
+    ATTRIBUTES.forEach((attr) => {
+      const before = toScore(state.playerForm[attr.key]);
+      const after = toScore(next[attr.key]);
+      if (after > before) {
+        growth[attr.key] = { before, after };
+      }
+    });
+    state.lastGrowth = growth;
     state.playerForm = next;
     if (state.formSource === 'guest') {
       saveGuestForm();
@@ -840,7 +1635,63 @@
     renderPlayerProfile();
     renderReachableNodes();
     renderKnowledgeGates();
+    announceGrowth(Boolean(result && result.playSound));
     announcePlayer();
+  }
+
+  // FORM grew: one frame of sight, sound and touch (TABOO 0.35 rule
+  // 17).  Sight is a plain line "Wisdom 3 -> 5" and a short outline on
+  // the attribute, no confetti and no "+N" score.  Sound is the plucked
+  // gusli string (form_growth): the attribute cues are voice-like, and a
+  // human voice must not become a reward ding (TABOO 0.2 item 5).  Touch
+  // is one short pulse where the device has one.  Understanding grows in
+  // dialogue only; prayer and practices never reach this path.
+  function announceGrowth(withSound) {
+    const growth = state.lastGrowth || {};
+    const keys = Object.keys(growth);
+    if (keys.length === 0) {
+      return;
+    }
+    const line = keys.map((k) => {
+      const attr = ATTRIBUTES.find((a) => a.key === k);
+      return `${attr ? attr.label : k} ${growth[k].before} → ${growth[k].after}`;
+    }).join(', ');
+    let live = document.getElementById('ludus-growth-live');
+    if (!live) {
+      live = document.createElement('p');
+      live.id = 'ludus-growth-live';
+      live.className = 'ludus-growth-line';
+      live.setAttribute('role', 'status');
+      live.setAttribute('aria-live', 'polite');
+      const profile = document.getElementById('ludus-profile');
+      if (profile) {
+        profile.prepend(live);
+      }
+    }
+    live.textContent = `Grew in understanding: ${line}`;
+    // The dialogue window already plays the growth pluck on its own
+    // choice, so only growth from elsewhere (the road) sounds here, and a
+    // gain is never heard twice.
+    try {
+      const audio = window.LudusAudioManager;
+      if (withSound && audio && typeof audio.playSfx === 'function') {
+        audio.playSfx('ui_positive').catch(() => {});
+      }
+    } catch (error) {
+      // Sound is a companion, never a condition; a blocked context is fine.
+    }
+    if (navigator.vibrate) {
+      navigator.vibrate(30);
+    }
+    document.dispatchEvent(new CustomEvent('ludus:form-grew', {
+      detail: { growth },
+    }));
+    clearTimeout(state.growthTimer);
+    state.growthTimer = setTimeout(() => {
+      state.lastGrowth = {};
+      document.querySelectorAll('.ludus-attr-item.is-growing')
+        .forEach((el) => el.classList.remove('is-growing'));
+    }, 2500);
   }
 
   async function talkTo(npcId) {
@@ -856,7 +1707,20 @@
     manager.init(signedIn ? state.playerId : null, {
       getAuthToken: signedIn ? () => state.user.getIdToken() : null,
     });
-    await ui.open(npcId, { ...state.playerForm }, applyDialogueResult);
+    // The first choice taken in this conversation records the meeting,
+    // even when it carries no bonus: a gate asks whether the player sat
+    // with the mentor, not whether the talk paid in attributes.
+    let met = false;
+    const onChoice = (result) => {
+      const api = actionsApi();
+      if (!met && api && state.actions) {
+        met = true;
+        commitActions('meeting', api.recordMeeting(state.actions, npcId),
+          { op: 'recordMeeting', npcId });
+      }
+      applyDialogueResult(result);
+    };
+    await ui.open(npcId, { ...state.playerForm }, onChoice);
   }
 
   // One delegated listener replaces the old inline onclick attributes,
@@ -882,6 +1746,22 @@
         retry();
       } else if (action === 'talk') {
         talkTo(target.getAttribute('data-npc-id'));
+      } else if (action === 'practice') {
+        doAction('practice', target.getAttribute('data-practice-id'));
+      } else if (action === 'rights') {
+        openRights();
+      } else if (action === 'journal') {
+        saveJournal();
+      } else if (action === 'confession') {
+        // Nothing is passed in or read back: the page is private.
+        if (window.LudusConfession) {
+          window.LudusConfession.open();
+        }
+      } else if (action === 'passion-meet' || action === 'passion-choice'
+          || action === 'passion-close') {
+        passionAction(action, target.getAttribute('data-option-id'));
+      } else if (action === 'bow') {
+        doAction('bow', target.getAttribute('data-gate-id'));
       } else if (action === 'open-gate') {
         // The gate quiz lives in the dialogue layer; this module only
         // reports which gate the player chose.
@@ -906,6 +1786,10 @@
     state.playerNode = null;
     state.playerForm = loadGuestForm();
     state.formSource = 'guest';
+    state.actions = loadGuestActions();
+    state.passionRecord = loadGuestPassions();
+    loadPassionData();
+    loadValley();
     state.reachableNodes = [];
     state.knowledgeGates = [];
     console.warn('[Ludus] Offline guest mode:', error && error.message);
@@ -926,6 +1810,8 @@
     state.mode = 'online';
     state.playerForm = null;
     state.playerId = null;
+    state.actions = null;
+    stopPracticeTimer();
     renderGameUI();
     state.auth.onAuthStateChanged((user) => {
       setUser(user).catch((error) => {
@@ -962,6 +1848,7 @@
     getPlayerData: () => state.playerNode,
     getPlayerForm: () => (state.playerForm ? { ...state.playerForm } : null),
     getMode: () => state.mode,
+    getActions: () => (state.actions ? { ...state.actions } : null),
     getReachableNodes: () => state.reachableNodes,
   };
 

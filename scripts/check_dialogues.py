@@ -1,0 +1,144 @@
+"""Validate the 24 NPC dialogue trees (CLAUDE.md TABOO 0.37 and 0.39).
+
+The chorus of 12 editors wrote functions/src/data/npc-dialogues-24.json;
+this check keeps every later edit inside the same contract, and fails
+the build with the first problems it finds:
+  - every NPC has an idiom: worldview, craft, 6-10 images, 3-5
+    metaphors and a way of falling silent (Aesopian language, 0.39);
+  - 6-8 nodes, unique ids, a real start node, every nextNodeId
+    resolves or is null;
+  - every node carries text, text_ru, meaning and source (0.35 rule 18);
+  - saints speak in paraphrase (voice "paraphrase"), never in invented
+    quotations (0.37);
+  - the start node has a branch with no condition, so a beginner can
+    talk and the meeting is recorded (the gates depend on it);
+  - at least two branches are gated by FORM; Cunning never opens a
+    teaching: a Cunning-gated branch may lead only to a refusal node,
+    one with no FORM gates where each way on pays at most +1 (the way
+    back is repentance, as on the ladder of a thought), and Cunning
+    never pays more than +1;
+  - bonuses are whole numbers 1-5 on the seven attributes only;
+  - player choices never use the words the UI must not carry (0.39).
+
+Usage: python3 scripts/check_dialogues.py [path]
+"""
+
+import json
+import re
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+DEFAULT = ROOT / 'functions' / 'src' / 'data' / 'npc-dialogues-24.json'
+
+ATTRS = {'wisdom', 'faith', 'dexterity', 'constitution', 'charisma',
+         'cunning', 'erudition'}
+SAINTS = {'abba_moses', 'ekaterina', 'maximos', 'photius',
+          'mary_magdalene', 'gregory_dialogist', 'symeon_stylite',
+          'kassiani', 'gregory_palamas', 'macrina', 'isaias'}
+FORBIDDEN = re.compile(r'\b(martyr\w*|saint\w*|grace|sacrament\w*|'
+                       r'salvation)\b|мученик\w*|святой|святая|благодат\w*|'
+                       r'таинств\w*|спасени\w*', re.IGNORECASE)
+
+
+def is_refusal(node):
+    """A node that teaches nothing new: no FORM gates, at most +1."""
+    for br in node.get('branches') or []:
+        if br.get('condition'):
+            return False
+        if sum((br.get('attributeBonuses') or {}).values()) > 1:
+            return False
+    return True
+
+
+def check_tree(tree):
+    errors = []
+    nid = tree.get('npcId', '?')
+
+    def err(msg):
+        errors.append(f'{nid}: {msg}')
+
+    idiom = tree.get('idiom') or {}
+    for key in ('worldview', 'craft', 'silence'):
+        if not idiom.get(key):
+            err(f'idiom.{key} missing')
+    if not 6 <= len(idiom.get('images') or []) <= 10:
+        err('idiom.images must hold 6-10 images')
+    if not 3 <= len(idiom.get('metaphors') or []) <= 5:
+        err('idiom.metaphors must hold 3-5 metaphors')
+
+    nodes = tree.get('nodes') or []
+    ids = [n.get('id') for n in nodes]
+    if not 6 <= len(nodes) <= 8:
+        err(f'{len(nodes)} nodes, expected 6-8')
+    if len(set(ids)) != len(ids):
+        err('duplicate node ids')
+    if tree.get('startNode') not in ids:
+        err('startNode not found')
+
+    gated = 0
+    for node in nodes:
+        where = f"node {node.get('id')}"
+        for key in ('text', 'text_ru', 'meaning', 'source'):
+            if not str(node.get(key) or '').strip():
+                err(f'{where}: {key} missing')
+        if nid in SAINTS and node.get('voice') not in ('paraphrase',):
+            err(f'{where}: a saint speaks in paraphrase')
+        for br in node.get('branches') or []:
+            nxt = br.get('nextNodeId')
+            if nxt is not None and nxt not in ids:
+                err(f'{where}: nextNodeId {nxt!r} does not resolve')
+            for key in ('text', 'text_ru'):
+                if FORBIDDEN.search(br.get(key) or ''):
+                    err(f'{where}: choice uses a UI-forbidden word: '
+                        f'{br.get(key)!r}')
+            cond = br.get('condition') or {}
+            if cond:
+                gated += 1
+            for attr, value in cond.items():
+                if attr not in ATTRS:
+                    err(f'{where}: condition on unknown {attr!r}')
+                if attr == 'cunning':
+                    target = next((n for n in nodes
+                                   if n.get('id') == nxt), None)
+                    if not target or not is_refusal(target):
+                        err(f'{where}: Cunning opens a teaching')
+                if not (isinstance(value, int) and 1 <= value <= 20):
+                    err(f'{where}: threshold {value!r} out of range')
+            for attr, value in (br.get('attributeBonuses') or {}).items():
+                if attr not in ATTRS:
+                    err(f'{where}: bonus on unknown {attr!r}')
+                elif not (isinstance(value, int) and 1 <= value <= 5):
+                    err(f'{where}: bonus {value!r} not 1-5')
+                elif attr == 'cunning' and value > 1:
+                    err(f'{where}: Cunning pays more than +1')
+    start = next((n for n in nodes if n.get('id') == tree.get('startNode')),
+                 None)
+    if start and not any(not br.get('condition')
+                         for br in start.get('branches') or []):
+        err('the start node has no unconditioned branch')
+    if gated < 2:
+        err(f'only {gated} FORM-gated branches, need 2')
+    return errors
+
+
+def main():
+    path = Path(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT
+    trees = json.loads(path.read_text('utf-8'))
+    errors = []
+    if len(trees) != 24:
+        errors.append(f'{len(trees)} trees, expected 24')
+    if len({t.get('npcId') for t in trees}) != len(trees):
+        errors.append('duplicate npcId')
+    for tree in trees:
+        errors += check_tree(tree)
+    if errors:
+        print(f'check_dialogues: {len(errors)} problem(s)')
+        for line in errors[:60]:
+            print('  ', line)
+        sys.exit(1)
+    print(f'check_dialogues: {len(trees)} trees ok')
+
+
+if __name__ == '__main__':
+    main()

@@ -1,5 +1,5 @@
 {
- "next": 6,
+ "next": 24,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -110,6 +110,158 @@
    "accepted_objects": 8,
    "code_candidates": 38,
    "reverted": "Slot mismatch: DEF-004 (gate-opening moment, a GOAL) got dungeon doors turned into passions; DEF-006 (bubble columns) got a watermelon. Both deficits are procedural, not raw-material. Fix: images only for fill=raw-material. 8 objects removed before commit; code candidates kept."
+  },
+  {
+   "time": "2026-09-29T15:29:55.673815+00:00",
+   "deficits": [
+    {
+     "id": "DEF-007",
+     "skipped": "not-raw-material"
+    },
+    {
+     "id": "DEF-008",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 193,
+      "sacred-never-raw": 4
+     }
+    },
+    {
+     "id": "DEF-009",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 182
+     }
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 21
+  },
+  {
+   "time": "2026-09-29T17:30:44.134232+00:00",
+   "deficits": [
+    {
+     "id": "DEF-010",
+     "skipped": "not-raw-material"
+    },
+    {
+     "id": "DEF-011",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 34,
+      "sacred-never-raw": 1
+     }
+    },
+    {
+     "id": "DEF-012",
+     "skipped": "audio-pipeline-pending"
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 165
+  },
+  {
+   "time": "2026-09-29T19:51:23.436428+00:00",
+   "deficits": [
+    {
+     "id": "DEF-013",
+     "skipped": "not-raw-material"
+    },
+    {
+     "id": "DEF-014",
+     "skipped": "not-raw-material"
+    },
+    {
+     "id": "DEF-015",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 187
+     }
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 13
+  },
+  {
+   "time": "2026-09-29T21:51:23.938925+00:00",
+   "deficits": [
+    {
+     "id": "DEF-016",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 157
+     }
+    },
+    {
+     "id": "DEF-017",
+     "skipped": "not-raw-material"
+    },
+    {
+     "id": "DEF-018",
+     "skipped": "not-raw-material"
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 43
+  },
+  {
+   "time": "2026-09-29T23:50:55.245906+00:00",
+   "deficits": [
+    {
+     "id": "DEF-019",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 198
+     }
+    },
+    {
+     "id": "DEF-020",
+     "skipped": "not-raw-material"
+    },
+    {
+     "id": "DEF-021",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 193
+     }
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 9
+  },
+  {
+   "time": "2026-09-30T01:50:49.332398+00:00",
+   "deficits": [
+    {
+     "id": "DEF-022",
+     "skipped": "audio-pipeline-pending"
+    },
+    {
+     "id": "DEF-023",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 144
+     }
+    },
+    {
+     "id": "DEF-024",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 188
+     }
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 68
   }
  ]
 }

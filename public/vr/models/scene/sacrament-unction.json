@@ -1,0 +1,58 @@
+{
+ "id": "sacrament-unction",
+ "kind": "scene",
+ "lod": "proxy",
+ "tris": 1868,
+ "bbox_m": [
+  6,
+  2.5,
+  6
+ ],
+ "title": "У постели больного",
+ "mood": "infirmary cell, night",
+ "microphone": false,
+ "speechRecognition": false,
+ "logPresence": false,
+ "reward": null,
+ "attributes": null,
+ "gate": null,
+ "playerCan": [
+  "approach to the witness line",
+  "stand",
+  "bow the head (no effect)",
+  "leave"
+ ],
+ "audio": {
+  "roomTone_dBFS": -48,
+  "ison": "a cappella, vowels only",
+  "digitalZero": false
+ },
+ "light": {
+  "lampada_K": 1800,
+  "instrumentLightFadeSeconds": 1.75
+ },
+ "bells": null,
+ "internalRite": "Елеосвящение",
+ "source": "scripts/meta3d/sacrament-scenes.json",
+ "method": "scene-kit-primitives",
+ "holyObjects": [
+  "wheat-bowl",
+  "oil-vessel",
+  "icon-board",
+  "lampada-glass",
+  "lampada-chain",
+  "gospel",
+  "cross",
+  "stručec",
+  "stručec",
+  "stručec",
+  "stručec",
+  "stručec",
+  "stručec",
+  "stručec"
+ ],
+ "lights": [
+  "lampada-1800K",
+  "seven-candles"
+ ]
+}

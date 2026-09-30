@@ -20,6 +20,9 @@ const ROOT = path.resolve(__dirname, '../..');
 const OUT = path.join(ROOT, 'public/vr/models');
 const THREE_DIR = path.join(__dirname, 'node_modules/three');
 const PROMPTS = path.join(ROOT, 'docs/PROMPTS_1070_2026-09-29.json');
+// Seven sacrament places (docs/SACRAMENTS_VR_SCENES.md): the player is a
+// witness, holy objects carry noInteract/noLoot, the microphone is off.
+const SCENES = path.join(__dirname, 'sacrament-scenes.json');
 const SVG_DIRS = [
   path.join(ROOT, 'SVG'),
   path.join(ROOT, 'public/ludus/art'),
@@ -162,7 +165,7 @@ async function main() {
   await page.waitForFunction(() => window.meta3dReady === true);
   const report = { svg: 0, prompts: 0, overBudget: [], failed: [] };
 
-  if (only !== 'prompts') {
+  if (!only || only === 'svg') {
     for (const job of svgJobs()) {
       const prefix = job.id.split('-')[0];
       const kind = SVG_HEIGHT[prefix] ? prefix : 'obj';
@@ -193,7 +196,7 @@ async function main() {
     }
   }
 
-  if (only !== 'svg') {
+  if (!only || only === 'prompts') {
     const prompts = JSON.parse(fs.readFileSync(PROMPTS, 'utf8'));
     const used = new Set();
     for (const [i, prompt] of prompts.entries()) {
@@ -229,9 +232,36 @@ async function main() {
     }
   }
 
+  if (only === 'scenes' || !only) {
+    report.scenes = 0;
+    const scenes = JSON.parse(fs.readFileSync(SCENES, 'utf8'));
+    for (const scene of scenes) {
+      try {
+        const res = await page.evaluate((spec) => window.sceneToGlb(spec),
+          { id: scene.id, parts: scene.parts, lights: scene.lights,
+            userData: { microphone: false, logPresence: false } });
+        const { parts, lights, ...meta } = scene;
+        write('scene', scene.id, res, {
+          ...meta,
+          source: 'scripts/meta3d/sacrament-scenes.json',
+          method: 'scene-kit-primitives',
+          holyObjects: parts.filter((x) => x.flags && x.flags.holy)
+            .map((x) => x.name),
+          lights: lights.map((l) => l.name),
+        });
+        report.scenes += 1;
+      } catch (e) {
+        report.failed.push(`${scene.id}: ${e.message.split('\n')[0]}`);
+      }
+    }
+  }
+
   report.pageErrors = errors;
   fs.mkdirSync(OUT, { recursive: true });
-  fs.writeFileSync(path.join(OUT, 'report.json'),
+  // A partial run (--only) writes its own report, so the full report is
+  // never overwritten with zeros for the parts that were not rebuilt.
+  fs.writeFileSync(path.join(OUT, only ? `report-${only}.json`
+    : 'report.json'),
     JSON.stringify(report, null, 1) + '\n');
   console.log(JSON.stringify({ ...report,
     overBudget: report.overBudget.length, failed: report.failed.length }));

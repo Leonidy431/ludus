@@ -1,0 +1,127 @@
+{
+ "title": "Manuscript of rights",
+ "title_ru": "Манускрипт прав",
+ "generated_by": "scripts/build_rights_manifest.py",
+ "own": {
+  "name": "Ludus: code, SVG art, dialogues, procedural sound",
+  "licence": "not declared (all rights with the author)",
+  "licence_file": "LICENSE",
+  "note": "No LICENSE file in the repository yet; the operator decides.",
+  "licence_file_present": false
+ },
+ "libraries": [
+  {
+   "name": "three.js 0.169 (Meta 3D proxies, scripts/meta3d)",
+   "licence": "MIT",
+   "licence_file": "scripts/meta3d/node_modules/three/LICENSE",
+   "licence_file_present": true
+  },
+  {
+   "name": "Needle Engine 5.1.12 (VR scene)",
+   "licence": "Proprietary: all rights reserved; free only for non-commercial or evaluation use",
+   "licence_file": "public/vr/vendor/needle/LICENSE.md",
+   "note": "A commercial licence or a move to three.js is needed before a Meta Store release (TABOO 0.25 item 4).",
+   "licence_file_present": true
+  },
+  {
+   "name": "kolokol (bell model, submodule vendor/kolokol)",
+   "licence": "not declared",
+   "licence_file": "vendor/kolokol/LICENSE",
+   "note": "The operator's own repository; a licence file is still to be added.",
+   "licence_file_present": false
+  }
+ ],
+ "raw_material": [
+  {
+   "object": "ant_acedia_7503efbff8",
+   "slot": "DEF-001",
+   "passion": "acedia",
+   "repo": "https://github.com/Card-Forge/forge",
+   "commit": "647b5eac95",
+   "path": "forge-gui/res/adventure/common/sprites/enemy/undead/ghost.png",
+   "licence": "GPL",
+   "colour_change": 0.4462,
+   "min_shape_change": 0.6943,
+   "variants": 12,
+   "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
+  },
+  {
+   "object": "ant_anger_3c331cda72",
+   "slot": "DEF-001",
+   "passion": "anger",
+   "repo": "https://github.com/Card-Forge/forge",
+   "commit": "647b5eac95",
+   "path": "forge-gui/res/adventure/common/sprites/enemy/plant/mushroom_monster.png",
+   "licence": "GPL",
+   "colour_change": 0.7379,
+   "min_shape_change": 0.4603,
+   "variants": 12,
+   "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
+  },
+  {
+   "object": "ant_anger_78b752dfa6",
+   "slot": "DEF-001",
+   "passion": "anger",
+   "repo": "https://github.com/Card-Forge/forge",
+   "commit": "647b5eac95",
+   "path": "forge-gui/res/adventure/common/sprites/enemy/plant/slimefoot.png",
+   "licence": "GPL",
+   "colour_change": 0.9087,
+   "min_shape_change": 0.4935,
+   "variants": 12,
+   "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
+  },
+  {
+   "object": "ant_anger_8c10c90816",
+   "slot": "DEF-001",
+   "passion": "anger",
+   "repo": "https://github.com/Card-Forge/forge",
+   "commit": "647b5eac95",
+   "path": "forge-gui/res/adventure/common/sprites/enemy/beast/insect/smallworm.png",
+   "licence": "GPL",
+   "colour_change": 0.4402,
+   "min_shape_change": 0.4808,
+   "variants": 12,
+   "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
+  },
+  {
+   "object": "ant_anger_c3857f31c5",
+   "slot": "DEF-001",
+   "passion": "anger",
+   "repo": "https://github.com/Card-Forge/forge",
+   "commit": "647b5eac95",
+   "path": "forge-gui/res/adventure/common/sprites/enemy/undead/ghost.png",
+   "licence": "GPL",
+   "colour_change": 0.7803,
+   "min_shape_change": 0.5045,
+   "variants": 12,
+   "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
+  },
+  {
+   "object": "ant_gluttony_3b98248226",
+   "slot": "DEF-001",
+   "passion": "gluttony",
+   "repo": "https://github.com/Card-Forge/forge",
+   "commit": "647b5eac95",
+   "path": "forge-gui/res/adventure/common/sprites/enemy/ooze/giant_slime.png",
+   "licence": "GPL",
+   "colour_change": 0.906,
+   "min_shape_change": 0.372,
+   "variants": 12,
+   "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
+  },
+  {
+   "object": "ant_sadness_3f22d4e3ed",
+   "slot": "DEF-001",
+   "passion": "sadness",
+   "repo": "https://github.com/Card-Forge/forge",
+   "commit": "647b5eac95",
+   "path": "forge-gui/res/adventure/common/sprites/enemy/undead/ghost_2.png",
+   "licence": "GPL",
+   "colour_change": 1.0,
+   "min_shape_change": 0.3915,
+   "variants": 12,
+   "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
+  }
+ ]
+}

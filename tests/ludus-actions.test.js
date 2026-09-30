@@ -1,6 +1,6 @@
 // Tests for the ACTION layer and the three-part gate check
 // (CLAUDE.md constitution section 4, TABOO 0.35 rule 14).
-// Run: node --test tests/
+// Run: node --test tests/*.test.js
 'use strict';
 
 const test = require('node:test');
@@ -76,7 +76,60 @@ test('only whole minutes of stillness count', () => {
 
 test('normalize drops tampered keys and bad values', () => {
   const a = A.normalize({ prayerCount: -5, fastDays: 'x', xp: 999,
-    met: { theodora: 2, '<img>': 1 }, gifts: { apophatic: 'yes' } });
-  assert.deepEqual(a, { prayerCount: 0, fastDays: 0, meditationHours: 0,
-    lastFastDay: null, met: { theodora: 2 }, gifts: {} });
+    met: { theodora: 2, '<img>': 1 }, gifts: { apophatic: 'yes' },
+    passions: { anger: { meetings: 2, overcome: -1, discerned: 'yes' },
+      '<b>': { meetings: 1 } } });
+  assert.deepEqual(a, { practices: {}, prayerCount: 0, fastDays: 0,
+    meditationHours: 0, lastFastDay: null, met: { theodora: 2 },
+    gifts: {}, passions: { anger: { meetings: 2, overcome: 0, captive: 0,
+      discerned: false } } });
+});
+
+test('the rule of prayer has twelve distinct practices', () => {
+  assert.equal(A.PRACTICES.length, 12);
+  assert.equal(new Set(A.PRACTICES.map((p) => p.id)).size, 12);
+  A.PRACTICES.forEach((p) => {
+    assert.ok(p.passion && p.virtue && p.source, p.id);
+  });
+});
+
+test('a daily practice counts once per day', () => {
+  let a = A.doPractice(A.EMPTY, 'alms', { day: '2026-09-29' });
+  a = A.doPractice(a, 'alms', { day: '2026-09-29' });
+  assert.equal(a.practices.alms.count, 1);
+  assert.equal(A.keptToday(a, 'alms', '2026-09-29'), true);
+  a = A.doPractice(a, 'alms', { day: '2026-09-30' });
+  assert.equal(a.practices.alms.count, 2);
+});
+
+test('a timer counts only a completed session', () => {
+  let a = A.doPractice(A.EMPTY, 'vigil', { minutes: 9 });
+  assert.equal(a.practices.vigil, undefined);
+  a = A.doPractice(a, 'vigil', { minutes: 10 });
+  assert.equal(A.practiceTally(a, 'vigil').value, 10);
+});
+
+test('legacy practices still feed the gates', () => {
+  let a = A.doPractice(A.EMPTY, 'prayer_rope');
+  a = A.doPractice(a, 'fast', { day: '2026-09-29' });
+  a = A.doPractice(a, 'stillness', { minutes: 1 });
+  assert.equal(a.prayerCount, 1);
+  assert.equal(a.fastDays, 1);
+  assert.equal(A.practiceTally(a, 'stillness').value, 1);
+});
+
+test('a secret good deed is never shown as a number', () => {
+  const a = A.doPractice(A.EMPTY, 'secret_deed', { day: '2026-09-29' });
+  const tally = A.practiceTally(a, 'secret_deed');
+  assert.equal(tally.shown, false);
+  assert.equal(tally.value, undefined);
+});
+
+test('practices never change the FORM', () => {
+  let a = A.EMPTY;
+  A.PRACTICES.forEach((p) => {
+    a = A.doPractice(a, p.id, { day: '2026-09-29', minutes: 60 });
+  });
+  assert.equal(Object.keys(a).some((k) => ['wisdom', 'faith', 'xp']
+    .includes(k)), false);
 });

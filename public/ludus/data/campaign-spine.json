@@ -1,0 +1,823 @@
+{
+ "source": "webtypicon2 functions/src/game/missions.ts @ origin/main (read-only)",
+ "acts": [
+  {
+   "id": "prologue",
+   "title": "Prologue: the road to the lake",
+   "title_ru": "Пролог: дорога к озеру",
+   "missions": [
+    1,
+    3
+   ]
+  },
+  {
+   "id": "trade",
+   "title": "Act I: the caravan road",
+   "title_ru": "Акт I: караванная дорога",
+   "missions": [
+    2,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ]
+  },
+  {
+   "id": "spiritual",
+   "title": "Act II: signs in clay and stone",
+   "title_ru": "Акт II: знаки в глине и камне",
+   "missions": [
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+   ]
+  },
+  {
+   "id": "hydrology",
+   "title": "Act III: the rising water",
+   "title_ru": "Акт III: вода поднимается",
+   "missions": [
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45
+   ]
+  },
+  {
+   "id": "diplomacy",
+   "title": "Act IV: khans and envoys",
+   "title_ru": "Акт IV: ханы и послы",
+   "missions": [
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65
+   ]
+  },
+  {
+   "id": "craft",
+   "title": "Act V: the workshop of the monastery",
+   "title_ru": "Акт V: мастерская обители",
+   "missions": [
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85
+   ]
+  },
+  {
+   "id": "narrative",
+   "title": "Finale: the stone under the water",
+   "title_ru": "Финал: камень под водой",
+   "missions": [
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99
+   ]
+  }
+ ],
+ "order": [
+  1,
+  3,
+  2,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+  29,
+  30,
+  31,
+  32,
+  33,
+  34,
+  35,
+  36,
+  37,
+  38,
+  39,
+  40,
+  41,
+  42,
+  43,
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51,
+  52,
+  53,
+  54,
+  55,
+  56,
+  57,
+  58,
+  59,
+  60,
+  61,
+  62,
+  63,
+  64,
+  65,
+  66,
+  67,
+  68,
+  69,
+  70,
+  71,
+  72,
+  73,
+  74,
+  75,
+  76,
+  77,
+  78,
+  79,
+  80,
+  81,
+  82,
+  83,
+  84,
+  85,
+  86,
+  87,
+  88,
+  89,
+  90,
+  91,
+  92,
+  93,
+  94,
+  95,
+  96,
+  97,
+  98,
+  99
+ ],
+ "missions": [
+  {
+   "id": 1,
+   "block": "trade",
+   "title": "Монастырь-каравансарай"
+  },
+  {
+   "id": 2,
+   "block": "trade",
+   "title": "Армянская фактория"
+  },
+  {
+   "id": 3,
+   "block": "trade",
+   "title": "Епископ-арбитр"
+  },
+  {
+   "id": 4,
+   "block": "trade",
+   "title": "Торговый протекторат"
+  },
+  {
+   "id": 5,
+   "block": "trade",
+   "title": "Кредит доверия"
+  },
+  {
+   "id": 6,
+   "block": "trade",
+   "title": "Миссия-логист"
+  },
+  {
+   "id": 7,
+   "block": "trade",
+   "title": "Армяно-генуэзский союз"
+  },
+  {
+   "id": 8,
+   "block": "trade",
+   "title": "Торговый медиатор"
+  },
+  {
+   "id": 9,
+   "block": "trade",
+   "title": "Караван благотворительности"
+  },
+  {
+   "id": 10,
+   "block": "trade",
+   "title": "Налоговая амнистия"
+  },
+  {
+   "id": 11,
+   "block": "trade",
+   "title": "Миссионер-экономист"
+  },
+  {
+   "id": 12,
+   "block": "trade",
+   "title": "Шёлковый коридор"
+  },
+  {
+   "id": 13,
+   "block": "trade",
+   "title": "Купеческий синод"
+  },
+  {
+   "id": 14,
+   "block": "trade",
+   "title": "Рынок реликвий"
+  },
+  {
+   "id": 15,
+   "block": "trade",
+   "title": "Братство караванщиков"
+  },
+  {
+   "id": 16,
+   "block": "spiritual",
+   "title": "Символ Ихтиса"
+  },
+  {
+   "id": 17,
+   "block": "spiritual",
+   "title": "Несторианский крест"
+  },
+  {
+   "id": 18,
+   "block": "spiritual",
+   "title": "Многоязычная литургия"
+  },
+  {
+   "id": 19,
+   "block": "spiritual",
+   "title": "Реликварий Матфея"
+  },
+  {
+   "id": 20,
+   "block": "spiritual",
+   "title": "Pars pro toto"
+  },
+  {
+   "id": 21,
+   "block": "spiritual",
+   "title": "Униатский обряд"
+  },
+  {
+   "id": 22,
+   "block": "spiritual",
+   "title": "Миссионерская легенда"
+  },
+  {
+   "id": 23,
+   "block": "spiritual",
+   "title": "«Форпост веры»"
+  },
+  {
+   "id": 24,
+   "block": "spiritual",
+   "title": "Покровительство пленникам"
+  },
+  {
+   "id": 25,
+   "block": "spiritual",
+   "title": "Обет гостеприимства"
+  },
+  {
+   "id": 26,
+   "block": "spiritual",
+   "title": "Миссионер-исповедник купцов"
+  },
+  {
+   "id": 27,
+   "block": "spiritual",
+   "title": "Хор диаспоры"
+  },
+  {
+   "id": 28,
+   "block": "spiritual",
+   "title": "Паломничество по террасам"
+  },
+  {
+   "id": 29,
+   "block": "spiritual",
+   "title": "Память епископа Иоанна"
+  },
+  {
+   "id": 30,
+   "block": "spiritual",
+   "title": "«Подвижная Эфиопия»"
+  },
+  {
+   "id": 31,
+   "block": "hydrology",
+   "title": "Фаза регрессии"
+  },
+  {
+   "id": 32,
+   "block": "hydrology",
+   "title": "Фаза трансгрессии"
+  },
+  {
+   "id": 33,
+   "block": "hydrology",
+   "title": "Лимнологический прогноз"
+  },
+  {
+   "id": 34,
+   "block": "hydrology",
+   "title": "«Город-на-дне»"
+  },
+  {
+   "id": 35,
+   "block": "hydrology",
+   "title": "Перенос монастыря"
+  },
+  {
+   "id": 36,
+   "block": "hydrology",
+   "title": "Водный налог"
+  },
+  {
+   "id": 37,
+   "block": "hydrology",
+   "title": "Ледниковый путь"
+  },
+  {
+   "id": 38,
+   "block": "hydrology",
+   "title": "Плотинный эксперимент"
+  },
+  {
+   "id": 39,
+   "block": "hydrology",
+   "title": "Сбор трупов культур"
+  },
+  {
+   "id": 40,
+   "block": "hydrology",
+   "title": "«Память воды»"
+  },
+  {
+   "id": 41,
+   "block": "hydrology",
+   "title": "Сезон дождей"
+  },
+  {
+   "id": 42,
+   "block": "hydrology",
+   "title": "«Богатые террасы»"
+  },
+  {
+   "id": 43,
+   "block": "hydrology",
+   "title": "Обряд освящения воды"
+  },
+  {
+   "id": 44,
+   "block": "hydrology",
+   "title": "Предупреждение потопа"
+  },
+  {
+   "id": 45,
+   "block": "hydrology",
+   "title": "Гидрологический архив"
+  },
+  {
+   "id": 46,
+   "block": "diplomacy",
+   "title": "Договор с улусом"
+  },
+  {
+   "id": 47,
+   "block": "diplomacy",
+   "title": "Тарханная грамота"
+  },
+  {
+   "id": 48,
+   "block": "diplomacy",
+   "title": "Консул диаспоры"
+  },
+  {
+   "id": 49,
+   "block": "diplomacy",
+   "title": "Судебная автономия"
+  },
+  {
+   "id": 50,
+   "block": "diplomacy",
+   "title": "Переговорщик с кочевниками"
+  },
+  {
+   "id": 51,
+   "block": "diplomacy",
+   "title": "Защита пленных"
+  },
+  {
+   "id": 52,
+   "block": "diplomacy",
+   "title": "Протокол о реликвиях"
+  },
+  {
+   "id": 53,
+   "block": "diplomacy",
+   "title": "Сеть информаторов"
+  },
+  {
+   "id": 54,
+   "block": "diplomacy",
+   "title": "Посольство к Папе"
+  },
+  {
+   "id": 55,
+   "block": "diplomacy",
+   "title": "Союз с местными шаманами"
+  },
+  {
+   "id": 56,
+   "block": "diplomacy",
+   "title": "Участие в ярмарках"
+  },
+  {
+   "id": 57,
+   "block": "diplomacy",
+   "title": "Защита архивов"
+  },
+  {
+   "id": 58,
+   "block": "diplomacy",
+   "title": "Изгнанные епископы"
+  },
+  {
+   "id": 59,
+   "block": "diplomacy",
+   "title": "Конфликт с несторианами"
+  },
+  {
+   "id": 60,
+   "block": "diplomacy",
+   "title": "Брак как дипломатия"
+  },
+  {
+   "id": 61,
+   "block": "diplomacy",
+   "title": "Политический монастырь"
+  },
+  {
+   "id": 62,
+   "block": "diplomacy",
+   "title": "Эксперты по праву"
+  },
+  {
+   "id": 63,
+   "block": "diplomacy",
+   "title": "Миссия-убежище"
+  },
+  {
+   "id": 64,
+   "block": "diplomacy",
+   "title": "Тайный архив униторов"
+  },
+  {
+   "id": 65,
+   "block": "diplomacy",
+   "title": "Рационализация налогов"
+  },
+  {
+   "id": 66,
+   "block": "craft",
+   "title": "Кузня монастыря"
+  },
+  {
+   "id": 67,
+   "block": "craft",
+   "title": "Керамические мастерские"
+  },
+  {
+   "id": 68,
+   "block": "craft",
+   "title": "Верфи на Светлом Мысу"
+  },
+  {
+   "id": 69,
+   "block": "craft",
+   "title": "Текстильные цеха"
+  },
+  {
+   "id": 70,
+   "block": "craft",
+   "title": "Монастырская винодельня/сад"
+  },
+  {
+   "id": 71,
+   "block": "craft",
+   "title": "Архитектурное копирование Самарканда"
+  },
+  {
+   "id": 72,
+   "block": "craft",
+   "title": "Планировочная геометрия"
+  },
+  {
+   "id": 73,
+   "block": "craft",
+   "title": "Мосты и дороги миссии"
+  },
+  {
+   "id": 74,
+   "block": "craft",
+   "title": "Школа ремёсел"
+  },
+  {
+   "id": 75,
+   "block": "craft",
+   "title": "Системы хранения зерна"
+  },
+  {
+   "id": 76,
+   "block": "craft",
+   "title": "Травничество и медицина"
+  },
+  {
+   "id": 77,
+   "block": "craft",
+   "title": "Библиотека торговых маршрутов"
+  },
+  {
+   "id": 78,
+   "block": "craft",
+   "title": "Навигация по звёздам и берегам"
+  },
+  {
+   "id": 79,
+   "block": "craft",
+   "title": "Монастырская типография (позднее)"
+  },
+  {
+   "id": 80,
+   "block": "craft",
+   "title": "Хранение монет"
+  },
+  {
+   "id": 81,
+   "block": "craft",
+   "title": "Обработка серебра и золота"
+  },
+  {
+   "id": 82,
+   "block": "craft",
+   "title": "Энергия воды"
+  },
+  {
+   "id": 83,
+   "block": "craft",
+   "title": "Полевые кухни"
+  },
+  {
+   "id": 84,
+   "block": "craft",
+   "title": "Системы сигнализации"
+  },
+  {
+   "id": 85,
+   "block": "craft",
+   "title": "Штаб подводной археологии"
+  },
+  {
+   "id": 86,
+   "block": "narrative",
+   "title": "Хроника диаспоры"
+  },
+  {
+   "id": 87,
+   "block": "narrative",
+   "title": "Картографы Крескесы"
+  },
+  {
+   "id": 88,
+   "block": "narrative",
+   "title": "Легенда о затонувшем монастыре"
+  },
+  {
+   "id": 89,
+   "block": "narrative",
+   "title": "Конфликт версий мощей"
+  },
+  {
+   "id": 90,
+   "block": "narrative",
+   "title": "Ветвление судьбы"
+  },
+  {
+   "id": 91,
+   "block": "narrative",
+   "title": "«Миссия-как-хаб»"
+  },
+  {
+   "id": 92,
+   "block": "narrative",
+   "title": "Режим историка"
+  },
+  {
+   "id": 93,
+   "block": "narrative",
+   "title": "Режим археолога"
+  },
+  {
+   "id": 94,
+   "block": "narrative",
+   "title": "Смена парадигмы"
+  },
+  {
+   "id": 95,
+   "block": "narrative",
+   "title": "Исчезновение диаспоры"
+  },
+  {
+   "id": 96,
+   "block": "narrative",
+   "title": "Фантомный епископ"
+  },
+  {
+   "id": 97,
+   "block": "narrative",
+   "title": "Армяно-тюркский синкретизм"
+  },
+  {
+   "id": 98,
+   "block": "narrative",
+   "title": "Конфликт с фанатиками"
+  },
+  {
+   "id": 99,
+   "block": "narrative",
+   "title": "Эпилог воды"
+  }
+ ],
+ "needsChorusRewrite": [
+  {
+   "id": 14,
+   "title": "Рынок реликвий",
+   "review": [
+    {
+     "flag": "relic-as-commodity",
+     "why": "A relic is never traded, looted or a pilgrimage multiplier (TABOO 0.2 item 3; 0.35 rule 16)."
+    }
+   ]
+  },
+  {
+   "id": 18,
+   "title": "Многоязычная литургия",
+   "review": [
+    {
+     "flag": "conversion-as-score",
+     "why": "Conversion is not a metric; faith is never pressured (TABOO 0.37, dignity of the other)."
+    }
+   ]
+  },
+  {
+   "id": 19,
+   "title": "Реликварий Матфея",
+   "review": [
+    {
+     "flag": "relic-as-commodity",
+     "why": "A relic is never traded, looted or a pilgrimage multiplier (TABOO 0.2 item 3; 0.35 rule 16)."
+    }
+   ]
+  },
+  {
+   "id": 20,
+   "title": "Pars pro toto",
+   "review": [
+    {
+     "flag": "relic-as-commodity",
+     "why": "A relic is never traded, looted or a pilgrimage multiplier (TABOO 0.2 item 3; 0.35 rule 16)."
+    }
+   ]
+  },
+  {
+   "id": 32,
+   "title": "Фаза трансгрессии",
+   "review": [
+    {
+     "flag": "relic-as-commodity",
+     "why": "A relic is never traded, looted or a pilgrimage multiplier (TABOO 0.2 item 3; 0.35 rule 16)."
+    }
+   ]
+  },
+  {
+   "id": 52,
+   "title": "Протокол о реликвиях",
+   "review": [
+    {
+     "flag": "relic-as-commodity",
+     "why": "A relic is never traded, looted or a pilgrimage multiplier (TABOO 0.2 item 3; 0.35 rule 16)."
+    }
+   ]
+  },
+  {
+   "id": 89,
+   "title": "Конфликт версий мощей",
+   "review": [
+    {
+     "flag": "relic-as-commodity",
+     "why": "A relic is never traded, looted or a pilgrimage multiplier (TABOO 0.2 item 3; 0.35 rule 16)."
+    }
+   ]
+  }
+ ]
+}

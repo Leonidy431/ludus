@@ -27,6 +27,15 @@ on:
     paths:
       - 'public/ludus/art/derived/**'
       - 'scripts/raw_assets/**'
+      - 'scripts/check_canon.py'
+      - 'scripts/tests/**'
+      - 'data/patristic-canon.json'
+      - 'functions/src/api/**'
+      - 'functions/src/tests/api/**'
+      - 'functions/src/schemas/**'
+      - 'functions/src/data/npc-dialogues-24.json'
+      - 'public/ludus/data/passions.json'
+      - 'public/ludus/ludus-confession.js'
       - '.github/workflows/raw-asset-intake.yml'
 
 permissions:
@@ -64,6 +73,41 @@ jobs:
       # a gap fails with "Нет объёма для Meta".
       - name: Meta 3D coverage
         run: python scripts/meta3d/check_coverage.py
+
+      # Front-end unit tests, including the confession-privacy guard
+      # (CLAUDE.md TABOO 0.26): the confession module must never gain a
+      # storage, network or logging API.
+      - name: Node tests (actions, confession privacy)
+        run: node --test tests/*.test.js
+
+      # CLAUDE.md TABOO 0.37/0.39: the 24 NPC trees keep the chorus
+      # contract (idiom, meaning, source, paraphrase for saints, FORM
+      # gates, no church words on buttons).
+      - name: Dialogue contract (24 NPCs)
+        run: python scripts/check_dialogues.py
+
+      # CLAUDE.md TABOO 0.35 rule 18: every teaching source (dialogue
+      # nodes, passions, confession questions) comes from the closed
+      # canon in data/patristic-canon.json, with chapter, step, date and
+      # topic checked; the negative tests prove the checker can fail.
+      # TABOO 0.35 rules 15-16: the SKU validator (no simony, cosmetic
+      # only, no attribute as currency, no random reward) and the rule
+      # of prayer API.  Unit tests only; the emulator tests run locally.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Functions unit tests (SKU validator, actions API)
+        run: |
+          npm --prefix functions ci --no-audit --no-fund
+          cd functions && npx jest src/tests/api/sku-validator.test.ts \
+            src/tests/api/ludus-actions.test.ts \
+            src/tests/api/ludus-router.test.ts
+
+      - name: Patristic canon
+        run: |
+          python -m pycodestyle scripts/check_canon.py scripts/tests/
+          python -m unittest discover scripts/tests -v
 
       - name: Intake (images and licences only)
         if: github.event_name == 'workflow_dispatch'

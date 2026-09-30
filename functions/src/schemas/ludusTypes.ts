@@ -285,12 +285,13 @@ export interface FactionMembership {
 export interface MarketListing {
   listingId: string;
   sellerId: string;       // Player nodeId
-  itemType: "artifact" | "knowledge-badge" | "influence" | "service";
-  itemId?: string;        // Reference to artifact/badge if applicable
+  // Cosmetic goods and services only.  Knowledge badges and influence
+  // are earned, never bought, and an attribute (faith) or "knowledge"
+  // is never a currency (TABOO 0.35 rule 16; api/sku-validator.ts).
+  itemType: "artifact" | "service";
+  itemId?: string;        // Reference to the artifact if applicable
   price: {
-    gold?: number;
-    faith?: number;
-    knowledgePoints?: number;
+    gold: number;
   };
   quantity: number;
   listedAtMs: number;

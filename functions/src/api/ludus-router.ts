@@ -19,11 +19,12 @@ import {
   upsertDialogueTree,
 } from './ludus-dialogue';
 import { ludusHealth } from './ludus-health';
+import { ludusActions } from './ludus-actions';
 
 type Handler = (req: Request, res: Response) => void | Promise<void>;
 
 interface Route {
-  method: 'GET' | 'POST';
+  method: 'GET' | 'POST' | 'ANY';
   pattern: RegExp;
   keys: string[];
   name: string;
@@ -46,6 +47,10 @@ export const ROUTES: Route[] = [
     pattern: new RegExp(`^/api/ludus/dialogue/stats/${SEG}/?$`) },
   { method: 'GET', name: 'ludusHealth', keys: [],
     pattern: /^\/api\/ludus\/health\/?$/ },
+  // One handler reads (GET) and applies an operation (POST); the
+  // player is taken from the ID token, never from the path.
+  { method: 'ANY', name: 'ludusActions', keys: [],
+    pattern: /^\/api\/ludus\/actions\/?$/ },
 ];
 
 const HANDLERS: Record<string, Handler> = {
@@ -55,6 +60,7 @@ const HANDLERS: Record<string, Handler> = {
   persistDialogueState: persistDialogueState as unknown as Handler,
   getDialogueStats: getDialogueStats as unknown as Handler,
   ludusHealth: ludusHealth as unknown as Handler,
+  ludusActions: ludusActions as unknown as Handler,
 };
 
 export interface RouteMatch {
@@ -71,7 +77,8 @@ export interface RouteMatch {
 export function matchRoute(method: string, path: string): RouteMatch | null {
   const verb = method.toUpperCase();
   for (const route of ROUTES) {
-    if (verb !== 'OPTIONS' && verb !== route.method) {
+    if (verb !== 'OPTIONS' && route.method !== 'ANY'
+        && verb !== route.method) {
       continue;
     }
     const found = route.pattern.exec(path);

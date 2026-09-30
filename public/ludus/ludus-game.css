@@ -402,10 +402,12 @@
   letter-spacing: 1px;
 }
 
-/* The ladder lists all six gates so locked ones still show the path. */
+/* The ladder lists all six gates so locked ones still show the path.
+   Each card lists what is still missing, so columns are wide enough
+   for whole words; min() keeps a single column on narrow phones. */
 .ludus-gate-ladder {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
   gap: 0.5rem;
   margin: 0 0 1.5rem;
   padding: 0;
@@ -413,15 +415,20 @@
 }
 
 /* minmax(0, 1fr) lets long gate names shrink instead of pushing the
-   card wider than its column (audit BS-052). */
+   card wider than its column (audit BS-052).  The status spans the
+   whole card below the header, because a locked gate now lists up to
+   four missing conditions and they need the full width to stay
+   readable. */
 .ludus-gate-step {
   display: grid;
   grid-template-columns: auto auto minmax(0, 1fr);
   grid-template-areas:
     "icon level name"
-    "icon level status";
+    "status status status";
   column-gap: 0.6rem;
+  row-gap: 0.4rem;
   align-items: center;
+  align-content: start;
   padding: 0.6rem 0.75rem;
   border: 1px solid var(--lg-border);
   border-radius: var(--lg-radius);
@@ -443,7 +450,7 @@
 .ludus-gate-name {
   grid-area: name;
   font-weight: 600;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 .ludus-gate-icon {
@@ -542,6 +549,154 @@
 
 .ludus-gate-btn:hover {
   background-color: #00aab8;
+}
+
+/*
+ * What a locked gate still needs: FORM, mentors, rite, and for gates
+ * 4-6 the bow.  A plain list, so the path reads as steps to take and
+ * not as a score to raise.
+ */
+.ludus-gate-missing {
+  margin: 0.25rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.875rem;
+  line-height: 1.35;
+}
+
+.ludus-gate-missing li + li {
+  margin-top: 0.15rem;
+}
+
+/* ── Rule of prayer (ACTION layer) ─────────────────────────────────── */
+
+/*
+ * The panel shows counters and nothing else: no "+1", no score, no
+ * celebration (CLAUDE.md TABOO 0.35 rules 16-17).  Calm borders and
+ * the same card tokens as the ladder keep it quiet.
+ */
+.ludus-rule {
+  margin: 0 0 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--lg-border);
+  border-radius: var(--lg-radius);
+  background-color: var(--lg-card);
+}
+
+.ludus-rule h4 {
+  margin: 0 0 0.75rem;
+  color: var(--lg-gold);
+  font-size: 1rem;
+}
+
+.ludus-rule-counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 0 0 1rem;
+}
+
+.ludus-rule-counts div {
+  display: flex;
+  gap: 0.4rem;
+  align-items: baseline;
+}
+
+.ludus-rule-counts dt {
+  color: var(--lg-muted);
+  font-size: 0.875rem;
+}
+
+.ludus-rule-counts dd {
+  margin: 0;
+  color: var(--lg-text);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.ludus-rule-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* 48 px is the minimum comfortable pointer target on Quest 3.  The
+   rule of prayer is human work, so its buttons take the umber of the
+   art canon and the hearth light, never the instrument cyan
+   (CLAUDE.md TABOO 0.38: cyan belongs to devices and focus only). */
+.ludus-rule-btn {
+  min-height: 48px;
+  padding: 0.5rem 1rem;
+  border: 1px solid #8a6a34;
+  border-radius: 6px;
+  color: var(--lg-text);
+  background: transparent;
+  font: inherit;
+  font-size: max(0.875rem, 1em);
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.ludus-rule-btn:hover:not(:disabled) {
+  background-color: rgba(255, 179, 71, 0.10);
+}
+
+.ludus-rule-btn:focus-visible {
+  outline: 3px solid var(--lg-gold);
+  outline-offset: 2px;
+}
+
+.ludus-rule-btn:disabled {
+  border-color: var(--lg-border);
+  color: var(--lg-muted);
+  cursor: default;
+}
+
+/* Twelve practices: a button and its plain tally side by side. */
+.ludus-practice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 0.5rem;
+}
+
+.ludus-practice {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ludus-practice .ludus-rule-btn {
+  flex: 1;
+  text-align: left;
+}
+
+.ludus-practice-tally {
+  min-width: 5.5rem;
+  color: var(--lg-muted);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* A running timed practice is marked by its border only. */
+.ludus-rule-btn.is-running {
+  border-color: var(--lg-gold);
+  color: var(--lg-gold);
+}
+
+/* The bow is set apart in gold: it is received, not earned. */
+.ludus-bow-btn {
+  border-color: var(--lg-gold);
+  color: var(--lg-gold);
+}
+
+.ludus-bow-btn:hover {
+  background-color: rgba(212, 175, 55, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ludus-rule-btn {
+    transition: none;
+  }
 }
 
 /* ── Error Box ─────────────────────────────────────────────────────────── */
@@ -690,3 +845,303 @@
     animation: none;
   }
 }
+
+/* Preparation for confession (TABOO 0.26): a quiet page in lamp light.
+   No counters, no gold of reward; the lamp token marks a holy thing. */
+.ludus-confession {
+  max-width: 40rem;
+  width: calc(100% - 2rem);
+  padding: 1.25rem;
+  border: 1px solid #8a6a34;
+  border-radius: 8px;
+  color: var(--lg-text);
+  background: #14100c;
+  box-shadow: 0 0 2.5rem rgba(255, 154, 60, 0.18);
+}
+
+.ludus-confession::backdrop {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.ludus-confession h3 {
+  margin-top: 0;
+  color: var(--ludus-light-lampada, #ff9a3c);
+}
+
+.ludus-confession-note {
+  color: var(--lg-muted);
+  font-size: 0.875rem;
+}
+
+.ludus-confession-questions li {
+  margin-bottom: 0.4rem;
+}
+
+.ludus-confession-ru {
+  display: block;
+  color: var(--lg-muted);
+  font-size: 0.875rem;
+}
+
+.ludus-confession textarea {
+  width: 100%;
+  min-height: 10rem;
+  margin: 0.75rem 0;
+  padding: 0.75rem;
+  border: 1px solid #8a6a34;
+  border-radius: 6px;
+  color: var(--lg-text);
+  background: #0f0c09;
+  font: inherit;
+  font-size: max(1rem, 1em);
+  resize: vertical;
+}
+
+.ludus-confession-btn {
+  border-color: var(--ludus-light-lampada, #ff9a3c);
+}
+
+/* At a holy thing the instrument cyan gives way to the lamp, including
+   the focus ring (TABOO 0.38: cyan belongs to devices). */
+.ludus-confession textarea:focus-visible,
+.ludus-confession button:focus-visible {
+  outline: 3px solid var(--ludus-light-lampada, #ff9a3c);
+  outline-offset: 2px;
+}
+
+/* On the road: a passion is drawn in the cold complementary palette
+   (TABOO 0.3 rules 26-29, TABOO 0.38), never in the lamp's warm gold. */
+.ludus-road {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #3a4a66;
+  border-radius: 8px;
+  background: #10141c;
+}
+
+.ludus-road h4 {
+  margin-top: 0;
+  color: #9fb4d9;
+}
+
+.ludus-road-card {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.ludus-road-art {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.ludus-road-lure {
+  font-style: italic;
+  color: #c9d4ea;
+}
+
+.ludus-road-btn {
+  border-color: #3a4a66;
+}
+
+.ludus-road-still {
+  color: var(--lg-muted);
+}
+
+.ludus-road-end {
+  color: var(--lg-text);
+}
+
+/* Rays of sobriety (HLD F2, DEF-023): when a thought is turned away,
+   thin rays cross the road once.  Hearth light, not the lamp: sobriety
+   is the soul's own labour with God, and the lamp belongs to holy
+   things (TABOO 0.38).  No glow follows the player afterwards. */
+.ludus-road {
+  position: relative;
+}
+
+.ludus-light-nepsis {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: repeating-linear-gradient(115deg,
+    rgba(255, 179, 71, 0) 0 22px,
+    rgba(255, 179, 71, 0.10) 22px 24px);
+  animation: ludus-nepsis 4s ease-out both;
+}
+
+@keyframes ludus-nepsis {
+  0% { opacity: 0; }
+  30% { opacity: 1; }
+  100% { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ludus-light-nepsis {
+    animation: none;
+    opacity: 0.35;
+  }
+}
+
+/* FORM grew: a short hearth-light outline on the attribute and a plain
+   line of text.  Hearth, not lamp: understanding is human work, the
+   lamp belongs to holy things (TABOO 0.38). */
+.ludus-growth-line {
+  margin: 0 0 0.5rem;
+  color: var(--ludus-light-hearth, #ffb347);
+  font-size: 0.875rem;
+}
+
+.ludus-attr-item.is-growing {
+  outline: 2px solid var(--ludus-light-hearth, #ffb347);
+  outline-offset: 2px;
+  border-radius: 6px;
+  transition: outline-color 0.6s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ludus-attr-item.is-growing {
+    transition: none;
+  }
+}
+
+/* A gate opening: the lamp's light comes up slowly on its icon after the
+   silence (DEF-004).  Lamp, not hearth: the gate is a step toward the
+   holy.  Without motion the light is simply there. */
+.ludus-gate-step.is-opening .ludus-gate-icon {
+  animation: ludus-gate-light 2.5s ease-in 2s both;
+}
+
+/* The light of Tabor at the mystical gate (HLD F2, DEF-023).  It is
+   uncreated, so it gets no colour of its own and no source: not a
+   fourth class of light, not a ring or a halo (TABOO 0.2 item 2, TABOO
+   0.25 item 2).  Shadows go and the instrument cyan gives way; the
+   whole step brightens evenly, as the disciples saw all things lit
+   (Mt 17:2; St Gregory Palamas, Triads).  It is never tied to an
+   attribute of the player. */
+.ludus-gate-step.is-tabor {
+  animation: ludus-tabor 3s ease-in 2s both;
+  outline-color: transparent;
+}
+
+.ludus-gate-step.is-opening.is-tabor .ludus-gate-icon {
+  box-shadow: none;
+  animation: none;
+}
+
+@keyframes ludus-tabor {
+  from { filter: none; }
+  to { filter: brightness(1.35) contrast(0.85); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ludus-gate-step.is-tabor {
+    animation: none;
+    filter: brightness(1.35) contrast(0.85);
+  }
+
+  .ludus-gate-step.is-opening.is-tabor .ludus-gate-icon {
+    box-shadow: none;
+  }
+}
+
+@keyframes ludus-gate-light {
+  from { box-shadow: 0 0 0 rgba(255, 154, 60, 0); }
+  to { box-shadow: 0 0 1.2rem rgba(255, 154, 60, 0.55); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ludus-gate-step.is-opening .ludus-gate-icon {
+    animation: none;
+    box-shadow: 0 0 1.2rem rgba(255, 154, 60, 0.55);
+  }
+}
+
+/* Manuscript of rights: a quiet link and a readable register.  Charcoal
+   and parchment, no gold: a licence list is not a holy thing. */
+.ludus-rights-link {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.ludus-link-btn {
+  border: 0;
+  background: none;
+  color: var(--lg-muted);
+  font: inherit;
+  font-size: 0.875rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ludus-rights {
+  width: min(56rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  padding: 1rem 1.25rem;
+  border: 1px solid #5a5550;
+  border-radius: 8px;
+  color: var(--lg-text);
+  background: #14110e;
+}
+
+.ludus-rights::backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.ludus-rights-note {
+  color: var(--lg-muted);
+  font-size: 0.875rem;
+}
+
+.ludus-rights-scroll {
+  overflow-x: auto;
+}
+
+.ludus-rights table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+
+.ludus-rights th,
+.ludus-rights td {
+  padding: 0.35rem 0.5rem;
+  border-bottom: 1px solid #2a2622;
+  text-align: left;
+  vertical-align: top;
+}
+
+.ludus-rights code {
+  overflow-wrap: anywhere;
+}
+
+/* A word to rest: a quiet line at the bottom, hearth light, no sound,
+   no timer shown, nothing to click away but "All right". */
+.ludus-rest {
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  z-index: 50;
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+  /* Shrink-to-fit next to left: 50% would squeeze the line to half the
+     screen; size it to its text, capped by the viewport. */
+  width: max-content;
+  max-width: min(36rem, calc(100vw - 2rem));
+  padding: 0.6rem 1rem;
+  border: 1px solid #8a6a34;
+  border-radius: 8px;
+  color: var(--lg-text);
+  background: #16120d;
+  transform: translateX(-50%);
+  box-shadow: 0 0 1.5rem rgba(255, 179, 71, 0.12);
+}
+
+.ludus-rest .ludus-link-btn {
+  white-space: nowrap;
+}
+
