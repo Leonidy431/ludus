@@ -283,6 +283,14 @@ func _build_traces() -> void:
 			# slope, where the ROV comes from; so does the passage.
 			node.rotation.y = -PI / 2.0
 		var c := Color(p.colour)
+		# The five traces have their own models (scripts/meta3d,
+		# godot/models/atlas); the primitives below stay as the fallback
+		# and draw the passage, which has no model.
+		var path := "res://models/atlas/atlas-%s.glb" % p.id
+		if p.kind == "trace" and ResourceLoader.exists(path):
+			node.add_child((load(path) as PackedScene).instantiate())
+			add_child(node)
+			continue
 		match p.shape:
 			"book":
 				_part(node, BoxMesh, Vector3(0.3, 0.08, 0.22),
