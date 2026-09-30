@@ -52,7 +52,12 @@ func _build() -> void:
 		OAK)
 	LocationBuild.box(g, Vector3(0.02, 1.75, 1.6), AT + Vector3(0.03, 1.4, 0),
 		BARK)
-	add_child(LocationBuild.join(g, 0.9))
+	# The still parts go to the hub itself, not under this scripted node
+	# and not pre-joined: StaticBatch leaves scripted nodes and
+	# vertex-colour meshes apart, and so the board put the yard over its
+	# ratchet (102 of 99).  In the hub the plain oak and bark boxes merge
+	# with the yard's own.
+	hub.add_child(g)
 	board = Label3D.new()
 	board.font_size = 26
 	board.pixel_size = 0.0024
@@ -63,6 +68,9 @@ func _build() -> void:
 	board.double_sided = false
 	board.position = AT + Vector3(0.0, 1.4, 0)
 	board.rotation_degrees = Vector3(0, -90, 0)
+	# The list is read at the board, like a tag (TABOO 0.013 p. 4); from
+	# across the yard its two text calls are not drawn at all.
+	board.visibility_range_end = 4.0
 	add_child(board)
 	_show()
 

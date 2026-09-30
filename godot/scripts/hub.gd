@@ -1502,6 +1502,7 @@ func _shots() -> void:
 		{"name": "missions", "pos": Vector3(1.0, 0, 1.2), "yaw": -PI / 2.0,
 			"mission": true},
 		{"name": "journal", "pos": Vector3(0.2, 0, 6.0), "yaw": PI / 2.0},
+		{"name": "places", "pos": Vector3(4.2, 0, 2.4), "yaw": -PI / 2.0},
 		{"name": "evening-cell", "pos": Vector3(-5.0, 0, -5.0), "yaw": 0.0},
 		{"name": "rope", "pos": Vector3(-3.0, 0, 4.0), "yaw": 0.0,
 			"rope": true},
