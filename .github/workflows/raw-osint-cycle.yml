@@ -45,7 +45,11 @@ jobs:
     env:
       INDEX: ${{ github.workspace }}/../raw-repos
       # Props store (CLAUDE.md TABOO 0.012): bytes live outside the repo
-      # and the APK; only docs/RAW_PROPS_REGISTER.json is committed.
+      # and the APK; only docs/RAW_PROPS_REGISTER.json is committed.  On
+      # the free runner this folder is empty every hour and is not kept:
+      # a register line pins repo, revision, path and sha1, so
+      # props.restore() takes exactly the same bytes again when a slot
+      # asks for them.  A self-hosted runner keeps it between passes.
       PROPS: ${{ github.workspace }}/../raw-props
       BRANCH: raw-osint/auto
     steps:
@@ -54,15 +58,28 @@ jobs:
           fetch-depth: 0
 
       # Continue from the previous pass: its cursor and log live on the
-      # automation branch until that PR is merged.
+      # automation branch until that PR is merged.  Session passes reach
+      # main and the hourly pass reaches this branch, and both append at
+      # the same end of the same journals, so a text merge always
+      # conflicts there.  "|| true" used to hide that: the journals kept
+      # conflict markers and the scheduled passes of 2026-09-30 died on
+      # json.load of the cursor (run 36722471791, JSONDecodeError at
+      # line 2).  Main is now merged with the journal union driver, and
+      # any other conflict stops the job loudly.
       - name: Switch to the automation branch
         run: |
           git config user.name "ludus-raw-runner"
           git config user.email "ludus-raw-runner@users.noreply.github.com"
+          # Driver and attributes come from main, taken before the switch,
+          # because the automation branch may predate them.
+          cp scripts/raw_assets/journal_merge.py "$RUNNER_TEMP/"
+          git config merge.ludus-journal.driver \
+            "python3 $RUNNER_TEMP/journal_merge.py %O %A %B %P"
+          mkdir -p .git/info && cp .gitattributes .git/info/attributes
           if git ls-remote --exit-code origin "$BRANCH" >/dev/null; then
             git fetch origin "$BRANCH"
             git checkout -B "$BRANCH" "origin/$BRANCH"
-            git merge --no-edit origin/main || true
+            git merge --no-edit origin/main
           else
             git checkout -B "$BRANCH"
           fi
@@ -86,16 +103,14 @@ jobs:
           python scripts/raw_assets/index_repos.py --backlog backlog \
             --out "$INDEX" --jobs 4
 
-      # The free runner starts empty every hour, so the props store is
-      # kept between passes as a workflow cache (never an artifact: an
-      # artifact is a download for anyone who can read the repo, which
-      # would be distribution; see docs/HLD_PROPS_STORE_2026-09-30.md).
-      - name: Restore the props store
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.PROPS }}
-          key: raw-props-${{ github.run_id }}
-          restore-keys: raw-props-
+      # No workflow cache for the props store.  One entry per hourly run
+      # would fill the repository's 10 GB cache quota, and its LRU
+      # eviction would then drop the interim APK signing key that
+      # godot.yml keeps in the same quota (ludus-debug-keystore-v1): the
+      # next APK would be signed with a new key and the headset would
+      # refuse the update (CLAUDE.md TABOO 0.01 p. 3).  A cache on a
+      # public repo can also be restored by fork runs, which would be
+      # distribution (docs/HLD_PROPS_STORE_2026-09-30.md).
 
       - name: OSINT pass
         env:
