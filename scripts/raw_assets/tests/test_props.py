@@ -207,7 +207,8 @@ class PropsTest(unittest.TestCase):
             self.assertEqual(osint_cycle.reasons(path),
                              ['not-a-game-object'], path)
         # A holy word never becomes a search key.
-        for word in ('cleric', 'bless', 'prayer', 'tarot'):
+        for word in ('cleric', 'bless', 'prayer', 'tarot', 'ankh',
+                     'amulets', 'talisman', 'totem'):
             self.assertTrue(osint_cycle.is_sacred(word)
                             or osint_cycle.is_stop_listed(word), word)
 

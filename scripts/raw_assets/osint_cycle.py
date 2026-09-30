@@ -59,6 +59,11 @@ LADDER = ROOT / 'docs' / 'RAW_KEYWORD_LADDER.json'
 
 # Operator, 2026-09-30: "каждый проход добавляй 12 ключевых слов".
 KEYWORDS_PER_PASS = 12
+# Hits of one repo read for neighbour words (spread(), grow_keywords).
+NEIGHBOURS_PER_REPO = 40
+# Language and package-root words: a path's namespace, not a thing.
+NAMESPACE_WORDS = {'java', 'com', 'org', 'net', 'cpp', 'hpp', 'lua',
+                   'kotlin', 'xaml', 'crates', 'cmake'}
 # Path words that say nothing about the object itself.
 PLAIN_WORDS = {'png', 'svg', 'jpg', 'gif', 'img', 'image', 'images', 'res',
                'assets', 'asset', 'data', 'art', 'gfx', 'graphics', 'src',
@@ -71,7 +76,9 @@ PLAIN_WORDS = {'png', 'svg', 'jpg', 'gif', 'img', 'image', 'images', 'res',
                'ref', 'source', 'sources', 'internal', 'raw', 'rltiles',
                'dngn', 'crawl', 'fast', 'slow', 'common', 'misc', 'gui',
                'forge', 'adventure', 'mods', 'mod', 'build', 'dist',
-               'public', 'static', 'lib', 'libs', 'game', 'games'}
+               'public', 'static', 'lib', 'libs', 'game', 'games',
+               # Joining words of file names ("entity_with_body").
+               'with', 'for', 'from', 'into'}
 
 # Rule 5: paths that must never enter the pipeline at all.
 DOGMA_STOP = re.compile(
@@ -99,7 +106,10 @@ DOGMA_WORDS = re.compile(
     r'(?<![a-z])(pentacles?|tarot\w*|horoscop\w*|astrolog\w*|ouija|'
     r'baphomet|lucifer\w*|voodoo\w*|vodou|grimoires?|necronomicon|'
     r'pagan\w*|mosques?|minarets?|buddhas?|pagodas?|torii|'
-    r'synagogues?|mandalas?|divination\w*|witchcraft)(?![a-z])')
+    r'synagogues?|mandalas?|divination\w*|witchcraft|'
+    # Charms and cult tokens (TABOO 0.4 p. 6): the neighbour words of
+    # 2026-09-30 grew "ankh" and "amulet" from a dungeon repo.
+    r'ankhs?|amulets?|talisman\w*|totems?)(?![a-z])')
 DOGMA_NATIVE = re.compile(
     r'пентаграм|пентакл|зодиак|оккульт|идол|сатан|гороскоп|астролог|'
     r'таро(?![а-я])|руны|мечеть|будд', re.IGNORECASE)
@@ -348,23 +358,92 @@ def ladder_words(def_id):
     return json.loads(LADDER.read_text('utf-8'))['ladders'].get(def_id, [])
 
 
-def neighbour_words(hits, known):
-    """Most frequent path words next to earlier hits, not yet keys.
+def neighbour_words(hits, known, skip=frozenset(), seeds=()):
+    """Path words beside earlier hits, spread over repos, not yet keys.
 
     When the real-object ladder runs out, the next words come from the
-    material itself: the folder and file words that stand beside what
-    was already found.  Stop-listed, sacred and hostile words never
-    become keys.
+    material itself: the file name and the folder that hold what was
+    already found.  Only those two count, not the whole path: the
+    package path of one big repo ("com/shatteredpixel/.../actors/hero")
+    stood in front of every file of it, and on 2026-09-30 DEF-040,
+    DEF-047 and DEF-048 all grew the same twelve words from it.  A word
+    seen in more repos ranks higher than a word seen more often in one.
+    With `seeds` (the deficit's own keywords), only a hit whose file
+    name or folder holds a seed counts: the neighbour then stands beside
+    the deficit's thing, not beside whatever a grown key matched, so two
+    deficits grow two different sets.  Words in `skip` (repo names,
+    namespaces), stop-listed, sacred and hostile words never become
+    keys.
     """
-    counts = {}
+    repos, counts = {}, {}
     for hit in hits:
-        for word in re.split(r'[^a-z]+', hit['path'].lower()):
+        parts = path_words(hit['path']).split('/')
+        near = ' '.join(parts[-2:]).rsplit('.', 1)[0]
+        words = re.split(r'[^a-z]+', near)
+        if seeds and not any(w.rstrip('s') in seeds or w in seeds
+                             for w in words):
+            continue
+        for word in words:
             if (len(word) < 3 or word in PLAIN_WORDS or word in known
-                    or is_stop_listed(word) or is_sacred(word)
-                    or HOSTILE.search(word) or word.isdigit()):
+                    or word in skip or is_stop_listed(word)
+                    or is_sacred(word) or HOSTILE.search(word)):
                 continue
+            repos.setdefault(word, set()).add(hit.get('repo', ''))
             counts[word] = counts.get(word, 0) + 1
-    return [w for w, _ in sorted(counts.items(), key=lambda x: (-x[1], x[0]))]
+    return [w for w, _ in sorted(
+        counts.items(), key=lambda x: (-len(repos[x[0]]), -x[1], x[0]))]
+
+
+def repo_words(index_root):
+    """Words of the indexed repos' owners and names, and their joins.
+
+    A package path spells the repo's name without separators
+    ("com/shatteredpixel/shatteredpixeldungeon"), so the joins of
+    consecutive name words count as well.  Only the header line of each
+    index file is read.
+    """
+    out = set()
+    for path in sorted(Path(index_root, 'index').glob('*.jsonl')):
+        with path.open(encoding='utf-8') as handle:
+            repo = json.loads(handle.readline())['header']['repo']
+        for part in repo.rstrip('/').split('/')[-2:]:
+            words = [w for w in re.split(r'[^a-z0-9]+', path_words(part))
+                     if w]
+            out.update(words)
+            for i in range(len(words)):
+                for j in range(i + 2, len(words) + 1):
+                    out.add(''.join(words[i:j]))
+    return out
+
+
+def unsearched(index_root):
+    """Grown keys that stay in the journal but are no longer searched.
+
+    Passes before the neighbour fix of 2026-09-30 added repo names and
+    namespaces ("java", "com", "shatteredpixel") as keys; every file of
+    one repo then matched every deficit.  The journal keeps them (TABOO
+    0.25 p. 5); the search skips them, as it skips a word the grown
+    holy list now covers.
+    """
+    return repo_words(index_root) | NAMESPACE_WORDS | PLAIN_WORDS
+
+
+def spread(hits, per_repo):
+    """At most `per_repo` hits of each repo, taken round-robin.
+
+    The search sorts ties by repo name, so its first 400 hits were one
+    repo ("00-Evan__...") for any broad key.  Round-robin keeps every
+    repo that matched in the sample, in a fixed order (no randomness).
+    """
+    by_repo = {}
+    for hit in hits:
+        by_repo.setdefault(hit['repo'], []).append(hit)
+    out = []
+    for rank in range(per_repo):
+        for repo in sorted(by_repo):
+            if rank < len(by_repo[repo]):
+                out.append(by_repo[repo][rank])
+    return out
 
 
 def grow_keywords(deficit, cursor, index, kinds):
@@ -378,10 +457,13 @@ def grow_keywords(deficit, cursor, index, kinds):
     fresh = [w for w in ladder_words(deficit['id']) if w not in known]
     new = fresh[:KEYWORDS_PER_PASS]
     if len(new) < KEYWORDS_PER_PASS:
-        hits = search(index, kinds, deficit['keywords'] + added, limit=400,
-                      allow_unlicensed=False)
-        hits = [h for h in hits if not allowed(h['path'])]
-        more = neighbour_words(hits, known | set(new))
+        everything = []
+        search(index, kinds, deficit['keywords'] + added, limit=0,
+               allow_unlicensed=False, uncapped=everything)
+        hits = spread([h for h in everything if not allowed(h['path'])],
+                      NEIGHBOURS_PER_REPO)
+        more = neighbour_words(hits, known | set(new),
+                               unsearched(index), set(deficit['keywords']))
         new += more[:KEYWORDS_PER_PASS - len(new)]
     added.extend(new)
     return new
@@ -454,8 +536,9 @@ def main():
         # Added words that a grown holy list or stop-list now covers
         # ("cleric" was added before the list knew it) stay in the
         # journal but are no longer searched (TABOO 0.15 p. 3).
+        skip = unsearched(args.index)
         added = [k for k in cursor['keywords'][deficit['id']]
-                 if not (is_sacred(k) or is_stop_listed(k))]
+                 if not (is_sacred(k) or is_stop_listed(k) or k in skip)]
         keys = deficit['keywords'] + added
         print(f'{deficit["id"]}: +{len(grown)} keywords {grown}')
         everything = []
@@ -509,7 +592,9 @@ def main():
             'props_uncapped': len(uncapped_shelf),
             'props_uncapped_repos': len({h['repo']
                                          for h in uncapped_shelf}),
-            'added_keywords': grown, 'keywords_total': len(keys)})
+            'added_keywords': grown, 'keywords_total': len(keys),
+            'keywords_not_searched': sorted(
+                set(cursor['keywords'][deficit['id']]) - set(added))})
         print(f'{deficit["id"]}: hits={len(hits)} of {len(everything)} '
               f'taken={taken} to_props={len(to_shelf)} of '
               f'{len(uncapped_shelf)} refused={refused}')

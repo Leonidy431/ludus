@@ -1890,6 +1890,129 @@
    "note_for": "osint-2026-09-30T13:31:00Z",
    "note": "Correction to pass osint-2026-09-30T13:31:00Z (its entry stays as written). Its 'reverted' text says the props register and cache 'were removed and rebuilt by the next pass'. They were not rebuilt: the next pass (13:38Z) covered DEF-040, DEF-047 and DEF-048, so nothing of DEF-035 or DEF-036 reached the register. The uncommitted register file of 13:31Z was deleted outright instead of being kept with a reverted mark, against TABOO 0.25 p. 5; its numbers survive only in that entry (350 things, 2 205 163 B). The pass of 13:51Z on the integration branch, run with the code before TABOO 0.012, refused the same hits as not-a-game-object. The props of DEF-035 and DEF-036 were taken by pass osint-2026-09-30T14:45:49Z (--only, cursor unchanged): 170 and 168 things, 338 lines, 2 148 923 B; the 200-hit cap per deficit is the same, the 12 new keywords of each deficit changed which 200 hits came first, and one sacred hit was refused.",
    "deficits": []
+  },
+  {
+   "time": "2026-09-30T15:14:54.808300+00:00",
+   "pass_id": "osint-2026-09-30T15:14:54Z",
+   "deficits": [
+    {
+     "id": "DEF-024",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 16,
+      "dogma-stop-list": 1
+     },
+     "to_props": 87,
+     "hits_uncapped": 53500,
+     "props_uncapped": 47985,
+     "props_uncapped_repos": 56,
+     "added_keywords": [
+      "mage",
+      "rogue",
+      "warrior",
+      "buffs",
+      "alchemize",
+      "amulet",
+      "ankh",
+      "arcaneresin",
+      "armorability",
+      "auraofprotection",
+      "beaconofreturning",
+      "beam"
+     ],
+     "keywords_total": 49,
+     "props": {
+      "other": 3
+     },
+     "props_seen": 84
+    },
+    {
+     "id": "DEF-028",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 2,
+      "dogma-stop-list": 2
+     },
+     "to_props": 68,
+     "hits_uncapped": 66691,
+     "props_uncapped": 61001,
+     "props_uncapped_repos": 61,
+     "added_keywords": [
+      "java",
+      "renderer",
+      "rendering",
+      "com",
+      "shatteredpixel",
+      "shatteredpixeldungeon",
+      "drivers",
+      "gles",
+      "abstract",
+      "fsr",
+      "copy",
+      "amplify"
+     ],
+     "keywords_total": 47,
+     "props": {
+      "promo": 3,
+      "other": 20
+     },
+     "props_seen": 45
+    },
+    {
+     "id": "DEF-047",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 15,
+      "dogma-stop-list": 1
+     },
+     "to_props": 93,
+     "hits_uncapped": 62137,
+     "props_uncapped": 56656,
+     "props_uncapped_repos": 62,
+     "added_keywords": [
+      "particles",
+      "buffs",
+      "acidicsprite",
+      "albinosprite",
+      "alchemize",
+      "armorability",
+      "auraofprotection",
+      "banditsprite",
+      "batsprite",
+      "beaconofreturning",
+      "beam",
+      "beamingray"
+     ],
+     "keywords_total": 41,
+     "props": {},
+     "props_seen": 93
+    }
+   ],
+   "props_taken": {
+    "other": 23,
+    "promo": 3
+   },
+   "props_taken_by_index_kind": {
+    "code": 26
+   },
+   "props_duplicates": 222,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 376943,
+   "props_store_files": 491,
+   "props_store_bytes": 3008542,
+   "props_cache_files_on_disk": 3702,
+   "props_cache_bytes_on_disk": 70223075,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 284364,
+   "props_register_growth_bytes": 15971,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 315
   }
  ],
  "keywords": {
@@ -2208,7 +2331,19 @@
    "buildings",
    "cleric",
    "duelist",
-   "huntress"
+   "huntress",
+   "mage",
+   "rogue",
+   "warrior",
+   "buffs",
+   "alchemize",
+   "amulet",
+   "ankh",
+   "arcaneresin",
+   "armorability",
+   "auraofprotection",
+   "beaconofreturning",
+   "beam"
   ],
   "DEF-028": [
    "effect",
@@ -2234,7 +2369,19 @@
    "limiter",
    "modules",
    "reverb",
-   "aberration"
+   "aberration",
+   "java",
+   "renderer",
+   "rendering",
+   "com",
+   "shatteredpixel",
+   "shatteredpixeldungeon",
+   "drivers",
+   "gles",
+   "abstract",
+   "fsr",
+   "copy",
+   "amplify"
   ],
   "DEF-035": [
    "java",
@@ -2357,7 +2504,19 @@
    "huntress",
    "mage",
    "rogue",
-   "warrior"
+   "warrior",
+   "particles",
+   "buffs",
+   "acidicsprite",
+   "albinosprite",
+   "alchemize",
+   "armorability",
+   "auraofprotection",
+   "banditsprite",
+   "batsprite",
+   "beaconofreturning",
+   "beam",
+   "beamingray"
   ],
   "DEF-048": [
    "java",

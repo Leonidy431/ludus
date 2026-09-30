@@ -73,6 +73,64 @@ class KeywordLadderTest(unittest.TestCase):
         self.assertNotIn('church', words)
         self.assertNotIn('enemy', words)
 
+    def test_neighbour_words_skip_the_package_path(self):
+        # 2026-09-30: DEF-040, DEF-047 and DEF-048 all grew the same
+        # twelve words from one repo's package path.  Only the file
+        # name and its folder count now, and repo names are skipped.
+        repo = 'https://github.com/x/shattered-pixel-dungeon'
+        hits = [{'repo': repo, 'path': 'core/src/main/java/com/'
+                 'shatteredpixel/shatteredpixeldungeon/actors/hero/'
+                 'HeroIdleBreath.java'}]
+        skip = {'shatteredpixel', 'shatteredpixeldungeon'}
+        words = osint_cycle.neighbour_words(hits, set(), skip)
+        self.assertIn('breath', words)
+        self.assertIn('hero', words)
+        for word in ('actors', 'java', 'com', 'shatteredpixel', 'main'):
+            self.assertNotIn(word, words)
+
+    def test_two_deficits_grow_two_sets(self):
+        hits = [{'repo': 'a', 'path': 'x/anim/idle_breath_sway.png'},
+                {'repo': 'b', 'path': 'y/anim/idle_breath.png'},
+                {'repo': 'a', 'path': 'x/ui/button_hover_glow.png'},
+                {'repo': 'b', 'path': 'y/ui/button_press.png'}]
+        idle = osint_cycle.neighbour_words(hits, {'idle'}, seeds={'idle'})
+        button = osint_cycle.neighbour_words(hits, {'button'},
+                                             seeds={'button'})
+        self.assertEqual(idle[:2], ['anim', 'breath'])
+        self.assertFalse(set(idle) & set(button))
+
+    def test_words_of_more_repos_rank_first(self):
+        hits = [{'repo': 'a', 'path': 'p/lamp.png'},
+                {'repo': 'a', 'path': 'p/lamp_old.png'},
+                {'repo': 'a', 'path': 'p/lamp_2.png'},
+                {'repo': 'a', 'path': 'q/rope.png'},
+                {'repo': 'b', 'path': 'q/rope.png'}]
+        words = osint_cycle.neighbour_words(hits, set())
+        self.assertLess(words.index('rope'), words.index('lamp'))
+
+    def test_repo_words_hold_names_and_their_joins(self):
+        import json
+        import tempfile
+        with tempfile.TemporaryDirectory() as root:
+            Path(root, 'index').mkdir()
+            for i, repo in enumerate(
+                    ['https://github.com/00-Evan/shattered-pixel-dungeon',
+                     'https://github.com/OpenRA/OpenRA']):
+                Path(root, 'index', f'{i}.jsonl').write_text(
+                    json.dumps({'header': {'repo': repo}}) + '\n', 'utf-8')
+            words = osint_cycle.repo_words(root)
+        for word in ('shattered', 'shatteredpixel', 'shatteredpixeldungeon',
+                     'openra', 'evan'):
+            self.assertIn(word, words)
+        self.assertNotIn('hero', words)
+
+    def test_spread_takes_every_repo_round_robin(self):
+        hits = ([{'repo': 'a', 'path': str(i)} for i in range(5)]
+                + [{'repo': 'b', 'path': 'x'}])
+        out = osint_cycle.spread(hits, 2)
+        self.assertEqual([(h['repo'], h['path']) for h in out],
+                         [('a', '0'), ('b', 'x'), ('a', '1')])
+
 
 if __name__ == '__main__':
     unittest.main()
