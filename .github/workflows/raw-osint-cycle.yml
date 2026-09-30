@@ -69,7 +69,8 @@ jobs:
           python-version: '3.12'
 
       - name: Install tools
-        run: pip install pillow pycodestyle
+        # numpy: the audio pass measures envelope, T60 and spectrum.
+        run: pip install pillow pycodestyle numpy
 
       - name: PEP 8 and pipeline tests
         run: |

@@ -49,3 +49,27 @@ claimed: these are not raw material through the runner.
 
 Details: `third_party/posoh/SOURCES.md`. No colour/shape delta is
 claimed: these are not raw material through the runner.
+
+## Spectral references of the audio pass audio-299-2026-09-30
+
+Measured profiles only (envelope, T60, spectral centroid, decay), CLAUDE.md
+TABOO 0.35 rule 8: no sound from these repositories is shipped or
+sampled. Per-file licences and paths: docs/RAW_AUDIO_REFERENCES.json.
+
+| Repository | Commit | Licences of the used files | Files | Share-alike |
+|---|---|---|---|---|
+| https://github.com/00-Evan/shattered-pixel-dungeon | 2bb34a4e91 | GPL | 12 | 12 |
+| https://github.com/Anuken/Mindustry | f3bfa418a5 | GPL | 25 | 25 |
+| https://github.com/FyroxEngine/Fyrox | c4ead6b99c | MIT | 1 | 0 |
+| https://github.com/OpenDungeons/OpenDungeons | a9efe49a6f | CC-BY-SA, GPL | 5 | 5 |
+| https://github.com/defold/defold | cbca1e163f | Custom | 2 | 0 |
+| https://github.com/drwhut/tabletop-club | a4fb379b0f | MIT | 6 | 0 |
+| https://github.com/endless-sky/endless-sky | 748d56c3c7 | PD | 6 | 0 |
+| https://github.com/lincity-ng/lincity-ng | 69bff77dad | GPL | 5 | 5 |
+| https://github.com/magefree/mage | 3d3f4320ed | MIT | 3 | 0 |
+| https://github.com/panda3d/panda3d | ec9ea0a93a | BSD | 1 | 0 |
+| https://github.com/raysan5/raylib | 6ecf21f700 | PD | 1 | 0 |
+| https://github.com/space-wizards/space-station-14 | d4d4696248 | CC-BY, CC-BY-SA, MIT, PD | 173 | 24 |
+| https://github.com/wesnoth/wesnoth | 7747be0ff7 | CC-BY-SA, GPL | 7 | 7 |
+| https://github.com/widelands/widelands | 6c21c892e8 | GPL | 45 | 45 |
+| https://github.com/yairm210/Unciv | eba5356202 | MPL | 7 | 7 |
