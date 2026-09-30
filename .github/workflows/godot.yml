@@ -89,6 +89,9 @@ jobs:
           # The campaign of missions reads the same spine as the web game.
           cmp public/ludus/data/campaign-spine.json \
               godot/data/campaign-spine.json
+          # The Russian labels of its sources: one table for both panels.
+          cmp public/ludus/data/source-labels-ru.json \
+              godot/data/source-labels-ru.json
           # The Water Atlas: one list of nodes, its copies current and
           # every node with its Constitution line (TABOO 0.03).
           python3 scripts/story/render.py --check
