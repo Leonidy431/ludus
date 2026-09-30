@@ -1,0 +1,994 @@
+{
+ "name": "obj_tools_9b09b1f302",
+ "id": "9b09b1f302",
+ "seed": "9b09b1f302413826f9cbae6ea59f549ef764654b",
+ "thing": "tools",
+ "serves": [
+  "tools"
+ ],
+ "slot": "LOC-forge",
+ "locations": [
+  "forge",
+  "silversmith",
+  "sis-armourer"
+ ],
+ "origin": "raw-neutral-location-kit",
+ "method": "location-kit-r1",
+ "raw_material": true,
+ "source": {
+  "repo": "https://github.com/widelands/widelands",
+  "path": "data/tribes/wares/hammer/menu.png",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "piece": 0,
+  "prop_key": "p_a66a22954e11",
+  "sha1": "9150ac87ef1afd62aee3a28b6d3008b0a30079cc",
+  "bytes": 980
+ },
+ "repo": "https://github.com/widelands/widelands",
+ "path": "data/tribes/wares/hammer/menu.png",
+ "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+ "license": "GPL-2.0-or-later",
+ "license_file": "COPYING",
+ "licence_facts": {
+  "repo_licence": "GPL",
+  "evidence": [
+   "game data under the program's licence (COPYING)"
+  ],
+  "licence": "GPL-2.0-or-later",
+  "commercial": true
+ },
+ "picked_by_eye": "06 e: a hammer",
+ "material": "iron",
+ "ru": "Инструмент мастера",
+ "size_m": [
+  0.6,
+  0.6,
+  0.03
+ ],
+ "threshold": 0.35,
+ "shape_basis": "source",
+ "sibling_basis": "nearest-sibling",
+ "pixel_art": true,
+ "source_px": [
+  21,
+  20
+ ],
+ "side_px": 118,
+ "pool": {
+  "size": 49,
+  "measured": 40,
+  "refused": {
+   "does-not-fit-canvas": 4,
+   "duplicate-hitbox": 2,
+   "shape-below-threshold": 2,
+   "thing-mostly-hidden": 3,
+   "too-close-to-a-sibling": 8
+  },
+  "chosen": 12
+ },
+ "variants": [
+  {
+   "slot": "v01",
+   "file": "obj_tools_9b09b1f302_v01.png",
+   "change": "pair",
+   "setting": "any",
+   "state": "rusted",
+   "shape_change": 0.673,
+   "sibling_min": 0.4056,
+   "colour_change": 0.6359,
+   "visible": 0.7823,
+   "hitbox": {
+    "bbox": [
+     37,
+     120,
+     216,
+     238
+    ],
+    "area": 9275,
+    "radius": 54.34,
+    "hull": [
+     [
+      37,
+      154
+     ],
+     [
+      43,
+      143
+     ],
+     [
+      48,
+      137
+     ],
+     [
+      99,
+      126
+     ],
+     [
+      194,
+      120
+     ],
+     [
+      210,
+      120
+     ],
+     [
+      216,
+      131
+     ],
+     [
+      216,
+      148
+     ],
+     [
+      155,
+      232
+     ],
+     [
+      144,
+      238
+     ],
+     [
+      127,
+      238
+     ],
+     [
+      54,
+      182
+     ],
+     [
+      37,
+      165
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.tools.9b09b1f302.v01"
+  },
+  {
+   "slot": "v02",
+   "file": "obj_tools_9b09b1f302_v02.png",
+   "change": "pair",
+   "setting": "any",
+   "state": "worn",
+   "shape_change": 0.681,
+   "sibling_min": 0.4056,
+   "colour_change": 0.7786,
+   "visible": 0.8829,
+   "hitbox": {
+    "bbox": [
+     37,
+     126,
+     219,
+     238
+    ],
+    "area": 10468,
+    "radius": 57.72,
+    "hull": [
+     [
+      37,
+      154
+     ],
+     [
+      43,
+      143
+     ],
+     [
+      48,
+      137
+     ],
+     [
+      99,
+      126
+     ],
+     [
+      168,
+      126
+     ],
+     [
+      185,
+      148
+     ],
+     [
+      219,
+      216
+     ],
+     [
+      219,
+      232
+     ],
+     [
+      208,
+      238
+     ],
+     [
+      127,
+      238
+     ],
+     [
+      54,
+      182
+     ],
+     [
+      37,
+      165
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.tools.9b09b1f302.v02"
+  },
+  {
+   "slot": "v03",
+   "file": "obj_tools_9b09b1f302_v03.png",
+   "change": "pair",
+   "setting": "any",
+   "state": "forged",
+   "shape_change": 0.7437,
+   "sibling_min": 0.4666,
+   "colour_change": 0.5053,
+   "visible": 0.8117,
+   "hitbox": {
+    "bbox": [
+     46,
+     120,
+     219,
+     238
+    ],
+    "area": 9288,
+    "radius": 54.37,
+    "hull": [
+     [
+      46,
+      171
+     ],
+     [
+      51,
+      165
+     ],
+     [
+      62,
+      154
+     ],
+     [
+      130,
+      120
+     ],
+     [
+      141,
+      120
+     ],
+     [
+      168,
+      132
+     ],
+     [
+      174,
+      137
+     ],
+     [
+      185,
+      148
+     ],
+     [
+      219,
+      216
+     ],
+     [
+      219,
+      227
+     ],
+     [
+      208,
+      238
+     ],
+     [
+      68,
+      238
+     ],
+     [
+      57,
+      232
+     ],
+     [
+      51,
+      221
+     ],
+     [
+      46,
+      193
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.tools.9b09b1f302.v03"
+  },
+  {
+   "slot": "v04",
+   "file": "obj_tools_9b09b1f302_v04.png",
+   "change": "pair",
+   "setting": "any",
+   "state": "forged",
+   "shape_change": 0.8088,
+   "sibling_min": 0.4909,
+   "colour_change": 0.8049,
+   "visible": 0.9155,
+   "hitbox": {
+    "bbox": [
+     13,
+     120,
+     240,
+     238
+    ],
+    "area": 11310,
+    "radius": 60.0,
+    "hull": [
+     [
+      13,
+      154
+     ],
+     [
+      19,
+      143
+     ],
+     [
+      24,
+      137
+     ],
+     [
+      69,
+      126
+     ],
+     [
+      218,
+      120
+     ],
+     [
+      234,
+      120
+     ],
+     [
+      240,
+      131
+     ],
+     [
+      240,
+      148
+     ],
+     [
+      184,
+      221
+     ],
+     [
+      167,
+      238
+     ],
+     [
+      103,
+      238
+     ],
+     [
+      30,
+      182
+     ],
+     [
+      13,
+      165
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.tools.9b09b1f302.v04"
+  },
+  {
+   "slot": "v05",
+   "file": "obj_tools_9b09b1f302_v05.png",
+   "change": "pair",
+   "setting": "any",
+   "state": "worn",
+   "shape_change": 0.8372,
+   "sibling_min": 0.4839,
+   "colour_change": 0.6367,
+   "visible": 0.9155,
+   "hitbox": {
+    "bbox": [
+     16,
+     120,
+     243,
+     238
+    ],
+    "area": 10854,
+    "radius": 58.78,
+    "hull": [
+     [
+      16,
+      171
+     ],
+     [
+      38,
+      154
+     ],
+     [
+      106,
+      120
+     ],
+     [
+      122,
+      120
+     ],
+     [
+      192,
+      126
+     ],
+     [
+      209,
+      148
+     ],
+     [
+      243,
+      216
+     ],
+     [
+      243,
+      232
+     ],
+     [
+      232,
+      238
+     ],
+     [
+      44,
+      238
+     ],
+     [
+      33,
+      232
+     ],
+     [
+      27,
+      227
+     ],
+     [
+      16,
+      176
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.tools.9b09b1f302.v05"
+  },
+  {
+   "slot": "v06",
+   "file": "obj_tools_9b09b1f302_v06.png",
+   "change": "pair",
+   "setting": "any",
+   "state": "worn",
+   "shape_change": 0.9009,
+   "sibling_min": 0.4839,
+   "colour_change": 0.7881,
+   "visible": 0.9155,
+   "hitbox": {
+    "bbox": [
+     13,
+     126,
+     243,
+     238
+    ],
+    "area": 10854,
+    "radius": 58.78,
+    "hull": [
+     [
+      13,
+      154
+     ],
+     [
+      19,
+      143
+     ],
+     [
+      24,
+      137
+     ],
+     [
+      75,
+      126
+     ],
+     [
+      192,
+      126
+     ],
+     [
+      209,
+      148
+     ],
+     [
+      243,
+      216
+     ],
+     [
+      243,
+      232
+     ],
+     [
+      232,
+      238
+     ],
+     [
+      103,
+      238
+     ],
+     [
+      30,
+      182
+     ],
+     [
+      13,
+      165
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.tools.9b09b1f302.v06"
+  },
+  {
+   "slot": "v07",
+   "file": "obj_tools_9b09b1f302_v07.png",
+   "change": "leans -12, sunk 15%",
+   "setting": "ground",
+   "state": "worn",
+   "shape_change": 0.4035,
+   "sibling_min": 0.3824,
+   "colour_change": 0.8049,
+   "visible": 0.8048,
+   "hitbox": {
+    "bbox": [
+     60,
+     136,
+     197,
+     240
+    ],
+    "area": 5752,
+    "radius": 42.79,
+    "hull": [
+     [
+      60,
+      238
+     ],
+     [
+      77,
+      153
+     ],
+     [
+      78,
+      150
+     ],
+     [
+      86,
+      141
+     ],
+     [
+      92,
+      136
+     ],
+     [
+      148,
+      136
+     ],
+     [
+      149,
+      137
+     ],
+     [
+      197,
+      237
+     ],
+     [
+      197,
+      240
+     ],
+     [
+      60,
+      240
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.tools.9b09b1f302.v07"
+  },
+  {
+   "slot": "v08",
+   "file": "obj_tools_9b09b1f302_v08.png",
+   "change": "leans +12, overgrown",
+   "setting": "ground",
+   "state": "forged",
+   "shape_change": 0.422,
+   "sibling_min": 0.3909,
+   "colour_change": 0.7401,
+   "visible": 0.8239,
+   "hitbox": {
+    "bbox": [
+     54,
+     134,
+     204,
+     239
+    ],
+    "area": 5939,
+    "radius": 43.48,
+    "hull": [
+     [
+      54,
+      238
+     ],
+     [
+      64,
+      175
+     ],
+     [
+      67,
+      163
+     ],
+     [
+      71,
+      156
+     ],
+     [
+      73,
+      155
+     ],
+     [
+      119,
+      134
+     ],
+     [
+      123,
+      134
+     ],
+     [
+      145,
+      152
+     ],
+     [
+      192,
+      211
+     ],
+     [
+      204,
+      230
+     ],
+     [
+      204,
+      234
+     ],
+     [
+      203,
+      239
+     ],
+     [
+      54,
+      239
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.tools.9b09b1f302.v08"
+  },
+  {
+   "slot": "v09",
+   "file": "obj_tools_9b09b1f302_v09.png",
+   "change": "leans -12, overgrown",
+   "setting": "ground",
+   "state": "rusted",
+   "shape_change": 0.4334,
+   "sibling_min": 0.365,
+   "colour_change": 0.5465,
+   "visible": 0.8451,
+   "hitbox": {
+    "bbox": [
+     62,
+     118,
+     191,
+     239
+    ],
+    "area": 6042,
+    "radius": 43.85,
+    "hull": [
+     [
+      62,
+      231
+     ],
+     [
+      76,
+      140
+     ],
+     [
+      77,
+      135
+     ],
+     [
+      78,
+      132
+     ],
+     [
+      86,
+      123
+     ],
+     [
+      92,
+      118
+     ],
+     [
+      148,
+      118
+     ],
+     [
+      149,
+      119
+     ],
+     [
+      161,
+      144
+     ],
+     [
+      188,
+      226
+     ],
+     [
+      191,
+      238
+     ],
+     [
+      191,
+      239
+     ],
+     [
+      65,
+      239
+     ],
+     [
+      62,
+      233
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.tools.9b09b1f302.v09"
+  },
+  {
+   "slot": "v10",
+   "file": "obj_tools_9b09b1f302_v10.png",
+   "change": "sunk 15%",
+   "setting": "ground",
+   "state": "forged",
+   "shape_change": 0.5796,
+   "sibling_min": 0.3824,
+   "colour_change": 0.8712,
+   "visible": 0.7697,
+   "hitbox": {
+    "bbox": [
+     41,
+     143,
+     215,
+     240
+    ],
+    "area": 6453,
+    "radius": 45.32,
+    "hull": [
+     [
+      41,
+      238
+     ],
+     [
+      69,
+      171
+     ],
+     [
+      75,
+      160
+     ],
+     [
+      80,
+      154
+     ],
+     [
+      125,
+      143
+     ],
+     [
+      136,
+      143
+     ],
+     [
+      142,
+      149
+     ],
+     [
+      215,
+      237
+     ],
+     [
+      215,
+      240
+     ],
+     [
+      41,
+      240
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.tools.9b09b1f302.v10"
+  },
+  {
+   "slot": "v11",
+   "file": "obj_tools_9b09b1f302_v11.png",
+   "change": "leans -24, overgrown",
+   "setting": "ground",
+   "state": "worn",
+   "shape_change": 0.6057,
+   "sibling_min": 0.365,
+   "colour_change": 0.7054,
+   "visible": 0.8581,
+   "hitbox": {
+    "bbox": [
+     73,
+     104,
+     181,
+     239
+    ],
+    "area": 5966,
+    "radius": 43.58,
+    "hull": [
+     [
+      73,
+      229
+     ],
+     [
+      84,
+      124
+     ],
+     [
+      88,
+      115
+     ],
+     [
+      98,
+      108
+     ],
+     [
+      105,
+      104
+     ],
+     [
+      106,
+      104
+     ],
+     [
+      158,
+      115
+     ],
+     [
+      160,
+      116
+     ],
+     [
+      161,
+      117
+     ],
+     [
+      167,
+      144
+     ],
+     [
+      181,
+      228
+     ],
+     [
+      181,
+      231
+     ],
+     [
+      180,
+      236
+     ],
+     [
+      179,
+      239
+     ],
+     [
+      74,
+      239
+     ],
+     [
+      73,
+      234
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.tools.9b09b1f302.v11"
+  },
+  {
+   "slot": "v12",
+   "file": "obj_tools_9b09b1f302_v12.png",
+   "change": "leans +24, overgrown",
+   "setting": "ground",
+   "state": "sooted",
+   "shape_change": 0.6413,
+   "sibling_min": 0.4345,
+   "colour_change": 0.3756,
+   "visible": 0.8269,
+   "hitbox": {
+    "bbox": [
+     49,
+     146,
+     209,
+     239
+    ],
+    "area": 6027,
+    "radius": 43.8,
+    "hull": [
+     [
+      49,
+      228
+     ],
+     [
+      63,
+      178
+     ],
+     [
+      105,
+      147
+     ],
+     [
+      107,
+      146
+     ],
+     [
+      110,
+      146
+     ],
+     [
+      134,
+      159
+     ],
+     [
+      193,
+      207
+     ],
+     [
+      209,
+      228
+     ],
+     [
+      209,
+      239
+     ],
+     [
+      52,
+      239
+     ],
+     [
+      51,
+      237
+     ],
+     [
+      49,
+      230
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.tools.9b09b1f302.v12"
+  }
+ ],
+ "shortfall": 0,
+ "status": "ok",
+ "shape_change": 0.4035,
+ "colour_change": 0.3756,
+ "redraw": {
+  "shape_change": 0.0,
+  "colour_change": 0.3756,
+  "is_recolour": false
+ },
+ "claim_features": [
+  "нейтральная вещь локаций «Инструмент мастера»: источник выбран глазами как изображение самой вещи (06 e: a hammer)",
+  "двенадцать вариантов из реальных состояний вещи (наклон, лежит, сколота, расколота, в песке, в траве, пара, штабель); поза без изменения строения варианта не даёт",
+  "палитра материала «iron» в его состояниях; масштаб источника и вариантов один (118 пикс.)",
+  "изменение формы к источнику (|A xor B| / |A or B|): от 40.4% до 90.1%; к ближайшему соседу не меньше 35%; цвета от 37.6%",
+  "источник: https://github.com/widelands/widelands @ 6c21c892e8, data/tribes/wares/hammer/menu.png #0 (GPL-2.0-or-later)"
+ ],
+ "constitution": "ФОРМА: настоящая вещь места в её настоящих состояниях → ДЕЙСТВИЕ: вещь стоит в слоте локации и не заслоняет сердце места → ЦЕЛЬ: вещи служат учению (ТАБУ №0.013 п. 3, 9)",
+ "eye": {
+  "verdict": "ship",
+  "why": "a hammer throughout: two crossed, half in sand, in grass; the oak handle takes the iron colour of the head",
+  "sheet": "docs/audit/2026-09-30/location-items/obj_tools_9b09b1f302.png",
+  "date": "2026-09-30"
+ }
+}

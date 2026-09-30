@@ -168,4 +168,19 @@ func _initialize() -> void:
 	obitel.in_hub(self)
 	print("obitel: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# The 99 locations of our plots (TABOO 0.013, HLD_LOCATIONS_99).
+	before = checks
+	fails = failures
+	load("res://tests/test_locations.gd").new().run(self)
+	print("locations: %d checks, %d failures" % [checks - before,
+		failures - fails])
+	# The 99 locations as the headset builds them (TABOO 0.013, L4).
+	before = checks
+	fails = failures
+	var built = load("res://tests/test_location_build.gd").new()
+	built.run(self)
+	await process_frame
+	built.in_scene(self)
+	print("location build: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	quit(1 if failures else 0)

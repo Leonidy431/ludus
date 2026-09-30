@@ -116,3 +116,38 @@ sampled. Per-file licences, authors and paths: docs/RAW_AUDIO_REFERENCES.json.
 Held out for the lawyer (not used, not fetched): space-wizards/space-station-14 licence-nc-unknown 82; space-wizards/space-station-14 licence-unknown 4; widelands/widelands licence-ambiguous 12; widelands/widelands licence-unknown 9.
 
 A root `.noai` marker (an opt-out signal against AI use) is present in: https://github.com/space-wizards/space-station-14. It is recorded for the lawyer and the operator; the pass has not decided whether it binds.
+
+
+## Things of the 99 locations (raw material, TABOO 0.013 p. 3)
+
+Neutral things from the props store of the 99 repos
+(`docs/RAW_LOCATION_PROPS.json`), each reshaped into twelve variants by
+`scripts/raw_assets/location_items.py` and `location_kit.py` and passed
+by eye (`docs/audit/2026-09-30/location-items/`). The licence is that of
+the file itself where the file names one (space-station-14 `.rsi/
+meta.json`, the SVG's `<metadata>`), else the repository's. Shape is
+|A xor B| / |A or B| of the alpha masks against the source; every
+variant is also 35 % or more from each of its siblings.
+
+| Object | Serves | Variants | Source | Commit | Path | Licence | Min shape | Min colour |
+|---|---|---|---|---|---|---|---|---|
+| obj_bench_41042cf8fd | bench | 12/12 | https://github.com/space-wizards/space-station-14 | d4d4696248 | Resources/Textures/Structures/Furniture/chairs.rsi/wooden-bench.png #0 | CC-BY-SA-3.0 | 35.2% | 60.8% |
+| obj_bridge_log_40b14237a3 | bridge-log, spruce-log | 12/12 | https://github.com/widelands/widelands | 6c21c892e8 | data/tribes/wares/log/idle_4.png #0 | GPL-2.0-or-later | 37.1% | 36.2% |
+| obj_hourglass_e49ab22431 | hourglass | 12/12 | https://github.com/Azgaar/Fantasy-Map-Generator | 77192941fd | public/charges/hourglass.svg #0 | CC-BY-SA-3.0 | 35.2% | 95.3% |
+| obj_tools_9b09b1f302 | tools | 12/12 | https://github.com/widelands/widelands | 6c21c892e8 | data/tribes/wares/hammer/menu.png #0 | GPL-2.0-or-later | 40.4% | 37.6% |
+
+### Authors of the things of the 99 locations (attribution, appended 2026-09-30)
+
+The rows above name the licence but not the author, which CC BY-SA and
+the GPL ask for. From each file's own licence record (the kit meta's
+`licence_facts`, which quotes the source):
+
+| Object | Author and attribution | Licence | From |
+|---|---|---|---|
+| obj_bench_41042cf8fd | "wooden bench by Ko4erga (discord)", Space Station 14 contributors (space-wizards/space-station-14, `chairs.rsi/meta.json` "copyright") | CC-BY-SA-3.0 | `Resources/Textures/Structures/Furniture/chairs.rsi/wooden-bench.png` |
+| obj_hourglass_e49ab22431 | Syryatsu, "Meuble sablier s'écoulant", https://commons.wikimedia.org/wiki/File:Meuble_sablier_s%27%C3%A9coulant.svg (via Azgaar/Fantasy-Map-Generator) | CC-BY-SA-3.0 | `public/charges/hourglass.svg` |
+| obj_bridge_log_40b14237a3 | The Widelands Development Team (widelands/widelands, COPYING; authors listed in `data/txts/AUTHORS.lua`) | GPL-2.0-or-later | `data/tribes/wares/log/idle_4.png` |
+| obj_tools_9b09b1f302 | The Widelands Development Team (widelands/widelands, COPYING; authors listed in `data/txts/AUTHORS.lua`) | GPL-2.0-or-later | `data/tribes/wares/hammer/menu.png` |
+
+The derived variants carry the same licence (share-alike); the claim of
+35 % change is the project's own rule, not a legal test (TABOO 0.1).

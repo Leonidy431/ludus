@@ -2478,6 +2478,263 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 4
+  },
+  {
+   "time": "2026-09-30T15:12:54+00:00",
+   "pass": "loc-items-2026-09-30-p1",
+   "kind": "location-items (TABOO 0.013 p. 3, track B)",
+   "things_looked_up": 112,
+   "things_not_looked_up": {
+    "church-furniture": 2,
+    "devotional": 2,
+    "document": 28,
+    "expedition-instrument": 3,
+    "holy-never-raw": 7,
+    "lake-own-drawing": 21,
+    "through-story-trace": 3
+   },
+   "never_taken": {
+    "sacred-never-raw": 120,
+    "no-licence": 121,
+    "dogma-stop-list": 55,
+    "font": 2
+   },
+   "props_taken": 3204,
+   "props_by_kind": {
+    "image": 3187,
+    "model": 17
+   },
+   "props_by_place": {
+    "game": 3043,
+    "screenshot": 1,
+    "doc": 20,
+    "editor": 93,
+    "example": 29,
+    "test": 16,
+    "promo": 2
+   },
+   "props_bytes_outside_repo": 67187634,
+   "register_growth_bytes": 1640537,
+   "kits_built": 23,
+   "kits_shipped": [
+    "obj_bench_41042cf8fd",
+    "obj_bridge_log_40b14237a3",
+    "obj_hourglass_e49ab22431",
+    "obj_tools_9b09b1f302"
+   ],
+   "kits_rolled_back": [
+    {
+     "kit": "anvil",
+     "reason": "shortfall: an anvil only sinks, is overgrown or leans; its real states give fewer than twelve"
+    },
+    {
+     "kit": "archive-chest",
+     "reason": "reads as a cabinet or a crate, not a chest; the cast shadow of the source turns with it"
+    },
+    {
+     "kit": "barrel",
+     "reason": "the cast shadow of the source turns and breaks with the barrel, and a stacked barrel floats on it"
+    },
+    {
+     "kit": "basket",
+     "reason": "shortfall"
+    },
+    {
+     "kit": "campfire",
+     "reason": "shortfall"
+    },
+    {
+     "kit": "caravan-lantern",
+     "reason": "shortfall"
+    },
+    {
+     "kit": "caulker",
+     "reason": "all twelve are sunk or overgrown, none for a room; a chisel does not stand stuck in sand"
+    },
+    {
+     "kit": "cloth",
+     "reason": "shortfall"
+    },
+    {
+     "kit": "forge",
+     "reason": "shortfall"
+    },
+    {
+     "kit": "fruit-crate",
+     "reason": "the grey weathered variants read as metal boxes and the crate on its end as a locker"
+    },
+    {
+     "kit": "hand-mill",
+     "reason": "shortfall"
+    },
+    {
+     "kit": "khadak",
+     "reason": "shortfall; a looped scarf icon reads as a knot"
+    },
+    {
+     "kit": "knotted-line",
+     "reason": "shortfall; a short thick rope, not a measuring line"
+    },
+    {
+     "kit": "refugee-cart",
+     "reason": "seen from above: reads as a box with shafts, not a cart"
+    },
+    {
+     "kit": "silk-bale",
+     "reason": "shortfall"
+    },
+    {
+     "kit": "silver-ingot",
+     "reason": "shortfall"
+    },
+    {
+     "kit": "spade",
+     "reason": "the blade of the icon reads as a club head"
+    },
+    {
+     "kit": "store-key",
+     "reason": "shortfall"
+    },
+    {
+     "kit": "tongs",
+     "reason": "the icon reads as scissors"
+    }
+   ],
+   "refused_by_eye_on_candidates": {
+    "adze": "battle axes and a pole-axe, not a carpenter's adze",
+    "anchor-stone": "an iron anchor and station anchors; ours is stone",
+    "banner": "logos and interface banners, no linen banner",
+    "beehive": "magic hives of a roguelike",
+    "binding-press": "factory blocks and an icon",
+    "boat": "the heraldic boats are CC-BY-NC-SA (non-commercial); the rest are boats in painted waves or portraits",
+    "boat-hull": "no bare hull; wrecks in painted waves",
+    "bread-loaf": "bakery buildings and unsliced strips of frames",
+    "bread-table": "bakery buildings and unsliced strips of frames",
+    "brick-mould": "brick walls and kiln buildings",
+    "camel-saddle": "camels, not a saddle",
+    "caravan-staff": "wizards' staves",
+    "cauldron-camp": "the heraldic pot is CC-BY-NC-SA (non-commercial)",
+    "cauldron-common": "the heraldic pot is CC-BY-NC-SA (non-commercial)",
+    "coin-purse": "heaps of gold coins read as loot, not a purse",
+    "compass": "interface compass roses",
+    "crucible": "factory blocks",
+    "dove": "the heraldic dove is CC-BY-NC-SA (non-commercial)",
+    "drying-rack": "weapon racks",
+    "dye-vat": "barrels, not an open vat",
+    "exoskeleton": "a fabricator machine and a tech icon",
+    "felt": "carpet floor tiles",
+    "float": "a map",
+    "grain-pit": "granary buildings",
+    "grain-sack": "a magic sack of spiders and a sheaf",
+    "herbs": "a herb inside an item marker ring",
+    "horn": "a magic horn",
+    "inkwell": "a magic inkwell talisman",
+    "jeweller-crucible": "factory blocks",
+    "keyboard": "interface glyphs",
+    "kiln": "factory blocks and kiln buildings",
+    "level-mark": "map markers",
+    "measuring-rod": "steel rods and magic rods",
+    "mill-wheel": "a texture of a CC-BY-NC watermill (non-commercial)",
+    "money-scales": "dragon-scale armour",
+    "net": "fishermen figures and icons",
+    "oar": "a baker's peel and pong paddles, not an oar",
+    "paper-bale": "paper sheets and icons",
+    "potter-wheel": "an amphora icon",
+    "probe-staff": "wizards' staves",
+    "rope-coil": "straight rope and cables, no coil",
+    "salt-sack": "salt walls and a magic sack",
+    "scales": "dragon-scale armour",
+    "screen": "loading-screen pictures",
+    "sealed-case": "an open locker",
+    "spice-sack": "a magic sack and an icon",
+    "spindle": "a spaceship",
+    "stakes": "execution stakes of a bonfire",
+    "stone-pile": "natural rock outcrops with cast shadows, not a masonry pile",
+    "torch": "thrusters and a light texture",
+    "vine": "a vine monster",
+    "water-gauge": "an interface gauge",
+    "water-sampler": "a magic potion",
+    "well-bucket": "the heraldic bucket is CC-BY-NC-SA (non-commercial)"
+   },
+   "godot_files": 12,
+   "godot_bytes": 25821,
+   "notices_rows": 4,
+   "models": {
+    "models/Anvil.mesh": "Ogre binary mesh: no reader here",
+    "models/Forge.mesh": "Ogre binary mesh: no reader here",
+    "models/Lamp.mesh": "Ogre binary mesh: no reader here",
+    "models/Staff.mesh": "Ogre binary mesh: no reader here; a wizard's staff",
+    "editor/test/resources/build_project/SideScroller/model/treasure_chest.gltf": "a treasure chest in the engine's editor tests; the Defold licence of test data is unclear, and treasure reads as loot",
+    "editor/test/resources/build_project/SideScroller/model/treasure_chest_anim_out.gltf": "a treasure chest in the engine's editor tests; the Defold licence of test data is unclear, and treasure reads as loot",
+    "editor/test/resources/test_project/mesh/morph_weights_anim.gltf": "a morph-target test mesh, not weights",
+    "editor/test/resources/test_project/mesh/treasure_chest.gltf": "a treasure chest in the engine's editor tests; the Defold licence of test data is unclear, and treasure reads as loot",
+    "editor/test/resources/test_project/mesh/treasure_chest_anim_out.gltf": "a treasure chest in the engine's editor tests; the Defold licence of test data is unclear, and treasure reads as loot",
+    "engine/gamesys/src/gamesys/test/model/morph_weights_anim.gltf": "a morph-target test mesh, not weights",
+    "engine/modelc/src/test/assets/morph_weights_anim.gltf": "a morph-target test mesh, not weights",
+    "assets/TabletopClub/containers/Pot.obj": "kit for karas",
+    "assets/TabletopClub/containers/Purse.gltf": "kit for coin-purse",
+    "assets/TabletopClub/tables/Picnic Bench.obj": "a picnic table with fixed seats, not a bench",
+    "data/graphics/cimpletoon/XYZ_art/pt-boat.blend": "a Blender file (no Blender here) of a torpedo boat",
+    "data/models/pottery.blend": "a Blender file (no Blender here)",
+    "examples/shaders/resources/models/watermill.obj": "CC-BY-NC 4.0 (raylib examples/shaders/resources/LICENSE.md): non-commercial"
+   },
+   "mesh_kits_rolled_back": [
+    {
+     "kit": "coin-purse",
+     "name": "obj_coin_purse_c1be9bcd8b",
+     "reason": "shortfall",
+     "variants": 2,
+     "pool": {
+      "size": 67,
+      "measured": 16,
+      "refused": {
+       "shape-below-threshold": 51,
+       "too-close-to-a-sibling": 14
+      },
+      "chosen": 2
+     }
+    },
+    {
+     "kit": "karas",
+     "name": "obj_karas_a464c8d0b7",
+     "reason": "shortfall",
+     "variants": 6,
+     "pool": {
+      "size": 110,
+      "measured": 37,
+      "refused": {
+       "duplicate-hitbox": 5,
+       "shape-below-threshold": 73,
+       "too-close-to-a-sibling": 26
+      },
+      "chosen": 6
+     }
+    }
+   ]
+  },
+  {
+   "time": "2026-09-30T17:54:31+00:00",
+   "pass": "loc-props-licences-2026-09-30",
+   "kind": "props register licences and withdrawals (TABOO 0.012 p. 1-2; review 2026-09-30)",
+   "licence_corrections": 1814,
+   "by_change": {
+    "GPL -> GPL-3.0": 137,
+    "GPL -> GPL-2.0": 1532,
+    "GPL -> CC-BY-NC-ND-4.0": 40,
+    "UNKNOWN -> LicenseRef-Defold-1.0": 20,
+    "UNKNOWN -> CC-BY-SA-4.0": 38,
+    "UNKNOWN -> MIT": 18,
+    "UNKNOWN -> Zlib": 11,
+    "UNKNOWN -> Artistic-1.0": 8,
+    "UNKNOWN -> CC-BY-4.0": 4,
+    "UNKNOWN -> LicenseRef-qskinny": 2,
+    "UNKNOWN -> Apache-2.0": 4
+   },
+   "withdrawn": 7,
+   "withdrawn_why": [
+    "demonic"
+   ],
+   "without_licence_after": 0
   }
  ],
  "keywords": {

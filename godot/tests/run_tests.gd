@@ -153,6 +153,12 @@ func _initialize() -> void:
 	load("res://tests/test_posoh.gd").new().run(self)
 	print("posoh: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# Things of the 99 locations from the 99 repos (HLD_LOCATION_ITEMS).
+	before = checks
+	fails = failures
+	load("res://tests/test_location_items.gd").new().run(self)
+	print("location items: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	# The real dive scene: the holy things carry no band (it enters the
 	# tree with the root, after _initialize, so wait a frame).
 	before = checks
