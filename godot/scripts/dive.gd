@@ -472,26 +472,18 @@ const OWN_DRAWINGS := [
 
 func _build_own_drawings() -> void:
 	for kit in OWN_DRAWINGS:
-		var files := _kit_files("res://art/derived/%s" % kit.dir, kit.kit)
-		if files.is_empty():
-			continue
-		var r := DiveCore.rng("own:" + str(kit.kit))
-		for i in int(kit.n):
-			var tex := load(files[i % files.size()]) as Texture2D
-			var d: float = lerpf(kit.depth[0], kit.depth[1], r.call())
-			var z: float = (r.call() * 2.0 - 1.0) * DiveCore.CORRIDOR_M
-			var x := DiveCore.x_for_depth(d)
+		for spot in own_drawing_spots(kit):
 			var sp := Sprite3D.new()
-			sp.texture = tex
+			sp.texture = load(spot.file) as Texture2D
 			sp.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
 			sp.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
 			# Lit like everything else under water: an unshaded sprite
 			# kept its full colour at 140 m, against Beer-Lambert.
 			sp.shaded = true
 			sp.pixel_size = float(kit.size) / 256.0
-			# The drawing stands on its lower edge, on the floor.
-			sp.position = Vector3(x, -DiveCore.floor_depth(x, z)
-				+ float(kit.size) * 0.45, z)
+			# The drawing stands on its lower edge, on the floor
+			# (own_drawing_spots, shared with the web fixture).
+			sp.position = Vector3(spot.x, -spot.y, spot.z)
 			# Its material turns it to the eye, cuts its alpha and draws
 			# the band on its edge (RimLight.drawing).
 			rim.drawing(sp)
@@ -499,9 +491,29 @@ func _build_own_drawings() -> void:
 			add_child(sp)
 
 
+## Where each drawing of one kit stands: the one placement the scene
+## builds and test_atlas.gd checks against the web fixture, so the two
+## cannot part.  y is the depth of the drawing's centre: it stands on
+## its lower edge, on the floor.  Empty when the kit has no files.
+static func own_drawing_spots(kit: Dictionary) -> Array:
+	var out := []
+	var files := _kit_files("res://art/derived/%s" % kit.dir, kit.kit)
+	if files.is_empty():
+		return out
+	var r := DiveCore.rng("own:" + str(kit.kit))
+	for i in int(kit.n):
+		var d: float = lerpf(kit.depth[0], kit.depth[1], r.call())
+		var z: float = (r.call() * 2.0 - 1.0) * DiveCore.CORRIDOR_M
+		var x := DiveCore.x_for_depth(d)
+		out.append({"x": x, "z": z,
+			"y": DiveCore.floor_depth(x, z) - float(kit.size) * 0.45,
+			"file": files[i % files.size()]})
+	return out
+
+
 ## The kit's variant files, sorted; in an exported build the folder
 ## lists the ".import" stubs, so the suffix is dropped.
-func _kit_files(dir: String, kit: String) -> Array:
+static func _kit_files(dir: String, kit: String) -> Array:
 	var out := []
 	for f in DirAccess.get_files_at(dir):
 		var name := f.trim_suffix(".import").trim_suffix(".remap")
