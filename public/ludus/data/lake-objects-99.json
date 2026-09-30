@@ -375,7 +375,8 @@
    ],
    "flags": {
     "noLoot": true,
-    "loot": null
+    "loot": null,
+    "holy": true
    }
   },
   {
