@@ -1,0 +1,1291 @@
+{
+  "name": "own_balka_fc14815fb5",
+  "id": "fc14815fb5",
+  "seed": "fc14815fb50ba01fb5291b2609a2270d4a0e4125",
+  "slot": "DEF-059",
+  "thing": "balka",
+  "register": {
+    "id": "balka",
+    "category": "find",
+    "ru": "Деревянная балка",
+    "en": "Timber beam",
+    "depth_m": [
+      3,
+      40
+    ],
+    "shape": "beam",
+    "size_m": 3.0,
+    "colour": "#5a4630",
+    "states": [
+      "целая",
+      "сгнившая",
+      "в иле"
+    ]
+  },
+  "origin": "own-procedural-drawing",
+  "method": "own-procedural",
+  "raw_material": false,
+  "source": {
+    "repo": "ludus (own drawing)",
+    "path": "scripts/raw_assets/neutral_procedural.py",
+    "commit": "neutral-drawing-r1"
+  },
+  "repo": "ludus (own drawing)",
+  "path": "scripts/raw_assets/neutral_procedural.py",
+  "commit": "neutral-drawing-r1",
+  "license": "project (own drawing, no third-party material)",
+  "license_file": null,
+  "threshold": 0.35,
+  "shape_basis": "nearest-sibling",
+  "reference_profile": {
+    "name": "wood and pottery",
+    "aspect": [
+      0.45,
+      8.0
+    ],
+    "fill": [
+      0.45,
+      0.98
+    ],
+    "category": "find"
+  },
+  "pool": {
+    "size": 432,
+    "fitting_seen": 201,
+    "refused": {
+      "too-close-to-a-sibling": 189,
+      "unlike-real-object": 3
+    },
+    "chosen": 12
+  },
+  "constitution": "FORM: a real thing of the lake register in its real states -> ACTION: the player reads the floor by it -> GOAL: reading a place by its real traces (TABOO 0.03 rule 3)",
+  "variants": [
+    {
+      "slot": "v01",
+      "file": "own_balka_fc14815fb5_v01.png",
+      "state": "whole",
+      "params": {
+        "state": "whole",
+        "length": 236,
+        "thick": 56,
+        "end": "sawn",
+        "key": "balka:whole:236:56:sawn"
+      },
+      "shape_change": 0.3501,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 4.175,
+        "fill": 0.908,
+        "base": 0.941
+      },
+      "area": 12315,
+      "hitbox": {
+        "bbox": [
+          9,
+          182,
+          247,
+          239
+        ],
+        "area": 12315,
+        "radius": 62.61,
+        "hull": [
+          [
+            9,
+            199
+          ],
+          [
+            15,
+            192
+          ],
+          [
+            19,
+            188
+          ],
+          [
+            85,
+            186
+          ],
+          [
+            233,
+            182
+          ],
+          [
+            237,
+            182
+          ],
+          [
+            247,
+            192
+          ],
+          [
+            247,
+            228
+          ],
+          [
+            236,
+            239
+          ],
+          [
+            20,
+            239
+          ],
+          [
+            10,
+            229
+          ],
+          [
+            9,
+            227
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.balka.fc14815fb5.v01"
+    },
+    {
+      "slot": "v02",
+      "file": "own_balka_fc14815fb5_v02.png",
+      "state": "propped",
+      "params": {
+        "state": "propped",
+        "length": 236,
+        "thick": 56,
+        "end": "sawn",
+        "key": "balka:propped:236:56:sawn"
+      },
+      "shape_change": 0.3535,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.857,
+        "fill": 0.68,
+        "base": 0.417
+      },
+      "area": 13716,
+      "hitbox": {
+        "bbox": [
+          14,
+          155,
+          254,
+          239
+        ],
+        "area": 13716,
+        "radius": 66.08,
+        "hull": [
+          [
+            14,
+            187
+          ],
+          [
+            17,
+            167
+          ],
+          [
+            18,
+            163
+          ],
+          [
+            26,
+            157
+          ],
+          [
+            29,
+            155
+          ],
+          [
+            32,
+            155
+          ],
+          [
+            243,
+            180
+          ],
+          [
+            245,
+            181
+          ],
+          [
+            248,
+            184
+          ],
+          [
+            251,
+            188
+          ],
+          [
+            253,
+            191
+          ],
+          [
+            254,
+            193
+          ],
+          [
+            254,
+            194
+          ],
+          [
+            251,
+            214
+          ],
+          [
+            249,
+            227
+          ],
+          [
+            248,
+            229
+          ],
+          [
+            247,
+            230
+          ],
+          [
+            240,
+            235
+          ],
+          [
+            237,
+            237
+          ],
+          [
+            89,
+            239
+          ],
+          [
+            45,
+            239
+          ],
+          [
+            41,
+            235
+          ],
+          [
+            15,
+            196
+          ],
+          [
+            14,
+            194
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.balka.fc14815fb5.v02"
+    },
+    {
+      "slot": "v03",
+      "file": "own_balka_fc14815fb5_v03.png",
+      "state": "whole",
+      "params": {
+        "state": "whole",
+        "length": 236,
+        "thick": 34,
+        "end": "sawn",
+        "key": "balka:whole:236:34:sawn"
+      },
+      "shape_change": 0.3552,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 6.8,
+        "fill": 0.933,
+        "base": 0.958
+      },
+      "area": 7770,
+      "hitbox": {
+        "bbox": [
+          9,
+          204,
+          247,
+          239
+        ],
+        "area": 7770,
+        "radius": 49.73,
+        "hull": [
+          [
+            9,
+            215
+          ],
+          [
+            10,
+            213
+          ],
+          [
+            15,
+            208
+          ],
+          [
+            89,
+            206
+          ],
+          [
+            138,
+            205
+          ],
+          [
+            203,
+            204
+          ],
+          [
+            241,
+            204
+          ],
+          [
+            247,
+            210
+          ],
+          [
+            247,
+            232
+          ],
+          [
+            240,
+            239
+          ],
+          [
+            16,
+            239
+          ],
+          [
+            10,
+            233
+          ],
+          [
+            9,
+            231
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.balka.fc14815fb5.v03"
+    },
+    {
+      "slot": "v04",
+      "file": "own_balka_fc14815fb5_v04.png",
+      "state": "propped",
+      "params": {
+        "state": "propped",
+        "length": 236,
+        "thick": 34,
+        "end": "sawn",
+        "key": "balka:propped:236:34:sawn"
+      },
+      "shape_change": 0.3501,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.902,
+        "fill": 0.62,
+        "base": 0.388
+      },
+      "area": 8995,
+      "hitbox": {
+        "bbox": [
+          12,
+          178,
+          250,
+          239
+        ],
+        "area": 8995,
+        "radius": 53.51,
+        "hull": [
+          [
+            12,
+            200
+          ],
+          [
+            14,
+            184
+          ],
+          [
+            18,
+            180
+          ],
+          [
+            21,
+            178
+          ],
+          [
+            26,
+            178
+          ],
+          [
+            118,
+            188
+          ],
+          [
+            245,
+            203
+          ],
+          [
+            248,
+            206
+          ],
+          [
+            250,
+            209
+          ],
+          [
+            250,
+            217
+          ],
+          [
+            249,
+            225
+          ],
+          [
+            248,
+            232
+          ],
+          [
+            245,
+            235
+          ],
+          [
+            241,
+            238
+          ],
+          [
+            65,
+            239
+          ],
+          [
+            23,
+            239
+          ],
+          [
+            21,
+            237
+          ],
+          [
+            20,
+            235
+          ],
+          [
+            12,
+            202
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.balka.fc14815fb5.v04"
+    },
+    {
+      "slot": "v05",
+      "file": "own_balka_fc14815fb5_v05.png",
+      "state": "propped",
+      "params": {
+        "state": "propped",
+        "length": 204,
+        "thick": 44,
+        "end": "rotted",
+        "key": "balka:propped:204:44:rotted"
+      },
+      "shape_change": 0.3535,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.873,
+        "fill": 0.641,
+        "base": 0.362
+      },
+      "area": 9278,
+      "hitbox": {
+        "bbox": [
+          29,
+          168,
+          233,
+          239
+        ],
+        "area": 9278,
+        "radius": 54.34,
+        "hull": [
+          [
+            29,
+            197
+          ],
+          [
+            31,
+            184
+          ],
+          [
+            32,
+            178
+          ],
+          [
+            33,
+            174
+          ],
+          [
+            34,
+            173
+          ],
+          [
+            41,
+            168
+          ],
+          [
+            45,
+            168
+          ],
+          [
+            84,
+            173
+          ],
+          [
+            115,
+            177
+          ],
+          [
+            216,
+            191
+          ],
+          [
+            219,
+            192
+          ],
+          [
+            231,
+            206
+          ],
+          [
+            233,
+            210
+          ],
+          [
+            233,
+            213
+          ],
+          [
+            232,
+            217
+          ],
+          [
+            231,
+            219
+          ],
+          [
+            229,
+            222
+          ],
+          [
+            227,
+            224
+          ],
+          [
+            219,
+            230
+          ],
+          [
+            213,
+            233
+          ],
+          [
+            208,
+            235
+          ],
+          [
+            87,
+            239
+          ],
+          [
+            50,
+            239
+          ],
+          [
+            48,
+            238
+          ],
+          [
+            47,
+            237
+          ],
+          [
+            46,
+            235
+          ],
+          [
+            29,
+            198
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.balka.fc14815fb5.v05"
+    },
+    {
+      "slot": "v06",
+      "file": "own_balka_fc14815fb5_v06.png",
+      "state": "joint",
+      "params": {
+        "state": "joint",
+        "length": 204,
+        "thick": 26,
+        "end": "sawn",
+        "key": "balka:joint:204:26:sawn"
+      },
+      "shape_change": 0.3552,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 7.63,
+        "fill": 0.901,
+        "base": 0.961
+      },
+      "area": 5010,
+      "hitbox": {
+        "bbox": [
+          25,
+          212,
+          231,
+          239
+        ],
+        "area": 5010,
+        "radius": 39.93,
+        "hull": [
+          [
+            25,
+            220
+          ],
+          [
+            28,
+            216
+          ],
+          [
+            29,
+            215
+          ],
+          [
+            69,
+            214
+          ],
+          [
+            163,
+            212
+          ],
+          [
+            227,
+            212
+          ],
+          [
+            231,
+            216
+          ],
+          [
+            231,
+            234
+          ],
+          [
+            226,
+            239
+          ],
+          [
+            30,
+            239
+          ],
+          [
+            26,
+            235
+          ],
+          [
+            25,
+            233
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.balka.fc14815fb5.v06"
+    },
+    {
+      "slot": "v07",
+      "file": "own_balka_fc14815fb5_v07.png",
+      "state": "propped",
+      "params": {
+        "state": "propped",
+        "length": 204,
+        "thick": 26,
+        "end": "rotted",
+        "key": "balka:propped:204:26:rotted"
+      },
+      "shape_change": 0.3886,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 4.122,
+        "fill": 0.602,
+        "base": 0.284
+      },
+      "area": 5957,
+      "hitbox": {
+        "bbox": [
+          28,
+          190,
+          230,
+          239
+        ],
+        "area": 5957,
+        "radius": 43.55,
+        "hull": [
+          [
+            28,
+            202
+          ],
+          [
+            29,
+            194
+          ],
+          [
+            32,
+            191
+          ],
+          [
+            34,
+            190
+          ],
+          [
+            42,
+            190
+          ],
+          [
+            82,
+            194
+          ],
+          [
+            220,
+            210
+          ],
+          [
+            229,
+            219
+          ],
+          [
+            230,
+            221
+          ],
+          [
+            230,
+            226
+          ],
+          [
+            229,
+            228
+          ],
+          [
+            226,
+            232
+          ],
+          [
+            223,
+            234
+          ],
+          [
+            217,
+            237
+          ],
+          [
+            68,
+            239
+          ],
+          [
+            34,
+            239
+          ],
+          [
+            32,
+            238
+          ],
+          [
+            31,
+            237
+          ],
+          [
+            30,
+            235
+          ],
+          [
+            28,
+            209
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.balka.fc14815fb5.v07"
+    },
+    {
+      "slot": "v08",
+      "file": "own_balka_fc14815fb5_v08.png",
+      "state": "joint",
+      "params": {
+        "state": "joint",
+        "length": 172,
+        "thick": 56,
+        "end": "sawn",
+        "key": "balka:joint:172:56:sawn"
+      },
+      "shape_change": 0.3523,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.053,
+        "fill": 0.809,
+        "base": 0.92
+      },
+      "area": 8020,
+      "hitbox": {
+        "bbox": [
+          41,
+          182,
+          215,
+          239
+        ],
+        "area": 8020,
+        "radius": 50.53,
+        "hull": [
+          [
+            41,
+            199
+          ],
+          [
+            47,
+            192
+          ],
+          [
+            51,
+            188
+          ],
+          [
+            202,
+            182
+          ],
+          [
+            205,
+            182
+          ],
+          [
+            215,
+            192
+          ],
+          [
+            215,
+            228
+          ],
+          [
+            204,
+            239
+          ],
+          [
+            52,
+            239
+          ],
+          [
+            42,
+            229
+          ],
+          [
+            41,
+            227
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.balka.fc14815fb5.v08"
+    },
+    {
+      "slot": "v09",
+      "file": "own_balka_fc14815fb5_v09.png",
+      "state": "propped",
+      "params": {
+        "state": "propped",
+        "length": 172,
+        "thick": 56,
+        "end": "broken",
+        "key": "balka:propped:172:56:broken"
+      },
+      "shape_change": 0.3623,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.282,
+        "fill": 0.7,
+        "base": 0.42
+      },
+      "area": 9717,
+      "hitbox": {
+        "bbox": [
+          46,
+          161,
+          224,
+          239
+        ],
+        "area": 9717,
+        "radius": 55.61,
+        "hull": [
+          [
+            46,
+            194
+          ],
+          [
+            50,
+            171
+          ],
+          [
+            51,
+            169
+          ],
+          [
+            59,
+            163
+          ],
+          [
+            62,
+            161
+          ],
+          [
+            64,
+            161
+          ],
+          [
+            114,
+            167
+          ],
+          [
+            137,
+            170
+          ],
+          [
+            224,
+            182
+          ],
+          [
+            224,
+            185
+          ],
+          [
+            218,
+            221
+          ],
+          [
+            215,
+            238
+          ],
+          [
+            214,
+            239
+          ],
+          [
+            83,
+            239
+          ],
+          [
+            54,
+            211
+          ],
+          [
+            52,
+            209
+          ],
+          [
+            46,
+            200
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.balka.fc14815fb5.v09"
+    },
+    {
+      "slot": "v10",
+      "file": "own_balka_fc14815fb5_v10.png",
+      "state": "propped",
+      "params": {
+        "state": "propped",
+        "length": 172,
+        "thick": 34,
+        "end": "broken",
+        "key": "balka:propped:172:34:broken"
+      },
+      "shape_change": 0.3523,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.241,
+        "fill": 0.655,
+        "base": 0.354
+      },
+      "area": 6190,
+      "hitbox": {
+        "bbox": [
+          44,
+          185,
+          219,
+          239
+        ],
+        "area": 6190,
+        "radius": 44.39,
+        "hull": [
+          [
+            44,
+            204
+          ],
+          [
+            45,
+            197
+          ],
+          [
+            46,
+            191
+          ],
+          [
+            48,
+            189
+          ],
+          [
+            53,
+            185
+          ],
+          [
+            54,
+            185
+          ],
+          [
+            164,
+            197
+          ],
+          [
+            219,
+            204
+          ],
+          [
+            219,
+            208
+          ],
+          [
+            218,
+            216
+          ],
+          [
+            214,
+            239
+          ],
+          [
+            60,
+            239
+          ],
+          [
+            58,
+            237
+          ],
+          [
+            44,
+            210
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.balka.fc14815fb5.v10"
+    },
+    {
+      "slot": "v11",
+      "file": "own_balka_fc14815fb5_v11.png",
+      "state": "whole",
+      "params": {
+        "state": "whole",
+        "length": 140,
+        "thick": 44,
+        "end": "sawn",
+        "key": "balka:whole:140:44:sawn"
+      },
+      "shape_change": 0.3564,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.156,
+        "fill": 0.906,
+        "base": 0.93
+      },
+      "area": 5791,
+      "hitbox": {
+        "bbox": [
+          57,
+          194,
+          199,
+          239
+        ],
+        "area": 5791,
+        "radius": 42.93,
+        "hull": [
+          [
+            57,
+            208
+          ],
+          [
+            58,
+            206
+          ],
+          [
+            65,
+            199
+          ],
+          [
+            81,
+            198
+          ],
+          [
+            126,
+            196
+          ],
+          [
+            188,
+            194
+          ],
+          [
+            191,
+            194
+          ],
+          [
+            196,
+            198
+          ],
+          [
+            199,
+            201
+          ],
+          [
+            199,
+            231
+          ],
+          [
+            192,
+            238
+          ],
+          [
+            190,
+            239
+          ],
+          [
+            66,
+            239
+          ],
+          [
+            64,
+            238
+          ],
+          [
+            62,
+            236
+          ],
+          [
+            57,
+            230
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.balka.fc14815fb5.v11"
+    },
+    {
+      "slot": "v12",
+      "file": "own_balka_fc14815fb5_v12.png",
+      "state": "propped",
+      "params": {
+        "state": "propped",
+        "length": 140,
+        "thick": 44,
+        "end": "sawn",
+        "key": "balka:propped:140:44:sawn"
+      },
+      "shape_change": 0.3959,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.323,
+        "fill": 0.699,
+        "base": 0.41
+      },
+      "area": 6238,
+      "hitbox": {
+        "bbox": [
+          61,
+          177,
+          205,
+          239
+        ],
+        "area": 6238,
+        "radius": 44.56,
+        "hull": [
+          [
+            61,
+            203
+          ],
+          [
+            64,
+            185
+          ],
+          [
+            65,
+            183
+          ],
+          [
+            69,
+            180
+          ],
+          [
+            72,
+            178
+          ],
+          [
+            74,
+            177
+          ],
+          [
+            76,
+            177
+          ],
+          [
+            101,
+            180
+          ],
+          [
+            199,
+            193
+          ],
+          [
+            205,
+            201
+          ],
+          [
+            205,
+            205
+          ],
+          [
+            201,
+            228
+          ],
+          [
+            200,
+            231
+          ],
+          [
+            199,
+            232
+          ],
+          [
+            192,
+            237
+          ],
+          [
+            115,
+            239
+          ],
+          [
+            90,
+            239
+          ],
+          [
+            65,
+            214
+          ],
+          [
+            61,
+            208
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.balka.fc14815fb5.v12"
+    }
+  ],
+  "status": "ok",
+  "shortfall": 0,
+  "shape_change": 0.3501
+}

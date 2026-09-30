@@ -1,0 +1,1184 @@
+{
+  "name": "own_trostnik_cbc1190335",
+  "id": "cbc1190335",
+  "seed": "cbc11903359d12638fa51ecbb0d8500f7681827b",
+  "slot": "DEF-058",
+  "thing": "trostnik",
+  "register": {
+    "id": "trostnik",
+    "category": "plant",
+    "ru": "Тростник у берега",
+    "en": "Shore reeds",
+    "depth_m": [
+      0,
+      1
+    ],
+    "shape": "reeds",
+    "size_m": 2.0,
+    "colour": "#8a8a52",
+    "states": [
+      "стена",
+      "редкий",
+      "сломанный"
+    ]
+  },
+  "origin": "own-procedural-drawing",
+  "method": "own-procedural",
+  "raw_material": false,
+  "source": {
+    "repo": "ludus (own drawing)",
+    "path": "scripts/raw_assets/neutral_procedural.py",
+    "commit": "neutral-drawing-r1"
+  },
+  "repo": "ludus (own drawing)",
+  "path": "scripts/raw_assets/neutral_procedural.py",
+  "commit": "neutral-drawing-r1",
+  "license": "project (own drawing, no third-party material)",
+  "license_file": null,
+  "threshold": 0.35,
+  "shape_basis": "nearest-sibling",
+  "reference_profile": {
+    "name": "plants",
+    "aspect": [
+      0.1,
+      0.9
+    ],
+    "fill": [
+      0.1,
+      0.7
+    ],
+    "category": "plant"
+  },
+  "pool": {
+    "size": 108,
+    "fitting_seen": 12,
+    "refused": {},
+    "chosen": 12
+  },
+  "constitution": "FORM: a real thing of the lake register in its real states -> ACTION: the player reads the floor by it -> GOAL: reading a place by its real traces (TABOO 0.03 rule 3)",
+  "variants": [
+    {
+      "slot": "v01",
+      "file": "own_trostnik_cbc1190335_v01.png",
+      "state": "wall",
+      "params": {
+        "state": "wall",
+        "n": 8,
+        "height": 212,
+        "lean": 0.0,
+        "key": "trostnik:wall:8:212:0.0"
+      },
+      "shape_change": 0.4358,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.562,
+        "fill": 0.342,
+        "base": 0.465
+      },
+      "area": 9207,
+      "hitbox": {
+        "bbox": [
+          69,
+          20,
+          192,
+          239
+        ],
+        "area": 9207,
+        "radius": 54.14,
+        "hull": [
+          [
+            69,
+            57
+          ],
+          [
+            100,
+            24
+          ],
+          [
+            104,
+            20
+          ],
+          [
+            108,
+            20
+          ],
+          [
+            138,
+            28
+          ],
+          [
+            161,
+            38
+          ],
+          [
+            162,
+            39
+          ],
+          [
+            192,
+            80
+          ],
+          [
+            192,
+            82
+          ],
+          [
+            184,
+            166
+          ],
+          [
+            163,
+            239
+          ],
+          [
+            93,
+            239
+          ],
+          [
+            71,
+            151
+          ],
+          [
+            69,
+            59
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.trostnik.cbc1190335.v01"
+    },
+    {
+      "slot": "v02",
+      "file": "own_trostnik_cbc1190335_v02.png",
+      "state": "sparse",
+      "params": {
+        "state": "sparse",
+        "n": 3,
+        "height": 212,
+        "lean": 0.0,
+        "key": "trostnik:sparse:3:212:0.0"
+      },
+      "shape_change": 0.6386,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.439,
+        "fill": 0.216,
+        "base": 0.419
+      },
+      "area": 3648,
+      "hitbox": {
+        "bbox": [
+          80,
+          43,
+          166,
+          239
+        ],
+        "area": 3648,
+        "radius": 34.08,
+        "hull": [
+          [
+            80,
+            156
+          ],
+          [
+            82,
+            77
+          ],
+          [
+            105,
+            56
+          ],
+          [
+            107,
+            55
+          ],
+          [
+            140,
+            43
+          ],
+          [
+            143,
+            43
+          ],
+          [
+            152,
+            44
+          ],
+          [
+            154,
+            46
+          ],
+          [
+            161,
+            77
+          ],
+          [
+            166,
+            117
+          ],
+          [
+            166,
+            119
+          ],
+          [
+            146,
+            239
+          ],
+          [
+            108,
+            239
+          ],
+          [
+            107,
+            238
+          ],
+          [
+            80,
+            157
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.trostnik.cbc1190335.v02"
+    },
+    {
+      "slot": "v03",
+      "file": "own_trostnik_cbc1190335_v03.png",
+      "state": "broken",
+      "params": {
+        "state": "broken",
+        "n": 5,
+        "height": 212,
+        "lean": 0.0,
+        "key": "trostnik:broken:5:212:0.0"
+      },
+      "shape_change": 0.4737,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.507,
+        "fill": 0.247,
+        "base": 0.5
+      },
+      "area": 5362,
+      "hitbox": {
+        "bbox": [
+          73,
+          32,
+          178,
+          239
+        ],
+        "area": 5362,
+        "radius": 41.31,
+        "hull": [
+          [
+            73,
+            120
+          ],
+          [
+            121,
+            35
+          ],
+          [
+            123,
+            33
+          ],
+          [
+            125,
+            32
+          ],
+          [
+            128,
+            32
+          ],
+          [
+            156,
+            38
+          ],
+          [
+            158,
+            40
+          ],
+          [
+            171,
+            79
+          ],
+          [
+            178,
+            176
+          ],
+          [
+            178,
+            179
+          ],
+          [
+            154,
+            238
+          ],
+          [
+            153,
+            239
+          ],
+          [
+            102,
+            239
+          ],
+          [
+            101,
+            238
+          ],
+          [
+            82,
+            179
+          ],
+          [
+            73,
+            122
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.trostnik.cbc1190335.v03"
+    },
+    {
+      "slot": "v04",
+      "file": "own_trostnik_cbc1190335_v04.png",
+      "state": "wall",
+      "params": {
+        "state": "wall",
+        "n": 7,
+        "height": 212,
+        "lean": 0.0,
+        "key": "trostnik:wall:7:212:0.0"
+      },
+      "shape_change": 0.444,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.523,
+        "fill": 0.333,
+        "base": 0.492
+      },
+      "area": 8420,
+      "hitbox": {
+        "bbox": [
+          65,
+          19,
+          180,
+          239
+        ],
+        "area": 8420,
+        "radius": 51.77,
+        "hull": [
+          [
+            65,
+            154
+          ],
+          [
+            71,
+            79
+          ],
+          [
+            103,
+            21
+          ],
+          [
+            105,
+            19
+          ],
+          [
+            112,
+            19
+          ],
+          [
+            160,
+            20
+          ],
+          [
+            162,
+            22
+          ],
+          [
+            180,
+            104
+          ],
+          [
+            180,
+            106
+          ],
+          [
+            173,
+            155
+          ],
+          [
+            160,
+            239
+          ],
+          [
+            95,
+            239
+          ],
+          [
+            94,
+            238
+          ],
+          [
+            65,
+            155
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.trostnik.cbc1190335.v04"
+    },
+    {
+      "slot": "v05",
+      "file": "own_trostnik_cbc1190335_v05.png",
+      "state": "sparse",
+      "params": {
+        "state": "sparse",
+        "n": 4,
+        "height": 212,
+        "lean": 0.0,
+        "key": "trostnik:sparse:4:212:0.0"
+      },
+      "shape_change": 0.5598,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.453,
+        "fill": 0.249,
+        "base": 0.436
+      },
+      "area": 5075,
+      "hitbox": {
+        "bbox": [
+          76,
+          27,
+          172,
+          239
+        ],
+        "area": 5075,
+        "radius": 40.19,
+        "hull": [
+          [
+            76,
+            77
+          ],
+          [
+            111,
+            30
+          ],
+          [
+            114,
+            27
+          ],
+          [
+            119,
+            27
+          ],
+          [
+            146,
+            31
+          ],
+          [
+            148,
+            32
+          ],
+          [
+            149,
+            33
+          ],
+          [
+            172,
+            60
+          ],
+          [
+            172,
+            62
+          ],
+          [
+            166,
+            155
+          ],
+          [
+            149,
+            238
+          ],
+          [
+            148,
+            239
+          ],
+          [
+            104,
+            239
+          ],
+          [
+            80,
+            167
+          ],
+          [
+            76,
+            78
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.trostnik.cbc1190335.v05"
+    },
+    {
+      "slot": "v06",
+      "file": "own_trostnik_cbc1190335_v06.png",
+      "state": "broken",
+      "params": {
+        "state": "broken",
+        "n": 6,
+        "height": 212,
+        "lean": 0.0,
+        "key": "trostnik:broken:6:212:0.0"
+      },
+      "shape_change": 0.4802,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.524,
+        "fill": 0.279,
+        "base": 0.448
+      },
+      "area": 6207,
+      "hitbox": {
+        "bbox": [
+          72,
+          33,
+          180,
+          239
+        ],
+        "area": 6207,
+        "radius": 44.45,
+        "hull": [
+          [
+            72,
+            174
+          ],
+          [
+            75,
+            123
+          ],
+          [
+            112,
+            61
+          ],
+          [
+            115,
+            58
+          ],
+          [
+            147,
+            34
+          ],
+          [
+            149,
+            33
+          ],
+          [
+            152,
+            33
+          ],
+          [
+            154,
+            34
+          ],
+          [
+            155,
+            35
+          ],
+          [
+            180,
+            69
+          ],
+          [
+            180,
+            70
+          ],
+          [
+            177,
+            159
+          ],
+          [
+            173,
+            187
+          ],
+          [
+            156,
+            238
+          ],
+          [
+            155,
+            239
+          ],
+          [
+            98,
+            239
+          ],
+          [
+            72,
+            176
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.trostnik.cbc1190335.v06"
+    },
+    {
+      "slot": "v07",
+      "file": "own_trostnik_cbc1190335_v07.png",
+      "state": "wall",
+      "params": {
+        "state": "wall",
+        "n": 6,
+        "height": 212,
+        "lean": 0.0,
+        "key": "trostnik:wall:6:212:0.0"
+      },
+      "shape_change": 0.4602,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.516,
+        "fill": 0.303,
+        "base": 0.443
+      },
+      "area": 7489,
+      "hitbox": {
+        "bbox": [
+          71,
+          20,
+          184,
+          239
+        ],
+        "area": 7489,
+        "radius": 48.82,
+        "hull": [
+          [
+            71,
+            151
+          ],
+          [
+            72,
+            74
+          ],
+          [
+            108,
+            21
+          ],
+          [
+            110,
+            20
+          ],
+          [
+            115,
+            20
+          ],
+          [
+            138,
+            22
+          ],
+          [
+            171,
+            26
+          ],
+          [
+            173,
+            28
+          ],
+          [
+            181,
+            69
+          ],
+          [
+            184,
+            151
+          ],
+          [
+            184,
+            152
+          ],
+          [
+            160,
+            238
+          ],
+          [
+            159,
+            239
+          ],
+          [
+            102,
+            239
+          ],
+          [
+            101,
+            238
+          ],
+          [
+            71,
+            152
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.trostnik.cbc1190335.v07"
+    },
+    {
+      "slot": "v08",
+      "file": "own_trostnik_cbc1190335_v08.png",
+      "state": "sparse",
+      "params": {
+        "state": "sparse",
+        "n": 2,
+        "height": 212,
+        "lean": 0.0,
+        "key": "trostnik:sparse:2:212:0.0"
+      },
+      "shape_change": 0.6862,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.418,
+        "fill": 0.167,
+        "base": 0.348
+      },
+      "area": 2496,
+      "hitbox": {
+        "bbox": [
+          85,
+          50,
+          164,
+          239
+        ],
+        "area": 2496,
+        "radius": 28.19,
+        "hull": [
+          [
+            85,
+            84
+          ],
+          [
+            103,
+            55
+          ],
+          [
+            104,
+            54
+          ],
+          [
+            106,
+            53
+          ],
+          [
+            138,
+            50
+          ],
+          [
+            141,
+            50
+          ],
+          [
+            143,
+            51
+          ],
+          [
+            144,
+            52
+          ],
+          [
+            164,
+            84
+          ],
+          [
+            164,
+            157
+          ],
+          [
+            143,
+            239
+          ],
+          [
+            110,
+            239
+          ],
+          [
+            91,
+            161
+          ],
+          [
+            85,
+            85
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.trostnik.cbc1190335.v08"
+    },
+    {
+      "slot": "v09",
+      "file": "own_trostnik_cbc1190335_v09.png",
+      "state": "broken",
+      "params": {
+        "state": "broken",
+        "n": 4,
+        "height": 212,
+        "lean": 0.0,
+        "key": "trostnik:broken:4:212:0.0"
+      },
+      "shape_change": 0.4737,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.45,
+        "fill": 0.219,
+        "base": 0.391
+      },
+      "area": 4780,
+      "hitbox": {
+        "bbox": [
+          82,
+          19,
+          181,
+          239
+        ],
+        "area": 4780,
+        "radius": 39.01,
+        "hull": [
+          [
+            82,
+            169
+          ],
+          [
+            87,
+            104
+          ],
+          [
+            121,
+            23
+          ],
+          [
+            124,
+            20
+          ],
+          [
+            126,
+            19
+          ],
+          [
+            128,
+            19
+          ],
+          [
+            161,
+            29
+          ],
+          [
+            162,
+            30
+          ],
+          [
+            181,
+            58
+          ],
+          [
+            181,
+            60
+          ],
+          [
+            179,
+            147
+          ],
+          [
+            154,
+            239
+          ],
+          [
+            108,
+            239
+          ],
+          [
+            82,
+            171
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.trostnik.cbc1190335.v09"
+    },
+    {
+      "slot": "v10",
+      "file": "own_trostnik_cbc1190335_v10.png",
+      "state": "wall",
+      "params": {
+        "state": "wall",
+        "n": 8,
+        "height": 212,
+        "lean": 0.35,
+        "key": "trostnik:wall:8:212:0.35"
+      },
+      "shape_change": 0.4358,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.599,
+        "fill": 0.345,
+        "base": 0.443
+      },
+      "area": 9289,
+      "hitbox": {
+        "bbox": [
+          71,
+          27,
+          198,
+          239
+        ],
+        "area": 9289,
+        "radius": 54.38,
+        "hull": [
+          [
+            71,
+            161
+          ],
+          [
+            87,
+            86
+          ],
+          [
+            96,
+            69
+          ],
+          [
+            124,
+            40
+          ],
+          [
+            126,
+            38
+          ],
+          [
+            129,
+            37
+          ],
+          [
+            165,
+            27
+          ],
+          [
+            171,
+            27
+          ],
+          [
+            185,
+            34
+          ],
+          [
+            187,
+            36
+          ],
+          [
+            198,
+            67
+          ],
+          [
+            198,
+            68
+          ],
+          [
+            189,
+            155
+          ],
+          [
+            162,
+            239
+          ],
+          [
+            91,
+            239
+          ],
+          [
+            71,
+            163
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.trostnik.cbc1190335.v10"
+    },
+    {
+      "slot": "v11",
+      "file": "own_trostnik_cbc1190335_v11.png",
+      "state": "sparse",
+      "params": {
+        "state": "sparse",
+        "n": 3,
+        "height": 212,
+        "lean": 0.35,
+        "key": "trostnik:sparse:3:212:0.35"
+      },
+      "shape_change": 0.6145,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.427,
+        "fill": 0.197,
+        "base": 0.424
+      },
+      "area": 3828,
+      "hitbox": {
+        "bbox": [
+          91,
+          26,
+          182,
+          239
+        ],
+        "area": 3828,
+        "radius": 34.91,
+        "hull": [
+          [
+            91,
+            153
+          ],
+          [
+            101,
+            66
+          ],
+          [
+            142,
+            27
+          ],
+          [
+            144,
+            26
+          ],
+          [
+            147,
+            26
+          ],
+          [
+            150,
+            29
+          ],
+          [
+            182,
+            62
+          ],
+          [
+            182,
+            66
+          ],
+          [
+            176,
+            128
+          ],
+          [
+            147,
+            239
+          ],
+          [
+            107,
+            239
+          ],
+          [
+            91,
+            155
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.trostnik.cbc1190335.v11"
+    },
+    {
+      "slot": "v12",
+      "file": "own_trostnik_cbc1190335_v12.png",
+      "state": "broken",
+      "params": {
+        "state": "broken",
+        "n": 5,
+        "height": 212,
+        "lean": 0.35,
+        "key": "trostnik:broken:5:212:0.35"
+      },
+      "shape_change": 0.5093,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.507,
+        "fill": 0.25,
+        "base": 0.411
+      },
+      "area": 5234,
+      "hitbox": {
+        "bbox": [
+          86,
+          36,
+          189,
+          239
+        ],
+        "area": 5234,
+        "radius": 40.82,
+        "hull": [
+          [
+            86,
+            107
+          ],
+          [
+            133,
+            54
+          ],
+          [
+            136,
+            51
+          ],
+          [
+            167,
+            36
+          ],
+          [
+            168,
+            36
+          ],
+          [
+            171,
+            37
+          ],
+          [
+            172,
+            38
+          ],
+          [
+            173,
+            40
+          ],
+          [
+            188,
+            73
+          ],
+          [
+            189,
+            162
+          ],
+          [
+            189,
+            191
+          ],
+          [
+            155,
+            239
+          ],
+          [
+            105,
+            239
+          ],
+          [
+            89,
+            168
+          ],
+          [
+            86,
+            109
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.trostnik.cbc1190335.v12"
+    }
+  ],
+  "status": "ok",
+  "shortfall": 0,
+  "shape_change": 0.4358
+}

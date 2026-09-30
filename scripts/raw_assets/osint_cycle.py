@@ -155,10 +155,19 @@ HOSTILE = re.compile(r'(^|/)(enemy|enemies|monsters?|mobs?|fiends?|'
                      r'(/|_|\.|$)', re.IGNORECASE)
 
 
+# Round 4 of 2026-09-30 took wesnoth "*-outline.png" files: one-pixel
+# selection outlines drawn by the engine around a unit, not the unit.
+# Their antagonist variants were near-empty strokes, so they were
+# reverted; such helper frames are refused before any fetch.
+OUTLINE = re.compile(r'[-_+]outline\.[a-z]+$', re.IGNORECASE)
+
+
 def allowed(path):
     """Apply the stop-lists; return the reason when a path is refused."""
     if NOT_GAME.search(path) or not is_game_object(path):
         return 'not-a-game-object'
+    if OUTLINE.search(path):
+        return 'outline-helper'
     if DOGMA_STOP.search(path):
         return 'dogma-stop-list'
     if SACRED.search(path):

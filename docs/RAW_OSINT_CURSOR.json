@@ -1,5 +1,5 @@
 {
- "next": 13,
+ "next": 9,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -976,6 +976,451 @@
    ],
    "accepted_objects": 0,
    "code_candidates": 50
+  },
+  {
+   "time": "2026-09-30T11:41:53.244961+00:00",
+   "deficits": [
+    {
+     "id": "DEF-027",
+     "skipped": "audio-pipeline-pending"
+    },
+    {
+     "id": "DEF-028",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 157
+     },
+     "added_keywords": [
+      "effect",
+      "audio",
+      "cpp",
+      "spriteshader",
+      "supplier",
+      "bevy",
+      "crates",
+      "drag",
+      "logic",
+      "map",
+      "post",
+      "process"
+     ],
+     "keywords_total": 23
+    },
+    {
+     "id": "DEF-031",
+     "skipped": "not-raw-material"
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 43,
+   "note": "Agent A2 round (code deficits only): code candidates listed in docs/RAW_CODE_CANDIDATES.json, nothing fetched as image. Index /home/user/raw-repos from 2026-09-29 reused (within the daily refresh)."
+  },
+  {
+   "time": "2026-09-30T11:42:14.841832+00:00",
+   "deficits": [
+    {
+     "id": "DEF-035",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 178
+     },
+     "added_keywords": [
+      "java",
+      "lua",
+      "screens",
+      "com",
+      "corsixth",
+      "desktop",
+      "home",
+      "unciv",
+      "worldscreen",
+      "lblmenuitem",
+      "minimaptile",
+      "minimaptileutil"
+     ],
+     "keywords_total": 20
+    },
+    {
+     "id": "DEF-036",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 182,
+      "sacred-never-raw": 2
+     },
+     "added_keywords": [
+      "building",
+      "construction",
+      "client",
+      "content",
+      "itemstatussheetlet",
+      "sheetlets",
+      "stylesheets"
+     ],
+     "keywords_total": 14
+    },
+    {
+     "id": "DEF-040",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 1,
+      "dogma-stop-list": 2,
+      "not-a-game-object": 108
+     },
+     "added_keywords": [
+      "java",
+      "com",
+      "shatteredpixel",
+      "shatteredpixeldungeon",
+      "rotp",
+      "bevy",
+      "crates",
+      "client",
+      "cpp",
+      "render",
+      "content",
+      "gamesys"
+     ],
+     "keywords_total": 19
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 127,
+   "note": "Agent A2 round (code deficits only): code candidates listed in docs/RAW_CODE_CANDIDATES.json, nothing fetched as image. Index /home/user/raw-repos from 2026-09-29 reused (within the daily refresh)."
+  },
+  {
+   "time": "2026-09-30T11:44:14.741373+00:00",
+   "deficits": [
+    {
+     "id": "DEF-047",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 1,
+      "dogma-stop-list": 2,
+      "not-a-game-object": 107
+     },
+     "added_keywords": [
+      "java",
+      "com",
+      "shatteredpixel",
+      "shatteredpixeldungeon",
+      "rotp",
+      "cpp",
+      "client",
+      "dlg",
+      "gtk",
+      "custom",
+      "gamemap",
+      "loader"
+     ],
+     "keywords_total": 18
+    },
+    {
+     "id": "DEF-048",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 189,
+      "sacred-never-raw": 6
+     },
+     "added_keywords": [
+      "java",
+      "com",
+      "mindustry",
+      "shatteredpixel",
+      "shatteredpixeldungeon",
+      "cpp",
+      "iteminfo",
+      "character",
+      "coreitemsdisplay",
+      "creator",
+      "dialogs",
+      "dock"
+     ],
+     "keywords_total": 20
+    },
+    {
+     "id": "DEF-055",
+     "hits": 54,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 54
+     },
+     "added_keywords": [],
+     "keywords_total": 6
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 95,
+   "note": "Agent A2 round (code deficits only): code candidates listed in docs/RAW_CODE_CANDIDATES.json, nothing fetched as image. Index /home/user/raw-repos from 2026-09-29 reused (within the daily refresh)."
+  },
+  {
+   "time": "2026-09-30T11:45:14.323013+00:00",
+   "deficits": [
+    {
+     "id": "DEF-001",
+     "hits": 200,
+     "taken": 5,
+     "refused": {
+      "not-a-game-object": 121,
+      "sacred-never-raw": 3,
+      "dogma-stop-list": 1
+     },
+     "added_keywords": [
+      "female",
+      "lord",
+      "outline",
+      "alchemize",
+      "armorability",
+      "ascendedform",
+      "assassinsblade",
+      "auraofprotection",
+      "battleaxe",
+      "beaconofreturning",
+      "beam",
+      "beamingray"
+     ],
+     "keywords_total": 57
+    },
+    {
+     "id": "DEF-039",
+     "hits": 200,
+     "taken": 6,
+     "refused": {},
+     "added_keywords": [
+      "amazons",
+      "booth",
+      "buildings",
+      "productionsites",
+      "tribes",
+      "weaver",
+      "gateways",
+      "stairs",
+      "idle",
+      "unoccupied",
+      "working",
+      "down"
+     ],
+     "keywords_total": 18
+    },
+    {
+     "id": "DEF-056",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "not-a-game-object": 56,
+      "hostile-for-neutral-slot": 5
+     },
+     "added_keywords": [
+      "sardine",
+      "sturgeon",
+      "eel",
+      "bass",
+      "cod",
+      "mackerel",
+      "anchovy",
+      "sprat",
+      "fishing",
+      "aquarium",
+      "fishes",
+      "water"
+     ],
+     "keywords_total": 45
+    }
+   ],
+   "accepted_objects": 5,
+   "code_candidates": 72,
+   "reverted": "Eye check docs/audit/2026-09-30/raw-round4-DEF-001-contact.png: the 5 DEF-001 kits auto-copied by the pass came from wesnoth Rogue_Mage unit sprites. ant_avarice_055bf3b162 and ant_avarice_c12399d853 still read as a robed human figure with a staff (a person is not a passion; the chorus keeps bodies out of the passion kits); ant_sadness_31104e9418, _370fcda25f and _3a5ff12051 were cut from engine \"-outline\" frames and their variants are near-empty strokes (v02-v04 almost blank). All five removed before commit, their NOTICES rows not kept. osint_cycle now refuses \"*-outline.png\" frames (outline-helper). DEF-039: 6 rope-weaver booth frames, DEF-056: 6 deep-water tiles, all unlike-real-object, nothing shipped.",
+   "shipped": []
+  },
+  {
+   "time": "2026-09-30T11:49:23.555306+00:00",
+   "deficits": [
+    {
+     "id": "DEF-057",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "not-a-game-object": 58,
+      "dogma-stop-list": 1
+     },
+     "added_keywords": [
+      "mussel",
+      "snail",
+      "clam",
+      "conch",
+      "scallop",
+      "shells",
+      "ore",
+      "mineral",
+      "sands",
+      "dirt",
+      "ground",
+      "floor"
+     ],
+     "keywords_total": 43
+    },
+    {
+     "id": "DEF-049",
+     "hits": 200,
+     "taken": 6,
+     "refused": {},
+     "added_keywords": [
+      "castle",
+      "dwarven",
+      "dark",
+      "effect",
+      "flowers",
+      "necropolis",
+      "pedestal",
+      "outside",
+      "long",
+      "calc",
+      "gold",
+      "square"
+     ],
+     "keywords_total": 23
+    },
+    {
+     "id": "DEF-052",
+     "hits": 200,
+     "taken": 6,
+     "refused": {},
+     "added_keywords": [
+      "tribes",
+      "idle",
+      "unoccupied",
+      "working",
+      "cassava",
+      "digger",
+      "dwelling",
+      "gold",
+      "gatherers",
+      "hut",
+      "brewery",
+      "charcoal"
+     ],
+     "keywords_total": 27
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 17,
+   "note": "Nothing shipped: DEF-057 pebbles1/pebbles3 (Mindustry, GPL) reached only a shortfall of neutral variants, the rest unlike-real-object; DEF-049 dwarven floor tiles and DEF-052 dwelling frames have no real-object profile (unlike-real-object)."
+  },
+  {
+   "time": "2026-09-30T11:51:44.474895+00:00",
+   "deficits": [
+    {
+     "id": "DEF-058",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "hostile-for-neutral-slot": 74,
+      "not-a-game-object": 7,
+      "sacred-never-raw": 20
+     },
+     "added_keywords": [
+      "terrain",
+      "fungi",
+      "litter",
+      "water",
+      "fungus",
+      "blocks",
+      "floor",
+      "environment",
+      "unused",
+      "gulch",
+      "dead",
+      "vines"
+     ],
+     "keywords_total": 55
+    },
+    {
+     "id": "DEF-059",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "hostile-for-neutral-slot": 6,
+      "not-a-game-object": 47,
+      "sacred-never-raw": 1
+     },
+     "added_keywords": [
+      "bridge",
+      "terrain",
+      "blocks",
+      "short",
+      "rpg",
+      "java",
+      "crates",
+      "cyclone",
+      "generic",
+      "power",
+      "props",
+      "titan"
+     ],
+     "keywords_total": 56
+    },
+    {
+     "id": "DEF-003",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 139,
+      "sacred-never-raw": 1,
+      "dogma-stop-list": 2
+     },
+     "added_keywords": [
+      "shatteredpixel",
+      "shatteredpixeldungeon",
+      "particles",
+      "entrance",
+      "leveledit",
+      "beam",
+      "blastparticle",
+      "blobemitter",
+      "bloodparticle",
+      "cellemitter",
+      "challengeparticle",
+      "checkedcell"
+     ],
+     "keywords_total": 37
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 62,
+   "note": "Nothing shipped: DEF-058 wesnoth dead-kelp terrain unlike-real-object; DEF-059 wesnoth dock planks shortfall (the lesson of D6 attempt 2 repeated); DEF-003 code only."
+  },
+  {
+   "time": "2026-09-30T12:09:23.295193+00:00",
+   "deficits": [
+    {
+     "id": "DEF-057",
+     "own_drawing": true
+    },
+    {
+     "id": "DEF-058",
+     "own_drawing": true
+    },
+    {
+     "id": "DEF-059",
+     "own_drawing": true
+    }
+   ],
+   "accepted_objects": 6,
+   "code_candidates": 0,
+   "note": "D6, not a raw pass: operator agreed (\"все вопросы да\") that the neutral slots move to own procedural drawing. scripts/raw_assets/neutral_procedural.py draws six things of the lake register (granite boulder, quartz pebbles, shore reeds, pondweed, timber beam, khum jar), 12 variants each, every pair >= 35 % apart by alpha, each fitting the real-object profile. Eye check docs/audit/2026-09-30/neutral-procedural-D6-contact.png on five biomes: all six recognisable (after two fixes: a jar laid on its side read as a fish and was replaced by a leaning jar; plain boxes were refused by the fill profile, so beams got worn arrises and a propped state). No third-party material, so no NOTICES rows.",
+   "shipped": [
+    "own_boulder_4d9da8b0ae",
+    "own_quartz_e0197ebc07",
+    "own_trostnik_cbc1190335",
+    "own_rdest_2d5b9cbcc1",
+    "own_balka_fc14815fb5",
+    "own_khum_04712f8b8b"
+   ]
   }
  ],
  "keywords": {
@@ -1003,7 +1448,19 @@
    "fry",
    "shoal",
    "fins",
-   "herring"
+   "herring",
+   "sardine",
+   "sturgeon",
+   "eel",
+   "bass",
+   "cod",
+   "mackerel",
+   "anchovy",
+   "sprat",
+   "fishing",
+   "aquarium",
+   "fishes",
+   "water"
   ],
   "DEF-057": [
    "granite",
@@ -1029,7 +1486,19 @@
    "shore",
    "beach",
    "cliff",
-   "marble"
+   "marble",
+   "mussel",
+   "snail",
+   "clam",
+   "conch",
+   "scallop",
+   "shells",
+   "ore",
+   "mineral",
+   "sands",
+   "dirt",
+   "ground",
+   "floor"
   ],
   "DEF-058": [
    "pondweed",
@@ -1067,7 +1536,19 @@
    "foliage",
    "vegetation",
    "swamp",
-   "marsh"
+   "marsh",
+   "terrain",
+   "fungi",
+   "litter",
+   "water",
+   "fungus",
+   "blocks",
+   "floor",
+   "environment",
+   "unused",
+   "gulch",
+   "dead",
+   "vines"
   ],
   "DEF-059": [
    "jar",
@@ -1105,7 +1586,19 @@
    "planks",
    "barrels",
    "pots",
-   "jugs"
+   "jugs",
+   "bridge",
+   "terrain",
+   "blocks",
+   "short",
+   "rpg",
+   "java",
+   "crates",
+   "cyclone",
+   "generic",
+   "power",
+   "props",
+   "titan"
   ],
   "DEF-001": [
    "beast",
@@ -1138,12 +1631,36 @@
    "rogue",
    "warrior",
    "buffs",
-   "defend"
+   "defend",
+   "female",
+   "lord",
+   "outline",
+   "alchemize",
+   "armorability",
+   "ascendedform",
+   "assassinsblade",
+   "auraofprotection",
+   "battleaxe",
+   "beaconofreturning",
+   "beam",
+   "beamingray"
   ],
   "DEF-049": [
    "terrain",
    "floor",
-   "litter"
+   "litter",
+   "castle",
+   "dwarven",
+   "dark",
+   "effect",
+   "flowers",
+   "necropolis",
+   "pedestal",
+   "outside",
+   "long",
+   "calc",
+   "gold",
+   "square"
   ],
   "DEF-052": [
    "water",
@@ -1152,7 +1669,19 @@
    "amazons",
    "booth",
    "buildings",
-   "productionsites"
+   "productionsites",
+   "tribes",
+   "idle",
+   "unoccupied",
+   "working",
+   "cassava",
+   "digger",
+   "dwelling",
+   "gold",
+   "gatherers",
+   "hut",
+   "brewery",
+   "charcoal"
   ],
   "DEF-003": [
    "lua",
@@ -1166,7 +1695,19 @@
    "editor",
    "effects",
    "left",
-   "right"
+   "right",
+   "shatteredpixel",
+   "shatteredpixeldungeon",
+   "particles",
+   "entrance",
+   "leveledit",
+   "beam",
+   "blastparticle",
+   "blobemitter",
+   "bloodparticle",
+   "cellemitter",
+   "challengeparticle",
+   "checkedcell"
   ],
   "DEF-008": [
    "controllers",
@@ -1187,6 +1728,100 @@
    "widget",
    "actors",
    "com"
+  ],
+  "DEF-028": [
+   "effect",
+   "audio",
+   "cpp",
+   "spriteshader",
+   "supplier",
+   "bevy",
+   "crates",
+   "drag",
+   "logic",
+   "map",
+   "post",
+   "process"
+  ],
+  "DEF-035": [
+   "java",
+   "lua",
+   "screens",
+   "com",
+   "corsixth",
+   "desktop",
+   "home",
+   "unciv",
+   "worldscreen",
+   "lblmenuitem",
+   "minimaptile",
+   "minimaptileutil"
+  ],
+  "DEF-036": [
+   "building",
+   "construction",
+   "client",
+   "content",
+   "itemstatussheetlet",
+   "sheetlets",
+   "stylesheets"
+  ],
+  "DEF-040": [
+   "java",
+   "com",
+   "shatteredpixel",
+   "shatteredpixeldungeon",
+   "rotp",
+   "bevy",
+   "crates",
+   "client",
+   "cpp",
+   "render",
+   "content",
+   "gamesys"
+  ],
+  "DEF-047": [
+   "java",
+   "com",
+   "shatteredpixel",
+   "shatteredpixeldungeon",
+   "rotp",
+   "cpp",
+   "client",
+   "dlg",
+   "gtk",
+   "custom",
+   "gamemap",
+   "loader"
+  ],
+  "DEF-048": [
+   "java",
+   "com",
+   "mindustry",
+   "shatteredpixel",
+   "shatteredpixeldungeon",
+   "cpp",
+   "iteminfo",
+   "character",
+   "coreitemsdisplay",
+   "creator",
+   "dialogs",
+   "dock"
+  ],
+  "DEF-055": [],
+  "DEF-039": [
+   "amazons",
+   "booth",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "weaver",
+   "gateways",
+   "stairs",
+   "idle",
+   "unoccupied",
+   "working",
+   "down"
   ]
  }
 }

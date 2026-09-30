@@ -78,6 +78,17 @@ if __name__ == '__main__':
     unittest.main()
 
 
+class OutlineTest(unittest.TestCase):
+    def test_engine_outline_frames_are_refused(self):
+        # Round 4 of 2026-09-30 turned wesnoth selection outlines into
+        # near-empty antagonist strokes; they never enter the pipeline.
+        path = ('data/internal/Rogue_Mage/images/units/rogue-mage/'
+                'shadow-lord+female-defend2-outline.png')
+        self.assertEqual(osint_cycle.allowed(path), 'outline-helper')
+        self.assertIsNone(osint_cycle.allowed(
+            'data/core/images/units/x/shadow-lord-defend2.png'))
+
+
 class NoProfileTest(unittest.TestCase):
     def test_neutral_slot_without_profile_is_refused(self):
         import transform
