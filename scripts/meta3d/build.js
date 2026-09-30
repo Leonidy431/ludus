@@ -23,6 +23,7 @@ const PROMPTS = path.join(ROOT, 'docs/PROMPTS_1070_2026-09-29.json');
 // Seven sacrament places (docs/SACRAMENTS_VR_SCENES.md): the player is a
 // witness, holy objects carry noInteract/noLoot, the microphone is off.
 const SCENES = path.join(__dirname, 'sacrament-scenes.json');
+const LAKE = path.join(ROOT, 'public/ludus/data/lake-objects-99.json');
 const SVG_DIRS = [
   path.join(ROOT, 'SVG'),
   path.join(ROOT, 'public/ludus/art'),
@@ -252,6 +253,31 @@ async function main() {
         report.scenes += 1;
       } catch (e) {
         report.failed.push(`${scene.id}: ${e.message.split('\n')[0]}`);
+      }
+    }
+  }
+
+  // The 99 objects of Issyk-Kul (scripts/lake/lake_objects.py): each is
+  // a small kit of primitives; loot follows flags.loot (operator,
+  // 2026-09-30), never for water, birds or the bulla with its cross.
+  if (only === 'lake' || !only) {
+    report.lake = 0;
+    const lake = JSON.parse(fs.readFileSync(LAKE, 'utf8')).objects;
+    for (const obj of lake) {
+      const id = `lake-${obj.id.replace(/\./g, '-')}`;
+      try {
+        const res = await page.evaluate((spec) => window.sceneToGlb(spec),
+          { id, parts: obj.parts, lights: [],
+            userData: { ...obj.flags, category: obj.category } });
+        write('lake', id, res, {
+          name: obj.ru, category: obj.category, band: obj.band,
+          depth_m: obj.depth, flags: obj.flags,
+          source: 'public/ludus/data/lake-objects-99.json',
+          method: 'lake-kit-primitives',
+        });
+        report.lake += 1;
+      } catch (e) {
+        report.failed.push(`${id}: ${e.message.split('\n')[0]}`);
       }
     }
   }

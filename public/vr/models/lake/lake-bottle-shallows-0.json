@@ -1,0 +1,24 @@
+{
+ "id": "lake-bottle-shallows-0",
+ "kind": "lake",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  0.3,
+  0.36,
+  0.24
+ ],
+ "name": "Бутылка на песке: целая",
+ "category": "human",
+ "band": "shallows",
+ "depth_m": [
+  0,
+  5
+ ],
+ "flags": {
+  "noLoot": false,
+  "loot": "keep"
+ },
+ "source": "public/ludus/data/lake-objects-99.json",
+ "method": "lake-kit-primitives"
+}

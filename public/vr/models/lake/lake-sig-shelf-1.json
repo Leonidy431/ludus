@@ -1,0 +1,24 @@
+{
+ "id": "lake-sig-shelf-1",
+ "kind": "lake",
+ "lod": "proxy",
+ "tris": 24,
+ "bbox_m": [
+  0.49,
+  0.12,
+  0.048
+ ],
+ "name": "Сиг: на границе слоя",
+ "category": "fish",
+ "band": "shelf",
+ "depth_m": [
+  10,
+  20
+ ],
+ "flags": {
+  "noLoot": false,
+  "loot": "keep"
+ },
+ "source": "public/ludus/data/lake-objects-99.json",
+ "method": "lake-kit-primitives"
+}

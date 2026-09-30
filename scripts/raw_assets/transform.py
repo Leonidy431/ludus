@@ -32,6 +32,7 @@ from form import (CANVAS, alpha_mask, colour_change, fill_holes,  # noqa
                   hitbox, hitbox_key, iou_delta, shape_delta,
                   silhouette_loss)
 import passion_fields  # noqa: E402
+import reference  # noqa: E402
 
 # Palette stops copied from public/ludus/art so the plain redraw sits in
 # the same visual family as the project's own drawings.
@@ -352,16 +353,43 @@ def process_piece(item, index, piece, threshold=0.35):
     recolour = stats['shape_change'] < threshold
     record['redraw']['is_recolour'] = recolour
 
-    # Step 2: a recolour is replaced by the passion it serves.
+    # Step 2: a recolour is replaced by the passion it serves -- but only
+    # in a passion slot.  A neutral slot (fish, stones, wood of the lake)
+    # needs the thing itself, so there it is not turned into an
+    # antagonist (round 1 of 2026-09-30 made
+    # passions out of a jellyfish and pikemen for the fish slot).
     feat = ant.source_features(piece, canvas, src_mask, item['path'])
-    if recolour:
+    natural = item.get('neutral') and item.get('slot') in reference.PROFILES
+    if natural:
+        # Operator, 2026-09-30: "изучи на реальных объектах".  A neutral
+        # piece must first look like the real thing of its slot; a
+        # diamond or a letter in the fish slot stops here.
+        like, shape = reference.fits(item['slot'], src_mask)
+        record['reference'] = {'slot': item['slot'], **shape,
+                               'profile': reference.PROFILES[item['slot']]}
+        if not like:
+            record['status'] = 'unlike-real-object'
+            return record, images
+    if recolour and item.get('neutral'):
+        # The thing stays itself: no passion, and the twelve variants
+        # below must each reshape it by at least the threshold, measured
+        # against the source like every other object.
+        passion, reason = None, 'neutral slot: reshaped by the variants'
+        prefix = f'obj_{oid}'
+    elif recolour:
         passion, reason = ant.choose_passion(feat)
         prefix = f'ant_{passion}_{oid}'
     else:
         passion, reason = None, 'redraw already reshaped'
         prefix = f'obj_{oid}'
-    palette = ant.antagonist_palette(feat, passion or 'vainglory')
-    texture = ant.texture_mode(feat)
+    if natural:
+        # The thing keeps its own nature: the natural palette of its slot
+        # and its own texture, never a passion's inverted ones.
+        palette = reference.natural_palette(item['slot'])
+        texture = 'smooth' if ant.texture_mode(feat) == 'rough' else 'rough'
+    else:
+        palette = ant.antagonist_palette(feat, passion or 'vainglory')
+        texture = ant.texture_mode(feat)
     record.update({
         'name': prefix, 'passion': passion, 'passion_reason': reason,
         'features': feat,
@@ -369,9 +397,10 @@ def process_piece(item, index, piece, threshold=0.35):
         'palette': {'hue': palette['hue'], 'basis': palette['basis'],
                     'stops': ['#%02x%02x%02x' % c
                               for _, c in palette['stops']]},
-        'texture': {'source': ('smooth' if texture == 'rough'
-                               else 'rough'),
-                    'antagonist': texture},
+        'texture': ({'source': texture, 'result': texture} if natural
+                    else {'source': ('smooth' if texture == 'rough'
+                                     else 'rough'),
+                          'antagonist': texture}),
     })
     if passion:
         ref_mask, strength, _ = reference_form(
@@ -410,6 +439,22 @@ def claim_features(rec):
     shapes = [v['shape_change'] for v in rec['variants']] or [0.0]
     passion = rec['passion'] or 'none'
     beh = rec['behaviour'] or {}
+    if 'reference' in rec:
+        ref = rec['reference']
+        return [
+            f'нейтральный объект слота {ref["slot"]} '
+            f'({ref["profile"]["name"]}): силуэт источника сверен с '
+            f'профилем реального объекта (соотношение сторон '
+            f'{ref["aspect"]}, заполнение {ref["fill"]})',
+            f'природная палитра {rec["palette"]["basis"]} (тон '
+            f'{rec["palette"]["hue"]}°), фактура источника сохранена',
+            f'{len(rec["variants"])} вариантов с попарно различными '
+            f'хитбоксами',
+            f'изменение формы по альфа-маскам (|A xor B| / |A or B|): '
+            f'от {min(shapes):.1%} до {max(shapes):.1%}',
+            f'источник: {rec["repo"]} @ {rec["commit"][:10]}, '
+            f'{rec["path"]} #{rec["piece"]} ({rec["license"]})',
+        ]
     return [
         f'форма-антагонист страсти «{passion}» (по Евагрию и Иоанну '
         f'Лествичнику), выведенная из альфа-силуэта источника',
@@ -499,6 +544,10 @@ def main():
             write_object(out, record, images)
             if record['status'] == 'error':
                 errors.append(record)
+            elif record['status'] == 'unlike-real-object':
+                rejected.append({**item, 'piece': index,
+                                 'reason': 'unlike-real-object',
+                                 'reference': record['reference']})
             else:
                 accepted.append(record)
             print(f'{item["path"]} #{index}: {record["status"]} '

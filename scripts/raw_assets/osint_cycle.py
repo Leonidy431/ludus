@@ -43,6 +43,17 @@ CURSOR = ROOT / 'docs' / 'RAW_OSINT_CURSOR.json'
 CODE_CANDIDATES = ROOT / 'docs' / 'RAW_CODE_CANDIDATES.json'
 DERIVED = ROOT / 'public' / 'ludus' / 'art' / 'derived'
 NOTICES = ROOT / 'THIRD_PARTY_NOTICES.md'
+LADDER = ROOT / 'docs' / 'RAW_KEYWORD_LADDER.json'
+
+# Operator, 2026-09-30: "каждый проход добавляй 12 ключевых слов".
+KEYWORDS_PER_PASS = 12
+# Path words that say nothing about the object itself.
+PLAIN_WORDS = {'png', 'svg', 'jpg', 'gif', 'img', 'image', 'images', 'res',
+               'assets', 'asset', 'data', 'art', 'gfx', 'graphics', 'src',
+               'main', 'resources', 'textures', 'texture', 'sprites',
+               'sprite', 'tiles', 'tile', 'items', 'item', 'objects',
+               'object', 'png', 'core', 'base', 'default', 'small', 'large',
+               'big', 'icon', 'icons', 'the', 'and', 'of', 'new', 'old'}
 
 # Rule 5: paths that must never enter the pipeline at all.
 DOGMA_STOP = re.compile(
@@ -86,7 +97,9 @@ def open_deficits():
         if not found:
             continue
         def_id, prio, category, fill, status, title, keys = found.groups()
-        if status.strip() != 'открыт':
+        # A deficit that a merged PR closed in part stays in rotation;
+        # only a fully closed one leaves it.
+        if not status.strip().startswith(('открыт', 'частично')):
             continue
         rows.append({'id': def_id, 'priority': prio,
                      'category': category.strip(), 'fill': fill.strip(),
@@ -95,6 +108,20 @@ def open_deficits():
                                   if k.strip()]})
     order = {'P0': 0, 'P1': 1, 'P2': 2, 'P3': 3}
     rows.sort(key=lambda r: (order.get(r['priority'], 9), r['id']))
+    return rows
+
+
+# Raw material helps only two kinds of deficit: images for raw-material
+# ones and code candidates for code ones.  Procedural, own-drawing and
+# content deficits are always skipped, so they no longer take a slot in
+# a round (the rounds of 2026-09-29 spent most slots on skips).
+USEFUL_FILLS = ('raw-material', 'code')
+
+
+def rotation():
+    """Deficits the runner works on, raw-material first, then code."""
+    rows = [r for r in open_deficits() if r['fill'] in USEFUL_FILLS]
+    rows.sort(key=lambda r: r['fill'] != 'raw-material')
     return rows
 
 
@@ -109,6 +136,17 @@ def load_cursor():
 # such files are documentation, not game objects.
 NOT_GAME = re.compile(r'(^|/)(examples?|docs?|tests?|screenshots?|'
                       r'tutorials?|demo|editor|tools?)/', re.IGNORECASE)
+
+
+# Only the passion slot turns raw sprites into antagonists; every other
+# raw-material slot is neutral matter (fish, stones, wood) and takes the
+# thing itself.  Hostile sprites never fill a neutral slot.
+ANTAGONIST_SLOTS = {'DEF-001'}
+HOSTILE = re.compile(r'(^|/)(enemy|enemies|monsters?|mobs?|fiends?|'
+                     r'demons?|undead|bosses|boss|humanoids?|soldiers?|'
+                     r'orcs?|goblins?|skull\w*|abyss\w*|vaults?|mon|'
+                     r'turrets?|weapons?)'
+                     r'(/|_|\.|$)', re.IGNORECASE)
 
 
 def allowed(path):
@@ -154,6 +192,52 @@ def licence_of(index_root, hit):
     return 'UNKNOWN'
 
 
+def ladder_words(def_id):
+    """The real-object keyword ladder of a deficit, if it has one."""
+    if not LADDER.exists():
+        return []
+    return json.loads(LADDER.read_text('utf-8'))['ladders'].get(def_id, [])
+
+
+def neighbour_words(hits, known):
+    """Most frequent path words next to earlier hits, not yet keys.
+
+    When the real-object ladder runs out, the next words come from the
+    material itself: the folder and file words that stand beside what
+    was already found.  Stop-listed, sacred and hostile words never
+    become keys.
+    """
+    counts = {}
+    for hit in hits:
+        for word in re.split(r'[^a-z]+', hit['path'].lower()):
+            if (len(word) < 3 or word in PLAIN_WORDS or word in known
+                    or DOGMA_STOP.search(word) or SACRED.search(word)
+                    or HOSTILE.search(word) or word.isdigit()):
+                continue
+            counts[word] = counts.get(word, 0) + 1
+    return [w for w, _ in sorted(counts.items(), key=lambda x: (-x[1], x[0]))]
+
+
+def grow_keywords(deficit, cursor, index, kinds):
+    """Add the next twelve keywords of a deficit; return the added ones.
+
+    Deterministic: the real-object ladder first, in its written order,
+    then neighbour words ranked by frequency and name.
+    """
+    added = cursor.setdefault('keywords', {}).setdefault(deficit['id'], [])
+    known = set(deficit['keywords']) | set(added)
+    fresh = [w for w in ladder_words(deficit['id']) if w not in known]
+    new = fresh[:KEYWORDS_PER_PASS]
+    if len(new) < KEYWORDS_PER_PASS:
+        hits = search(index, kinds, deficit['keywords'] + added, limit=400,
+                      allow_unlicensed=False)
+        hits = [h for h in hits if not allowed(h['path'])]
+        more = neighbour_words(hits, known | set(new))
+        new += more[:KEYWORDS_PER_PASS - len(new)]
+    added.extend(new)
+    return new
+
+
 def run(cmd):
     subprocess.run(cmd, check=True, cwd=ROOT, timeout=3600)
 
@@ -164,6 +248,9 @@ def main():
     parser.add_argument('--work', default='build/osint')
     parser.add_argument('--deficits', type=int, default=3)
     parser.add_argument('--per-deficit', type=int, default=6)
+    parser.add_argument('--only', default='',
+                        help='comma-separated deficit ids; the rotation '
+                             'cursor is left where it is')
     args = parser.parse_args()
 
     work = ROOT / args.work
@@ -171,14 +258,18 @@ def main():
     raw_dir, out_dir = work / 'raw', work / 'derived'
     raw_dir.mkdir(parents=True)
 
-    deficits = open_deficits()
+    deficits = rotation()
     cursor = load_cursor()
     if not deficits:
         print('no open deficits')
         return
-    start = cursor['next'] % len(deficits)
-    chosen = (deficits[start:] + deficits[:start])[:args.deficits]
-    cursor['next'] = start + len(chosen)
+    if args.only:
+        wanted = args.only.split(',')
+        chosen = [d for d in deficits if d['id'] in wanted]
+    else:
+        start = cursor['next'] % len(deficits)
+        chosen = (deficits[start:] + deficits[:start])[:args.deficits]
+        cursor['next'] = start + len(chosen)
 
     stamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
     manifest, code_hits, entry = [], [], {'time': stamp, 'deficits': []}
@@ -197,11 +288,18 @@ def main():
             entry['deficits'].append({'id': deficit['id'], 'skipped': reason})
             print(f'{deficit["id"]}: skipped ({reason})')
             continue
-        hits = search(args.index, kinds, deficit['keywords'], limit=200,
+        grown = grow_keywords(deficit, cursor, args.index, kinds)
+        keys = deficit['keywords'] + cursor['keywords'][deficit['id']]
+        print(f'{deficit["id"]}: +{len(grown)} keywords {grown}')
+        hits = search(args.index, kinds, keys, limit=200,
                       allow_unlicensed=False)
         taken, refused = 0, {}
+        neutral = deficit['id'] not in ANTAGONIST_SLOTS
         for hit in hits:
             reason = allowed(hit['path'])
+            if not reason and neutral and hit['kind'] not in CODE_KINDS \
+                    and HOSTILE.search(hit['path']):
+                reason = 'hostile-for-neutral-slot'
             if reason:
                 refused[reason] = refused.get(reason, 0) + 1
                 continue
@@ -224,10 +322,13 @@ def main():
                 'attribution': hit['attribution'],
                 'path': hit['path'], 'local': str(local),
                 'bytes': local.stat().st_size, 'slot': deficit['id'],
+                'neutral': neutral,
             })
             taken += 1
         entry['deficits'].append({'id': deficit['id'], 'hits': len(hits),
-                                  'taken': taken, 'refused': refused})
+                                  'taken': taken, 'refused': refused,
+                                  'added_keywords': grown,
+                                  'keywords_total': len(keys)})
         print(f'{deficit["id"]}: hits={len(hits)} taken={taken} '
               f'refused={refused}')
 
@@ -242,19 +343,28 @@ def main():
              '--notices', str(work / 'NOTICES.md')])
         slots = {m['path']: m['slot'] for m in manifest}
         report = json.loads((out_dir / 'report.json').read_text('utf-8'))
+        shipped = set()
         for rec in report['accepted']:
+            # Fewer than twelve variants never ships (TABOO 0.1: never
+            # stop at eleven); such objects stay in the build for review.
+            if rec.get('status') != 'ok':
+                continue
             slot = slots.get(rec['path'], 'unslotted')
             dest = DERIVED / slot
             dest.mkdir(parents=True, exist_ok=True)
             for f in out_dir.glob(f'{rec["name"]}*'):
                 if f.suffix in ('.png', '.json'):
                     shutil.copy2(f, dest / f.name)
+            shipped.add(rec['name'])
             accepted += 1
         run([sys.executable, 'scripts/raw_assets/check_delta.py',
              '--root', str(DERIVED), '--threshold', '0.35'])
         # The register only grows: rows are appended, never rewritten.
+        # Only what shipped is registered; a shortfall stays out.
         rows = [line for line in (work / 'NOTICES.md').read_text('utf-8')
-                .splitlines() if line.startswith('| ant_')]
+                .splitlines()
+                if line.startswith(('| ant_', '| obj_'))
+                and line.split('|')[1].strip() in shipped]
         existing = NOTICES.read_text('utf-8') if NOTICES.exists() else (
             '# Third-party raw material register\n\n| Object | Source | '
             'Commit | Path | Licence | Colour | Shape |\n'

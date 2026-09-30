@@ -1,0 +1,24 @@
+{
+ "id": "lake-terrace-shelf-2",
+ "kind": "lake",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  4,
+  0.25,
+  0.4
+ ],
+ "name": "Подводная терраса: старая береговая линия",
+ "category": "shelf",
+ "band": "shelf",
+ "depth_m": [
+  15,
+  20
+ ],
+ "flags": {
+  "noLoot": false,
+  "loot": "keep"
+ },
+ "source": "public/ludus/data/lake-objects-99.json",
+ "method": "lake-kit-primitives"
+}
