@@ -1,0 +1,396 @@
+{
+ "note": "Things of the 99 locations from the 99 cloned repos (TABOO 0.013 p. 3, 0.012, 0.1): kits passed by eye, written by scripts/raw_assets/location_items.py ship. Only the variants a location shows are in the APK; the full kits of twelve are in public/ludus/art/derived.",
+ "kits": {
+  "obj_bench_41042cf8fd": {
+   "thing": "bench",
+   "serves": [
+    "bench"
+   ],
+   "dir": "res://art/derived/LOC-court-yard",
+   "licence": "CC-BY-SA-3.0",
+   "variants": 12
+  },
+  "obj_bridge_log_40b14237a3": {
+   "thing": "bridge-log",
+   "serves": [
+    "bridge-log",
+    "spruce-log"
+   ],
+   "dir": "res://art/derived/LOC-mountain-bridge",
+   "licence": "GPL-2.0-or-later",
+   "variants": 12
+  },
+  "obj_hourglass_e49ab22431": {
+   "thing": "hourglass",
+   "serves": [
+    "hourglass"
+   ],
+   "dir": "res://art/derived/LOC-rock-island",
+   "licence": "CC-BY-SA-3.0",
+   "variants": 12
+  },
+  "obj_tools_9b09b1f302": {
+   "thing": "tools",
+   "serves": [
+    "tools"
+   ],
+   "dir": "res://art/derived/LOC-forge",
+   "licence": "GPL-2.0-or-later",
+   "variants": 12
+  }
+ },
+ "locations": {
+  "court-yard": [
+   {
+    "item": "bench",
+    "kit": "obj_bench_41042cf8fd",
+    "kit_dir": "res://art/derived/LOC-court-yard",
+    "files": [
+     "obj_bench_41042cf8fd_v08.png"
+    ],
+    "settings": [
+     "any"
+    ],
+    "changes": [
+     "stack"
+    ],
+    "size_m": [
+     1.2,
+     0.45,
+     0.35
+    ],
+    "licence": "CC-BY-SA-3.0"
+   }
+  ],
+  "feast-yard": [
+   {
+    "item": "bench",
+    "kit": "obj_bench_41042cf8fd",
+    "kit_dir": "res://art/derived/LOC-court-yard",
+    "files": [
+     "obj_bench_41042cf8fd_v12.png"
+    ],
+    "settings": [
+     "any"
+    ],
+    "changes": [
+     "pair"
+    ],
+    "size_m": [
+     1.2,
+     0.45,
+     0.35
+    ],
+    "licence": "CC-BY-SA-3.0"
+   }
+  ],
+  "mountain-bridge": [
+   {
+    "item": "bridge-log",
+    "kit": "obj_bridge_log_40b14237a3",
+    "kit_dir": "res://art/derived/LOC-mountain-bridge",
+    "files": [
+     "obj_bridge_log_40b14237a3_v07.png"
+    ],
+    "settings": [
+     "any"
+    ],
+    "changes": [
+     "leans -12, broken"
+    ],
+    "size_m": [
+     0.6,
+     0.6,
+     0.03
+    ],
+    "licence": "GPL-2.0-or-later"
+   }
+  ],
+  "chu-community": [
+   {
+    "item": "bench",
+    "kit": "obj_bench_41042cf8fd",
+    "kit_dir": "res://art/derived/LOC-court-yard",
+    "files": [
+     "obj_bench_41042cf8fd_v04.png"
+    ],
+    "settings": [
+     "any"
+    ],
+    "changes": [
+     "pair"
+    ],
+    "size_m": [
+     1.2,
+     0.45,
+     0.35
+    ],
+    "licence": "CC-BY-SA-3.0"
+   }
+  ],
+  "porch-court": [
+   {
+    "item": "bench",
+    "kit": "obj_bench_41042cf8fd",
+    "kit_dir": "res://art/derived/LOC-court-yard",
+    "files": [
+     "obj_bench_41042cf8fd_v10.png"
+    ],
+    "settings": [
+     "any"
+    ],
+    "changes": [
+     "leans -12, broken"
+    ],
+    "size_m": [
+     1.2,
+     0.45,
+     0.35
+    ],
+    "licence": "CC-BY-SA-3.0"
+   }
+  ],
+  "wedding-yard": [
+   {
+    "item": "bench",
+    "kit": "obj_bench_41042cf8fd",
+    "kit_dir": "res://art/derived/LOC-court-yard",
+    "files": [
+     "obj_bench_41042cf8fd_v01.png"
+    ],
+    "settings": [
+     "any"
+    ],
+    "changes": [
+     "leans +12, chipped"
+    ],
+    "size_m": [
+     1.2,
+     0.45,
+     0.35
+    ],
+    "licence": "CC-BY-SA-3.0"
+   }
+  ],
+  "crafts-school": [
+   {
+    "item": "bench",
+    "kit": "obj_bench_41042cf8fd",
+    "kit_dir": "res://art/derived/LOC-court-yard",
+    "files": [
+     "obj_bench_41042cf8fd_v01.png"
+    ],
+    "settings": [
+     "any"
+    ],
+    "changes": [
+     "leans +12, chipped"
+    ],
+    "size_m": [
+     1.2,
+     0.45,
+     0.35
+    ],
+    "licence": "CC-BY-SA-3.0"
+   }
+  ],
+  "forge": [
+   {
+    "item": "tools",
+    "kit": "obj_tools_9b09b1f302",
+    "kit_dir": "res://art/derived/LOC-forge",
+    "files": [
+     "obj_tools_9b09b1f302_v01.png"
+    ],
+    "settings": [
+     "any"
+    ],
+    "changes": [
+     "pair"
+    ],
+    "size_m": [
+     0.6,
+     0.6,
+     0.03
+    ],
+    "licence": "GPL-2.0-or-later"
+   }
+  ],
+  "shipyard": [
+   {
+    "item": "spruce-log",
+    "kit": "obj_bridge_log_40b14237a3",
+    "kit_dir": "res://art/derived/LOC-mountain-bridge",
+    "files": [
+     "obj_bridge_log_40b14237a3_v05.png"
+    ],
+    "settings": [
+     "any"
+    ],
+    "changes": [
+     "leans -24, broken"
+    ],
+    "size_m": [
+     0.4,
+     0.4,
+     4.0
+    ],
+    "licence": "GPL-2.0-or-later"
+   }
+  ],
+  "silversmith": [
+   {
+    "item": "tools",
+    "kit": "obj_tools_9b09b1f302",
+    "kit_dir": "res://art/derived/LOC-forge",
+    "files": [
+     "obj_tools_9b09b1f302_v01.png"
+    ],
+    "settings": [
+     "any"
+    ],
+    "changes": [
+     "pair"
+    ],
+    "size_m": [
+     0.6,
+     0.6,
+     0.03
+    ],
+    "licence": "GPL-2.0-or-later"
+   }
+  ],
+  "council-hall": [
+   {
+    "item": "bench",
+    "kit": "obj_bench_41042cf8fd",
+    "kit_dir": "res://art/derived/LOC-court-yard",
+    "files": [
+     "obj_bench_41042cf8fd_v08.png"
+    ],
+    "settings": [
+     "any"
+    ],
+    "changes": [
+     "stack"
+    ],
+    "size_m": [
+     1.2,
+     0.45,
+     0.35
+    ],
+    "licence": "CC-BY-SA-3.0"
+   }
+  ],
+  "gate-crowd": [
+   {
+    "item": "bench",
+    "kit": "obj_bench_41042cf8fd",
+    "kit_dir": "res://art/derived/LOC-court-yard",
+    "files": [
+     "obj_bench_41042cf8fd_v07.png"
+    ],
+    "settings": [
+     "any"
+    ],
+    "changes": [
+     "leans -24, chipped"
+    ],
+    "size_m": [
+     1.2,
+     0.45,
+     0.35
+    ],
+    "licence": "CC-BY-SA-3.0"
+   }
+  ],
+  "cloud-ancestors": [
+   {
+    "item": "bench",
+    "kit": "obj_bench_41042cf8fd",
+    "kit_dir": "res://art/derived/LOC-court-yard",
+    "files": [
+     "obj_bench_41042cf8fd_v02.png"
+    ],
+    "settings": [
+     "any"
+    ],
+    "changes": [
+     "upended, chipped"
+    ],
+    "size_m": [
+     1.2,
+     0.45,
+     0.35
+    ],
+    "licence": "CC-BY-SA-3.0"
+   }
+  ],
+  "rock-island": [
+   {
+    "item": "hourglass",
+    "kit": "obj_hourglass_e49ab22431",
+    "kit_dir": "res://art/derived/LOC-rock-island",
+    "files": [
+     "obj_hourglass_e49ab22431_v03.png"
+    ],
+    "settings": [
+     "any"
+    ],
+    "changes": [
+     "leans -24, chipped"
+    ],
+    "size_m": [
+     0.09,
+     0.16,
+     0.09
+    ],
+    "licence": "CC-BY-SA-3.0"
+   }
+  ],
+  "sis-armourer": [
+   {
+    "item": "tools",
+    "kit": "obj_tools_9b09b1f302",
+    "kit_dir": "res://art/derived/LOC-forge",
+    "files": [
+     "obj_tools_9b09b1f302_v03.png"
+    ],
+    "settings": [
+     "any"
+    ],
+    "changes": [
+     "pair"
+    ],
+    "size_m": [
+     0.6,
+     0.6,
+     0.03
+    ],
+    "licence": "GPL-2.0-or-later"
+   }
+  ],
+  "offline-tavern": [
+   {
+    "item": "bench",
+    "kit": "obj_bench_41042cf8fd",
+    "kit_dir": "res://art/derived/LOC-court-yard",
+    "files": [
+     "obj_bench_41042cf8fd_v10.png"
+    ],
+    "settings": [
+     "any"
+    ],
+    "changes": [
+     "leans -12, broken"
+    ],
+    "size_m": [
+     1.2,
+     0.45,
+     0.35
+    ],
+    "licence": "CC-BY-SA-3.0"
+   }
+  ]
+ }
+}

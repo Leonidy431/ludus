@@ -1,0 +1,1096 @@
+{
+ "name": "obj_hourglass_e49ab22431",
+ "id": "e49ab22431",
+ "seed": "e49ab2243199549eb3faccf8489758528ecdfd67",
+ "thing": "hourglass",
+ "serves": [
+  "hourglass"
+ ],
+ "slot": "LOC-rock-island",
+ "locations": [
+  "rock-island"
+ ],
+ "origin": "raw-neutral-location-kit",
+ "method": "location-kit-r1",
+ "raw_material": true,
+ "source": {
+  "repo": "https://github.com/Azgaar/Fantasy-Map-Generator",
+  "path": "public/charges/hourglass.svg",
+  "commit": "77192941fd69cfdc141e882487327252e33ac43b",
+  "piece": 0,
+  "prop_key": "p_b53504690312",
+  "sha1": "141732eadf6178800f1aaff6229e1fa572182b2c",
+  "bytes": 1981
+ },
+ "repo": "https://github.com/Azgaar/Fantasy-Map-Generator",
+ "path": "public/charges/hourglass.svg",
+ "commit": "77192941fd69cfdc141e882487327252e33ac43b",
+ "license": "CC-BY-SA-3.0",
+ "license_file": "LICENSE",
+ "licence_facts": {
+  "repo_licence": "MIT",
+  "evidence": [
+   "public/charges/hourglass.svg <metadata>"
+  ],
+  "licence": "CC-BY-SA-3.0",
+  "copyright": "Syryatsu https://commons.wikimedia.org/wiki/File:Meuble_sablier_s%27%C3%A9coulant.svg",
+  "commercial": true
+ },
+ "picked_by_eye": "03 a: an hourglass in its frame",
+ "material": "glass",
+ "ru": "Песочные часы",
+ "size_m": [
+  0.09,
+  0.16,
+  0.09
+ ],
+ "threshold": 0.35,
+ "shape_basis": "source",
+ "sibling_basis": "nearest-sibling",
+ "pixel_art": false,
+ "source_px": [
+  74,
+  104
+ ],
+ "side_px": 118,
+ "pool": {
+  "size": 133,
+  "measured": 83,
+  "refused": {
+   "does-not-fit-canvas": 19,
+   "shape-below-threshold": 23,
+   "thing-mostly-hidden": 8,
+   "too-close-to-a-sibling": 11
+  },
+  "chosen": 12
+ },
+ "variants": [
+  {
+   "slot": "v01",
+   "file": "obj_hourglass_e49ab22431_v01.png",
+   "change": "leans -12, chipped",
+   "setting": "any",
+   "state": "smoky",
+   "shape_change": 0.3524,
+   "sibling_min": 0.3802,
+   "colour_change": 0.9852,
+   "visible": 0.8925,
+   "hitbox": {
+    "bbox": [
+     85,
+     106,
+     171,
+     238
+    ],
+    "area": 5488,
+    "radius": 41.8,
+    "hull": [
+     [
+      85,
+      217
+     ],
+     [
+      108,
+      107
+     ],
+     [
+      109,
+      106
+     ],
+     [
+      113,
+      106
+     ],
+     [
+      146,
+      113
+     ],
+     [
+      160,
+      116
+     ],
+     [
+      169,
+      118
+     ],
+     [
+      171,
+      119
+     ],
+     [
+      171,
+      146
+     ],
+     [
+      166,
+      237
+     ],
+     [
+      165,
+      238
+     ],
+     [
+      161,
+      238
+     ],
+     [
+      86,
+      222
+     ],
+     [
+      85,
+      221
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.hourglass.e49ab22431.v01"
+  },
+  {
+   "slot": "v02",
+   "file": "obj_hourglass_e49ab22431_v02.png",
+   "change": "leans +12, chipped",
+   "setting": "any",
+   "state": "clear",
+   "shape_change": 0.3588,
+   "sibling_min": 0.3907,
+   "colour_change": 0.9932,
+   "visible": 0.8905,
+   "hitbox": {
+    "bbox": [
+     84,
+     106,
+     171,
+     238
+    ],
+    "area": 5380,
+    "radius": 41.38,
+    "hull": [
+     [
+      84,
+      139
+     ],
+     [
+      86,
+      135
+     ],
+     [
+      94,
+      120
+     ],
+     [
+      95,
+      119
+     ],
+     [
+      99,
+      116
+     ],
+     [
+      105,
+      114
+     ],
+     [
+      109,
+      113
+     ],
+     [
+      142,
+      106
+     ],
+     [
+      146,
+      106
+     ],
+     [
+      147,
+      107
+     ],
+     [
+      171,
+      219
+     ],
+     [
+      171,
+      220
+     ],
+     [
+      169,
+      222
+     ],
+     [
+      94,
+      238
+     ],
+     [
+      90,
+      238
+     ],
+     [
+      89,
+      237
+     ],
+     [
+      84,
+      145
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.hourglass.e49ab22431.v02"
+  },
+  {
+   "slot": "v03",
+   "file": "obj_hourglass_e49ab22431_v03.png",
+   "change": "leans -24, chipped",
+   "setting": "any",
+   "state": "smoky",
+   "shape_change": 0.4167,
+   "sibling_min": 0.3802,
+   "colour_change": 0.9864,
+   "visible": 0.8883,
+   "hitbox": {
+    "bbox": [
+     67,
+     111,
+     190,
+     237
+    ],
+    "area": 5467,
+    "radius": 41.72,
+    "hull": [
+     [
+      67,
+      201
+     ],
+     [
+      117,
+      123
+     ],
+     [
+      121,
+      119
+     ],
+     [
+      123,
+      118
+     ],
+     [
+      139,
+      111
+     ],
+     [
+      147,
+      111
+     ],
+     [
+      151,
+      112
+     ],
+     [
+      187,
+      128
+     ],
+     [
+      189,
+      129
+     ],
+     [
+      190,
+      130
+     ],
+     [
+      190,
+      131
+     ],
+     [
+      143,
+      237
+     ],
+     [
+      139,
+      237
+     ],
+     [
+      132,
+      234
+     ],
+     [
+      69,
+      206
+     ],
+     [
+      67,
+      205
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.hourglass.e49ab22431.v03"
+  },
+  {
+   "slot": "v04",
+   "file": "obj_hourglass_e49ab22431_v04.png",
+   "change": "leans +24, chipped",
+   "setting": "any",
+   "state": "clear",
+   "shape_change": 0.4196,
+   "sibling_min": 0.3907,
+   "colour_change": 0.994,
+   "visible": 0.8916,
+   "hitbox": {
+    "bbox": [
+     67,
+     104,
+     189,
+     237
+    ],
+    "area": 5395,
+    "radius": 41.44,
+    "hull": [
+     [
+      67,
+      129
+     ],
+     [
+      69,
+      128
+     ],
+     [
+      123,
+      104
+     ],
+     [
+      124,
+      104
+     ],
+     [
+      139,
+      123
+     ],
+     [
+      189,
+      201
+     ],
+     [
+      189,
+      205
+     ],
+     [
+      187,
+      206
+     ],
+     [
+      124,
+      234
+     ],
+     [
+      117,
+      237
+     ],
+     [
+      114,
+      237
+     ],
+     [
+      113,
+      236
+     ],
+     [
+      67,
+      133
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.hourglass.e49ab22431.v04"
+  },
+  {
+   "slot": "v05",
+   "file": "obj_hourglass_e49ab22431_v05.png",
+   "change": "broken",
+   "setting": "any",
+   "state": "clear",
+   "shape_change": 0.5296,
+   "sibling_min": 0.5052,
+   "colour_change": 0.9783,
+   "visible": 0.9399,
+   "hitbox": {
+    "bbox": [
+     3,
+     154,
+     170,
+     238
+    ],
+    "area": 5696,
+    "radius": 42.58,
+    "hull": [
+     [
+      3,
+      217
+     ],
+     [
+      5,
+      215
+     ],
+     [
+      9,
+      212
+     ],
+     [
+      69,
+      170
+     ],
+     [
+      101,
+      155
+     ],
+     [
+      117,
+      154
+     ],
+     [
+      129,
+      154
+     ],
+     [
+      145,
+      156
+     ],
+     [
+      152,
+      159
+     ],
+     [
+      154,
+      160
+     ],
+     [
+      155,
+      161
+     ],
+     [
+      170,
+      235
+     ],
+     [
+      170,
+      236
+     ],
+     [
+      169,
+      238
+     ],
+     [
+      34,
+      238
+     ],
+     [
+      4,
+      220
+     ],
+     [
+      3,
+      219
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.hourglass.e49ab22431.v05"
+  },
+  {
+   "slot": "v06",
+   "file": "obj_hourglass_e49ab22431_v06.png",
+   "change": "broken",
+   "setting": "any",
+   "state": "amber",
+   "shape_change": 0.53,
+   "sibling_min": 0.5052,
+   "colour_change": 0.9527,
+   "visible": 0.9399,
+   "hitbox": {
+    "bbox": [
+     87,
+     154,
+     215,
+     238
+    ],
+    "area": 5681,
+    "radius": 42.52,
+    "hull": [
+     [
+      87,
+      234
+     ],
+     [
+      101,
+      155
+     ],
+     [
+      117,
+      154
+     ],
+     [
+      177,
+      154
+     ],
+     [
+      215,
+      169
+     ],
+     [
+      215,
+      170
+     ],
+     [
+      209,
+      223
+     ],
+     [
+      178,
+      237
+     ],
+     [
+      169,
+      238
+     ],
+     [
+      87,
+      238
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.hourglass.e49ab22431.v06"
+  },
+  {
+   "slot": "v07",
+   "file": "obj_hourglass_e49ab22431_v07.png",
+   "change": "leans -12, broken",
+   "setting": "any",
+   "state": "clear",
+   "shape_change": 0.6237,
+   "sibling_min": 0.5011,
+   "colour_change": 0.9926,
+   "visible": 0.9424,
+   "hitbox": {
+    "bbox": [
+     41,
+     142,
+     169,
+     237
+    ],
+    "area": 5710,
+    "radius": 42.63,
+    "hull": [
+     [
+      41,
+      155
+     ],
+     [
+      43,
+      154
+     ],
+     [
+      117,
+      142
+     ],
+     [
+      120,
+      142
+     ],
+     [
+      137,
+      145
+     ],
+     [
+      142,
+      146
+     ],
+     [
+      160,
+      152
+     ],
+     [
+      162,
+      153
+     ],
+     [
+      168,
+      158
+     ],
+     [
+      169,
+      159
+     ],
+     [
+      169,
+      162
+     ],
+     [
+      168,
+      235
+     ],
+     [
+      167,
+      237
+     ],
+     [
+      41,
+      237
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.hourglass.e49ab22431.v07"
+  },
+  {
+   "slot": "v08",
+   "file": "obj_hourglass_e49ab22431_v08.png",
+   "change": "leans -12, broken",
+   "setting": "any",
+   "state": "dusty",
+   "shape_change": 0.6242,
+   "sibling_min": 0.42,
+   "colour_change": 0.99,
+   "visible": 0.9425,
+   "hitbox": {
+    "bbox": [
+     86,
+     142,
+     230,
+     237
+    ],
+    "area": 5680,
+    "radius": 42.52,
+    "hull": [
+     [
+      86,
+      218
+     ],
+     [
+      117,
+      142
+     ],
+     [
+      120,
+      142
+     ],
+     [
+      137,
+      145
+     ],
+     [
+      142,
+      146
+     ],
+     [
+      202,
+      159
+     ],
+     [
+      203,
+      160
+     ],
+     [
+      204,
+      162
+     ],
+     [
+      228,
+      228
+     ],
+     [
+      230,
+      234
+     ],
+     [
+      230,
+      237
+     ],
+     [
+      161,
+      237
+     ],
+     [
+      95,
+      223
+     ],
+     [
+      87,
+      221
+     ],
+     [
+      86,
+      220
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.hourglass.e49ab22431.v08"
+  },
+  {
+   "slot": "v09",
+   "file": "obj_hourglass_e49ab22431_v09.png",
+   "change": "leans +12, broken",
+   "setting": "any",
+   "state": "clear",
+   "shape_change": 0.6279,
+   "sibling_min": 0.5011,
+   "colour_change": 0.9936,
+   "visible": 0.9435,
+   "hitbox": {
+    "bbox": [
+     26,
+     145,
+     170,
+     237
+    ],
+    "area": 5706,
+    "radius": 42.62,
+    "hull": [
+     [
+      26,
+      184
+     ],
+     [
+      52,
+      159
+     ],
+     [
+      105,
+      148
+     ],
+     [
+      110,
+      147
+     ],
+     [
+      117,
+      146
+     ],
+     [
+      127,
+      145
+     ],
+     [
+      130,
+      145
+     ],
+     [
+      139,
+      147
+     ],
+     [
+      141,
+      148
+     ],
+     [
+      170,
+      217
+     ],
+     [
+      170,
+      220
+     ],
+     [
+      169,
+      221
+     ],
+     [
+      161,
+      223
+     ],
+     [
+      100,
+      236
+     ],
+     [
+      95,
+      237
+     ],
+     [
+      39,
+      237
+     ],
+     [
+      26,
+      186
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.hourglass.e49ab22431.v09"
+  },
+  {
+   "slot": "v10",
+   "file": "obj_hourglass_e49ab22431_v10.png",
+   "change": "leans +12, broken",
+   "setting": "any",
+   "state": "dusty",
+   "shape_change": 0.6288,
+   "sibling_min": 0.4837,
+   "colour_change": 0.9899,
+   "visible": 0.9433,
+   "hitbox": {
+    "bbox": [
+     86,
+     145,
+     254,
+     238
+    ],
+    "area": 5679,
+    "radius": 42.52,
+    "hull": [
+     [
+      86,
+      153
+     ],
+     [
+      101,
+      149
+     ],
+     [
+      105,
+      148
+     ],
+     [
+      110,
+      147
+     ],
+     [
+      117,
+      146
+     ],
+     [
+      127,
+      145
+     ],
+     [
+      129,
+      145
+     ],
+     [
+      139,
+      147
+     ],
+     [
+      242,
+      170
+     ],
+     [
+      244,
+      172
+     ],
+     [
+      254,
+      211
+     ],
+     [
+      254,
+      212
+     ],
+     [
+      209,
+      237
+     ],
+     [
+      207,
+      238
+     ],
+     [
+      206,
+      238
+     ],
+     [
+      89,
+      237
+     ],
+     [
+      86,
+      156
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.hourglass.e49ab22431.v10"
+  },
+  {
+   "slot": "v11",
+   "file": "obj_hourglass_e49ab22431_v11.png",
+   "change": "leans -24, broken",
+   "setting": "any",
+   "state": "amber",
+   "shape_change": 0.6489,
+   "sibling_min": 0.42,
+   "colour_change": 0.9757,
+   "visible": 0.9414,
+   "hitbox": {
+    "bbox": [
+     82,
+     135,
+     220,
+     238
+    ],
+    "area": 5687,
+    "radius": 42.55,
+    "hull": [
+     [
+      82,
+      202
+     ],
+     [
+      127,
+      135
+     ],
+     [
+      131,
+      135
+     ],
+     [
+      182,
+      154
+     ],
+     [
+      220,
+      169
+     ],
+     [
+      220,
+      170
+     ],
+     [
+      214,
+      223
+     ],
+     [
+      183,
+      237
+     ],
+     [
+      156,
+      238
+     ],
+     [
+      155,
+      238
+     ],
+     [
+      148,
+      235
+     ],
+     [
+      83,
+      206
+     ],
+     [
+      82,
+      205
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.hourglass.e49ab22431.v11"
+  },
+  {
+   "slot": "v12",
+   "file": "obj_hourglass_e49ab22431_v12.png",
+   "change": "leans +24, broken",
+   "setting": "any",
+   "state": "amber",
+   "shape_change": 0.6502,
+   "sibling_min": 0.4837,
+   "colour_change": 0.9789,
+   "visible": 0.9422,
+   "hitbox": {
+    "bbox": [
+     81,
+     139,
+     236,
+     238
+    ],
+    "area": 5689,
+    "radius": 42.55,
+    "hull": [
+     [
+      81,
+      156
+     ],
+     [
+      82,
+      155
+     ],
+     [
+      98,
+      147
+     ],
+     [
+      105,
+      144
+     ],
+     [
+      120,
+      139
+     ],
+     [
+      131,
+      139
+     ],
+     [
+      208,
+      159
+     ],
+     [
+      209,
+      160
+     ],
+     [
+      210,
+      162
+     ],
+     [
+      234,
+      228
+     ],
+     [
+      236,
+      234
+     ],
+     [
+      236,
+      237
+     ],
+     [
+      103,
+      238
+     ],
+     [
+      102,
+      238
+     ],
+     [
+      100,
+      236
+     ],
+     [
+      81,
+      159
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.hourglass.e49ab22431.v12"
+  }
+ ],
+ "shortfall": 0,
+ "status": "ok",
+ "shape_change": 0.3524,
+ "colour_change": 0.9527,
+ "redraw": {
+  "shape_change": 0.0,
+  "colour_change": 0.9527,
+  "is_recolour": false
+ },
+ "claim_features": [
+  "нейтральная вещь локаций «Песочные часы»: источник выбран глазами как изображение самой вещи (03 a: an hourglass in its frame)",
+  "двенадцать вариантов из реальных состояний вещи (наклон, лежит, сколота, расколота, в песке, в траве, пара, штабель); поза без изменения строения варианта не даёт",
+  "палитра материала «glass» в его состояниях; масштаб источника и вариантов один (118 пикс.)",
+  "изменение формы к источнику (|A xor B| / |A or B|): от 35.2% до 65.0%; к ближайшему соседу не меньше 35%; цвета от 95.3%",
+  "источник: https://github.com/Azgaar/Fantasy-Map-Generator @ 77192941fd, public/charges/hourglass.svg #0 (CC-BY-SA-3.0)"
+ ],
+ "constitution": "ФОРМА: настоящая вещь места в её настоящих состояниях → ДЕЙСТВИЕ: вещь стоит в слоте локации и не заслоняет сердце места → ЦЕЛЬ: вещи служат учению (ТАБУ №0.013 п. 3, 9)",
+ "eye": {
+  "verdict": "ship",
+  "why": "an hourglass throughout: leaning with a chipped plate, or with a post broken off and lying beside it",
+  "sheet": "docs/audit/2026-09-30/location-items/obj_hourglass_e49ab22431.png",
+  "date": "2026-09-30"
+ }
+}

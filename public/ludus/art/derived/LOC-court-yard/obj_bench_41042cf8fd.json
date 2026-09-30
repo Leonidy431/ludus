@@ -1,0 +1,986 @@
+{
+ "name": "obj_bench_41042cf8fd",
+ "id": "41042cf8fd",
+ "seed": "41042cf8fdc57deb348066e89db7cd0e798fcacb",
+ "thing": "bench",
+ "serves": [
+  "bench"
+ ],
+ "slot": "LOC-court-yard",
+ "locations": [
+  "chu-community",
+  "cloud-ancestors",
+  "council-hall",
+  "court-yard",
+  "crafts-school",
+  "feast-yard",
+  "gate-crowd",
+  "offline-tavern",
+  "porch-court",
+  "wedding-yard"
+ ],
+ "origin": "raw-neutral-location-kit",
+ "method": "location-kit-r1",
+ "raw_material": true,
+ "source": {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "path": "Resources/Textures/Structures/Furniture/chairs.rsi/wooden-bench.png",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "piece": 0,
+  "prop_key": "p_59c55a1c5f26",
+  "sha1": "5ba1b6849927dc7138d955ba87858f6a5a698da5",
+  "bytes": 3122
+ },
+ "repo": "https://github.com/space-wizards/space-station-14",
+ "path": "Resources/Textures/Structures/Furniture/chairs.rsi/wooden-bench.png",
+ "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+ "license": "CC-BY-SA-3.0",
+ "license_file": "LICENSE.TXT",
+ "licence_facts": {
+  "repo_licence": "MIT",
+  "evidence": [
+   "Resources/Textures/Structures/Furniture/chairs.rsi/meta.json"
+  ],
+  "licence": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/11402f6ae62facc2e8bcfa1f8ef5353b26663278, meat.png is CC0-1.0 by EmoGarbage404 (github) for Space Station 14. chair.png and its derrivatives taken from shiptest at commit https://github.com/shiptest-ss13/Shiptest/commit/f761c784812e827960a66cd10aac17ebc6edfac3, palette for chair.png, steel-bench.png and chair-greyscale.png taken from paradise equivalent chairs at commit https://github.com/ParadiseSS13/Paradise/commit/5ce5a66c814c4a60118d24885389357fd0240002, steel by SonicHDC, brass chair.png taken from tgstation at https://github.com/tgstation/tgstation/blob/b7e7779c19b76449c290aaf2150fb93545b1a79a/icons/obj/chairs.dmi, wooden bench by Ko4erga (discord), xeno-chair by juneszalkowska (discord)",
+  "commercial": true
+ },
+ "picked_by_eye": "00 g: a wooden bench with a back",
+ "material": "wood",
+ "ru": "Скамья",
+ "size_m": [
+  1.2,
+  0.45,
+  0.35
+ ],
+ "threshold": 0.35,
+ "shape_basis": "source",
+ "sibling_basis": "nearest-sibling",
+ "pixel_art": true,
+ "source_px": [
+  30,
+  22
+ ],
+ "side_px": 118,
+ "pool": {
+  "size": 175,
+  "measured": 106,
+  "refused": {
+   "does-not-fit-canvas": 50,
+   "duplicate-hitbox": 1,
+   "shape-below-threshold": 15,
+   "thing-mostly-hidden": 4,
+   "too-close-to-a-sibling": 20
+  },
+  "chosen": 12
+ },
+ "variants": [
+  {
+   "slot": "v01",
+   "file": "obj_bench_41042cf8fd_v01.png",
+   "change": "leans +12, chipped",
+   "setting": "any",
+   "state": "fresh",
+   "shape_change": 0.3521,
+   "sibling_min": 0.3749,
+   "colour_change": 0.6083,
+   "visible": 0.9265,
+   "hitbox": {
+    "bbox": [
+     65,
+     130,
+     191,
+     238
+    ],
+    "area": 7392,
+    "radius": 48.51,
+    "hull": [
+     [
+      65,
+      190
+     ],
+     [
+      81,
+      156
+     ],
+     [
+      89,
+      149
+     ],
+     [
+      94,
+      145
+     ],
+     [
+      98,
+      144
+     ],
+     [
+      126,
+      138
+     ],
+     [
+      159,
+      131
+     ],
+     [
+      164,
+      130
+     ],
+     [
+      169,
+      130
+     ],
+     [
+      174,
+      133
+     ],
+     [
+      175,
+      137
+     ],
+     [
+      178,
+      151
+     ],
+     [
+      188,
+      198
+     ],
+     [
+      191,
+      213
+     ],
+     [
+      191,
+      214
+     ],
+     [
+      183,
+      216
+     ],
+     [
+      84,
+      237
+     ],
+     [
+      79,
+      238
+     ],
+     [
+      75,
+      238
+     ],
+     [
+      73,
+      230
+     ],
+     [
+      70,
+      216
+     ],
+     [
+      66,
+      197
+     ],
+     [
+      65,
+      192
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bench.41042cf8fd.v01"
+  },
+  {
+   "slot": "v02",
+   "file": "obj_bench_41042cf8fd_v02.png",
+   "change": "upended, chipped",
+   "setting": "any",
+   "state": "fresh",
+   "shape_change": 0.4162,
+   "sibling_min": 0.5154,
+   "colour_change": 0.62,
+   "visible": 0.9215,
+   "hitbox": {
+    "bbox": [
+     69,
+     151,
+     187,
+     238
+    ],
+    "area": 7352,
+    "radius": 48.38,
+    "hull": [
+     [
+      69,
+      151
+     ],
+     [
+      187,
+      151
+     ],
+     [
+      187,
+      234
+     ],
+     [
+      183,
+      238
+     ],
+     [
+      103,
+      238
+     ],
+     [
+      69,
+      202
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bench.41042cf8fd.v02"
+  },
+  {
+   "slot": "v03",
+   "file": "obj_bench_41042cf8fd_v03.png",
+   "change": "pair",
+   "setting": "any",
+   "state": "fresh",
+   "shape_change": 0.4242,
+   "sibling_min": 0.3808,
+   "colour_change": 0.8685,
+   "visible": 0.7923,
+   "hitbox": {
+    "bbox": [
+     37,
+     151,
+     219,
+     238
+    ],
+    "area": 12642,
+    "radius": 63.44,
+    "hull": [
+     [
+      37,
+      155
+     ],
+     [
+      41,
+      151
+     ],
+     [
+      215,
+      151
+     ],
+     [
+      219,
+      155
+     ],
+     [
+      219,
+      238
+     ],
+     [
+      37,
+      238
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bench.41042cf8fd.v03"
+  },
+  {
+   "slot": "v04",
+   "file": "obj_bench_41042cf8fd_v04.png",
+   "change": "pair",
+   "setting": "any",
+   "state": "weathered",
+   "shape_change": 0.4497,
+   "sibling_min": 0.3714,
+   "colour_change": 1.0,
+   "visible": 0.8495,
+   "hitbox": {
+    "bbox": [
+     37,
+     120,
+     204,
+     238
+    ],
+    "area": 13554,
+    "radius": 65.68,
+    "hull": [
+     [
+      37,
+      155
+     ],
+     [
+      41,
+      151
+     ],
+     [
+      121,
+      120
+     ],
+     [
+      204,
+      120
+     ],
+     [
+      204,
+      238
+     ],
+     [
+      37,
+      238
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bench.41042cf8fd.v04"
+  },
+  {
+   "slot": "v05",
+   "file": "obj_bench_41042cf8fd_v05.png",
+   "change": "broken",
+   "setting": "any",
+   "state": "fresh",
+   "shape_change": 0.4823,
+   "sibling_min": 0.4851,
+   "colour_change": 0.8883,
+   "visible": 0.9994,
+   "hitbox": {
+    "bbox": [
+     18,
+     145,
+     171,
+     238
+    ],
+    "area": 7973,
+    "radius": 50.38,
+    "hull": [
+     [
+      18,
+      170
+     ],
+     [
+      19,
+      164
+     ],
+     [
+      20,
+      163
+     ],
+     [
+      24,
+      160
+     ],
+     [
+      44,
+      146
+     ],
+     [
+      46,
+      145
+     ],
+     [
+      47,
+      145
+     ],
+     [
+      167,
+      151
+     ],
+     [
+      171,
+      155
+     ],
+     [
+      171,
+      238
+     ],
+     [
+      65,
+      238
+     ],
+     [
+      64,
+      237
+     ],
+     [
+      59,
+      230
+     ],
+     [
+      24,
+      180
+     ],
+     [
+      18,
+      171
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bench.41042cf8fd.v05"
+  },
+  {
+   "slot": "v06",
+   "file": "obj_bench_41042cf8fd_v06.png",
+   "change": "leans +24, chipped",
+   "setting": "any",
+   "state": "fresh",
+   "shape_change": 0.4829,
+   "sibling_min": 0.3749,
+   "colour_change": 0.6659,
+   "visible": 0.922,
+   "hitbox": {
+    "bbox": [
+     58,
+     125,
+     199,
+     238
+    ],
+    "area": 7356,
+    "radius": 48.39,
+    "hull": [
+     [
+      58,
+      162
+     ],
+     [
+      60,
+      157
+     ],
+     [
+      61,
+      156
+     ],
+     [
+      124,
+      128
+     ],
+     [
+      131,
+      125
+     ],
+     [
+      134,
+      125
+     ],
+     [
+      154,
+      133
+     ],
+     [
+      179,
+      144
+     ],
+     [
+      180,
+      145
+     ],
+     [
+      181,
+      147
+     ],
+     [
+      197,
+      183
+     ],
+     [
+      199,
+      188
+     ],
+     [
+      199,
+      191
+     ],
+     [
+      195,
+      193
+     ],
+     [
+      96,
+      237
+     ],
+     [
+      93,
+      238
+     ],
+     [
+      91,
+      238
+     ],
+     [
+      59,
+      166
+     ],
+     [
+      58,
+      163
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bench.41042cf8fd.v06"
+  },
+  {
+   "slot": "v07",
+   "file": "obj_bench_41042cf8fd_v07.png",
+   "change": "leans -24, chipped",
+   "setting": "any",
+   "state": "weathered",
+   "shape_change": 0.4861,
+   "sibling_min": 0.41,
+   "colour_change": 1.0,
+   "visible": 0.9273,
+   "hitbox": {
+    "bbox": [
+     58,
+     126,
+     199,
+     238
+    ],
+    "area": 7398,
+    "radius": 48.53,
+    "hull": [
+     [
+      58,
+      188
+     ],
+     [
+      60,
+      183
+     ],
+     [
+      76,
+      147
+     ],
+     [
+      77,
+      146
+     ],
+     [
+      83,
+      142
+     ],
+     [
+      110,
+      128
+     ],
+     [
+      115,
+      127
+     ],
+     [
+      125,
+      126
+     ],
+     [
+      128,
+      126
+     ],
+     [
+      133,
+      128
+     ],
+     [
+      196,
+      156
+     ],
+     [
+      197,
+      157
+     ],
+     [
+      199,
+      162
+     ],
+     [
+      199,
+      163
+     ],
+     [
+      198,
+      166
+     ],
+     [
+      166,
+      238
+     ],
+     [
+      164,
+      238
+     ],
+     [
+      161,
+      237
+     ],
+     [
+      62,
+      193
+     ],
+     [
+      58,
+      191
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bench.41042cf8fd.v07"
+  },
+  {
+   "slot": "v08",
+   "file": "obj_bench_41042cf8fd_v08.png",
+   "change": "stack",
+   "setting": "any",
+   "state": "fresh",
+   "shape_change": 0.493,
+   "sibling_min": 0.5155,
+   "colour_change": 0.984,
+   "visible": 0.9862,
+   "hitbox": {
+    "bbox": [
+     69,
+     66,
+     187,
+     238
+    ],
+    "area": 15736,
+    "radius": 70.77,
+    "hull": [
+     [
+      69,
+      66
+     ],
+     [
+      187,
+      66
+     ],
+     [
+      187,
+      238
+     ],
+     [
+      69,
+      238
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bench.41042cf8fd.v08"
+  },
+  {
+   "slot": "v09",
+   "file": "obj_bench_41042cf8fd_v09.png",
+   "change": "leans +24, broken",
+   "setting": "any",
+   "state": "weathered",
+   "shape_change": 0.5666,
+   "sibling_min": 0.4177,
+   "colour_change": 1.0,
+   "visible": 0.9994,
+   "hitbox": {
+    "bbox": [
+     74,
+     144,
+     249,
+     238
+    ],
+    "area": 7973,
+    "radius": 50.38,
+    "hull": [
+     [
+      74,
+      175
+     ],
+     [
+      75,
+      174
+     ],
+     [
+      81,
+      171
+     ],
+     [
+      135,
+      147
+     ],
+     [
+      142,
+      144
+     ],
+     [
+      143,
+      144
+     ],
+     [
+      215,
+      145
+     ],
+     [
+      216,
+      146
+     ],
+     [
+      228,
+      163
+     ],
+     [
+      235,
+      175
+     ],
+     [
+      249,
+      202
+     ],
+     [
+      249,
+      203
+     ],
+     [
+      243,
+      232
+     ],
+     [
+      236,
+      237
+     ],
+     [
+      234,
+      238
+     ],
+     [
+      96,
+      238
+     ],
+     [
+      95,
+      237
+     ],
+     [
+      91,
+      228
+     ],
+     [
+      89,
+      223
+     ],
+     [
+      75,
+      182
+     ],
+     [
+      74,
+      177
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bench.41042cf8fd.v09"
+  },
+  {
+   "slot": "v10",
+   "file": "obj_bench_41042cf8fd_v10.png",
+   "change": "leans -12, broken",
+   "setting": "any",
+   "state": "weathered",
+   "shape_change": 0.5691,
+   "sibling_min": 0.4177,
+   "colour_change": 1.0,
+   "visible": 0.9992,
+   "hitbox": {
+    "bbox": [
+     80,
+     136,
+     243,
+     238
+    ],
+    "area": 7972,
+    "radius": 50.37,
+    "hull": [
+     [
+      80,
+      198
+     ],
+     [
+      83,
+      184
+     ],
+     [
+      96,
+      142
+     ],
+     [
+      99,
+      136
+     ],
+     [
+      100,
+      136
+     ],
+     [
+      209,
+      145
+     ],
+     [
+      210,
+      146
+     ],
+     [
+      222,
+      163
+     ],
+     [
+      229,
+      175
+     ],
+     [
+      243,
+      202
+     ],
+     [
+      243,
+      203
+     ],
+     [
+      237,
+      232
+     ],
+     [
+      230,
+      237
+     ],
+     [
+      228,
+      238
+     ],
+     [
+      157,
+      238
+     ],
+     [
+      148,
+      236
+     ],
+     [
+      80,
+      201
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bench.41042cf8fd.v10"
+  },
+  {
+   "slot": "v11",
+   "file": "obj_bench_41042cf8fd_v11.png",
+   "change": "pair",
+   "setting": "any",
+   "state": "weathered",
+   "shape_change": 0.5841,
+   "sibling_min": 0.3714,
+   "colour_change": 1.0,
+   "visible": 1.0,
+   "hitbox": {
+    "bbox": [
+     13,
+     120,
+     228,
+     238
+    ],
+    "area": 15956,
+    "radius": 71.27,
+    "hull": [
+     [
+      13,
+      155
+     ],
+     [
+      17,
+      151
+     ],
+     [
+      145,
+      120
+     ],
+     [
+      228,
+      120
+     ],
+     [
+      228,
+      238
+     ],
+     [
+      13,
+      238
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bench.41042cf8fd.v11"
+  },
+  {
+   "slot": "v12",
+   "file": "obj_bench_41042cf8fd_v12.png",
+   "change": "pair",
+   "setting": "any",
+   "state": "weathered",
+   "shape_change": 0.594,
+   "sibling_min": 0.4045,
+   "colour_change": 1.0,
+   "visible": 0.9763,
+   "hitbox": {
+    "bbox": [
+     13,
+     151,
+     243,
+     238
+    ],
+    "area": 15578,
+    "radius": 70.42,
+    "hull": [
+     [
+      13,
+      151
+     ],
+     [
+      239,
+      151
+     ],
+     [
+      243,
+      155
+     ],
+     [
+      243,
+      238
+     ],
+     [
+      17,
+      238
+     ],
+     [
+      13,
+      234
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bench.41042cf8fd.v12"
+  }
+ ],
+ "shortfall": 0,
+ "status": "ok",
+ "shape_change": 0.3521,
+ "colour_change": 0.6083,
+ "redraw": {
+  "shape_change": 0.0,
+  "colour_change": 0.6083,
+  "is_recolour": false
+ },
+ "claim_features": [
+  "нейтральная вещь локаций «Скамья»: источник выбран глазами как изображение самой вещи (00 g: a wooden bench with a back)",
+  "двенадцать вариантов из реальных состояний вещи (наклон, лежит, сколота, расколота, в песке, в траве, пара, штабель); поза без изменения строения варианта не даёт",
+  "палитра материала «wood» в его состояниях; масштаб источника и вариантов один (118 пикс.)",
+  "изменение формы к источнику (|A xor B| / |A or B|): от 35.2% до 59.4%; к ближайшему соседу не меньше 35%; цвета от 60.8%",
+  "источник: https://github.com/space-wizards/space-station-14 @ d4d4696248, Resources/Textures/Structures/Furniture/chairs.rsi/wooden-bench.png #0 (CC-BY-SA-3.0)"
+ ],
+ "constitution": "ФОРМА: настоящая вещь места в её настоящих состояниях → ДЕЙСТВИЕ: вещь стоит в слоте локации и не заслоняет сердце места → ЦЕЛЬ: вещи служат учению (ТАБУ №0.013 п. 3, 9)",
+ "eye": {
+  "verdict": "ship",
+  "why": "a wooden bench on all five backgrounds: tilted, upside down, chipped, broken with its piece, two side by side, one stacked upside down on another",
+  "sheet": "docs/audit/2026-09-30/location-items/obj_bench_41042cf8fd.png",
+  "date": "2026-09-30"
+ }
+}

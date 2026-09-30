@@ -49,3 +49,21 @@ claimed: these are not raw material through the runner.
 
 Details: `third_party/posoh/SOURCES.md`. No colour/shape delta is
 claimed: these are not raw material through the runner.
+
+## Things of the 99 locations (raw material, TABOO 0.013 p. 3)
+
+Neutral things from the props store of the 99 repos
+(`docs/RAW_LOCATION_PROPS.json`), each reshaped into twelve variants by
+`scripts/raw_assets/location_items.py` and `location_kit.py` and passed
+by eye (`docs/audit/2026-09-30/location-items/`). The licence is that of
+the file itself where the file names one (space-station-14 `.rsi/
+meta.json`, the SVG's `<metadata>`), else the repository's. Shape is
+|A xor B| / |A or B| of the alpha masks against the source; every
+variant is also 35 % or more from each of its siblings.
+
+| Object | Serves | Variants | Source | Commit | Path | Licence | Min shape | Min colour |
+|---|---|---|---|---|---|---|---|---|
+| obj_bench_41042cf8fd | bench | 12/12 | https://github.com/space-wizards/space-station-14 | d4d4696248 | Resources/Textures/Structures/Furniture/chairs.rsi/wooden-bench.png #0 | CC-BY-SA-3.0 | 35.2% | 60.8% |
+| obj_bridge_log_40b14237a3 | bridge-log, spruce-log | 12/12 | https://github.com/widelands/widelands | 6c21c892e8 | data/tribes/wares/log/idle_4.png #0 | GPL-2.0-or-later | 37.1% | 36.2% |
+| obj_hourglass_e49ab22431 | hourglass | 12/12 | https://github.com/Azgaar/Fantasy-Map-Generator | 77192941fd | public/charges/hourglass.svg #0 | CC-BY-SA-3.0 | 35.2% | 95.3% |
+| obj_tools_9b09b1f302 | tools | 12/12 | https://github.com/widelands/widelands | 6c21c892e8 | data/tribes/wares/hammer/menu.png #0 | GPL-2.0-or-later | 40.4% | 37.6% |
