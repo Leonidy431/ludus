@@ -25,17 +25,24 @@ How a kit is made (TABOO 0.07, the same steps as D6):
      in MORPHOLOGY below from general ichthyology; the proportions are
      approximate and are to be checked by an ichthyologist together
      with the species list (docs/ISSYK_KUL_FISH.md, section 0).
-  2. Honest pool.  Every real state of the species times the age
-     classes (sizes) and a few tilts is drawn; the pool size is what it
-     is.
+  2. Honest pool.  Every real state of the species gives the forms a
+     fish takes in it (FORMS): body flexion of several strengths,
+     fins raised or folded, the tail fanned, the mouth open, young
+     proportions, the layout of a pair.  Size (age), height in the
+     water and tilt are where the game puts a fish, so they are
+     engine parameters (ENGINE), never variants.
   3. Real-object profile.  A drawing whose alpha silhouette does not
      fit reference.PROFILES['DEF-056'] (aspect 1.8..6.5, fill) is
      refused.
-  4. Diversity.  Twelve are chosen greedily in a fixed order; each new
-     one differs from every one chosen before by at least 35 % of
-     |A xor B| / |A or B| by alpha, with a distinct hitbox.
+  4. Diversity.  Every pair of chosen variants differs by at least
+     35 % of |A xor B| / |A or B|, measured on silhouettes cropped to
+     their box and fitted to NORM_BOX, so a moved or resized fish
+     counts 0 (the first kits of 2026-09-30 scored a fish moved down
+     the canvas about 100 % against itself).  Hitboxes differ.
   5. The meta-json records shape_change as the distance to the nearest
-     sibling ("shape_basis": "nearest-sibling").
+     sibling ("shape_basis": "nearest-sibling-normalised").  A kit
+     short of twelve is reported with its real count and not shipped
+     (TABOO 0.1; TABOO 0.07 item 2: the count is not padded).
 
 Every fish faces left.  A variant is never a mirror image (TABOO 0.3
 rule 35); the game turns the sprite, the kit does not.  Nothing is
@@ -70,9 +77,11 @@ SLOT = 'DEF-056'
 THRESHOLD = npd.THRESHOLD
 KIT_SIZE = npd.KIT_SIZE
 SS = npd.SS
-FLOOR = npd.FLOOR
 # Raise whenever a drawing function or a pool changes.
-REVISION = 'fish-drawing-r1'
+REVISION = 'fish-drawing-r2'
+# Nearest sibling, measured on silhouettes normalised for place and
+# scale (normalised below).
+SHAPE_BASIS = 'nearest-sibling-normalised'
 HERE = 'scripts/raw_assets/fish_procedural.py'
 
 # Genus shapes, side view, as shares of the body length (snout to the
@@ -87,23 +96,26 @@ HERE = 'scripts/raw_assets/fish_procedural.py'
 # Sources for the genus shapes: docs/ISSYK_KUL_FISH.md; approximate,
 # to be checked by an ichthyologist before release.
 MORPHOLOGY = {
-    'chebachok': {  # Leuciscus: slim, silver, short dorsal, deep fork.
-        'depth': 0.25, 'top': 0.5, 'peak': 0.38, 'head': 0.62,
-        'stalk': 0.36, 'tail': 0.2, 'fork': 0.62,
-        'dorsal': (0.44, 0.57, 0.16, 'short'), 'anal': (0.68, 0.8, 0.08),
-        'adipose': None, 'barbels': 0, 'marks': 'silver',
-        'eye': 0.075, 'mouth': 'terminal', 'fins': (150, 150, 140)},
-    'marinka': {  # Schizothorax: long, olive, two pairs of barbels.
-        'depth': 0.21, 'top': 0.52, 'peak': 0.4, 'head': 0.7,
+    'chebachok': {  # Leuciscus: deep-ish, compressed, dark back.
+        'depth': 0.3, 'top': 0.56, 'peak': 0.36, 'head': 0.55,
+        'stalk': 0.3, 'tail': 0.2, 'fork': 0.62,
+        'dorsal': (0.44, 0.56, 0.17, 'short'), 'anal': (0.66, 0.79, 0.09),
+        'adipose': None, 'barbels': 0, 'marks': 'silver', 'back': 0.3,
+        'eye': 0.08, 'mouth': 'terminal', 'fins': (150, 150, 140)},
+    'marinka': {  # Schizothorax: long pointed head, 2 long barbels.
+        'depth': 0.21, 'top': 0.52, 'peak': 0.44, 'head': 0.9,
         'stalk': 0.38, 'tail': 0.18, 'fork': 0.55,
         'dorsal': (0.4, 0.52, 0.15, 'short'), 'anal': (0.74, 0.84, 0.07),
-        'adipose': None, 'barbels': 2, 'marks': 'plain',
-        'eye': 0.055, 'mouth': 'under', 'fins': (110, 104, 80)},
-    'osman': {  # Gymnodiptychus: naked, spotted, one pair of barbels.
-        'depth': 0.19, 'top': 0.5, 'peak': 0.42, 'head': 0.72,
+        'adipose': None, 'barbels': 2, 'barbel_len': 1.7,
+        'marks': 'plain', 'gill': 0.24,
+        'eye': 0.05, 'mouth': 'under', 'fins': (110, 104, 80)},
+    'osman': {  # Gymnodiptychus: naked, spotted, blunt broad head,
+        # one short pair of barbels.
+        'depth': 0.2, 'top': 0.5, 'peak': 0.3, 'head': 0.4,
         'stalk': 0.4, 'tail': 0.17, 'fork': 0.4,
         'dorsal': (0.42, 0.53, 0.13, 'short'), 'anal': (0.74, 0.84, 0.07),
-        'adipose': None, 'barbels': 1, 'marks': 'spots',
+        'adipose': None, 'barbels': 1, 'barbel_len': 0.7,
+        'marks': 'spots', 'gill': 0.18,
         'eye': 0.05, 'mouth': 'under', 'fins': (96, 92, 74)},
     'gubach': {  # Triplophysa: a stone loach, flat belly, 3 barbels.
         'depth': 0.16, 'top': 0.62, 'peak': 0.4, 'head': 0.55,
@@ -135,12 +147,14 @@ MORPHOLOGY = {
         'dorsal': (0.4, 0.8, 0.15, 'long'), 'anal': (0.72, 0.82, 0.08),
         'adipose': None, 'barbels': 2, 'marks': 'scales',
         'eye': 0.05, 'mouth': 'terminal', 'fins': (150, 104, 70)},
-    'sig': {  # Coregonus: silver, small head, adipose fin, deep fork.
-        'depth': 0.24, 'top': 0.54, 'peak': 0.42, 'head': 0.6,
+    'sig': {  # Coregonus: slim, small pointed head, big adipose fin,
+        # subterminal mouth, pale back.
+        'depth': 0.22, 'top': 0.54, 'peak': 0.48, 'head': 0.95,
         'stalk': 0.3, 'tail': 0.2, 'fork': 0.7,
         'dorsal': (0.4, 0.52, 0.15, 'short'), 'anal': (0.7, 0.8, 0.07),
-        'adipose': 0.83, 'barbels': 0, 'marks': 'silver',
-        'eye': 0.06, 'mouth': 'under', 'fins': (140, 146, 146)},
+        'adipose': 0.8, 'adipose_h': 0.085, 'barbels': 0,
+        'marks': 'silver', 'back': 0.62, 'gill': 0.15,
+        'eye': 0.045, 'mouth': 'under', 'fins': (140, 146, 146)},
 }
 
 # Register state (lake_objects.ITEMS, Russian) -> pose of the drawing.
@@ -152,15 +166,6 @@ POSE = {
     'у поверхности': 'rising', 'охотится': 'hunting',
     'на границе слоя': 'single', 'в глубине': 'single',
 }
-# Nose up is a negative angle (the fish faces left, PIL turns
-# counter-clockwise).  Tilts stay small: the silhouette has to keep
-# the aspect of a fish seen from the side.
-TILTS = {'single': (0, -7, 7), 'rising': (-13, -9), 'hunting': (-5, 5),
-         'feeding': (13, 9), 'bottom': (0, 3), 'pair': (0, -5),
-         'school': (0, 4), 'young': (0,)}
-# Age classes: lengths in canvas pixels of the whole fish.  Each is at
-# most 0.8 of the one before, so two sizes of one pose are 35 % apart.
-LENGTHS = (236, 188, 150, 120, 96)
 
 
 def fish_row(species):
@@ -186,9 +191,23 @@ def body_profile(m, s):
 
 
 class Fish:
-    """One fish, horizontal, snout to the left, centred on (cx, cy)."""
+    """One fish, horizontal, snout to the left, centred on (cx, cy).
 
-    def __init__(self, m, length, cx, cy):
+    form (see FORMS) changes the fish itself, not where it stands: fins
+    raised or folded, the tail fanned or closed, the mouth open, young
+    proportions.  The bend of the body is applied after drawing (bend).
+    """
+
+    def __init__(self, m, length, cx, cy, form=None):
+        form = form or {}
+        self.fins_k = form.get('fins', 1.0)
+        self.tail_k = form.get('tail', 1.0)
+        self.mouth_open = form.get('mouth', False)
+        if form.get('young'):
+            # Young fish: a bigger head and eye, a shallower body.
+            m = dict(m, depth=m['depth'] * 0.82, eye=m['eye'] * 1.6,
+                     peak=max(0.3, m['peak'] - 0.06),
+                     head=m['head'] * 0.8)
         self.m = m
         self.L = length
         self.tail_len = length * m['tail']
@@ -222,7 +241,7 @@ class Fish:
         xb = self.x(1.0)
         yt, yb = self.upper(1.0), self.lower(1.0)
         mid = (yt + yb) / 2
-        span = self.D * (1.05 if m['fork'] > 0.3 else 0.85)
+        span = self.D * (1.05 if m['fork'] > 0.3 else 0.85) * self.tail_k
         xe = xb + self.tail_len
         notch = xb + self.tail_len * (1 - 0.8 * m['fork'])
         lower_k = 1.12 if m['marks'] == 'bronze' else 1.0
@@ -244,7 +263,7 @@ class Fish:
 
     def fin_up(self, s0, s1, h, kind='short'):
         """A dorsal fin standing on the back from s0 to s1."""
-        H = h * self.Lb
+        H = h * self.Lb * self.fins_k
         base = [(self.x(s), self.upper(s) + 1)
                 for s in (s0 + (s1 - s0) * i / 8 for i in range(9))]
         if kind == 'long':
@@ -262,7 +281,7 @@ class Fish:
 
     def spiny(self, s0, s1, h):
         """The spiny first dorsal fin of a zander: a saw of rays."""
-        H = h * self.Lb
+        H = h * self.Lb * self.fins_k
         pts = [(self.x(s0), self.upper(s0) + 1)]
         n = 12
         for i in range(n + 1):
@@ -275,7 +294,7 @@ class Fish:
 
     def fin_down(self, s0, s1, h):
         """An anal or pelvic fin hanging under the belly."""
-        H = h * self.Lb
+        H = h * self.Lb * self.fins_k
         # Fins lie swept back along the body, not hanging straight.
         return [(self.x(s0), self.lower(s0) - 1),
                 (self.x(s0 + (s1 - s0) * 0.5),
@@ -284,15 +303,28 @@ class Fish:
                 (self.x(s1), self.lower(s1) - 1)]
 
     def adipose(self, s):
-        H = 0.045 * self.Lb
+        # A whitefish carries a bigger adipose fin than the trout; it is
+        # the cue that tells it from the dace at sprite size.
+        H = self.m.get('adipose_h', 0.045) * self.Lb
+        w = 0.05 if H > 0.05 * self.Lb else 0.04
         return [(self.x(s - 0.03), self.upper(s - 0.03) + 1),
                 (self.x(s), self.upper(s) - H),
-                (self.x(s + 0.04), self.upper(s + 0.03) - H * 0.6),
-                (self.x(s + 0.05), self.upper(s + 0.05) + 1)]
+                (self.x(s + w), self.upper(s + w) - H * 0.6),
+                (self.x(s + w + 0.01), self.upper(s + w + 0.01) + 1)]
+
+    def mouth(self):
+        """The open jaw: a wedge cut into the snout, or a protruded
+        lower lip for a mouth that opens downwards."""
+        y = (self.upper(0.02) + self.lower(0.02)) / 2
+        g = self.D * 0.22
+        if self.m['mouth'] == 'under':
+            y = self.lower(0.03) - g * 0.3
+        return [(self.x(0.0) - 2, y - g * 0.55), (self.x(0.085), y),
+                (self.x(0.0) - 2, y + g * 0.55)]
 
     def pectoral(self):
         s0 = 0.2
-        H = 0.1 * self.Lb
+        H = 0.1 * self.Lb * self.fins_k
         y = self.cy + self.D * 0.18
         return [(self.x(s0), y), (self.x(s0 + 0.13), y + H * 0.45),
                 (self.x(s0 + 0.1), y + H * 0.7), (self.x(s0 + 0.02),
@@ -303,8 +335,9 @@ class Fish:
         out = []
         n = self.m['barbels']
         base_y = self.lower(0.04) - 1
+        k = self.m.get('barbel_len', 1.0)
         for i in range(n):
-            length = self.D * (0.28 + 0.12 * i)
+            length = self.D * (0.28 + 0.12 * i) * k
             sx = self.x(0.02 + 0.035 * i)
             out.append(((sx, base_y), (sx + length * 0.45,
                                        base_y + length)))
@@ -332,6 +365,8 @@ def masks(fish):
     body = npd.canvas_big()
     db = ImageDraw.Draw(body)
     _poly(db, fish.body())
+    if fish.mouth_open:
+        db.polygon(npd._pts(fish.mouth()), fill=0)
     fins = npd.canvas_big()
     df = ImageDraw.Draw(fins)
     _poly(df, fish.tail())
@@ -356,7 +391,7 @@ def masks(fish):
 def skin(fish, colour, species):
     """The colour of the body: back, flank, belly and the pattern."""
     m = fish.m
-    back = tuple(int(c * 0.5) for c in colour)
+    back = tuple(int(c * m.get('back', 0.5)) for c in colour)
     belly = _mix(colour, (236, 236, 228), 0.6)
     if m['marks'] == 'bronze':
         back = _mix(back, (90, 70, 30), 0.4)
@@ -390,7 +425,9 @@ def skin(fish, colour, species):
             s = 0.2 + 0.75 * npd.unit(key, 'sx', i)
             y0, y1 = fish.upper(s), fish.cy + fish.D * 0.12
             y = y0 + (y1 - y0) * (0.15 + 0.85 * npd.unit(key, 'sy', i))
-            r = max(0.8, fish.Lb * (0.008 + 0.006 * npd.unit(key, 'r', i)))
+            # The naked osman is known by its big spots at sprite size.
+            base = 0.013 if marks == 'spots' else 0.008
+            r = max(0.8, fish.Lb * (base + 0.006 * npd.unit(key, 'r', i)))
             x = fish.x(s)
             d.ellipse([x - r, y - r, x + r, y + r], fill=dark)
     if marks == 'blotches':
@@ -421,9 +458,10 @@ def skin(fish, colour, species):
            math.sin(math.pi * s)) for s in (0.24 + i * 0.038
                                             for i in range(21))]
     d.line(ll, fill=tuple(int(c * 0.6) for c in colour), width=1)
-    gx = fish.x(0.2)
-    d.arc([gx - fish.D * 0.5, fish.upper(0.2) + 1, gx,
-           fish.lower(0.2) - 1], 300, 60,
+    sg = m.get('gill', 0.2)
+    gx = fish.x(sg)
+    d.arc([gx - fish.D * 0.5, fish.upper(sg) + 1, gx,
+           fish.lower(sg) - 1], 300, 60,
           fill=tuple(int(c * 0.45) for c in colour), width=1)
     ex, ey, r = fish.eye()
     d.ellipse([ex - r, ey - r, ex + r, ey + r], fill=(214, 206, 170))
@@ -446,11 +484,51 @@ def relief(alpha):
     return ImageChops.subtract(shade, npd._scale(rim, 0.3))
 
 
-def draw_one(species, length, cx, cy, tilt, fins_colour=None):
-    """One fish as an RGBA canvas, tilted about its centre."""
+def bend(img, profile, amp, x0, length):
+    """Flex the body: shift each column up or down along the fish.
+
+    A real change of form (TABOO 0.3 rule 15), not a placement: the
+    snout, the middle and the tail move against one another, so the
+    outline itself changes.  profile(u) gives the shift at u (0 snout,
+    1 tip of the tail) as a share of amp * length; positive is down.
+    Columns are mapped with an image mesh, so the drawing stays smooth.
+    """
+    if not amp:
+        return img
+    step = 2
+    mesh = []
+    for x in range(0, CANVAS, step):
+        def off(xx):
+            u = min(1.0, max(0.0, (xx - x0) / length))
+            return amp * length * profile(u)
+        a, b = off(x), off(x + step)
+        mesh.append(((x, 0, x + step, CANVAS),
+                     (x, -a, x, CANVAS - a, x + step, CANVAS - b,
+                      x + step, -b)))
+    return img.transform(img.size, Image.MESH, mesh, Image.BICUBIC)
+
+
+# Bends of the body seen from the side.  Only curvature: a profile with
+# no bend in it would be a tilt or a shift, which the game does itself.
+BENDS = {
+    'straight': lambda u: 0.0,
+    'arch': lambda u: -4 * u * (1 - u),          # back humped, diving
+    'bow': lambda u: 4 * u * (1 - u),            # belly bowed, rising
+    'wave': lambda u: 0.5 * math.sin(2 * math.pi * u),
+    'wave-back': lambda u: -0.5 * math.sin(2 * math.pi * u),
+    'head-down': lambda u: (max(0.0, 0.45 - u) / 0.45) ** 2,
+    'head-up': lambda u: -(max(0.0, 0.45 - u) / 0.45) ** 2,
+    'tail-up': lambda u: -(max(0.0, u - 0.55) / 0.45) ** 2,
+    'tail-down': lambda u: (max(0.0, u - 0.55) / 0.45) ** 2,
+}
+
+
+def draw_one(species, length, cx, cy, form=None, fins_colour=None):
+    """One fish as an RGBA canvas, flexed by its form."""
+    form = form or {}
     m = MORPHOLOGY[species]
     colour = npd._rgb(fish_row(species)['colour'])
-    fish = Fish(m, length, cx, cy)
+    fish = Fish(m, length, cx, cy, form)
     body_big, fins_big = masks(fish)
     body_a = npd.reduce(body_big)
     fins_a = npd.reduce(fins_big)
@@ -469,41 +547,99 @@ def draw_one(species, length, cx, cy, tilt, fins_colour=None):
     body_img = body_rgb.convert('RGBA')
     body_img.putalpha(body_a)
     img = Image.alpha_composite(fins_img, body_img)
-    if tilt:
-        img = img.rotate(tilt, Image.BICUBIC, center=(cx, cy))
-    return img
+    return bend(img, BENDS[form.get('bend', 'straight')],
+                form.get('amp', 0.0), fish.x0, fish.L)
 
 
-# --- Poses and the pool ----------------------------------------------------
+# --- Forms and the pool ----------------------------------------------------
+
+# One drawing length for every variant.  Size (age) and height in the
+# water are where the game puts a fish, not a new form: they are engine
+# parameters (ENGINE) and never a variant of their own.  The first kits
+# of 2026-09-30 counted them as variants, and a fish moved down the
+# canvas scored about 100 % against itself; a review caught it.
+LENGTH = 236
+ENGINE = {
+    'age_lengths_px': [236, 188, 150, 120, 96],
+    'scale_note': 'the game scales a variant to the age class; a size '
+                  'is never a variant',
+    'rest_on_floor': 'a variant of the state "bottom" is placed by the '
+                     'game with its lowest pixel on the floor line',
+    'tilt_deg': [-13, 13],
+    'facing': 'left; the game turns the sprite, never a mirrored '
+              'variant (TABOO 0.3 rule 35)',
+}
+
+# Register state -> the forms a fish takes in it.  Each form is a real
+# posture: a cruising fish undulates, a rising one bows its belly, a
+# feeding one dips its head and opens its mouth, a hunting one throws
+# an S and raises its fins, a fish at the bottom spreads its pectoral
+# fins on the ground and lifts its tail.  Bends come in several
+# strengths (share of the body length the snout or tail is flexed).
+
+
+def _forms(bends, amps, **extra):
+    return [dict(extra, bend=b, amp=a) for b in bends for a in amps]
+
+
+FORMS = {
+    'single': ([{'bend': 'straight', 'amp': 0.0, 'fins': 0.8}]
+               + _forms(('wave', 'wave-back'), (0.06, 0.1, 0.15))
+               + _forms(('tail-up', 'tail-down'), (0.1, 0.2),
+                        tail=1.2)),
+    'rising': (_forms(('bow',), (0.07, 0.13, 0.2), fins=1.25)
+               + _forms(('head-up',), (0.1, 0.15, 0.2))),
+    'feeding': (_forms(('head-down',), (0.1, 0.15, 0.2), mouth=True)
+                + _forms(('arch',), (0.07, 0.13, 0.2), mouth=True,
+                         fins=1.2)),
+    'hunting': _forms(('wave', 'wave-back'), (0.12, 0.2), mouth=True,
+                      fins=1.3),
+    'bottom': ([{'bend': 'straight', 'amp': 0.0, 'fins': 1.35,
+                 'tail': 0.8}]
+               + _forms(('tail-up',), (0.06, 0.12), fins=1.35)
+               + _forms(('head-up',), (0.06,), fins=1.35)),
+    'young': [{'bend': 'straight', 'amp': 0.0, 'young': True},
+              {'bend': 'wave', 'amp': 0.08, 'young': True}],
+    'pair': [dict(f, layout=lay) for lay in ('above', 'beside', 'cross')
+             for f in ({'bend': 'straight', 'amp': 0.0},
+                       {'bend': 'wave', 'amp': 0.1})],
+    'school': [{'bend': 'straight', 'amp': 0.0}],
+}
+
 
 def draw_pose(p):
-    """A pose of a species: one fish, a pair, a school or young."""
-    sp, L, tilt, pose = p['species'], p['length'], p['tilt'], p['pose']
+    """A variant: one fish in a form, a pair or a small school."""
+    sp, pose, form = p['species'], p['pose'], p['form']
     key = p['key']
-    if pose in ('single', 'rising', 'hunting', 'feeding'):
-        return draw_one(sp, L, 128, 128, tilt)
-    if pose == 'bottom':
-        img = draw_one(sp, L, 128, 128, tilt)
-        low = max(y for y in range(CANVAS)
-                  if img.getchannel('A').crop((0, y, CANVAS, y + 1))
-                  .getbbox())
-        return ImageChops.offset(img, 0, FLOOR - low)
+    if pose not in ('pair', 'school'):
+        return draw_one(sp, LENGTH, 128, 128, form)
     img = Image.new('RGBA', (CANVAS, CANVAS), (0, 0, 0, 0))
     if pose == 'pair':
-        # Two of a kind, one a little behind and above the other.
-        s = L * 0.62
-        img = Image.alpha_composite(img, draw_one(
-            sp, s * 0.9, 128 + s * 0.3, 128 - s * 0.16, tilt - 3))
-        return Image.alpha_composite(img, draw_one(
-            sp, s, 128 - s * 0.22, 128 + s * 0.1, tilt))
-    n = 3 if pose == 'school' else 4
-    s = L * (0.42 if pose == 'school' else 0.3)
+        # Two of a kind; how they overlap is the form of the pair.
+        s = LENGTH * 0.62
+        lay = form.get('layout', 'above')
+        if lay == 'above':
+            spots = [(0.9, 128 + s * 0.3, 128 - s * 0.16, form),
+                     (1.0, 128 - s * 0.22, 128 + s * 0.1, form)]
+        elif lay == 'beside':
+            spots = [(0.95, 128 + s * 0.05, 128 - s * 0.12, form),
+                     (1.0, 128 - s * 0.05, 128 + s * 0.12,
+                      dict(form, bend='wave-back'))]
+        else:
+            spots = [(0.9, 128 + s * 0.35, 128 - s * 0.05,
+                      dict(form, bend='head-down', amp=0.2)),
+                     (1.0, 128 - s * 0.3, 128 + s * 0.05,
+                      dict(form, bend='head-up', amp=0.2))]
+        for k, x, y, f in spots:
+            img = Image.alpha_composite(img, draw_one(sp, s * k, x, y, f))
+        return img
+    n, s = 3, LENGTH * 0.42
     for i in range(n):
         dx = (i - (n - 1) / 2) * s * 0.62 + 5 * npd.signed(key, 'dx', i)
         dy = s * 0.26 * (1 if i % 2 else -1) + 4 * npd.signed(key, 'dy', i)
         img = Image.alpha_composite(img, draw_one(
             sp, s * (0.9 + 0.1 * npd.unit(key, 'l', i)), 128 + dx,
-            128 + dy, tilt + 3 * npd.signed(key, 't', i)))
+            128 + dy, form))
     return img
 
 
@@ -526,14 +662,68 @@ def fish_pool(species):
     pool = []
     poses, _ = poses_of(species)
     for pose in poses:
-        for L in LENGTHS:
-            if pose in ('school', 'young') and L < 150:
-                continue
-            for tilt in TILTS[pose]:
-                pool.append({'species': species, 'pose': pose,
-                             'state': pose, 'length': L, 'tilt': tilt,
-                             'key': f'{species}:{pose}:{L}:{tilt}'})
+        for i, form in enumerate(FORMS[pose]):
+            label = '-'.join(f'{k}={v}' for k, v in sorted(form.items()))
+            pool.append({'species': species, 'pose': pose,
+                         'state': pose, 'form': dict(form),
+                         'key': f'{species}:{pose}:{i}:{label}'})
     return pool
+
+
+# Every silhouette is cropped to its box and fitted to this common box
+# before two are compared, so neither placement nor size nor stretch
+# counts as a change of form; only the outline does.
+NORM_BOX = (200, 80)
+
+
+def normalised(mask):
+    """The silhouette cropped to its bbox and fitted to NORM_BOX."""
+    box = mask.getbbox()
+    if not box:
+        return Image.new('L', NORM_BOX, 0)
+    small = mask.crop(box).resize(NORM_BOX, Image.BILINEAR)
+    return small.point(lambda v: 255 if v >= 128 else 0)
+
+
+def _dist(a, b):
+    return npd.distance(a['norm'], b['norm'], a['fill'], b['fill'])
+
+
+def choose(drawn, threshold, size=KIT_SIZE):
+    """The largest set, up to size, whose every pair is threshold apart.
+
+    Greedy in pool order (the round robin keeps every real state in
+    turn), tried from every starting drawing; the largest set wins and
+    the earliest start breaks ties, so the choice is deterministic.
+    Pairs also need distinct hitboxes (TABOO 0.3 rule 49).
+    """
+    n = len(drawn)
+    far = [[i != j and _dist(drawn[i], drawn[j]) >= threshold
+            for j in range(n)] for i in range(n)]
+    keys = [hitbox_key(d['hitbox']) for d in drawn]
+    best = []
+    for start in range(n):
+        pick = [start]
+        for k in range(n):
+            if len(pick) == size:
+                break
+            if k != start and all(far[k][c] for c in pick) and \
+                    keys[k] not in {keys[c] for c in pick}:
+                pick.append(k)
+        if len(pick) > len(best):
+            best = pick
+        if len(best) == size:
+            break
+    return [drawn[i] for i in sorted(best)]
+
+
+def form_distance(a, b):
+    """Shape distance of two silhouettes, free of place and scale.
+
+    The formula of form.shape_delta (|A xor B| / |A or B|, interior XOR
+    weighted, TABOO 0.3 rules 16 and 22) on the normalised masks.
+    """
+    return npd.distance(normalised(a), normalised(b))
 
 
 # --- The kits --------------------------------------------------------------
@@ -550,10 +740,8 @@ def build(species, threshold=THRESHOLD):
     row = npd.register_row(species)
     data = fish_row(species)
     pool = fish_pool(species)
-    refused, fitting, chosen = {}, 0, []
+    refused, drawn = {}, []
     for p in npd._round_robin(pool):
-        if len(chosen) == KIT_SIZE:
-            break
         img = draw_pose(p)
         mask = alpha_mask(img)
         ok, stats = reference.fits(SLOT, mask)
@@ -561,31 +749,18 @@ def build(species, threshold=THRESHOLD):
             refused['unlike-real-object'] = \
                 refused.get('unlike-real-object', 0) + 1
             continue
-        fitting += 1
-        if any(npd.near_enough(mask, c['mask'], threshold)
-               for c in chosen):
-            refused['too-close-to-a-sibling'] = \
-                refused.get('too-close-to-a-sibling', 0) + 1
-            continue
-        filled = fill_holes(mask)
-        near = min((npd.distance(mask, c['mask'], filled, c['filled'])
-                    for c in chosen), default=1.0)
-        box = hitbox(mask)
-        if near < threshold:
-            refused['too-close-to-a-sibling'] = \
-                refused.get('too-close-to-a-sibling', 0) + 1
-            continue
-        if hitbox_key(box) in {hitbox_key(c['hitbox']) for c in chosen}:
-            refused['same-hitbox'] = refused.get('same-hitbox', 0) + 1
-            continue
-        chosen.append({'params': p, 'img': img, 'mask': mask,
-                       'filled': filled, 'hitbox': box, 'stats': stats})
+        norm = normalised(mask)
+        drawn.append({'params': p, 'img': img, 'mask': mask,
+                      'norm': norm, 'fill': fill_holes(norm),
+                      'hitbox': hitbox(mask), 'stats': stats})
+    fitting = len(drawn)
+    chosen = choose(drawn, threshold)
+    refused['too-close-to-a-sibling'] = fitting - len(chosen)
     prefix = f'own_{species}_{oid}'
     images, variants = {}, []
     for i, c in enumerate(chosen, 1):
-        near = min((npd.distance(c['mask'], o['mask'], c['filled'],
-                                 o['filled'])
-                    for o in chosen if o is not c), default=0.0)
+        near = min((_dist(c, o) for o in chosen if o is not c),
+                   default=0.0)
         slot_v = f'v{i:02d}'
         name = f'{prefix}_{slot_v}.png'
         images[name] = c['img']
@@ -593,7 +768,7 @@ def build(species, threshold=THRESHOLD):
         variants.append({
             'slot': slot_v, 'file': name, 'state': params['state'],
             'params': params, 'shape_change': round(near, 4),
-            'shape_basis': 'nearest-sibling', 'fits_reference': True,
+            'shape_basis': SHAPE_BASIS, 'fits_reference': True,
             'reference_stats': c['stats'], 'area': area(c['mask']),
             'hitbox': c['hitbox'],
             'analytics_id': f'ludus.variant.fish.{species}.{oid}.{slot_v}',
@@ -615,10 +790,14 @@ def build(species, threshold=THRESHOLD):
         'repo': 'ludus (own drawing)', 'path': HERE, 'commit': REVISION,
         'license': 'project (own drawing, no third-party material)',
         'license_file': None,
-        'threshold': threshold, 'shape_basis': 'nearest-sibling',
-        'facing': 'left (the game turns the sprite; no mirrored variant)',
+        'threshold': threshold, 'shape_basis': SHAPE_BASIS,
+        'shape_norm': {'box': list(NORM_BOX),
+                       'method': 'crop to the bbox, fit to the box; '
+                                 'placement, size and stretch do not '
+                                 'count'},
+        'engine': ENGINE,
         'reference_profile': dict(reference.PROFILES[SLOT]),
-        'pool': {'size': len(pool), 'fitting_seen': fitting,
+        'pool': {'size': len(pool), 'fitting': fitting,
                  'refused': refused, 'chosen': len(chosen)},
         'constitution': 'FORM: a real species of Issyk-Kul in its real '
                         'states -> ACTION: the ROV operator tells it '

@@ -86,19 +86,52 @@ def derived_objects():
     return out
 
 
-def with_file(item):
+# Directories that a package manager fills and git does not track.  A
+# checkout without "npm ci" lacks them, which says nothing about the
+# library: the regenerated register once flipped three.js to "no
+# licence file" only because node_modules was absent in a worktree.
+INSTALLED = ('node_modules',)
+
+
+def previous(out=OUT):
+    """The libraries of the committed register, by name."""
+    try:
+        old = json.loads(out.read_text(encoding='utf-8'))
+    except (OSError, ValueError):
+        return {}
+    return {lib['name']: lib for lib in old.get('libraries', [])}
+
+
+def with_file(item, known=None):
+    """Say whether the licence file is on disk.
+
+    A file under an install-only directory that is absent here keeps
+    the value the committed register had, and the run says so, rather
+    than writing a wrong "false" into the public register.
+    """
     item = dict(item)
-    item['licence_file_present'] = (ROOT / item['licence_file']).exists()
+    path = ROOT / item['licence_file']
+    present = path.exists()
+    installed = any(part in INSTALLED for part in path.parts)
+    if not present and installed:
+        last = (known or {}).get(item['name'], {})
+        if 'licence_file_present' in last:
+            print(f'warning: {item["licence_file"]} is not installed '
+                  f'here; keeping the last recorded value '
+                  f'{last["licence_file_present"]}', file=sys.stderr)
+            present = last['licence_file_present']
+    item['licence_file_present'] = present
     return item
 
 
 def main():
+    known = previous()
     manifest = {
         'title': 'Manuscript of rights',
         'title_ru': 'Манускрипт прав',
         'generated_by': 'scripts/build_rights_manifest.py',
         'own': with_file(OWN),
-        'libraries': [with_file(lib) for lib in LIBRARIES],
+        'libraries': [with_file(lib, known) for lib in LIBRARIES],
         'raw_material': derived_objects(),
     }
     OUT.write_text(json.dumps(manifest, ensure_ascii=False, indent=1)

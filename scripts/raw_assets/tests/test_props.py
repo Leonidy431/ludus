@@ -25,6 +25,10 @@ from search_index import search  # noqa: E402
 
 LICENSED = 'https://github.com/test/licensed'
 UNLICENSED = 'https://github.com/test/unlicensed'
+# A neutral deficit still filled from raw material, so it takes images.
+# The fish slot DEF-056 and the floor slots DEF-057..059 moved to the
+# project's own drawing and no longer take any prop.
+IMAGE_SLOT = 'DEF-052'
 
 # Every path here is non-game by folder; some are also holy, stop-listed
 # or a font, and those must stay off the shelf.
@@ -360,7 +364,7 @@ class PropsTest(unittest.TestCase):
         self.assertEqual(loaded['withdrawn'][0]['key'], key)
         self.assertEqual(len(loaded['entries']), len(PROPS) + 1)
         with self.assertRaises(ValueError):
-            props.to_slot(key, 'DEF-056', self.index, self.cache,
+            props.to_slot(key, IMAGE_SLOT, self.index, self.cache,
                           work=self.root / 'build', register_path=path)
         loaded['withdrawn'] = []
         with self.assertRaises(props.AppendOnlyError):
@@ -465,7 +469,7 @@ class PropsTest(unittest.TestCase):
         work = self.root / 'build' / 'props'
         derived = sorted(props.DERIVED.rglob('*'))
         commands = []
-        plan = props.to_slot(key, 'DEF-056', self.index, self.cache,
+        plan = props.to_slot(key, IMAGE_SLOT, self.index, self.cache,
                              work=work, register_path=path,
                              runner=commands.append)
         self.assertFalse(plan['shipped'])
@@ -495,7 +499,7 @@ class PropsTest(unittest.TestCase):
             props.to_slot(code, 'DEF-031', self.index, self.cache,
                           work=work, register_path=path)
         with self.assertRaises(ValueError):
-            props.to_slot(key, 'DEF-056', self.index, self.cache,
+            props.to_slot(key, IMAGE_SLOT, self.index, self.cache,
                           work=props.DERIVED / 'x', register_path=path)
 
     def test_to_slot_keeps_the_pass_rules(self):
@@ -507,12 +511,12 @@ class PropsTest(unittest.TestCase):
         commands = []
         # A weapon never goes into a neutral slot (TABOO 0.15 p. 4).
         with self.assertRaisesRegex(ValueError, 'hostile-for-neutral'):
-            props.to_slot(keys['examples/weapons/sword.png'], 'DEF-056',
+            props.to_slot(keys['examples/weapons/sword.png'], IMAGE_SLOT,
                           self.index, self.cache, work=self.root / 'b',
                           register_path=path, runner=commands.append)
         # A selection outline is on the shelf but not for the pipeline.
         with self.assertRaisesRegex(ValueError, 'outline-helper'):
-            props.to_slot(keys['examples/unit-outline.png'], 'DEF-056',
+            props.to_slot(keys['examples/unit-outline.png'], IMAGE_SLOT,
                           self.index, self.cache, work=self.root / 'b',
                           register_path=path, runner=commands.append)
         self.assertEqual(commands, [])
@@ -523,7 +527,7 @@ class PropsTest(unittest.TestCase):
         nd_path = self.root / 'nd.jsonl'
         props.save_register(nd, nd_path)
         with self.assertRaisesRegex(ValueError, 'no derivative'):
-            props.to_slot(entry['key'], 'DEF-056', self.index, self.cache,
+            props.to_slot(entry['key'], IMAGE_SLOT, self.index, self.cache,
                           work=self.root / 'b', register_path=nd_path,
                           runner=commands.append)
         self.assertEqual(commands, [])
@@ -544,11 +548,11 @@ class PropsTest(unittest.TestCase):
                     'licence': 'MIT'}
                    for rel in intake.collect_props(clone)]
         path = self.root / 'register.jsonl'
-        stats = intake.shelve(pending, out, 'DEF-056', self.cache, path)
+        stats = intake.shelve(pending, out, IMAGE_SLOT, self.cache, path)
         self.assertEqual(stats['taken'], {'screenshot': 1})
         entry = props.load_register(path)['entries'][0]
         self.assertEqual((entry['path'], entry['deficit_id']),
-                         ('docs/screenshots/shore.png', 'DEF-056'))
+                         ('docs/screenshots/shore.png', IMAGE_SLOT))
         self.assertEqual((self.cache / cached(entry)).read_bytes(),
                          b'shore')
 

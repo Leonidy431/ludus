@@ -2382,7 +2382,35 @@
     "own_leshch_c96de5267b",
     "own_sazan_9a7d5cf44c",
     "own_sig_9979af3a69"
-   ]
+   ],
+   "reverted": true,
+   "reverted_reason": "Review of 2026-09-30: the 35 % between siblings came from placement (a \"bottom\" variant was the \"single\" one moved down the canvas: pixel-identical after cropping, yet about 100 % apart) and from uniform 0.8x age rescales, not from form (TABOO 0.3 rules 15, 62, 71). Withdrawn; see the next entry."
+  },
+  {
+   "time": "2026-09-30T19:00:00+00:00",
+   "type": "own-drawing",
+   "pass_id": "own-fish-DEF-056-2026-09-30-r2",
+   "deficits": [
+    {
+     "id": "DEF-056",
+     "own_drawing": true
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 0,
+   "note": "fish-drawing-r2: the sibling distance is now measured on silhouettes cropped to their bbox and fitted to a common 200x80 box, so placement, size and stretch count for nothing; size (age), height in the water and tilt are engine parameters, not variants. Variants come only from real forms: body flexion (bow, arch, S-wave, head or tail bend, several strengths), fins raised or folded, tail fanned, mouth open, young proportions, pair layouts. Honest result per species (pool size / fitting / chosen): chebachok 26/20/5, marinka 33/12/7, osman 27/19/7, gubach 27/18/7, ishkhan 33/25/9, sudak 37/30/9, leshch 34/22/7, sazan 29/25/8, sig 30/13/7. No kit reaches 12, so nothing ships (TABOO 0.1: never fewer than 12; TABOO 0.07 item 2: the count is not padded). Genus cues strengthened after the eye check (sig: small pointed head, big adipose fin, pale back; chebachok: deeper body, dark back; marinka: long pointed head, long barbels; osman: blunt head, big spots). Contact sheet of the short kits: docs/audit/2026-09-30/fish-own-DEF-056-contact.png.",
+   "shipped": [],
+   "shortfall": {
+    "chebachok": 7,
+    "marinka": 5,
+    "osman": 5,
+    "gubach": 5,
+    "ishkhan": 3,
+    "sudak": 3,
+    "leshch": 5,
+    "sazan": 4,
+    "sig": 5
+   }
   }
  ],
  "keywords": {
