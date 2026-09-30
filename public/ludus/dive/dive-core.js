@@ -613,9 +613,250 @@
     return 0.18 * k * Math.sin(t / 45);
   }
 
+  // --- Biomes, bubbles, the thermocline heard (HLD_DIVE_BIOMES_BUBBLES).
+  //
+  // Five underwater biomes (TABOO 0.3 rule 59, TABOO 0.35 rule 19).  The
+  // water colour, the fog and the light of each come from the absorption
+  // of clear water (ludus-water.js), not from a palette.
+  const BIOMES = ['shallows', 'thermocline', 'deep', 'night', 'sediments'];
+  // Half-thickness of the thermocline band (m): the layer is 8-10 m
+  // thick in summer; the band is where one sees and hears it.
+  const THERMO_BAND_M = 5;
+  // Below this mean fraction of surface light the lamp is the only
+  // light: the "night" of the dive, from about 113 m in clear water.
+  const NIGHT_LIGHT = 0.12;
+  // Near the silt floor (clearance below this, floor deeper than the
+  // gravel shelf) the view is the bottom sediments.
+  const SEDIMENT_CLEARANCE_M = 2.5;
+  const SEDIMENT_FROM_M = 30;
+  const SILT = [0.33, 0.31, 0.28];
+  // The lamp lights things this far away: out and back through water.
+  const VIEW_M = 3;
+  // A reference place for each biome (depth, clearance): where the
+  // readability test looks at every object.
+  const BIOME_REF = {
+    shallows: { depth: 8, clearance: 10 },
+    thermocline: { depth: 50, clearance: 20 },
+    deep: { depth: 80, clearance: 20 },
+    night: { depth: 140, clearance: 10 },
+    sediments: { depth: 90, clearance: 1 },
+  };
+  const FOG = { shallows: 0.035, thermocline: 0.045, deep: 0.05,
+    night: 0.05, sediments: 0.09 };
+
+  function lightMean(depth) {
+    const l = Water.lightLeft(depth);
+    return (l.red + l.green + l.blue) / 3;
+  }
+
+  /** Which of the five biomes the ROV is in. */
+  function biomeOf(depth, clearance) {
+    const floor = depth + clearance;
+    if (clearance <= SEDIMENT_CLEARANCE_M && floor >= SEDIMENT_FROM_M) {
+      return 'sediments';
+    }
+    if (lightMean(depth) < NIGHT_LIGHT) {
+      return 'night';
+    }
+    if (Math.abs(depth - THERMOCLINE_M) <= THERMO_BAND_M) {
+      return 'thermocline';
+    }
+    return depth > THERMOCLINE_M ? 'deep' : 'shallows';
+  }
+
+  /**
+   * Colour of the water around the ROV (display 0..1): surface light
+   * scattered by clear water and dimmed band by band (Beer-Lambert).
+   * The same numbers dive.gd drew before the biomes.
+   */
+  function waterColour(depth) {
+    const l = Water.lightLeft(depth);
+    const k = 1 / (1 + Math.max(0, depth) / 60);
+    return [(40 * l.red * k + 4) / 255, (150 * l.green * k + 8) / 255,
+      (190 * l.blue * k + 14) / 255];
+  }
+
+  /** The look of the water: biome, colour, fog, ambient and sun. */
+  function biomeLook(depth, clearance) {
+    const biome = biomeOf(depth, clearance);
+    let water = waterColour(depth);
+    if (biome === 'sediments') {
+      // Stirred silt hangs in the water near the floor.
+      // the silt scatters what light is left there, so it is as dim.
+      const avg = lightMean(depth);
+      water = water.map((c, i) => c * 0.75 + SILT[i] * 0.25 * avg);
+    }
+    const light = lightMean(depth);
+    return { biome, water, fog: FOG[biome],
+      ambient: biome === 'night' ? 0.05 : 0.25 + 0.6 * light,
+      sun: biome === 'night' ? 0 : 0.15 + 1.1 * light };
+  }
+
+  function toLinear(c) {
+    return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  }
+
+  function luminance(rgb) {
+    const l = rgb.map(toLinear);
+    return 0.2126 * l[0] + 0.7152 * l[1] + 0.0722 * l[2];
+  }
+
+  function hexRgb(hex) {
+    const h = String(hex).replace('#', '');
+    return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255);
+  }
+
+  /**
+   * An object's colour as seen at VIEW_M in a biome: its albedo lit by
+   * what sunlight is left there and by the lamp (out and back through
+   * the water, band by band), then veiled by the biome's fog.
+   */
+  function seenColour(rgb, biome) {
+    const ref = BIOME_REF[biome];
+    const look = biomeLook(ref.depth, ref.clearance);
+    const sun = Water.lightLeft(ref.depth);
+    const bands = ['red', 'green', 'blue'];
+    const veil = Math.exp(-look.fog * VIEW_M);
+    return rgb.map((c, i) => {
+      const a = Water.ABSORPTION[bands[i]];
+      const light = (biome === 'night' ? 0 : sun[bands[i]])
+        * Math.exp(-a * VIEW_M) + Math.exp(-2 * a * VIEW_M);
+      return Math.min(1, c * light) * veil + look.water[i] * (1 - veil);
+    });
+  }
+
+  /** What an object is seen against: the water, or the silt floor. */
+  function biomeBackground(biome) {
+    if (biome === 'sediments') {
+      return seenColour(SILT, 'sediments');
+    }
+    const ref = BIOME_REF[biome];
+    return biomeLook(ref.depth, ref.clearance).water;
+  }
+
+  /** Luminance contrast ratio (WCAG form) of a colour in a biome. */
+  function biomeContrast(hex, biome) {
+    const a = luminance(seenColour(hexRgb(hex), biome));
+    const b = luminance(biomeBackground(biome));
+    return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+  }
+
+  // Bubbles: they rise at about 0.25 m/s (a few-millimetre bubble's
+  // terminal speed) and swell as the pressure falls (Boyle: the volume
+  // goes as 1/p, the radius as its cube root).
+  const BUBBLE_RISE = 0.25;
+  const BUBBLE_R0 = 0.012;
+  // The Mangustik's vent bleeds the air trapped in its frame only while
+  // the pressure has not yet doubled (the first 10.2 m of the descent).
+  const VENT_UNTIL_M = 10.2;
+
+  function breathCycle(p) {
+    return p.inhale + p.holdIn + p.exhale + p.holdOut;
+  }
+
+  /**
+   * How strongly a column breathes out at time t, 0..1: bubbles leave
+   * only on the exhale of the active hesychast pattern, never on the
+   * inhale or the holds.
+   */
+  function bubblePuff(pattern, t) {
+    const cycle = breathCycle(pattern);
+    const q = ((t % cycle) + cycle) % cycle - pattern.inhale
+      - pattern.holdIn;
+    if (q < 0 || q >= pattern.exhale) {
+      return 0;
+    }
+    return Math.sin(Math.PI * q / pattern.exhale);
+  }
+
+  /**
+   * A bubble column: from a floor at `bottom` (m) up to `top` (m), with
+   * `perBreath` bubbles on every exhale.  The small jitter of each
+   * bubble is seeded by the column id, fixed once.
+   */
+  function bubbleColumn(id, x, z, bottom, top, perBreath, pattern) {
+    const r = rng(`bubble:${id}`);
+    const jitter = [];
+    for (let j = 0; j < perBreath; j++) {
+      jitter.push({ dx: (r() - 0.5) * 0.3, dz: (r() - 0.5) * 0.3,
+        phase: r() * Math.PI * 2, f: 1.5 + r() * 1.5 });
+    }
+    const height = Math.max(0, bottom - top);
+    const cycle = breathCycle(pattern);
+    const alive = Math.ceil(height / BUBBLE_RISE / cycle) + 1;
+    return { id, x, z, bottom, top, perBreath, jitter, pattern,
+      count: perBreath * alive };
+  }
+
+  /**
+   * Bubble i of a column at time t: {x, z, depth, size, visible}.  Each
+   * breath k releases perBreath bubbles spread over its exhale; slot i
+   * holds the bubble of the breath (i / perBreath) cycles ago.  wobble
+   * false is the reduced-motion column: straight up, no sway.
+   */
+  function bubbleAt(col, i, t, wobble) {
+    const p = col.pattern;
+    const cycle = breathCycle(p);
+    const j = i % col.perBreath;
+    const m = Math.floor(i / col.perBreath);
+    const k = Math.floor(t / cycle) - m;
+    const birth = k * cycle + p.inhale + p.holdIn
+      + p.exhale * (j + 0.5) / col.perBreath;
+    const age = t - birth;
+    const depth = col.bottom - BUBBLE_RISE * age;
+    const jit = col.jitter[j];
+    if (age < 0 || depth < col.top) {
+      return { x: col.x, z: col.z, depth: col.bottom, size: 0,
+        visible: false };
+    }
+    const sway = wobble ? 0.04 * Math.sin(jit.f * age + jit.phase) : 0;
+    const size = BUBBLE_R0 * Math.cbrt(Water.pressureBar(col.bottom)
+      / Water.pressureBar(depth));
+    return { x: col.x + jit.dx + sway, z: col.z + jit.dz, depth, size,
+      visible: true };
+  }
+
+  /** Bubbles one column releases per minute. */
+  function bubblesPerMinute(col) {
+    return 60 / breathCycle(col.pattern) * col.perBreath;
+  }
+
+  /**
+   * The thermocline in the sonar: a density step reflects a part of the
+   * ping.  Looking down from above the layer at a floor below it, a
+   * faint echo returns after 2 * (layer - depth) / c.  Returns that
+   * delay in seconds, or null when the layer is not between.
+   */
+  function layerEcho(depth, floor) {
+    if (depth >= THERMOCLINE_M || floor <= THERMOCLINE_M) {
+      return null;
+    }
+    return 2 * (THERMOCLINE_M - depth) / Water.C_ABOVE;
+  }
+
+  /**
+   * Crossing the layer between two readings: 'down', 'up' or null.
+   * The sound speed changes there (1480 -> 1435 m/s) and the ear hears
+   * the sonar's pitch glide by the same ratio.
+   */
+  function thermoCrossing(prevDepth, depth) {
+    if (prevDepth <= THERMOCLINE_M && depth > THERMOCLINE_M) {
+      return 'down';
+    }
+    if (prevDepth > THERMOCLINE_M && depth <= THERMOCLINE_M) {
+      return 'up';
+    }
+    return null;
+  }
+
   const api = { PROFILE, LENGTH_M, HALF_WIDTH_M, THERMOCLINE_M, CORRIDOR_M,
     TASKS, SCRIBE, SAFETY_STOP_SEC, KINK_TURNS, UNWOUND_TURNS, newGame,
     stepGame, current,
+    BIOMES, BIOME_REF, THERMO_BAND_M, NIGHT_LIGHT, VIEW_M, SILT,
+    BUBBLE_RISE, BUBBLE_R0, VENT_UNTIL_M, biomeOf, biomeLook, waterColour,
+    seenColour, biomeBackground, biomeContrast, luminance, hexRgb,
+    bubblePuff, bubbleColumn, bubbleAt, bubblesPerMinute, layerEcho,
+    thermoCrossing,
     ROV,
     rng, baseDepth, floorDepth, xForDepth, temperature, placeObjects,
     fishSchools, fishAt, newRov, stepRov, ascentRate, telemetry,

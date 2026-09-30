@@ -491,3 +491,197 @@ static func current(x: float, t: float) -> float:
 		return 0.0
 	var k := sin(PI * (x - 230.0) / 210.0)
 	return 0.18 * k * sin(t / 45.0)
+
+
+# --- Biomes, bubbles, the thermocline heard ----------------------------
+# Ported from dive-core.js (HLD_DIVE_BIOMES_BUBBLES_2026-09-30); see there
+# for why each number is what it is.  Parity: godot/tests/fixture.json.
+
+const BIOMES := ["shallows", "thermocline", "deep", "night", "sediments"]
+const THERMO_BAND_M := 5.0
+const NIGHT_LIGHT := 0.12
+const SEDIMENT_CLEARANCE_M := 2.5
+const SEDIMENT_FROM_M := 30.0
+const SILT := [0.33, 0.31, 0.28]
+const VIEW_M := 3.0
+const BIOME_REF := {
+	"shallows": {"depth": 8.0, "clearance": 10.0},
+	"thermocline": {"depth": 50.0, "clearance": 20.0},
+	"deep": {"depth": 80.0, "clearance": 20.0},
+	"night": {"depth": 140.0, "clearance": 10.0},
+	"sediments": {"depth": 90.0, "clearance": 1.0},
+}
+const FOG := {"shallows": 0.035, "thermocline": 0.045, "deep": 0.05,
+	"night": 0.05, "sediments": 0.09}
+const BANDS := ["red", "green", "blue"]
+const BUBBLE_RISE := 0.25
+const BUBBLE_R0 := 0.012
+const VENT_UNTIL_M := 10.2
+
+
+static func light_mean(depth: float) -> float:
+	var l := light_left(depth)
+	return (l.red + l.green + l.blue) / 3.0
+
+
+## Which of the five biomes the ROV is in.
+static func biome_of(depth: float, clearance: float) -> String:
+	if clearance <= SEDIMENT_CLEARANCE_M \
+			and depth + clearance >= SEDIMENT_FROM_M:
+		return "sediments"
+	if light_mean(depth) < NIGHT_LIGHT:
+		return "night"
+	if absf(depth - THERMOCLINE_M) <= THERMO_BAND_M:
+		return "thermocline"
+	return "deep" if depth > THERMOCLINE_M else "shallows"
+
+
+## Colour of the water (display 0..1, Beer-Lambert over clear water).
+static func water_colour(depth: float) -> Array:
+	var l := light_left(depth)
+	var k := 1.0 / (1.0 + maxf(0.0, depth) / 60.0)
+	return [(40.0 * l.red * k + 4.0) / 255.0,
+		(150.0 * l.green * k + 8.0) / 255.0,
+		(190.0 * l.blue * k + 14.0) / 255.0]
+
+
+## The look of the water: biome, colour, fog, ambient and sun.
+static func biome_look(depth: float, clearance: float) -> Dictionary:
+	var biome := biome_of(depth, clearance)
+	var water := water_colour(depth)
+	var light := light_mean(depth)
+	if biome == "sediments":
+		for i in 3:
+			water[i] = water[i] * 0.75 + SILT[i] * 0.25 * light
+	var night := biome == "night"
+	return {"biome": biome, "water": water, "fog": FOG[biome],
+		"ambient": 0.05 if night else 0.25 + 0.6 * light,
+		"sun": 0.0 if night else 0.15 + 1.1 * light}
+
+
+static func _to_linear(c: float) -> float:
+	return c / 12.92 if c <= 0.04045 else pow((c + 0.055) / 1.055, 2.4)
+
+
+static func luminance(rgb: Array) -> float:
+	return 0.2126 * _to_linear(rgb[0]) + 0.7152 * _to_linear(rgb[1]) \
+		+ 0.0722 * _to_linear(rgb[2])
+
+
+static func hex_rgb(hex: String) -> Array:
+	var h := hex.replace("#", "")
+	return [h.substr(0, 2).hex_to_int() / 255.0,
+		h.substr(2, 2).hex_to_int() / 255.0,
+		h.substr(4, 2).hex_to_int() / 255.0]
+
+
+## An albedo as seen VIEW_M away in a biome: sun left there and the lamp
+## (out and back), band by band, veiled by the biome's fog.
+static func seen_colour(rgb: Array, biome: String) -> Array:
+	var ref: Dictionary = BIOME_REF[biome]
+	var look := biome_look(ref.depth, ref.clearance)
+	var sun := light_left(ref.depth)
+	var veil := exp(-float(look.fog) * VIEW_M)
+	var out := []
+	for i in 3:
+		var a: float = ABSORPTION[BANDS[i]]
+		var sun_b: float = 0.0 if biome == "night" else sun[BANDS[i]]
+		var light := sun_b * exp(-a * VIEW_M) + exp(-2.0 * a * VIEW_M)
+		out.append(minf(1.0, rgb[i] * light) * veil
+			+ look.water[i] * (1.0 - veil))
+	return out
+
+
+## What an object is seen against: the water, or the silt floor.
+static func biome_background(biome: String) -> Array:
+	if biome == "sediments":
+		return seen_colour(SILT, "sediments")
+	var ref: Dictionary = BIOME_REF[biome]
+	return biome_look(ref.depth, ref.clearance).water
+
+
+## Luminance contrast ratio (WCAG form) of an albedo in a biome.
+static func biome_contrast_rgb(rgb: Array, biome: String) -> float:
+	var a := luminance(seen_colour(rgb, biome))
+	var b := luminance(biome_background(biome))
+	return (maxf(a, b) + 0.05) / (minf(a, b) + 0.05)
+
+
+static func biome_contrast(hex: String, biome: String) -> float:
+	return biome_contrast_rgb(hex_rgb(hex), biome)
+
+
+static func breath_cycle(p: Dictionary) -> float:
+	return p.inhale + p.hold_in + p.exhale + p.hold_out
+
+
+## How strongly a column breathes out at t, 0..1: only on the exhale.
+static func bubble_puff(p: Dictionary, t: float) -> float:
+	var q: float = fposmod(t, breath_cycle(p)) - p.inhale - p.hold_in
+	if q < 0.0 or q >= p.exhale:
+		return 0.0
+	return sin(PI * q / p.exhale)
+
+
+## A bubble column from `bottom` up to `top` (m), per_breath bubbles on
+## every exhale; the jitter is seeded by the id, fixed once.
+static func bubble_column(id: String, x: float, z: float, bottom: float,
+		top: float, per_breath: int, pattern: Dictionary) -> Dictionary:
+	var r := rng("bubble:" + id)
+	var jitter := []
+	for j in per_breath:
+		jitter.append({"dx": (r.call() - 0.5) * 0.3,
+			"dz": (r.call() - 0.5) * 0.3, "phase": r.call() * TAU,
+			"f": 1.5 + r.call() * 1.5})
+	var height := maxf(0.0, bottom - top)
+	var alive := int(ceil(height / BUBBLE_RISE / breath_cycle(pattern))) + 1
+	return {"id": id, "x": x, "z": z, "bottom": bottom, "top": top,
+		"per_breath": per_breath, "jitter": jitter, "pattern": pattern,
+		"count": per_breath * alive}
+
+
+## Bubble i of a column at t: {x, z, depth, size, visible}.  wobble
+## false is the reduced-motion column: straight up, no sway.
+static func bubble_at(col: Dictionary, i: int, t: float,
+		wobble := true) -> Dictionary:
+	var p: Dictionary = col.pattern
+	var cycle := breath_cycle(p)
+	var per: int = col.per_breath
+	var j := i % per
+	var m := i / per
+	var k := floorf(t / cycle) - m
+	var birth: float = k * cycle + p.inhale + p.hold_in \
+		+ p.exhale * (j + 0.5) / per
+	var age := t - birth
+	var depth: float = col.bottom - BUBBLE_RISE * age
+	if age < 0.0 or depth < col.top:
+		return {"x": col.x, "z": col.z, "depth": col.bottom, "size": 0.0,
+			"visible": false}
+	var jit: Dictionary = col.jitter[j]
+	var sway: float = 0.04 * sin(jit.f * age + jit.phase) if wobble else 0.0
+	var size := BUBBLE_R0 * pow((SURFACE_BAR + maxf(0.0, col.bottom)
+		/ METRES_PER_BAR) / (SURFACE_BAR + maxf(0.0, depth)
+		/ METRES_PER_BAR), 1.0 / 3.0)
+	return {"x": col.x + jit.dx + sway, "z": col.z + jit.dz,
+		"depth": depth, "size": size, "visible": true}
+
+
+static func bubbles_per_minute(col: Dictionary) -> float:
+	return 60.0 / breath_cycle(col.pattern) * col.per_breath
+
+
+## The thermocline in the sonar: from above the layer, over a floor
+## below it, a faint echo after 2 * (layer - depth) / c; else -1.
+static func layer_echo(depth: float, floor_d: float) -> float:
+	if depth >= THERMOCLINE_M or floor_d <= THERMOCLINE_M:
+		return -1.0
+	return 2.0 * (THERMOCLINE_M - depth) / C_ABOVE
+
+
+## Crossing the layer between two readings: "down", "up" or "".
+static func thermo_crossing(prev_depth: float, depth: float) -> String:
+	if prev_depth <= THERMOCLINE_M and depth > THERMOCLINE_M:
+		return "down"
+	if prev_depth > THERMOCLINE_M and depth <= THERMOCLINE_M:
+		return "up"
+	return ""

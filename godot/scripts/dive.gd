@@ -106,6 +106,22 @@ var shot_plan := [3.0, 12.0, 35.0, 60.0, 120.0]
 var shot_frame := 0
 # After the plan, one close look at the hydrophone on the body.
 var shot_closeup := false
+# The five biomes (HLD_DIVE_BIOMES_BUBBLES): the one the ROV is in now.
+var biome := ""
+var thermo_mat: ShaderMaterial
+# Bubble columns: seeps and bubble streams of the lake, and the
+# Mangustik's vent; one MultiMesh for all of them.
+const BUBBLE_DRAW := 4.0
+const BUBBLE_NEAR_M := 60.0
+var columns: Array = []
+var vent: Dictionary = {}
+var bubble_mm: MultiMesh
+var bubble_inst: MultiMeshInstance3D
+# GPU and CPU render time with the bubbles hidden and shown (shots).
+var gpu_ms := {"off": [], "on": []}
+# Rough cost of the bubbles, microseconds of CPU per frame (shots only).
+var bubble_us := 0.0
+var bubble_frames := 0
 
 
 func _ready() -> void:
@@ -131,6 +147,7 @@ func _ready() -> void:
 	_build_fish()
 	_build_lines()
 	_build_snow()
+	_build_bubbles()
 	_build_rig()
 	_build_body()
 	_build_hud()
@@ -149,11 +166,8 @@ func _load_json(path: String) -> Variant:
 ## Colour of the water around the ROV: surface light scattered by clear
 ## water and dimmed band by band (Beer-Lambert, ludus-water.js).
 func water_colour(depth: float) -> Color:
-	var left := DiveCore.light_left(depth)
-	var k := 1.0 / (1.0 + depth / 60.0)
-	return Color((40.0 * left.red * k + 4.0) / 255.0,
-		(150.0 * left.green * k + 8.0) / 255.0,
-		(190.0 * left.blue * k + 14.0) / 255.0)
+	var w := DiveCore.water_colour(depth)
+	return Color(w[0], w[1], w[2])
 
 
 func _build_environment() -> void:
@@ -229,20 +243,55 @@ func _build_surface() -> void:
 	add_child(plane)
 
 
-## The thermocline is a boundary one can see: a faint shimmering sheet.
+## The thermocline is a boundary one can see: two shimmering sheets
+## the thickness of the layer apart, refraction bands drifting on them
+## (the temperature step bends light as it bends sound).  The sheets
+## brighten while the ROV is inside the band, so the crossing is seen
+## together with its sound and pulse (TABOO 0.35 rules 17, 19).
+const THERMO_SHADER := """
+shader_type spatial;
+render_mode unshaded, cull_disabled, depth_draw_never, blend_mix;
+uniform vec4 tint : source_color = vec4(0.72, 0.85, 0.9, 0.1);
+uniform float strength = 1.0;
+uniform float clock = 0.0;
+varying vec3 wp;
+void vertex() {
+	wp = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+}
+void fragment() {
+	float warp = sin(wp.z * 0.21 + clock * 0.4) * 1.7;
+	float band = 0.5 + 0.5 * sin(wp.x * 0.35 + warp + clock * 0.25);
+	float fine = 0.5 + 0.5 * sin(wp.x * 1.3 - wp.z * 0.9 + clock * 0.9);
+	ALBEDO = tint.rgb;
+	ALPHA = tint.a * strength * (0.35 + 0.45 * band + 0.2 * fine);
+}
+"""
+
+
 func _build_thermocline() -> void:
-	var sheet := MeshInstance3D.new()
-	var pm := PlaneMesh.new()
-	pm.size = Vector2(DiveCore.LENGTH_M, DiveCore.HALF_WIDTH_M * 2.0)
-	sheet.mesh = pm
-	var mat := StandardMaterial3D.new()
-	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
-	mat.albedo_color = Color(0.72, 0.85, 0.9, 0.07)
-	sheet.material_override = mat
-	sheet.position = Vector3(DiveCore.LENGTH_M / 2.0 + 150.0, THERMO_Y, 0.0)
-	add_child(sheet)
+	var shader := Shader.new()
+	shader.code = THERMO_SHADER
+	thermo_mat = ShaderMaterial.new()
+	thermo_mat.shader = shader
+	for dy in [-DiveCore.THERMO_BAND_M * 0.5, DiveCore.THERMO_BAND_M * 0.5]:
+		var sheet := MeshInstance3D.new()
+		var pm := PlaneMesh.new()
+		pm.size = Vector2(DiveCore.LENGTH_M, DiveCore.HALF_WIDTH_M * 2.0)
+		sheet.mesh = pm
+		sheet.material_override = thermo_mat
+		sheet.position = Vector3(DiveCore.LENGTH_M / 2.0 + 150.0,
+			THERMO_Y + dy, 0.0)
+		add_child(sheet)
+
+
+## The sheets shimmer with the scene clock; inside the band they are
+## twice as strong.  Reduced motion stills the bands.
+func _update_thermocline(depth: float) -> void:
+	var inside := absf(depth - DiveCore.THERMOCLINE_M) \
+		<= DiveCore.THERMO_BAND_M
+	thermo_mat.set_shader_parameter("strength", 2.0 if inside else 1.0)
+	thermo_mat.set_shader_parameter("clock",
+		0.0 if audio.reduced_motion else t)
 
 
 func _build_objects() -> void:
@@ -410,6 +459,9 @@ func _build_own_drawings() -> void:
 			sp.texture = tex
 			sp.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
 			sp.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
+			# Lit like everything else under water: an unshaded sprite
+			# kept its full colour at 140 m, against Beer-Lambert.
+			sp.shaded = true
 			sp.pixel_size = float(kit.size) / 256.0
 			# The drawing stands on its lower edge, on the floor.
 			sp.position = Vector3(x, -DiveCore.floor_depth(x, z)
@@ -438,7 +490,7 @@ func _atlas_shots() -> void:
 	# After the depth frames and the 20 frames of the hydrophone close-up.
 	var k := (shot_frame - 40 * shot_plan.size() - 20) / 40
 	if k >= plan.size():
-		get_tree().quit()
+		_biome_shots(k - plan.size())
 		return
 	var p := {}
 	for tr in traces:
@@ -602,6 +654,165 @@ func _build_snow() -> void:
 	snow.mesh = q
 	snow.name = "Snow"
 	add_child(snow)
+
+
+## Bubble columns (DEF-006, HLD_DIVE_BIOMES_BUBBLES): the bubble
+## streams and the spring seep of the lake rise from their floor to the
+## surface, the Mangustik's vent bleeds the air of its frame in the
+## first 10.2 m.  They leave only on the exhale of the player's breath
+## (DiveSynth.PLAYER_BREATH, hesychasm module), rise at 0.25 m/s and
+## swell by Boyle's law.  Each instance is a small puff of bubbles,
+## drawn BUBBLE_DRAW times the physical radius so it reads in the
+## headset; the ratio between depths stays physical.
+func _build_bubbles() -> void:
+	var p: Dictionary = DiveSynth.BREATH[DiveSynth.PLAYER_BREATH]
+	for o in placed:
+		if o.item == "bubbles" or o.item == "spring":
+			var bottom := DiveCore.floor_depth(o.x, o.z)
+			columns.append(DiveCore.bubble_column(str(o.id), o.x, o.z,
+				bottom, 0.0, 5 if o.item == "bubbles" else 2, p))
+	vent = DiveCore.bubble_column("mangustik:vent", 0.0, 0.0, 2.0, 0.0,
+		3, p)
+	var total: int = vent.count
+	for c in columns:
+		total += c.count
+	bubble_mm = MultiMesh.new()
+	bubble_mm.transform_format = MultiMesh.TRANSFORM_3D
+	var s := SphereMesh.new()
+	s.radius = 1.0
+	s.height = 2.0
+	s.radial_segments = 6
+	s.rings = 3
+	bubble_mm.mesh = s
+	bubble_mm.instance_count = total
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color = Color(0.91, 0.96, 0.97, 0.6)
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	mat.roughness = 0.15
+	mat.metallic_specular = 0.9
+	bubble_inst = MultiMeshInstance3D.new()
+	bubble_inst.multimesh = bubble_mm
+	bubble_inst.material_override = mat
+	bubble_inst.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	add_child(bubble_inst)
+
+
+func _update_bubbles() -> void:
+	var t0 := Time.get_ticks_usec()
+	var wobble := not audio.reduced_motion
+	var here := Vector3(rov.x, -rov.depth, rov.z)
+	var n := 0
+	var hidden := Transform3D(Basis.from_scale(Vector3.ZERO), Vector3.ZERO)
+	for c in columns:
+		var near := Vector2(c.x - here.x, c.z - here.z).length() \
+			< BUBBLE_NEAR_M
+		if not near and not c.get("shown", true):
+			# Far and already hidden: nothing to write this frame.
+			n += int(c.count)
+			continue
+		c["shown"] = near
+		for i in c.count:
+			var q := DiveCore.bubble_at(c, i, t, wobble) if near else {}
+			n = _put_bubble(n, q, Vector3.ZERO, hidden)
+	# The vent rides on the ROV: its column is the 2 m above the body,
+	# and it breathes only while the frame still holds air.
+	var venting: bool = rov.depth < DiveCore.VENT_UNTIL_M
+	# Born 0.3 m above the centre of the body, 2 m below the column top.
+	var origin := here + Vector3(0.0, 0.3 + vent.bottom, 0.0)
+	for i in vent.count:
+		var q := DiveCore.bubble_at(vent, i, t, wobble) if venting else {}
+		n = _put_bubble(n, q, origin, hidden)
+	bubble_us += Time.get_ticks_usec() - t0
+	bubble_frames += 1
+
+
+func _put_bubble(n: int, q: Dictionary, origin: Vector3,
+		hidden: Transform3D) -> int:
+	if q.is_empty() or not q.visible:
+		bubble_mm.set_instance_transform(n, hidden)
+	else:
+		var r: float = q.size * BUBBLE_DRAW
+		bubble_mm.set_instance_transform(n, Transform3D(
+			Basis.from_scale(Vector3(r, r * 0.8, r)),
+			origin + Vector3(q.x, -q.depth, q.z)))
+	return n + 1
+
+
+## Proof frames of the five biomes, from behind the body: 40 frames
+## each, the bubbles hidden for frames 10-24 and shown for 25-39 so the
+## render time of both halves can be compared; the frame is saved last.
+const BIOME_SHOTS := [
+	{"name": "shallows", "depth": 9.0, "column": "bubbles.shelf.1"},
+	{"name": "thermocline", "depth": 49.0},
+	{"name": "deep", "depth": 80.0},
+	{"name": "night", "depth": 140.0},
+	{"name": "sediments", "depth": 90.0, "clearance": 1.0},
+]
+
+
+func _biome_shots(k: int) -> void:
+	var f := shot_frame % 40
+	if k >= BIOME_SHOTS.size():
+		_report_costs()
+		get_tree().quit()
+		return
+	var plan: Dictionary = BIOME_SHOTS[k]
+	var rid := get_viewport().get_viewport_rid()
+	RenderingServer.viewport_set_measure_render_time(rid, true)
+	if not third_person:
+		third_person = true
+		_place_view()
+	rov.yaw = 0.0
+	pitch = -0.1
+	rov.z = 0.0
+	if plan.has("column"):
+		for c in columns:
+			if c.id == plan.column:
+				rov.x = c.x - 6.0
+				rov.z = c.z
+		rov.depth = plan.depth
+	elif plan.has("clearance"):
+		rov.x = DiveCore.x_for_depth(plan.depth)
+		rov.depth = DiveCore.floor_depth(rov.x, 0.0) - plan.clearance
+		pitch = -0.35
+	else:
+		# Out over deeper water, so the floor does not make it the
+		# sediments.
+		rov.x = DiveCore.x_for_depth(plan.depth + 30.0)
+		rov.depth = plan.depth
+	# The night of the deep: the lamp stays on, it is the only light.
+	rov.lamp = true
+	t = 30.0 + k
+	bubble_inst.visible = f < 10 or f >= 25
+	if f >= 12 and f < 25:
+		gpu_ms.off.append(RenderingServer.viewport_get_measured_render_time_gpu(
+			rid))
+	elif f >= 27:
+		gpu_ms.on.append(RenderingServer.viewport_get_measured_render_time_gpu(
+			rid))
+	if f == 39:
+		print("biome shot %s: in %s at %.1f m; GPU ms hidden %.2f, shown %.2f"
+			% [plan.name, biome, rov.depth, _mean(gpu_ms.off.slice(-13)),
+			_mean(gpu_ms.on.slice(-13))])
+		get_viewport().get_texture().get_image().save_png(
+			"%s/dive-biome-%s.png" % [shots_dir, plan.name])
+	shot_frame += 1
+
+
+static func _mean(a: Array) -> float:
+	var sum := 0.0
+	for v in a:
+		sum += v
+	return sum / maxf(1.0, a.size())
+
+
+func _report_costs() -> void:
+	print("bubbles: %d instances, %.1f us CPU per frame over %d frames"
+		% [bubble_mm.instance_count, bubble_us / maxf(1.0, bubble_frames),
+		bubble_frames])
+	print("render GPU ms: bubbles hidden %.3f, shown %.3f (n=%d/%d)" % [
+		_mean(gpu_ms.off), _mean(gpu_ms.on), gpu_ms.off.size(),
+		gpu_ms.on.size()])
 
 
 func _build_rig() -> void:
@@ -1061,6 +1272,8 @@ func _process(dt: float) -> void:
 	# A fall dims the world until the safety stop is held.
 	lamp.light_energy = 1.2 if game.fallen else 4.0
 	_update_water(tel)
+	_update_thermocline(tel.depth)
+	_update_bubbles()
 	audio.update(tel, rov, inp, schools, t, dt, xr_active)
 	if game.fallen:
 		env.ambient_light_energy *= 0.35
@@ -1193,20 +1406,23 @@ func _hint() -> String:
 	return "%s — нажми, чтобы взять или рассмотреть" % hit.thing.ru
 
 
+## The water per biome (DiveCore.biome_look): colour and light from the
+## absorption of clear water, fog per biome; in the night of the deep
+## the lamp is the only light.
 func _update_water(tel: Dictionary) -> void:
-	var c := water_colour(tel.depth)
+	var look := DiveCore.biome_look(tel.depth, maxf(0.0, tel.floor
+		- tel.depth))
+	biome = look.biome
+	var c := Color(look.water[0], look.water[1], look.water[2])
 	env.background_color = c
 	env.fog_light_color = c
-	# Issyk-Kul is clear: some 25-30 m of view near the surface, less
-	# in the dark below the thermocline.
-	env.fog_density = 0.035 if tel.depth < DiveCore.THERMOCLINE_M else 0.05
+	env.fog_density = look.fog
 	var left: Dictionary = tel.light
-	var avg: float = (left.red + left.green + left.blue) / 3.0
-	sun.light_energy = 0.15 + 1.1 * avg
+	sun.light_energy = look.sun
 	sun.light_color = Color(0.35 + 0.65 * left.red,
 		0.5 + 0.5 * left.green, 0.6 + 0.4 * left.blue)
 	env.ambient_light_color = c.lightened(0.3)
-	env.ambient_light_energy = 0.25 + 0.6 * avg
+	env.ambient_light_energy = look.ambient
 
 
 func _update_fish() -> void:

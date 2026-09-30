@@ -92,6 +92,20 @@ const PING_HZ := 2400.0
 const PING_GAIN := 0.35
 const ECHO_GAIN := 0.12
 const SONAR_PLAYER := 0.501187  # db_to_linear(-6.0)
+## The thermocline heard (HLD_DIVE_BIOMES_BUBBLES): the layer's
+## temperature microstructure scatters sound, so an echo sounder sees it
+## as a band.  Crossing it, the ROV's own sonar hears a short diffuse
+## scatter around its ping frequency (not a pitch glide: the frequency
+## does not change across a layer, only the wavelength does).  Above
+## the layer, over a deeper floor, each ping also gets a faint answer
+## from the layer itself (DiveCore.layer_echo).
+const SHIMMER_SEC := 0.6
+const SHIMMER_GAIN := 0.15
+## One-pole low-pass of the scatter noise before it is carried on the
+## ping frequency: about 280 Hz, so the band is 2400 +- 280 Hz.
+const SHIMMER_LP := 0.08
+const SHIMMER_DECAY := 0.18
+const LAYER_ECHO_GAIN := 0.04
 
 ## The ison enters after the stillness has lasted this long, and the
 ## bell is heard only this close to the surface.
@@ -147,6 +161,10 @@ var overlap_samples := 0
 var bell_log: Array = []
 ## Set by generate() when an echo starts; DiveAudio reads and clears it.
 var echo_started := false
+## Every thermocline crossing heard, "down" or "up", in order.
+var crossings: Array = []
+var prev_depth := -1.0
+var shimmer_lp := 0.0
 
 
 func _init() -> void:
@@ -271,6 +289,12 @@ func set_now(local: Dictionary) -> void:
 ## from the shore (m), whether the deep silence holds, the echo delay.
 func update(scene: Dictionary, dt: float) -> void:
 	depth = scene.get("depth", depth)
+	if prev_depth >= 0.0:
+		var dir := DiveCore.thermo_crossing(prev_depth, depth)
+		if dir != "":
+			crossings.append(dir)
+			events.append({"kind": "shimmer", "start": sample})
+	prev_depth = depth
 	thrust = clampf(scene.get("thrust", 0.0), 0.0, 1.0)
 	shore_m = scene.get("shore_m", shore_m)
 	silence = scene.get("silence", false)
@@ -283,6 +307,9 @@ func update(scene: Dictionary, dt: float) -> void:
 			_after_update()
 			return
 		pending.append([0.0, PING_HZ, PING_GAIN, false])
+		var layer: float = scene.get("layer_echo", -1.0)
+		if layer >= 0.0:
+			pending.append([layer, PING_HZ, LAYER_ECHO_GAIN, false])
 		# The echo returns from the floor below after 2 * range / c.
 		pending.append([scene.get("echo_delay", 0.0), PING_HZ, ECHO_GAIN,
 			true])
@@ -572,6 +599,13 @@ func _event_sample(w: float) -> float:
 				var f := 320.0 + 90.0 * sin(TAU * 3.0 * age)
 				v += (sin(TAU * f * age) + 0.3 * sin(TAU * 2.0 * f * age)) \
 					* 0.012
+			keep = true
+		elif e.kind == "shimmer" and age < SHIMMER_SEC:
+			# Narrow-band scatter around the ping: noise carried on the
+			# ping frequency, a 20 ms swell and an exponential tail.
+			var env := minf(1.0, age / 0.02) * exp(-age / SHIMMER_DECAY)
+			shimmer_lp += SHIMMER_LP * (w - shimmer_lp)
+			v += shimmer_lp * sin(TAU * PING_HZ * age) * SHIMMER_GAIN * env
 			keep = true
 		elif e.kind == "take" and age < 0.12:
 			v += sin(TAU * 150.0 * age) * 0.05 * exp(-age / 0.03)
