@@ -1,0 +1,110 @@
+{
+  "doc": "docs/APK_REQUIREMENTS.md",
+  "version": 1,
+  "note": "Budgets of the Meta Quest build. Read by scripts/godot/check_budgets.py (sections apk, tree) and godot/tools/measure_budgets.gd (section scene). Kept outside godot/ so the file does not ship in the APK. A limit is changed only in the same PR as docs/APK_REQUIREMENTS.md, with the reason.",
+  "apk": {
+    "total_bytes": {
+      "limit": 134217728,
+      "why": "128 MiB: engine and runtime are ~89.6 MB and fixed; content may grow ~4x from today before the gate trips; about 13% of the Meta Store limit of 1 GB"
+    },
+    "native_libs_bytes": {
+      "limit": 88080384,
+      "why": "84 MiB: four .so of Godot 4.7.1 debug + vendors 5.1.0 are 83,393,888 B; a second ABI or a new native plugin trips it"
+    },
+    "dex_bytes": {
+      "limit": 8388608,
+      "why": "8 MiB: classes*.dex are 6,089,552 B; only a new Java/Kotlin plugin makes them grow"
+    },
+    "assets_bytes": {
+      "limit": 33554432,
+      "why": "32 MiB of game content (assets/, uncompressed): about 3x the 11.56 MB of the current branch"
+    },
+    "largest_asset_bytes": {
+      "limit": 1048576,
+      "why": "1 MiB per file: one JSON book of 0.70 MB took 7.9 MB of heap to parse; a larger single file is a frame hitch"
+    },
+    "abis": [
+      "arm64-v8a"
+    ]
+  },
+  "tree": {
+    "content_dirs": [
+      "art",
+      "models",
+      "data"
+    ],
+    "content_bytes": {
+      "limit": 33554432,
+      "why": "32 MiB of source in godot/art, godot/models, godot/data; the same ceiling as assets_bytes"
+    },
+    "largest_resource_bytes": {
+      "limit": 1048576,
+      "why": "same as apk.largest_asset_bytes, checked on the source before the build"
+    },
+    "model_triangles": {
+      "limit": 5000,
+      "why": "CLAUDE.md TABOO 0.32 p.4: a proxy is at most 5,000 triangles",
+      "exceptions": {
+        "models/rov/mangustik.glb": {
+          "limit": 20000,
+          "why": "docs/HLD_MANGUSTIK_COCKPIT_2026-09-30.md M2 and scripts/meta3d/mangustik_rov.py MAX_TRIANGLES = 20000 (whole vehicle). Conflicts with TABOO 0.32 p.4; open blocker for the operator in docs/APK_REQUIREMENTS.md"
+        }
+      }
+    }
+  },
+  "scene": {
+    "draw_calls_main_view": {
+      "limit": 100,
+      "quest3_reference": 200,
+      "why": "Quest 2 floor (< 100) because export_presets.cfg has quest_2_support=true; Quest 3 alone would allow < 200"
+    },
+    "primitives_two_eyes_est": {
+      "limit": 750000,
+      "quest3_reference": 1500000,
+      "why": "Quest 2 floor (< 750K triangles per frame); estimate = 2 x main-view primitives + all SubViewports"
+    },
+    "static_memory_delta_bytes": {
+      "limit": 67108864,
+      "why": "64 MiB of CPU heap over the engine baseline per scene: about 2.4x the worst scene (hub, +26.8 MB)"
+    },
+    "texture_memory_over_empty_bytes": {
+      "limit": 33554432,
+      "why": "32 MiB of texture memory above an empty 3D scene at the same size and MSAA (content, fonts, SubViewports)"
+    },
+    "subviewport_bytes": {
+      "limit": 4194304,
+      "bytes_per_px": 8,
+      "why": "4 MiB of SubViewport render targets; measured 8 B/px on the host"
+    },
+    "script_ms_mean_host": {
+      "limit": 3.47,
+      "why": "a quarter of the 72 Hz frame (13.89 ms) for the scene's own _process on the CI host; Quest core speed is unknown"
+    },
+    "script_ms_max_host": {
+      "limit": 6.94,
+      "why": "half of the 72 Hz frame on the CI host"
+    },
+    "audio_generators": {
+      "limit": 2,
+      "why": "at most two synths fed by the CPU per scene; dive and witness have one each (dive_audio.gd, witness.gd)"
+    }
+  },
+  "device": {
+    "frame_ms_72hz": 13.89,
+    "frame_ms_90hz": 11.11,
+    "pss_bytes": 2147483648,
+    "particles_gpu_ms": 1.0,
+    "why": "measured only on the headset (OVR Metrics Tool, dumpsys meminfo); 2 GiB PSS is under half of the Quest 2 limit of 4.4 GiB"
+  },
+  "audio": {
+    "synth_ms_per_second_host": {
+      "limit": 50,
+      "why": "5% of one CI-host core per second of audio; DiveSynth measured 22.6-24.3 ms, WitnessAudio 8.9-11.2 ms"
+    },
+    "pcm_clips_bytes": {
+      "limit": 16777216,
+      "why": "16 MiB of float32 clips in RAM; the witness bells take 8,492,024 B on a Sunday and on Pascha"
+    },
+    "checked_by": "runtime measurement by the revisor (not automated)"
+  }
+}
