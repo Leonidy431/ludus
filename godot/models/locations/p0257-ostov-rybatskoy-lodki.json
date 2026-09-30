@@ -1,0 +1,23 @@
+{
+ "id": "p0257-ostov-rybatskoy-lodki",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  1.2,
+  1.2,
+  1.2
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#256",
+ "name": "Остов рыбацкой лодки",
+ "type": "предмет",
+ "storyline": "м.78 (ремесло)",
+ "box": "box 4x1.2м",
+ "shape": "box",
+ "size_m": 1.2,
+ "method": "primitive-from-box-field",
+ "collider": "box 1.2 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

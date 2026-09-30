@@ -1,0 +1,16 @@
+{
+ "id": "obj-telega-bezhentsev",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 704,
+ "bbox_m": [
+  0.392,
+  0.392,
+  0.035
+ ],
+ "source": "SVG/obj/obj-telega-bezhentsev.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "convex hull of the alpha silhouette",
+ "noInteract": false,
+ "noLoot": false
+}

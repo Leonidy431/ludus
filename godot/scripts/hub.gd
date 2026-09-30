@@ -210,6 +210,8 @@ func _build_world() -> void:
 	_build_mission_board(oak)
 	# B2 hook: the journal of the way on its lectern (JournalBook).
 	things.append(JournalBook.place(self))
+	# The road of places: the 99 locations of our plots (PlacesLectern).
+	things.append(PlacesLectern.place(self))
 	things.append(RuleCell.build(self, oak))
 	rope_ring = RuleCell.build_rope(self)
 	# The K things of the obitel (TABOO 0.07, scripts/obitel_layout.gd).

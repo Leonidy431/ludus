@@ -98,6 +98,9 @@ jobs:
           # (TABOO 0.013, 0.07; docs/HLD_LOCATIONS_99_2026-09-30.md).
           python3 scripts/locations/locations_99.py --check
           python3 -m unittest discover scripts/locations/tests
+          # The proxies the 99 locations show are shipped, and only those
+          # (docs/HLD_LOCATIONS_99_2026-09-30.md, L4; TABOO 0.011).
+          python3 scripts/locations/ship_models.py --check
           # One bell table for the web clock and the headset's bells,
           # every rule with its source (docs/HLD_BELL_RULES_TYPIKON_*).
           cmp public/ludus/data/bell-rules.json godot/data/bell-rules.json
@@ -137,6 +140,12 @@ jobs:
           xvfb-run -a -s "-screen 0 1280x720x24" "$GODOT" --path . \
             --rendering-driver opengl3 res://scenes/witness.tscn \
             -- --shots="$PWD/../build/shots"
+          # Eight of the 99 locations, one per kind of shell and light,
+          # as entered and with the heart's panel open (TABOO 0.013 p. 7).
+          xvfb-run -a -s "-screen 0 1280x720x24" "$GODOT" --path . \
+            --rendering-driver opengl3 res://scenes/location.tscn \
+            -- --shots="$PWD/../build/shots" \
+            --locations=deacon-cell,forge,ichthys-pier,obitel-caravanserai,drowned-posad,sis-gate,zero-board,naos
           ls ../build/shots
 
       - name: Export Web (WebXR)
