@@ -67,6 +67,78 @@ func run(t: Object) -> void:
 	t._check(seconds >= 1.5 and seconds <= 2.0,
 		"fade takes %.2f s (TABOO 0.4: 1.5-2 s)" % seconds)
 
+	# The manipulator: out, hold, back, in ARM_SECONDS; stowed outside.
+	t._check(CockpitCore.arm_phase(-0.1) == 0.0, "arm stowed before")
+	t._check(CockpitCore.arm_phase(0.0) == 0.0, "arm starts stowed")
+	t._check(CockpitCore.arm_phase(0.6) == 1.0, "arm reached at mid")
+	t._check(CockpitCore.arm_phase(0.3) > 0.0 and CockpitCore.arm_phase(
+		0.3) < 1.0, "arm on its way out")
+	t._check(CockpitCore.arm_phase(CockpitCore.ARM_SECONDS) == 0.0,
+		"arm stowed after %.1f s" % CockpitCore.ARM_SECONDS)
+	var prev := -1.0
+	var monotone := true
+	for i in 25:
+		var p := CockpitCore.arm_phase(0.48 * i / 24.0)
+		monotone = monotone and p >= prev
+		prev = p
+	t._check(monotone, "arm goes out without jerking back")
+
+	# The sonar: the floor answers ahead on the slope, a thing in the
+	# fan is seen, a thing behind or far above the beam is not.
+	for depth in [12.0, 35.0, 60.0, 120.0]:
+		var r := DiveCore.new_rov()
+		r.x = DiveCore.x_for_depth(depth + 6.0) - 8.0
+		r.z = 0.0
+		r.depth = depth
+		r.yaw = 0.0
+		var scan := CockpitCore.sonar_scan(r, [])
+		var hits := 0
+		for f in scan.floor:
+			if f > 0.0:
+				hits += 1
+		t._check(scan.floor.size() == CockpitCore.SONAR_BEAMS,
+			"sonar beams at %d m" % depth)
+		t._check(hits >= CockpitCore.SONAR_BEAMS / 2,
+			"sonar finds the floor at %d m (%d beams)" % [depth, hits])
+		var floor_mid: float = scan.floor[CockpitCore.SONAR_BEAMS / 2]
+		t._check(floor_mid > 0.0 and floor_mid < CockpitCore.SONAR_RANGE,
+			"floor ahead at %.1f m from %d m" % [floor_mid, depth])
+		var ahead := {"x": r.x + 10.0, "z": 0.0,
+			"depth": depth + 10.0 * tan(CockpitCore.SONAR_TILT), "size": 1.0}
+		var behind := {"x": r.x - 10.0, "z": 0.0, "depth": depth}
+		var above := {"x": r.x + 10.0, "z": 0.0, "depth": depth - 20.0}
+		var seen := CockpitCore.sonar_scan(r, [ahead, behind, above])
+		t._check(seen.echoes.size() == 1, "sonar sees only the thing "
+			+ "ahead at %d m (%d echoes)" % [depth, seen.echoes.size()])
+		if seen.echoes.size() == 1:
+			t._check(absf(seen.echoes[0].range - 10.0) < 0.01
+				and absf(seen.echoes[0].angle) < 0.01, "echo range/angle")
+	# A thing to starboard shows at a positive angle.
+	var rs := DiveCore.new_rov()
+	rs.x = 300.0
+	rs.depth = 20.0
+	rs.yaw = 0.0
+	var side := CockpitCore.sonar_scan(rs, [{"x": 310.0, "z": 5.0,
+		"depth": 20.0 + 11.2 * tan(CockpitCore.SONAR_TILT)}])
+	t._check(side.echoes.size() == 1 and side.echoes[0].angle > 0.0,
+		"starboard is a positive angle")
+	var s0 := CockpitCore.sonar_sweep(0.0)
+	var s1 := CockpitCore.sonar_sweep(CockpitCore.SONAR_SWEEP)
+	t._check(absf(s0 + CockpitCore.SONAR_FAN / 2.0) < 1e-6
+		and absf(s1 - CockpitCore.SONAR_FAN / 2.0) < 1e-6,
+		"sweep crosses the fan in %.0f s" % CockpitCore.SONAR_SWEEP)
+
+	# The servo sounds while the arm moves and falls silent after.
+	var synth := DiveSynth.new()
+	synth.update({"depth": 10.0, "thrust": 0.0}, 0.1)
+	synth.event_servo()
+	var moving := synth.generate(int(0.2 * DiveSynth.MIX_RATE))
+	var peak := 0.0
+	for v in moving:
+		peak = maxf(peak, absf(v))
+	t._check(peak > 0.0, "servo is heard while the arm moves")
+	t._check(synth.events.size() >= 1, "servo event is queued")
+
 	# The model: the operator's ROV, within the Quest budget.
 	var meta: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(
 		"res://models/rov/mangustik.json"))

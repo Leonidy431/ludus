@@ -209,6 +209,11 @@ func on_lamp_toggled(_on: bool) -> void:
 	_pulse("lamp", PULSE_LAMP, 0.0)
 
 
+## The manipulator reached out (dive.gd, RovBody.reach): servo whine.
+func on_arm() -> void:
+	synth.event_servo()
+
+
 ## A thing was handled.  Only things that go into a bag or back into
 ## the water get a knock and a pulse; what may only be looked at (the
 ## cross on the bulla, the site, the birds) gets neither: silence.

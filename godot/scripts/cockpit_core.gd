@@ -111,3 +111,90 @@ static func fade_target(distance: float) -> float:
 ## whole way.
 static func fade_step(alpha: float, target: float, dt: float) -> float:
 	return move_toward(alpha, target, dt / FADE_SECONDS)
+
+
+# --- Manipulator --------------------------------------------------------
+
+## One reach of the manipulator lasts ARM_SECONDS: out, a short hold at
+## the thing, back.  Time alone decides the pose (no randomness).
+const ARM_SECONDS := 1.2
+
+
+## How far out the arm is (0 stowed, 1 reached) `elapsed` seconds after
+## the pilot pressed "take"; < 0 or past the end means stowed.
+static func arm_phase(elapsed: float) -> float:
+	if elapsed < 0.0 or elapsed >= ARM_SECONDS:
+		return 0.0
+	var u := elapsed / ARM_SECONDS
+	if u < 0.4:
+		return smoothstep(0.0, 0.4, u)
+	if u < 0.6:
+		return 1.0
+	return 1.0 - smoothstep(0.6, 1.0, u)
+
+
+# --- Sonar --------------------------------------------------------------
+
+## A forward imaging sonar like the one on DiveGuard's console: a 90
+## degree fan, SONAR_RANGE metres, beams tilted SONAR_TILT down so the
+## floor ahead answers, as on a real ROV.
+const SONAR_RANGE := 30.0
+const SONAR_FAN := PI / 2.0
+const SONAR_BEAMS := 31
+const SONAR_TILT := 0.52  # 30 degrees, as ROV imaging sonars are set.
+const SONAR_STEP := 0.5
+## Vertical beam width: the floor answers as soon as the beam's lower
+## edge touches it (imaging sonars spread about 20 degrees vertically).
+const SONAR_VBEAM := 0.35
+
+
+## Returns {floor: [range or -1 per beam], echoes: [{angle, range,
+## strength}]}.  rov: the dive core state (x, z, depth, yaw); things:
+## anything with x, z, depth and an optional size.  Angle 0 is ahead,
+## positive to starboard.
+static func sonar_scan(rov: Dictionary, things: Array) -> Dictionary:
+	var floor := []
+	for b in SONAR_BEAMS:
+		var a := -SONAR_FAN / 2.0 + SONAR_FAN * b / (SONAR_BEAMS - 1)
+		var yaw: float = rov.yaw + a
+		var hit := -1.0
+		var d := SONAR_STEP
+		while d <= SONAR_RANGE:
+			var x: float = rov.x + cos(yaw) * d
+			var z: float = rov.z + sin(yaw) * d
+			if DiveCore.floor_depth(x, z) <= rov.depth \
+					+ d * tan(SONAR_TILT + SONAR_VBEAM / 2.0):
+				hit = d
+				break
+			d += SONAR_STEP
+		floor.append(hit)
+	var echoes := []
+	for th in things:
+		var dx: float = th.x - rov.x
+		var dz: float = th.z - rov.z
+		var r := sqrt(dx * dx + dz * dz)
+		if r < 0.5 or r > SONAR_RANGE:
+			continue
+		var a := wrapf(atan2(dz, dx) - rov.yaw, -PI, PI)
+		if absf(a) > SONAR_FAN / 2.0:
+			continue
+		# The beam is a wedge in depth too: centre tilted down, widening
+		# with range.
+		var centre: float = rov.depth + r * tan(SONAR_TILT)
+		if absf(th.depth - centre) > 2.0 + 0.25 * r:
+			continue
+		var size := float(th.get("size", 0.5))
+		echoes.append({"angle": a, "range": r,
+			"strength": clampf(0.3 + size * 0.5, 0.3, 1.0)})
+	return {"floor": floor, "echoes": echoes}
+
+
+## The sweep line's angle at time t: across the fan and back every
+## 2 * SONAR_SWEEP seconds.
+const SONAR_SWEEP := 2.0
+
+
+static func sonar_sweep(t: float) -> float:
+	var u := fposmod(t, 2.0 * SONAR_SWEEP) / SONAR_SWEEP
+	var k := u if u <= 1.0 else 2.0 - u
+	return -SONAR_FAN / 2.0 + SONAR_FAN * k

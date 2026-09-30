@@ -75,8 +75,12 @@ jobs:
         working-directory: godot
         run: |
           "$GODOT" --headless --path . --import || true
-          "$GODOT" --headless --path . --script res://tests/run_tests.gd
-          "$GODOT" --headless --path . --script res://tests/run_hub_tests.gd
+          # A GDScript parse error leaves Godot waiting instead of
+          # exiting; the timeout turns that into a red step.
+          timeout 900 "$GODOT" --headless --path . \
+            --script res://tests/run_tests.gd
+          timeout 600 "$GODOT" --headless --path . \
+            --script res://tests/run_hub_tests.gd
 
       - name: Proof frames at 3-120 m
         working-directory: godot

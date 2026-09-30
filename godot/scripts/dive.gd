@@ -64,7 +64,18 @@ var holy_points: Array = []
 const CHASE := Vector3(0.45, 0.85, 2.6)
 const CHASE_PITCH := -0.22
 const CHASE_YAW := 0.17
-var body: Node3D
+var body: RovBody
+# The console's second screen (M8): the front camera's picture and the
+# sonar, in its own viewport so screen and headset share it.
+const SCREENS_PX := Vector2i(504, 196)
+const SONAR_HZ := 10.0
+var screens_view: SubViewport
+var screens: CockpitScreens
+var screens_screen: TextureRect
+var screens_xr: MeshInstance3D
+var eye_view: SubViewport
+var eye: Camera3D
+var sonar_left := 0.0
 var third_person := true
 var view_was := false
 var left_hand: XRController3D
@@ -402,8 +413,7 @@ func _build_rig() -> void:
 ## The ROV's body from the operator's drawings, with the lamp on its
 ## front camera skid when it is seen from behind.
 func _build_body() -> void:
-	var scene := load("res://models/rov/mangustik.glb") as PackedScene
-	body = scene.instantiate() if scene else Node3D.new()
+	body = RovBody.new()
 	add_child(body)
 	_place_view()
 
@@ -412,7 +422,9 @@ func _build_body() -> void:
 ## body's front skid (0.7 m ahead of its centre) in third person, so the
 ## light comes from the vehicle the player sees.
 func _place_view() -> void:
-	body.visible = third_person
+	# The frame hides in first person; the arm and the lamps stay, as
+	# the ROV's own camera sees its arm below it.
+	body.show_frame(third_person)
 	var holder: Node3D = body if third_person else camera
 	if lamp.get_parent() != holder:
 		lamp.reparent(holder, false)
@@ -473,6 +485,7 @@ func _build_hud() -> void:
 	console_xr.rotation_degrees = Vector3(-25, 0, 0)
 	console_xr.visible = false
 	camera.add_child(console_xr)
+	_build_screens(layer)
 	for which in ["telemetry", "prompt"]:
 		var l := Label3D.new()
 		l.pixel_size = 0.0007
@@ -488,6 +501,69 @@ func _build_hud() -> void:
 			xr_label = l
 		else:
 			xr_prompt = l
+
+
+## The second screen: the front camera renders the shared world into a
+## small viewport of its own; the sonar is drawn from CockpitCore.
+func _build_screens(layer: CanvasLayer) -> void:
+	eye_view = SubViewport.new()
+	eye_view.size = CockpitScreens.CAMERA_PX
+	eye_view.world_3d = get_viewport().world_3d
+	eye_view.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	add_child(eye_view)
+	eye = Camera3D.new()
+	eye.fov = 70.0
+	eye.far = 60.0
+	# Not through its own beams' haze (RovBody.BEAM_LAYER).
+	eye.cull_mask = 0xFFFFF & ~(1 << (RovBody.BEAM_LAYER - 1))
+	eye_view.add_child(eye)
+	screens_view = SubViewport.new()
+	screens_view.transparent_bg = true
+	screens_view.size = SCREENS_PX
+	screens_view.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	add_child(screens_view)
+	screens = CockpitScreens.new()
+	screens.position = Vector2(8, 8)
+	screens_view.add_child(screens)
+	screens.picture.texture = eye_view.get_texture()
+	screens_screen = TextureRect.new()
+	screens_screen.texture = screens_view.get_texture()
+	screens_screen.anchor_left = 1.0
+	screens_screen.anchor_right = 1.0
+	screens_screen.offset_left = -SCREENS_PX.x - 8.0
+	screens_screen.offset_top = 8.0
+	layer.add_child(screens_screen)
+	# In the headset: a panel to the right of the gaze, turned to it.
+	var quad := QuadMesh.new()
+	quad.size = Vector2(0.34, 0.34 * SCREENS_PX.y / SCREENS_PX.x)
+	var mat := StandardMaterial3D.new()
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	mat.no_depth_test = true
+	mat.albedo_texture = screens_view.get_texture()
+	screens_xr = MeshInstance3D.new()
+	screens_xr.mesh = quad
+	screens_xr.material_override = mat
+	screens_xr.position = Vector3(0.42, -0.1, -0.7)
+	screens_xr.rotation_degrees = Vector3(0, -30, 0)
+	screens_xr.visible = false
+	camera.add_child(screens_xr)
+
+
+## The camera follows the skid; the sonar pings SONAR_HZ times a second
+## (enough for the eye, and cheap on the Quest's CPU).
+func _update_screens(dt: float) -> void:
+	eye.global_transform = body.global_transform \
+		* Transform3D(Basis(), RovBody.EYE)
+	sonar_left -= dt
+	if sonar_left <= 0.0:
+		sonar_left = 1.0 / SONAR_HZ
+		var things: Array = placed.duplicate()
+		for sc in schools:
+			var p := DiveCore.fish_at(sc, 0, t)
+			things.append({"x": p.x, "z": p.z, "depth": p.depth,
+				"size": 0.4})
+		screens.sonar.show_scan(CockpitCore.sonar_scan(rov, things), t)
 
 
 ## The spoken line above the console: the task, and the diver's rule
@@ -564,6 +640,10 @@ func _read_input() -> Dictionary:
 
 
 func _interact() -> void:
+	# The arm reaches whatever it finds: an empty reach is the answer
+	# "nothing here" too.
+	body.reach(t)
+	audio.on_arm()
 	var things: Array = placed.duplicate()
 	for s in schools:
 		var p := DiveCore.fish_at(s, 0, t)
@@ -665,6 +745,8 @@ func _on_webxr_ended() -> void:
 	xr_prompt.visible = false
 	console_xr.visible = false
 	console_screen.visible = true
+	screens_xr.visible = false
+	screens_screen.visible = true
 
 
 func _on_xr_started() -> void:
@@ -672,6 +754,8 @@ func _on_xr_started() -> void:
 	xr_prompt.visible = true
 	console_xr.visible = true
 	console_screen.visible = false
+	screens_xr.visible = true
+	screens_screen.visible = false
 	if vr_button:
 		vr_button.visible = false
 
@@ -699,7 +783,12 @@ func _process(dt: float) -> void:
 	rig.rotation.y = -(rov.yaw + PI / 2.0)
 	body.position = at
 	body.rotation.y = rig.rotation.y
-	rig.position = at
+	body.update(t)
+	body.set_lamp(rov.lamp and rov.battery > 0.0)
+	body.set_battery(rov.battery > 0.0)
+	# In first person the eye is the front camera on the skid, as on
+	# the real vehicle, so the arm is seen reaching out below it.
+	rig.position = at + rig.basis * RovBody.EYE
 	if third_person:
 		# Behind and above the body, turned with it; never above the
 		# surface, where the chase camera would look at the sky.
@@ -728,6 +817,7 @@ func _process(dt: float) -> void:
 	shown["lamp"] = rov.lamp
 	console.show_cards(CockpitCore.cards(shown, bag))
 	_fade_console(dt)
+	_update_screens(dt)
 	hud_label.text = text
 	hud_prompt.text = prompt
 	xr_label.text = text
@@ -744,9 +834,10 @@ func _fade_console(dt: float) -> void:
 		nearest = minf(nearest, here.distance_to(p))
 	console_alpha = CockpitCore.fade_step(console_alpha,
 		CockpitCore.fade_target(nearest), dt)
-	for node in [console_screen, hud_label, hud_prompt]:
+	for node in [console_screen, screens_screen, hud_label, hud_prompt]:
 		node.modulate.a = console_alpha
 	console_xr.transparency = 1.0 - console_alpha
+	screens_xr.transparency = 1.0 - console_alpha
 	xr_label.modulate.a = console_alpha
 	xr_prompt.modulate.a = console_alpha
 
@@ -764,6 +855,8 @@ func _shots() -> void:
 		third_person = chase
 		_place_view()
 	var depth: float = shot_plan[n]
+	# The manipulator is shown at full reach in both views.
+	body.reach(20.0 + n - 0.6)
 	rov.x = DiveCore.x_for_depth(depth + 6.0) - 8.0
 	rov.z = 0.0
 	rov.depth = depth

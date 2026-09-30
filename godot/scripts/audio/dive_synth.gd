@@ -355,6 +355,12 @@ func event_take() -> void:
 	events.append({"kind": "take", "start": sample})
 
 
+## The manipulator's servos: a small machine whine while the arm moves
+## out and back (CockpitCore.arm_phase), quiet while it holds.
+func event_servo() -> void:
+	events.append({"kind": "servo", "start": sample})
+
+
 # --- Generation -------------------------------------------------------------
 
 func _white() -> float:
@@ -558,6 +564,14 @@ func _event_sample(w: float) -> float:
 		var age: float = (sample - e.start) / MIX_RATE
 		if e.kind == "click" and age < 0.006:
 			v += w * 0.03 * (1.0 - age / 0.006)
+			keep = true
+		elif e.kind == "servo" and age < CockpitCore.ARM_SECONDS:
+			# Loud only while the phase changes: out, then back.
+			var moving := age < 0.48 or age > 0.72
+			if moving:
+				var f := 320.0 + 90.0 * sin(TAU * 3.0 * age)
+				v += (sin(TAU * f * age) + 0.3 * sin(TAU * 2.0 * f * age)) \
+					* 0.012
 			keep = true
 		elif e.kind == "take" and age < 0.12:
 			v += sin(TAU * 150.0 * age) * 0.05 * exp(-age / 0.03)
