@@ -116,4 +116,10 @@ func _initialize() -> void:
 	load("res://tests/test_audio.gd").new().run(self)
 	print("audio: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# The pilot's console and the Mangustik model (HLD_MANGUSTIK_COCKPIT).
+	before = checks
+	fails = failures
+	load("res://tests/test_cockpit.gd").new().run(self)
+	print("cockpit: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	quit(1 if failures else 0)

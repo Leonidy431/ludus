@@ -30,3 +30,13 @@ here so the lawyer sees every third-party component (TABOO 0.1).
 | godot-jolt | MIT | 7f22589470 | vendor/godot (reference; Jolt is built into Godot) |
 | godot_voxel | MIT | fa52579ec9 | vendor/godot (reference, not built yet) |
 | godot-4-hitbox-hurtbox | MIT code, CC-BY-NC-SA art | 2238883d86 | vendor/godot (reference only; art never used) |
+
+## Mangustik drawings and panel looks (operator's own repos, 2026-09-30)
+
+| Source | Revision | Path | Licence | Use |
+|---|---|---|---|---|
+| Leonidy431/Mangustik | e0dc577 | rov-platform/cad, drawings, electronics svg; dive-buddy chassis; welder-module pipe_parts_d110; diveguard frontend | none recorded; operator's own work (first-party) | ROV model `godot/models/rov/mangustik.glb`, cockpit look |
+| Leonidy431/Mangustik-BlueOs-Yacht-UAV | 48443c9 | project (19).zip: globals.css, tailwind.config.ts, vessel-dashboard, compass | none recorded; operator's own work (first-party) | cockpit look (colours, card layout, thresholds) |
+
+Details: `third_party/mangustik/SOURCES.md`. No colour/shape delta is
+claimed: these are not raw material through the runner.

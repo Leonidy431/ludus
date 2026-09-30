@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DiveGuard - Real-Time Propeller Detection Dashboard</title>
+  <meta name="description" content="Real-time underwater propeller detection for diver safety monitoring">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: #ffffff;
+      color: #111827;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body[data-theme="dark"] {
+      background-color: #1f2937;
+      color: #f3f4f6;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

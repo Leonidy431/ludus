@@ -44,6 +44,17 @@ var hud_label: Label
 var hud_prompt: Label
 var xr_label: Label3D
 var xr_prompt: Label3D
+# The pilot's console (CockpitPanel in a SubViewport): on the screen a
+# strip at the bottom, in the headset a panel under the gaze.
+const CONSOLE_PX := Vector2i(1256, 124)
+var console_view: SubViewport
+var console: CockpitPanel
+var console_screen: TextureRect
+var console_xr: MeshInstance3D
+var console_alpha := 1.0
+# Holy things on the lake floor (the bulla bears a cross): near them the
+# console goes out (TABOO 0.4 rule 2).
+var holy_points: Array = []
 var left_hand: XRController3D
 var right_hand: XRController3D
 var fish_meshes: Array = []
@@ -210,6 +221,8 @@ func _build_objects() -> void:
 		node.position = Vector3(p.x, -p.depth, p.z)
 		node.rotation.y = p.yaw
 		add_child(node)
+		if str(p.id).begins_with("bulla"):
+			holy_points.append(node.position)
 
 
 ## Stones and pebbles that dress the floor of the dive corridor.  They
@@ -382,15 +395,50 @@ func _build_hud() -> void:
 	hud_prompt.position = Vector2(24, 20)
 	hud_prompt.add_theme_font_size_override("font_size", 20)
 	layer.add_child(hud_prompt)
-	# The telemetry sits below the window on the water (operator,
-	# 2026-09-30: "телеметрию ниже, а выше окно").
+	# The pilot's console sits below the window on the water (operator,
+	# 2026-09-30: "телеметрию ниже, а выше окно"), drawn once into its
+	# own viewport so the screen and the headset show the same panel.
+	console_view = SubViewport.new()
+	console_view.transparent_bg = true
+	console_view.size = CONSOLE_PX
+	console_view.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	add_child(console_view)
+	console = CockpitPanel.new()
+	console.position = Vector2(8, 8)
+	console_view.add_child(console)
+	console_screen = TextureRect.new()
+	console_screen.texture = console_view.get_texture()
+	console_screen.anchor_left = 0.5
+	console_screen.anchor_right = 0.5
+	console_screen.anchor_top = 1.0
+	console_screen.anchor_bottom = 1.0
+	console_screen.offset_left = -CONSOLE_PX.x / 2.0
+	console_screen.offset_top = -CONSOLE_PX.y - 8.0
+	layer.add_child(console_screen)
+	# The task line rides just above the console.
 	hud_label = Label.new()
 	hud_label.anchor_top = 1.0
 	hud_label.anchor_bottom = 1.0
-	hud_label.offset_top = -150
+	hud_label.offset_top = -CONSOLE_PX.y - 40.0
 	hud_label.offset_left = 24
 	hud_label.add_theme_font_size_override("font_size", 18)
 	layer.add_child(hud_label)
+	# In the headset the same console is a panel under the gaze, tilted
+	# towards the eyes like a pult.
+	var quad := QuadMesh.new()
+	quad.size = Vector2(0.62, 0.62 * CONSOLE_PX.y / CONSOLE_PX.x)
+	var mat := StandardMaterial3D.new()
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	mat.no_depth_test = true
+	mat.albedo_texture = console_view.get_texture()
+	console_xr = MeshInstance3D.new()
+	console_xr.mesh = quad
+	console_xr.material_override = mat
+	console_xr.position = Vector3(0, -0.34, -0.72)
+	console_xr.rotation_degrees = Vector3(-25, 0, 0)
+	console_xr.visible = false
+	camera.add_child(console_xr)
 	for which in ["telemetry", "prompt"]:
 		var l := Label3D.new()
 		l.pixel_size = 0.0007
@@ -398,7 +446,7 @@ func _build_hud() -> void:
 		l.no_depth_test = true
 		l.fixed_size = false
 		l.modulate = Color(0.85, 0.95, 1.0)
-		l.position = Vector3(0, -0.3 if which == "telemetry" else 0.12,
+		l.position = Vector3(0, -0.19 if which == "telemetry" else 0.12,
 			-0.8)
 		l.visible = false
 		camera.add_child(l)
@@ -408,20 +456,14 @@ func _build_hud() -> void:
 			xr_prompt = l
 
 
-func _telemetry_text(tel: Dictionary) -> String:
-	var lines := [
-		"Глубина %.1f м · дно %.1f м · %.1f °C · %.2f бар" % [tel.depth,
-			tel.floor, tel.temperature, tel.pressure_bar],
-		"Курс %03d° · звук %d м/с · эхо %.3f с · заряд %d %%" % [
-			roundi(tel.heading), roundi(tel.sound_speed), tel.echo_delay,
-			roundi(tel.battery * 100.0)],
-	]
+## The spoken line above the console: the task, and the diver's rule
+## in words when the ascent is too fast (the card turns red as well).
+func _console_line(tel: Dictionary) -> String:
+	var line := _task_line()
 	if tel.ascent_too_fast:
-		lines.append("Всплытие %.0f м/мин — быстрее 10 м/мин. Сбавь ход."
-			% tel.ascent_m_per_min)
-	lines.append("Сумка %d · отпущено %d · для скриптория %d" % [
-		bag.kept.size(), bag.released.size(), bag.handed_over.size()])
-	return "\n".join(lines)
+		line = "Всплытие %.0f м/мин — быстрее 10 м/мин. Сбавь ход.\n" \
+			% tel.ascent_m_per_min + line
+	return line
 
 
 # --- Controls ---------------------------------------------------------------
@@ -581,11 +623,15 @@ func _on_webxr_ended() -> void:
 	xr_active = false
 	xr_label.visible = false
 	xr_prompt.visible = false
+	console_xr.visible = false
+	console_screen.visible = true
 
 
 func _on_xr_started() -> void:
 	xr_label.visible = true
 	xr_prompt.visible = true
+	console_xr.visible = true
+	console_screen.visible = false
 	if vr_button:
 		vr_button.visible = false
 
@@ -626,11 +672,32 @@ func _process(dt: float) -> void:
 	($Snow as CPUParticles3D).position = rig.position
 	message_left = maxf(0.0, message_left - dt)
 	var prompt := message if message_left > 0.0 else _hint()
-	var text := _telemetry_text(tel) + "\n" + _task_line()
+	var text := _console_line(tel)
+	var shown := tel.duplicate()
+	shown["lamp"] = rov.lamp
+	console.show_cards(CockpitCore.cards(shown, bag))
+	_fade_console(dt)
 	hud_label.text = text
 	hud_prompt.text = prompt
 	xr_label.text = text
 	xr_prompt.text = prompt
+
+
+## Near a holy thing the console, the task line and the hints go out
+## over CockpitCore.FADE_SECONDS; the ROV itself still answers the
+## sticks.
+func _fade_console(dt: float) -> void:
+	var here := Vector3(rov.x, -rov.depth, rov.z)
+	var nearest := INF
+	for p in holy_points:
+		nearest = minf(nearest, here.distance_to(p))
+	console_alpha = CockpitCore.fade_step(console_alpha,
+		CockpitCore.fade_target(nearest), dt)
+	for node in [console_screen, hud_label, hud_prompt]:
+		node.modulate.a = console_alpha
+	console_xr.transparency = 1.0 - console_alpha
+	xr_label.modulate.a = console_alpha
+	xr_prompt.modulate.a = console_alpha
 
 
 ## Place the ROV at each planned depth over the slope, facing away from

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="297.0mm" height="210.0mm" viewBox="0 0 297.0 210.0">
+<defs>
+<pattern id="hatch" patternUnits="userSpaceOnUse" width="2.2" height="2.2" patternTransform="rotate(45)">
+<line x1="0" y1="0" x2="0" y2="2.2" stroke="#333" stroke-width="0.25"/>
+</pattern>
+</defs>
+<style>
+  .outline{stroke:#111;stroke-width:0.35;fill:none}
+  .hatchrect{stroke:#111;stroke-width:0.35}
+  .thin{stroke:#111;stroke-width:0.2;fill:none}
+  .dim{stroke:#111;stroke-width:0.15;fill:none}
+  .ext{stroke:#555;stroke-width:0.12;fill:none}
+  .center{stroke:#933;stroke-width:0.15;stroke-dasharray:6,1.5,1,1.5;fill:none}
+  .fillblk{fill:#111;stroke:none}
+  .txt{fill:#111}
+  .hdr{fill:#111}
+  .note{fill:#333;font-style:italic}
+  .border{stroke:#111;stroke-width:0.5;fill:none}
+</style>
+<rect x="0" y="0" width="297.0" height="210.0" fill="#fdfdf7"/>
+<text x="20.00" y="50.00" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="hdr">ФЛАНЦЕВОЕ СОЕДИНЕНИЕ d110 (Стратегия 2):</text>
+<text x="20.00" y="53.50" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">  • OD фланца: 150 мм</text>
+<text x="20.00" y="57.00" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">  • Толщина: 12 мм</text>
+<text x="20.00" y="60.50" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">  • Глубина гнезда: 55 мм (электросварное, d110)</text>
+<text x="20.00" y="64.00" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">  • Болтовой паттерн: 4× M8 на PCD 120 мм</text>
+<text x="20.00" y="67.50" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">  • Седло O-ring: 15 мм диаметр, 4 мм глубина</text>
+<text x="20.00" y="71.00" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">  • Уплотнение: эластомер (FKM/Viton)</text>
+<text x="20.00" y="74.50" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">  • Рейтинг: PN16 (160 бар) при надлежащем затяге</text>
+<text x="20.00" y="78.00" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="hdr">ПРИМЕЧАНИЕ: быстрое разъединение, модульное исполнение</text>
+<rect x="167.00" y="165.00" width="120.00" height="35.00" class="border" fill="none"/>
+<line x1="167.00" y1="172.00" x2="287.00" y2="172.00" class="thin"/>
+<line x1="167.00" y1="179.00" x2="287.00" y2="179.00" class="thin"/>
+<line x1="167.00" y1="186.00" x2="287.00" y2="186.00" class="thin"/>
+<line x1="167.00" y1="193.00" x2="287.00" y2="193.00" class="thin"/>
+<line x1="241.40" y1="165.00" x2="241.40" y2="200.00" class="thin"/>
+<text x="169.00" y="170.70" font-size="3.0" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="bold" class="txt">Обозн.: MNG-FLANGED-CONN</text>
+<text x="169.00" y="177.70" font-size="3.0" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="bold" class="txt">Фланцевый разьём d110</text>
+<text x="169.00" y="184.70" font-size="2.8" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Материал: PE100, быстр.-разьём PN16</text>
+<text x="169.00" y="191.70" font-size="2.8" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Расчётная масса: 0.00 кг</text>
+<text x="169.00" y="198.70" font-size="2.1" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">Болтовой разъём 4×M8, FKM O-ring</text>
+<text x="243.40" y="170.70" font-size="2.8" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Масштаб эскиз</text>
+<text x="243.40" y="177.70" font-size="2.8" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Лист 1 Листов 1</text>
+<text x="243.40" y="184.70" font-size="2.6" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Мангустик / welder-module</text>
+<text x="243.40" y="191.70" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">УПРОЩЁННЫЙ ШТАМП</text>
+<text x="243.40" y="198.70" font-size="2.2" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">(не для юр. подачи)</text>
+</svg>

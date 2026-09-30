@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --border: #e5e7eb;
+  --accent: #3b82f6;
+
+  --threat-safe: #10b981;
+  --threat-warning: #f59e0b;
+  --threat-critical: #ef4444;
+
+  --chart-primary: #3b82f6;
+  --chart-success: #10b981;
+  --chart-warning: #f59e0b;
+  --chart-danger: #ef4444;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #1f2937;
+    --bg-secondary: #111827;
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --border: #374151;
+    --accent: #60a5fa;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg-primary: #1f2937;
+  --bg-secondary: #111827;
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --border: #374151;
+  --accent: #60a5fa;
+}
+
+:root[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --border: #e5e7eb;
+  --accent: #3b82f6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.gauge-needle {
+  transform-origin: bottom center;
+  transition: transform 0.3s ease-out;
+}
+
+.spectrogram-container {
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.detection-timeline {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.alert-toast {
+  animation: slideIn 0.3s ease-out;
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 14px;
+  }
+
+  .grid {
+    gap: 8px;
+  }
+}
