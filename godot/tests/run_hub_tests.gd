@@ -101,6 +101,12 @@ func _initialize() -> void:
 	load("res://tests/test_witness.gd").new().run(self)
 	print("witness: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# The ison and the bell on the path (HLD_WITNESS_SOUND_2026-09-30).
+	before = checks
+	fails = failures
+	load("res://tests/test_witness_sound.gd").new().run(self)
+	print("witness sound: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	# The thresholds of the gates (HLD_TETHER_TRIALS_PASSIONS T2).
 	before = checks
 	fails = failures
