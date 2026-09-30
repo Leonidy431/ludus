@@ -102,6 +102,13 @@ jobs:
             cmp "$f" "godot/models/scene/$(basename "$f")"
           done
 
+      # Budgets of the headset build on the source side: triangles per
+      # model (.glb and .gltf), the largest file and every exported file
+      # against scripts/godot/apk-budgets.json, with floors so a gate
+      # that finds nothing fails (docs/APK_REQUIREMENTS.md).
+      - name: Budgets of the headset build (source)
+        run: python3 scripts/godot/check_budgets.py --tree
+
       - name: Import and test
         working-directory: godot
         run: |
@@ -128,6 +135,26 @@ jobs:
             -- --shots="$PWD/../build/shots"
           ls ../build/shots
 
+      # Scene budgets of the headset build, rendered under Xvfb: draw
+      # calls over the whole frame (main view and every SubViewport),
+      # triangles, CPU heap, textures and SubViewports against the
+      # "scene" section of scripts/godot/apk-budgets.json.  The known
+      # breaches are exceptions there, each with its blocker, so a new
+      # regression turns the job red (TABOO 0.011 point 4).  Script time
+      # is not checked here: on a shared runner it does not reproduce,
+      # and the revisor measures it headless (docs/APK_REQUIREMENTS.md).
+      - name: Budgets of the headset scenes (rendered)
+        working-directory: godot
+        run: |
+          rc=0
+          for s in hub dive witness; do
+            timeout 600 xvfb-run -a -s "-screen 0 1280x720x24" \
+              "$GODOT" --path . --rendering-driver opengl3 \
+              -s res://tools/measure_budgets.gd -- --scene=$s --check \
+              || rc=1
+          done
+          exit $rc
+
       - name: Export Web (WebXR)
         working-directory: godot
         run: |
@@ -135,6 +162,14 @@ jobs:
           "$GODOT" --headless --path . --export-release "Web" \
             ../build/godot/web/index.html
           ls -la ../build/godot/web
+
+      # The imported content as it ships, at the test stage: the Web
+      # pack uses the same filters and imports as the Android export
+      # (byte for byte the same pack in docs/APK_REQUIREMENTS.md), so
+      # content outside godot/art, models and data, and texture growth
+      # from import, are caught before the APK is built.
+      - name: Budgets of the headset build (imported pack)
+        run: python3 scripts/godot/check_budgets.py --pck build/godot/web/index.pck
 
       # Files the game reads with FileAccess are not resources, so the
       # export takes them only through include_filter; one missing path
@@ -300,6 +335,15 @@ jobs:
           name: ludus-dive-quest-apk
           path: build/godot/ludus-dive-quest.apk
           retention-days: 30
+
+      # The built APK against its budgets: size, native libraries and
+      # their ABI, dex, content.  After the artifact upload, so an APK
+      # over budget can still be inspected; before the release, so it
+      # does not reach headset-latest (docs/APK_REQUIREMENTS.md).
+      - name: Budgets of the headset build (APK)
+        run: |
+          python3 scripts/godot/check_budgets.py \
+            --apk build/godot/ludus-dive-quest.apk
 
       # From main the APK goes to the release "headset-latest", one link
       # for the operator, with its SHA-256 (TABOO 0.01 point 4).

@@ -1655,6 +1655,63 @@
    "props_register_growth_bytes": 73668,
    "accepted_objects": 0,
    "code_candidates": 234
+  },
+  {
+   "time": "2026-09-30T13:51:18.633927+00:00",
+   "deficits": [
+    {
+     "id": "DEF-031",
+     "skipped": "not-raw-material"
+    },
+    {
+     "id": "DEF-035",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 171
+     },
+     "added_keywords": [
+      "unit",
+      "actions",
+      "overviewscreen",
+      "presenter",
+      "devconsole",
+      "autoplay",
+      "bottombar",
+      "citypresenter",
+      "cityscreen",
+      "cityscreentiletable",
+      "consoletilecommands",
+      "consoleunitcommands"
+     ],
+     "keywords_total": 32
+    },
+    {
+     "id": "DEF-036",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 179
+     },
+     "added_keywords": [
+      "atmos",
+      "xaml",
+      "entitysystems",
+      "objectstab",
+      "overlays",
+      "administration",
+      "tabs",
+      "anomaly",
+      "cartridgeloader",
+      "cartridges",
+      "clear",
+      "effects"
+     ],
+     "keywords_total": 26
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 50
   }
  ],
  "keywords": {
