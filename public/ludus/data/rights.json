@@ -14,7 +14,7 @@
    "name": "three.js 0.169 (Meta 3D proxies, scripts/meta3d)",
    "licence": "MIT",
    "licence_file": "scripts/meta3d/node_modules/three/LICENSE",
-   "licence_file_present": true
+   "licence_file_present": false
   },
   {
    "name": "Needle Engine 5.1.12 (VR scene)",
@@ -245,6 +245,58 @@
    "colour_change": null,
    "min_shape_change": 0.3523,
    "variants": 12
+  },
+  {
+   "object": "obj_bench_41042cf8fd",
+   "slot": "LOC-court-yard",
+   "passion": null,
+   "repo": "https://github.com/space-wizards/space-station-14",
+   "commit": "d4d4696248",
+   "path": "Resources/Textures/Structures/Furniture/chairs.rsi/wooden-bench.png",
+   "licence": "CC-BY-SA-3.0",
+   "colour_change": 0.6083,
+   "min_shape_change": 0.3521,
+   "variants": 12,
+   "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
+  },
+  {
+   "object": "obj_tools_9b09b1f302",
+   "slot": "LOC-forge",
+   "passion": null,
+   "repo": "https://github.com/widelands/widelands",
+   "commit": "6c21c892e8",
+   "path": "data/tribes/wares/hammer/menu.png",
+   "licence": "GPL-2.0-or-later",
+   "colour_change": 0.3756,
+   "min_shape_change": 0.4035,
+   "variants": 12,
+   "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
+  },
+  {
+   "object": "obj_bridge_log_40b14237a3",
+   "slot": "LOC-mountain-bridge",
+   "passion": null,
+   "repo": "https://github.com/widelands/widelands",
+   "commit": "6c21c892e8",
+   "path": "data/tribes/wares/log/idle_4.png",
+   "licence": "GPL-2.0-or-later",
+   "colour_change": 0.3625,
+   "min_shape_change": 0.3707,
+   "variants": 12,
+   "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
+  },
+  {
+   "object": "obj_hourglass_e49ab22431",
+   "slot": "LOC-rock-island",
+   "passion": null,
+   "repo": "https://github.com/Azgaar/Fantasy-Map-Generator",
+   "commit": "77192941fd",
+   "path": "public/charges/hourglass.svg",
+   "licence": "CC-BY-SA-3.0",
+   "colour_change": 0.9527,
+   "min_shape_change": 0.3524,
+   "variants": 12,
+   "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
   }
  ]
 }
