@@ -31,6 +31,9 @@ var t: Object
 ## the decision (the lamp always on, no band).
 var failures := {"lamp": {}, "rim": {}, "before": {}}
 var report: Array = []
+## The colours of every thing that is not holy, for the sweep off the
+## reading point.
+var swept: Array = []
 
 
 func run(tree: Object) -> void:
@@ -179,6 +182,8 @@ func _mean_colour(path: String) -> Array:
 ## One thing in the five biomes under both lights, and as it was before
 ## the decision (DiveCore alone: the lamp always on, no band).
 func _measure(kind: String, id: String, rgb: Array, holy: bool) -> void:
+	if not holy:
+		swept.append({"key": kind + ":" + id, "rgb": rgb})
 	for b in DiveCore.BIOMES:
 		var key := "%s:%s:%s" % [kind, id, b]
 		var old := DiveCore.biome_contrast_rgb(rgb, b)
@@ -239,15 +244,32 @@ func _readability() -> void:
 	var lake: Array = t._load_json("res://data/lake-objects-99.json").objects
 	var holy := []
 	for o in lake:
-		if RimLight.is_holy(o):
+		# Holy by the data itself (flags from scripts/lake/lake_objects.py),
+		# read here without RimLight, so the test does not grade is_holy
+		# by is_holy.
+		var f: Dictionary = o.get("flags", {})
+		var data_holy := bool(f.get("holy", false)) \
+			or bool(f.get("noInteract", false))
+		t._check(RimLight.is_holy(o) == data_holy,
+			"%s: is_holy follows its flags" % o.id)
+		if data_holy:
 			holy.append(o.id)
-		_measure("lake", o.id, DiveCore.hex_rgb(o.colour), RimLight.is_holy(o))
+		_measure("lake", o.id, DiveCore.hex_rgb(o.colour), data_holy)
 	var atlas: Dictionary = AtlasCore.load_data()
 	for tr in AtlasTraces.place(atlas, "spare"):
-		if RimLight.is_holy(tr):
+		var data_holy := bool(tr.get("holy", false)) \
+			or bool(tr.get("noInteract", false))
+		t._check(RimLight.is_holy(tr) == data_holy,
+			"%s: is_holy follows its data" % tr.id)
+		if data_holy:
 			holy.append(tr.id)
-		_measure("atlas", tr.id, DiveCore.hex_rgb(tr.colour),
-			RimLight.is_holy(tr))
+		_measure("atlas", tr.id, DiveCore.hex_rgb(tr.colour), data_holy)
+	# A holy flag anywhere the data may put it counts.
+	for thing in [{"holy": true}, {"noInteract": true},
+			{"flags": {"holy": true}}, {"flags": {"noInteract": true}}]:
+		t._check(RimLight.is_holy(thing), "is_holy reads %s" % thing)
+	t._check(not RimLight.is_holy({"item": "bulla", "flags": {}}),
+		"is_holy reads the data, not a list of names")
 	# The holy on the dive line: the bulla with its cross and the
 	# khachkar, and nothing else.
 	t._check(holy == ["bulla.shallows.0", "khachkar"],
@@ -307,6 +329,65 @@ func _readability() -> void:
 		% [READABLE, failures.rim.size(), pairs, _per_biome(failures.rim)])
 	report.append("worst of any colour: lamp %.3f, rim %.3f" % [worst.lamp,
 		worst.rim])
+	_sweep()
+
+
+## Off the reading point: nearer and farther along the lamp's axis, at
+## the edge of its cone and outside it.  The rim light takes what the
+## beam leaves, so switching the lamp on does not make a thing harder to
+## read than with the lamp off (where the lamp-off reading is at least
+## READABLE, the lamp-on one is too; where it is below, the lamp-on one
+## is not lower).  The exceptions are measured and listed in the known
+## file ("sweep_worse"), and must match exactly.  Up to SWEEP_READ_M
+## every thing reads under either light, but for those; beyond it the
+## fog takes things under either light, and the lamp's share there, on a
+## body it lifts towards the water, may read lower than the rim light
+## alone (reported, not asserted: that is the water, TABOO 0.03 p. 6).
+const SWEEP_M := [1.5, 2.0, 3.0, 4.0, 5.0, 6.0, 8.0, 10.0, 15.0]
+const SWEEP_DEG := [0.0, 16.0, 31.0, 40.0]
+const SWEEP_READ_M := 8.0
+
+
+func _sweep() -> void:
+	var worse := {}
+	var unread := {"lamp": 0, "rim": 0}
+	var far := {}
+	var n := 0
+	for th in swept:
+		for b in DiveCore.BIOMES:
+			for d in SWEEP_M:
+				for a in SWEEP_DEG:
+					var on := RimLight.contrast(th.rgb, b, true, false, d, a)
+					var off := RimLight.contrast(th.rgb, b, false, false, d, a)
+					n += 1
+					var lower := on < minf(off, READABLE) - 1e-9
+					if d <= SWEEP_READ_M:
+						if lower:
+							worse["%s:%s:%.1f:%.0f" % [th.key, b, d, a]] = on
+						unread.lamp += int(on < READABLE)
+						unread.rim += int(off < READABLE)
+					else:
+						var k := "%.0f m" % d
+						if not far.has(k):
+							far[k] = [0, 0, 0]
+						far[k][0] += int(on < READABLE)
+						far[k][1] += int(off < READABLE)
+						far[k][2] += int(lower)
+	var listed: Array = t._load_json(KNOWN).sweep_worse
+	var got := worse.keys()
+	got.sort()
+	t._check(got == listed, "lamp on worse than off, as listed: %s"
+		% [got])
+	var lowest := INF
+	for k in worse:
+		lowest = minf(lowest, worse[k])
+	t._check(unread.rim == 0 and unread.lamp == worse.size(),
+		"up to %.0f m every thing reads (lamp on %d, off %d below %.1f)"
+		% [SWEEP_READ_M, unread.lamp, unread.rim, READABLE])
+	report.append("sweep 1.5-15 m, 0-40 deg off the axis, %d points: up to "
+		% n + "%.0f m below %.1f lamp on %d (lowest %.3f), lamp off %d; "
+		% [SWEEP_READ_M, READABLE, unread.lamp, lowest, unread.rim]
+		+ "beyond (on / off / on lower) %s" % far)
 
 
 ## The lamp and the two lights (RimLight): the numbers the readability
@@ -354,6 +435,7 @@ func _lights() -> void:
 	t._check(RimLight.K >= k_min and RimLight.K * at_3p >= k_min,
 		"K %.2f: needs %.3f on the axis, %.3f at the 3p point" % [
 		RimLight.K, k_min, k_min / at_3p])
+	var k_3p := k_min / at_3p
 	# The beam falls with the lamp's own light and is zero where the
 	# light is: outside the cone and past the range.
 	t._check(RimLight.beam(DiveCore.VIEW_M, RimLight.LAMP_ANGLE_DEG + 1.0)
@@ -363,25 +445,46 @@ func _lights() -> void:
 		and RimLight.beam(0.5, 0.0) == RimLight.BEAM_CAP,
 		"the highlight falls with distance and is capped at the lens")
 	# Colours: the lamp keeps its instrument white; the rim light is the
-	# water's cool tone and never gold (TABOO 0.38).
+	# water's own hue, pale, never gold and not the instruments' cyan
+	# (TABOO 0.38 p. 1): at every depth from the surface to the floor
+	# its hue is the water's and its saturation at most 0.35.
 	t._check(RimLight.LAMP_COLOUR == Color(0.95, 0.97, 1.0),
 		"lamp stays 6500 K instrument light")
-	var rt := RimLight.RIM_TONE
-	t._check(rt.b > rt.g and rt.g > rt.r and rt.r < 0.8 * rt.b,
-		"rim light is cool, not gold: %s" % rt)
+	var hue_gap := 0.0
+	var sat := 0.0
+	for d in range(0, 200, 5):
+		var rt := RimLight.rim_tone(float(d))
+		var w: Array = DiveCore.water_colour(float(d))
+		var wc := Color(w[0], w[1], w[2])
+		var gap := absf(rt.h - wc.h) * 360.0
+		hue_gap = maxf(hue_gap, minf(gap, 360.0 - gap))
+		sat = maxf(sat, rt.s)
+		t._check(rt.b > rt.r, "%d m: the rim light is not gold" % d)
+	t._check(hue_gap <= 10.0 and sat <= 0.35,
+		"the rim light is the water's pale hue: hue within %.2f deg, "
+		% hue_gap + "saturation up to %.3f" % sat)
 	for b in DiveCore.BIOMES:
 		var ref: Dictionary = DiveCore.BIOME_REF[b]
-		var l := RimLight.lights(1.0, false, RimLight.LAMP_ENERGY,
-			DiveCore.luminance(RimLight.background_at(ref.depth,
-			ref.clearance, 0.0)), 0.0)
-		var c := RimLight.encode(l.rim)
-		t._check(c.b > c.r and l.lamp == Vector3.ZERO,
-			"%s: the rim light is cool and alone without the lamp" % b)
-		var on := RimLight.lights(0.0, true, RimLight.LAMP_ENERGY, 0.0,
-			DiveCore.luminance(RimLight.background_at(ref.depth,
-			ref.clearance, 1.0)))
-		t._check(on.rim == Vector3.ZERO and on.lamp != Vector3.ZERO,
-			"%s: with the lamp settled only its highlight" % b)
+		var y_off := DiveCore.luminance(RimLight.background_at(ref.depth,
+			ref.clearance, 0.0))
+		var y_on := DiveCore.luminance(RimLight.background_at(ref.depth,
+			ref.clearance, 1.0))
+		var l := RimLight.lights(1.0, false, RimLight.LAMP_ENERGY, y_off,
+			y_on, ref.depth)
+		t._check(l.lamp == Vector3.ZERO and l.presence == 0.0
+			and RimLight.rim_share(RimLight.beam(DiveCore.VIEW_M, 0.0),
+			l.presence) == 1.0,
+			"%s: without the lamp the rim light alone, everywhere" % b)
+		var on := RimLight.lights(0.0, true, RimLight.LAMP_ENERGY, y_off,
+			y_on, ref.depth)
+		t._check(on.lamp != Vector3.ZERO and RimLight.rim_share(
+			RimLight.beam(DiveCore.VIEW_M, 0.0), on.presence) == 0.0
+			and RimLight.rim_share(RimLight.beam(DiveCore.VIEW_M,
+			RimLight.LAMP_ANGLE_DEG + 1.0), on.presence) == 1.0
+			and absf(RimLight.rim_share(RimLight.beam(6.0, 0.0),
+			on.presence) - (1.0 - RimLight.beam(6.0, 0.0))) < 1e-9,
+			"%s: with the lamp, its highlight where it reaches, the rim " % b
+			+ "light for the rest")
 	# The fade: FADE_S in, FADE_S out, a straight ramp, the same each
 	# time (steps of an eighth of it, exact in binary).
 	var dt := RimLight.FADE_S / 8.0
@@ -413,7 +516,15 @@ func _lights() -> void:
 			(sprite.material_override as ShaderMaterial).shader.code]:
 		t._check(code.count("EMISSION") == 1 and not "TIME" in code
 			and not "random" in code, "one band term, steady")
+		# Both lights in the one term, the rim light by its share.
+		t._check("EMISSION = band_light * " in code and "dive_rim.rgb * "
+			+ "(1.0 - min(1.0, b * dive_rim.a))\n\t\t+ dive_lamp.rgb * b" in code,
+			"the band carries the highlight and the rim light's share")
+	t._check("instance uniform vec3 rim_c" in sm.shader.code
+		and "smoothstep(1.0 - w, 1.0, r / h)" in sm.shader.code,
+		"the mesh band is the outline of the thing's box")
 	sprite.free()
+	_eased()
 	# The khachkar keeps its plain stone; the diary gets the band on
 	# every surface.
 	var khachkar: Node = (load("res://models/atlas/atlas-khachkar.glb")
@@ -430,11 +541,111 @@ func _lights() -> void:
 	var n := rim.dress(diary, RimLight.is_holy(by_id.diary))
 	t._check(n > 0 and _shader_surfaces(diary) == n,
 		"the diary is dressed on all %d surfaces" % n)
+	# Every dressed mesh holds the whole diary's box: its centre, in
+	# the diary's space, is the same from every part.
+	var box := RimLight.thing_box(diary)
+	var ok := box.size.x > 0.0 and box.size.y > 0.0 and box.size.z > 0.0
+	for g in diary.find_children("*", "MeshInstance3D", true, false):
+		var c: Vector3 = g.get_instance_shader_parameter("rim_c")
+		var at := RimLight._to_ancestor(g, diary) * c
+		ok = ok and at.distance_to(box.get_center()) < 1e-4
+	t._check(ok, "the diary's parts share its box %s" % box)
 	khachkar.free()
 	diary.free()
 	report.append("lamp 3 m on its axis: %.3f/%.3f/%.3f of the model's "
 		% lb + "unit; 3p reading point %.2f of the axis (was %.2f); K %.2f "
-		% [cone, old_cone, RimLight.K] + "(needs %.2f)" % k_min)
+		% [cone, old_cone, RimLight.K] + "(needs %.2f on the axis, %.2f at "
+		% [k_min, k_3p] + "the 3p point)")
+
+
+## The background the lights are sized to eases: hovering at the edge
+## of the sediments (clearance 2.5 m), a step of 0.1 m moves neither
+## light by more than 2 % per frame at 72 Hz, and the new background is
+## reached within BACKGROUND_EASE_S.
+func _eased() -> void:
+	var rim := RimLight.new()
+	var dt := 1.0 / 72.0
+	var worst := 0.0
+	var last := {}
+	for depth in [35.0, 60.0]:
+		rim.settle_background()
+		for k in 72 * 4:
+			var clearance := 2.55 if k < 72 else 2.45
+			var y := rim.track_background(depth, clearance, dt)
+			var l := RimLight.lights(0.0, true, RimLight.LAMP_ENERGY, y.off,
+				y.on, depth)
+			var now := {"rim": l.rim.length(), "lamp": l.lamp.length()}
+			if k > 0:
+				for key in now:
+					worst = maxf(worst, absf(now[key] - last[key])
+						/ last[key])
+			last = now
+		var want := DiveCore.luminance(RimLight.background_at(depth, 2.45,
+			1.0))
+		var got: float = rim.track_background(depth, 2.45, dt).on
+		t._check(absf(got - want) <= 1e-6 * want,
+			"%.0f m: the new background reached (%.5f of %.5f)" % [depth,
+			got, want])
+	t._check(worst <= 0.02, "a biome edge moves the lights %.2f %% per "
+		% (100.0 * worst) + "frame at most")
+	report.append("biome edge at 2.5 m: lights move at most %.2f %% per "
+		% (100.0 * worst) + "frame")
+
+
+## The real dive scene (run_tests.gd adds it to the tree and waits a
+## frame): no holy thing carries the band, every other lake object and
+## trace does, and the holy points of the scene are exactly the holy
+## things.
+func in_dive(scene: Node) -> void:
+	var holy_at := []
+	var dressed := 0
+	var bare := []
+	for id in scene.thing_nodes:
+		var node: Node3D = scene.thing_nodes[id]
+		var thing := {}
+		for p in scene.placed + scene.traces:
+			if p.id == id:
+				thing = p
+		var banded := _band_surfaces(node)
+		if RimLight.is_holy(thing):
+			holy_at.append(node.position)
+			t._check(banded == 0, "%s is holy and carries no band (%d)"
+				% [id, banded])
+		elif banded > 0:
+			dressed += 1
+		else:
+			bare.append(id)
+	t._check(holy_at.size() == 2, "two holy things in the scene: %d"
+		% holy_at.size())
+	var points: Array = scene.holy_points
+	var same := points.size() == holy_at.size()
+	for p in holy_at:
+		same = same and points.any(func(q): return q.distance_to(p) < 1e-3)
+	t._check(same, "the scene's holy points are the holy things: %s vs %s"
+		% [points, holy_at])
+	t._check(bare.is_empty(), "every other thing is dressed: %s" % [bare])
+	print("  biomes: dive scene: %d things dressed, %d holy bare" % [
+		dressed, holy_at.size()])
+
+
+## Surfaces under a node whose material carries the band.
+static func _band_surfaces(node: Node) -> int:
+	var n := 0
+	for g in [node] + node.find_children("*", "GeometryInstance3D", true,
+			false):
+		if not g is GeometryInstance3D:
+			continue
+		var mats := []
+		if g.material_override != null:
+			mats.append(g.material_override)
+		if g is MeshInstance3D and g.mesh != null:
+			for i in g.mesh.get_surface_count():
+				mats.append(g.get_active_material(i))
+		for m in mats:
+			if m is ShaderMaterial and m.shader != null \
+					and "dive_rim" in m.shader.code:
+				n += 1
+	return n
 
 
 ## Surfaces under a node that carry a ShaderMaterial.

@@ -123,6 +123,9 @@ var bubble_inst: MultiMeshInstance3D
 # highlight while it shines, the rim light without it; holy things get
 # neither.  Made before any material, as it registers the shader globals.
 var rim := RimLight.new()
+## The node of every lake object and trace built, by id: the test walks
+## them to see that no holy thing carries the band.
+var thing_nodes := {}
 # Proof frames show the settled light, not a fade caught half way.
 var rim_settled := false
 var rim_us := 0.0
@@ -328,9 +331,11 @@ func _build_objects() -> void:
 		node.position = Vector3(p.x, -p.depth, p.z)
 		node.rotation.y = p.yaw
 		add_child(node)
-		# The bulla bears a cross: no outline of light on it.
+		thing_nodes[p.id] = node
+		# The bulla bears a cross (holy in its data): no outline of light
+		# on it, and the console falls silent there.
 		rim.dress(node, RimLight.is_holy(p))
-		if str(p.id).begins_with("bulla"):
+		if RimLight.is_holy(p):
 			holy_points.append(node.position)
 
 
@@ -356,6 +361,7 @@ func _build_traces() -> void:
 		if p.kind == "trace" and ResourceLoader.exists(path):
 			node.add_child((load(path) as PackedScene).instantiate())
 			add_child(node)
+			thing_nodes[p.id] = node
 			# The khachkar is holy: it keeps its plain stone.
 			rim.dress(node, RimLight.is_holy(p))
 			continue
@@ -399,6 +405,7 @@ func _build_traces() -> void:
 						c.darkened(0.1 * (i % 3)))
 					k.rotation = Vector3(r.call(), r.call() * TAU, r.call())
 		add_child(node)
+		thing_nodes[p.id] = node
 		rim.dress(node, RimLight.is_holy(p))
 
 
@@ -824,11 +831,12 @@ func _biome_shots(k: int) -> void:
 
 
 ## Proof frames of the operator's decision on reading things (RimLight):
-## the lamp off in the night of the deep at the knight's shield (the
-## rim light), the same place with the lamp on (its highlight), the
-## khachkar with the lamp off (no light on the holy), the passage of the
-## chronicle and the diary in the sunlit shallows with the lamp off.  In
-## first person the lamp rides on the eye and looks where it looks.
+## the knight's shield in the night of the deep with the lamp off (the
+## rim light) and on (its highlight), in first and third person; the
+## khachkar with the lamp off and on and the bulla with the lamp off (no
+## light on the holy); the passage of the chronicle and the diary with
+## the lamp off and on.  In first person the lamp rides on the eye and
+## looks where it looks.
 const RIM_SHOTS := [
 	{"name": "night-off", "trace": "shield", "lamp": false, "back": 3.0,
 		"above": 3.0, "first": true},
@@ -836,9 +844,17 @@ const RIM_SHOTS := [
 		"above": 3.0, "first": true},
 	{"name": "night-off-3p", "trace": "shield", "lamp": false, "back": 4.0,
 		"above": 3.0, "first": false},
+	{"name": "night-on-3p", "trace": "shield", "lamp": true, "back": 4.0,
+		"above": 3.0, "first": false},
 	{"name": "khachkar-off", "trace": "khachkar", "lamp": false, "back": 2.6,
 		"above": 1.2, "first": false},
+	{"name": "khachkar-on", "trace": "khachkar", "lamp": true, "back": 2.6,
+		"above": 1.2, "first": false},
+	{"name": "bulla-off", "thing": "bulla.shallows.0", "lamp": false,
+		"back": 0.9, "above": 0.5, "first": true},
 	{"name": "passage-off", "trace": "passage", "lamp": false, "back": 7.0,
+		"above": 1.2, "first": false},
+	{"name": "passage-on", "trace": "passage", "lamp": true, "back": 7.0,
 		"above": 1.2, "first": false},
 	{"name": "diary-off", "trace": "diary", "lamp": false, "back": 3.5,
 		"above": 1.2, "first": false},
@@ -858,13 +874,14 @@ func _rim_shots(k: int) -> void:
 		third_person = not plan.first
 		_place_view()
 	var p := {}
-	for tr in traces:
-		if tr.id == plan.trace:
+	for tr in traces + placed:
+		if tr.id == plan.get("trace", plan.get("thing")):
 			p = tr
 	rov.yaw = 0.0
 	rov.x = p.x - plan.back
 	rov.z = p.z - (0.0 if plan.first else 1.2)
-	rov.depth = DiveCore.floor_depth(rov.x, rov.z) - plan.above
+	rov.depth = minf(DiveCore.floor_depth(rov.x, rov.z), p.depth) \
+		- plan.above
 	# In first person the eye (and the lamp on it) looks down at the
 	# thing; from behind, the chase camera does.
 	pitch = -atan2(plan.above, plan.back + RovBody.EYE.z) if plan.first \
@@ -1367,10 +1384,13 @@ func _process(dt: float) -> void:
 	# A fall dims the world until the safety stop is held.
 	lamp.light_energy = RimLight.LAMP_ENERGY * (0.3 if game.fallen else 1.0)
 	_update_water(tel)
-	# Things are read by the lamp's highlight while it shines and by the
-	# rim light without it (the operator's decision, RimLight).
+	# Things are read by the lamp's highlight where it shines and by the
+	# rim light where it does not (the operator's decision, RimLight).
+	# The proof frames jump from place to place: there the lights are
+	# settled at once instead of easing.
 	if rim_settled:
 		rim.weight = 0.0 if lamp.visible else 1.0
+		rim.settle_background()
 	var rim_t0 := Time.get_ticks_usec()
 	rim_lights = rim.update(lamp, lamp.visible, lamp.light_energy,
 		tel.depth, maxf(0.0, tel.floor - tel.depth), dt)
@@ -1500,7 +1520,7 @@ func _build_audio() -> void:
 func _hint() -> String:
 	var things: Array = placed + traces
 	var hit := DiveCore.nearest(rov, things, REACH_M)
-	if not hit.is_empty() and hit.thing.get("holy", false):
+	if not hit.is_empty() and RimLight.is_holy(hit.thing):
 		# No hint at a holy thing: the interface is gone there.
 		return ""
 	if hit.is_empty():

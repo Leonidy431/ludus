@@ -119,19 +119,30 @@ jobs:
           timeout 600 "$GODOT" --headless --path . \
             --script res://tests/run_hub_tests.gd
 
+      # The shaders are built at run time (the rim light assembles its
+      # own), so only a real render compiles them: every run is logged
+      # and a shader error turns the step red, not only a crash.  The
+      # rim probe then reads the band's pixels against its model.
       - name: Proof frames at 3-120 m
         working-directory: godot
         run: |
+          set -o pipefail
           sudo apt-get install -y -qq xvfb libgl1-mesa-dri >/dev/null
-          xvfb-run -a -s "-screen 0 1280x720x24" "$GODOT" --path . \
-            --rendering-driver opengl3 res://scenes/dive.tscn \
-            -- --shots="$PWD/../build/shots"
-          xvfb-run -a -s "-screen 0 1280x720x24" "$GODOT" --path . \
-            --rendering-driver opengl3 res://scenes/hub.tscn \
-            -- --shots="$PWD/../build/shots"
-          xvfb-run -a -s "-screen 0 1280x720x24" "$GODOT" --path . \
-            --rendering-driver opengl3 res://scenes/witness.tscn \
-            -- --shots="$PWD/../build/shots"
+          mkdir -p ../build/shots
+          for s in dive hub witness; do
+            xvfb-run -a -s "-screen 0 1280x720x24" "$GODOT" --path . \
+              --rendering-driver opengl3 "res://scenes/$s.tscn" \
+              -- --shots="$PWD/../build/shots" 2>&1 \
+              | tee "../build/shots/$s.log"
+          done
+          timeout 300 xvfb-run -a -s "-screen 0 1280x720x24" "$GODOT" \
+            --path . --rendering-driver opengl3 --resolution 640x360 \
+            -s res://tests/rim_probe.gd 2>&1 | tee ../build/shots/rim.log
+          if grep -E "SHADER ERROR|Shader compilation failed" \
+              ../build/shots/*.log; then
+            echo "a shader failed to compile" >&2
+            exit 1
+          fi
           ls ../build/shots
 
       - name: Export Web (WebXR)
