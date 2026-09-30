@@ -5,6 +5,7 @@
 | Что в вебе | Где | В APK | Состояние / почему |
 |---|---|---|---|
 | Погружение, телеметрия, физика воды | `public/ludus/dive/dive-core.js` | `godot/scripts/dive_core.gd` | ✅ сверено: 638 проверок |
+| Пять подводных биомов, пузырьковые столбы в ритме дыхания, термоклин видим и слышим | `dive-core.js` (`biomeLook`, `bubbleAt`, `layerEcho`, `thermoCrossing`), `ludus-water.js` | `dive_core.gd`, `dive.gd`, `audio/dive_synth.gd` | ✅ 1317 проверок (паритет с JS, каденция по модулю исихазма, Бойль, читаемость в 5 биомах, звук слоя); в вебе правила есть, показа столбов и биомов в 2D-сцене нет — отдельной задачей; на Quest 3 не проверено |
 | 99 объектов озера, 20 рыб | `public/ludus/data/lake-objects-99.json`, `issyk-kul-fish.json` | `godot/data`, `godot/models/lake` | ✅ данные сверяются `cmp` в CI |
 | Врата знания, вервица, безмолвие, поклон | `public/ludus/ludus-actions.js` | `godot/scripts/hub_core.gd` | ✅ 792 проверки |
 | Диалоги 24 наставников | `public/ludus/data/dialogue-trees.json` | хаб, скрипторий (4 наставника врат) | частично: в шлеме 4 из 24 NPC |

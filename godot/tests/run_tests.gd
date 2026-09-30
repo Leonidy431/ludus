@@ -129,6 +129,11 @@ func _initialize() -> void:
 		tfx.said])
 	_near(tr.yaw, tfx.yaw, "tether yaw")
 	print("dive_core: %d checks, %d failures" % [checks, failures])
+	# Biomes, bubbles and the thermocline heard (HLD_DIVE_BIOMES_BUBBLES).
+	var b0 := checks
+	var f0 := failures
+	load("res://tests/test_biomes.gd").new().run(self)
+	print("biomes: %d checks, %d failures" % [checks - b0, failures - f0])
 	# Sound of the dive (scripts/audio, HLD_FOLLOWUPS D5).
 	var before := checks
 	var fails := failures
