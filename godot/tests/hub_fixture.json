@@ -69,13 +69,15 @@
      ],
      "readyForGift": false
     }
-   ]
+   ],
+   "fastDays": 0
   },
   {
    "op": "knots",
    "a": 10,
    "b": null,
-   "ladder": null
+   "ladder": null,
+   "fastDays": 0
   },
   {
    "op": "check",
@@ -143,13 +145,15 @@
      ],
      "readyForGift": false
     }
-   ]
+   ],
+   "fastDays": 0
   },
   {
    "op": "meet",
    "a": "theodora",
    "b": null,
-   "ladder": null
+   "ladder": null,
+   "fastDays": 0
   },
   {
    "op": "check",
@@ -215,19 +219,22 @@
      ],
      "readyForGift": false
     }
-   ]
+   ],
+   "fastDays": 0
   },
   {
    "op": "knots",
    "a": 23,
    "b": null,
-   "ladder": null
+   "ladder": null,
+   "fastDays": 0
   },
   {
    "op": "meet",
    "a": "elder_sergius",
    "b": null,
-   "ladder": null
+   "ladder": null,
+   "fastDays": 0
   },
   {
    "op": "check",
@@ -288,13 +295,15 @@
      ],
      "readyForGift": false
     }
-   ]
+   ],
+   "fastDays": 0
   },
   {
    "op": "meet",
    "a": "abba_john",
    "b": null,
-   "ladder": null
+   "ladder": null,
+   "fastDays": 0
   },
   {
    "op": "check",
@@ -353,13 +362,15 @@
      ],
      "readyForGift": false
     }
-   ]
+   ],
+   "fastDays": 0
   },
   {
    "op": "still",
    "a": 10,
    "b": null,
-   "ladder": null
+   "ladder": null,
+   "fastDays": 0
   },
   {
    "op": "check",
@@ -416,13 +427,15 @@
      ],
      "readyForGift": false
     }
-   ]
+   ],
+   "fastDays": 0
   },
   {
    "op": "gift",
    "a": "contemplative",
    "b": 10,
-   "ladder": null
+   "ladder": null,
+   "fastDays": 0
   },
   {
    "op": "check",
@@ -479,25 +492,29 @@
      ],
      "readyForGift": false
     }
-   ]
+   ],
+   "fastDays": 0
   },
   {
    "op": "meet",
    "a": "sister_catherine",
    "b": null,
-   "ladder": null
+   "ladder": null,
+   "fastDays": 0
   },
   {
    "op": "still",
    "a": 20,
    "b": null,
-   "ladder": null
+   "ladder": null,
+   "fastDays": 0
   },
   {
    "op": "gift",
    "a": "mystical",
    "b": 12,
-   "ladder": null
+   "ladder": null,
+   "fastDays": 0
   },
   {
    "op": "check",
@@ -550,19 +567,22 @@
      ],
      "readyForGift": false
     }
-   ]
+   ],
+   "fastDays": 0
   },
   {
    "op": "still",
    "a": 30,
    "b": null,
-   "ladder": null
+   "ladder": null,
+   "fastDays": 0
   },
   {
    "op": "gift",
    "a": "apophatic",
    "b": 14,
-   "ladder": null
+   "ladder": null,
+   "fastDays": 0
   },
   {
    "op": "check",
@@ -613,7 +633,8 @@
      ],
      "readyForGift": true
     }
-   ]
+   ],
+   "fastDays": 0
   },
   {
    "op": "check",
@@ -669,7 +690,136 @@
      ],
      "readyForGift": false
     }
-   ]
+   ],
+   "fastDays": 0
+  },
+  {
+   "op": "fast",
+   "a": "bad-day",
+   "b": null,
+   "ladder": null,
+   "fastDays": 0
+  },
+  {
+   "op": "fast",
+   "a": "2026-09-30",
+   "b": null,
+   "ladder": null,
+   "fastDays": 1
+  },
+  {
+   "op": "fast",
+   "a": "2026-09-30",
+   "b": null,
+   "ladder": null,
+   "fastDays": 1
+  },
+  {
+   "op": "check",
+   "a": 8,
+   "b": null,
+   "ladder": [
+    {
+     "id": "foundational",
+     "open": true,
+     "missing": [],
+     "readyForGift": false
+    },
+    {
+     "id": "liturgical",
+     "open": true,
+     "missing": [],
+     "readyForGift": false
+    },
+    {
+     "id": "ascetic",
+     "open": true,
+     "missing": [],
+     "readyForGift": false
+    },
+    {
+     "id": "contemplative",
+     "open": false,
+     "missing": [
+      "form"
+     ],
+     "readyForGift": false
+    },
+    {
+     "id": "mystical",
+     "open": false,
+     "missing": [
+      "form"
+     ],
+     "readyForGift": false
+    },
+    {
+     "id": "apophatic",
+     "open": false,
+     "missing": [
+      "form"
+     ],
+     "readyForGift": false
+    }
+   ],
+   "fastDays": 1
+  },
+  {
+   "op": "fast",
+   "a": "2026-10-01",
+   "b": null,
+   "ladder": null,
+   "fastDays": 2
+  },
+  {
+   "op": "check",
+   "a": 8,
+   "b": null,
+   "ladder": [
+    {
+     "id": "foundational",
+     "open": true,
+     "missing": [],
+     "readyForGift": false
+    },
+    {
+     "id": "liturgical",
+     "open": true,
+     "missing": [],
+     "readyForGift": false
+    },
+    {
+     "id": "ascetic",
+     "open": true,
+     "missing": [],
+     "readyForGift": false
+    },
+    {
+     "id": "contemplative",
+     "open": false,
+     "missing": [
+      "form"
+     ],
+     "readyForGift": false
+    },
+    {
+     "id": "mystical",
+     "open": false,
+     "missing": [
+      "form"
+     ],
+     "readyForGift": false
+    },
+    {
+     "id": "apophatic",
+     "open": false,
+     "missing": [
+      "form"
+     ],
+     "readyForGift": false
+    }
+   ],
+   "fastDays": 2
   }
  ]
 }

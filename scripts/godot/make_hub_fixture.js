@@ -21,6 +21,8 @@ const plan = [
   ['gift', 'contemplative', 10], ['check', 10], ['meet', 'sister_catherine'],
   ['still', 20], ['gift', 'mystical', 12], ['check', 12], ['still', 30],
   ['gift', 'apophatic', 14], ['check', 14], ['check', 3],
+  ['fast', 'bad-day'], ['fast', '2026-09-30'], ['fast', '2026-09-30'],
+  ['check', 8], ['fast', '2026-10-01'], ['check', 8],
 ];
 plan.forEach(([op, a, b]) => {
   if (op === 'knots') {
@@ -31,6 +33,8 @@ plan.forEach(([op, a, b]) => {
     actions = A.recordMeeting(actions, a);
   } else if (op === 'still') {
     actions = A.addStillness(actions, a);
+  } else if (op === 'fast') {
+    actions = A.keepFast(actions, a);
   } else if (op === 'gift') {
     actions = A.acceptGift(actions, form(b), a);
   }
@@ -39,7 +43,7 @@ plan.forEach(([op, a, b]) => {
       missing: c.missing.map((m) => m.kind), readyForGift: c.readyForGift }))
     : null;
   steps.push({ op, a: a === undefined ? null : a,
-    b: b === undefined ? null : b, ladder });
+    b: b === undefined ? null : b, ladder, fastDays: actions.fastDays });
 });
 // The fast is a daily act; the headset has no calendar day yet, so it
 // is set directly for the ascetic gate.

@@ -56,7 +56,22 @@ static func new_form() -> Dictionary:
 
 static func new_actions() -> Dictionary:
 	return {"prayerCount": 0.0, "fastDays": 0.0, "meditationHours": 0.0,
-		"met": {}, "gifts": {}}
+		"met": {}, "gifts": {}, "lastFastDay": null}
+
+
+## Today's fast, kept once per calendar day (keepFast in
+## ludus-actions.js).  The day is the player's local date "YYYY-MM-DD";
+## anything else changes nothing, and a second fast on the same day
+## counts nothing more.
+static func keep_fast(actions: Dictionary, iso_day) -> Dictionary:
+	var n := actions.duplicate(true)
+	var re := RegEx.create_from_string("^\\d{4}-\\d{2}-\\d{2}$")
+	if typeof(iso_day) != TYPE_STRING or re.search(iso_day) == null:
+		return n
+	if n.get("lastFastDay") != iso_day:
+		n.fastDays = _num(n.fastDays) + 1.0
+		n.lastFastDay = iso_day
+	return n
 
 
 static func _num(v) -> float:

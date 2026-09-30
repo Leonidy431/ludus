@@ -11,9 +11,9 @@
 | Звук: исон, колокол по уставу, сонар | `ludus-sacred-synth.js`, `ludus-glas.js`, `ludus-liturgical-clock.js` | `godot/scripts/audio` | ✅ погружение; во дворе и на тропе — нет |
 | Кокпит, аппарат «Мангустик», трос | трос — `dive-core.js` (задача `tether`) | `godot/scripts/cockpit_*`, `rov_body.gd`, `dive_core.gd` | ✅ |
 | Семь сцен «игрок — свидетель» | `public/vr/models/scene/sacrament-*.glb` | `godot/scenes/witness.tscn`, вход — арка во дворе | ✅ 77 проверок; исон и колокол на тропе — позже, через `LudusTypikon` |
-| Испытания врат (выбор на пороге) | `public/ludus/data/gate-trials.json`, `ludus-missions.js` | `godot/scripts/trial_core.gd`, хаб у лестницы | ✅ 205 проверок; врата 3 (пост) в шлеме пока не открыть — нет практики поста |
+| Испытания врат (выбор на пороге) | `public/ludus/data/gate-trials.json`, `ludus-missions.js` | `godot/scripts/trial_core.gd`, хаб у лестницы | ✅ 205 проверок |
 | Восемь страстей, признак распознавания, падение и трезвение | `ludus-passion.js`, `data/passions.json`, `ludus-antagonist-factory.js` | `godot/scripts/passion_core.gd`, калитка на дорогу во дворе | ✅ логика 17 925 проверок, встреча 161 проверка, 132 спрайта |
-| Практика поста (врата 3) | `ludus-actions.js` (`doPractice` fast, по дням) | — | нет: без неё лестница в шлеме останавливается на вратах 3 |
+| Практика поста (врата 3) | `ludus-actions.js` (`keepFast`, по дням) | `HubCore.keep_fast`, стол трапезной во дворе | ✅ сверено с JS (фикстура хаба: неверный день, повтор в тот же день, следующий день) |
 | Миссии и хребет кампании | `ludus-missions.js`, `data/campaign-spine.json` | — | нет |
 | Журнал действий | `ludus-journal.js` | — | нет |
 | Листок подготовки к исповеди | `ludus-confession.js` | — | по ТАБУ №0.26 п. 9: в шлеме поля для записи нет, только вопросы; перенос вопросов — через хор ТАБУ №0.37 |

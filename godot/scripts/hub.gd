@@ -173,6 +173,7 @@ func _build_world() -> void:
 	_build_practice(oak)
 	_build_witness_gate(oak)
 	_build_road(oak)
+	_build_refectory(oak)
 
 
 ## The way out to the path of the witness: a plain oak arch on the south
@@ -184,6 +185,18 @@ func _build_witness_gate(oak: Color) -> void:
 	_box(Vector3(2.3, 0.25, 0.35), at + Vector3(0, 2.7, 0), oak)
 	things.append({"id": "witness", "kind": "witness", "pos": at,
 		"ru": "Тропа свидетеля: постоять у черты"})
+
+
+## The refectory table, bare: today's fast is kept here once a day,
+## by the player's own calendar date (the rite of the third gate).
+func _build_refectory(oak: Color) -> void:
+	_box(Vector3(2.0, 0.08, 0.8), Vector3(5.0, 0.75, -3.4), oak)
+	for dx in [-0.9, 0.9]:
+		_box(Vector3(0.08, 0.75, 0.7), Vector3(5.0 + dx, 0.37, -3.4), oak)
+	_box(Vector3(2.0, 0.4, 0.3), Vector3(5.0, 0.2, -2.7), oak)
+	things.append({"id": "fast", "kind": "fast",
+		"pos": Vector3(5.0, 0, -2.6),
+		"ru": "Трапезная: держать сегодняшний пост"})
 
 
 ## The wicket to the road, in the south-west corner.  Beyond it the
@@ -478,6 +491,8 @@ func _load() -> void:
 		var act: Dictionary = data.get("actions", {})
 		for k in ["prayerCount", "fastDays", "meditationHours"]:
 			actions[k] = float(act.get(k, 0.0))
+		var lfd = act.get("lastFastDay")
+		actions.lastFastDay = lfd if typeof(lfd) == TYPE_STRING else null
 		actions.met = act.get("met", {})
 		actions.gifts = act.get("gifts", {})
 		# Only known shapes come back, as normalizeState does in JS.
@@ -625,6 +640,15 @@ func _interact() -> void:
 			get_tree().change_scene_to_file("res://scenes/dive.tscn")
 		"road":
 			_road()
+		"fast":
+			var before := float(actions.fastDays)
+			actions = HubCore.keep_fast(actions,
+				Time.get_date_string_from_system())
+			if float(actions.fastDays) > before:
+				_say("Пост на сегодня: стол пуст до вечера. Воздержание против чревоугодия (Лествица, слово 14).")
+			else:
+				_say("Сегодняшний пост уже держишь.")
+			_save()
 		"witness":
 			# Leaving for the path writes nothing about the visit.
 			_save()

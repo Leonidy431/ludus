@@ -39,6 +39,12 @@ func _initialize() -> void:
 			"gift":
 				actions = HubCore.accept_gift(actions, _form(int(step.b)),
 					step.a)
+			"fast":
+				actions = HubCore.keep_fast(actions, step.a)
+		_check(absf(float(actions.fastDays) - float(step.fastDays)) < 1e-9,
+			"fast days %s vs %s after %s %s" % [actions.fastDays,
+				step.fastDays, step.op, step.a])
+		match step.op:
 			"check":
 				var ladder := HubCore.evaluate_ladder(_form(int(step.a)),
 					actions)
