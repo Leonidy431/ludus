@@ -901,9 +901,9 @@ func _report_costs() -> void:
 		gpu_ms.on.size()])
 	print("rim: %d surfaces dressed with %d materials, %d kept as they "
 		% [rim.dressed, rim.materials.size(), rim.kept]
-		+ "were, %d drawings with %d materials; %.1f us CPU per frame"
-		% [drawings, rim.drawing_materials.size(),
-		rim_us / maxf(1.0, rim_frames)])
+		+ "were, %d drawings with %d materials, %d shaders; %.1f us CPU"
+		% [drawings, rim.drawing_materials.size(), rim.shaders.size(),
+		rim_us / maxf(1.0, rim_frames)] + " per frame")
 
 
 func _build_rig() -> void:

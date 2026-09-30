@@ -27,8 +27,9 @@
 ## what a shader writes to EMISSION as sRGB and turns it into linear
 ## light itself (GLES3 scene shader: emission = srgb_to_linear(emission)).
 ## So the lights go to the shader sRGB-encoded, the beam too (a power of
-## 1 / 2.2), and the band term is linear in the encoded values: the light
-## seen is close to the linear light times f ** 2.2.
+## 1 / 2.2), and the band term multiplies the encoded values: the light
+## seen is close to the linear light times the band ** 2.2, exact at the
+## very edge, where the band is 1.
 class_name RimLight
 extends RefCounted
 
@@ -44,8 +45,8 @@ const LAMP_ANGLE_ATTENUATION := 1.0
 ## In third person the lamp sits on the front skid and points where the
 ## drawn beams open (rov_body.gd: 15 degrees down, onto the floor
 ## ahead); before, it pointed 7 degrees down, and a thing on the floor
-## 3 m ahead of a ROV hovering 1.2 m over it sat at the edge of the cone
-## (0.78 of the light on the axis).  In first person it rides on the eye.
+## 3 m from it, with the ROV hovering 1.2 m over it, got 0.72 of the
+## light on the axis (now 0.93).  In first person it rides on the eye.
 const LAMP_PITCH_3P := -PI / 12.0
 ## Where a thing is read: DiveCore.VIEW_M from the lamp, the ROV
 ## READ_CLEARANCE_M above it (the Atlas proof frames hover so).
@@ -78,6 +79,9 @@ const BEAM_CAP := 2.0
 const DRAWING_BAND := 6.0 / 256.0
 ## The encoding of the beam, as the renderer's sRGB curve (near 2.2).
 const GAMMA := 2.2
+## Depth and clearance step at which update() looks the background up
+## again.
+const BACKGROUND_STEP_M := 0.05
 ## Global shader uniforms (vec4, the colours sRGB-encoded), set once per
 ## frame by update().
 const G_RIM := &"dive_rim"
@@ -200,7 +204,10 @@ var dressed := 0
 var kept := 0
 var materials := {}
 var drawing_materials := {}
-var _shaders := {}
+var shaders := {}
+var _background_key := Vector2i(-1000000000, 0)
+var _y_off := 0.0
+var _y_on := 0.0
 
 
 func _init() -> void:
@@ -355,13 +362,20 @@ static func fade(w: float, lamp_lit: bool, dt: float) -> float:
 # --- The scene ----------------------------------------------------------
 
 ## Set the lights for this frame (dive.gd, once per frame); returns them
-## in linear light.
+## in linear light.  The background is looked up again only when the ROV
+## has moved a step of BACKGROUND_STEP_M in depth or clearance: the water
+## does not change within a few centimetres, and the frame's script time
+## is tight (docs/APK_REQUIREMENTS.md, row 17).
 func update(lamp: Node3D, lamp_lit: bool, energy: float, depth: float,
 		clearance: float, dt: float) -> Dictionary:
 	weight = fade(weight, lamp_lit, dt)
-	var l := lights(weight, lamp_lit, energy,
-		DiveCore.luminance(background_at(depth, clearance, 0.0)),
-		DiveCore.luminance(background_at(depth, clearance, 1.0)))
+	var key := Vector2i(roundi(depth / BACKGROUND_STEP_M),
+		roundi(clearance / BACKGROUND_STEP_M))
+	if key != _background_key:
+		_background_key = key
+		_y_off = DiveCore.luminance(background_at(depth, clearance, 0.0))
+		_y_on = DiveCore.luminance(background_at(depth, clearance, 1.0))
+	var l := lights(weight, lamp_lit, energy, _y_off, _y_on)
 	var rim := encode(l.rim)
 	var hl := encode(l.lamp)
 	var at := lamp.global_position
@@ -378,11 +392,11 @@ func update(lamp: Node3D, lamp_lit: bool, energy: float, depth: float,
 
 
 func _shader(key: String, code: String) -> Shader:
-	if not _shaders.has(key):
+	if not shaders.has(key):
 		var s := Shader.new()
 		s.code = code
-		_shaders[key] = s
-	return _shaders[key]
+		shaders[key] = s
+	return shaders[key]
 
 
 func _beam_glsl() -> String:
