@@ -198,6 +198,8 @@ func _build_world() -> void:
 	_build_atlas(oak)
 	_build_chronicle(oak)
 	_build_mission_board(oak)
+	# B2 hook: the journal of the way on its lectern (JournalBook).
+	things.append(JournalBook.place(self))
 
 
 ## The way out to the path of the witness: a plain oak arch on the south
@@ -792,6 +794,8 @@ func _interact() -> void:
 			_open_missions()
 		"stillness":
 			_say("Постой здесь, не двигаясь. Время идёт само.")
+		"node":  # B2 hook: a thing that answers for itself (JournalBook).
+			th.node.use()
 
 
 ## At the ladder: the bow when a gift is ready, else the threshold of
@@ -1316,6 +1320,7 @@ func _shots() -> void:
 			"yaw": -PI / 2.0},
 		{"name": "missions", "pos": Vector3(1.0, 0, 1.2), "yaw": -PI / 2.0,
 			"mission": true},
+		{"name": "journal", "pos": Vector3(-4.3, 0, -5.0), "yaw": PI / 2.0},
 	]
 	var n := shot_frame / 20
 	if n >= plan.size():

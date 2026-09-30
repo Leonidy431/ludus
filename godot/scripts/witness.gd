@@ -163,6 +163,8 @@ func _build_bays() -> void:
 		# from anywhere on the path and never lies on the ground.
 		plaque.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
 		add_child(plaque)
+	# B2 hook: the preparation sheet at the corner of repentance.
+	ConfessionSheet.place(self, bays[WitnessCore.ORDER.find("confession")])
 
 
 ## A doll's-house cut: tall parts that stand between the path and the
@@ -330,7 +332,8 @@ func _shots() -> void:
 	var plan := [[WitnessCore.START, -PI / 2.0, "entrance"],
 		[Vector3(bays[0].x - 3.0, 0, -1.2), -PI / 2.0 + 0.9, "shore"],
 		[Vector3(bays[2].x - 3.0, 0, -1.2), -PI / 2.0 + 0.9, "west-wall"],
-		[Vector3(bays[3].x - 3.0, 0, 1.2), -PI / 2.0 - 0.9, "waiting"]]
+		[Vector3(bays[3].x - 3.0, 0, 1.2), -PI / 2.0 - 0.9, "waiting"],
+		[Vector3(bays[3].x - 5.2, 0, 0.4), PI, "confession-sheet"]]
 	var n := shot_frame / 20
 	if n >= plan.size():
 		get_tree().quit()
