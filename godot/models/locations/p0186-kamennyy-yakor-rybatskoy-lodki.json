@@ -1,0 +1,23 @@
+{
+ "id": "p0186-kamennyy-yakor-rybatskoy-lodki",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 352,
+ "bbox_m": [
+  0.3,
+  0.3,
+  0.3
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#185",
+ "name": "Каменный якорь рыбацкой лодки",
+ "type": "предмет",
+ "storyline": "м.35 (гидрология)",
+ "box": "сфера 0.3м, тяжёлый",
+ "shape": "sphere",
+ "size_m": 0.3,
+ "method": "primitive-from-box-field",
+ "collider": "sphere 0.3 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}
