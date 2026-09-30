@@ -2735,6 +2735,59 @@
     "demonic"
    ],
    "without_licence_after": 0
+  },
+  {
+   "time": "2026-09-30T17:19:59.717166+00:00",
+   "type": "own-drawing",
+   "pass_id": "own-fish-DEF-056-2026-09-30",
+   "deficits": [
+    {
+     "id": "DEF-056",
+     "own_drawing": true
+    }
+   ],
+   "accepted_objects": 9,
+   "code_candidates": 0,
+   "note": "Track C, not a raw pass: DEF-056 (fish) follows D6 and moves to own drawing, because the raw passes never gave a recognisable fish (a jellyfish, a fiend and pikemen for \"pike\"; later fish-like pieces failed the real-object profile). scripts/raw_assets/fish_procedural.py draws nine species of the lake register side-on by genus shape (length, body depth, dorsal and adipose fins, barbels, tail fork, skin pattern from godot/data/issyk-kul-fish.json and docs/ISSYK_KUL_FISH.md; proportions approximate, for an ichthyologist to check), 12 variants each from age classes x register poses, every pair >= 35 % apart by alpha, each fitting the fish profile. Eye check docs/audit/2026-09-30/fish-own-DEF-056-contact.png on five biomes: all nine recognisable after two fixes (eyes drawn at full radius read as cartoons and were reduced; fins first hung as spikes and were swept back, which also lifted the fill into the profile). School and young as one sprite are refused by the fish profile (fill 0.21-0.26); a scene builds a school from several sprites. No headset copy: the dive already shows 3D fish and no Godot scene loads the sprites (TABOO 0.011). No third-party material, so no NOTICES rows.",
+   "shipped": [
+    "own_chebachok_4a8e60a860",
+    "own_marinka_877962c94d",
+    "own_osman_dac0c4d124",
+    "own_gubach_035ddd127e",
+    "own_ishkhan_e07c061221",
+    "own_sudak_622aadc00f",
+    "own_leshch_c96de5267b",
+    "own_sazan_9a7d5cf44c",
+    "own_sig_9979af3a69"
+   ],
+   "reverted": true,
+   "reverted_reason": "Review of 2026-09-30: the 35 % between siblings came from placement (a \"bottom\" variant was the \"single\" one moved down the canvas: pixel-identical after cropping, yet about 100 % apart) and from uniform 0.8x age rescales, not from form (TABOO 0.3 rules 15, 62, 71). Withdrawn; see the next entry."
+  },
+  {
+   "time": "2026-09-30T19:00:00+00:00",
+   "type": "own-drawing",
+   "pass_id": "own-fish-DEF-056-2026-09-30-r2",
+   "deficits": [
+    {
+     "id": "DEF-056",
+     "own_drawing": true
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 0,
+   "note": "fish-drawing-r2: the sibling distance is now measured on silhouettes cropped to their bbox and fitted to a common 200x80 box, so placement, size and stretch count for nothing; size (age), height in the water and tilt are engine parameters, not variants. Variants come only from real forms: body flexion (bow, arch, S-wave, head or tail bend, several strengths), fins raised or folded, tail fanned, mouth open, young proportions, pair layouts. Honest result per species (pool size / fitting / chosen): chebachok 26/20/5, marinka 33/12/7, osman 27/19/7, gubach 27/18/7, ishkhan 33/25/9, sudak 37/30/9, leshch 34/22/7, sazan 29/25/8, sig 30/13/7. No kit reaches 12, so nothing ships (TABOO 0.1: never fewer than 12; TABOO 0.07 item 2: the count is not padded). Genus cues strengthened after the eye check (sig: small pointed head, big adipose fin, pale back; chebachok: deeper body, dark back; marinka: long pointed head, long barbels; osman: blunt head, big spots). Contact sheet of the short kits: docs/audit/2026-09-30/fish-own-DEF-056-contact.png.",
+   "shipped": [],
+   "shortfall": {
+    "chebachok": 7,
+    "marinka": 5,
+    "osman": 5,
+    "gubach": 5,
+    "ishkhan": 3,
+    "sudak": 3,
+    "leshch": 5,
+    "sazan": 4,
+    "sig": 5
+   }
   }
  ],
  "keywords": {
