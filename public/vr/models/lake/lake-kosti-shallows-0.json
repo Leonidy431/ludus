@@ -2,12 +2,52 @@
  "id": "lake-kosti-shallows-0",
  "kind": "lake",
  "lod": "proxy",
- "tris": 12,
- "bbox_m": [
-  0.4,
-  0.02,
-  0.4
+ "detail": "procedural-detailed",
+ "details": [
+  "long bones",
+  "knuckle ends",
+  "vertebrae",
+  "vertebra spines",
+  "a rib"
  ],
+ "tris": 730,
+ "bbox_m": [
+  0.455,
+  0.038,
+  0.362
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.455,
+   0.038,
+   0.362
+  ],
+  "centre_m": [
+   0.02,
+   0.017,
+   -0.01
+  ]
+ },
+ "materials": [
+  {
+   "name": "bone",
+   "colour": "#d8d0b8",
+   "roughness": 0.8,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "bone-stain",
+   "colour": "#979281",
+   "roughness": 0.9,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 66874888586920,
  "name": "Кости животных: россыпь",
  "category": "find",
  "band": "shallows",
@@ -19,6 +59,9 @@
   "noLoot": true,
   "loot": null
  },
- "source": "public/ludus/data/lake-objects-99.json",
- "method": "lake-kit-primitives"
+ "noLoot": true,
+ "noInteract": false,
+ "size_m": 0.4,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
 }

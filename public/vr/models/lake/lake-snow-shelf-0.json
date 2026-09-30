@@ -2,12 +2,41 @@
  "id": "lake-snow-shelf-0",
  "kind": "lake",
  "lod": "proxy",
- "tris": 12,
- "bbox_m": [
-  3,
-  0.02,
-  3
+ "detail": "procedural-detailed",
+ "details": [
+  "fluffy aggregates of marine snow"
  ],
+ "tris": 440,
+ "bbox_m": [
+  3.009,
+  3.004,
+  2.975
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   3.009,
+   3.004,
+   2.975
+  ],
+  "centre_m": [
+   0.003,
+   1.502,
+   0.004
+  ]
+ },
+ "materials": [
+  {
+   "name": "snow",
+   "colour": "#e0e8e8",
+   "roughness": 0.7,
+   "metallic": 0,
+   "alpha": 0.8
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 217076306215312,
  "name": "Взвесь «морского снега»: редкая",
  "category": "water",
  "band": "shelf",
@@ -19,6 +48,9 @@
   "noLoot": true,
   "loot": null
  },
- "source": "public/ludus/data/lake-objects-99.json",
- "method": "lake-kit-primitives"
+ "noLoot": true,
+ "noInteract": false,
+ "size_m": 3.0,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
 }

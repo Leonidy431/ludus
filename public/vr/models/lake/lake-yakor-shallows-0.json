@@ -2,12 +2,49 @@
  "id": "lake-yakor-shallows-0",
  "kind": "lake",
  "lod": "proxy",
- "tris": 12,
- "bbox_m": [
-  0.5,
-  0.35,
-  0.4
+ "detail": "procedural-detailed",
+ "details": [
+  "drilled rope hole",
+  "rope wear around the hole"
  ],
+ "tris": 288,
+ "bbox_m": [
+  0.343,
+  0.086,
+  0.45
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.343,
+   0.086,
+   0.45
+  ],
+  "centre_m": [
+   0.0,
+   0.043,
+   0.0
+  ]
+ },
+ "materials": [
+  {
+   "name": "stone",
+   "colour": "#6a6660",
+   "roughness": 0.95,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "rope-wear",
+   "colour": "#403d3a",
+   "roughness": 0.95,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 67280676596672,
  "name": "Якорный камень: один",
  "category": "find",
  "band": "shallows",
@@ -19,6 +56,9 @@
   "noLoot": false,
   "loot": "hand-over"
  },
- "source": "public/ludus/data/lake-objects-99.json",
- "method": "lake-kit-primitives"
+ "noLoot": false,
+ "noInteract": false,
+ "size_m": 0.5,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
 }

@@ -2,12 +2,57 @@
  "id": "lake-glazur-shallows-1",
  "kind": "lake",
  "lod": "proxy",
- "tris": 12,
- "bbox_m": [
-  0.3,
-  0.15,
-  0.24
+ "detail": "procedural-detailed",
+ "details": [
+  "chipped corner",
+  "turquoise glazed face",
+  "bond of four courses with mortar"
  ],
+ "tris": 384,
+ "bbox_m": [
+  0.969,
+  0.288,
+  0.13
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.969,
+   0.288,
+   0.13
+  ],
+  "centre_m": [
+   -0.025,
+   0.144,
+   0.002
+  ]
+ },
+ "materials": [
+  {
+   "name": "brick",
+   "colour": "#b87050",
+   "roughness": 0.95,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "glaze",
+   "colour": "#3a7a8a",
+   "roughness": 0.2,
+   "metallic": 0.05,
+   "alpha": 1.0
+  },
+  {
+   "name": "mortar",
+   "colour": "#b0a690",
+   "roughness": 1,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 164973285071367,
  "name": "Глазурованный кирпич: в кладке",
  "category": "find",
  "band": "shallows",
@@ -19,6 +64,9 @@
   "noLoot": false,
   "loot": "hand-over"
  },
- "source": "public/ludus/data/lake-objects-99.json",
- "method": "lake-kit-primitives"
+ "noLoot": false,
+ "noInteract": false,
+ "size_m": 0.3,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
 }

@@ -257,10 +257,11 @@ async function main() {
     }
   }
 
-  // The 99 objects of Issyk-Kul (scripts/lake/lake_objects.py): each is
-  // a small kit of primitives; loot follows flags.loot (operator,
-  // 2026-09-30), never for water, birds or the bulla with its cross.
-  if (only === 'lake' || !only) {
+  // The 99 objects of Issyk-Kul are drawn in detail by
+  // scripts/meta3d/lake_details.py (fins, barbels, the millstone's eye,
+  // the net's floats).  The old box kit below is kept only on request
+  // (--only lake-boxes), so a full run no longer overwrites them.
+  if (only === 'lake-boxes') {
     report.lake = 0;
     const lake = JSON.parse(fs.readFileSync(LAKE, 'utf8')).objects;
     for (const obj of lake) {

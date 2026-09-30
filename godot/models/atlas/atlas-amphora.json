@@ -1,0 +1,77 @@
+{
+ "id": "atlas-amphora",
+ "kind": "atlas",
+ "lod": "proxy",
+ "detail": "procedural-detailed",
+ "details": [
+  "pointed toe and body",
+  "open mouth",
+  "two handles",
+  "rolled scroll at the mouth",
+  "half buried in silt"
+ ],
+ "tris": 638,
+ "bbox_m": [
+  0.96,
+  0.246,
+  0.945
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.96,
+   0.246,
+   0.945
+  ],
+  "centre_m": [
+   0.0,
+   0.104,
+   0.0
+  ]
+ },
+ "materials": [
+  {
+   "name": "clay",
+   "colour": "#a8643c",
+   "roughness": 0.9,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "clay-mouth",
+   "colour": "#432818",
+   "roughness": 0.95,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "scroll",
+   "colour": "#c8b89a",
+   "roughness": 0.9,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "silt",
+   "colour": "#6a655a",
+   "roughness": 1,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 193356638118721,
+ "name": "Амфора со свитком о литье колоколов",
+ "category": "atlas-trace",
+ "shape": "amphora",
+ "size_m": 0.6,
+ "atlas_nodes": [
+  14
+ ],
+ "loot": "hand-over",
+ "noLoot": false,
+ "noInteract": false,
+ "source": "scripts/story/atlas_nodes.py TRACES; own procedural drawing, no raw material",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
+}

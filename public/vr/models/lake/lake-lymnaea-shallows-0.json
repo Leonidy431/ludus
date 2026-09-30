@@ -2,12 +2,59 @@
  "id": "lake-lymnaea-shallows-0",
  "kind": "lake",
  "lod": "proxy",
- "tris": 12,
- "bbox_m": [
-  0.04,
-  0.024,
-  0.032
+ "detail": "procedural-detailed",
+ "details": [
+  "host stone",
+  "spiral whorls",
+  "aperture",
+  "creeping foot",
+  "flat tentacles"
  ],
+ "tris": 868,
+ "bbox_m": [
+  0.203,
+  0.118,
+  0.151
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.203,
+   0.118,
+   0.151
+  ],
+  "centre_m": [
+   0.001,
+   0.06,
+   0.002
+  ]
+ },
+ "materials": [
+  {
+   "name": "stone",
+   "colour": "#8a8680",
+   "roughness": 0.95,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "shell",
+   "colour": "#8a7a5a",
+   "roughness": 0.5,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "snail-body",
+   "colour": "#5a5040",
+   "roughness": 0.8,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 181293063647825,
  "name": "Прудовик на камне: на камне",
  "category": "life",
  "band": "shallows",
@@ -19,6 +66,9 @@
   "noLoot": false,
   "loot": "keep"
  },
- "source": "public/ludus/data/lake-objects-99.json",
- "method": "lake-kit-primitives"
+ "noLoot": false,
+ "noInteract": false,
+ "size_m": 0.04,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
 }
