@@ -27,7 +27,7 @@
 
 ## Блокер для оператора (одна строка)
 
-Постоянный ключ: создать секрет репозитория `LUDUS_DEBUG_KEYSTORE_B64` (Settings → Secrets and variables → Actions). Значение — вывод команды `keytool -genkeypair -keystore ludus.keystore -storepass android -keypass android -alias androiddebugkey -dname "CN=Ludus Debug,O=Ludus,C=KG" -keyalg RSA -keysize 2048 -validity 10000 && base64 -w0 ludus.keystore`. До этого каждый APK ставится только после удаления прежнего.
+Постоянный ключ: создать секрет репозитория `LUDUS_DEBUG_KEYSTORE_B64` (Settings → Secrets and variables → Actions). Значение — вывод команды `keytool -genkeypair -keystore ludus.keystore -storepass android -keypass android -alias androiddebugkey -dname "CN=Ludus Debug,O=Ludus,C=KG" -keyalg RSA -keysize 2048 -validity 10000 && base64 -w0 ludus.keystore`. До этого действует временная мера (оператор 2026-09-30: «возьми любой доступный секрет из webtypicon repo и используй пока»). Значения секретов другого репо GitHub не отдаёт никому, в том числе прогонам ludus, а среди 29 секретов webtypicon2 (GCP_SA_KEY, DEEPSEEK_API_KEY, FIREBASE_TOKEN и др.) нет ключа подписи Android. Поэтому первый ключ, созданный в CI, хранится в кэше Actions (`ludus-debug-keystore-v1`) и берётся каждой следующей сборкой; отпечаток SHA-256 сертификата печатается в логе — одинаковый отпечаток значит, что APK встанет поверх прежнего. Предел: кэш удаляется после 7 дней без сборок, тогда ключ создаётся заново и шлему нужна одна переустановка. Секрет, когда появится, имеет приоритет над кэшем.
 
 ## Состояние
 

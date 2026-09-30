@@ -192,6 +192,19 @@ jobs:
           unzip -oq vendors.zip -d vendors
           cp -r vendors/asset/addons/godotopenxrvendors godot/addons/
 
+      # Interim until the repo secret exists (operator, 2026-09-30:
+      # "use any available secret for now").  Secrets of another repo
+      # cannot be read, and none of webtypicon2's is a keystore, so the
+      # first key made here is kept in the Actions cache and reused by
+      # every later build: a cache made on main is seen by all branches.
+      # The cache is evicted after 7 days without a build; then one new
+      # key is made and the headset needs one reinstall.
+      - name: Interim signing key from the cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.ludus-signing
+          key: ludus-debug-keystore-v1
+
       - name: Android SDK packages and debug key
         env:
           KEYSTORE_B64: ${{ secrets.LUDUS_DEBUG_KEYSTORE_B64 }}
@@ -210,13 +223,22 @@ jobs:
           if [ -n "$KEYSTORE_B64" ]; then
             echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/debug.keystore"
             echo "signing key: LUDUS_DEBUG_KEYSTORE_B64"
+          elif [ -f ~/.ludus-signing/debug.keystore ]; then
+            cp ~/.ludus-signing/debug.keystore "$RUNNER_TEMP/debug.keystore"
+            echo "signing key: interim key from the Actions cache"
           else
-            echo "::warning::LUDUS_DEBUG_KEYSTORE_B64 is not set: a new key is made for this build, so this APK will not install over an earlier one (uninstall first)."
-            keytool -genkeypair -v -keystore "$RUNNER_TEMP/debug.keystore" \
+            echo "::warning::LUDUS_DEBUG_KEYSTORE_B64 is not set and the cache is empty: a new interim key is made and cached; later builds reuse it."
+            mkdir -p ~/.ludus-signing
+            keytool -genkeypair -v -keystore ~/.ludus-signing/debug.keystore \
               -storepass android -keypass android -alias androiddebugkey \
               -dname "CN=Ludus Debug,O=Ludus,C=KG" -keyalg RSA \
               -keysize 2048 -validity 10000 >/dev/null
+            cp ~/.ludus-signing/debug.keystore "$RUNNER_TEMP/debug.keystore"
           fi
+          # The certificate's fingerprint in the log shows whether two
+          # builds share one key (then the APK installs over the old one).
+          keytool -list -v -keystore "$RUNNER_TEMP/debug.keystore" \
+            -storepass android | grep -m1 "SHA256:"
           mkdir -p ~/.config/godot
           cat > ~/.config/godot/editor_settings-4.7.tres <<EOF
           [gd_resource type="EditorSettings" format=3]
