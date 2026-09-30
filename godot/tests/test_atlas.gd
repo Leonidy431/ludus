@@ -27,6 +27,7 @@ func run(t: Object) -> void:
 		for w in ["мир — симуляция внутри", "железный аватар души"]:
 			t._check(not text.contains(w), "page %d has no '%s'" % [p, w])
 	_traces(t, data)
+	_web_parity(t, data)
 
 
 ## The knight's traces and the chronicle (AtlasTraces, TABOO 0.03).
@@ -100,6 +101,57 @@ func _traces(t: Object, data: Dictionary) -> void:
 	t._check(AtlasCore.page_text(data, 100, page) == page,
 		"the scribe's page follows node 99")
 	t._check(AtlasCore.next_page(data, 100, page) == 0, "then the frame")
+
+
+## The web dive places the same things on the same floor
+## (public/ludus/dive/dive-atlas.js, fixture written by
+## scripts/godot/make_atlas_fixture.js): the traces for every chronicle
+## choice and the own drawings of the shore, as dive.gd builds them.
+func _web_parity(t: Object, data: Dictionary) -> void:
+	var f := FileAccess.open("res://tests/fixtures/atlas-traces.json",
+		FileAccess.READ)
+	t._check(f != null, "web atlas fixture present")
+	if f == null:
+		return
+	var web: Dictionary = JSON.parse_string(f.get_as_text())
+	for choice in ["", "spare", "vault"]:
+		var ours := AtlasTraces.place(data, choice)
+		var theirs: Array = web.traces[choice]
+		t._check(ours.size() == theirs.size(),
+			"web '%s': %d things" % [choice, theirs.size()])
+		for i in mini(ours.size(), theirs.size()):
+			var a: Dictionary = ours[i]
+			var b: Dictionary = theirs[i]
+			t._check(a.id == b.id and a.shape == b.shape
+				and absf(a.x - b.x) < 1e-6 and absf(a.z - b.z) < 1e-6
+				and absf(a.depth - b.depth) < 1e-6
+				and absf(a.yaw - b.yaw) < 1e-6,
+				"web '%s' %s on the same spot" % [choice, a.id])
+	# The own drawings: the loop of dive.gd _build_own_drawings.
+	var dive = preload("res://scripts/dive.gd").new()
+	var k := 0
+	var same := 0
+	for kit in dive.OWN_DRAWINGS:
+		var files: Array = dive._kit_files("res://art/derived/%s" % kit.dir,
+			kit.kit)
+		t._check(files.size() == 12, "%s: 12 variants" % kit.kit)
+		var r := DiveCore.rng("own:" + str(kit.kit))
+		for i in int(kit.n):
+			var d: float = lerpf(kit.depth[0], kit.depth[1], r.call())
+			var z: float = (r.call() * 2.0 - 1.0) * DiveCore.CORRIDOR_M
+			var x := DiveCore.x_for_depth(d)
+			var y := DiveCore.floor_depth(x, z) - float(kit.size) * 0.45
+			if k < web.drawings.size():
+				var w: Dictionary = web.drawings[k]
+				if w.kit == kit.kit and absf(w.x - x) < 1e-6 \
+						and absf(w.z - z) < 1e-6 \
+						and absf(w.centreDepth - y) < 1e-6 \
+						and w.file == str(files[i % files.size()]).get_file():
+					same += 1
+			k += 1
+	dive.free()
+	t._check(k == web.drawings.size() and same == k,
+		"web own drawings on the same spots (%d of %d)" % [same, k])
 
 
 func _find(placed: Array, id: String) -> Dictionary:
