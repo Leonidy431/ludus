@@ -354,6 +354,8 @@ const TASKS := [
 		"ru": "Курс: зависнуть на месте 10 с, не уходя по глубине дальше 0,3 м."},
 	{"id": "heading", "band": "shallows",
 		"ru": "Курс: идти по компасу 10 с, не сбиваясь больше чем на 10°."},
+	{"id": "tether", "band": "shallows",
+		"ru": "Трос: сделай полный оборот, вернись обратными поворотами к нулю и сними петлю манипулятором."},
 	{"id": "slowrise", "band": "shallows",
 		"ru": "Курс: подняться на 3 м не быстрее 10 м/мин."},
 	{"id": "finds", "band": "shelf",
@@ -377,11 +379,19 @@ static func new_game() -> Dictionary:
 	return {"done": [], "progress": progress, "fallen": false,
 		"fast_for": 0.0, "still_for": 0.0, "hold_depth": null,
 		"hold_heading": null, "rise_from": null, "crossed_from": null,
-		"finds": 0, "scribe_told": false}
+		"finds": 0, "scribe_told": false, "turns": 0.0, "last_yaw": null,
+		"wound": false, "kink_warned": false}
 
 
+## Tether turns, as a real ROV console counts them: every full turn of
+## the vehicle twists the cable once more.  Three turns kink it.
+const KINK_TURNS := 3.0
+const UNWOUND_TURNS := 0.1
+
+
+## arm: true on the step the manipulator reached out (dive.gd).
 static func step_game(game: Dictionary, rov: Dictionary, dt: float,
-		handed_over: int) -> Dictionary:
+		handed_over: int, arm := false) -> Dictionary:
 	var g := game.duplicate(true)
 	var say := []
 	var tel := telemetry(rov)
@@ -389,6 +399,18 @@ static func step_game(game: Dictionary, rov: Dictionary, dt: float,
 		if not id in g.done:
 			g.done.append(id)
 			say.append(text)
+	# The tether twists with every turn, fallen or not: the cable does
+	# not know about the light.
+	if g.last_yaw != null:
+		g.turns += wrapf(rov.yaw - g.last_yaw, -PI, PI) / TAU
+	g.last_yaw = rov.yaw
+	if absf(g.turns) >= 1.0:
+		g.wound = true
+	if not g.kink_warned and absf(g.turns) >= KINK_TURNS:
+		g.kink_warned = true
+		say.append("Трос закручен на три оборота: так ломают кабель. Разверни его обратно.")
+	elif absf(g.turns) < KINK_TURNS - 1.0:
+		g.kink_warned = false
 	g.fast_for = g.fast_for + dt if tel.ascent_too_fast else 0.0
 	if not g.fallen and g.fast_for >= FALL_AFTER_SEC:
 		g.fallen = true
@@ -431,6 +453,10 @@ static func step_game(game: Dictionary, rov: Dictionary, dt: float,
 			g.progress.heading = 0.0
 		if g.progress.heading >= 10.0:
 			finish.call("heading", "Курс выдержан: компас ведёт, когда глаз ничего не видит.")
+	# Tether: wound a full turn, brought back to zero the same way, and
+	# the loop lifted off with the manipulator.
+	if g.wound and absf(g.turns) <= UNWOUND_TURNS and arm:
+		finish.call("tether", "Петля снята: трос не рвут, его разворачивают тем же путём.")
 	if rov.vy > 0.01 and not tel.ascent_too_fast:
 		if g.rise_from == null:
 			g.rise_from = d

@@ -1,0 +1,58 @@
+{
+ "id": "sacrament-confession",
+ "kind": "scene",
+ "lod": "proxy",
+ "tris": 412,
+ "bbox_m": [
+  8,
+  3.25,
+  8
+ ],
+ "title": "Среди ожидающих",
+ "mood": "left chapel, dusk",
+ "page": "ludus-confession",
+ "microphone": false,
+ "speechRecognition": false,
+ "logPresence": false,
+ "reward": null,
+ "attributes": null,
+ "gate": null,
+ "playerCan": [
+  "sit or stand at the bench (witness line)",
+  "open the preparation page from the bench",
+  "stand",
+  "bow the head (no effect)",
+  "leave"
+ ],
+ "audio": {
+  "roomTone_dBFS": -48,
+  "ison": "a cappella, vowels only",
+  "digitalZero": false
+ },
+ "light": {
+  "lampada_K": 1800,
+  "instrumentLightFadeSeconds": 1.75
+ },
+ "witnessDistance_m": 4.5,
+ "confessionAudible": false,
+ "operatorDecision": "Исповедь и Причащение — только издалека видно (2026-09-29)",
+ "bells": null,
+ "internalRite": "Покаяние",
+ "source": "scripts/meta3d/sacrament-scenes.json",
+ "method": "scene-kit-primitives",
+ "holyObjects": [
+  "analoy-stand",
+  "analoy-top",
+  "analoy-cloth",
+  "cross",
+  "cross-bar",
+  "gospel",
+  "icon-board",
+  "lampada-glass",
+  "lampada-chain",
+  "epitrachelion"
+ ],
+ "lights": [
+  "lampada-1800K"
+ ]
+}

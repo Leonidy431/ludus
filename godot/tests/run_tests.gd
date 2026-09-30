@@ -109,5 +109,36 @@ func _initialize() -> void:
 		fx.game.said])
 	_near(r.depth, fx.game.depth, "game depth")
 	_near(r.z, fx.game.z, "game drift z")
+	# The tether: the same turns, task and warnings as the JS core.
+	var tr := DiveCore.new_rov()
+	tr.depth = 4.0
+	var tg := DiveCore.new_game()
+	var tsaid := 0
+	for leg in [[{"turn": 1.0}, 84, false], [{"turn": -1.0}, 84, false],
+			[{}, 1, true], [{"turn": 1.0}, 220, false]]:
+		for i in leg[1]:
+			tr = DiveCore.step_rov(tr, leg[0], 0.1)
+			var tout := DiveCore.step_game(tg, tr, 0.1, 0, leg[2])
+			tg = tout.game
+			tsaid += tout.say.size()
+	var tfx: Dictionary = fx.tether
+	_check(tg.done == tfx.done, "tether done %s vs %s" % [tg.done, tfx.done])
+	_near(tg.turns, tfx.turns, "tether turns")
+	_check(tg.wound == tfx.wound, "tether wound")
+	_check(tsaid == int(tfx.said), "tether messages %d vs %s" % [tsaid,
+		tfx.said])
+	_near(tr.yaw, tfx.yaw, "tether yaw")
 	print("dive_core: %d checks, %d failures" % [checks, failures])
+	# Sound of the dive (scripts/audio, HLD_FOLLOWUPS D5).
+	var before := checks
+	var fails := failures
+	load("res://tests/test_audio.gd").new().run(self)
+	print("audio: %d checks, %d failures" % [checks - before,
+		failures - fails])
+	# The pilot's console and the Mangustik model (HLD_MANGUSTIK_COCKPIT).
+	before = checks
+	fails = failures
+	load("res://tests/test_cockpit.gd").new().run(self)
+	print("cockpit: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	quit(1 if failures else 0)

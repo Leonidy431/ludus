@@ -253,6 +253,43 @@ const dialogueTrees = [
             text: 'The path seems impossible',
             nextNodeId: 'struggle_path',
             attributeBonuses: { faith: 1 }
+          },
+          {
+            text: 'And when a candle burns well, whose is the credit?',
+            text_ru: 'А когда свеча горит хорошо, чья это заслуга?',
+            nextNodeId: 'own_light',
+            attributeBonuses: { wisdom: 1 }
+          }
+        ]
+      },
+      // Pride's discernment node (CLAUDE.md TABOO 0.35 rule 13).  The
+      // shipped tree of Sister Catherine is the chorus tree in
+      // functions/src/data/npc-dialogues-24.json, which replaces this
+      // one in the offline pack; the node is copied here word for word
+      // so that the Firestore test data teaches the same sign.  In the
+      // chorus tree it is reached from wax_and_flame and leads on to
+      // quiet_candle; this older tree has neither, so both ways end.
+      {
+        id: 'own_light',
+        voice: 'own',
+        text: 'After a good day in the workshop there is a voice that comes softly: "See what a straight candle you poured. This was your own doing." It sounds like honest pleasure in work, so no one guards against it. But it speaks as if the wax had lit itself. The wax came from the bees, the flame from another hand, and the hands themselves were given. When I hear that voice I ask the candle: what have you that you did not receive? It never has an answer.',
+        text_ru: 'После удачного дня в мастерской приходит тихий голос: «Смотри, какую ровную свечу ты отлила. Это твоё собственное дело». Он звучит как честная радость от работы, поэтому его никто не стережётся. Но говорит он так, будто воск загорелся сам. Воск дали пчёлы, огонь поднесла чужая рука, да и сами руки даны. Когда я слышу этот голос, я спрашиваю свечу: что у тебя есть, чего бы ты не получила? Ответа у неё не бывает.',
+        meaning: 'Discernment cue for pride, the eighth passion: the thought that ascribes one\'s good deeds and progress to oneself ("this was your own doing"). St John Climacus calls pride a denial of God and the ascription of one\'s achievements to oneself; the remedy is humility, remembering that every good is received. The mentor teaches the sign, not a weapon: the passion is cut by recognising it and giving thanks.',
+        source: 'The Ladder of Divine Ascent, step 23 (on pride); 1 Corinthians 4:7',
+        branches: [
+          {
+            text: 'Then I will thank the hand that brought the flame.',
+            text_ru: 'Тогда я поблагодарю руку, что поднесла огонь.',
+            nextNodeId: null,
+            attributeBonuses: { wisdom: 2 },
+            narrativeEffect: 'She nods once and trims a wick with her thumbnail.'
+          },
+          {
+            text: 'But I did pour it well.',
+            text_ru: 'Но ведь я и правда хорошо её отлил.',
+            nextNodeId: null,
+            attributeBonuses: {},
+            narrativeEffect: 'Sister Catherine sets the candle on the shelf. In the dark it is only wax.'
           }
         ]
       },

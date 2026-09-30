@@ -24,15 +24,10 @@ var schools: Array = []
 var bag := {"kept": [], "released": [], "handed_over": []}
 var game := DiveCore.new_game()
 var messages: Array = []
-# Sonar: a ping every few seconds and its echo from the floor after the
-# real 2 * range / c (1480 m/s above the thermocline, 1435 below).
-const PING_EVERY := 4.0
-const MIX_RATE := 22050.0
-var sonar: AudioStreamGeneratorPlayback
-var ping_clock := 0.0
-var pending: Array = []  # [seconds until sound, frequency, gain]
-var noise := 0.0
-var sample_clock := 0.0
+# Sound (scripts/audio): water, breath, sonar and its echo after the
+# real 2 * range / c, the ison and the shore bell, spatial water and
+# haptics.  This scene only calls its hooks.
+var audio: DiveAudio
 var t := 0.0
 var xr_active := false
 var mouse_look := false
@@ -49,6 +44,42 @@ var hud_label: Label
 var hud_prompt: Label
 var xr_label: Label3D
 var xr_prompt: Label3D
+# The pilot's console (CockpitPanel in a SubViewport): on the screen a
+# strip at the bottom, in the headset a panel under the gaze.
+const CONSOLE_PX := Vector2i(1256, 124)
+var console_view: SubViewport
+var console: CockpitPanel
+var console_screen: TextureRect
+var console_xr: MeshInstance3D
+var console_alpha := 1.0
+# Holy things on the lake floor (the bulla bears a cross): near them the
+# console goes out (TABOO 0.4 rule 2).
+var holy_points: Array = []
+# The Mangustik's body (godot/models/rov/mangustik.glb, the operator's
+# drawings).  Third person: the camera rides behind and above it, as a
+# chase camera; first person: the camera is the ROV's own eye and the
+# body is hidden.  V on the keyboard, Y on the left controller.
+# A little to the right of the stern, over the shoulder: straight
+# behind, the tether from the shore ran through the middle of the view.
+const CHASE := Vector3(0.45, 0.85, 2.6)
+const CHASE_PITCH := -0.22
+const CHASE_YAW := 0.17
+var body: RovBody
+# The console's second screen (M8): the front camera's picture and the
+# sonar, in its own viewport so screen and headset share it.
+const SCREENS_PX := Vector2i(504, 196)
+const SONAR_HZ := 10.0
+var screens_view: SubViewport
+var screens: CockpitScreens
+var screens_screen: TextureRect
+var screens_xr: MeshInstance3D
+var eye_view: SubViewport
+var eye: Camera3D
+var sonar_left := 0.0
+var third_person := true
+var view_was := false
+# The manipulator reached out this frame: the tether task needs it.
+var arm_now := false
 var left_hand: XRController3D
 var right_hand: XRController3D
 var fish_meshes: Array = []
@@ -81,9 +112,10 @@ func _ready() -> void:
 	_build_lines()
 	_build_snow()
 	_build_rig()
+	_build_body()
 	_build_hud()
 	_start_xr()
-	_build_sonar()
+	_build_audio()
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--shots="):
 			shots_dir = arg.trim_prefix("--shots=")
@@ -215,6 +247,8 @@ func _build_objects() -> void:
 		node.position = Vector3(p.x, -p.depth, p.z)
 		node.rotation.y = p.yaw
 		add_child(node)
+		if str(p.id).begins_with("bulla"):
+			holy_points.append(node.position)
 
 
 ## Stones and pebbles that dress the floor of the dive corridor.  They
@@ -378,6 +412,28 @@ func _build_rig() -> void:
 	rig.add_child(right_hand)
 
 
+## The ROV's body from the operator's drawings, with the lamp on its
+## front camera skid when it is seen from behind.
+func _build_body() -> void:
+	body = RovBody.new()
+	add_child(body)
+	_place_view()
+
+
+## Put the lamp where the eye is: on the camera in first person, on the
+## body's front skid (0.7 m ahead of its centre) in third person, so the
+## light comes from the vehicle the player sees.
+func _place_view() -> void:
+	# The frame hides in first person; the arm and the lamps stay, as
+	# the ROV's own camera sees its arm below it.
+	body.show_frame(third_person)
+	var holder: Node3D = body if third_person else camera
+	if lamp.get_parent() != holder:
+		lamp.reparent(holder, false)
+	lamp.position = Vector3(0, 0.02, -0.72) if third_person else Vector3.ZERO
+	lamp.rotation = Vector3(-0.12, 0, 0) if third_person else Vector3.ZERO
+
+
 # --- Telemetry and messages ---------------------------------------------
 
 func _build_hud() -> void:
@@ -387,15 +443,51 @@ func _build_hud() -> void:
 	hud_prompt.position = Vector2(24, 20)
 	hud_prompt.add_theme_font_size_override("font_size", 20)
 	layer.add_child(hud_prompt)
-	# The telemetry sits below the window on the water (operator,
-	# 2026-09-30: "телеметрию ниже, а выше окно").
+	# The pilot's console sits below the window on the water (operator,
+	# 2026-09-30: "телеметрию ниже, а выше окно"), drawn once into its
+	# own viewport so the screen and the headset show the same panel.
+	console_view = SubViewport.new()
+	console_view.transparent_bg = true
+	console_view.size = CONSOLE_PX
+	console_view.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	add_child(console_view)
+	console = CockpitPanel.new()
+	console.position = Vector2(8, 8)
+	console_view.add_child(console)
+	console_screen = TextureRect.new()
+	console_screen.texture = console_view.get_texture()
+	console_screen.anchor_left = 0.5
+	console_screen.anchor_right = 0.5
+	console_screen.anchor_top = 1.0
+	console_screen.anchor_bottom = 1.0
+	console_screen.offset_left = -CONSOLE_PX.x / 2.0
+	console_screen.offset_top = -CONSOLE_PX.y - 8.0
+	layer.add_child(console_screen)
+	# The task line rides just above the console.
 	hud_label = Label.new()
 	hud_label.anchor_top = 1.0
 	hud_label.anchor_bottom = 1.0
-	hud_label.offset_top = -150
+	hud_label.offset_top = -CONSOLE_PX.y - 40.0
 	hud_label.offset_left = 24
 	hud_label.add_theme_font_size_override("font_size", 18)
 	layer.add_child(hud_label)
+	# In the headset the same console is a panel under the gaze, tilted
+	# towards the eyes like a pult.
+	var quad := QuadMesh.new()
+	quad.size = Vector2(0.62, 0.62 * CONSOLE_PX.y / CONSOLE_PX.x)
+	var mat := StandardMaterial3D.new()
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	mat.no_depth_test = true
+	mat.albedo_texture = console_view.get_texture()
+	console_xr = MeshInstance3D.new()
+	console_xr.mesh = quad
+	console_xr.material_override = mat
+	console_xr.position = Vector3(0, -0.34, -0.72)
+	console_xr.rotation_degrees = Vector3(-25, 0, 0)
+	console_xr.visible = false
+	camera.add_child(console_xr)
+	_build_screens(layer)
 	for which in ["telemetry", "prompt"]:
 		var l := Label3D.new()
 		l.pixel_size = 0.0007
@@ -403,7 +495,7 @@ func _build_hud() -> void:
 		l.no_depth_test = true
 		l.fixed_size = false
 		l.modulate = Color(0.85, 0.95, 1.0)
-		l.position = Vector3(0, -0.3 if which == "telemetry" else 0.12,
+		l.position = Vector3(0, -0.19 if which == "telemetry" else 0.12,
 			-0.8)
 		l.visible = false
 		camera.add_child(l)
@@ -413,20 +505,77 @@ func _build_hud() -> void:
 			xr_prompt = l
 
 
-func _telemetry_text(tel: Dictionary) -> String:
-	var lines := [
-		"Глубина %.1f м · дно %.1f м · %.1f °C · %.2f бар" % [tel.depth,
-			tel.floor, tel.temperature, tel.pressure_bar],
-		"Курс %03d° · звук %d м/с · эхо %.3f с · заряд %d %%" % [
-			roundi(tel.heading), roundi(tel.sound_speed), tel.echo_delay,
-			roundi(tel.battery * 100.0)],
-	]
+## The second screen: the front camera renders the shared world into a
+## small viewport of its own; the sonar is drawn from CockpitCore.
+func _build_screens(layer: CanvasLayer) -> void:
+	eye_view = SubViewport.new()
+	eye_view.size = CockpitScreens.CAMERA_PX
+	eye_view.world_3d = get_viewport().world_3d
+	eye_view.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	add_child(eye_view)
+	eye = Camera3D.new()
+	eye.fov = 70.0
+	eye.far = 60.0
+	# Not through its own beams' haze (RovBody.BEAM_LAYER).
+	eye.cull_mask = 0xFFFFF & ~(1 << (RovBody.BEAM_LAYER - 1))
+	eye_view.add_child(eye)
+	screens_view = SubViewport.new()
+	screens_view.transparent_bg = true
+	screens_view.size = SCREENS_PX
+	screens_view.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	add_child(screens_view)
+	screens = CockpitScreens.new()
+	screens.position = Vector2(8, 8)
+	screens_view.add_child(screens)
+	screens.picture.texture = eye_view.get_texture()
+	screens_screen = TextureRect.new()
+	screens_screen.texture = screens_view.get_texture()
+	screens_screen.anchor_left = 1.0
+	screens_screen.anchor_right = 1.0
+	screens_screen.offset_left = -SCREENS_PX.x - 8.0
+	screens_screen.offset_top = 8.0
+	layer.add_child(screens_screen)
+	# In the headset: a panel to the right of the gaze, turned to it.
+	var quad := QuadMesh.new()
+	quad.size = Vector2(0.34, 0.34 * SCREENS_PX.y / SCREENS_PX.x)
+	var mat := StandardMaterial3D.new()
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	mat.no_depth_test = true
+	mat.albedo_texture = screens_view.get_texture()
+	screens_xr = MeshInstance3D.new()
+	screens_xr.mesh = quad
+	screens_xr.material_override = mat
+	screens_xr.position = Vector3(0.42, -0.1, -0.7)
+	screens_xr.rotation_degrees = Vector3(0, -30, 0)
+	screens_xr.visible = false
+	camera.add_child(screens_xr)
+
+
+## The camera follows the skid; the sonar pings SONAR_HZ times a second
+## (enough for the eye, and cheap on the Quest's CPU).
+func _update_screens(dt: float) -> void:
+	eye.global_transform = body.global_transform \
+		* Transform3D(Basis(), RovBody.EYE)
+	sonar_left -= dt
+	if sonar_left <= 0.0:
+		sonar_left = 1.0 / SONAR_HZ
+		var things: Array = placed.duplicate()
+		for sc in schools:
+			var p := DiveCore.fish_at(sc, 0, t)
+			things.append({"x": p.x, "z": p.z, "depth": p.depth,
+				"size": 0.4})
+		screens.sonar.show_scan(CockpitCore.sonar_scan(rov, things), t)
+
+
+## The spoken line above the console: the task, and the diver's rule
+## in words when the ascent is too fast (the card turns red as well).
+func _console_line(tel: Dictionary) -> String:
+	var line := _task_line()
 	if tel.ascent_too_fast:
-		lines.append("Всплытие %.0f м/мин — быстрее 10 м/мин. Сбавь ход."
-			% tel.ascent_m_per_min)
-	lines.append("Сумка %d · отпущено %d · для скриптория %d" % [
-		bag.kept.size(), bag.released.size(), bag.handed_over.size()])
-	return "\n".join(lines)
+		line = "Всплытие %.0f м/мин — быстрее 10 м/мин. Сбавь ход.\n" \
+			% tel.ascent_m_per_min + line
+	return line
 
 
 # --- Controls ---------------------------------------------------------------
@@ -476,16 +625,28 @@ func _read_input() -> Dictionary:
 			snap_ready = true
 		interact = interact or right_hand.is_button_pressed("trigger_click")
 		lamp_key = lamp_key or right_hand.is_button_pressed("ax_button")
+	var view_key := Input.is_key_pressed(KEY_V) or (xr_active
+		and left_hand.is_button_pressed("by_button"))
+	if view_key and not view_was:
+		third_person = not third_person
+		_place_view()
+	view_was = view_key
 	if interact and not interact_was:
 		_interact()
 	interact_was = interact
 	if lamp_key and not lamp_was:
 		rov.lamp = not rov.lamp
+		audio.on_lamp_toggled(rov.lamp)
 	lamp_was = lamp_key
 	return inp
 
 
 func _interact() -> void:
+	# The arm reaches whatever it finds: an empty reach is the answer
+	# "nothing here" too.
+	body.reach(t)
+	audio.on_arm()
+	arm_now = true
 	var things: Array = placed.duplicate()
 	for s in schools:
 		var p := DiveCore.fish_at(s, 0, t)
@@ -493,11 +654,17 @@ func _interact() -> void:
 			"depth": p.depth, "ru": s.ru, "category": "fish"})
 	var hit := DiveCore.nearest(rov, things, REACH_M)
 	if hit.is_empty():
+		# With the tether unwound the empty reach lifts the loop, and the
+		# core says so itself this frame.
+		if game.wound and absf(game.turns) <= DiveCore.UNWOUND_TURNS \
+				and not "tether" in game.done:
+			return
 		_say("Рядом ничего нет. Подойди ближе.")
 		return
 	var res := DiveCore.loot_action(hit.thing, bag)
 	bag = res.bag
 	_save_bag()
+	audio.on_taken(res.rule)
 	_say("%s. %s" % [hit.thing.ru, res.text])
 
 
@@ -541,6 +708,12 @@ func _start_xr() -> void:
 		_on_xr_started()
 		return
 	webxr = XRServer.find_interface("WebXR")
+	if webxr and webxr.is_initialized():
+		# The session survives a scene change: coming back from the hub
+		# in the headset, the dive goes straight into it, no button.
+		webxr.session_ended.connect(_on_webxr_ended)
+		_on_webxr_started()
+		return
 	if webxr:
 		webxr.session_supported.connect(_on_webxr_supported)
 		webxr.session_started.connect(_on_webxr_started)
@@ -578,11 +751,19 @@ func _on_webxr_ended() -> void:
 	xr_active = false
 	xr_label.visible = false
 	xr_prompt.visible = false
+	console_xr.visible = false
+	console_screen.visible = true
+	screens_xr.visible = false
+	screens_screen.visible = true
 
 
 func _on_xr_started() -> void:
 	xr_label.visible = true
 	xr_prompt.visible = true
+	console_xr.visible = true
+	console_screen.visible = false
+	screens_xr.visible = true
+	screens_screen.visible = false
 	if vr_button:
 		vr_button.visible = false
 
@@ -596,7 +777,9 @@ func _process(dt: float) -> void:
 	# The seiche current on the slope carries the ROV sideways.
 	inp["drift"] = DiveCore.current(rov.x, t)
 	rov = DiveCore.step_rov(rov, inp, dt)
-	var out := DiveCore.step_game(game, rov, dt, bag.handed_over.size())
+	var out := DiveCore.step_game(game, rov, dt, bag.handed_over.size(),
+		arm_now)
+	arm_now = false
 	if out.game.done.size() != game.done.size() or out.game.fallen != game.fallen:
 		game = out.game
 		_save_bag()
@@ -606,15 +789,31 @@ func _process(dt: float) -> void:
 	if shots_dir != "":
 		_shots()
 	var tel := DiveCore.telemetry(rov)
-	rig.position = Vector3(rov.x, -rov.depth, rov.z)
+	var at := Vector3(rov.x, -rov.depth, rov.z)
 	rig.rotation.y = -(rov.yaw + PI / 2.0)
+	body.position = at
+	body.rotation.y = rig.rotation.y
+	body.update(t)
+	body.set_lamp(rov.lamp and rov.battery > 0.0)
+	body.set_battery(rov.battery > 0.0)
+	# In first person the eye is the front camera on the skid, as on
+	# the real vehicle, so the arm is seen reaching out below it.
+	rig.position = at + rig.basis * RovBody.EYE
+	if third_person:
+		# Behind and above the body, turned with it; never above the
+		# surface, where the chase camera would look at the sky.
+		rig.position = at + rig.basis * CHASE
+		rig.position.y = minf(rig.position.y, -0.25)
 	if not xr_active:
-		camera.rotation.x = pitch
+		camera.rotation.x = pitch + (CHASE_PITCH if third_person else 0.0)
+		# Turn the eye back onto the body (atan(0.45 / 2.6)); in the
+		# headset the head does that itself.
+		camera.rotation.y = CHASE_YAW if third_person else 0.0
 	lamp.visible = rov.lamp and rov.battery > 0.0
 	# A fall dims the world until the safety stop is held.
 	lamp.light_energy = 1.2 if game.fallen else 4.0
 	_update_water(tel)
-	_update_sonar(tel, dt)
+	audio.update(tel, rov, inp, schools, t, dt, xr_active)
 	if game.fallen:
 		env.ambient_light_energy *= 0.35
 		sun.light_energy *= 0.35
@@ -623,21 +822,51 @@ func _process(dt: float) -> void:
 	($Snow as CPUParticles3D).position = rig.position
 	message_left = maxf(0.0, message_left - dt)
 	var prompt := message if message_left > 0.0 else _hint()
-	var text := _telemetry_text(tel) + "\n" + _task_line()
+	var text := _console_line(tel)
+	var shown := tel.duplicate()
+	shown["lamp"] = rov.lamp
+	console.show_cards(CockpitCore.cards(shown, bag, game.turns))
+	_fade_console(dt)
+	_update_screens(dt)
 	hud_label.text = text
 	hud_prompt.text = prompt
 	xr_label.text = text
 	xr_prompt.text = prompt
 
 
+## Near a holy thing the console, the task line and the hints go out
+## over CockpitCore.FADE_SECONDS; the ROV itself still answers the
+## sticks.
+func _fade_console(dt: float) -> void:
+	var here := Vector3(rov.x, -rov.depth, rov.z)
+	var nearest := INF
+	for p in holy_points:
+		nearest = minf(nearest, here.distance_to(p))
+	console_alpha = CockpitCore.fade_step(console_alpha,
+		CockpitCore.fade_target(nearest), dt)
+	for node in [console_screen, screens_screen, hud_label, hud_prompt]:
+		node.modulate.a = console_alpha
+	console_xr.transparency = 1.0 - console_alpha
+	screens_xr.transparency = 1.0 - console_alpha
+	xr_label.modulate.a = console_alpha
+	xr_prompt.modulate.a = console_alpha
+
+
 ## Place the ROV at each planned depth over the slope, facing away from
 ## the shore, wait for the frame to settle, save it, then quit.
 func _shots() -> void:
-	var n := shot_frame / 20
+	# Each depth twice: from the ROV's eye, then from behind its body.
+	var n := shot_frame / 40
 	if n >= shot_plan.size():
 		get_tree().quit()
 		return
+	var chase := shot_frame % 40 >= 20
+	if chase != third_person:
+		third_person = chase
+		_place_view()
 	var depth: float = shot_plan[n]
+	# The manipulator is shown at full reach in both views.
+	body.reach(20.0 + n - 0.6)
 	rov.x = DiveCore.x_for_depth(depth + 6.0) - 8.0
 	rov.z = 0.0
 	rov.depth = depth
@@ -646,57 +875,28 @@ func _shots() -> void:
 	t = 20.0 + n
 	if shot_frame % 20 == 19:
 		var img := get_viewport().get_texture().get_image()
-		img.save_png("%s/dive-%03dm.png" % [shots_dir, roundi(depth)])
+		img.save_png("%s/dive-%03dm%s.png" % [shots_dir, roundi(depth),
+			"-3p" if chase else ""])
 	shot_frame += 1
 
 
-func _build_sonar() -> void:
-	var player := AudioStreamPlayer.new()
-	var gen := AudioStreamGenerator.new()
-	gen.mix_rate = MIX_RATE
-	gen.buffer_length = 0.25
-	player.stream = gen
-	player.volume_db = -6.0
-	add_child(player)
-	player.play()
-	sonar = player.get_stream_playback()
-
-
-## Fill the sonar buffer: a low room of water (brown noise, darker with
-## depth) and short sine clicks for the ping and its echo.
-func _update_sonar(tel: Dictionary, dt: float) -> void:
-	if sonar == null:
-		return
-	ping_clock += dt
-	if ping_clock >= PING_EVERY:
-		ping_clock = 0.0
-		pending.append([0.0, 2400.0, 0.35])
-		# The echo returns from the floor below after 2 * range / c.
-		pending.append([tel.echo_delay, 2400.0, 0.12])
-	var hush := clampf(1.0 - tel.depth / 150.0, 0.25, 1.0)
-	var frames := sonar.get_frames_available()
-	for i in frames:
-		# Brown noise: integrated white noise from a seeded hash, so the
-		# water sound is the same on every run (no randomness).
-		var h := fposmod(sin(sample_clock * 12.9898) * 43758.5453, 1.0)
-		noise = clampf(noise + (h - 0.5) * 0.02, -1.0, 1.0) * 0.998
-		var v := noise * 0.25 * hush
-		for p in pending:
-			var age: float = -p[0]
-			if age >= 0.0 and age < 0.03:
-				v += sin(TAU * p[1] * age) * p[2] * (1.0 - age / 0.03)
-		sonar.push_frame(Vector2(v, v))
-		sample_clock += 1.0 / MIX_RATE
-		for p in pending:
-			p[0] -= 1.0 / MIX_RATE
-	pending = pending.filter(func(p): return p[0] > -0.05)
+func _build_audio() -> void:
+	audio = DiveAudio.new()
+	add_child(audio)
+	var flows := []
+	for p in placed:
+		if p.where == "water" and p.shape in FLOW_SHAPES:
+			flows.append(p)
+	audio.build(camera, right_hand, schools, flows)
 
 
 func _hint() -> String:
 	var things: Array = placed.duplicate()
 	var hit := DiveCore.nearest(rov, things, REACH_M)
 	if hit.is_empty():
-		return ""
+		# The first seconds teach the view switch, then stay quiet.
+		return "V (или Y на левом контроллере) — вид: из глаза ROV или " \
+			+ "со стороны корпуса" if t < 12.0 else ""
 	return "%s — нажми, чтобы взять или рассмотреть" % hit.thing.ru
 
 
@@ -786,7 +986,8 @@ func _flow_lines(p: Dictionary) -> Array:
 
 func _update_lines() -> void:
 	flow_mesh.clear_surfaces()
-	var here := rig.position
+	# The lines and the tether follow the vehicle, not the camera.
+	var here := body.position
 	var any := false
 	for p in placed:
 		if p.where != "water" or not p.shape in FLOW_SHAPES:
@@ -810,7 +1011,8 @@ func _update_lines() -> void:
 	tether_mesh.clear_surfaces()
 	tether_mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
 	var a := Vector3(30.0, 0.0, 0.0)
-	var b := here + Vector3(0, 0.2, 0)
+	# The tether leaves the top of the body, by its central module.
+	var b := here + Vector3(0, 0.45, 0)
 	var mid := (a + b) / 2.0 + Vector3(0, -3.0 - a.distance_to(b) * 0.08, 0)
 	for k in 21:
 		var u := k / 20.0

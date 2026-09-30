@@ -54,10 +54,17 @@ jobs:
 
       # The GDScript port is checked against the JS reference, and the
       # fixture itself must be current with the JS core.
-      - name: Fixture is current
+      - name: Fixtures are current
         run: |
           node scripts/godot/make_fixture.js
-          git diff --exit-code godot/tests/fixture.json
+          node scripts/godot/make_hub_fixture.js
+          node scripts/godot/make_trial_fixture.js
+          node scripts/godot/make_passion_fixture.js
+          node scripts/godot/export_antagonist_manifest.js
+          git diff --exit-code godot/tests/fixture.json \
+            godot/tests/hub_fixture.json godot/tests/trial_fixture.json \
+            godot/tests/passion_fixture.json \
+            godot/data/antagonist-manifest.json
 
       - name: Lake data in sync with the web build
         run: |
@@ -65,19 +72,42 @@ jobs:
               godot/data/lake-objects-99.json
           cmp public/ludus/data/issyk-kul-fish.json \
               godot/data/issyk-kul-fish.json
+          # The hub reads the same talks as the web game (TABOO 0.39).
+          cmp public/ludus/data/dialogue-trees.json \
+              godot/data/dialogue-trees.json
+          # Thresholds and passions read the same data as the web game.
+          cmp public/ludus/data/gate-trials.json godot/data/gate-trials.json
+          cmp public/ludus/data/passions.json godot/data/passions.json
+          # The path of the witness uses the same scene kits as the web
+          # VR scene (docs/SACRAMENTS_VR_SCENES.md).
+          for f in public/vr/models/scene/sacrament-*; do
+            cmp "$f" "godot/models/scene/$(basename "$f")"
+          done
 
       - name: Import and test
         working-directory: godot
         run: |
           "$GODOT" --headless --path . --import || true
-          "$GODOT" --headless --path . --script res://tests/run_tests.gd
+          # A GDScript parse error leaves Godot waiting instead of
+          # exiting; the timeout turns that into a red step.
+          timeout 900 "$GODOT" --headless --path . \
+            --script res://tests/run_tests.gd
+          timeout 600 "$GODOT" --headless --path . \
+            --script res://tests/run_hub_tests.gd
 
       - name: Proof frames at 3-120 m
         working-directory: godot
         run: |
           sudo apt-get install -y -qq xvfb libgl1-mesa-dri >/dev/null
           xvfb-run -a -s "-screen 0 1280x720x24" "$GODOT" --path . \
-            --rendering-driver opengl3 -- --shots="$PWD/../build/shots"
+            --rendering-driver opengl3 res://scenes/dive.tscn \
+            -- --shots="$PWD/../build/shots"
+          xvfb-run -a -s "-screen 0 1280x720x24" "$GODOT" --path . \
+            --rendering-driver opengl3 res://scenes/hub.tscn \
+            -- --shots="$PWD/../build/shots"
+          xvfb-run -a -s "-screen 0 1280x720x24" "$GODOT" --path . \
+            --rendering-driver opengl3 res://scenes/witness.tscn \
+            -- --shots="$PWD/../build/shots"
           ls ../build/shots
 
       - name: Export Web (WebXR)
@@ -87,6 +117,27 @@ jobs:
           "$GODOT" --headless --path . --export-release "Web" \
             ../build/godot/web/index.html
           ls -la ../build/godot/web
+
+      # Files the game reads with FileAccess are not resources, so the
+      # export takes them only through include_filter; one missing path
+      # works in the editor and breaks in the headset.  The Android
+      # export uses the same filters, so the Web pack stands for both.
+      - name: Pack holds what the game reads
+        run: |
+          PCK=build/godot/web/index.pck
+          missing=0
+          for f in data/dialogue-trees.json data/issyk-kul-fish.json \
+              data/lake-objects-99.json data/gate-trials.json \
+              data/passions.json data/antagonist-manifest.json \
+              scenes/hub.tscn.remap \
+              scenes/dive.tscn.remap scenes/witness.tscn.remap; do
+            strings "$PCK" | grep -qF "$f" || { echo "missing: $f"; missing=1; }
+          done
+          for f in public/vr/models/scene/sacrament-*.json; do
+            n="models/scene/$(basename "$f")"
+            strings "$PCK" | grep -qF "$n" || { echo "missing: $n"; missing=1; }
+          done
+          exit $missing
 
       - uses: actions/upload-artifact@v4
         with:
@@ -104,6 +155,9 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    # Writing a release needs contents: write; only main publishes one.
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -132,6 +186,8 @@ jobs:
           cp -r vendors/asset/addons/godotopenxrvendors godot/addons/
 
       - name: Android SDK packages and debug key
+        env:
+          KEYSTORE_B64: ${{ secrets.LUDUS_DEBUG_KEYSTORE_B64 }}
         run: |
           # The runner image ships the Android SDK; setup-android@v3
           # failed on the retired "tools" package, so it is not used.
@@ -139,10 +195,21 @@ jobs:
           yes | "$SDKM" --licenses >/dev/null || true
           "$SDKM" "platform-tools" "build-tools;34.0.0" \
             "platforms;android-34" >/dev/null
-          keytool -genkeypair -v -keystore "$RUNNER_TEMP/debug.keystore" \
-            -storepass android -keypass android -alias androiddebugkey \
-            -dname "CN=Ludus Debug,O=Ludus,C=KG" -keyalg RSA \
-            -keysize 2048 -validity 10000 >/dev/null
+          # One key for every build, so a new APK installs over the old
+          # one and keeps the saves (TABOO 0.01 point 3).  The key lives
+          # in the repo secret LUDUS_DEBUG_KEYSTORE_B64 (base64 of a
+          # keystore with alias androiddebugkey, password "android").
+          # Without it a throwaway key is made and the log says so.
+          if [ -n "$KEYSTORE_B64" ]; then
+            echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/debug.keystore"
+            echo "signing key: LUDUS_DEBUG_KEYSTORE_B64"
+          else
+            echo "::warning::LUDUS_DEBUG_KEYSTORE_B64 is not set: a new key is made for this build, so this APK will not install over an earlier one (uninstall first)."
+            keytool -genkeypair -v -keystore "$RUNNER_TEMP/debug.keystore" \
+              -storepass android -keypass android -alias androiddebugkey \
+              -dname "CN=Ludus Debug,O=Ludus,C=KG" -keyalg RSA \
+              -keysize 2048 -validity 10000 >/dev/null
+          fi
           mkdir -p ~/.config/godot
           cat > ~/.config/godot/editor_settings-4.7.tres <<EOF
           [gd_resource type="EditorSettings" format=3]
@@ -152,6 +219,14 @@ jobs:
           export/android/java_sdk_path = "$JAVA_HOME"
           EOF
           sed -i 's/^          //' ~/.config/godot/editor_settings-4.7.tres
+
+      # Every build gets a higher version code (the workflow's run
+      # number), so the headset accepts it as an update.
+      - name: Version from the run number
+        working-directory: godot
+        run: |
+          sed -i "s/^version\/code=.*/version\/code=${{ github.run_number }}/; s/^version\/name=.*/version\/name=\"0.1.${{ github.run_number }}\"/" export_presets.cfg
+          grep -E "^version/(code|name)=" export_presets.cfg
 
       - name: Export Meta Quest APK
         working-directory: godot
@@ -182,3 +257,24 @@ jobs:
           name: ludus-dive-quest-apk
           path: build/godot/ludus-dive-quest.apk
           retention-days: 30
+
+      # From main the APK goes to the release "headset-latest", one link
+      # for the operator, with its SHA-256 (TABOO 0.01 point 4).
+      - name: Release headset-latest
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd build/godot
+          sha256sum ludus-dive-quest.apk > ludus-dive-quest.apk.sha256
+          cat ludus-dive-quest.apk.sha256
+          NOTES="Build ${{ github.run_number }} from ${GITHUB_SHA::7}. Sideload with Meta Quest Developer Hub, SideQuest or adb install -r. Ready to load into the headset; tested in the headset only when the operator says so."
+          if gh release view headset-latest >/dev/null 2>&1; then
+            gh release upload headset-latest ludus-dive-quest.apk \
+              ludus-dive-quest.apk.sha256 --clobber
+            gh release edit headset-latest --notes "$NOTES" --prerelease
+          else
+            gh release create headset-latest ludus-dive-quest.apk \
+              ludus-dive-quest.apk.sha256 --title "Ludus: headset build" \
+              --notes "$NOTES" --prerelease --target "$GITHUB_SHA"
+          fi

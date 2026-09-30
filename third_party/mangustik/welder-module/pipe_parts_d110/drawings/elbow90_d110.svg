@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="297.0mm" height="210.0mm" viewBox="0 0 297.0 210.0">
+<defs>
+<pattern id="hatch" patternUnits="userSpaceOnUse" width="2.2" height="2.2" patternTransform="rotate(45)">
+<line x1="0" y1="0" x2="0" y2="2.2" stroke="#333" stroke-width="0.25"/>
+</pattern>
+</defs>
+<style>
+  .outline{stroke:#111;stroke-width:0.35;fill:none}
+  .hatchrect{stroke:#111;stroke-width:0.35}
+  .thin{stroke:#111;stroke-width:0.2;fill:none}
+  .dim{stroke:#111;stroke-width:0.15;fill:none}
+  .ext{stroke:#555;stroke-width:0.12;fill:none}
+  .center{stroke:#933;stroke-width:0.15;stroke-dasharray:6,1.5,1,1.5;fill:none}
+  .fillblk{fill:#111;stroke:none}
+  .txt{fill:#111}
+  .hdr{fill:#111}
+  .note{fill:#333;font-style:italic}
+  .border{stroke:#111;stroke-width:0.5;fill:none}
+</style>
+<rect x="0" y="0" width="297.0" height="210.0" fill="#fdfdf7"/>
+<rect x="3.00" y="3.00" width="291.00" height="204.00" class="border" fill="none"/>
+<line x1="117.80" y1="137.60" x2="117.80" y2="120.00" class="center"/>
+<path d="M 117.80 120.00 A 52.80 52.80 0 0 0 65.00 67.20" class="center"/>
+<line x1="65.00" y1="67.20" x2="47.40" y2="67.20" class="center"/>
+<line x1="97.00" y1="137.60" x2="97.00" y2="120.00" class="outline"/>
+<path d="M 97.00 120.00 A 32.00 32.00 0 0 0 65.00 88.00" class="outline"/>
+<line x1="65.00" y1="88.00" x2="47.40" y2="88.00" class="outline"/>
+<line x1="138.60" y1="137.60" x2="138.60" y2="120.00" class="outline"/>
+<path d="M 138.60 120.00 A 73.60 73.60 0 0 0 65.00 46.40" class="outline"/>
+<line x1="65.00" y1="46.40" x2="47.40" y2="46.40" class="outline"/>
+<line x1="97.00" y1="137.60" x2="138.60" y2="137.60" class="outline"/>
+<line x1="47.40" y1="88.00" x2="47.40" y2="46.40" class="outline"/>
+<line x1="100.04" y1="137.60" x2="100.04" y2="120.00" class="thin"/>
+<path d="M 100.04 120.00 A 35.04 35.04 0 0 0 65.00 84.96" class="thin"/>
+<line x1="65.00" y1="84.96" x2="47.40" y2="84.96" class="thin"/>
+<line x1="135.56" y1="137.60" x2="135.56" y2="120.00" class="thin"/>
+<path d="M 135.56 120.00 A 70.56 70.56 0 0 0 65.00 49.44" class="thin"/>
+<line x1="65.00" y1="49.44" x2="47.40" y2="49.44" class="thin"/>
+<line x1="100.04" y1="137.60" x2="135.56" y2="137.60" class="thin"/>
+<line x1="47.40" y1="84.96" x2="47.40" y2="49.44" class="thin"/>
+<text x="20.00" y="20.00" font-size="5.0" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="bold" class="txt">Отвод 90° электросварной ПЭ100 d110</text>
+<text x="20.00" y="26.00" font-size="3.2" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">по SDR11-эквивалентной стенке</text>
+<text x="20.00" y="32.00" font-size="2.6" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">Схематичный вид (не полное сечение) — см. README.md</text>
+<text x="20.00" y="164.00" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">ОЦЕНОЧНАЯ ГЕОМЕТРИЯ: радиус гиба (1.5x⌀110=165мм — типовое правило long-radius</text>
+<text x="20.00" y="167.00" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">отвода), длина ниппеля/раструба — инженерные оценки, НЕ из даташита или</text>
+<text x="20.00" y="170.00" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">единой таблицы ГОСТ 32415-2013 (см. README.md). Модель — упрощённая, гладкий</text>
+<text x="20.00" y="173.00" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">гиб постоянного радиуса, не точная торовая геометрия конкретного производителя.</text>
+<line x1="47.40" y1="75.20" x2="47.40" y2="79.20" class="ext"/>
+<line x1="65.00" y1="75.20" x2="65.00" y2="79.20" class="ext"/>
+<line x1="47.40" y1="77.20" x2="65.00" y2="77.20" class="dim"/>
+<polygon points="47.40,77.20 45.80,76.60 45.80,77.80" class="fillblk"/>
+<polygon points="65.00,77.20 66.60,76.60 66.60,77.80" class="fillblk"/>
+<text x="56.20" y="76.00" font-size="3.0" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">нипель 55</text>
+<text x="122.80" y="98.88" font-size="2.8" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">R165 (осевая линия гиба)</text>
+<line x1="127.80" y1="137.60" x2="131.80" y2="137.60" class="ext"/>
+<line x1="127.80" y1="96.00" x2="131.80" y2="96.00" class="ext"/>
+<line x1="129.80" y1="137.60" x2="129.80" y2="96.00" class="dim"/>
+<polygon points="129.80,137.60 129.20,136.00 130.40,136.00" class="fillblk"/>
+<polygon points="129.80,96.00 129.20,97.60 130.40,97.60" class="fillblk"/>
+<text x="131.30" y="116.80" font-size="3.0" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">⌀130</text>
+<rect x="167.00" y="165.00" width="120.00" height="35.00" class="border" fill="none"/>
+<line x1="167.00" y1="172.00" x2="287.00" y2="172.00" class="thin"/>
+<line x1="167.00" y1="179.00" x2="287.00" y2="179.00" class="thin"/>
+<line x1="167.00" y1="186.00" x2="287.00" y2="186.00" class="thin"/>
+<line x1="167.00" y1="193.00" x2="287.00" y2="193.00" class="thin"/>
+<line x1="241.40" y1="165.00" x2="241.40" y2="200.00" class="thin"/>
+<text x="169.00" y="170.70" font-size="3.0" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="bold" class="txt">Обозн.: MNG-ELBOW90-D110</text>
+<text x="169.00" y="177.70" font-size="3.0" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="bold" class="txt">Отвод 90° ПЭ100 d110</text>
+<text x="169.00" y="184.70" font-size="2.8" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Материал: PE100, по SDR11-экв. стенке</text>
+<text x="169.00" y="191.70" font-size="2.8" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Расчётная масса: 1.26 кг</text>
+<text x="169.00" y="198.70" font-size="2.1" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">См. README.md (верифиц./оценочные размеры)</text>
+<text x="243.40" y="170.70" font-size="2.8" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Масштаб 0.32:1</text>
+<text x="243.40" y="177.70" font-size="2.8" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Лист 1 Листов 1</text>
+<text x="243.40" y="184.70" font-size="2.6" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Мангустик / welder-module</text>
+<text x="243.40" y="191.70" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">УПРОЩЁННЫЙ ШТАМП</text>
+<text x="243.40" y="198.70" font-size="2.2" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">(не для юр. подачи)</text>
+</svg>

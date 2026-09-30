@@ -242,3 +242,31 @@ test('a whole dive 0 -> 60 -> 0 m: crossing, slow rise, no fall', () => {
   assert.equal(g.fallen, false);
   assert.ok(!said.some((s) => /Слишком быстро/.test(s)));
 });
+
+// --- The tether (HLD_TETHER_TRIALS_PASSIONS T1) ------------------------
+
+test('a full turn winds the tether, the same way back unwinds it', () => {
+  let res = run({ ...D.newRov(), depth: 4 }, D.newGame(), { turn: 1 }, 8.4);
+  assert.ok(res.game.turns > 1.0, `wound ${res.game.turns}`);
+  assert.ok(res.game.wound);
+  // The arm alone does not help while the cable is still twisted.
+  let out = D.stepGame(res.game, res.rov, 0.1, { arm: true });
+  assert.ok(!out.game.done.includes('tether'));
+  res = run(res.rov, res.game, { turn: -1 }, 8.4);
+  assert.ok(Math.abs(res.game.turns) <= D.UNWOUND_TURNS,
+    `back to ${res.game.turns}`);
+  out = D.stepGame(res.game, res.rov, 0.1, {});
+  assert.ok(!out.game.done.includes('tether'), 'needs the arm');
+  out = D.stepGame(res.game, res.rov, 0.1, { arm: true });
+  assert.ok(out.game.done.includes('tether'));
+  assert.ok(out.say.some((s) => /тем же путём/.test(s)));
+});
+
+test('three turns warn of a kink once, and no points are counted', () => {
+  const res = run({ ...D.newRov(), depth: 4 }, D.newGame(), { turn: 1 },
+    22);
+  assert.ok(res.game.turns >= D.KINK_TURNS);
+  const warned = res.said.filter((s) => /три оборота/.test(s));
+  assert.equal(warned.length, 1);
+  assert.ok(!('score' in res.game) && !('points' in res.game));
+});

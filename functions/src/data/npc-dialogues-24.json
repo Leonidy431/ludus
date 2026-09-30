@@ -1260,6 +1260,14 @@
       "attributeBonuses": {
        "wisdom": 1
       }
+     },
+     {
+      "text": "When the brothers watch me, my work goes better. Is that wrong?",
+      "text_ru": "Когда братья смотрят, у меня работа идёт лучше. Это плохо?",
+      "nextNodeId": "seen_knot",
+      "attributeBonuses": {
+       "wisdom": 1
+      }
      }
     ]
    },
@@ -1318,6 +1326,14 @@
       "nextNodeId": "name_breath",
       "attributeBonuses": {
        "wisdom": 2
+      }
+     },
+     {
+      "text": "And if the same knock comes back every night?",
+      "text_ru": "А если один и тот же стук возвращается каждую ночь?",
+      "nextNodeId": "returning_knock",
+      "attributeBonuses": {
+       "wisdom": 1
       }
      }
     ]
@@ -1382,6 +1398,62 @@
       "attributeBonuses": {
        "wisdom": 1
       }
+     }
+    ]
+   },
+   {
+    "id": "seen_knot",
+    "voice": "own",
+    "text": "When the novices sit and watch me, my knots come out tight and even. Alone at night the fingers go slack. Which rope is mine? The one tied in the dark. There is a thought that says: let them see how well you tie. It is a thief that comes after the work is done and carries off the rope while leaving it in your hand. Know it by one mark: you do it so that it is seen, and when nobody looks the zeal goes out like a wick without oil. So I tie my best knots after the lamp in the passage is put out.",
+    "text_ru": "Когда послушники сидят и смотрят, узлы у меня выходят тугие и ровные. Ночью, одному, пальцы слабеют. Какая же верёвка моя? Та, что связана в темноте. Есть помысел, который говорит: пусть видят, как ладно ты вяжешь. Это вор, он приходит после работы и уносит верёвку, оставив её у тебя в руке. Узнаёшь его по одной примете: делаешь, чтобы видели, а когда никто не смотрит, усердие гаснет, как фитиль без масла. Потому свои лучшие узлы я вяжу, когда лампу в сенях уже погасили.",
+    "meaning": "Discernment cue for the passion of vainglory: doing the work so that it is seen; zeal that rises before onlookers and falls when no one watches. St John Climacus describes vainglory as a thief that spoils good work by turning it towards the eyes of others; the remedy is hidden doing (Mt 6:1-6) and humility, not any holy object. The elder retells the teaching in his own craft and does not sign it with the Father's name.",
+    "source": "John Climacus, The Ladder of Divine Ascent, Step 22; Matthew 6:1-6",
+    "branches": [
+     {
+      "text": "Then I will tie the best knot where no one sees it.",
+      "text_ru": "Тогда лучший узел я завяжу там, где его никто не увидит.",
+      "nextNodeId": null,
+      "attributeBonuses": {
+       "wisdom": 2,
+       "faith": 1
+      },
+      "narrativeEffect": "The elder blows out the lamp. In the dark you hear him tie one more knot."
+     },
+     {
+      "text": "But good work should be seen, so that others learn.",
+      "text_ru": "Но хорошую работу ведь надо показать, чтобы другие учились.",
+      "nextNodeId": "still_water",
+      "attributeBonuses": {
+       "wisdom": 1
+      },
+      "narrativeEffect": "He sets the rope down unfinished and points at the jug: \"Let it settle first, then we will see who is teaching whom.\""
+     }
+    ]
+   },
+   {
+    "id": "returning_knock",
+    "voice": "own",
+    "text": "Most knocks come once and go. One comes back. You send it off at dusk, and the next night at the same hour it knocks the same way, softly, as if it had a key. It never asks for much: only to look once through the crack. That is its mark, brother: it returns. Do not open the door to argue with it; whoever argues is already talking at the threshold. Do not count how many times it came. Tie a knot, call on the Master of the house, and at first light tell your elder what knocked. A knock that has been told loses its key.",
+    "text_ru": "Большинство стуков приходят раз и уходят. А один возвращается. Прогонишь его в сумерки, а на другую ночь в тот же час он стучит так же, тихо, будто у него есть ключ. Он никогда не просит многого: только разок глянуть в щёлку. Это его примета, брат: он возвращается. Не открывай дверь, чтобы с ним спорить: кто спорит, тот уже беседует у порога. Не считай, сколько раз он приходил. Завяжи узел, позови Хозяина дома, а на рассвете расскажи старцу, что стучало. Стук, о котором рассказали, теряет ключ.",
+    "meaning": "Discernment cue for the passion of lust (fornication), told without any image of the body: the thought that keeps returning at the same hour and asks only for 'one look'. St John Climacus teaches that this warfare is not won by debating the thought but by flight, humility and calling on God, and Evagrius names the demon of fornication by its insistence; the thought loses its hold when it is revealed to the elder. The mentor teaches the sign, not a weapon; the rope is not counted and is not a charm. The elder retells the teaching in his own craft and does not sign it with the Fathers' names.",
+    "source": "John Climacus, The Ladder of Divine Ascent, Step 15; Evagrius Ponticus, Praktikos, ch. 8",
+    "branches": [
+     {
+      "text": "Then I will not argue at the door. I will tell it at first light.",
+      "text_ru": "Тогда я не стану спорить у двери. Расскажу на рассвете.",
+      "nextNodeId": null,
+      "attributeBonuses": {
+       "wisdom": 2,
+       "constitution": 1
+      },
+      "narrativeEffect": "The elder ties one knot and does not count it."
+     },
+     {
+      "text": "Surely one look through the crack harms no one.",
+      "text_ru": "Один взгляд в щёлку ведь никому не вредит.",
+      "nextNodeId": "ladder_of_thought",
+      "attributeBonuses": {},
+      "narrativeEffect": "He says nothing and trims the wick. Somewhere a knock sounds again."
      }
     ]
    },
@@ -1451,7 +1523,9 @@
    "bias: a book-and-number reference looks more authoritative for the basin saying / counter (Skeptic): a number that has not been verified is a fabrication / why: it is cited at book level (systematic collection, On stillness) as the contract prescribes. Dissent kept: a theologian verifies it before merge.",
    "bias: noonday acedia needs only Evagrius / counter: the 'noonday' image has a Scripture root / why: added Psalm 90:6 LXX so that the idiom metaphor 'noon sun that will not move' is anchored in Scripture and not only in a monastic source.",
    "bias: asking to learn the short word deserves faith +2 / counter: TABOO 0.35 rule 16: the rite is never paid, only understanding / why: the greeting branch now pays wisdom 1 + faith 1 for asking to understand.",
-   "bias: gate 4 (contemplative, gift:true, mentor elder_sergius) could be opened by the counter alone / counter: TABOO 0.35 rule 14: gates 4-6 are a gift, not a wage / why: name_breath's meaning and its faith>=5 narrativeEffect say that the door is opened from the other side, not bought. The mechanic stays in ludus-actions.js; this node only teaches it."
+   "bias: gate 4 (contemplative, gift:true, mentor elder_sergius) could be opened by the counter alone / counter: TABOO 0.35 rule 14: gates 4-6 are a gift, not a wage / why: name_breath's meaning and its faith>=5 narrativeEffect say that the door is opened from the other side, not bought. The mechanic stays in ludus-actions.js; this node only teaches it.",
+   "bias (2026-09-30, passions agent): vainglory needs a new mentor, since several trees already teach it / counter: public/ludus/data/passions.json names Elder Sergius as the teacher of vainglory and lust, and the missions count a meeting with that teacher as being taught; his tree had no sign for either / why: seen_knot teaches the vainglory sign ('you do it so that it is seen') in the rope-knotter's idiom, source Ladder 22 and Mt 6:1-6. Awaits the Theologian's verdict in the PR (TABOO 0.35 rule 18).",
+   "bias: the lust node should name the passion plainly / counter: TABOO 0.4 and the lust chorus (docs/CHORUS_LUST_2026-09-30.md): no image of the body, the sign is the thought that returns (Ladder 15, stages of a thought) / why: returning_knock speaks of a knock at the cell door that keeps coming back and asks for 'one look'; the meaning names the passion for the Theologian. The 'one look' choice is a refusal path (no bonus) back to ladder_of_thought. Voice stays 'own' as the chorus decided for this composite elder; the teaching is a retelling with its source, not a quotation. Dissent kept (Skeptic): verify against Step 15 before merge."
   ],
   "review": {
    "reviewer": null,
@@ -5406,6 +5480,14 @@
        "faith": 2,
        "wisdom": 1
       }
+     },
+     {
+      "text": "And when a candle burns well, whose is the credit?",
+      "text_ru": "А когда свеча горит хорошо, чья это заслуга?",
+      "nextNodeId": "own_light",
+      "attributeBonuses": {
+       "wisdom": 1
+      }
      }
     ]
    },
@@ -5479,6 +5561,32 @@
       "nextNodeId": "slow_comb",
       "attributeBonuses": {},
       "narrativeEffect": "Sister Catherine does not argue. She lifts the lid of a hive that was opened too early; it is empty."
+     }
+    ]
+   },
+   {
+    "id": "own_light",
+    "voice": "own",
+    "text": "After a good day in the workshop there is a voice that comes softly: \"See what a straight candle you poured. This was your own doing.\" It sounds like honest pleasure in work, so no one guards against it. But it speaks as if the wax had lit itself. The wax came from the bees, the flame from another hand, and the hands themselves were given. When I hear that voice I ask the candle: what have you that you did not receive? It never has an answer.",
+    "text_ru": "После удачного дня в мастерской приходит тихий голос: «Смотри, какую ровную свечу ты отлила. Это твоё собственное дело». Он звучит как честная радость от работы, поэтому его никто не стережётся. Но говорит он так, будто воск загорелся сам. Воск дали пчёлы, огонь поднесла чужая рука, да и сами руки даны. Когда я слышу этот голос, я спрашиваю свечу: что у тебя есть, чего бы ты не получила? Ответа у неё не бывает.",
+    "meaning": "Discernment cue for pride, the eighth passion: the thought that ascribes one's good deeds and progress to oneself (\"this was your own doing\"). St John Climacus calls pride a denial of God and the ascription of one's achievements to oneself; the remedy is humility, remembering that every good is received. The mentor teaches the sign, not a weapon: the passion is cut by recognising it and giving thanks.",
+    "source": "The Ladder of Divine Ascent, step 23 (on pride); 1 Corinthians 4:7",
+    "branches": [
+     {
+      "text": "Then I will thank the hand that brought the flame.",
+      "text_ru": "Тогда я поблагодарю руку, что поднесла огонь.",
+      "nextNodeId": "quiet_candle",
+      "attributeBonuses": {
+       "wisdom": 2
+      },
+      "narrativeEffect": "She nods once and trims a wick with her thumbnail."
+     },
+     {
+      "text": "But I did pour it well.",
+      "text_ru": "Но ведь я и правда хорошо её отлил.",
+      "nextNodeId": "wax_and_flame",
+      "attributeBonuses": {},
+      "narrativeEffect": "Sister Catherine sets the candle on the shelf. In the dark it is only wax."
      }
     ]
    },

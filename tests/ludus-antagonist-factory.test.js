@@ -57,6 +57,19 @@ test('pride, the passion that was missing, now has its twelve', () => {
   assert.equal(F.variantsOf('pride').length, 12);
 });
 
+test('all eight passions have their twelve (HLD follow-ups D3)', () => {
+  assert.deepEqual([...F.passions()].sort(), [...F.PASSIONS].sort());
+  F.PASSIONS.forEach((p) => {
+    assert.ok(F.variantsOf(p).length >= 12, p);
+  });
+  // Lust is our own drawing, never raw material (chorus decision
+  // docs/CHORUS_LUST_2026-09-30.md).
+  metas().filter((m) => m.passion === 'lust').forEach((m) => {
+    assert.equal(m.raw_material, false, m.name);
+    assert.equal(m.origin, 'own-procedural-drawing', m.name);
+  });
+});
+
 test('the queue never shows the same variant twice in a row', () => {
   F.passions().forEach((passion) => {
     const n = F.variantsOf(passion).length;
