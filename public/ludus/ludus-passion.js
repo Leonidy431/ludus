@@ -142,17 +142,72 @@
     return { record: rec, attributeBonuses: bonus };
   }
 
+  // The sprites of the passions come from the AntagonistFactory (TABOO
+  // 0.3 rule 95).  Node loads it directly; the browser loads it next to
+  // this file, so no page has to list it, and until it arrives the road
+  // simply keeps the art named in passions.json.
+  function factory() {
+    if (root && root.LudusAntagonistFactory) {
+      return root.LudusAntagonistFactory;
+    }
+    if (typeof module === 'object' && module.exports
+        && typeof require === 'function') {
+      try {
+        return require('./ludus-antagonist-factory.js');
+      } catch (error) {
+        return null;
+      }
+    }
+    return null;
+  }
+
+  if (root && root.document && !root.LudusAntagonistFactory) {
+    const doc = root.document;
+    const here = doc.currentScript && doc.currentScript.src;
+    if (here && !doc.querySelector('script[data-ludus-factory]')) {
+      const tag = doc.createElement('script');
+      tag.src = here.replace(/ludus-passion\.js(\?.*)?$/,
+        'ludus-antagonist-factory.js');
+      tag.setAttribute('data-ludus-factory', '');
+      doc.head.appendChild(tag);
+    }
+  }
+
+  // The sprite for the player's next meeting with a passion.  The
+  // number of past meetings picks the place in the factory's queue, so
+  // re-drawing the road shows the same sprite and each new meeting the
+  // next one, never the same twice in a row (rule 53).
+  function spriteFor(passion, record) {
+    const f = factory();
+    if (!f || !passion) {
+      return null;
+    }
+    const rec = normalizeRecord(record);
+    const met = rec[passion.id] ? rec[passion.id].meetings : 0;
+    return f.sprite(passion.raw || passion.id, met, passion.id);
+  }
+
   // The next passion on the road: the first in Evagrius' order that has
   // not yet been overcome; a passion that took the player captive comes
-  // back until it is overcome.
+  // back until it is overcome.  Its entry carries the factory sprite in
+  // `art` (and the full description in `sprite`): the game reads
+  // passion.art from this same entry both on the road and during the
+  // meeting, so both views show one variant.
   function nextPassion(data, record) {
     const rec = normalizeRecord(record);
-    return data.order.map((id) => data.passions.find((p) => p.id === id))
+    const passion = data.order
+      .map((id) => data.passions.find((p) => p.id === id))
       .find((p) => p && !(rec[p.id] && rec[p.id].overcome > 0)) || null;
+    const sprite = spriteFor(passion, record);
+    if (sprite) {
+      passion.art = sprite.src;
+      passion.sprite = sprite;
+    }
+    return passion;
   }
 
   const api = { STAGES, start, options, choose, finish, nextPassion,
-    normalizeRecord, canName };
+    normalizeRecord, canName, spriteFor };
   if (typeof module === 'object' && module.exports) {
     module.exports = api;
   }

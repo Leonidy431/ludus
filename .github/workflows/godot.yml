@@ -1,0 +1,184 @@
+# Headset build (CLAUDE.md TABOO 0.02; docs/HLD_HEADSET_BUILD_2026-09-30.md).
+#
+#   test     - the GDScript dive core against the JS reference fixture,
+#              data in sync with the web build, proof frames under Xvfb,
+#              and the Web (WebXR) export as an artifact;
+#   android  - the Meta Quest APK: JDK 17, Android SDK, Godot's Android
+#              templates, the Meta vendors plugin (pinned release) and a
+#              debug keystore made in the job.  The APK is an artifact to
+#              sideload with Meta Quest Developer Hub, SideQuest or adb.
+#
+# A debug APK is signed with a throwaway key: fine for a headset in
+# developer mode, not for the Meta Store (that key goes to GitHub
+# Secrets later, HLD phase P7).
+name: Godot headset build
+
+on:
+  push:
+    branches: [main, 'claude/**']
+    paths: ['godot/**', 'public/ludus/dive/**', 'public/ludus/data/**',
+            'scripts/godot/**', '.github/workflows/godot.yml']
+  pull_request:
+    paths: ['godot/**', 'public/ludus/dive/**', 'public/ludus/data/**',
+            'scripts/godot/**', '.github/workflows/godot.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  GODOT_VERSION: '4.7.1'
+  VENDORS_TAG: '5.1.0-stable'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Cache Godot
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/godot
+            ~/.local/share/godot/export_templates
+          key: godot-${{ env.GODOT_VERSION }}-web
+
+      - name: Install Godot and web templates
+        run: scripts/godot/ci_setup.sh web
+
+      # The GDScript port is checked against the JS reference, and the
+      # fixture itself must be current with the JS core.
+      - name: Fixture is current
+        run: |
+          node scripts/godot/make_fixture.js
+          git diff --exit-code godot/tests/fixture.json
+
+      - name: Lake data in sync with the web build
+        run: |
+          cmp public/ludus/data/lake-objects-99.json \
+              godot/data/lake-objects-99.json
+          cmp public/ludus/data/issyk-kul-fish.json \
+              godot/data/issyk-kul-fish.json
+
+      - name: Import and test
+        working-directory: godot
+        run: |
+          "$GODOT" --headless --path . --import || true
+          "$GODOT" --headless --path . --script res://tests/run_tests.gd
+
+      - name: Proof frames at 3-120 m
+        working-directory: godot
+        run: |
+          sudo apt-get install -y -qq xvfb libgl1-mesa-dri >/dev/null
+          xvfb-run -a -s "-screen 0 1280x720x24" "$GODOT" --path . \
+            --rendering-driver opengl3 -- --shots="$PWD/../build/shots"
+          ls ../build/shots
+
+      - name: Export Web (WebXR)
+        working-directory: godot
+        run: |
+          mkdir -p ../build/godot/web
+          "$GODOT" --headless --path . --export-release "Web" \
+            ../build/godot/web/index.html
+          ls -la ../build/godot/web
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ludus-dive-web
+          path: build/godot/web
+          retention-days: 14
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ludus-dive-frames
+          path: build/shots
+          retention-days: 14
+
+  android:
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Cache Godot
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/godot
+            ~/.local/share/godot/export_templates
+          key: godot-${{ env.GODOT_VERSION }}-android
+
+      - name: Install Godot and Android templates
+        run: scripts/godot/ci_setup.sh android
+
+      # The Meta OpenXR loader and manifest entries come from the
+      # vendors plugin (MIT); its binaries are fetched, not committed.
+      - name: Meta vendors plugin
+        run: |
+          curl -sSfL -o vendors.zip "https://github.com/GodotVR/godot_openxr_vendors/releases/download/${VENDORS_TAG}/godotopenxrvendorsaddon.zip"
+          unzip -oq vendors.zip -d vendors
+          cp -r vendors/asset/addons/godotopenxrvendors godot/addons/
+
+      - name: Android SDK packages and debug key
+        run: |
+          # The runner image ships the Android SDK; setup-android@v3
+          # failed on the retired "tools" package, so it is not used.
+          SDKM="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKM" --licenses >/dev/null || true
+          "$SDKM" "platform-tools" "build-tools;34.0.0" \
+            "platforms;android-34" >/dev/null
+          keytool -genkeypair -v -keystore "$RUNNER_TEMP/debug.keystore" \
+            -storepass android -keypass android -alias androiddebugkey \
+            -dname "CN=Ludus Debug,O=Ludus,C=KG" -keyalg RSA \
+            -keysize 2048 -validity 10000 >/dev/null
+          mkdir -p ~/.config/godot
+          cat > ~/.config/godot/editor_settings-4.7.tres <<EOF
+          [gd_resource type="EditorSettings" format=3]
+
+          [resource]
+          export/android/android_sdk_path = "$ANDROID_HOME"
+          export/android/java_sdk_path = "$JAVA_HOME"
+          EOF
+          sed -i 's/^          //' ~/.config/godot/editor_settings-4.7.tres
+
+      - name: Export Meta Quest APK
+        working-directory: godot
+        env:
+          GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ${{ runner.temp }}/debug.keystore
+          GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
+          GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD: android
+        run: |
+          "$GODOT" --headless --path . --import || true
+          mkdir -p ../build/godot
+          # The build template is installed in the same run as the
+          # export, as Godot's command line requires.
+          "$GODOT" --headless --path . --install-android-build-template \
+            --export-debug "Meta Quest" ../build/godot/ludus-dive-quest.apk
+          ls -la ../build/godot
+
+      - name: Check the APK is a Quest OpenXR app
+        run: |
+          AAPT=$(ls "$ANDROID_HOME"/build-tools/*/aapt | tail -1)
+          "$AAPT" dump badging build/godot/ludus-dive-quest.apk | head -5
+          "$AAPT" dump xmltree build/godot/ludus-dive-quest.apk \
+            AndroidManifest.xml > manifest.txt
+          grep -E "org.khronos.openxr|com.oculus|vr.headtracking" \
+            manifest.txt | head -10
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ludus-dive-quest-apk
+          path: build/godot/ludus-dive-quest.apk
+          retention-days: 30

@@ -125,6 +125,9 @@
             <div id="ludus-error" role="alert" hidden></div>
             <div id="ludus-auth"></div>
             <div id="ludus-profile"></div>
+            <!-- Missions of the campaign spine and the fall state:
+                 ludus-missions.js renders here. -->
+            <div id="ludus-missions"></div>
             <div id="ludus-network"></div>
             <div id="ludus-gates"></div>
         </div>
@@ -345,7 +348,11 @@
     <script src="/ludus/ludus-rest.js"></script>
     <script src="/ludus/ludus-outbox.js"></script>
     <script src="/ludus/ludus-journal.js"></script>
+    <script src="/ludus/ludus-antagonist-factory.js"></script>
     <script src="/ludus/ludus-passion.js"></script>
+    <!-- Missions listen for ludus:player-changed and
+         ludus:gate-selected, so they load before the game core. -->
+    <script src="/ludus/ludus-missions.js"></script>
     <script src="/ludus/ludus-game.js"></script>
 </body>
 </html>

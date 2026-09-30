@@ -53,10 +53,16 @@ jobs:
 
       - name: Assemble the site
         run: |
-          mkdir -p site
+          mkdir -p site/godot
           cp -r public/ludus/. site/
           cp public/index.html site/index.html
           cp -r public/vr site/vr
+          # The Godot dive scene (WebXR) for the Quest browser, at
+          # /ludus/godot/ (CLAUDE.md TABOO 0.02).
+          GODOT=$(scripts/godot/ci_setup.sh web | tail -1)
+          (cd godot && "$GODOT" --headless --path . --import || true)
+          (cd godot && "$GODOT" --headless --path . --export-release \
+            "Web" "$PWD/../site/godot/index.html")
           # SPA routes fall back to the game page, as Firebase rewrites do.
           cp site/index.html site/404.html
           touch site/.nojekyll

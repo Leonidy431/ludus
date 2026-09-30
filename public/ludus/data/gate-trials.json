@@ -1,0 +1,234 @@
+{
+  "version": "2026-09-30.1",
+  "purpose": "The threshold of each knowledge gate (CLAUDE.md constitution section 4, TABOO 0.35 rule 14). A trial is a choice by understanding, not a quiz: there is no correct index. Each option leads somewhere: 'through' crosses the threshold, 'return' sends the player back to the mentor before the threshold can be tried again, 'fall' lets a passion take its own (the fall state, lifted by sobriety and a talk with the mentor). The trial is offered only when the three conditions of the gate already hold (ludus-actions.js). Teaching lines carry meaning and a source from data/patristic-canon.json; a mentor who retells a Father speaks in voice 'paraphrase' and is never given an invented quotation (TABOO 0.35 rule 18, TABOO 0.37).",
+  "trials": [
+    {
+      "gateId": "foundational",
+      "title_ru": "Порог первый: основание",
+      "mentor": "theodora",
+      "scene_ru": "У ворот обители двое ставят сторожку. Один кладёт камни прямо на песок: к вечеру будет стена. Другой роет до скалы, и у него пока одна яма. Феодора вытирает муку с рук и ждёт, к кому ты подойдёшь.",
+      "meaning": "The foundation of the way is hearing the word and doing it; what is built on appearance falls at the first flood.",
+      "source": "Matthew 7:24-27",
+      "options": [
+        {
+          "id": "sand",
+          "text_ru": "Помочь тому, кто кладёт на песок: к вечеру будет стена.",
+          "outcome": "return",
+          "voice": "own",
+          "reply_ru": "«Стена к вечеру — хорошая стена до первого паводка», — говорит Феодора и снова берётся за тесто. — «Приходи, поговорим о закваске».",
+          "meaning": "Quick visible results are not a foundation; the mentor sends the player back to learn before the threshold.",
+          "source": "Matthew 7:26-27"
+        },
+        {
+          "id": "rock",
+          "text_ru": "Встать рядом с тем, кто роет до скалы.",
+          "outcome": "through",
+          "voice": "own",
+          "reply_ru": "Феодора кивает: «Тесто тоже месят до дна квашни. Что сверху — то потом». Порог позади.",
+          "meaning": "Digging to the rock is hearing and doing the word; the first gate is crossed by the one who builds low and slow.",
+          "source": "Matthew 7:24-25"
+        },
+        {
+          "id": "tower",
+          "text_ru": "Сложить свою стену, выше обеих, чтобы её видели с дороги.",
+          "outcome": "fall",
+          "passion": "vainglory",
+          "voice": "own",
+          "reply_ru": "Стену видно с дороги. А свет в окне сторожки почему-то стал тусклым.",
+          "meaning": "Building to be seen is vainglory; the sign is that the work speaks to other people, not to the task.",
+          "source": "Ladder, step 22"
+        }
+      ]
+    },
+    {
+      "gateId": "liturgical",
+      "title_ru": "Порог второй: общий голос",
+      "mentor": "theodora",
+      "scene_ru": "На клиросе не хватает голоса. Нижние держат одну ноту, напев идёт над ними. Ты знаешь напев и умеешь петь громче всех.",
+      "meaning": "Common prayer is one voice of many; the singer serves the keel of the ison and does not break it to be heard.",
+      "source": "Psalm 132:1 (LXX; 133:1 in Hebrew numbering); Acts 2:42",
+      "options": [
+        {
+          "id": "ison",
+          "text_ru": "Встать в нижнюю ноту и держать её вместе со всеми.",
+          "outcome": "through",
+          "voice": "own",
+          "reply_ru": "Твоего голоса отдельно не слышно. Слышно, что клирос стал ровнее. Порог позади.",
+          "meaning": "To hold the ison with the others is to pray with the Church; the self is not the melody.",
+          "source": "Psalm 132:1 (LXX; 133:1 in Hebrew numbering)"
+        },
+        {
+          "id": "overrule",
+          "text_ru": "Поправить регента при всех: ты знаешь напев лучше.",
+          "outcome": "fall",
+          "passion": "pride",
+          "voice": "own",
+          "reply_ru": "Регент замолкает. Напев идёт дальше, но свет у аналоя стал тусклым.",
+          "meaning": "Correcting the elder in front of all to show one's knowledge is pride; its sign is 'this is my own doing'.",
+          "source": "Ladder, step 23"
+        },
+        {
+          "id": "alone",
+          "text_ru": "Послушать с порога: помолиться можно и одному.",
+          "outcome": "return",
+          "voice": "own",
+          "reply_ru": "«Одному можно», — говорит Феодора. — «Но хлеб месят в одной квашне. Приходи ко мне, поговорим».",
+          "meaning": "Private prayer is good, but the liturgical gate is crossed together; the mentor sends the player back to learn why.",
+          "source": "Matthew 18:20"
+        }
+      ]
+    },
+    {
+      "gateId": "ascetic",
+      "title_ru": "Порог третий: прядь до вечера",
+      "mentor": "abba_john",
+      "scene_ru": "Полдень. Авва Иоанн велел плести одну прядь до вечера. Рядом братья делят обед; ты сегодня постишься, и солнце будто не двигается.",
+      "meaning": "Fasting is kept in secret and joined to patient work; it is a tool against the passions, not a trophy.",
+      "source": "Matthew 6:16-18",
+      "options": [
+        {
+          "id": "eat",
+          "text_ru": "Поесть с братьями: пост подождёт до дня покрепче.",
+          "outcome": "fall",
+          "passion": "gluttony",
+          "voice": "own",
+          "reply_ru": "Хлеб тёплый. Прядь лежит на песке, и тень от неё стала бледнее.",
+          "meaning": "The lure of gluttony begins by caring for your health; the sign is 'the fast can wait'.",
+          "source": "Ladder, step 14"
+        },
+        {
+          "id": "drop",
+          "text_ru": "Бросить прядь: пост уже сделан, чего ещё.",
+          "outcome": "return",
+          "voice": "paraphrase",
+          "reply_ru": "Авва молча подаёт тебе прядь снова. Так старец велел Иоанну поливать сухую палку, пока она не дала плод. Приходи к нему ещё.",
+          "meaning": "The fast without patient work is half the way; the mentor retells the saying of the dry stick and sends the player back.",
+          "source": "Apophthegmata Patrum, alphabetical collection, John the Dwarf 1"
+        },
+        {
+          "id": "plait",
+          "text_ru": "Плести дальше и никому не говорить о посте.",
+          "outcome": "through",
+          "voice": "own",
+          "reply_ru": "К вечеру прядь готова. Никто не знает, что ты не ел, и так и надо. Порог позади.",
+          "meaning": "The fast kept in secret with the work of the hands is the ascetic threshold.",
+          "source": "Matthew 6:17-18"
+        }
+      ]
+    },
+    {
+      "gateId": "contemplative",
+      "title_ru": "Порог четвёртый: мутный кувшин",
+      "mentor": "elder_sergius",
+      "scene_ru": "Старец ставит перед тобой мутный кувшин из родника и молча вяжет узел. Больше он ничего не говорит.",
+      "meaning": "Stillness before God lets the stirred mind settle; the gate is a gift received in stillness, not a wage.",
+      "source": "Ladder, step 27; Psalm 45:11 (LXX; 46:10 in Hebrew numbering)",
+      "options": [
+        {
+          "id": "ask",
+          "text_ru": "Спросить, сколько ещё ждать.",
+          "outcome": "return",
+          "voice": "paraphrase",
+          "reply_ru": "Он вяжет ещё один узел. Ответа нет — и это ответ. Приходи к нему снова.",
+          "meaning": "Measuring stillness by time is still the stirred mind; the elder answers with silence, as the Fathers' sayings on stillness teach.",
+          "source": "Apophthegmata Patrum, systematic collection, book On stillness (hesychia)"
+        },
+        {
+          "id": "sit",
+          "text_ru": "Сидеть и смотреть, пока вода не отстоится.",
+          "outcome": "through",
+          "voice": "own",
+          "reply_ru": "Муть оседает. В воде видно лицо, а за ним — свет из окна. Порог позади.",
+          "meaning": "Stillness itself is the answer; clarity comes when the jug is left at rest.",
+          "source": "Ladder, step 27"
+        },
+        {
+          "id": "window",
+          "text_ru": "Выглянуть в окно: полдень тянется, в соседней обители веселее.",
+          "outcome": "fall",
+          "passion": "acedia",
+          "voice": "own",
+          "reply_ru": "За окном то же солнце. Лампа в келье горит тусклее.",
+          "meaning": "Despondency makes the day twice as long and the place hateful; that is its sign.",
+          "source": "Ladder, step 13"
+        }
+      ]
+    },
+    {
+      "gateId": "mystical",
+      "title_ru": "Порог пятый: незажжённая свеча",
+      "mentor": "sister_catherine",
+      "scene_ru": "Сестра Екатерина вкладывает тебе в руки незажжённую свечу. За стеной гудят ульи. Недавно тебе снился яркий свет.",
+      "meaning": "The light is received, not produced: the uncreated light of the Transfiguration is a gift, and no one lights himself.",
+      "source": "Matthew 17:1-8; Palamas, Homilies on the Transfiguration",
+      "options": [
+        {
+          "id": "chosen",
+          "text_ru": "Сказать ей: свет во сне значит, что я уже близко.",
+          "outcome": "fall",
+          "passion": "pride",
+          "voice": "own",
+          "reply_ru": "Она ничего не отвечает и возвращается к ульям. Свеча в руке кажется тяжелее, а свет в келье — тусклее.",
+          "meaning": "Taking a bright vision as proof of being chosen is the deception the Fathers warn of; its sign is hurry and the wish to tell others.",
+          "source": "Ladder, step 23"
+        },
+        {
+          "id": "light_now",
+          "text_ru": "Попросить зажечь свечу от её свечи прямо сейчас.",
+          "outcome": "return",
+          "voice": "own",
+          "reply_ru": "«Огонь не торопят», — говорит она и уходит к ульям. Приходи к ней снова.",
+          "meaning": "Asking for the light on demand lacks discernment; the mentor sends the player back.",
+          "source": "Ladder, step 26"
+        },
+        {
+          "id": "wait",
+          "text_ru": "Держать свечу и ждать: огонь приносят, его не берут.",
+          "outcome": "through",
+          "voice": "paraphrase",
+          "reply_ru": "Она кивает. Фессалоникийский учитель защищал тех, кто говорил, что видимый ими свет не создан человеком. Свеча пока тёмная. Порог позади.",
+          "meaning": "Waiting for the light as a gift is the mystical threshold; the mentor retells St Gregory Palamas on the light of Tabor.",
+          "source": "Palamas, Homilies on the Transfiguration; Triads"
+        }
+      ]
+    },
+    {
+      "gateId": "apophatic",
+      "title_ru": "Порог шестой: без лампы",
+      "mentor": "elder_sergius",
+      "scene_ru": "Келья без лампы. Старец рядом, но не говорит ни слова. Слышно только дыхание и далёкий тростник.",
+      "meaning": "God is beyond every word and concept; Moses enters the darkness where God is, and the last gate is silence.",
+      "source": "Mystical Theology, chapter 1; Exodus 20:21",
+      "options": [
+        {
+          "id": "name",
+          "text_ru": "Назвать словами то, что ты понял о Боге.",
+          "outcome": "return",
+          "voice": "paraphrase",
+          "reply_ru": "Старец молчит. Нисский учитель писал о Моисее: чем дальше он шёл, тем яснее видел, что Бог выше всего, что можно увидеть. Слова кончаются у этого порога. Приходи ещё.",
+          "meaning": "Every name falls short of God; the mentor retells St Gregory of Nyssa on Moses and sends the player back.",
+          "source": "Life of Moses, book II"
+        },
+        {
+          "id": "summit",
+          "text_ru": "Сказать себе: я дошёл до последнего порога.",
+          "outcome": "fall",
+          "passion": "pride",
+          "voice": "own",
+          "reply_ru": "Темнота стала просто темнотой. Дыхание сбилось.",
+          "meaning": "Counting the last gate as one's own achievement is pride.",
+          "source": "Ladder, step 23"
+        },
+        {
+          "id": "silence",
+          "text_ru": "Молчать вместе с ним.",
+          "outcome": "through",
+          "voice": "paraphrase",
+          "reply_ru": "Никто ничего не говорит. Так проходит долго. Порог позади, хотя этого никто не сказал.",
+          "meaning": "Silence before the unknowable God is the apophatic threshold, as the Mystical Theology teaches.",
+          "source": "Mystical Theology, chapter 1"
+        }
+      ]
+    }
+  ]
+}

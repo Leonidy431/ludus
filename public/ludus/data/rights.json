@@ -111,6 +111,19 @@
    "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
   },
   {
+   "object": "ant_pride_4a93e8590a",
+   "slot": "DEF-001",
+   "passion": "pride",
+   "repo": "https://github.com/Card-Forge/forge",
+   "commit": "647b5eac95",
+   "path": "forge-gui/res/adventure/common/sprites/enemy/aberration/beholder.png",
+   "licence": "GPL",
+   "colour_change": 0.4396,
+   "min_shape_change": 0.3513,
+   "variants": 12,
+   "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
+  },
+  {
    "object": "ant_sadness_3f22d4e3ed",
    "slot": "DEF-001",
    "passion": "sadness",
