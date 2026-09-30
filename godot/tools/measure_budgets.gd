@@ -536,6 +536,7 @@ func _finish() -> void:
 		"only_view": only_view,
 		"script_time": ("wall minus run-queue wait "
 			+ "(/proc/thread-self/schedstat)") if sched_ok else "wall",
+		"schedstat_read_cost_us": sched_cost_ns / 1000.0,
 		"script_ms_mean_host": snappedf(_mean(proc_ms), 0.001),
 		"script_ms_median_host": snappedf(_median(proc_ms), 0.001),
 		"script_ms_p95_host": snappedf(_pct(proc_ms, 0.95), 0.001),
