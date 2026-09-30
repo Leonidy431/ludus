@@ -4278,5 +4278,49 @@
   "score": 1,
   "attribution": [],
   "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/bevyengine/bevy",
+  "commit": "157e1ce6bc66fadca9f57260c18a16d743c11ed5",
+  "license_file": "LICENSE-APACHE",
+  "path": "crates/bevy_sprite/src/texture_slice/border_rect.rs",
+  "kind": "code",
+  "hits": [
+   "texture",
+   "border"
+  ],
+  "score": 2,
+  "attribution": [
+   "CREDITS.md"
+  ],
+  "slot": "DEF-025"
+ },
+ {
+  "repo": "https://github.com/00-Evan/shattered-pixel-dungeon",
+  "commit": "2bb34a4e91d29c8785a9363cad6ddfe5122b1d4f",
+  "license_file": "LICENSE.txt",
+  "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/trinkets/ParchmentScrap.java",
+  "kind": "code",
+  "hits": [
+   "arch"
+  ],
+  "score": 1,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-025"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "562626dbc40108c0d54055df670bae2317051020",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/BecomeMonarchEffect.java",
+  "kind": "code",
+  "hits": [
+   "arch"
+  ],
+  "score": 1,
+  "attribution": [],
+  "slot": "DEF-025"
  }
 ]
