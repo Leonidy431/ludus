@@ -1,5 +1,5 @@
 {
- "next": 5,
+ "next": 8,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -2788,6 +2788,90 @@
     "sazan": 4,
     "sig": 5
    }
+  },
+  {
+   "time": "2026-09-30T18:50:57.963863+00:00",
+   "pass_id": "osint-2026-09-30T18:50:57Z",
+   "deficits": [
+    {
+     "id": "DEF-008",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 2
+     },
+     "to_props": 176,
+     "hits_uncapped": 3181,
+     "props_uncapped": 2992,
+     "props_uncapped_repos": 36,
+     "added_keywords": [
+      "proplist",
+      "unit"
+     ],
+     "keywords_total": 15,
+     "keywords_not_searched": [],
+     "props": {
+      "test": 22,
+      "editor": 71,
+      "other": 70,
+      "doc": 1,
+      "example": 7
+     },
+     "props_seen": 2
+    },
+    {
+     "id": "DEF-012",
+     "skipped": "audio-pipeline-pending"
+    },
+    {
+     "id": "DEF-019",
+     "hits": 143,
+     "taken": 0,
+     "refused": {},
+     "to_props": 143,
+     "hits_uncapped": 143,
+     "props_uncapped": 143,
+     "props_uncapped_repos": 26,
+     "added_keywords": [],
+     "keywords_total": 8,
+     "keywords_not_searched": [],
+     "props": {
+      "other": 109,
+      "test": 5,
+      "example": 5,
+      "editor": 8
+     },
+     "props_seen": 0
+    }
+   ],
+   "props_taken": {
+    "doc": 1,
+    "editor": 79,
+    "example": 12,
+    "other": 179,
+    "test": 27
+   },
+   "props_taken_by_index_kind": {
+    "code": 298
+   },
+   "props_duplicates": 2,
+   "props_errors": 0,
+   "props_refused": {
+    "licence-UNKNOWN": 11,
+    "licence-Defold-1.0": 8
+   },
+   "props_new_bytes": 3508967,
+   "props_store_files": 910,
+   "props_store_bytes": 6952098,
+   "props_cache_files_on_disk": 4121,
+   "props_cache_bytes_on_disk": 74166631,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 514709,
+   "props_register_growth_bytes": 156612,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 22
   }
  ],
  "keywords": {
@@ -3127,7 +3211,9 @@
   "DEF-008": [
    "controllers",
    "editor",
-   "units"
+   "units",
+   "proplist",
+   "unit"
   ],
   "DEF-019": [],
   "DEF-024": [
