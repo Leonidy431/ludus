@@ -55,6 +55,18 @@ var console_alpha := 1.0
 # Holy things on the lake floor (the bulla bears a cross): near them the
 # console goes out (TABOO 0.4 rule 2).
 var holy_points: Array = []
+# The Mangustik's body (godot/models/rov/mangustik.glb, the operator's
+# drawings).  Third person: the camera rides behind and above it, as a
+# chase camera; first person: the camera is the ROV's own eye and the
+# body is hidden.  V on the keyboard, Y on the left controller.
+# A little to the right of the stern, over the shoulder: straight
+# behind, the tether from the shore ran through the middle of the view.
+const CHASE := Vector3(0.45, 0.85, 2.6)
+const CHASE_PITCH := -0.22
+const CHASE_YAW := 0.17
+var body: Node3D
+var third_person := true
+var view_was := false
 var left_hand: XRController3D
 var right_hand: XRController3D
 var fish_meshes: Array = []
@@ -87,6 +99,7 @@ func _ready() -> void:
 	_build_lines()
 	_build_snow()
 	_build_rig()
+	_build_body()
 	_build_hud()
 	_start_xr()
 	_build_audio()
@@ -386,6 +399,27 @@ func _build_rig() -> void:
 	rig.add_child(right_hand)
 
 
+## The ROV's body from the operator's drawings, with the lamp on its
+## front camera skid when it is seen from behind.
+func _build_body() -> void:
+	var scene := load("res://models/rov/mangustik.glb") as PackedScene
+	body = scene.instantiate() if scene else Node3D.new()
+	add_child(body)
+	_place_view()
+
+
+## Put the lamp where the eye is: on the camera in first person, on the
+## body's front skid (0.7 m ahead of its centre) in third person, so the
+## light comes from the vehicle the player sees.
+func _place_view() -> void:
+	body.visible = third_person
+	var holder: Node3D = body if third_person else camera
+	if lamp.get_parent() != holder:
+		lamp.reparent(holder, false)
+	lamp.position = Vector3(0, 0.02, -0.72) if third_person else Vector3.ZERO
+	lamp.rotation = Vector3(-0.12, 0, 0) if third_person else Vector3.ZERO
+
+
 # --- Telemetry and messages ---------------------------------------------
 
 func _build_hud() -> void:
@@ -513,6 +547,12 @@ func _read_input() -> Dictionary:
 			snap_ready = true
 		interact = interact or right_hand.is_button_pressed("trigger_click")
 		lamp_key = lamp_key or right_hand.is_button_pressed("ax_button")
+	var view_key := Input.is_key_pressed(KEY_V) or (xr_active
+		and left_hand.is_button_pressed("by_button"))
+	if view_key and not view_was:
+		third_person = not third_person
+		_place_view()
+	view_was = view_key
 	if interact and not interact_was:
 		_interact()
 	interact_was = interact
@@ -655,10 +695,21 @@ func _process(dt: float) -> void:
 	if shots_dir != "":
 		_shots()
 	var tel := DiveCore.telemetry(rov)
-	rig.position = Vector3(rov.x, -rov.depth, rov.z)
+	var at := Vector3(rov.x, -rov.depth, rov.z)
 	rig.rotation.y = -(rov.yaw + PI / 2.0)
+	body.position = at
+	body.rotation.y = rig.rotation.y
+	rig.position = at
+	if third_person:
+		# Behind and above the body, turned with it; never above the
+		# surface, where the chase camera would look at the sky.
+		rig.position = at + rig.basis * CHASE
+		rig.position.y = minf(rig.position.y, -0.25)
 	if not xr_active:
-		camera.rotation.x = pitch
+		camera.rotation.x = pitch + (CHASE_PITCH if third_person else 0.0)
+		# Turn the eye back onto the body (atan(0.45 / 2.6)); in the
+		# headset the head does that itself.
+		camera.rotation.y = CHASE_YAW if third_person else 0.0
 	lamp.visible = rov.lamp and rov.battery > 0.0
 	# A fall dims the world until the safety stop is held.
 	lamp.light_energy = 1.2 if game.fallen else 4.0
@@ -703,10 +754,15 @@ func _fade_console(dt: float) -> void:
 ## Place the ROV at each planned depth over the slope, facing away from
 ## the shore, wait for the frame to settle, save it, then quit.
 func _shots() -> void:
-	var n := shot_frame / 20
+	# Each depth twice: from the ROV's eye, then from behind its body.
+	var n := shot_frame / 40
 	if n >= shot_plan.size():
 		get_tree().quit()
 		return
+	var chase := shot_frame % 40 >= 20
+	if chase != third_person:
+		third_person = chase
+		_place_view()
 	var depth: float = shot_plan[n]
 	rov.x = DiveCore.x_for_depth(depth + 6.0) - 8.0
 	rov.z = 0.0
@@ -716,7 +772,8 @@ func _shots() -> void:
 	t = 20.0 + n
 	if shot_frame % 20 == 19:
 		var img := get_viewport().get_texture().get_image()
-		img.save_png("%s/dive-%03dm.png" % [shots_dir, roundi(depth)])
+		img.save_png("%s/dive-%03dm%s.png" % [shots_dir, roundi(depth),
+			"-3p" if chase else ""])
 	shot_frame += 1
 
 
@@ -734,7 +791,9 @@ func _hint() -> String:
 	var things: Array = placed.duplicate()
 	var hit := DiveCore.nearest(rov, things, REACH_M)
 	if hit.is_empty():
-		return ""
+		# The first seconds teach the view switch, then stay quiet.
+		return "V (или Y на левом контроллере) — вид: из глаза ROV или " \
+			+ "со стороны корпуса" if t < 12.0 else ""
 	return "%s — нажми, чтобы взять или рассмотреть" % hit.thing.ru
 
 
@@ -824,7 +883,8 @@ func _flow_lines(p: Dictionary) -> Array:
 
 func _update_lines() -> void:
 	flow_mesh.clear_surfaces()
-	var here := rig.position
+	# The lines and the tether follow the vehicle, not the camera.
+	var here := body.position
 	var any := false
 	for p in placed:
 		if p.where != "water" or not p.shape in FLOW_SHAPES:
@@ -848,7 +908,8 @@ func _update_lines() -> void:
 	tether_mesh.clear_surfaces()
 	tether_mesh.surface_begin(Mesh.PRIMITIVE_LINE_STRIP)
 	var a := Vector3(30.0, 0.0, 0.0)
-	var b := here + Vector3(0, 0.2, 0)
+	# The tether leaves the top of the body, by its central module.
+	var b := here + Vector3(0, 0.45, 0)
 	var mid := (a + b) / 2.0 + Vector3(0, -3.0 - a.distance_to(b) * 0.08, 0)
 	for k in 21:
 		var u := k / 20.0
