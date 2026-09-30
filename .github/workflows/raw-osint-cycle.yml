@@ -112,5 +112,6 @@ jobs:
           if ! gh pr view "$BRANCH" >/dev/null 2>&1; then
             gh pr create --draft --base main --head "$BRANCH" \
               --title "Raw OSINT passes (automated, >= 35 %)" \
-              --body "Automated deficit-driven passes over the 99 backlog repos (CLAUDE.md TABOO 0.15). Every object carries meta-json with shape/colour change, passion, hitboxes and a claim sheet; licences are in THIRD_PARTY_NOTICES.md and need human confirmation before merge."
+              --body "Automated deficit-driven passes over the 99 backlog repos (CLAUDE.md TABOO 0.15). Every object carries meta-json with shape/colour change, passion, hitboxes and a claim sheet; licences are in THIRD_PARTY_NOTICES.md and need human confirmation before merge." \
+              || echo "::warning::The pass is on branch $BRANCH, but Actions may not open a PR here (Settings > Actions > General > Allow GitHub Actions to create pull requests). Open it by hand or enable the setting."
           fi
