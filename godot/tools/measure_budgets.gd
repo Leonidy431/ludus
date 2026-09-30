@@ -7,6 +7,8 @@
 ## Headless at the headset's 72 Hz pace (the scene's own script time):
 ##   godot --headless --max-fps 72 --path godot \
 ##     -s res://tools/measure_budgets.gd -- --scene=dive [--check]
+## --view=<name> keeps one view, e.g. --scene=hub --view=evening-cell for
+## the location standard of CLAUDE.md TABOO 0.013.
 ##
 ## One scene per process, so the memory of one scene does not stay in
 ## the baseline of the next.  The scene is placed at fixed views, and
@@ -31,6 +33,7 @@ const EMPTY_FRAMES := 6
 var scene_name := ""
 var check := false
 var budgets_path := ""
+var only_view := ""
 var node: Node
 var views: Array = []
 var step := -1
@@ -54,6 +57,8 @@ func _initialize() -> void:
 			check = true
 		elif a.begins_with("--budgets="):
 			budgets_path = a.trim_prefix("--budgets=")
+		elif a.begins_with("--view="):
+			only_view = a.trim_prefix("--view=")
 	if not scene_name in ["hub", "dive", "witness"]:
 		printerr("measure_budgets: --scene=hub|dive|witness is required")
 		failed = true
@@ -119,6 +124,13 @@ func _measure_empty() -> bool:
 	current_scene = node
 	node.set_process(false)
 	views = _views()
+	if only_view != "":
+		views = views.filter(func(v): return v.name == only_view)
+		if views.is_empty():
+			printerr("measure_budgets: no view '%s' in %s" % [only_view,
+				scene_name])
+			failed = true
+			return false
 	step = 0
 	frame = 0
 	return false
@@ -139,6 +151,10 @@ func _views() -> Array:
 					"yaw": -PI / 2.0},
 				{"name": "mentors", "pos": Vector3(-2.2, 0, 0),
 					"yaw": PI / 2.0},
+				# The location standard (TABOO 0.013): the view of
+				# hub.gd --shots "evening-cell".
+				{"name": "evening-cell", "pos": Vector3(-5.0, 0, -5.0),
+					"yaw": 0.0},
 			]
 		"dive":
 			var out := []
