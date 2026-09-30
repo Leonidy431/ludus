@@ -105,7 +105,7 @@ OPTIONAL_FIELDS = ('blob',)
 # the search returns per deficit, so three deficits add at most 600
 # lines, about 0.35 MB: 8 MB lasts at least 23 hourly passes (a day),
 # about 108 (4.5 days) at the measured rate.  The uncapped number of
-# props is far larger (64 564 for DEF-040 alone, about 37 MB), which is
+# props is far larger (64 015 for DEF-040 alone, about 37 MB), which is
 # why "take everything" and an 8 MB text register cannot both hold; the
 # operator decides where a larger register lives, and until then past
 # the budget the runner stops shelving and says so in the journal

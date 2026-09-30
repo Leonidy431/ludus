@@ -468,7 +468,7 @@ def main():
         # search, not "all" of them: the uncapped count below is
         # journaled so the gap is written, not hidden.  Every non-game
         # hit of the index would be tens of MB of register a pass
-        # (DEF-040 alone: 64 564), past the 8 MB budget; where a larger
+        # (DEF-040 alone: 64 015), past the 8 MB budget; where a larger
         # register lives is the operator's decision (HLD).
         _u, uncapped_shelf, _r = sort_hits(everything, neutral)
         shelf += [(hit, deficit['id']) for hit in to_shelf]
