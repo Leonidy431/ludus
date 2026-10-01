@@ -1,5 +1,5 @@
 {
- "next": 14,
+ "next": 17,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -3076,6 +3076,170 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 52
+  },
+  {
+   "time": "2026-10-01T07:50:39.338124+00:00",
+   "pass_id": "osint-2026-10-01T07:50:39Z",
+   "deficits": [
+    {
+     "id": "DEF-040",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 22,
+      "dogma-stop-list": 1
+     },
+     "to_props": 96,
+     "hits_uncapped": 15959,
+     "props_uncapped": 12986,
+     "props_uncapped_repos": 58,
+     "added_keywords": [
+      "system",
+      "animation",
+      "ship",
+      "alert",
+      "viewer",
+      "body",
+      "display",
+      "encoder",
+      "gtk",
+      "comp",
+      "mesh",
+      "sdl"
+     ],
+     "keywords_total": 33,
+     "keywords_not_searched": [
+      "bevy",
+      "cleric",
+      "com",
+      "cpp",
+      "crates",
+      "java",
+      "mage",
+      "rotp",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "test": 1,
+      "other": 82
+     },
+     "props_seen": 7
+    },
+    {
+     "id": "DEF-047",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 14,
+      "dogma-stop-list": 1
+     },
+     "to_props": 12,
+     "hits_uncapped": 41930,
+     "props_uncapped": 38115,
+     "props_uncapped_repos": 57,
+     "added_keywords": [
+      "effect",
+      "system",
+      "property",
+      "display",
+      "set",
+      "tilesets",
+      "bombard",
+      "colonize",
+      "flight",
+      "gradient",
+      "opengl",
+      "path"
+     ],
+     "keywords_total": 46,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "cpp",
+      "java",
+      "mage",
+      "rotp",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 12
+     },
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-048",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 16,
+      "dogma-stop-list": 1,
+      "font": 2
+     },
+     "to_props": 85,
+     "hits_uncapped": 8818,
+     "props_uncapped": 5809,
+     "props_uncapped_repos": 58,
+     "added_keywords": [
+      "panel",
+      "display",
+      "properties",
+      "unit",
+      "objective",
+      "status",
+      "building",
+      "cache",
+      "city",
+      "control",
+      "individual",
+      "setup"
+     ],
+     "keywords_total": 36,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "cpp",
+      "java",
+      "mage",
+      "mindustry",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 78,
+      "editor": 3,
+      "example": 2
+     },
+     "props_seen": 2
+    }
+   ],
+   "props_taken": {
+    "editor": 3,
+    "example": 2,
+    "other": 172,
+    "test": 1
+   },
+   "props_taken_by_index_kind": {
+    "code": 178
+   },
+   "props_duplicates": 9,
+   "props_errors": 0,
+   "props_refused": {
+    "licence-Defold-1.0": 6
+   },
+   "props_new_bytes": 941879,
+   "props_store_files": 1237,
+   "props_store_bytes": 9436583,
+   "props_cache_files_on_disk": 4448,
+   "props_cache_bytes_on_disk": 76651116,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 692749,
+   "props_register_growth_bytes": 94684,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 350
   }
  ],
  "keywords": {
@@ -3618,7 +3782,19 @@
    "huntress",
    "mage",
    "rogue",
-   "warrior"
+   "warrior",
+   "system",
+   "animation",
+   "ship",
+   "alert",
+   "viewer",
+   "body",
+   "display",
+   "encoder",
+   "gtk",
+   "comp",
+   "mesh",
+   "sdl"
   ],
   "DEF-047": [
    "java",
@@ -3656,7 +3832,19 @@
    "batsprite",
    "beaconofreturning",
    "beam",
-   "beamingray"
+   "beamingray",
+   "effect",
+   "system",
+   "property",
+   "display",
+   "set",
+   "tilesets",
+   "bombard",
+   "colonize",
+   "flight",
+   "gradient",
+   "opengl",
+   "path"
   ],
   "DEF-048": [
    "java",
@@ -3682,7 +3870,19 @@
    "duelist",
    "huntress",
    "mage",
-   "rogue"
+   "rogue",
+   "panel",
+   "display",
+   "properties",
+   "unit",
+   "objective",
+   "status",
+   "building",
+   "cache",
+   "city",
+   "control",
+   "individual",
+   "setup"
   ],
   "DEF-055": [],
   "DEF-039": [
