@@ -1,5 +1,5 @@
 {
- "next": 14,
+ "next": 17,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -4248,6 +4248,111 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 323
+  },
+  {
+   "time": "2026-10-01T18:51:14.972518+00:00",
+   "pass_id": "osint-2026-10-01T18:51:14Z",
+   "deficits": [
+    {
+     "id": "DEF-055",
+     "hits": 54,
+     "taken": 0,
+     "refused": {},
+     "to_props": 54,
+     "hits_uncapped": 54,
+     "props_uncapped": 54,
+     "props_uncapped_repos": 9,
+     "added_keywords": [],
+     "keywords_total": 6,
+     "keywords_not_searched": [],
+     "props": {},
+     "props_seen": 54
+    },
+    {
+     "id": "DEF-001",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "outline-helper": 4,
+      "sacred-never-raw": 14,
+      "dogma-stop-list": 1
+     },
+     "to_props": 3,
+     "hits_uncapped": 32978,
+     "props_uncapped": 8477,
+     "props_uncapped_repos": 58,
+     "added_keywords": [
+      "attack",
+      "bitmap",
+      "bomb",
+      "circle",
+      "clone",
+      "crayondecals",
+      "death",
+      "demonologist",
+      "devouring",
+      "drake",
+      "fighter",
+      "galaxy"
+     ],
+     "keywords_total": 85,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "java",
+      "mage",
+      "mindustry",
+      "rsi",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 3
+    },
+    {
+     "id": "DEF-003",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 2
+     },
+     "to_props": 143,
+     "hits_uncapped": 8148,
+     "props_uncapped": 5879,
+     "props_uncapped_repos": 53,
+     "added_keywords": [],
+     "keywords_total": 40,
+     "keywords_not_searched": [
+      "com",
+      "corsixth",
+      "java",
+      "left",
+      "lua",
+      "right",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 143
+    }
+   ],
+   "props_taken": {},
+   "props_taken_by_index_kind": {},
+   "props_duplicates": 200,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 0,
+   "props_store_files": 1370,
+   "props_store_bytes": 10219062,
+   "props_cache_files_on_disk": 4581,
+   "props_cache_bytes_on_disk": 77433595,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 764115,
+   "props_register_growth_bytes": 0,
+   "stage": "done",
+   "accepted_objects": 5,
+   "code_candidates": 94
   }
  ],
  "keywords": {
@@ -4506,7 +4611,19 @@
    "tileobject",
    "widget",
    "archiv",
-   "artificer"
+   "artificer",
+   "attack",
+   "bitmap",
+   "bomb",
+   "circle",
+   "clone",
+   "crayondecals",
+   "death",
+   "demonologist",
+   "devouring",
+   "drake",
+   "fighter",
+   "galaxy"
   ],
   "DEF-049": [
    "terrain",
