@@ -178,7 +178,14 @@ static func lines(p: Dictionary, loc: Dictionary, st: Dictionary,
 	match p.kind:
 		"talk":
 			out = [LocationCore.person_of(h) + ":",
-				str(p.node.get("text_ru", p.node.get("text", ""))), ""]
+				str(p.node.get("text_ru", p.node.get("text", "")))]
+			# As in the hub: the voice and the source of the line, and
+			# what the FORM has not opened yet (DialogueCore).
+			for extra in [DialogueCore.voice_line(p.node),
+					DialogueCore.closed_line(p.node, st.form)]:
+				if extra != "":
+					out.append(extra)
+			out.append("")
 		"deed":
 			var pr: Dictionary = MissionCore.PRACTICE_RU[h.id]
 			out = [pr.label, "", teaching(loc),

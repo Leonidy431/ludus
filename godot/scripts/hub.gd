@@ -416,41 +416,22 @@ func _build_scriptorium(oak: Color) -> void:
 	lamp.omni_range = 3.0
 	lamp.position = Vector3(-6.4, 1.95, 0)
 	add_child(lamp)
-	# The four mentors: people, not statues, without halos (TABOO 0.2).
-	var cloth := {"elder_sergius": Color(0.1, 0.1, 0.11),
-		"theodora": Color(0.2, 0.17, 0.22),
-		"abba_john": Color(0.25, 0.2, 0.15),
-		"sister_catherine": Color(0.12, 0.12, 0.16)}
-	var i := 0
-	for m in HubCore.MENTORS:
-		var p := Vector3(-4.6, 0, -2.4 + i * 1.6)
-		var body := MeshInstance3D.new()
-		var cap := CapsuleMesh.new()
-		cap.radius = 0.24
-		cap.height = 1.5
-		body.mesh = cap
-		body.material_override = _mat(cloth[m])
-		body.position = p + Vector3(0, 0.75, 0)
-		add_child(body)
-		var head := MeshInstance3D.new()
-		var sp := SphereMesh.new()
-		sp.radius = 0.12
-		sp.height = 0.26
-		head.mesh = sp
-		head.material_override = _mat(Color(0.78, 0.62, 0.5))
-		head.position = p + Vector3(0, 1.62, 0)
-		add_child(head)
-		var name_label := Label3D.new()
-		name_label.text = trees[m].get("npcName_ru", m)
-		name_label.font_size = 30
-		name_label.pixel_size = 0.004
-		name_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-		name_label.position = p + Vector3(0, 2.0, 0)
-		name_label.modulate = Color(0.95, 0.9, 0.8)
-		add_child(name_label)
+	# The mentors: the four of the gates and the guests whose plot has
+	# no place among the 99 (Mentors).  People, not statues, without
+	# halos (TABOO 0.2).  Their figures are still geometry, so StaticBatch
+	# folds them into the yard's meshes; the tags are seen only near.
+	for m in Mentors.HUB_AT:
+		if not trees.has(m):
+			continue
+		var p: Vector3 = Mentors.HUB_AT[m]
+		var fig := Mentors.figure(m)
+		fig.position = p
+		# They face the yard (east), where the player comes from.
+		fig.rotation_degrees = Vector3(0, 90, 0)
+		add_child(fig)
+		add_child(Mentors.tag(Mentors.HUB_TAG[m], p, "MentorName_" + m))
 		things.append({"id": m, "kind": "mentor", "pos": p,
-			"ru": "Поговорить: " + trees[m].get("npcName_ru", m)})
-		i += 1
+			"ru": "Поговорить: " + Mentors.HUB_TAG[m]})
 
 
 func _build_pier(oak: Color) -> void:
@@ -1308,8 +1289,17 @@ func _refresh_prompt() -> void:
 		panel.text = _rule_panel_text()
 	elif not talk.is_empty():
 		var tree: Dictionary = trees[talk.npc]
-		var lines := [tree.get("npcName_ru", talk.npc) + ":",
-			str(talk.node.get("text_ru", talk.node.text)), ""]
+		var lines := [Mentors.HUB_TAG.get(talk.npc, tree.get("npcName_ru",
+			talk.npc)) + ":", str(talk.node.get("text_ru", talk.node.text))]
+		# Whose voice and on what ground (a saint: a paraphrase with its
+		# source), and what the FORM has not opened yet.
+		var vl := DialogueCore.voice_line(talk.node)
+		if vl != "":
+			lines.append(vl)
+		var cl := DialogueCore.closed_line(talk.node, form)
+		if cl != "":
+			lines.append(cl)
+		lines.append("")
 		var open := HubCore.open_branches(talk.node, form)
 		for i in open.size():
 			var mark := "▸ " if i == talk.choice else "  "
@@ -1484,9 +1474,15 @@ func _on_webxr_started() -> void:
 func _shots() -> void:
 	var plan := [
 		{"name": "courtyard", "pos": Vector3(0, 0, 5.5), "yaw": 0.0},
-		{"name": "mentors", "pos": Vector3(-2.2, 0, 0), "yaw": PI / 2.0},
-		{"name": "talk", "pos": Vector3(-3.4, 0, -1.8), "yaw": PI / 2.0,
+		{"name": "mentors", "pos": Vector3(1.6, 0, 0), "yaw": PI / 2.0},
+		{"name": "mentor-near", "pos": Vector3(-0.2, 0, -1.6),
+			"yaw": PI / 2.0},
+		{"name": "talk", "pos": Vector3(-3.8, 0, -3.2), "yaw": PI / 2.0,
 			"talk": "elder_sergius"},
+		{"name": "talk-palamas", "pos": Vector3(-2.2, 0, -2.5),
+			"yaw": PI / 2.0, "talk": "gregory_palamas"},
+		{"name": "talk-kassiani", "pos": Vector3(-2.2, 0, 0.3),
+			"yaw": PI / 2.0, "talk": "kassiani"},
 		{"name": "pier", "pos": Vector3(5.5, 0, 0.6), "yaw": -PI / 2.0},
 		{"name": "ladder", "pos": Vector3(1.0, 0, -1.0), "yaw": 0.0},
 		{"name": "witness-gate", "pos": Vector3(1.2, 0, 3.4), "yaw": PI},
@@ -1517,7 +1513,7 @@ func _shots() -> void:
 	pos = s.pos
 	yaw = s.yaw
 	camera.rotation.x = -0.12
-	if s.has("talk") and talk.is_empty():
+	if s.has("talk") and talk.get("npc", "") != s.talk:
 		var tree: Dictionary = trees[s.talk]
 		talk = {"npc": s.talk, "node": HubCore.node_of(tree,
 			tree.startNode), "choice": 0}
