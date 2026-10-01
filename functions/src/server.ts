@@ -49,7 +49,10 @@ export function createApp(): express.Express {
 
 export function start(port = Number(process.env.PORT || 3000)): Server {
   return createApp().listen(port, () => {
-    console.log(`ludus backend listening on ${port}`);
+    // The store is named in the log so an operator can see at once
+    // whether this container serves Firestore or the read-only mirror.
+    console.log(`ludus backend listening on ${port}, store `
+      + `${process.env.LUDUS_STORE || 'firestore'}`);
   });
 }
 

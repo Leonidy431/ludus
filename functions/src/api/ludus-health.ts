@@ -14,9 +14,8 @@
  */
 
 import * as functions from 'firebase-functions';
-import { getFirestore, Timestamp, FieldValue } from 'firebase-admin/firestore';
 import { verifyIdToken } from '../middleware/auth';
-import { rateLimit, rateLimitPresets } from '../middleware/rateLimit';
+import { getStore, Store } from '../store/store';
 
 interface HealthCheckResponse {
   status: 'ok' | 'degraded' | 'down';
@@ -66,7 +65,7 @@ export const ludusHealth = functions.https.onRequest(async (req, res) => {
       console.log(`[Health] Authenticated request from user: ${authContext.uid} (role: ${authContext.role})`);
     }
 
-    const db = getFirestore();
+    const db = getStore();
     const response: HealthCheckResponse = {
       status: 'ok',
       timestamp: new Date().toISOString(),
@@ -95,9 +94,9 @@ export const ludusHealth = functions.https.onRequest(async (req, res) => {
 
     try {
       const [nodeSnaps, edgeSnaps, gateSnaps] = await Promise.all([
-        db.collection('ludus_nodes').limit(1).get(),
-        db.collection('ludus_edges').limit(1).get(),
-        db.collection('ludus_knowledge_gates').limit(1).get(),
+        db.query('ludus_nodes', { limit: 1 }),
+        db.query('ludus_edges', { limit: 1 }),
+        db.query('ludus_knowledge_gates', { limit: 1 }),
       ]);
 
       // Count documents (expensive query, but cached)
@@ -130,18 +129,14 @@ export const ludusHealth = functions.https.onRequest(async (req, res) => {
     // ────────────────────────────────────────────────────────────────────────
 
     try {
-      const playerSnaps = await db.collection('ludus_nodes')
-        .where('nodeType', '==', 'player')
-        .limit(100)
-        .get();
+      const playerSnaps = await db.query('ludus_nodes',
+        { where: { field: 'nodeType', value: 'player' }, limit: 100 });
 
-      const npcSnaps = await db.collection('ludus_nodes')
-        .where('nodeType', '==', 'npc')
-        .limit(100)
-        .get();
+      const npcSnaps = await db.query('ludus_nodes',
+        { where: { field: 'nodeType', value: 'npc' }, limit: 100 });
 
-      const playerCount = playerSnaps.size;
-      const npcCount = npcSnaps.size;
+      const playerCount = playerSnaps.length;
+      const npcCount = npcSnaps.length;
 
       response.components.seed_data = {
         status: 'ok',
@@ -173,19 +168,18 @@ export const ludusHealth = functions.https.onRequest(async (req, res) => {
     // ────────────────────────────────────────────────────────────────────────
 
     try {
-      const healthSnaps = await db.collection('ludus_health_checks')
-        .orderBy('timestamp', 'desc')
-        .limit(1)
-        .get();
+      const healthSnaps = await db.query('ludus_health_checks',
+        { orderBy: { field: 'timestamp', direction: 'desc' }, limit: 1 });
 
-      if (!healthSnaps.empty) {
-        const latestHealth = healthSnaps.docs[0].data();
-        const cycleDuration = latestHealth.avgSimulationCycleMs || 0;
+      if (healthSnaps.length > 0) {
+        const latestHealth = healthSnaps[0].data;
+        const cycleDuration =
+          (latestHealth.avgSimulationCycleMs as number) || 0;
 
         response.components.simulation = {
           status: cycleDuration <= 8 ? 'ok' : 'slow',
           lastCycleDurationMs: cycleDuration,
-          cycleCountSinceInit: latestHealth.cycleCount || 0,
+          cycleCountSinceInit: (latestHealth.cycleCount as number) || 0,
           targetCycleDurationMs: 8,
         };
 
@@ -243,9 +237,8 @@ export const ludusHealth = functions.https.onRequest(async (req, res) => {
  * Count documents in a collection (uses a denormalized counter or COUNT query).
  * For now, query the collection with a limit to avoid expensive full scans.
  */
-async function countCollection(db: any, collectionName: string): Promise<number> {
-  const snapshot = await db.collection(collectionName).count().get();
-  return snapshot.data().count;
+async function countCollection(db: Store, collectionName: string): Promise<number> {
+  return db.count(collectionName);
 }
 
 /**

@@ -22,12 +22,10 @@
  * the player and never turned into XP (TABOO 0.35 rule 16).
  */
 
-import * as admin from 'firebase-admin';
 import { Request, Response } from 'express';
 
 import { verifyIdToken } from '../middleware/auth';
-
-const db = admin.firestore();
+import { getStore, refuseWriteOnMirror } from '../store/store';
 
 export interface Actions {
   prayerCount: number;
@@ -375,31 +373,37 @@ export async function ludusActions(req: Request, res: Response):
     return;
   }
   const playerId = playerIdForUid(auth.uid);
-  const ref = db.collection('ludus_players').doc(playerId);
+  const ref = `ludus_players/${playerId}`;
+  const store = getStore();
 
   if (req.method === 'GET') {
-    const snap = await ref.get();
+    const data = await store.get(ref);
     res.json({ playerId,
-      actions: publicView(normalize(snap.exists ? snap.get('actions') : {})) });
+      actions: publicView(normalize(data ? data.actions : {})) });
+    return;
+  }
+
+  // The hot mirror serves reads only; an action accepted there would be
+  // lost at the next sync from Firestore.
+  if (refuseWriteOnMirror(store, res)) {
     return;
   }
 
   const input = (req.body || {}) as Op;
   try {
-    const actions = await db.runTransaction(async (tx) => {
-      const snap = await tx.get(ref);
-      const data = snap.exists ? snap.data() || {} : {};
+    const actions = await store.transaction(async (tx) => {
+      const data = (await tx.get(ref)) || {};
       const next = applyOp(normalize(data.actions), input, Date.now(),
         (data.form || {}) as Record<string, unknown>);
       tx.set(ref, { actions: next }, { merge: true });
       // The journal only grows; it records what was done, not a score.
-      tx.create(db.collection('ludus_actions_log').doc(), {
+      tx.create('ludus_actions_log', {
         playerId, op: input.op,
         npcId: 'npcId' in input ? input.npcId : null,
         gateId: 'gateId' in input ? input.gateId : null,
         practice: input.op === 'practice' ? input.id : null,
         passion: input.op === 'passionEnd' ? input.passion : null,
-        at: admin.firestore.FieldValue.serverTimestamp(),
+        at: store.serverTime(),
       });
       return next;
     });

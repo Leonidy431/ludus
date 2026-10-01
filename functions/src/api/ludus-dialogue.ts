@@ -13,8 +13,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { Request, Response } from 'express';
 import Logger from '../utils/logger';
-
-const db = admin.firestore();
+import { getStore, refuseWriteOnMirror } from '../store/store';
 
 /**
  * Type definitions for dialogue system
@@ -112,9 +111,9 @@ export const getDialogueTree = functions.https.onRequest(
       }
 
       // Fetch dialogue tree from Firestore
-      const treeDoc = await db.collection('ludus_dialogue_trees').doc(npcId).get();
+      const treeData = await getStore().get(`ludus_dialogue_trees/${npcId}`);
 
-      if (!treeDoc.exists) {
+      if (!treeData) {
         const duration = Date.now() - startTime;
         Logger.failure('Dialogue tree not found', 'getDialogueTree', duration, 404, { npcId });
         res.status(404).json({
@@ -135,7 +134,7 @@ export const getDialogueTree = functions.https.onRequest(
         return;
       }
 
-      const tree = treeDoc.data() as DialogueTree;
+      const tree = treeData as unknown as DialogueTree;
       const duration = Date.now() - startTime;
 
       Logger.success('Dialogue tree loaded', 'getDialogueTree', duration, { npcId });
@@ -182,14 +181,10 @@ export const getNpcMemory = functions.https.onRequest(
       }
 
       // Fetch NPC memory for this player
-      const memoryDoc = await db
-        .collection('ludus_npc_memory')
-        .doc(npcId)
-        .collection('players')
-        .doc(playerId)
-        .get();
+      const memoryData = await getStore()
+        .get(`ludus_npc_memory/${npcId}/players/${playerId}`);
 
-      if (!memoryDoc.exists) {
+      if (!memoryData) {
         // First meeting - no prior memory
         const firstMeetingMemory: NpcMemory = {
           firstMeeting: true,
@@ -203,7 +198,7 @@ export const getNpcMemory = functions.https.onRequest(
         return;
       }
 
-      const memory = memoryDoc.data() as NpcMemory;
+      const memory = memoryData as unknown as NpcMemory;
       const duration = Date.now() - startTime;
 
       Logger.success('NPC memory loaded', 'getNpcMemory', duration, { npcId, playerId });
@@ -239,6 +234,11 @@ export const persistDialogueState = functions.https.onRequest(
         return;
       }
 
+      const store = getStore();
+      if (refuseWriteOnMirror(store, res)) {
+        return;
+      }
+
       const {
         playerId,
         npcId,
@@ -265,25 +265,24 @@ export const persistDialogueState = functions.https.onRequest(
         timestamp,
       };
 
-      await db
-        .collection('ludus_dialogue_states')
-        .doc(`${playerId}_${npcId}`)
-        .set(dialogueStateDoc, { merge: true });
+      await store.set(`ludus_dialogue_states/${playerId}_${npcId}`,
+        { ...dialogueStateDoc }, { merge: true });
 
       // 2. Update player attributes in Firestore
       if (attributeBonuses && Object.keys(attributeBonuses).length > 0) {
-        const playerRef = db.collection('ludus_players').doc(playerId);
+        const playerPath = `ludus_players/${playerId}`;
 
         // Use transaction to atomically update attributes
-        await db.runTransaction(async (transaction) => {
-          const playerDoc = await transaction.get(playerRef);
+        await store.transaction(async (transaction) => {
+          const playerDoc = await transaction.get(playerPath);
 
-          if (!playerDoc.exists) {
+          if (!playerDoc) {
             Logger.warn('Player document not found during attribute update', { playerId, endpoint: 'persistDialogueState' });
             return;
           }
 
-          const currentAttributes = playerDoc.data()?.form || {};
+          const currentAttributes =
+            (playerDoc.form || {}) as Record<string, number>;
           const updatedAttributes = { ...currentAttributes };
 
           // Apply bonuses
@@ -291,19 +290,15 @@ export const persistDialogueState = functions.https.onRequest(
             updatedAttributes[attr] = (updatedAttributes[attr] || 0) + (bonus as number);
           });
 
-          transaction.update(playerRef, { form: updatedAttributes });
+          transaction.update(playerPath, { form: updatedAttributes });
         });
       }
 
       // 3. Update NPC memory
-      const memoryRef = db
-        .collection('ludus_npc_memory')
-        .doc(npcId)
-        .collection('players')
-        .doc(playerId);
+      const memoryPath = `ludus_npc_memory/${npcId}/players/${playerId}`;
 
-      const memoryDoc = await memoryRef.get();
-      const currentMemory = (memoryDoc.data() || {}) as Partial<NpcMemory>;
+      const currentMemory =
+        ((await store.get(memoryPath)) || {}) as Partial<NpcMemory>;
 
       const updatedMemory: NpcMemory = {
         firstMeeting: false,
@@ -328,7 +323,7 @@ export const persistDialogueState = functions.https.onRequest(
         },
       };
 
-      await memoryRef.set(updatedMemory, { merge: true });
+      await store.set(memoryPath, { ...updatedMemory }, { merge: true });
 
       const duration = Date.now() - startTime;
       Logger.success('Dialogue state persisted with attribute updates', 'persistDialogueState', duration, {
@@ -371,39 +366,46 @@ export const getDialogueStats = functions.https.onRequest(
       }
 
       // Fetch player profile
-      const playerDoc = await db.collection('ludus_players').doc(playerId).get();
+      const store = getStore();
+      const playerData = await store.get(`ludus_players/${playerId}`);
 
-      if (!playerDoc.exists) {
+      if (!playerData) {
         const duration = Date.now() - startTime;
         Logger.failure('Player not found', 'getDialogueStats', duration, 404, { playerId });
         res.status(404).json({ error: 'Player not found' });
         return;
       }
 
-      const playerData = playerDoc.data();
-      const attributes = playerData?.form || {};
+      const attributes = playerData.form || {};
 
       // Count NPC interactions
-      const statesSnapshot = await db
-        .collection('ludus_dialogue_states')
-        .where('playerId', '==', playerId)
-        .get();
+      const states = await store.query('ludus_dialogue_states',
+        { where: { field: 'playerId', value: playerId } });
 
-      const npcCount = new Set(
-        statesSnapshot.docs.map((doc) => doc.data().npcId)
-      ).size;
+      const npcIds = Array.from(new Set(
+        states.map((doc) => doc.data.npcId as string)
+      ));
+      const npcCount = npcIds.length;
 
-      // Calculate total bonuses earned
-      const memorySnapshot = await db
-        .collectionGroup('players')
-        .where('__name__', '==', playerId)
-        .get();
+      // Calculate total bonuses earned.  The memory documents are read
+      // by their exact path, one per NPC the player spoke with.  The
+      // earlier collectionGroup('players').where('__name__', '==', id)
+      // is rejected by Firestore (a collection-group id filter needs a
+      // full document path), so this endpoint always answered 500.
+      // persistDialogueState writes the state and the memory together,
+      // so the NPC list from the states is the complete set.
+      const memories = await Promise.all(npcIds
+        .filter((id) => typeof id === 'string' && id.length > 0)
+        .map((id) => store.get(`ludus_npc_memory/${id}/players/${playerId}`)));
 
-      let totalBonusesEarned: Record<string, number> = {};
+      const totalBonusesEarned: Record<string, number> = {};
 
       // Sum bonuses from all NPC interactions
-      for (const doc of memorySnapshot.docs) {
-        const memory = doc.data() as NpcMemory;
+      for (const data of memories) {
+        if (!data) {
+          continue;
+        }
+        const memory = data as unknown as NpcMemory;
         if (memory.attributeBonusesEarned) {
           Object.entries(memory.attributeBonusesEarned).forEach(([attr, bonus]) => {
             totalBonusesEarned[attr] = (totalBonusesEarned[attr] || 0) + (bonus as number);
@@ -447,6 +449,11 @@ export const upsertDialogueTree = functions.https.onRequest(
     try {
       if (req.method !== 'POST') {
         res.status(405).json({ error: 'Method not allowed' });
+        return;
+      }
+
+      const store = getStore();
+      if (refuseWriteOnMirror(store, res)) {
         return;
       }
 
@@ -501,7 +508,7 @@ export const upsertDialogueTree = functions.https.onRequest(
         nodes: treeData.nodes,
       };
 
-      await db.collection('ludus_dialogue_trees').doc(npcId).set(completeTree);
+      await store.set(`ludus_dialogue_trees/${npcId}`, { ...completeTree });
 
       const duration = Date.now() - startTime;
       Logger.success(`Dialogue tree upserted (${treeData.nodes?.length || 0} nodes)`, 'upsertDialogueTree', duration, {
