@@ -12,11 +12,18 @@
 ## size 1 m (no panning, no HRTF: the engine's own 3D mix cannot be
 ## captured headless, so this part is an approximation), and the
 ## machine layer with the gain PlaceSound gives it at that spot.  With
-## --out each mix is written as a 44100 Hz float WAV.  The last line is
-## "PLACE_AUDIO_JSON {summary}".
+## --out each mix is written as a 44100 Hz float WAV.
+##
+## The Web build renders the same loops paced (PlaceAudio.PACE_USEC_WEB
+## of a frame, PlaceSynth.Pace); "web" in each row is that render run
+## here: its slices (frames), the median, 99th percentile and longest
+## slice in ms (the longest also catches the host's own hiccups), and
+## the seconds until the bed is in at 72 Hz.  --no-web skips it.  The
+## last line is "PLACE_AUDIO_JSON {summary}".
 extends SceneTree
 
 var seconds := 20.0
+var web := true
 
 
 func _initialize() -> void:
@@ -29,6 +36,8 @@ func _initialize() -> void:
 			only = Array(a.trim_prefix("--only=").split(",", false))
 		elif a.begins_with("--seconds="):
 			seconds = float(a.trim_prefix("--seconds="))
+		elif a == "--no-web":
+			web = false
 	if out_dir != "":
 		DirAccess.make_dir_recursive_absolute(out_dir)
 	var rows := []
@@ -40,6 +49,8 @@ func _initialize() -> void:
 		var row := {"id": pl.id, "render_ms": snappedf(ms, 0.1),
 			"players": PlaceSound.players(pl),
 			"pcm_bytes": PlaceSound.pcm_bytes(pl), "loops": {}, "mix": {}}
+		if web:
+			row["web"] = paced_cost(pl)
 		for k in loops:
 			row.loops[k] = {"rms_db": snappedf(PlaceSynth.dbfs(
 				PlaceSynth.rms(loops[k])), 0.01), "peak_db": snappedf(
@@ -52,12 +63,40 @@ func _initialize() -> void:
 		rows.append(row)
 		print(JSON.stringify(row))
 	var worst := {"render_ms": 0.0, "players": 0, "pcm_bytes": 0}
+	var web_worst := {}
 	for r in rows:
 		for k in worst:
 			worst[k] = maxf(worst[k], r[k])
+		if r.has("web"):
+			for k in ["slices", "p99_ms", "max_ms", "bed_in_s"]:
+				web_worst["web_" + k] = maxf(web_worst.get("web_" + k,
+					0.0), r.web[k])
+	worst.merge(web_worst)
 	print("PLACE_AUDIO_JSON ", JSON.stringify({"places": rows.size(),
 		"worst": worst}))
 	quit(0)
+
+
+## The Web build's paced render of a plan, run here: what each frame
+## pays for it and how long the bed takes to come in.
+static func paced_cost(pl: Dictionary) -> Dictionary:
+	var pace := PlaceSynth.Pace.new(PlaceAudio.PACE_USEC_WEB)
+	var into := {"loops": {}, "done": false}
+	PlaceAudio._render_paced.call(pl, PlaceAudio.voices(pl), pace, into)
+	var ts := []
+	var bed_at := -1
+	while not into.done:
+		var t0 := Time.get_ticks_usec()
+		pace.resume()
+		ts.append(Time.get_ticks_usec() - t0)
+		if bed_at < 0 and into.loops.has("bed"):
+			bed_at = ts.size()
+	ts.sort()
+	return {"slices": ts.size(),
+		"median_ms": snappedf(ts[ts.size() / 2] / 1000.0, 0.01),
+		"p99_ms": snappedf(ts[int(ts.size() * 0.99)] / 1000.0, 0.01),
+		"max_ms": snappedf(ts[-1] / 1000.0, 0.01),
+		"bed_in_s": snappedf(bed_at / 72.0, 0.01)}
 
 
 ## Every place's plan with the spots it is heard from.
@@ -67,11 +106,14 @@ static func plans(only := []) -> Array:
 	var kits := LocationCore.load_kits()
 	var out := []
 	if only.is_empty() or "hub-courtyard" in only:
-		var hub := PlaceSound.hub_plan([Vector3(-6.6, 0.0, 0.0)])
+		# The lampada where hub.gd puts it, so moving it moves this too.
+		var lamp: Vector3 = load("res://scripts/hub.gd").LAMPADA_AT
+		var base := Vector3(lamp.x, 0.0, lamp.z)
+		var hub := PlaceSound.hub_plan([base])
 		out.append({"plan": hub, "spots": [
 			{"name": "courtyard", "pos": Vector3(0, 0, 3)},
 			{"name": "pier", "pos": Vector3(7.6, 0, 0)},
-			{"name": "holy", "pos": Vector3(-6.0, 0, 0)}]})
+			{"name": "holy", "pos": base + Vector3(0.6, 0, 0)}]})
 	for loc in data.locations:
 		if not only.is_empty() and not loc.id in only:
 			continue

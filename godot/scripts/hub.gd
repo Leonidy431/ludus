@@ -28,6 +28,10 @@ const RU_ATTR := {"wisdom": "Мудрость", "faith": "Вера",
 const LAMPADA_K := Color(1.0, 0.52, 0.16)   # About 1800 K.
 const HEARTH_K := Color(1.0, 0.62, 0.3)     # About 2200 K.
 const INSTRUMENT_K := Color(0.95, 0.97, 1.0)  # About 6500 K.
+## The lampada's glass on the cell wall: the light, and the holy point
+## where the courtyard's machine layer goes quiet (_build_sound; the
+## sound tool and test read it from here, so both follow it).
+const LAMPADA_AT := Vector3(-6.6, 1.9, 0)
 ## The cell of the evening watch behind its partition (RuleCell): its
 ## still geometry is batched apart from the yard's.
 const CELL_ZONE := AABB(Vector3(-7.0, -0.1, -8.5), Vector3(3.8, 3.2, 3.0))
@@ -252,7 +256,7 @@ func _build_world() -> void:
 ## 2026-10-01.md): the machine layer goes quiet by the lampada and by
 ## the holy image of the cell; the bell rings by the Typikon only.
 func _build_sound(apart: Array) -> void:
-	var holy: Array = [Vector3(-6.6, 0.0, 0.0)]
+	var holy: Array = [Vector3(LAMPADA_AT.x, 0.0, LAMPADA_AT.z)]
 	for h in apart:
 		if h is Node3D and h.has_meta("obitel"):
 			holy.append((h as Node3D).global_position)
@@ -426,13 +430,13 @@ func _build_scriptorium(oak: Color) -> void:
 	glass.emission = LAMPADA_K
 	glass.emission_energy_multiplier = 0.8
 	cup.material_override = glass
-	cup.position = Vector3(-6.6, 1.9, 0)
+	cup.position = LAMPADA_AT
 	add_child(cup)
 	var lamp := OmniLight3D.new()
 	lamp.light_color = LAMPADA_K
 	lamp.light_energy = 0.6
 	lamp.omni_range = 3.0
-	lamp.position = Vector3(-6.4, 1.95, 0)
+	lamp.position = LAMPADA_AT + Vector3(0.2, 0.05, 0)
 	add_child(lamp)
 	# The four mentors: people, not statues, without halos (TABOO 0.2).
 	var cloth := {"elder_sergius": Color(0.1, 0.1, 0.11),

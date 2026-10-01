@@ -16,6 +16,10 @@
 ##     mix at the heart, the door and the holy thing;
 ##   - the same place sounds the same, sample for sample; loops have no
 ##     seam; the mix rate is 44100 Hz.
+##   - entering a place is never digital zero: the hush plays from the
+##     first frame until the bed has faded in over it, on the APK's
+##     worker path and on the Web build's paced path alike, and both
+##     paths play the very samples of the offline render.
 extends RefCounted
 
 ## Places whose loops are rendered here: every voice and every bed kind
@@ -50,6 +54,8 @@ func run(t: Object) -> void:
 	_strikers(t)
 	_levels(t, by_id)
 	_determinism(t, by_id)
+	_entry(t, hub, false)
+	_entry(t, hub, true)
 
 
 func _plan(t: Object, pl: Dictionary, refs: Dictionary) -> void:
@@ -257,3 +263,61 @@ func _determinism(t: Object, by_id: Dictionary) -> void:
 	var c := PlaceSynth.render_bed(pl.bed)
 	var d := PlaceSynth.render_bed(pl.bed)
 	t._check(c == d, "determinism: the same bed twice")
+
+
+## Enter the courtyard as the scene does and run frames until every
+## voice plays: at no frame is the place without the hush or a bed fully
+## in, the bed comes before the crafts, and no frame has more players
+## than the plan.  paced: the Web build's path (one slice a frame).
+func _entry(t: Object, hub: Dictionary, paced: bool) -> void:
+	var what := "entry (%s)" % ("web, paced" if paced else "apk, worker")
+	var audio := PlaceAudio.new()
+	audio.paced_render = paced
+	audio.start(hub, {"year": 2026, "month": 10, "day": 1, "hour": 3,
+		"minute": 7, "second": 0})
+	t._check(audio.players.has("hush"), what + ": the hush from frame 0")
+	var want := PlaceAudio.voices(hub).size()
+	var gap := 0
+	var too_many := 0
+	var order_ok := true
+	var frames := 0
+	var bed_frame := -1
+	var t0 := Time.get_ticks_msec()
+	while Time.get_ticks_msec() - t0 < 120000:
+		audio._process(1.0 / 72.0)
+		frames += 1
+		var built := audio.players.size() - (1 if audio.players.has("hush")
+			else 0) - (1 if audio.players.has("bell") else 0)
+		if not audio.players.has("hush") \
+				and audio.gains.get("bed", 0.0) < 1.0:
+			gap += 1
+		if audio.players.size() > PlaceSound.players(hub):
+			too_many += 1
+		if built > 0 and not audio.players.has("bed"):
+			order_ok = false
+		if bed_frame < 0 and audio.players.has("bed"):
+			bed_frame = frames
+		if built == want and audio.gains.values().min() >= 1.0:
+			break
+		if not paced:
+			OS.delay_msec(2)
+	print("%s: %d frames, bed at frame %d" % [what, frames, bed_frame])
+	var built_all := true
+	for v in PlaceAudio.voices(hub):
+		built_all = built_all and audio.players.has(v[0])
+	t._check(built_all, "%s: all %d voices play after %d frames (bed at "
+		% [what, want, frames] + "frame %d)" % bed_frame)
+	t._check(gap == 0, "%s: no frame without room tone (%d)" % [what, gap])
+	t._check(too_many == 0, "%s: never more players than the plan"
+		% what)
+	t._check(order_ok, what + ": the bed before the crafts")
+	if built_all:
+		var same := true
+		for v in PlaceAudio.voices(hub):
+			var w: AudioStreamWAV = audio.players[v[0]].stream
+			same = same and w.data == PlaceSynth.pcm16(
+				PlaceAudio.render_voice(hub, v))
+		t._check(same, what + ": the samples of the offline render")
+	audio.stop()
+	audio._exit_tree()
+	audio.free()

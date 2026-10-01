@@ -26,8 +26,54 @@
 ## The impact of a blow begins within a millisecond whatever the
 ## reference's attack: the median attack of a recording of a smithy
 ## measures the file's envelope, not the hammer's contact.
+##
+## Each render exists twice in one body: render_bed / render_craft /
+## render_machine run it to the end on the calling thread (the APK's
+## worker, tests, tools); bed_co / craft_co / machine_co take a Pace
+## and give the frame back whenever its slice of time is spent, which
+## is how the Web build (no threads) renders without stalling a frame.
+## Both give the same samples: the pace only decides when they come.
 class_name PlaceSynth
 extends RefCounted
+
+
+## A render's share of the frame.  The render looks at the clock every
+## CHECK_MASK + 1 samples (due()) and awaits go once its slice is used
+## up; the owner calls resume() once a frame, which runs the next slice
+## and measures it, and stop() when the place is left.
+class Pace:
+	extends RefCounted
+	signal go
+	## Samples between two looks at the clock (a power of two, minus 1
+	## as a mask): small, so a slice overshoots its budget by little.
+	const CHECK_MASK := 511
+	var budget_usec := 2000
+	var t0 := 0
+	var slices := 0
+	## The longest slice yet, from resume() to the render's next pause.
+	var worst_usec := 0
+	## Set by stop(): every paused render returns at once, empty, so
+	## nothing is left suspended when its place is gone.
+	var stopped := false
+
+	func _init(budget := 2000) -> void:
+		budget_usec = budget
+
+	## True on every CHECK_MASK + 1-th sample once the slice is spent.
+	func due(i: int) -> bool:
+		return (i & CHECK_MASK) == 0 \
+			and Time.get_ticks_usec() - t0 >= budget_usec
+
+	func stop() -> void:
+		stopped = true
+		go.emit()
+
+	func resume() -> void:
+		t0 = Time.get_ticks_usec()
+		slices += 1
+		go.emit()
+		worst_usec = maxi(worst_usec, Time.get_ticks_usec() - t0)
+
 
 const RATE := PlaceSound.RATE
 ## The ring of a blow where its reference slot has no T60 (a design
@@ -75,7 +121,8 @@ static func _bp(fc: float, q: float) -> PackedFloat64Array:
 
 ## Band noise of n samples (no envelope).
 static func _band_noise(n: int, fc: float, q: float,
-		s: PackedInt64Array) -> PackedFloat32Array:
+		s: PackedInt64Array, pace: Pace) -> PackedFloat32Array:
+	var paced := pace != null
 	var c := _bp(fc, q)
 	var out := PackedFloat32Array()
 	out.resize(n)
@@ -91,25 +138,37 @@ static func _band_noise(n: int, fc: float, q: float,
 		y2 = y1
 		y1 = y
 		out[i] = y
+		if paced and pace.due(i):
+			await pace.go
+			if pace.stopped:
+				return PackedFloat32Array()
 	return out
 
 
 ## A noise loop of n samples with no seam: n + seam samples are made
 ## and the tail is crossfaded over the head at equal power.
 static func _noise_loop(n: int, fc: float, q: float,
-		s: PackedInt64Array) -> PackedFloat32Array:
+		s: PackedInt64Array, pace: Pace) -> PackedFloat32Array:
+	var paced := pace != null
 	var xf := mini(int(SEAM_SEC * RATE), n / 4)
-	var a := _band_noise(n + xf, fc, q, s)
+	var a: PackedFloat32Array = await _band_noise(n + xf, fc, q, s, pace)
+	if paced and pace.stopped:
+		return PackedFloat32Array()
 	for i in xf:
 		var u := float(i) / xf
 		a[i] = a[i] * sin(u * PI / 2.0) + a[n + i] * cos(u * PI / 2.0)
+		if paced and pace.due(i):
+			await pace.go
+			if pace.stopped:
+				return PackedFloat32Array()
 	a.resize(n)
 	return a
 
 
 ## One-pole low-passed noise loop (room tone, breath), seamless.
-static func _lp_loop(n: int, k: float, s: PackedInt64Array,
-		poles := 1) -> PackedFloat32Array:
+static func _lp_loop(n: int, k: float, s: PackedInt64Array, poles: int,
+		pace: Pace) -> PackedFloat32Array:
+	var paced := pace != null
 	var xf := mini(int(SEAM_SEC * RATE), n / 4)
 	var a := PackedFloat32Array()
 	a.resize(n + xf)
@@ -123,9 +182,17 @@ static func _lp_loop(n: int, k: float, s: PackedInt64Array,
 		lp += k * (_white(s) - lp)
 		lp2 += k * (lp - lp2)
 		a[i] = lp2 if poles == 2 else lp
+		if paced and pace.due(i):
+			await pace.go
+			if pace.stopped:
+				return PackedFloat32Array()
 	for i in xf:
 		var u := float(i) / xf
 		a[i] = a[i] * sin(u * PI / 2.0) + a[n + i] * cos(u * PI / 2.0)
+		if paced and pace.due(i):
+			await pace.go
+			if pace.stopped:
+				return PackedFloat32Array()
 	a.resize(n)
 	return a
 
@@ -134,7 +201,8 @@ static func _lp_loop(n: int, k: float, s: PackedInt64Array,
 ## rise seconds (smoothstep) and decays with time constant fall; an
 ## event past the end wraps to the head, so the loop has no seam.
 static func _events(n: int, at: Array, rise: float, fall: float,
-		floor_level: float, gains := []) -> PackedFloat32Array:
+		floor_level: float, gains: Array, pace: Pace) -> PackedFloat32Array:
+	var paced := pace != null
 	var env := PackedFloat32Array()
 	env.resize(n)
 	env.fill(floor_level)
@@ -150,6 +218,10 @@ static func _events(n: int, at: Array, rise: float, fall: float,
 			else:
 				e = exp(-float(j - r) / (fall * RATE))
 			env[(start + j) % n] += g * e
+			if paced and pace.due(j):
+				await pace.go
+				if pace.stopped:
+					return PackedFloat32Array()
 	return env
 
 
@@ -162,14 +234,28 @@ static func _times(count: int, loop: float, s: PackedInt64Array,
 	return out
 
 
-## Scale a loop to the RMS level asked for (dBFS).
-static func normalise(a: PackedFloat32Array, rms_db: float) -> void:
-	var r := rms(a)
+## Scale a loop to the RMS level asked for (dBFS).  The array is
+## shared, so the caller's copy is scaled in place.
+static func normalise(a: PackedFloat32Array, rms_db: float,
+		pace: Pace) -> void:
+	var paced := pace != null
+	var acc := 0.0
+	for i in a.size():
+		acc += a[i] * a[i]
+		if paced and pace.due(i):
+			await pace.go
+			if pace.stopped:
+				return
+	var r := sqrt(acc / maxf(1.0, a.size()))
 	if r <= 0.0:
 		return
 	var k := db_to_linear(rms_db) / r
 	for i in a.size():
 		a[i] *= k
+		if paced and pace.due(i):
+			await pace.go
+			if pace.stopped:
+				return
 
 
 static func rms(a: PackedFloat32Array) -> float:
@@ -194,14 +280,27 @@ static func dbfs(x: float) -> float:
 
 ## Room tone, breath and the air of the place, each at its own level.
 static func render_bed(bed: Dictionary) -> PackedFloat32Array:
+	return bed_co.call(bed, null)
+
+
+## The same, paced (see Pace); awaited by the caller.
+static func bed_co(bed: Dictionary, pace: Pace) -> PackedFloat32Array:
+	var paced := pace != null
 	var n := int(round(float(bed.loop) * RATE))
 	var s := _rng(int(bed.seed))
 	# Indoors, in a cave and under water the room is darker.
-	var room := _lp_loop(n, 0.05 if bed.dark else 0.09, s)
-	normalise(room, bed.room_db)
+	var room: PackedFloat32Array = await _lp_loop(n,
+		0.05 if bed.dark else 0.09, s, 1, pace)
+	if paced and pace.stopped:
+		return PackedFloat32Array()
+	await normalise(room, bed.room_db, pace)
+	if paced and pace.stopped:
+		return PackedFloat32Array()
 	# One's own breath: soft air through the nose, in the pattern's
 	# envelope (DiveSynth.breath_envelope, as RopeBreath), not placed.
-	var breath := _lp_loop(n, 0.04, s, 2)
+	var breath: PackedFloat32Array = await _lp_loop(n, 0.04, s, 2, pace)
+	if paced and pace.stopped:
+		return PackedFloat32Array()
 	var p: Dictionary = RopeCore.BREATH[bed.breath]
 	# The envelope is smooth: computed every ENV_STEP samples and
 	# interpolated between, which keeps the render short on the headset.
@@ -212,28 +311,57 @@ static func render_bed(bed: Dictionary) -> PackedFloat32Array:
 		for j in mini(ENV_STEP, n - i0):
 			breath[i0 + j] *= lerpf(e0, e1, float(j) / ENV_STEP)
 		e0 = e1
-	normalise(breath, bed.breath_db)
+		if paced and pace.due(i0 & ~Pace.CHECK_MASK):
+			await pace.go
+			if pace.stopped:
+				return PackedFloat32Array()
+	await normalise(breath, bed.breath_db, pace)
+	if paced and pace.stopped:
+		return PackedFloat32Array()
 	var out := room
 	for i in n:
 		out[i] += breath[i]
+		if paced and pace.due(i):
+			await pace.go
+			if pace.stopped:
+				return PackedFloat32Array()
 	if bed.air != "":
-		var air := _air(n, bed, s)
-		normalise(air, bed.air_db)
+		var air: PackedFloat32Array = await _air(n, bed, s, pace)
+		if paced and pace.stopped:
+			return PackedFloat32Array()
+		await normalise(air, bed.air_db, pace)
+		if paced and pace.stopped:
+			return PackedFloat32Array()
 		for i in n:
 			out[i] += air[i]
+			if paced and pace.due(i):
+				await pace.go
+				if pace.stopped:
+					return PackedFloat32Array()
 	return out
 
 
-static func _air(n: int, bed: Dictionary, s: PackedInt64Array) \
-		-> PackedFloat32Array:
+static func _air(n: int, bed: Dictionary, s: PackedInt64Array,
+		pace: Pace) -> PackedFloat32Array:
+	var paced := pace != null
 	var ref: Dictionary = bed.air_ref
 	var loop := float(n) / RATE
 	if bed.air == "wind":
 		# Two gusts a loop, each rising over the median attack.
-		var a := _noise_loop(n, ref.centroid, 0.5, s)
-		var env := _events(n, _times(2, loop, s, 1.0), ref.attack, 1.6, 0.35)
+		var a: PackedFloat32Array = await _noise_loop(n, ref.centroid, 0.5,
+			s, pace)
+		if paced and pace.stopped:
+			return PackedFloat32Array()
+		var env: PackedFloat32Array = await _events(n, _times(2, loop, s,
+			1.0), ref.attack, 1.6, 0.35, [], pace)
+		if paced and pace.stopped:
+			return PackedFloat32Array()
 		for i in n:
 			a[i] *= env[i]
+			if paced and pace.due(i):
+				await pace.go
+				if pace.stopped:
+					return PackedFloat32Array()
 		return a
 	# Crickets at night: chirps of three pulses at the centroid, each
 	# chirp as long as the median attack, about one a second.
@@ -250,6 +378,10 @@ static func _air(n: int, bed: Dictionary, s: PackedInt64Array) \
 			var pulse := maxf(0.0, sin(u * 3.0 * PI))
 			var e := pulse * sin(u * PI)
 			a[(start + j) % n] += e * sin(w * j)
+			if paced and pace.due(j):
+				await pace.go
+				if pace.stopped:
+					return PackedFloat32Array()
 	return a
 
 
@@ -257,29 +389,51 @@ static func _air(n: int, bed: Dictionary, s: PackedInt64Array) \
 
 ## One craft of the plan, as a loop at its level.
 static func render_craft(c: Dictionary) -> PackedFloat32Array:
+	return craft_co.call(c, null)
+
+
+## The same, paced (see Pace); awaited by the caller.
+static func craft_co(c: Dictionary, pace: Pace) -> PackedFloat32Array:
+	var paced := pace != null
 	var n := int(round(float(c.loop) * RATE))
 	var s := _rng(int(c.seed))
 	var a: PackedFloat32Array
 	match c.voice:
 		"impacts":
-			a = _impacts(n, c, s)
+			a = await _impacts(n, c, s, pace)
+			if paced and pace.stopped:
+				return PackedFloat32Array()
 		"wheel":
-			a = _wheel(n, c, s)
+			a = await _wheel(n, c, s, pace)
+			if paced and pace.stopped:
+				return PackedFloat32Array()
 		"strokes":
-			a = _strokes(n, c, s)
+			a = await _strokes(n, c, s, pace)
+			if paced and pace.stopped:
+				return PackedFloat32Array()
 		"lapping":
-			a = _lapping(n, c, s)
+			a = await _lapping(n, c, s, pace)
+			if paced and pace.stopped:
+				return PackedFloat32Array()
 		"hearth":
-			a = _hearth(n, c, s)
+			a = await _hearth(n, c, s, pace)
+			if paced and pace.stopped:
+				return PackedFloat32Array()
 		"buzz":
-			a = _buzz(n, c, s)
+			a = await _buzz(n, c, s, pace)
+			if paced and pace.stopped:
+				return PackedFloat32Array()
 		"rain":
-			a = _rain(n, c, s)
+			a = await _rain(n, c, s, pace)
+			if paced and pace.stopped:
+				return PackedFloat32Array()
 		_:
 			push_error("PlaceSynth: no voice " + str(c.voice))
 			a = PackedFloat32Array()
 			a.resize(n)
-	normalise(a, c.rms_db)
+	await normalise(a, c.rms_db, pace)
+	if paced and pace.stopped:
+		return PackedFloat32Array()
 	return a
 
 
@@ -297,8 +451,9 @@ static func _rhythm(c: Dictionary) -> Array:
 			return [[0.0, 1.0], [0.9, 0.95], [1.8, 1.0], [2.7, 0.9]]
 
 
-static func _impacts(n: int, c: Dictionary, s: PackedInt64Array) \
-		-> PackedFloat32Array:
+static func _impacts(n: int, c: Dictionary, s: PackedInt64Array,
+		pace: Pace) -> PackedFloat32Array:
+	var paced := pace != null
 	var a := PackedFloat32Array()
 	a.resize(n)
 	var ref: Dictionary = c.ref
@@ -324,6 +479,10 @@ static func _impacts(n: int, c: Dictionary, s: PackedInt64Array) \
 				if e < 1e-4:
 					break
 				a[(start + j) % n] += amp * e * sin(w * j)
+				if paced and pace.due(j):
+					await pace.go
+					if pace.stopped:
+						return PackedFloat32Array()
 		# The contact: a short band-limited click, under a millisecond
 		# of rise.
 		var x1 := 0.0
@@ -338,13 +497,21 @@ static func _impacts(n: int, c: Dictionary, s: PackedInt64Array) \
 			y2 = y1
 			y1 = y
 			a[(start + j) % n] += 2.0 * g * y
+		if paced and pace.due(0):
+			await pace.go
+			if pace.stopped:
+				return PackedFloat32Array()
 	return a
 
 
-static func _wheel(n: int, c: Dictionary, s: PackedInt64Array) \
-		-> PackedFloat32Array:
+static func _wheel(n: int, c: Dictionary, s: PackedInt64Array,
+		pace: Pace) -> PackedFloat32Array:
+	var paced := pace != null
 	var ref: Dictionary = c.ref
-	var a := _noise_loop(n, ref.centroid, 0.7, s)
+	var a: PackedFloat32Array = await _noise_loop(n, ref.centroid, 0.7, s,
+		pace)
+	if paced and pace.stopped:
+		return PackedFloat32Array()
 	# Whole turns in a loop, so the rhythm has no seam.
 	var loop := float(n) / RATE
 	var turns := maxf(1.0, roundf(float(c.rpm) / 60.0 * loop))
@@ -352,13 +519,21 @@ static func _wheel(n: int, c: Dictionary, s: PackedInt64Array) \
 		var ph := TAU * turns * i / n
 		a[i] *= 0.6 + 0.4 * (0.5 + 0.5 * sin(ph)) \
 			+ 0.1 * sin(2.0 * ph + 1.0)
+		if paced and pace.due(i):
+			await pace.go
+			if pace.stopped:
+				return PackedFloat32Array()
 	return a
 
 
-static func _strokes(n: int, c: Dictionary, s: PackedInt64Array) \
-		-> PackedFloat32Array:
+static func _strokes(n: int, c: Dictionary, s: PackedInt64Array,
+		pace: Pace) -> PackedFloat32Array:
+	var paced := pace != null
 	var ref: Dictionary = c.ref
-	var grain := _noise_loop(n, ref.centroid, 1.2, s)
+	var grain: PackedFloat32Array = await _noise_loop(n, ref.centroid, 1.2,
+		s, pace)
+	if paced and pace.stopped:
+		return PackedFloat32Array()
 	var a := PackedFloat32Array()
 	a.resize(n)
 	var dur := maxi(1, int(ref.attack * RATE))
@@ -378,39 +553,68 @@ static func _strokes(n: int, c: Dictionary, s: PackedInt64Array) \
 				var fl := 0.7 + 0.3 * sin(TAU * 37.0 * j / RATE + k)
 				env[(start + j) % n] += sin(u * PI) * fl
 			t += ref.attack * (1.1 + 0.4 * _unit(s))
+			if paced and pace.due(0):
+				await pace.go
+				if pace.stopped:
+					return PackedFloat32Array()
 		t += 0.6 + 0.6 * _unit(s)
 	for i in n:
 		a[i] = grain[i] * env[i]
+		if paced and pace.due(i):
+			await pace.go
+			if pace.stopped:
+				return PackedFloat32Array()
 	return a
 
 
-static func _lapping(n: int, c: Dictionary, s: PackedInt64Array) \
-		-> PackedFloat32Array:
+static func _lapping(n: int, c: Dictionary, s: PackedInt64Array,
+		pace: Pace) -> PackedFloat32Array:
+	var paced := pace != null
 	var ref: Dictionary = c.ref
 	var loop := float(n) / RATE
-	var a := _noise_loop(n, ref.centroid, 0.8, s)
+	var a: PackedFloat32Array = await _noise_loop(n, ref.centroid, 0.8, s,
+		pace)
+	if paced and pace.stopped:
+		return PackedFloat32Array()
 	# A wave about every 1.5 s, rising over the median attack and
 	# running back over half a second.
 	var count := maxi(1, int(round(loop / 1.5)))
 	var gains := []
 	for k in count:
 		gains.append(0.6 + 0.4 * _unit(s))
-	var env := _events(n, _times(count, loop, s, 0.4), ref.attack, 0.5,
-		0.25, gains)
+	var env: PackedFloat32Array = await _events(n, _times(count, loop, s,
+		0.4), ref.attack, 0.5, 0.25, gains, pace)
+	if paced and pace.stopped:
+		return PackedFloat32Array()
 	for i in n:
 		a[i] *= env[i]
+		if paced and pace.due(i):
+			await pace.go
+			if pace.stopped:
+				return PackedFloat32Array()
 	return a
 
 
-static func _hearth(n: int, c: Dictionary, s: PackedInt64Array) \
-		-> PackedFloat32Array:
+static func _hearth(n: int, c: Dictionary, s: PackedInt64Array,
+		pace: Pace) -> PackedFloat32Array:
+	var paced := pace != null
 	var ref: Dictionary = c.ref
 	var loop := float(n) / RATE
 	# The roar, a third of the centroid, swelling over the median attack.
-	var a := _noise_loop(n, ref.centroid / 3.0, 0.5, s)
-	var env := _events(n, [0.0], ref.attack, loop / 3.0, 0.5)
+	var a: PackedFloat32Array = await _noise_loop(n, ref.centroid / 3.0,
+		0.5, s, pace)
+	if paced and pace.stopped:
+		return PackedFloat32Array()
+	var env: PackedFloat32Array = await _events(n, [0.0], ref.attack,
+		loop / 3.0, 0.5, [], pace)
+	if paced and pace.stopped:
+		return PackedFloat32Array()
 	for i in n:
 		a[i] *= env[i] * 0.5
+		if paced and pace.due(i):
+			await pace.go
+			if pace.stopped:
+				return PackedFloat32Array()
 	# Crackle: short clicks at twice the centroid, about six a second.
 	var cb := _bp(ref.centroid * 2.0, 1.0)
 	var count := int(loop * 6.0)
@@ -430,32 +634,57 @@ static func _hearth(n: int, c: Dictionary, s: PackedInt64Array) \
 			y2 = y1
 			y1 = y
 			a[(start + j) % n] += g * y
+		if paced and pace.due(0):
+			await pace.go
+			if pace.stopped:
+				return PackedFloat32Array()
 	return a
 
 
-static func _buzz(n: int, c: Dictionary, s: PackedInt64Array) \
-		-> PackedFloat32Array:
+static func _buzz(n: int, c: Dictionary, s: PackedInt64Array,
+		pace: Pace) -> PackedFloat32Array:
+	var paced := pace != null
 	var ref: Dictionary = c.ref
-	var a := _noise_loop(n, ref.centroid, 1.0, s)
+	var a: PackedFloat32Array = await _noise_loop(n, ref.centroid, 1.0, s,
+		pace)
+	if paced and pace.stopped:
+		return PackedFloat32Array()
 	# A honeybee's wing beats about 230 times a second; the hive's
 	# swell rises over the median attack.
 	var loop := float(n) / RATE
 	var beats := roundf(230.0 * loop)
-	var env := _events(n, _times(2, loop, s, 0.5), ref.attack, 0.8, 0.5)
+	var env: PackedFloat32Array = await _events(n, _times(2, loop, s, 0.5),
+		ref.attack, 0.8, 0.5, [], pace)
+	if paced and pace.stopped:
+		return PackedFloat32Array()
 	for i in n:
 		a[i] *= env[i] * (0.6 + 0.4 * sin(TAU * beats * i / n))
+		if paced and pace.due(i):
+			await pace.go
+			if pace.stopped:
+				return PackedFloat32Array()
 	return a
 
 
-static func _rain(n: int, c: Dictionary, s: PackedInt64Array) \
-		-> PackedFloat32Array:
+static func _rain(n: int, c: Dictionary, s: PackedInt64Array,
+		pace: Pace) -> PackedFloat32Array:
+	var paced := pace != null
 	var ref: Dictionary = c.ref
 	var loop := float(n) / RATE
-	var a := _noise_loop(n, ref.centroid, 0.6, s)
-	var env := _events(n, [0.0], minf(ref.attack, loop / 2.0), loop / 2.0,
-		0.6)
+	var a: PackedFloat32Array = await _noise_loop(n, ref.centroid, 0.6, s,
+		pace)
+	if paced and pace.stopped:
+		return PackedFloat32Array()
+	var env: PackedFloat32Array = await _events(n, [0.0], minf(ref.attack,
+		loop / 2.0), loop / 2.0, 0.6, [], pace)
+	if paced and pace.stopped:
+		return PackedFloat32Array()
 	for i in n:
 		a[i] *= env[i]
+		if paced and pace.due(i):
+			await pace.go
+			if pace.stopped:
+				return PackedFloat32Array()
 	var cb := _bp(ref.centroid * 1.6, 2.0)
 	var dur := int(0.003 * RATE)
 	for k in int(loop * 40.0):
@@ -472,6 +701,10 @@ static func _rain(n: int, c: Dictionary, s: PackedInt64Array) \
 			y2 = y1
 			y1 = y
 			a[(start + j) % n] += 0.8 * y
+		if paced and pace.due(0):
+			await pace.go
+			if pace.stopped:
+				return PackedFloat32Array()
 	return a
 
 
@@ -481,6 +714,12 @@ static func _rain(n: int, c: Dictionary, s: PackedInt64Array) \
 ## f0 is set so the hum's centroid is the reference's, and the clicks
 ## of the console at its own centroid.
 static func render_machine(m: Dictionary) -> PackedFloat32Array:
+	return machine_co.call(m, null)
+
+
+## The same, paced (see Pace); awaited by the caller.
+static func machine_co(m: Dictionary, pace: Pace) -> PackedFloat32Array:
+	var paced := pace != null
 	var n := int(round(float(m.loop) * RATE))
 	var s := _rng(int(m.seed))
 	var loop := float(n) / RATE
@@ -494,13 +733,24 @@ static func render_machine(m: Dictionary) -> PackedFloat32Array:
 	var f0: float = m.ref.centroid / (num / den)
 	# A whole number of cycles in the loop.
 	f0 = roundf(f0 * loop) / loop
-	var a := _noise_loop(n, m.ref.centroid, 0.7, s)
+	var a: PackedFloat32Array = await _noise_loop(n, m.ref.centroid, 0.7,
+		s, pace)
+	if paced and pace.stopped:
+		return PackedFloat32Array()
 	for i in n:
 		a[i] *= 0.15
+		if paced and pace.due(i):
+			await pace.go
+			if pace.stopped:
+				return PackedFloat32Array()
 	for k in ks:
 		var w: float = TAU * f0 * k / RATE
 		for i in n:
 			a[i] += sin(w * i) / k
+			if paced and pace.due(i):
+				await pace.go
+				if pace.stopped:
+					return PackedFloat32Array()
 	var cb := _bp(m.click.centroid, 1.5)
 	var dur := maxi(1, int(m.click.attack * RATE))
 	for t0 in _times(2, loop, s, 0.8):
@@ -517,17 +767,42 @@ static func render_machine(m: Dictionary) -> PackedFloat32Array:
 			y2 = y1
 			y1 = y
 			a[(start + j) % n] += 3.0 * y
-	normalise(a, m.rms_db)
+	await normalise(a, m.rms_db, pace)
+	if paced and pace.stopped:
+		return PackedFloat32Array()
 	return a
 
 
 ## A loop as a 16-bit stream that loops forward over its whole length.
 static func stream(pcm: PackedFloat32Array) -> AudioStreamWAV:
+	return wav(pcm16(pcm))
+
+
+## The 16-bit samples of a loop, on the calling thread.
+static func pcm16(pcm: PackedFloat32Array) -> PackedByteArray:
+	return pcm16_co.call(pcm, null)
+
+
+## The 16-bit samples of a loop, paced (see Pace).  This is the costly
+## part of a stream (about 40 ms for a 10 s bed on a desktop core), so
+## it is done where the loop is rendered, never on the frame.
+static func pcm16_co(pcm: PackedFloat32Array, pace: Pace) \
+		-> PackedByteArray:
+	var paced := pace != null
 	var bytes := PackedByteArray()
 	bytes.resize(pcm.size() * 2)
 	for i in pcm.size():
 		bytes.encode_s16(i * 2, int(round(clampf(pcm[i], -1.0, 1.0)
 			* 32767.0)))
+		if paced and pace.due(i):
+			await pace.go
+			if pace.stopped:
+				return PackedByteArray()
+	return bytes
+
+
+## A looping stream from 16-bit samples (cheap: the bytes are shared).
+static func wav(bytes: PackedByteArray) -> AudioStreamWAV:
 	var w := AudioStreamWAV.new()
 	w.format = AudioStreamWAV.FORMAT_16_BITS
 	w.mix_rate = RATE
@@ -535,5 +810,31 @@ static func stream(pcm: PackedFloat32Array) -> AudioStreamWAV:
 	w.data = bytes
 	w.loop_mode = AudioStreamWAV.LOOP_FORWARD
 	w.loop_begin = 0
-	w.loop_end = pcm.size()
+	w.loop_end = bytes.size() / 2
 	return w
+
+
+## Live room tone for the moments before a place's bed is rendered
+## (PlaceAudio's hush): white noise through a one-pole low-pass, scaled
+## so its RMS is rms_db.  Uniform white in [-1, 1) has a variance of
+## 1/3, and the pole k keeps k / (2 - k) of it.  st holds the xorshift
+## state ("s") and the filter's memory ("lp") between calls, so the
+## tone runs on without a seam; a few hundred samples a frame.
+static func room_tone(n: int, k: float, rms_db: float,
+		st: Dictionary) -> PackedVector2Array:
+	var g := db_to_linear(rms_db) / sqrt(k / (2.0 - k) / 3.0)
+	var s: PackedInt64Array = st.s
+	var lp: float = st.lp
+	var out := PackedVector2Array()
+	out.resize(n)
+	for i in n:
+		lp += k * (_white(s) - lp)
+		var v := lp * g
+		out[i] = Vector2(v, v)
+	st.s = s
+	st.lp = lp
+	return out
+
+
+static func room_tone_state(seed: int) -> Dictionary:
+	return {"s": _rng(seed), "lp": 0.0}

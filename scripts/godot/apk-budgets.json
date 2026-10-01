@@ -155,7 +155,7 @@
     },
     "place_players": {
       "limit": 6,
-      "why": "players of one place's sound plan (PlaceSound.players: the bed, at most 3 crafts, the machine, and in the courtyard the bell's generator); measured 2026-10-01 by godot/tools/render_place_audio.gd: the courtyard 6, the worst of the 99 places 3. Not a Meta number but the project's cap, so a place cannot grow into a soundtrack; held for the places by measure_locations.gd --check and for the courtyard by tests/test_place_sound.gd"
+      "why": "players of one place's sound plan (PlaceSound.players: the bed, at most 3 crafts, the machine, and in the courtyard the bell's generator); measured 2026-10-01 by godot/tools/render_place_audio.gd: the courtyard 6, the worst of the 99 places 3. Not a Meta number but the project's cap, so a place cannot grow into a soundtrack; held for the places by measure_locations.gd --check and for the courtyard by tests/test_place_sound.gd. The cap equals the courtyard (6 of 6): a hard ceiling with 0% margin on purpose, so a seventh voice there is a decision, not a drift. On entry the hush (live room tone) plays with the bed and the bell before the crafts come in, so a place never holds more than its plan"
     },
     "place_pcm_bytes": {
       "limit": 4194304,
