@@ -9,7 +9,8 @@
 // per node, which branches the FORM opens, and a walk that always takes
 // a fixed open branch, with the bonuses the module returns.  A synthetic
 // tree with bad values checks the normalisation (only seven attributes,
-// a bonus rounded and clamped to +1..+5, the start node fallback).
+// a bonus rounded and clamped to +1..+5, the start node fallback, and
+// the loose Number() of numeric strings, null, true and arrays).
 // Nothing is random: the same data gives the same file.
 // Usage: node scripts/godot/make_dialogue_fixture.js
 
@@ -36,7 +37,24 @@ const BAD_TREE = {
         condition: { faith: 3, constitution: 2 },
         attributeBonuses: { dexterity: 1.5 } },
     ] },
-    { id: 'b', text: 'B', branches: [] },
+    // Values the JS Number() reads loosely: numeric strings, null (0),
+    // true (1), a one-element array, blank strings; a truthy entry that
+    // is not an object is a branch with no fields, a falsy one is
+    // dropped; a falsy narrative effect is the empty string.
+    { id: 'b', text: 'B', branches: [
+      null, 0, '', 'bare string branch',
+      { text: 'strings', nextNodeId: 'c', narrativeEffect: 0,
+        condition: { wisdom: '5', faith: null, charisma: '',
+          dexterity: [3], erudition: 'x', cunning: ' 2 ' },
+        attributeBonuses: { erudition: '2', constitution: null,
+          faith: '2.5', wisdom: 'x', cunning: true, charisma: [4] } },
+      { text: 'null gate', nextNodeId: 'c', condition: { faith: null },
+        attributeBonuses: { wisdom: '1' } },
+    ] },
+    { id: 'c', text: 'C', branches: [
+      { text: 'array gate', condition: { constitution: ['7'] },
+        attributeBonuses: { faith: 1 } },
+    ] },
     { text: 'no id', branches: [] },
   ],
 };
@@ -72,6 +90,8 @@ const PROFILES = {
   all8: flat(8),
   all12: flat(12),
   mixed: Object.assign(flat(2), { wisdom: 9, faith: 3, erudition: 5 }),
+  // A fractional value is kept by the game when a bonus is added.
+  fraction: Object.assign(flat(3), { wisdom: 6.5, faith: 4.25 }),
 };
 const MAX_STEPS = 12;
 

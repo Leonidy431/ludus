@@ -18,6 +18,11 @@ const FIXTURE := "res://tests/fixtures/dialogue.json"
 const CLEAR_M := 0.75
 ## Mentors stand at least this far apart, so each can be walked up to.
 const APART_M := 1.2
+## Sources of the dialogue lines with no Russian label yet: the panel
+## shows the English original for them.  An open item for the chorus
+## (docs/APK_PARITY.md); the gate keeps the number from growing, and it
+## is lowered as labels are added to source-labels-ru.json.
+const UNLABELLED_MAX := 84
 
 var hub: Node
 
@@ -35,6 +40,9 @@ func run(t: Object) -> void:
 	_parity(t)
 	_bonuses(t, trees)
 	_no_randomness(t)
+	_closed(t, trees)
+	_labels(t, trees)
+	_js_number(t)
 	_persons(t, locs)
 	hub = (load("res://scenes/hub.tscn") as PackedScene).instantiate()
 	(t as SceneTree).root.add_child(hub)
@@ -233,6 +241,69 @@ func _bonuses(t: Object, trees: Dictionary) -> void:
 		and int(bad.form.faith) == 1, "bonus clamped to +5, ethos dropped")
 
 
+## The closed line names only the growth the teaching asks for: never
+## Cunning (its branches are the favour-seeking requests, whose cost is
+## that the deeper talk stays closed), and its wording does not depend
+## on the gender or the number of the attributes named.
+func _closed(t: Object, trees: Dictionary) -> void:
+	var start := HubCore.new_form()
+	var kas: Dictionary = trees.kassiani
+	var line := DialogueCore.closed_line(HubCore.node_of(kas,
+		kas.startNode), start)
+	t._check(line.begins_with("Ещё закрыто, нужно: "),
+		"kassiani start: closed line wording: " + line)
+	t._check(not line.contains("Хитрость"),
+		"kassiani start: no Cunning to grow: " + line)
+	var named := 0
+	for id in trees:
+		for n in trees[id].nodes:
+			var l := DialogueCore.closed_line(n, start)
+			t._check(not l.contains("Хитрость") and not l.contains("нужна "),
+				"%s/%s closed line: %s" % [id, n.id, l])
+			named += int(l != "")
+	t._check(named > 0, "closed lines shown on a new FORM (%d)" % named)
+	# A branch gated by Cunning is left out even when it alone is closed.
+	var only_cunning := {"branches": [{"condition": {"cunning": 3}}]}
+	t._check(DialogueCore.closed_line(only_cunning, start) == "",
+		"a Cunning gate alone gives no closed line")
+
+
+## The Russian labels of the dialogue sources: the unlabelled ones do
+## not grow in number.
+func _labels(t: Object, trees: Dictionary) -> void:
+	var seen := {}
+	var missing := 0
+	for id in trees:
+		for n in trees[id].nodes:
+			var src := str(n.get("source", ""))
+			if src == "" or seen.has(src):
+				continue
+			seen[src] = true
+			missing += int(SourceLabels.ru(src) == src)
+	print("dialogue sources: %d, without a Russian label %d" % [seen.size(),
+		missing])
+	t._check(missing <= UNLABELLED_MAX, "unlabelled sources %d <= %d"
+		% [missing, UNLABELLED_MAX])
+
+
+## Number() of the JS for the values JSON can carry.
+func _js_number(t: Object) -> void:
+	var cases := [[5, 5.0], [2.5, 2.5], [null, 0.0], [true, 1.0],
+		[false, 0.0], ["5", 5.0], [" 2 ", 2.0], ["", 0.0], ["2.5", 2.5],
+		[[], 0.0], [[3], 3.0], [["7"], 7.0], [[null], 0.0]]
+	for c in cases:
+		t._check(is_equal_approx(DialogueCore.js_number(c[0]), c[1]),
+			"Number(%s) = %s" % [c[0], c[1]])
+	for v in ["x", [1, 2], {}]:
+		t._check(is_nan(DialogueCore.js_number(v)), "Number(%s) is NaN" % [v])
+	# A fractional FORM value is kept when a bonus is added, as in the
+	# game; a whole one stays whole.
+	var f: Dictionary = DialogueCore.apply({"wisdom": 6.5, "faith": 2},
+		{"attributeBonuses": {"wisdom": 1, "faith": 2}}).form
+	t._check(is_equal_approx(f.wisdom, 7.5) and f.faith is int
+		and f.faith == 4, "apply keeps 6.5 + 1 = 7.5, 2 + 2 = 4: %s" % f)
+
+
 func _no_randomness(t: Object) -> void:
 	for path in ["res://scripts/dialogue_core.gd", "res://scripts/mentors.gd"]:
 		var src := FileAccess.get_file_as_string(path)
@@ -302,6 +373,34 @@ func in_hub(t: Object) -> void:
 		# The way from the courtyard to the pier stays open.
 		t._check(not (at.x > -1.0 and at.x < 9.0 and absf(at.y) < 1.2),
 			id + " off the way to the pier")
+	# Each hub mentor is the one the player reaches from the yard side:
+	# a gate mentor from a step east of him (his approach from the yard
+	# is free), a guest from a step towards the yard's centre; the point
+	# is not inside another mentor.
+	var keep: Vector3 = hub.pos
+	for id in Mentors.HUB_AT:
+		var p: Vector3 = Mentors.HUB_AT[id]
+		var step := Vector3(0.8, 0, 0)
+		if not id in Mentors.GATE_MENTORS:
+			step = (Mentors.YARD_CENTRE - p).normalized() * 0.8
+		hub.pos = p + step
+		for o in Mentors.HUB_AT:
+			if o != id:
+				t._check(Vector2(hub.pos.x - Mentors.HUB_AT[o].x,
+					hub.pos.z - Mentors.HUB_AT[o].z).length() >= 0.5,
+					"%s: the approach is not inside %s" % [id, o])
+		var near: Dictionary = hub._nearest()
+		t._check(near.get("id", "") == id, "%s reached from the yard (%s)"
+			% [id, near.get("id", "")])
+		# A gate mentor has no guest between him and the yard: nothing
+		# else stands within 2.2 m east of him on his line.
+		if id in Mentors.GATE_MENTORS:
+			for o in Mentors.HUB_AT:
+				var q: Vector3 = Mentors.HUB_AT[o]
+				t._check(o == id or not (q.x > p.x and q.x < p.x + 2.2
+					and absf(q.z - p.z) < 0.7), "%s: %s stands in front"
+					% [id, o])
+	hub.pos = keep
 	var tags := 0
 	for c in hub.find_children("MentorName*", "Label3D", true, false):
 		tags += 1

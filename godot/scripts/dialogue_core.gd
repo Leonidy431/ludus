@@ -44,10 +44,7 @@ static func sanitise(map, clamp_bonus: bool) -> Dictionary:
 	for a in ATTRIBUTES:
 		if not map.has(a):
 			continue
-		var v = map[a]
-		if not (v is float or v is int):
-			continue
-		var value := float(v)
+		var value := js_number(map[a])
 		if is_nan(value) or is_inf(value):
 			continue
 		if clamp_bonus:
@@ -58,6 +55,37 @@ static func sanitise(map, clamp_bonus: bool) -> Dictionary:
 		else:
 			clean[a] = value
 	return clean
+
+
+## Number(v) of the JS, for the values JSON can carry: a number is
+## itself, null and false are 0, true is 1, a string is its number
+## (blank is 0, anything else not a number is NaN), an array of none is
+## 0 and of one is that one's Number(String(x)), anything else is NaN.
+## So a condition {wisdom: "5"} gates at 5 and {wisdom: null} at 0, as in
+## the web game.  (Hex, binary and octal strings are left out: the
+## trees are written by hand in decimal.)
+static func js_number(v) -> float:
+	if v == null:
+		return 0.0
+	if v is bool:
+		return 1.0 if v else 0.0
+	if v is float or v is int:
+		return float(v)
+	if v is String or v is StringName:
+		var t := str(v).strip_edges()
+		if t == "":
+			return 0.0
+		if t in ["Infinity", "+Infinity"]:
+			return INF
+		if t == "-Infinity":
+			return -INF
+		return t.to_float() if t.is_valid_float() else NAN
+	if v is Array:
+		if v.is_empty():
+			return 0.0
+		if v.size() == 1:
+			return js_number("" if v[0] == null else str(v[0]))
+	return NAN
 
 
 ## The tree in the shape the rules rely on, or {} when it is unusable.
@@ -73,8 +101,13 @@ static func normalise_tree(raw, npc_id: String) -> Dictionary:
 		var raw_branches = node.get("branches", [])
 		if raw_branches is Array:
 			for b in raw_branches:
-				if not b is Dictionary:
+				# .filter(Boolean) of the JS: a falsy entry is dropped, a
+				# truthy one that is not an object is a branch with no
+				# fields (no text, no condition, no bonus, the end).
+				if not _truthy(b):
 					continue
+				if not b is Dictionary:
+					b = {}
 				var nxt = b.get("nextNodeId")
 				branches.append({
 					"text": _text(b.get("text")),
@@ -83,7 +116,8 @@ static func normalise_tree(raw, npc_id: String) -> Dictionary:
 					"nextNodeId": nxt if nxt is String and nxt != "" else null,
 					"attributeBonuses": sanitise(b.get("attributeBonuses"),
 						true),
-					"narrativeEffect": _text(b.get("narrativeEffect", "")),
+					"narrativeEffect": _text(b.get("narrativeEffect"))
+						if _truthy(b.get("narrativeEffect")) else "",
 				})
 		var n := {"id": node.id, "text": _text(node.get("text")),
 			"branches": branches}
@@ -109,6 +143,19 @@ static func normalise_tree(raw, npc_id: String) -> Dictionary:
 	if raw.get("idiom") is Dictionary:
 		tree["idiom"] = raw.idiom
 	return tree
+
+
+## Truthiness of the JS for JSON values.
+static func _truthy(v) -> bool:
+	if v == null:
+		return false
+	if v is bool:
+		return v
+	if v is float or v is int:
+		return v != 0 and not is_nan(float(v))
+	if v is String:
+		return v != ""
+	return true
 
 
 static func _text(v) -> String:
@@ -146,12 +193,10 @@ static func missing(condition, form: Dictionary) -> Array:
 	return out
 
 
-## Number(x) || 0 of the JS: anything not a finite number is zero.
+## Number(x) || 0 of the JS: NaN is zero (an infinity stays, as in JS).
 static func _num(v) -> float:
-	if v is float or v is int:
-		var f := float(v)
-		return 0.0 if is_nan(f) or is_inf(f) else f
-	return 0.0
+	var f := js_number(v)
+	return 0.0 if is_nan(f) else f
 
 
 ## Indices (in node.branches) of the branches the FORM opens.
@@ -197,7 +242,10 @@ static func apply(form: Dictionary, branch: Dictionary) -> Dictionary:
 	var f := form.duplicate()
 	var bonuses := sanitise(branch.get("attributeBonuses", {}), true)
 	for a in bonuses:
-		f[a] = int(_num(f.get(a, 0))) + int(bonuses[a])
+		# (form[a] || 0) + bonus, as the game does: a fractional value is
+		# kept, a whole one stays an integer.
+		var v := _num(f.get(a, 0)) + float(bonuses[a])
+		f[a] = int(v) if v == floor(v) and absf(v) < 1e15 else v
 	var nxt = branch.get("nextNodeId")
 	if not (nxt is String and nxt != ""):
 		nxt = null
@@ -219,10 +267,23 @@ static func voice_line(node: Dictionary) -> String:
 
 
 ## What the closed branches of a node ask of the FORM, as one line:
-## "Закрыто: Мудрость 6" (empty when every branch is open).
+## "Ещё закрыто, нужно: Мудрость 6, Вера 5" (empty when nothing the
+## teaching asks for is closed).  The wording does not depend on the
+## gender or the number of the attributes named.
+##
+## A branch gated by Cunning is left out.  In the data such branches are
+## the favour-seeking requests (Kassia's "a verse to sway a man", and the
+## same at Isaias, Symeon and elder Sergius), whose cost is that the
+## deeper talk stays closed; Cunning is the attribute that is "rare, not
+## approved" (CLAUDE.md, attributes) and opens no gate (TABOO 0.35 rule
+## 14).  Naming it as something still to grow would show the way of
+## prelest as a goal (Constitution: the closed part is what is still to
+## grow towards the teaching).
 static func closed_line(node: Dictionary, form: Dictionary) -> String:
 	var parts := []
 	for b in node.get("branches", []):
+		if sanitise(b.get("condition", {}), false).has("cunning"):
+			continue
 		for m in missing(b.get("condition", {}), form):
 			var s := "%s %d" % [RU_ATTR.get(m.attribute, m.attribute),
 				int(m.required)]
@@ -230,4 +291,4 @@ static func closed_line(node: Dictionary, form: Dictionary) -> String:
 				parts.append(s)
 	if parts.is_empty():
 		return ""
-	return "Ещё закрыто: нужна " + ", ".join(parts)
+	return "Ещё закрыто, нужно: " + ", ".join(parts)

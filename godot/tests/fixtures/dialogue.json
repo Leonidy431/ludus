@@ -47,7 +47,64 @@
    {
     "id": "b",
     "text": "B",
-    "branches": []
+    "branches": [
+     null,
+     0,
+     "",
+     "bare string branch",
+     {
+      "text": "strings",
+      "nextNodeId": "c",
+      "narrativeEffect": 0,
+      "condition": {
+       "wisdom": "5",
+       "faith": null,
+       "charisma": "",
+       "dexterity": [
+        3
+       ],
+       "erudition": "x",
+       "cunning": " 2 "
+      },
+      "attributeBonuses": {
+       "erudition": "2",
+       "constitution": null,
+       "faith": "2.5",
+       "wisdom": "x",
+       "cunning": true,
+       "charisma": [
+        4
+       ]
+      }
+     },
+     {
+      "text": "null gate",
+      "nextNodeId": "c",
+      "condition": {
+       "faith": null
+      },
+      "attributeBonuses": {
+       "wisdom": "1"
+      }
+     }
+    ]
+   },
+   {
+    "id": "c",
+    "text": "C",
+    "branches": [
+     {
+      "text": "array gate",
+      "condition": {
+       "constitution": [
+        "7"
+       ]
+      },
+      "attributeBonuses": {
+       "faith": 1
+      }
+     }
+    ]
    },
    {
     "text": "no id",
@@ -1197,6 +1254,178 @@
         "charisma": 2,
         "cunning": 2,
         "erudition": 5
+       }
+      }
+     ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "greeting": [
+       0,
+       1,
+       2,
+       3,
+       4
+      ],
+      "still_water": [
+       0,
+       1,
+       2
+      ],
+      "mind_heart": [
+       1
+      ],
+      "ladder_of_thought": [
+       0,
+       1,
+       2
+      ],
+      "name_breath": [
+       1
+      ],
+      "noonday": [
+       1
+      ],
+      "seen_knot": [
+       0,
+       1
+      ],
+      "returning_knock": [
+       0,
+       1
+      ],
+      "shortcut": [
+       0,
+       1
+      ],
+      "not_the_priest": [
+       0,
+       1
+      ]
+     },
+     "walk": [
+      {
+       "node": "greeting",
+       "open": [
+        0,
+        1,
+        2,
+        3,
+        4
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "still_water",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "still_water",
+       "open": [
+        0,
+        1,
+        2
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "noonday",
+       "complete": false,
+       "form": {
+        "wisdom": 8.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "noonday",
+       "open": [
+        1
+       ],
+       "refused": {
+        "index": 0,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "constitution",
+          "required": 4,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "name_breath",
+       "complete": false,
+       "form": {
+        "wisdom": 9.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "name_breath",
+       "open": [
+        1
+       ],
+       "refused": {
+        "index": 0,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "faith",
+          "required": 5,
+          "current": 4.25
+         }
+        ]
+       },
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 1,
+        "faith": 1
+       },
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 10.5,
+        "faith": 5.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
        }
       }
      ]
@@ -3180,6 +3409,341 @@
        }
       }
      ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "greeting": [
+       0,
+       2,
+       3
+      ],
+      "one_loaf": [
+       0,
+       1
+      ],
+      "offering": [
+       0,
+       1
+      ],
+      "lost_in_rite": [
+       0,
+       1
+      ],
+      "leaven": [
+       0
+      ],
+      "street_loaf": [
+       0,
+       1
+      ],
+      "avarice_cue": [
+       0,
+       1
+      ]
+     },
+     "walk": [
+      {
+       "node": "greeting",
+       "open": [
+        0,
+        2,
+        3
+       ],
+       "refused": {
+        "index": 1,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "erudition",
+          "required": 4,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "erudition": 1
+       },
+       "next": "one_loaf",
+       "complete": false,
+       "form": {
+        "wisdom": 6.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 4
+       }
+      },
+      {
+       "node": "one_loaf",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 2,
+        "erudition": 1
+       },
+       "next": "leaven",
+       "complete": false,
+       "form": {
+        "wisdom": 8.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 5
+       }
+      },
+      {
+       "node": "leaven",
+       "open": [
+        0
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 2,
+        "charisma": 1
+       },
+       "next": "street_loaf",
+       "complete": false,
+       "form": {
+        "wisdom": 10.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 5
+       }
+      },
+      {
+       "node": "street_loaf",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": "avarice_cue",
+       "complete": false,
+       "form": {
+        "wisdom": 12.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 5
+       }
+      },
+      {
+       "node": "avarice_cue",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 2,
+        "faith": 1
+       },
+       "next": "street_loaf",
+       "complete": false,
+       "form": {
+        "wisdom": 14.5,
+        "faith": 5.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 5
+       }
+      },
+      {
+       "node": "street_loaf",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": "avarice_cue",
+       "complete": false,
+       "form": {
+        "wisdom": 16.5,
+        "faith": 5.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 5
+       }
+      },
+      {
+       "node": "avarice_cue",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 2,
+        "faith": 1
+       },
+       "next": "street_loaf",
+       "complete": false,
+       "form": {
+        "wisdom": 18.5,
+        "faith": 6.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 5
+       }
+      },
+      {
+       "node": "street_loaf",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": "avarice_cue",
+       "complete": false,
+       "form": {
+        "wisdom": 20.5,
+        "faith": 6.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 5
+       }
+      },
+      {
+       "node": "avarice_cue",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 2,
+        "faith": 1
+       },
+       "next": "street_loaf",
+       "complete": false,
+       "form": {
+        "wisdom": 22.5,
+        "faith": 7.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 5
+       }
+      },
+      {
+       "node": "street_loaf",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": "avarice_cue",
+       "complete": false,
+       "form": {
+        "wisdom": 24.5,
+        "faith": 7.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 5
+       }
+      },
+      {
+       "node": "avarice_cue",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 2,
+        "faith": 1
+       },
+       "next": "street_loaf",
+       "complete": false,
+       "form": {
+        "wisdom": 26.5,
+        "faith": 8.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 5
+       }
+      },
+      {
+       "node": "street_loaf",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": "avarice_cue",
+       "complete": false,
+       "form": {
+        "wisdom": 28.5,
+        "faith": 8.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 5
+       }
+      }
+     ]
     }
    }
   },
@@ -4151,6 +4715,132 @@
         "charisma": 2,
         "cunning": 2,
         "erudition": 5
+       }
+      }
+     ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "greeting": [
+       0,
+       2,
+       3
+      ],
+      "watch_hand": [
+       0,
+       1
+      ],
+      "dry_stick": [
+       0
+      ],
+      "angel_door": [
+       0,
+       1
+      ],
+      "besieged_city": [
+       0,
+       1
+      ],
+      "fast_bread": [
+       0
+      ],
+      "noonday_thief": [
+       0
+      ],
+      "no_shortcut": [
+       0,
+       1
+      ]
+     },
+     "walk": [
+      {
+       "node": "greeting",
+       "open": [
+        0,
+        2,
+        3
+       ],
+       "refused": {
+        "index": 1,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "constitution",
+          "required": 4,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "constitution": 1
+       },
+       "next": "watch_hand",
+       "complete": false,
+       "form": {
+        "wisdom": 6.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 4,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "watch_hand",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": "noonday_thief",
+       "complete": false,
+       "form": {
+        "wisdom": 8.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 4,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "noonday_thief",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 2,
+        "constitution": 1
+       },
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 10.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 5,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
        }
       }
      ]
@@ -5276,6 +5966,170 @@
        }
       }
      ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "greeting": [
+       0,
+       1,
+       2
+      ],
+      "wax_and_flame": [
+       0,
+       2
+      ],
+      "slow_comb": [
+       0
+      ],
+      "bee_flower": [
+       0,
+       1
+      ],
+      "false_light": [
+       0,
+       1
+      ],
+      "own_light": [
+       0,
+       1
+      ],
+      "dark_hive": [
+       0
+      ],
+      "wick_waits": [
+       0,
+       1
+      ],
+      "quiet_candle": [
+       0
+      ]
+     },
+     "walk": [
+      {
+       "node": "greeting",
+       "open": [
+        0,
+        1,
+        2
+       ],
+       "refused": {
+        "index": 3,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "wisdom",
+          "required": 8,
+          "current": 6.5
+         },
+         {
+          "attribute": "faith",
+          "required": 8,
+          "current": 4.25
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "wax_and_flame",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "wax_and_flame",
+       "open": [
+        0,
+        2
+       ],
+       "refused": {
+        "index": 1,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "faith",
+          "required": 6,
+          "current": 4.25
+         }
+        ]
+       },
+       "chose": 2,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "own_light",
+       "complete": false,
+       "form": {
+        "wisdom": 8.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "own_light",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": "quiet_candle",
+       "complete": false,
+       "form": {
+        "wisdom": 10.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "quiet_candle",
+       "open": [
+        0
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {},
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 10.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      }
+     ]
     }
    }
   },
@@ -6367,6 +7221,182 @@
         "charisma": 2,
         "cunning": 2,
         "erudition": 5
+       }
+      }
+     ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "greeting": [
+       0,
+       1,
+       3
+      ],
+      "robber_road": [
+       0,
+       1
+      ],
+      "leaking_jar": [
+       0,
+       1
+      ],
+      "silent_council": [
+       1
+      ],
+      "anger_cue": [
+       0
+      ],
+      "cell_teaches": [
+       0
+      ],
+      "last_night": [
+       0
+      ]
+     },
+     "walk": [
+      {
+       "node": "greeting",
+       "open": [
+        0,
+        1,
+        3
+       ],
+       "refused": {
+        "index": 2,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "constitution",
+          "required": 4,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "robber_road",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "robber_road",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "faith": 2
+       },
+       "next": "leaking_jar",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 6.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "leaking_jar",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": "silent_council",
+       "complete": false,
+       "form": {
+        "wisdom": 9.5,
+        "faith": 6.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "silent_council",
+       "open": [
+        1
+       ],
+       "refused": {
+        "index": 0,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "constitution",
+          "required": 7,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "cell_teaches",
+       "complete": false,
+       "form": {
+        "wisdom": 10.5,
+        "faith": 6.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "cell_teaches",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1,
+        "constitution": 1
+       },
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 11.5,
+        "faith": 6.25,
+        "dexterity": 3,
+        "constitution": 4,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
        }
       }
      ]
@@ -7495,6 +8525,175 @@
        }
       }
      ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "a_gate": [
+       0,
+       1,
+       2
+      ],
+      "a_bread": [
+       0,
+       1
+      ],
+      "a_well": [
+       0
+      ],
+      "a_threshold": [
+       0,
+       1
+      ],
+      "a_first_night": [
+       0,
+       1
+      ],
+      "a_empty": [
+       1
+      ],
+      "a_farewell": [
+       0,
+       1
+      ]
+     },
+     "walk": [
+      {
+       "node": "a_gate",
+       "open": [
+        0,
+        1,
+        2
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "charisma": 1
+       },
+       "next": "a_bread",
+       "complete": false,
+       "form": {
+        "wisdom": 6.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "a_bread",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 1,
+        "erudition": 1
+       },
+       "next": "a_first_night",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 4
+       }
+      },
+      {
+       "node": "a_first_night",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "faith": 2,
+        "charisma": 1
+       },
+       "next": "a_empty",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 6.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 5,
+        "cunning": 3,
+        "erudition": 4
+       }
+      },
+      {
+       "node": "a_empty",
+       "open": [
+        1
+       ],
+       "refused": {
+        "index": 0,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "wisdom",
+          "required": 8,
+          "current": 7.5
+         }
+        ]
+       },
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "a_farewell",
+       "complete": false,
+       "form": {
+        "wisdom": 8.5,
+        "faith": 6.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 5,
+        "cunning": 3,
+        "erudition": 4
+       }
+      },
+      {
+       "node": "a_farewell",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "charisma": 2
+       },
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 8.5,
+        "faith": 6.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 7,
+        "cunning": 3,
+        "erudition": 4
+       }
+      }
+     ]
     }
    }
   },
@@ -8613,6 +9812,182 @@
        }
       }
      ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "kat_greeting": [
+       0,
+       1,
+       3
+      ],
+      "kat_fifty": [
+       0
+      ],
+      "kat_reason": [
+       1
+      ],
+      "kat_books": [
+       0
+      ],
+      "kat_winning": [
+       1
+      ],
+      "kat_vainglory": [
+       0
+      ],
+      "kat_wheel": [
+       0
+      ],
+      "kat_meek": [
+       0
+      ]
+     },
+     "walk": [
+      {
+       "node": "kat_greeting",
+       "open": [
+        0,
+        1,
+        3
+       ],
+       "refused": {
+        "index": 2,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "erudition",
+          "required": 8,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "kat_fifty",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "kat_fifty",
+       "open": [
+        0
+       ],
+       "refused": {
+        "index": 1,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "faith",
+          "required": 7,
+          "current": 4.25
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": "kat_reason",
+       "complete": false,
+       "form": {
+        "wisdom": 9.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "kat_reason",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 3
+       },
+       "next": "kat_vainglory",
+       "complete": false,
+       "form": {
+        "wisdom": 12.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "kat_vainglory",
+       "open": [
+        0
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 2,
+        "charisma": 1
+       },
+       "next": "kat_meek",
+       "complete": false,
+       "form": {
+        "wisdom": 14.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "kat_meek",
+       "open": [
+        0
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 2,
+        "charisma": 2
+       },
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 16.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 6,
+        "cunning": 3,
+        "erudition": 3
+       }
+      }
+     ]
     }
    }
   },
@@ -9711,6 +11086,181 @@
         "charisma": 2,
         "cunning": 2,
         "erudition": 6
+       }
+      }
+     ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "g_welcome": [
+       0,
+       2,
+       3
+      ],
+      "g_signs": [
+       0
+      ],
+      "g_witness": [
+       0,
+       1
+      ],
+      "g_vainglory": [
+       0
+      ],
+      "g_art": [
+       1
+      ],
+      "g_dove": [
+       0
+      ],
+      "g_servant": [
+       0
+      ],
+      "g_mirror": [
+       0
+      ]
+     },
+     "walk": [
+      {
+       "node": "g_welcome",
+       "open": [
+        0,
+        2,
+        3
+       ],
+       "refused": {
+        "index": 1,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "erudition",
+          "required": 4,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "g_signs",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "g_signs",
+       "open": [
+        0
+       ],
+       "refused": {
+        "index": 1,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "faith",
+          "required": 5,
+          "current": 4.25
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "erudition": 1
+       },
+       "next": "g_witness",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 4
+       }
+      },
+      {
+       "node": "g_witness",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": "g_vainglory",
+       "complete": false,
+       "form": {
+        "wisdom": 9.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 4
+       }
+      },
+      {
+       "node": "g_vainglory",
+       "open": [
+        0
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": "g_mirror",
+       "complete": false,
+       "form": {
+        "wisdom": 11.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 4
+       }
+      },
+      {
+       "node": "g_mirror",
+       "open": [
+        0
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 3
+       },
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 14.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 4
        }
       }
      ]
@@ -10921,6 +12471,193 @@
        }
       }
      ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "tabor_foothill": [
+       0,
+       1,
+       3
+      ],
+      "light_not_lamp": [
+       1
+      ],
+      "essence_energies": [
+       1
+      ],
+      "mind_to_heart": [
+       0,
+       1
+      ],
+      "false_light": [
+       0
+      ],
+      "pride_cue": [
+       1
+      ],
+      "barlaam_dispute": [
+       0
+      ],
+      "tabor_end": [
+       0
+      ]
+     },
+     "walk": [
+      {
+       "node": "tabor_foothill",
+       "open": [
+        0,
+        1,
+        3
+       ],
+       "refused": {
+        "index": 2,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "faith",
+          "required": 5,
+          "current": 4.25
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "light_not_lamp",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "light_not_lamp",
+       "open": [
+        1
+       ],
+       "refused": {
+        "index": 0,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "erudition",
+          "required": 4,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 1,
+       "bonuses": {
+        "faith": 1
+       },
+       "next": "mind_to_heart",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 5.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "mind_to_heart",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1,
+        "faith": 1
+       },
+       "next": "pride_cue",
+       "complete": false,
+       "form": {
+        "wisdom": 8.5,
+        "faith": 6.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "pride_cue",
+       "open": [
+        1
+       ],
+       "refused": {
+        "index": 0,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "constitution",
+          "required": 4,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": "tabor_end",
+       "complete": false,
+       "form": {
+        "wisdom": 10.5,
+        "faith": 6.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "tabor_end",
+       "open": [
+        0
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1,
+        "faith": 1
+       },
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 11.5,
+        "faith": 7.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      }
+     ]
     }
    }
   },
@@ -11920,6 +13657,137 @@
         "charisma": 2,
         "cunning": 2,
         "erudition": 5
+       }
+      }
+     ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "i_greeting": [
+       0,
+       3,
+       4
+      ],
+      "i_layers": [
+       1
+      ],
+      "i_hand": [
+       0,
+       1
+      ],
+      "i_window": [
+       1
+      ],
+      "i_amulet": [
+       0,
+       1
+      ],
+      "i_signature": [
+       0,
+       1
+      ],
+      "i_vessels": [
+       0
+      ]
+     },
+     "walk": [
+      {
+       "node": "i_greeting",
+       "open": [
+        0,
+        3,
+        4
+       ],
+       "refused": {
+        "index": 1,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "dexterity",
+          "required": 5,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "dexterity": 1
+       },
+       "next": "i_layers",
+       "complete": false,
+       "form": {
+        "wisdom": 6.5,
+        "faith": 4.25,
+        "dexterity": 4,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "i_layers",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "i_window",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 4,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "i_window",
+       "open": [
+        1
+       ],
+       "refused": {
+        "index": 0,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "erudition",
+          "required": 6,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 1,
+        "faith": 2
+       },
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 8.5,
+        "faith": 6.25,
+        "dexterity": 4,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
        }
       }
      ]
@@ -12947,6 +14815,160 @@
         "charisma": 2,
         "cunning": 2,
         "erudition": 5
+       }
+      }
+     ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "isa_greeting": [
+       0,
+       1,
+       3
+      ],
+      "isa_lips": [
+       0,
+       1
+      ],
+      "isa_corner": [
+       0,
+       1
+      ],
+      "isa_coal": [
+       1
+      ],
+      "isa_deaf_city": [
+       1
+      ],
+      "isa_throne": [
+       0,
+       1
+      ],
+      "isa_fortune": [
+       0
+      ],
+      "isa_sent": [
+       0
+      ]
+     },
+     "walk": [
+      {
+       "node": "isa_greeting",
+       "open": [
+        0,
+        1,
+        3
+       ],
+       "refused": {
+        "index": 2,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "charisma",
+          "required": 6,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "isa_lips",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "isa_lips",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": "isa_coal",
+       "complete": false,
+       "form": {
+        "wisdom": 9.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "isa_coal",
+       "open": [
+        1
+       ],
+       "refused": {
+        "index": 0,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "faith",
+          "required": 6,
+          "current": 4.25
+         }
+        ]
+       },
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "isa_corner",
+       "complete": false,
+       "form": {
+        "wisdom": 10.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "isa_corner",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {},
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 10.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
        }
       }
      ]
@@ -14006,6 +16028,162 @@
         "charisma": 2,
         "cunning": 2,
         "erudition": 6
+       }
+      }
+     ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "k_greeting": [
+       0,
+       2,
+       4
+      ],
+      "k_song": [
+       0,
+       1
+      ],
+      "k_ison": [
+       0
+      ],
+      "k_myrrh": [
+       0,
+       1
+      ],
+      "k_sorrow": [
+       1
+      ],
+      "k_unwritten": [
+       0
+      ],
+      "k_tongues": [
+       0,
+       1
+      ],
+      "k_gnome": [
+       0
+      ]
+     },
+     "walk": [
+      {
+       "node": "k_greeting",
+       "open": [
+        0,
+        2,
+        4
+       ],
+       "refused": {
+        "index": 1,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "erudition",
+          "required": 5,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "erudition": 1
+       },
+       "next": "k_song",
+       "complete": false,
+       "form": {
+        "wisdom": 6.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 4
+       }
+      },
+      {
+       "node": "k_song",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": "k_myrrh",
+       "complete": false,
+       "form": {
+        "wisdom": 8.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 4
+       }
+      },
+      {
+       "node": "k_myrrh",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": "k_sorrow",
+       "complete": false,
+       "form": {
+        "wisdom": 10.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 4
+       }
+      },
+      {
+       "node": "k_sorrow",
+       "open": [
+        1
+       ],
+       "refused": {
+        "index": 0,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "faith",
+          "required": 6,
+          "current": 4.25
+         }
+        ]
+       },
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 12.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 4
        }
       }
      ]
@@ -15114,6 +17292,157 @@
         "charisma": 3,
         "cunning": 2,
         "erudition": 5
+       }
+      }
+     ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "k_start": [
+       0,
+       3
+      ],
+      "k_flatter": [
+       0
+      ],
+      "k_yasa": [
+       0,
+       1
+      ],
+      "k_roads": [
+       0,
+       1,
+       2,
+       3
+      ],
+      "k_price": [
+       0,
+       1
+      ],
+      "k_peace": [
+       0,
+       1
+      ],
+      "k_wind": [
+       0,
+       1
+      ],
+      "k_farewell": [
+       0
+      ]
+     },
+     "walk": [
+      {
+       "node": "k_start",
+       "open": [
+        0,
+        3
+       ],
+       "refused": {
+        "index": 1,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "charisma",
+          "required": 4,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "k_roads",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "k_roads",
+       "open": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "k_peace",
+       "complete": false,
+       "form": {
+        "wisdom": 8.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "k_peace",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1,
+        "charisma": 1
+       },
+       "next": "k_farewell",
+       "complete": false,
+       "form": {
+        "wisdom": 9.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "k_farewell",
+       "open": [
+        0
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "charisma": 1
+       },
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 9.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 5,
+        "cunning": 3,
+        "erudition": 3
        }
       }
      ]
@@ -16324,6 +18653,183 @@
        }
       }
      ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "greeting": [
+       0,
+       1,
+       2
+      ],
+      "teaching": [
+       1
+      ],
+      "freedom": [
+       0,
+       1
+      ],
+      "grief_cue": [
+       0,
+       1
+      ],
+      "soul": [
+       1
+      ],
+      "brother_basil": [
+       0,
+       1
+      ],
+      "seed": [
+       0,
+       1
+      ],
+      "farewell": [
+       0
+      ]
+     },
+     "walk": [
+      {
+       "node": "greeting",
+       "open": [
+        0,
+        1,
+        2
+       ],
+       "refused": {
+        "index": 3,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "erudition",
+          "required": 8,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "charisma": 1
+       },
+       "next": "teaching",
+       "complete": false,
+       "form": {
+        "wisdom": 6.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "teaching",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "erudition": 1
+       },
+       "next": "soul",
+       "complete": false,
+       "form": {
+        "wisdom": 6.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 4
+       }
+      },
+      {
+       "node": "soul",
+       "open": [
+        1
+       ],
+       "refused": {
+        "index": 0,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "erudition",
+          "required": 5,
+          "current": 4
+         }
+        ]
+       },
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "seed",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 4
+       }
+      },
+      {
+       "node": "seed",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "charisma": 1
+       },
+       "next": "farewell",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 5,
+        "cunning": 3,
+        "erudition": 4
+       }
+      },
+      {
+       "node": "farewell",
+       "open": [
+        0
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {},
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 5,
+        "cunning": 3,
+        "erudition": 4
+       }
+      }
+     ]
     }
    }
   },
@@ -17447,6 +19953,176 @@
        }
       }
      ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "mm_start": [
+       0,
+       1,
+       3
+      ],
+      "mm_jar": [
+       0
+      ],
+      "mm_dawn": [
+       0
+      ],
+      "mm_name": [
+       0,
+       1
+      ],
+      "mm_hold": [
+       0
+      ],
+      "mm_sorrow": [
+       0,
+       2
+      ],
+      "mm_legend": [
+       0
+      ],
+      "mm_road": [
+       0,
+       1
+      ]
+     },
+     "walk": [
+      {
+       "node": "mm_start",
+       "open": [
+        0,
+        1,
+        3
+       ],
+       "refused": {
+        "index": 2,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "erudition",
+          "required": 4,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "faith": 1
+       },
+       "next": "mm_jar",
+       "complete": false,
+       "form": {
+        "wisdom": 6.5,
+        "faith": 5.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "mm_jar",
+       "open": [
+        0
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "faith": 1
+       },
+       "next": "mm_name",
+       "complete": false,
+       "form": {
+        "wisdom": 6.5,
+        "faith": 6.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "mm_name",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 3
+       },
+       "next": "mm_hold",
+       "complete": false,
+       "form": {
+        "wisdom": 9.5,
+        "faith": 6.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "mm_hold",
+       "open": [
+        0
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1,
+        "charisma": 1
+       },
+       "next": "mm_road",
+       "complete": false,
+       "form": {
+        "wisdom": 10.5,
+        "faith": 6.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "mm_road",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "faith": 1,
+        "charisma": 2
+       },
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 10.5,
+        "faith": 7.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 6,
+        "cunning": 3,
+        "erudition": 3
+       }
+      }
+     ]
     }
    }
   },
@@ -18511,6 +21187,166 @@
         "charisma": 2,
         "cunning": 2,
         "erudition": 5
+       }
+      }
+     ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "greeting": [
+       0,
+       2
+      ],
+      "logoi": [
+       1
+      ],
+      "seal": [
+       1
+      ],
+      "two_signatures": [
+       0,
+       1
+      ],
+      "wills": [
+       0,
+       1
+      ],
+      "deification": [
+       0,
+       1
+      ],
+      "vainglory_cue": [
+       0
+      ],
+      "farewell": [
+       0
+      ]
+     },
+     "walk": [
+      {
+       "node": "greeting",
+       "open": [
+        0,
+        2
+       ],
+       "refused": {
+        "index": 1,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "erudition",
+          "required": 6,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "logoi",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "logoi",
+       "open": [
+        1
+       ],
+       "refused": {
+        "index": 0,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "erudition",
+          "required": 4,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "vainglory_cue",
+       "complete": false,
+       "form": {
+        "wisdom": 8.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "vainglory_cue",
+       "open": [
+        0
+       ],
+       "refused": {
+        "index": 1,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "wisdom",
+          "required": 10,
+          "current": 8.5
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": "farewell",
+       "complete": false,
+       "form": {
+        "wisdom": 10.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "farewell",
+       "open": [
+        0
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {},
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 10.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
        }
       }
      ]
@@ -19647,6 +22483,152 @@
        }
       }
      ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "m_scales": [
+       0,
+       1
+      ],
+      "m_weights": [
+       0,
+       1
+      ],
+      "m_yarlyk": [
+       0
+      ],
+      "m_pier": [
+       1
+      ],
+      "m_prayer_silver": [
+       0,
+       1,
+       2
+      ],
+      "m_no_one": [
+       1
+      ],
+      "m_gift": [
+       0,
+       1
+      ],
+      "m_farewell": [
+       0
+      ]
+     },
+     "walk": [
+      {
+       "node": "m_scales",
+       "open": [
+        0,
+        1
+       ],
+       "refused": {
+        "index": 2,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "charisma",
+          "required": 4,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "charisma": 1
+       },
+       "next": "m_weights",
+       "complete": false,
+       "form": {
+        "wisdom": 6.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "m_weights",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": "m_gift",
+       "complete": false,
+       "form": {
+        "wisdom": 8.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "m_gift",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 2,
+        "charisma": 1
+       },
+       "next": "m_farewell",
+       "complete": false,
+       "form": {
+        "wisdom": 10.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 5,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "m_farewell",
+       "open": [
+        0
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "charisma": 1
+       },
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 10.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 6,
+        "cunning": 3,
+        "erudition": 3
+       }
+      }
+     ]
     }
    }
   },
@@ -20678,6 +23660,158 @@
         "charisma": 2,
         "cunning": 2,
         "erudition": 5
+       }
+      }
+     ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "library": [
+       0,
+       3,
+       4
+      ],
+      "margin_art": [
+       1
+      ],
+      "creed_margin": [
+       0
+      ],
+      "slavic_mission": [
+       0,
+       1
+      ],
+      "seal_refusal": [
+       0
+      ],
+      "confession_door": [
+       0
+      ],
+      "vainglory_cue": [
+       0
+      ],
+      "library_end": [
+       0
+      ]
+     },
+     "walk": [
+      {
+       "node": "library",
+       "open": [
+        0,
+        3,
+        4
+       ],
+       "refused": {
+        "index": 1,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "erudition",
+          "required": 5,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "margin_art",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "margin_art",
+       "open": [
+        1
+       ],
+       "refused": {
+        "index": 0,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "erudition",
+          "required": 8,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": "vainglory_cue",
+       "complete": false,
+       "form": {
+        "wisdom": 9.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "vainglory_cue",
+       "open": [
+        0
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": "library_end",
+       "complete": false,
+       "form": {
+        "wisdom": 11.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "library_end",
+       "open": [
+        0
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 12.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
        }
       }
      ]
@@ -21744,6 +24878,157 @@
         "charisma": 2,
         "cunning": 2,
         "erudition": 5
+       }
+      }
+     ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "greeting": [
+       0,
+       1,
+       2,
+       3
+      ],
+      "empty_net": [
+       0,
+       1
+      ],
+      "call": [
+       0,
+       1
+      ],
+      "mending": [
+       0,
+       1
+      ],
+      "avarice": [
+       0
+      ],
+      "cold_layer": [
+       0,
+       1
+      ],
+      "ichthys": [
+       0,
+       1
+      ],
+      "market_net": [
+       0,
+       1
+      ]
+     },
+     "walk": [
+      {
+       "node": "greeting",
+       "open": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "empty_net",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "empty_net",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 3
+       },
+       "next": "mending",
+       "complete": false,
+       "form": {
+        "wisdom": 10.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "mending",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "avarice",
+       "complete": false,
+       "form": {
+        "wisdom": 11.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "avarice",
+       "open": [
+        0
+       ],
+       "refused": {
+        "index": 1,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "charisma",
+          "required": 5,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 13.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
        }
       }
      ]
@@ -23047,6 +26332,206 @@
         "charisma": 4,
         "cunning": 2,
         "erudition": 7
+       }
+      }
+     ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "scales_greeting": [
+       0,
+       2
+      ],
+      "guesthouse": [
+       1
+      ],
+      "overload": [
+       0,
+       1
+      ],
+      "false_weights": [
+       0,
+       1
+      ],
+      "cunning_cost": [
+       0
+      ],
+      "avarice_cue": [
+       1
+      ],
+      "legend_offer": [
+       0
+      ],
+      "open_hand": [
+       0
+      ]
+     },
+     "walk": [
+      {
+       "node": "scales_greeting",
+       "open": [
+        0,
+        2
+       ],
+       "refused": {
+        "index": 1,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "erudition",
+          "required": 4,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "charisma": 1
+       },
+       "next": "guesthouse",
+       "complete": false,
+       "form": {
+        "wisdom": 6.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "guesthouse",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "overload",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "overload",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": "avarice_cue",
+       "complete": false,
+       "form": {
+        "wisdom": 9.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "avarice_cue",
+       "open": [
+        1
+       ],
+       "refused": {
+        "index": 0,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "faith",
+          "required": 5,
+          "current": 4.25
+         }
+        ]
+       },
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "legend_offer",
+       "complete": false,
+       "form": {
+        "wisdom": 10.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "legend_offer",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1,
+        "erudition": 2
+       },
+       "next": "open_hand",
+       "complete": false,
+       "form": {
+        "wisdom": 11.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 5
+       }
+      },
+      {
+       "node": "open_hand",
+       "open": [
+        0
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1,
+        "charisma": 1
+       },
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 12.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 5,
+        "cunning": 3,
+        "erudition": 5
        }
       }
      ]
@@ -24374,6 +27859,205 @@
        }
       }
      ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "gate_watch": [
+       0,
+       2
+      ],
+      "why_no_blade": [
+       0,
+       1
+      ],
+      "watchman_psalm": [
+       0
+      ],
+      "night_watch": [
+       0
+      ],
+      "force_offer": [
+       2,
+       3
+      ],
+      "cunning_cost": [
+       0
+      ],
+      "anger_cue": [
+       0,
+       1
+      ],
+      "soldier_wage": [
+       0
+      ]
+     },
+     "walk": [
+      {
+       "node": "gate_watch",
+       "open": [
+        0,
+        2
+       ],
+       "refused": {
+        "index": 1,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "erudition",
+          "required": 5,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "charisma": 1
+       },
+       "next": "why_no_blade",
+       "complete": false,
+       "form": {
+        "wisdom": 6.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 4,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "why_no_blade",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "charisma": 1
+       },
+       "next": "night_watch",
+       "complete": false,
+       "form": {
+        "wisdom": 6.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 5,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "night_watch",
+       "open": [
+        0
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "constitution": 1
+       },
+       "next": "force_offer",
+       "complete": false,
+       "form": {
+        "wisdom": 6.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 4,
+        "charisma": 5,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "force_offer",
+       "open": [
+        2,
+        3
+       ],
+       "refused": {
+        "index": 0,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "constitution",
+          "required": 6,
+          "current": 4
+         }
+        ]
+       },
+       "chose": 3,
+       "bonuses": {
+        "cunning": 1
+       },
+       "next": "cunning_cost",
+       "complete": false,
+       "form": {
+        "wisdom": 6.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 4,
+        "charisma": 5,
+        "cunning": 4,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "cunning_cost",
+       "open": [
+        0
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "anger_cue",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 4,
+        "charisma": 5,
+        "cunning": 4,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "anger_cue",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 8.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 4,
+        "charisma": 5,
+        "cunning": 4,
+        "erudition": 3
+       }
+      }
+     ]
     }
    }
   },
@@ -25286,6 +28970,137 @@
         "charisma": 2,
         "cunning": 2,
         "erudition": 5
+       }
+      }
+     ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "greeting": [
+       0,
+       2,
+       3
+      ],
+      "lampstand": [
+       1
+      ],
+      "one_well": [
+       0,
+       1
+      ],
+      "chain": [
+       1
+      ],
+      "obedience": [
+       1
+      ],
+      "vainglory": [
+       0,
+       1
+      ],
+      "basket_cost": [
+       0,
+       1
+      ]
+     },
+     "walk": [
+      {
+       "node": "greeting",
+       "open": [
+        0,
+        2,
+        3
+       ],
+       "refused": {
+        "index": 1,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "constitution",
+          "required": 6,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "lampstand",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "lampstand",
+       "open": [
+        1
+       ],
+       "refused": {
+        "index": 0,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "charisma",
+          "required": 4,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "vainglory",
+       "complete": false,
+       "form": {
+        "wisdom": 8.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "vainglory",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 2,
+        "faith": 2
+       },
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 10.5,
+        "faith": 6.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
        }
       }
      ]
@@ -26234,6 +30049,139 @@
         "charisma": 2,
         "cunning": 2,
         "erudition": 5
+       }
+      }
+     ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "greeting": [
+       0,
+       3
+      ],
+      "wound_wash": [
+       0,
+       1
+      ],
+      "shame": [
+       0,
+       1
+      ],
+      "bandage": [
+       0,
+       1
+      ],
+      "cosmas": [
+       0,
+       1
+      ],
+      "theotokos": [
+       1
+      ],
+      "vainglory": [
+       0
+      ],
+      "sweet": [
+       0,
+       1
+      ]
+     },
+     "walk": [
+      {
+       "node": "greeting",
+       "open": [
+        0,
+        3
+       ],
+       "refused": {
+        "index": 1,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "dexterity",
+          "required": 4,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "wound_wash",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "wound_wash",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": "vainglory",
+       "complete": false,
+       "form": {
+        "wisdom": 9.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "vainglory",
+       "open": [
+        0
+       ],
+       "refused": {
+        "index": 1,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "faith",
+          "required": 5,
+          "current": 4.25
+         }
+        ]
+       },
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 2
+       },
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 11.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
        }
       }
      ]
@@ -27270,6 +31218,153 @@
        }
       }
      ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "v_ledger": [
+       0,
+       1,
+       2,
+       3
+      ],
+      "v_marks": [
+       0
+      ],
+      "v_columns": [
+       0,
+       1
+      ],
+      "v_receipt": [
+       0
+      ],
+      "v_crooked": [
+       0
+      ],
+      "v_weights": [
+       0
+      ],
+      "v_legend": [
+       0
+      ],
+      "v_mercy": [
+       1
+      ]
+     },
+     "walk": [
+      {
+       "node": "v_ledger",
+       "open": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "erudition": 1
+       },
+       "next": "v_marks",
+       "complete": false,
+       "form": {
+        "wisdom": 6.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 4
+       }
+      },
+      {
+       "node": "v_marks",
+       "open": [
+        0,
+        1
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "wisdom": 1,
+        "erudition": 2
+       },
+       "next": "v_legend",
+       "complete": false,
+       "form": {
+        "wisdom": 7.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 6
+       }
+      },
+      {
+       "node": "v_legend",
+       "open": [
+        0
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 1,
+        "erudition": 2
+       },
+       "next": "v_mercy",
+       "complete": false,
+       "form": {
+        "wisdom": 8.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 8
+       }
+      },
+      {
+       "node": "v_mercy",
+       "open": [
+        1
+       ],
+       "refused": {
+        "index": 0,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "charisma",
+          "required": 5,
+          "current": 3
+         }
+        ]
+       },
+       "chose": 1,
+       "bonuses": {
+        "erudition": 1
+       },
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 8.5,
+        "faith": 4.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 9
+       }
+      }
+     ]
     }
    }
   },
@@ -27310,7 +31405,52 @@
     },
     {
      "id": "b",
-     "branches": []
+     "branches": [
+      {
+       "condition": {},
+       "attributeBonuses": {},
+       "nextNodeId": null
+      },
+      {
+       "condition": {
+        "wisdom": 5,
+        "faith": 0,
+        "dexterity": 3,
+        "charisma": 0,
+        "cunning": 2
+       },
+       "attributeBonuses": {
+        "faith": 3,
+        "charisma": 4,
+        "cunning": 1,
+        "erudition": 2
+       },
+       "nextNodeId": "c"
+      },
+      {
+       "condition": {
+        "faith": 0
+       },
+       "attributeBonuses": {
+        "wisdom": 1
+       },
+       "nextNodeId": "c"
+      }
+     ]
+    },
+    {
+     "id": "c",
+     "branches": [
+      {
+       "condition": {
+        "constitution": 7
+       },
+       "attributeBonuses": {
+        "faith": 1
+       },
+       "nextNodeId": null
+      }
+     ]
     }
    ],
    "profiles": {
@@ -27328,7 +31468,11 @@
       "a": [
        0
       ],
-      "b": []
+      "b": [
+       0,
+       2
+      ],
+      "c": []
      },
      "walk": [
       {
@@ -27366,8 +31510,61 @@
       },
       {
        "node": "b",
+       "open": [
+        0,
+        2
+       ],
+       "refused": {
+        "index": 1,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "wisdom",
+          "required": 5,
+          "current": 4
+         },
+         {
+          "attribute": "dexterity",
+          "required": 3,
+          "current": 1
+         },
+         {
+          "attribute": "cunning",
+          "required": 2,
+          "current": 1
+         }
+        ]
+       },
+       "chose": 2,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "c",
+       "complete": false,
+       "form": {
+        "wisdom": 5,
+        "faith": 6,
+        "dexterity": 1,
+        "constitution": 1,
+        "charisma": 1,
+        "cunning": 1,
+        "erudition": 1
+       }
+      },
+      {
+       "node": "c",
        "open": [],
-       "refused": null,
+       "refused": {
+        "index": 0,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "constitution",
+          "required": 7,
+          "current": 1
+         }
+        ]
+       },
        "chose": null
       }
      ]
@@ -27387,7 +31584,11 @@
        0,
        2
       ],
-      "b": []
+      "b": [
+       0,
+       2
+      ],
+      "c": []
      },
      "walk": [
       {
@@ -27426,8 +31627,45 @@
       },
       {
        "node": "b",
-       "open": [],
+       "open": [
+        0,
+        1,
+        2
+       ],
        "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "faith": 3,
+        "charisma": 4,
+        "cunning": 1,
+        "erudition": 2
+       },
+       "next": "c",
+       "complete": false,
+       "form": {
+        "wisdom": 7,
+        "faith": 12,
+        "dexterity": 4,
+        "constitution": 4,
+        "charisma": 8,
+        "cunning": 5,
+        "erudition": 6
+       }
+      },
+      {
+       "node": "c",
+       "open": [],
+       "refused": {
+        "index": 0,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "constitution",
+          "required": 7,
+          "current": 4
+         }
+        ]
+       },
        "chose": null
       }
      ]
@@ -27448,7 +31686,12 @@
        1,
        2
       ],
-      "b": []
+      "b": [
+       0,
+       1,
+       2
+      ],
+      "c": []
      },
      "walk": [
       {
@@ -27478,8 +31721,45 @@
       },
       {
        "node": "b",
-       "open": [],
+       "open": [
+        0,
+        1,
+        2
+       ],
        "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "faith": 3,
+        "charisma": 4,
+        "cunning": 1,
+        "erudition": 2
+       },
+       "next": "c",
+       "complete": false,
+       "form": {
+        "wisdom": 9,
+        "faith": 14,
+        "dexterity": 6,
+        "constitution": 6,
+        "charisma": 10,
+        "cunning": 7,
+        "erudition": 8
+       }
+      },
+      {
+       "node": "c",
+       "open": [],
+       "refused": {
+        "index": 0,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "constitution",
+          "required": 7,
+          "current": 6
+         }
+        ]
+       },
        "chose": null
       }
      ]
@@ -27500,7 +31780,14 @@
        1,
        2
       ],
-      "b": []
+      "b": [
+       0,
+       1,
+       2
+      ],
+      "c": [
+       0
+      ]
      },
      "walk": [
       {
@@ -27530,9 +31817,52 @@
       },
       {
        "node": "b",
-       "open": [],
+       "open": [
+        0,
+        1,
+        2
+       ],
        "refused": null,
-       "chose": null
+       "chose": 1,
+       "bonuses": {
+        "faith": 3,
+        "charisma": 4,
+        "cunning": 1,
+        "erudition": 2
+       },
+       "next": "c",
+       "complete": false,
+       "form": {
+        "wisdom": 11,
+        "faith": 16,
+        "dexterity": 8,
+        "constitution": 8,
+        "charisma": 12,
+        "cunning": 9,
+        "erudition": 10
+       }
+      },
+      {
+       "node": "c",
+       "open": [
+        0
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "faith": 1
+       },
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 11,
+        "faith": 17,
+        "dexterity": 8,
+        "constitution": 8,
+        "charisma": 12,
+        "cunning": 9,
+        "erudition": 10
+       }
       }
      ]
     },
@@ -27552,7 +31882,14 @@
        1,
        2
       ],
-      "b": []
+      "b": [
+       0,
+       1,
+       2
+      ],
+      "c": [
+       0
+      ]
      },
      "walk": [
       {
@@ -27582,9 +31919,52 @@
       },
       {
        "node": "b",
-       "open": [],
+       "open": [
+        0,
+        1,
+        2
+       ],
        "refused": null,
-       "chose": null
+       "chose": 1,
+       "bonuses": {
+        "faith": 3,
+        "charisma": 4,
+        "cunning": 1,
+        "erudition": 2
+       },
+       "next": "c",
+       "complete": false,
+       "form": {
+        "wisdom": 15,
+        "faith": 20,
+        "dexterity": 12,
+        "constitution": 12,
+        "charisma": 16,
+        "cunning": 13,
+        "erudition": 14
+       }
+      },
+      {
+       "node": "c",
+       "open": [
+        0
+       ],
+       "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "faith": 1
+       },
+       "next": null,
+       "complete": true,
+       "form": {
+        "wisdom": 15,
+        "faith": 21,
+        "dexterity": 12,
+        "constitution": 12,
+        "charisma": 16,
+        "cunning": 13,
+        "erudition": 14
+       }
       }
      ]
     },
@@ -27604,7 +31984,11 @@
        1,
        2
       ],
-      "b": []
+      "b": [
+       0,
+       2
+      ],
+      "c": []
      },
      "walk": [
       {
@@ -27634,8 +32018,145 @@
       },
       {
        "node": "b",
+       "open": [
+        0,
+        2
+       ],
+       "refused": {
+        "index": 1,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "dexterity",
+          "required": 3,
+          "current": 2
+         }
+        ]
+       },
+       "chose": 2,
+       "bonuses": {
+        "wisdom": 1
+       },
+       "next": "c",
+       "complete": false,
+       "form": {
+        "wisdom": 13,
+        "faith": 8,
+        "dexterity": 2,
+        "constitution": 2,
+        "charisma": 2,
+        "cunning": 2,
+        "erudition": 5
+       }
+      },
+      {
+       "node": "c",
        "open": [],
+       "refused": {
+        "index": 0,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "constitution",
+          "required": 7,
+          "current": 2
+         }
+        ]
+       },
+       "chose": null
+      }
+     ]
+    },
+    "fraction": {
+     "start": {
+      "wisdom": 6.5,
+      "faith": 4.25,
+      "dexterity": 3,
+      "constitution": 3,
+      "charisma": 3,
+      "cunning": 3,
+      "erudition": 3
+     },
+     "open": {
+      "a": [
+       0,
+       1,
+       2
+      ],
+      "b": [
+       0,
+       1,
+       2
+      ],
+      "c": []
+     },
+     "walk": [
+      {
+       "node": "a",
+       "open": [
+        0,
+        1,
+        2
+       ],
        "refused": null,
+       "chose": 0,
+       "bonuses": {
+        "wisdom": 3,
+        "faith": 5
+       },
+       "next": "b",
+       "complete": false,
+       "form": {
+        "wisdom": 9.5,
+        "faith": 9.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 3,
+        "cunning": 3,
+        "erudition": 3
+       }
+      },
+      {
+       "node": "b",
+       "open": [
+        0,
+        1,
+        2
+       ],
+       "refused": null,
+       "chose": 1,
+       "bonuses": {
+        "faith": 3,
+        "charisma": 4,
+        "cunning": 1,
+        "erudition": 2
+       },
+       "next": "c",
+       "complete": false,
+       "form": {
+        "wisdom": 9.5,
+        "faith": 12.25,
+        "dexterity": 3,
+        "constitution": 3,
+        "charisma": 7,
+        "cunning": 4,
+        "erudition": 5
+       }
+      },
+      {
+       "node": "c",
+       "open": [],
+       "refused": {
+        "index": 0,
+        "locked": true,
+        "missing": [
+         {
+          "attribute": "constitution",
+          "required": 7,
+          "current": 3
+         }
+        ]
+       },
        "chose": null
       }
      ]

@@ -426,8 +426,8 @@ func _build_scriptorium(oak: Color) -> void:
 		var p: Vector3 = Mentors.HUB_AT[m]
 		var fig := Mentors.figure(m)
 		fig.position = p
-		# They face the yard (east), where the player comes from.
-		fig.rotation_degrees = Vector3(0, 90, 0)
+		# They face the yard, where the player comes from.
+		fig.rotation_degrees = Vector3(0, Mentors.facing(m), 0)
 		add_child(fig)
 		add_child(Mentors.tag(Mentors.HUB_TAG[m], p, "MentorName_" + m))
 		things.append({"id": m, "kind": "mentor", "pos": p,
@@ -1475,14 +1475,15 @@ func _shots() -> void:
 	var plan := [
 		{"name": "courtyard", "pos": Vector3(0, 0, 5.5), "yaw": 0.0},
 		{"name": "mentors", "pos": Vector3(1.6, 0, 0), "yaw": PI / 2.0},
-		{"name": "mentor-near", "pos": Vector3(-0.2, 0, -1.6),
+		{"name": "mentor-near", "pos": Vector3(-2.4, 0, -1.1),
 			"yaw": PI / 2.0},
+		{"name": "guests", "pos": Vector3(1.4, 0, 1.6), "yaw": 1.95},
 		{"name": "talk", "pos": Vector3(-3.8, 0, -3.2), "yaw": PI / 2.0,
 			"talk": "elder_sergius"},
-		{"name": "talk-palamas", "pos": Vector3(-2.2, 0, -2.5),
+		{"name": "talk-palamas", "pos": Vector3(-0.6, 0, 2.4),
 			"yaw": PI / 2.0, "talk": "gregory_palamas"},
-		{"name": "talk-kassiani", "pos": Vector3(-2.2, 0, 0.3),
-			"yaw": PI / 2.0, "talk": "kassiani"},
+		{"name": "talk-kassiani", "pos": Vector3(-2.0, 0, 3.7),
+			"yaw": PI, "talk": "kassiani"},
 		{"name": "pier", "pos": Vector3(5.5, 0, 0.6), "yaw": -PI / 2.0},
 		{"name": "ladder", "pos": Vector3(1.0, 0, -1.0), "yaw": 0.0},
 		{"name": "witness-gate", "pos": Vector3(1.2, 0, 3.4), "yaw": PI},

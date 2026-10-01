@@ -41,28 +41,43 @@ const SAINTS := ["abba_moses", "ekaterina", "maximos", "photius",
 	"mary_magdalene", "gregory_dialogist", "symeon_stylite", "kassiani",
 	"gregory_palamas", "macrina", "isaias"]
 
-## Hub positions on the floor: the four of the gates on their line by the
-## scriptorium table, and two staggered lines of guests east of them, so
-## the twelve stand as one gathering of the scriptorium yard, 1.4 m apart
-## along a line and 1.6 m between lines, clear of the chronicle's table
-## at (-5.0, 2.2) and the rope's lectern at (-3.0, 3.2).
+## Hub positions on the floor.  The four of the gates stand on their
+## line in front of the scriptorium table, with the yard free east of
+## them, so each is walked up to straight from the yard and the table
+## and its cards stay in sight.  The eight guests stand apart about the
+## yard, each by what his own idiom speaks of, never in front of the
+## gate line: Gregory the Dialogist by the hearth and the fasting table
+## (bread for the poor), Symeon on the open ground by the shore (wind),
+## Mary on the way back from the pier (the road to the city), Isaias,
+## Palamas, Kassia and Catherine on the west side of the yard between
+## the rope and the atlas (scroll, light, verse, premise), the master of
+## gesso by the workshop.  Each keeps 1.2 m from the next mentor and
+## 0.75 m from every thing (tests/test_mentors.gd), and the way from the
+## courtyard to the pier stays open.
 const HUB_AT := {
 	"elder_sergius": Vector3(-4.6, 0, -3.2),
 	"theodora": Vector3(-4.6, 0, -1.8),
 	"abba_john": Vector3(-4.6, 0, -0.4),
 	"sister_catherine": Vector3(-4.6, 0, 1.0),
-	"gregory_palamas": Vector3(-3.0, 0, -2.5),
-	"isaias": Vector3(-3.0, 0, -1.1),
-	"kassiani": Vector3(-3.0, 0, 0.3),
-	"ekaterina": Vector3(-3.0, 0, 1.7),
-	"gregory_dialogist": Vector3(-1.4, 0, -3.2),
-	"symeon_stylite": Vector3(-1.4, 0, -1.8),
-	"mary_magdalene": Vector3(-1.4, 0, -0.4),
-	"ikonopisets": Vector3(-1.4, 0, 1.0),
+	"gregory_palamas": Vector3(-1.6, 0, 2.4),
+	"isaias": Vector3(-0.4, 0, 3.6),
+	"kassiani": Vector3(-2.0, 0, 4.6),
+	"ekaterina": Vector3(-3.4, 0, 4.8),
+	"gregory_dialogist": Vector3(3.4, 0, -1.6),
+	"symeon_stylite": Vector3(6.2, 0, -1.6),
+	"mary_magdalene": Vector3(7.2, 0, 1.6),
+	"ikonopisets": Vector3(-3.4, 0, -4.6),
 }
+## The point of the yard the guests turn to; the gate mentors face east.
+const YARD_CENTRE := Vector3(1.0, 0, 1.0)
 
-## The tag of a hub mentor: his name and, where the name alone is a
-## title, his craft from the tree's idiom; never a church word.
+## The tag of a hub mentor: his name and, in the manner of the places'
+## hearts ("Макрина с зерном на ладони", "Фотий-книжник у светильника"),
+## a sign of his craft from the tree's idiom.  No church word and no
+## epithet of the calendar (TABOO 0.39 p. 3, 0.013 p. 6): the epithets
+## "Столпник", "Двоеслов", "мироносица" are in LocationsCore.CHURCH_WORDS.
+## The list goes to the chorus of 12 (TABOO 0.37) with the place of the
+## guests (docs/APK_PARITY.md).
 const HUB_TAG := {
 	"elder_sergius": "Старец Сергий",
 	"theodora": "Феодора",
@@ -70,13 +85,24 @@ const HUB_TAG := {
 	"sister_catherine": "Сестра Екатерина",
 	"gregory_palamas": "Григорий Палама",
 	"isaias": "Исаия со свитком",
-	"kassiani": "Кассия-песнописица",
+	"kassiani": "Кассия с пером и напевом",
 	"ekaterina": "Екатерина из Александрии",
-	"gregory_dialogist": "Григорий Двоеслов",
-	"symeon_stylite": "Симеон Столпник",
-	"mary_magdalene": "Мария Магдалина",
+	"gregory_dialogist": "Григорий, что пишет беседы",
+	"symeon_stylite": "Симеон, что стоит на ветру",
+	"mary_magdalene": "Мария с сосудом мира",
 	"ikonopisets": "Мастер левкаса и темперы",
 }
+
+
+## The turn of a hub mentor about the vertical, in degrees: the gate
+## mentors face the yard to the east, a guest faces the yard's centre.
+## The figure's face is its local +Z.
+static func facing(id: String) -> float:
+	if id in GATE_MENTORS:
+		return 90.0
+	var p: Vector3 = HUB_AT.get(id, YARD_CENTRE)
+	var d := YARD_CENTRE - p
+	return rad_to_deg(atan2(d.x, d.z))
 
 ## The covering of each mentor's estate, from the craft of his idiom:
 ## hood - a monk's dark hood; veil - a woman's head cloth; cap - a felt
