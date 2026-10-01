@@ -1,0 +1,63 @@
+# Backend 3.0, phase P3 (docs/version-3.0/HLD_BACKEND_3.0_VM8_HOT_MIRROR_2026-10-01.md):
+# the container image is built from the same functions/ code the Cloud
+# Function runs, started, and asked over HTTP.  Deploying to VM8 waits
+# for a runner or relay with access to that machine (operator blocker).
+name: backend-image
+
+on:
+  push:
+    paths:
+      - 'functions/**'
+      - 'Dockerfile.ludus-backend'
+      - 'docker-compose.ludus-backend.yml'
+      - '.github/workflows/backend-image.yml'
+  pull_request:
+    paths:
+      - 'functions/**'
+      - 'Dockerfile.ludus-backend'
+      - 'docker-compose.ludus-backend.yml'
+      - '.github/workflows/backend-image.yml'
+  workflow_dispatch:
+
+jobs:
+  image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Build the functions (the image copies functions/lib)
+        run: |
+          npm --prefix functions ci --no-audit --no-fund
+          npm --prefix functions run build
+      - name: Build the image
+        run: docker build -f Dockerfile.ludus-backend -t ludus-backend:3.0 .
+      - name: Start it in mirror mode and ask it over HTTP
+        run: |
+          # An empty mirror file is enough to start; the routes answer
+          # from the same dispatcher as the Cloud Function.
+          mkdir -p /tmp/ludus-data
+          docker run --rm -d --name ludus -p 8445:3000 \
+            -e LUDUS_STORE=mirror -e LUDUS_MIRROR_DB=/ludus-data/mirror.sqlite \
+            -e GCLOUD_PROJECT=demo-ludus \
+            -v /tmp/ludus-data:/ludus-data ludus-backend:3.0
+          for i in $(seq 1 30); do
+            curl -s -o /dev/null localhost:8445/api/ludus/nowhere && break
+            sleep 1
+          done
+          docker logs ludus
+          code=$(curl -s -o /tmp/body -w '%{http_code}' \
+            localhost:8445/api/ludus/nowhere)
+          cat /tmp/body; echo
+          test "$code" = 404
+          grep -q 'No route for GET /api/ludus/nowhere' /tmp/body
+          # A player write is refused while the mirror is read-only.
+          code=$(curl -s -o /tmp/body -w '%{http_code}' -X POST \
+            -H 'Content-Type: application/json' -d '{}' \
+            localhost:8445/api/ludus/dialogue/state)
+          cat /tmp/body; echo
+          test "$code" = 503
+          docker stop ludus
+      - name: Image size
+        run: docker image ls ludus-backend:3.0
