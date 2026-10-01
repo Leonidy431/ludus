@@ -11,7 +11,7 @@ version: '3.8'
 services:
   ludus-backend-api:
     container_name: ludus-backend-api
-    image: ludus-backend:v0.1
+    image: ludus-backend:3.0
     build:
       context: .
       dockerfile: ./Dockerfile.ludus-backend
@@ -23,14 +23,22 @@ services:
 
     # Port binding: VPC-internal IP only
     ports:
-      - "10.20.0.2:3000:3000"  # Accessible only within VPC (IAP tunnel required)
+      # Backend 3.0 (docs/version-3.0/HLD_BACKEND_3.0_VM8_HOT_MIRROR_2026-10-01.md,
+      # P3): 8445 on the VPC-internal address, next to the hot mirror's
+      # panopticon-mirror :8443 and backup-frontend :8444.
+      - "10.20.0.2:8445:3000"
 
     # Environment variables
     environment:
       NODE_ENV: production
       PORT: 3000
-      FIRESTORE_PROJECT_ID: ludus-dev
-      FIRESTORE_CREDENTIALS: /ludus-secrets/firestore-service-account.json
+      # The variables the code reads (server.ts, store/store.ts): the
+      # firebase-admin SDK takes GOOGLE_APPLICATION_CREDENTIALS, and
+      # LUDUS_STORE chooses Firestore or the read-only SQLite hot mirror.
+      GOOGLE_APPLICATION_CREDENTIALS: /ludus-secrets/firestore-service-account.json
+      GCLOUD_PROJECT: ludus-dev
+      LUDUS_STORE: mirror
+      LUDUS_MIRROR_DB: /ludus-data/mirror.sqlite
       LOG_LEVEL: info
       TELEMETRY_BUFFER_SIZE: 30
       ATTRIBUTE_MAPPING_ENABLED: "true"

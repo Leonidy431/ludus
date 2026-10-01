@@ -68,7 +68,7 @@
 **Status:** 📄 Documented (300+ lines), ⚠️ Partial code exists  
 **Impact:** Dialogue choices fail offline, no fallback persistence  
 **Files:**
-- ✅ docs/A10_OFFLINE_SYNC.md (exists, detailed)
+- ✅ docs/version-3.0/A10_OFFLINE_SYNC.md (exists, detailed)
 - ⚠️ public/ludus/idb-schema.ts (EXISTS, basic)
 - ⚠️ public/ludus/optimistic-mutations.ts (EXISTS, needs completion)
 - ❌ public/ludus/sync-manager.ts (MISSING — main orchestrator)
@@ -91,7 +91,7 @@
 **Status:** 📄 Documented (300+ lines), ⚠️ Partial code exists  
 **Impact:** API endpoints have no auth, no rate limiting  
 **Files:**
-- ✅ docs/S12_FIRESTORE_AUTH.md (exists, detailed)
+- ✅ docs/version-3.0/S12_FIRESTORE_AUTH.md (exists, detailed)
 - ⚠️ functions/src/middleware/auth.ts (EXISTS, basic)
 - ⚠️ functions/src/middleware/rateLimit.ts (EXISTS, needs deployment)
 - ❌ Middleware NOT wired into ludus-dialogue.ts (endpoints unprotected)

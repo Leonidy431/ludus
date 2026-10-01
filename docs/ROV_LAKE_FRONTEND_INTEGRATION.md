@@ -450,7 +450,7 @@ app.use((req, res, next) => {
 - **webtypicon2 VM8 Access:** `webtypicon2/docs/PANOPTICON_VM_ACCESS.md`
 - **VM8 Translation Viewer:** `webtypicon2/docs/HLD_VM_TRANSLATION_VIEWER.md`
 - **Ludus Frontend:** `ludus/public/ludus-game.js`
-- **Ludus Firestore Auth:** `ludus/docs/S12_FIRESTORE_AUTH.md`
+- **Ludus Firestore Auth:** `ludus/docs/version-3.0/S12_FIRESTORE_AUTH.md`
 - **Ludus Offline Sync:** `ludus/docs/A10_OFFLINE_SYNC.md`
 
 ---

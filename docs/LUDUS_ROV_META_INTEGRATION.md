@@ -490,8 +490,8 @@ if (response.status === 429) {
 
 - **VR Control:** `docs/VR_JOYSTICK_DIVECOMPUTER_CONTROL.md`
 - **ROV Lake UI:** `docs/ROV_LAKE_FRONTEND_INTEGRATION.md`
-- **Backend Auth:** `docs/S12_FIRESTORE_AUTH.md`
-- **Offline Sync:** `docs/A10_OFFLINE_SYNC.md`
+- **Backend Auth:** `docs/version-3.0/S12_FIRESTORE_AUTH.md`
+- **Offline Sync:** `docs/version-3.0/A10_OFFLINE_SYNC.md`
 - **Demiurge:** `docs/DEMIURGE_ARCHITECTURE.md`
 
 ---

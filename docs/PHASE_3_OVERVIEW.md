@@ -11,7 +11,7 @@
 ## 📦 What's Included in Phase 3
 
 ### 1. Complete Deployment Checklist (1000+ lines)
-**File:** `docs/PHASE_3_DEPLOYMENT_CHECKLIST.md`
+**File:** `docs/version-3.0/PHASE_3_DEPLOYMENT_CHECKLIST.md`
 
 **Coverage:**
 - ✅ Pre-deployment validation (TypeScript, linting, dependencies, Firestore rules)
@@ -383,7 +383,7 @@ Friday Oct 5
 
 ### For Understanding:
 
-- **docs/CLOUD_FUNCTIONS_DIALOGUE_API.md** — API design & examples
+- **docs/version-3.0/CLOUD_FUNCTIONS_DIALOGUE_API.md** — API design & examples
 - **docs/LUDUS_FRONTEND_INTEGRATION.md** — Frontend architecture & integration
 - **docs/NPC_DIALOGUE_SYSTEM.md** — NPC system design
 - **docs/SOUND_DESIGN_SYSTEM.md** — Audio system design

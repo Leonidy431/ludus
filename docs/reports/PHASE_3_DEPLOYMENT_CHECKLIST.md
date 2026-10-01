@@ -20,7 +20,7 @@ Before starting Phase 3A, verify:
 - [ ] Performance instrumentation added: `functions/src/api/ludus-dialogue.ts` (console.time/timeEnd)
 - [ ] Firestore rules updated: `firestore.rules` (all dialogue collections)
 - [ ] Jest config exists: `functions/jest.config.js`
-- [ ] Local dev guide exists: `docs/LOCAL_DEV_SETUP.md`
+- [ ] Local dev guide exists: `docs/version-3.0/LOCAL_DEV_SETUP.md`
 - [ ] Web entry point exists: `public/index.html`
 - [ ] CSS files present: `public/ludus/ludus-*.css` (2+ files)
 
@@ -696,11 +696,11 @@ grep -c "<link.*ludus" public/index.html
 - [ ] `/ludus/PHASE_3_FINAL_BACKLOG.md` — Backlog summary
 - [ ] `/ludus/PHASE_3_QUICK_START.md` — TL;DR version
 - [ ] `/ludus/docs/LOCAL_DEV_SETUP.md` — Local setup guide
-- [ ] `/ludus/docs/CLOUD_FUNCTIONS_DIALOGUE_API.md` — API reference
+- [ ] `/ludus/docs/version-3.0/CLOUD_FUNCTIONS_DIALOGUE_API.md` — API reference
 
 **Quick Checks:**
 ```bash
-for file in docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md docs/reports/PHASE_3_FINAL_BACKLOG.md docs/LOCAL_DEV_SETUP.md; do
+for file in docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md docs/reports/PHASE_3_FINAL_BACKLOG.md docs/version-3.0/LOCAL_DEV_SETUP.md; do
   if [ -f "$file" ]; then
     LINES=$(wc -l < "$file")
     echo "✓ $file ($LINES lines)"

@@ -147,6 +147,12 @@ func _initialize() -> void:
 	load("res://tests/test_cockpit.gd").new().run(self)
 	print("cockpit: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# The Mangustik's far-view proxy and its switch (RovLod, Б-2).
+	before = checks
+	fails = failures
+	load("res://tests/test_rov_lod.gd").new().run(self)
+	print("rov lod: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	# The posoh hydrophone on the Mangustik (HLD_POSOH_HYDROPHONE).
 	before = checks
 	fails = failures
@@ -168,6 +174,10 @@ func _initialize() -> void:
 	root.add_child(dive)
 	await process_frame
 	biomes.in_dive(dive)
+	# Б-1: the dive's batches (DiveBatch).
+	var dive_batch = load("res://tests/test_dive_batch.gd").new()
+	dive_batch.run(self)
+	dive_batch.in_dive(self, dive)
 	print("dive scene: %d checks, %d failures" % [checks - before,
 		failures - fails])
 	quit(1 if failures else 0)

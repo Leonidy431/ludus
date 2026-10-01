@@ -200,4 +200,22 @@ func _initialize() -> void:
 	batch.in_hub(self)
 	print("static batch: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# The sound of the courtyard and the 99 places (HLD_APK_GRAPHICS_
+	# SOUND_2026-10-01, track A).
+	before = checks
+	fails = failures
+	load("res://tests/test_place_sound.gd").new().run(self)
+	print("place sound: %d checks, %d failures" % [checks - before,
+		failures - fails])
+	# The 24 mentors: places, trees, the dialogue core against the JS
+	# reference, the persons in the places and in the hub (track B).
+	await process_frame
+	before = checks
+	fails = failures
+	var mentors = load("res://tests/test_mentors.gd").new()
+	mentors.run(self)
+	await process_frame
+	mentors.in_hub(self)
+	print("mentors: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	quit(1 if failures else 0)

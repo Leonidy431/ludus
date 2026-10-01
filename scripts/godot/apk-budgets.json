@@ -71,7 +71,9 @@
           "limit": 20000,
           "why": "docs/HLD_MANGUSTIK_COCKPIT_2026-09-30.md M2 and scripts/meta3d/mangustik_rov.py MAX_TRIANGLES = 20000 (whole vehicle). Conflicts with TABOO 0.32 p.4",
           "approval": "pending: the operator chooses a 5,000-triangle proxy or an allowance in the rule; set by the HLD",
-          "blocker": "Б-2"
+          "blocker": "Б-2",
+          "drawn_within_m": 2.0,
+          "far_view": "models/rov/mangustik-lod1.glb (4,444 triangles, one draw call) beyond 2.0 m from the camera, by visibility ranges (godot/scripts/rov_lod.gd); measured 2026-10-01: dive depth-3m 255 -> 242 calls, 154,199 -> 140,391 main-view primitives; hub pier 22,826 -> 8,654, yard-se-ne 99 -> 98 calls, 71,383 -> 57,211. The full model stays for the near look on the pier and the front camera's own view"
         }
       }
     }
@@ -83,14 +85,14 @@
       "why": "the project's own choice, stricter than Meta's load-dependent ranges: Meta recommends < 100 for Quest 2 and < 200 for Quest 3 (device-optimization-comparison), and export_presets.cfg has quest_2_support=true. Counted over the whole frame: the main view (one call covers both eyes under multiview) and every SubViewport, 3D and canvas. Known breaches are exceptions until blocker Б-1 is lifted; a new call above them turns CI red",
       "exceptions": {
         "hub": {
-          "limit": 99,
-          "why": "measured 99 (yard-se-ne: the worst reachable view of a 5x5 grid over the yard x 8 headings, main 3D only; first measurement of this view, not a raise), llvmpipe 1280x720, camera 75 deg, after the still geometry was merged (godot/scripts/static_batch.gd) and the cell's partition became an occluder; the same view was 558 before. The fixed views give at most 72 (courtyard). At the limit, not with headroom: at a 96 deg vertical field the worst view is about 101, so Б-1 stays open for the hub until a headset frame (Б-7). Ratchet: may only go down",
+          "limit": 97,
+          "why": "2026-10-01 after tracks A-E merged (24 mentors in the yard, place sound, Mangustik LOD): 97 at yard-se-ne three runs in a row, ratchet 99 -> 97. Before: measured 99 (yard-se-ne: the worst reachable view of a 5x5 grid over the yard x 8 headings, main 3D only; first measurement of this view, not a raise), llvmpipe 1280x720, camera 75 deg, after the still geometry was merged (godot/scripts/static_batch.gd) and the cell's partition became an occluder; the same view was 558 before. The fixed views give at most 72 (courtyard). At the limit, not with headroom: at a 96 deg vertical field the worst view is about 101, so Б-1 stays open for the hub until a headset frame (Б-7). Ratchet: may only go down",
           "approval": "pending: the operator decides on Quest 2 and on the strict limit",
           "blocker": "Б-1"
         },
         "dive": {
-          "limit": 255,
-          "why": "measured 255 (depth-3m: main 3D 149 + canvas 4 + three SubViewports 102), llvmpipe 1280x720; ratchet: may only go down",
+          "limit": 96,
+          "why": "measured 96 (depth-3m: main 3D 60 + canvas 4 + one cockpit SubViewport a frame, the console's 32), llvmpipe 1280x720, after DiveBatch (godot/scripts/dive_batch.gd: the body, each thing within itself, the drawings from texture arrays) and the cockpit viewports taking turns; was 255 (149 + 4 + 32 + 51 + 19). Below the base 100, kept as a ratchet so the saving is not spent unnoticed; may only go down",
           "approval": "pending: the operator decides on Quest 2 and on the strict limit",
           "blocker": "Б-1"
         },
@@ -152,6 +154,14 @@
     "pcm_clips_bytes": {
       "limit": 16777216,
       "why": "16 MiB of float32 bell clips in RAM, checked against the worst two consecutive days of the 366 days from the scene's date (clips are kept once made, so a stay across a day boundary holds both days); 9,811,704 B from 2026-09-30"
+    },
+    "place_players": {
+      "limit": 6,
+      "why": "players of one place's sound plan (PlaceSound.players: the bed, at most 3 crafts, the machine, and in the courtyard the bell's generator); measured 2026-10-01 by godot/tools/render_place_audio.gd: the courtyard 6, the worst of the 99 places 3. Not a Meta number but the project's cap, so a place cannot grow into a soundtrack; held for the places by measure_locations.gd --check and for the courtyard by tests/test_place_sound.gd. The cap equals the courtyard (6 of 6): a hard ceiling with 0% margin on purpose, so a seventh voice there is a decision, not a drift. On entry the hush (live room tone) plays with the bed and the bell before the crafts come in, so a place never holds more than its plan"
+    },
+    "place_pcm_bytes": {
+      "limit": 4194304,
+      "why": "4 MiB of 16-bit 44100 Hz loops of one place in RAM (PlaceSound.pcm_bytes); measured 2026-10-01 by godot/tools/render_place_audio.gd: the courtyard 2,734,200 B, the worst place (print-shop) 1,940,400 B; about 1.5x the courtyard, so a fourth craft or longer loops are seen before they ship"
     },
     "checked_by": "godot/tools/measure_budgets.gd --check, headless (the revisor; not in CI, since time does not reproduce on a shared runner)"
   }

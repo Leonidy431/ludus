@@ -1,0 +1,1314 @@
+{
+  "name": "own_sudak_622aadc00f",
+  "id": "622aadc00f",
+  "seed": "622aadc00fa2226d00d0f6bebbf53155e513d906",
+  "slot": "DEF-056",
+  "thing": "sudak",
+  "register": {
+    "id": "sudak",
+    "category": "fish",
+    "ru": "Судак",
+    "en": "Zander",
+    "depth_m": [
+      4,
+      35
+    ],
+    "shape": "fish",
+    "size_m": 0.6,
+    "colour": "#9ea58e",
+    "states": [
+      "одиночка",
+      "в засаде",
+      "охотится",
+      "у свай",
+      "пара"
+    ]
+  },
+  "species": {
+    "ru": "Судак",
+    "en": "Pike-perch",
+    "latin": "Sander lucioperca",
+    "status": "introduced 1954-1956",
+    "loot": "keep",
+    "length": 0.6,
+    "depth": [
+      4,
+      35
+    ],
+    "colour": "#9ea58e"
+  },
+  "morphology": {
+    "depth": 0.2,
+    "top": 0.5,
+    "peak": 0.38,
+    "head": 0.85,
+    "stalk": 0.34,
+    "tail": 0.16,
+    "fork": 0.35,
+    "dorsal": [
+      0.3,
+      0.76,
+      0.15,
+      "double"
+    ],
+    "anal": [
+      0.7,
+      0.82,
+      0.07
+    ],
+    "adipose": null,
+    "barbels": 0,
+    "marks": "bars",
+    "eye": 0.06,
+    "mouth": "terminal",
+    "fins": [
+      110,
+      112,
+      96
+    ],
+    "note": "genus shape from general ichthyology, approximate; to be checked by an ichthyologist (docs/ISSYK_KUL_FISH.md)"
+  },
+  "origin": "own-procedural-drawing",
+  "method": "own-procedural",
+  "raw_material": false,
+  "source": {
+    "repo": "ludus (own drawing)",
+    "path": "scripts/raw_assets/fish_procedural.py",
+    "commit": "fish-drawing-r4"
+  },
+  "repo": "ludus (own drawing)",
+  "path": "scripts/raw_assets/fish_procedural.py",
+  "commit": "fish-drawing-r4",
+  "license": "project (own drawing, no third-party material)",
+  "license_file": null,
+  "threshold": 0.35,
+  "shape_basis": "nearest-sibling-normalised",
+  "shape_norm": {
+    "box": [
+      200,
+      80
+    ],
+    "method": "crop to the bbox, fit to the box; placement, size and stretch do not count"
+  },
+  "engine": {
+    "age_lengths_px": [
+      236,
+      188,
+      150,
+      120,
+      96
+    ],
+    "scale_note": "a size is never a variant; the index gives each variant its age (1 for adults, 0.4068 for \"young\", the youngest class above) and the game multiplies the billboard by it",
+    "rest_on_floor": "a variant of the state \"bottom\" (index \"rest\") is shown only by a fish the game rests on the floor: it stops, sinks, and its lowest pixel (index \"foot\") lies on the floor line (fish_drawings.gd, dive-atlas.js fishSpot)",
+    "views": "a \"below\" or \"above\" variant is shown only when the eye sees the fish more than 35 degrees from level (index \"view\"); level, the side views swim",
+    "tilt_deg": [
+      -13,
+      13
+    ],
+    "facing": "left; the game turns the sprite, never a mirrored variant (TABOO 0.3 rule 35)"
+  },
+  "reference_profile": {
+    "name": "fish",
+    "aspect": [
+      1.8,
+      6.5
+    ],
+    "fill": [
+      0.35,
+      0.85
+    ],
+    "category": "fish"
+  },
+  "pool": {
+    "size": 74,
+    "fitting": 61,
+    "refused": {
+      "unlike-real-object": 13,
+      "too-close-to-a-sibling": 49
+    },
+    "chosen": 12
+  },
+  "constitution": "FORM: a real species of Issyk-Kul in its real states -> ACTION: the ROV operator tells it apart, logs it and releases the endemics -> GOAL: knowing the living lake by its real creatures (TABOO 0.03 rule 6)",
+  "variants": [
+    {
+      "slot": "v01",
+      "file": "own_sudak_622aadc00f_v01.png",
+      "state": "single",
+      "params": {
+        "pose": "single",
+        "state": "single",
+        "form": {
+          "bend": "straight",
+          "amp": 0.0,
+          "fins": 0.8
+        },
+        "fish_px": 236,
+        "key": "sudak:single:0:amp=0.0-bend=straight-fins=0.8"
+      },
+      "shape_change": 0.3533,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.338,
+        "fill": 0.471,
+        "base": 0.115
+      },
+      "area": 7926,
+      "hitbox": {
+        "bbox": [
+          10,
+          85,
+          247,
+          156
+        ],
+        "area": 7926,
+        "radius": 50.23,
+        "hull": [
+          [
+            10,
+            126
+          ],
+          [
+            69,
+            85
+          ],
+          [
+            70,
+            85
+          ],
+          [
+            127,
+            90
+          ],
+          [
+            247,
+            107
+          ],
+          [
+            247,
+            108
+          ],
+          [
+            245,
+            149
+          ],
+          [
+            113,
+            156
+          ],
+          [
+            112,
+            156
+          ],
+          [
+            62,
+            147
+          ],
+          [
+            47,
+            144
+          ],
+          [
+            40,
+            142
+          ],
+          [
+            25,
+            137
+          ],
+          [
+            20,
+            135
+          ],
+          [
+            10,
+            130
+          ]
+        ]
+      },
+      "foot": 0.6094,
+      "analytics_id": "ludus.variant.fish.sudak.622aadc00f.v01"
+    },
+    {
+      "slot": "v02",
+      "file": "own_sudak_622aadc00f_v02.png",
+      "state": "hunting",
+      "params": {
+        "pose": "hunting",
+        "state": "hunting",
+        "form": {
+          "mouth": true,
+          "fins": 1.3,
+          "bend": "wave",
+          "amp": 0.12
+        },
+        "fish_px": 236,
+        "key": "sudak:hunting:0:amp=0.12-bend=wave-fins=1.3-mouth=True"
+      },
+      "shape_change": 0.3716,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.589,
+        "fill": 0.427,
+        "base": 0.28
+      },
+      "area": 8955,
+      "hitbox": {
+        "bbox": [
+          14,
+          78,
+          247,
+          168
+        ],
+        "area": 8955,
+        "radius": 53.39,
+        "hull": [
+          [
+            14,
+            125
+          ],
+          [
+            69,
+            84
+          ],
+          [
+            126,
+            78
+          ],
+          [
+            127,
+            78
+          ],
+          [
+            246,
+            106
+          ],
+          [
+            247,
+            107
+          ],
+          [
+            247,
+            108
+          ],
+          [
+            245,
+            149
+          ],
+          [
+            113,
+            167
+          ],
+          [
+            70,
+            168
+          ],
+          [
+            69,
+            168
+          ],
+          [
+            67,
+            167
+          ],
+          [
+            45,
+            155
+          ],
+          [
+            36,
+            150
+          ],
+          [
+            21,
+            140
+          ],
+          [
+            15,
+            135
+          ],
+          [
+            14,
+            134
+          ]
+        ]
+      },
+      "foot": 0.6562,
+      "analytics_id": "ludus.variant.fish.sudak.622aadc00f.v02"
+    },
+    {
+      "slot": "v03",
+      "file": "own_sudak_622aadc00f_v03.png",
+      "state": "above",
+      "params": {
+        "pose": "above",
+        "state": "above",
+        "form": {
+          "view": "above",
+          "bend": "straight",
+          "amp": 0.0,
+          "spread": 25
+        },
+        "fish_px": 236,
+        "key": "sudak:above:0:amp=0.0-bend=straight-spread=25-view=above"
+      },
+      "shape_change": 0.3716,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 5.5,
+        "fill": 0.453,
+        "base": 0.05
+      },
+      "area": 3986,
+      "hitbox": {
+        "bbox": [
+          10,
+          108,
+          230,
+          148
+        ],
+        "area": 3986,
+        "radius": 35.62,
+        "hull": [
+          [
+            10,
+            127
+          ],
+          [
+            13,
+            124
+          ],
+          [
+            15,
+            123
+          ],
+          [
+            21,
+            121
+          ],
+          [
+            69,
+            108
+          ],
+          [
+            72,
+            108
+          ],
+          [
+            125,
+            112
+          ],
+          [
+            230,
+            122
+          ],
+          [
+            230,
+            134
+          ],
+          [
+            125,
+            144
+          ],
+          [
+            72,
+            148
+          ],
+          [
+            69,
+            148
+          ],
+          [
+            21,
+            135
+          ],
+          [
+            15,
+            133
+          ],
+          [
+            13,
+            132
+          ],
+          [
+            10,
+            129
+          ]
+        ]
+      },
+      "foot": 0.5781,
+      "analytics_id": "ludus.variant.fish.sudak.622aadc00f.v03"
+    },
+    {
+      "slot": "v04",
+      "file": "own_sudak_622aadc00f_v04.png",
+      "state": "pair",
+      "params": {
+        "pose": "pair",
+        "state": "pair",
+        "form": {
+          "bend": "straight",
+          "amp": 0.0,
+          "layout": "beside"
+        },
+        "fish_px": 146.32,
+        "key": "sudak:pair:2:amp=0.0-bend=straight-layout=beside"
+      },
+      "shape_change": 0.4807,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 1.927,
+        "fill": 0.478,
+        "base": 0.475
+      },
+      "area": 6194,
+      "hitbox": {
+        "bbox": [
+          47,
+          82,
+          205,
+          164
+        ],
+        "area": 6194,
+        "radius": 44.4,
+        "hull": [
+          [
+            47,
+            145
+          ],
+          [
+            65,
+            109
+          ],
+          [
+            100,
+            82
+          ],
+          [
+            106,
+            82
+          ],
+          [
+            135,
+            85
+          ],
+          [
+            205,
+            98
+          ],
+          [
+            205,
+            100
+          ],
+          [
+            204,
+            123
+          ],
+          [
+            193,
+            159
+          ],
+          [
+            113,
+            164
+          ],
+          [
+            110,
+            164
+          ],
+          [
+            83,
+            159
+          ],
+          [
+            67,
+            155
+          ],
+          [
+            61,
+            153
+          ],
+          [
+            53,
+            150
+          ],
+          [
+            47,
+            147
+          ]
+        ]
+      },
+      "foot": 0.6406,
+      "analytics_id": "ludus.variant.fish.sudak.622aadc00f.v04"
+    },
+    {
+      "slot": "v05",
+      "file": "own_sudak_622aadc00f_v05.png",
+      "state": "rising",
+      "params": {
+        "pose": "rising",
+        "state": "rising",
+        "form": {
+          "fins": 1.25,
+          "bend": "bow",
+          "amp": 0.2
+        },
+        "fish_px": 236,
+        "key": "sudak:rising:2:amp=0.2-bend=bow-fins=1.25"
+      },
+      "shape_change": 0.4001,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.37,
+        "fill": 0.375,
+        "base": 0.156
+      },
+      "area": 8897,
+      "hitbox": {
+        "bbox": [
+          10,
+          107,
+          247,
+          207
+        ],
+        "area": 8897,
+        "radius": 53.22,
+        "hull": [
+          [
+            10,
+            127
+          ],
+          [
+            69,
+            107
+          ],
+          [
+            247,
+            107
+          ],
+          [
+            247,
+            108
+          ],
+          [
+            245,
+            151
+          ],
+          [
+            163,
+            200
+          ],
+          [
+            114,
+            207
+          ],
+          [
+            111,
+            207
+          ],
+          [
+            68,
+            188
+          ],
+          [
+            42,
+            165
+          ],
+          [
+            32,
+            156
+          ],
+          [
+            26,
+            150
+          ],
+          [
+            19,
+            142
+          ],
+          [
+            14,
+            136
+          ],
+          [
+            11,
+            132
+          ],
+          [
+            10,
+            130
+          ]
+        ]
+      },
+      "foot": 0.8086,
+      "analytics_id": "ludus.variant.fish.sudak.622aadc00f.v05"
+    },
+    {
+      "slot": "v06",
+      "file": "own_sudak_622aadc00f_v06.png",
+      "state": "turning",
+      "params": {
+        "pose": "turning",
+        "state": "turning",
+        "form": {
+          "turn": 50,
+          "toward": true,
+          "bend": "straight",
+          "amp": 0.0
+        },
+        "fish_px": 236,
+        "key": "sudak:turning:2:amp=0.0-bend=straight-toward=True-turn=50"
+      },
+      "shape_change": 0.3593,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 1.865,
+        "fill": 0.445,
+        "base": 0.152
+      },
+      "area": 6578,
+      "hitbox": {
+        "bbox": [
+          18,
+          70,
+          184,
+          159
+        ],
+        "area": 6578,
+        "radius": 45.76,
+        "hull": [
+          [
+            18,
+            125
+          ],
+          [
+            20,
+            123
+          ],
+          [
+            83,
+            70
+          ],
+          [
+            84,
+            70
+          ],
+          [
+            128,
+            85
+          ],
+          [
+            184,
+            113
+          ],
+          [
+            184,
+            143
+          ],
+          [
+            119,
+            159
+          ],
+          [
+            117,
+            159
+          ],
+          [
+            82,
+            154
+          ],
+          [
+            63,
+            149
+          ],
+          [
+            52,
+            146
+          ],
+          [
+            35,
+            140
+          ],
+          [
+            28,
+            137
+          ],
+          [
+            20,
+            133
+          ],
+          [
+            18,
+            131
+          ]
+        ]
+      },
+      "foot": 0.6211,
+      "analytics_id": "ludus.variant.fish.sudak.622aadc00f.v06"
+    },
+    {
+      "slot": "v07",
+      "file": "own_sudak_622aadc00f_v07.png",
+      "state": "above",
+      "params": {
+        "pose": "above",
+        "state": "above",
+        "form": {
+          "view": "above",
+          "bend": "wave",
+          "amp": 0.05
+        },
+        "fish_px": 236,
+        "key": "sudak:above:3:amp=0.05-bend=wave-view=above"
+      },
+      "shape_change": 0.4464,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 4.314,
+        "fill": 0.376,
+        "base": 0.041
+      },
+      "area": 4214,
+      "hitbox": {
+        "bbox": [
+          10,
+          108,
+          230,
+          159
+        ],
+        "area": 4214,
+        "radius": 36.62,
+        "hull": [
+          [
+            10,
+            127
+          ],
+          [
+            12,
+            125
+          ],
+          [
+            14,
+            124
+          ],
+          [
+            67,
+            108
+          ],
+          [
+            69,
+            108
+          ],
+          [
+            124,
+            110
+          ],
+          [
+            207,
+            119
+          ],
+          [
+            215,
+            120
+          ],
+          [
+            230,
+            122
+          ],
+          [
+            230,
+            134
+          ],
+          [
+            69,
+            159
+          ],
+          [
+            67,
+            159
+          ],
+          [
+            19,
+            136
+          ],
+          [
+            17,
+            135
+          ],
+          [
+            12,
+            132
+          ],
+          [
+            10,
+            130
+          ]
+        ]
+      },
+      "foot": 0.6211,
+      "analytics_id": "ludus.variant.fish.sudak.622aadc00f.v07"
+    },
+    {
+      "slot": "v08",
+      "file": "own_sudak_622aadc00f_v08.png",
+      "state": "pair",
+      "params": {
+        "pose": "pair",
+        "state": "pair",
+        "form": {
+          "bend": "straight",
+          "amp": 0.0,
+          "layout": "cross"
+        },
+        "fish_px": 146.32,
+        "key": "sudak:pair:4:amp=0.0-bend=straight-layout=cross"
+      },
+      "shape_change": 0.4466,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 4.14,
+        "fill": 0.42,
+        "base": 0.102
+      },
+      "area": 5649,
+      "hitbox": {
+        "bbox": [
+          10,
+          97,
+          246,
+          154
+        ],
+        "area": 5649,
+        "radius": 42.4,
+        "hull": [
+          [
+            10,
+            105
+          ],
+          [
+            47,
+            99
+          ],
+          [
+            150,
+            97
+          ],
+          [
+            179,
+            97
+          ],
+          [
+            246,
+            109
+          ],
+          [
+            246,
+            110
+          ],
+          [
+            244,
+            133
+          ],
+          [
+            156,
+            149
+          ],
+          [
+            76,
+            154
+          ],
+          [
+            73,
+            154
+          ],
+          [
+            47,
+            143
+          ],
+          [
+            37,
+            136
+          ],
+          [
+            33,
+            133
+          ],
+          [
+            21,
+            121
+          ],
+          [
+            16,
+            115
+          ],
+          [
+            12,
+            110
+          ],
+          [
+            10,
+            107
+          ]
+        ]
+      },
+      "foot": 0.6016,
+      "analytics_id": "ludus.variant.fish.sudak.622aadc00f.v08"
+    },
+    {
+      "slot": "v09",
+      "file": "own_sudak_622aadc00f_v09.png",
+      "state": "feeding",
+      "params": {
+        "pose": "feeding",
+        "state": "feeding",
+        "form": {
+          "mouth": true,
+          "fins": 1.2,
+          "bend": "arch",
+          "amp": 0.13
+        },
+        "fish_px": 236,
+        "key": "sudak:feeding:4:amp=0.13-bend=arch-fins=1.2-mouth=True"
+      },
+      "shape_change": 0.3533,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.33,
+        "fill": 0.376,
+        "base": 0.037
+      },
+      "area": 8752,
+      "hitbox": {
+        "bbox": [
+          14,
+          49,
+          247,
+          149
+        ],
+        "area": 8752,
+        "radius": 52.78,
+        "hull": [
+          [
+            14,
+            122
+          ],
+          [
+            69,
+            50
+          ],
+          [
+            125,
+            49
+          ],
+          [
+            126,
+            49
+          ],
+          [
+            246,
+            106
+          ],
+          [
+            247,
+            107
+          ],
+          [
+            247,
+            108
+          ],
+          [
+            245,
+            149
+          ],
+          [
+            244,
+            149
+          ],
+          [
+            14,
+            130
+          ]
+        ]
+      },
+      "foot": 0.582,
+      "analytics_id": "ludus.variant.fish.sudak.622aadc00f.v09"
+    },
+    {
+      "slot": "v10",
+      "file": "own_sudak_622aadc00f_v10.png",
+      "state": "single",
+      "params": {
+        "pose": "single",
+        "state": "single",
+        "form": {
+          "bend": "wave-back",
+          "amp": 0.1
+        },
+        "fish_px": 236,
+        "key": "sudak:single:5:amp=0.1-bend=wave-back"
+      },
+      "shape_change": 0.3567,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.469,
+        "fill": 0.368,
+        "base": 0.121
+      },
+      "area": 8382,
+      "hitbox": {
+        "bbox": [
+          10,
+          67,
+          247,
+          163
+        ],
+        "area": 8382,
+        "radius": 51.65,
+        "hull": [
+          [
+            10,
+            126
+          ],
+          [
+            69,
+            67
+          ],
+          [
+            70,
+            67
+          ],
+          [
+            247,
+            107
+          ],
+          [
+            247,
+            108
+          ],
+          [
+            245,
+            150
+          ],
+          [
+            162,
+            163
+          ],
+          [
+            161,
+            163
+          ],
+          [
+            112,
+            153
+          ],
+          [
+            14,
+            131
+          ],
+          [
+            11,
+            130
+          ],
+          [
+            10,
+            129
+          ]
+        ]
+      },
+      "foot": 0.6367,
+      "analytics_id": "ludus.variant.fish.sudak.622aadc00f.v10"
+    },
+    {
+      "slot": "v11",
+      "file": "own_sudak_622aadc00f_v11.png",
+      "state": "turning",
+      "params": {
+        "pose": "turning",
+        "state": "turning",
+        "form": {
+          "turn": 50,
+          "toward": false,
+          "bend": "straight",
+          "amp": 0.0
+        },
+        "fish_px": 236,
+        "key": "sudak:turning:6:amp=0.0-bend=straight-toward=False-turn=50"
+      },
+      "shape_change": 0.3616,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.243,
+        "fill": 0.481,
+        "base": 0.212
+      },
+      "area": 5913,
+      "hitbox": {
+        "bbox": [
+          72,
+          85,
+          238,
+          159
+        ],
+        "area": 5913,
+        "radius": 43.38,
+        "hull": [
+          [
+            72,
+            125
+          ],
+          [
+            95,
+            86
+          ],
+          [
+            126,
+            85
+          ],
+          [
+            127,
+            85
+          ],
+          [
+            238,
+            97
+          ],
+          [
+            238,
+            159
+          ],
+          [
+            236,
+            159
+          ],
+          [
+            118,
+            157
+          ],
+          [
+            95,
+            147
+          ],
+          [
+            81,
+            139
+          ],
+          [
+            76,
+            135
+          ],
+          [
+            72,
+            131
+          ]
+        ]
+      },
+      "foot": 0.6211,
+      "analytics_id": "ludus.variant.fish.sudak.622aadc00f.v11"
+    },
+    {
+      "slot": "v12",
+      "file": "own_sudak_622aadc00f_v12.png",
+      "state": "turning",
+      "params": {
+        "pose": "turning",
+        "state": "turning",
+        "form": {
+          "turn": 50,
+          "toward": false,
+          "bend": "wave",
+          "amp": 0.1
+        },
+        "fish_px": 236,
+        "key": "sudak:turning:7:amp=0.1-bend=wave-toward=False-turn=50"
+      },
+      "shape_change": 0.404,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.213,
+        "fill": 0.478,
+        "base": 0.241
+      },
+      "area": 5954,
+      "hitbox": {
+        "bbox": [
+          72,
+          86,
+          238,
+          161
+        ],
+        "area": 5954,
+        "radius": 43.53,
+        "hull": [
+          [
+            72,
+            126
+          ],
+          [
+            95,
+            96
+          ],
+          [
+            126,
+            86
+          ],
+          [
+            128,
+            86
+          ],
+          [
+            238,
+            97
+          ],
+          [
+            238,
+            159
+          ],
+          [
+            119,
+            161
+          ],
+          [
+            117,
+            161
+          ],
+          [
+            95,
+            157
+          ],
+          [
+            87,
+            151
+          ],
+          [
+            79,
+            143
+          ],
+          [
+            76,
+            139
+          ],
+          [
+            72,
+            133
+          ]
+        ]
+      },
+      "foot": 0.6289,
+      "analytics_id": "ludus.variant.fish.sudak.622aadc00f.v12"
+    }
+  ],
+  "status": "ok",
+  "shortfall": 0,
+  "shape_change": 0.3533
+}

@@ -28,6 +28,10 @@ const RU_ATTR := {"wisdom": "Мудрость", "faith": "Вера",
 const LAMPADA_K := Color(1.0, 0.52, 0.16)   # About 1800 K.
 const HEARTH_K := Color(1.0, 0.62, 0.3)     # About 2200 K.
 const INSTRUMENT_K := Color(0.95, 0.97, 1.0)  # About 6500 K.
+## The lampada's glass on the cell wall: the light, and the holy point
+## where the courtyard's machine layer goes quiet (_build_sound; the
+## sound tool and test read it from here, so both follow it).
+const LAMPADA_AT := Vector3(-6.6, 1.9, 0)
 ## The cell of the evening watch behind its partition (RuleCell): its
 ## still geometry is batched apart from the yard's.
 const CELL_ZONE := AABB(Vector3(-7.0, -0.1, -8.5), Vector3(3.8, 3.2, 3.0))
@@ -99,6 +103,9 @@ var still_for := 0.0
 var rule := {}
 var rope := RopeCore.new_state()
 var rope_breath: AudioStreamPlayer
+# The sound of the courtyard (PlaceSound.hub_plan): room tone, breath,
+# the lake, the hearth, the pen, the ROV's hum; the bell by the Typikon.
+var place_sound: PlaceAudio
 var rope_streams := {}
 var rope_ring: Node3D
 var message := ""
@@ -240,8 +247,23 @@ func _build_world() -> void:
 		if h.has_meta("obitel") and h.get_meta("obitel").flags.get("holy",
 				false):
 			apart.append(h)
+	_build_sound(apart)
 	StaticBatch.merge(self, {"scopes": apart, "zones": [CELL_ZONE]})
 	_build_occluders()
+
+
+## The courtyard's sound (track A, docs/HLD_APK_GRAPHICS_SOUND_
+## 2026-10-01.md): the machine layer goes quiet by the lampada and by
+## the holy image of the cell; the bell rings by the Typikon only.
+func _build_sound(apart: Array) -> void:
+	var holy: Array = [Vector3(LAMPADA_AT.x, 0.0, LAMPADA_AT.z)]
+	for h in apart:
+		if h is Node3D and h.has_meta("obitel"):
+			holy.append((h as Node3D).global_position)
+	place_sound = PlaceAudio.new()
+	place_sound.name = "PlaceSound"
+	add_child(place_sound)
+	place_sound.start(PlaceSound.hub_plan(holy))
 
 
 ## Б-1: occluders for the renderer's occlusion culling, a little inside
@@ -408,49 +430,30 @@ func _build_scriptorium(oak: Color) -> void:
 	glass.emission = LAMPADA_K
 	glass.emission_energy_multiplier = 0.8
 	cup.material_override = glass
-	cup.position = Vector3(-6.6, 1.9, 0)
+	cup.position = LAMPADA_AT
 	add_child(cup)
 	var lamp := OmniLight3D.new()
 	lamp.light_color = LAMPADA_K
 	lamp.light_energy = 0.6
 	lamp.omni_range = 3.0
-	lamp.position = Vector3(-6.4, 1.95, 0)
+	lamp.position = LAMPADA_AT + Vector3(0.2, 0.05, 0)
 	add_child(lamp)
-	# The four mentors: people, not statues, without halos (TABOO 0.2).
-	var cloth := {"elder_sergius": Color(0.1, 0.1, 0.11),
-		"theodora": Color(0.2, 0.17, 0.22),
-		"abba_john": Color(0.25, 0.2, 0.15),
-		"sister_catherine": Color(0.12, 0.12, 0.16)}
-	var i := 0
-	for m in HubCore.MENTORS:
-		var p := Vector3(-4.6, 0, -2.4 + i * 1.6)
-		var body := MeshInstance3D.new()
-		var cap := CapsuleMesh.new()
-		cap.radius = 0.24
-		cap.height = 1.5
-		body.mesh = cap
-		body.material_override = _mat(cloth[m])
-		body.position = p + Vector3(0, 0.75, 0)
-		add_child(body)
-		var head := MeshInstance3D.new()
-		var sp := SphereMesh.new()
-		sp.radius = 0.12
-		sp.height = 0.26
-		head.mesh = sp
-		head.material_override = _mat(Color(0.78, 0.62, 0.5))
-		head.position = p + Vector3(0, 1.62, 0)
-		add_child(head)
-		var name_label := Label3D.new()
-		name_label.text = trees[m].get("npcName_ru", m)
-		name_label.font_size = 30
-		name_label.pixel_size = 0.004
-		name_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-		name_label.position = p + Vector3(0, 2.0, 0)
-		name_label.modulate = Color(0.95, 0.9, 0.8)
-		add_child(name_label)
+	# The mentors: the four of the gates and the guests whose plot has
+	# no place among the 99 (Mentors).  People, not statues, without
+	# halos (TABOO 0.2).  Their figures are still geometry, so StaticBatch
+	# folds them into the yard's meshes; the tags are seen only near.
+	for m in Mentors.HUB_AT:
+		if not trees.has(m):
+			continue
+		var p: Vector3 = Mentors.HUB_AT[m]
+		var fig := Mentors.figure(m)
+		fig.position = p
+		# They face the yard, where the player comes from.
+		fig.rotation_degrees = Vector3(0, Mentors.facing(m), 0)
+		add_child(fig)
+		add_child(Mentors.tag(Mentors.HUB_TAG[m], p, "MentorName_" + m))
 		things.append({"id": m, "kind": "mentor", "pos": p,
-			"ru": "Поговорить: " + trees[m].get("npcName_ru", m)})
-		i += 1
+			"ru": "Поговорить: " + Mentors.HUB_TAG[m]})
 
 
 func _build_pier(oak: Color) -> void:
@@ -463,9 +466,10 @@ func _build_pier(oak: Color) -> void:
 	# OpenSCAD drawings (scripts/meta3d/mangustik_rov.py), bow to the
 	# lake.  Its lowest point (the ballast tubes) is 0.34 m under its
 	# origin, so it rests on the 0.65 m stand.
-	var scene := load("res://models/rov/mangustik.glb") as PackedScene
-	if scene:
-		var rov := scene.instantiate() as Node3D
+	# Б-2: the full model near the pier, its far-view proxy beyond
+	# RovLod.NEAR_M (godot/scripts/rov_lod.gd).
+	var rov := RovLod.build()
+	if rov.get_child_count() > 0:
 		rov.position = Vector3(8.4, 1.0, 0)
 		rov.rotation_degrees = Vector3(0, -90, 0)
 		add_child(rov)
@@ -773,6 +777,7 @@ func _process(dt: float) -> void:
 		stick_was = nav
 	rig.position = pos
 	rig.rotation.y = yaw
+	place_sound.listen(pos)
 	if interact and not interact_was:
 		if not encounter.is_empty():
 			_select(encounter.choice)
@@ -1308,8 +1313,17 @@ func _refresh_prompt() -> void:
 		panel.text = _rule_panel_text()
 	elif not talk.is_empty():
 		var tree: Dictionary = trees[talk.npc]
-		var lines := [tree.get("npcName_ru", talk.npc) + ":",
-			str(talk.node.get("text_ru", talk.node.text)), ""]
+		var lines := [Mentors.HUB_TAG.get(talk.npc, tree.get("npcName_ru",
+			talk.npc)) + ":", str(talk.node.get("text_ru", talk.node.text))]
+		# Whose voice and on what ground (a saint: a paraphrase with its
+		# source), and what the FORM has not opened yet.
+		var vl := DialogueCore.voice_line(talk.node)
+		if vl != "":
+			lines.append(vl)
+		var cl := DialogueCore.closed_line(talk.node, form)
+		if cl != "":
+			lines.append(cl)
+		lines.append("")
 		var open := HubCore.open_branches(talk.node, form)
 		for i in open.size():
 			var mark := "▸ " if i == talk.choice else "  "
@@ -1484,9 +1498,16 @@ func _on_webxr_started() -> void:
 func _shots() -> void:
 	var plan := [
 		{"name": "courtyard", "pos": Vector3(0, 0, 5.5), "yaw": 0.0},
-		{"name": "mentors", "pos": Vector3(-2.2, 0, 0), "yaw": PI / 2.0},
-		{"name": "talk", "pos": Vector3(-3.4, 0, -1.8), "yaw": PI / 2.0,
+		{"name": "mentors", "pos": Vector3(1.6, 0, 0), "yaw": PI / 2.0},
+		{"name": "mentor-near", "pos": Vector3(-2.4, 0, -1.1),
+			"yaw": PI / 2.0},
+		{"name": "guests", "pos": Vector3(1.4, 0, 1.6), "yaw": 1.95},
+		{"name": "talk", "pos": Vector3(-3.8, 0, -3.2), "yaw": PI / 2.0,
 			"talk": "elder_sergius"},
+		{"name": "talk-palamas", "pos": Vector3(-0.6, 0, 2.4),
+			"yaw": PI / 2.0, "talk": "gregory_palamas"},
+		{"name": "talk-kassiani", "pos": Vector3(-2.0, 0, 3.7),
+			"yaw": PI, "talk": "kassiani"},
 		{"name": "pier", "pos": Vector3(5.5, 0, 0.6), "yaw": -PI / 2.0},
 		{"name": "ladder", "pos": Vector3(1.0, 0, -1.0), "yaw": 0.0},
 		{"name": "witness-gate", "pos": Vector3(1.2, 0, 3.4), "yaw": PI},
@@ -1517,7 +1538,7 @@ func _shots() -> void:
 	pos = s.pos
 	yaw = s.yaw
 	camera.rotation.x = -0.12
-	if s.has("talk") and talk.is_empty():
+	if s.has("talk") and talk.get("npc", "") != s.talk:
 		var tree: Dictionary = trees[s.talk]
 		talk = {"npc": s.talk, "node": HubCore.node_of(tree,
 			tree.startNode), "choice": 0}

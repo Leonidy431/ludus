@@ -45,6 +45,9 @@
     traces: [],
     holy: [],
     drawings: [],
+    fish: [],
+    fishIndex: null,
+    time: 0,
     images: {},
     bag: { atlas: [] },
     last: 0,
@@ -197,6 +200,37 @@
     ctx.globalAlpha = veil(d.z);
     ctx.filter = `brightness(${litAt(d.x, d.baseDepth, d.z).toFixed(3)})`;
     ctx.drawImage(img, sx - s / 2, sy - s / 2, s, s);
+    ctx.restore();
+  }
+
+  /**
+   * A fish of our own drawing (DEF-056) as the school's rule shows it
+   * now, seen from the ROV (Atlas.fishSpot: the cell of its queue, the
+   * view from below or above only at a steep angle, a resting fish on
+   * the floor).  A side view faces left and is turned by the view when
+   * the fish swims to +x, never drawn mirrored.  Lit and veiled like
+   * the drawings.
+   */
+  function drawFish(v, f) {
+    const p = Atlas.fishSpot(state.fishIndex, f.kit, f.school, f.i,
+      state.time, state.rov);
+    const img = state.images[p.file];
+    if (!img || !img.complete || !img.naturalWidth) {
+      return;
+    }
+    const [sx, sy] = toScreen(v, p.x, p.depth);
+    const s = p.size * PX_PER_M;
+    if (sx < -s || sx > v.w + s || sy < -s || sy > v.h + s) {
+      return;
+    }
+    ctx.save();
+    ctx.globalAlpha = veil(p.z);
+    ctx.filter = `brightness(${litAt(p.x, p.depth, p.z).toFixed(3)})`;
+    ctx.translate(sx, sy);
+    if (!p.top && Math.cos(p.heading) > 0) {
+      ctx.scale(-1, 1);
+    }
+    ctx.drawImage(img, -s / 2, -s / 2, s, s);
     ctx.restore();
   }
 
@@ -363,6 +397,7 @@
     far.forEach((d) => drawDrawing(v, d));
     drawFloor(v);
     near.forEach((d) => drawDrawing(v, d));
+    state.fish.forEach((f) => drawFish(v, f));
     state.traces.forEach((p) => drawTrace(v, p));
     drawRov(v);
   }
@@ -528,11 +563,37 @@
   function frame(now) {
     const dt = Math.min(0.1, state.last ? (now - state.last) / 1000 : 0);
     state.last = now;
+    state.time += dt;
     state.rov = Core.stepRov(state.rov, input(), dt);
     state.armLeft = Math.max(0, state.armLeft - dt);
     updateConsole(dt);
     draw();
     window.requestAnimationFrame(frame);
+  }
+
+  /**
+   * The fish of our own drawing: the schools of the lake (dive-core.js)
+   * whose species has a 12/12 kit, one entry per fish; what each shows
+   * is chosen every frame (drawFish).  Without the index the dive goes
+   * on without them.
+   */
+  async function loadFish() {
+    try {
+      const [idx, fish] = await Promise.all([
+        fetch('../data/fish-drawings.json').then((r) => r.json()),
+        fetch('../data/issyk-kul-fish.json').then((r) => r.json())]);
+      state.fishIndex = idx;
+      const out = [];
+      Core.fishSchools(fish.fish).forEach((sc) => {
+        const kit = Atlas.fishKit(idx, sc.id);
+        for (let i = 0; kit && i < sc.count; i++) {
+          out.push({ school: sc, kit, i });
+        }
+      });
+      return out;
+    } catch (e) {
+      return [];
+    }
   }
 
   async function start() {
@@ -542,13 +603,20 @@
     state.traces = Atlas.place(state.data, choice);
     state.holy = Atlas.holyPoints(state.traces);
     state.drawings = Atlas.placeOwnDrawings();
+    state.fish = await loadFish();
     state.bag = loadBag();
-    state.drawings.forEach((d) => {
-      if (!state.images[d.file]) {
+    const files = state.drawings.map((d) => d.file);
+    state.fish.forEach((f) => {
+      if (f.i === 0) {
+        files.push(...f.kit.files);
+      }
+    });
+    files.forEach((file) => {
+      if (!state.images[file]) {
         const img = new Image();
         img.decoding = 'async';
-        img.src = ART + d.file;
-        state.images[d.file] = img;
+        img.src = ART + file;
+        state.images[file] = img;
       }
     });
     const chronicleEl = document.getElementById('dive-chronicle');

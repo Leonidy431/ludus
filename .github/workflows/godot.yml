@@ -69,6 +69,12 @@ jobs:
           git diff --exit-code godot/tests/fixtures/missions.json
           node scripts/godot/make_rule_fixture.js
           git diff --exit-code godot/tests/fixtures/rule.json
+          # The fish of our own drawing and the Atlas: the headset
+          # replays the web's choice from this fixture (test_atlas.gd).
+          node scripts/godot/make_atlas_fixture.js
+          git diff --exit-code godot/tests/fixtures/atlas-traces.json
+          node scripts/godot/make_dialogue_fixture.js
+          git diff --exit-code godot/tests/fixtures/dialogue.json
           git diff --exit-code godot/tests/fixture.json \
             godot/tests/hub_fixture.json godot/tests/trial_fixture.json \
             godot/tests/passion_fixture.json \
@@ -110,6 +116,14 @@ jobs:
           # apt: the runner's system Python refuses pip installs).
           sudo apt-get install -y -qq python3-pil >/dev/null
           python3 scripts/raw_assets/location_items.py items --check
+          # The fish of our own drawing (DEF-056): one index for the web
+          # and the headset, and the shipped kits, atlases and index are
+          # what fish_procedural.py draws now (forms compared, not
+          # bytes: Pillow versions differ by an antialiased pixel).
+          cmp public/ludus/data/fish-drawings.json \
+              godot/data/fish-drawings.json
+          python3 scripts/raw_assets/fish_procedural.py --check
+          python3 -m unittest scripts/raw_assets/tests/test_fish_procedural.py
           # One bell table for the web clock and the headset's bells,
           # every rule with its source (docs/HLD_BELL_RULES_TYPIKON_*).
           cmp public/ludus/data/bell-rules.json godot/data/bell-rules.json

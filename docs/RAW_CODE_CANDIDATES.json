@@ -12297,5 +12297,4717 @@
    "LICENSE.txt"
   ],
   "slot": "DEF-008"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/AddComponentsOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/AddGameRuleOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/AddSolutionOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/AddTagsOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/AlertLevelChangeOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/AnchorOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/BaseXOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/CleanContainersOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/DamageOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/DeleteOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/DnaScrambleOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/EmitSoundOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/EmpOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/EmptyContainersOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/EntityEffectOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/ExplodeOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/ExplosionOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/ExtinguishOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/FireStackOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/FlashOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/GibOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/IgniteOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/ItemToggleOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/JitterOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/KnockdownOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/LaunchOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/LightBehaviorOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/LockOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/PolymorphOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/PopupOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/RandomTriggerOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/RattleOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/RejuventateOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/ReleaseGasOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/RemoveComponentsOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/RemoveStatusEffectOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/RemoveTagsOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/RepulseAttractOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/ScramOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/ScreechOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/SetStatusEffectOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/ShockOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/SignalOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/SmokeOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/SpawnEntityTableOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/SpawnOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/SpeakOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/StaminaDamageOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/StunOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/SwapLocationOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/TippyOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/ToggleComponentsOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/UseDelayOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/WeatherOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Anomaly/Effects/Components/ElectricityAnomalyComponent.cs",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Anomaly/Effects/Components/EntitySpawnAnomalyComponent.cs",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Anomaly/Effects/Components/GravityAnomalyComponent.cs",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Anomaly/Effects/Components/PyroclasticAnomalyComponent.cs",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Anomaly/Effects/Components/TileSpawnAnomalyComponent.cs",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Cnc/Traits/Buildings/ClonesProducedUnits.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/ActorPreviewPlaceBuildingPreview.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/BaseBuilding.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/BaseProvider.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/Bridge.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/BridgeHut.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/BridgePlaceholder.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/Building.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/BuildingInfluence.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/BuildingUtils.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/Exit.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/FootprintPlaceBuildingPreview.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/FreeActor.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/FreeActorWithDelivery.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/GivesBuildableArea.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/GroundLevelBridge.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/LegacyBridgeHut.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/LineBuild.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/LineBuildNode.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/PlaceBuildingVariants.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/PrimaryBuilding.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/ProductionAirdrop.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/RallyPoint.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/Refinery.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/RepairableBuilding.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/RequiresBuildableArea.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/Reservable.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/SequencePlaceBuildingPreview.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/TransformsIntoAircraft.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/TransformsIntoDockClientManager.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/TransformsIntoEntersTunnels.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/TransformsIntoMobile.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/TransformsIntoPassenger.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/TransformsIntoRepairable.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/TransformsIntoTransforms.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "drivers/gles3/effects/feed_effects.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "drivers",
+   "gles"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "drivers/gles3/effects/glow.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "drivers",
+   "gles"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/FyroxEngine/Fyrox",
+  "commit": "c4ead6b99c81134f021053224975e30d54d7bdcb",
+  "license_file": "LICENSE.md",
+  "path": "fyrox-sound/src/effects/filter.rs",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "filter"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.md"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/FyroxEngine/Fyrox",
+  "commit": "c4ead6b99c81134f021053224975e30d54d7bdcb",
+  "license_file": "LICENSE.md",
+  "path": "fyrox-sound/src/effects/reverb.rs",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "reverb"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.md"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/audio/audio_effect.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "servers"
+  ],
+  "score": 3,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/love2d/love",
+  "commit": "b7daef0f7c1dc5888090f5d5b22d4eaf4ffd1d87",
+  "license_file": "license.txt",
+  "path": "src/modules/audio/Effect.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "modules"
+  ],
+  "score": 3,
+  "attribution": [
+   "license.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/love2d/love",
+  "commit": "b7daef0f7c1dc5888090f5d5b22d4eaf4ffd1d87",
+  "license_file": "license.txt",
+  "path": "src/modules/audio/openal/Effect.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "modules"
+  ],
+  "score": 3,
+  "attribution": [
+   "license.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "src/logic/map_objects/tribes/ship/task_expedition.cc",
+  "kind": "code",
+  "hits": [
+   "logic",
+   "ship",
+   "task"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "src/logic/map_objects/tribes/ship/task_movement.cc",
+  "kind": "code",
+  "hits": [
+   "logic",
+   "ship",
+   "task"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "src/logic/map_objects/tribes/ship/task_ship.cc",
+  "kind": "code",
+  "hits": [
+   "logic",
+   "ship",
+   "task"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "src/logic/map_objects/tribes/ship/task_transport.cc",
+  "kind": "code",
+  "hits": [
+   "logic",
+   "ship",
+   "task"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/AbandonEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/bevyengine/bevy",
+  "commit": "92a29e701a6b0bf8846484c3999c2ba97d90dd06",
+  "license_file": "LICENSE-APACHE",
+  "path": "crates/bevy_sprite_render/src/mesh2d/color_material.rs",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "render",
+   "mesh"
+  ],
+  "score": 3,
+  "attribution": [
+   "CREDITS.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/bevyengine/bevy",
+  "commit": "92a29e701a6b0bf8846484c3999c2ba97d90dd06",
+  "license_file": "LICENSE-APACHE",
+  "path": "crates/bevy_sprite_render/src/mesh2d/extended_material.rs",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "render",
+   "mesh"
+  ],
+  "score": 3,
+  "attribution": [
+   "CREDITS.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/bevyengine/bevy",
+  "commit": "92a29e701a6b0bf8846484c3999c2ba97d90dd06",
+  "license_file": "LICENSE-APACHE",
+  "path": "crates/bevy_sprite_render/src/mesh2d/material.rs",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "render",
+   "mesh"
+  ],
+  "score": 3,
+  "attribution": [
+   "CREDITS.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/bevyengine/bevy",
+  "commit": "92a29e701a6b0bf8846484c3999c2ba97d90dd06",
+  "license_file": "LICENSE-APACHE",
+  "path": "crates/bevy_sprite_render/src/mesh2d/mesh.rs",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "render",
+   "mesh"
+  ],
+  "score": 3,
+  "attribution": [
+   "CREDITS.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/bevyengine/bevy",
+  "commit": "92a29e701a6b0bf8846484c3999c2ba97d90dd06",
+  "license_file": "LICENSE-APACHE",
+  "path": "crates/bevy_sprite_render/src/mesh2d/mod.rs",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "render",
+   "mesh"
+  ],
+  "score": 3,
+  "attribution": [
+   "CREDITS.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/bevyengine/bevy",
+  "commit": "92a29e701a6b0bf8846484c3999c2ba97d90dd06",
+  "license_file": "LICENSE-APACHE",
+  "path": "crates/bevy_sprite_render/src/mesh2d/wireframe2d.rs",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "render",
+   "mesh"
+  ],
+  "score": 3,
+  "attribution": [
+   "CREDITS.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/bevyengine/bevy",
+  "commit": "92a29e701a6b0bf8846484c3999c2ba97d90dd06",
+  "license_file": "LICENSE-APACHE",
+  "path": "crates/bevy_sprite_render/src/sprite_mesh/mod.rs",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "render",
+   "mesh"
+  ],
+  "score": 3,
+  "attribution": [
+   "CREDITS.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/bevyengine/bevy",
+  "commit": "92a29e701a6b0bf8846484c3999c2ba97d90dd06",
+  "license_file": "LICENSE-APACHE",
+  "path": "crates/bevy_sprite_render/src/sprite_mesh/sprite_extended_material.rs",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "render",
+   "mesh"
+  ],
+  "score": 3,
+  "attribution": [
+   "CREDITS.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/bevyengine/bevy",
+  "commit": "92a29e701a6b0bf8846484c3999c2ba97d90dd06",
+  "license_file": "LICENSE-APACHE",
+  "path": "crates/bevy_sprite_render/src/sprite_mesh/sprite_mesh_material.rs",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "render",
+   "mesh"
+  ],
+  "score": 3,
+  "attribution": [
+   "CREDITS.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/defold/defold",
+  "commit": "cbca1e163f673587e3e6f71270060aa497fee9d7",
+  "license_file": "LICENSE.txt",
+  "path": "engine/gamesys/src/gamesys/components/comp_sprite.cpp",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "gamesys",
+   "comp"
+  ],
+  "score": 3,
+  "attribution": [
+   "COMPLYING_WITH_LICENSES.md",
+   "LICENSE.txt",
+   "TOOLS_LICENSES.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/defold/defold",
+  "commit": "cbca1e163f673587e3e6f71270060aa497fee9d7",
+  "license_file": "LICENSE.txt",
+  "path": "engine/gamesys/src/gamesys/components/comp_sprite.h",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "gamesys",
+   "comp"
+  ],
+  "score": 3,
+  "attribution": [
+   "COMPLYING_WITH_LICENSES.md",
+   "LICENSE.txt",
+   "TOOLS_LICENSES.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/freeciv/freeciv",
+  "commit": "3dfb71a253e8137cb8ebb8dc3d6c4aeaca34d680",
+  "license_file": "COPYING",
+  "path": "client/gui-gtk-3.22/sprite.c",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "client",
+   "gtk"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/freeciv/freeciv",
+  "commit": "3dfb71a253e8137cb8ebb8dc3d6c4aeaca34d680",
+  "license_file": "COPYING",
+  "path": "client/gui-gtk-3.22/sprite.h",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "client",
+   "gtk"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/freeciv/freeciv",
+  "commit": "3dfb71a253e8137cb8ebb8dc3d6c4aeaca34d680",
+  "license_file": "COPYING",
+  "path": "client/gui-gtk-4.0/sprite.c",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "client",
+   "gtk"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/freeciv/freeciv",
+  "commit": "3dfb71a253e8137cb8ebb8dc3d6c4aeaca34d680",
+  "license_file": "COPYING",
+  "path": "client/gui-gtk-4.0/sprite.h",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "client",
+   "gtk"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/freeciv/freeciv",
+  "commit": "3dfb71a253e8137cb8ebb8dc3d6c4aeaca34d680",
+  "license_file": "COPYING",
+  "path": "client/gui-gtk-5.0/sprite.c",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "client",
+   "gtk"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/freeciv/freeciv",
+  "commit": "3dfb71a253e8137cb8ebb8dc3d6c4aeaca34d680",
+  "license_file": "COPYING",
+  "path": "client/gui-gtk-5.0/sprite.h",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "client",
+   "gtk"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/freeciv/freeciv",
+  "commit": "3dfb71a253e8137cb8ebb8dc3d6c4aeaca34d680",
+  "license_file": "COPYING",
+  "path": "client/gui-sdl2/sprite.c",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "client",
+   "sdl"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/freeciv/freeciv",
+  "commit": "3dfb71a253e8137cb8ebb8dc3d6c4aeaca34d680",
+  "license_file": "COPYING",
+  "path": "client/gui-sdl2/sprite.h",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "client",
+   "sdl"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/freeciv/freeciv",
+  "commit": "3dfb71a253e8137cb8ebb8dc3d6c4aeaca34d680",
+  "license_file": "COPYING",
+  "path": "client/gui-sdl3/sprite.c",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "client",
+   "sdl"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/freeciv/freeciv",
+  "commit": "3dfb71a253e8137cb8ebb8dc3d6c4aeaca34d680",
+  "license_file": "COPYING",
+  "path": "client/gui-sdl3/sprite.h",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "client",
+   "sdl"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Alerts/UpdateAlertSpriteEvent.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "alert"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Damage/Systems/DamageOtherOnHitSystem.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "system"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Effects/EffectVisualsComponent.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Effects/ScreechShockWaveSystem.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "effects"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Items/Systems/ItemSystem.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "system"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Movement/Systems/ClientSpriteMovementSystem.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "system"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/NPC/Systems/NPCSystem.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "system"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Ninja/Systems/ItemCreatorSystem.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "system"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Objectives/Systems/ObjectivesSystem.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "system"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Sprite/ContentSpriteSystem.cs",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "client",
+   "content"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Sprite/FadingSpriteComponent.cs",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "client",
+   "content"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Sprite/RandomSpriteSystem.cs",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "client",
+   "content"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Sprite/ScaleVisualsSystem.cs",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "client",
+   "content"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Sprite/SimpleSpriteOverlaySystem.cs",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "client",
+   "content"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Sprite/SpriteFadeSystem.cs",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "client",
+   "content"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Storage/Systems/ItemCounterSystem.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "system"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Storage/Systems/ItemMapperSystem.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "system"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Trigger/Systems/TimerTriggerItemStatusSystem.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "system"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/UserInterface/Systems/Character/Controls/CharacterObjectiveControl.xaml.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "system"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/UserInterface/Systems/Character/Windows/CharacterWindow.xaml.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "system"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/freeciv/freeciv",
+  "commit": "3dfb71a253e8137cb8ebb8dc3d6c4aeaca34d680",
+  "license_file": "COPYING",
+  "path": "client/gui-gtk-3.22/tileset_dlg.c",
+  "kind": "code",
+  "hits": [
+   "tileset",
+   "client",
+   "dlg",
+   "gtk"
+  ],
+  "score": 4,
+  "attribution": [],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/freeciv/freeciv",
+  "commit": "3dfb71a253e8137cb8ebb8dc3d6c4aeaca34d680",
+  "license_file": "COPYING",
+  "path": "client/gui-gtk-4.0/tileset_dlg.c",
+  "kind": "code",
+  "hits": [
+   "tileset",
+   "client",
+   "dlg",
+   "gtk"
+  ],
+  "score": 4,
+  "attribution": [],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/freeciv/freeciv",
+  "commit": "3dfb71a253e8137cb8ebb8dc3d6c4aeaca34d680",
+  "license_file": "COPYING",
+  "path": "client/gui-gtk-5.0/tileset_dlg.c",
+  "kind": "code",
+  "hits": [
+   "tileset",
+   "client",
+   "dlg",
+   "gtk"
+  ],
+  "score": 4,
+  "attribution": [],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/AsThoughEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/AsThoughEffectImpl.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/AsThoughManaEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/AsTurnedFaceUpEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/AuraReplacementEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/BecomesAttachedToCreatureSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/ContinuousEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/ContinuousEffectImpl.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/ContinuousEffects.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/ContinuousEffectsList.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/ContinuousRuleModifyingEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/ContinuousRuleModifyingEffectImpl.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/CostModificationEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/CreateTokenCopySourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/Effect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/EffectImpl.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/Effects.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/EntersBattlefieldEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/OneShotEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/OneShotNonTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/PayCostToAttackBlockEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/PayCostToAttackBlockEffectImpl.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/PlaneswalkerRedirectionEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/PreventionEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/PreventionEffectData.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/PreventionEffectImpl.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/RedirectionEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/ReplacementEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/ReplacementEffectImpl.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/RequirementEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/RestrictionEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/SearchEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/SpliceCardEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/WhileConditionContinuousEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/AddCombatAndMainPhaseEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/AddContinuousEffectToGame.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/AdditionalCombatPhaseEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/AmplifyEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/AttachEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/AttachTargetToTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/AttachToSourceTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/AttacksIfAbleTargetPlayerSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/BalanceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/BecomeBlockedTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/BecomePreparedSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/BecomePreparedTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/BecomesMonarchSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/BecomesMonarchTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/BrainstormEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CanBlockAsThoughtItHadShadowEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CantActivateAbilitiesAttachedEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CantBeCopiedSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CantBeRegeneratedSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CantBeRegeneratedTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CantBeTargetedAllEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CantBeTargetedAttachedEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CantBeTargetedCardsGraveyardsEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CantBeTargetedSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CantBeTargetedTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CastCardFromOutsideTheGameEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CastSourceTriggeredAbility.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ChangeATargetOfTargetSpellAbilityToSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ChooseACardNameEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ChooseBasicLandTypeEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ChooseCardTypeEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ChooseColorEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ChooseCreatureEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ChooseCreatureTypeEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ChooseExpansionSetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ChooseLandTypeEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ChooseModeEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ChooseNewTargetsTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ChooseOpponentEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ChoosePlaneswalkerTypeEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ChoosePlayerEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ChooseSecretOpponentEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CipherEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ClashEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ClashTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/ConjureCardEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CopyEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CopyPermanentEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CopySourceSpellEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CopySpellForEachItCouldTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CopyStackObjectEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CopyTargetStackObjectEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CopyTokenEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CreateDelayedTriggeredAbilityEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CreateRoleAttachedSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CreateRoleAttachedTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CreateSpecialActionEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CreateTokenAllEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CreateTokenAttachSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CreateTokenControllerTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CreateTokenCopyTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CreateTokenEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CreateTokenTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CreateXXTokenExiledEffectManaValueEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CreatureExploresTriggeredAbility.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/CrewsVehicleSourceTriggeredAbility.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/DamageAllControlledTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "abilities",
+   "effect"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/CleverRaven/Cataclysm-DDA",
+  "commit": "fe6a10c2b1425882574b4ad7bfbebc4c6170dbf8",
+  "license_file": "LICENSE-Apache-Robot-Font.txt",
+  "path": "src/character_creator_ui.h",
+  "kind": "code",
+  "hits": [
+   "ui",
+   "character",
+   "creator"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE-Apache-Robot-Font.txt",
+   "LICENSE-OFL-Terminus-Font.txt",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-048"
+ },
+ {
+  "repo": "https://github.com/Anuken/Mindustry",
+  "commit": "f3bfa418a5e8d7d7d98540a0da62b9f19bc845cb",
+  "license_file": "LICENSE",
+  "path": "core/src/mindustry/ui/CoreItemsDisplay.java",
+  "kind": "code",
+  "hits": [
+   "ui",
+   "coreitemsdisplay"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-048"
+ },
+ {
+  "repo": "https://github.com/Anuken/Mindustry",
+  "commit": "f3bfa418a5e8d7d7d98540a0da62b9f19bc845cb",
+  "license_file": "LICENSE",
+  "path": "core/src/mindustry/ui/dialogs/EffectsDialog.java",
+  "kind": "code",
+  "hits": [
+   "ui",
+   "dialogs"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-048"
+ },
+ {
+  "repo": "https://github.com/CleverRaven/Cataclysm-DDA",
+  "commit": "fe6a10c2b1425882574b4ad7bfbebc4c6170dbf8",
+  "license_file": "LICENSE-Apache-Robot-Font.txt",
+  "path": "src/ui_iteminfo.cpp",
+  "kind": "code",
+  "hits": [
+   "ui",
+   "iteminfo"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE-Apache-Robot-Font.txt",
+   "LICENSE-OFL-Terminus-Font.txt",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-048"
+ },
+ {
+  "repo": "https://github.com/CleverRaven/Cataclysm-DDA",
+  "commit": "fe6a10c2b1425882574b4ad7bfbebc4c6170dbf8",
+  "license_file": "LICENSE-Apache-Robot-Font.txt",
+  "path": "src/ui_iteminfo.h",
+  "kind": "code",
+  "hits": [
+   "ui",
+   "iteminfo"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE-Apache-Robot-Font.txt",
+   "LICENSE-OFL-Terminus-Font.txt",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-048"
+ },
+ {
+  "repo": "https://github.com/FyroxEngine/Fyrox",
+  "commit": "c4ead6b99c81134f021053224975e30d54d7bdcb",
+  "license_file": "LICENSE.md",
+  "path": "fyrox-ui/src/dock/tile.rs",
+  "kind": "code",
+  "hits": [
+   "ui",
+   "dock"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.md"
+  ],
+  "slot": "DEF-048"
+ },
+ {
+  "repo": "https://github.com/OpenApoc/OpenApoc",
+  "commit": "d06cc102905e35d0e703d2d25204fd4ab2795e12",
+  "license_file": "LICENSE",
+  "path": "game/state/city/building.cpp",
+  "kind": "code",
+  "hits": [
+   "building",
+   "city"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-048"
+ },
+ {
+  "repo": "https://github.com/OpenApoc/OpenApoc",
+  "commit": "d06cc102905e35d0e703d2d25204fd4ab2795e12",
+  "license_file": "LICENSE",
+  "path": "game/state/city/building.h",
+  "kind": "code",
+  "hits": [
+   "building",
+   "city"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-048"
+ },
+ {
+  "repo": "https://github.com/OpenApoc/OpenApoc",
+  "commit": "d06cc102905e35d0e703d2d25204fd4ab2795e12",
+  "license_file": "LICENSE",
+  "path": "game/ui/city/buildingscreen.cpp",
+  "kind": "code",
+  "hits": [
+   "ui",
+   "city"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-048"
+ },
+ {
+  "repo": "https://github.com/OpenApoc/OpenApoc",
+  "commit": "d06cc102905e35d0e703d2d25204fd4ab2795e12",
+  "license_file": "LICENSE",
+  "path": "game/ui/city/buildingscreen.h",
+  "kind": "code",
+  "hits": [
+   "ui",
+   "city"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-048"
+ },
+ {
+  "repo": "https://github.com/bvschaik/julius",
+  "commit": "34d1ecd54befb845c0139b371fa8a0438210dac1",
+  "license_file": "LICENSE.txt",
+  "path": "src/building/dock.c",
+  "kind": "code",
+  "hits": [
+   "dock",
+   "building"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-048"
+ },
+ {
+  "repo": "https://github.com/bvschaik/julius",
+  "commit": "34d1ecd54befb845c0139b371fa8a0438210dac1",
+  "license_file": "LICENSE.txt",
+  "path": "src/building/dock.h",
+  "kind": "code",
+  "hits": [
+   "dock",
+   "building"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-048"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/stone_workshop/init.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "stone",
+   "init"
+  ],
+  "score": 6,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/stone_workshop/register.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "stone",
+   "register"
+  ],
+  "score": 6,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/cassava_plantation/init.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "init"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/cassava_plantation/register.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "register"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/cassava_root_cooker/init.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "init"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/cassava_root_cooker/register.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "register"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/charcoal_kiln/init.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "init"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/charcoal_kiln/register.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "register"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/chocolate_brewery/init.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "init"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/chocolate_brewery/register.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "register"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/cocoa_farm/init.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "init"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/cocoa_farm/register.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "register"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/dressmakery/init.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "init"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/dressmakery/register.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "register"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
  }
 ]

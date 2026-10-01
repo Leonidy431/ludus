@@ -361,7 +361,7 @@ Object.entries(byEndpoint).forEach(([endpoint, times]) => {
 
 - **docs/reports/PHASE_3_MASTER_CHECKLIST.md** — Oct 1 AM validation reference
 - **docs/reports/OCT_1_MORNING_START.md** — 5-step execution plan
-- **docs/API_ERROR_HANDLING_GUIDE.md** — Expected error scenarios
+- **docs/version-3.0/API_ERROR_HANDLING_GUIDE.md** — Expected error scenarios
 - **docs/PERFORMANCE_PROFILING_BASELINE.md** — Measurement methodology
 - **docs/INTEGRATION_TEST_SCENARIOS.md** — Test case details
 

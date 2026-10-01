@@ -33,10 +33,6 @@ const LIGNIN := Color(0.3, 0.23, 0.17)
 const STONE_KINDS := ["city-gate", "crypt", "archive-crypt",
 	"treasury-crypt", "prison", "rabat", "gate", "customs",
 	"hermit-cave", "sunken-chapel", "skete-ruin", "watchtower"]
-## Clothes of the heart's person, picked by the id's hash (no randomness).
-const CLOTH := [Color(0.25, 0.2, 0.15), Color(0.2, 0.17, 0.22),
-	Color(0.12, 0.12, 0.16), Color(0.32, 0.26, 0.18),
-	Color(0.18, 0.22, 0.2), Color(0.3, 0.18, 0.14)]
 
 
 static func mat(colour: Color, rough := 0.9) -> StandardMaterial3D:
@@ -749,26 +745,11 @@ static func _person(world: Node3D, p: Dictionary) -> void:
 	var g := Node3D.new()
 	g.name = "Person"
 	var at: Vector3 = p.heart
-	var body := MeshInstance3D.new()
-	var cap := CapsuleMesh.new()
-	cap.radius = 0.24
-	cap.height = 1.5
-	cap.radial_segments = 12
-	cap.rings = 4
-	body.mesh = cap
-	body.material_override = mat(CLOTH[absi(npc.hash()) % CLOTH.size()])
-	body.position = at + Vector3(0, 0.75, 0)
-	g.add_child(body)
-	var head := MeshInstance3D.new()
-	var sp := SphereMesh.new()
-	sp.radius = 0.12
-	sp.height = 0.26
-	sp.radial_segments = 12
-	sp.rings = 6
-	head.mesh = sp
-	head.material_override = mat(Color(0.78, 0.62, 0.5))
-	head.position = at + Vector3(0, 1.62, 0)
-	g.add_child(head)
+	# The mentor's own figure and covering (Mentors), joined into one
+	# mesh with the cloth as vertex colour: one draw call.
+	var fig := Mentors.figure(npc)
+	fig.position = at
+	g.add_child(fig)
 	world.add_child(join(g, 0.9))
 	var name_label := Label3D.new()
 	name_label.name = "PersonName"
@@ -787,10 +768,10 @@ static func _person(world: Node3D, p: Dictionary) -> void:
 ## The ROV over the heart of a dive's task, lamp on: the instrument
 ## world (6500 K), the operator's own Mangustik.
 static func _rov(world: Node3D, p: Dictionary) -> void:
-	var scene := load("res://models/rov/mangustik.glb") as PackedScene
-	if scene == null:
+	# Б-2: the far-view proxy beyond RovLod.NEAR_M, the full model near.
+	var rov := RovLod.build()
+	if rov.get_child_count() == 0:
 		return
-	var rov := scene.instantiate() as Node3D
 	rov.name = "Rov"
 	rov.position = p.heart + Vector3(0, 1.2, 0)
 	rov.rotation_degrees = Vector3(0, 90, 0)

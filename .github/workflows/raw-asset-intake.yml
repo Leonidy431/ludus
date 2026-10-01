@@ -101,12 +101,14 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Functions unit tests (SKU validator, actions API)
+      - name: Functions unit tests (SKU validator, actions API, store mirror)
         run: |
           npm --prefix functions ci --no-audit --no-fund
           cd functions && npx jest src/tests/api/sku-validator.test.ts \
             src/tests/api/ludus-actions.test.ts \
-            src/tests/api/ludus-router.test.ts
+            src/tests/api/ludus-router.test.ts \
+            src/tests/api/server.test.ts \
+            src/tests/api/store-mirror.test.ts
 
       - name: Patristic canon
         run: |

@@ -1,5 +1,5 @@
 {
- "next": 8,
+ "next": 20,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -2872,6 +2872,484 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 22
+  },
+  {
+   "time": "2026-10-01T05:50:39.955352+00:00",
+   "pass_id": "osint-2026-10-01T05:50:39Z",
+   "deficits": [
+    {
+     "id": "DEF-024",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "font": 1,
+      "sacred-never-raw": 13,
+      "dogma-stop-list": 1
+     },
+     "to_props": 24,
+     "hits_uncapped": 10166,
+     "props_uncapped": 7192,
+     "props_uncapped_repos": 58,
+     "added_keywords": [
+      "status",
+      "terrain",
+      "component",
+      "add",
+      "remove",
+      "components",
+      "containers",
+      "grant",
+      "tags",
+      "alert",
+      "anchor",
+      "attract"
+     ],
+     "keywords_total": 53,
+     "keywords_not_searched": [
+      "amulet",
+      "ankh",
+      "cleric",
+      "com",
+      "java",
+      "mage",
+      "openra",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 24
+     },
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-027",
+     "skipped": "audio-pipeline-pending"
+    },
+    {
+     "id": "DEF-028",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 1,
+      "dogma-stop-list": 2
+     },
+     "to_props": 44,
+     "hits_uncapped": 7927,
+     "props_uncapped": 5760,
+     "props_uncapped_repos": 53,
+     "added_keywords": [
+      "ship",
+      "task",
+      "terrain"
+     ],
+     "keywords_total": 39,
+     "keywords_not_searched": [
+      "bevy",
+      "card",
+      "cockatrice",
+      "com",
+      "cpp",
+      "crates",
+      "java",
+      "map",
+      "renderer",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 34,
+      "test": 1,
+      "example": 1
+     },
+     "props_seen": 8
+    }
+   ],
+   "props_taken": {
+    "example": 1,
+    "other": 58,
+    "test": 1
+   },
+   "props_taken_by_index_kind": {
+    "code": 60
+   },
+   "props_duplicates": 8,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 994707,
+   "props_store_files": 970,
+   "props_store_bytes": 7946805,
+   "props_cache_files_on_disk": 4181,
+   "props_cache_bytes_on_disk": 75161338,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 548162,
+   "props_register_growth_bytes": 33453,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 314
+  },
+  {
+   "time": "2026-10-01T06:50:39.322776+00:00",
+   "pass_id": "osint-2026-10-01T06:50:39Z",
+   "deficits": [
+    {
+     "id": "DEF-031",
+     "skipped": "not-raw-material"
+    },
+    {
+     "id": "DEF-035",
+     "hits": 200,
+     "taken": 0,
+     "refused": {},
+     "to_props": 176,
+     "hits_uncapped": 4379,
+     "props_uncapped": 3784,
+     "props_uncapped_repos": 56,
+     "added_keywords": [
+      "city",
+      "color",
+      "drawer",
+      "manager",
+      "sheetlet",
+      "surgeon",
+      "table",
+      "terrain",
+      "units",
+      "util"
+     ],
+     "keywords_total": 49,
+     "keywords_not_searched": [
+      "com",
+      "corsixth",
+      "java",
+      "lua",
+      "unciv"
+     ],
+     "props": {
+      "other": 19,
+      "editor": 22
+     },
+     "props_seen": 135
+    },
+    {
+     "id": "DEF-036",
+     "hits": 200,
+     "taken": 0,
+     "refused": {},
+     "to_props": 172,
+     "hits_uncapped": 12281,
+     "props_uncapped": 9111,
+     "props_uncapped_repos": 46,
+     "added_keywords": [
+      "sheetlet",
+      "status"
+     ],
+     "keywords_total": 39,
+     "keywords_not_searched": [
+      "xaml"
+     ],
+     "props": {
+      "other": 48
+     },
+     "props_seen": 124
+    }
+   ],
+   "props_taken": {
+    "editor": 22,
+    "other": 67
+   },
+   "props_taken_by_index_kind": {
+    "code": 89
+   },
+   "props_duplicates": 259,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 547899,
+   "props_store_files": 1059,
+   "props_store_bytes": 8494704,
+   "props_cache_files_on_disk": 4270,
+   "props_cache_bytes_on_disk": 75709237,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 598065,
+   "props_register_growth_bytes": 49903,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 52
+  },
+  {
+   "time": "2026-10-01T07:50:39.338124+00:00",
+   "pass_id": "osint-2026-10-01T07:50:39Z",
+   "deficits": [
+    {
+     "id": "DEF-040",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 22,
+      "dogma-stop-list": 1
+     },
+     "to_props": 96,
+     "hits_uncapped": 15959,
+     "props_uncapped": 12986,
+     "props_uncapped_repos": 58,
+     "added_keywords": [
+      "system",
+      "animation",
+      "ship",
+      "alert",
+      "viewer",
+      "body",
+      "display",
+      "encoder",
+      "gtk",
+      "comp",
+      "mesh",
+      "sdl"
+     ],
+     "keywords_total": 33,
+     "keywords_not_searched": [
+      "bevy",
+      "cleric",
+      "com",
+      "cpp",
+      "crates",
+      "java",
+      "mage",
+      "rotp",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "test": 1,
+      "other": 82
+     },
+     "props_seen": 7
+    },
+    {
+     "id": "DEF-047",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 14,
+      "dogma-stop-list": 1
+     },
+     "to_props": 12,
+     "hits_uncapped": 41930,
+     "props_uncapped": 38115,
+     "props_uncapped_repos": 57,
+     "added_keywords": [
+      "effect",
+      "system",
+      "property",
+      "display",
+      "set",
+      "tilesets",
+      "bombard",
+      "colonize",
+      "flight",
+      "gradient",
+      "opengl",
+      "path"
+     ],
+     "keywords_total": 46,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "cpp",
+      "java",
+      "mage",
+      "rotp",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 12
+     },
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-048",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 16,
+      "dogma-stop-list": 1,
+      "font": 2
+     },
+     "to_props": 85,
+     "hits_uncapped": 8818,
+     "props_uncapped": 5809,
+     "props_uncapped_repos": 58,
+     "added_keywords": [
+      "panel",
+      "display",
+      "properties",
+      "unit",
+      "objective",
+      "status",
+      "building",
+      "cache",
+      "city",
+      "control",
+      "individual",
+      "setup"
+     ],
+     "keywords_total": 36,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "cpp",
+      "java",
+      "mage",
+      "mindustry",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 78,
+      "editor": 3,
+      "example": 2
+     },
+     "props_seen": 2
+    }
+   ],
+   "props_taken": {
+    "editor": 3,
+    "example": 2,
+    "other": 172,
+    "test": 1
+   },
+   "props_taken_by_index_kind": {
+    "code": 178
+   },
+   "props_duplicates": 9,
+   "props_errors": 0,
+   "props_refused": {
+    "licence-Defold-1.0": 6
+   },
+   "props_new_bytes": 941879,
+   "props_store_files": 1237,
+   "props_store_bytes": 9436583,
+   "props_cache_files_on_disk": 4448,
+   "props_cache_bytes_on_disk": 76651116,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 692749,
+   "props_register_growth_bytes": 94684,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 350
+  },
+  {
+   "time": "2026-10-01T08:50:43.161537+00:00",
+   "pass_id": "osint-2026-10-01T08:50:43Z",
+   "deficits": [
+    {
+     "id": "DEF-055",
+     "hits": 54,
+     "taken": 0,
+     "refused": {},
+     "to_props": 54,
+     "hits_uncapped": 54,
+     "props_uncapped": 54,
+     "props_uncapped_repos": 9,
+     "added_keywords": [],
+     "keywords_total": 6,
+     "keywords_not_searched": [],
+     "props": {},
+     "props_seen": 54
+    },
+    {
+     "id": "DEF-001",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "outline-helper": 4,
+      "sacred-never-raw": 14,
+      "dogma-stop-list": 1
+     },
+     "to_props": 5,
+     "hits_uncapped": 31755,
+     "props_uncapped": 7604,
+     "props_uncapped_repos": 55,
+     "added_keywords": [
+      "berserker",
+      "building",
+      "city",
+      "forest",
+      "oracle",
+      "parsers",
+      "talker",
+      "tilemap",
+      "tileobject",
+      "widget",
+      "archiv",
+      "artificer"
+     ],
+     "keywords_total": 73,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "java",
+      "mage",
+      "mindustry",
+      "rsi",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 3
+     },
+     "props_seen": 2
+    },
+    {
+     "id": "DEF-039",
+     "hits": 200,
+     "taken": 6,
+     "refused": {},
+     "to_props": 0,
+     "hits_uncapped": 24131,
+     "props_uncapped": 16070,
+     "props_uncapped_repos": 50,
+     "added_keywords": [
+      "zot",
+      "cotton",
+      "floor",
+      "init",
+      "menu",
+      "plan",
+      "register"
+     ],
+     "keywords_total": 36,
+     "keywords_not_searched": [
+      "rsi"
+     ],
+     "props": {},
+     "props_seen": 0
+    }
+   ],
+   "props_taken": {
+    "other": 3
+   },
+   "props_taken_by_index_kind": {
+    "code": 3
+   },
+   "props_duplicates": 56,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 11446,
+   "props_store_files": 1240,
+   "props_store_bytes": 9448029,
+   "props_cache_files_on_disk": 4451,
+   "props_cache_bytes_on_disk": 76662562,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 694500,
+   "props_register_growth_bytes": 1751,
+   "stage": "done",
+   "accepted_objects": 5,
+   "code_candidates": 85
   }
  ],
  "keywords": {
@@ -3118,7 +3596,19 @@
    "madness",
    "sword",
    "tank",
-   "asteroid"
+   "asteroid",
+   "berserker",
+   "building",
+   "city",
+   "forest",
+   "oracle",
+   "parsers",
+   "talker",
+   "tilemap",
+   "tileobject",
+   "widget",
+   "archiv",
+   "artificer"
   ],
   "DEF-049": [
    "terrain",
@@ -3252,7 +3742,19 @@
    "armorability",
    "auraofprotection",
    "beaconofreturning",
-   "beam"
+   "beam",
+   "status",
+   "terrain",
+   "component",
+   "add",
+   "remove",
+   "components",
+   "containers",
+   "grant",
+   "tags",
+   "alert",
+   "anchor",
+   "attract"
   ],
   "DEF-028": [
    "effect",
@@ -3290,7 +3792,10 @@
    "abstract",
    "fsr",
    "copy",
-   "amplify"
+   "amplify",
+   "ship",
+   "task",
+   "terrain"
   ],
   "DEF-035": [
    "java",
@@ -3328,7 +3833,17 @@
    "unitactionmodifiers",
    "unitactions",
    "unitactionsfromuniques",
-   "unitactionsgreatperson"
+   "unitactionsgreatperson",
+   "city",
+   "color",
+   "drawer",
+   "manager",
+   "sheetlet",
+   "surgeon",
+   "table",
+   "terrain",
+   "units",
+   "util"
   ],
   "DEF-036": [
    "building",
@@ -3361,7 +3876,9 @@
    "clientinnerbodysystem",
    "colorflasheffectsystem",
    "disposalunitwindow",
-   "effectvisualizersystem"
+   "effectvisualizersystem",
+   "sheetlet",
+   "status"
   ],
   "DEF-040": [
    "java",
@@ -3387,7 +3904,19 @@
    "huntress",
    "mage",
    "rogue",
-   "warrior"
+   "warrior",
+   "system",
+   "animation",
+   "ship",
+   "alert",
+   "viewer",
+   "body",
+   "display",
+   "encoder",
+   "gtk",
+   "comp",
+   "mesh",
+   "sdl"
   ],
   "DEF-047": [
    "java",
@@ -3425,7 +3954,19 @@
    "batsprite",
    "beaconofreturning",
    "beam",
-   "beamingray"
+   "beamingray",
+   "effect",
+   "system",
+   "property",
+   "display",
+   "set",
+   "tilesets",
+   "bombard",
+   "colonize",
+   "flight",
+   "gradient",
+   "opengl",
+   "path"
   ],
   "DEF-048": [
    "java",
@@ -3451,7 +3992,19 @@
    "duelist",
    "huntress",
    "mage",
-   "rogue"
+   "rogue",
+   "panel",
+   "display",
+   "properties",
+   "unit",
+   "objective",
+   "status",
+   "building",
+   "cache",
+   "city",
+   "control",
+   "individual",
+   "setup"
   ],
   "DEF-055": [],
   "DEF-039": [
@@ -3478,7 +4031,14 @@
    "shoals",
    "slimy",
    "stone",
-   "way"
+   "way",
+   "zot",
+   "cotton",
+   "floor",
+   "init",
+   "menu",
+   "plan",
+   "register"
   ]
  }
 }

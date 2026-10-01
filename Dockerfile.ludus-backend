@@ -28,24 +28,23 @@ RUN echo '#!/bin/sh' > /healthcheck.sh && \
     echo 'curl -f http://localhost:3000/health || exit 1' >> /healthcheck.sh && \
     chmod +x /healthcheck.sh
 
-# Create non-root user for security
-RUN addgroup -g 1000 ludus && \
-    adduser -D -u 1000 -G ludus ludus
+# Run as the image's own non-root user: node:18-alpine already has
+# "node" with uid/gid 1000, so creating "ludus" with the same ids failed
+# the build (addgroup: gid '1000' in use).
+RUN chown -R node:node /app
 
-# Change ownership of app directory
-RUN chown -R ludus:ludus /app
-
-# Switch to non-root user
-USER ludus
+USER node
 
 # Expose port (VPC-internal only, see docker-compose)
 EXPOSE 3000
 
 # Use dumb-init to handle signals properly
-ENTRYPOINT ["/sbin/dumb-init", "--"]
+# Alpine installs dumb-init to /usr/bin (the /sbin path failed to start).
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
-# Start Ludus backend API
-CMD ["node", "lib/index.js"]
+# Start Ludus backend API: lib/server.js listens on PORT (lib/index.js
+# only exports Cloud Functions and never listened; backend 3.0, P1).
+CMD ["node", "lib/server.js"]
 
 # Health check verification
 HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
