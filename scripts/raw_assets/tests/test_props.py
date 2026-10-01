@@ -25,10 +25,30 @@ from search_index import search  # noqa: E402
 
 LICENSED = 'https://github.com/test/licensed'
 UNLICENSED = 'https://github.com/test/unlicensed'
-# A neutral deficit still filled from raw material, so it takes images.
-# The fish slot DEF-056 and the floor slots DEF-057..059 moved to the
-# project's own drawing and no longer take any prop.
-IMAGE_SLOT = 'DEF-052'
+# A neutral deficit filled from raw material, so it takes images.  The
+# live table has none left: the fish slot DEF-056 and the floor slots
+# DEF-057..059 moved to the project's own drawing, and on 2026-10-01
+# DEF-039 (own drawing), DEF-049 and DEF-052 (procedural) followed after
+# their passes gave nothing.  So the tests bring their own slot and add
+# it to the open deficits while they run.
+IMAGE_SLOT = 'DEF-900'
+_LIVE_OPEN = osint_cycle.open_deficits
+
+
+def _open_with_test_slot():
+    return _LIVE_OPEN() + [{'id': IMAGE_SLOT, 'priority': 'P2',
+                            'category': 'сочность', 'fill': 'raw-material',
+                            'title': 'test neutral slot',
+                            'keywords': ['wave', 'rope']}]
+
+
+def setUpModule():
+    osint_cycle.open_deficits = _open_with_test_slot
+
+
+def tearDownModule():
+    osint_cycle.open_deficits = _LIVE_OPEN
+
 
 # Every path here is non-game by folder; some are also holy, stop-listed
 # or a font, and those must stay off the shelf.

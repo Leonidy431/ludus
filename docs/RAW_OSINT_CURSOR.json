@@ -1,5 +1,5 @@
 {
- "next": 14,
+ "next": 17,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -3700,6 +3700,168 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 52
+  },
+  {
+   "time": "2026-10-01T13:50:34.728170+00:00",
+   "pass_id": "osint-2026-10-01T13:50:34Z",
+   "deficits": [
+    {
+     "id": "DEF-040",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 16,
+      "dogma-stop-list": 1
+     },
+     "to_props": 104,
+     "hits_uncapped": 16985,
+     "props_uncapped": 13921,
+     "props_uncapped_repos": 60,
+     "added_keywords": [
+      "gameobject",
+      "spritesheets",
+      "table",
+      "batch",
+      "bombard",
+      "bridge",
+      "colonize",
+      "components",
+      "custom",
+      "file",
+      "flight",
+      "floating"
+     ],
+     "keywords_total": 45,
+     "keywords_not_searched": [
+      "bevy",
+      "cleric",
+      "com",
+      "cpp",
+      "crates",
+      "java",
+      "mage",
+      "rotp",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "example": 1,
+      "other": 17
+     },
+     "props_seen": 51
+    },
+    {
+     "id": "DEF-047",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 14,
+      "dogma-stop-list": 1
+     },
+     "to_props": 29,
+     "hits_uncapped": 43407,
+     "props_uncapped": 39539,
+     "props_uncapped_repos": 58,
+     "added_keywords": [
+      "glsprite",
+      "gltile",
+      "round",
+      "ship",
+      "table",
+      "tech",
+      "widget",
+      "yes",
+      "zoom",
+      "advisor",
+      "alert",
+      "anim"
+     ],
+     "keywords_total": 58,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "cpp",
+      "java",
+      "mage",
+      "rotp",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 12
+     },
+     "props_seen": 17
+    },
+    {
+     "id": "DEF-048",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 15,
+      "dogma-stop-list": 1,
+      "font": 4
+     },
+     "to_props": 89,
+     "hits_uncapped": 9682,
+     "props_uncapped": 6645,
+     "props_uncapped_repos": 59,
+     "added_keywords": [
+      "channel",
+      "controls",
+      "absorbent",
+      "backed",
+      "bridge",
+      "collapsible",
+      "container",
+      "continue",
+      "delegate",
+      "dummy",
+      "file",
+      "geiger"
+     ],
+     "keywords_total": 48,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "cpp",
+      "java",
+      "mage",
+      "mindustry",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 34,
+      "doc": 2
+     },
+     "props_seen": 53
+    }
+   ],
+   "props_taken": {
+    "doc": 2,
+    "example": 1,
+    "other": 63
+   },
+   "props_taken_by_index_kind": {
+    "code": 66
+   },
+   "props_duplicates": 121,
+   "props_errors": 0,
+   "props_refused": {
+    "licence-Defold-1.0": 35
+   },
+   "props_new_bytes": 258101,
+   "props_store_files": 1307,
+   "props_store_bytes": 9707243,
+   "props_cache_files_on_disk": 4518,
+   "props_cache_bytes_on_disk": 76921776,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 730899,
+   "props_register_growth_bytes": 35781,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 326
   }
  ],
  "keywords": {
@@ -4308,7 +4470,19 @@
    "gtk",
    "comp",
    "mesh",
-   "sdl"
+   "sdl",
+   "gameobject",
+   "spritesheets",
+   "table",
+   "batch",
+   "bombard",
+   "bridge",
+   "colonize",
+   "components",
+   "custom",
+   "file",
+   "flight",
+   "floating"
   ],
   "DEF-047": [
    "java",
@@ -4358,7 +4532,19 @@
    "flight",
    "gradient",
    "opengl",
-   "path"
+   "path",
+   "glsprite",
+   "gltile",
+   "round",
+   "ship",
+   "table",
+   "tech",
+   "widget",
+   "yes",
+   "zoom",
+   "advisor",
+   "alert",
+   "anim"
   ],
   "DEF-048": [
    "java",
@@ -4396,7 +4582,19 @@
    "city",
    "control",
    "individual",
-   "setup"
+   "setup",
+   "channel",
+   "controls",
+   "absorbent",
+   "backed",
+   "bridge",
+   "collapsible",
+   "container",
+   "continue",
+   "delegate",
+   "dummy",
+   "file",
+   "geiger"
   ],
   "DEF-055": [],
   "DEF-039": [

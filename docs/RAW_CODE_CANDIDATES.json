@@ -19079,5 +19079,265 @@
    "LICENSE.txt"
   ],
   "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/defold/defold",
+  "commit": "cbca1e163f673587e3e6f71270060aa497fee9d7",
+  "license_file": "LICENSE.txt",
+  "path": "engine/gameobject/src/gameobject/comp_anim.cpp",
+  "kind": "code",
+  "hits": [
+   "anim",
+   "comp",
+   "gameobject"
+  ],
+  "score": 3,
+  "attribution": [
+   "COMPLYING_WITH_LICENSES.md",
+   "LICENSE.txt",
+   "TOOLS_LICENSES.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/defold/defold",
+  "commit": "cbca1e163f673587e3e6f71270060aa497fee9d7",
+  "license_file": "LICENSE.txt",
+  "path": "engine/gameobject/src/gameobject/comp_anim.h",
+  "kind": "code",
+  "hits": [
+   "anim",
+   "comp",
+   "gameobject"
+  ],
+  "score": 3,
+  "attribution": [
+   "COMPLYING_WITH_LICENSES.md",
+   "LICENSE.txt",
+   "TOOLS_LICENSES.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/defold/defold",
+  "commit": "cbca1e163f673587e3e6f71270060aa497fee9d7",
+  "license_file": "LICENSE.txt",
+  "path": "engine/gamesys/src/gamesys/components/box2d/comp_collision_object_box2d.cpp",
+  "kind": "code",
+  "hits": [
+   "gamesys",
+   "comp",
+   "components"
+  ],
+  "score": 3,
+  "attribution": [
+   "COMPLYING_WITH_LICENSES.md",
+   "LICENSE.txt",
+   "TOOLS_LICENSES.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/defold/defold",
+  "commit": "cbca1e163f673587e3e6f71270060aa497fee9d7",
+  "license_file": "LICENSE.txt",
+  "path": "engine/gamesys/src/gamesys/components/box2d/comp_collision_object_box2d.h",
+  "kind": "code",
+  "hits": [
+   "gamesys",
+   "comp",
+   "components"
+  ],
+  "score": 3,
+  "attribution": [
+   "COMPLYING_WITH_LICENSES.md",
+   "LICENSE.txt",
+   "TOOLS_LICENSES.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/defold/defold",
+  "commit": "cbca1e163f673587e3e6f71270060aa497fee9d7",
+  "license_file": "LICENSE.txt",
+  "path": "engine/gamesys/src/gamesys/components/bullet3d/comp_collision_object_bullet3d.cpp",
+  "kind": "code",
+  "hits": [
+   "gamesys",
+   "comp",
+   "components"
+  ],
+  "score": 3,
+  "attribution": [
+   "COMPLYING_WITH_LICENSES.md",
+   "LICENSE.txt",
+   "TOOLS_LICENSES.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/defold/defold",
+  "commit": "cbca1e163f673587e3e6f71270060aa497fee9d7",
+  "license_file": "LICENSE.txt",
+  "path": "engine/gamesys/src/gamesys/components/bullet3d/comp_collision_object_bullet3d.h",
+  "kind": "code",
+  "hits": [
+   "gamesys",
+   "comp",
+   "components"
+  ],
+  "score": 3,
+  "attribution": [
+   "COMPLYING_WITH_LICENSES.md",
+   "LICENSE.txt",
+   "TOOLS_LICENSES.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/defold/defold",
+  "commit": "cbca1e163f673587e3e6f71270060aa497fee9d7",
+  "license_file": "LICENSE.txt",
+  "path": "engine/gamesys/src/gamesys/components/comp_collision_object.cpp",
+  "kind": "code",
+  "hits": [
+   "gamesys",
+   "comp",
+   "components"
+  ],
+  "score": 3,
+  "attribution": [
+   "COMPLYING_WITH_LICENSES.md",
+   "LICENSE.txt",
+   "TOOLS_LICENSES.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/defold/defold",
+  "commit": "cbca1e163f673587e3e6f71270060aa497fee9d7",
+  "license_file": "LICENSE.txt",
+  "path": "engine/gamesys/src/gamesys/components/comp_collision_object.h",
+  "kind": "code",
+  "hits": [
+   "gamesys",
+   "comp",
+   "components"
+  ],
+  "score": 3,
+  "attribution": [
+   "COMPLYING_WITH_LICENSES.md",
+   "LICENSE.txt",
+   "TOOLS_LICENSES.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/defold/defold",
+  "commit": "cbca1e163f673587e3e6f71270060aa497fee9d7",
+  "license_file": "LICENSE.txt",
+  "path": "engine/gamesys/src/gamesys/components/comp_collision_object_private.h",
+  "kind": "code",
+  "hits": [
+   "gamesys",
+   "comp",
+   "components"
+  ],
+  "score": 3,
+  "attribution": [
+   "COMPLYING_WITH_LICENSES.md",
+   "LICENSE.txt",
+   "TOOLS_LICENSES.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/defold/defold",
+  "commit": "cbca1e163f673587e3e6f71270060aa497fee9d7",
+  "license_file": "LICENSE.txt",
+  "path": "engine/gamesys/src/gamesys/components/comp_tilegrid.cpp",
+  "kind": "code",
+  "hits": [
+   "gamesys",
+   "comp",
+   "components"
+  ],
+  "score": 3,
+  "attribution": [
+   "COMPLYING_WITH_LICENSES.md",
+   "LICENSE.txt",
+   "TOOLS_LICENSES.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/defold/defold",
+  "commit": "cbca1e163f673587e3e6f71270060aa497fee9d7",
+  "license_file": "LICENSE.txt",
+  "path": "engine/gamesys/src/gamesys/components/comp_tilegrid.h",
+  "kind": "code",
+  "hits": [
+   "gamesys",
+   "comp",
+   "components"
+  ],
+  "score": 3,
+  "attribution": [
+   "COMPLYING_WITH_LICENSES.md",
+   "LICENSE.txt",
+   "TOOLS_LICENSES.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/Chemistry/Components/SolutionItemStatusComponent.cs",
+  "kind": "code",
+  "hits": [
+   "client",
+   "content",
+   "components"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/UserInterface/Systems/Objectives/Controls/ObjectiveBriefingControl.xaml.cs",
+  "kind": "code",
+  "hits": [
+   "objective",
+   "control",
+   "controls"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-048"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/UserInterface/Systems/Objectives/Controls/ObjectiveConditionsControl.xaml.cs",
+  "kind": "code",
+  "hits": [
+   "objective",
+   "control",
+   "controls"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-048"
  }
 ]
