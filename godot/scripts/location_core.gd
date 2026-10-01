@@ -707,6 +707,7 @@ static func read_state(hub_path := HUB_SAVE, dive_path := DIVE_SAVE,
 		"passions": PassionCore.normalize_record(data.get("passions", {})),
 		"chronicle": data.get("chronicle"),
 		"atlas_given": given if given is Array else [],
+		"deeds": PlaceDeeds.normalize(data.get("deeds", {})),
 		"day": day if day != "" else Time.get_date_string_from_system()}
 
 
@@ -718,6 +719,7 @@ static func write_state(st: Dictionary, hub_path := HUB_SAVE) -> void:
 	data["actions"] = st.actions
 	data["trials"] = st.trials
 	data["passions"] = st.passions
+	data["deeds"] = PlaceDeeds.normalize(st.get("deeds", {}))
 	if typeof(st.chronicle) == TYPE_STRING and st.chronicle != "":
 		data["chronicle"] = st.chronicle
 	var f := FileAccess.open(hub_path, FileAccess.WRITE)

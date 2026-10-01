@@ -89,6 +89,8 @@ var chron := {}
 # is under way).
 const MISSION_BOARD_AT := Vector3(3.6, 0, 1.2)
 var mission_data: Dictionary = MissionCore.load_data()
+## The small acts of the places (PlaceDeeds): read and written back whole.
+var place_deeds := {}
 var mission_state := {"done": {}, "current": null, "flags": {},
 	"lines": {}}
 var mission := {}
@@ -654,7 +656,8 @@ func _save() -> void:
 	if f:
 		f.store_string(JSON.stringify({"form": form, "actions": actions,
 			"trials": trial_state, "passions": passion_record,
-			"chronicle": chronicle, "missions": mission_state}))
+			"chronicle": chronicle, "missions": mission_state,
+			"deeds": place_deeds}))
 
 
 func _load() -> void:
@@ -662,6 +665,9 @@ func _load() -> void:
 		return
 	var data = JSON.parse_string(FileAccess.get_file_as_string(SAVE_PATH))
 	if data is Dictionary:
+		# The small acts of the places (PlaceDeeds): the hub keeps them
+		# through its own save, as it keeps every key a place writes.
+		place_deeds = PlaceDeeds.normalize(data.get("deeds", {}))
 		for a in HubCore.ATTRIBUTES:
 			form[a] = int(data.get("form", {}).get(a, form[a]))
 		var act: Dictionary = data.get("actions", {})
