@@ -148,6 +148,39 @@ func _web_parity(t: Object, data: Dictionary) -> void:
 			k += 1
 	t._check(k == web.drawings.size() and same == k,
 		"web own drawings on the same spots (%d of %d)" % [same, k])
+	_fish_parity(t, web)
+
+
+## The fish of our own drawing (DEF-056): every fish of a school with a
+## 12/12 kit shows the same variant at the same size in the web and in
+## the headset (FishDrawings, fish_drawings.gd), and only 12/12 kits
+## swim at all.
+func _fish_parity(t: Object, web: Dictionary) -> void:
+	var index := FishDrawings.load_index()
+	t._check(not index.is_empty(), "fish drawings index present")
+	var fish: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(
+		"res://data/issyk-kul-fish.json"))
+	var ours := []
+	for s in DiveCore.fish_schools(fish.fish):
+		var kit := FishDrawings.kit_of(index, str(s.id))
+		if kit.is_empty():
+			continue
+		t._check(kit.files.size() == 12 and kit.fish_px.size() == 12,
+			"%s: 12 variants" % s.id)
+		t._check(ResourceLoader.exists(FishDrawings.ART + kit.atlas),
+			"%s: atlas in the headset" % s.id)
+		for spot in FishDrawings.school_spots(index, kit, s):
+			ours.append(spot)
+	var theirs: Array = web.get("fish", [])
+	var same := 0
+	for i in mini(ours.size(), theirs.size()):
+		if ours[i].file == theirs[i].file \
+				and absf(ours[i].size - theirs[i].size) < 1e-6:
+			same += 1
+	t._check(ours.size() > 0 and ours.size() == theirs.size()
+		and same == ours.size(),
+		"web own fish: same variant and size (%d of %d)" % [same,
+			theirs.size()])
 
 
 func _find(placed: Array, id: String) -> Dictionary:

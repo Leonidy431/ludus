@@ -1100,5 +1100,223 @@
    "z": -21.950027109123766,
    "centreDepth": 19.805298270190544
   }
+ ],
+ "fish": [
+  {
+   "id": "chebachok",
+   "i": 0,
+   "file": "own_chebachok_4a8e60a860_v01.png",
+   "size": 0.15186440677966104
+  },
+  {
+   "id": "chebachok",
+   "i": 1,
+   "file": "own_chebachok_4a8e60a860_v02.png",
+   "size": 0.15186440677966104
+  },
+  {
+   "id": "chebachok",
+   "i": 2,
+   "file": "own_chebachok_4a8e60a860_v03.png",
+   "size": 0.15186440677966104
+  },
+  {
+   "id": "chebachok",
+   "i": 3,
+   "file": "own_chebachok_4a8e60a860_v04.png",
+   "size": 0.15186440677966104
+  },
+  {
+   "id": "chebachok",
+   "i": 4,
+   "file": "own_chebachok_4a8e60a860_v05.png",
+   "size": 0.15186440677966104
+  },
+  {
+   "id": "chebachok",
+   "i": 5,
+   "file": "own_chebachok_4a8e60a860_v06.png",
+   "size": 0.15186440677966104
+  },
+  {
+   "id": "chebachok",
+   "i": 6,
+   "file": "own_chebachok_4a8e60a860_v07.png",
+   "size": 0.42519871870921816
+  },
+  {
+   "id": "chebachok",
+   "i": 7,
+   "file": "own_chebachok_4a8e60a860_v08.png",
+   "size": 0.15186440677966104
+  },
+  {
+   "id": "chebachok",
+   "i": 8,
+   "file": "own_chebachok_4a8e60a860_v09.png",
+   "size": 0.42519871870921816
+  },
+  {
+   "id": "chebachok",
+   "i": 9,
+   "file": "own_chebachok_4a8e60a860_v10.png",
+   "size": 0.15186440677966104
+  },
+  {
+   "id": "chebachok",
+   "i": 10,
+   "file": "own_chebachok_4a8e60a860_v11.png",
+   "size": 0.15186440677966104
+  },
+  {
+   "id": "chebachok",
+   "i": 11,
+   "file": "own_chebachok_4a8e60a860_v12.png",
+   "size": 0.15186440677966104
+  },
+  {
+   "id": "chebachok",
+   "i": 12,
+   "file": "own_chebachok_4a8e60a860_v01.png",
+   "size": 0.15186440677966104
+  },
+  {
+   "id": "chebachok",
+   "i": 13,
+   "file": "own_chebachok_4a8e60a860_v02.png",
+   "size": 0.15186440677966104
+  },
+  {
+   "id": "chebachok",
+   "i": 14,
+   "file": "own_chebachok_4a8e60a860_v03.png",
+   "size": 0.15186440677966104
+  },
+  {
+   "id": "chebachok",
+   "i": 15,
+   "file": "own_chebachok_4a8e60a860_v04.png",
+   "size": 0.15186440677966104
+  },
+  {
+   "id": "chebachok",
+   "i": 16,
+   "file": "own_chebachok_4a8e60a860_v05.png",
+   "size": 0.15186440677966104
+  },
+  {
+   "id": "chebachok",
+   "i": 17,
+   "file": "own_chebachok_4a8e60a860_v06.png",
+   "size": 0.15186440677966104
+  },
+  {
+   "id": "chebachok",
+   "i": 18,
+   "file": "own_chebachok_4a8e60a860_v07.png",
+   "size": 0.42519871870921816
+  },
+  {
+   "id": "chebachok",
+   "i": 19,
+   "file": "own_chebachok_4a8e60a860_v08.png",
+   "size": 0.15186440677966104
+  },
+  {
+   "id": "chebachok",
+   "i": 20,
+   "file": "own_chebachok_4a8e60a860_v09.png",
+   "size": 0.42519871870921816
+  },
+  {
+   "id": "chebachok",
+   "i": 21,
+   "file": "own_chebachok_4a8e60a860_v10.png",
+   "size": 0.15186440677966104
+  },
+  {
+   "id": "marinka",
+   "i": 0,
+   "file": "own_marinka_877962c94d_v01.png",
+   "size": 0.488135593220339
+  },
+  {
+   "id": "marinka",
+   "i": 1,
+   "file": "own_marinka_877962c94d_v02.png",
+   "size": 0.488135593220339
+  },
+  {
+   "id": "marinka",
+   "i": 2,
+   "file": "own_marinka_877962c94d_v03.png",
+   "size": 0.488135593220339
+  },
+  {
+   "id": "marinka",
+   "i": 3,
+   "file": "own_marinka_877962c94d_v04.png",
+   "size": 0.488135593220339
+  },
+  {
+   "id": "osman",
+   "i": 0,
+   "file": "own_osman_dac0c4d124_v01.png",
+   "size": 0.3796610169491525
+  },
+  {
+   "id": "osman",
+   "i": 1,
+   "file": "own_osman_dac0c4d124_v02.png",
+   "size": 0.3796610169491525
+  },
+  {
+   "id": "gubach",
+   "i": 0,
+   "file": "own_gubach_035ddd127e_v01.png",
+   "size": 0.13016949152542373
+  },
+  {
+   "id": "gubach",
+   "i": 1,
+   "file": "own_gubach_035ddd127e_v02.png",
+   "size": 0.13016949152542373
+  },
+  {
+   "id": "ishkhan",
+   "i": 0,
+   "file": "own_ishkhan_e07c061221_v01.png",
+   "size": 0.5966101694915255
+  },
+  {
+   "id": "ishkhan",
+   "i": 1,
+   "file": "own_ishkhan_e07c061221_v02.png",
+   "size": 0.5966101694915255
+  },
+  {
+   "id": "sazan",
+   "i": 0,
+   "file": "own_sazan_9a7d5cf44c_v01.png",
+   "size": 0.9622744669218153
+  },
+  {
+   "id": "sazan",
+   "i": 1,
+   "file": "own_sazan_9a7d5cf44c_v02.png",
+   "size": 0.5966101694915255
+  },
+  {
+   "id": "sazan",
+   "i": 2,
+   "file": "own_sazan_9a7d5cf44c_v03.png",
+   "size": 0.5966101694915255
+  },
+  {
+   "id": "sazan",
+   "i": 3,
+   "file": "own_sazan_9a7d5cf44c_v04.png",
+   "size": 0.5966101694915255
+  }
  ]
 }

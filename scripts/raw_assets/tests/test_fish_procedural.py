@@ -172,10 +172,56 @@ class ShippedTest(unittest.TestCase):
             else:
                 self.assertEqual(shipped, [])
 
-    def test_no_headset_copy_without_a_scene(self):
-        # TABOO 0.011: the dive shows 3D fish; no Godot scene loads the
-        # fish sprites yet, so they must not ride in the APK.
-        self.assertFalse(GODOT.exists())
+    def test_headset_copy_is_one_atlas_per_shipped_kit(self):
+        # TABOO 0.011: the headset carries one atlas per 12/12 kit (one
+        # MultiMesh, one draw call per school) and the index the dive
+        # reads; never a short kit, never the 12 loose files.
+        index = json.loads((ROOT / 'godot' / 'data' /
+                            'fish-drawings.json').read_text('utf-8'))
+        web = json.loads((ROOT / 'public' / 'ludus' / 'data' /
+                          'fish-drawings.json').read_text('utf-8'))
+        self.assertEqual(index, web)
+        shipped = {k['kit'] for k in index['kits']}
+        metas = {m.stem for m in DERIVED.glob('own_*.json')}
+        self.assertEqual(shipped, metas)
+        pngs = sorted(p.name for p in GODOT.glob('*.png'))
+        self.assertEqual(pngs, sorted(f'{k}_atlas.png' for k in shipped))
+        for kit in index['kits']:
+            self.assertEqual(len(kit['files']), 12)
+            self.assertEqual(len(kit['fish_px']), 12)
+            atlas = Image.open(GODOT / f'{kit["kit"]}_atlas.png')
+            self.assertEqual(atlas.size, (fp.COLS * fp.CELL,
+                                          fp.ROWS * fp.CELL))
+            rec = json.loads((DERIVED / f'{kit["kit"]}.json')
+                             .read_text('utf-8'))
+            self.assertEqual(kit['fish_px'],
+                             [v['params']['fish_px']
+                              for v in rec['variants']])
+        for short in index['short']:
+            self.assertLess(short['variants'], 12)
+            self.assertNotIn(short['id'], {k['id'] for k in
+                                           index['kits']})
+
+    def test_new_views_are_real_and_capped(self):
+        # r3: the turn in perspective, the view from below or above and
+        # schools of 2-5 are real views; a kit keeps at most three of
+        # each, so the side view where a species is told apart leads.
+        rec, _ = fp.build('gubach')
+        states = [v['state'] for v in rec['variants']]
+        self.assertLessEqual(sum(s in ('below', 'above')
+                                 for s in states), 3)
+        self.assertLessEqual(states.count('turning'), 3)
+        self.assertNotIn('school', fp.poses_of('gubach')[0])
+        self.assertIn('school', fp.poses_of('chebachok')[0])
+        # A bottom fish is seen from above; open water also from below.
+        self.assertIn('above', fp.poses_of('gubach')[0])
+        self.assertNotIn('below', fp.poses_of('gubach')[0])
+        # A turn is a taper, not a resize: it counts after normalising.
+        img = fp.draw_one('sazan', fp.LENGTH, 128, 128)
+        turned = fp.turn(img, 50, 128 - fp.LENGTH / 2, fp.LENGTH, 128)
+        self.assertGreater(fp.form_distance(form.alpha_mask(img),
+                                            form.alpha_mask(turned)),
+                           0.1)
 
 
 if __name__ == '__main__':

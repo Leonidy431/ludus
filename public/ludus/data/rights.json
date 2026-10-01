@@ -240,6 +240,78 @@
    "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
   },
   {
+   "object": "own_chebachok_4a8e60a860",
+   "slot": "DEF-056",
+   "passion": null,
+   "repo": "ludus (own drawing)",
+   "commit": "fish-drawi",
+   "path": "scripts/raw_assets/fish_procedural.py",
+   "licence": "project (own drawing, no third-party material)",
+   "colour_change": null,
+   "min_shape_change": 0.3548,
+   "variants": 12
+  },
+  {
+   "object": "own_gubach_035ddd127e",
+   "slot": "DEF-056",
+   "passion": null,
+   "repo": "ludus (own drawing)",
+   "commit": "fish-drawi",
+   "path": "scripts/raw_assets/fish_procedural.py",
+   "licence": "project (own drawing, no third-party material)",
+   "colour_change": null,
+   "min_shape_change": 0.3518,
+   "variants": 12
+  },
+  {
+   "object": "own_ishkhan_e07c061221",
+   "slot": "DEF-056",
+   "passion": null,
+   "repo": "ludus (own drawing)",
+   "commit": "fish-drawi",
+   "path": "scripts/raw_assets/fish_procedural.py",
+   "licence": "project (own drawing, no third-party material)",
+   "colour_change": null,
+   "min_shape_change": 0.3501,
+   "variants": 12
+  },
+  {
+   "object": "own_marinka_877962c94d",
+   "slot": "DEF-056",
+   "passion": null,
+   "repo": "ludus (own drawing)",
+   "commit": "fish-drawi",
+   "path": "scripts/raw_assets/fish_procedural.py",
+   "licence": "project (own drawing, no third-party material)",
+   "colour_change": null,
+   "min_shape_change": 0.3523,
+   "variants": 12
+  },
+  {
+   "object": "own_osman_dac0c4d124",
+   "slot": "DEF-056",
+   "passion": null,
+   "repo": "ludus (own drawing)",
+   "commit": "fish-drawi",
+   "path": "scripts/raw_assets/fish_procedural.py",
+   "licence": "project (own drawing, no third-party material)",
+   "colour_change": null,
+   "min_shape_change": 0.358,
+   "variants": 12
+  },
+  {
+   "object": "own_sazan_9a7d5cf44c",
+   "slot": "DEF-056",
+   "passion": null,
+   "repo": "ludus (own drawing)",
+   "commit": "fish-drawi",
+   "path": "scripts/raw_assets/fish_procedural.py",
+   "licence": "project (own drawing, no third-party material)",
+   "colour_change": null,
+   "min_shape_change": 0.3643,
+   "variants": 12
+  },
+  {
    "object": "own_boulder_4d9da8b0ae",
    "slot": "DEF-057",
    "passion": null,

@@ -236,11 +236,49 @@
     return out;
   }
 
+  // The fish of our own drawing (DEF-056,
+  // scripts/raw_assets/fish_procedural.py): only the kits that reached
+  // 12/12, listed in data/fish-drawings.json by the generator.  The same
+  // choice as FishDrawings in godot/scripts/fish_drawings.gd: fish i of
+  // a school shows variant i mod 12 (no two neighbours repeat), and the
+  // drawing is sized so that its biggest fish has the species' real
+  // length.  Scenery that swims: the release rules stay with the 3D
+  // schools' data, a drawing is never loot.
+  function fishVariant(i) {
+    return i % VARIANTS;
+  }
+
+  function fishKit(index, id) {
+    return ((index && index.kits) || []).find((k) => k.id === id) || null;
+  }
+
+  function fishSpots(index, kit, school) {
+    const out = [];
+    for (let i = 0; i < school.count; i++) {
+      const v = fishVariant(i);
+      out.push({ id: school.id, i, file: kit.files[v],
+        size: school.length * index.canvas_px / kit.fish_px[v] });
+    }
+    return out;
+  }
+
+  /** Every drawn fish of every school that has a kit, in school order. */
+  function placeOwnFish(index, schools) {
+    const out = [];
+    schools.forEach((s) => {
+      const kit = fishKit(index, s.id);
+      if (kit) {
+        out.push(...fishSpots(index, kit, s));
+      }
+    });
+    return out;
+  }
+
   const api = { PASSAGE_DEPTH, UNKNOWN_RU, FADE_FAR, FADE_NEAR, FADE_MIN,
     FADE_SECONDS, REACH_M, TAG_M, CHRONICLE_KEY, BAG_KEY, OWN_DRAWINGS, VARIANTS,
     options, option, writeChronicle, onFloor, place, take, holyPoints,
     holyDistance, labelFor, fadeTarget, fadeStep, scribePage, kitFiles,
-    placeOwnDrawings };
+    placeOwnDrawings, fishVariant, fishKit, fishSpots, placeOwnFish };
   if (typeof module === 'object' && module.exports) {
     module.exports = api;
   }

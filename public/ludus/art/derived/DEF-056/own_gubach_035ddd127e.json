@@ -1,0 +1,1512 @@
+{
+  "name": "own_gubach_035ddd127e",
+  "id": "035ddd127e",
+  "seed": "035ddd127e65f73e93249bb8b11fdedd21cea42f",
+  "slot": "DEF-056",
+  "thing": "gubach",
+  "register": {
+    "id": "gubach",
+    "category": "fish",
+    "ru": "Пятнистый губач",
+    "en": "Stone loach",
+    "depth_m": [
+      1,
+      100
+    ],
+    "shape": "fish",
+    "size_m": 0.12,
+    "colour": "#9a8f73",
+    "states": [
+      "под камнем",
+      "на песке",
+      "в гальке",
+      "замер",
+      "кормится"
+    ]
+  },
+  "species": {
+    "ru": "Иссык-кульский губач",
+    "en": "Issyk-Kul naked loach",
+    "latin": "Triplophysa strauchii ulacholica",
+    "status": "endemic subspecies",
+    "loot": "release",
+    "length": 0.12,
+    "depth": [
+      1,
+      100
+    ],
+    "colour": "#9a8f73"
+  },
+  "morphology": {
+    "depth": 0.16,
+    "top": 0.62,
+    "peak": 0.4,
+    "head": 0.55,
+    "stalk": 0.55,
+    "tail": 0.15,
+    "fork": 0.12,
+    "dorsal": [
+      0.45,
+      0.56,
+      0.12,
+      "short"
+    ],
+    "anal": [
+      0.74,
+      0.83,
+      0.06
+    ],
+    "adipose": null,
+    "barbels": 3,
+    "marks": "blotches",
+    "eye": 0.045,
+    "mouth": "under",
+    "fins": [
+      120,
+      110,
+      88
+    ],
+    "note": "genus shape from general ichthyology, approximate; to be checked by an ichthyologist (docs/ISSYK_KUL_FISH.md)"
+  },
+  "origin": "own-procedural-drawing",
+  "method": "own-procedural",
+  "raw_material": false,
+  "source": {
+    "repo": "ludus (own drawing)",
+    "path": "scripts/raw_assets/fish_procedural.py",
+    "commit": "fish-drawing-r3"
+  },
+  "repo": "ludus (own drawing)",
+  "path": "scripts/raw_assets/fish_procedural.py",
+  "commit": "fish-drawing-r3",
+  "license": "project (own drawing, no third-party material)",
+  "license_file": null,
+  "threshold": 0.35,
+  "shape_basis": "nearest-sibling-normalised",
+  "shape_norm": {
+    "box": [
+      200,
+      80
+    ],
+    "method": "crop to the bbox, fit to the box; placement, size and stretch do not count"
+  },
+  "engine": {
+    "age_lengths_px": [
+      236,
+      188,
+      150,
+      120,
+      96
+    ],
+    "scale_note": "the game scales a variant to the age class; a size is never a variant",
+    "rest_on_floor": "a variant of the state \"bottom\" is placed by the game with its lowest pixel on the floor line",
+    "tilt_deg": [
+      -13,
+      13
+    ],
+    "facing": "left; the game turns the sprite, never a mirrored variant (TABOO 0.3 rule 35)"
+  },
+  "reference_profile": {
+    "name": "fish",
+    "aspect": [
+      1.8,
+      6.5
+    ],
+    "fill": [
+      0.35,
+      0.85
+    ],
+    "category": "fish"
+  },
+  "pool": {
+    "size": 48,
+    "fitting": 37,
+    "refused": {
+      "unlike-real-object": 11,
+      "too-close-to-a-sibling": 25
+    },
+    "chosen": 12
+  },
+  "constitution": "FORM: a real species of Issyk-Kul in its real states -> ACTION: the ROV operator tells it apart, logs it and releases the endemics -> GOAL: knowing the living lake by its real creatures (TABOO 0.03 rule 6)",
+  "variants": [
+    {
+      "slot": "v01",
+      "file": "own_gubach_035ddd127e_v01.png",
+      "state": "bottom",
+      "params": {
+        "pose": "bottom",
+        "state": "bottom",
+        "form": {
+          "bend": "straight",
+          "amp": 0.0,
+          "fins": 1.35,
+          "tail": 0.8
+        },
+        "fish_px": 236,
+        "key": "gubach:bottom:0:amp=0.0-bend=straight-fins=1.35-tail=0.8"
+      },
+      "shape_change": 0.3518,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.077,
+        "fill": 0.379,
+        "base": 0.225
+      },
+      "area": 7091,
+      "hitbox": {
+        "bbox": [
+          9,
+          76,
+          249,
+          154
+        ],
+        "area": 7091,
+        "radius": 47.51,
+        "hull": [
+          [
+            9,
+            128
+          ],
+          [
+            10,
+            126
+          ],
+          [
+            12,
+            123
+          ],
+          [
+            13,
+            122
+          ],
+          [
+            16,
+            120
+          ],
+          [
+            102,
+            76
+          ],
+          [
+            104,
+            76
+          ],
+          [
+            246,
+            115
+          ],
+          [
+            247,
+            116
+          ],
+          [
+            248,
+            119
+          ],
+          [
+            249,
+            125
+          ],
+          [
+            249,
+            129
+          ],
+          [
+            248,
+            132
+          ],
+          [
+            245,
+            138
+          ],
+          [
+            170,
+            154
+          ],
+          [
+            166,
+            154
+          ],
+          [
+            69,
+            153
+          ],
+          [
+            34,
+            151
+          ],
+          [
+            17,
+            143
+          ],
+          [
+            16,
+            142
+          ],
+          [
+            10,
+            131
+          ],
+          [
+            9,
+            129
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v01"
+    },
+    {
+      "slot": "v02",
+      "file": "own_gubach_035ddd127e_v02.png",
+      "state": "feeding",
+      "params": {
+        "pose": "feeding",
+        "state": "feeding",
+        "form": {
+          "mouth": true,
+          "bend": "head-down",
+          "amp": 0.1
+        },
+        "fish_px": 236,
+        "key": "gubach:feeding:0:amp=0.1-bend=head-down-mouth=True"
+      },
+      "shape_change": 0.3735,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.963,
+        "fill": 0.356,
+        "base": 0.04
+      },
+      "area": 6926,
+      "hitbox": {
+        "bbox": [
+          9,
+          84,
+          249,
+          165
+        ],
+        "area": 6926,
+        "radius": 46.95,
+        "hull": [
+          [
+            9,
+            151
+          ],
+          [
+            10,
+            149
+          ],
+          [
+            13,
+            144
+          ],
+          [
+            19,
+            138
+          ],
+          [
+            24,
+            134
+          ],
+          [
+            30,
+            130
+          ],
+          [
+            102,
+            84
+          ],
+          [
+            104,
+            84
+          ],
+          [
+            247,
+            113
+          ],
+          [
+            248,
+            117
+          ],
+          [
+            249,
+            125
+          ],
+          [
+            249,
+            129
+          ],
+          [
+            248,
+            134
+          ],
+          [
+            246,
+            139
+          ],
+          [
+            245,
+            141
+          ],
+          [
+            169,
+            150
+          ],
+          [
+            36,
+            165
+          ],
+          [
+            34,
+            165
+          ],
+          [
+            17,
+            164
+          ],
+          [
+            16,
+            163
+          ],
+          [
+            9,
+            152
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v02"
+    },
+    {
+      "slot": "v03",
+      "file": "own_gubach_035ddd127e_v03.png",
+      "state": "turning",
+      "params": {
+        "pose": "turning",
+        "state": "turning",
+        "form": {
+          "turn": 35,
+          "toward": true,
+          "bend": "straight",
+          "amp": 0.0
+        },
+        "fish_px": 236,
+        "key": "gubach:turning:0:amp=0.0-bend=straight-toward=True-turn=35"
+      },
+      "shape_change": 0.3589,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.684,
+        "fill": 0.416,
+        "base": 0.049
+      },
+      "area": 6455,
+      "hitbox": {
+        "bbox": [
+          2,
+          81,
+          206,
+          157
+        ],
+        "area": 6455,
+        "radius": 45.33,
+        "hull": [
+          [
+            2,
+            124
+          ],
+          [
+            6,
+            120
+          ],
+          [
+            9,
+            118
+          ],
+          [
+            11,
+            117
+          ],
+          [
+            106,
+            81
+          ],
+          [
+            107,
+            81
+          ],
+          [
+            206,
+            116
+          ],
+          [
+            206,
+            138
+          ],
+          [
+            159,
+            149
+          ],
+          [
+            36,
+            157
+          ],
+          [
+            34,
+            157
+          ],
+          [
+            10,
+            148
+          ],
+          [
+            2,
+            133
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v03"
+    },
+    {
+      "slot": "v04",
+      "file": "own_gubach_035ddd127e_v04.png",
+      "state": "above",
+      "params": {
+        "pose": "above",
+        "state": "above",
+        "form": {
+          "view": "above",
+          "bend": "straight",
+          "amp": 0.0,
+          "spread": 15
+        },
+        "fish_px": 236,
+        "key": "gubach:above:0:amp=0.0-bend=straight-spread=15-view=above"
+      },
+      "shape_change": 0.3716,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 4.389,
+        "fill": 0.557,
+        "base": 0.068
+      },
+      "area": 7128,
+      "hitbox": {
+        "bbox": [
+          10,
+          101,
+          247,
+          155
+        ],
+        "area": 7128,
+        "radius": 47.63,
+        "hull": [
+          [
+            10,
+            125
+          ],
+          [
+            13,
+            119
+          ],
+          [
+            16,
+            114
+          ],
+          [
+            17,
+            113
+          ],
+          [
+            34,
+            107
+          ],
+          [
+            80,
+            101
+          ],
+          [
+            81,
+            101
+          ],
+          [
+            133,
+            107
+          ],
+          [
+            247,
+            121
+          ],
+          [
+            247,
+            135
+          ],
+          [
+            133,
+            149
+          ],
+          [
+            81,
+            155
+          ],
+          [
+            80,
+            155
+          ],
+          [
+            34,
+            149
+          ],
+          [
+            17,
+            143
+          ],
+          [
+            16,
+            142
+          ],
+          [
+            13,
+            137
+          ],
+          [
+            10,
+            131
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v04"
+    },
+    {
+      "slot": "v05",
+      "file": "own_gubach_035ddd127e_v05.png",
+      "state": "rising",
+      "params": {
+        "pose": "rising",
+        "state": "rising",
+        "form": {
+          "fins": 1.25,
+          "bend": "bow",
+          "amp": 0.13
+        },
+        "fish_px": 236,
+        "key": "gubach:rising:1:amp=0.13-bend=bow-fins=1.25"
+      },
+      "shape_change": 0.4085,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.158,
+        "fill": 0.393,
+        "base": 0.13
+      },
+      "area": 7171,
+      "hitbox": {
+        "bbox": [
+          9,
+          107,
+          249,
+          183
+        ],
+        "area": 7171,
+        "radius": 47.78,
+        "hull": [
+          [
+            9,
+            128
+          ],
+          [
+            10,
+            126
+          ],
+          [
+            11,
+            125
+          ],
+          [
+            13,
+            124
+          ],
+          [
+            17,
+            123
+          ],
+          [
+            102,
+            107
+          ],
+          [
+            104,
+            107
+          ],
+          [
+            247,
+            113
+          ],
+          [
+            248,
+            117
+          ],
+          [
+            249,
+            125
+          ],
+          [
+            249,
+            129
+          ],
+          [
+            248,
+            134
+          ],
+          [
+            246,
+            139
+          ],
+          [
+            245,
+            141
+          ],
+          [
+            244,
+            142
+          ],
+          [
+            168,
+            181
+          ],
+          [
+            115,
+            183
+          ],
+          [
+            113,
+            183
+          ],
+          [
+            69,
+            175
+          ],
+          [
+            35,
+            163
+          ],
+          [
+            27,
+            156
+          ],
+          [
+            18,
+            148
+          ],
+          [
+            17,
+            147
+          ],
+          [
+            16,
+            145
+          ],
+          [
+            10,
+            132
+          ],
+          [
+            9,
+            129
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v05"
+    },
+    {
+      "slot": "v06",
+      "file": "own_gubach_035ddd127e_v06.png",
+      "state": "turning",
+      "params": {
+        "pose": "turning",
+        "state": "turning",
+        "form": {
+          "turn": 35,
+          "toward": true,
+          "bend": "wave",
+          "amp": 0.1
+        },
+        "fish_px": 236,
+        "key": "gubach:turning:1:amp=0.1-bend=wave-toward=True-turn=35"
+      },
+      "shape_change": 0.3617,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.649,
+        "fill": 0.413,
+        "base": 0.088
+      },
+      "area": 6488,
+      "hitbox": {
+        "bbox": [
+          2,
+          89,
+          206,
+          166
+        ],
+        "area": 6488,
+        "radius": 45.44,
+        "hull": [
+          [
+            2,
+            125
+          ],
+          [
+            5,
+            122
+          ],
+          [
+            7,
+            121
+          ],
+          [
+            106,
+            89
+          ],
+          [
+            107,
+            89
+          ],
+          [
+            178,
+            107
+          ],
+          [
+            206,
+            115
+          ],
+          [
+            206,
+            138
+          ],
+          [
+            75,
+            165
+          ],
+          [
+            36,
+            166
+          ],
+          [
+            34,
+            166
+          ],
+          [
+            10,
+            151
+          ],
+          [
+            2,
+            133
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v06"
+    },
+    {
+      "slot": "v07",
+      "file": "own_gubach_035ddd127e_v07.png",
+      "state": "above",
+      "params": {
+        "pose": "above",
+        "state": "above",
+        "form": {
+          "view": "above",
+          "bend": "straight",
+          "amp": 0.0,
+          "spread": 70
+        },
+        "fish_px": 236,
+        "key": "gubach:above:2:amp=0.0-bend=straight-spread=70-view=above"
+      },
+      "shape_change": 0.3716,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.469,
+        "fill": 0.361,
+        "base": 0.064
+      },
+      "area": 8212,
+      "hitbox": {
+        "bbox": [
+          10,
+          80,
+          247,
+          176
+        ],
+        "area": 8212,
+        "radius": 51.13,
+        "hull": [
+          [
+            10,
+            125
+          ],
+          [
+            13,
+            119
+          ],
+          [
+            16,
+            114
+          ],
+          [
+            17,
+            113
+          ],
+          [
+            60,
+            80
+          ],
+          [
+            63,
+            80
+          ],
+          [
+            124,
+            93
+          ],
+          [
+            247,
+            121
+          ],
+          [
+            247,
+            135
+          ],
+          [
+            124,
+            163
+          ],
+          [
+            63,
+            176
+          ],
+          [
+            60,
+            176
+          ],
+          [
+            17,
+            143
+          ],
+          [
+            16,
+            142
+          ],
+          [
+            13,
+            137
+          ],
+          [
+            10,
+            131
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v07"
+    },
+    {
+      "slot": "v08",
+      "file": "own_gubach_035ddd127e_v08.png",
+      "state": "single",
+      "params": {
+        "pose": "single",
+        "state": "single",
+        "form": {
+          "bend": "wave",
+          "amp": 0.15
+        },
+        "fish_px": 236,
+        "key": "gubach:single:3:amp=0.15-bend=wave"
+      },
+      "shape_change": 0.3585,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.38,
+        "fill": 0.41,
+        "base": 0.096
+      },
+      "area": 6982,
+      "hitbox": {
+        "bbox": [
+          9,
+          95,
+          249,
+          166
+        ],
+        "area": 6982,
+        "radius": 47.14,
+        "hull": [
+          [
+            9,
+            128
+          ],
+          [
+            10,
+            126
+          ],
+          [
+            11,
+            125
+          ],
+          [
+            15,
+            123
+          ],
+          [
+            102,
+            95
+          ],
+          [
+            104,
+            95
+          ],
+          [
+            179,
+            97
+          ],
+          [
+            194,
+            98
+          ],
+          [
+            200,
+            99
+          ],
+          [
+            208,
+            101
+          ],
+          [
+            246,
+            112
+          ],
+          [
+            247,
+            113
+          ],
+          [
+            248,
+            117
+          ],
+          [
+            249,
+            125
+          ],
+          [
+            249,
+            129
+          ],
+          [
+            248,
+            134
+          ],
+          [
+            245,
+            140
+          ],
+          [
+            71,
+            166
+          ],
+          [
+            69,
+            166
+          ],
+          [
+            35,
+            162
+          ],
+          [
+            26,
+            155
+          ],
+          [
+            17,
+            147
+          ],
+          [
+            16,
+            145
+          ],
+          [
+            10,
+            132
+          ],
+          [
+            9,
+            129
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v08"
+    },
+    {
+      "slot": "v09",
+      "file": "own_gubach_035ddd127e_v09.png",
+      "state": "above",
+      "params": {
+        "pose": "above",
+        "state": "above",
+        "form": {
+          "view": "above",
+          "bend": "wave",
+          "amp": 0.08
+        },
+        "fish_px": 236,
+        "key": "gubach:above:3:amp=0.08-bend=wave-view=above"
+      },
+      "shape_change": 0.3882,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.078,
+        "fill": 0.426,
+        "base": 0.055
+      },
+      "area": 7777,
+      "hitbox": {
+        "bbox": [
+          10,
+          99,
+          247,
+          176
+        ],
+        "area": 7777,
+        "radius": 49.75,
+        "hull": [
+          [
+            10,
+            125
+          ],
+          [
+            13,
+            120
+          ],
+          [
+            17,
+            114
+          ],
+          [
+            73,
+            99
+          ],
+          [
+            130,
+            99
+          ],
+          [
+            207,
+            108
+          ],
+          [
+            211,
+            109
+          ],
+          [
+            247,
+            121
+          ],
+          [
+            247,
+            135
+          ],
+          [
+            75,
+            176
+          ],
+          [
+            73,
+            176
+          ],
+          [
+            34,
+            155
+          ],
+          [
+            17,
+            145
+          ],
+          [
+            15,
+            142
+          ],
+          [
+            13,
+            138
+          ],
+          [
+            10,
+            131
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v09"
+    },
+    {
+      "slot": "v10",
+      "file": "own_gubach_035ddd127e_v10.png",
+      "state": "rising",
+      "params": {
+        "pose": "rising",
+        "state": "rising",
+        "form": {
+          "bend": "head-up",
+          "amp": 0.2
+        },
+        "fish_px": 236,
+        "key": "gubach:rising:5:amp=0.2-bend=head-up"
+      },
+      "shape_change": 0.3518,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.333,
+        "fill": 0.402,
+        "base": 0.201
+      },
+      "area": 6948,
+      "hitbox": {
+        "bbox": [
+          9,
+          78,
+          249,
+          150
+        ],
+        "area": 6948,
+        "radius": 47.03,
+        "hull": [
+          [
+            9,
+            80
+          ],
+          [
+            10,
+            79
+          ],
+          [
+            12,
+            78
+          ],
+          [
+            16,
+            78
+          ],
+          [
+            104,
+            83
+          ],
+          [
+            247,
+            113
+          ],
+          [
+            248,
+            117
+          ],
+          [
+            249,
+            125
+          ],
+          [
+            249,
+            129
+          ],
+          [
+            248,
+            134
+          ],
+          [
+            246,
+            139
+          ],
+          [
+            245,
+            141
+          ],
+          [
+            169,
+            150
+          ],
+          [
+            113,
+            150
+          ],
+          [
+            70,
+            140
+          ],
+          [
+            35,
+            124
+          ],
+          [
+            34,
+            123
+          ],
+          [
+            26,
+            114
+          ],
+          [
+            17,
+            103
+          ],
+          [
+            10,
+            85
+          ],
+          [
+            9,
+            82
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v10"
+    },
+    {
+      "slot": "v11",
+      "file": "own_gubach_035ddd127e_v11.png",
+      "state": "turning",
+      "params": {
+        "pose": "turning",
+        "state": "turning",
+        "form": {
+          "turn": 35,
+          "toward": false,
+          "bend": "wave",
+          "amp": 0.1
+        },
+        "fish_px": 236,
+        "key": "gubach:turning:5:amp=0.1-bend=wave-toward=False-turn=35"
+      },
+      "shape_change": 0.3585,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.188,
+        "fill": 0.467,
+        "base": 0.089
+      },
+      "area": 6100,
+      "hitbox": {
+        "bbox": [
+          50,
+          93,
+          254,
+          157
+        ],
+        "area": 6100,
+        "radius": 44.06,
+        "hull": [
+          [
+            50,
+            126
+          ],
+          [
+            51,
+            124
+          ],
+          [
+            108,
+            93
+          ],
+          [
+            109,
+            93
+          ],
+          [
+            190,
+            100
+          ],
+          [
+            210,
+            102
+          ],
+          [
+            254,
+            108
+          ],
+          [
+            254,
+            144
+          ],
+          [
+            86,
+            157
+          ],
+          [
+            85,
+            157
+          ],
+          [
+            64,
+            154
+          ],
+          [
+            63,
+            153
+          ],
+          [
+            54,
+            143
+          ],
+          [
+            53,
+            141
+          ],
+          [
+            52,
+            138
+          ],
+          [
+            50,
+            131
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v11"
+    },
+    {
+      "slot": "v12",
+      "file": "own_gubach_035ddd127e_v12.png",
+      "state": "single",
+      "params": {
+        "pose": "single",
+        "state": "single",
+        "form": {
+          "tail": 1.2,
+          "bend": "tail-down",
+          "amp": 0.1
+        },
+        "fish_px": 236,
+        "key": "gubach:single:9:amp=0.1-bend=tail-down-tail=1.2"
+      },
+      "shape_change": 0.382,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.927,
+        "fill": 0.36,
+        "base": 0.06
+      },
+      "area": 7090,
+      "hitbox": {
+        "bbox": [
+          9,
+          84,
+          249,
+          166
+        ],
+        "area": 7090,
+        "radius": 47.51,
+        "hull": [
+          [
+            9,
+            128
+          ],
+          [
+            10,
+            126
+          ],
+          [
+            12,
+            123
+          ],
+          [
+            13,
+            122
+          ],
+          [
+            16,
+            120
+          ],
+          [
+            18,
+            119
+          ],
+          [
+            102,
+            84
+          ],
+          [
+            104,
+            84
+          ],
+          [
+            246,
+            133
+          ],
+          [
+            247,
+            134
+          ],
+          [
+            248,
+            139
+          ],
+          [
+            249,
+            148
+          ],
+          [
+            249,
+            153
+          ],
+          [
+            248,
+            159
+          ],
+          [
+            247,
+            162
+          ],
+          [
+            245,
+            166
+          ],
+          [
+            243,
+            166
+          ],
+          [
+            34,
+            151
+          ],
+          [
+            17,
+            143
+          ],
+          [
+            16,
+            142
+          ],
+          [
+            10,
+            131
+          ],
+          [
+            9,
+            129
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v12"
+    }
+  ],
+  "status": "ok",
+  "shortfall": 0,
+  "shape_change": 0.3518
+}

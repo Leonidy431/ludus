@@ -1,0 +1,310 @@
+{
+ "note": "Written by scripts/raw_assets/fish_procedural.py; do not edit.  Kits of DEF-056 that reached 12/12, their atlas for the headset and the length of the biggest fish of each variant in canvas pixels (the game sizes the billboard so that this fish has the real length of its species).",
+ "slot": "DEF-056",
+ "revision": "fish-drawing-r3",
+ "canvas_px": 256,
+ "cell_px": 128,
+ "cols": 4,
+ "rows": 3,
+ "kits": [
+  {
+   "id": "chebachok",
+   "kit": "own_chebachok_4a8e60a860",
+   "atlas": "DEF-056/own_chebachok_4a8e60a860_atlas.png",
+   "files": [
+    "DEF-056/own_chebachok_4a8e60a860_v01.png",
+    "DEF-056/own_chebachok_4a8e60a860_v02.png",
+    "DEF-056/own_chebachok_4a8e60a860_v03.png",
+    "DEF-056/own_chebachok_4a8e60a860_v04.png",
+    "DEF-056/own_chebachok_4a8e60a860_v05.png",
+    "DEF-056/own_chebachok_4a8e60a860_v06.png",
+    "DEF-056/own_chebachok_4a8e60a860_v07.png",
+    "DEF-056/own_chebachok_4a8e60a860_v08.png",
+    "DEF-056/own_chebachok_4a8e60a860_v09.png",
+    "DEF-056/own_chebachok_4a8e60a860_v10.png",
+    "DEF-056/own_chebachok_4a8e60a860_v11.png",
+    "DEF-056/own_chebachok_4a8e60a860_v12.png"
+   ],
+   "states": [
+    "turning",
+    "below",
+    "young",
+    "rising",
+    "feeding",
+    "below",
+    "school",
+    "turning",
+    "school",
+    "single",
+    "turning",
+    "below"
+   ],
+   "fish_px": [
+    236,
+    236,
+    236,
+    236,
+    236,
+    236,
+    84.29,
+    236,
+    84.29,
+    236,
+    236,
+    236
+   ]
+  },
+  {
+   "id": "marinka",
+   "kit": "own_marinka_877962c94d",
+   "atlas": "DEF-056/own_marinka_877962c94d_atlas.png",
+   "files": [
+    "DEF-056/own_marinka_877962c94d_v01.png",
+    "DEF-056/own_marinka_877962c94d_v02.png",
+    "DEF-056/own_marinka_877962c94d_v03.png",
+    "DEF-056/own_marinka_877962c94d_v04.png",
+    "DEF-056/own_marinka_877962c94d_v05.png",
+    "DEF-056/own_marinka_877962c94d_v06.png",
+    "DEF-056/own_marinka_877962c94d_v07.png",
+    "DEF-056/own_marinka_877962c94d_v08.png",
+    "DEF-056/own_marinka_877962c94d_v09.png",
+    "DEF-056/own_marinka_877962c94d_v10.png",
+    "DEF-056/own_marinka_877962c94d_v11.png",
+    "DEF-056/own_marinka_877962c94d_v12.png"
+   ],
+   "states": [
+    "rising",
+    "turning",
+    "above",
+    "single",
+    "turning",
+    "pair",
+    "single",
+    "pair",
+    "above",
+    "single",
+    "turning",
+    "rising"
+   ],
+   "fish_px": [
+    236,
+    236,
+    236,
+    236,
+    236,
+    146.32,
+    236,
+    146.32,
+    236,
+    236,
+    236,
+    236
+   ]
+  },
+  {
+   "id": "osman",
+   "kit": "own_osman_dac0c4d124",
+   "atlas": "DEF-056/own_osman_dac0c4d124_atlas.png",
+   "files": [
+    "DEF-056/own_osman_dac0c4d124_v01.png",
+    "DEF-056/own_osman_dac0c4d124_v02.png",
+    "DEF-056/own_osman_dac0c4d124_v03.png",
+    "DEF-056/own_osman_dac0c4d124_v04.png",
+    "DEF-056/own_osman_dac0c4d124_v05.png",
+    "DEF-056/own_osman_dac0c4d124_v06.png",
+    "DEF-056/own_osman_dac0c4d124_v07.png",
+    "DEF-056/own_osman_dac0c4d124_v08.png",
+    "DEF-056/own_osman_dac0c4d124_v09.png",
+    "DEF-056/own_osman_dac0c4d124_v10.png",
+    "DEF-056/own_osman_dac0c4d124_v11.png",
+    "DEF-056/own_osman_dac0c4d124_v12.png"
+   ],
+   "states": [
+    "bottom",
+    "feeding",
+    "above",
+    "rising",
+    "turning",
+    "single",
+    "above",
+    "turning",
+    "single",
+    "rising",
+    "turning",
+    "above"
+   ],
+   "fish_px": [
+    236,
+    236,
+    236,
+    236,
+    236,
+    236,
+    236,
+    236,
+    236,
+    236,
+    236,
+    236
+   ]
+  },
+  {
+   "id": "gubach",
+   "kit": "own_gubach_035ddd127e",
+   "atlas": "DEF-056/own_gubach_035ddd127e_atlas.png",
+   "files": [
+    "DEF-056/own_gubach_035ddd127e_v01.png",
+    "DEF-056/own_gubach_035ddd127e_v02.png",
+    "DEF-056/own_gubach_035ddd127e_v03.png",
+    "DEF-056/own_gubach_035ddd127e_v04.png",
+    "DEF-056/own_gubach_035ddd127e_v05.png",
+    "DEF-056/own_gubach_035ddd127e_v06.png",
+    "DEF-056/own_gubach_035ddd127e_v07.png",
+    "DEF-056/own_gubach_035ddd127e_v08.png",
+    "DEF-056/own_gubach_035ddd127e_v09.png",
+    "DEF-056/own_gubach_035ddd127e_v10.png",
+    "DEF-056/own_gubach_035ddd127e_v11.png",
+    "DEF-056/own_gubach_035ddd127e_v12.png"
+   ],
+   "states": [
+    "bottom",
+    "feeding",
+    "turning",
+    "above",
+    "rising",
+    "turning",
+    "above",
+    "single",
+    "above",
+    "rising",
+    "turning",
+    "single"
+   ],
+   "fish_px": [
+    236,
+    236,
+    236,
+    236,
+    236,
+    236,
+    236,
+    236,
+    236,
+    236,
+    236,
+    236
+   ]
+  },
+  {
+   "id": "ishkhan",
+   "kit": "own_ishkhan_e07c061221",
+   "atlas": "DEF-056/own_ishkhan_e07c061221_atlas.png",
+   "files": [
+    "DEF-056/own_ishkhan_e07c061221_v01.png",
+    "DEF-056/own_ishkhan_e07c061221_v02.png",
+    "DEF-056/own_ishkhan_e07c061221_v03.png",
+    "DEF-056/own_ishkhan_e07c061221_v04.png",
+    "DEF-056/own_ishkhan_e07c061221_v05.png",
+    "DEF-056/own_ishkhan_e07c061221_v06.png",
+    "DEF-056/own_ishkhan_e07c061221_v07.png",
+    "DEF-056/own_ishkhan_e07c061221_v08.png",
+    "DEF-056/own_ishkhan_e07c061221_v09.png",
+    "DEF-056/own_ishkhan_e07c061221_v10.png",
+    "DEF-056/own_ishkhan_e07c061221_v11.png",
+    "DEF-056/own_ishkhan_e07c061221_v12.png"
+   ],
+   "states": [
+    "single",
+    "hunting",
+    "below",
+    "rising",
+    "pair",
+    "feeding",
+    "pair",
+    "below",
+    "pair",
+    "single",
+    "turning",
+    "below"
+   ],
+   "fish_px": [
+    236,
+    236,
+    236,
+    236,
+    146.32,
+    236,
+    146.32,
+    236,
+    146.32,
+    236,
+    236,
+    236
+   ]
+  },
+  {
+   "id": "sazan",
+   "kit": "own_sazan_9a7d5cf44c",
+   "atlas": "DEF-056/own_sazan_9a7d5cf44c_atlas.png",
+   "files": [
+    "DEF-056/own_sazan_9a7d5cf44c_v01.png",
+    "DEF-056/own_sazan_9a7d5cf44c_v02.png",
+    "DEF-056/own_sazan_9a7d5cf44c_v03.png",
+    "DEF-056/own_sazan_9a7d5cf44c_v04.png",
+    "DEF-056/own_sazan_9a7d5cf44c_v05.png",
+    "DEF-056/own_sazan_9a7d5cf44c_v06.png",
+    "DEF-056/own_sazan_9a7d5cf44c_v07.png",
+    "DEF-056/own_sazan_9a7d5cf44c_v08.png",
+    "DEF-056/own_sazan_9a7d5cf44c_v09.png",
+    "DEF-056/own_sazan_9a7d5cf44c_v10.png",
+    "DEF-056/own_sazan_9a7d5cf44c_v11.png",
+    "DEF-056/own_sazan_9a7d5cf44c_v12.png"
+   ],
+   "states": [
+    "pair",
+    "turning",
+    "below",
+    "feeding",
+    "rising",
+    "single",
+    "below",
+    "pair",
+    "turning",
+    "single",
+    "turning",
+    "below"
+   ],
+   "fish_px": [
+    146.32,
+    236,
+    236,
+    236,
+    236,
+    236,
+    236,
+    146.32,
+    236,
+    236,
+    236,
+    236
+   ]
+  }
+ ],
+ "short": [
+  {
+   "id": "sudak",
+   "variants": 11,
+   "reason": "11 of 12 honest forms (pool 71, 38 like a fish)"
+  },
+  {
+   "id": "leshch",
+   "variants": 11,
+   "reason": "11 of 12 honest forms (pool 83, 30 like a fish)"
+  },
+  {
+   "id": "sig",
+   "variants": 10,
+   "reason": "10 of 12 honest forms (pool 66, 21 like a fish)"
+  }
+ ]
+}

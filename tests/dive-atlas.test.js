@@ -184,3 +184,39 @@ test('the web view keeps the holy rules in its drawing', () => {
   // The web writes no chronicle: it has no lectern yet.
   assert.ok(!/setItem\(Atlas\.CHRONICLE_KEY/.test(view));
 });
+
+test('own fish (DEF-056): only 12/12 kits swim, sized to real length', () => {
+  const index = require('../public/ludus/data/fish-drawings.json');
+  const fish = require('../public/ludus/data/issyk-kul-fish.json').fish;
+  const schools = Core.fishSchools(fish);
+  const placed = A.placeOwnFish(index, schools);
+  assert.ok(placed.length > 0);
+  for (const kit of index.kits) {
+    assert.equal(kit.files.length, 12);
+    for (const f of kit.files) {
+      assert.ok(fs.existsSync(path.join(root, 'public/ludus/art/derived', f)),
+        f);
+    }
+  }
+  const short = new Set(index.short.map((s) => s.id));
+  for (const f of placed) {
+    assert.ok(!short.has(f.id), `${f.id} is short of 12`);
+    const s = schools.find((x) => x.id === f.id);
+    const kit = A.fishKit(index, f.id);
+    const v = A.fishVariant(f.i);
+    assert.equal(f.file, kit.files[v]);
+    // The biggest fish of the drawing has the species' real length.
+    assert.ok(Math.abs(f.size * kit.fish_px[v] / index.canvas_px
+      - s.length) < 1e-9);
+  }
+  // Neighbours in a school never show the same variant.
+  for (let i = 1; i < placed.length; i++) {
+    if (placed[i].id === placed[i - 1].id) {
+      assert.notEqual(placed[i].file, placed[i - 1].file);
+    }
+  }
+  // The fixture the headset replays is current.
+  const fx = require('../godot/tests/fixtures/atlas-traces.json');
+  assert.deepEqual(fx.fish, placed.map((f) => ({ id: f.id, i: f.i,
+    file: path.basename(f.file), size: f.size })));
+});
