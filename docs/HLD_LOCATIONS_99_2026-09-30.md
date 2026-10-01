@@ -246,3 +246,7 @@ xvfb-run -a -s "-screen 0 1280x720x24" $G --path . --rendering-driver opengl3 \
 - 26 мест (сердце `new`: tana-port, santash-pass, dam, flooded-lower, ice-bay, silt-core, terrace-regression, archive-crypt, kam-yurt, porch-court, wedding-yard, crafts-school, forge, print-shop, shipyard, star-shore, survey-hill, vineyard, map-workshop, sis-armourer, storm-bay, reactor-izba, zero-board; находки: crypt-museum, brothers-walls, chara-meadow) — оболочки с панелью, ничего не считают; эталону п. 1 не отвечают до фазы L3.
 - Далёкий благовест у Светлояра — только по часам и уставу (ТАБУ №0.35 п. 9), не по стоянию игрока; до решения, как свести это с узлом 76, звука нет и урок его не обещает.
 - Песочные часы (0,17 м) читаются только вблизи (у бирки, 3,2 м — около 25 px); это их настоящий размер.
+
+## L3 сделана (2026-10-01)
+
+Все 26 мест — 23 сердца `new` и 3 находки — получили свою логику. Она лежит отдельно и под тестом: `PlaceDeeds`, пять файлов групп, `tests/test_place_deeds.gd` (5510 проверок, 0 ошибок, храповик 26 из 26). Подробности и решения хора — `docs/HLD_L3_PLACE_DEEDS_2026-10-01.md`, слепые зоны — `docs/BLINDSPOTS_CODE_BREAKTHROUGH_2026-10-01.md`. Эталону ТАБУ №0.013 п. 1 теперь отвечают все 99 мест: у каждого сердца — одно действие с логикой. В Quest 3 не проверено.

@@ -36,6 +36,9 @@ func run(t: Object) -> void:
 	_hearts(t)
 	for g in ["a", "b", "c", "d", "e"]:
 		var path := "res://tests/deeds/test_deeds_%s.gd" % g
+		# Every group has its own craft test; a missing one is a failure,
+		# not a quiet skip.
+		t._check(ResourceLoader.exists(path), "group %s has its test" % g)
 		if ResourceLoader.exists(path):
 			load(path).new().run(t)
 
@@ -63,11 +66,18 @@ func _contract(t: Object, id: String) -> void:
 					"%s: a closed button says why" % id)
 				continue
 			var nxt := PlaceDeeds.choose(id, cur, str(o.id))
+			# A reply or a panel line is the narrator's voice, so it says
+			# no church word either (TABOO 0.39 item 3).
+			for tx in PlaceDeeds.lines(id, nxt) + [str(nxt.get("reply", ""))]:
+				if LocationsCore.has_church_word(str(tx)):
+					t._check(false, "%s: a plain line: %s" % [id, tx])
 			t._check(PlaceDeeds.choose(id, cur, str(o.id)) == nxt,
 				"%s: the same step gives the same state" % id)
 			t._check(cur == item[0], id + ": choose leaves its input as it was")
 			if nxt.get("done", false):
 				closed = true
+				t._check(PlaceDeeds.options(id, nxt).is_empty(),
+					id + ": a closed act offers no button")
 				break
 			var key := var_to_str(nxt)
 			if not seen.has(key) and int(item[1]) < MAX_STEPS:

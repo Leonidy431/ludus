@@ -86,7 +86,11 @@ static func lines(id: String, s: Dictionary) -> Array:
 	return _group(id).call("lines", id, s)
 
 
+## A closed act offers no button, whatever its group would compute from
+## a step past its last (the wedding act read FEAST[4] there).
 static func options(id: String, s: Dictionary) -> Array:
+	if s.get("done", false):
+		return []
 	return _group(id).call("options", id, s)
 
 
