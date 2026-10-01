@@ -99,6 +99,9 @@ var still_for := 0.0
 var rule := {}
 var rope := RopeCore.new_state()
 var rope_breath: AudioStreamPlayer
+# The sound of the courtyard (PlaceSound.hub_plan): room tone, breath,
+# the lake, the hearth, the pen, the ROV's hum; the bell by the Typikon.
+var place_sound: PlaceAudio
 var rope_streams := {}
 var rope_ring: Node3D
 var message := ""
@@ -240,8 +243,23 @@ func _build_world() -> void:
 		if h.has_meta("obitel") and h.get_meta("obitel").flags.get("holy",
 				false):
 			apart.append(h)
+	_build_sound(apart)
 	StaticBatch.merge(self, {"scopes": apart, "zones": [CELL_ZONE]})
 	_build_occluders()
+
+
+## The courtyard's sound (track A, docs/HLD_APK_GRAPHICS_SOUND_
+## 2026-10-01.md): the machine layer goes quiet by the lampada and by
+## the holy image of the cell; the bell rings by the Typikon only.
+func _build_sound(apart: Array) -> void:
+	var holy: Array = [Vector3(-6.6, 0.0, 0.0)]
+	for h in apart:
+		if h is Node3D and h.has_meta("obitel"):
+			holy.append((h as Node3D).global_position)
+	place_sound = PlaceAudio.new()
+	place_sound.name = "PlaceSound"
+	add_child(place_sound)
+	place_sound.start(PlaceSound.hub_plan(holy))
 
 
 ## Б-1: occluders for the renderer's occlusion culling, a little inside
@@ -773,6 +791,7 @@ func _process(dt: float) -> void:
 		stick_was = nav
 	rig.position = pos
 	rig.rotation.y = yaw
+	place_sound.listen(pos)
 	if interact and not interact_was:
 		if not encounter.is_empty():
 			_select(encounter.choice)

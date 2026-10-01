@@ -164,7 +164,11 @@ func _next() -> void:
 		"draw_calls_3d": 0, "draw_calls_canvas": 0, "primitives": 0,
 		"primitives_two_eyes_est": 0, "objects": 0,
 		"static_memory_delta_bytes": 0,
-		"texture_memory_over_empty_bytes": 0}
+		"texture_memory_over_empty_bytes": 0,
+		# The place's sound (PlaceSound): players and the bytes of its
+		# loops, from its plan, whatever the worker has rendered yet.
+		"audio_players": PlaceSound.players(scene.sound.plan),
+		"audio_pcm_bytes": PlaceSound.pcm_bytes(scene.sound.plan)}
 	view = 0
 	frame = 0
 
@@ -203,7 +207,8 @@ func _finish() -> int:
 	for k in ["draw_calls_frame", "draw_calls_3d", "draw_calls_canvas",
 			"primitives", "primitives_two_eyes_est", "objects",
 			"triangles_scene", "model_bytes", "build_ms",
-			"static_memory_delta_bytes", "texture_memory_over_empty_bytes"]:
+			"static_memory_delta_bytes", "texture_memory_over_empty_bytes",
+			"audio_players", "audio_pcm_bytes"]:
 		var best := {}
 		for r in rows:
 			if best.is_empty() or r[k] > best[k]:
@@ -251,6 +256,19 @@ func _check(worst: Dictionary) -> int:
 			for r in rows:
 				if float(r[k]) > limit:
 					print("  %s: %d" % [r.id, int(r[k])])
+	# The sound of a place (audio.place_players, audio.place_pcm_bytes).
+	var a: Dictionary = data.get("audio", {})
+	for pair in [["audio_players", "place_players"],
+			["audio_pcm_bytes", "place_pcm_bytes"]]:
+		if not a.has(pair[1]):
+			continue
+		var limit := float(a[pair[1]].limit)
+		var got := float(worst[pair[0]].value)
+		var ok := got <= limit
+		print("%s %s: %d (место %s) из %d" % ["ок" if ok else "ПРЕВЫШЕНИЕ",
+			pair[0], int(got), worst[pair[0]].id, int(limit)])
+		if not ok:
+			rc = 1
 	print("ПРОВЕРКА мест: " + ("все бюджеты соблюдены" if rc == 0
 		else "бюджет превышен"))
 	return rc
