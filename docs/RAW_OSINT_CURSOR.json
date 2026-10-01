@@ -1,5 +1,5 @@
 {
- "next": 5,
+ "next": 8,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -3924,6 +3924,103 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 22
+  },
+  {
+   "time": "2026-10-01T15:51:25.387988+00:00",
+   "pass_id": "osint-2026-10-01T15:51:25Z",
+   "deficits": [
+    {
+     "id": "DEF-024",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "font": 1
+     },
+     "to_props": 12,
+     "hits_uncapped": 10718,
+     "props_uncapped": 7686,
+     "props_uncapped_repos": 58,
+     "added_keywords": [
+      "explosion",
+      "extinguish",
+      "fire",
+      "flash",
+      "gas",
+      "gib",
+      "ignite",
+      "inventory",
+      "jitter",
+      "kick",
+      "knockdown",
+      "launch"
+     ],
+     "keywords_total": 77,
+     "keywords_not_searched": [
+      "amulet",
+      "ankh",
+      "cleric",
+      "com",
+      "java",
+      "mage",
+      "openra",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 12
+    },
+    {
+     "id": "DEF-027",
+     "skipped": "audio-pipeline-pending"
+    },
+    {
+     "id": "DEF-028",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 1,
+      "dogma-stop-list": 2
+     },
+     "to_props": 44,
+     "hits_uncapped": 7927,
+     "props_uncapped": 5760,
+     "props_uncapped_repos": 53,
+     "added_keywords": [],
+     "keywords_total": 39,
+     "keywords_not_searched": [
+      "bevy",
+      "card",
+      "cockatrice",
+      "com",
+      "cpp",
+      "crates",
+      "java",
+      "map",
+      "renderer",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 44
+    }
+   ],
+   "props_taken": {},
+   "props_taken_by_index_kind": {},
+   "props_duplicates": 56,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 0,
+   "props_store_files": 1307,
+   "props_store_bytes": 9707243,
+   "props_cache_files_on_disk": 4518,
+   "props_cache_bytes_on_disk": 76921776,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 730899,
+   "props_register_growth_bytes": 0,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 340
   }
  ],
  "keywords": {
@@ -4370,7 +4467,19 @@
    "emp",
    "empty",
    "entity",
-   "explode"
+   "explode",
+   "explosion",
+   "extinguish",
+   "fire",
+   "flash",
+   "gas",
+   "gib",
+   "ignite",
+   "inventory",
+   "jitter",
+   "kick",
+   "knockdown",
+   "launch"
   ],
   "DEF-028": [
    "effect",
