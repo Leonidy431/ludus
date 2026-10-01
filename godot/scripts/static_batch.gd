@@ -93,6 +93,11 @@ static func _collect(node: Node, xf: Transform3D, ctx: Dictionary,
 		var n := c as Node3D
 		if not n.visible or n.top_level:
 			continue
+		# A subtree with a visibility parent (a level of detail, such
+		# as RovLod's full model) appears and hides at run time; baked
+		# into a group, it would lose the switch.
+		if not n.visibility_parent.is_empty():
+			continue
 		var cx: Transform3D = xf * n.transform
 		if n in scopes or n.get_script() != null:
 			sub.append([n, cx])

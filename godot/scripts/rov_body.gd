@@ -41,8 +41,10 @@ var lamp_on := true
 
 
 func _ready() -> void:
-	var scene := load("res://models/rov/mangustik.glb") as PackedScene
-	model = scene.instantiate() if scene else Node3D.new()
+	# Б-2: the full model within RovLod.NEAR_M of the camera (the
+	# front camera on the skid), the far-view proxy beyond (the chase
+	# camera, 2.8 m behind).
+	model = RovLod.build()
 	add_child(model)
 	for side in [-1.0, 1.0]:
 		_headlight(side * HEADLIGHT_X)

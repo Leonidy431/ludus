@@ -463,9 +463,10 @@ func _build_pier(oak: Color) -> void:
 	# OpenSCAD drawings (scripts/meta3d/mangustik_rov.py), bow to the
 	# lake.  Its lowest point (the ballast tubes) is 0.34 m under its
 	# origin, so it rests on the 0.65 m stand.
-	var scene := load("res://models/rov/mangustik.glb") as PackedScene
-	if scene:
-		var rov := scene.instantiate() as Node3D
+	# Б-2: the full model near the pier, its far-view proxy beyond
+	# RovLod.NEAR_M (godot/scripts/rov_lod.gd).
+	var rov := RovLod.build()
+	if rov.get_child_count() > 0:
 		rov.position = Vector3(8.4, 1.0, 0)
 		rov.rotation_degrees = Vector3(0, -90, 0)
 		add_child(rov)

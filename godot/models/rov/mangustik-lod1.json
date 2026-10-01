@@ -1,0 +1,232 @@
+{
+ "id": "mangustik-lod1",
+ "lod": "proxy",
+ "lod_level": 1,
+ "lod_of": "mangustik",
+ "source": "third_party/mangustik/rov-platform/cad (Leonidy431/Mangustik @ e0dc577), 00_full_assembly.scad",
+ "size_m": [
+  0.838,
+  0.92,
+  1.359
+ ],
+ "box": [
+  0.838,
+  0.92,
+  1.359
+ ],
+ "triangles": 4444,
+ "noInteract": false,
+ "noLoot": true,
+ "parts": [
+  {
+   "part": "01_main_chassis_frame",
+   "translate_mm": [
+    0,
+    0,
+    0
+   ],
+   "rotate_deg": [
+    0,
+    0,
+    0
+   ],
+   "colour": "#9c9ea3",
+   "triangles": 792
+  },
+  {
+   "part": "02_main_pressure_hull_port",
+   "translate_mm": [
+    -400,
+    -130,
+    250
+   ],
+   "rotate_deg": [
+    0,
+    90,
+    0
+   ],
+   "colour": "#f0cf32",
+   "triangles": 478
+  },
+  {
+   "part": "03_main_pressure_hull_starboard",
+   "translate_mm": [
+    -400,
+    130,
+    250
+   ],
+   "rotate_deg": [
+    0,
+    90,
+    0
+   ],
+   "colour": "#f0cf32",
+   "triangles": 386
+  },
+  {
+   "part": "04_auxiliary_sensor_tubes_top",
+   "translate_mm": [
+    -200,
+    0,
+    440
+   ],
+   "rotate_deg": [
+    0,
+    90,
+    0
+   ],
+   "colour": "#4a72e0",
+   "triangles": 332
+  },
+  {
+   "part": "11_central_control_pdb_module",
+   "translate_mm": [
+    0,
+    0,
+    560
+   ],
+   "rotate_deg": [
+    0,
+    0,
+    0
+   ],
+   "colour": "#2c4a48",
+   "triangles": 128
+  },
+  {
+   "part": "05_propulsion_horizontal_module",
+   "translate_mm": [
+    -500,
+    -300,
+    0
+   ],
+   "rotate_deg": [
+    0,
+    90,
+    0
+   ],
+   "colour": "#1f2c86",
+   "triangles": 192
+  },
+  {
+   "part": "05_propulsion_horizontal_module",
+   "translate_mm": [
+    -500,
+    300,
+    0
+   ],
+   "rotate_deg": [
+    0,
+    90,
+    0
+   ],
+   "colour": "#1f2c86",
+   "triangles": 192
+  },
+  {
+   "part": "06_propulsion_vertical_module",
+   "translate_mm": [
+    400,
+    0,
+    140
+   ],
+   "rotate_deg": [
+    0,
+    0,
+    0
+   ],
+   "colour": "#1f2c86",
+   "triangles": 156
+  },
+  {
+   "part": "06_propulsion_vertical_module",
+   "translate_mm": [
+    -350,
+    0,
+    140
+   ],
+   "rotate_deg": [
+    0,
+    0,
+    0
+   ],
+   "colour": "#1f2c86",
+   "triangles": 156
+  },
+  {
+   "part": "07_buoyancy_and_ballast_system",
+   "translate_mm": [
+    0,
+    -250,
+    -280
+   ],
+   "rotate_deg": [
+    0,
+    90,
+    0
+   ],
+   "colour": "#f2d20c",
+   "triangles": 334
+  },
+  {
+   "part": "07_buoyancy_and_ballast_system",
+   "translate_mm": [
+    0,
+    250,
+    -280
+   ],
+   "rotate_deg": [
+    0,
+    90,
+    0
+   ],
+   "colour": "#f2d20c",
+   "triangles": 334
+  },
+  {
+   "part": "08_sensor_and_camera_skid_front",
+   "translate_mm": [
+    500,
+    0,
+    50
+   ],
+   "rotate_deg": [
+    0,
+    0,
+    0
+   ],
+   "colour": "#e0780e",
+   "triangles": 156
+  },
+  {
+   "part": "09_manipulator_and_tool_interface",
+   "translate_mm": [
+    500,
+    0,
+    -200
+   ],
+   "rotate_deg": [
+    0,
+    0,
+    0
+   ],
+   "colour": "#b4c6dc",
+   "triangles": 324
+  },
+  {
+   "part": "10_tether_rigging_and_protection_bars",
+   "translate_mm": [
+    -50,
+    0,
+    150
+   ],
+   "rotate_deg": [
+    0,
+    0,
+    0
+   ],
+   "colour": "#a3a5aa",
+   "triangles": 484
+  }
+ ]
+}
