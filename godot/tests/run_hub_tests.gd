@@ -207,4 +207,15 @@ func _initialize() -> void:
 	load("res://tests/test_place_sound.gd").new().run(self)
 	print("place sound: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# The 24 mentors: places, trees, the dialogue core against the JS
+	# reference, the persons in the places and in the hub (track B).
+	await process_frame
+	before = checks
+	fails = failures
+	var mentors = load("res://tests/test_mentors.gd").new()
+	mentors.run(self)
+	await process_frame
+	mentors.in_hub(self)
+	print("mentors: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	quit(1 if failures else 0)

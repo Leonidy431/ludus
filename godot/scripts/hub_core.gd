@@ -168,26 +168,14 @@ static func node_of(tree: Dictionary, node_id) -> Dictionary:
 	return {}
 
 
-## Branches the FORM allows: every attribute in the condition is met.
+## Branches the FORM allows: every attribute in the condition is met
+## (DialogueCore, checked against the web game's dialogue manager).
 static func open_branches(node: Dictionary, form: Dictionary) -> Array:
-	var out := []
-	for b in node.get("branches", []):
-		var cond: Dictionary = b.get("condition", {})
-		var ok := true
-		for a in cond:
-			if float(form.get(a, 0)) < float(cond[a]):
-				ok = false
-		if ok:
-			out.append(b)
-	return out
+	return DialogueCore.open_branches(node, form)
 
 
-## Take a branch: bonuses are added (only the seven attributes), and the
-## next node id (or null at the end of the talk) is returned.
+## Take a branch: its declared bonuses are added (only the seven
+## attributes, +1..+5 each, as the JS clamps them), and the next node id
+## (or null at the end of the talk) is returned.
 static func choose(form: Dictionary, branch: Dictionary) -> Dictionary:
-	var f := form.duplicate()
-	var bonuses: Dictionary = branch.get("attributeBonuses", {})
-	for a in bonuses:
-		if a in ATTRIBUTES:
-			f[a] = int(f.get(a, 0)) + int(bonuses[a])
-	return {"form": f, "next": branch.get("nextNodeId")}
+	return DialogueCore.apply(form, branch)

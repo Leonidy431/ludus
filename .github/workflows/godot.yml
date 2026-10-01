@@ -73,6 +73,8 @@ jobs:
           # replays the web's choice from this fixture (test_atlas.gd).
           node scripts/godot/make_atlas_fixture.js
           git diff --exit-code godot/tests/fixtures/atlas-traces.json
+          node scripts/godot/make_dialogue_fixture.js
+          git diff --exit-code godot/tests/fixtures/dialogue.json
           git diff --exit-code godot/tests/fixture.json \
             godot/tests/hub_fixture.json godot/tests/trial_fixture.json \
             godot/tests/passion_fixture.json \
