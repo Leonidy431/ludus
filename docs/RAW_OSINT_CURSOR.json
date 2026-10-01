@@ -1,5 +1,5 @@
 {
- "next": 11,
+ "next": 14,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -2987,6 +2987,95 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 314
+  },
+  {
+   "time": "2026-10-01T06:50:39.322776+00:00",
+   "pass_id": "osint-2026-10-01T06:50:39Z",
+   "deficits": [
+    {
+     "id": "DEF-031",
+     "skipped": "not-raw-material"
+    },
+    {
+     "id": "DEF-035",
+     "hits": 200,
+     "taken": 0,
+     "refused": {},
+     "to_props": 176,
+     "hits_uncapped": 4379,
+     "props_uncapped": 3784,
+     "props_uncapped_repos": 56,
+     "added_keywords": [
+      "city",
+      "color",
+      "drawer",
+      "manager",
+      "sheetlet",
+      "surgeon",
+      "table",
+      "terrain",
+      "units",
+      "util"
+     ],
+     "keywords_total": 49,
+     "keywords_not_searched": [
+      "com",
+      "corsixth",
+      "java",
+      "lua",
+      "unciv"
+     ],
+     "props": {
+      "other": 19,
+      "editor": 22
+     },
+     "props_seen": 135
+    },
+    {
+     "id": "DEF-036",
+     "hits": 200,
+     "taken": 0,
+     "refused": {},
+     "to_props": 172,
+     "hits_uncapped": 12281,
+     "props_uncapped": 9111,
+     "props_uncapped_repos": 46,
+     "added_keywords": [
+      "sheetlet",
+      "status"
+     ],
+     "keywords_total": 39,
+     "keywords_not_searched": [
+      "xaml"
+     ],
+     "props": {
+      "other": 48
+     },
+     "props_seen": 124
+    }
+   ],
+   "props_taken": {
+    "editor": 22,
+    "other": 67
+   },
+   "props_taken_by_index_kind": {
+    "code": 89
+   },
+   "props_duplicates": 259,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 547899,
+   "props_store_files": 1059,
+   "props_store_bytes": 8494704,
+   "props_cache_files_on_disk": 4270,
+   "props_cache_bytes_on_disk": 75709237,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 598065,
+   "props_register_growth_bytes": 49903,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 52
   }
  ],
  "keywords": {
@@ -3458,7 +3547,17 @@
    "unitactionmodifiers",
    "unitactions",
    "unitactionsfromuniques",
-   "unitactionsgreatperson"
+   "unitactionsgreatperson",
+   "city",
+   "color",
+   "drawer",
+   "manager",
+   "sheetlet",
+   "surgeon",
+   "table",
+   "terrain",
+   "units",
+   "util"
   ],
   "DEF-036": [
    "building",
@@ -3491,7 +3590,9 @@
    "clientinnerbodysystem",
    "colorflasheffectsystem",
    "disposalunitwindow",
-   "effectvisualizersystem"
+   "effectvisualizersystem",
+   "sheetlet",
+   "status"
   ],
   "DEF-040": [
    "java",
