@@ -1,5 +1,5 @@
 {
- "next": 33,
+ "next": 18,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -3093,6 +3093,137 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 22
+  },
+  {
+   "time": "2026-10-01T06:51:26.150207+00:00",
+   "pass_id": "osint-2026-10-01T06:51:26Z",
+   "deficits": [
+    {
+     "id": "DEF-047",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 14,
+      "dogma-stop-list": 1
+     },
+     "to_props": 12,
+     "hits_uncapped": 41936,
+     "props_uncapped": 38121,
+     "props_uncapped_repos": 57,
+     "added_keywords": [
+      "effect",
+      "system",
+      "property",
+      "display",
+      "set",
+      "tilesets",
+      "bombard",
+      "colonize",
+      "flight",
+      "gradient",
+      "opengl",
+      "path"
+     ],
+     "keywords_total": 46,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "cpp",
+      "java",
+      "mage",
+      "rotp",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 12
+     },
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-048",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 16,
+      "dogma-stop-list": 1,
+      "font": 2
+     },
+     "to_props": 85,
+     "hits_uncapped": 8825,
+     "props_uncapped": 5815,
+     "props_uncapped_repos": 58,
+     "added_keywords": [
+      "panel",
+      "display",
+      "properties",
+      "unit",
+      "objective",
+      "status",
+      "building",
+      "cache",
+      "city",
+      "control",
+      "individual",
+      "setup"
+     ],
+     "keywords_total": 36,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "cpp",
+      "java",
+      "mage",
+      "mindustry",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 78,
+      "editor": 3,
+      "example": 2
+     },
+     "props_seen": 2
+    },
+    {
+     "id": "DEF-055",
+     "hits": 54,
+     "taken": 0,
+     "refused": {},
+     "to_props": 54,
+     "hits_uncapped": 54,
+     "props_uncapped": 54,
+     "props_uncapped_repos": 9,
+     "added_keywords": [],
+     "keywords_total": 6,
+     "keywords_not_searched": [],
+     "props": {},
+     "props_seen": 54
+    }
+   ],
+   "props_taken": {
+    "editor": 3,
+    "example": 2,
+    "other": 90
+   },
+   "props_taken_by_index_kind": {
+    "code": 95
+   },
+   "props_duplicates": 56,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 772268,
+   "props_store_files": 1005,
+   "props_store_bytes": 7724366,
+   "props_cache_files_on_disk": 95,
+   "props_cache_bytes_on_disk": 772268,
+   "props_cache_missing": 910,
+   "props_cache_unnamed": 0,
+   "props_register_bytes": 562806,
+   "props_register_growth_bytes": 48097,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 269
   }
  ],
  "keywords": {
@@ -3646,7 +3777,19 @@
    "batsprite",
    "beaconofreturning",
    "beam",
-   "beamingray"
+   "beamingray",
+   "effect",
+   "system",
+   "property",
+   "display",
+   "set",
+   "tilesets",
+   "bombard",
+   "colonize",
+   "flight",
+   "gradient",
+   "opengl",
+   "path"
   ],
   "DEF-048": [
    "java",
@@ -3672,7 +3815,19 @@
    "duelist",
    "huntress",
    "mage",
-   "rogue"
+   "rogue",
+   "panel",
+   "display",
+   "properties",
+   "unit",
+   "objective",
+   "status",
+   "building",
+   "cache",
+   "city",
+   "control",
+   "individual",
+   "setup"
   ],
   "DEF-055": [],
   "DEF-039": [
