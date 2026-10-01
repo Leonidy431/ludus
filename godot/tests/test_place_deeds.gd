@@ -17,7 +17,7 @@ const DAY := "2026-10-01"
 const MAX_STEPS := 40
 ## How many of the 26 acts must have their logic.  A ratchet: it only
 ## goes up, and at 26 every heart of the 99 places has its own core.
-const ACTS_WITH_LOGIC_MIN := 0
+const ACTS_WITH_LOGIC_MIN := 26
 
 
 func run(t: Object) -> void:
@@ -113,36 +113,46 @@ func _hearts(t: Object) -> void:
 			"atlas_given": [], "deeds": {}, "day": DAY}
 		var r := LocationHeart.open(loc, st, ctx)
 		t._check(r.panel.kind == "act", loc.id + ": the heart is its act")
+		# Breadth-first over the panel's buttons and waiting, as a player
+		# might try them in any order (a walk that always pressed the
+		# first button that moved the act could swing between two wrong
+		# ones for ever).  Each path carries how many saves it asked.
 		var p: Dictionary = r.panel
 		var s: Dictionary = r.st
-		var steps := 0
 		var saves := 0
-		while steps < MAX_STEPS and not p.deed.get("done", false):
-			var list := LocationHeart.choices(p, loc, s, ctx)
-			var i := 0
-			while i < list.size() - 1 and list[i].disabled:
-				i += 1
-			# The first open button; when it does not move the act on,
-			# the next ones in turn (a wrong step only teaches).
-			var moved := false
-			for j in range(i, list.size() - 1):
-				if list[j].disabled:
+		var seen := {var_to_str(p.deed): true}
+		var queue := [[r.panel, r.st, 0, 0]]
+		var steps := 0
+		while not queue.is_empty() and steps < 4000:
+			steps += 1
+			var item: Array = queue.pop_front()
+			var cur_p: Dictionary = item[0]
+			var cur_s: Dictionary = item[1]
+			var nexts := []
+			var list := LocationHeart.choices(cur_p, loc, cur_s, ctx)
+			for j in list.size():
+				if list[j].disabled or list[j].id == "away":
 					continue
-				var res := LocationHeart.choose(p, loc, s, ctx, j)
-				if res.panel.deed != p.deed:
-					if res.save:
-						saves += 1
+				nexts.append(LocationHeart.choose(cur_p, loc, cur_s, ctx, j))
+			nexts.append(LocationHeart.tick(cur_p, loc, cur_s, ctx, 600.0,
+				true))
+			var found := false
+			for res in nexts:
+				if res.panel.is_empty():
+					continue
+				var n_saves: int = item[2] + (1 if res.save else 0)
+				if res.panel.deed.get("done", false):
 					p = res.panel
 					s = res.st
-					moved = true
+					saves = n_saves
+					found = true
 					break
-			if not moved:
-				var w := LocationHeart.tick(p, loc, s, ctx, 600.0, true)
-				if w.save:
-					saves += 1
-				p = w.panel
-				s = w.st
-			steps += 1
+				var key := var_to_str(res.panel.deed)
+				if not seen.has(key) and int(item[3]) < MAX_STEPS:
+					seen[key] = true
+					queue.append([res.panel, res.st, n_saves, int(item[3]) + 1])
+			if found:
+				break
 		t._check(p.deed.get("done", false), loc.id + ": the act closes")
 		t._check(var_to_str(s.form) == var_to_str(st.form),
 			loc.id + ": the act changes no FORM")
