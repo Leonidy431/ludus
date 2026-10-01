@@ -137,6 +137,9 @@ var own_sprites: Array = []
 var batch_stats := {}
 # Б-1: the cockpit's viewports take turns (_turn_viewports).
 var view_turn := 0
+# The cockpit viewports set to draw in the coming frame, so that a
+# measurement can tell which of them the frame's draw calls hold.
+var drawn_views: Array = []
 var batch_off := false
 # GPU and CPU render time with the bubbles hidden and shown (shots).
 var gpu_ms := {"off": [], "on": []}
@@ -532,13 +535,15 @@ func _batch() -> void:
 ## camera's picture of the frame before, as a monitor does.
 func _turn_viewports() -> void:
 	if batch_off:
-		for v in [eye_view, screens_view, console_view]:
+		drawn_views = [eye_view, screens_view, console_view]
+		for v in drawn_views:
 			v.render_target_update_mode = SubViewport.UPDATE_ONCE
 		return
 	view_turn = (view_turn + 1) % 3
 	var views: Array = [eye_view, screens_view, console_view]
 	(views[view_turn] as SubViewport).render_target_update_mode = \
 		SubViewport.UPDATE_ONCE
+	drawn_views = [views[view_turn]]
 
 
 ## Where each drawing of one kit stands: the one placement the scene

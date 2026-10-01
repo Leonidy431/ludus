@@ -339,6 +339,13 @@ static func merge_drawings(sprites: Array, rim: RimLight) -> int:
 				break
 			var img: Image = s.texture.get_image()
 			if img == null or img.is_empty():
+				# The renderer gave no texels back (a dummy renderer, or
+				# a readback the driver refuses): the drawings stay
+				# sprites, a call each.  Said aloud, since on the
+				# headset that would bring the calls back unseen.
+				push_warning(("DiveBatch.merge_drawings: no texels for "
+					+ "%s; %d drawings stay sprites") % [
+					s.texture.resource_path, list.size()])
 				images.clear()
 				break
 			if not images.is_empty() and (img.get_format()
