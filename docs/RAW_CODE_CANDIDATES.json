@@ -12297,5 +12297,1844 @@
    "LICENSE.txt"
   ],
   "slot": "DEF-008"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/AddComponentsOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/AddGameRuleOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/AddSolutionOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/AddTagsOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/AlertLevelChangeOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/AnchorOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/BaseXOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/CleanContainersOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/DamageOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/DeleteOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/DnaScrambleOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/EmitSoundOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/EmpOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/EmptyContainersOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/EntityEffectOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/ExplodeOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/ExplosionOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/ExtinguishOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/FireStackOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/FlashOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/GibOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/IgniteOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/ItemToggleOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/JitterOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/KnockdownOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/LaunchOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/LightBehaviorOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/LockOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/PolymorphOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/PopupOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/RandomTriggerOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/RattleOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/RejuventateOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/ReleaseGasOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/RemoveComponentsOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/RemoveStatusEffectOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/RemoveTagsOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/RepulseAttractOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/ScramOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/ScreechOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/SetStatusEffectOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/ShockOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/SignalOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/SmokeOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/SpawnEntityTableOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/SpawnOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/SpeakOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/StaminaDamageOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/StunOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/SwapLocationOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/TippyOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/ToggleComponentsOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/UseDelayOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Trigger/Components/Effects/WeatherOnTriggerComponent.cs",
+  "kind": "code",
+  "hits": [
+   "trigger",
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 5,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Anomaly/Effects/Components/ElectricityAnomalyComponent.cs",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Anomaly/Effects/Components/EntitySpawnAnomalyComponent.cs",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Anomaly/Effects/Components/GravityAnomalyComponent.cs",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Anomaly/Effects/Components/PyroclasticAnomalyComponent.cs",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Shared/Anomaly/Effects/Components/TileSpawnAnomalyComponent.cs",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "component",
+   "components"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Cnc/Traits/Buildings/ClonesProducedUnits.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/ActorPreviewPlaceBuildingPreview.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/BaseBuilding.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/BaseProvider.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/Bridge.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/BridgeHut.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/BridgePlaceholder.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/Building.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/BuildingInfluence.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/BuildingUtils.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/Exit.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/FootprintPlaceBuildingPreview.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/FreeActor.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/FreeActorWithDelivery.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/GivesBuildableArea.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/GroundLevelBridge.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/LegacyBridgeHut.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/LineBuild.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/LineBuildNode.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/PlaceBuildingVariants.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/PrimaryBuilding.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/ProductionAirdrop.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/RallyPoint.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/Refinery.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/RepairableBuilding.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/RequiresBuildableArea.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/Reservable.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/SequencePlaceBuildingPreview.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/TransformsIntoAircraft.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/TransformsIntoDockClientManager.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/TransformsIntoEntersTunnels.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/TransformsIntoMobile.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/TransformsIntoPassenger.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/TransformsIntoRepairable.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/OpenRA/OpenRA",
+  "commit": "9ea513cb117d3f453952efe2d5d31cf37c4bf431",
+  "license_file": "COPYING",
+  "path": "OpenRA.Mods.Common/Traits/Buildings/TransformsIntoTransforms.cs",
+  "kind": "code",
+  "hits": [
+   "building",
+   "traits",
+   "buildings"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "drivers/gles3/effects/feed_effects.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "drivers",
+   "gles"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "drivers/gles3/effects/glow.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "drivers",
+   "gles"
+  ],
+  "score": 4,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/FyroxEngine/Fyrox",
+  "commit": "c4ead6b99c81134f021053224975e30d54d7bdcb",
+  "license_file": "LICENSE.md",
+  "path": "fyrox-sound/src/effects/filter.rs",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "filter"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.md"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/FyroxEngine/Fyrox",
+  "commit": "c4ead6b99c81134f021053224975e30d54d7bdcb",
+  "license_file": "LICENSE.md",
+  "path": "fyrox-sound/src/effects/reverb.rs",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "reverb"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.md"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/godotengine/godot",
+  "commit": "c971f93e7e76b0ef919bf6009e7b868bea04db7f",
+  "license_file": "COPYRIGHT.txt",
+  "path": "servers/audio/audio_effect.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "servers"
+  ],
+  "score": 3,
+  "attribution": [
+   "AUTHORS.md",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/love2d/love",
+  "commit": "b7daef0f7c1dc5888090f5d5b22d4eaf4ffd1d87",
+  "license_file": "license.txt",
+  "path": "src/modules/audio/Effect.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "modules"
+  ],
+  "score": 3,
+  "attribution": [
+   "license.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/love2d/love",
+  "commit": "b7daef0f7c1dc5888090f5d5b22d4eaf4ffd1d87",
+  "license_file": "license.txt",
+  "path": "src/modules/audio/openal/Effect.h",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "audio",
+   "modules"
+  ],
+  "score": 3,
+  "attribution": [
+   "license.txt"
+  ],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "src/logic/map_objects/tribes/ship/task_expedition.cc",
+  "kind": "code",
+  "hits": [
+   "logic",
+   "ship",
+   "task"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "src/logic/map_objects/tribes/ship/task_movement.cc",
+  "kind": "code",
+  "hits": [
+   "logic",
+   "ship",
+   "task"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "src/logic/map_objects/tribes/ship/task_ship.cc",
+  "kind": "code",
+  "hits": [
+   "logic",
+   "ship",
+   "task"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "src/logic/map_objects/tribes/ship/task_transport.cc",
+  "kind": "code",
+  "hits": [
+   "logic",
+   "ship",
+   "task"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-028"
+ },
+ {
+  "repo": "https://github.com/Card-Forge/forge",
+  "commit": "647b5eac951d0541ca3f8e59fd8db6fdc30fb957",
+  "license_file": "LICENSE",
+  "path": "forge-game/src/main/java/forge/game/ability/effects/AbandonEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects"
+  ],
+  "score": 2,
+  "attribution": [],
+  "slot": "DEF-028"
  }
 ]

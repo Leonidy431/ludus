@@ -1,5 +1,5 @@
 {
- "next": 8,
+ "next": 11,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -2872,6 +2872,121 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 22
+  },
+  {
+   "time": "2026-10-01T05:50:39.955352+00:00",
+   "pass_id": "osint-2026-10-01T05:50:39Z",
+   "deficits": [
+    {
+     "id": "DEF-024",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "font": 1,
+      "sacred-never-raw": 13,
+      "dogma-stop-list": 1
+     },
+     "to_props": 24,
+     "hits_uncapped": 10166,
+     "props_uncapped": 7192,
+     "props_uncapped_repos": 58,
+     "added_keywords": [
+      "status",
+      "terrain",
+      "component",
+      "add",
+      "remove",
+      "components",
+      "containers",
+      "grant",
+      "tags",
+      "alert",
+      "anchor",
+      "attract"
+     ],
+     "keywords_total": 53,
+     "keywords_not_searched": [
+      "amulet",
+      "ankh",
+      "cleric",
+      "com",
+      "java",
+      "mage",
+      "openra",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 24
+     },
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-027",
+     "skipped": "audio-pipeline-pending"
+    },
+    {
+     "id": "DEF-028",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 1,
+      "dogma-stop-list": 2
+     },
+     "to_props": 44,
+     "hits_uncapped": 7927,
+     "props_uncapped": 5760,
+     "props_uncapped_repos": 53,
+     "added_keywords": [
+      "ship",
+      "task",
+      "terrain"
+     ],
+     "keywords_total": 39,
+     "keywords_not_searched": [
+      "bevy",
+      "card",
+      "cockatrice",
+      "com",
+      "cpp",
+      "crates",
+      "java",
+      "map",
+      "renderer",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 34,
+      "test": 1,
+      "example": 1
+     },
+     "props_seen": 8
+    }
+   ],
+   "props_taken": {
+    "example": 1,
+    "other": 58,
+    "test": 1
+   },
+   "props_taken_by_index_kind": {
+    "code": 60
+   },
+   "props_duplicates": 8,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 994707,
+   "props_store_files": 970,
+   "props_store_bytes": 7946805,
+   "props_cache_files_on_disk": 4181,
+   "props_cache_bytes_on_disk": 75161338,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 548162,
+   "props_register_growth_bytes": 33453,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 314
   }
  ],
  "keywords": {
@@ -3252,7 +3367,19 @@
    "armorability",
    "auraofprotection",
    "beaconofreturning",
-   "beam"
+   "beam",
+   "status",
+   "terrain",
+   "component",
+   "add",
+   "remove",
+   "components",
+   "containers",
+   "grant",
+   "tags",
+   "alert",
+   "anchor",
+   "attract"
   ],
   "DEF-028": [
    "effect",
@@ -3290,7 +3417,10 @@
    "abstract",
    "fsr",
    "copy",
-   "amplify"
+   "amplify",
+   "ship",
+   "task",
+   "terrain"
   ],
   "DEF-035": [
    "java",
