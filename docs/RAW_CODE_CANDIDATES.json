@@ -19491,5 +19491,73 @@
    "LICENSE.txt"
   ],
   "slot": "DEF-048"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/UserInterface/Systems/Chat/Controls/ChannelSelectorItemButton.cs",
+  "kind": "code",
+  "hits": [
+   "control",
+   "controls",
+   "system"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-048"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/UserInterface/Systems/Inventory/Controls/ItemSlotButtonContainer.cs",
+  "kind": "code",
+  "hits": [
+   "control",
+   "controls",
+   "system"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-048"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/UserInterface/Systems/Inventory/Controls/ItemStatusPanel.xaml.cs",
+  "kind": "code",
+  "hits": [
+   "control",
+   "controls",
+   "system"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-048"
+ },
+ {
+  "repo": "https://github.com/space-wizards/space-station-14",
+  "commit": "d4d4696248d181ebe71128a7199ba4a1ce1be148",
+  "license_file": "LICENSE.TXT",
+  "path": "Content.Client/UserInterface/Systems/Storage/Controls/ItemGridPiece.cs",
+  "kind": "code",
+  "hits": [
+   "control",
+   "controls",
+   "system"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.TXT"
+  ],
+  "slot": "DEF-048"
  }
 ]

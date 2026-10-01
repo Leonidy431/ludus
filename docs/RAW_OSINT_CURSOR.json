@@ -1,5 +1,5 @@
 {
- "next": 11,
+ "next": 14,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -4585,6 +4585,165 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 52
+  },
+  {
+   "time": "2026-10-01T22:50:53.682229+00:00",
+   "pass_id": "osint-2026-10-01T22:50:53Z",
+   "deficits": [
+    {
+     "id": "DEF-040",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 19,
+      "dogma-stop-list": 1
+     },
+     "to_props": 106,
+     "hits_uncapped": 19198,
+     "props_uncapped": 15923,
+     "props_uncapped_repos": 60,
+     "added_keywords": [
+      "loaders",
+      "loader",
+      "shp",
+      "tmp",
+      "embedded",
+      "tdloader",
+      "tsloader",
+      "zoom",
+      "advisor",
+      "alerts",
+      "animated",
+      "annotation"
+     ],
+     "keywords_total": 69,
+     "keywords_not_searched": [
+      "bevy",
+      "cleric",
+      "com",
+      "cpp",
+      "crates",
+      "java",
+      "mage",
+      "rotp",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 1,
+      "example": 3
+     },
+     "props_seen": 65
+    },
+    {
+     "id": "DEF-047",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 14,
+      "dogma-stop-list": 1
+     },
+     "to_props": 37,
+     "hits_uncapped": 45325,
+     "props_uncapped": 41369,
+     "props_uncapped_repos": 62,
+     "added_keywords": [
+      "flash",
+      "frm",
+      "grid",
+      "help",
+      "lense",
+      "list",
+      "material",
+      "mesh",
+      "name",
+      "oksprite",
+      "out",
+      "packer"
+     ],
+     "keywords_total": 82,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "cpp",
+      "java",
+      "mage",
+      "rotp",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "editor": 2,
+      "other": 5
+     },
+     "props_seen": 30
+    },
+    {
+     "id": "DEF-048",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 19,
+      "dogma-stop-list": 1
+     },
+     "to_props": 88,
+     "hits_uncapped": 11427,
+     "props_uncapped": 8236,
+     "props_uncapped_repos": 59,
+     "added_keywords": [
+      "selector",
+      "slot",
+      "system",
+      "vending",
+      "virtual"
+     ],
+     "keywords_total": 65,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "cpp",
+      "java",
+      "mage",
+      "mindustry",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 24,
+      "editor": 2,
+      "example": 1,
+      "test": 1
+     },
+     "props_seen": 59
+    }
+   ],
+   "props_taken": {
+    "editor": 4,
+    "example": 4,
+    "other": 30,
+    "test": 1
+   },
+   "props_taken_by_index_kind": {
+    "code": 39
+   },
+   "props_duplicates": 154,
+   "props_errors": 0,
+   "props_refused": {
+    "licence-Defold-1.0": 37,
+    "licence-UNKNOWN": 1
+   },
+   "props_new_bytes": 206404,
+   "props_store_files": 1413,
+   "props_store_bytes": 10471450,
+   "props_cache_files_on_disk": 4624,
+   "props_cache_bytes_on_disk": 77685983,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 788467,
+   "props_register_growth_bytes": 22221,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 314
   }
  ],
  "keywords": {
@@ -5253,7 +5412,19 @@
    "tech",
    "viewport",
    "widget",
-   "yes"
+   "yes",
+   "loaders",
+   "loader",
+   "shp",
+   "tmp",
+   "embedded",
+   "tdloader",
+   "tsloader",
+   "zoom",
+   "advisor",
+   "alerts",
+   "animated",
+   "annotation"
   ],
   "DEF-047": [
    "java",
@@ -5327,7 +5498,19 @@
    "control",
    "dismiss",
    "embedded",
-   "extra"
+   "extra",
+   "flash",
+   "frm",
+   "grid",
+   "help",
+   "lense",
+   "list",
+   "material",
+   "mesh",
+   "name",
+   "oksprite",
+   "out",
+   "packer"
   ],
   "DEF-048": [
    "java",
@@ -5389,7 +5572,12 @@
    "picker",
    "polling",
    "preview",
-   "save"
+   "save",
+   "selector",
+   "slot",
+   "system",
+   "vending",
+   "virtual"
   ],
   "DEF-055": [],
   "DEF-039": [
