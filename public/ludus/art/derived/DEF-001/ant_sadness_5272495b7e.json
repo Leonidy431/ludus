@@ -5,12 +5,12 @@
   "source": {
     "repo": "https://github.com/wesnoth/wesnoth",
     "path": "data/core/images/units/monsters/deep-tentacle-melee-defend-2.png",
-    "commit": "7747be0ff750f9b9e7176437582bbaec5f9b0e56",
+    "commit": "8754dd36573953eb7fcb65fbc7aa72eb721fe05f",
     "piece": 0
   },
   "repo": "https://github.com/wesnoth/wesnoth",
   "path": "data/core/images/units/monsters/deep-tentacle-melee-defend-2.png",
-  "commit": "7747be0ff750f9b9e7176437582bbaec5f9b0e56",
+  "commit": "8754dd36573953eb7fcb65fbc7aa72eb721fe05f",
   "license": "GPL",
   "license_file": "COPYING",
   "threshold": 0.35,
@@ -1300,7 +1300,7 @@
     "палитра complement (тон 5°) и инверсия фактуры rough -> smooth",
     "инвертированное поведение ambient -> homing; 12 вариантов с попарно различными хитбоксами",
     "изменение формы по альфа-маскам (|A xor B| / |A or B|): от 51.7% до 86.0%",
-    "источник: https://github.com/wesnoth/wesnoth @ 7747be0ff7, data/core/images/units/monsters/deep-tentacle-melee-defend-2.png #0 (GPL)"
+    "источник: https://github.com/wesnoth/wesnoth @ 8754dd3657, data/core/images/units/monsters/deep-tentacle-melee-defend-2.png #0 (GPL)"
   ],
   "opposing_virtue": "Joy in God",
   "ladder_step": "Ladder, step 7",

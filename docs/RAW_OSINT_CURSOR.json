@@ -1,5 +1,5 @@
 {
- "next": 18,
+ "next": 3,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -3224,6 +3224,135 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 269
+  },
+  {
+   "time": "2026-10-01T07:43:52.469855+00:00",
+   "pass_id": "osint-2026-10-01T07:43:52Z",
+   "deficits": [
+    {
+     "id": "DEF-001",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "outline-helper": 4,
+      "sacred-never-raw": 14,
+      "dogma-stop-list": 1
+     },
+     "to_props": 5,
+     "hits_uncapped": 31756,
+     "props_uncapped": 7605,
+     "props_uncapped_repos": 55,
+     "added_keywords": [
+      "berserker",
+      "building",
+      "city",
+      "forest",
+      "oracle",
+      "parsers",
+      "talker",
+      "tilemap",
+      "tileobject",
+      "widget",
+      "archiv",
+      "artificer"
+     ],
+     "keywords_total": 73,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "java",
+      "mage",
+      "mindustry",
+      "rsi",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 3
+     },
+     "props_seen": 2
+    },
+    {
+     "id": "DEF-039",
+     "hits": 200,
+     "taken": 6,
+     "refused": {},
+     "to_props": 0,
+     "hits_uncapped": 24131,
+     "props_uncapped": 16070,
+     "props_uncapped_repos": 50,
+     "added_keywords": [
+      "zot",
+      "cotton",
+      "floor",
+      "init",
+      "menu",
+      "plan",
+      "register"
+     ],
+     "keywords_total": 36,
+     "keywords_not_searched": [
+      "rsi"
+     ],
+     "props": {},
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-049",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "dogma-stop-list": 2
+     },
+     "to_props": 0,
+     "hits_uncapped": 16669,
+     "props_uncapped": 2044,
+     "props_uncapped_repos": 34,
+     "added_keywords": [
+      "rpg",
+      "sandstorm",
+      "ancient",
+      "bootstrap",
+      "effects",
+      "fallout",
+      "fill",
+      "hail",
+      "med",
+      "particle",
+      "rain",
+      "ruins"
+     ],
+     "keywords_total": 44,
+     "keywords_not_searched": [
+      "generic",
+      "props",
+      "rsi"
+     ],
+     "props": {},
+     "props_seen": 0
+    }
+   ],
+   "props_taken": {
+    "other": 3
+   },
+   "props_taken_by_index_kind": {
+    "code": 3
+   },
+   "props_duplicates": 2,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 11446,
+   "props_store_files": 1008,
+   "props_store_bytes": 7735812,
+   "props_cache_files_on_disk": 3,
+   "props_cache_bytes_on_disk": 11446,
+   "props_cache_missing": 1005,
+   "props_cache_unnamed": 0,
+   "props_register_bytes": 564557,
+   "props_register_growth_bytes": 1751,
+   "stage": "done",
+   "accepted_objects": 5,
+   "code_candidates": 85
   }
  ],
  "keywords": {
@@ -3470,7 +3599,19 @@
    "madness",
    "sword",
    "tank",
-   "asteroid"
+   "asteroid",
+   "berserker",
+   "building",
+   "city",
+   "forest",
+   "oracle",
+   "parsers",
+   "talker",
+   "tilemap",
+   "tileobject",
+   "widget",
+   "archiv",
+   "artificer"
   ],
   "DEF-049": [
    "terrain",
@@ -3499,7 +3640,19 @@
    "wall",
    "generic",
    "light",
-   "props"
+   "props",
+   "rpg",
+   "sandstorm",
+   "ancient",
+   "bootstrap",
+   "effects",
+   "fallout",
+   "fill",
+   "hail",
+   "med",
+   "particle",
+   "rain",
+   "ruins"
   ],
   "DEF-052": [
    "water",
@@ -3854,7 +4007,14 @@
    "shoals",
    "slimy",
    "stone",
-   "way"
+   "way",
+   "zot",
+   "cotton",
+   "floor",
+   "init",
+   "menu",
+   "plan",
+   "register"
   ]
  }
 }

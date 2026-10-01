@@ -5,12 +5,12 @@
   "source": {
     "repo": "https://github.com/wesnoth/wesnoth",
     "path": "data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-defend1.png",
-    "commit": "7747be0ff750f9b9e7176437582bbaec5f9b0e56",
+    "commit": "8754dd36573953eb7fcb65fbc7aa72eb721fe05f",
     "piece": 0
   },
   "repo": "https://github.com/wesnoth/wesnoth",
   "path": "data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-defend1.png",
-  "commit": "7747be0ff750f9b9e7176437582bbaec5f9b0e56",
+  "commit": "8754dd36573953eb7fcb65fbc7aa72eb721fe05f",
   "license": "GPL",
   "license_file": "COPYING",
   "threshold": 0.35,
@@ -1219,7 +1219,7 @@
     "палитра complement (тон 225°) и инверсия фактуры rough -> smooth",
     "инвертированное поведение reward -> hazard_mimicking_reward; 12 вариантов с попарно различными хитбоксами",
     "изменение формы по альфа-маскам (|A xor B| / |A or B|): от 35.1% до 89.5%",
-    "источник: https://github.com/wesnoth/wesnoth @ 7747be0ff7, data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-defend1.png #0 (GPL)"
+    "источник: https://github.com/wesnoth/wesnoth @ 8754dd3657, data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-defend1.png #0 (GPL)"
   ],
   "opposing_virtue": "Non-possessiveness",
   "ladder_step": "Ladder, steps 16-17",

@@ -14346,5 +14346,245 @@
    "LICENSE.txt"
   ],
   "slot": "DEF-048"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/stone_workshop/init.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "stone",
+   "init"
+  ],
+  "score": 6,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/stone_workshop/register.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "stone",
+   "register"
+  ],
+  "score": 6,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/cassava_plantation/init.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "init"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/cassava_plantation/register.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "register"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/cassava_root_cooker/init.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "init"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/cassava_root_cooker/register.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "register"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/charcoal_kiln/init.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "init"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/charcoal_kiln/register.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "register"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/chocolate_brewery/init.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "init"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/chocolate_brewery/register.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "register"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/cocoa_farm/init.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "init"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/cocoa_farm/register.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "register"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/dressmakery/init.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "init"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/widelands/widelands",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "license_file": "COPYING",
+  "path": "data/tribes/buildings/productionsites/amazons/dressmakery/register.lua",
+  "kind": "code",
+  "hits": [
+   "amazons",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "register"
+  ],
+  "score": 5,
+  "attribution": [],
+  "slot": "DEF-039"
  }
 ]

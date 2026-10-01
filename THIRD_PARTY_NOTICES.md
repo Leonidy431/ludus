@@ -151,3 +151,8 @@ the GPL ask for. From each file's own licence record (the kit meta's
 
 The derived variants carry the same licence (share-alike); the claim of
 35 % change is the project's own rule, not a legal test (TABOO 0.1).
+| ant_sadness_b6a55c4b0e | sadness | 12/12 | https://github.com/wesnoth/wesnoth | 8754dd3657 | data/core/images/units/monsters/deep-tentacle-melee-defend-1.png #0 | GPL | 52.1% |
+| ant_sadness_5272495b7e | sadness | 12/12 | https://github.com/wesnoth/wesnoth | 8754dd3657 | data/core/images/units/monsters/deep-tentacle-melee-defend-2.png #0 | GPL | 51.7% |
+| ant_avarice_055bf3b162 | avarice | 12/12 | https://github.com/wesnoth/wesnoth | 8754dd3657 | data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-defend1.png #0 | GPL | 35.1% |
+| ant_sadness_f52ff4a292 | sadness | 12/12 | https://github.com/wesnoth/wesnoth | 8754dd3657 | data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-sword2.png #0 | GPL | 44.3% |
+| ant_avarice_e795010b0e | avarice | 12/12 | https://github.com/wesnoth/wesnoth | 8754dd3657 | data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-sword3.png #0 | GPL | 45.4% |
