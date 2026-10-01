@@ -151,3 +151,5 @@ the GPL ask for. From each file's own licence record (the kit meta's
 
 The derived variants carry the same licence (share-alike); the claim of
 35 % change is the project's own rule, not a legal test (TABOO 0.1).
+| ant_avarice_eb6a1405af | avarice | 12/12 | https://github.com/crawl/crawl | 7c31f6e797 | crawl-ref/source/rltiles/UNUSED/monsters/deep_dwarf_death_knight.png #0 | GPL | 35.6% |
+| ant_anger_7b0ce4d8c3 | anger | 12/12 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | data/core/images/units/monsters/deep-tentacle-ranged-defend.png #0 | GPL | 38.8% |

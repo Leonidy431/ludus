@@ -1,0 +1,1874 @@
+{
+  "id": "eb6a1405af",
+  "seed": "eb6a1405afffb9b1528148703f1cb0294e8fdc2c",
+  "piece": 0,
+  "source": {
+    "repo": "https://github.com/crawl/crawl",
+    "path": "crawl-ref/source/rltiles/UNUSED/monsters/deep_dwarf_death_knight.png",
+    "commit": "7c31f6e79758706fc67dede5080d3270381f6fb4",
+    "piece": 0
+  },
+  "repo": "https://github.com/crawl/crawl",
+  "path": "crawl-ref/source/rltiles/UNUSED/monsters/deep_dwarf_death_knight.png",
+  "commit": "7c31f6e79758706fc67dede5080d3270381f6fb4",
+  "license": "GPL",
+  "license_file": "LICENSE",
+  "threshold": 0.35,
+  "redraw": {
+    "shape_change": 0.0,
+    "iou_change": 0.0,
+    "colour_change": 0.4344,
+    "silhouette_loss": 0.0,
+    "is_recolour": true
+  },
+  "name": "ant_avarice_eb6a1405af",
+  "passion": "avarice",
+  "passion_reason": "dominant hue 55 deg",
+  "features": {
+    "hue": 55,
+    "chromatic": true,
+    "mean_value": 0.2499,
+    "roughness": 57.46,
+    "glyph": null,
+    "glyph_iou": 0.0,
+    "glyph_margin": 0.0,
+    "words": [
+      "crawl",
+      "ref",
+      "source",
+      "rltiles",
+      "unused",
+      "monsters",
+      "deep",
+      "dwarf",
+      "death",
+      "knight",
+      "png"
+    ]
+  },
+  "behaviour": {
+    "source_role": "reward",
+    "antagonist": "hazard_mimicking_reward"
+  },
+  "palette": {
+    "hue": 235,
+    "basis": "complement",
+    "stops": [
+      "#171b4c",
+      "#263099",
+      "#5762d9",
+      "#c6b2ff"
+    ]
+  },
+  "texture": {
+    "source": "rough",
+    "antagonist": "smooth"
+  },
+  "reference_strength": 1,
+  "variants": [
+    {
+      "slot": "v01",
+      "kind": "reference",
+      "amplified": false,
+      "shape_change": 0.3558,
+      "iou_change": 0.3588,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.3364,
+      "hitbox": {
+        "bbox": [
+          52,
+          24,
+          215,
+          253
+        ],
+        "area": 21065,
+        "radius": 81.89,
+        "hull": [
+          [
+            52,
+            223
+          ],
+          [
+            53,
+            149
+          ],
+          [
+            54,
+            145
+          ],
+          [
+            56,
+            139
+          ],
+          [
+            60,
+            128
+          ],
+          [
+            116,
+            31
+          ],
+          [
+            122,
+            24
+          ],
+          [
+            136,
+            24
+          ],
+          [
+            160,
+            46
+          ],
+          [
+            169,
+            62
+          ],
+          [
+            176,
+            76
+          ],
+          [
+            215,
+            178
+          ],
+          [
+            215,
+            195
+          ],
+          [
+            209,
+            217
+          ],
+          [
+            192,
+            253
+          ],
+          [
+            85,
+            253
+          ],
+          [
+            58,
+            232
+          ],
+          [
+            52,
+            224
+          ]
+        ]
+      },
+      "file": "ant_avarice_eb6a1405af_v01.png",
+      "analytics_id": "ludus.variant.avarice.eb6a1405af.v01"
+    },
+    {
+      "slot": "v02",
+      "kind": "erosion",
+      "amplified": false,
+      "shape_change": 0.4602,
+      "iou_change": 0.4659,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.4577,
+      "hitbox": {
+        "bbox": [
+          56,
+          26,
+          211,
+          245
+        ],
+        "area": 16821,
+        "radius": 73.17,
+        "hull": [
+          [
+            56,
+            147
+          ],
+          [
+            58,
+            141
+          ],
+          [
+            62,
+            130
+          ],
+          [
+            111,
+            48
+          ],
+          [
+            132,
+            26
+          ],
+          [
+            134,
+            26
+          ],
+          [
+            168,
+            66
+          ],
+          [
+            174,
+            78
+          ],
+          [
+            207,
+            165
+          ],
+          [
+            211,
+            190
+          ],
+          [
+            211,
+            193
+          ],
+          [
+            206,
+            215
+          ],
+          [
+            191,
+            244
+          ],
+          [
+            85,
+            245
+          ],
+          [
+            84,
+            245
+          ],
+          [
+            64,
+            218
+          ],
+          [
+            56,
+            148
+          ]
+        ]
+      },
+      "file": "ant_avarice_eb6a1405af_v02.png",
+      "analytics_id": "ludus.variant.avarice.eb6a1405af.v02"
+    },
+    {
+      "slot": "v03",
+      "kind": "crystallisation",
+      "amplified": false,
+      "cell": 16,
+      "shape_change": 0.3769,
+      "iou_change": 0.4246,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.3915,
+      "hitbox": {
+        "bbox": [
+          48,
+          32,
+          208,
+          240
+        ],
+        "area": 20081,
+        "radius": 79.95,
+        "hull": [
+          [
+            48,
+            153
+          ],
+          [
+            64,
+            121
+          ],
+          [
+            112,
+            32
+          ],
+          [
+            144,
+            32
+          ],
+          [
+            176,
+            64
+          ],
+          [
+            192,
+            96
+          ],
+          [
+            208,
+            144
+          ],
+          [
+            208,
+            224
+          ],
+          [
+            192,
+            240
+          ],
+          [
+            64,
+            240
+          ],
+          [
+            48,
+            160
+          ]
+        ]
+      },
+      "file": "ant_avarice_eb6a1405af_v03.png",
+      "analytics_id": "ludus.variant.avarice.eb6a1405af.v03"
+    },
+    {
+      "slot": "v04",
+      "kind": "hybrid",
+      "amplified": false,
+      "parents": [
+        "v08",
+        "v05"
+      ],
+      "op": "union",
+      "shape_change": 0.3716,
+      "iou_change": 0.3748,
+      "colour_change": 0.5491,
+      "silhouette_loss": 0.282,
+      "hitbox": {
+        "bbox": [
+          52,
+          3,
+          237,
+          256
+        ],
+        "area": 26127,
+        "radius": 91.19,
+        "hull": [
+          [
+            52,
+            223
+          ],
+          [
+            53,
+            149
+          ],
+          [
+            54,
+            145
+          ],
+          [
+            94,
+            20
+          ],
+          [
+            95,
+            17
+          ],
+          [
+            97,
+            13
+          ],
+          [
+            102,
+            8
+          ],
+          [
+            106,
+            6
+          ],
+          [
+            109,
+            5
+          ],
+          [
+            125,
+            3
+          ],
+          [
+            132,
+            3
+          ],
+          [
+            134,
+            4
+          ],
+          [
+            139,
+            9
+          ],
+          [
+            222,
+            142
+          ],
+          [
+            224,
+            146
+          ],
+          [
+            237,
+            201
+          ],
+          [
+            237,
+            209
+          ],
+          [
+            236,
+            212
+          ],
+          [
+            234,
+            216
+          ],
+          [
+            212,
+            239
+          ],
+          [
+            207,
+            244
+          ],
+          [
+            192,
+            253
+          ],
+          [
+            151,
+            256
+          ],
+          [
+            101,
+            256
+          ],
+          [
+            85,
+            253
+          ],
+          [
+            82,
+            251
+          ],
+          [
+            58,
+            232
+          ],
+          [
+            52,
+            224
+          ]
+        ]
+      },
+      "replaces": "v04",
+      "file": "ant_avarice_eb6a1405af_v04.png",
+      "analytics_id": "ludus.variant.avarice.eb6a1405af.v04"
+    },
+    {
+      "slot": "v05",
+      "kind": "symbiote",
+      "amplified": false,
+      "shape_change": 0.3764,
+      "iou_change": 0.3794,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.2892,
+      "hitbox": {
+        "bbox": [
+          52,
+          3,
+          237,
+          256
+        ],
+        "area": 25813,
+        "radius": 90.65,
+        "hull": [
+          [
+            52,
+            223
+          ],
+          [
+            53,
+            149
+          ],
+          [
+            54,
+            145
+          ],
+          [
+            94,
+            20
+          ],
+          [
+            95,
+            17
+          ],
+          [
+            97,
+            13
+          ],
+          [
+            102,
+            8
+          ],
+          [
+            106,
+            6
+          ],
+          [
+            109,
+            5
+          ],
+          [
+            125,
+            3
+          ],
+          [
+            132,
+            3
+          ],
+          [
+            134,
+            4
+          ],
+          [
+            139,
+            9
+          ],
+          [
+            222,
+            142
+          ],
+          [
+            224,
+            146
+          ],
+          [
+            237,
+            201
+          ],
+          [
+            237,
+            209
+          ],
+          [
+            236,
+            212
+          ],
+          [
+            234,
+            216
+          ],
+          [
+            212,
+            239
+          ],
+          [
+            207,
+            244
+          ],
+          [
+            192,
+            253
+          ],
+          [
+            151,
+            256
+          ],
+          [
+            101,
+            256
+          ],
+          [
+            85,
+            253
+          ],
+          [
+            82,
+            251
+          ],
+          [
+            58,
+            232
+          ],
+          [
+            52,
+            224
+          ]
+        ]
+      },
+      "file": "ant_avarice_eb6a1405af_v05.png",
+      "analytics_id": "ludus.variant.avarice.eb6a1405af.v05"
+    },
+    {
+      "slot": "v06",
+      "kind": "techno",
+      "amplified": false,
+      "outline_px": 4,
+      "shape_change": 0.4024,
+      "iou_change": 0.8752,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.872,
+      "hitbox": {
+        "bbox": [
+          52,
+          24,
+          215,
+          253
+        ],
+        "area": 4643,
+        "radius": 38.44,
+        "hull": [
+          [
+            52,
+            223
+          ],
+          [
+            53,
+            149
+          ],
+          [
+            54,
+            145
+          ],
+          [
+            56,
+            139
+          ],
+          [
+            60,
+            128
+          ],
+          [
+            116,
+            31
+          ],
+          [
+            122,
+            24
+          ],
+          [
+            136,
+            24
+          ],
+          [
+            160,
+            46
+          ],
+          [
+            169,
+            62
+          ],
+          [
+            176,
+            76
+          ],
+          [
+            215,
+            178
+          ],
+          [
+            215,
+            195
+          ],
+          [
+            209,
+            217
+          ],
+          [
+            192,
+            253
+          ],
+          [
+            85,
+            253
+          ],
+          [
+            58,
+            232
+          ],
+          [
+            52,
+            224
+          ]
+        ]
+      },
+      "file": "ant_avarice_eb6a1405af_v06.png",
+      "analytics_id": "ludus.variant.avarice.eb6a1405af.v06"
+    },
+    {
+      "slot": "v07",
+      "kind": "hybrid",
+      "amplified": false,
+      "parents": [
+        "v08",
+        "v02"
+      ],
+      "op": "xor",
+      "shape_change": 0.4815,
+      "iou_change": 0.6135,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.6065,
+      "hitbox": {
+        "bbox": [
+          55,
+          19,
+          211,
+          245
+        ],
+        "area": 12416,
+        "radius": 62.87,
+        "hull": [
+          [
+            55,
+            151
+          ],
+          [
+            58,
+            138
+          ],
+          [
+            70,
+            111
+          ],
+          [
+            118,
+            22
+          ],
+          [
+            121,
+            19
+          ],
+          [
+            125,
+            19
+          ],
+          [
+            156,
+            42
+          ],
+          [
+            159,
+            45
+          ],
+          [
+            177,
+            79
+          ],
+          [
+            207,
+            165
+          ],
+          [
+            211,
+            190
+          ],
+          [
+            211,
+            193
+          ],
+          [
+            210,
+            216
+          ],
+          [
+            191,
+            244
+          ],
+          [
+            85,
+            245
+          ],
+          [
+            84,
+            245
+          ],
+          [
+            62,
+            230
+          ],
+          [
+            60,
+            228
+          ],
+          [
+            58,
+            220
+          ],
+          [
+            55,
+            153
+          ]
+        ]
+      },
+      "replaces": "v07",
+      "file": "ant_avarice_eb6a1405af_v07.png",
+      "analytics_id": "ludus.variant.avarice.eb6a1405af.v07"
+    },
+    {
+      "slot": "v08",
+      "kind": "swarm",
+      "amplified": false,
+      "particle_step": 11,
+      "shape_change": 0.7463,
+      "iou_change": 0.7473,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.744,
+      "hitbox": {
+        "bbox": [
+          55,
+          19,
+          210,
+          238
+        ],
+        "area": 8115,
+        "radius": 50.82,
+        "hull": [
+          [
+            55,
+            151
+          ],
+          [
+            58,
+            138
+          ],
+          [
+            70,
+            111
+          ],
+          [
+            118,
+            22
+          ],
+          [
+            121,
+            19
+          ],
+          [
+            125,
+            19
+          ],
+          [
+            156,
+            42
+          ],
+          [
+            159,
+            45
+          ],
+          [
+            177,
+            79
+          ],
+          [
+            194,
+            132
+          ],
+          [
+            201,
+            156
+          ],
+          [
+            204,
+            171
+          ],
+          [
+            210,
+            212
+          ],
+          [
+            210,
+            216
+          ],
+          [
+            192,
+            236
+          ],
+          [
+            190,
+            238
+          ],
+          [
+            186,
+            238
+          ],
+          [
+            70,
+            235
+          ],
+          [
+            62,
+            230
+          ],
+          [
+            60,
+            228
+          ],
+          [
+            58,
+            220
+          ],
+          [
+            55,
+            153
+          ]
+        ]
+      },
+      "file": "ant_avarice_eb6a1405af_v08.png",
+      "analytics_id": "ludus.variant.avarice.eb6a1405af.v08"
+    },
+    {
+      "slot": "v09",
+      "kind": "hybrid",
+      "amplified": false,
+      "parents": [
+        "v08",
+        "v07"
+      ],
+      "op": "grown_intersection",
+      "shape_change": 0.7535,
+      "iou_change": 0.7594,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.7475,
+      "hitbox": {
+        "bbox": [
+          51,
+          15,
+          214,
+          242
+        ],
+        "area": 9104,
+        "radius": 53.83,
+        "hull": [
+          [
+            51,
+            147
+          ],
+          [
+            54,
+            134
+          ],
+          [
+            66,
+            107
+          ],
+          [
+            114,
+            18
+          ],
+          [
+            117,
+            15
+          ],
+          [
+            129,
+            15
+          ],
+          [
+            160,
+            38
+          ],
+          [
+            163,
+            41
+          ],
+          [
+            181,
+            75
+          ],
+          [
+            198,
+            128
+          ],
+          [
+            205,
+            152
+          ],
+          [
+            208,
+            167
+          ],
+          [
+            214,
+            208
+          ],
+          [
+            214,
+            220
+          ],
+          [
+            192,
+            242
+          ],
+          [
+            182,
+            242
+          ],
+          [
+            66,
+            239
+          ],
+          [
+            58,
+            234
+          ],
+          [
+            56,
+            232
+          ],
+          [
+            54,
+            224
+          ],
+          [
+            51,
+            157
+          ]
+        ]
+      },
+      "replaces": "v09",
+      "file": "ant_avarice_eb6a1405af_v09.png",
+      "analytics_id": "ludus.variant.avarice.eb6a1405af.v09"
+    },
+    {
+      "slot": "v10",
+      "kind": "inverted_gravity",
+      "amplified": false,
+      "stretch": 1.3013100436681222,
+      "shape_change": 0.4296,
+      "iou_change": 0.4471,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.4152,
+      "hitbox": {
+        "bbox": [
+          59,
+          0,
+          202,
+          253
+        ],
+        "area": 19378,
+        "radius": 78.54,
+        "hull": [
+          [
+            59,
+            214
+          ],
+          [
+            81,
+            55
+          ],
+          [
+            82,
+            53
+          ],
+          [
+            109,
+            0
+          ],
+          [
+            148,
+            0
+          ],
+          [
+            172,
+            39
+          ],
+          [
+            173,
+            41
+          ],
+          [
+            198,
+            155
+          ],
+          [
+            202,
+            175
+          ],
+          [
+            202,
+            178
+          ],
+          [
+            201,
+            206
+          ],
+          [
+            192,
+            253
+          ],
+          [
+            85,
+            253
+          ],
+          [
+            63,
+            226
+          ],
+          [
+            59,
+            217
+          ]
+        ]
+      },
+      "file": "ant_avarice_eb6a1405af_v10.png",
+      "analytics_id": "ludus.variant.avarice.eb6a1405af.v10"
+    },
+    {
+      "slot": "v11",
+      "kind": "hybrid",
+      "amplified": false,
+      "parents": [
+        "v05",
+        "v03"
+      ],
+      "op": "xor",
+      "shape_change": 0.8635,
+      "iou_change": 0.8677,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.8496,
+      "hitbox": {
+        "bbox": [
+          48,
+          3,
+          237,
+          256
+        ],
+        "area": 8662,
+        "radius": 52.51,
+        "hull": [
+          [
+            48,
+            153
+          ],
+          [
+            95,
+            17
+          ],
+          [
+            97,
+            13
+          ],
+          [
+            102,
+            8
+          ],
+          [
+            106,
+            6
+          ],
+          [
+            109,
+            5
+          ],
+          [
+            125,
+            3
+          ],
+          [
+            132,
+            3
+          ],
+          [
+            134,
+            4
+          ],
+          [
+            139,
+            9
+          ],
+          [
+            176,
+            64
+          ],
+          [
+            222,
+            142
+          ],
+          [
+            224,
+            146
+          ],
+          [
+            237,
+            201
+          ],
+          [
+            237,
+            209
+          ],
+          [
+            236,
+            212
+          ],
+          [
+            234,
+            216
+          ],
+          [
+            212,
+            239
+          ],
+          [
+            207,
+            244
+          ],
+          [
+            192,
+            253
+          ],
+          [
+            151,
+            256
+          ],
+          [
+            101,
+            256
+          ],
+          [
+            85,
+            253
+          ],
+          [
+            64,
+            240
+          ],
+          [
+            52,
+            224
+          ],
+          [
+            48,
+            160
+          ]
+        ]
+      },
+      "file": "ant_avarice_eb6a1405af_v11.png",
+      "analytics_id": "ludus.variant.avarice.eb6a1405af.v11"
+    },
+    {
+      "slot": "v12",
+      "kind": "hybrid",
+      "amplified": false,
+      "parents": [
+        "v05",
+        "v02"
+      ],
+      "op": "xor",
+      "shape_change": 0.4161,
+      "iou_change": 0.8509,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.8316,
+      "hitbox": {
+        "bbox": [
+          52,
+          3,
+          237,
+          256
+        ],
+        "area": 8992,
+        "radius": 53.5,
+        "hull": [
+          [
+            52,
+            223
+          ],
+          [
+            53,
+            149
+          ],
+          [
+            54,
+            145
+          ],
+          [
+            94,
+            20
+          ],
+          [
+            95,
+            17
+          ],
+          [
+            97,
+            13
+          ],
+          [
+            102,
+            8
+          ],
+          [
+            106,
+            6
+          ],
+          [
+            109,
+            5
+          ],
+          [
+            125,
+            3
+          ],
+          [
+            132,
+            3
+          ],
+          [
+            134,
+            4
+          ],
+          [
+            139,
+            9
+          ],
+          [
+            222,
+            142
+          ],
+          [
+            224,
+            146
+          ],
+          [
+            237,
+            201
+          ],
+          [
+            237,
+            209
+          ],
+          [
+            236,
+            212
+          ],
+          [
+            234,
+            216
+          ],
+          [
+            212,
+            239
+          ],
+          [
+            207,
+            244
+          ],
+          [
+            192,
+            253
+          ],
+          [
+            151,
+            256
+          ],
+          [
+            101,
+            256
+          ],
+          [
+            85,
+            253
+          ],
+          [
+            82,
+            251
+          ],
+          [
+            58,
+            232
+          ],
+          [
+            52,
+            224
+          ]
+        ]
+      },
+      "file": "ant_avarice_eb6a1405af_v12.png",
+      "analytics_id": "ludus.variant.avarice.eb6a1405af.v12"
+    }
+  ],
+  "rejected_variants": [
+    {
+      "slot": "v04",
+      "kind": "amorphous",
+      "amplified": true,
+      "blur_radius": 21,
+      "alpha_pulse_frames": [
+        1.0,
+        0.85,
+        0.7,
+        0.85
+      ],
+      "shape_change": 0.2778,
+      "iou_change": 0.289,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.1938,
+      "hitbox": {
+        "bbox": [
+          56,
+          25,
+          222,
+          250
+        ],
+        "area": 28353,
+        "radius": 95.0,
+        "hull": [
+          [
+            56,
+            133
+          ],
+          [
+            57,
+            128
+          ],
+          [
+            60,
+            119
+          ],
+          [
+            64,
+            111
+          ],
+          [
+            97,
+            48
+          ],
+          [
+            101,
+            42
+          ],
+          [
+            105,
+            37
+          ],
+          [
+            108,
+            34
+          ],
+          [
+            112,
+            31
+          ],
+          [
+            115,
+            29
+          ],
+          [
+            117,
+            28
+          ],
+          [
+            123,
+            26
+          ],
+          [
+            130,
+            25
+          ],
+          [
+            133,
+            25
+          ],
+          [
+            140,
+            26
+          ],
+          [
+            146,
+            28
+          ],
+          [
+            150,
+            30
+          ],
+          [
+            156,
+            34
+          ],
+          [
+            160,
+            37
+          ],
+          [
+            169,
+            46
+          ],
+          [
+            173,
+            51
+          ],
+          [
+            179,
+            60
+          ],
+          [
+            183,
+            67
+          ],
+          [
+            184,
+            69
+          ],
+          [
+            188,
+            78
+          ],
+          [
+            192,
+            88
+          ],
+          [
+            214,
+            149
+          ],
+          [
+            219,
+            164
+          ],
+          [
+            220,
+            168
+          ],
+          [
+            221,
+            173
+          ],
+          [
+            222,
+            183
+          ],
+          [
+            222,
+            188
+          ],
+          [
+            221,
+            198
+          ],
+          [
+            220,
+            203
+          ],
+          [
+            219,
+            207
+          ],
+          [
+            217,
+            213
+          ],
+          [
+            211,
+            225
+          ],
+          [
+            209,
+            228
+          ],
+          [
+            199,
+            238
+          ],
+          [
+            193,
+            242
+          ],
+          [
+            189,
+            244
+          ],
+          [
+            184,
+            246
+          ],
+          [
+            181,
+            247
+          ],
+          [
+            177,
+            248
+          ],
+          [
+            171,
+            249
+          ],
+          [
+            156,
+            250
+          ],
+          [
+            147,
+            250
+          ],
+          [
+            98,
+            249
+          ],
+          [
+            88,
+            248
+          ],
+          [
+            84,
+            247
+          ],
+          [
+            81,
+            246
+          ],
+          [
+            71,
+            241
+          ],
+          [
+            64,
+            234
+          ],
+          [
+            62,
+            231
+          ],
+          [
+            61,
+            229
+          ],
+          [
+            59,
+            223
+          ],
+          [
+            58,
+            216
+          ],
+          [
+            56,
+            145
+          ]
+        ]
+      },
+      "reason": "shape-below-threshold-after-amplify"
+    },
+    {
+      "slot": "v07",
+      "kind": "dark_matter",
+      "amplified": true,
+      "shape_change": 0.3,
+      "iou_change": 0.3114,
+      "colour_change": 0.5372,
+      "silhouette_loss": 0.2162,
+      "hitbox": {
+        "bbox": [
+          46,
+          18,
+          221,
+          256
+        ],
+        "area": 27807,
+        "radius": 94.08,
+        "hull": [
+          [
+            46,
+            217
+          ],
+          [
+            47,
+            143
+          ],
+          [
+            48,
+            139
+          ],
+          [
+            50,
+            133
+          ],
+          [
+            54,
+            122
+          ],
+          [
+            110,
+            25
+          ],
+          [
+            116,
+            18
+          ],
+          [
+            142,
+            18
+          ],
+          [
+            166,
+            40
+          ],
+          [
+            175,
+            56
+          ],
+          [
+            182,
+            70
+          ],
+          [
+            221,
+            172
+          ],
+          [
+            221,
+            201
+          ],
+          [
+            215,
+            223
+          ],
+          [
+            199,
+            255
+          ],
+          [
+            198,
+            256
+          ],
+          [
+            78,
+            256
+          ],
+          [
+            52,
+            238
+          ],
+          [
+            46,
+            230
+          ]
+        ]
+      },
+      "reason": "shape-below-threshold-after-amplify"
+    },
+    {
+      "slot": "v09",
+      "kind": "echo",
+      "amplified": true,
+      "alpha": 0.5,
+      "echo_alpha": 0.25,
+      "echo_offset": [
+        31,
+        15
+      ],
+      "shape_change": 0.3193,
+      "iou_change": 0.3285,
+      "colour_change": 1.0,
+      "silhouette_loss": 0.2163,
+      "hitbox": {
+        "bbox": [
+          52,
+          24,
+          246,
+          256
+        ],
+        "area": 28674,
+        "radius": 95.54,
+        "hull": [
+          [
+            52,
+            223
+          ],
+          [
+            53,
+            149
+          ],
+          [
+            54,
+            145
+          ],
+          [
+            56,
+            139
+          ],
+          [
+            60,
+            128
+          ],
+          [
+            116,
+            31
+          ],
+          [
+            122,
+            24
+          ],
+          [
+            136,
+            24
+          ],
+          [
+            167,
+            39
+          ],
+          [
+            191,
+            61
+          ],
+          [
+            200,
+            77
+          ],
+          [
+            207,
+            91
+          ],
+          [
+            246,
+            193
+          ],
+          [
+            246,
+            210
+          ],
+          [
+            240,
+            232
+          ],
+          [
+            225,
+            256
+          ],
+          [
+            111,
+            256
+          ],
+          [
+            85,
+            253
+          ],
+          [
+            58,
+            232
+          ],
+          [
+            52,
+            224
+          ]
+        ]
+      },
+      "reason": "shape-below-threshold-after-amplify"
+    }
+  ],
+  "shortfall": 0,
+  "status": "ok",
+  "file": "ant_avarice_eb6a1405af_v01.png",
+  "shape_change": 0.3558,
+  "colour_change": 1.0,
+  "claim_features": [
+    "форма-антагонист страсти «avarice» (по Евагрию и Иоанну Лествичнику), выведенная из альфа-силуэта источника",
+    "палитра complement (тон 235°) и инверсия фактуры rough -> smooth",
+    "инвертированное поведение reward -> hazard_mimicking_reward; 12 вариантов с попарно различными хитбоксами",
+    "изменение формы по альфа-маскам (|A xor B| / |A or B|): от 35.6% до 86.4%",
+    "источник: https://github.com/crawl/crawl @ 7c31f6e797, crawl-ref/source/rltiles/UNUSED/monsters/deep_dwarf_death_knight.png #0 (GPL)"
+  ],
+  "opposing_virtue": "Non-possessiveness",
+  "ladder_step": "Ladder, steps 16-17",
+  "patristic_source": "Evagrius, Praktikos 9",
+  "discernment_cue": "It speaks of old age, famine and a rainy day.",
+  "discernment_cue_ru": "Он говорит о старости, голоде и чёрном дне.",
+  "teacher_npc": "theodora",
+  "mentor_node": "theodora:avarice_cue"
+}

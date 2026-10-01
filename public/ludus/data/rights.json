@@ -72,6 +72,19 @@
    "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
   },
   {
+   "object": "ant_anger_7b0ce4d8c3",
+   "slot": "DEF-001",
+   "passion": "anger",
+   "repo": "https://github.com/wesnoth/wesnoth",
+   "commit": "7747be0ff7",
+   "path": "data/core/images/units/monsters/deep-tentacle-ranged-defend.png",
+   "licence": "GPL",
+   "colour_change": 0.7009,
+   "min_shape_change": 0.3881,
+   "variants": 12,
+   "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
+  },
+  {
    "object": "ant_anger_8c10c90816",
    "slot": "DEF-001",
    "passion": "anger",
@@ -120,6 +133,19 @@
    "licence": "GPL",
    "colour_change": 0.6059,
    "min_shape_change": 0.4539,
+   "variants": 12,
+   "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
+  },
+  {
+   "object": "ant_avarice_eb6a1405af",
+   "slot": "DEF-001",
+   "passion": "avarice",
+   "repo": "https://github.com/crawl/crawl",
+   "commit": "7c31f6e797",
+   "path": "crawl-ref/source/rltiles/UNUSED/monsters/deep_dwarf_death_knight.png",
+   "licence": "GPL",
+   "colour_change": 0.4344,
+   "min_shape_change": 0.3558,
    "variants": 12,
    "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
   },

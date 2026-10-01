@@ -1,0 +1,1051 @@
+{
+  "id": "7b0ce4d8c3",
+  "seed": "7b0ce4d8c38e679959a615526b78423c0204a169",
+  "piece": 0,
+  "source": {
+    "repo": "https://github.com/wesnoth/wesnoth",
+    "path": "data/core/images/units/monsters/deep-tentacle-ranged-defend.png",
+    "commit": "7747be0ff750f9b9e7176437582bbaec5f9b0e56",
+    "piece": 0
+  },
+  "repo": "https://github.com/wesnoth/wesnoth",
+  "path": "data/core/images/units/monsters/deep-tentacle-ranged-defend.png",
+  "commit": "7747be0ff750f9b9e7176437582bbaec5f9b0e56",
+  "license": "GPL",
+  "license_file": "COPYING",
+  "threshold": 0.35,
+  "redraw": {
+    "shape_change": 0.0,
+    "iou_change": 0.0,
+    "colour_change": 0.7009,
+    "silhouette_loss": 0.0,
+    "is_recolour": true
+  },
+  "name": "ant_anger_7b0ce4d8c3",
+  "passion": "anger",
+  "passion_reason": "dominant hue 5 deg",
+  "features": {
+    "hue": 5,
+    "chromatic": true,
+    "mean_value": 0.3614,
+    "roughness": 83.23,
+    "glyph": null,
+    "glyph_iou": 0.0,
+    "glyph_margin": 0.0,
+    "words": [
+      "data",
+      "core",
+      "images",
+      "units",
+      "monsters",
+      "deep",
+      "tentacle",
+      "ranged",
+      "defend",
+      "png"
+    ]
+  },
+  "behaviour": {
+    "source_role": "projectile",
+    "antagonist": "stationary_lure"
+  },
+  "palette": {
+    "hue": 185,
+    "basis": "complement",
+    "stops": [
+      "#17484c",
+      "#268f99",
+      "#57ced9",
+      "#b2dfff"
+    ]
+  },
+  "texture": {
+    "source": "rough",
+    "antagonist": "smooth"
+  },
+  "reference_strength": 1,
+  "variants": [
+    {
+      "slot": "v01",
+      "kind": "reference",
+      "amplified": false,
+      "shape_change": 0.6169,
+      "iou_change": 0.6997,
+      "colour_change": 0.9645,
+      "silhouette_loss": 0.6271,
+      "hitbox": {
+        "bbox": [
+          19,
+          13,
+          244,
+          231
+        ],
+        "area": 7612,
+        "radius": 49.22,
+        "hull": [
+          [
+            19,
+            146
+          ],
+          [
+            27,
+            69
+          ],
+          [
+            116,
+            13
+          ],
+          [
+            117,
+            13
+          ],
+          [
+            213,
+            61
+          ],
+          [
+            244,
+            133
+          ],
+          [
+            244,
+            134
+          ],
+          [
+            189,
+            224
+          ],
+          [
+            103,
+            231
+          ],
+          [
+            102,
+            231
+          ],
+          [
+            19,
+            147
+          ]
+        ]
+      },
+      "file": "ant_anger_7b0ce4d8c3_v01.png",
+      "analytics_id": "ludus.variant.anger.7b0ce4d8c3.v01"
+    },
+    {
+      "slot": "v02",
+      "kind": "erosion",
+      "amplified": false,
+      "shape_change": 0.7199,
+      "iou_change": 0.7881,
+      "colour_change": 0.9551,
+      "silhouette_loss": 0.7698,
+      "hitbox": {
+        "bbox": [
+          54,
+          56,
+          207,
+          203
+        ],
+        "area": 3920,
+        "radius": 35.32,
+        "hull": [
+          [
+            54,
+            140
+          ],
+          [
+            74,
+            97
+          ],
+          [
+            75,
+            96
+          ],
+          [
+            120,
+            56
+          ],
+          [
+            122,
+            56
+          ],
+          [
+            185,
+            83
+          ],
+          [
+            207,
+            131
+          ],
+          [
+            207,
+            132
+          ],
+          [
+            170,
+            194
+          ],
+          [
+            110,
+            203
+          ],
+          [
+            109,
+            203
+          ],
+          [
+            54,
+            141
+          ]
+        ]
+      },
+      "file": "ant_anger_7b0ce4d8c3_v02.png",
+      "analytics_id": "ludus.variant.anger.7b0ce4d8c3.v02"
+    },
+    {
+      "slot": "v03",
+      "kind": "crystallisation",
+      "amplified": false,
+      "cell": 16,
+      "shape_change": 0.5305,
+      "iou_change": 0.6431,
+      "colour_change": 0.9781,
+      "silhouette_loss": 0.561,
+      "hitbox": {
+        "bbox": [
+          64,
+          48,
+          192,
+          192
+        ],
+        "area": 8285,
+        "radius": 51.35,
+        "hull": [
+          [
+            64,
+            137
+          ],
+          [
+            80,
+            96
+          ],
+          [
+            112,
+            57
+          ],
+          [
+            121,
+            48
+          ],
+          [
+            128,
+            48
+          ],
+          [
+            192,
+            80
+          ],
+          [
+            192,
+            144
+          ],
+          [
+            176,
+            192
+          ],
+          [
+            112,
+            192
+          ],
+          [
+            64,
+            144
+          ]
+        ]
+      },
+      "file": "ant_anger_7b0ce4d8c3_v03.png",
+      "analytics_id": "ludus.variant.anger.7b0ce4d8c3.v03"
+    },
+    {
+      "slot": "v04",
+      "kind": "amorphous",
+      "amplified": false,
+      "blur_radius": 13,
+      "alpha_pulse_frames": [
+        1.0,
+        0.85,
+        0.7,
+        0.85
+      ],
+      "shape_change": 0.3881,
+      "iou_change": 0.5143,
+      "colour_change": 0.9936,
+      "silhouette_loss": 0.4073,
+      "hitbox": {
+        "bbox": [
+          76,
+          58,
+          181,
+          196
+        ],
+        "area": 10066,
+        "radius": 56.6,
+        "hull": [
+          [
+            76,
+            99
+          ],
+          [
+            78,
+            95
+          ],
+          [
+            80,
+            93
+          ],
+          [
+            116,
+            61
+          ],
+          [
+            119,
+            59
+          ],
+          [
+            123,
+            58
+          ],
+          [
+            127,
+            58
+          ],
+          [
+            131,
+            59
+          ],
+          [
+            134,
+            60
+          ],
+          [
+            136,
+            61
+          ],
+          [
+            141,
+            64
+          ],
+          [
+            147,
+            68
+          ],
+          [
+            170,
+            84
+          ],
+          [
+            174,
+            88
+          ],
+          [
+            176,
+            92
+          ],
+          [
+            181,
+            123
+          ],
+          [
+            181,
+            132
+          ],
+          [
+            168,
+            185
+          ],
+          [
+            167,
+            188
+          ],
+          [
+            166,
+            190
+          ],
+          [
+            164,
+            192
+          ],
+          [
+            161,
+            194
+          ],
+          [
+            158,
+            195
+          ],
+          [
+            151,
+            196
+          ],
+          [
+            140,
+            196
+          ],
+          [
+            128,
+            195
+          ],
+          [
+            121,
+            194
+          ],
+          [
+            118,
+            193
+          ],
+          [
+            116,
+            192
+          ],
+          [
+            113,
+            190
+          ],
+          [
+            78,
+            138
+          ],
+          [
+            77,
+            136
+          ],
+          [
+            76,
+            132
+          ]
+        ]
+      },
+      "file": "ant_anger_7b0ce4d8c3_v04.png",
+      "analytics_id": "ludus.variant.anger.7b0ce4d8c3.v04"
+    },
+    {
+      "slot": "v05",
+      "kind": "symbiote",
+      "amplified": false,
+      "shape_change": 0.602,
+      "iou_change": 0.6701,
+      "colour_change": 0.9734,
+      "silhouette_loss": 0.5017,
+      "hitbox": {
+        "bbox": [
+          19,
+          2,
+          244,
+          231
+        ],
+        "area": 12487,
+        "radius": 63.05,
+        "hull": [
+          [
+            19,
+            146
+          ],
+          [
+            27,
+            69
+          ],
+          [
+            107,
+            5
+          ],
+          [
+            110,
+            3
+          ],
+          [
+            113,
+            2
+          ],
+          [
+            121,
+            2
+          ],
+          [
+            124,
+            3
+          ],
+          [
+            213,
+            61
+          ],
+          [
+            244,
+            133
+          ],
+          [
+            244,
+            134
+          ],
+          [
+            189,
+            224
+          ],
+          [
+            103,
+            231
+          ],
+          [
+            102,
+            231
+          ],
+          [
+            19,
+            147
+          ]
+        ]
+      },
+      "file": "ant_anger_7b0ce4d8c3_v05.png",
+      "analytics_id": "ludus.variant.anger.7b0ce4d8c3.v05"
+    },
+    {
+      "slot": "v06",
+      "kind": "techno",
+      "amplified": false,
+      "outline_px": 4,
+      "shape_change": 0.6575,
+      "iou_change": 0.817,
+      "colour_change": 0.9401,
+      "silhouette_loss": 0.7843,
+      "hitbox": {
+        "bbox": [
+          19,
+          13,
+          244,
+          231
+        ],
+        "area": 4882,
+        "radius": 39.42,
+        "hull": [
+          [
+            19,
+            146
+          ],
+          [
+            27,
+            69
+          ],
+          [
+            116,
+            13
+          ],
+          [
+            117,
+            13
+          ],
+          [
+            213,
+            61
+          ],
+          [
+            244,
+            133
+          ],
+          [
+            244,
+            134
+          ],
+          [
+            189,
+            224
+          ],
+          [
+            103,
+            231
+          ],
+          [
+            102,
+            231
+          ],
+          [
+            19,
+            147
+          ]
+        ]
+      },
+      "file": "ant_anger_7b0ce4d8c3_v06.png",
+      "analytics_id": "ludus.variant.anger.7b0ce4d8c3.v06"
+    },
+    {
+      "slot": "v07",
+      "kind": "dark_matter",
+      "amplified": false,
+      "shape_change": 0.5544,
+      "iou_change": 0.6554,
+      "colour_change": 0.6902,
+      "silhouette_loss": 0.4748,
+      "hitbox": {
+        "bbox": [
+          16,
+          10,
+          247,
+          234
+        ],
+        "area": 12992,
+        "radius": 64.31,
+        "hull": [
+          [
+            16,
+            143
+          ],
+          [
+            24,
+            66
+          ],
+          [
+            113,
+            10
+          ],
+          [
+            120,
+            10
+          ],
+          [
+            216,
+            58
+          ],
+          [
+            247,
+            130
+          ],
+          [
+            247,
+            137
+          ],
+          [
+            192,
+            227
+          ],
+          [
+            106,
+            234
+          ],
+          [
+            99,
+            234
+          ],
+          [
+            16,
+            150
+          ]
+        ]
+      },
+      "file": "ant_anger_7b0ce4d8c3_v07.png",
+      "analytics_id": "ludus.variant.anger.7b0ce4d8c3.v07"
+    },
+    {
+      "slot": "v08",
+      "kind": "swarm",
+      "amplified": false,
+      "particle_step": 11,
+      "shape_change": 0.8664,
+      "iou_change": 0.8993,
+      "colour_change": 0.9272,
+      "silhouette_loss": 0.8891,
+      "hitbox": {
+        "bbox": [
+          37,
+          23,
+          208,
+          192
+        ],
+        "area": 2628,
+        "radius": 28.92,
+        "hull": [
+          [
+            37,
+            75
+          ],
+          [
+            39,
+            73
+          ],
+          [
+            116,
+            23
+          ],
+          [
+            120,
+            23
+          ],
+          [
+            205,
+            64
+          ],
+          [
+            208,
+            67
+          ],
+          [
+            208,
+            71
+          ],
+          [
+            204,
+            135
+          ],
+          [
+            155,
+            190
+          ],
+          [
+            153,
+            192
+          ],
+          [
+            151,
+            192
+          ],
+          [
+            109,
+            186
+          ],
+          [
+            43,
+            146
+          ],
+          [
+            40,
+            143
+          ],
+          [
+            37,
+            77
+          ]
+        ]
+      },
+      "file": "ant_anger_7b0ce4d8c3_v08.png",
+      "analytics_id": "ludus.variant.anger.7b0ce4d8c3.v08"
+    },
+    {
+      "slot": "v09",
+      "kind": "echo",
+      "amplified": false,
+      "alpha": 0.5,
+      "echo_alpha": 0.25,
+      "echo_offset": [
+        22,
+        0
+      ],
+      "shape_change": 0.5027,
+      "iou_change": 0.607,
+      "colour_change": 0.982,
+      "silhouette_loss": 0.4451,
+      "hitbox": {
+        "bbox": [
+          19,
+          13,
+          256,
+          231
+        ],
+        "area": 11971,
+        "radius": 61.73,
+        "hull": [
+          [
+            19,
+            146
+          ],
+          [
+            27,
+            69
+          ],
+          [
+            116,
+            13
+          ],
+          [
+            139,
+            13
+          ],
+          [
+            235,
+            61
+          ],
+          [
+            256,
+            132
+          ],
+          [
+            256,
+            134
+          ],
+          [
+            211,
+            224
+          ],
+          [
+            125,
+            231
+          ],
+          [
+            102,
+            231
+          ],
+          [
+            19,
+            147
+          ]
+        ]
+      },
+      "file": "ant_anger_7b0ce4d8c3_v09.png",
+      "analytics_id": "ludus.variant.anger.7b0ce4d8c3.v09"
+    },
+    {
+      "slot": "v10",
+      "kind": "inverted_gravity",
+      "amplified": false,
+      "stretch": 1.298165137614679,
+      "shape_change": 0.6396,
+      "iou_change": 0.7288,
+      "colour_change": 0.9669,
+      "silhouette_loss": 0.661,
+      "hitbox": {
+        "bbox": [
+          48,
+          0,
+          210,
+          231
+        ],
+        "area": 7295,
+        "radius": 48.19,
+        "hull": [
+          [
+            48,
+            121
+          ],
+          [
+            79,
+            21
+          ],
+          [
+            125,
+            0
+          ],
+          [
+            128,
+            0
+          ],
+          [
+            171,
+            12
+          ],
+          [
+            206,
+            76
+          ],
+          [
+            207,
+            78
+          ],
+          [
+            210,
+            104
+          ],
+          [
+            210,
+            105
+          ],
+          [
+            188,
+            222
+          ],
+          [
+            103,
+            231
+          ],
+          [
+            102,
+            231
+          ],
+          [
+            48,
+            122
+          ]
+        ]
+      },
+      "file": "ant_anger_7b0ce4d8c3_v10.png",
+      "analytics_id": "ludus.variant.anger.7b0ce4d8c3.v10"
+    },
+    {
+      "slot": "v11",
+      "kind": "hybrid",
+      "amplified": false,
+      "parents": [
+        "v02",
+        "v04"
+      ],
+      "op": "grown_intersection",
+      "shape_change": 0.537,
+      "iou_change": 0.6253,
+      "colour_change": 0.9715,
+      "silhouette_loss": 0.5658,
+      "hitbox": {
+        "bbox": [
+          72,
+          55,
+          179,
+          194
+        ],
+        "area": 7345,
+        "radius": 48.35,
+        "hull": [
+          [
+            72,
+            95
+          ],
+          [
+            73,
+            93
+          ],
+          [
+            116,
+            55
+          ],
+          [
+            126,
+            55
+          ],
+          [
+            179,
+            86
+          ],
+          [
+            179,
+            97
+          ],
+          [
+            177,
+            137
+          ],
+          [
+            170,
+            193
+          ],
+          [
+            118,
+            194
+          ],
+          [
+            109,
+            194
+          ],
+          [
+            74,
+            142
+          ],
+          [
+            73,
+            140
+          ],
+          [
+            72,
+            104
+          ]
+        ]
+      },
+      "file": "ant_anger_7b0ce4d8c3_v11.png",
+      "analytics_id": "ludus.variant.anger.7b0ce4d8c3.v11"
+    },
+    {
+      "slot": "v12",
+      "kind": "hybrid",
+      "amplified": false,
+      "parents": [
+        "v07",
+        "v06"
+      ],
+      "op": "xor",
+      "shape_change": 0.5457,
+      "iou_change": 0.77,
+      "colour_change": 0.7518,
+      "silhouette_loss": 0.6905,
+      "hitbox": {
+        "bbox": [
+          16,
+          10,
+          247,
+          234
+        ],
+        "area": 8110,
+        "radius": 50.81,
+        "hull": [
+          [
+            16,
+            143
+          ],
+          [
+            24,
+            66
+          ],
+          [
+            113,
+            10
+          ],
+          [
+            120,
+            10
+          ],
+          [
+            216,
+            58
+          ],
+          [
+            247,
+            130
+          ],
+          [
+            247,
+            137
+          ],
+          [
+            192,
+            227
+          ],
+          [
+            106,
+            234
+          ],
+          [
+            99,
+            234
+          ],
+          [
+            16,
+            150
+          ]
+        ]
+      },
+      "file": "ant_anger_7b0ce4d8c3_v12.png",
+      "analytics_id": "ludus.variant.anger.7b0ce4d8c3.v12"
+    }
+  ],
+  "rejected_variants": [],
+  "shortfall": 0,
+  "status": "ok",
+  "file": "ant_anger_7b0ce4d8c3_v01.png",
+  "shape_change": 0.3881,
+  "colour_change": 0.9645,
+  "claim_features": [
+    "форма-антагонист страсти «anger» (по Евагрию и Иоанну Лествичнику), выведенная из альфа-силуэта источника",
+    "палитра complement (тон 185°) и инверсия фактуры rough -> smooth",
+    "инвертированное поведение projectile -> stationary_lure; 12 вариантов с попарно различными хитбоксами",
+    "изменение формы по альфа-маскам (|A xor B| / |A or B|): от 38.8% до 86.6%",
+    "источник: https://github.com/wesnoth/wesnoth @ 7747be0ff7, data/core/images/units/monsters/deep-tentacle-ranged-defend.png #0 (GPL)"
+  ],
+  "opposing_virtue": "Meekness",
+  "ladder_step": "Ladder, step 8",
+  "patristic_source": "Evagrius, Praktikos 11",
+  "discernment_cue": "It replays the offender's face again and again.",
+  "discernment_cue_ru": "Он снова и снова показывает лицо обидчика.",
+  "teacher_npc": "sister_catherine"
+}
