@@ -73,4 +73,5 @@
 | Фаза | Состояние | Доказательство |
 |---|---|---|
 | P0 | сделано | этот файл; 16 документов перенесены (`git mv`), ссылки в 9 файлах исправлены |
-| P1 | в работе | — |
+| P1 | сделано (кроме сборки образа) | `dispatch()` в `ludus-router.ts` — один для Cloud Function `api` и для `src/server.ts`. Живой процесс `PORT=3999 node lib/server.js` отвечает `404 {"error":"No route for GET /api/ludus/nowhere"}`. jest: `server.test.ts` 3/3, модульные наборы 29/29, интеграционный ждёт эмулятор. `npm ci` с новым lock проходит. `Dockerfile.ludus-backend` запускает `lib/server.js`. `docker build` в песочнице не запускался: демона Docker нет, сборка образа идёт в CI (P3) |
+| P2 | следующая | — |

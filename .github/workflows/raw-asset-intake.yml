@@ -106,7 +106,8 @@ jobs:
           npm --prefix functions ci --no-audit --no-fund
           cd functions && npx jest src/tests/api/sku-validator.test.ts \
             src/tests/api/ludus-actions.test.ts \
-            src/tests/api/ludus-router.test.ts
+            src/tests/api/ludus-router.test.ts \
+            src/tests/api/server.test.ts
 
       - name: Patristic canon
         run: |

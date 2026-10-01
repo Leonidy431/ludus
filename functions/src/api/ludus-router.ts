@@ -94,20 +94,27 @@ export function matchRoute(method: string, path: string): RouteMatch | null {
   return null;
 }
 
-export const api = functions.https.onRequest(
-  async (req: Request, res: Response) => {
-    const match = matchRoute(req.method, req.path);
-    if (!match) {
-      res.status(404).json({
-        error: `No route for ${req.method} ${req.path}`,
-        recovery: ['Check the API path and method'],
-      });
-      return;
-    }
-    // Express declares params as read-only in types but it is a plain
-    // writable object at runtime; the handlers read their ids from it.
-    (req as unknown as { params: Record<string, string> }).params =
-      match.params;
-    await HANDLERS[match.name](req, res);
+/**
+ * The one dispatcher behind both entry points: the Cloud Function "api"
+ * (Firebase Hosting rewrite) and the container server (server.ts, the
+ * own backend 3.0 on VM8).  Both run exactly this code, so the "pairing"
+ * of docs/version-3.0/HLD_BACKEND_3.0_VM8_HOT_MIRROR_2026-10-01.md can
+ * compare their answers.
+ */
+export async function dispatch(req: Request, res: Response): Promise<void> {
+  const match = matchRoute(req.method, req.path);
+  if (!match) {
+    res.status(404).json({
+      error: `No route for ${req.method} ${req.path}`,
+      recovery: ['Check the API path and method'],
+    });
+    return;
   }
-);
+  // Express declares params as read-only in types but it is a plain
+  // writable object at runtime; the handlers read their ids from it.
+  (req as unknown as { params: Record<string, string> }).params =
+    match.params;
+  await HANDLERS[match.name](req, res);
+}
+
+export const api = functions.https.onRequest(dispatch);

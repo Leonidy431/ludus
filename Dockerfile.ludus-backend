@@ -44,8 +44,9 @@ EXPOSE 3000
 # Use dumb-init to handle signals properly
 ENTRYPOINT ["/sbin/dumb-init", "--"]
 
-# Start Ludus backend API
-CMD ["node", "lib/index.js"]
+# Start Ludus backend API: lib/server.js listens on PORT (lib/index.js
+# only exports Cloud Functions and never listened; backend 3.0, P1).
+CMD ["node", "lib/server.js"]
 
 # Health check verification
 HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \

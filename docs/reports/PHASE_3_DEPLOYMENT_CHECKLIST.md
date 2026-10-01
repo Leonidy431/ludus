@@ -696,7 +696,7 @@ grep -c "<link.*ludus" public/index.html
 - [ ] `/ludus/PHASE_3_FINAL_BACKLOG.md` — Backlog summary
 - [ ] `/ludus/PHASE_3_QUICK_START.md` — TL;DR version
 - [ ] `/ludus/docs/LOCAL_DEV_SETUP.md` — Local setup guide
-- [ ] `/ludus/docs/CLOUD_FUNCTIONS_DIALOGUE_API.md` — API reference
+- [ ] `/ludus/docs/version-3.0/CLOUD_FUNCTIONS_DIALOGUE_API.md` — API reference
 
 **Quick Checks:**
 ```bash
