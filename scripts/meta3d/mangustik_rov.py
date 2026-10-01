@@ -184,11 +184,37 @@ def build(max_triangles=MAX_TRIANGLES, single=False):
     return scene, total, parts
 
 
+def lod1_paint(tree):
+    """Give the proxy's one primitive the full model's paint.
+
+    trimesh writes vertex colours without a material; a white base
+    colour with metallic 0.2 and roughness 0.55 keeps COLOR_0 as the
+    colour and carries the same paint as the full model's parts.
+    """
+    tree['materials'] = [{
+        'name': 'mangustik_lod1_paint',
+        'pbrMetallicRoughness': {
+            'baseColorFactor': [1.0, 1.0, 1.0, 1.0],
+            'metallicFactor': 0.2,
+            'roughnessFactor': 0.55,
+        },
+    }]
+    for mesh in tree['meshes']:
+        for prim in mesh['primitives']:
+            prim['material'] = 0
+
+
 def main_lod1():
     scene, total, parts = build(LOD1_TRIANGLES, single=True)
     lo, hi = scene.bounds
     size = (hi - lo).round(3).tolist()
-    scene.export(os.path.join(OUT_DIR, 'mangustik-lod1.glb'))
+    # Normals are written, so the shading does not depend on how an
+    # importer makes them up; the paint goes in as a material, so the
+    # file stands alone outside RovLod.build().
+    glb = trimesh.exchange.gltf.export_glb(
+        scene, include_normals=True, tree_postprocessor=lod1_paint)
+    with open(os.path.join(OUT_DIR, 'mangustik-lod1.glb'), 'wb') as f:
+        f.write(glb)
     meta = {
         'id': 'mangustik-lod1',
         'lod': 'proxy',
@@ -201,6 +227,12 @@ def main_lod1():
         'triangles': total,
         'noInteract': False,
         'noLoot': True,
+        'vertex_colours': 'COLOR_0 holds the sRGB encoding of the hex '
+                          'colour / 255, not linear as glTF defines it; '
+                          'RovLod.proxy_paint() reads it as stored '
+                          '(vertex_color_is_srgb = false) so it matches '
+                          'the full model, and other viewers show it '
+                          'lighter',
         'parts': parts,
     }
     with open(os.path.join(OUT_DIR, 'mangustik-lod1.json'), 'w',

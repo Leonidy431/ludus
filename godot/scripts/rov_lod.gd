@@ -66,11 +66,14 @@ static func build() -> Node3D:
 
 
 ## The proxy's one material.  Its glb carries the parts' colours as
-## vertex colours (COLOR_0, linear: the hex colour / 255), and Godot's
-## importer neither uses them as albedo nor gives the paint, so the
-## paint of the full model is set here: metallic 0.2, roughness 0.55,
-## and the colour taken as linear, as the full model's baseColorFactor
-## is, so both read the same under the same lamp.
+## vertex colours, and COLOR_0 holds the sRGB encoding of the hex
+## colour / 255 (scripts/meta3d/mangustik_rov.py, vertex_rgba), not the
+## linear value glTF defines.  Read as stored (vertex_color_is_srgb =
+## false), it matches the full model's linear baseColorFactor hex / 255
+## under the same lamp.  Do not switch it to sRGB alone: the glb and
+## this flag change together, or the proxy darkens.  Godot's imported
+## material does not take COLOR_0 as albedo, so the paint of the full
+## model (metallic 0.2, roughness 0.55) is set here as an override.
 static func proxy_paint() -> StandardMaterial3D:
 	var m := StandardMaterial3D.new()
 	m.vertex_color_use_as_albedo = true

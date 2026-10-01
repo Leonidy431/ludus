@@ -17,6 +17,7 @@
  "triangles": 4444,
  "noInteract": false,
  "noLoot": true,
+ "vertex_colours": "COLOR_0 holds the sRGB encoding of the hex colour / 255, not linear as glTF defines it; RovLod.proxy_paint() reads it as stored (vertex_color_is_srgb = false) so it matches the full model, and other viewers show it lighter",
  "parts": [
   {
    "part": "01_main_chassis_frame",
