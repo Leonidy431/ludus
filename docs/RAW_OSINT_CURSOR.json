@@ -1,5 +1,5 @@
 {
- "next": 3,
+ "next": 6,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -3353,6 +3353,117 @@
    "stage": "done",
    "accepted_objects": 5,
    "code_candidates": 85
+  },
+  {
+   "time": "2026-10-01T08:43:45.085348+00:00",
+   "pass_id": "osint-2026-10-01T08:43:45Z",
+   "deficits": [
+    {
+     "id": "DEF-052",
+     "hits": 200,
+     "taken": 6,
+     "refused": {},
+     "to_props": 0,
+     "hits_uncapped": 31162,
+     "props_uncapped": 15479,
+     "props_uncapped_repos": 45,
+     "added_keywords": [
+      "sound",
+      "chains",
+      "cotton",
+      "effects",
+      "glyphs",
+      "liquid",
+      "top"
+     ],
+     "keywords_total": 45,
+     "keywords_not_searched": [
+      "rsi"
+     ],
+     "props": {},
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-003",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 2
+     },
+     "to_props": 143,
+     "hits_uncapped": 8150,
+     "props_uncapped": 5881,
+     "props_uncapped_repos": 53,
+     "added_keywords": [
+      "units",
+      "booth",
+      "builder",
+      "jmenu",
+      "weaver",
+      "box",
+      "check",
+      "init",
+      "register",
+      "stream",
+      "unit"
+     ],
+     "keywords_total": 40,
+     "keywords_not_searched": [
+      "com",
+      "corsixth",
+      "java",
+      "left",
+      "lua",
+      "right",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 1
+     },
+     "props_seen": 142
+    },
+    {
+     "id": "DEF-008",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 2
+     },
+     "to_props": 176,
+     "hits_uncapped": 3183,
+     "props_uncapped": 2994,
+     "props_uncapped_repos": 36,
+     "added_keywords": [],
+     "keywords_total": 15,
+     "keywords_not_searched": [],
+     "props": {},
+     "props_seen": 172
+    }
+   ],
+   "props_taken": {
+    "other": 1
+   },
+   "props_taken_by_index_kind": {
+    "code": 1
+   },
+   "props_duplicates": 314,
+   "props_errors": 0,
+   "props_refused": {
+    "licence-UNKNOWN": 4
+   },
+   "props_new_bytes": 1113,
+   "props_store_files": 1009,
+   "props_store_bytes": 7736925,
+   "props_cache_files_on_disk": 1,
+   "props_cache_bytes_on_disk": 1113,
+   "props_cache_missing": 1008,
+   "props_cache_unnamed": 0,
+   "props_register_bytes": 565175,
+   "props_register_growth_bytes": 618,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 81
   }
  ],
  "keywords": {
@@ -3685,7 +3796,14 @@
    "dough",
    "ingredients",
    "ogl",
-   "rsi"
+   "rsi",
+   "sound",
+   "chains",
+   "cotton",
+   "effects",
+   "glyphs",
+   "liquid",
+   "top"
   ],
   "DEF-003": [
    "lua",
@@ -3711,7 +3829,18 @@
    "bloodparticle",
    "cellemitter",
    "challengeparticle",
-   "checkedcell"
+   "checkedcell",
+   "units",
+   "booth",
+   "builder",
+   "jmenu",
+   "weaver",
+   "box",
+   "check",
+   "init",
+   "register",
+   "stream",
+   "unit"
   ],
   "DEF-008": [
    "controllers",
