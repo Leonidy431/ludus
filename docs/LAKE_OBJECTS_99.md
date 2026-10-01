@@ -38,7 +38,7 @@ Pool: 711 real combinations (item x state x depth band) of 80 things of Issyk-Ku
 | 32 | fish | Иссык-кульский чебачок: стайка | shallows | 1–5 | 38 | release |
 | 33 | fish | Иссык-кульский чебак: стайка | shallows | 1–5 | 40 | release |
 | 34 | fish | Иссык-кульский гольян: стайка | shallows | 0–3 | 39 | release |
-| 35 | fish | Пятнистый губач: под камнем | shallows | 1–5 | 39 | release |
+| 35 | fish | Иссык-кульский губач: под камнем | shallows | 1–5 | 39 | release |
 | 36 | fish | Севанская форель: на границе слоя | shelf | 15–20 | 42 | keep |
 | 37 | fish | Серебряный карась: стайка | shallows | 0–5 | 36 | keep |
 | 38 | fish | Лещ: стайка | shallows | 3–5 | 36 | keep |
@@ -46,7 +46,7 @@ Pool: 711 real combinations (item x state x depth band) of 80 things of Issyk-Ku
 | 40 | fish | Серый голец: на песке | shallows | 0–5 | 36 | release |
 | 41 | fish | Тибетский голец: под камнем | shallows | 0–5 | 36 | release |
 | 42 | fish | Иссык-кульская маринка: в тени камня | shallows | 1–5 | 41 | release |
-| 43 | fish | Голый осман: в тени камня | shallows | 1–5 | 39 | release |
+| 43 | fish | Иссык-кульский голый осман: в тени камня | shallows | 1–5 | 39 | release |
 | 44 | fish | Чешуйчатый осман: у устья | shallows | 0–5 | 37 | release |
 | 45 | fish | Радужная форель: одиночка | shallows | 2–5 | 37 | keep |
 | 46 | fish | Сазан: одиночка | shallows | 1–5 | 35 | keep |

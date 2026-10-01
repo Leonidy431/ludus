@@ -1,0 +1,1376 @@
+{
+  "name": "own_ishkhan_e07c061221",
+  "id": "e07c061221",
+  "seed": "e07c061221efad600887b8f08f0f2975df64cd43",
+  "slot": "DEF-056",
+  "thing": "ishkhan",
+  "register": {
+    "id": "ishkhan",
+    "category": "fish",
+    "ru": "Севанская форель",
+    "en": "Sevan trout",
+    "depth_m": [
+      15,
+      120
+    ],
+    "shape": "fish",
+    "size_m": 0.55,
+    "colour": "#a7a39a",
+    "states": [
+      "одиночка",
+      "на границе слоя",
+      "в глубине",
+      "охотится",
+      "пара"
+    ]
+  },
+  "species": {
+    "ru": "Севанская форель (ишхан)",
+    "en": "Sevan trout",
+    "latin": "Salmo ischchan",
+    "status": "introduced 1930, 1936",
+    "loot": "keep",
+    "length": 0.55,
+    "depth": [
+      15,
+      120
+    ],
+    "colour": "#a7a39a"
+  },
+  "morphology": {
+    "depth": 0.23,
+    "top": 0.5,
+    "peak": 0.4,
+    "head": 0.72,
+    "stalk": 0.38,
+    "tail": 0.17,
+    "fork": 0.22,
+    "dorsal": [
+      0.4,
+      0.52,
+      0.14,
+      "short"
+    ],
+    "anal": [
+      0.72,
+      0.82,
+      0.07
+    ],
+    "adipose": 0.82,
+    "barbels": 0,
+    "marks": "trout",
+    "eye": 0.05,
+    "mouth": "terminal",
+    "fins": [
+      120,
+      116,
+      106
+    ],
+    "note": "genus shape from general ichthyology, approximate; to be checked by an ichthyologist (docs/ISSYK_KUL_FISH.md)"
+  },
+  "origin": "own-procedural-drawing",
+  "method": "own-procedural",
+  "raw_material": false,
+  "source": {
+    "repo": "ludus (own drawing)",
+    "path": "scripts/raw_assets/fish_procedural.py",
+    "commit": "fish-drawing-r4"
+  },
+  "repo": "ludus (own drawing)",
+  "path": "scripts/raw_assets/fish_procedural.py",
+  "commit": "fish-drawing-r4",
+  "license": "project (own drawing, no third-party material)",
+  "license_file": null,
+  "threshold": 0.35,
+  "shape_basis": "nearest-sibling-normalised",
+  "shape_norm": {
+    "box": [
+      200,
+      80
+    ],
+    "method": "crop to the bbox, fit to the box; placement, size and stretch do not count"
+  },
+  "engine": {
+    "age_lengths_px": [
+      236,
+      188,
+      150,
+      120,
+      96
+    ],
+    "scale_note": "a size is never a variant; the index gives each variant its age (1 for adults, 0.4068 for \"young\", the youngest class above) and the game multiplies the billboard by it",
+    "rest_on_floor": "a variant of the state \"bottom\" (index \"rest\") is shown only by a fish the game rests on the floor: it stops, sinks, and its lowest pixel (index \"foot\") lies on the floor line (fish_drawings.gd, dive-atlas.js fishSpot)",
+    "views": "a \"below\" or \"above\" variant is shown only when the eye sees the fish more than 35 degrees from level (index \"view\"); level, the side views swim",
+    "tilt_deg": [
+      -13,
+      13
+    ],
+    "facing": "left; the game turns the sprite, never a mirrored variant (TABOO 0.3 rule 35)"
+  },
+  "reference_profile": {
+    "name": "fish",
+    "aspect": [
+      1.8,
+      6.5
+    ],
+    "fill": [
+      0.35,
+      0.85
+    ],
+    "category": "fish"
+  },
+  "pool": {
+    "size": 54,
+    "fitting": 46,
+    "refused": {
+      "unlike-real-object": 8,
+      "too-close-to-a-sibling": 34
+    },
+    "chosen": 12
+  },
+  "constitution": "FORM: a real species of Issyk-Kul in its real states -> ACTION: the ROV operator tells it apart, logs it and releases the endemics -> GOAL: knowing the living lake by its real creatures (TABOO 0.03 rule 6)",
+  "variants": [
+    {
+      "slot": "v01",
+      "file": "own_ishkhan_e07c061221_v01.png",
+      "state": "hunting",
+      "params": {
+        "pose": "hunting",
+        "state": "hunting",
+        "form": {
+          "mouth": true,
+          "fins": 1.3,
+          "bend": "wave",
+          "amp": 0.12
+        },
+        "fish_px": 236,
+        "key": "ishkhan:hunting:0:amp=0.12-bend=wave-fins=1.3-mouth=True"
+      },
+      "shape_change": 0.3724,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.629,
+        "fill": 0.405,
+        "base": 0.228
+      },
+      "area": 8434,
+      "hitbox": {
+        "bbox": [
+          13,
+          81,
+          247,
+          170
+        ],
+        "area": 8434,
+        "radius": 51.81,
+        "hull": [
+          [
+            13,
+            124
+          ],
+          [
+            91,
+            81
+          ],
+          [
+            92,
+            81
+          ],
+          [
+            171,
+            94
+          ],
+          [
+            246,
+            108
+          ],
+          [
+            247,
+            109
+          ],
+          [
+            247,
+            110
+          ],
+          [
+            245,
+            147
+          ],
+          [
+            112,
+            170
+          ],
+          [
+            110,
+            170
+          ],
+          [
+            68,
+            169
+          ],
+          [
+            40,
+            155
+          ],
+          [
+            28,
+            147
+          ],
+          [
+            21,
+            142
+          ],
+          [
+            13,
+            134
+          ]
+        ]
+      },
+      "foot": 0.6641,
+      "analytics_id": "ludus.variant.fish.ishkhan.e07c061221.v01"
+    },
+    {
+      "slot": "v02",
+      "file": "own_ishkhan_e07c061221_v02.png",
+      "state": "rising",
+      "params": {
+        "pose": "rising",
+        "state": "rising",
+        "form": {
+          "fins": 1.25,
+          "bend": "bow",
+          "amp": 0.07
+        },
+        "fish_px": 236,
+        "key": "ishkhan:rising:0:amp=0.07-bend=bow-fins=1.25"
+      },
+      "shape_change": 0.3808,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.521,
+        "fill": 0.379,
+        "base": 0.114
+      },
+      "area": 8446,
+      "hitbox": {
+        "bbox": [
+          10,
+          86,
+          247,
+          180
+        ],
+        "area": 8446,
+        "radius": 51.85,
+        "hull": [
+          [
+            10,
+            126
+          ],
+          [
+            13,
+            124
+          ],
+          [
+            15,
+            123
+          ],
+          [
+            90,
+            86
+          ],
+          [
+            92,
+            86
+          ],
+          [
+            247,
+            109
+          ],
+          [
+            247,
+            110
+          ],
+          [
+            245,
+            148
+          ],
+          [
+            162,
+            174
+          ],
+          [
+            113,
+            180
+          ],
+          [
+            110,
+            180
+          ],
+          [
+            68,
+            166
+          ],
+          [
+            40,
+            152
+          ],
+          [
+            31,
+            147
+          ],
+          [
+            26,
+            144
+          ],
+          [
+            19,
+            139
+          ],
+          [
+            15,
+            136
+          ],
+          [
+            14,
+            135
+          ],
+          [
+            10,
+            130
+          ]
+        ]
+      },
+      "foot": 0.7031,
+      "analytics_id": "ludus.variant.fish.ishkhan.e07c061221.v02"
+    },
+    {
+      "slot": "v03",
+      "file": "own_ishkhan_e07c061221_v03.png",
+      "state": "turning",
+      "params": {
+        "pose": "turning",
+        "state": "turning",
+        "form": {
+          "turn": 35,
+          "toward": true,
+          "bend": "straight",
+          "amp": 0.0
+        },
+        "fish_px": 236,
+        "key": "ishkhan:turning:0:amp=0.0-bend=straight-toward=True-turn=35"
+      },
+      "shape_change": 0.3773,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.318,
+        "fill": 0.428,
+        "base": 0.095
+      },
+      "area": 7681,
+      "hitbox": {
+        "bbox": [
+          2,
+          74,
+          206,
+          162
+        ],
+        "area": 7681,
+        "radius": 49.45,
+        "hull": [
+          [
+            2,
+            125
+          ],
+          [
+            5,
+            122
+          ],
+          [
+            11,
+            118
+          ],
+          [
+            95,
+            74
+          ],
+          [
+            96,
+            74
+          ],
+          [
+            206,
+            112
+          ],
+          [
+            206,
+            144
+          ],
+          [
+            115,
+            162
+          ],
+          [
+            112,
+            162
+          ],
+          [
+            59,
+            152
+          ],
+          [
+            44,
+            149
+          ],
+          [
+            40,
+            148
+          ],
+          [
+            29,
+            145
+          ],
+          [
+            11,
+            138
+          ],
+          [
+            5,
+            134
+          ],
+          [
+            2,
+            131
+          ]
+        ]
+      },
+      "foot": 0.6328,
+      "analytics_id": "ludus.variant.fish.ishkhan.e07c061221.v03"
+    },
+    {
+      "slot": "v04",
+      "file": "own_ishkhan_e07c061221_v04.png",
+      "state": "below",
+      "params": {
+        "pose": "below",
+        "state": "below",
+        "form": {
+          "view": "below",
+          "bend": "straight",
+          "amp": 0.0,
+          "spread": 25
+        },
+        "fish_px": 236,
+        "key": "ishkhan:below:0:amp=0.0-bend=straight-spread=25-view=below"
+      },
+      "shape_change": 0.3773,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 4.955,
+        "fill": 0.487,
+        "base": 0.041
+      },
+      "area": 4676,
+      "hitbox": {
+        "bbox": [
+          10,
+          106,
+          228,
+          150
+        ],
+        "area": 4676,
+        "radius": 38.58,
+        "hull": [
+          [
+            10,
+            126
+          ],
+          [
+            14,
+            122
+          ],
+          [
+            16,
+            121
+          ],
+          [
+            22,
+            119
+          ],
+          [
+            69,
+            106
+          ],
+          [
+            71,
+            106
+          ],
+          [
+            123,
+            110
+          ],
+          [
+            228,
+            120
+          ],
+          [
+            228,
+            136
+          ],
+          [
+            123,
+            146
+          ],
+          [
+            71,
+            150
+          ],
+          [
+            69,
+            150
+          ],
+          [
+            22,
+            137
+          ],
+          [
+            16,
+            135
+          ],
+          [
+            14,
+            134
+          ],
+          [
+            10,
+            130
+          ]
+        ]
+      },
+      "foot": 0.5859,
+      "analytics_id": "ludus.variant.fish.ishkhan.e07c061221.v04"
+    },
+    {
+      "slot": "v05",
+      "file": "own_ishkhan_e07c061221_v05.png",
+      "state": "pair",
+      "params": {
+        "pose": "pair",
+        "state": "pair",
+        "form": {
+          "bend": "straight",
+          "amp": 0.0,
+          "layout": "beside"
+        },
+        "fish_px": 146.32,
+        "key": "ishkhan:pair:2:amp=0.0-bend=straight-layout=beside"
+      },
+      "shape_change": 0.3871,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 1.859,
+        "fill": 0.455,
+        "base": 0.364
+      },
+      "area": 6110,
+      "hitbox": {
+        "bbox": [
+          47,
+          81,
+          205,
+          166
+        ],
+        "area": 6110,
+        "radius": 44.1,
+        "hull": [
+          [
+            47,
+            144
+          ],
+          [
+            65,
+            109
+          ],
+          [
+            69,
+            106
+          ],
+          [
+            113,
+            81
+          ],
+          [
+            115,
+            81
+          ],
+          [
+            205,
+            99
+          ],
+          [
+            205,
+            102
+          ],
+          [
+            204,
+            122
+          ],
+          [
+            193,
+            158
+          ],
+          [
+            112,
+            166
+          ],
+          [
+            109,
+            166
+          ],
+          [
+            73,
+            158
+          ],
+          [
+            66,
+            156
+          ],
+          [
+            57,
+            153
+          ],
+          [
+            49,
+            149
+          ],
+          [
+            47,
+            147
+          ]
+        ]
+      },
+      "foot": 0.6484,
+      "analytics_id": "ludus.variant.fish.ishkhan.e07c061221.v05"
+    },
+    {
+      "slot": "v06",
+      "file": "own_ishkhan_e07c061221_v06.png",
+      "state": "feeding",
+      "params": {
+        "pose": "feeding",
+        "state": "feeding",
+        "form": {
+          "mouth": true,
+          "bend": "head-down",
+          "amp": 0.2
+        },
+        "fish_px": 236,
+        "key": "ishkhan:feeding:2:amp=0.2-bend=head-down-mouth=True"
+      },
+      "shape_change": 0.3724,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.412,
+        "fill": 0.359,
+        "base": 0.103
+      },
+      "area": 8159,
+      "hitbox": {
+        "bbox": [
+          13,
+          80,
+          247,
+          177
+        ],
+        "area": 8159,
+        "radius": 50.96,
+        "hull": [
+          [
+            13,
+            167
+          ],
+          [
+            17,
+            161
+          ],
+          [
+            21,
+            156
+          ],
+          [
+            26,
+            150
+          ],
+          [
+            90,
+            81
+          ],
+          [
+            91,
+            80
+          ],
+          [
+            92,
+            80
+          ],
+          [
+            247,
+            109
+          ],
+          [
+            247,
+            110
+          ],
+          [
+            245,
+            148
+          ],
+          [
+            16,
+            177
+          ],
+          [
+            13,
+            177
+          ]
+        ]
+      },
+      "foot": 0.6914,
+      "analytics_id": "ludus.variant.fish.ishkhan.e07c061221.v06"
+    },
+    {
+      "slot": "v07",
+      "file": "own_ishkhan_e07c061221_v07.png",
+      "state": "pair",
+      "params": {
+        "pose": "pair",
+        "state": "pair",
+        "form": {
+          "bend": "wave",
+          "amp": 0.1,
+          "layout": "beside"
+        },
+        "fish_px": 146.32,
+        "key": "ishkhan:pair:3:amp=0.1-bend=wave-layout=beside"
+      },
+      "shape_change": 0.3871,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 1.951,
+        "fill": 0.466,
+        "base": 0.17
+      },
+      "area": 5965,
+      "hitbox": {
+        "bbox": [
+          47,
+          87,
+          205,
+          168
+        ],
+        "area": 5965,
+        "radius": 43.57,
+        "hull": [
+          [
+            47,
+            144
+          ],
+          [
+            65,
+            109
+          ],
+          [
+            67,
+            108
+          ],
+          [
+            113,
+            87
+          ],
+          [
+            115,
+            87
+          ],
+          [
+            163,
+            92
+          ],
+          [
+            205,
+            98
+          ],
+          [
+            205,
+            101
+          ],
+          [
+            204,
+            122
+          ],
+          [
+            193,
+            158
+          ],
+          [
+            146,
+            168
+          ],
+          [
+            140,
+            168
+          ],
+          [
+            110,
+            163
+          ],
+          [
+            56,
+            150
+          ],
+          [
+            52,
+            149
+          ],
+          [
+            49,
+            148
+          ],
+          [
+            47,
+            147
+          ]
+        ]
+      },
+      "foot": 0.6562,
+      "analytics_id": "ludus.variant.fish.ishkhan.e07c061221.v07"
+    },
+    {
+      "slot": "v08",
+      "file": "own_ishkhan_e07c061221_v08.png",
+      "state": "feeding",
+      "params": {
+        "pose": "feeding",
+        "state": "feeding",
+        "form": {
+          "mouth": true,
+          "fins": 1.2,
+          "bend": "arch",
+          "amp": 0.07
+        },
+        "fish_px": 236,
+        "key": "ishkhan:feeding:3:amp=0.07-bend=arch-fins=1.2-mouth=True"
+      },
+      "shape_change": 0.3773,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.6,
+        "fill": 0.396,
+        "base": 0.237
+      },
+      "area": 8347,
+      "hitbox": {
+        "bbox": [
+          13,
+          57,
+          247,
+          147
+        ],
+        "area": 8347,
+        "radius": 51.55,
+        "hull": [
+          [
+            13,
+            122
+          ],
+          [
+            15,
+            120
+          ],
+          [
+            91,
+            57
+          ],
+          [
+            92,
+            57
+          ],
+          [
+            246,
+            108
+          ],
+          [
+            247,
+            109
+          ],
+          [
+            247,
+            110
+          ],
+          [
+            245,
+            147
+          ],
+          [
+            243,
+            147
+          ],
+          [
+            110,
+            146
+          ],
+          [
+            68,
+            141
+          ],
+          [
+            37,
+            137
+          ],
+          [
+            24,
+            135
+          ],
+          [
+            19,
+            134
+          ],
+          [
+            15,
+            133
+          ],
+          [
+            13,
+            132
+          ]
+        ]
+      },
+      "foot": 0.5742,
+      "analytics_id": "ludus.variant.fish.ishkhan.e07c061221.v08"
+    },
+    {
+      "slot": "v09",
+      "file": "own_ishkhan_e07c061221_v09.png",
+      "state": "below",
+      "params": {
+        "pose": "below",
+        "state": "below",
+        "form": {
+          "view": "below",
+          "bend": "wave",
+          "amp": 0.05
+        },
+        "fish_px": 236,
+        "key": "ishkhan:below:3:amp=0.05-bend=wave-view=below"
+      },
+      "shape_change": 0.3611,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 4.037,
+        "fill": 0.418,
+        "base": 0.046
+      },
+      "area": 4917,
+      "hitbox": {
+        "bbox": [
+          10,
+          106,
+          228,
+          160
+        ],
+        "area": 4917,
+        "radius": 39.56,
+        "hull": [
+          [
+            10,
+            126
+          ],
+          [
+            13,
+            123
+          ],
+          [
+            16,
+            122
+          ],
+          [
+            67,
+            106
+          ],
+          [
+            68,
+            106
+          ],
+          [
+            123,
+            108
+          ],
+          [
+            228,
+            120
+          ],
+          [
+            228,
+            136
+          ],
+          [
+            68,
+            160
+          ],
+          [
+            65,
+            160
+          ],
+          [
+            24,
+            140
+          ],
+          [
+            16,
+            136
+          ],
+          [
+            13,
+            134
+          ],
+          [
+            12,
+            133
+          ],
+          [
+            10,
+            130
+          ]
+        ]
+      },
+      "foot": 0.625,
+      "analytics_id": "ludus.variant.fish.ishkhan.e07c061221.v09"
+    },
+    {
+      "slot": "v10",
+      "file": "own_ishkhan_e07c061221_v10.png",
+      "state": "pair",
+      "params": {
+        "pose": "pair",
+        "state": "pair",
+        "form": {
+          "bend": "straight",
+          "amp": 0.0,
+          "layout": "cross"
+        },
+        "fish_px": 146.32,
+        "key": "ishkhan:pair:4:amp=0.0-bend=straight-layout=cross"
+      },
+      "shape_change": 0.4225,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.806,
+        "fill": 0.372,
+        "base": 0.098
+      },
+      "area": 5441,
+      "hitbox": {
+        "bbox": [
+          10,
+          94,
+          246,
+          156
+        ],
+        "area": 5441,
+        "radius": 41.62,
+        "hull": [
+          [
+            10,
+            105
+          ],
+          [
+            158,
+            94
+          ],
+          [
+            160,
+            94
+          ],
+          [
+            246,
+            110
+          ],
+          [
+            246,
+            111
+          ],
+          [
+            244,
+            132
+          ],
+          [
+            156,
+            148
+          ],
+          [
+            74,
+            156
+          ],
+          [
+            73,
+            156
+          ],
+          [
+            47,
+            144
+          ],
+          [
+            35,
+            136
+          ],
+          [
+            25,
+            127
+          ],
+          [
+            15,
+            115
+          ],
+          [
+            11,
+            109
+          ],
+          [
+            10,
+            107
+          ]
+        ]
+      },
+      "foot": 0.6094,
+      "analytics_id": "ludus.variant.fish.ishkhan.e07c061221.v10"
+    },
+    {
+      "slot": "v11",
+      "file": "own_ishkhan_e07c061221_v11.png",
+      "state": "single",
+      "params": {
+        "pose": "single",
+        "state": "single",
+        "form": {
+          "bend": "wave-back",
+          "amp": 0.1
+        },
+        "fish_px": 236,
+        "key": "ishkhan:single:5:amp=0.1-bend=wave-back"
+      },
+      "shape_change": 0.4022,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.443,
+        "fill": 0.359,
+        "base": 0.092
+      },
+      "area": 8247,
+      "hitbox": {
+        "bbox": [
+          10,
+          68,
+          247,
+          165
+        ],
+        "area": 8247,
+        "radius": 51.24,
+        "hull": [
+          [
+            10,
+            126
+          ],
+          [
+            13,
+            122
+          ],
+          [
+            17,
+            118
+          ],
+          [
+            21,
+            115
+          ],
+          [
+            28,
+            110
+          ],
+          [
+            90,
+            68
+          ],
+          [
+            92,
+            68
+          ],
+          [
+            247,
+            109
+          ],
+          [
+            247,
+            110
+          ],
+          [
+            245,
+            148
+          ],
+          [
+            162,
+            165
+          ],
+          [
+            161,
+            165
+          ],
+          [
+            111,
+            156
+          ],
+          [
+            21,
+            134
+          ],
+          [
+            17,
+            133
+          ],
+          [
+            14,
+            132
+          ],
+          [
+            10,
+            130
+          ]
+        ]
+      },
+      "foot": 0.6445,
+      "analytics_id": "ludus.variant.fish.ishkhan.e07c061221.v11"
+    },
+    {
+      "slot": "v12",
+      "file": "own_ishkhan_e07c061221_v12.png",
+      "state": "below",
+      "params": {
+        "pose": "below",
+        "state": "below",
+        "form": {
+          "view": "below",
+          "bend": "wave",
+          "amp": 0.12
+        },
+        "fish_px": 236,
+        "key": "ishkhan:below:5:amp=0.12-bend=wave-view=below"
+      },
+      "shape_change": 0.3611,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.574,
+        "fill": 0.369,
+        "base": 0.067
+      },
+      "area": 4905,
+      "hitbox": {
+        "bbox": [
+          10,
+          107,
+          228,
+          168
+        ],
+        "area": 4905,
+        "radius": 39.51,
+        "hull": [
+          [
+            10,
+            126
+          ],
+          [
+            13,
+            124
+          ],
+          [
+            66,
+            114
+          ],
+          [
+            122,
+            107
+          ],
+          [
+            163,
+            107
+          ],
+          [
+            181,
+            108
+          ],
+          [
+            187,
+            109
+          ],
+          [
+            197,
+            111
+          ],
+          [
+            205,
+            113
+          ],
+          [
+            222,
+            118
+          ],
+          [
+            228,
+            120
+          ],
+          [
+            228,
+            136
+          ],
+          [
+            68,
+            168
+          ],
+          [
+            66,
+            168
+          ],
+          [
+            24,
+            143
+          ],
+          [
+            18,
+            139
+          ],
+          [
+            13,
+            135
+          ],
+          [
+            10,
+            130
+          ]
+        ]
+      },
+      "foot": 0.6562,
+      "analytics_id": "ludus.variant.fish.ishkhan.e07c061221.v12"
+    }
+  ],
+  "status": "ok",
+  "shortfall": 0,
+  "shape_change": 0.3611
+}

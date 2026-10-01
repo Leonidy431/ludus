@@ -1,0 +1,1217 @@
+{
+  "name": "own_marinka_877962c94d",
+  "id": "877962c94d",
+  "seed": "877962c94dc09e05063c67446067b972f31205b3",
+  "slot": "DEF-056",
+  "thing": "marinka",
+  "register": {
+    "id": "marinka",
+    "category": "fish",
+    "ru": "Иссык-кульская маринка",
+    "en": "Marinka",
+    "depth_m": [
+      1,
+      40
+    ],
+    "shape": "fish",
+    "size_m": 0.45,
+    "colour": "#8f8a6e",
+    "states": [
+      "одиночка",
+      "пара",
+      "у дна",
+      "кормится",
+      "в тени камня"
+    ]
+  },
+  "species": {
+    "ru": "Иссык-кульская маринка",
+    "en": "Issyk-Kul marinka",
+    "latin": "Schizothorax pseudoaksaiensis issykkuli",
+    "status": "endemic subspecies",
+    "loot": "release",
+    "length": 0.45,
+    "depth": [
+      1,
+      40
+    ],
+    "colour": "#8f8a6e"
+  },
+  "morphology": {
+    "depth": 0.21,
+    "top": 0.52,
+    "peak": 0.44,
+    "head": 0.9,
+    "stalk": 0.38,
+    "tail": 0.18,
+    "fork": 0.55,
+    "dorsal": [
+      0.4,
+      0.52,
+      0.15,
+      "short"
+    ],
+    "anal": [
+      0.74,
+      0.84,
+      0.07
+    ],
+    "adipose": null,
+    "barbels": 2,
+    "barbel_len": 1.7,
+    "marks": "plain",
+    "gill": 0.24,
+    "eye": 0.05,
+    "mouth": "under",
+    "fins": [
+      110,
+      104,
+      80
+    ],
+    "note": "genus shape from general ichthyology, approximate; to be checked by an ichthyologist (docs/ISSYK_KUL_FISH.md)"
+  },
+  "origin": "own-procedural-drawing",
+  "method": "own-procedural",
+  "raw_material": false,
+  "source": {
+    "repo": "ludus (own drawing)",
+    "path": "scripts/raw_assets/fish_procedural.py",
+    "commit": "fish-drawing-r4"
+  },
+  "repo": "ludus (own drawing)",
+  "path": "scripts/raw_assets/fish_procedural.py",
+  "commit": "fish-drawing-r4",
+  "license": "project (own drawing, no third-party material)",
+  "license_file": null,
+  "threshold": 0.35,
+  "shape_basis": "nearest-sibling-normalised",
+  "shape_norm": {
+    "box": [
+      200,
+      80
+    ],
+    "method": "crop to the bbox, fit to the box; placement, size and stretch do not count"
+  },
+  "engine": {
+    "age_lengths_px": [
+      236,
+      188,
+      150,
+      120,
+      96
+    ],
+    "scale_note": "a size is never a variant; the index gives each variant its age (1 for adults, 0.4068 for \"young\", the youngest class above) and the game multiplies the billboard by it",
+    "rest_on_floor": "a variant of the state \"bottom\" (index \"rest\") is shown only by a fish the game rests on the floor: it stops, sinks, and its lowest pixel (index \"foot\") lies on the floor line (fish_drawings.gd, dive-atlas.js fishSpot)",
+    "views": "a \"below\" or \"above\" variant is shown only when the eye sees the fish more than 35 degrees from level (index \"view\"); level, the side views swim",
+    "tilt_deg": [
+      -13,
+      13
+    ],
+    "facing": "left; the game turns the sprite, never a mirrored variant (TABOO 0.3 rule 35)"
+  },
+  "reference_profile": {
+    "name": "fish",
+    "aspect": [
+      1.8,
+      6.5
+    ],
+    "fill": [
+      0.35,
+      0.85
+    ],
+    "category": "fish"
+  },
+  "pool": {
+    "size": 70,
+    "fitting": 46,
+    "refused": {
+      "unlike-real-object": 24,
+      "too-close-to-a-sibling": 34
+    },
+    "chosen": 12
+  },
+  "constitution": "FORM: a real species of Issyk-Kul in its real states -> ACTION: the ROV operator tells it apart, logs it and releases the endemics -> GOAL: knowing the living lake by its real creatures (TABOO 0.03 rule 6)",
+  "variants": [
+    {
+      "slot": "v01",
+      "file": "own_marinka_877962c94d_v01.png",
+      "state": "single",
+      "params": {
+        "pose": "single",
+        "state": "single",
+        "form": {
+          "bend": "straight",
+          "amp": 0.0,
+          "fins": 0.8
+        },
+        "fish_px": 236,
+        "key": "marinka:single:0:amp=0.0-bend=straight-fins=0.8"
+      },
+      "shape_change": 0.3558,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.147,
+        "fill": 0.405,
+        "base": 0.086
+      },
+      "area": 7166,
+      "hitbox": {
+        "bbox": [
+          10,
+          84,
+          246,
+          159
+        ],
+        "area": 7166,
+        "radius": 47.76,
+        "hull": [
+          [
+            10,
+            126
+          ],
+          [
+            89,
+            84
+          ],
+          [
+            91,
+            84
+          ],
+          [
+            246,
+            106
+          ],
+          [
+            246,
+            108
+          ],
+          [
+            245,
+            150
+          ],
+          [
+            112,
+            156
+          ],
+          [
+            34,
+            159
+          ],
+          [
+            32,
+            159
+          ],
+          [
+            21,
+            151
+          ],
+          [
+            10,
+            130
+          ]
+        ]
+      },
+      "foot": 0.6211,
+      "analytics_id": "ludus.variant.fish.marinka.877962c94d.v01"
+    },
+    {
+      "slot": "v02",
+      "file": "own_marinka_877962c94d_v02.png",
+      "state": "above",
+      "params": {
+        "pose": "above",
+        "state": "above",
+        "form": {
+          "view": "above",
+          "bend": "straight",
+          "amp": 0.0,
+          "spread": 25
+        },
+        "fish_px": 236,
+        "key": "marinka:above:0:amp=0.0-bend=straight-spread=25-view=above"
+      },
+      "shape_change": 0.3713,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 4.019,
+        "fill": 0.42,
+        "base": 0.014
+      },
+      "area": 4920,
+      "hitbox": {
+        "bbox": [
+          10,
+          101,
+          227,
+          155
+        ],
+        "area": 4920,
+        "radius": 39.57,
+        "hull": [
+          [
+            10,
+            126
+          ],
+          [
+            21,
+            108
+          ],
+          [
+            32,
+            101
+          ],
+          [
+            33,
+            101
+          ],
+          [
+            227,
+            120
+          ],
+          [
+            227,
+            136
+          ],
+          [
+            33,
+            155
+          ],
+          [
+            32,
+            155
+          ],
+          [
+            21,
+            148
+          ],
+          [
+            10,
+            130
+          ]
+        ]
+      },
+      "foot": 0.6055,
+      "analytics_id": "ludus.variant.fish.marinka.877962c94d.v02"
+    },
+    {
+      "slot": "v03",
+      "file": "own_marinka_877962c94d_v03.png",
+      "state": "turning",
+      "params": {
+        "pose": "turning",
+        "state": "turning",
+        "form": {
+          "turn": 35,
+          "toward": true,
+          "bend": "wave",
+          "amp": 0.1
+        },
+        "fish_px": 236,
+        "key": "marinka:turning:1:amp=0.1-bend=wave-toward=True-turn=35"
+      },
+      "shape_change": 0.4077,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.242,
+        "fill": 0.373,
+        "base": 0.022
+      },
+      "area": 6924,
+      "hitbox": {
+        "bbox": [
+          2,
+          84,
+          206,
+          175
+        ],
+        "area": 6924,
+        "radius": 46.95,
+        "hull": [
+          [
+            2,
+            126
+          ],
+          [
+            3,
+            125
+          ],
+          [
+            94,
+            84
+          ],
+          [
+            95,
+            84
+          ],
+          [
+            206,
+            110
+          ],
+          [
+            206,
+            145
+          ],
+          [
+            113,
+            166
+          ],
+          [
+            33,
+            175
+          ],
+          [
+            30,
+            175
+          ],
+          [
+            16,
+            161
+          ],
+          [
+            14,
+            157
+          ],
+          [
+            2,
+            131
+          ]
+        ]
+      },
+      "foot": 0.6836,
+      "analytics_id": "ludus.variant.fish.marinka.877962c94d.v03"
+    },
+    {
+      "slot": "v04",
+      "file": "own_marinka_877962c94d_v04.png",
+      "state": "pair",
+      "params": {
+        "pose": "pair",
+        "state": "pair",
+        "form": {
+          "bend": "straight",
+          "amp": 0.0,
+          "layout": "beside"
+        },
+        "fish_px": 146.32,
+        "key": "marinka:pair:2:amp=0.0-bend=straight-layout=beside"
+      },
+      "shape_change": 0.4323,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 1.881,
+        "fill": 0.418,
+        "base": 0.394
+      },
+      "area": 5550,
+      "hitbox": {
+        "bbox": [
+          47,
+          81,
+          205,
+          165
+        ],
+        "area": 5550,
+        "radius": 42.03,
+        "hull": [
+          [
+            47,
+            145
+          ],
+          [
+            65,
+            109
+          ],
+          [
+            112,
+            81
+          ],
+          [
+            114,
+            81
+          ],
+          [
+            205,
+            97
+          ],
+          [
+            205,
+            99
+          ],
+          [
+            204,
+            123
+          ],
+          [
+            193,
+            159
+          ],
+          [
+            110,
+            165
+          ],
+          [
+            61,
+            165
+          ],
+          [
+            54,
+            160
+          ],
+          [
+            47,
+            147
+          ]
+        ]
+      },
+      "foot": 0.6445,
+      "analytics_id": "ludus.variant.fish.marinka.877962c94d.v04"
+    },
+    {
+      "slot": "v05",
+      "file": "own_marinka_877962c94d_v05.png",
+      "state": "single",
+      "params": {
+        "pose": "single",
+        "state": "single",
+        "form": {
+          "bend": "wave",
+          "amp": 0.15
+        },
+        "fish_px": 236,
+        "key": "marinka:single:3:amp=0.15-bend=wave"
+      },
+      "shape_change": 0.3838,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.065,
+        "fill": 0.408,
+        "base": 0.2
+      },
+      "area": 7407,
+      "hitbox": {
+        "bbox": [
+          10,
+          93,
+          246,
+          170
+        ],
+        "area": 7407,
+        "radius": 48.56,
+        "hull": [
+          [
+            10,
+            127
+          ],
+          [
+            11,
+            126
+          ],
+          [
+            89,
+            93
+          ],
+          [
+            91,
+            93
+          ],
+          [
+            235,
+            104
+          ],
+          [
+            246,
+            105
+          ],
+          [
+            246,
+            108
+          ],
+          [
+            245,
+            149
+          ],
+          [
+            110,
+            167
+          ],
+          [
+            34,
+            170
+          ],
+          [
+            33,
+            170
+          ],
+          [
+            32,
+            169
+          ],
+          [
+            21,
+            156
+          ],
+          [
+            10,
+            130
+          ]
+        ]
+      },
+      "foot": 0.6641,
+      "analytics_id": "ludus.variant.fish.marinka.877962c94d.v05"
+    },
+    {
+      "slot": "v06",
+      "file": "own_marinka_877962c94d_v06.png",
+      "state": "pair",
+      "params": {
+        "pose": "pair",
+        "state": "pair",
+        "form": {
+          "bend": "wave",
+          "amp": 0.1,
+          "layout": "beside"
+        },
+        "fish_px": 146.32,
+        "key": "marinka:pair:3:amp=0.1-bend=wave-layout=beside"
+      },
+      "shape_change": 0.4323,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 1.975,
+        "fill": 0.433,
+        "base": 0.214
+      },
+      "area": 5470,
+      "hitbox": {
+        "bbox": [
+          47,
+          87,
+          205,
+          167
+        ],
+        "area": 5470,
+        "radius": 41.73,
+        "hull": [
+          [
+            47,
+            144
+          ],
+          [
+            65,
+            110
+          ],
+          [
+            66,
+            109
+          ],
+          [
+            112,
+            87
+          ],
+          [
+            114,
+            87
+          ],
+          [
+            205,
+            97
+          ],
+          [
+            205,
+            99
+          ],
+          [
+            204,
+            123
+          ],
+          [
+            193,
+            160
+          ],
+          [
+            146,
+            167
+          ],
+          [
+            142,
+            167
+          ],
+          [
+            61,
+            161
+          ],
+          [
+            54,
+            157
+          ],
+          [
+            53,
+            156
+          ],
+          [
+            47,
+            147
+          ]
+        ]
+      },
+      "foot": 0.6523,
+      "analytics_id": "ludus.variant.fish.marinka.877962c94d.v06"
+    },
+    {
+      "slot": "v07",
+      "file": "own_marinka_877962c94d_v07.png",
+      "state": "above",
+      "params": {
+        "pose": "above",
+        "state": "above",
+        "form": {
+          "view": "above",
+          "bend": "wave",
+          "amp": 0.05
+        },
+        "fish_px": 236,
+        "key": "marinka:above:3:amp=0.05-bend=wave-view=above"
+      },
+      "shape_change": 0.3713,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.945,
+        "fill": 0.433,
+        "base": 0.056
+      },
+      "area": 5169,
+      "hitbox": {
+        "bbox": [
+          10,
+          105,
+          227,
+          160
+        ],
+        "area": 5169,
+        "radius": 40.56,
+        "hull": [
+          [
+            10,
+            127
+          ],
+          [
+            21,
+            110
+          ],
+          [
+            32,
+            105
+          ],
+          [
+            34,
+            105
+          ],
+          [
+            121,
+            107
+          ],
+          [
+            226,
+            119
+          ],
+          [
+            227,
+            120
+          ],
+          [
+            227,
+            136
+          ],
+          [
+            67,
+            160
+          ],
+          [
+            65,
+            160
+          ],
+          [
+            32,
+            158
+          ],
+          [
+            22,
+            150
+          ],
+          [
+            21,
+            149
+          ],
+          [
+            10,
+            130
+          ]
+        ]
+      },
+      "foot": 0.625,
+      "analytics_id": "ludus.variant.fish.marinka.877962c94d.v07"
+    },
+    {
+      "slot": "v08",
+      "file": "own_marinka_877962c94d_v08.png",
+      "state": "turning",
+      "params": {
+        "pose": "turning",
+        "state": "turning",
+        "form": {
+          "turn": 35,
+          "toward": false,
+          "bend": "straight",
+          "amp": 0.0
+        },
+        "fish_px": 236,
+        "key": "marinka:turning:4:amp=0.0-bend=straight-toward=False-turn=35"
+      },
+      "shape_change": 0.3558,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.684,
+        "fill": 0.41,
+        "base": 0.228
+      },
+      "area": 6352,
+      "hitbox": {
+        "bbox": [
+          50,
+          81,
+          254,
+          157
+        ],
+        "area": 6352,
+        "radius": 44.97,
+        "hull": [
+          [
+            50,
+            126
+          ],
+          [
+            99,
+            81
+          ],
+          [
+            100,
+            81
+          ],
+          [
+            254,
+            99
+          ],
+          [
+            254,
+            156
+          ],
+          [
+            116,
+            157
+          ],
+          [
+            113,
+            157
+          ],
+          [
+            62,
+            154
+          ],
+          [
+            56,
+            147
+          ],
+          [
+            50,
+            129
+          ]
+        ]
+      },
+      "foot": 0.6133,
+      "analytics_id": "ludus.variant.fish.marinka.877962c94d.v08"
+    },
+    {
+      "slot": "v09",
+      "file": "own_marinka_877962c94d_v09.png",
+      "state": "rising",
+      "params": {
+        "pose": "rising",
+        "state": "rising",
+        "form": {
+          "bend": "head-up",
+          "amp": 0.2
+        },
+        "fish_px": 236,
+        "key": "marinka:rising:5:amp=0.2-bend=head-up"
+      },
+      "shape_change": 0.3597,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.855,
+        "fill": 0.375,
+        "base": 0.14
+      },
+      "area": 7369,
+      "hitbox": {
+        "bbox": [
+          9,
+          75,
+          246,
+          158
+        ],
+        "area": 7369,
+        "radius": 48.43,
+        "hull": [
+          [
+            9,
+            80
+          ],
+          [
+            89,
+            75
+          ],
+          [
+            91,
+            75
+          ],
+          [
+            246,
+            106
+          ],
+          [
+            246,
+            108
+          ],
+          [
+            245,
+            150
+          ],
+          [
+            112,
+            158
+          ],
+          [
+            109,
+            158
+          ],
+          [
+            33,
+            131
+          ],
+          [
+            32,
+            130
+          ],
+          [
+            22,
+            115
+          ],
+          [
+            21,
+            113
+          ],
+          [
+            9,
+            81
+          ]
+        ]
+      },
+      "foot": 0.6172,
+      "analytics_id": "ludus.variant.fish.marinka.877962c94d.v09"
+    },
+    {
+      "slot": "v10",
+      "file": "own_marinka_877962c94d_v10.png",
+      "state": "turning",
+      "params": {
+        "pose": "turning",
+        "state": "turning",
+        "form": {
+          "turn": 35,
+          "toward": false,
+          "bend": "wave",
+          "amp": 0.1
+        },
+        "fish_px": 236,
+        "key": "marinka:turning:5:amp=0.1-bend=wave-toward=False-turn=35"
+      },
+      "shape_change": 0.3838,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.795,
+        "fill": 0.428,
+        "base": 0.104
+      },
+      "area": 6372,
+      "hitbox": {
+        "bbox": [
+          50,
+          90,
+          254,
+          163
+        ],
+        "area": 6372,
+        "radius": 45.04,
+        "hull": [
+          [
+            50,
+            127
+          ],
+          [
+            51,
+            126
+          ],
+          [
+            99,
+            90
+          ],
+          [
+            100,
+            90
+          ],
+          [
+            254,
+            99
+          ],
+          [
+            254,
+            156
+          ],
+          [
+            114,
+            163
+          ],
+          [
+            113,
+            163
+          ],
+          [
+            62,
+            160
+          ],
+          [
+            56,
+            150
+          ],
+          [
+            55,
+            147
+          ],
+          [
+            50,
+            130
+          ]
+        ]
+      },
+      "foot": 0.6367,
+      "analytics_id": "ludus.variant.fish.marinka.877962c94d.v10"
+    },
+    {
+      "slot": "v11",
+      "file": "own_marinka_877962c94d_v11.png",
+      "state": "above",
+      "params": {
+        "pose": "above",
+        "state": "above",
+        "form": {
+          "view": "above",
+          "bend": "wave",
+          "amp": 0.12
+        },
+        "fish_px": 236,
+        "key": "marinka:above:5:amp=0.12-bend=wave-view=above"
+      },
+      "shape_change": 0.3795,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.557,
+        "fill": 0.39,
+        "base": 0.069
+      },
+      "area": 5165,
+      "hitbox": {
+        "bbox": [
+          10,
+          107,
+          227,
+          168
+        ],
+        "area": 5165,
+        "radius": 40.55,
+        "hull": [
+          [
+            10,
+            127
+          ],
+          [
+            20,
+            114
+          ],
+          [
+            21,
+            113
+          ],
+          [
+            32,
+            109
+          ],
+          [
+            120,
+            107
+          ],
+          [
+            170,
+            107
+          ],
+          [
+            180,
+            108
+          ],
+          [
+            192,
+            110
+          ],
+          [
+            213,
+            115
+          ],
+          [
+            227,
+            119
+          ],
+          [
+            227,
+            136
+          ],
+          [
+            67,
+            168
+          ],
+          [
+            66,
+            168
+          ],
+          [
+            33,
+            163
+          ],
+          [
+            21,
+            152
+          ],
+          [
+            10,
+            130
+          ]
+        ]
+      },
+      "foot": 0.6562,
+      "analytics_id": "ludus.variant.fish.marinka.877962c94d.v11"
+    },
+    {
+      "slot": "v12",
+      "file": "own_marinka_877962c94d_v12.png",
+      "state": "bottom",
+      "params": {
+        "pose": "bottom",
+        "state": "bottom",
+        "form": {
+          "fins": 1.35,
+          "bend": "wave",
+          "amp": 0.1
+        },
+        "fish_px": 236,
+        "key": "marinka:bottom:6:amp=0.1-bend=wave-fins=1.35"
+      },
+      "shape_change": 0.3747,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.622,
+        "fill": 0.364,
+        "base": 0.163
+      },
+      "area": 7741,
+      "hitbox": {
+        "bbox": [
+          10,
+          78,
+          246,
+          168
+        ],
+        "area": 7741,
+        "radius": 49.64,
+        "hull": [
+          [
+            10,
+            127
+          ],
+          [
+            11,
+            126
+          ],
+          [
+            89,
+            78
+          ],
+          [
+            91,
+            78
+          ],
+          [
+            246,
+            106
+          ],
+          [
+            246,
+            108
+          ],
+          [
+            245,
+            149
+          ],
+          [
+            110,
+            168
+          ],
+          [
+            109,
+            168
+          ],
+          [
+            32,
+            166
+          ],
+          [
+            21,
+            154
+          ],
+          [
+            20,
+            152
+          ],
+          [
+            10,
+            130
+          ]
+        ]
+      },
+      "foot": 0.6562,
+      "analytics_id": "ludus.variant.fish.marinka.877962c94d.v12"
+    }
+  ],
+  "status": "ok",
+  "shortfall": 0,
+  "shape_change": 0.3558
+}

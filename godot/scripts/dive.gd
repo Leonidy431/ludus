@@ -95,6 +95,8 @@ var arm_now := false
 var left_hand: XRController3D
 var right_hand: XRController3D
 var fish_meshes: Array = []
+## The kits of our own fish drawing (godot/data/fish-drawings.json).
+var fish_index := {}
 var flow_mesh: ImmediateMesh
 var tether_mesh: ImmediateMesh
 var webxr: XRInterface
@@ -690,7 +692,16 @@ func _fish_mesh() -> ArrayMesh:
 
 func _build_fish() -> void:
 	var mesh := _fish_mesh()
+	fish_index = FishDrawings.load_index()
 	for s in schools:
+		# Species with a 12/12 kit of our own drawing (DEF-056) swim as
+		# billboards, one MultiMesh each, as the 3D school was.
+		var kit := FishDrawings.kit_of(fish_index, str(s.id))
+		if not kit.is_empty():
+			var card := FishDrawings.build(fish_index, kit, s, rim)
+			add_child(card)
+			fish_meshes.append(card)
+			continue
 		var mm := MultiMesh.new()
 		mm.transform_format = MultiMesh.TRANSFORM_3D
 		mm.mesh = mesh
@@ -1618,9 +1629,18 @@ func _update_water(tel: Dictionary) -> void:
 
 
 func _update_fish() -> void:
+	# The fish of our own drawing choose their view by where the eye is.
+	var eye := {}
+	if is_instance_valid(camera) and camera.is_inside_tree():
+		var c := camera.global_position
+		eye = {"x": c.x, "depth": -c.y, "z": c.z}
 	for n in schools.size():
 		var s: Dictionary = schools[n]
 		var mm: MultiMesh = fish_meshes[n].multimesh
+		if fish_meshes[n].has_meta("fish_drawing"):
+			FishDrawings.update(fish_index, FishDrawings.kit_of(fish_index,
+				str(s.id)), s, mm, t, eye)
+			continue
 		for i in s.count:
 			var p := DiveCore.fish_at(s, i, t)
 			var basis := Basis(Vector3.UP, -p.heading).scaled(

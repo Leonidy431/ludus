@@ -1634,8 +1634,8 @@
    "id": "gubach.shallows.0",
    "item": "gubach",
    "category": "fish",
-   "ru": "Пятнистый губач: под камнем",
-   "en": "Stone loach",
+   "ru": "Иссык-кульский губач: под камнем",
+   "en": "Issyk-Kul naked loach",
    "band": "shallows",
    "depth": [
     1,
@@ -2114,7 +2114,7 @@
    "id": "osman.shallows.4",
    "item": "osman",
    "category": "fish",
-   "ru": "Голый осман: в тени камня",
+   "ru": "Иссык-кульский голый осман: в тени камня",
    "en": "Naked osman",
    "band": "shallows",
    "depth": [

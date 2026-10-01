@@ -148,6 +148,82 @@ func _web_parity(t: Object, data: Dictionary) -> void:
 			k += 1
 	t._check(k == web.drawings.size() and same == k,
 		"web own drawings on the same spots (%d of %d)" % [same, k])
+	_fish_parity(t, web)
+
+
+## The fish of our own drawing (DEF-056): every fish of a school with a
+## 12/12 kit shows the same cell, at the same size and on the same spot
+## in the web and in the headset (FishDrawings, fish_drawings.gd), at
+## several times and from three eyes; only 12/12 kits swim; over time
+## every cell of a kit is shown, neighbours never repeat, and a view
+## from below or above appears only to a steep eye.
+func _fish_parity(t: Object, web: Dictionary) -> void:
+	var index := FishDrawings.load_index()
+	t._check(not index.is_empty(), "fish drawings index present")
+	var fish: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(
+		"res://data/issyk-kul-fish.json"))
+	var by_id := {}
+	for s in DiveCore.fish_schools(fish.fish):
+		var kit := FishDrawings.kit_of(index, str(s.id))
+		if kit.is_empty():
+			continue
+		by_id[s.id] = s
+		t._check(kit.files.size() == 12 and kit.fish_px.size() == 12
+			and kit.views.size() == 12 and kit.rest.size() == 12
+			and kit.age.size() == 12 and kit.foot.size() == 12,
+			"%s: 12 variants" % s.id)
+		t._check(ResourceLoader.exists(FishDrawings.ART + kit.atlas),
+			"%s: atlas in the headset" % s.id)
+		_fish_rule(t, index, kit, s)
+	var theirs: Array = web.get("fish", [])
+	var same := 0
+	for w in theirs:
+		if not by_id.has(w.id):
+			continue
+		var s: Dictionary = by_id[w.id]
+		var kit := FishDrawings.kit_of(index, str(s.id))
+		var eye: Dictionary = w.eye if w.eye is Dictionary else {}
+		var p := FishDrawings.spot(index, kit, s, int(w.i), float(w.t), eye)
+		if int(p.v) == int(w.v) and p.file == w.file \
+				and absf(p.size - float(w.size)) < 1e-6 \
+				and bool(p.top) == bool(w.top) \
+				and absf(p.x - float(w.x)) < 1e-6 \
+				and absf(p.z - float(w.z)) < 1e-6 \
+				and absf(p.depth - float(w.depth)) < 1e-6:
+			same += 1
+	t._check(theirs.size() > 0 and same == theirs.size(),
+		"web own fish: same cell, size and spot (%d of %d)" % [same,
+			theirs.size()])
+
+
+## The rule itself, over three cycles of the queues and three eyes.
+func _fish_rule(t: Object, index: Dictionary, kit: Dictionary,
+		s: Dictionary) -> void:
+	var seen := {}
+	var repeats := 0
+	var wrong_view := 0
+	var eyes := [{},
+		{"x": s.centre.x, "z": s.centre.z, "depth": s.centre.depth + 30.0},
+		{"x": s.centre.x, "z": s.centre.z,
+			"depth": maxf(0.3, s.centre.depth - 30.0)}]
+	var tt := 0.5
+	while tt < FishDrawings.PERIOD_S * 36.0:
+		for eye in eyes:
+			var spots := FishDrawings.school_spots(index, kit, s, tt, eye)
+			for i in spots.size():
+				var p: Dictionary = spots[i]
+				seen[p.v] = true
+				if i > 0 and int(spots[i - 1].v) == int(p.v):
+					repeats += 1
+				var v := FishDrawings.view(eye, p)
+				if p.top and v == "side":
+					wrong_view += 1
+		tt += 3.0
+	t._check(seen.size() == 12,
+		"%s: all 12 cells shown over time (%d)" % [s.id, seen.size()])
+	t._check(repeats == 0, "%s: neighbours never repeat" % s.id)
+	t._check(wrong_view == 0,
+		"%s: views from below or above only to a steep eye" % s.id)
 
 
 func _find(placed: Array, id: String) -> Dictionary:

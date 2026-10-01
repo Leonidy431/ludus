@@ -1,0 +1,1312 @@
+{
+  "name": "own_osman_dac0c4d124",
+  "id": "dac0c4d124",
+  "seed": "dac0c4d1245c60c8eb7c49d11d8dce5af5b4f0a7",
+  "slot": "DEF-056",
+  "thing": "osman",
+  "register": {
+    "id": "osman",
+    "category": "fish",
+    "ru": "Иссык-кульский голый осман",
+    "en": "Naked osman",
+    "depth_m": [
+      1,
+      20
+    ],
+    "shape": "fish",
+    "size_m": 0.35,
+    "colour": "#7d7a66",
+    "states": [
+      "одиночка",
+      "у дна",
+      "у устья",
+      "кормится",
+      "в тени камня"
+    ]
+  },
+  "species": {
+    "ru": "Иссык-кульский голый осман",
+    "en": "Naked osman",
+    "latin": "Gymnodiptychus dybowskii",
+    "status": "endemic subspecies",
+    "loot": "release",
+    "length": 0.35,
+    "depth": [
+      1,
+      20
+    ],
+    "colour": "#7d7a66"
+  },
+  "morphology": {
+    "depth": 0.2,
+    "top": 0.5,
+    "peak": 0.3,
+    "head": 0.4,
+    "stalk": 0.4,
+    "tail": 0.17,
+    "fork": 0.4,
+    "dorsal": [
+      0.42,
+      0.53,
+      0.13,
+      "short"
+    ],
+    "anal": [
+      0.74,
+      0.84,
+      0.07
+    ],
+    "adipose": null,
+    "barbels": 1,
+    "barbel_len": 0.7,
+    "marks": "spots",
+    "gill": 0.18,
+    "eye": 0.05,
+    "mouth": "under",
+    "fins": [
+      96,
+      92,
+      74
+    ],
+    "note": "genus shape from general ichthyology, approximate; to be checked by an ichthyologist (docs/ISSYK_KUL_FISH.md)"
+  },
+  "origin": "own-procedural-drawing",
+  "method": "own-procedural",
+  "raw_material": false,
+  "source": {
+    "repo": "ludus (own drawing)",
+    "path": "scripts/raw_assets/fish_procedural.py",
+    "commit": "fish-drawing-r4"
+  },
+  "repo": "ludus (own drawing)",
+  "path": "scripts/raw_assets/fish_procedural.py",
+  "commit": "fish-drawing-r4",
+  "license": "project (own drawing, no third-party material)",
+  "license_file": null,
+  "threshold": 0.35,
+  "shape_basis": "nearest-sibling-normalised",
+  "shape_norm": {
+    "box": [
+      200,
+      80
+    ],
+    "method": "crop to the bbox, fit to the box; placement, size and stretch do not count"
+  },
+  "engine": {
+    "age_lengths_px": [
+      236,
+      188,
+      150,
+      120,
+      96
+    ],
+    "scale_note": "a size is never a variant; the index gives each variant its age (1 for adults, 0.4068 for \"young\", the youngest class above) and the game multiplies the billboard by it",
+    "rest_on_floor": "a variant of the state \"bottom\" (index \"rest\") is shown only by a fish the game rests on the floor: it stops, sinks, and its lowest pixel (index \"foot\") lies on the floor line (fish_drawings.gd, dive-atlas.js fishSpot)",
+    "views": "a \"below\" or \"above\" variant is shown only when the eye sees the fish more than 35 degrees from level (index \"view\"); level, the side views swim",
+    "tilt_deg": [
+      -13,
+      13
+    ],
+    "facing": "left; the game turns the sprite, never a mirrored variant (TABOO 0.3 rule 35)"
+  },
+  "reference_profile": {
+    "name": "fish",
+    "aspect": [
+      1.8,
+      6.5
+    ],
+    "fill": [
+      0.35,
+      0.85
+    ],
+    "category": "fish"
+  },
+  "pool": {
+    "size": 64,
+    "fitting": 56,
+    "refused": {
+      "unlike-real-object": 8,
+      "too-close-to-a-sibling": 44
+    },
+    "chosen": 12
+  },
+  "constitution": "FORM: a real species of Issyk-Kul in its real states -> ACTION: the ROV operator tells it apart, logs it and releases the endemics -> GOAL: knowing the living lake by its real creatures (TABOO 0.03 rule 6)",
+  "variants": [
+    {
+      "slot": "v01",
+      "file": "own_osman_dac0c4d124_v01.png",
+      "state": "bottom",
+      "params": {
+        "pose": "bottom",
+        "state": "bottom",
+        "form": {
+          "bend": "straight",
+          "amp": 0.0,
+          "fins": 1.35,
+          "tail": 0.8
+        },
+        "fish_px": 236,
+        "key": "osman:bottom:0:amp=0.0-bend=straight-fins=1.35-tail=0.8"
+      },
+      "shape_change": 0.3689,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.776,
+        "fill": 0.379,
+        "base": 0.154
+      },
+      "area": 7600,
+      "hitbox": {
+        "bbox": [
+          10,
+          75,
+          246,
+          160
+        ],
+        "area": 7600,
+        "radius": 49.18,
+        "hull": [
+          [
+            10,
+            125
+          ],
+          [
+            13,
+            119
+          ],
+          [
+            16,
+            117
+          ],
+          [
+            94,
+            75
+          ],
+          [
+            96,
+            75
+          ],
+          [
+            246,
+            111
+          ],
+          [
+            246,
+            113
+          ],
+          [
+            245,
+            145
+          ],
+          [
+            167,
+            157
+          ],
+          [
+            113,
+            160
+          ],
+          [
+            110,
+            160
+          ],
+          [
+            68,
+            154
+          ],
+          [
+            16,
+            146
+          ],
+          [
+            13,
+            140
+          ],
+          [
+            10,
+            131
+          ]
+        ]
+      },
+      "foot": 0.625,
+      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v01"
+    },
+    {
+      "slot": "v02",
+      "file": "own_osman_dac0c4d124_v02.png",
+      "state": "feeding",
+      "params": {
+        "pose": "feeding",
+        "state": "feeding",
+        "form": {
+          "mouth": true,
+          "bend": "head-down",
+          "amp": 0.1
+        },
+        "fish_px": 236,
+        "key": "osman:feeding:0:amp=0.1-bend=head-down-mouth=True"
+      },
+      "shape_change": 0.3803,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.902,
+        "fill": 0.382,
+        "base": 0.063
+      },
+      "area": 7460,
+      "hitbox": {
+        "bbox": [
+          9,
+          85,
+          247,
+          167
+        ],
+        "area": 7460,
+        "radius": 48.73,
+        "hull": [
+          [
+            9,
+            151
+          ],
+          [
+            13,
+            141
+          ],
+          [
+            19,
+            135
+          ],
+          [
+            24,
+            131
+          ],
+          [
+            27,
+            129
+          ],
+          [
+            94,
+            85
+          ],
+          [
+            96,
+            85
+          ],
+          [
+            247,
+            107
+          ],
+          [
+            247,
+            108
+          ],
+          [
+            245,
+            149
+          ],
+          [
+            18,
+            167
+          ],
+          [
+            16,
+            167
+          ],
+          [
+            13,
+            162
+          ],
+          [
+            9,
+            152
+          ]
+        ]
+      },
+      "foot": 0.6523,
+      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v02"
+    },
+    {
+      "slot": "v03",
+      "file": "own_osman_dac0c4d124_v03.png",
+      "state": "above",
+      "params": {
+        "pose": "above",
+        "state": "above",
+        "form": {
+          "view": "above",
+          "bend": "straight",
+          "amp": 0.0,
+          "spread": 25
+        },
+        "fish_px": 236,
+        "key": "osman:above:0:amp=0.0-bend=straight-spread=25-view=above"
+      },
+      "shape_change": 0.3508,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 4.542,
+        "fill": 0.539,
+        "base": 0.055
+      },
+      "area": 5636,
+      "hitbox": {
+        "bbox": [
+          10,
+          104,
+          228,
+          152
+        ],
+        "area": 5636,
+        "radius": 42.36,
+        "hull": [
+          [
+            10,
+            125
+          ],
+          [
+            13,
+            118
+          ],
+          [
+            16,
+            113
+          ],
+          [
+            68,
+            104
+          ],
+          [
+            71,
+            104
+          ],
+          [
+            228,
+            118
+          ],
+          [
+            228,
+            138
+          ],
+          [
+            71,
+            152
+          ],
+          [
+            68,
+            152
+          ],
+          [
+            16,
+            143
+          ],
+          [
+            13,
+            138
+          ],
+          [
+            10,
+            131
+          ]
+        ]
+      },
+      "foot": 0.5938,
+      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v03"
+    },
+    {
+      "slot": "v04",
+      "file": "own_osman_dac0c4d124_v04.png",
+      "state": "rising",
+      "params": {
+        "pose": "rising",
+        "state": "rising",
+        "form": {
+          "fins": 1.25,
+          "bend": "bow",
+          "amp": 0.13
+        },
+        "fish_px": 236,
+        "key": "osman:rising:1:amp=0.13-bend=bow-fins=1.25"
+      },
+      "shape_change": 0.358,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.821,
+        "fill": 0.387,
+        "base": 0.111
+      },
+      "area": 7703,
+      "hitbox": {
+        "bbox": [
+          10,
+          105,
+          247,
+          189
+        ],
+        "area": 7703,
+        "radius": 49.52,
+        "hull": [
+          [
+            10,
+            126
+          ],
+          [
+            11,
+            124
+          ],
+          [
+            13,
+            121
+          ],
+          [
+            15,
+            120
+          ],
+          [
+            94,
+            105
+          ],
+          [
+            95,
+            105
+          ],
+          [
+            247,
+            107
+          ],
+          [
+            247,
+            108
+          ],
+          [
+            245,
+            150
+          ],
+          [
+            165,
+            184
+          ],
+          [
+            114,
+            189
+          ],
+          [
+            110,
+            189
+          ],
+          [
+            69,
+            176
+          ],
+          [
+            17,
+            150
+          ],
+          [
+            16,
+            149
+          ],
+          [
+            15,
+            147
+          ],
+          [
+            13,
+            141
+          ],
+          [
+            10,
+            131
+          ]
+        ]
+      },
+      "foot": 0.7383,
+      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v04"
+    },
+    {
+      "slot": "v05",
+      "file": "own_osman_dac0c4d124_v05.png",
+      "state": "single",
+      "params": {
+        "pose": "single",
+        "state": "single",
+        "form": {
+          "bend": "wave",
+          "amp": 0.1
+        },
+        "fish_px": 236,
+        "key": "osman:single:2:amp=0.1-bend=wave"
+      },
+      "shape_change": 0.3907,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.435,
+        "fill": 0.46,
+        "base": 0.277
+      },
+      "area": 7528,
+      "hitbox": {
+        "bbox": [
+          10,
+          93,
+          247,
+          162
+        ],
+        "area": 7528,
+        "radius": 48.95,
+        "hull": [
+          [
+            10,
+            125
+          ],
+          [
+            13,
+            120
+          ],
+          [
+            15,
+            119
+          ],
+          [
+            94,
+            93
+          ],
+          [
+            96,
+            93
+          ],
+          [
+            247,
+            107
+          ],
+          [
+            247,
+            108
+          ],
+          [
+            245,
+            149
+          ],
+          [
+            112,
+            162
+          ],
+          [
+            110,
+            162
+          ],
+          [
+            68,
+            161
+          ],
+          [
+            59,
+            160
+          ],
+          [
+            49,
+            158
+          ],
+          [
+            17,
+            149
+          ],
+          [
+            16,
+            148
+          ],
+          [
+            15,
+            146
+          ],
+          [
+            13,
+            141
+          ],
+          [
+            10,
+            131
+          ]
+        ]
+      },
+      "foot": 0.6328,
+      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v05"
+    },
+    {
+      "slot": "v06",
+      "file": "own_osman_dac0c4d124_v06.png",
+      "state": "above",
+      "params": {
+        "pose": "above",
+        "state": "above",
+        "form": {
+          "view": "above",
+          "bend": "wave",
+          "amp": 0.05
+        },
+        "fish_px": 236,
+        "key": "osman:above:3:amp=0.05-bend=wave-view=above"
+      },
+      "shape_change": 0.3508,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.695,
+        "fill": 0.456,
+        "base": 0.046
+      },
+      "area": 5859,
+      "hitbox": {
+        "bbox": [
+          10,
+          104,
+          228,
+          163
+        ],
+        "area": 5859,
+        "radius": 43.19,
+        "hull": [
+          [
+            10,
+            125
+          ],
+          [
+            14,
+            117
+          ],
+          [
+            16,
+            114
+          ],
+          [
+            66,
+            104
+          ],
+          [
+            68,
+            104
+          ],
+          [
+            123,
+            107
+          ],
+          [
+            228,
+            118
+          ],
+          [
+            228,
+            138
+          ],
+          [
+            68,
+            163
+          ],
+          [
+            66,
+            163
+          ],
+          [
+            16,
+            144
+          ],
+          [
+            12,
+            136
+          ],
+          [
+            10,
+            131
+          ]
+        ]
+      },
+      "foot": 0.6367,
+      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v06"
+    },
+    {
+      "slot": "v07",
+      "file": "own_osman_dac0c4d124_v07.png",
+      "state": "turning",
+      "params": {
+        "pose": "turning",
+        "state": "turning",
+        "form": {
+          "turn": 35,
+          "toward": false,
+          "bend": "straight",
+          "amp": 0.0
+        },
+        "fish_px": 236,
+        "key": "osman:turning:4:amp=0.0-bend=straight-toward=False-turn=35"
+      },
+      "shape_change": 0.3763,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.914,
+        "fill": 0.445,
+        "base": 0.242
+      },
+      "area": 6355,
+      "hitbox": {
+        "bbox": [
+          50,
+          86,
+          254,
+          156
+        ],
+        "area": 6355,
+        "radius": 44.98,
+        "hull": [
+          [
+            50,
+            125
+          ],
+          [
+            51,
+            122
+          ],
+          [
+            52,
+            120
+          ],
+          [
+            53,
+            119
+          ],
+          [
+            102,
+            86
+          ],
+          [
+            103,
+            86
+          ],
+          [
+            254,
+            101
+          ],
+          [
+            254,
+            156
+          ],
+          [
+            114,
+            156
+          ],
+          [
+            53,
+            143
+          ],
+          [
+            51,
+            137
+          ],
+          [
+            50,
+            131
+          ]
+        ]
+      },
+      "foot": 0.6094,
+      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v07"
+    },
+    {
+      "slot": "v08",
+      "file": "own_osman_dac0c4d124_v08.png",
+      "state": "single",
+      "params": {
+        "pose": "single",
+        "state": "single",
+        "form": {
+          "bend": "wave-back",
+          "amp": 0.1
+        },
+        "fish_px": 236,
+        "key": "osman:single:5:amp=0.1-bend=wave-back"
+      },
+      "shape_change": 0.3855,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.693,
+        "fill": 0.361,
+        "base": 0.093
+      },
+      "area": 7523,
+      "hitbox": {
+        "bbox": [
+          10,
+          74,
+          247,
+          162
+        ],
+        "area": 7523,
+        "radius": 48.94,
+        "hull": [
+          [
+            10,
+            125
+          ],
+          [
+            13,
+            118
+          ],
+          [
+            17,
+            114
+          ],
+          [
+            21,
+            111
+          ],
+          [
+            27,
+            107
+          ],
+          [
+            35,
+            103
+          ],
+          [
+            94,
+            74
+          ],
+          [
+            95,
+            74
+          ],
+          [
+            247,
+            107
+          ],
+          [
+            247,
+            108
+          ],
+          [
+            245,
+            150
+          ],
+          [
+            169,
+            162
+          ],
+          [
+            164,
+            162
+          ],
+          [
+            16,
+            144
+          ],
+          [
+            13,
+            139
+          ],
+          [
+            10,
+            131
+          ]
+        ]
+      },
+      "foot": 0.6328,
+      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v08"
+    },
+    {
+      "slot": "v09",
+      "file": "own_osman_dac0c4d124_v09.png",
+      "state": "rising",
+      "params": {
+        "pose": "rising",
+        "state": "rising",
+        "form": {
+          "bend": "head-up",
+          "amp": 0.2
+        },
+        "fish_px": 236,
+        "key": "osman:rising:5:amp=0.2-bend=head-up"
+      },
+      "shape_change": 0.358,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.938,
+        "fill": 0.389,
+        "base": 0.173
+      },
+      "area": 7497,
+      "hitbox": {
+        "bbox": [
+          9,
+          75,
+          247,
+          156
+        ],
+        "area": 7497,
+        "radius": 48.85,
+        "hull": [
+          [
+            9,
+            80
+          ],
+          [
+            11,
+            77
+          ],
+          [
+            13,
+            75
+          ],
+          [
+            16,
+            75
+          ],
+          [
+            96,
+            82
+          ],
+          [
+            247,
+            107
+          ],
+          [
+            247,
+            108
+          ],
+          [
+            245,
+            149
+          ],
+          [
+            114,
+            156
+          ],
+          [
+            110,
+            156
+          ],
+          [
+            68,
+            140
+          ],
+          [
+            59,
+            135
+          ],
+          [
+            49,
+            129
+          ],
+          [
+            42,
+            124
+          ],
+          [
+            17,
+            106
+          ],
+          [
+            16,
+            104
+          ],
+          [
+            13,
+            95
+          ],
+          [
+            9,
+            81
+          ]
+        ]
+      },
+      "foot": 0.6094,
+      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v09"
+    },
+    {
+      "slot": "v10",
+      "file": "own_osman_dac0c4d124_v10.png",
+      "state": "turning",
+      "params": {
+        "pose": "turning",
+        "state": "turning",
+        "form": {
+          "turn": 50,
+          "toward": false,
+          "bend": "wave",
+          "amp": 0.1
+        },
+        "fish_px": 236,
+        "key": "osman:turning:7:amp=0.1-bend=wave-toward=False-turn=50"
+      },
+      "shape_change": 0.391,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.594,
+        "fill": 0.502,
+        "base": 0.204
+      },
+      "area": 5330,
+      "hitbox": {
+        "bbox": [
+          72,
+          96,
+          238,
+          160
+        ],
+        "area": 5330,
+        "radius": 41.19,
+        "hull": [
+          [
+            72,
+            121
+          ],
+          [
+            108,
+            96
+          ],
+          [
+            109,
+            96
+          ],
+          [
+            238,
+            97
+          ],
+          [
+            238,
+            159
+          ],
+          [
+            118,
+            160
+          ],
+          [
+            117,
+            160
+          ],
+          [
+            93,
+            156
+          ],
+          [
+            90,
+            155
+          ],
+          [
+            85,
+            152
+          ],
+          [
+            73,
+            144
+          ],
+          [
+            72,
+            141
+          ]
+        ]
+      },
+      "foot": 0.625,
+      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v10"
+    },
+    {
+      "slot": "v11",
+      "file": "own_osman_dac0c4d124_v11.png",
+      "state": "above",
+      "params": {
+        "pose": "above",
+        "state": "above",
+        "form": {
+          "view": "above",
+          "bend": "arch",
+          "amp": 0.12
+        },
+        "fish_px": 236,
+        "key": "osman:above:8:amp=0.12-bend=arch-view=above"
+      },
+      "shape_change": 0.3644,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.516,
+        "fill": 0.433,
+        "base": 0.146
+      },
+      "area": 5857,
+      "hitbox": {
+        "bbox": [
+          10,
+          78,
+          228,
+          140
+        ],
+        "area": 5857,
+        "radius": 43.18,
+        "hull": [
+          [
+            10,
+            125
+          ],
+          [
+            12,
+            119
+          ],
+          [
+            14,
+            114
+          ],
+          [
+            16,
+            110
+          ],
+          [
+            66,
+            78
+          ],
+          [
+            68,
+            78
+          ],
+          [
+            122,
+            81
+          ],
+          [
+            226,
+            117
+          ],
+          [
+            228,
+            118
+          ],
+          [
+            228,
+            138
+          ],
+          [
+            17,
+            140
+          ],
+          [
+            16,
+            140
+          ],
+          [
+            15,
+            139
+          ],
+          [
+            13,
+            136
+          ],
+          [
+            10,
+            130
+          ]
+        ]
+      },
+      "foot": 0.5469,
+      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v11"
+    },
+    {
+      "slot": "v12",
+      "file": "own_osman_dac0c4d124_v12.png",
+      "state": "single",
+      "params": {
+        "pose": "single",
+        "state": "single",
+        "form": {
+          "tail": 1.2,
+          "bend": "tail-down",
+          "amp": 0.1
+        },
+        "fish_px": 236,
+        "key": "osman:single:9:amp=0.1-bend=tail-down-tail=1.2"
+      },
+      "shape_change": 0.4049,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.565,
+        "fill": 0.351,
+        "base": 0.03
+      },
+      "area": 7626,
+      "hitbox": {
+        "bbox": [
+          10,
+          84,
+          246,
+          176
+        ],
+        "area": 7626,
+        "radius": 49.27,
+        "hull": [
+          [
+            10,
+            125
+          ],
+          [
+            13,
+            119
+          ],
+          [
+            16,
+            117
+          ],
+          [
+            20,
+            115
+          ],
+          [
+            94,
+            84
+          ],
+          [
+            96,
+            84
+          ],
+          [
+            246,
+            126
+          ],
+          [
+            246,
+            129
+          ],
+          [
+            245,
+            176
+          ],
+          [
+            244,
+            176
+          ],
+          [
+            16,
+            146
+          ],
+          [
+            13,
+            140
+          ],
+          [
+            10,
+            131
+          ]
+        ]
+      },
+      "foot": 0.6875,
+      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v12"
+    }
+  ],
+  "status": "ok",
+  "shortfall": 0,
+  "shape_change": 0.3508
+}
