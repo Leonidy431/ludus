@@ -235,7 +235,9 @@ def validate_budgets(budgets):
                    'scene.texture_memory_over_empty_bytes.limit',
                    'scene.subviewport_bytes.limit',
                    'scene.audio_generators.limit',
-                   'audio.pcm_clips_bytes.limit'):
+                   'audio.pcm_clips_bytes.limit',
+                   'audio.place_players.limit',
+                   'audio.place_pcm_bytes.limit'):
         _positive(budgets, dotted)
     for dotted in ('scene.script_ms_mean_host.limit',
                    'scene.script_ms_max_host.limit',

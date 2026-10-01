@@ -200,4 +200,11 @@ func _initialize() -> void:
 	batch.in_hub(self)
 	print("static batch: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# The sound of the courtyard and the 99 places (HLD_APK_GRAPHICS_
+	# SOUND_2026-10-01, track A).
+	before = checks
+	fails = failures
+	load("res://tests/test_place_sound.gd").new().run(self)
+	print("place sound: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	quit(1 if failures else 0)

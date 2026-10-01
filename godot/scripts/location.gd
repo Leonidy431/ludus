@@ -66,6 +66,9 @@ var hud: Label
 var figure: Sprite3D
 var webxr: XRInterface
 var vr_button: Button
+## The place's sound (PlaceSound, PlaceAudio; track A of docs/HLD_APK_
+## GRAPHICS_SOUND_2026-10-01.md).
+var sound: PlaceAudio
 
 var shots_dir := ""
 var shot_list: Array = []
@@ -111,6 +114,11 @@ func open_place(id: String) -> void:
 		LocationCore.load_kits())
 	world = LocationBuild.build(p)
 	add_child(world)
+	if sound == null:
+		sound = PlaceAudio.new()
+		sound.name = "PlaceSound"
+		add_child(sound)
+	sound.start(PlaceSound.plan(p))
 	things = [{"id": "heart", "pos": p.heart, "reach": LocationCore.REACH_M,
 			"ru": p.hint},
 		{"id": "exit", "pos": p.exit, "reach": LocationCore.EXIT_REACH_M,
@@ -264,6 +272,7 @@ func _process(dt: float) -> void:
 	stick_was = nav
 	rig.position = pos
 	rig.rotation.y = yaw
+	sound.listen(pos)
 	if interact and not interact_was:
 		if heart_panel.is_empty():
 			_interact()

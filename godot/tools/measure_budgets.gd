@@ -403,6 +403,13 @@ func _synth_probe() -> Dictionary:
 			target = node.audio.synth
 		"witness":
 			target = node.audio
+		"hub":
+			# The courtyard's bell clock (PlaceAudio); the place's loops
+			# are rendered once, off the frame, and cost no synth time.
+			if node.place_sound == null or node.place_sound.bell_clock \
+					== null:
+				return {}
+			target = node.place_sound.bell_clock
 		_:
 			return {}
 	var cls = target.get_script()
@@ -524,11 +531,19 @@ func _finish() -> void:
 		per_px = int(scene_b.subviewport_bytes.get("bytes_per_px", 8))
 	# Every AudioStreamGenerator is a synth the CPU feeds each frame.
 	var gens := 0
+	# Every player is a voice the mixer runs (track A of HLD_APK_
+	# GRAPHICS_SOUND_2026-10-01); the hub's rope breath is counted only
+	# once taken in hand, so one is added for it.
+	var players := 0
 	for c in node.find_children("*", "", true, false):
 		var player := (c is AudioStreamPlayer or c is AudioStreamPlayer2D
 			or c is AudioStreamPlayer3D)
+		if player:
+			players += 1
 		if player and c.stream is AudioStreamGenerator:
 			gens += 1
+	if scene_name == "hub" and node.rope_breath == null:
+		players += 1
 	var views_out := {}
 	for k in by_view:
 		views_out[k] = {"mean": snappedf(by_view[k].sum / by_view[k].n,
@@ -536,6 +551,7 @@ func _finish() -> void:
 	var out := {
 		"scene": scene_name,
 		"audio_generators": gens,
+		"audio_players": players,
 		"mode": "headless" if _headless() else "rendered",
 		"adapter": RenderingServer.get_video_adapter_name(),
 		"driver": RenderingServer.get_current_rendering_driver_name(),
@@ -657,6 +673,9 @@ func _check(out: Dictionary, budgets: Dictionary) -> int:
 	if b.has("audio_generators"):
 		rows.append(["audio_generators", float(out.audio_generators),
 			b.audio_generators, "-", false])
+	if b.has("audio_players"):
+		rows.append(["audio_players", float(out.audio_players),
+			b.audio_players, "-", false])
 	# The host is judged by its load when the run began: the one-minute
 	# average per core, our own process included.
 	var busy := ""

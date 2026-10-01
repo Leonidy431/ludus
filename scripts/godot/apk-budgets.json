@@ -153,6 +153,14 @@
       "limit": 16777216,
       "why": "16 MiB of float32 bell clips in RAM, checked against the worst two consecutive days of the 366 days from the scene's date (clips are kept once made, so a stay across a day boundary holds both days); 9,811,704 B from 2026-09-30"
     },
+    "place_players": {
+      "limit": 6,
+      "why": "players of one place's sound plan (PlaceSound.players: the bed, at most 3 crafts, the machine, and in the courtyard the bell's generator); measured 2026-10-01 by godot/tools/render_place_audio.gd: the courtyard 6, the worst of the 99 places 3. Not a Meta number but the project's cap, so a place cannot grow into a soundtrack; held for the places by measure_locations.gd --check and for the courtyard by tests/test_place_sound.gd. The cap equals the courtyard (6 of 6): a hard ceiling with 0% margin on purpose, so a seventh voice there is a decision, not a drift. On entry the hush (live room tone) plays with the bed and the bell before the crafts come in, so a place never holds more than its plan"
+    },
+    "place_pcm_bytes": {
+      "limit": 4194304,
+      "why": "4 MiB of 16-bit 44100 Hz loops of one place in RAM (PlaceSound.pcm_bytes); measured 2026-10-01 by godot/tools/render_place_audio.gd: the courtyard 2,734,200 B, the worst place (print-shop) 1,940,400 B; about 1.5x the courtyard, so a fourth craft or longer loops are seen before they ship"
+    },
     "checked_by": "godot/tools/measure_budgets.gd --check, headless (the revisor; not in CI, since time does not reproduce on a shared runner)"
   }
 }
