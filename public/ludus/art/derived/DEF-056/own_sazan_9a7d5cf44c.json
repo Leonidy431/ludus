@@ -74,11 +74,11 @@
   "source": {
     "repo": "ludus (own drawing)",
     "path": "scripts/raw_assets/fish_procedural.py",
-    "commit": "fish-drawing-r3"
+    "commit": "fish-drawing-r4"
   },
   "repo": "ludus (own drawing)",
   "path": "scripts/raw_assets/fish_procedural.py",
-  "commit": "fish-drawing-r3",
+  "commit": "fish-drawing-r4",
   "license": "project (own drawing, no third-party material)",
   "license_file": null,
   "threshold": 0.35,
@@ -98,8 +98,9 @@
       120,
       96
     ],
-    "scale_note": "the game scales a variant to the age class; a size is never a variant",
-    "rest_on_floor": "a variant of the state \"bottom\" is placed by the game with its lowest pixel on the floor line",
+    "scale_note": "a size is never a variant; the index gives each variant its age (1 for adults, 0.4068 for \"young\", the youngest class above) and the game multiplies the billboard by it",
+    "rest_on_floor": "a variant of the state \"bottom\" (index \"rest\") is shown only by a fish the game rests on the floor: it stops, sinks, and its lowest pixel (index \"foot\") lies on the floor line (fish_drawings.gd, dive-atlas.js fishSpot)",
+    "views": "a \"below\" or \"above\" variant is shown only when the eye sees the fish more than 35 degrees from level (index \"view\"); level, the side views swim",
     "tilt_deg": [
       -13,
       13
@@ -120,10 +121,10 @@
   },
   "pool": {
     "size": 50,
-    "fitting": 39,
+    "fitting": 43,
     "refused": {
-      "unlike-real-object": 11,
-      "too-close-to-a-sibling": 27
+      "unlike-real-object": 7,
+      "too-close-to-a-sibling": 31
     },
     "chosen": 12
   },
@@ -237,6 +238,7 @@
           ]
         ]
       },
+      "foot": 0.6445,
       "analytics_id": "ludus.variant.fish.sazan.9a7d5cf44c.v01"
     },
     {
@@ -255,7 +257,7 @@
         "fish_px": 236,
         "key": "sazan:turning:0:amp=0.0-bend=straight-toward=True-turn=35"
       },
-      "shape_change": 0.3808,
+      "shape_change": 0.3709,
       "shape_basis": "nearest-sibling-normalised",
       "fits_reference": true,
       "reference_stats": {
@@ -344,6 +346,7 @@
           ]
         ]
       },
+      "foot": 0.6523,
       "analytics_id": "ludus.variant.fish.sazan.9a7d5cf44c.v02"
     },
     {
@@ -357,29 +360,29 @@
           "view": "below",
           "bend": "straight",
           "amp": 0.0,
-          "spread": 15
+          "spread": 25
         },
         "fish_px": 236,
-        "key": "sazan:below:0:amp=0.0-bend=straight-spread=15-view=below"
+        "key": "sazan:below:0:amp=0.0-bend=straight-spread=25-view=below"
       },
-      "shape_change": 0.3643,
+      "shape_change": 0.3548,
       "shape_basis": "nearest-sibling-normalised",
       "fits_reference": true,
       "reference_stats": {
-        "aspect": 4.538,
-        "fill": 0.466,
-        "base": 0.034
+        "aspect": 4.154,
+        "fill": 0.517,
+        "base": 0.051
       },
-      "area": 5716,
+      "area": 5804,
       "hitbox": {
         "bbox": [
           10,
           102,
-          246,
+          226,
           154
         ],
-        "area": 5716,
-        "radius": 42.66,
+        "area": 5804,
+        "radius": 42.98,
         "hull": [
           [
             10,
@@ -406,28 +409,28 @@
             102
           ],
           [
-            71,
-            105
+            70,
+            103
           ],
           [
-            122,
-            110
+            121,
+            108
           ],
           [
-            246,
-            124
+            226,
+            119
           ],
           [
-            246,
-            132
+            226,
+            137
           ],
           [
-            122,
-            146
+            121,
+            148
           ],
           [
-            71,
-            151
+            70,
+            153
           ],
           [
             31,
@@ -455,6 +458,7 @@
           ]
         ]
       },
+      "foot": 0.6016,
       "analytics_id": "ludus.variant.fish.sazan.9a7d5cf44c.v03"
     },
     {
@@ -472,7 +476,7 @@
         "fish_px": 236,
         "key": "sazan:feeding:1:amp=0.15-bend=head-down-mouth=True"
       },
-      "shape_change": 0.3643,
+      "shape_change": 0.3548,
       "shape_basis": "nearest-sibling-normalised",
       "fits_reference": true,
       "reference_stats": {
@@ -553,6 +557,7 @@
           ]
         ]
       },
+      "foot": 0.7148,
       "analytics_id": "ludus.variant.fish.sazan.9a7d5cf44c.v04"
     },
     {
@@ -565,29 +570,29 @@
         "form": {
           "fins": 1.25,
           "bend": "bow",
-          "amp": 0.13
+          "amp": 0.2
         },
         "fish_px": 236,
-        "key": "sazan:rising:1:amp=0.13-bend=bow-fins=1.25"
+        "key": "sazan:rising:2:amp=0.2-bend=bow-fins=1.25"
       },
-      "shape_change": 0.3659,
+      "shape_change": 0.3766,
       "shape_basis": "nearest-sibling-normalised",
       "fits_reference": true,
       "reference_stats": {
-        "aspect": 2.183,
-        "fill": 0.43,
-        "base": 0.119
+        "aspect": 2.034,
+        "fill": 0.401,
+        "base": 0.113
       },
-      "area": 11168,
+      "area": 11165,
       "hitbox": {
         "bbox": [
           9,
-          88,
+          96,
           247,
-          197
+          213
         ],
-        "area": 11168,
-        "radius": 59.62,
+        "area": 11165,
+        "radius": 59.61,
         "hull": [
           [
             9,
@@ -599,19 +604,15 @@
           ],
           [
             13,
-            121
-          ],
-          [
-            15,
-            120
+            122
           ],
           [
             92,
-            88
+            103
           ],
           [
-            94,
-            88
+            246,
+            96
           ],
           [
             247,
@@ -623,39 +624,35 @@
           ],
           [
             245,
-            158
+            159
           ],
           [
             158,
-            191
+            206
           ],
           [
-            111,
-            197
+            112,
+            213
           ],
           [
             108,
-            197
+            213
           ],
           [
-            30,
-            169
+            31,
+            175
           ],
           [
             29,
-            168
+            173
           ],
           [
             20,
-            158
+            161
           ],
           [
             19,
-            156
-          ],
-          [
-            16,
-            148
+            159
           ],
           [
             9,
@@ -663,6 +660,7 @@
           ]
         ]
       },
+      "foot": 0.832,
       "analytics_id": "ludus.variant.fish.sazan.9a7d5cf44c.v05"
     },
     {
@@ -760,117 +758,12 @@
           ]
         ]
       },
+      "foot": 0.6758,
       "analytics_id": "ludus.variant.fish.sazan.9a7d5cf44c.v06"
     },
     {
       "slot": "v07",
       "file": "own_sazan_9a7d5cf44c_v07.png",
-      "state": "below",
-      "params": {
-        "pose": "below",
-        "state": "below",
-        "form": {
-          "view": "below",
-          "bend": "wave",
-          "amp": 0.08
-        },
-        "fish_px": 236,
-        "key": "sazan:below:3:amp=0.08-bend=wave-view=below"
-      },
-      "shape_change": 0.4364,
-      "shape_basis": "nearest-sibling-normalised",
-      "fits_reference": true,
-      "reference_stats": {
-        "aspect": 3.746,
-        "fill": 0.411,
-        "base": 0.047
-      },
-      "area": 6116,
-      "hitbox": {
-        "bbox": [
-          10,
-          106,
-          246,
-          169
-        ],
-        "area": 6116,
-        "radius": 44.12,
-        "hull": [
-          [
-            10,
-            126
-          ],
-          [
-            11,
-            124
-          ],
-          [
-            14,
-            119
-          ],
-          [
-            20,
-            110
-          ],
-          [
-            30,
-            107
-          ],
-          [
-            65,
-            106
-          ],
-          [
-            67,
-            106
-          ],
-          [
-            120,
-            107
-          ],
-          [
-            196,
-            111
-          ],
-          [
-            201,
-            112
-          ],
-          [
-            246,
-            123
-          ],
-          [
-            246,
-            132
-          ],
-          [
-            67,
-            169
-          ],
-          [
-            65,
-            169
-          ],
-          [
-            30,
-            158
-          ],
-          [
-            20,
-            151
-          ],
-          [
-            10,
-            131
-          ]
-        ]
-      },
-      "analytics_id": "ludus.variant.fish.sazan.9a7d5cf44c.v07"
-    },
-    {
-      "slot": "v08",
-      "file": "own_sazan_9a7d5cf44c_v08.png",
       "state": "pair",
       "params": {
         "pose": "pair",
@@ -883,7 +776,7 @@
         "fish_px": 146.32,
         "key": "sazan:pair:4:amp=0.0-bend=straight-layout=cross"
       },
-      "shape_change": 0.4,
+      "shape_change": 0.3741,
       "shape_basis": "nearest-sibling-normalised",
       "fits_reference": true,
       "reference_stats": {
@@ -968,106 +861,119 @@
           ]
         ]
       },
+      "foot": 0.6172,
+      "analytics_id": "ludus.variant.fish.sazan.9a7d5cf44c.v07"
+    },
+    {
+      "slot": "v08",
+      "file": "own_sazan_9a7d5cf44c_v08.png",
+      "state": "below",
+      "params": {
+        "pose": "below",
+        "state": "below",
+        "form": {
+          "view": "below",
+          "bend": "wave",
+          "amp": 0.08
+        },
+        "fish_px": 236,
+        "key": "sazan:below:4:amp=0.08-bend=wave-view=below"
+      },
+      "shape_change": 0.3997,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.6,
+        "fill": 0.464,
+        "base": 0.056
+      },
+      "area": 6014,
+      "hitbox": {
+        "bbox": [
+          10,
+          106,
+          226,
+          166
+        ],
+        "area": 6014,
+        "radius": 43.75,
+        "hull": [
+          [
+            10,
+            126
+          ],
+          [
+            11,
+            124
+          ],
+          [
+            14,
+            119
+          ],
+          [
+            20,
+            110
+          ],
+          [
+            30,
+            107
+          ],
+          [
+            118,
+            106
+          ],
+          [
+            120,
+            106
+          ],
+          [
+            178,
+            111
+          ],
+          [
+            193,
+            113
+          ],
+          [
+            213,
+            116
+          ],
+          [
+            226,
+            118
+          ],
+          [
+            226,
+            137
+          ],
+          [
+            67,
+            166
+          ],
+          [
+            64,
+            166
+          ],
+          [
+            30,
+            158
+          ],
+          [
+            20,
+            151
+          ],
+          [
+            10,
+            131
+          ]
+        ]
+      },
+      "foot": 0.6484,
       "analytics_id": "ludus.variant.fish.sazan.9a7d5cf44c.v08"
     },
     {
       "slot": "v09",
       "file": "own_sazan_9a7d5cf44c_v09.png",
-      "state": "turning",
-      "params": {
-        "pose": "turning",
-        "state": "turning",
-        "form": {
-          "turn": 35,
-          "toward": false,
-          "bend": "straight",
-          "amp": 0.0
-        },
-        "fish_px": 236,
-        "key": "sazan:turning:4:amp=0.0-bend=straight-toward=False-turn=35"
-      },
-      "shape_change": 0.3657,
-      "shape_basis": "nearest-sibling-normalised",
-      "fits_reference": true,
-      "reference_stats": {
-        "aspect": 2.147,
-        "fill": 0.471,
-        "base": 0.188
-      },
-      "area": 9136,
-      "hitbox": {
-        "bbox": [
-          50,
-          71,
-          254,
-          166
-        ],
-        "area": 9136,
-        "radius": 53.93,
-        "hull": [
-          [
-            50,
-            124
-          ],
-          [
-            52,
-            120
-          ],
-          [
-            56,
-            115
-          ],
-          [
-            100,
-            71
-          ],
-          [
-            102,
-            71
-          ],
-          [
-            254,
-            87
-          ],
-          [
-            254,
-            166
-          ],
-          [
-            252,
-            166
-          ],
-          [
-            112,
-            163
-          ],
-          [
-            61,
-            154
-          ],
-          [
-            55,
-            148
-          ],
-          [
-            54,
-            145
-          ],
-          [
-            51,
-            135
-          ],
-          [
-            50,
-            131
-          ]
-        ]
-      },
-      "analytics_id": "ludus.variant.fish.sazan.9a7d5cf44c.v09"
-    },
-    {
-      "slot": "v10",
-      "file": "own_sazan_9a7d5cf44c_v10.png",
       "state": "single",
       "params": {
         "pose": "single",
@@ -1079,7 +985,7 @@
         "fish_px": 236,
         "key": "sazan:single:5:amp=0.1-bend=wave-back"
       },
-      "shape_change": 0.3842,
+      "shape_change": 0.3897,
       "shape_basis": "nearest-sibling-normalised",
       "fits_reference": true,
       "reference_stats": {
@@ -1180,11 +1086,12 @@
           ]
         ]
       },
-      "analytics_id": "ludus.variant.fish.sazan.9a7d5cf44c.v10"
+      "foot": 0.6523,
+      "analytics_id": "ludus.variant.fish.sazan.9a7d5cf44c.v09"
     },
     {
-      "slot": "v11",
-      "file": "own_sazan_9a7d5cf44c_v11.png",
+      "slot": "v10",
+      "file": "own_sazan_9a7d5cf44c_v10.png",
       "state": "turning",
       "params": {
         "pose": "turning",
@@ -1198,7 +1105,7 @@
         "fish_px": 236,
         "key": "sazan:turning:7:amp=0.1-bend=wave-toward=False-turn=50"
       },
-      "shape_change": 0.3831,
+      "shape_change": 0.3853,
       "shape_basis": "nearest-sibling-normalised",
       "fits_reference": true,
       "reference_stats": {
@@ -1259,6 +1166,114 @@
           ]
         ]
       },
+      "foot": 0.668,
+      "analytics_id": "ludus.variant.fish.sazan.9a7d5cf44c.v10"
+    },
+    {
+      "slot": "v11",
+      "file": "own_sazan_9a7d5cf44c_v11.png",
+      "state": "single",
+      "params": {
+        "pose": "single",
+        "state": "single",
+        "form": {
+          "tail": 1.2,
+          "bend": "tail-up",
+          "amp": 0.2
+        },
+        "fish_px": 236,
+        "key": "sazan:single:8:amp=0.2-bend=tail-up-tail=1.2"
+      },
+      "shape_change": 0.3766,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 1.951,
+        "fill": 0.379,
+        "base": 0.219
+      },
+      "area": 11001,
+      "hitbox": {
+        "bbox": [
+          9,
+          43,
+          247,
+          165
+        ],
+        "area": 11001,
+        "radius": 59.18,
+        "hull": [
+          [
+            9,
+            127
+          ],
+          [
+            13,
+            119
+          ],
+          [
+            18,
+            115
+          ],
+          [
+            24,
+            111
+          ],
+          [
+            92,
+            67
+          ],
+          [
+            246,
+            43
+          ],
+          [
+            247,
+            43
+          ],
+          [
+            247,
+            44
+          ],
+          [
+            246,
+            116
+          ],
+          [
+            244,
+            118
+          ],
+          [
+            158,
+            157
+          ],
+          [
+            109,
+            165
+          ],
+          [
+            108,
+            165
+          ],
+          [
+            30,
+            159
+          ],
+          [
+            20,
+            153
+          ],
+          [
+            17,
+            147
+          ],
+          [
+            9,
+            129
+          ]
+        ]
+      },
+      "foot": 0.6445,
       "analytics_id": "ludus.variant.fish.sazan.9a7d5cf44c.v11"
     },
     {
@@ -1270,105 +1285,106 @@
         "state": "below",
         "form": {
           "view": "below",
-          "bend": "arch",
-          "amp": 0.14
+          "bend": "head-up",
+          "amp": 0.12
         },
         "fish_px": 236,
-        "key": "sazan:below:7:amp=0.14-bend=arch-view=below"
+        "key": "sazan:below:12:amp=0.12-bend=head-up-view=below"
       },
-      "shape_change": 0.3831,
+      "shape_change": 0.3834,
       "shape_basis": "nearest-sibling-normalised",
       "fits_reference": true,
       "reference_stats": {
-        "aspect": 3.324,
-        "fill": 0.365,
-        "base": 0.037
+        "aspect": 3.224,
+        "fill": 0.415,
+        "base": 0.078
       },
-      "area": 6119,
+      "area": 6003,
       "hitbox": {
         "bbox": [
           10,
-          72,
-          246,
-          143
+          86,
+          226,
+          153
         ],
-        "area": 6119,
-        "radius": 44.13,
+        "area": 6003,
+        "radius": 43.71,
         "hull": [
           [
             10,
-            125
-          ],
-          [
-            15,
-            113
-          ],
-          [
-            19,
-            104
-          ],
-          [
-            20,
-            102
-          ],
-          [
-            30,
-            92
-          ],
-          [
-            65,
-            73
-          ],
-          [
-            118,
-            72
-          ],
-          [
-            120,
-            72
-          ],
-          [
-            199,
-            99
-          ],
-          [
-            201,
             100
           ],
           [
-            246,
-            123
-          ],
-          [
-            246,
-            132
-          ],
-          [
-            31,
-            143
-          ],
-          [
-            20,
-            143
+            12,
+            97
           ],
           [
             15,
+            93
+          ],
+          [
+            19,
+            88
+          ],
+          [
+            20,
+            87
+          ],
+          [
+            30,
+            86
+          ],
+          [
+            31,
+            86
+          ],
+          [
+            226,
+            119
+          ],
+          [
+            226,
             137
           ],
           [
-            11,
-            132
+            120,
+            150
+          ],
+          [
+            67,
+            153
+          ],
+          [
+            65,
+            153
+          ],
+          [
+            31,
+            138
+          ],
+          [
+            20,
+            128
+          ],
+          [
+            19,
+            126
+          ],
+          [
+            15,
+            117
           ],
           [
             10,
-            130
+            105
           ]
         ]
       },
+      "foot": 0.5977,
       "analytics_id": "ludus.variant.fish.sazan.9a7d5cf44c.v12"
     }
   ],
   "status": "ok",
   "shortfall": 0,
-  "shape_change": 0.3643
+  "shape_change": 0.3548
 }

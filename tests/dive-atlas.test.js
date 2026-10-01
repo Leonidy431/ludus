@@ -193,6 +193,9 @@ test('own fish (DEF-056): only 12/12 kits swim, sized to real length', () => {
   assert.ok(placed.length > 0);
   for (const kit of index.kits) {
     assert.equal(kit.files.length, 12);
+    for (const k of ['fish_px', 'views', 'rest', 'age', 'foot']) {
+      assert.equal(kit[k].length, 12, `${kit.id} ${k}`);
+    }
     for (const f of kit.files) {
       assert.ok(fs.existsSync(path.join(root, 'public/ludus/art/derived', f)),
         f);
@@ -203,20 +206,76 @@ test('own fish (DEF-056): only 12/12 kits swim, sized to real length', () => {
     assert.ok(!short.has(f.id), `${f.id} is short of 12`);
     const s = schools.find((x) => x.id === f.id);
     const kit = A.fishKit(index, f.id);
-    const v = A.fishVariant(f.i);
-    assert.equal(f.file, kit.files[v]);
-    // The biggest fish of the drawing has the species' real length.
-    assert.ok(Math.abs(f.size * kit.fish_px[v] / index.canvas_px
-      - s.length) < 1e-9);
-  }
-  // Neighbours in a school never show the same variant.
-  for (let i = 1; i < placed.length; i++) {
-    if (placed[i].id === placed[i - 1].id) {
-      assert.notEqual(placed[i].file, placed[i - 1].file);
-    }
+    assert.equal(f.file, kit.files[f.v]);
+    // The biggest fish of the drawing has the species' real length,
+    // and the young the length of their age class.
+    assert.ok(Math.abs(f.size * kit.fish_px[f.v] / index.canvas_px
+      - s.length * kit.age[f.v]) < 1e-9);
   }
   // The fixture the headset replays is current.
   const fx = require('../godot/tests/fixtures/atlas-traces.json');
-  assert.deepEqual(fx.fish, placed.map((f) => ({ id: f.id, i: f.i,
-    file: path.basename(f.file), size: f.size })));
+  assert.ok(fx.fish.length > placed.length);
+  for (const w of fx.fish) {
+    const s = schools.find((x) => x.id === w.id);
+    const f = A.fishSpot(index, A.fishKit(index, w.id), s, w.i, w.t, w.eye);
+    assert.equal(f.v, w.v);
+    assert.equal(path.basename(f.file), w.file);
+    assert.equal(f.size, w.size);
+    assert.equal(f.depth, w.depth);
+  }
+});
+
+test('own fish (DEF-056): every cell shows, in its own view', () => {
+  const index = require('../public/ludus/data/fish-drawings.json');
+  const fish = require('../public/ludus/data/issyk-kul-fish.json').fish;
+  for (const s of Core.fishSchools(fish)) {
+    const kit = A.fishKit(index, s.id);
+    if (!kit) {
+      continue;
+    }
+    const young = kit.age.findIndex((a) => a < 1);
+    if (young >= 0) {
+      // The fry are drawn at the youngest age class, not as adults.
+      assert.ok(kit.age[young] < 0.5, s.id);
+    }
+    const seen = new Set();
+    let rested = 0;
+    const eyes = [null,
+      { x: s.centre.x, z: s.centre.z, depth: s.centre.depth + 30 },
+      { x: s.centre.x, z: s.centre.z,
+        depth: Math.max(0.3, s.centre.depth - 30) }];
+    for (let t = 0.5; t < A.FISH_PERIOD_S * 36; t += 1) {
+      for (const eye of eyes) {
+        const spots = A.fishSpots(index, kit, s, t, eye);
+        spots.forEach((f, i) => {
+          seen.add(f.v);
+          // Neighbours in a school never show the same cell.
+          if (i > 0) {
+            assert.notEqual(f.v, spots[i - 1].v, `${s.id} t=${t}`);
+          }
+          // A view from below or above only to a steep eye.
+          if (f.top) {
+            assert.notEqual(A.fishView(eye, f), 'side', `${s.id} t=${t}`);
+          } else if (eye === null) {
+            assert.equal(kit.views[f.v], 'side');
+          }
+          // A fish shown at rest lies on the floor under it.
+          if (kit.rest[f.v]) {
+            const floor = Core.floorDepth(f.x, f.z);
+            const low = f.depth + (kit.foot[f.v] - 0.5) * f.size;
+            assert.ok(Math.abs(low - floor)
+              <= (1 - A.FISH_REST_SHOWN) * A.FISH_REST_REACH_M + 1e-9,
+              `${s.id} rests ${low} over ${floor}`);
+            rested += 1;
+          }
+        });
+      }
+    }
+    assert.equal(seen.size, 12, `${s.id}: ${[...seen]}`);
+    if (kit.rest.some((r) => r)) {
+      assert.ok(rested > 0, `${s.id} never rests`);
+    }
+    // At a level eye no fish shows a view from below or above.
+    assert.ok(A.placeOwnFish(index, [s], 7.0, null).every((f) => !f.top));
+  }
 });

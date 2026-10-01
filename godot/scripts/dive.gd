@@ -1573,12 +1573,17 @@ func _update_water(tel: Dictionary) -> void:
 
 
 func _update_fish() -> void:
+	# The fish of our own drawing choose their view by where the eye is.
+	var eye := {}
+	if is_instance_valid(camera) and camera.is_inside_tree():
+		var c := camera.global_position
+		eye = {"x": c.x, "depth": -c.y, "z": c.z}
 	for n in schools.size():
 		var s: Dictionary = schools[n]
 		var mm: MultiMesh = fish_meshes[n].multimesh
 		if fish_meshes[n].has_meta("fish_drawing"):
 			FishDrawings.update(fish_index, FishDrawings.kit_of(fish_index,
-				str(s.id)), s, mm, t)
+				str(s.id)), s, mm, t, eye)
 			continue
 		for i in s.count:
 			var p := DiveCore.fish_at(s, i, t)

@@ -7,8 +7,8 @@
   "register": {
     "id": "gubach",
     "category": "fish",
-    "ru": "Пятнистый губач",
-    "en": "Stone loach",
+    "ru": "Иссык-кульский губач",
+    "en": "Issyk-Kul naked loach",
     "depth_m": [
       1,
       100
@@ -74,11 +74,11 @@
   "source": {
     "repo": "ludus (own drawing)",
     "path": "scripts/raw_assets/fish_procedural.py",
-    "commit": "fish-drawing-r3"
+    "commit": "fish-drawing-r4"
   },
   "repo": "ludus (own drawing)",
   "path": "scripts/raw_assets/fish_procedural.py",
-  "commit": "fish-drawing-r3",
+  "commit": "fish-drawing-r4",
   "license": "project (own drawing, no third-party material)",
   "license_file": null,
   "threshold": 0.35,
@@ -98,8 +98,9 @@
       120,
       96
     ],
-    "scale_note": "the game scales a variant to the age class; a size is never a variant",
-    "rest_on_floor": "a variant of the state \"bottom\" is placed by the game with its lowest pixel on the floor line",
+    "scale_note": "a size is never a variant; the index gives each variant its age (1 for adults, 0.4068 for \"young\", the youngest class above) and the game multiplies the billboard by it",
+    "rest_on_floor": "a variant of the state \"bottom\" (index \"rest\") is shown only by a fish the game rests on the floor: it stops, sinks, and its lowest pixel (index \"foot\") lies on the floor line (fish_drawings.gd, dive-atlas.js fishSpot)",
+    "views": "a \"below\" or \"above\" variant is shown only when the eye sees the fish more than 35 degrees from level (index \"view\"); level, the side views swim",
     "tilt_deg": [
       -13,
       13
@@ -119,11 +120,11 @@
     "category": "fish"
   },
   "pool": {
-    "size": 48,
-    "fitting": 37,
+    "size": 51,
+    "fitting": 42,
     "refused": {
-      "unlike-real-object": 11,
-      "too-close-to-a-sibling": 25
+      "unlike-real-object": 9,
+      "too-close-to-a-sibling": 30
     },
     "chosen": 12
   },
@@ -254,6 +255,7 @@
           ]
         ]
       },
+      "foot": 0.6016,
       "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v01"
     },
     {
@@ -376,6 +378,7 @@
           ]
         ]
       },
+      "foot": 0.6445,
       "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v02"
     },
     {
@@ -467,122 +470,12 @@
           ]
         ]
       },
+      "foot": 0.6133,
       "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v03"
     },
     {
       "slot": "v04",
       "file": "own_gubach_035ddd127e_v04.png",
-      "state": "above",
-      "params": {
-        "pose": "above",
-        "state": "above",
-        "form": {
-          "view": "above",
-          "bend": "straight",
-          "amp": 0.0,
-          "spread": 15
-        },
-        "fish_px": 236,
-        "key": "gubach:above:0:amp=0.0-bend=straight-spread=15-view=above"
-      },
-      "shape_change": 0.3716,
-      "shape_basis": "nearest-sibling-normalised",
-      "fits_reference": true,
-      "reference_stats": {
-        "aspect": 4.389,
-        "fill": 0.557,
-        "base": 0.068
-      },
-      "area": 7128,
-      "hitbox": {
-        "bbox": [
-          10,
-          101,
-          247,
-          155
-        ],
-        "area": 7128,
-        "radius": 47.63,
-        "hull": [
-          [
-            10,
-            125
-          ],
-          [
-            13,
-            119
-          ],
-          [
-            16,
-            114
-          ],
-          [
-            17,
-            113
-          ],
-          [
-            34,
-            107
-          ],
-          [
-            80,
-            101
-          ],
-          [
-            81,
-            101
-          ],
-          [
-            133,
-            107
-          ],
-          [
-            247,
-            121
-          ],
-          [
-            247,
-            135
-          ],
-          [
-            133,
-            149
-          ],
-          [
-            81,
-            155
-          ],
-          [
-            80,
-            155
-          ],
-          [
-            34,
-            149
-          ],
-          [
-            17,
-            143
-          ],
-          [
-            16,
-            142
-          ],
-          [
-            13,
-            137
-          ],
-          [
-            10,
-            131
-          ]
-        ]
-      },
-      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v04"
-    },
-    {
-      "slot": "v05",
-      "file": "own_gubach_035ddd127e_v05.png",
       "state": "rising",
       "params": {
         "pose": "rising",
@@ -720,11 +613,12 @@
           ]
         ]
       },
-      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v05"
+      "foot": 0.7148,
+      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v04"
     },
     {
-      "slot": "v06",
-      "file": "own_gubach_035ddd127e_v06.png",
+      "slot": "v05",
+      "file": "own_gubach_035ddd127e_v05.png",
       "state": "turning",
       "params": {
         "pose": "turning",
@@ -738,7 +632,7 @@
         "fish_px": 236,
         "key": "gubach:turning:1:amp=0.1-bend=wave-toward=True-turn=35"
       },
-      "shape_change": 0.3617,
+      "shape_change": 0.356,
       "shape_basis": "nearest-sibling-normalised",
       "fits_reference": true,
       "reference_stats": {
@@ -811,114 +705,12 @@
           ]
         ]
       },
-      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v06"
+      "foot": 0.6484,
+      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v05"
     },
     {
-      "slot": "v07",
-      "file": "own_gubach_035ddd127e_v07.png",
-      "state": "above",
-      "params": {
-        "pose": "above",
-        "state": "above",
-        "form": {
-          "view": "above",
-          "bend": "straight",
-          "amp": 0.0,
-          "spread": 70
-        },
-        "fish_px": 236,
-        "key": "gubach:above:2:amp=0.0-bend=straight-spread=70-view=above"
-      },
-      "shape_change": 0.3716,
-      "shape_basis": "nearest-sibling-normalised",
-      "fits_reference": true,
-      "reference_stats": {
-        "aspect": 2.469,
-        "fill": 0.361,
-        "base": 0.064
-      },
-      "area": 8212,
-      "hitbox": {
-        "bbox": [
-          10,
-          80,
-          247,
-          176
-        ],
-        "area": 8212,
-        "radius": 51.13,
-        "hull": [
-          [
-            10,
-            125
-          ],
-          [
-            13,
-            119
-          ],
-          [
-            16,
-            114
-          ],
-          [
-            17,
-            113
-          ],
-          [
-            60,
-            80
-          ],
-          [
-            63,
-            80
-          ],
-          [
-            124,
-            93
-          ],
-          [
-            247,
-            121
-          ],
-          [
-            247,
-            135
-          ],
-          [
-            124,
-            163
-          ],
-          [
-            63,
-            176
-          ],
-          [
-            60,
-            176
-          ],
-          [
-            17,
-            143
-          ],
-          [
-            16,
-            142
-          ],
-          [
-            13,
-            137
-          ],
-          [
-            10,
-            131
-          ]
-        ]
-      },
-      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v07"
-    },
-    {
-      "slot": "v08",
-      "file": "own_gubach_035ddd127e_v08.png",
+      "slot": "v06",
+      "file": "own_gubach_035ddd127e_v06.png",
       "state": "single",
       "params": {
         "pose": "single",
@@ -930,7 +722,7 @@
         "fish_px": 236,
         "key": "gubach:single:3:amp=0.15-bend=wave"
       },
-      "shape_change": 0.3585,
+      "shape_change": 0.3698,
       "shape_basis": "nearest-sibling-normalised",
       "fits_reference": true,
       "reference_stats": {
@@ -1051,11 +843,12 @@
           ]
         ]
       },
-      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v08"
+      "foot": 0.6484,
+      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v06"
     },
     {
-      "slot": "v09",
-      "file": "own_gubach_035ddd127e_v09.png",
+      "slot": "v07",
+      "file": "own_gubach_035ddd127e_v07.png",
       "state": "above",
       "params": {
         "pose": "above",
@@ -1066,26 +859,26 @@
           "amp": 0.08
         },
         "fish_px": 236,
-        "key": "gubach:above:3:amp=0.08-bend=wave-view=above"
+        "key": "gubach:above:4:amp=0.08-bend=wave-view=above"
       },
-      "shape_change": 0.3882,
+      "shape_change": 0.3698,
       "shape_basis": "nearest-sibling-normalised",
       "fits_reference": true,
       "reference_stats": {
-        "aspect": 3.078,
-        "fill": 0.426,
-        "base": 0.055
+        "aspect": 2.908,
+        "fill": 0.456,
+        "base": 0.05
       },
-      "area": 7777,
+      "area": 7651,
       "hitbox": {
         "bbox": [
           10,
-          99,
-          247,
-          176
+          98,
+          231,
+          174
         ],
-        "area": 7777,
-        "radius": 49.75,
+        "area": 7651,
+        "radius": 49.35,
         "hull": [
           [
             10,
@@ -1100,36 +893,36 @@
             114
           ],
           [
-            73,
+            74,
             99
+          ],
+          [
+            129,
+            98
           ],
           [
             130,
-            99
+            98
           ],
           [
-            207,
-            108
+            230,
+            112
           ],
           [
-            211,
-            109
+            231,
+            113
           ],
           [
-            247,
-            121
-          ],
-          [
-            247,
-            135
+            231,
+            143
           ],
           [
             75,
-            176
+            174
           ],
           [
-            73,
-            176
+            74,
+            174
           ],
           [
             34,
@@ -1153,11 +946,12 @@
           ]
         ]
       },
-      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v09"
+      "foot": 0.6797,
+      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v07"
     },
     {
-      "slot": "v10",
-      "file": "own_gubach_035ddd127e_v10.png",
+      "slot": "v08",
+      "file": "own_gubach_035ddd127e_v08.png",
       "state": "rising",
       "params": {
         "pose": "rising",
@@ -1274,114 +1068,119 @@
           ]
         ]
       },
-      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v10"
+      "foot": 0.5859,
+      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v08"
     },
     {
-      "slot": "v11",
-      "file": "own_gubach_035ddd127e_v11.png",
-      "state": "turning",
+      "slot": "v09",
+      "file": "own_gubach_035ddd127e_v09.png",
+      "state": "above",
       "params": {
-        "pose": "turning",
-        "state": "turning",
+        "pose": "above",
+        "state": "above",
         "form": {
-          "turn": 35,
-          "toward": false,
-          "bend": "wave",
-          "amp": 0.1
+          "view": "above",
+          "bend": "arch",
+          "amp": 0.12
         },
         "fish_px": 236,
-        "key": "gubach:turning:5:amp=0.1-bend=wave-toward=False-turn=35"
+        "key": "gubach:above:8:amp=0.12-bend=arch-view=above"
       },
-      "shape_change": 0.3585,
+      "shape_change": 0.3735,
       "shape_basis": "nearest-sibling-normalised",
       "fits_reference": true,
       "reference_stats": {
-        "aspect": 3.188,
-        "fill": 0.467,
-        "base": 0.089
+        "aspect": 2.986,
+        "fill": 0.468,
+        "base": 0.162
       },
-      "area": 6100,
+      "area": 7652,
       "hitbox": {
         "bbox": [
-          50,
-          93,
-          254,
-          157
+          10,
+          69,
+          231,
+          143
         ],
-        "area": 6100,
-        "radius": 44.06,
+        "area": 7652,
+        "radius": 49.35,
         "hull": [
           [
-            50,
-            126
+            10,
+            125
           ],
           [
-            51,
-            124
+            12,
+            120
           ],
           [
-            108,
-            93
+            15,
+            113
           ],
           [
-            109,
-            93
+            17,
+            109
           ],
           [
-            190,
-            100
-          ],
-          [
-            210,
+            26,
             102
           ],
           [
-            254,
-            108
+            34,
+            96
           ],
           [
-            254,
-            144
+            74,
+            69
           ],
           [
-            86,
-            157
+            75,
+            69
           ],
           [
-            85,
-            157
+            130,
+            74
           ],
           [
-            64,
-            154
+            230,
+            112
           ],
           [
-            63,
-            153
+            231,
+            113
           ],
           [
-            54,
+            231,
             143
           ],
           [
-            53,
-            141
+            73,
+            143
           ],
           [
-            52,
+            17,
+            140
+          ],
+          [
+            15,
             138
           ],
           [
-            50,
-            131
+            11,
+            132
+          ],
+          [
+            10,
+            130
           ]
         ]
       },
-      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v11"
+      "foot": 0.5586,
+      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v09"
     },
     {
-      "slot": "v12",
-      "file": "own_gubach_035ddd127e_v12.png",
+      "slot": "v10",
+      "file": "own_gubach_035ddd127e_v10.png",
       "state": "single",
       "params": {
         "pose": "single",
@@ -1394,7 +1193,7 @@
         "fish_px": 236,
         "key": "gubach:single:9:amp=0.1-bend=tail-down-tail=1.2"
       },
-      "shape_change": 0.382,
+      "shape_change": 0.3735,
       "shape_basis": "nearest-sibling-normalised",
       "fits_reference": true,
       "reference_stats": {
@@ -1503,6 +1302,209 @@
           ]
         ]
       },
+      "foot": 0.6484,
+      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v10"
+    },
+    {
+      "slot": "v11",
+      "file": "own_gubach_035ddd127e_v11.png",
+      "state": "above",
+      "params": {
+        "pose": "above",
+        "state": "above",
+        "form": {
+          "view": "above",
+          "bend": "tail-up",
+          "amp": 0.12
+        },
+        "fish_px": 236,
+        "key": "gubach:above:10:amp=0.12-bend=tail-up-view=above"
+      },
+      "shape_change": 0.356,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.797,
+        "fill": 0.437,
+        "base": 0.056
+      },
+      "area": 7623,
+      "hitbox": {
+        "bbox": [
+          10,
+          86,
+          231,
+          165
+        ],
+        "area": 7623,
+        "radius": 49.26,
+        "hull": [
+          [
+            10,
+            125
+          ],
+          [
+            13,
+            119
+          ],
+          [
+            16,
+            114
+          ],
+          [
+            17,
+            113
+          ],
+          [
+            74,
+            91
+          ],
+          [
+            230,
+            86
+          ],
+          [
+            231,
+            86
+          ],
+          [
+            231,
+            117
+          ],
+          [
+            130,
+            155
+          ],
+          [
+            75,
+            165
+          ],
+          [
+            74,
+            165
+          ],
+          [
+            17,
+            143
+          ],
+          [
+            16,
+            142
+          ],
+          [
+            13,
+            137
+          ],
+          [
+            10,
+            131
+          ]
+        ]
+      },
+      "foot": 0.6445,
+      "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v11"
+    },
+    {
+      "slot": "v12",
+      "file": "own_gubach_035ddd127e_v12.png",
+      "state": "above",
+      "params": {
+        "pose": "above",
+        "state": "above",
+        "form": {
+          "view": "above",
+          "bend": "head-up",
+          "amp": 0.12
+        },
+        "fish_px": 236,
+        "key": "gubach:above:12:amp=0.12-bend=head-up-view=above"
+      },
+      "shape_change": 0.3709,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 3.0,
+        "fill": 0.464,
+        "base": 0.052
+      },
+      "area": 7627,
+      "hitbox": {
+        "bbox": [
+          9,
+          88,
+          231,
+          162
+        ],
+        "area": 7627,
+        "radius": 49.27,
+        "hull": [
+          [
+            9,
+            101
+          ],
+          [
+            10,
+            99
+          ],
+          [
+            12,
+            96
+          ],
+          [
+            15,
+            92
+          ],
+          [
+            17,
+            90
+          ],
+          [
+            73,
+            88
+          ],
+          [
+            75,
+            88
+          ],
+          [
+            231,
+            113
+          ],
+          [
+            231,
+            143
+          ],
+          [
+            75,
+            162
+          ],
+          [
+            74,
+            162
+          ],
+          [
+            35,
+            135
+          ],
+          [
+            17,
+            121
+          ],
+          [
+            15,
+            117
+          ],
+          [
+            10,
+            105
+          ],
+          [
+            9,
+            102
+          ]
+        ]
+      },
+      "foot": 0.6328,
       "analytics_id": "ludus.variant.fish.gubach.035ddd127e.v12"
     }
   ],

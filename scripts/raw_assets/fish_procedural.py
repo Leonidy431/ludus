@@ -78,7 +78,7 @@ THRESHOLD = npd.THRESHOLD
 KIT_SIZE = npd.KIT_SIZE
 SS = npd.SS
 # Raise whenever a drawing function or a pool changes.
-REVISION = 'fish-drawing-r3'
+REVISION = 'fish-drawing-r4'
 # Nearest sibling, measured on silhouettes normalised for place and
 # scale (normalised below).
 SHAPE_BASIS = 'nearest-sibling-normalised'
@@ -431,13 +431,16 @@ def skin(fish, colour, species):
             x = fish.x(s)
             d.ellipse([x - r, y - r, x + r, y + r], fill=dark)
     if marks == 'blotches':
-        for i in range(9):
-            s = 0.15 + 0.09 * i
-            x = fish.x(s)
-            w = fish.Lb * (0.025 + 0.015 * npd.unit(key, 'bw', i))
-            y0 = fish.upper(s)
-            y1 = fish.cy + fish.D * (0.05 + 0.2 * npd.unit(key, 'bh', i))
-            d.ellipse([x - w, y0, x + w, y1], fill=dark)
+        # Triplophysa strauchii is the spotted loach: irregular blotches
+        # and specks of different size over the back and flank, not the
+        # even bars of r3 (review of r3: they read as a barred fish).
+        for i in range(15):
+            s = 0.14 + 0.82 * npd.unit(key, 'bs', i)
+            y0, y1 = fish.upper(s), fish.cy + fish.D * 0.3
+            y = y0 + (y1 - y0) * (0.1 + 0.85 * npd.unit(key, 'by', i))
+            _blotch(d, fish.x(s), y,
+                    fish.Lb * (0.012 + 0.03 * npd.unit(key, 'bw', i)),
+                    key, i, dark)
     if marks in ('scales', 'bronze', 'silver', 'plain', 'trout'):
         # Scales: a faint net of arcs over the flank.
         step = max(3.0, fish.D * (0.16 if marks == 'scales' else 0.1))
@@ -468,6 +471,17 @@ def skin(fish, colour, species):
     d.ellipse([ex - r * 0.62, ey - r * 0.62, ex + r * 0.62,
                ey + r * 0.62], fill=(16, 14, 12))
     return img
+
+
+def _blotch(d, x, y, r, key, i, fill):
+    """An irregular blotch: a polygon of seven lobes of jittered
+    radius, so no two marks of a loach are the same oval."""
+    pts = []
+    for k in range(7):
+        a = 2 * math.pi * (k + 0.4 * npd.signed(key, f'ba{i}', k)) / 7
+        rr = r * (0.55 + 0.45 * npd.unit(key, f'br{i}', k))
+        pts.append((x + rr * math.cos(a), y + rr * 0.8 * math.sin(a)))
+    d.polygon(pts, fill=fill)
 
 
 def relief(alpha):
@@ -573,7 +587,11 @@ class FishTop:
         side = Fish(MORPHOLOGY[species], length, cx, cy, form)
         self.side = side
         self.m = side.m
-        self.L, self.Lb, self.tail_len = side.L, side.Lb, side.tail_len
+        self.Lb, self.tail_len = side.Lb, side.tail_len
+        # Seen from below or above the edge-on tail is foreshortened to
+        # a wedge (tail()), so the drawing is shorter than the side
+        # view by the rest of the fin.
+        self.L = side.Lb + side.tail_len * 0.55
         self.x0, self.cy = side.x0, cy
         self.W = WIDTH[species] * side.D
         self.fins_k = side.fins_k
@@ -595,14 +613,19 @@ class FishTop:
                    for s in reversed(ss)])
 
     def tail(self):
-        # The tail fin edge-on: a blade that narrows from the stalk and
-        # flares a little at the trailing edge, where the lobes are.
-        xb, xe = self.x(1.0), self.x(1.0) + self.tail_len
-        h0 = max(1.5, self.half(1.0))
-        mid = xb + self.tail_len * 0.55
-        return [(xb - 3, self.cy - h0), (mid, self.cy - h0 * 0.35),
-                (xe, self.cy - h0 * 0.6), (xe - 2, self.cy),
-                (xe, self.cy + h0 * 0.6), (mid, self.cy + h0 * 0.35),
+        # The tail fin edge-on, as a short wedge: it beats, so it is
+        # never seen as a line, and the lobes flare at the trailing
+        # edge.  r3 drew the full fin length as a thin blade and the
+        # review read it as the whip of an eel or a rattail; the wedge
+        # keeps the stalk and half the fin, the rest is foreshortened.
+        xb = self.x(1.0)
+        xe = xb + self.tail_len * 0.55
+        h0 = max(2.0, self.half(1.0))
+        # The trailing edge spreads to a fifth of the body's width.
+        h1 = max(h0 * 1.4, self.W * 0.2)
+        return [(xb - 3, self.cy - h0), (xe - 3, self.cy - h1 * 0.9),
+                (xe, self.cy - h1), (xe - 2, self.cy),
+                (xe, self.cy + h1), (xe - 3, self.cy + h1 * 0.9),
                 (xb - 3, self.cy + h0)]
 
     def paired(self, s0, length, spread):
@@ -615,13 +638,18 @@ class FishTop:
         out = []
         H = length * self.Lb * self.fins_k
         base = 0.09 * self.Lb
-        a = math.radians(spread)
+        # At least 25 degrees: a fin folded flatter hides behind the
+        # body on one side and the review read a one-sided fish.
+        a = math.radians(max(25, spread))
         for sign in (-1, 1):
-            y = self.cy + sign * self.half(s0 + 0.04) * 0.95
+            y = self.cy + sign * self.half(s0 + 0.04) * 0.85
             x = self.x(s0)
             pts = [(x, y)]
             for i in range(5):
-                t = a - math.radians(28) * i / 4
+                # The trailing edge sweeps back but stays out of the
+                # body: the angle never falls below a third of the
+                # spread, so both fins stand clear of the outline.
+                t = a - (a * 0.66) * i / 4
                 r = H * (1.0 - 0.18 * i / 4)
                 pts.append((x + base * 0.3 * i / 4 + r * math.cos(t),
                             y + sign * r * math.sin(t)))
@@ -682,9 +710,15 @@ def draw_top(species, length, cx, cy, form=None):
     marks = m['marks']
     if above and marks in ('spots', 'trout', 'blotches', 'bars'):
         # The pattern of the back is what the camera sees from above.
-        n = {'spots': 18, 'trout': 22, 'blotches': 8, 'bars': 7}[marks]
+        n = {'spots': 18, 'trout': 22, 'blotches': 14, 'bars': 7}[marks]
         for i in range(n):
-            if marks in ('blotches', 'bars'):
+            if marks == 'blotches':
+                s = 0.16 + 0.8 * npd.unit(key, 'bs', i)
+                y = cy + fish.half(s) * 0.75 * npd.signed(key, 'by', i)
+                _blotch(d, fish.x(s), y,
+                        fish.Lb * (0.012 + 0.026 * npd.unit(key, 'bw', i)),
+                        key, i, dark)
+            elif marks == 'bars':
                 s = 0.18 + 0.78 * i / n
                 w = fish.Lb * 0.03
                 h = fish.half(s) * 0.9
@@ -772,12 +806,25 @@ def turn(img, yaw_deg, x0, length, cy, toward=True):
 # of 2026-09-30 counted them as variants, and a fish moved down the
 # canvas scored about 100 % against itself; a review caught it.
 LENGTH = 236
+# The young are drawn at the length of the youngest age class: the index
+# gives each variant its 'age' (share of the adult length), and the game
+# multiplies the billboard by it (FishDrawings.quad_m, fishSpot in
+# dive-atlas.js).  r3 sized the fry as adults; the review caught it.
+YOUNG_AGE = round(96 / LENGTH, 4)
 ENGINE = {
     'age_lengths_px': [236, 188, 150, 120, 96],
-    'scale_note': 'the game scales a variant to the age class; a size '
-                  'is never a variant',
-    'rest_on_floor': 'a variant of the state "bottom" is placed by the '
-                     'game with its lowest pixel on the floor line',
+    'scale_note': 'a size is never a variant; the index gives each '
+                  'variant its age (1 for adults, %s for "young", the '
+                  'youngest class above) and the game multiplies the '
+                  'billboard by it' % YOUNG_AGE,
+    'rest_on_floor': 'a variant of the state "bottom" (index "rest") is '
+                     'shown only by a fish the game rests on the floor: '
+                     'it stops, sinks, and its lowest pixel (index '
+                     '"foot") lies on the floor line (fish_drawings.gd, '
+                     'dive-atlas.js fishSpot)',
+    'views': 'a "below" or "above" variant is shown only when the eye '
+             'sees the fish more than 35 degrees from level (index '
+             '"view"); level, the side views swim',
     'tilt_deg': [-13, 13],
     'facing': 'left; the game turns the sprite, never a mirrored '
               'variant (TABOO 0.3 rule 35)',
@@ -810,7 +857,9 @@ FORMS = {
     'bottom': ([{'bend': 'straight', 'amp': 0.0, 'fins': 1.35,
                  'tail': 0.8}]
                + _forms(('tail-up',), (0.06, 0.12), fins=1.35)
-               + _forms(('head-up',), (0.06,), fins=1.35)),
+               + _forms(('head-up',), (0.06, 0.12), fins=1.35)
+               # A loach lies curved on the stones as often as straight.
+               + _forms(('wave',), (0.06, 0.1), fins=1.35)),
     'young': [{'bend': 'straight', 'amp': 0.0, 'young': True},
               {'bend': 'wave', 'amp': 0.08, 'young': True}],
     'pair': [dict(f, layout=lay) for lay in ('above', 'beside', 'cross')
@@ -825,18 +874,20 @@ FORMS = {
     # Seen from below against the light, as the ROV looks up at a fish
     # in open water: the width of the body, paired fins spread, the
     # lateral swim wave and the C of a turn in full.
+    # The lateral bend is held to TOP_AMP: r3 bent it to 0.22 and the
+    # review read a crescent or a tadpole, not the species.
     'below': ([{'view': 'below', 'bend': 'straight', 'amp': 0.0,
-                'spread': sp} for sp in (15, 45, 70)]
-              + _forms(('wave',), (0.08, 0.14, 0.2), view='below')
-              + _forms(('arch',), (0.08, 0.14, 0.22), view='below')
-              + _forms(('tail-up', 'head-up'), (0.12, 0.22),
+                'spread': sp} for sp in (25, 45, 70)]
+              + _forms(('wave',), (0.05, 0.08, 0.12), view='below')
+              + _forms(('arch',), (0.05, 0.08, 0.12), view='below')
+              + _forms(('tail-up', 'head-up'), (0.08, 0.12),
                        view='below')),
     # Seen from above, as the ROV passes over a fish on the bottom.
     'above': ([{'view': 'above', 'bend': 'straight', 'amp': 0.0,
-                'spread': sp} for sp in (15, 45, 70)]
-              + _forms(('wave',), (0.08, 0.14, 0.2), view='above')
-              + _forms(('arch',), (0.08, 0.14, 0.22), view='above')
-              + _forms(('tail-up', 'head-up'), (0.12, 0.22),
+                'spread': sp} for sp in (25, 45, 70)]
+              + _forms(('wave',), (0.05, 0.08, 0.12), view='above')
+              + _forms(('arch',), (0.05, 0.08, 0.12), view='above')
+              + _forms(('tail-up', 'head-up'), (0.08, 0.12),
                        view='above')),
     # Turning toward or away from the camera: the yawed body seen in
     # perspective, straight or in its swim wave.
@@ -986,14 +1037,26 @@ VIEW_GROUP = {'below': 'top', 'above': 'top', 'turning': 'turning'}
 VIEW_MAX = {'top': 3, 'turning': 3}
 
 
-def _room(groups, pick, k):
+def view_max(species):
+    """VIEW_MAX for a species.  A fish that never leaves the bottom
+    (every register state is on the floor or feeding there, as the
+    stone loach) is met by the ROV from above more than from the side,
+    and its blotched back is the cue that names it, so it keeps one
+    more view from above (r4: the loach, 11 of 12 without it)."""
+    states = npd.register_row(species)['states']
+    if all(POSE.get(st) in ('bottom', 'feeding') for st in states):
+        return dict(VIEW_MAX, top=VIEW_MAX['top'] + 1)
+    return VIEW_MAX
+
+
+def _room(groups, pick, k, limits=None):
     g = groups[k]
     if g is None:
         return True
-    return sum(groups[c] == g for c in pick) < VIEW_MAX[g]
+    return sum(groups[c] == g for c in pick) < (limits or VIEW_MAX)[g]
 
 
-def choose(drawn, threshold, size=KIT_SIZE):
+def choose(drawn, threshold, size=KIT_SIZE, limits=None):
     """The largest set, up to size, whose every pair is threshold apart.
 
     Greedy in pool order (the round robin keeps every real state in
@@ -1014,7 +1077,7 @@ def choose(drawn, threshold, size=KIT_SIZE):
                 break
             if k != start and all(far[k][c] for c in pick) and \
                     keys[k] not in {keys[c] for c in pick} and \
-                    _room(groups, pick, k):
+                    _room(groups, pick, k, limits):
                 pick.append(k)
         if len(pick) > len(best):
             best = pick
@@ -1060,7 +1123,7 @@ def build(species, threshold=THRESHOLD):
                       'norm': norm, 'fill': fill_holes(norm),
                       'hitbox': hitbox(mask), 'stats': stats})
     fitting = len(drawn)
-    chosen = choose(drawn, threshold)
+    chosen = choose(drawn, threshold, limits=view_max(species))
     refused['too-close-to-a-sibling'] = fitting - len(chosen)
     prefix = f'own_{species}_{oid}'
     images, variants = {}, []
@@ -1077,6 +1140,7 @@ def build(species, threshold=THRESHOLD):
             'shape_basis': SHAPE_BASIS, 'fits_reference': True,
             'reference_stats': c['stats'], 'area': area(c['mask']),
             'hitbox': c['hitbox'],
+            'foot': round(c['mask'].getbbox()[3] / CANVAS, 4),
             'analytics_id': f'ludus.variant.fish.{species}.{oid}.{slot_v}',
         })
     record = {
@@ -1169,10 +1233,82 @@ def index_of(kits, skip):
             'files': [f'{SLOT}/{v["file"]}' for v in record['variants']],
             'states': [v['state'] for v in record['variants']],
             'fish_px': [v['params']['fish_px']
-                        for v in record['variants']]})
+                        for v in record['variants']],
+            # How the game shows each variant: the view it is drawn
+            # for, whether it is a fish resting on the floor, its age
+            # (share of the adult length) and where its lowest pixel
+            # lies (share of the canvas from the top).
+            'views': [v['params']['form'].get('view', 'side')
+                      for v in record['variants']],
+            'rest': [v['state'] == 'bottom' for v in record['variants']],
+            'age': [YOUNG_AGE if v['params']['form'].get('young') else 1.0
+                    for v in record['variants']],
+            'foot': [v['foot'] for v in record['variants']]})
     return {'note': INDEX_NOTE, 'slot': SLOT, 'revision': REVISION,
             'canvas_px': CANVAS, 'cell_px': CELL, 'cols': COLS,
             'rows': ROWS, 'kits': shipped, 'short': short}
+
+
+def _iou(a, b):
+    """Overlap of two alpha masks (1 when they are the same form)."""
+    both = area(ImageChops.multiply(a, b))
+    either = area(ImageChops.lighter(a, b))
+    return both / either if either else 1.0
+
+
+# Pillow versions draw an antialiased edge a pixel apart, so the check
+# compares forms, not bytes: a drawing must keep this overlap with the
+# one the generator makes now, and a foot may move by this much.
+CHECK_IOU = 0.97
+CHECK_FOOT = 2 / CANVAS
+
+
+def check(web_index, godot_index, derived, godot_derived, skip=()):
+    """Problems between the shipped kits and what the generator draws
+    now (empty when current): the index of both copies, the meta-json
+    of each kit, each variant and each atlas cell."""
+    kits = [build(sp) for sp in SPECIES]
+    want = index_of(kits, set(skip))
+    bad = []
+
+    def strip(ix):
+        ix = json.loads(json.dumps(ix))
+        for k in ix.get('kits', []):
+            k.pop('foot', None)
+        return ix
+    have = json.loads(Path(web_index).read_text('utf-8'))
+    if have != json.loads(Path(godot_index).read_text('utf-8')):
+        bad.append('the web and headset indexes differ')
+    if strip(have) != strip(want):
+        bad.append('the index is not what the generator writes now')
+    for k_have, k_want in zip(have.get('kits', []), want['kits']):
+        for a, b in zip(k_have.get('foot', []), k_want['foot']):
+            if abs(a - b) > CHECK_FOOT:
+                bad.append(f'{k_want["id"]}: foot {a} != {b}')
+    for record, images in kits:
+        if record['status'] != 'ok' or record['thing'] in skip:
+            continue
+        meta = Path(derived) / SLOT / f'{record["name"]}.json'
+        if not meta.exists():
+            bad.append(f'{meta}: missing')
+            continue
+        shipped = json.loads(meta.read_text('utf-8'))
+        if [v['params'] for v in shipped['variants']] != \
+                [v['params'] for v in record['variants']] or \
+                shipped['source']['commit'] != REVISION:
+            bad.append(f'{meta.name}: not the current forms')
+        sheet = Image.open(Path(godot_derived) / SLOT /
+                           f'{record["name"]}_atlas.png')
+        cells = atlas(record, images)
+        if _iou(alpha_mask(sheet), alpha_mask(cells)) < CHECK_IOU:
+            bad.append(f'{record["name"]}_atlas.png: not current')
+        for v in record['variants']:
+            png = Path(derived) / SLOT / v['file']
+            if not png.exists() or _iou(alpha_mask(Image.open(png)),
+                                        alpha_mask(images[v['file']])) \
+                    < CHECK_IOU:
+                bad.append(f'{v["file"]}: not current')
+    return bad
 
 
 def main(argv=None):
@@ -1191,7 +1327,22 @@ def main(argv=None):
     parser.add_argument('--only', default='', help='comma-separated ids')
     parser.add_argument('--skip', default='',
                         help='ids refused at the eye check')
+    parser.add_argument('--check', action='store_true',
+                        help='draw again and compare with the shipped '
+                             'kits, atlases and both indexes; write '
+                             'nothing (CI)')
     args = parser.parse_args(argv)
+    if args.check:
+        bad = check(ROOT / 'public' / 'ludus' / 'data' /
+                    'fish-drawings.json',
+                    ROOT / 'godot' / 'data' / 'fish-drawings.json',
+                    ROOT / 'public' / 'ludus' / 'art' / 'derived',
+                    ROOT / 'godot' / 'art' / 'derived',
+                    set(filter(None, args.skip.split(','))))
+        for line in bad:
+            print('DEF-056 check:', line)
+        print('DEF-056 check:', 'ok' if not bad else f'{len(bad)} problems')
+        return 1 if bad else 0
     out = Path(args.out)
     shutil.rmtree(out, ignore_errors=True)
     wanted = set(filter(None, args.only.split(',')))

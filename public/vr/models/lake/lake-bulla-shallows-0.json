@@ -57,7 +57,8 @@
  ],
  "flags": {
   "noLoot": true,
-  "loot": null
+  "loot": null,
+  "holy": true
  },
  "noLoot": true,
  "noInteract": true,

@@ -172,6 +172,50 @@ class ShippedTest(unittest.TestCase):
             else:
                 self.assertEqual(shipped, [])
 
+    def test_index_tells_the_game_how_to_show_each_variant(self):
+        # Review of r3: the fry were sized as adults, views from below
+        # and above were swum level, and the bottom pose circled in
+        # mid-water.  The index now carries, per variant, the view it
+        # is drawn for, whether it rests on the floor, its age and its
+        # lowest pixel, and the game reads them (fish_drawings.gd,
+        # dive-atlas.js fishSpot).
+        index = json.loads((ROOT / 'godot' / 'data' /
+                            'fish-drawings.json').read_text('utf-8'))
+        for kit in index['kits']:
+            for key in ('views', 'rest', 'age', 'foot'):
+                self.assertEqual(len(kit[key]), 12, (kit['id'], key))
+            for v, state in enumerate(kit['states']):
+                view = kit['views'][v]
+                self.assertEqual(view, state if state in
+                                 ('below', 'above') else 'side')
+                self.assertEqual(kit['rest'][v], state == 'bottom')
+                self.assertEqual(kit['age'][v], fp.YOUNG_AGE
+                                 if state == 'young' else 1.0)
+                self.assertLess(kit['age'][v], 1.0 + 1e-9)
+                self.assertTrue(0.5 < kit['foot'][v] <= 1.0)
+            # Every kit swims in a side queue long enough that two
+            # neighbours never show the same cell.
+            self.assertGreaterEqual(kit['views'].count('side')
+                                    - sum(kit['rest']), 2)
+        self.assertLess(fp.YOUNG_AGE, 0.5)
+
+    def test_the_loach_has_blotches_not_bars(self):
+        # T. strauchii is the spotted loach: its marks are irregular
+        # blotches of different size (review of r3), so no two marks
+        # of the side view have the same width.
+        fish = fp.Fish(fp.MORPHOLOGY['gubach'], fp.LENGTH, 128, 128)
+        img = fp.skin(fish, (154, 143, 115), 'gubach')
+        dark = tuple(int(c * 0.42) for c in (154, 143, 115))
+        row = [img.getpixel((x, 128)) == dark for x in range(256)]
+        runs, n = [], 0
+        for on in row + [False]:
+            if on:
+                n += 1
+            elif n:
+                runs.append(n)
+                n = 0
+        self.assertGreater(len(set(runs)), 2, runs)
+
     def test_headset_copy_is_one_atlas_per_shipped_kit(self):
         # TABOO 0.011: the headset carries one atlas per 12/12 kit (one
         # MultiMesh, one draw call per school) and the index the dive
@@ -206,10 +250,14 @@ class ShippedTest(unittest.TestCase):
         # r3: the turn in perspective, the view from below or above and
         # schools of 2-5 are real views; a kit keeps at most three of
         # each, so the side view where a species is told apart leads.
+        # r4: a fish that never leaves the bottom (the stone loach) is
+        # met from above more than from the side and keeps four.
         rec, _ = fp.build('gubach')
         states = [v['state'] for v in rec['variants']]
+        self.assertEqual(fp.view_max('gubach')['top'], 4)
+        self.assertEqual(fp.view_max('sazan')['top'], 3)
         self.assertLessEqual(sum(s in ('below', 'above')
-                                 for s in states), 3)
+                                 for s in states), 4)
         self.assertLessEqual(states.count('turning'), 3)
         self.assertNotIn('school', fp.poses_of('gubach')[0])
         self.assertIn('school', fp.poses_of('chebachok')[0])

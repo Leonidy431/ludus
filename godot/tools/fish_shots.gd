@@ -45,7 +45,10 @@ func _process(_delta: float) -> bool:
 		node._place_view()
 	# Hold the fish still and the ROV behind it.
 	node.t = 40.0
-	var f := DiveCore.fish_at(s, 0, node.t)
+	# Where the drawing of fish 0 is now (it may rest on the floor or
+	# hold station; FishDrawings.spot), seen level from behind.
+	var f := FishDrawings.spot(node.fish_index, FishDrawings.kit_of(
+		node.fish_index, str(s.id)), s, 0, node.t, {})
 	var back := maxf(1.8, float(s.length) * 6.0)
 	# A fish on the bottom is met from the deep side, facing the shore:
 	# up the slope the ROV keeps its clearance above a shallower floor

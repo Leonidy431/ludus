@@ -75,11 +75,11 @@
   "source": {
     "repo": "ludus (own drawing)",
     "path": "scripts/raw_assets/fish_procedural.py",
-    "commit": "fish-drawing-r3"
+    "commit": "fish-drawing-r4"
   },
   "repo": "ludus (own drawing)",
   "path": "scripts/raw_assets/fish_procedural.py",
-  "commit": "fish-drawing-r3",
+  "commit": "fish-drawing-r4",
   "license": "project (own drawing, no third-party material)",
   "license_file": null,
   "threshold": 0.35,
@@ -99,8 +99,9 @@
       120,
       96
     ],
-    "scale_note": "the game scales a variant to the age class; a size is never a variant",
-    "rest_on_floor": "a variant of the state \"bottom\" is placed by the game with its lowest pixel on the floor line",
+    "scale_note": "a size is never a variant; the index gives each variant its age (1 for adults, 0.4068 for \"young\", the youngest class above) and the game multiplies the billboard by it",
+    "rest_on_floor": "a variant of the state \"bottom\" (index \"rest\") is shown only by a fish the game rests on the floor: it stops, sinks, and its lowest pixel (index \"foot\") lies on the floor line (fish_drawings.gd, dive-atlas.js fishSpot)",
+    "views": "a \"below\" or \"above\" variant is shown only when the eye sees the fish more than 35 degrees from level (index \"view\"); level, the side views swim",
     "tilt_deg": [
       -13,
       13
@@ -121,10 +122,10 @@
   },
   "pool": {
     "size": 62,
-    "fitting": 31,
+    "fitting": 40,
     "refused": {
-      "unlike-real-object": 31,
-      "too-close-to-a-sibling": 19
+      "unlike-real-object": 22,
+      "too-close-to-a-sibling": 28
     },
     "chosen": 12
   },
@@ -259,6 +260,7 @@
           ]
         ]
       },
+      "foot": 0.6484,
       "analytics_id": "ludus.variant.fish.chebachok.4a8e60a860.v01"
     },
     {
@@ -272,29 +274,29 @@
           "view": "below",
           "bend": "straight",
           "amp": 0.0,
-          "spread": 15
+          "spread": 25
         },
         "fish_px": 236,
-        "key": "chebachok:below:0:amp=0.0-bend=straight-spread=15-view=below"
+        "key": "chebachok:below:0:amp=0.0-bend=straight-spread=25-view=below"
       },
-      "shape_change": 0.3774,
+      "shape_change": 0.3861,
       "shape_basis": "nearest-sibling-normalised",
       "fits_reference": true,
       "reference_stats": {
-        "aspect": 5.9,
-        "fill": 0.459,
-        "base": 0.055
+        "aspect": 4.886,
+        "fill": 0.468,
+        "base": 0.047
       },
-      "area": 4334,
+      "area": 4432,
       "hitbox": {
         "bbox": [
           10,
-          108,
-          246,
-          148
+          106,
+          225,
+          150
         ],
-        "area": 4334,
-        "radius": 37.14,
+        "area": 4432,
+        "radius": 37.56,
         "hull": [
           [
             10,
@@ -317,36 +319,36 @@
             117
           ],
           [
-            27,
-            116
+            67,
+            106
           ],
           [
             69,
-            108
+            106
           ],
           [
-            70,
-            108
+            120,
+            111
           ],
           [
-            246,
-            125
+            225,
+            122
           ],
           [
-            246,
-            131
+            225,
+            134
           ],
           [
-            70,
-            148
+            120,
+            145
           ],
           [
             69,
-            148
+            150
           ],
           [
-            27,
-            140
+            67,
+            150
           ],
           [
             23,
@@ -370,6 +372,7 @@
           ]
         ]
       },
+      "foot": 0.5859,
       "analytics_id": "ludus.variant.fish.chebachok.4a8e60a860.v02"
     },
     {
@@ -492,6 +495,7 @@
           ]
         ]
       },
+      "foot": 0.6406,
       "analytics_id": "ludus.variant.fish.chebachok.4a8e60a860.v03"
     },
     {
@@ -614,6 +618,7 @@
           ]
         ]
       },
+      "foot": 0.7734,
       "analytics_id": "ludus.variant.fish.chebachok.4a8e60a860.v04"
     },
     {
@@ -708,6 +713,7 @@
           ]
         ]
       },
+      "foot": 0.6641,
       "analytics_id": "ludus.variant.fish.chebachok.4a8e60a860.v05"
     },
     {
@@ -720,85 +726,73 @@
         "form": {
           "view": "below",
           "bend": "wave",
-          "amp": 0.08
+          "amp": 0.05
         },
         "fish_px": 236,
-        "key": "chebachok:below:3:amp=0.08-bend=wave-view=below"
+        "key": "chebachok:below:3:amp=0.05-bend=wave-view=below"
       },
-      "shape_change": 0.521,
+      "shape_change": 0.3893,
       "shape_basis": "nearest-sibling-normalised",
       "fits_reference": true,
       "reference_stats": {
-        "aspect": 4.14,
-        "fill": 0.353,
-        "base": 0.036
+        "aspect": 4.057,
+        "fill": 0.408,
+        "base": 0.047
       },
-      "area": 4749,
+      "area": 4652,
       "hitbox": {
         "bbox": [
           10,
-          109,
-          246,
-          166
+          107,
+          225,
+          160
         ],
-        "area": 4749,
-        "radius": 38.88,
+        "area": 4652,
+        "radius": 38.48,
         "hull": [
           [
             10,
             126
           ],
           [
-            12,
-            123
-          ],
-          [
             13,
-            122
-          ],
-          [
-            15,
             121
           ],
           [
             64,
-            109
+            107
           ],
           [
             66,
+            107
+          ],
+          [
+            118,
             109
           ],
           [
-            195,
-            113
+            224,
+            121
           ],
           [
-            245,
-            124
+            225,
+            122
           ],
           [
-            246,
-            125
-          ],
-          [
-            246,
-            131
+            225,
+            134
           ],
           [
             66,
-            166
+            160
           ],
           [
             64,
-            166
+            160
           ],
           [
             18,
-            140
-          ],
-          [
-            15,
-            138
+            139
           ],
           [
             13,
@@ -810,6 +804,7 @@
           ]
         ]
       },
+      "foot": 0.625,
       "analytics_id": "ludus.variant.fish.chebachok.4a8e60a860.v06"
     },
     {
@@ -920,6 +915,7 @@
           ]
         ]
       },
+      "foot": 0.5586,
       "analytics_id": "ludus.variant.fish.chebachok.4a8e60a860.v07"
     },
     {
@@ -1027,6 +1023,7 @@
           ]
         ]
       },
+      "foot": 0.6484,
       "analytics_id": "ludus.variant.fish.chebachok.4a8e60a860.v08"
     },
     {
@@ -1137,6 +1134,7 @@
           ]
         ]
       },
+      "foot": 0.5664,
       "analytics_id": "ludus.variant.fish.chebachok.4a8e60a860.v09"
     },
     {
@@ -1254,6 +1252,7 @@
           ]
         ]
       },
+      "foot": 0.6484,
       "analytics_id": "ludus.variant.fish.chebachok.4a8e60a860.v10"
     },
     {
@@ -1365,6 +1364,7 @@
           ]
         ]
       },
+      "foot": 0.6602,
       "analytics_id": "ludus.variant.fish.chebachok.4a8e60a860.v11"
     },
     {
@@ -1376,85 +1376,114 @@
         "state": "below",
         "form": {
           "view": "below",
-          "bend": "arch",
-          "amp": 0.14
+          "bend": "wave",
+          "amp": 0.12
         },
         "fish_px": 236,
-        "key": "chebachok:below:7:amp=0.14-bend=arch-view=below"
+        "key": "chebachok:below:5:amp=0.12-bend=wave-view=below"
       },
-      "shape_change": 0.4684,
+      "shape_change": 0.3893,
       "shape_basis": "nearest-sibling-normalised",
       "fits_reference": true,
       "reference_stats": {
-        "aspect": 4.14,
-        "fill": 0.352,
-        "base": 0.238
+        "aspect": 3.644,
+        "fill": 0.367,
+        "base": 0.052
       },
-      "area": 4741,
+      "area": 4659,
       "hitbox": {
         "bbox": [
           10,
-          76,
-          246,
-          133
+          109,
+          225,
+          168
         ],
-        "area": 4741,
-        "radius": 38.85,
+        "area": 4659,
+        "radius": 38.51,
         "hull": [
           [
             10,
-            125
+            126
           ],
           [
-            13,
-            119
-          ],
-          [
-            19,
-            113
-          ],
-          [
-            64,
-            76
-          ],
-          [
-            119,
-            76
-          ],
-          [
-            193,
-            99
-          ],
-          [
-            198,
-            101
-          ],
-          [
-            244,
+            12,
             123
           ],
           [
-            246,
-            124
+            13,
+            122
           ],
           [
-            246,
-            131
+            64,
+            114
+          ],
+          [
+            117,
+            109
+          ],
+          [
+            172,
+            109
+          ],
+          [
+            183,
+            110
+          ],
+          [
+            189,
+            111
+          ],
+          [
+            194,
+            112
+          ],
+          [
+            198,
+            113
+          ],
+          [
+            205,
+            115
+          ],
+          [
+            225,
+            121
+          ],
+          [
+            225,
+            134
           ],
           [
             66,
-            133
+            168
+          ],
+          [
+            65,
+            168
+          ],
+          [
+            63,
+            167
+          ],
+          [
+            24,
+            145
+          ],
+          [
+            18,
+            141
           ],
           [
             13,
-            133
+            136
           ],
           [
             10,
-            130
+            131
           ]
         ]
       },
+      "foot": 0.6562,
       "analytics_id": "ludus.variant.fish.chebachok.4a8e60a860.v12"
     }
   ],

@@ -7,7 +7,7 @@
   "register": {
     "id": "osman",
     "category": "fish",
-    "ru": "Голый осман",
+    "ru": "Иссык-кульский голый осман",
     "en": "Naked osman",
     "depth_m": [
       1,
@@ -76,11 +76,11 @@
   "source": {
     "repo": "ludus (own drawing)",
     "path": "scripts/raw_assets/fish_procedural.py",
-    "commit": "fish-drawing-r3"
+    "commit": "fish-drawing-r4"
   },
   "repo": "ludus (own drawing)",
   "path": "scripts/raw_assets/fish_procedural.py",
-  "commit": "fish-drawing-r3",
+  "commit": "fish-drawing-r4",
   "license": "project (own drawing, no third-party material)",
   "license_file": null,
   "threshold": 0.35,
@@ -100,8 +100,9 @@
       120,
       96
     ],
-    "scale_note": "the game scales a variant to the age class; a size is never a variant",
-    "rest_on_floor": "a variant of the state \"bottom\" is placed by the game with its lowest pixel on the floor line",
+    "scale_note": "a size is never a variant; the index gives each variant its age (1 for adults, 0.4068 for \"young\", the youngest class above) and the game multiplies the billboard by it",
+    "rest_on_floor": "a variant of the state \"bottom\" (index \"rest\") is shown only by a fish the game rests on the floor: it stops, sinks, and its lowest pixel (index \"foot\") lies on the floor line (fish_drawings.gd, dive-atlas.js fishSpot)",
+    "views": "a \"below\" or \"above\" variant is shown only when the eye sees the fish more than 35 degrees from level (index \"view\"); level, the side views swim",
     "tilt_deg": [
       -13,
       13
@@ -121,11 +122,11 @@
     "category": "fish"
   },
   "pool": {
-    "size": 61,
-    "fitting": 41,
+    "size": 64,
+    "fitting": 56,
     "refused": {
-      "unlike-real-object": 20,
-      "too-close-to-a-sibling": 29
+      "unlike-real-object": 8,
+      "too-close-to-a-sibling": 44
     },
     "chosen": 12
   },
@@ -228,6 +229,7 @@
           ]
         ]
       },
+      "foot": 0.625,
       "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v01"
     },
     {
@@ -322,6 +324,7 @@
           ]
         ]
       },
+      "foot": 0.6523,
       "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v02"
     },
     {
@@ -335,29 +338,29 @@
           "view": "above",
           "bend": "straight",
           "amp": 0.0,
-          "spread": 15
+          "spread": 25
         },
         "fish_px": 236,
-        "key": "osman:above:0:amp=0.0-bend=straight-spread=15-view=above"
+        "key": "osman:above:0:amp=0.0-bend=straight-spread=25-view=above"
       },
-      "shape_change": 0.3622,
+      "shape_change": 0.3508,
       "shape_basis": "nearest-sibling-normalised",
       "fits_reference": true,
       "reference_stats": {
-        "aspect": 5.364,
-        "fill": 0.533,
-        "base": 0.068
+        "aspect": 4.542,
+        "fill": 0.539,
+        "base": 0.055
       },
-      "area": 5534,
+      "area": 5636,
       "hitbox": {
         "bbox": [
           10,
-          106,
-          246,
-          150
+          104,
+          228,
+          152
         ],
-        "area": 5534,
-        "radius": 41.97,
+        "area": 5636,
+        "radius": 42.36,
         "hull": [
           [
             10,
@@ -372,36 +375,28 @@
             113
           ],
           [
-            69,
-            106
+            68,
+            104
           ],
           [
-            73,
-            106
+            71,
+            104
           ],
           [
-            124,
-            111
+            228,
+            118
           ],
           [
-            246,
-            124
+            228,
+            138
           ],
           [
-            246,
-            132
+            71,
+            152
           ],
           [
-            124,
-            145
-          ],
-          [
-            73,
-            150
-          ],
-          [
-            69,
-            150
+            68,
+            152
           ],
           [
             16,
@@ -417,6 +412,7 @@
           ]
         ]
       },
+      "foot": 0.5938,
       "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v03"
     },
     {
@@ -527,183 +523,61 @@
           ]
         ]
       },
+      "foot": 0.7383,
       "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v04"
     },
     {
       "slot": "v05",
       "file": "own_osman_dac0c4d124_v05.png",
-      "state": "turning",
-      "params": {
-        "pose": "turning",
-        "state": "turning",
-        "form": {
-          "turn": 35,
-          "toward": true,
-          "bend": "wave",
-          "amp": 0.1
-        },
-        "fish_px": 236,
-        "key": "osman:turning:1:amp=0.1-bend=wave-toward=True-turn=35"
-      },
-      "shape_change": 0.3622,
-      "shape_basis": "nearest-sibling-normalised",
-      "fits_reference": true,
-      "reference_stats": {
-        "aspect": 2.684,
-        "fill": 0.469,
-        "base": 0.338
-      },
-      "area": 7278,
-      "hitbox": {
-        "bbox": [
-          2,
-          90,
-          206,
-          166
-        ],
-        "area": 7278,
-        "radius": 48.13,
-        "hull": [
-          [
-            2,
-            123
-          ],
-          [
-            3,
-            121
-          ],
-          [
-            7,
-            117
-          ],
-          [
-            98,
-            90
-          ],
-          [
-            100,
-            90
-          ],
-          [
-            206,
-            111
-          ],
-          [
-            206,
-            145
-          ],
-          [
-            115,
-            163
-          ],
-          [
-            73,
-            166
-          ],
-          [
-            72,
-            166
-          ],
-          [
-            59,
-            165
-          ],
-          [
-            53,
-            164
-          ],
-          [
-            10,
-            154
-          ],
-          [
-            9,
-            153
-          ],
-          [
-            7,
-            150
-          ],
-          [
-            5,
-            144
-          ],
-          [
-            2,
-            134
-          ]
-        ]
-      },
-      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v05"
-    },
-    {
-      "slot": "v06",
-      "file": "own_osman_dac0c4d124_v06.png",
       "state": "single",
       "params": {
         "pose": "single",
         "state": "single",
         "form": {
           "bend": "wave",
-          "amp": 0.15
+          "amp": 0.1
         },
         "fish_px": 236,
-        "key": "osman:single:3:amp=0.15-bend=wave"
+        "key": "osman:single:2:amp=0.1-bend=wave"
       },
-      "shape_change": 0.3801,
+      "shape_change": 0.3907,
       "shape_basis": "nearest-sibling-normalised",
       "fits_reference": true,
       "reference_stats": {
-        "aspect": 3.386,
-        "fill": 0.453,
-        "base": 0.325
+        "aspect": 3.435,
+        "fill": 0.46,
+        "base": 0.277
       },
-      "area": 7507,
+      "area": 7528,
       "hitbox": {
         "bbox": [
           10,
-          97,
+          93,
           247,
-          167
+          162
         ],
-        "area": 7507,
-        "radius": 48.88,
+        "area": 7528,
+        "radius": 48.95,
         "hull": [
           [
             10,
-            126
-          ],
-          [
-            12,
-            122
+            125
           ],
           [
             13,
-            121
-          ],
-          [
-            15,
             120
           ],
           [
+            15,
+            119
+          ],
+          [
             94,
-            97
+            93
           ],
           [
             96,
-            97
-          ],
-          [
-            188,
-            101
-          ],
-          [
-            235,
-            105
-          ],
-          [
-            246,
-            106
+            93
           ],
           [
             247,
@@ -719,43 +593,35 @@
           ],
           [
             112,
-            164
+            162
           ],
           [
-            70,
-            167
+            110,
+            162
           ],
           [
             68,
-            167
+            161
           ],
           [
-            60,
-            166
-          ],
-          [
-            56,
-            165
-          ],
-          [
-            49,
-            163
-          ],
-          [
-            41,
+            59,
             160
           ],
           [
-            17,
-            150
+            49,
+            158
           ],
           [
-            16,
+            17,
             149
           ],
           [
-            14,
-            144
+            16,
+            148
+          ],
+          [
+            15,
+            146
           ],
           [
             13,
@@ -767,11 +633,12 @@
           ]
         ]
       },
-      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v06"
+      "foot": 0.6328,
+      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v05"
     },
     {
-      "slot": "v07",
-      "file": "own_osman_dac0c4d124_v07.png",
+      "slot": "v06",
+      "file": "own_osman_dac0c4d124_v06.png",
       "state": "above",
       "params": {
         "pose": "above",
@@ -779,93 +646,77 @@
         "form": {
           "view": "above",
           "bend": "wave",
-          "amp": 0.08
+          "amp": 0.05
         },
         "fish_px": 236,
-        "key": "osman:above:3:amp=0.08-bend=wave-view=above"
+        "key": "osman:above:3:amp=0.05-bend=wave-view=above"
       },
-      "shape_change": 0.4362,
+      "shape_change": 0.3508,
       "shape_basis": "nearest-sibling-normalised",
       "fits_reference": true,
       "reference_stats": {
-        "aspect": 3.746,
-        "fill": 0.4,
-        "base": 0.042
+        "aspect": 3.695,
+        "fill": 0.456,
+        "base": 0.046
       },
-      "area": 5945,
+      "area": 5859,
       "hitbox": {
         "bbox": [
           10,
-          106,
-          246,
-          169
+          104,
+          228,
+          163
         ],
-        "area": 5945,
-        "radius": 43.5,
+        "area": 5859,
+        "radius": 43.19,
         "hull": [
           [
             10,
             125
           ],
           [
-            13,
-            119
-          ],
-          [
-            15,
-            116
+            14,
+            117
           ],
           [
             16,
-            115
+            114
           ],
           [
             66,
-            106
+            104
           ],
           [
             68,
-            106
+            104
           ],
           [
-            182,
-            110
+            123,
+            107
           ],
           [
-            197,
-            111
+            228,
+            118
           ],
           [
-            206,
-            112
-          ],
-          [
-            246,
-            123
-          ],
-          [
-            246,
-            132
+            228,
+            138
           ],
           [
             68,
-            169
+            163
           ],
           [
             66,
-            169
+            163
           ],
           [
-            17,
-            145
+            16,
+            144
           ],
           [
-            15,
-            143
-          ],
-          [
-            13,
-            139
+            12,
+            136
           ],
           [
             10,
@@ -873,11 +724,12 @@
           ]
         ]
       },
-      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v07"
+      "foot": 0.6367,
+      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v06"
     },
     {
-      "slot": "v08",
-      "file": "own_osman_dac0c4d124_v08.png",
+      "slot": "v07",
+      "file": "own_osman_dac0c4d124_v07.png",
       "state": "turning",
       "params": {
         "pose": "turning",
@@ -960,11 +812,12 @@
           ]
         ]
       },
-      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v08"
+      "foot": 0.6094,
+      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v07"
     },
     {
-      "slot": "v09",
-      "file": "own_osman_dac0c4d124_v09.png",
+      "slot": "v08",
+      "file": "own_osman_dac0c4d124_v08.png",
       "state": "single",
       "params": {
         "pose": "single",
@@ -1061,11 +914,12 @@
           ]
         ]
       },
-      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v09"
+      "foot": 0.6328,
+      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v08"
     },
     {
-      "slot": "v10",
-      "file": "own_osman_dac0c4d124_v10.png",
+      "slot": "v09",
+      "file": "own_osman_dac0c4d124_v09.png",
       "state": "rising",
       "params": {
         "pose": "rising",
@@ -1170,11 +1024,12 @@
           ]
         ]
       },
-      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v10"
+      "foot": 0.6094,
+      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v09"
     },
     {
-      "slot": "v11",
-      "file": "own_osman_dac0c4d124_v11.png",
+      "slot": "v10",
+      "file": "own_osman_dac0c4d124_v10.png",
       "state": "turning",
       "params": {
         "pose": "turning",
@@ -1188,7 +1043,7 @@
         "fish_px": 236,
         "key": "osman:turning:7:amp=0.1-bend=wave-toward=False-turn=50"
       },
-      "shape_change": 0.3801,
+      "shape_change": 0.391,
       "shape_basis": "nearest-sibling-normalised",
       "fits_reference": true,
       "reference_stats": {
@@ -1257,11 +1112,12 @@
           ]
         ]
       },
-      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v11"
+      "foot": 0.625,
+      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v10"
     },
     {
-      "slot": "v12",
-      "file": "own_osman_dac0c4d124_v12.png",
+      "slot": "v11",
+      "file": "own_osman_dac0c4d124_v11.png",
       "state": "above",
       "params": {
         "pose": "above",
@@ -1269,76 +1125,80 @@
         "form": {
           "view": "above",
           "bend": "arch",
-          "amp": 0.14
+          "amp": 0.12
         },
         "fish_px": 236,
-        "key": "osman:above:7:amp=0.14-bend=arch-view=above"
+        "key": "osman:above:8:amp=0.12-bend=arch-view=above"
       },
-      "shape_change": 0.4311,
+      "shape_change": 0.3644,
       "shape_basis": "nearest-sibling-normalised",
       "fits_reference": true,
       "reference_stats": {
-        "aspect": 3.522,
-        "fill": 0.376,
-        "base": 0.113
+        "aspect": 3.516,
+        "fill": 0.433,
+        "base": 0.146
       },
-      "area": 5951,
+      "area": 5857,
       "hitbox": {
         "bbox": [
           10,
-          72,
-          246,
-          139
+          78,
+          228,
+          140
         ],
-        "area": 5951,
-        "radius": 43.52,
+        "area": 5857,
+        "radius": 43.18,
         "hull": [
           [
             10,
             125
           ],
           [
-            13,
-            116
+            12,
+            119
+          ],
+          [
+            14,
+            114
           ],
           [
             16,
             110
           ],
           [
-            17,
-            109
-          ],
-          [
-            67,
-            72
+            66,
+            78
           ],
           [
             68,
-            72
+            78
           ],
           [
             122,
-            73
+            81
           ],
           [
-            205,
-            101
+            226,
+            117
           ],
           [
-            246,
-            123
+            228,
+            118
           ],
           [
-            246,
-            132
+            228,
+            138
           ],
           [
-            18,
-            139
+            17,
+            140
           ],
           [
             16,
+            140
+          ],
+          [
+            15,
             139
           ],
           [
@@ -1351,10 +1211,102 @@
           ]
         ]
       },
+      "foot": 0.5469,
+      "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v11"
+    },
+    {
+      "slot": "v12",
+      "file": "own_osman_dac0c4d124_v12.png",
+      "state": "single",
+      "params": {
+        "pose": "single",
+        "state": "single",
+        "form": {
+          "tail": 1.2,
+          "bend": "tail-down",
+          "amp": 0.1
+        },
+        "fish_px": 236,
+        "key": "osman:single:9:amp=0.1-bend=tail-down-tail=1.2"
+      },
+      "shape_change": 0.4049,
+      "shape_basis": "nearest-sibling-normalised",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 2.565,
+        "fill": 0.351,
+        "base": 0.03
+      },
+      "area": 7626,
+      "hitbox": {
+        "bbox": [
+          10,
+          84,
+          246,
+          176
+        ],
+        "area": 7626,
+        "radius": 49.27,
+        "hull": [
+          [
+            10,
+            125
+          ],
+          [
+            13,
+            119
+          ],
+          [
+            16,
+            117
+          ],
+          [
+            20,
+            115
+          ],
+          [
+            94,
+            84
+          ],
+          [
+            96,
+            84
+          ],
+          [
+            246,
+            126
+          ],
+          [
+            246,
+            129
+          ],
+          [
+            245,
+            176
+          ],
+          [
+            244,
+            176
+          ],
+          [
+            16,
+            146
+          ],
+          [
+            13,
+            140
+          ],
+          [
+            10,
+            131
+          ]
+        ]
+      },
+      "foot": 0.6875,
       "analytics_id": "ludus.variant.fish.osman.dac0c4d124.v12"
     }
   ],
   "status": "ok",
   "shortfall": 0,
-  "shape_change": 0.358
+  "shape_change": 0.3508
 }

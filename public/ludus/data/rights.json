@@ -272,7 +272,7 @@
    "path": "scripts/raw_assets/fish_procedural.py",
    "licence": "project (own drawing, no third-party material)",
    "colour_change": null,
-   "min_shape_change": 0.3501,
+   "min_shape_change": 0.3611,
    "variants": 12
   },
   {
@@ -284,7 +284,7 @@
    "path": "scripts/raw_assets/fish_procedural.py",
    "licence": "project (own drawing, no third-party material)",
    "colour_change": null,
-   "min_shape_change": 0.3523,
+   "min_shape_change": 0.3558,
    "variants": 12
   },
   {
@@ -296,7 +296,7 @@
    "path": "scripts/raw_assets/fish_procedural.py",
    "licence": "project (own drawing, no third-party material)",
    "colour_change": null,
-   "min_shape_change": 0.358,
+   "min_shape_change": 0.3508,
    "variants": 12
   },
   {
@@ -308,7 +308,31 @@
    "path": "scripts/raw_assets/fish_procedural.py",
    "licence": "project (own drawing, no third-party material)",
    "colour_change": null,
-   "min_shape_change": 0.3643,
+   "min_shape_change": 0.3548,
+   "variants": 12
+  },
+  {
+   "object": "own_sig_9979af3a69",
+   "slot": "DEF-056",
+   "passion": null,
+   "repo": "ludus (own drawing)",
+   "commit": "fish-drawi",
+   "path": "scripts/raw_assets/fish_procedural.py",
+   "licence": "project (own drawing, no third-party material)",
+   "colour_change": null,
+   "min_shape_change": 0.3515,
+   "variants": 12
+  },
+  {
+   "object": "own_sudak_622aadc00f",
+   "slot": "DEF-056",
+   "passion": null,
+   "repo": "ludus (own drawing)",
+   "commit": "fish-drawi",
+   "path": "scripts/raw_assets/fish_procedural.py",
+   "licence": "project (own drawing, no third-party material)",
+   "colour_change": null,
+   "min_shape_change": 0.3533,
    "variants": 12
   },
   {

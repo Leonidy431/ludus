@@ -239,36 +239,139 @@
   // The fish of our own drawing (DEF-056,
   // scripts/raw_assets/fish_procedural.py): only the kits that reached
   // 12/12, listed in data/fish-drawings.json by the generator.  The same
-  // choice as FishDrawings in godot/scripts/fish_drawings.gd: fish i of
-  // a school shows variant i mod 12 (no two neighbours repeat), and the
-  // drawing is sized so that its biggest fish has the species' real
-  // length.  Scenery that swims: the release rules stay with the 3D
-  // schools' data, a drawing is never loot.
-  function fishVariant(i) {
-    return i % VARIANTS;
-  }
+  // choice as FishDrawings in godot/scripts/fish_drawings.gd, step by
+  // step (godot/tests/test_atlas.gd replays it from the fixture):
+  //  - every FISH_PERIOD_S a fish takes the next cell of its queue, so
+  //    over time every cell of the kit is shown; neighbours in a school
+  //    are one step apart in the same queue, so they never repeat
+  //    (TABOO 0.3 rule 53);
+  //  - a view from below or above is shown only when the eye sees the
+  //    fish more than FISH_PITCH_DEG from level, the side views
+  //    otherwise (the views are drawn for that geometry);
+  //  - a fish of a kit with a "bottom" cell rests one slot in
+  //    FISH_REST_EVERY: it stops, sinks to the floor under it and lies
+  //    there with the lowest pixel of its drawing on the floor line,
+  //    then rises and swims on from where it stopped.  Where the floor
+  //    is further than FISH_REST_REACH_M below, it only holds station;
+  //  - the young are drawn at the length of their age class.
+  // Scenery that swims: the release rules stay with the 3D schools'
+  // data, a drawing is never loot.
+  const FISH_PERIOD_S = 12.0;
+  const FISH_PITCH_DEG = 35.0;
+  const FISH_REST_EVERY = 3;
+  // A 35 cm osman dives 8 m in the 3.6 s of FISH_SETTLE: about 2 m/s,
+  // six body lengths a second, a fast dive but not a burst.
+  const FISH_REST_REACH_M = 8.0;
+  const FISH_SETTLE = 0.3;
+  // The "bottom" cell is shown only when the fish is all but down.
+  const FISH_REST_SHOWN = 0.95;
 
   function fishKit(index, id) {
     return ((index && index.kits) || []).find((k) => k.id === id) || null;
   }
 
-  function fishSpots(index, kit, school) {
+  /** The cells of a kit by how the game shows them. */
+  function fishQueues(kit) {
+    const q = { side: [], below: [], above: [], rest: [] };
+    for (let v = 0; v < kit.files.length; v++) {
+      q[kit.rest[v] ? 'rest' : kit.views[v]].push(v);
+    }
+    return q;
+  }
+
+  /** Where in the queues a school starts: fixed by its id. */
+  function fishSeed(school) {
+    return Math.floor(Core.rng(`cells:${school.id}`)() * VARIANTS);
+  }
+
+  /** 'below' (the eye looks up), 'above' or 'side'. */
+  function fishView(eye, p) {
+    if (!eye) {
+      return 'side';
+    }
+    const up = eye.depth - p.depth;
+    const flat = Math.hypot(p.x - eye.x, p.z - eye.z);
+    const deg = Math.atan2(up, flat) * 180 / Math.PI;
+    if (deg > FISH_PITCH_DEG) {
+      return 'below';
+    }
+    return deg < -FISH_PITCH_DEG ? 'above' : 'side';
+  }
+
+  function smooth(a, b, x) {
+    const k = Math.max(0, Math.min(1, (x - a) / (b - a)));
+    return k * k * (3 - 2 * k);
+  }
+
+  /** How far a resting fish has settled (0 swimming, 1 on the floor). */
+  function fishSettle(s) {
+    return smooth(0, FISH_SETTLE, s) * (1 - smooth(1 - FISH_SETTLE, 1, s));
+  }
+
+  /**
+   * Fish i of a school at time t, seen from eye ({x, depth, z} or
+   * null): the cell it shows, its size and where it is.
+   */
+  function fishSpot(index, kit, school, i, t, eye) {
+    const q = fishQueues(kit);
+    const seed = fishSeed(school);
+    const k = Math.floor(t / FISH_PERIOD_S);
+    const c = i + k + seed;
+    const resting = q.rest.length > 0 && c % FISH_REST_EVERY === 0;
+    let tau = t;
+    if (q.rest.length) {
+      // The swim clock stops while the fish rests, so it rises where
+      // it sank and swims on without a jump.
+      const R = FISH_REST_EVERY;
+      const j0 = ((-(i + seed)) % R + R) % R;
+      const done = k > j0 ? Math.floor((k - 1 - j0) / R) + 1 : 0;
+      tau = t - FISH_PERIOD_S * done
+        - (resting ? t - k * FISH_PERIOD_S : 0);
+    }
+    const p = Core.fishAt(school, i, tau);
+    let e = 0;
+    let floor = p.depth;
+    if (resting) {
+      floor = Core.floorDepth(p.x, p.z);
+      if (floor > p.depth && floor - p.depth <= FISH_REST_REACH_M) {
+        e = fishSettle((t - k * FISH_PERIOD_S) / FISH_PERIOD_S);
+      }
+    }
+    const near = p.depth + (floor - p.depth) * e;
+    const view = fishView(eye, { x: p.x, z: p.z, depth: near });
+    let v;
+    if (view !== 'side' && q[view].length) {
+      v = q[view][c % q[view].length];
+    } else if (e >= FISH_REST_SHOWN) {
+      v = q.rest[Math.floor(c / FISH_REST_EVERY) % q.rest.length];
+    } else {
+      v = q.side[c % q.side.length];
+    }
+    const size = school.length * index.canvas_px / kit.fish_px[v]
+      * kit.age[v];
+    // On the floor the lowest pixel of the drawing lies on the floor.
+    const lie = floor - (kit.foot[v] - 0.5) * size;
+    return { id: school.id, i, v, file: kit.files[v], size,
+      top: kit.views[v] !== 'side', x: p.x, z: p.z,
+      depth: p.depth + (lie - p.depth) * e, heading: p.heading };
+  }
+
+  /** Every fish of a school at t, seen from eye. */
+  function fishSpots(index, kit, school, t, eye) {
     const out = [];
     for (let i = 0; i < school.count; i++) {
-      const v = fishVariant(i);
-      out.push({ id: school.id, i, file: kit.files[v],
-        size: school.length * index.canvas_px / kit.fish_px[v] });
+      out.push(fishSpot(index, kit, school, i, t || 0, eye || null));
     }
     return out;
   }
 
   /** Every drawn fish of every school that has a kit, in school order. */
-  function placeOwnFish(index, schools) {
+  function placeOwnFish(index, schools, t, eye) {
     const out = [];
     schools.forEach((s) => {
       const kit = fishKit(index, s.id);
       if (kit) {
-        out.push(...fishSpots(index, kit, s));
+        out.push(...fishSpots(index, kit, s, t, eye));
       }
     });
     return out;
@@ -278,7 +381,9 @@
     FADE_SECONDS, REACH_M, TAG_M, CHRONICLE_KEY, BAG_KEY, OWN_DRAWINGS, VARIANTS,
     options, option, writeChronicle, onFloor, place, take, holyPoints,
     holyDistance, labelFor, fadeTarget, fadeStep, scribePage, kitFiles,
-    placeOwnDrawings, fishVariant, fishKit, fishSpots, placeOwnFish };
+    placeOwnDrawings, FISH_PERIOD_S, FISH_PITCH_DEG, FISH_REST_EVERY,
+    FISH_REST_REACH_M, FISH_SETTLE, FISH_REST_SHOWN, fishKit, fishQueues,
+    fishSeed, fishView, fishSettle, fishSpot, fishSpots, placeOwnFish };
   if (typeof module === 'object' && module.exports) {
     module.exports = api;
   }
