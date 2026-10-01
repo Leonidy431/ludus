@@ -130,8 +130,14 @@ func start(pl: Dictionary, now := {}) -> void:
 		for v in voices(pl):
 			var box := {}
 			boxes[v[0]] = box
+			# A static callable with its own deep copy of the plan: the
+			# worker holds no reference to this node and shares no
+			# container with the main thread (a CI run of
+			# measure_locations crashed with a node notification called
+			# from a worker thread).
 			tasks[v[0]] = WorkerThreadPool.add_task(
-				_render_on_worker.bind(pl, v, box))
+				PlaceAudio._render_on_worker.bind(pl.duplicate(true),
+					v.duplicate(), box))
 	if pl.bell:
 		_start_bell(now)
 
@@ -250,6 +256,17 @@ func stop() -> void:
 
 
 func _exit_tree() -> void:
+	_join_all()
+
+
+## A node freed without leaving the tree (free() on a detached node)
+## gets no _exit_tree; its tasks are joined here so none outlives it.
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		_join_all()
+
+
+func _join_all() -> void:
 	stop()
 	for t in orphans:
 		WorkerThreadPool.wait_for_task_completion(t)
