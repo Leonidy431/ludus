@@ -1,5 +1,5 @@
 {
- "next": 20,
+ "next": 5,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -3350,6 +3350,132 @@
    "stage": "done",
    "accepted_objects": 5,
    "code_candidates": 85
+  },
+  {
+   "time": "2026-10-01T09:50:35.227609+00:00",
+   "pass_id": "osint-2026-10-01T09:50:35Z",
+   "deficits": [
+    {
+     "id": "DEF-049",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "dogma-stop-list": 2
+     },
+     "to_props": 0,
+     "hits_uncapped": 16669,
+     "props_uncapped": 2044,
+     "props_uncapped_repos": 34,
+     "added_keywords": [
+      "rpg",
+      "sandstorm",
+      "ancient",
+      "bootstrap",
+      "effects",
+      "fallout",
+      "fill",
+      "hail",
+      "med",
+      "particle",
+      "rain",
+      "ruins"
+     ],
+     "keywords_total": 44,
+     "keywords_not_searched": [
+      "generic",
+      "props",
+      "rsi"
+     ],
+     "props": {},
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-052",
+     "hits": 200,
+     "taken": 6,
+     "refused": {},
+     "to_props": 0,
+     "hits_uncapped": 31162,
+     "props_uncapped": 15479,
+     "props_uncapped_repos": 45,
+     "added_keywords": [
+      "sound",
+      "chains",
+      "cotton",
+      "effects",
+      "glyphs",
+      "liquid",
+      "top"
+     ],
+     "keywords_total": 45,
+     "keywords_not_searched": [
+      "rsi"
+     ],
+     "props": {},
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-003",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 2
+     },
+     "to_props": 143,
+     "hits_uncapped": 8148,
+     "props_uncapped": 5879,
+     "props_uncapped_repos": 53,
+     "added_keywords": [
+      "units",
+      "booth",
+      "builder",
+      "jmenu",
+      "weaver",
+      "box",
+      "check",
+      "init",
+      "register",
+      "stream",
+      "unit"
+     ],
+     "keywords_total": 40,
+     "keywords_not_searched": [
+      "com",
+      "corsixth",
+      "java",
+      "left",
+      "lua",
+      "right",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 1
+     },
+     "props_seen": 142
+    }
+   ],
+   "props_taken": {
+    "other": 1
+   },
+   "props_taken_by_index_kind": {
+    "code": 1
+   },
+   "props_duplicates": 142,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 1113,
+   "props_store_files": 1241,
+   "props_store_bytes": 9449142,
+   "props_cache_files_on_disk": 4452,
+   "props_cache_bytes_on_disk": 76663675,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 695118,
+   "props_register_growth_bytes": 618,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 59
   }
  ],
  "keywords": {
@@ -3637,7 +3763,19 @@
    "wall",
    "generic",
    "light",
-   "props"
+   "props",
+   "rpg",
+   "sandstorm",
+   "ancient",
+   "bootstrap",
+   "effects",
+   "fallout",
+   "fill",
+   "hail",
+   "med",
+   "particle",
+   "rain",
+   "ruins"
   ],
   "DEF-052": [
    "water",
@@ -3670,7 +3808,14 @@
    "dough",
    "ingredients",
    "ogl",
-   "rsi"
+   "rsi",
+   "sound",
+   "chains",
+   "cotton",
+   "effects",
+   "glyphs",
+   "liquid",
+   "top"
   ],
   "DEF-003": [
    "lua",
@@ -3696,7 +3841,18 @@
    "bloodparticle",
    "cellemitter",
    "challengeparticle",
-   "checkedcell"
+   "checkedcell",
+   "units",
+   "booth",
+   "builder",
+   "jmenu",
+   "weaver",
+   "box",
+   "check",
+   "init",
+   "register",
+   "stream",
+   "unit"
   ],
   "DEF-008": [
    "controllers",
