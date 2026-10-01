@@ -1,5 +1,5 @@
 {
- "next": 8,
+ "next": 11,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -4021,6 +4021,71 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 340
+  },
+  {
+   "time": "2026-10-01T16:50:40.933630+00:00",
+   "pass_id": "osint-2026-10-01T16:50:40Z",
+   "deficits": [
+    {
+     "id": "DEF-031",
+     "skipped": "not-raw-material"
+    },
+    {
+     "id": "DEF-035",
+     "hits": 200,
+     "taken": 0,
+     "refused": {},
+     "to_props": 176,
+     "hits_uncapped": 4379,
+     "props_uncapped": 3784,
+     "props_uncapped_repos": 56,
+     "added_keywords": [],
+     "keywords_total": 49,
+     "keywords_not_searched": [
+      "com",
+      "corsixth",
+      "java",
+      "lua",
+      "unciv"
+     ],
+     "props": {},
+     "props_seen": 176
+    },
+    {
+     "id": "DEF-036",
+     "hits": 200,
+     "taken": 0,
+     "refused": {},
+     "to_props": 172,
+     "hits_uncapped": 12281,
+     "props_uncapped": 9111,
+     "props_uncapped_repos": 46,
+     "added_keywords": [],
+     "keywords_total": 39,
+     "keywords_not_searched": [
+      "xaml"
+     ],
+     "props": {},
+     "props_seen": 172
+    }
+   ],
+   "props_taken": {},
+   "props_taken_by_index_kind": {},
+   "props_duplicates": 348,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 0,
+   "props_store_files": 1307,
+   "props_store_bytes": 9707243,
+   "props_cache_files_on_disk": 4518,
+   "props_cache_bytes_on_disk": 76921776,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 730899,
+   "props_register_growth_bytes": 0,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 52
   }
  ],
  "keywords": {
