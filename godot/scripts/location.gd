@@ -69,6 +69,12 @@ var vr_button: Button
 ## The place's sound (PlaceSound, PlaceAudio; track A of docs/HLD_APK_
 ## GRAPHICS_SOUND_2026-10-01.md).
 var sound: PlaceAudio
+## The felt answer to a step of the heart's act (ActCue): its sound and
+## the place's lamp, brightened for a moment when the act closes.
+var cue_player: AudioStreamPlayer3D
+var lamp: OmniLight3D
+var lamp_energy := 0.0
+var lamp_glow := 0.0
 
 var shots_dir := ""
 var shot_list: Array = []
@@ -119,6 +125,18 @@ func open_place(id: String) -> void:
 		sound.name = "PlaceSound"
 		add_child(sound)
 	sound.start(PlaceSound.plan(p))
+	if cue_player == null:
+		cue_player = AudioStreamPlayer3D.new()
+		cue_player.name = "ActCue"
+		add_child(cue_player)
+	cue_player.position = p.heart + Vector3(0, 1.0, 0)
+	lamp = null
+	lamp_glow = 0.0
+	for n in ["HearthLight", "InstrumentLight"]:
+		var l := world.find_child(n, true, false)
+		if l is OmniLight3D:
+			lamp = l
+			lamp_energy = lamp.light_energy
 	things = [{"id": "heart", "pos": p.heart, "reach": LocationCore.REACH_M,
 			"ru": p.hint},
 		{"id": "exit", "pos": p.exit, "reach": LocationCore.EXIT_REACH_M,
@@ -224,6 +242,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _process(dt: float) -> void:
+	# The lamp's brief brightening after an act closes, easing back.
+	if lamp != null and lamp_glow > 0.0:
+		lamp_glow = maxf(0.0, lamp_glow - dt)
+		var f := lamp_glow / ActCue.LIGHT_SECONDS
+		lamp.light_energy = lamp_energy * lerpf(1.0, ActCue.LIGHT_DONE, f)
 	dt = minf(dt, 0.1)
 	t += dt
 	if proof:
@@ -330,8 +353,12 @@ func _select(i: int) -> void:
 ## (never while proof frames are taken) and a change of scene.
 func _apply(r: Dictionary) -> void:
 	var given_before: Array = st.get("atlas_given", [])
+	var deed_before = heart_panel.get("deed")
 	st = r.st
 	heart_panel = r.panel
+	var deed_after = r.panel.get("deed")
+	if deed_before is Dictionary and deed_after is Dictionary:
+		_cue(ActCue.kind(deed_before, deed_after))
 	if r.say != "":
 		_say(r.say)
 	if r.save and not proof:
@@ -340,6 +367,20 @@ func _apply(r: Dictionary) -> void:
 			LocationCore.write_given(st.atlas_given)
 	if r.scene != "" and not proof:
 		get_tree().change_scene_to_file(r.scene)
+
+
+## Touch, sound and light for one step of the act, in the same frame.
+func _cue(k: String) -> void:
+	if k == "":
+		return
+	if xr_active and ActCue.HAPTIC.has(k):
+		var hp: Array = ActCue.HAPTIC[k]
+		right_hand.trigger_haptic_pulse("haptic", 0.0, hp[0], hp[1], 0.0)
+	if not proof:
+		cue_player.stream = ActCue.wav(k)
+		cue_player.play()
+	if k == "done" and lamp != null:
+		lamp_glow = ActCue.LIGHT_SECONDS
 
 
 func _leave() -> void:

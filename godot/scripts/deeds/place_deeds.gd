@@ -21,6 +21,9 @@
 ##   tick(id, s, dt, still) -> Dictionary
 ##                             the state after dt seconds (an act that
 ##                             asks to wait still); others return s.
+## Two keys of a state are notes, not progress: "reply" and "tried" (the
+## wrong steps already answered at this point).  A wrong step may change
+## them and nothing else, so its felt answer reads as wrong (ActCue).
 ## The same state and choice always give the same next state: no
 ## randomness anywhere (Constitution: no chance in outcomes).  An act
 ## never changes FORM and never gives a point: it is done or not, and

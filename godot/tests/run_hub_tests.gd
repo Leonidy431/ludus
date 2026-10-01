@@ -222,6 +222,7 @@ func _initialize() -> void:
 	before = checks
 	fails = failures
 	load("res://tests/test_place_deeds.gd").new().run(self)
+	load("res://tests/test_act_cue.gd").new().run(self)
 	print("place deeds: %d checks, %d failures" % [checks - before,
 		failures - fails])
 	quit(1 if failures else 0)
