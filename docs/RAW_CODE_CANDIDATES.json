@@ -19339,5 +19339,157 @@
    "LICENSE.TXT"
   ],
   "slot": "DEF-048"
+ },
+ {
+  "repo": "https://github.com/OpenTTD/OpenTTD",
+  "commit": "6059ce2bbb27afdd73d45153657fe9bc087d1c01",
+  "license_file": "COPYING.md",
+  "path": "src/spriteloader/sprite_file.cpp",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "file",
+   "spriteloader"
+  ],
+  "score": 3,
+  "attribution": [
+   "COPYING.md",
+   "CREDITS.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/OpenTTD/OpenTTD",
+  "commit": "6059ce2bbb27afdd73d45153657fe9bc087d1c01",
+  "license_file": "COPYING.md",
+  "path": "src/spriteloader/sprite_file_type.hpp",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "file",
+   "spriteloader"
+  ],
+  "score": 3,
+  "attribution": [
+   "COPYING.md",
+   "CREDITS.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/OpenTTD/OpenTTD",
+  "commit": "6059ce2bbb27afdd73d45153657fe9bc087d1c01",
+  "license_file": "COPYING.md",
+  "path": "src/viewport_sprite_sorter.h",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "sorter",
+   "viewport"
+  ],
+  "score": 3,
+  "attribution": [
+   "COPYING.md",
+   "CREDITS.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/OpenTTD/OpenTTD",
+  "commit": "6059ce2bbb27afdd73d45153657fe9bc087d1c01",
+  "license_file": "COPYING.md",
+  "path": "src/viewport_sprite_sorter_sse4.cpp",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "sorter",
+   "viewport"
+  ],
+  "score": 3,
+  "attribution": [
+   "COPYING.md",
+   "CREDITS.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/bevyengine/bevy",
+  "commit": "92a29e701a6b0bf8846484c3999c2ba97d90dd06",
+  "license_file": "LICENSE-APACHE",
+  "path": "crates/bevy_sprite_render/src/tilemap_chunk/tilemap_chunk_material.rs",
+  "kind": "code",
+  "hits": [
+   "sprite",
+   "render",
+   "material"
+  ],
+  "score": 3,
+  "attribution": [
+   "CREDITS.md"
+  ],
+  "slot": "DEF-040"
+ },
+ {
+  "repo": "https://github.com/dkfans/keeperfx",
+  "commit": "3ca592163e3a744598d3b96830614d1b04f1e0fb",
+  "license_file": "LICENSE",
+  "path": "config/fxdata/lua/bindings/effects.lua",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "effect",
+   "config"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/dkfans/keeperfx",
+  "commit": "3ca592163e3a744598d3b96830614d1b04f1e0fb",
+  "license_file": "LICENSE",
+  "path": "src/config_effects.c",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "effect",
+   "config"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/dkfans/keeperfx",
+  "commit": "3ca592163e3a744598d3b96830614d1b04f1e0fb",
+  "license_file": "LICENSE",
+  "path": "src/config_effects.h",
+  "kind": "code",
+  "hits": [
+   "effects",
+   "effect",
+   "config"
+  ],
+  "score": 3,
+  "attribution": [],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/CleverRaven/Cataclysm-DDA",
+  "commit": "fe6a10c2b1425882574b4ad7bfbebc4c6170dbf8",
+  "license_file": "LICENSE-Apache-Robot-Font.txt",
+  "path": "src/game_ui_tile_info.cpp",
+  "kind": "code",
+  "hits": [
+   "ui",
+   "info"
+  ],
+  "score": 2,
+  "attribution": [
+   "LICENSE-Apache-Robot-Font.txt",
+   "LICENSE-OFL-Terminus-Font.txt",
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-048"
  }
 ]

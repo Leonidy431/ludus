@@ -1,5 +1,5 @@
 {
- "next": 11,
+ "next": 14,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -4086,6 +4086,168 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 52
+  },
+  {
+   "time": "2026-10-01T17:50:50.458698+00:00",
+   "pass_id": "osint-2026-10-01T17:50:50Z",
+   "deficits": [
+    {
+     "id": "DEF-040",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 19,
+      "dogma-stop-list": 1
+     },
+     "to_props": 104,
+     "hits_uncapped": 18874,
+     "props_uncapped": 15617,
+     "props_uncapped_repos": 60,
+     "added_keywords": [
+      "unit",
+      "gradient",
+      "material",
+      "path",
+      "round",
+      "shader",
+      "sorter",
+      "spriteloader",
+      "tech",
+      "viewport",
+      "widget",
+      "yes"
+     ],
+     "keywords_total": 57,
+     "keywords_not_searched": [
+      "bevy",
+      "cleric",
+      "com",
+      "cpp",
+      "crates",
+      "java",
+      "mage",
+      "rotp",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "example": 2,
+      "other": 42,
+      "editor": 2
+     },
+     "props_seen": 22
+    },
+    {
+     "id": "DEF-047",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 14,
+      "dogma-stop-list": 1
+     },
+     "to_props": 30,
+     "hits_uncapped": 44626,
+     "props_uncapped": 40721,
+     "props_uncapped_repos": 62,
+     "added_keywords": [
+      "cache",
+      "category",
+      "choose",
+      "circular",
+      "click",
+      "config",
+      "context",
+      "continue",
+      "control",
+      "dismiss",
+      "embedded",
+      "extra"
+     ],
+     "keywords_total": 70,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "cpp",
+      "java",
+      "mage",
+      "rotp",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 30
+    },
+    {
+     "id": "DEF-048",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 17,
+      "dogma-stop-list": 1
+     },
+     "to_props": 90,
+     "hits_uncapped": 10508,
+     "props_uncapped": 7409,
+     "props_uncapped_repos": 59,
+     "added_keywords": [
+      "slots",
+      "hand",
+      "idle",
+      "igame",
+      "info",
+      "law",
+      "lobby",
+      "machine",
+      "picker",
+      "polling",
+      "preview",
+      "save"
+     ],
+     "keywords_total": 60,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "cpp",
+      "java",
+      "mage",
+      "mindustry",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 16,
+      "test": 1
+     },
+     "props_seen": 72
+    }
+   ],
+   "props_taken": {
+    "editor": 2,
+    "example": 2,
+    "other": 58,
+    "test": 1
+   },
+   "props_taken_by_index_kind": {
+    "code": 63
+   },
+   "props_duplicates": 124,
+   "props_errors": 0,
+   "props_refused": {
+    "licence-Defold-1.0": 36,
+    "licence-UNKNOWN": 1
+   },
+   "props_new_bytes": 511819,
+   "props_store_files": 1370,
+   "props_store_bytes": 10219062,
+   "props_cache_files_on_disk": 4581,
+   "props_cache_bytes_on_disk": 77433595,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 764115,
+   "props_register_growth_bytes": 33216,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 323
   }
  ],
  "keywords": {
@@ -4718,7 +4880,19 @@
    "custom",
    "file",
    "flight",
-   "floating"
+   "floating",
+   "unit",
+   "gradient",
+   "material",
+   "path",
+   "round",
+   "shader",
+   "sorter",
+   "spriteloader",
+   "tech",
+   "viewport",
+   "widget",
+   "yes"
   ],
   "DEF-047": [
    "java",
@@ -4780,7 +4954,19 @@
    "zoom",
    "advisor",
    "alert",
-   "anim"
+   "anim",
+   "cache",
+   "category",
+   "choose",
+   "circular",
+   "click",
+   "config",
+   "context",
+   "continue",
+   "control",
+   "dismiss",
+   "embedded",
+   "extra"
   ],
   "DEF-048": [
    "java",
@@ -4830,7 +5016,19 @@
    "delegate",
    "dummy",
    "file",
-   "geiger"
+   "geiger",
+   "slots",
+   "hand",
+   "idle",
+   "igame",
+   "info",
+   "law",
+   "lobby",
+   "machine",
+   "picker",
+   "polling",
+   "preview",
+   "save"
   ],
   "DEF-055": [],
   "DEF-039": [
