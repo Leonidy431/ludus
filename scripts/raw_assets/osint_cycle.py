@@ -20,9 +20,19 @@ Code deficits are not copied: matching source files are only listed in
 docs/RAW_CODE_CANDIDATES.json, because code is rewritten by a person or
 agent and measured with code_delta.py.
 
+Props (CLAUDE.md TABOO 0.012, operator 2026-09-30: "бери все даже не
+игровое нам в реквизит"): a hit refused only because it is not a game
+object (examples, docs, tests, screenshots, editors, promo) is no longer
+dropped.  Its bytes go to a props cache outside the repo and a line to
+the append-only register docs/RAW_PROPS_REGISTER.jsonl (props.py).
+Holy things, the stop-list, fonts and unlicensed repos stay refused.
+Nothing reaches derived/, godot/ or the APK from the shelf by itself;
+--props-to-slot prepares one prop through the pipeline for review.
+
 Usage:
     python3 scripts/raw_assets/osint_cycle.py --index /home/user/raw-repos \
-        --deficits 3 --per-deficit 6
+        --deficits 3 --per-deficit 6 [--props-cache /home/user/raw-props]
+    python3 scripts/raw_assets/osint_cycle.py --props-to-slot KEY DEF-056
 """
 
 import argparse
@@ -34,6 +44,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+import licences
+import props
 from intake import is_game_object
 from search_index import search
 
@@ -43,6 +55,33 @@ CURSOR = ROOT / 'docs' / 'RAW_OSINT_CURSOR.json'
 CODE_CANDIDATES = ROOT / 'docs' / 'RAW_CODE_CANDIDATES.json'
 DERIVED = ROOT / 'public' / 'ludus' / 'art' / 'derived'
 NOTICES = ROOT / 'THIRD_PARTY_NOTICES.md'
+LADDER = ROOT / 'docs' / 'RAW_KEYWORD_LADDER.json'
+
+# Operator, 2026-09-30: "каждый проход добавляй 12 ключевых слов".
+KEYWORDS_PER_PASS = 12
+# Hits of one repo read for neighbour words (spread(), grow_keywords).
+NEIGHBOURS_PER_REPO = 40
+# Language and package-root words: a path's namespace, not a thing.
+NAMESPACE_WORDS = {'java', 'com', 'org', 'net', 'cpp', 'hpp', 'lua',
+                   'kotlin', 'xaml', 'crates', 'cmake'}
+# Path words that say nothing about the object itself.
+PLAIN_WORDS = {'png', 'svg', 'jpg', 'gif', 'img', 'image', 'images', 'res',
+               'assets', 'asset', 'data', 'art', 'gfx', 'graphics', 'src',
+               'main', 'resources', 'textures', 'texture', 'sprites',
+               'sprite', 'tiles', 'tile', 'items', 'item', 'objects',
+               'object', 'png', 'core', 'base', 'default', 'small', 'large',
+               'big', 'icon', 'icons', 'the', 'and', 'of', 'new', 'old',
+               # Folder names of engines and repos, not things (the
+               # hourly pass of 2026-09-30 added ref, source, rltiles).
+               'ref', 'source', 'sources', 'internal', 'raw', 'rltiles',
+               'dngn', 'crawl', 'fast', 'slow', 'common', 'misc', 'gui',
+               'forge', 'adventure', 'mods', 'mod', 'build', 'dist',
+               'public', 'static', 'lib', 'libs', 'game', 'games',
+               # Joining words of file names ("entity_with_body").
+               'with', 'for', 'from', 'into',
+               # Sprite-format folders and view words, not things (the
+               # 17:51 pass grew rsi, inhand, left, right, generic).
+               'rsi', 'inhand', 'left', 'right', 'generic', 'props'}
 
 # Rule 5: paths that must never enter the pipeline at all.
 DOGMA_STOP = re.compile(
@@ -57,6 +96,65 @@ SACRED = re.compile(
     r'bible|gospel|chalice|censer|bell|vestment|monk|nun|saint|angel|'
     r'christ|madonna|holy',
     re.IGNORECASE)
+
+# The two lists above match substrings of the raw path, and they missed
+# much (review of 2026-09-30): Theotokos, the censer as "thurible", the
+# bilo as "semantron", vestments by name, the Eucharist, prayer, the
+# cleric and his "Bless.java" buff (on the shelf by then), every
+# Cyrillic and foreign spelling, astrology and other-faith cult objects.
+# These additions match whole words of the path, CamelCase split
+# (path_words), so "spray", "summary", "patent", "diving" and "godot"
+# stay free.  Chorus line: docs/HLD_PROPS_STORE_2026-09-30.md.
+DOGMA_WORDS = re.compile(
+    r'(?<![a-z])(pentacles?|tarot\w*|horoscop\w*|astrolog\w*|ouija|'
+    r'baphomet|lucifer\w*|voodoo\w*|vodou|grimoires?|necronomicon|'
+    r'pagan\w*|mosques?|minarets?|buddhas?|pagodas?|torii|'
+    r'synagogues?|mandalas?|divination\w*|witchcraft|'
+    # Charms and cult tokens (TABOO 0.4 p. 6): the neighbour words of
+    # 2026-09-30 grew "ankh" and "amulet" from a dungeon repo.
+    r'ankhs?|amulets?|talisman\w*|totems?)(?![a-z])')
+DOGMA_NATIVE = re.compile(
+    r'пентаграм|пентакл|зодиак|оккульт|идол|сатан|гороскоп|астролог|'
+    r'таро(?![а-я])|руны|мечеть|будд', re.IGNORECASE)
+SACRED_WORDS = re.compile(
+    r'(?<![a-z])(jesus|messiah|theotok\w*|virgin\w*|cathedral\w*|'
+    r'chapels?|monaster\w*|abbey\w*|abbots?|basilica\w*|clerics?|'
+    r'clergy|bishops?|popes?|papal|mitres?|cassocks?|thuribles?|'
+    r'incense\w*|semantron\w*|patens?|diskos|prosphora|eucharist\w*|'
+    r'communion|baptis\w*|pray\w*|rosar(y|ies)|relics?|reliquar\w*|'
+    r'bless\w*|templars?|crusade\w*|divine\w*|divinity|deity|deities|'
+    r'gods|god(?!_?rays?)|goddess\w*|apostles?|psalm\w*|psalter\w*|'
+    r'hymn\w*|liturg\w*|sacrament\w*|sacred|sanctuar\w*|sanctif\w*|'
+    r'consecrat\w*|paladin\w*|inquisit\w*|exorcis\w*|miracle\w*|'
+    r'worship\w*|pantheon|kreuz\w*|kirche\w*|kloster\w*|heilig\w*|'
+    r'iglesia\w*|cruz|chiesa|eglise|croix)(?![a-z])')
+SACRED_NATIVE = re.compile(
+    r'крест|икон|церк|храм|свят|колокол|кадил|потир|евангел|молитв|'
+    r'монах|монаст|ангел|христ|богородиц|господ|литург|причаст|алтар|'
+    r'ладан|облачен|епископ|священ', re.IGNORECASE)
+
+
+def path_words(text):
+    """A path in lowercase with CamelCase split into words.
+
+    "BlessedAnkh.java" reads "blessed_ankh.java", so whole-word
+    patterns see "blessed" as a word of its own.
+    """
+    return re.sub(r'([a-z0-9])([A-Z])', r'\1_\2', str(text)).lower()
+
+
+def is_stop_listed(text):
+    """Rule 5: the dogmatic stop-list, substrings and whole words."""
+    return bool(DOGMA_STOP.search(text)
+                or DOGMA_WORDS.search(path_words(text))
+                or DOGMA_NATIVE.search(text))
+
+
+def is_sacred(text):
+    """Rule 6: holy things, substrings and whole words."""
+    return bool(SACRED.search(text) or SACRED_WORDS.search(path_words(text))
+                or SACRED_NATIVE.search(text))
+
 
 ROW = re.compile(r'^\| (DEF-\d{3}) \| (P\d) \| ([^|]+) \| ([^|]+) \| '
                  r'([^|]+) \| ([^|]+) \|.*\| ([^|]*) \| [^|]* \|$')
@@ -78,6 +176,21 @@ KINDS_BY_CATEGORY = {
 }
 
 
+def slot_kinds(deficit):
+    """Index kinds a deficit may take, for a pass and for a prop alike.
+
+    The fourth pass filled DEF-004 (the gate-opening moment) with
+    dungeon doors and DEF-006 (bubble columns) with a watermelon: both
+    deficits are meant to be procedural.  Images are taken only where
+    the deficit asks for raw material; code deficits still list code
+    candidates, which are rewritten, never copied.
+    """
+    kinds = set(KINDS_BY_CATEGORY.get(deficit['category']) or ())
+    if deficit['fill'] != 'raw-material':
+        kinds &= CODE_KINDS
+    return kinds
+
+
 def open_deficits():
     """Parse the deficit table; keep rows whose status is still open."""
     rows = []
@@ -86,7 +199,9 @@ def open_deficits():
         if not found:
             continue
         def_id, prio, category, fill, status, title, keys = found.groups()
-        if status.strip() != 'открыт':
+        # A deficit that a merged PR closed in part stays in rotation;
+        # only a fully closed one leaves it.
+        if not status.strip().startswith(('открыт', 'частично')):
             continue
         rows.append({'id': def_id, 'priority': prio,
                      'category': category.strip(), 'fill': fill.strip(),
@@ -95,6 +210,20 @@ def open_deficits():
                                   if k.strip()]})
     order = {'P0': 0, 'P1': 1, 'P2': 2, 'P3': 3}
     rows.sort(key=lambda r: (order.get(r['priority'], 9), r['id']))
+    return rows
+
+
+# Raw material helps only two kinds of deficit: images for raw-material
+# ones and code candidates for code ones.  Procedural, own-drawing and
+# content deficits are always skipped, so they no longer take a slot in
+# a round (the rounds of 2026-09-29 spent most slots on skips).
+USEFUL_FILLS = ('raw-material', 'code')
+
+
+def rotation():
+    """Deficits the runner works on, raw-material first, then code."""
+    rows = [r for r in open_deficits() if r['fill'] in USEFUL_FILLS]
+    rows.sort(key=lambda r: r['fill'] != 'raw-material')
     return rows
 
 
@@ -111,15 +240,96 @@ NOT_GAME = re.compile(r'(^|/)(examples?|docs?|tests?|screenshots?|'
                       r'tutorials?|demo|editor|tools?)/', re.IGNORECASE)
 
 
+# Only the passion slot turns raw sprites into antagonists; every other
+# raw-material slot is neutral matter (fish, stones, wood) and takes the
+# thing itself.  Hostile sprites never fill a neutral slot.
+ANTAGONIST_SLOTS = {'DEF-001'}
+HOSTILE = re.compile(r'(^|/)(enemy|enemies|monsters?|mobs?|fiends?|'
+                     r'demons?|undead|bosses|boss|humanoids?|soldiers?|'
+                     r'orcs?|goblins?|skull\w*|abyss\w*|vaults?|mon|'
+                     r'turrets?|weapons?)'
+                     r'(/|_|\.|$)', re.IGNORECASE)
+
+
+# Round 4 of 2026-09-30 took wesnoth "*-outline.png" files: one-pixel
+# selection outlines drawn by the engine around a unit, not the unit.
+# Their antagonist variants were near-empty strokes, so they were
+# reverted; such helper frames are refused before any fetch.
+OUTLINE = re.compile(r'[-_+]outline\.[a-z]+$', re.IGNORECASE)
+
+
+def reasons(path):
+    """Every stop-list a path trips, the holy and dogmatic ones first.
+
+    The order used to put "not a game object" first, so a holy thing in
+    examples/ was counted only as non-game.  Since non-game things go to
+    the props store (TABOO 0.012), that order would have put it on the
+    shelf; now the holy and the stop-listed are named first and the
+    store takes only paths whose single reason is "not a game object".
+    Fonts were excluded through is_game_object before; they keep their
+    exclusion under their own name.
+    """
+    found = []
+    if is_stop_listed(path):
+        found.append('dogma-stop-list')
+    if is_sacred(path):
+        found.append('sacred-never-raw')
+    if props.is_font(path):
+        found.append('font')
+    if OUTLINE.search(path):
+        found.append('outline-helper')
+    if NOT_GAME.search(path) or not is_game_object(path):
+        found.append('not-a-game-object')
+    return found
+
+
 def allowed(path):
     """Apply the stop-lists; return the reason when a path is refused."""
-    if NOT_GAME.search(path) or not is_game_object(path):
-        return 'not-a-game-object'
-    if DOGMA_STOP.search(path):
-        return 'dogma-stop-list'
-    if SACRED.search(path):
-        return 'sacred-never-raw'
-    return None
+    found = reasons(path)
+    return found[0] if found else None
+
+
+# Reasons that only keep a thing out of the pipeline, not off the
+# shelf: a one-pixel selection outline is useless as a sprite but is
+# still a thing of the repo (TABOO 0.012 p. 2 bars only holy things,
+# the stop-list and unlicensed repos; fonts stay barred by TABOO 0.1).
+PIPELINE_ONLY = ('outline-helper',)
+
+
+def prop_reasons(found):
+    """The refusals that count for the shelf."""
+    return [r for r in found if r not in PIPELINE_ONLY]
+
+
+def is_prop(path):
+    """True when the only thing wrong with a path is that it is not a
+    game object: such a thing goes to the props store (TABOO 0.012)."""
+    return prop_reasons(reasons(path)) == ['not-a-game-object']
+
+
+def sort_hits(hits, neutral):
+    """Split search hits into pipeline candidates, props and refusals.
+
+    A repo without a licence file is "all rights reserved": nothing is
+    taken from it, not even a prop (TABOO 0.012 p. 2).
+    """
+    usable, shelf, refused = [], [], {}
+    for hit in hits:
+        found = reasons(hit['path'])
+        if not hit.get('license_file'):
+            found.insert(0, 'no-licence')
+        if prop_reasons(found) == ['not-a-game-object']:
+            shelf.append(hit)
+            continue
+        reason = found[0] if found else None
+        if not reason and neutral and hit['kind'] not in CODE_KINDS \
+                and HOSTILE.search(hit['path']):
+            reason = 'hostile-for-neutral-slot'
+        if reason:
+            refused[reason] = refused.get(reason, 0) + 1
+            continue
+        usable.append(hit)
+    return usable, shelf, refused
 
 
 def fetch(index_root, hit, dest_root):
@@ -136,22 +346,130 @@ def fetch(index_root, hit, dest_root):
 
 
 def licence_of(index_root, hit):
-    """Read the SPDX guess from the index header of the hit's repo."""
-    repo = hit['repo'].split('github.com/')[-1].replace('/', '__')
-    header = json.loads((Path(index_root) / 'index' / f'{repo}.jsonl')
-                        .read_text(encoding='utf-8').splitlines()[0])
-    head = header['header']['license_head'].upper()
-    for spdx, mark in (('AGPL-3.0', 'AFFERO'), ('LGPL', 'LESSER GENERAL'),
-                       ('GPL', 'GNU GENERAL PUBLIC'),
-                       ('MIT', 'PERMISSION IS HEREBY GRANTED'),
-                       ('Apache-2.0', 'APACHE LICENSE'),
-                       ('MPL-2.0', 'MOZILLA PUBLIC'),
-                       ('CC-BY-SA', 'ATTRIBUTION-SHAREALIKE'),
-                       ('CC0-1.0', 'CC0'), ('BSD', 'REDISTRIBUTION AND USE'),
-                       ('Zlib', 'ALTERED SOURCE')):
-        if mark in head:
-            return spdx
-    return 'UNKNOWN'
+    """The licence of the hit's own file (licences.py).
+
+    One label per repo from the licence head used to call rotp-public's
+    CC BY-NC-ND art "GPL"; the label is now per file.
+    """
+    return licences.licence_for(index_root, hit)
+
+
+def ladder_words(def_id):
+    """The real-object keyword ladder of a deficit, if it has one."""
+    if not LADDER.exists():
+        return []
+    return json.loads(LADDER.read_text('utf-8'))['ladders'].get(def_id, [])
+
+
+def neighbour_words(hits, known, skip=frozenset(), seeds=()):
+    """Path words beside earlier hits, spread over repos, not yet keys.
+
+    When the real-object ladder runs out, the next words come from the
+    material itself: the file name and the folder that hold what was
+    already found.  Only those two count, not the whole path: the
+    package path of one big repo ("com/shatteredpixel/.../actors/hero")
+    stood in front of every file of it, and on 2026-09-30 DEF-040,
+    DEF-047 and DEF-048 all grew the same twelve words from it.  A word
+    seen in more repos ranks higher than a word seen more often in one.
+    With `seeds` (the deficit's own keywords), only a hit whose file
+    name or folder holds a seed counts: the neighbour then stands beside
+    the deficit's thing, not beside whatever a grown key matched, so two
+    deficits grow two different sets.  Words in `skip` (repo names,
+    namespaces), stop-listed, sacred and hostile words never become
+    keys.
+    """
+    repos, counts = {}, {}
+    for hit in hits:
+        parts = path_words(hit['path']).split('/')
+        near = ' '.join(parts[-2:]).rsplit('.', 1)[0]
+        words = re.split(r'[^a-z]+', near)
+        if seeds and not any(w.rstrip('s') in seeds or w in seeds
+                             for w in words):
+            continue
+        for word in words:
+            if (len(word) < 3 or word in PLAIN_WORDS or word in known
+                    or word in skip or is_stop_listed(word)
+                    or is_sacred(word) or HOSTILE.search(word)):
+                continue
+            repos.setdefault(word, set()).add(hit.get('repo', ''))
+            counts[word] = counts.get(word, 0) + 1
+    return [w for w, _ in sorted(
+        counts.items(), key=lambda x: (-len(repos[x[0]]), -x[1], x[0]))]
+
+
+def repo_words(index_root):
+    """Words of the indexed repos' owners and names, and their joins.
+
+    A package path spells the repo's name without separators
+    ("com/shatteredpixel/shatteredpixeldungeon"), so the joins of
+    consecutive name words count as well.  Only the header line of each
+    index file is read.
+    """
+    out = set()
+    for path in sorted(Path(index_root, 'index').glob('*.jsonl')):
+        with path.open(encoding='utf-8') as handle:
+            repo = json.loads(handle.readline())['header']['repo']
+        for part in repo.rstrip('/').split('/')[-2:]:
+            words = [w for w in re.split(r'[^a-z0-9]+', path_words(part))
+                     if w]
+            out.update(words)
+            for i in range(len(words)):
+                for j in range(i + 2, len(words) + 1):
+                    out.add(''.join(words[i:j]))
+    return out
+
+
+def unsearched(index_root):
+    """Grown keys that stay in the journal but are no longer searched.
+
+    Passes before the neighbour fix of 2026-09-30 added repo names and
+    namespaces ("java", "com", "shatteredpixel") as keys; every file of
+    one repo then matched every deficit.  The journal keeps them (TABOO
+    0.25 p. 5); the search skips them, as it skips a word the grown
+    holy list now covers.
+    """
+    return repo_words(index_root) | NAMESPACE_WORDS | PLAIN_WORDS
+
+
+def spread(hits, per_repo):
+    """At most `per_repo` hits of each repo, taken round-robin.
+
+    The search sorts ties by repo name, so its first 400 hits were one
+    repo ("00-Evan__...") for any broad key.  Round-robin keeps every
+    repo that matched in the sample, in a fixed order (no randomness).
+    """
+    by_repo = {}
+    for hit in hits:
+        by_repo.setdefault(hit['repo'], []).append(hit)
+    out = []
+    for rank in range(per_repo):
+        for repo in sorted(by_repo):
+            if rank < len(by_repo[repo]):
+                out.append(by_repo[repo][rank])
+    return out
+
+
+def grow_keywords(deficit, cursor, index, kinds):
+    """Add the next twelve keywords of a deficit; return the added ones.
+
+    Deterministic: the real-object ladder first, in its written order,
+    then neighbour words ranked by frequency and name.
+    """
+    added = cursor.setdefault('keywords', {}).setdefault(deficit['id'], [])
+    known = set(deficit['keywords']) | set(added)
+    fresh = [w for w in ladder_words(deficit['id']) if w not in known]
+    new = fresh[:KEYWORDS_PER_PASS]
+    if len(new) < KEYWORDS_PER_PASS:
+        everything = []
+        search(index, kinds, deficit['keywords'] + added, limit=0,
+               allow_unlicensed=False, uncapped=everything)
+        hits = spread([h for h in everything if not allowed(h['path'])],
+                      NEIGHBOURS_PER_REPO)
+        more = neighbour_words(hits, known | set(new),
+                               unsearched(index), set(deficit['keywords']))
+        new += more[:KEYWORDS_PER_PASS - len(new)]
+    added.extend(new)
+    return new
 
 
 def run(cmd):
@@ -164,52 +482,95 @@ def main():
     parser.add_argument('--work', default='build/osint')
     parser.add_argument('--deficits', type=int, default=3)
     parser.add_argument('--per-deficit', type=int, default=6)
+    parser.add_argument('--only', default='',
+                        help='comma-separated deficit ids; the rotation '
+                             'cursor is left where it is')
+    parser.add_argument('--props-cache', default=props.DEFAULT_CACHE,
+                        help='props store outside the repo (TABOO 0.012)')
+    parser.add_argument('--props-to-slot', nargs=2,
+                        metavar=('KEY', 'DEF_ID'),
+                        help='prepare one prop for a slot through the '
+                             'pipeline in build/props; nothing ships')
     args = parser.parse_args()
+
+    if args.props_to_slot:
+        plan = props.to_slot(args.props_to_slot[0], args.props_to_slot[1],
+                             args.index, args.props_cache)
+        print(json.dumps(plan, ensure_ascii=False, indent=2))
+        return
+    # Refuse a cache inside the repo before any work is done.
+    props.check_cache_outside(args.props_cache)
 
     work = ROOT / args.work
     shutil.rmtree(work, ignore_errors=True)
     raw_dir, out_dir = work / 'raw', work / 'derived'
     raw_dir.mkdir(parents=True)
 
-    deficits = open_deficits()
+    deficits = rotation()
     cursor = load_cursor()
     if not deficits:
         print('no open deficits')
         return
-    start = cursor['next'] % len(deficits)
-    chosen = (deficits[start:] + deficits[:start])[:args.deficits]
-    cursor['next'] = start + len(chosen)
+    if args.only:
+        wanted = args.only.split(',')
+        chosen = [d for d in deficits if d['id'] in wanted]
+    else:
+        start = cursor['next'] % len(deficits)
+        chosen = (deficits[start:] + deficits[:start])[:args.deficits]
+        cursor['next'] = start + len(chosen)
 
-    stamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
-    manifest, code_hits, entry = [], [], {'time': stamp, 'deficits': []}
+    now = datetime.datetime.now(datetime.timezone.utc)
+    stamp = now.isoformat()
+    # pass_id names the run, so it differs between two runs over the
+    # same index; everything else a pass writes follows from the index,
+    # the cursor and the register.
+    pass_id = 'osint-' + now.strftime('%Y-%m-%dT%H:%M:%SZ')
+    manifest, code_hits, shelf = [], [], []
+    entry = {'time': stamp, 'pass_id': pass_id, 'deficits': []}
     for deficit in chosen:
-        kinds = KINDS_BY_CATEGORY.get(deficit['category'])
-        # The fourth pass filled DEF-004 (the gate-opening moment) with
-        # dungeon doors and DEF-006 (bubble columns) with a watermelon:
-        # both deficits are meant to be procedural.  Images are taken only
-        # where the deficit asks for raw material; code deficits still
-        # list code candidates, which are rewritten, never copied.
-        if deficit['fill'] != 'raw-material':
-            kinds = (kinds or set()) & CODE_KINDS
+        kinds = slot_kinds(deficit)
         if not kinds:
             reason = ('audio-pipeline-pending' if deficit['category'] == 'звук'
                       else 'not-raw-material')
             entry['deficits'].append({'id': deficit['id'], 'skipped': reason})
             print(f'{deficit["id"]}: skipped ({reason})')
             continue
-        hits = search(args.index, kinds, deficit['keywords'], limit=200,
-                      allow_unlicensed=False)
-        taken, refused = 0, {}
-        for hit in hits:
-            reason = allowed(hit['path'])
-            if reason:
-                refused[reason] = refused.get(reason, 0) + 1
-                continue
+        grown = grow_keywords(deficit, cursor, args.index, kinds)
+        # Added words that a grown holy list or stop-list now covers
+        # ("cleric" was added before the list knew it) stay in the
+        # journal but are no longer searched (TABOO 0.15 p. 3).
+        skip = unsearched(args.index)
+        added = [k for k in cursor['keywords'][deficit['id']]
+                 if not (is_sacred(k) or is_stop_listed(k) or k in skip)]
+        keys = deficit['keywords'] + added
+        print(f'{deficit["id"]}: +{len(grown)} keywords {grown}')
+        everything = []
+        hits = search(args.index, kinds, keys, limit=200,
+                      allow_unlicensed=False, uncapped=everything)
+        taken = 0
+        neutral = deficit['id'] not in ANTAGONIST_SLOTS
+        usable, to_shelf, refused = sort_hits(hits, neutral)
+        # The shelf takes the non-game hits among the 200 best of the
+        # search, not "all" of them: the uncapped count below is
+        # journaled so the gap is written, not hidden.  Every non-game
+        # hit of the index would be tens of MB of register a pass
+        # (DEF-040 alone: 64 015), past the 8 MB budget; where a larger
+        # register lives is the operator's decision (HLD).
+        _u, uncapped_shelf, _r = sort_hits(everything, neutral)
+        shelf += [(hit, deficit['id']) for hit in to_shelf]
+        for hit in usable:
             if hit['kind'] in CODE_KINDS:
                 code_hits.append({**hit, 'slot': deficit['id']})
                 continue
             if taken >= args.per_deficit or not hit['path'].lower() \
                     .endswith('.png'):
+                continue
+            licence = licence_of(args.index, hit)
+            if not licences.derivable(licence):
+                # CC BY-NC-ND art (rotp-public) and unread licences
+                # never enter the derivative pipeline.
+                refused['licence-not-derivable'] = \
+                    refused.get('licence-not-derivable', 0) + 1
                 continue
             try:
                 local = fetch(args.index, hit, raw_dir)
@@ -219,18 +580,113 @@ def main():
                 continue
             manifest.append({
                 'repo': hit['repo'], 'commit': hit['commit'],
-                'license': licence_of(args.index, hit),
+                'license': licence,
                 'license_file': hit['license_file'],
                 'attribution': hit['attribution'],
                 'path': hit['path'], 'local': str(local),
                 'bytes': local.stat().st_size, 'slot': deficit['id'],
+                'neutral': neutral,
             })
             taken += 1
-        entry['deficits'].append({'id': deficit['id'], 'hits': len(hits),
-                                  'taken': taken, 'refused': refused})
-        print(f'{deficit["id"]}: hits={len(hits)} taken={taken} '
-              f'refused={refused}')
+        entry['deficits'].append({
+            'id': deficit['id'], 'hits': len(hits), 'taken': taken,
+            'refused': refused, 'to_props': len(to_shelf),
+            'hits_uncapped': len(everything),
+            'props_uncapped': len(uncapped_shelf),
+            'props_uncapped_repos': len({h['repo']
+                                         for h in uncapped_shelf}),
+            'added_keywords': grown, 'keywords_total': len(keys),
+            'keywords_not_searched': sorted(
+                set(cursor['keywords'][deficit['id']]) - set(added))})
+        print(f'{deficit["id"]}: hits={len(hits)} of {len(everything)} '
+              f'taken={taken} to_props={len(to_shelf)} of '
+              f'{len(uncapped_shelf)} refused={refused}')
 
+    # The props store (TABOO 0.012): every non-game hit of the pass is
+    # really taken (bytes in the cache, sha1 in the register) before the
+    # pipeline runs, so a failing transform cannot lose it.
+    register = props.load_register()
+    before = (props.REGISTER.stat().st_size
+              if props.REGISTER.exists() else 0)
+    stats = props.take(shelf, register, args.index, args.props_cache,
+                       pass_id, lambda hit: licence_of(args.index, hit),
+                       is_prop)
+    after = props.save_register(register) if shelf else before
+    for rec in entry['deficits']:
+        if 'skipped' in rec:
+            continue
+        # Every deficit is credited: what it put on the shelf and how
+        # many of its hits were on the shelf already (a thing found by
+        # three deficits is one line, under the first).
+        rec['props'] = stats['by_deficit'].get(rec['id'], {})
+        rec['props_seen'] = stats['seen_by_deficit'].get(rec['id'], 0)
+    totals = props.store_totals(register)
+    disk = props.cache_on_disk(register, args.props_cache)
+    entry.update({
+        'props_taken': stats['taken'],
+        'props_taken_by_index_kind': stats['taken_by_index_kind'],
+        'props_duplicates': stats['duplicates'],
+        'props_errors': stats['errors'],
+        'props_refused': stats['refused'],
+        'props_new_bytes': stats['new_bytes'],
+        # What the register names...
+        'props_store_files': totals['files'],
+        'props_store_bytes': totals['bytes'],
+        # ...and what this machine's cache really holds.
+        'props_cache_files_on_disk': disk['files'],
+        'props_cache_bytes_on_disk': disk['bytes'],
+        'props_cache_missing': disk['missing'],
+        'props_cache_unnamed': disk['unnamed'],
+        'props_register_bytes': after,
+        'props_register_growth_bytes': after - before,
+        'stage': 'props-saved',
+    })
+    print(f'props: taken {stats["taken"]} duplicates {stats["duplicates"]}'
+          f' errors {stats["errors"]}; register names {totals["files"]} '
+          f'files, {totals["bytes"] / 1e6:.2f} MB; cache on disk '
+          f'{disk["files"]} files, {disk["bytes"] / 1e6:.2f} MB, '
+          f'{disk["missing"]} missing, {disk["unnamed"]} not in the '
+          f'register; register +{after - before} B')
+    # The journal gets this pass now, so the register's new lines always
+    # have their pass in the journal even if the pipeline below fails.
+    cursor['log'].append(entry)
+    CURSOR.write_text(json.dumps(cursor, ensure_ascii=False, indent=1),
+                      'utf-8')
+    try:
+        accepted = pipeline(manifest, raw_dir, out_dir, work)
+    except Exception as exc:
+        entry['stage'] = 'pipeline-failed'
+        entry['error'] = f'{type(exc).__name__}: {exc}'[:300]
+        CURSOR.write_text(json.dumps(cursor, ensure_ascii=False, indent=1),
+                          'utf-8')
+        raise
+
+    if code_hits:
+        known = (json.loads(CODE_CANDIDATES.read_text('utf-8'))
+                 if CODE_CANDIDATES.exists() else [])
+        seen = {(c['repo'], c['path']) for c in known}
+        fresh = []
+        for c in code_hits:
+            # One line per file: a file three deficits found is listed
+            # once, under the first, as across passes.
+            if (c['repo'], c['path']) not in seen:
+                seen.add((c['repo'], c['path']))
+                fresh.append(c)
+        known += fresh
+        CODE_CANDIDATES.write_text(
+            json.dumps(known, ensure_ascii=False, indent=1), 'utf-8')
+
+    entry['stage'] = 'done'
+    entry['accepted_objects'] = accepted
+    entry['code_candidates'] = len(code_hits)
+    CURSOR.write_text(json.dumps(cursor, ensure_ascii=False, indent=1),
+                      'utf-8')
+    print(f'pass done: {accepted} objects accepted, '
+          f'{len(code_hits)} code candidates listed')
+
+
+def pipeline(manifest, raw_dir, out_dir, work):
+    """Run the TABOO 0.1 pipeline over the pass; return what shipped."""
     (raw_dir / 'manifest.json').write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2), 'utf-8')
     accepted = 0
@@ -242,19 +698,28 @@ def main():
              '--notices', str(work / 'NOTICES.md')])
         slots = {m['path']: m['slot'] for m in manifest}
         report = json.loads((out_dir / 'report.json').read_text('utf-8'))
+        shipped = set()
         for rec in report['accepted']:
+            # Fewer than twelve variants never ships (TABOO 0.1: never
+            # stop at eleven); such objects stay in the build for review.
+            if rec.get('status') != 'ok':
+                continue
             slot = slots.get(rec['path'], 'unslotted')
             dest = DERIVED / slot
             dest.mkdir(parents=True, exist_ok=True)
             for f in out_dir.glob(f'{rec["name"]}*'):
                 if f.suffix in ('.png', '.json'):
                     shutil.copy2(f, dest / f.name)
+            shipped.add(rec['name'])
             accepted += 1
         run([sys.executable, 'scripts/raw_assets/check_delta.py',
              '--root', str(DERIVED), '--threshold', '0.35'])
         # The register only grows: rows are appended, never rewritten.
+        # Only what shipped is registered; a shortfall stays out.
         rows = [line for line in (work / 'NOTICES.md').read_text('utf-8')
-                .splitlines() if line.startswith('| ant_')]
+                .splitlines()
+                if line.startswith(('| ant_', '| obj_'))
+                and line.split('|')[1].strip() in shipped]
         existing = NOTICES.read_text('utf-8') if NOTICES.exists() else (
             '# Third-party raw material register\n\n| Object | Source | '
             'Commit | Path | Licence | Colour | Shape |\n'
@@ -263,22 +728,7 @@ def main():
         NOTICES.write_text(existing.rstrip('\n') + '\n'
                            + '\n'.join(new) + ('\n' if new else ''),
                            'utf-8')
-
-    if code_hits:
-        known = (json.loads(CODE_CANDIDATES.read_text('utf-8'))
-                 if CODE_CANDIDATES.exists() else [])
-        seen = {(c['repo'], c['path']) for c in known}
-        known += [c for c in code_hits if (c['repo'], c['path']) not in seen]
-        CODE_CANDIDATES.write_text(
-            json.dumps(known, ensure_ascii=False, indent=1), 'utf-8')
-
-    entry['accepted_objects'] = accepted
-    entry['code_candidates'] = len(code_hits)
-    cursor['log'].append(entry)
-    CURSOR.write_text(json.dumps(cursor, ensure_ascii=False, indent=1),
-                      'utf-8')
-    print(f'pass done: {accepted} objects accepted, '
-          f'{len(code_hits)} code candidates listed')
+    return accepted
 
 
 if __name__ == '__main__':

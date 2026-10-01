@@ -1,0 +1,74 @@
+{
+ "id": "lake-khum-shallows-0",
+ "kind": "lake",
+ "lod": "proxy",
+ "detail": "procedural-detailed",
+ "details": [
+  "egg-shaped body",
+  "rolled rim",
+  "dark mouth",
+  "applied rope bands",
+  "small lug handles"
+ ],
+ "tris": 1148,
+ "bbox_m": [
+  0.774,
+  1.0,
+  0.742
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.774,
+   1.0,
+   0.742
+  ],
+  "centre_m": [
+   0.0,
+   0.5,
+   0.0
+  ]
+ },
+ "materials": [
+  {
+   "name": "clay",
+   "colour": "#9a6a45",
+   "roughness": 0.9,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "clay-band",
+   "colour": "#7b5537",
+   "roughness": 0.9,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "clay-inside",
+   "colour": "#45301f",
+   "roughness": 0.95,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 69687244845415,
+ "name": "Хум — большой глиняный сосуд: целый",
+ "category": "find",
+ "band": "shallows",
+ "depth_m": [
+  2,
+  5
+ ],
+ "flags": {
+  "noLoot": false,
+  "loot": "hand-over"
+ },
+ "noLoot": false,
+ "noInteract": false,
+ "size_m": 0.9,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
+}

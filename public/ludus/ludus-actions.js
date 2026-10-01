@@ -34,7 +34,52 @@
     lastFastDay: null,
     met: {},
     gifts: {},
+    practices: {},
   });
+
+  // The rule of prayer: twelve practices, each answering one passion on
+  // St John Climacus' Ladder (step numbers) or a named Patericon source.
+  // kinds: 'count' adds one per act; 'daily' counts once per calendar
+  // day; 'timer' counts only whole minutes actually completed.  The
+  // first three keep the legacy keys that the gates read.  None of them
+  // ever adds XP or attributes (TABOO 0.35 rule 16); 'secret' practices
+  // are not even shown as a number, because a secret good deed that is
+  // counted in front of the player feeds vainglory (Mt 6:3-4).
+  const PRACTICES = [
+    { id: 'prayer_rope', label: 'Prayer rope: one knot', kind: 'count',
+      legacy: 'prayerCount', passion: 'all eight', virtue: 'prayer',
+      source: 'Ladder, step 28' },
+    { id: 'fast', label: "Keep today's fast", kind: 'daily',
+      legacy: 'fastDays', passion: 'gluttony', virtue: 'temperance',
+      source: 'Ladder, step 14' },
+    { id: 'stillness', label: 'Stillness', kind: 'timer', minutes: 1,
+      legacy: 'meditationHours', passion: 'vainglory, talkativeness',
+      virtue: 'hesychia', source: 'Ladder, steps 11 and 27' },
+    { id: 'prostrations', label: 'Prostration', kind: 'count',
+      passion: 'pride', virtue: 'humility', source: 'Ladder, step 25' },
+    { id: 'vigil', label: 'Night vigil', kind: 'timer', minutes: 10,
+      passion: 'despondency', virtue: 'watchfulness',
+      source: 'Ladder, steps 13 and 20' },
+    { id: 'handiwork', label: 'Handiwork', kind: 'timer', minutes: 5,
+      passion: 'despondency', virtue: 'patience',
+      source: 'Apophthegmata, Antony the Great 1' },
+    { id: 'alms', label: 'Give alms', kind: 'daily',
+      passion: 'avarice', virtue: 'mercy', source: 'Ladder, steps 16-17' },
+    { id: 'forgive', label: 'Forgive an offence', kind: 'daily',
+      passion: 'anger', virtue: 'meekness', source: 'Ladder, steps 8-9' },
+    { id: 'thanksgiving', label: 'Glory to God for all things',
+      kind: 'daily', passion: 'sadness', virtue: 'joyful mourning',
+      source: 'Ladder, step 7; St John Chrysostom' },
+    { id: 'guard_thoughts', label: 'Evening watch over thoughts',
+      kind: 'daily', passion: 'lust', virtue: 'chastity',
+      source: 'Ladder, steps 15 and 26' },
+    { id: 'obedience', label: "Fulfil the mentor's obedience",
+      kind: 'daily', passion: 'pride (self-will)', virtue: 'obedience',
+      source: 'Ladder, step 4' },
+    { id: 'secret_deed', label: 'A good deed in secret', kind: 'daily',
+      secret: true, passion: 'vainglory', virtue: 'simplicity',
+      source: 'Ladder, step 22; Mt 6:3-4' },
+  ];
 
   // Each gate names its mentors and its rite.  The rites climb from
   // the Jesus Prayer on the prayer rope, through fasting, to stillness
@@ -86,7 +131,39 @@
         gifts[gate.id] = true;
       }
     });
+    const practices = {};
+    const srcPractices = src.practices && typeof src.practices === 'object'
+      ? src.practices : {};
+    PRACTICES.forEach((pr) => {
+      const item = srcPractices[pr.id];
+      if (!pr.legacy && item && typeof item === 'object') {
+        practices[pr.id] = {
+          count: Math.floor(num(item.count)),
+          lastDay: typeof item.lastDay === 'string'
+            && /^\d{4}-\d{2}-\d{2}$/.test(item.lastDay) ? item.lastDay : null,
+        };
+      }
+    });
+    // Meetings with the eight passions, kept by the server with the
+    // rule (op passionEnd); the same shape as normalizeRecord() in
+    // ludus-passion.js, so the road reads either source.
+    const passions = {};
+    const srcPa = src.passions && typeof src.passions === 'object'
+      ? src.passions : {};
+    Object.keys(srcPa).forEach((id) => {
+      const item = srcPa[id];
+      if (/^[a-z]{1,20}$/.test(id) && item && typeof item === 'object') {
+        passions[id] = {
+          meetings: Math.floor(num(item.meetings)),
+          overcome: Math.floor(num(item.overcome)),
+          captive: Math.floor(num(item.captive)),
+          discerned: item.discerned === true,
+        };
+      }
+    });
     return {
+      practices,
+      passions,
       prayerCount: Math.floor(num(src.prayerCount)),
       fastDays: Math.floor(num(src.fastDays)),
       meditationHours: num(src.meditationHours),
@@ -133,6 +210,85 @@
       next.met[npcId] = (next.met[npcId] || 0) + 1;
     }
     return next;
+  }
+
+  // One act of a practice.  opts.day (YYYY-MM-DD) is required for daily
+  // practices and opts.minutes (whole minutes completed) for timers; the
+  // caller supplies both, so no clock is hidden in here.
+  function doPractice(actions, id, opts) {
+    const pr = PRACTICES.find((p) => p.id === id);
+    const o = opts || {};
+    if (!pr) {
+      return normalize(actions);
+    }
+    if (pr.legacy === 'prayerCount') {
+      return prayKnot(actions);
+    }
+    if (pr.legacy === 'fastDays') {
+      return keepFast(actions, o.day);
+    }
+    if (pr.legacy === 'meditationHours') {
+      return addStillness(actions, o.minutes);
+    }
+    const next = normalize(actions);
+    const item = next.practices[id] || { count: 0, lastDay: null };
+    if (pr.kind === 'count') {
+      item.count += 1;
+    } else if (pr.kind === 'daily') {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(String(o.day))
+          || item.lastDay === o.day) {
+        return next;
+      }
+      item.count += 1;
+      item.lastDay = o.day;
+    } else if (pr.kind === 'timer') {
+      // Only a completed session of the practice's length counts.
+      if (Math.floor(num(o.minutes)) < pr.minutes) {
+        return next;
+      }
+      item.count += pr.minutes;
+    }
+    next.practices[id] = item;
+    return next;
+  }
+
+  // What the panel may show: a number, or nothing for secret practices.
+  function practiceTally(actions, id) {
+    const pr = PRACTICES.find((p) => p.id === id);
+    const a = normalize(actions);
+    if (!pr) {
+      return null;
+    }
+    if (pr.secret) {
+      return { shown: false, text: 'known to God' };
+    }
+    let value;
+    if (pr.legacy === 'meditationHours') {
+      value = Math.floor(a.meditationHours * 60 + 1e-6);
+    } else if (pr.legacy) {
+      value = a[pr.legacy];
+    } else {
+      value = (a.practices[id] || { count: 0 }).count;
+    }
+    let unit = '';
+    if (pr.kind === 'timer') {
+      unit = ' min';
+    } else if (pr.kind === 'daily') {
+      unit = value === 1 ? ' day' : ' days';
+    }
+    return { shown: true, value, text: `${value}${unit}` };
+  }
+
+  function keptToday(actions, id, day) {
+    const pr = PRACTICES.find((p) => p.id === id);
+    const a = normalize(actions);
+    if (!pr || pr.kind !== 'daily') {
+      return false;
+    }
+    if (pr.legacy === 'fastDays') {
+      return a.lastFastDay === day;
+    }
+    return (a.practices[id] || {}).lastDay === day;
   }
 
   // The bow for gates 4-6.  It is accepted only when every other
@@ -221,6 +377,10 @@
   const api = {
     GATES,
     EMPTY,
+    PRACTICES,
+    doPractice,
+    practiceTally,
+    keptToday,
     normalize,
     prayKnot,
     keepFast,

@@ -1,0 +1,411 @@
+# Headset build (CLAUDE.md TABOO 0.02; docs/HLD_HEADSET_BUILD_2026-09-30.md).
+#
+#   test     - the GDScript dive core against the JS reference fixture,
+#              data in sync with the web build, proof frames under Xvfb,
+#              and the Web (WebXR) export as an artifact;
+#   android  - the Meta Quest APK: JDK 17, Android SDK, Godot's Android
+#              templates, the Meta vendors plugin (pinned release) and a
+#              debug keystore made in the job.  The APK is an artifact to
+#              sideload with Meta Quest Developer Hub, SideQuest or adb.
+#
+# A debug APK is signed with a throwaway key: fine for a headset in
+# developer mode, not for the Meta Store (that key goes to GitHub
+# Secrets later, HLD phase P7).
+name: Godot headset build
+
+on:
+  push:
+    branches: [main, 'claude/**']
+    paths: ['godot/**', 'public/ludus/dive/**', 'public/ludus/data/**',
+            'scripts/godot/**', 'scripts/story/**', 'scripts/locations/**',
+            'CLAUDE.md', '.github/workflows/godot.yml']
+  pull_request:
+    paths: ['godot/**', 'public/ludus/dive/**', 'public/ludus/data/**',
+            'scripts/godot/**', 'scripts/story/**', 'scripts/locations/**',
+            'CLAUDE.md', '.github/workflows/godot.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  GODOT_VERSION: '4.7.1'
+  VENDORS_TAG: '5.1.0-stable'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Cache Godot
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/godot
+            ~/.local/share/godot/export_templates
+          key: godot-${{ env.GODOT_VERSION }}-web
+
+      - name: Install Godot and web templates
+        run: scripts/godot/ci_setup.sh web
+
+      # The GDScript port is checked against the JS reference, and the
+      # fixture itself must be current with the JS core.
+      - name: Fixtures are current
+        run: |
+          node scripts/godot/make_fixture.js
+          node scripts/godot/make_hub_fixture.js
+          node scripts/godot/make_trial_fixture.js
+          node scripts/godot/make_passion_fixture.js
+          node scripts/godot/export_antagonist_manifest.js
+          node scripts/godot/make_mission_fixture.js
+          node scripts/godot/make_journal_fixture.js
+          git diff --exit-code godot/tests/journal_fixture.json
+          git diff --exit-code godot/tests/fixtures/missions.json
+          node scripts/godot/make_rule_fixture.js
+          git diff --exit-code godot/tests/fixtures/rule.json
+          git diff --exit-code godot/tests/fixture.json \
+            godot/tests/hub_fixture.json godot/tests/trial_fixture.json \
+            godot/tests/passion_fixture.json \
+            godot/data/antagonist-manifest.json
+
+      - name: Lake data in sync with the web build
+        run: |
+          cmp public/ludus/data/lake-objects-99.json \
+              godot/data/lake-objects-99.json
+          cmp public/ludus/data/issyk-kul-fish.json \
+              godot/data/issyk-kul-fish.json
+          # The hub reads the same talks as the web game (TABOO 0.39).
+          cmp public/ludus/data/dialogue-trees.json \
+              godot/data/dialogue-trees.json
+          # Thresholds and passions read the same data as the web game.
+          cmp public/ludus/data/gate-trials.json godot/data/gate-trials.json
+          cmp public/ludus/data/passions.json godot/data/passions.json
+          # The campaign of missions reads the same spine as the web game.
+          cmp public/ludus/data/campaign-spine.json \
+              godot/data/campaign-spine.json
+          # The Russian labels of its sources: one table for both panels.
+          cmp public/ludus/data/source-labels-ru.json \
+              godot/data/source-labels-ru.json
+          # The Water Atlas: one list of nodes, its copies current and
+          # every node with its Constitution line (TABOO 0.03).
+          python3 scripts/story/render.py --check
+          cmp public/ludus/data/atlas-99.json godot/data/atlas-99.json
+          # The 99 locations of our plots: pool, K and data current, and
+          # the selection keeps the standard of the evening-watch cell
+          # (TABOO 0.013, 0.07; docs/HLD_LOCATIONS_99_2026-09-30.md).
+          python3 scripts/locations/locations_99.py --check
+          python3 -m unittest discover scripts/locations/tests
+          # The proxies the 99 locations show are shipped, and only those
+          # (docs/HLD_LOCATIONS_99_2026-09-30.md, L4; TABOO 0.011).
+          python3 scripts/locations/ship_models.py --check
+          # The drawings of the 99 repos each place stands (their boxes
+          # and metres) match the kits passed by eye (TABOO 0.012, 0.1).
+          # The check reads the variant images, so it needs Pillow (from
+          # apt: the runner's system Python refuses pip installs).
+          sudo apt-get install -y -qq python3-pil >/dev/null
+          python3 scripts/raw_assets/location_items.py items --check
+          # One bell table for the web clock and the headset's bells,
+          # every rule with its source (docs/HLD_BELL_RULES_TYPIKON_*).
+          cmp public/ludus/data/bell-rules.json godot/data/bell-rules.json
+          # The path of the witness uses the same scene kits as the web
+          # VR scene (docs/SACRAMENTS_VR_SCENES.md).
+          for f in public/vr/models/scene/sacrament-*; do
+            cmp "$f" "godot/models/scene/$(basename "$f")"
+          done
+
+      # Budgets of the headset build on the source side: triangles per
+      # model (.glb and .gltf), the largest file and every exported file
+      # against scripts/godot/apk-budgets.json, with floors so a gate
+      # that finds nothing fails (docs/APK_REQUIREMENTS.md).
+      - name: Budgets of the headset build (source)
+        run: python3 scripts/godot/check_budgets.py --tree
+
+      - name: Import and test
+        working-directory: godot
+        run: |
+          "$GODOT" --headless --path . --import || true
+          # A GDScript parse error leaves Godot waiting instead of
+          # exiting; the timeout turns that into a red step.
+          timeout 900 "$GODOT" --headless --path . \
+            --script res://tests/run_tests.gd
+          timeout 600 "$GODOT" --headless --path . \
+            --script res://tests/run_hub_tests.gd
+
+      # The shaders are built at run time (the rim light assembles its
+      # own), so only a real render compiles them: every run is logged
+      # and a shader error turns the step red, not only a crash.  The
+      # rim probe then reads the band's pixels against its model.
+      - name: Proof frames at 3-120 m
+        working-directory: godot
+        run: |
+          set -o pipefail
+          sudo apt-get install -y -qq xvfb libgl1-mesa-dri >/dev/null
+          mkdir -p ../build/shots
+          for s in dive hub witness; do
+            xvfb-run -a -s "-screen 0 1280x720x24" "$GODOT" --path . \
+              --rendering-driver opengl3 "res://scenes/$s.tscn" \
+              -- --shots="$PWD/../build/shots" 2>&1 \
+              | tee "../build/shots/$s.log"
+          done
+          # Nine of the 99 locations, one per kind of shell and light and
+          # one with a drawing of the repos (the court-yard bench), each
+          # as entered, at the heart with its prompt read, and with the
+          # heart's panel open (TABOO 0.013 p. 7).
+          xvfb-run -a -s "-screen 0 1280x720x24" "$GODOT" --path . \
+            --rendering-driver opengl3 res://scenes/location.tscn \
+            -- --shots="$PWD/../build/shots" \
+            --locations=deacon-cell,forge,ichthys-pier,obitel-caravanserai,drowned-posad,sis-gate,zero-board,naos,court-yard 2>&1 \
+            | tee ../build/shots/location.log
+          timeout 300 xvfb-run -a -s "-screen 0 1280x720x24" "$GODOT" \
+            --path . --rendering-driver opengl3 --resolution 640x360 \
+            -s res://tests/rim_probe.gd 2>&1 | tee ../build/shots/rim.log
+          if grep -E "SHADER ERROR|Shader compilation failed" \
+              ../build/shots/*.log; then
+            echo "a shader failed to compile" >&2
+            exit 1
+          fi
+          ls ../build/shots
+
+      # Scene budgets of the headset build, rendered under Xvfb: draw
+      # calls over the whole frame (main view and every SubViewport),
+      # triangles, CPU heap, textures and SubViewports against the
+      # "scene" section of scripts/godot/apk-budgets.json.  The known
+      # breaches are exceptions there, each with its blocker, so a new
+      # regression turns the job red (TABOO 0.011 point 4).  Script time
+      # is not checked here: on a shared runner it does not reproduce,
+      # and the revisor measures it headless (docs/APK_REQUIREMENTS.md).
+      - name: Budgets of the headset scenes (rendered)
+        working-directory: godot
+        run: |
+          rc=0
+          for s in hub dive witness; do
+            timeout 600 xvfb-run -a -s "-screen 0 1280x720x24" \
+              "$GODOT" --path . --rendering-driver opengl3 \
+              -s res://tools/measure_budgets.gd -- --scene=$s --check \
+              || rc=1
+          done
+          # The 99 locations in the real location.tscn, four views each
+          # (door, both side walls, the heart's panel open), held to the
+          # same scene budgets with no exception (TABOO 0.011 item 4).
+          timeout 1200 xvfb-run -a -s "-screen 0 1280x720x24" \
+            "$GODOT" --path . --rendering-driver opengl3 \
+            -s res://tools/measure_locations.gd -- --check \
+            --out="$PWD/../build/locations-budgets.json" || rc=1
+          exit $rc
+
+      - name: Export Web (WebXR)
+        working-directory: godot
+        run: |
+          mkdir -p ../build/godot/web
+          "$GODOT" --headless --path . --export-release "Web" \
+            ../build/godot/web/index.html
+          ls -la ../build/godot/web
+
+      # The imported content as it ships, at the test stage: the Web
+      # pack uses the same filters and imports as the Android export
+      # (byte for byte the same pack in docs/APK_REQUIREMENTS.md), so
+      # content outside godot/art, models and data, and texture growth
+      # from import, are caught before the APK is built.
+      - name: Budgets of the headset build (imported pack)
+        run: python3 scripts/godot/check_budgets.py --pck build/godot/web/index.pck
+
+      # Files the game reads with FileAccess are not resources, so the
+      # export takes them only through include_filter; one missing path
+      # works in the editor and breaks in the headset.  The Android
+      # export uses the same filters, so the Web pack stands for both.
+      - name: Pack holds what the game reads
+        run: |
+          PCK=build/godot/web/index.pck
+          missing=0
+          for f in data/dialogue-trees.json data/issyk-kul-fish.json \
+              data/lake-objects-99.json data/gate-trials.json \
+              data/passions.json data/antagonist-manifest.json \
+              data/atlas-99.json \
+              data/bell-rules.json \
+              data/campaign-spine.json \
+              scenes/hub.tscn.remap \
+              scenes/dive.tscn.remap scenes/witness.tscn.remap; do
+            strings "$PCK" | grep -qF "$f" || { echo "missing: $f"; missing=1; }
+          done
+          for f in public/vr/models/scene/sacrament-*.json; do
+            n="models/scene/$(basename "$f")"
+            strings "$PCK" | grep -qF "$n" || { echo "missing: $n"; missing=1; }
+          done
+          exit $missing
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ludus-dive-web
+          path: build/godot/web
+          retention-days: 14
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ludus-dive-frames
+          path: build/shots
+          retention-days: 14
+
+  android:
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    # Writing a release needs contents: write; only main publishes one.
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Cache Godot
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/godot
+            ~/.local/share/godot/export_templates
+          key: godot-${{ env.GODOT_VERSION }}-android
+
+      - name: Install Godot and Android templates
+        run: scripts/godot/ci_setup.sh android
+
+      # The Meta OpenXR loader and manifest entries come from the
+      # vendors plugin (MIT); its binaries are fetched, not committed.
+      - name: Meta vendors plugin
+        run: |
+          curl -sSfL -o vendors.zip "https://github.com/GodotVR/godot_openxr_vendors/releases/download/${VENDORS_TAG}/godotopenxrvendorsaddon.zip"
+          unzip -oq vendors.zip -d vendors
+          cp -r vendors/asset/addons/godotopenxrvendors godot/addons/
+
+      # Interim until the repo secret exists (operator, 2026-09-30:
+      # "use any available secret for now").  Secrets of another repo
+      # cannot be read, and none of webtypicon2's is a keystore, so the
+      # first key made here is kept in the Actions cache and reused by
+      # every later build: a cache made on main is seen by all branches.
+      # The cache is evicted after 7 days without a build; then one new
+      # key is made and the headset needs one reinstall.
+      - name: Interim signing key from the cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.ludus-signing
+          key: ludus-debug-keystore-v1
+
+      - name: Android SDK packages and debug key
+        env:
+          KEYSTORE_B64: ${{ secrets.LUDUS_DEBUG_KEYSTORE_B64 }}
+        run: |
+          # The runner image ships the Android SDK; setup-android@v3
+          # failed on the retired "tools" package, so it is not used.
+          SDKM="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKM" --licenses >/dev/null || true
+          "$SDKM" "platform-tools" "build-tools;34.0.0" \
+            "platforms;android-34" >/dev/null
+          # One key for every build, so a new APK installs over the old
+          # one and keeps the saves (TABOO 0.01 point 3).  The key lives
+          # in the repo secret LUDUS_DEBUG_KEYSTORE_B64 (base64 of a
+          # keystore with alias androiddebugkey, password "android").
+          # Without it a throwaway key is made and the log says so.
+          if [ -n "$KEYSTORE_B64" ]; then
+            echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/debug.keystore"
+            echo "signing key: LUDUS_DEBUG_KEYSTORE_B64"
+          elif [ -f ~/.ludus-signing/debug.keystore ]; then
+            cp ~/.ludus-signing/debug.keystore "$RUNNER_TEMP/debug.keystore"
+            echo "signing key: interim key from the Actions cache"
+          else
+            echo "::warning::LUDUS_DEBUG_KEYSTORE_B64 is not set and the cache is empty: a new interim key is made and cached; later builds reuse it."
+            mkdir -p ~/.ludus-signing
+            keytool -genkeypair -v -keystore ~/.ludus-signing/debug.keystore \
+              -storepass android -keypass android -alias androiddebugkey \
+              -dname "CN=Ludus Debug,O=Ludus,C=KG" -keyalg RSA \
+              -keysize 2048 -validity 10000 >/dev/null
+            cp ~/.ludus-signing/debug.keystore "$RUNNER_TEMP/debug.keystore"
+          fi
+          # The certificate's fingerprint in the log shows whether two
+          # builds share one key (then the APK installs over the old one).
+          keytool -list -v -keystore "$RUNNER_TEMP/debug.keystore" \
+            -storepass android | grep -m1 "SHA256:"
+          mkdir -p ~/.config/godot
+          cat > ~/.config/godot/editor_settings-4.7.tres <<EOF
+          [gd_resource type="EditorSettings" format=3]
+
+          [resource]
+          export/android/android_sdk_path = "$ANDROID_HOME"
+          export/android/java_sdk_path = "$JAVA_HOME"
+          EOF
+          sed -i 's/^          //' ~/.config/godot/editor_settings-4.7.tres
+
+      # Every build gets a higher version code (the workflow's run
+      # number), so the headset accepts it as an update.
+      - name: Version from the run number
+        working-directory: godot
+        run: |
+          sed -i "s/^version\/code=.*/version\/code=${{ github.run_number }}/; s/^version\/name=.*/version\/name=\"0.1.${{ github.run_number }}\"/" export_presets.cfg
+          grep -E "^version/(code|name)=" export_presets.cfg
+
+      - name: Export Meta Quest APK
+        working-directory: godot
+        env:
+          GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ${{ runner.temp }}/debug.keystore
+          GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
+          GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD: android
+        run: |
+          "$GODOT" --headless --path . --import || true
+          mkdir -p ../build/godot
+          # The build template is installed in the same run as the
+          # export, as Godot's command line requires.
+          "$GODOT" --headless --path . --install-android-build-template \
+            --export-debug "Meta Quest" ../build/godot/ludus-dive-quest.apk
+          ls -la ../build/godot
+
+      - name: Check the APK is a Quest OpenXR app
+        run: |
+          AAPT=$(ls "$ANDROID_HOME"/build-tools/*/aapt | tail -1)
+          "$AAPT" dump badging build/godot/ludus-dive-quest.apk | head -5
+          "$AAPT" dump xmltree build/godot/ludus-dive-quest.apk \
+            AndroidManifest.xml > manifest.txt
+          grep -E "org.khronos.openxr|com.oculus|vr.headtracking" \
+            manifest.txt | head -10
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ludus-dive-quest-apk
+          path: build/godot/ludus-dive-quest.apk
+          retention-days: 30
+
+      # The built APK against its budgets: size, native libraries and
+      # their ABI, dex, content.  After the artifact upload, so an APK
+      # over budget can still be inspected; before the release, so it
+      # does not reach headset-latest (docs/APK_REQUIREMENTS.md).
+      - name: Budgets of the headset build (APK)
+        run: |
+          python3 scripts/godot/check_budgets.py \
+            --apk build/godot/ludus-dive-quest.apk
+
+      # From main the APK goes to the release "headset-latest", one link
+      # for the operator, with its SHA-256 (TABOO 0.01 point 4).
+      - name: Release headset-latest
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd build/godot
+          sha256sum ludus-dive-quest.apk > ludus-dive-quest.apk.sha256
+          cat ludus-dive-quest.apk.sha256
+          NOTES="Build ${{ github.run_number }} from ${GITHUB_SHA::7}. Sideload with Meta Quest Developer Hub, SideQuest or adb install -r. Ready to load into the headset; tested in the headset only when the operator says so."
+          if gh release view headset-latest >/dev/null 2>&1; then
+            gh release upload headset-latest ludus-dive-quest.apk \
+              ludus-dive-quest.apk.sha256 --clobber
+            gh release edit headset-latest --notes "$NOTES" --prerelease
+          else
+            gh release create headset-latest ludus-dive-quest.apk \
+              ludus-dive-quest.apk.sha256 --title "Ludus: headset build" \
+              --notes "$NOTES" --prerelease --target "$GITHUB_SHA"
+          fi

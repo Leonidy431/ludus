@@ -1,0 +1,486 @@
+{
+  "purpose": "Display table: the Russian form of every source the campaign of missions and the gate thresholds show as \"Источник: ...\". The canonical data keeps its English sources (it mirrors the webtypicon2 game source); only the panel shows these labels, and a missing key falls back to the original string.",
+  "convention": "Scripture: Synodal book abbreviations, Psalms by the LXX (Synodal) numbering with the Hebrew number kept where the source gives it; the Fathers by their established Russian titles. A label never changes a book, chapter, verse, step or canon number and never adds an author the source does not name.",
+  "check": "Entries with \"check\": true go to the chorus (TABOO 0.37, the patrologist) before release; \"why\" says what to confirm.",
+  "labels": {
+    "Ladder, step 3": {
+      "ru": "Лествица, слово 3"
+    },
+    "Deuteronomy 22:1-3": {
+      "ru": "Втор. 22:1–3"
+    },
+    "Ladder, step 4": {
+      "ru": "Лествица, слово 4"
+    },
+    "Heb 13:2": {
+      "ru": "Евр. 13:2"
+    },
+    "Mt 25:35; Heb 13:2; Prov 19:17": {
+      "ru": "Мф. 25:35; Евр. 13:2; Притч. 19:17"
+    },
+    "Prov 11:1; Lev 19:35-36": {
+      "ru": "Притч. 11:1; Лев. 19:35–36"
+    },
+    "Lk 12:15-21; St Basil the Great, Homily on the words 'I will pull down my barns'": {
+      "ru": "Лк. 12:15–21; свт. Василий Великий, Беседа на слова «Разорю житницы моя»"
+    },
+    "Lk 19:1-10; Lk 16:9; Ladder, step 17 (on non-possessiveness)": {
+      "ru": "Лк. 19:1–10; Лк. 16:9; Лествица, слово 17 (о нестяжании)"
+    },
+    "Psalm 103:24-25 (LXX; 104 in Hebrew numbering)": {
+      "ru": "Пс. 103:24–25 (по LXX; 104 по еврейскому счёту)"
+    },
+    "Proverbs 11:1": {
+      "ru": "Притч. 11:1"
+    },
+    "Ladder, steps 16-17": {
+      "ru": "Лествица, слова 16–17"
+    },
+    "Ladder, step 14": {
+      "ru": "Лествица, слово 14"
+    },
+    "Gen 18:1-8": {
+      "ru": "Быт. 18:1–8"
+    },
+    "Rom 12:13; 1 Pet 4:9": {
+      "ru": "Рим. 12:13; 1 Пет. 4:9"
+    },
+    "Heb 13:1-2": {
+      "ru": "Евр. 13:1–2"
+    },
+    "Lk 10:33-35": {
+      "ru": "Лк. 10:33–35"
+    },
+    "Mt 25:35, 40": {
+      "ru": "Мф. 25:35, 40"
+    },
+    "2 Cor 7:10; St John Cassian, Institutes, book 9 (on the spirit of dejection); St John Climacus, The Ladder, step 7 (on joy-making mourning, the godly side of sorrow); Evagrius, Praktikos (on the eight thoughts: sadness)": {
+      "ru": "2 Кор. 7:10; прп. Иоанн Кассиан, «О постановлениях киновитян», кн. 9 (о духе печали); прп. Иоанн Лествичник, Лествица, слово 7 (о радостотворном плаче; печаль по Богу); Евагрий, «Практик» (о восьми помыслах: печаль)"
+    },
+    "Mt 25:40; Heb 13:2": {
+      "ru": "Мф. 25:40; Евр. 13:2"
+    },
+    "Ladder, step 22; Mt 6:3-4": {
+      "ru": "Лествица, слово 22; Мф. 6:3–4"
+    },
+    "Luke 16:10": {
+      "ru": "Лк. 16:10"
+    },
+    "Exodus 23:1": {
+      "ru": "Исх. 23:1"
+    },
+    "Deuteronomy 19:15": {
+      "ru": "Втор. 19:15"
+    },
+    "Luke 12:2": {
+      "ru": "Лк. 12:2"
+    },
+    "John Climacus, The Ladder, steps 16-17": {
+      "ru": "прп. Иоанн Лествичник, Лествица, слова 16–17"
+    },
+    "Proverbs 11:1; Leviticus 19:35-36; Ecclesiastes 5:10 (Synodal 5:9); 1 Timothy 6:6-10": {
+      "ru": "Притч. 11:1; Лев. 19:35–36; Еккл. 5:10 (в Синодальном переводе 5:9); 1 Тим. 6:6–10"
+    },
+    "Job 13:7; Gregory the Great, Dialogues, Book I, prologue": {
+      "ru": "Иов 13:7; свт. Григорий Двоеслов, «Собеседования», кн. I, пролог"
+    },
+    "Ladder, steps 8-9": {
+      "ru": "Лествица, слова 8–9"
+    },
+    "Prov 16:11": {
+      "ru": "Притч. 16:11"
+    },
+    "Prov 22:28; Deut 19:14": {
+      "ru": "Притч. 22:28; Втор. 19:14"
+    },
+    "Lk 3:12-13; Rom 13:7; Mt 17:24-27": {
+      "ru": "Лк. 3:12–13; Рим. 13:7; Мф. 17:24–27"
+    },
+    "Acts 10:4; Acts 8:18-20; 1 Tim 2:1": {
+      "ru": "Деян. 10:4; Деян. 8:18–20; 1 Тим. 2:1"
+    },
+    "Ex 23:8; Lk 6:35": {
+      "ru": "Исх. 23:8; Лк. 6:35"
+    },
+    "Rom 13:7; Synaxarion, 20 September (St Michael of Chernigov); William of Rubruck, Itinerarium (on the custom of the yurt threshold)": {
+      "ru": "Рим. 13:7; Синаксарь, 20 сентября (блгв. кн. Михаил Черниговский); Гильом де Рубрук, «Путешествие в восточные страны» (об обычае порога юрты)",
+      "check": true,
+      "why": "Title follows the Russian edition of 1957 («Путешествие в восточные страны»); confirm."
+    },
+    "Matt 22:21; Acts 8:20": {
+      "ru": "Мф. 22:21; Деян. 8:20"
+    },
+    "1 Tim 2:1-2": {
+      "ru": "1 Тим. 2:1–2"
+    },
+    "Prov 29:5": {
+      "ru": "Притч. 29:5"
+    },
+    "Matt 22:21; 1 Tim 2:1-2": {
+      "ru": "Мф. 22:21; 1 Тим. 2:1–2"
+    },
+    "Acts 2:42-46; Extended Christian Catechism of St Philaret, ninth article of the Creed (on the Church)": {
+      "ru": "Деян. 2:42–46; Пространный христианский катехизис свт. Филарета, девятый член Символа веры (о Церкви)"
+    },
+    "1 Corinthians 10:17; St John Chrysostom, Homilies on First Corinthians, Homily 24": {
+      "ru": "1 Кор. 10:17; свт. Иоанн Златоуст, Беседы на Первое послание к Коринфянам, беседа 24"
+    },
+    "Matthew 5:23-24; St Cyril of Jerusalem, Mystagogical Catecheses 5.3 (on the kiss of peace)": {
+      "ru": "Мф. 5:23–24; свт. Кирилл Иерусалимский, Тайноводственные поучения, 5.3 (о лобзании мира)"
+    },
+    "Acts 2:42; St Cyril of Jerusalem, Mystagogical Catecheses 1.1 (the mysteries explained to those who have already taken part)": {
+      "ru": "Деян. 2:42; свт. Кирилл Иерусалимский, Тайноводственные поучения, 1.1 (таинства изъясняются уже приобщившимся)",
+      "check": true,
+      "why": "The paraphrase of the section's content needs confirming."
+    },
+    "St John Climacus, The Ladder of Divine Ascent, steps 16-17 (on love of money and on non-possessiveness); Matthew 6:3-4, 6:34": {
+      "ru": "прп. Иоанн Лествичник, Лествица, слова 16–17 (о сребролюбии и о нестяжании); Мф. 6:3–4, 6:34"
+    },
+    "Matthew 13:33": {
+      "ru": "Мф. 13:33"
+    },
+    "St John of Damascus, Treatises on the Divine Images": {
+      "ru": "прп. Иоанн Дамаскин, «Три защитительных слова против порицающих святые иконы»"
+    },
+    "Colossians 3:16; Synaxarion, 7 September (commemoration of St Kassia)": {
+      "ru": "Кол. 3:16; Синаксарь, 7 сентября (память прп. Кассии)"
+    },
+    "St Basil the Great, Homily on Psalm 1; Colossians 3:16": {
+      "ru": "свт. Василий Великий, Беседа на Псалом 1; Кол. 3:16"
+    },
+    "Luke 7:36-50; Matthew 26:6-13; The Ladder of Divine Ascent, Step 7 (on mourning)": {
+      "ru": "Лк. 7:36–50; Мф. 26:6–13; Лествица, слово 7 (о плаче)"
+    },
+    "Romans 15:6; The Ladder of Divine Ascent, Step 22 (on vainglory)": {
+      "ru": "Рим. 15:6; Лествица, слово 22 (о тщеславии)"
+    },
+    "1 Corinthians 14:15, 14:19; Acts 2:4-11; Matthew 5:15; Synaxarion, 11 May (Ss Cyril and Methodius)": {
+      "ru": "1 Кор. 14:15, 14:19; Деян. 2:4–11; Мф. 5:15; Синаксарь, 11 мая (равноапп. Кирилл и Мефодий)"
+    },
+    "Kassia, Gnomic verses (epigrams); Proverbs 26:28; Matthew 6:1": {
+      "ru": "прп. Кассия, гномические стихи (эпиграммы); Притч. 26:28; Мф. 6:1",
+      "check": true,
+      "why": "No settled Russian title for Kassia's gnomic verses; confirm the wording."
+    },
+    "Exodus 31:1-5 (Bezalel filled with the Spirit for craftsmanship)": {
+      "ru": "Исх. 31:1–5 (Веселиил, исполненный Духа для искусной работы)"
+    },
+    "Dionysius of Fourna, Hermeneia (The Painter's Manual); Genesis 2:7; 2 Corinthians 3:18": {
+      "ru": "Дионисий Фурноаграфиот, «Ерминия» (Наставление в живописном искусстве); Быт. 2:7; 2 Кор. 3:18",
+      "check": true,
+      "why": "Russian editions: «Ерминия, или Наставление в живописном искусстве» (1868); confirm the short form."
+    },
+    "Sirach 38:27-34; Stoglav Council (1551), ch. 43 (on iconographers)": {
+      "ru": "Сир. 38:27–34; Стоглавый собор (1551), гл. 43 (об иконописцах)",
+      "check": true,
+      "why": "The verses follow the English numbering the source cites; the Synodal Sirach 38 is offset by about one verse (English 38:24 is Synodal 38:25), so the passage on craftsmen is likely Сир. 38:28–39 there. Confirm the Synodal range before release."
+    },
+    "St Basil the Great, On the Holy Spirit 18.45; Seventh Ecumenical Council (Nicaea II, 787), Definition (Horos); St John of Damascus, Treatises on the Divine Images": {
+      "ru": "свт. Василий Великий, «О Святом Духе», 18.45; VII Вселенский собор (II Никейский, 787), орос; прп. Иоанн Дамаскин, «Три защитительных слова против порицающих святые иконы»"
+    },
+    "St John of Damascus, Treatises on the Divine Images; Deuteronomy 18:10-12": {
+      "ru": "прп. Иоанн Дамаскин, «Три защитительных слова против порицающих святые иконы»; Втор. 18:10–12"
+    },
+    "St John Climacus, The Ladder of Divine Ascent, Step 22 (on vainglory); Matthew 6:1": {
+      "ru": "прп. Иоанн Лествичник, Лествица, слово 22 (о тщеславии); Мф. 6:1"
+    },
+    "Palladius, Lausiac History 19 (Moses the Ethiopian); Synaxarion, 28 August": {
+      "ru": "Палладий, «Лавсаик», 19 (Моисей Эфиоплянин); Синаксарь, 28 августа"
+    },
+    "Palladius, Lausiac History 19; Apophthegmata Patrum (alphabetical collection), Moses 1; 2 Kings (4 Kingdoms LXX) 6:16": {
+      "ru": "Палладий, «Лавсаик», 19; Достопамятные сказания (Азбучный патерик), авва Моисей, 1; 4 Цар. 6:16 (в еврейском счёте — 2-я книга Царей)",
+      "check": true,
+      "why": "Book numbering note (2 Kings = 4 Цар.) needs confirming."
+    },
+    "Apophthegmata Patrum (alphabetical collection), Moses 2; Matthew 7:1-5": {
+      "ru": "Достопамятные сказания (Азбучный патерик), авва Моисей, 2; Мф. 7:1–5"
+    },
+    "The Ladder of Divine Ascent, step 8; John Cassian, Institutes, book 8 (on anger); Palladius, Lausiac History 19 (carrying water to the brothers' cells); Matthew 5:22-24": {
+      "ru": "Лествица, слово 8; прп. Иоанн Кассиан, «О постановлениях киновитян», кн. 8 (о гневе); Палладий, «Лавсаик», 19 (как он носил воду в кельи братии); Мф. 5:22–24"
+    },
+    "Apophthegmata Patrum (alphabetical collection), Moses 6; Matthew 6:3-4": {
+      "ru": "Достопамятные сказания (Азбучный патерик), авва Моисей, 6; Мф. 6:3–4"
+    },
+    "Apophthegmata Patrum (alphabetical collection), Moses (the barbarians' raid on Scetis); Matthew 26:52; Synaxarion, 28 August": {
+      "ru": "Достопамятные сказания (Азбучный патерик), авва Моисей (набег варваров на Скит); Мф. 26:52; Синаксарь, 28 августа"
+    },
+    "Psalm 45:11 (LXX; 46:10 in Hebrew numbering); Apophthegmata Patrum, systematic collection, book On stillness (hesychia): the saying of the three friends and the basin of water.": {
+      "ru": "Пс. 45:11 (по LXX; 46:10 по еврейскому счёту); Древний патерик (систематическое собрание), глава «О безмолвии» (исихия): сказание о трёх друзьях и сосуде с водой.",
+      "check": true,
+      "why": "Chapter title of the Russian Древний патерик (the systematic collection; the chapter on stillness is its second) and the wording of the saying need confirming."
+    },
+    "Apophthegmata Patrum, systematic collection, book On stillness (hesychia): the saying of the three friends and the basin of water; Matthew 6:6.": {
+      "ru": "Древний патерик (систематическое собрание), глава «О безмолвии» (исихия): сказание о трёх друзьях и сосуде с водой; Мф. 6:6.",
+      "check": true,
+      "why": "Chapter title of the Russian Древний патерик (the systematic collection; the chapter on stillness is its second) and the wording of the saying need confirming."
+    },
+    "Proverbs 4:23; Hesychius of Sinai, On Watchfulness and Holiness (Philokalia, vol. 1).": {
+      "ru": "Притч. 4:23; Исихий Синаит, «О трезвении и добродетели» (Добротолюбие; в англ. изд. т. 1).",
+      "check": true,
+      "why": "The volume is marked as the English Philokalia's, which the source cites; the Russian Dobrotolyubie of St Theophan seems to hold him in volume 2 as «прп. Исихий Иерусалимский», «Душеполезное слово о трезвении и добродетели». Confirm the Russian volume, name and title, then cite the Russian edition."
+    },
+    "Luke 18:38; Luke 18:13; John Climacus, The Ladder of Divine Ascent, Step 27 (on stillness: the remembrance of Jesus joined to the breath).": {
+      "ru": "Лк. 18:38; Лк. 18:13; прп. Иоанн Лествичник, Лествица, слово 27 (о безмолвии: память Иисусова да соединится с дыханием)."
+    },
+    "Apophthegmata Patrum, alphabetical collection, Moses 6 (retold by the elder as the old men's word, not quoted or signed).": {
+      "ru": "Достопамятные сказания (Азбучный патерик), авва Моисей, 6 (старец пересказывает как слово старцев, без цитаты и подписи)."
+    },
+    "John 20:22-23; 1 John 1:9; John Climacus, The Ladder of Divine Ascent, Step 4.": {
+      "ru": "Ин. 20:22–23; 1 Ин. 1:9; прп. Иоанн Лествичник, Лествица, слово 4."
+    },
+    "Psalm 90:6 (LXX; 91:6 in Hebrew numbering); Evagrius Ponticus, Praktikos, ch. 12; John Climacus, The Ladder of Divine Ascent, Step 13; Apophthegmata Patrum, alphabetical collection, Anthony the Great 1.": {
+      "ru": "Пс. 90:6 (по LXX; 91:6 по еврейскому счёту); Евагрий Понтийский, «Практик», гл. 12; прп. Иоанн Лествичник, Лествица, слово 13; Достопамятные сказания (Азбучный патерик), авва Антоний Великий, 1."
+    },
+    "John Climacus, The Ladder of Divine Ascent, Step 22; Matthew 6:1-6": {
+      "ru": "прп. Иоанн Лествичник, Лествица, слово 22; Мф. 6:1–6"
+    },
+    "St Photius, Bibliotheca (Myriobiblon), dedicatory letter to Tarasius": {
+      "ru": "свт. Фотий, «Библиотека» («Мириобиблион»), посвятительное письмо Тарасию"
+    },
+    "St Basil the Great, Address to Young Men on the Right Use of Greek Literature (image of the bee); St Photius, Bibliotheca (critical reviews of secular works)": {
+      "ru": "свт. Василий Великий, «К юношам о том, как пользоваться языческими сочинениями» (образ пчелы); свт. Фотий, «Библиотека» (разборы светских сочинений)"
+    },
+    "Acts 2:6-8; Life of Constantine-Cyril (Vita Constantini); St Photius, Letter to Boris-Michael of Bulgaria": {
+      "ru": "Деян. 2:6–8; Пространное житие Константина-Кирилла; свт. Фотий, Послание к Борису-Михаилу, князю болгарскому",
+      "check": true,
+      "why": "Russian editions title it «Послание к Михаилу, князю Болгарии»; confirm the wording."
+    },
+    "1 Peter 5:2-3; Synaxarion, February 6 (St Photius)": {
+      "ru": "1 Пет. 5:2–3; Синаксарь, 6 февраля (свт. Фотий)"
+    },
+    "James 5:16; 1 John 1:9; Extended Christian Catechism of St Philaret (on the Mystery of Repentance); Nomocanon in XIV Titles (recension of 883, traditionally linked to Photius)": {
+      "ru": "Иак. 5:16; 1 Ин. 1:9; Пространный христианский катехизис свт. Филарета (о таинстве покаяния); Номоканон в XIV титулах (редакция 883 г., по преданию связанная с Фотием)",
+      "check": true,
+      "why": "The dating note of the recension needs confirming."
+    },
+    "John 15:26; Council of Ephesus (431), canon 7; St Photius, Mystagogy of the Holy Spirit; St Photius, Encyclical Letter to the Eastern Patriarchs (867)": {
+      "ru": "Ин. 15:26; Ефесский собор (431), правило 7; свт. Фотий, «Тайноводство о Святом Духе»; свт. Фотий, «Окружное послание к восточным архиерейским престолам» (867)",
+      "check": true,
+      "why": "Russian editions also title it «О тайноводстве Святого Духа»; confirm which title to use. The Encyclical is given by its established Russian title «Окружное послание к восточным архиерейским престолам»; confirm it too."
+    },
+    "St John Climacus, The Ladder, Step 22 (On vainglory); Matthew 6:1": {
+      "ru": "прп. Иоанн Лествичник, Лествица, слово 22 (о тщеславии); Мф. 6:1"
+    },
+    "Lk 5:5": {
+      "ru": "Лк. 5:5"
+    },
+    "Lk 5:4-8": {
+      "ru": "Лк. 5:4–8"
+    },
+    "Ps 103:24-25 (LXX; Ps 104:24-25); Ps 45:11 (LXX; Ps 46:10); Mk 4:39; Ladder, step 27": {
+      "ru": "Пс. 103:24–25 (по LXX; Пс. 104:24–25 по еврейскому счёту); Пс. 45:11 (по LXX; Пс. 46:10 по еврейскому счёту); Мк. 4:39; Лествица, слово 27"
+    },
+    "St Augustine, The City of God XVIII.23": {
+      "ru": "блж. Августин, «О граде Божием», XVIII.23"
+    },
+    "Prov 20:17": {
+      "ru": "Притч. 20:17"
+    },
+    "1 Jn 1:9; Jas 5:16; Jn 20:22-23; Extended Catechism of St Philaret, on the Mystery of Penance; Ladder, step 4": {
+      "ru": "1 Ин. 1:9; Иак. 5:16; Ин. 20:22–23; Пространный христианский катехизис свт. Филарета, о таинстве покаяния; Лествица, слово 4"
+    },
+    "Ladder, steps 16-17; 1 Tim 6:6-10": {
+      "ru": "Лествица, слова 16–17; 1 Тим. 6:6–10"
+    },
+    "Apophthegmata Patrum (alphabetical collection), John the Dwarf (handiwork of rope and baskets in the cell)": {
+      "ru": "Достопамятные сказания (Азбучный патерик), авва Иоанн Колов (рукоделие в келье: верёвки и корзины)"
+    },
+    "Apophthegmata Patrum (alphabetical collection), John the Dwarf (the rope for two baskets plaited into one)": {
+      "ru": "Достопамятные сказания (Азбучный патерик), авва Иоанн Колов (верёвка на две корзины, сплетённая в одну)"
+    },
+    "Apophthegmata Patrum (alphabetical collection), John the Dwarf 1; 1 Corinthians 3:6-7": {
+      "ru": "Достопамятные сказания (Азбучный патерик), авва Иоанн Колов, 1; 1 Кор. 3:6–7"
+    },
+    "Apophthegmata Patrum (alphabetical collection), John the Dwarf (the king besieging a city); The Ladder of Divine Ascent, step 14": {
+      "ru": "Достопамятные сказания (Азбучный патерик), авва Иоанн Колов (царь, осаждающий город); Лествица, слово 14"
+    },
+    "The Ladder of Divine Ascent, step 22; Matthew 6:1": {
+      "ru": "Лествица, слово 22; Мф. 6:1"
+    },
+    "Evagrius Ponticus, Praktikos 12; The Ladder of Divine Ascent, step 13; Apophthegmata Patrum, Antony the Great 1": {
+      "ru": "Евагрий Понтийский, «Практик», гл. 12; Лествица, слово 13; Достопамятные сказания (Азбучный патерик), авва Антоний Великий, 1"
+    },
+    "Sir 38:1-4": {
+      "ru": "Сир. 38:1–4"
+    },
+    "Mt 9:12; Jas 5:14-16; Ladder, step 5 (repentance as renewal of baptism)": {
+      "ru": "Мф. 9:12; Иак. 5:14–16; Лествица, слово 5 (покаяние как обновление крещения)"
+    },
+    "Ladder, step 26; Apophthegmata Patrum, Anthony the Great 13": {
+      "ru": "Лествица, слово 26; Достопамятные сказания (Азбучный патерик), авва Антоний Великий, 13"
+    },
+    "Synaxarion, 1 November (Unmercenaries Cosmas and Damian of Asia); Mt 10:8": {
+      "ru": "Синаксарь, 1 ноября (бессребреники Косма и Дамиан Асийские); Мф. 10:8"
+    },
+    "Prov 27:6; Sir 38:4": {
+      "ru": "Притч. 27:6; Сир. 38:4"
+    },
+    "Romans 12:18": {
+      "ru": "Рим. 12:18"
+    },
+    "Ezek 33:2-6; Mk 13:37": {
+      "ru": "Иез. 33:2–6; Мк. 13:37"
+    },
+    "Mt 26:52; Apostolic Canon 83": {
+      "ru": "Мф. 26:52; Апостольское правило 83"
+    },
+    "Ps 126:1 (LXX; Ps 127:1 Hebrew)": {
+      "ru": "Пс. 126:1 (по LXX; Пс. 127:1 по еврейскому счёту)"
+    },
+    "Ps 129:6 (LXX; Ps 130:6 Hebrew); Ladder, step 13 (on despondency)": {
+      "ru": "Пс. 129:6 (по LXX; Пс. 130:6 по еврейскому счёту); Лествица, слово 13 (об унынии)"
+    },
+    "Mt 5:44; Rom 12:21; Is 2:4": {
+      "ru": "Мф. 5:44; Рим. 12:21; Ис. 2:4"
+    },
+    "Gregory of Nyssa, Life of Macrina (her bread-making for her mother; her mother living on equal terms with the maidservants); Synaxarion, 19 July (St Macrina)": {
+      "ru": "свт. Григорий Нисский, «Жизнь святой Макрины» (она пекла хлеб для матери; мать жила наравне со служанками); Синаксарь, 19 июля (прп. Макрина)"
+    },
+    "Gregory of Nyssa, Life of Macrina (account of her upbringing); Deut 6:6-7": {
+      "ru": "свт. Григорий Нисский, «Жизнь святой Макрины» (о её воспитании); Втор. 6:6–7"
+    },
+    "Gregory of Nyssa, On the Soul and Resurrection (opening); 1 Thess 4:13; 2 Cor 7:10; Evagrius, Praktikos (on sadness); John Cassian, Institutes, Book IX; John Climacus, The Ladder, Step 7 (joy-making mourning)": {
+      "ru": "свт. Григорий Нисский, «О душе и воскресении» (начало); 1 Фес. 4:13; 2 Кор. 7:10; Евагрий, «Практик» (о печали); прп. Иоанн Кассиан, «О постановлениях киновитян», кн. IX; прп. Иоанн Лествичник, Лествица, слово 7 (о радостотворном плаче)"
+    },
+    "Gregory of Nyssa, On the Soul and Resurrection; Longer Catechism of St Philaret (on article 11 of the Creed)": {
+      "ru": "свт. Григорий Нисский, «О душе и воскресении»; Пространный христианский катехизис свт. Филарета (об 11-м члене Символа веры)"
+    },
+    "Gregory of Nyssa, Life of Macrina (Basil's return from the schools); 1 Cor 8:1": {
+      "ru": "свт. Григорий Нисский, «Жизнь святой Макрины» (возвращение Василия из училищ); 1 Кор. 8:1"
+    },
+    "Sir 15:14; Gregory of Nyssa, Catechetical Oration (on the freedom of the human being); Gregory of Nyssa, Life of Macrina (her life on equal terms with the maidservants as example)": {
+      "ru": "Сир. 15:14; свт. Григорий Нисский, «Большое огласительное слово» (о свободе человека); свт. Григорий Нисский, «Жизнь святой Макрины» (её жизнь наравне со служанками как пример)"
+    },
+    "Apophthegmata Patrum, alphabetical collection, Antony the Great 1": {
+      "ru": "Достопамятные сказания (Азбучный патерик), авва Антоний Великий, 1"
+    },
+    "The Ladder of Divine Ascent, step 27 (on stillness); Psalm 46:10 (45:11 LXX)": {
+      "ru": "Лествица, слово 27 (о безмолвии); Пс. 45:11 (по LXX; 46:10 по еврейскому счёту)"
+    },
+    "Ephesians 2:8-10; Extended Christian Catechism of St Philaret": {
+      "ru": "Еф. 2:8–10; Пространный христианский катехизис свт. Филарета"
+    },
+    "Luke 8:15; The Ladder of Divine Ascent, step 1 (on renunciation and beginning)": {
+      "ru": "Лк. 8:15; Лествица, слово 1 (об отречении и начале пути)"
+    },
+    "2 Corinthians 11:14; The Ladder of Divine Ascent, step 3 (on dreams) and step 22 (on vainglory)": {
+      "ru": "2 Кор. 11:14; Лествица, слово 3 (о снах) и слово 22 (о тщеславии)"
+    },
+    "St Gregory Palamas, Triads in Defence of the Holy Hesychasts (on the divine light); Matthew 5:8; Matthew 25:1-13": {
+      "ru": "свт. Григорий Палама, «Триады в защиту священнобезмолвствующих» (о Божественном свете); Мф. 5:8; Мф. 25:1–13"
+    },
+    "St Basil the Great, Address to Young Men on the Right Use of Greek Literature, chapter 4": {
+      "ru": "свт. Василий Великий, «К юношам о том, как пользоваться языческими сочинениями», гл. 4"
+    },
+    "The Ladder of Divine Ascent, step 23 (on pride); 1 Corinthians 4:7": {
+      "ru": "Лествица, слово 23 (о гордости); 1 Кор. 4:7"
+    },
+    "Psalm 89:4 (LXX; 90:4 in Hebrew numbering)": {
+      "ru": "Пс. 89:4 (по LXX; 90:4 по еврейскому счёту)"
+    },
+    "Evagrius, Praktikos 7": {
+      "ru": "Евагрий, «Практик», гл. 7"
+    },
+    "Ladder, step 15": {
+      "ru": "Лествица, слово 15"
+    },
+    "Evagrius, Praktikos 8": {
+      "ru": "Евагрий, «Практик», гл. 8"
+    },
+    "Evagrius, Praktikos 9": {
+      "ru": "Евагрий, «Практик», гл. 9"
+    },
+    "Ladder, step 7": {
+      "ru": "Лествица, слово 7"
+    },
+    "Evagrius, Praktikos 10": {
+      "ru": "Евагрий, «Практик», гл. 10"
+    },
+    "Ladder, step 8": {
+      "ru": "Лествица, слово 8"
+    },
+    "Evagrius, Praktikos 11": {
+      "ru": "Евагрий, «Практик», гл. 11"
+    },
+    "Ladder, step 13": {
+      "ru": "Лествица, слово 13"
+    },
+    "Evagrius, Praktikos 12": {
+      "ru": "Евагрий, «Практик», гл. 12"
+    },
+    "Ladder, step 22": {
+      "ru": "Лествица, слово 22"
+    },
+    "Evagrius, Praktikos 13": {
+      "ru": "Евагрий, «Практик», гл. 13"
+    },
+    "Ladder, step 23": {
+      "ru": "Лествица, слово 23"
+    },
+    "Evagrius, Praktikos 14": {
+      "ru": "Евагрий, «Практик», гл. 14"
+    },
+    "Matthew 7:24-27": {
+      "ru": "Мф. 7:24–27"
+    },
+    "Matthew 7:26-27": {
+      "ru": "Мф. 7:26–27"
+    },
+    "Matthew 7:24-25": {
+      "ru": "Мф. 7:24–25"
+    },
+    "Psalm 132:1 (LXX; 133:1 in Hebrew numbering); Acts 2:42": {
+      "ru": "Пс. 132:1 (по LXX; 133:1 по еврейскому счёту); Деян. 2:42"
+    },
+    "Psalm 132:1 (LXX; 133:1 in Hebrew numbering)": {
+      "ru": "Пс. 132:1 (по LXX; 133:1 по еврейскому счёту)"
+    },
+    "Matthew 18:20": {
+      "ru": "Мф. 18:20"
+    },
+    "Matthew 6:16-18": {
+      "ru": "Мф. 6:16–18"
+    },
+    "Apophthegmata Patrum, alphabetical collection, John the Dwarf 1": {
+      "ru": "Достопамятные сказания (Азбучный патерик), авва Иоанн Колов, 1"
+    },
+    "Matthew 6:17-18": {
+      "ru": "Мф. 6:17–18"
+    },
+    "Ladder, step 27; Psalm 45:11 (LXX; 46:10 in Hebrew numbering)": {
+      "ru": "Лествица, слово 27; Пс. 45:11 (по LXX; 46:10 по еврейскому счёту)"
+    },
+    "Apophthegmata Patrum, systematic collection, book On stillness (hesychia)": {
+      "ru": "Древний патерик (систематическое собрание), глава «О безмолвии» (исихия)",
+      "check": true,
+      "why": "Chapter title of the Russian Древний патерик (the systematic collection; the chapter on stillness is its second) and the wording of the saying need confirming."
+    },
+    "Ladder, step 27": {
+      "ru": "Лествица, слово 27"
+    },
+    "Matthew 17:1-8; Palamas, Homilies on the Transfiguration": {
+      "ru": "Мф. 17:1–8; свт. Григорий Палама, Беседы на Преображение"
+    },
+    "Ladder, step 26": {
+      "ru": "Лествица, слово 26"
+    },
+    "Palamas, Homilies on the Transfiguration; Triads": {
+      "ru": "свт. Григорий Палама, Беседы на Преображение; «Триады»"
+    },
+    "Mystical Theology, chapter 1; Exodus 20:21": {
+      "ru": "«О мистическом богословии», гл. 1; Исх. 20:21",
+      "check": true,
+      "why": "The source names no author; the label keeps it that way (Dionysius the Areopagite is not added)."
+    },
+    "Life of Moses, book II": {
+      "ru": "«О жизни Моисея», кн. II",
+      "check": true,
+      "why": "The source names no author; the label keeps it that way (St Gregory of Nyssa is not added)."
+    },
+    "Mystical Theology, chapter 1": {
+      "ru": "«О мистическом богословии», гл. 1",
+      "check": true,
+      "why": "The source names no author; the label keeps it that way (Dionysius the Areopagite is not added)."
+    }
+  }
+}

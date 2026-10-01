@@ -35,7 +35,9 @@ PASSIONS = ('gluttony', 'lust', 'avarice', 'anger', 'sadness', 'acedia',
 # Words in the source path that name the passion outright.  A token
 # matches when it starts with the word, so "fireball" matches "fire".
 PASSION_WORDS = [
-    ('avarice', ('coin', 'gold', 'treasure', 'money', 'dollar')),
+    # A mimic is a treasure chest that bites: the hoard that devours the
+    # one who hoards it, the very image of love of money (Ladder 16).
+    ('avarice', ('coin', 'gold', 'treasure', 'money', 'dollar', 'mimic')),
     ('anger', ('fire', 'flame', 'burn', 'lava')),
     ('gluttony', ('food', 'potion', 'meat', 'bread', 'flask')),
     ('pride', ('crown', 'throne')),
@@ -509,13 +511,39 @@ def shape_acedia(mask, st, s):
 
 
 def shape_vainglory(mask, st, s):
-    """Vainglory radiates thin rays and wears a counterfeit halo."""
-    core = max(0.35, 0.65 - 0.15 * (s - 1))
-    out = _rays(mask, st, 12, 0.2, 1.1, 0.05 * s, s, core)
-    cx, cy, radius, _ = _centre(mask)
-    r = min(radius * 0.85, CANVAS / 2 - 4)
-    ImageDraw.Draw(out).ellipse([cx - r, cy - r, cx + r, cy + r],
-                                outline=255, width=6 + 4 * (s - 1))
+    """Vainglory spreads a fan upward, each quill tipped with an eye.
+
+    It does its work so that it is seen (Ladder 22): the form shrinks
+    and displays a fan of quills over itself, and the round tips are
+    the eyes of the onlookers it lives for.  The earlier form wore a
+    ring round the whole body; a ring round a figure reads as a halo in
+    any technique (CLAUDE.md TABOO 0.35 rule 7), so it was removed.
+    """
+    core = max(0.3, 0.55 - 0.12 * (s - 1))
+    cx, cy, radius, box = _centre(mask)
+    out = _scale(mask, core)
+    # The shrunk core sits low in the old box, so the fan has room above.
+    low = (box[3] - cy) * (1 - core) * 0.8
+    out = ImageChops.offset(out, 0, round(low))
+    base_y = cy + low
+    draw = ImageDraw.Draw(out)
+    count = 7
+    for k in range(count):
+        # Quills spread over the upper half only, from -160 to -20 deg.
+        a = math.radians(-160 + 140 * (k + 0.5) / count
+                         + st.uniform(-4, 4))
+        tip = min(radius * (0.95 + 0.1 * (s - 1)) * st.uniform(0.9, 1.0),
+                  base_y - 12)
+        half = 0.07 * s
+
+        def at(r, angle):
+            return (cx + r * math.cos(angle), base_y + r * math.sin(angle))
+
+        draw.polygon([at(radius * core * 0.4, a - half), at(tip, a),
+                      at(radius * core * 0.4, a + half)], fill=255)
+        ex, ey = at(tip, a)
+        e = 6 + 2 * (s - 1)
+        draw.ellipse([ex - e, ey - e, ex + e, ey + e], fill=255)
     return out
 
 

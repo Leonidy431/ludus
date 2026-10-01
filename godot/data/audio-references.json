@@ -1,0 +1,191 @@
+{
+ "pass_id": "audio-299-2026-09-30-r2",
+ "rule": "Medians of spectral references (TABOO 0.35 rule 8); t60_median_s is null below 3 single blows.",
+ "source": "docs/RAW_AUDIO_REFERENCES.json",
+ "slots": {
+  "rov.motor": {
+   "use": "dive_synth.gd HUM (thrusters), event_servo",
+   "n": 12,
+   "t60_n": 0,
+   "t60_median_s": null,
+   "centroid_median_hz": 224.2,
+   "attack_median_ms": 450.0
+  },
+  "rov.sonar": {
+   "use": "dive_synth.gd PING and ECHO (t = 2d/c)",
+   "n": 2,
+   "t60_n": 1,
+   "t60_median_s": null,
+   "centroid_median_hz": 768.6,
+   "attack_median_ms": 16.0
+  },
+  "rov.hull": {
+   "use": "hull creak under pressure (Atlas node 63)",
+   "n": 7,
+   "t60_n": 0,
+   "t60_median_s": null,
+   "centroid_median_hz": 1410.3,
+   "attack_median_ms": 70.0
+  },
+  "rov.bubbles": {
+   "use": "bubble cadence (TABOO 0.35 rule 19)",
+   "n": 3,
+   "t60_n": 0,
+   "t60_median_s": null,
+   "centroid_median_hz": 506.3,
+   "attack_median_ms": 151.7
+  },
+  "rov.console": {
+   "use": "dive_synth.gd event_click (cockpit switches)",
+   "n": 9,
+   "t60_n": 0,
+   "t60_median_s": null,
+   "centroid_median_hz": 3463.2,
+   "attack_median_ms": 6.0
+  },
+  "rov.tether": {
+   "use": "tether and winch (Atlas nodes 2, 81)",
+   "n": 0,
+   "t60_n": 0,
+   "t60_median_s": null,
+   "centroid_median_hz": null,
+   "attack_median_ms": null
+  },
+  "lake.water": {
+   "use": "surface and shore water, room tone of the lake",
+   "n": 6,
+   "t60_n": 1,
+   "t60_median_s": null,
+   "centroid_median_hz": 1903.3,
+   "attack_median_ms": 146.7
+  },
+  "lake.splash": {
+   "use": "dive_synth.gd event_take, fish at the lens",
+   "n": 3,
+   "t60_n": 0,
+   "t60_median_s": null,
+   "centroid_median_hz": 2183.8,
+   "attack_median_ms": 117.7
+  },
+  "lake.rain": {
+   "use": "weather over the lake",
+   "n": 2,
+   "t60_n": 0,
+   "t60_median_s": null,
+   "centroid_median_hz": 1750.5,
+   "attack_median_ms": 4742.7
+  },
+  "lake.wind": {
+   "use": "shore and road wind",
+   "n": 8,
+   "t60_n": 0,
+   "t60_median_s": null,
+   "centroid_median_hz": 327.6,
+   "attack_median_ms": 2096.2
+  },
+  "lake.birds": {
+   "use": "shore birds, eagle and pigeons (Atlas 45, 70)",
+   "n": 7,
+   "t60_n": 0,
+   "t60_median_s": null,
+   "centroid_median_hz": 4200.9,
+   "attack_median_ms": 323.3
+  },
+  "lake.insects": {
+   "use": "night shore: crickets, frogs",
+   "n": 5,
+   "t60_n": 0,
+   "t60_median_s": null,
+   "centroid_median_hz": 2170.9,
+   "attack_median_ms": 872.0
+  },
+  "workshop.wood": {
+   "use": "wood and birch-bark creak (node 56)",
+   "n": 15,
+   "t60_n": 5,
+   "t60_median_s": 0.243,
+   "centroid_median_hz": 368.3,
+   "attack_median_ms": 155.6
+  },
+  "workshop.stone": {
+   "use": "millstone, rockfall (Atlas 23, 27)",
+   "n": 14,
+   "t60_n": 1,
+   "t60_median_s": null,
+   "centroid_median_hz": 1066.5,
+   "attack_median_ms": 605.6
+  },
+  "workshop.forge": {
+   "use": "smithy hammer rhythm (Atlas 16, 54)",
+   "n": 8,
+   "t60_n": 0,
+   "t60_median_s": null,
+   "centroid_median_hz": 2919.7,
+   "attack_median_ms": 296.3
+  },
+  "workshop.hearth": {
+   "use": "hearth and torch, 1900-2500 K class",
+   "n": 5,
+   "t60_n": 0,
+   "t60_median_s": null,
+   "centroid_median_hz": 1043.9,
+   "attack_median_ms": 2880.0
+  },
+  "workshop.scroll": {
+   "use": "quill on parchment (Atlas 64)",
+   "n": 3,
+   "t60_n": 0,
+   "t60_median_s": null,
+   "centroid_median_hz": 904.2,
+   "attack_median_ms": 333.2
+  },
+  "workshop.cloth": {
+   "use": "linen, leather and bags",
+   "n": 0,
+   "t60_n": 0,
+   "t60_median_s": null,
+   "centroid_median_hz": null,
+   "attack_median_ms": null
+  },
+  "workshop.door": {
+   "use": "wooden doors, lids, chests",
+   "n": 5,
+   "t60_n": 0,
+   "t60_median_s": null,
+   "centroid_median_hz": 1423.6,
+   "attack_median_ms": 127.7
+  },
+  "road.footsteps": {
+   "use": "caravan road and cell floors",
+   "n": 9,
+   "t60_n": 1,
+   "t60_median_s": null,
+   "centroid_median_hz": 3298.8,
+   "attack_median_ms": 31.9
+  },
+  "road.animals": {
+   "use": "horses, camels, sheep of the shepherd (node 33)",
+   "n": 14,
+   "t60_n": 0,
+   "t60_median_s": null,
+   "centroid_median_hz": 1516.9,
+   "attack_median_ms": 373.1
+  },
+  "road.caravan": {
+   "use": "carts and harness of the caravan road",
+   "n": 2,
+   "t60_n": 0,
+   "t60_median_s": null,
+   "centroid_median_hz": 934.7,
+   "attack_median_ms": 1353.0
+  },
+  "road.breath": {
+   "use": "timbre only; timing stays with hesychasm module",
+   "n": 1,
+   "t60_n": 0,
+   "t60_median_s": null,
+   "centroid_median_hz": 931.1,
+   "attack_median_ms": 115.7
+  }
+ }
+}

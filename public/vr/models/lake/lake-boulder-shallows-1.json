@@ -1,0 +1,79 @@
+{
+ "id": "lake-boulder-shallows-1",
+ "kind": "lake",
+ "lod": "proxy",
+ "detail": "procedural-detailed",
+ "details": [
+  "rounded granite",
+  "feldspar and mica grains",
+  "filamentous algae tufts"
+ ],
+ "tris": 1520,
+ "bbox_m": [
+  1.315,
+  0.991,
+  1.207
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   1.315,
+   0.991,
+   1.207
+  ],
+  "centre_m": [
+   0.057,
+   0.431,
+   0.009
+  ]
+ },
+ "materials": [
+  {
+   "name": "granite",
+   "colour": "#8a8680",
+   "roughness": 0.9,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "feldspar",
+   "colour": "#b4968a",
+   "roughness": 0.85,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "mica",
+   "colour": "#292826",
+   "roughness": 0.5,
+   "metallic": 0.2,
+   "alpha": 1.0
+  },
+  {
+   "name": "algae",
+   "colour": "#5a7a3a",
+   "roughness": 0.9,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 205694571254723,
+ "name": "Гранитный валун: в водорослях",
+ "category": "shelf",
+ "band": "shallows",
+ "depth_m": [
+  0,
+  5
+ ],
+ "flags": {
+  "noLoot": false,
+  "loot": "keep"
+ },
+ "noLoot": false,
+ "noInteract": false,
+ "size_m": 1.2,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
+}

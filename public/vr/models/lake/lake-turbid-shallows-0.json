@@ -1,0 +1,56 @@
+{
+ "id": "lake-turbid-shallows-0",
+ "kind": "lake",
+ "lod": "proxy",
+ "detail": "procedural-detailed",
+ "details": [
+  "billowing lobes of suspended silt"
+ ],
+ "tris": 900,
+ "bbox_m": [
+  1.847,
+  0.792,
+  1.583
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   1.847,
+   0.792,
+   1.583
+  ],
+  "centre_m": [
+   0.064,
+   0.638,
+   -0.041
+  ]
+ },
+ "materials": [
+  {
+   "name": "water",
+   "colour": "#8a8a70",
+   "roughness": 0.1,
+   "metallic": 0,
+   "alpha": 0.4
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 98950516367547,
+ "name": "Облако мути: после течения",
+ "category": "water",
+ "band": "shallows",
+ "depth_m": [
+  0,
+  5
+ ],
+ "flags": {
+  "noLoot": true,
+  "loot": null
+ },
+ "noLoot": true,
+ "noInteract": false,
+ "size_m": 2.0,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
+}

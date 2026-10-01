@@ -1,0 +1,100 @@
+{
+ "id": "lake-leshch-shallows-0",
+ "kind": "lake",
+ "lod": "proxy",
+ "detail": "procedural-detailed",
+ "details": [
+  "dark back",
+  "pale belly",
+  "dorsal fin",
+  "anal fin",
+  "fork tail fin",
+  "pectoral fins",
+  "pelvic fins",
+  "eyes",
+  "gill cover",
+  "school of 5"
+ ],
+ "tris": 2195,
+ "bbox_m": [
+  0.967,
+  0.515,
+  0.74
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.967,
+   0.515,
+   0.74
+  ],
+  "centre_m": [
+   -0.288,
+   0.026,
+   0.011
+  ]
+ },
+ "materials": [
+  {
+   "name": "fish-back",
+   "colour": "#6f674f",
+   "roughness": 0.55,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-belly",
+   "colour": "#cec5ac",
+   "roughness": 0.4,
+   "metallic": 0.1,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-fin",
+   "colour": "#8f8566",
+   "roughness": 0.7,
+   "metallic": 0.0,
+   "alpha": 0.85
+  },
+  {
+   "name": "fish-mark",
+   "colour": "#363226",
+   "roughness": 0.7,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-iris",
+   "colour": "#c8b070",
+   "roughness": 0.3,
+   "metallic": 0.3,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-pupil",
+   "colour": "#0a0a0a",
+   "roughness": 0.2,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 190900030760472,
+ "name": "Лещ: стайка",
+ "category": "fish",
+ "band": "shallows",
+ "depth_m": [
+  3,
+  5
+ ],
+ "flags": {
+  "noLoot": false,
+  "loot": "keep"
+ },
+ "noLoot": false,
+ "noInteract": false,
+ "size_m": 0.4,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
+}

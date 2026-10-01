@@ -31,6 +31,9 @@ import antagonist as ant  # noqa: E402
 from form import (CANVAS, alpha_mask, colour_change, fill_holes,  # noqa
                   hitbox, hitbox_key, iou_delta, shape_delta,
                   silhouette_loss)
+import neutral_variants  # noqa: E402
+import passion_fields  # noqa: E402
+import reference  # noqa: E402
 
 # Palette stops copied from public/ludus/art so the plain redraw sits in
 # the same visual family as the project's own drawings.
@@ -351,16 +354,52 @@ def process_piece(item, index, piece, threshold=0.35):
     recolour = stats['shape_change'] < threshold
     record['redraw']['is_recolour'] = recolour
 
-    # Step 2: a recolour is replaced by the passion it serves.
+    # Step 2: a recolour is replaced by the passion it serves -- but only
+    # in a passion slot.  A neutral slot (fish, stones, wood of the lake)
+    # needs the thing itself, so there it is not turned into an
+    # antagonist (round 1 of 2026-09-30 made
+    # passions out of a jellyfish and pikemen for the fish slot).
     feat = ant.source_features(piece, canvas, src_mask, item['path'])
-    if recolour:
+    natural = item.get('neutral') and item.get('slot') in reference.PROFILES
+    if item.get('neutral') and not natural:
+        # A neutral slot without a real-object profile has no natural
+        # palette and no way to check the thing stays recognisable; the
+        # hourly pass of 2026-09-30 turned grass into magenta shapes that
+        # way.  Such a slot waits for its profile.
+        record['status'] = 'unlike-real-object'
+        record['reference'] = {'slot': item.get('slot'),
+                               'reason': 'no-real-object-profile'}
+        return record, images
+    if natural:
+        # Operator, 2026-09-30: "изучи на реальных объектах".  A neutral
+        # piece must first look like the real thing of its slot; a
+        # diamond or a letter in the fish slot stops here.
+        like, shape = reference.fits(item['slot'], src_mask)
+        record['reference'] = {'slot': item['slot'], **shape,
+                               'profile': reference.PROFILES[item['slot']]}
+        if not like:
+            record['status'] = 'unlike-real-object'
+            return record, images
+    if recolour and item.get('neutral'):
+        # The thing stays itself: no passion, and the twelve variants
+        # below must each reshape it by at least the threshold, measured
+        # against the source like every other object.
+        passion, reason = None, 'neutral slot: reshaped by the variants'
+        prefix = f'obj_{oid}'
+    elif recolour:
         passion, reason = ant.choose_passion(feat)
         prefix = f'ant_{passion}_{oid}'
     else:
         passion, reason = None, 'redraw already reshaped'
         prefix = f'obj_{oid}'
-    palette = ant.antagonist_palette(feat, passion or 'vainglory')
-    texture = ant.texture_mode(feat)
+    if natural:
+        # The thing keeps its own nature: the natural palette of its slot
+        # and its own texture, never a passion's inverted ones.
+        palette = reference.natural_palette(item['slot'])
+        texture = 'smooth' if ant.texture_mode(feat) == 'rough' else 'rough'
+    else:
+        palette = ant.antagonist_palette(feat, passion or 'vainglory')
+        texture = ant.texture_mode(feat)
     record.update({
         'name': prefix, 'passion': passion, 'passion_reason': reason,
         'features': feat,
@@ -368,9 +407,10 @@ def process_piece(item, index, piece, threshold=0.35):
         'palette': {'hue': palette['hue'], 'basis': palette['basis'],
                     'stops': ['#%02x%02x%02x' % c
                               for _, c in palette['stops']]},
-        'texture': {'source': ('smooth' if texture == 'rough'
-                               else 'rough'),
-                    'antagonist': texture},
+        'texture': ({'source': texture, 'result': texture} if natural
+                    else {'source': ('smooth' if texture == 'rough'
+                                     else 'rough'),
+                          'antagonist': texture}),
     })
     if passion:
         ref_mask, strength, _ = reference_form(
@@ -379,20 +419,29 @@ def process_piece(item, index, piece, threshold=0.35):
     else:
         ref_mask = alpha_mask(plain)
 
-    # Step 3: twelve variants, each measured against the source.
-    builder = VariantBuilder(seed, palette, texture, canvas, src_mask,
-                             threshold)
-    made = builder.run(ref_mask)
+    # Step 3: twelve variants, each measured against the source.  A
+    # neutral thing of the lake gets the age-and-pose family of
+    # neutral_variants.py: the antagonist family (erosion, swarm, echo)
+    # turned its stones into vases on 2026-09-30.
     tag = passion or 'none'
     variants = []
-    for v in builder.accepted:
-        v.pop('mask')
+    if natural and not passion:
+        accepted, rejected, made = neutral_variants.build(
+            canvas, item['slot'], seed, threshold)
+        record['variant_family'] = 'neutral-age-pose'
+    else:
+        builder = VariantBuilder(seed, palette, texture, canvas, src_mask,
+                                 threshold)
+        made = builder.run(ref_mask)
+        accepted, rejected = builder.accepted, builder.rejected
+    for v in accepted:
+        v.pop('mask', None)
         v['file'] = f'{prefix}_{v["slot"]}.png'
         v['analytics_id'] = f'ludus.variant.{tag}.{oid}.{v["slot"]}'
         images[v['file']] = made[v['slot']]
         variants.append(v)
     record['variants'] = variants
-    record['rejected_variants'] = builder.rejected
+    record['rejected_variants'] = rejected
     record['shortfall'] = 12 - len(variants)
     record['status'] = 'ok' if len(variants) == 12 else 'shortfall'
     first = variants[0] if variants else {}
@@ -409,6 +458,22 @@ def claim_features(rec):
     shapes = [v['shape_change'] for v in rec['variants']] or [0.0]
     passion = rec['passion'] or 'none'
     beh = rec['behaviour'] or {}
+    if 'reference' in rec:
+        ref = rec['reference']
+        return [
+            f'нейтральный объект слота {ref["slot"]} '
+            f'({ref["profile"]["name"]}): силуэт источника сверен с '
+            f'профилем реального объекта (соотношение сторон '
+            f'{ref["aspect"]}, заполнение {ref["fill"]})',
+            f'природная палитра {rec["palette"]["basis"]} (тон '
+            f'{rec["palette"]["hue"]}°), фактура источника сохранена',
+            f'{len(rec["variants"])} вариантов с попарно различными '
+            f'хитбоксами',
+            f'изменение формы по альфа-маскам (|A xor B| / |A or B|): '
+            f'от {min(shapes):.1%} до {max(shapes):.1%}',
+            f'источник: {rec["repo"]} @ {rec["commit"][:10]}, '
+            f'{rec["path"]} #{rec["piece"]} ({rec["license"]})',
+        ]
     return [
         f'форма-антагонист страсти «{passion}» (по Евагрию и Иоанну '
         f'Лествичнику), выведенная из альфа-силуэта источника',
@@ -433,6 +498,8 @@ def write_object(out, record, images):
         img.save(path, optimize=True)
     if record.get('name'):
         meta = {k: v for k, v in record.items() if k != 'local'}
+        # Rule 13: an antagonist ships with its teaching fields.
+        passion_fields.enrich(meta)
         (out / f'{record["name"]}.json').write_text(
             json.dumps(meta, ensure_ascii=False, indent=2), encoding='utf-8')
 
@@ -441,8 +508,16 @@ FRAME_DUP_IOU = 0.85
 
 
 def frame_mask(piece):
-    """Alpha silhouette of a piece on a small fixed grid for comparison."""
-    alpha = piece.convert('RGBA').getchannel('A').resize((32, 32))
+    """Alpha silhouette of a piece on a small fixed grid for comparison.
+
+    The silhouette is cropped to its own box first, so two frames that
+    sit at different offsets in their files still compare as one shape.
+    """
+    alpha = piece.convert('RGBA').getchannel('A')
+    box = alpha.point(lambda v: 255 if v > 16 else 0).getbbox()
+    if box:
+        alpha = alpha.crop(box)
+    alpha = alpha.resize((32, 32))
     return [v > 16 for v in alpha.tobytes()]
 
 
@@ -467,6 +542,10 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
 
     accepted, rejected, errors = [], [], []
+    # Kept silhouettes per slot for the whole pass: frames of one
+    # animation are often separate files (defend1.png, defend2.png), and
+    # a per-file list let both through on 2026-09-30 (IoU 0.92).
+    kept_by_slot = {}
     for item in manifest:
         if not item['local'].lower().endswith('.png'):
             # SVG needs a rasteriser the runner does not have yet.
@@ -478,7 +557,7 @@ def main():
         except OSError as exc:
             rejected.append({**item, 'reason': f'unreadable: {exc}'})
             continue
-        kept_masks = []
+        kept_masks = kept_by_slot.setdefault(item.get('slot'), [])
         for index, piece in enumerate(slice_sheet(src, args.per_sheet)):
             # Frames of one animation differ by a few pixels; turning each
             # into its own antagonist produced near-identical sets (11
@@ -496,6 +575,10 @@ def main():
             write_object(out, record, images)
             if record['status'] == 'error':
                 errors.append(record)
+            elif record['status'] == 'unlike-real-object':
+                rejected.append({**item, 'piece': index,
+                                 'reason': 'unlike-real-object',
+                                 'reference': record['reference']})
             else:
                 accepted.append(record)
             print(f'{item["path"]} #{index}: {record["status"]} '

@@ -1,0 +1,63 @@
+{
+ "id": "lake-caustics-shallows-0",
+ "kind": "lake",
+ "lod": "proxy",
+ "detail": "procedural-detailed",
+ "details": [
+  "bright net of focused sunlight"
+ ],
+ "tris": 1064,
+ "bbox_m": [
+  3.008,
+  0.015,
+  3.0
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   3.008,
+   0.015,
+   3.0
+  ],
+  "centre_m": [
+   -0.004,
+   0.005,
+   0.0
+  ]
+ },
+ "materials": [
+  {
+   "name": "water-bright",
+   "colour": "#eff4d8",
+   "roughness": 0.1,
+   "metallic": 0,
+   "alpha": 0.55
+  },
+  {
+   "name": "sand",
+   "colour": "#b8a888",
+   "roughness": 1,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 14177246416499,
+ "name": "Солнечная сетка на дне: полдень",
+ "category": "water",
+ "band": "shallows",
+ "depth_m": [
+  0,
+  5
+ ],
+ "flags": {
+  "noLoot": true,
+  "loot": null
+ },
+ "noLoot": true,
+ "noInteract": false,
+ "size_m": 3.0,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
+}

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Погружение</title>
+  <meta name="description" content="Разрез берега Иссык-Куля: следы рыцаря из «Атласа воды» и свои рисунки берега на дне погружения.">
+  <style>
+    :root {
+      --dive-bg: #0b1418;
+      --dive-ink: #e8eef0;
+      --dive-muted: #a9b8bd;
+      --dive-panel: rgba(12, 20, 24, 0.78);
+      --dive-line: #2a3a40;
+      --dive-instrument: #cfe8ff;
+    }
+    html, body {
+      margin: 0;
+      background: var(--dive-bg);
+      color: var(--dive-ink);
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
+    main { max-width: 1280px; margin: 0 auto; padding: 12px 16px 24px; }
+    h1 { font-size: 1.15rem; font-weight: 600; margin: 4px 0 8px; }
+    .stage { position: relative; }
+    #dive-canvas {
+      display: block;
+      width: 100%;
+      height: min(62vh, 560px);
+      border: 1px solid var(--dive-line);
+      border-radius: 6px;
+      background: #06222c;
+      touch-action: none;
+    }
+    #dive-console {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      max-width: min(360px, 70%);
+      padding: 8px 10px;
+      border-radius: 6px;
+      background: var(--dive-panel);
+      border: 1px solid var(--dive-line);
+      font: 13px/1.45 'SF Mono', Monaco, 'Noto Sans Mono', monospace;
+      pointer-events: none;
+    }
+    #dive-telemetry { white-space: pre-wrap; color: var(--dive-instrument); }
+    #dive-message {
+      margin-top: 6px;
+      min-height: 1.2em;
+      font-family: system-ui, sans-serif;
+    }
+    .controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+    .controls button {
+      min-width: 48px;
+      min-height: 48px;
+      padding: 0 14px;
+      border-radius: 6px;
+      border: 1px solid var(--dive-line);
+      background: #13232a;
+      color: var(--dive-ink);
+      font-size: 1rem;
+    }
+    .controls button:focus-visible {
+      outline: 3px solid var(--dive-instrument);
+      outline-offset: 2px;
+    }
+    .note { color: var(--dive-muted); font-size: 0.9rem; line-height: 1.45;
+      margin: 6px 0; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Погружение: разрез берега</h1>
+    <div class="stage">
+      <canvas id="dive-canvas"
+        aria-label="Разрез берега озера: дно, аппарат и то, что лежит на дне"></canvas>
+      <div id="dive-console" aria-live="polite">
+        <div id="dive-telemetry"></div>
+        <div id="dive-message"></div>
+      </div>
+    </div>
+    <div class="controls" aria-label="Управление аппаратом">
+      <button type="button" data-hold="left" aria-label="К берегу">◀</button>
+      <button type="button" data-hold="up" aria-label="Всплыть">▲</button>
+      <button type="button" data-hold="down" aria-label="Погрузиться">▼</button>
+      <button type="button" data-hold="right" aria-label="От берега">▶</button>
+      <button type="button" data-hold="near" aria-label="Поперёк линии, ближе">Q</button>
+      <button type="button" data-hold="far" aria-label="Поперёк линии, дальше">E</button>
+      <button type="button" id="dive-arm">Рука</button>
+    </div>
+    <p class="note">Клавиши: ←/→ вдоль берега, ↑/↓ глубина, Q/E (или кнопки Q и E)
+      поперёк линии, L — лампа, пробел — рука.</p>
+    <p class="note" id="dive-chronicle"></p>
+  </main>
+  <script src="../ludus-water.js"></script>
+  <script src="dive-core.js"></script>
+  <script src="dive-atlas.js"></script>
+  <script src="dive-view.js"></script>
+</body>
+</html>

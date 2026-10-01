@@ -1,0 +1,101 @@
+{
+ "id": "lake-ishkhan-shelf-1",
+ "kind": "lake",
+ "lod": "proxy",
+ "detail": "procedural-detailed",
+ "details": [
+  "dark back",
+  "pale belly",
+  "dorsal fin",
+  "anal fin",
+  "adipose fin",
+  "emarg tail fin",
+  "pectoral fins",
+  "pelvic fins",
+  "eyes",
+  "gill cover",
+  "dark spots"
+ ],
+ "tris": 1033,
+ "bbox_m": [
+  0.554,
+  0.216,
+  0.14
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.554,
+   0.216,
+   0.14
+  ],
+  "centre_m": [
+   -0.009,
+   0.016,
+   0.0
+  ]
+ },
+ "materials": [
+  {
+   "name": "fish-back",
+   "colour": "#68655f",
+   "roughness": 0.55,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-belly",
+   "colour": "#c6c3bd",
+   "roughness": 0.4,
+   "metallic": 0.1,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-fin",
+   "colour": "#86827b",
+   "roughness": 0.7,
+   "metallic": 0.0,
+   "alpha": 0.85
+  },
+  {
+   "name": "fish-mark",
+   "colour": "#32312e",
+   "roughness": 0.7,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-iris",
+   "colour": "#c8b070",
+   "roughness": 0.3,
+   "metallic": 0.3,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-pupil",
+   "colour": "#0a0a0a",
+   "roughness": 0.2,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 51561143163567,
+ "name": "Севанская форель: на границе слоя",
+ "category": "fish",
+ "band": "shelf",
+ "depth_m": [
+  15,
+  20
+ ],
+ "flags": {
+  "noLoot": false,
+  "loot": "keep"
+ },
+ "noLoot": false,
+ "noInteract": false,
+ "size_m": 0.55,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
+}

@@ -1,0 +1,17 @@
+{
+ "note": "Keyword ladder of the deficit runner (operator, 2026-09-30: 'каждый проход добавляй 12 ключевых слов'). Each pass on a deficit adds the next 12 words: first from the real-object ladder below (names of the real things of Issyk-Kul, docs/ISSYK_KUL_FISH.md), then, when it runs out, the most frequent path words next to earlier hits. Added words are logged in docs/RAW_OSINT_CURSOR.json under 'keywords'.",
+ "ladders": {
+  "DEF-056": ["dace", "loach", "minnow", "tench", "whitefish", "zander", "pikeperch", "grayling", "crucian", "cyprinid", "chub", "gudgeon",
+              "roach", "ide", "rudd", "barbel", "char", "salmonid", "goldfish", "koi", "smelt", "fry", "shoal", "fins",
+              "herring", "sardine", "sturgeon", "eel", "bass", "cod", "mackerel", "anchovy", "sprat", "fishing", "aquarium", "fishes"],
+  "DEF-057": ["granite", "sandstone", "quartz", "schist", "slate", "clay", "silt", "cobble", "flint", "basalt", "rubble", "limestone",
+              "rocks", "stones", "pebbles", "boulders", "mud", "sediment", "seabed", "riverbed", "shore", "beach", "cliff", "marble",
+              "mussel", "snail", "clam", "conch", "scallop", "shells", "ore", "mineral", "sands", "dirt", "ground", "floor"],
+  "DEF-058": ["pondweed", "stonewort", "milfoil", "chara", "reeds", "rush", "cattail", "bulrush", "sedge", "waterlily", "lily", "lotus",
+              "moss", "fern", "bush", "shrub", "vine", "sprout", "leaf", "leaves", "stem", "tallgrass", "flora", "underwater",
+              "lichen", "herb", "weeds", "grasses", "duckweed", "hornwort", "sponge", "plants", "foliage", "vegetation", "swamp", "marsh"],
+  "DEF-059": ["jar", "pitcher", "pottery", "ceramic", "crate", "plank", "beam", "stake", "pile", "post", "driftwood", "logs",
+              "shard", "sherd", "brick", "millstone", "anvil", "tongs", "hammer", "cauldron", "kettle", "bucket", "basket", "rope",
+              "anchor", "net", "oar", "boat", "raft", "pier", "dock", "wreck", "planks", "barrels", "pots", "jugs"]
+ }
+}

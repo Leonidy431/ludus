@@ -1,0 +1,48 @@
+{
+ "id": "sacrament-chrismation",
+ "kind": "scene",
+ "lod": "proxy",
+ "tris": 284,
+ "bbox_m": [
+  6,
+  1.39,
+  6
+ ],
+ "title": "У воды, в белом",
+ "mood": "same shore as baptism, right after immersion",
+ "microphone": false,
+ "speechRecognition": false,
+ "logPresence": false,
+ "reward": null,
+ "attributes": null,
+ "gate": null,
+ "playerCan": [
+  "approach to the witness line",
+  "stand",
+  "bow the head (no effect)",
+  "leave"
+ ],
+ "audio": {
+  "roomTone_dBFS": -48,
+  "ison": "a cappella, vowels only",
+  "digitalZero": false
+ },
+ "light": {
+  "lampada_K": 1800,
+  "instrumentLightFadeSeconds": 1.75
+ },
+ "bells": null,
+ "internalRite": "Миропомазание",
+ "source": "scripts/meta3d/sacrament-scenes.json",
+ "method": "scene-kit-primitives",
+ "holyObjects": [
+  "analoy-stand",
+  "analoy-top",
+  "analoy-cloth",
+  "chrism-vessel",
+  "font-stone"
+ ],
+ "lights": [
+  "dawn"
+ ]
+}

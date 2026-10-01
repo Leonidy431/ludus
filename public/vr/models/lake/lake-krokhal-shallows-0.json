@@ -1,0 +1,115 @@
+{
+ "id": "lake-krokhal-shallows-0",
+ "kind": "lake",
+ "lod": "proxy",
+ "detail": "procedural-detailed",
+ "details": [
+  "back plumage",
+  "belly plumage",
+  "folded wings",
+  "neck",
+  "head",
+  "hooked bill",
+  "eyes",
+  "tail",
+  "legs set far back",
+  "webbed feet",
+  "air bubbles off the plumage"
+ ],
+ "tris": 705,
+ "bbox_m": [
+  0.587,
+  0.592,
+  0.22
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.587,
+   0.592,
+   0.22
+  ],
+  "centre_m": [
+   0.045,
+   0.343,
+   0.0
+  ]
+ },
+ "materials": [
+  {
+   "name": "bird-body",
+   "colour": "#20241f",
+   "roughness": 0.8,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "bird-belly",
+   "colour": "#f4f0e0",
+   "roughness": 0.8,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "bird-head",
+   "colour": "#1e3a2c",
+   "roughness": 0.7,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "bird-bill",
+   "colour": "#c03020",
+   "roughness": 0.5,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "bird-feet",
+   "colour": "#3a3a34",
+   "roughness": 0.7,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "bird-eye",
+   "colour": "#1a3a2a",
+   "roughness": 0.2,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "air",
+   "colour": "#e8f4f8",
+   "roughness": 0.1,
+   "metallic": 0.0,
+   "alpha": 0.45
+  },
+  {
+   "name": "bird-wing",
+   "colour": "#1a1d19",
+   "roughness": 0.8,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 157095268786619,
+ "name": "Большой крохаль: ныряет",
+ "category": "bird",
+ "band": "shallows",
+ "depth_m": [
+  0,
+  5
+ ],
+ "flags": {
+  "noLoot": true,
+  "loot": null
+ },
+ "noLoot": true,
+ "noInteract": false,
+ "size_m": 0.6,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
+}

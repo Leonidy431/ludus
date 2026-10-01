@@ -166,4 +166,61 @@ window.boxToGlb = async function boxToGlb(spec) {
   return exportGlb(mesh);
 };
 
+// A scene kit: named parts (primitives) and point lights, so a sacrament
+// place can be assembled without any raw material (TABOO 0.35 rule 6:
+// holy objects are always our own).  Each part keeps its flags in
+// userData, which GLTFExporter writes into the node's "extras".
+window.sceneToGlb = async function sceneToGlb(spec) {
+  const root = new THREE.Group();
+  root.name = spec.id;
+  root.userData = spec.userData || {};
+  spec.parts.forEach((part) => {
+    const [x, y, z] = part.size;
+    let geo;
+    switch (part.shape) {
+      case 'cylinder':
+        geo = new THREE.CylinderGeometry(x / 2, (part.bottom || x) / 2, y, 16);
+        break;
+      case 'sphere':
+        geo = new THREE.SphereGeometry(x / 2, 16, 12);
+        break;
+      case 'cone':
+        geo = new THREE.ConeGeometry(x / 2, y, 16);
+        break;
+      case 'torus':
+        geo = new THREE.TorusGeometry(x / 2, y / 2, 8, 24);
+        break;
+      default:
+        geo = new THREE.BoxGeometry(x, y, z);
+    }
+    const mat = new THREE.MeshStandardMaterial({
+      color: new THREE.Color().setStyle(part.color || '#8a6a34'),
+      roughness: part.roughness ?? 0.85,
+      metalness: part.metalness ?? 0.05,
+      transparent: (part.opacity ?? 1) < 1,
+      opacity: part.opacity ?? 1,
+      emissive: new THREE.Color().setStyle(part.emissive || '#000000'),
+      emissiveIntensity: part.emissive ? 1 : 0,
+    });
+    const mesh = new THREE.Mesh(geo, mat);
+    mesh.name = part.name;
+    mesh.position.set(...part.pos);
+    if (part.rot) {
+      mesh.rotation.set(...part.rot);
+    }
+    mesh.userData = part.flags || {};
+    root.add(mesh);
+  });
+  (spec.lights || []).forEach((l) => {
+    const light = new THREE.PointLight(new THREE.Color().setStyle(l.color),
+      l.intensity, l.distance, 2);
+    light.name = l.name;
+    light.position.set(...l.pos);
+    root.add(light);
+  });
+  const out = await exportGlb(root);
+  out.overBudget = out.tris > TRI_BUDGET * 2;
+  return out;
+};
+
 window.meta3dReady = true;

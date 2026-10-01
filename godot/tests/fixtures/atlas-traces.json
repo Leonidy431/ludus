@@ -1,0 +1,1104 @@
+{
+ "note": "Written by scripts/godot/make_atlas_fixture.js; do not edit.",
+ "traces": {
+  "": [
+   {
+    "id": "diary",
+    "kind": "trace",
+    "shape": "book",
+    "x": 117.6470588235294,
+    "z": 3.1885842536576092,
+    "depth": 14.389503378893595,
+    "yaw": 1.049568017326503
+   },
+   {
+    "id": "amphora",
+    "kind": "trace",
+    "shape": "amphora",
+    "x": 183.33333333333334,
+    "z": 3.078807983547449,
+    "depth": 24.323342407442908,
+    "yaw": 0.2604983991467976
+   },
+   {
+    "id": "astrolabe",
+    "kind": "trace",
+    "shape": "astrolabe",
+    "x": 250,
+    "z": 5.246801543980837,
+    "depth": 36.65544129459682,
+    "yaw": 4.5018934708246645
+   },
+   {
+    "id": "khachkar",
+    "kind": "trace",
+    "shape": "khachkar",
+    "x": 319.35057471264366,
+    "z": 2.410089068580419,
+    "depth": 69.18934330969827,
+    "yaw": 1.7056667763247624
+   },
+   {
+    "id": "shield",
+    "kind": "trace",
+    "shape": "shield",
+    "x": 640,
+    "z": -11.876172584015876,
+    "depth": 160.70847025503846,
+    "yaw": 3.2080986371795297
+   }
+  ],
+  "spare": [
+   {
+    "id": "diary",
+    "kind": "trace",
+    "shape": "book",
+    "x": 117.6470588235294,
+    "z": -5.971524438355118,
+    "depth": 13.825058584799613,
+    "yaw": 4.16959123998292
+   },
+   {
+    "id": "amphora",
+    "kind": "trace",
+    "shape": "amphora",
+    "x": 183.33333333333334,
+    "z": 10.253546861931682,
+    "depth": 24.353959837330013,
+    "yaw": 0.7154233450311053
+   },
+   {
+    "id": "astrolabe",
+    "kind": "trace",
+    "shape": "astrolabe",
+    "x": 250,
+    "z": 13.259572796523571,
+    "depth": 35.89464645187846,
+    "yaw": 2.535860230083001
+   },
+   {
+    "id": "khachkar",
+    "kind": "trace",
+    "shape": "khachkar",
+    "x": 318.85057471264366,
+    "z": 1.6922889766283333,
+    "depth": 69.11809547009702,
+    "yaw": 0.09022667066870899
+   },
+   {
+    "id": "shield",
+    "kind": "trace",
+    "shape": "shield",
+    "x": 640,
+    "z": -7.0168514689430594,
+    "depth": 160.41601515087407,
+    "yaw": 0.3856933586593821
+   },
+   {
+    "id": "passage",
+    "kind": "passage",
+    "shape": "spare",
+    "x": 271.0344827586207,
+    "z": 3.9850699924863875,
+    "depth": 43.113252022675994,
+    "yaw": 5.117756372352243
+   }
+  ],
+  "vault": [
+   {
+    "id": "diary",
+    "kind": "trace",
+    "shape": "book",
+    "x": 117.6470588235294,
+    "z": 2.316113286651671,
+    "depth": 14.35012471215326,
+    "yaw": 1.8243086498921568
+   },
+   {
+    "id": "amphora",
+    "kind": "trace",
+    "shape": "amphora",
+    "x": 183.33333333333334,
+    "z": 13.277041737455875,
+    "depth": 24.475735323841878,
+    "yaw": 4.924876367017247
+   },
+   {
+    "id": "astrolabe",
+    "kind": "trace",
+    "shape": "astrolabe",
+    "x": 250,
+    "z": 2.4081883183680475,
+    "depth": 36.64500636974835,
+    "yaw": 3.333903735935434
+   },
+   {
+    "id": "khachkar",
+    "kind": "trace",
+    "shape": "khachkar",
+    "x": 320.35057471264366,
+    "z": 12.8934070863761,
+    "depth": 69.17498724226856,
+    "yaw": 3.880037707830351
+   },
+   {
+    "id": "shield",
+    "kind": "trace",
+    "shape": "shield",
+    "x": 631.5,
+    "z": 7.359525414649397,
+    "depth": 160.99379123568397,
+    "yaw": 2.7181480604513935
+   },
+   {
+    "id": "passage",
+    "kind": "passage",
+    "shape": "vault",
+    "x": 271.5344827586207,
+    "z": 0.27944093104451895,
+    "depth": 43.02475275171002,
+    "yaw": 0.9668050332760145
+   }
+  ]
+ },
+ "drawings": [
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v01.png",
+   "x": 127.74437485810589,
+   "z": 15.001605078577995,
+   "centreDepth": 15.21597055898793
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v02.png",
+   "x": 142.14204919579277,
+   "z": -3.2639310881495476,
+   "centreDepth": 16.975257780823217
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v03.png",
+   "x": 63.830975980004844,
+   "z": 15.320195811800659,
+   "centreDepth": 6.261762018951119
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v04.png",
+   "x": 48.46949974294095,
+   "z": 16.444701701402664,
+   "centreDepth": 3.9460001734630445
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v05.png",
+   "x": 100.95282107372495,
+   "z": -17.821712186560035,
+   "centreDepth": 11.03861464805211
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v06.png",
+   "x": 119.81759892447906,
+   "z": -3.3820916851982474,
+   "centreDepth": 13.954781820643559
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v07.png",
+   "x": 54.30695624693352,
+   "z": 26.5979337785393,
+   "centreDepth": 4.825443524414631
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v08.png",
+   "x": 145.3650099981357,
+   "z": -10.703079015947878,
+   "centreDepth": 17.791186449684197
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v09.png",
+   "x": 98.98601256968344,
+   "z": 25.10583150666207,
+   "centreDepth": 11.102905814395477
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v10.png",
+   "x": 151.68210057432162,
+   "z": 21.0554878693074,
+   "centreDepth": 18.030904675260008
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v11.png",
+   "x": 153.77083281055093,
+   "z": 3.3060444379225373,
+   "centreDepth": 18.107157350902234
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v12.png",
+   "x": 48.756052185507386,
+   "z": -19.328182241879404,
+   "centreDepth": 3.6046625314685894
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v01.png",
+   "x": 120.00130567151834,
+   "z": -2.053015041165054,
+   "centreDepth": 14.075016278176046
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v02.png",
+   "x": 135.24952170165147,
+   "z": 25.97562457434833,
+   "centreDepth": 15.583352510787227
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v03.png",
+   "x": 158.45023899174788,
+   "z": 25.087319361045957,
+   "centreDepth": 19.333243023014823
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v04.png",
+   "x": 178.07444703377163,
+   "z": -23.234142931178212,
+   "centreDepth": 22.012660742016855
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v05.png",
+   "x": 168.82717056238712,
+   "z": 12.768317945301533,
+   "centreDepth": 21.580296626466318
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v06.png",
+   "x": 146.2175124248161,
+   "z": -0.8152251876890659,
+   "centreDepth": 17.289854880433193
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v07.png",
+   "x": 179.68464546681693,
+   "z": -18.959825201891363,
+   "centreDepth": 22.564250721941185
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v08.png",
+   "x": 153.33617167876048,
+   "z": -26.22877259273082,
+   "centreDepth": 18.732133095709
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v09.png",
+   "x": 163.8900509728895,
+   "z": 7.039144076406956,
+   "centreDepth": 20.030911143068444
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v10.png",
+   "x": 42.43159569471198,
+   "z": -10.105075989849865,
+   "centreDepth": 2.8884913351108636
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v11.png",
+   "x": 183.25790022383444,
+   "z": 2.160371239297092,
+   "centreDepth": 23.939350780832417
+  },
+  {
+   "kit": "own_boulder",
+   "file": "own_boulder_4d9da8b0ae_v12.png",
+   "x": 96.08387479120319,
+   "z": -2.9409908456727862,
+   "centreDepth": 10.391574138226545
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v01.png",
+   "x": 50.4721787602038,
+   "z": -13.88424998614937,
+   "centreDepth": 4.208572574791542
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v02.png",
+   "x": 23.180666531746585,
+   "z": 29.776672557927668,
+   "centreDepth": 1.3975666317009559
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v03.png",
+   "x": 37.23586745404949,
+   "z": 0.3167567867785692,
+   "centreDepth": 2.421397975513427
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v04.png",
+   "x": 41.03899234193651,
+   "z": -3.6352335289120674,
+   "centreDepth": 2.827227946025825
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v05.png",
+   "x": 38.19928405495981,
+   "z": 17.810969157144427,
+   "centreDepth": 2.686637059702111
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v06.png",
+   "x": 49.804712997694665,
+   "z": 17.866946775466204,
+   "centreDepth": 4.484207498717428
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v07.png",
+   "x": 22.286792212786775,
+   "z": -27.887830934487283,
+   "centreDepth": 1.5599241566559676
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v08.png",
+   "x": 12.960390124159554,
+   "z": -7.618009890429676,
+   "centreDepth": 0.9328065560871799
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v09.png",
+   "x": 49.85499479561387,
+   "z": 16.571562965400517,
+   "centreDepth": 4.470564647733948
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v10.png",
+   "x": 59.99604911872131,
+   "z": 25.853442884981632,
+   "centreDepth": 5.954300967091062
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v11.png",
+   "x": 35.60611853841692,
+   "z": -24.238649485632777,
+   "centreDepth": 2.627495993773995
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v12.png",
+   "x": 28.623081683181226,
+   "z": 1.3711586873978376,
+   "centreDepth": 1.9317045350315032
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v01.png",
+   "x": 44.13743706529631,
+   "z": 23.655110243707895,
+   "centreDepth": 3.511350338304282
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v02.png",
+   "x": 32.397172396692135,
+   "z": 28.057530988007784,
+   "centreDepth": 2.092125788609906
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v03.png",
+   "x": 18.7804997805506,
+   "z": -10.61268461868167,
+   "centreDepth": 1.4846916849398877
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v04.png",
+   "x": 54.21596794580931,
+   "z": -18.320790035650134,
+   "centreDepth": 4.598103464151233
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v05.png",
+   "x": 60.18055447952493,
+   "z": -11.825847490690649,
+   "centreDepth": 5.694779928572253
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v06.png",
+   "x": 35.68658972159028,
+   "z": 5.45629408210516,
+   "centreDepth": 2.3359848983786167
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v07.png",
+   "x": 29.333597915247083,
+   "z": -6.029042573645711,
+   "centreDepth": 2.1226994558088133
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v08.png",
+   "x": 51.30359066595488,
+   "z": -8.80287210457027,
+   "centreDepth": 4.3857876685921
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v09.png",
+   "x": 7.401120361561577,
+   "z": 13.813401502557099,
+   "centreDepth": 0.6244738774682972
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v10.png",
+   "x": 10.121268779039383,
+   "z": 3.474741359241307,
+   "centreDepth": 0.8290276388582467
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v11.png",
+   "x": 60.10000984896632,
+   "z": 1.9912366708740592,
+   "centreDepth": 5.777146320715925
+  },
+  {
+   "kit": "own_quartz",
+   "file": "own_quartz_e0197ebc07_v12.png",
+   "x": 20.375078342234094,
+   "z": 9.480679691769183,
+   "centreDepth": 1.5372735059636904
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v01.png",
+   "x": 26.59143751176695,
+   "z": -0.9802695550024509,
+   "centreDepth": 1.2342956138271108
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v02.png",
+   "x": 22.662347956560552,
+   "z": -10.620688484050333,
+   "centreDepth": 1.1926836441159865
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v03.png",
+   "x": 18.033805465946596,
+   "z": 13.18804381415248,
+   "centreDepth": 0.7457208119242617
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v04.png",
+   "x": 26.475943226367235,
+   "z": -18.431362342089415,
+   "centreDepth": 1.5089262414452982
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v05.png",
+   "x": 15.168097853971025,
+   "z": -7.996414205990732,
+   "centreDepth": 0.52512541584385
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v06.png",
+   "x": 9.540679845958948,
+   "z": -6.203981246799231,
+   "centreDepth": 0.01249017580652334
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v07.png",
+   "x": 4.873117043326299,
+   "z": 25.741229527629912,
+   "centreDepth": -0.28662202159635364
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v08.png",
+   "x": 5.976911675805847,
+   "z": 5.220098197460175,
+   "centreDepth": -0.07555089335413778
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v09.png",
+   "x": 18.094795080212254,
+   "z": 11.510282303206623,
+   "centreDepth": 0.7805992175438966
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v10.png",
+   "x": 5.263571836675206,
+   "z": -2.8602116648107767,
+   "centreDepth": -0.3296674335169001
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v11.png",
+   "x": 13.530662695877254,
+   "z": 21.15524715743959,
+   "centreDepth": 0.2511338196377889
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v12.png",
+   "x": 18.70387631437431,
+   "z": -18.966806489042938,
+   "centreDepth": 0.8706464485302555
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v01.png",
+   "x": 5.186029418682058,
+   "z": 19.617857225239277,
+   "centreDepth": -0.2554432762155276
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v02.png",
+   "x": 12.832563295339545,
+   "z": 28.49679679144174,
+   "centreDepth": 0.16892826967993868
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v03.png",
+   "x": 6.965366669309636,
+   "z": 5.734779224731028,
+   "centreDepth": 0.013874535156036205
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v04.png",
+   "x": 19.14399537164718,
+   "z": -4.7962342808023095,
+   "centreDepth": 0.8095355379926282
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v05.png",
+   "x": 10.048980718789,
+   "z": 20.253019058145583,
+   "centreDepth": 0.05891797109793451
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v06.png",
+   "x": 23.436961207228403,
+   "z": 20.323763424530625,
+   "centreDepth": 0.8703281702855828
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v07.png",
+   "x": 13.23017531602333,
+   "z": -5.691973585635424,
+   "centreDepth": 0.34058857910964024
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v08.png",
+   "x": 15.825835762235025,
+   "z": -10.524754445068538,
+   "centreDepth": 0.6161510745479005
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v09.png",
+   "x": 6.264263049699366,
+   "z": -11.564431507140398,
+   "centreDepth": -0.2823826905791994
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v10.png",
+   "x": 4.53047151149561,
+   "z": -14.16799629572779,
+   "centreDepth": -0.42772374300350635
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v11.png",
+   "x": 11.020706254988909,
+   "z": 4.285035585053265,
+   "centreDepth": 0.30452105106613614
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v12.png",
+   "x": 23.281092842730384,
+   "z": -8.731504627503455,
+   "centreDepth": 1.1952283081913428
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v01.png",
+   "x": 24.092986441838246,
+   "z": 23.199610384181142,
+   "centreDepth": 0.848600219880122
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v02.png",
+   "x": 21.82824977921943,
+   "z": 3.643110324628651,
+   "centreDepth": 0.9776131686636836
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v03.png",
+   "x": 14.624206861170629,
+   "z": -4.9149933736771345,
+   "centreDepth": 0.45666324560932015
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v04.png",
+   "x": 14.11191702572008,
+   "z": 11.149227186106145,
+   "centreDepth": 0.5400479564102195
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v05.png",
+   "x": 23.705317453170817,
+   "z": -4.748351792804897,
+   "centreDepth": 1.1264655929162828
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v06.png",
+   "x": 23.706920666309696,
+   "z": -24.34595677535981,
+   "centreDepth": 1.1559289629847407
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v07.png",
+   "x": 13.499123079391817,
+   "z": 9.690937832929194,
+   "centreDepth": 0.5142916625579094
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v08.png",
+   "x": 25.96814517211169,
+   "z": 11.001763860695064,
+   "centreDepth": 1.2285862067589033
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v09.png",
+   "x": 6.592307485019167,
+   "z": -4.234439581632614,
+   "centreDepth": -0.2361032677305251
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v10.png",
+   "x": 10.556776640936732,
+   "z": -12.0694818533957,
+   "centreDepth": 0.1357128030686745
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v11.png",
+   "x": 10.788275360750653,
+   "z": -25.653649368323386,
+   "centreDepth": -0.017152838301409457
+  },
+  {
+   "kit": "own_trostnik",
+   "file": "own_trostnik_cbc1190335_v12.png",
+   "x": 9.512288365823528,
+   "z": -3.0790574848651886,
+   "centreDepth": 0.03801594440167155
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v01.png",
+   "x": 62.603571054744805,
+   "z": -2.1236877143383026,
+   "centreDepth": 5.966583215268527
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v02.png",
+   "x": 25.865848891747493,
+   "z": -4.437377178110182,
+   "centreDepth": 1.5718040681251262
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v03.png",
+   "x": 20.101366105178993,
+   "z": 27.71891358308494,
+   "centreDepth": 0.8850232752089793
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v04.png",
+   "x": 61.494095082778266,
+   "z": 27.668632501736283,
+   "centreDepth": 5.787595075424672
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v05.png",
+   "x": 36.69724243072172,
+   "z": 4.668321842327714,
+   "centreDepth": 2.0956721636790094
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v06.png",
+   "x": 37.44769382290542,
+   "z": 8.207610198296607,
+   "centreDepth": 2.2083134937894497
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v07.png",
+   "x": 38.32986205661049,
+   "z": 26.79464021231979,
+   "centreDepth": 2.3437146261823782
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v08.png",
+   "x": 66.56200517955071,
+   "z": -2.3468765476718545,
+   "centreDepth": 6.646722508158598
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v09.png",
+   "x": 71.54845915406065,
+   "z": 20.82206135150045,
+   "centreDepth": 7.219410498814938
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v10.png",
+   "x": 61.06565254658241,
+   "z": -26.91813130863011,
+   "centreDepth": 5.30898006323943
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v11.png",
+   "x": 47.369523718131376,
+   "z": -1.7218044446781278,
+   "centreDepth": 3.3969152425361635
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v12.png",
+   "x": 41.060569401118244,
+   "z": -15.53886387962848,
+   "centreDepth": 2.7496317510704564
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v01.png",
+   "x": 40.56053827982396,
+   "z": -15.31969256233424,
+   "centreDepth": 2.6923028408217125
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v02.png",
+   "x": 71.0333100722774,
+   "z": -18.80527795292437,
+   "centreDepth": 6.912849165329908
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v03.png",
+   "x": 20.498257260769606,
+   "z": 26.03301172144711,
+   "centreDepth": 0.9059332053849947
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v04.png",
+   "x": 38.993467137527965,
+   "z": -5.5895244050771,
+   "centreDepth": 2.392403423882362
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v05.png",
+   "x": 22.833235217258334,
+   "z": -26.147719617001712,
+   "centreDepth": 1.3515676767968148
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v06.png",
+   "x": 57.8027495843194,
+   "z": -4.246415114030242,
+   "centreDepth": 5.14400440996593
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v07.png",
+   "x": 31.244868664070964,
+   "z": -13.308975999243557,
+   "centreDepth": 2.1448577521573933
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v08.png",
+   "x": 25.45140478760004,
+   "z": 15.51849877461791,
+   "centreDepth": 1.4486667741031283
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v09.png",
+   "x": 38.70299494359642,
+   "z": 25.486651095561683,
+   "centreDepth": 2.3801018826983507
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v10.png",
+   "x": 29.22961176217844,
+   "z": 18.808256057091057,
+   "centreDepth": 1.6292380337740207
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v11.png",
+   "x": 46.50815346469993,
+   "z": -19.451139606535435,
+   "centreDepth": 3.3400015056421646
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v12.png",
+   "x": 59.23869848169167,
+   "z": 20.987915019504726,
+   "centreDepth": 5.681219999363037
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v01.png",
+   "x": 22.974312876661617,
+   "z": -13.800850524567068,
+   "centreDepth": 1.5794496119837187
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v02.png",
+   "x": 45.525232198483806,
+   "z": -1.1297450261190534,
+   "centreDepth": 3.1090310364372495
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v03.png",
+   "x": 62.41494877181728,
+   "z": -22.47206361964345,
+   "centreDepth": 5.444252150263845
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v04.png",
+   "x": 36.09585490543395,
+   "z": -10.90518624521792,
+   "centreDepth": 2.3792819816183775
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v05.png",
+   "x": 20.20362973678857,
+   "z": 14.758689003065228,
+   "centreDepth": 1.1505463297657426
+  },
+  {
+   "kit": "own_rdest",
+   "file": "own_rdest_2d5b9cbcc1_v06.png",
+   "x": 57.10863939678187,
+   "z": -5.030131260864437,
+   "centreDepth": 5.027468334624619
+  },
+  {
+   "kit": "own_balka",
+   "file": "own_balka_fc14815fb5_v01.png",
+   "x": 85.73385519030339,
+   "z": 20.083398325368762,
+   "centreDepth": 8.415127820113534
+  },
+  {
+   "kit": "own_balka",
+   "file": "own_balka_fc14815fb5_v02.png",
+   "x": 137.84345001420553,
+   "z": -7.671696804463863,
+   "centreDepth": 16.2820107753192
+  },
+  {
+   "kit": "own_balka",
+   "file": "own_balka_fc14815fb5_v03.png",
+   "x": 128.92940715174464,
+   "z": 13.88014190364629,
+   "centreDepth": 15.027058710725237
+  },
+  {
+   "kit": "own_balka",
+   "file": "own_balka_fc14815fb5_v04.png",
+   "x": 89.29285899133367,
+   "z": 6.843575905077159,
+   "centreDepth": 8.89072724841772
+  },
+  {
+   "kit": "own_balka",
+   "file": "own_balka_fc14815fb5_v05.png",
+   "x": 127.42982057744966,
+   "z": -18.20617333520204,
+   "centreDepth": 14.83139312535384
+  },
+  {
+   "kit": "own_balka",
+   "file": "own_balka_fc14815fb5_v06.png",
+   "x": 71.78656227010137,
+   "z": 23.95207231398672,
+   "centreDepth": 6.781673351131435
+  },
+  {
+   "kit": "own_balka",
+   "file": "own_balka_fc14815fb5_v07.png",
+   "x": 84.06360674320774,
+   "z": 20.613409182988107,
+   "centreDepth": 8.220281158054782
+  },
+  {
+   "kit": "own_balka",
+   "file": "own_balka_fc14815fb5_v08.png",
+   "x": 48.23155676398207,
+   "z": -7.738453005440533,
+   "centreDepth": 3.2321537484003593
+  },
+  {
+   "kit": "own_balka",
+   "file": "own_balka_fc14815fb5_v09.png",
+   "x": 127.45409269543255,
+   "z": 9.627930815331638,
+   "centreDepth": 15.097264884666417
+  },
+  {
+   "kit": "own_balka",
+   "file": "own_balka_fc14815fb5_v10.png",
+   "x": 138.9668710365453,
+   "z": 4.059034776873887,
+   "centreDepth": 16.327244786258188
+  },
+  {
+   "kit": "own_balka",
+   "file": "own_balka_fc14815fb5_v11.png",
+   "x": 79.88435291849515,
+   "z": 12.49093686696142,
+   "centreDepth": 7.638778510274461
+  },
+  {
+   "kit": "own_balka",
+   "file": "own_balka_fc14815fb5_v12.png",
+   "x": 61.36906649150393,
+   "z": -18.759453557431698,
+   "centreDepth": 4.918226650207291
+  },
+  {
+   "kit": "own_khum",
+   "file": "own_khum_04712f8b8b_v01.png",
+   "x": 147.0694768812288,
+   "z": -14.122451073490083,
+   "centreDepth": 18.241789591696282
+  },
+  {
+   "kit": "own_khum",
+   "file": "own_khum_04712f8b8b_v02.png",
+   "x": 129.7075065926594,
+   "z": -1.8796380562707782,
+   "centreDepth": 15.638316392193737
+  },
+  {
+   "kit": "own_khum",
+   "file": "own_khum_04712f8b8b_v03.png",
+   "x": 113.11663964982418,
+   "z": -7.6777650229632854,
+   "centreDepth": 12.600250735279936
+  },
+  {
+   "kit": "own_khum",
+   "file": "own_khum_04712f8b8b_v04.png",
+   "x": 135.55658975287395,
+   "z": -25.93135731294751,
+   "centreDepth": 16.355030817238163
+  },
+  {
+   "kit": "own_khum",
+   "file": "own_khum_04712f8b8b_v05.png",
+   "x": 78.0288871772149,
+   "z": 6.127916495315731,
+   "centreDepth": 8.056002837886227
+  },
+  {
+   "kit": "own_khum",
+   "file": "own_khum_04712f8b8b_v06.png",
+   "x": 163.44885980322337,
+   "z": 11.293836082331836,
+   "centreDepth": 20.352435057126854
+  },
+  {
+   "kit": "own_khum",
+   "file": "own_khum_04712f8b8b_v07.png",
+   "x": 123.42561384991689,
+   "z": 12.670470429584384,
+   "centreDepth": 14.85749362990582
+  },
+  {
+   "kit": "own_khum",
+   "file": "own_khum_04712f8b8b_v08.png",
+   "x": 163.90816100717834,
+   "z": -21.950027109123766,
+   "centreDepth": 19.805298270190544
+  }
+ ]
+}

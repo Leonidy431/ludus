@@ -16,6 +16,10 @@ jest.mock('../../api/ludus-dialogue', () => {
     getDialogueStats: make('getDialogueStats'),
   };
 });
+jest.mock('../../api/ludus-actions', () => ({
+  ludusActions: jest.fn((req: any, res: any) =>
+    res.json({ handler: 'ludusActions' })),
+}));
 jest.mock('../../api/ludus-health', () => ({
   ludusHealth: jest.fn((req: any, res: any) => res.json({ ok: true })),
 }));
@@ -44,6 +48,13 @@ describe('matchRoute', () => {
     ['OPTIONS', '/api/ludus/dialogue/state', 'persistDialogueState', {}],
   ])('%s %s -> %s', (method, path, name, params) => {
     expect(matchRoute(method, path)).toEqual({ name, params });
+  });
+
+  test('routes both GET and POST of /api/ludus/actions', () => {
+    expect(matchRoute('GET', '/api/ludus/actions')?.name)
+      .toBe('ludusActions');
+    expect(matchRoute('POST', '/api/ludus/actions/')?.name)
+      .toBe('ludusActions');
   });
 
   test('rejects path traversal and unknown routes', () => {

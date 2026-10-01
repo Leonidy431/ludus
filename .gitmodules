@@ -1,3 +1,24 @@
 [submodule "vendor/kolokol"]
 	path = vendor/kolokol
 	url = https://github.com/Leonidy431/kolokol
+[submodule "vendor/godot/godot-xr-tools"]
+	path = vendor/godot/godot-xr-tools
+	url = https://github.com/GodotVR/godot-xr-tools.git
+[submodule "vendor/godot/godot4-oceanfft"]
+	path = vendor/godot/godot4-oceanfft
+	url = https://github.com/tessarakkt/godot4-oceanfft.git
+[submodule "vendor/godot/godot-jolt"]
+	path = vendor/godot/godot-jolt
+	url = https://github.com/godot-jolt/godot-jolt.git
+[submodule "vendor/godot/beehave"]
+	path = vendor/godot/beehave
+	url = https://github.com/bitbrain/beehave.git
+[submodule "vendor/godot/dialogic"]
+	path = vendor/godot/dialogic
+	url = https://github.com/dialogic-godot/dialogic.git
+[submodule "vendor/godot/godot-4-hitbox-hurtbox"]
+	path = vendor/godot/godot-4-hitbox-hurtbox
+	url = https://github.com/gdquest-demos/godot-4-hitbox-hurtbox.git
+[submodule "vendor/godot/godot_voxel"]
+	path = vendor/godot/godot_voxel
+	url = https://github.com/Zylann/godot_voxel.git

@@ -1,0 +1,45 @@
+; Ludus: the headset build (CLAUDE.md TABOO 0.02, Godot 4 MIT).
+; docs/HLD_HEADSET_BUILD_2026-09-30.md explains every choice here.
+
+config_version=5
+
+[application]
+
+config/name="Ludus — Погружение"
+config/description="Погружение ROV в Иссык-Куль: Meta Quest 3 и WebXR."
+run/main_scene="res://scenes/hub.tscn"
+config/icon="res://icon.svg"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+
+[autoload]
+
+Nav="*res://scripts/nav.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[physics]
+
+; Jolt is built into Godot since 4.4, so the archived godot-jolt
+; extension (vendor/godot/godot-jolt) is kept only as a reference.
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
+anti_aliasing/quality/msaa_3d=1
+
+[xr]
+
+# OpenXR starts only in the Quest build; desktop and web skip it.
+openxr/enabled=false
+openxr/enabled.android=true
+shaders/enabled=true

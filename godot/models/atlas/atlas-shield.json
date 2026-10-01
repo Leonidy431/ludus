@@ -1,0 +1,86 @@
+{
+ "id": "atlas-shield",
+ "kind": "atlas",
+ "lod": "proxy",
+ "detail": "procedural-detailed",
+ "details": [
+  "planks of the board",
+  "iron rim",
+  "iron boss (umbo)",
+  "rivets",
+  "rust blooms",
+  "silt drifted over one side"
+ ],
+ "tris": 922,
+ "bbox_m": [
+  1.26,
+  0.162,
+  1.241
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   1.26,
+   0.162,
+   1.241
+  ],
+  "centre_m": [
+   0.0,
+   0.081,
+   0.0
+  ]
+ },
+ "materials": [
+  {
+   "name": "wood",
+   "colour": "#5c5953",
+   "roughness": 0.95,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "wood-2",
+   "colour": "#3f3c36",
+   "roughness": 0.95,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "iron",
+   "colour": "#34312d",
+   "roughness": 0.6,
+   "metallic": 0.5,
+   "alpha": 1.0
+  },
+  {
+   "name": "rust",
+   "colour": "#6a3a22",
+   "roughness": 0.95,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "silt",
+   "colour": "#6a655a",
+   "roughness": 1,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 83500416686355,
+ "name": "Щит рыцаря",
+ "category": "atlas-trace",
+ "shape": "shield",
+ "size_m": 0.9,
+ "atlas_nodes": [
+  92,
+  41
+ ],
+ "loot": "hand-over",
+ "noLoot": false,
+ "noInteract": false,
+ "source": "scripts/story/atlas_nodes.py TRACES; own procedural drawing, no raw material",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
+}

@@ -1242,5 +1242,11 @@
     "инвертированное поведение ambient -> homing; 12 вариантов с попарно различными хитбоксами",
     "изменение формы по альфа-маскам (|A xor B| / |A or B|): от 39.1% до 75.5%",
     "источник: https://github.com/Card-Forge/forge @ 647b5eac95, forge-gui/res/adventure/common/sprites/enemy/undead/ghost_2.png #0 (GPL)"
-  ]
+  ],
+  "opposing_virtue": "Joy in God",
+  "ladder_step": "Ladder, step 7",
+  "patristic_source": "Evagrius, Praktikos 10",
+  "discernment_cue": "It paints the past as a lost paradise.",
+  "discernment_cue_ru": "Она рисует прошлое потерянным раем.",
+  "teacher_npc": "theodora"
 }

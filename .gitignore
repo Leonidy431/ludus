@@ -37,3 +37,6 @@ firestore-debug.log
 # Python
 __pycache__/
 *.pyc
+
+# Agent worktrees are local scratch checkouts, never committed.
+.claude/worktrees/

@@ -1,0 +1,72 @@
+{
+ "id": "lake-blacksilt-shallows-0",
+ "kind": "lake",
+ "lod": "proxy",
+ "detail": "procedural-detailed",
+ "details": [
+  "soft silt surface",
+  "burrow mounds with holes",
+  "rusty iron streaks"
+ ],
+ "tris": 816,
+ "bbox_m": [
+  2.0,
+  0.012,
+  2.0
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   2.0,
+   0.012,
+   2.0
+  ],
+  "centre_m": [
+   0.0,
+   0.006,
+   0.0
+  ]
+ },
+ "materials": [
+  {
+   "name": "silt",
+   "colour": "#2a2a28",
+   "roughness": 1,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "burrow",
+   "colour": "#111110",
+   "roughness": 1,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "iron-stain",
+   "colour": "#7a4a28",
+   "roughness": 1,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 170473211273843,
+ "name": "Чёрный железистый ил: пятно",
+ "category": "shelf",
+ "band": "shallows",
+ "depth_m": [
+  0,
+  5
+ ],
+ "flags": {
+  "noLoot": false,
+  "loot": "keep"
+ },
+ "noLoot": false,
+ "noInteract": false,
+ "size_m": 2.0,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
+}

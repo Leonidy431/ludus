@@ -1,0 +1,123 @@
+{
+ "id": "lake-nyrok-shallows-0",
+ "kind": "lake",
+ "lod": "proxy",
+ "detail": "procedural-detailed",
+ "details": [
+  "back plumage",
+  "belly plumage",
+  "black breast",
+  "folded wings",
+  "neck",
+  "head",
+  "bill",
+  "eyes",
+  "tail",
+  "legs set far back",
+  "webbed feet",
+  "air bubbles off the plumage"
+ ],
+ "tris": 769,
+ "bbox_m": [
+  0.47,
+  0.487,
+  0.183
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.47,
+   0.487,
+   0.183
+  ],
+  "centre_m": [
+   0.028,
+   0.29,
+   0.0
+  ]
+ },
+ "materials": [
+  {
+   "name": "bird-body",
+   "colour": "#b8aa92",
+   "roughness": 0.8,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "bird-belly",
+   "colour": "#e0d8c8",
+   "roughness": 0.8,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "bird-head",
+   "colour": "#b8582a",
+   "roughness": 0.7,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "bird-bill",
+   "colour": "#d02a20",
+   "roughness": 0.5,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "bird-feet",
+   "colour": "#3a3a34",
+   "roughness": 0.7,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "bird-eye",
+   "colour": "#b02020",
+   "roughness": 0.2,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "air",
+   "colour": "#e8f4f8",
+   "roughness": 0.1,
+   "metallic": 0.0,
+   "alpha": 0.45
+  },
+  {
+   "name": "bird-breast",
+   "colour": "#1a1a1a",
+   "roughness": 0.8,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "bird-wing",
+   "colour": "#938875",
+   "roughness": 0.8,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 84297517746947,
+ "name": "Красноносый нырок: ныряет",
+ "category": "bird",
+ "band": "shallows",
+ "depth_m": [
+  0,
+  3
+ ],
+ "flags": {
+  "noLoot": true,
+  "loot": null
+ },
+ "noLoot": true,
+ "noInteract": false,
+ "size_m": 0.5,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
+}

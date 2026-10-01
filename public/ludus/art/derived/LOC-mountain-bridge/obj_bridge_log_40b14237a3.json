@@ -1,0 +1,1402 @@
+{
+ "name": "obj_bridge_log_40b14237a3",
+ "id": "40b14237a3",
+ "seed": "40b14237a34e553ddd4d59f829d990d334199176",
+ "thing": "bridge-log",
+ "serves": [
+  "bridge-log",
+  "spruce-log"
+ ],
+ "slot": "LOC-mountain-bridge",
+ "locations": [
+  "mountain-bridge",
+  "shipyard"
+ ],
+ "origin": "raw-neutral-location-kit",
+ "method": "location-kit-r1",
+ "raw_material": true,
+ "source": {
+  "repo": "https://github.com/widelands/widelands",
+  "path": "data/tribes/wares/log/idle_4.png",
+  "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+  "piece": 0,
+  "prop_key": "p_d173a4ba36ca",
+  "sha1": "a2a617ca70b356ac71a31b75edb6ea029b850946",
+  "bytes": 2325
+ },
+ "repo": "https://github.com/widelands/widelands",
+ "path": "data/tribes/wares/log/idle_4.png",
+ "commit": "6c21c892e88d3c87422ae6869e5d623e88b7a53f",
+ "license": "GPL-2.0-or-later",
+ "license_file": "COPYING",
+ "licence_facts": {
+  "repo_licence": "GPL",
+  "evidence": [
+   "game data under the program's licence (COPYING)"
+  ],
+  "licence": "GPL-2.0-or-later",
+  "commercial": true
+ },
+ "picked_by_eye": "01 c: one round log",
+ "material": "wood",
+ "ru": "Бревно моста",
+ "size_m": [
+  0.6,
+  0.6,
+  0.03
+ ],
+ "threshold": 0.35,
+ "shape_basis": "source",
+ "sibling_basis": "nearest-sibling",
+ "pixel_art": false,
+ "source_px": [
+  66,
+  49
+ ],
+ "side_px": 118,
+ "pool": {
+  "size": 152,
+  "measured": 128,
+  "refused": {
+   "colour-below-threshold": 4,
+   "does-not-fit-canvas": 5,
+   "shape-below-threshold": 7,
+   "thing-mostly-hidden": 8,
+   "too-close-to-a-sibling": 12
+  },
+  "chosen": 12
+ },
+ "variants": [
+  {
+   "slot": "v01",
+   "file": "obj_bridge_log_40b14237a3_v01.png",
+   "change": "leans -12, chipped",
+   "setting": "any",
+   "state": "weathered",
+   "shape_change": 0.3707,
+   "sibling_min": 0.3768,
+   "colour_change": 0.6705,
+   "visible": 0.8504,
+   "hitbox": {
+    "bbox": [
+     79,
+     143,
+     177,
+     238
+    ],
+    "area": 3455,
+    "radius": 33.16,
+    "hull": [
+     [
+      79,
+      160
+     ],
+     [
+      85,
+      152
+     ],
+     [
+      103,
+      143
+     ],
+     [
+      105,
+      143
+     ],
+     [
+      155,
+      193
+     ],
+     [
+      175,
+      214
+     ],
+     [
+      176,
+      217
+     ],
+     [
+      177,
+      221
+     ],
+     [
+      177,
+      223
+     ],
+     [
+      176,
+      226
+     ],
+     [
+      174,
+      230
+     ],
+     [
+      170,
+      234
+     ],
+     [
+      164,
+      237
+     ],
+     [
+      158,
+      238
+     ],
+     [
+      157,
+      238
+     ],
+     [
+      151,
+      235
+     ],
+     [
+      91,
+      175
+     ],
+     [
+      79,
+      162
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bridge_log.40b14237a3.v01"
+  },
+  {
+   "slot": "v02",
+   "file": "obj_bridge_log_40b14237a3_v02.png",
+   "change": "leans +12, chipped",
+   "setting": "any",
+   "state": "aged",
+   "shape_change": 0.466,
+   "sibling_min": 0.5159,
+   "colour_change": 0.3906,
+   "visible": 0.9612,
+   "hitbox": {
+    "bbox": [
+     65,
+     168,
+     190,
+     237
+    ],
+    "area": 3922,
+    "radius": 35.33,
+    "hull": [
+     [
+      65,
+      182
+     ],
+     [
+      66,
+      179
+     ],
+     [
+      68,
+      175
+     ],
+     [
+      71,
+      171
+     ],
+     [
+      73,
+      169
+     ],
+     [
+      78,
+      168
+     ],
+     [
+      83,
+      168
+     ],
+     [
+      86,
+      169
+     ],
+     [
+      156,
+      196
+     ],
+     [
+      181,
+      206
+     ],
+     [
+      185,
+      208
+     ],
+     [
+      188,
+      211
+     ],
+     [
+      190,
+      214
+     ],
+     [
+      190,
+      224
+     ],
+     [
+      189,
+      227
+     ],
+     [
+      188,
+      229
+     ],
+     [
+      186,
+      232
+     ],
+     [
+      185,
+      233
+     ],
+     [
+      179,
+      237
+     ],
+     [
+      172,
+      237
+     ],
+     [
+      143,
+      226
+     ],
+     [
+      122,
+      218
+     ],
+     [
+      74,
+      199
+     ],
+     [
+      70,
+      197
+     ],
+     [
+      67,
+      194
+     ],
+     [
+      65,
+      190
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bridge_log.40b14237a3.v02"
+  },
+  {
+   "slot": "v03",
+   "file": "obj_bridge_log_40b14237a3_v03.png",
+   "change": "stack",
+   "setting": "any",
+   "state": "weathered",
+   "shape_change": 0.4993,
+   "sibling_min": 0.584,
+   "colour_change": 0.7893,
+   "visible": 0.9566,
+   "hitbox": {
+    "bbox": [
+     70,
+     114,
+     188,
+     238
+    ],
+    "area": 7782,
+    "radius": 49.77,
+    "hull": [
+     [
+      70,
+      166
+     ],
+     [
+      71,
+      130
+     ],
+     [
+      72,
+      126
+     ],
+     [
+      73,
+      124
+     ],
+     [
+      75,
+      121
+     ],
+     [
+      80,
+      116
+     ],
+     [
+      83,
+      114
+     ],
+     [
+      93,
+      114
+     ],
+     [
+      183,
+      173
+     ],
+     [
+      186,
+      177
+     ],
+     [
+      188,
+      181
+     ],
+     [
+      188,
+      186
+     ],
+     [
+      187,
+      222
+     ],
+     [
+      186,
+      226
+     ],
+     [
+      184,
+      230
+     ],
+     [
+      179,
+      235
+     ],
+     [
+      175,
+      237
+     ],
+     [
+      171,
+      238
+     ],
+     [
+      170,
+      238
+     ],
+     [
+      167,
+      237
+     ],
+     [
+      163,
+      235
+     ],
+     [
+      139,
+      220
+     ],
+     [
+      107,
+      199
+     ],
+     [
+      74,
+      177
+     ],
+     [
+      73,
+      176
+     ],
+     [
+      71,
+      172
+     ],
+     [
+      70,
+      167
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bridge_log.40b14237a3.v03"
+  },
+  {
+   "slot": "v04",
+   "file": "obj_bridge_log_40b14237a3_v04.png",
+   "change": "leans -12, broken",
+   "setting": "any",
+   "state": "fresh",
+   "shape_change": 0.5072,
+   "sibling_min": 0.3668,
+   "colour_change": 0.6035,
+   "visible": 0.968,
+   "hitbox": {
+    "bbox": [
+     89,
+     141,
+     212,
+     237
+    ],
+    "area": 3991,
+    "radius": 35.64,
+    "hull": [
+     [
+      89,
+      145
+     ],
+     [
+      91,
+      141
+     ],
+     [
+      93,
+      141
+     ],
+     [
+      203,
+      195
+     ],
+     [
+      209,
+      199
+     ],
+     [
+      212,
+      207
+     ],
+     [
+      212,
+      208
+     ],
+     [
+      210,
+      215
+     ],
+     [
+      201,
+      225
+     ],
+     [
+      174,
+      237
+     ],
+     [
+      145,
+      237
+     ],
+     [
+      142,
+      235
+     ],
+     [
+      133,
+      227
+     ],
+     [
+      94,
+      188
+     ],
+     [
+      91,
+      184
+     ],
+     [
+      90,
+      182
+     ],
+     [
+      89,
+      179
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bridge_log.40b14237a3.v04"
+  },
+  {
+   "slot": "v05",
+   "file": "obj_bridge_log_40b14237a3_v05.png",
+   "change": "leans -24, broken",
+   "setting": "any",
+   "state": "weathered",
+   "shape_change": 0.5615,
+   "sibling_min": 0.3709,
+   "colour_change": 0.736,
+   "visible": 0.9636,
+   "hitbox": {
+    "bbox": [
+     95,
+     132,
+     213,
+     238
+    ],
+    "area": 3912,
+    "radius": 35.29,
+    "hull": [
+     [
+      95,
+      166
+     ],
+     [
+      101,
+      136
+     ],
+     [
+      102,
+      134
+     ],
+     [
+      104,
+      132
+     ],
+     [
+      106,
+      132
+     ],
+     [
+      213,
+      203
+     ],
+     [
+      213,
+      204
+     ],
+     [
+      193,
+      234
+     ],
+     [
+      192,
+      235
+     ],
+     [
+      188,
+      237
+     ],
+     [
+      183,
+      238
+     ],
+     [
+      142,
+      238
+     ],
+     [
+      137,
+      237
+     ],
+     [
+      133,
+      233
+     ],
+     [
+      107,
+      193
+     ],
+     [
+      96,
+      176
+     ],
+     [
+      95,
+      174
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bridge_log.40b14237a3.v05"
+  },
+  {
+   "slot": "v06",
+   "file": "obj_bridge_log_40b14237a3_v06.png",
+   "change": "broken",
+   "setting": "any",
+   "state": "aged",
+   "shape_change": 0.5621,
+   "sibling_min": 0.3668,
+   "colour_change": 0.3625,
+   "visible": 0.9663,
+   "hitbox": {
+    "bbox": [
+     82,
+     155,
+     219,
+     238
+    ],
+    "area": 3935,
+    "radius": 35.39,
+    "hull": [
+     [
+      82,
+      158
+     ],
+     [
+      83,
+      155
+     ],
+     [
+      85,
+      155
+     ],
+     [
+      207,
+      194
+     ],
+     [
+      211,
+      196
+     ],
+     [
+      214,
+      198
+     ],
+     [
+      216,
+      200
+     ],
+     [
+      217,
+      202
+     ],
+     [
+      219,
+      207
+     ],
+     [
+      219,
+      208
+     ],
+     [
+      217,
+      214
+     ],
+     [
+      208,
+      224
+     ],
+     [
+      207,
+      225
+     ],
+     [
+      205,
+      226
+     ],
+     [
+      181,
+      237
+     ],
+     [
+      158,
+      238
+     ],
+     [
+      155,
+      238
+     ],
+     [
+      152,
+      237
+     ],
+     [
+      150,
+      236
+     ],
+     [
+      128,
+      222
+     ],
+     [
+      96,
+      201
+     ],
+     [
+      93,
+      199
+     ],
+     [
+      91,
+      197
+     ],
+     [
+      89,
+      193
+     ],
+     [
+      82,
+      161
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bridge_log.40b14237a3.v06"
+  },
+  {
+   "slot": "v07",
+   "file": "obj_bridge_log_40b14237a3_v07.png",
+   "change": "leans -12, broken",
+   "setting": "any",
+   "state": "weathered",
+   "shape_change": 0.5658,
+   "sibling_min": 0.3757,
+   "colour_change": 0.8499,
+   "visible": 0.9683,
+   "hitbox": {
+    "bbox": [
+     36,
+     141,
+     166,
+     237
+    ],
+    "area": 3923,
+    "radius": 35.34,
+    "hull": [
+     [
+      36,
+      217
+     ],
+     [
+      37,
+      214
+     ],
+     [
+      39,
+      210
+     ],
+     [
+      91,
+      141
+     ],
+     [
+      93,
+      141
+     ],
+     [
+      163,
+      211
+     ],
+     [
+      166,
+      217
+     ],
+     [
+      166,
+      225
+     ],
+     [
+      163,
+      230
+     ],
+     [
+      161,
+      232
+     ],
+     [
+      157,
+      235
+     ],
+     [
+      155,
+      236
+     ],
+     [
+      152,
+      237
+     ],
+     [
+      46,
+      237
+     ],
+     [
+      43,
+      236
+     ],
+     [
+      37,
+      230
+     ],
+     [
+      36,
+      225
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bridge_log.40b14237a3.v07"
+  },
+  {
+   "slot": "v08",
+   "file": "obj_bridge_log_40b14237a3_v08.png",
+   "change": "broken",
+   "setting": "any",
+   "state": "weathered",
+   "shape_change": 0.5755,
+   "sibling_min": 0.3757,
+   "colour_change": 0.942,
+   "visible": 0.9651,
+   "hitbox": {
+    "bbox": [
+     30,
+     155,
+     173,
+     238
+    ],
+    "area": 3911,
+    "radius": 35.28,
+    "hull": [
+     [
+      30,
+      216
+     ],
+     [
+      33,
+      212
+     ],
+     [
+      83,
+      155
+     ],
+     [
+      85,
+      155
+     ],
+     [
+      99,
+      164
+     ],
+     [
+      168,
+      209
+     ],
+     [
+      171,
+      213
+     ],
+     [
+      173,
+      217
+     ],
+     [
+      173,
+      222
+     ],
+     [
+      172,
+      226
+     ],
+     [
+      170,
+      230
+     ],
+     [
+      165,
+      235
+     ],
+     [
+      161,
+      237
+     ],
+     [
+      157,
+      238
+     ],
+     [
+      46,
+      238
+     ],
+     [
+      42,
+      237
+     ],
+     [
+      40,
+      236
+     ],
+     [
+      37,
+      234
+     ],
+     [
+      32,
+      229
+     ],
+     [
+      30,
+      226
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bridge_log.40b14237a3.v08"
+  },
+  {
+   "slot": "v09",
+   "file": "obj_bridge_log_40b14237a3_v09.png",
+   "change": "leans -24, chipped",
+   "setting": "any",
+   "state": "weathered",
+   "shape_change": 0.6104,
+   "sibling_min": 0.3768,
+   "colour_change": 0.6479,
+   "visible": 0.8521,
+   "hitbox": {
+    "bbox": [
+     87,
+     133,
+     170,
+     237
+    ],
+    "area": 3460,
+    "radius": 33.19,
+    "hull": [
+     [
+      87,
+      145
+     ],
+     [
+      96,
+      137
+     ],
+     [
+      113,
+      133
+     ],
+     [
+      116,
+      133
+     ],
+     [
+      128,
+      151
+     ],
+     [
+      157,
+      196
+     ],
+     [
+      164,
+      207
+     ],
+     [
+      169,
+      215
+     ],
+     [
+      170,
+      217
+     ],
+     [
+      170,
+      226
+     ],
+     [
+      169,
+      229
+     ],
+     [
+      165,
+      233
+     ],
+     [
+      162,
+      235
+     ],
+     [
+      160,
+      236
+     ],
+     [
+      157,
+      237
+     ],
+     [
+      150,
+      237
+     ],
+     [
+      146,
+      236
+     ],
+     [
+      142,
+      232
+     ],
+     [
+      126,
+      208
+     ],
+     [
+      99,
+      166
+     ],
+     [
+      89,
+      150
+     ],
+     [
+      87,
+      146
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bridge_log.40b14237a3.v09"
+  },
+  {
+   "slot": "v10",
+   "file": "obj_bridge_log_40b14237a3_v10.png",
+   "change": "leans -12, broken",
+   "setting": "any",
+   "state": "aged",
+   "shape_change": 0.6219,
+   "sibling_min": 0.4208,
+   "colour_change": 0.4589,
+   "visible": 0.9663,
+   "hitbox": {
+    "bbox": [
+     96,
+     159,
+     231,
+     237
+    ],
+    "area": 3932,
+    "radius": 35.38,
+    "hull": [
+     [
+      96,
+      179
+     ],
+     [
+      97,
+      175
+     ],
+     [
+      100,
+      165
+     ],
+     [
+      102,
+      160
+     ],
+     [
+      103,
+      159
+     ],
+     [
+      104,
+      159
+     ],
+     [
+      208,
+      205
+     ],
+     [
+      210,
+      207
+     ],
+     [
+      231,
+      232
+     ],
+     [
+      231,
+      236
+     ],
+     [
+      212,
+      237
+     ],
+     [
+      138,
+      237
+     ],
+     [
+      135,
+      235
+     ],
+     [
+      122,
+      223
+     ],
+     [
+      101,
+      202
+     ],
+     [
+      97,
+      197
+     ],
+     [
+      96,
+      184
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bridge_log.40b14237a3.v10"
+  },
+  {
+   "slot": "v11",
+   "file": "obj_bridge_log_40b14237a3_v11.png",
+   "change": "pair",
+   "setting": "any",
+   "state": "weathered",
+   "shape_change": 0.6578,
+   "sibling_min": 0.5584,
+   "colour_change": 0.7161,
+   "visible": 0.909,
+   "hitbox": {
+    "bbox": [
+     35,
+     150,
+     225,
+     238
+    ],
+    "area": 7389,
+    "radius": 48.5,
+    "hull": [
+     [
+      35,
+      166
+     ],
+     [
+      36,
+      162
+     ],
+     [
+      37,
+      160
+     ],
+     [
+      39,
+      157
+     ],
+     [
+      44,
+      152
+     ],
+     [
+      47,
+      150
+     ],
+     [
+      57,
+      150
+     ],
+     [
+      118,
+      168
+     ],
+     [
+      121,
+      169
+     ],
+     [
+      188,
+      195
+     ],
+     [
+      206,
+      202
+     ],
+     [
+      216,
+      206
+     ],
+     [
+      220,
+      208
+     ],
+     [
+      223,
+      211
+     ],
+     [
+      225,
+      214
+     ],
+     [
+      225,
+      224
+     ],
+     [
+      224,
+      227
+     ],
+     [
+      223,
+      229
+     ],
+     [
+      221,
+      232
+     ],
+     [
+      217,
+      235
+     ],
+     [
+      214,
+      237
+     ],
+     [
+      136,
+      238
+     ],
+     [
+      135,
+      238
+     ],
+     [
+      132,
+      237
+     ],
+     [
+      128,
+      235
+     ],
+     [
+      104,
+      220
+     ],
+     [
+      72,
+      199
+     ],
+     [
+      39,
+      177
+     ],
+     [
+      38,
+      176
+     ],
+     [
+      36,
+      172
+     ],
+     [
+      35,
+      167
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bridge_log.40b14237a3.v11"
+  },
+  {
+   "slot": "v12",
+   "file": "obj_bridge_log_40b14237a3_v12.png",
+   "change": "leans -24, broken",
+   "setting": "any",
+   "state": "weathered",
+   "shape_change": 0.6595,
+   "sibling_min": 0.394,
+   "colour_change": 0.6938,
+   "visible": 0.9649,
+   "hitbox": {
+    "bbox": [
+     50,
+     132,
+     161,
+     238
+    ],
+    "area": 3914,
+    "radius": 35.3,
+    "hull": [
+     [
+      50,
+      235
+     ],
+     [
+      57,
+      207
+     ],
+     [
+      59,
+      200
+     ],
+     [
+      60,
+      198
+     ],
+     [
+      102,
+      134
+     ],
+     [
+      104,
+      132
+     ],
+     [
+      106,
+      132
+     ],
+     [
+      110,
+      138
+     ],
+     [
+      160,
+      215
+     ],
+     [
+      161,
+      218
+     ],
+     [
+      161,
+      227
+     ],
+     [
+      160,
+      229
+     ],
+     [
+      154,
+      235
+     ],
+     [
+      152,
+      236
+     ],
+     [
+      149,
+      237
+     ],
+     [
+      144,
+      238
+     ],
+     [
+      142,
+      238
+     ],
+     [
+      50,
+      236
+     ]
+    ]
+   },
+   "analytics_id": "ludus.variant.bridge_log.40b14237a3.v12"
+  }
+ ],
+ "shortfall": 0,
+ "status": "ok",
+ "shape_change": 0.3707,
+ "colour_change": 0.3625,
+ "redraw": {
+  "shape_change": 0.0,
+  "colour_change": 0.3625,
+  "is_recolour": false
+ },
+ "claim_features": [
+  "нейтральная вещь локаций «Бревно моста»: источник выбран глазами как изображение самой вещи (01 c: one round log)",
+  "двенадцать вариантов из реальных состояний вещи (наклон, лежит, сколота, расколота, в песке, в траве, пара, штабель); поза без изменения строения варианта не даёт",
+  "палитра материала «wood» в его состояниях; масштаб источника и вариантов один (118 пикс.)",
+  "изменение формы к источнику (|A xor B| / |A or B|): от 37.1% до 66.0%; к ближайшему соседу не меньше 35%; цвета от 36.2%",
+  "источник: https://github.com/widelands/widelands @ 6c21c892e8, data/tribes/wares/log/idle_4.png #0 (GPL-2.0-or-later)"
+ ],
+ "constitution": "ФОРМА: настоящая вещь места в её настоящих состояниях → ДЕЙСТВИЕ: вещь стоит в слоте локации и не заслоняет сердце места → ЦЕЛЬ: вещи служат учению (ТАБУ №0.013 п. 3, 9)",
+ "eye": {
+  "verdict": "ship",
+  "why": "a round log throughout: leaning, chipped at the end, broken with a chunk, two side by side, two stacked, weathered grey",
+  "sheet": "docs/audit/2026-09-30/location-items/obj_bridge_log_40b14237a3.png",
+  "date": "2026-09-30"
+ }
+}

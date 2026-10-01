@@ -1,0 +1,124 @@
+{
+ "id": "lake-marinka-shallows-4",
+ "kind": "lake",
+ "lod": "proxy",
+ "detail": "procedural-detailed",
+ "details": [
+  "dark back",
+  "pale belly",
+  "dorsal fin",
+  "anal fin",
+  "fork tail fin",
+  "pectoral fins",
+  "pelvic fins",
+  "eyes",
+  "gill cover",
+  "2 pair(s) of barbels",
+  "rounded granite",
+  "feldspar and mica grains",
+  "the stone it shelters by"
+ ],
+ "tris": 1799,
+ "bbox_m": [
+  0.53,
+  0.293,
+  0.628
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.53,
+   0.293,
+   0.628
+  ],
+  "centre_m": [
+   -0.033,
+   -0.018,
+   -0.251
+  ]
+ },
+ "materials": [
+  {
+   "name": "fish-back",
+   "colour": "#595644",
+   "roughness": 0.55,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-belly",
+   "colour": "#b6b3a1",
+   "roughness": 0.4,
+   "metallic": 0.1,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-fin",
+   "colour": "#726e58",
+   "roughness": 0.7,
+   "metallic": 0.0,
+   "alpha": 0.85
+  },
+  {
+   "name": "fish-mark",
+   "colour": "#2b2921",
+   "roughness": 0.7,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-iris",
+   "colour": "#c8b070",
+   "roughness": 0.3,
+   "metallic": 0.3,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-pupil",
+   "colour": "#0a0a0a",
+   "roughness": 0.2,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "granite",
+   "colour": "#8a8680",
+   "roughness": 0.9,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "feldspar",
+   "colour": "#b4968a",
+   "roughness": 0.85,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "mica",
+   "colour": "#292826",
+   "roughness": 0.5,
+   "metallic": 0.2,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 34204453500940,
+ "name": "Иссык-кульская маринка: в тени камня",
+ "category": "fish",
+ "band": "shallows",
+ "depth_m": [
+  1,
+  5
+ ],
+ "flags": {
+  "noLoot": false,
+  "loot": "release"
+ },
+ "noLoot": false,
+ "noInteract": false,
+ "size_m": 0.45,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
+}

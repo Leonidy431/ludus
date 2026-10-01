@@ -1,0 +1,70 @@
+{
+ "id": "lake-sandstone-shallows-0",
+ "kind": "lake",
+ "lod": "proxy",
+ "detail": "procedural-detailed",
+ "details": [
+  "block split along red bedding layers"
+ ],
+ "tris": 270,
+ "bbox_m": [
+  0.773,
+  0.378,
+  0.588
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.773,
+   0.378,
+   0.588
+  ],
+  "centre_m": [
+   0.003,
+   0.189,
+   -0.006
+  ]
+ },
+ "materials": [
+  {
+   "name": "sandstone",
+   "colour": "#a0503a",
+   "roughness": 0.95,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "sandstone-bed",
+   "colour": "#783c2c",
+   "roughness": 0.95,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "sandstone-pale",
+   "colour": "#b37361",
+   "roughness": 0.95,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 239183848260141,
+ "name": "Красный песчаник: глыба",
+ "category": "shelf",
+ "band": "shallows",
+ "depth_m": [
+  0,
+  5
+ ],
+ "flags": {
+  "noLoot": false,
+  "loot": "keep"
+ },
+ "noLoot": false,
+ "noInteract": false,
+ "size_m": 0.8,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
+}

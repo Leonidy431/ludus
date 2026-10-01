@@ -1,0 +1,64 @@
+{
+ "id": "sacrament-eucharist",
+ "kind": "scene",
+ "lod": "proxy",
+ "tris": 288,
+ "bbox_m": [
+  10,
+  4.05,
+  14
+ ],
+ "title": "У западной стены",
+ "mood": "Sunday morning, liturgy",
+ "storyOnly": true,
+ "microphone": false,
+ "speechRecognition": false,
+ "logPresence": false,
+ "reward": null,
+ "attributes": null,
+ "gate": null,
+ "playerCan": [
+  "approach to the witness line",
+  "stand",
+  "bow the head (no effect)",
+  "leave"
+ ],
+ "audio": {
+  "roomTone_dBFS": -48,
+  "ison": "a cappella, vowels only",
+  "digitalZero": false
+ },
+ "light": {
+  "lampada_K": 1800,
+  "instrumentLightFadeSeconds": 1.75
+ },
+ "operatorDecision": "Исповедь и Причащение — только издалека видно (2026-09-29)",
+ "bells": [
+  {
+   "order": "благовест",
+   "service": "литургия"
+  },
+  {
+   "order": "трезвон",
+   "service": "литургия",
+   "dayRankCondition": "по календарю; не в Великую Пятницу и Субботу"
+  }
+ ],
+ "internalRite": "Причащение",
+ "source": "scripts/meta3d/sacrament-scenes.json",
+ "method": "scene-kit-primitives",
+ "holyObjects": [
+  "iconostasis",
+  "royal-doors-open",
+  "solea",
+  "chalice-silhouette",
+  "lampada-glass",
+  "lampada-chain",
+  "lampada-glass",
+  "lampada-chain"
+ ],
+ "lights": [
+  "lampada-1800K",
+  "lampada-1800K"
+ ]
+}

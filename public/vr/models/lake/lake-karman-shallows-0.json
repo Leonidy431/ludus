@@ -1,0 +1,64 @@
+{
+ "id": "lake-karman-shallows-0",
+ "kind": "lake",
+ "lod": "proxy",
+ "detail": "procedural-detailed",
+ "details": [
+  "the boulder",
+  "alternating vortices"
+ ],
+ "tris": 754,
+ "bbox_m": [
+  2.726,
+  0.465,
+  0.865
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   2.726,
+   0.465,
+   0.865
+  ],
+  "centre_m": [
+   -0.162,
+   0.272,
+   -0.002
+  ]
+ },
+ "materials": [
+  {
+   "name": "water-bright",
+   "colour": "#c2d8de",
+   "roughness": 0.1,
+   "metallic": 0,
+   "alpha": 0.55
+  },
+  {
+   "name": "obstacle",
+   "colour": "#8a8680",
+   "roughness": 0.95,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 251351001804340,
+ "name": "Вихревая дорожка за валуном: за валуном",
+ "category": "water",
+ "band": "shallows",
+ "depth_m": [
+  0,
+  5
+ ],
+ "flags": {
+  "noLoot": true,
+  "loot": null
+ },
+ "noLoot": true,
+ "noInteract": false,
+ "size_m": 2.5,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
+}

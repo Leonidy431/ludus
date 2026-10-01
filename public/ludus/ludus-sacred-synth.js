@@ -749,6 +749,36 @@
     }
   }
 
+  // A plucked gut or wire string (gusli) by the Karplus-Strong method:
+  // a delay line one period long is filled with noise and averaged on
+  // every pass, which is how a real string loses its high harmonics
+  // first.  The noise comes from the seeded rng, so the pluck is the
+  // same on every run.  This is folk, human work, not a sacred sound,
+  // which is why it may answer an ordinary game event.
+  function pluck(tr, t0, freq, level, rng, t60) {
+    const period = Math.max(2, Math.round(tr.rate / freq));
+    const line = new Float32Array(period);
+    for (let i = 0; i < period; i += 1) {
+      line[i] = rng() * 2 - 1;
+    }
+    // The loss per period that makes the tone fall by 60 dB in t60
+    // seconds; the averaging filter adds its own, frequency-dependent
+    // loss on top of it.
+    const loss = Math.pow(10, -3 / (t60 * freq));
+    const n = Math.round(t60 * tr.rate);
+    const clip = new Float32Array(n);
+    let idx = 0;
+    let prev = 0;
+    for (let i = 0; i < n; i += 1) {
+      const cur = line[idx];
+      clip[i] = cur;
+      line[idx] = loss * 0.5 * (cur + prev);
+      prev = cur;
+      idx = (idx + 1) % period;
+    }
+    mixInto(tr, clip, t0, level);
+  }
+
   function breathing(tr, rng, pattern) {
     const cycle = breathCycle(pattern);
     const env = breathEnvelope(pattern, 0);
@@ -883,14 +913,14 @@
       },
     },
     choice: {
-      meaning: 'One light semantron tap: a word was chosen.',
+      meaning: 'One light tap on a wooden desk: a word was chosen.',
       seconds: 0.45, loop: false, peak: 0.45,
       build: function (tr, rng) {
         knock(tr, 0.005, 520, 0.8, rng, false);
       },
     },
     gate_locked: {
-      meaning: 'Muted double knock on the било: FORM is not ready yet.',
+      meaning: 'Muted double knock on a wooden door: FORM is not ready yet.',
       seconds: 0.7, loop: false, peak: 0.5,
       build: function (tr, rng) {
         knock(tr, 0.005, 210, 0.9, rng, true);
@@ -992,7 +1022,7 @@
       meaning: 'Many voices in unison and octave: Charisma, community.',
     }),
     dexterity: {
-      meaning: 'Two quick semantron taps: Dexterity, practice.',
+      meaning: 'Two quick taps of a carpenter\'s mallet: Dexterity, practice.',
       seconds: 0.55, loop: false, peak: 0.45,
       build: function (tr, rng) {
         knock(tr, 0.005, 600, 0.8, rng, false);
@@ -1009,6 +1039,20 @@
     constitution: Object.assign(shortVoice([98.0], 1.8, 'o', 0.6), {
       meaning: 'Low steady ison with октавист: Constitution.',
     }),
+    // Generic FORM growth after a dialogue choice.  It used to borrow
+    // the Wisdom voice, which made a chant-like voice answer every
+    // bonus like a reward ding (SOUND_THEOLOGY_RULES, TABOO 0.2 item
+    // 5, rule 16).  Two soft plucks of a gusli string, a whole step
+    // apart and rising, say "something grew" with the warm, hand-made
+    // timbre of the hearth, and stay clear of bell, board and voice.
+    form_growth: {
+      meaning: 'Two gusli plucks rising a step: FORM has grown.',
+      seconds: 1.3, loop: false, peak: 0.35,
+      build: function (tr, rng) {
+        pluck(tr, 0.005, 196.0, 0.8, rng, 1.1);
+        pluck(tr, 0.16, 220.0, 0.9, rng, 1.1);
+      },
+    },
 
     // Silence.
     hesychia: {
@@ -1016,6 +1060,24 @@
       seconds: 4, loop: false, peak: 0.001,
       build: function (tr, rng) {
         roomTone(tr, rng);
+      },
+    },
+
+    // Stillness as a mixer state (TABOO 0.35 rule 8, TABOO 0.4 rule 2):
+    // never digital zero, but room tone with a slow breath under it,
+    // the basic 4-6 s Jesus Prayer cycle of the hesychasm module.  The
+    // loop is three whole cycles, so it repeats without a seam.  The
+    // peak of 0.02 (-34 dBFS) puts the average near -48 dBFS, inside
+    // the -40...-50 band of TABOO 0.4 rule 2.
+    room_tone: {
+      meaning: 'Stillness: room tone and breath, about -48 dBFS.',
+      seconds: 3 * breathCycle(BREATH.basic), loop: true, peak: 0.02,
+      build: function (tr, rng) {
+        roomTone(tr, rng);
+        const env = breathEnvelope(BREATH.basic, 0.15);
+        noiseBed(tr, rng, 'bandpass', 0.9, function (t) {
+          return { freq: 900, gain: env(t) };
+        }, 0.6);
       },
     },
 
@@ -1127,6 +1189,18 @@
 
   // Catalogue keys of ludus-audio-manager.js that share a recipe.
   // Every MUSIC_CATALOG, SFX_CATALOG and SEMANTIC_CUES key resolves.
+  // Ison on the tonic of each of the eight tones (ludus-glas.js).
+  // Byzantine bases with Ni = C3: Pa D3, Di G3, Ga F3, Zo-flat B-flat2,
+  // Ni C3.  The ison is sung on "o" with the Athonite breath; text is
+  // never sung by the machine (TABOO 0.35 rule 10).
+  const GLAS_TONIC = { 1: 146.83, 2: 196.0, 3: 174.61, 4: 146.83,
+    5: 146.83, 6: 146.83, 7: 116.54, 8: 130.81 };
+  Object.keys(GLAS_TONIC).forEach(function (g) {
+    RECIPES['ison_glas_' + g] = Object.assign(
+      isonBed(GLAS_TONIC[g], 'athonite', 'o', 0.5),
+      { meaning: 'Ison on the tonic of tone ' + g + ' (tone of the week).' });
+  });
+
   const ALIASES = {
     desert_wind: 'world_change',
     transformation_effect: 'world_change',
@@ -1139,9 +1213,12 @@
     character_breathing: 'breathing',
     kneeling_sound: 'kneeling',
     prayer_vocalization: 'prayer_voice',
-    blessing_sound: 'trezvon_motif',
-    teaching_complete: 'trezvon_motif',
-    ui_positive: 'wisdom',
+    // A teaching ends in stillness, not in a festal peal: a bell tied to
+    // a UI event is what CLAUDE.md TABOO 0.35 rule 9 forbids, and the
+    // трезвон belongs to feasts by the typikon, not to a closed dialog.
+    blessing_sound: 'hesychia',
+    teaching_complete: 'hesychia',
+    ui_positive: 'form_growth',
     ui_negative: 'gate_locked',
     ui_neutral: 'choice',
     ui_confirm: 'choice',
@@ -1257,6 +1334,7 @@
     ENSEMBLE: ENSEMBLE,
     BELL_PARTIALS: BELL_PARTIALS,
     BREATH: BREATH,
+    GLAS_TONIC: GLAS_TONIC,
   };
 
   root.LudusSacredSynth = api;

@@ -367,3 +367,38 @@
     transition: none;
   }
 }
+
+/* Ascent too fast: an instrument warning, so instrument light (TABOO
+   0.38), steady, not flashing. */
+.rov-ascent-warning {
+  margin: 0.5rem 0 0;
+  padding: 0.4rem 0.6rem;
+  border-left: 3px solid var(--ludus-light-instrument, #c9e4ff);
+  color: var(--lg-text, #eee);
+  font-size: 0.875rem;
+}
+
+/* The view from the ROV: a 16:9 window above the telemetry, drag to
+   turn (the whole panorama is 360 degrees). */
+.rov-lake-view {
+  margin-bottom: 1rem;
+}
+
+.rov-lake-view-window {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 1px solid #2a3a40;
+  border-radius: 8px;
+  background: #06222a;
+  cursor: grab;
+  touch-action: none;
+}
+
+.rov-lake-view-caption {
+  margin: 0.4rem 0 0;
+  color: var(--lg-muted, #aaa);
+  font-size: 0.875rem;
+}
+

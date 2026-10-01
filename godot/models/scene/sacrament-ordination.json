@@ -1,0 +1,47 @@
+{
+ "id": "sacrament-ordination",
+ "kind": "scene",
+ "lod": "proxy",
+ "tris": 188,
+ "bbox_m": [
+  10,
+  2.8,
+  10
+ ],
+ "title": "Память о возложенных руках",
+ "mood": "cathedral, memory cut-scene",
+ "cutscene": true,
+ "microphone": false,
+ "speechRecognition": false,
+ "logPresence": false,
+ "reward": null,
+ "attributes": null,
+ "gate": null,
+ "playerCan": [
+  "skip"
+ ],
+ "audio": {
+  "roomTone_dBFS": -48,
+  "ison": "a cappella, vowels only",
+  "digitalZero": false
+ },
+ "light": {
+  "lampada_K": 1800,
+  "instrumentLightFadeSeconds": 1.75
+ },
+ "bells": null,
+ "internalRite": "Священство",
+ "camera": "first person, head bowed; the Gifts are never shown",
+ "source": "scripts/meta3d/sacrament-scenes.json",
+ "method": "scene-kit-primitives",
+ "holyObjects": [
+  "altar-table",
+  "altar-cloth",
+  "orarion",
+  "lampada-glass",
+  "lampada-chain"
+ ],
+ "lights": [
+  "lampada-1800K"
+ ]
+}

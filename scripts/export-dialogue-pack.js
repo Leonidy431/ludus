@@ -38,10 +38,21 @@ if (!Array.isArray(trees) || trees.length === 0) {
   throw new Error('dialogueTrees evaluated to an empty value');
 }
 
-const pack = {
-  source: 'functions/src/scripts/seedComprehensiveTestData.ts',
-  trees: Object.fromEntries(trees.map((tree) => [tree.npcId, tree])),
-};
+// The 24 trees of the chorus of 12 editors (CLAUDE.md TABOO 0.37) are the
+// canonical content; they replace the seed's older trees for the same
+// NPCs.  The chorus review stays in the source file and is not shipped.
+const CHORUS = path.join(ROOT, 'functions/src/data/npc-dialogues-24.json');
+const merged = Object.fromEntries(trees.map((tree) => [tree.npcId, tree]));
+let sources = ['functions/src/scripts/seedComprehensiveTestData.ts'];
+if (fs.existsSync(CHORUS)) {
+  JSON.parse(fs.readFileSync(CHORUS, 'utf8')).forEach((tree) => {
+    const { review, decisions, ...shipped } = tree;
+    merged[tree.npcId] = shipped;
+  });
+  sources = ['functions/src/data/npc-dialogues-24.json', ...sources];
+}
+const pack = { source: sources.join(' + '), trees: merged };
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
 fs.writeFileSync(OUT, JSON.stringify(pack, null, 2) + '\n');
-console.log(`wrote ${trees.length} trees -> ${path.relative(ROOT, OUT)}`);
+console.log(`wrote ${Object.keys(merged).length} trees -> `
+  + `${path.relative(ROOT, OUT)}`);

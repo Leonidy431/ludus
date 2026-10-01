@@ -1,0 +1,69 @@
+{
+ "id": "atlas-astrolabe",
+ "kind": "atlas",
+ "lod": "proxy",
+ "detail": "procedural-detailed",
+ "details": [
+  "mater (plate)",
+  "raised limb",
+  "degree ticks on the limb",
+  "throne (kursi)",
+  "suspension ring",
+  "rete: ecliptic ring",
+  "rete: star pointers",
+  "rule across the face",
+  "central pin"
+ ],
+ "tris": 1231,
+ "bbox_m": [
+  0.308,
+  0.037,
+  0.25
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.308,
+   0.037,
+   0.25
+  ],
+  "centre_m": [
+   0.029,
+   0.007,
+   0.0
+  ]
+ },
+ "materials": [
+  {
+   "name": "brass",
+   "colour": "#b08d57",
+   "roughness": 0.45,
+   "metallic": 0.8,
+   "alpha": 1.0
+  },
+  {
+   "name": "brass-dark",
+   "colour": "#6a5534",
+   "roughness": 0.6,
+   "metallic": 0.7,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 72813921004612,
+ "name": "Астролябия рыцаря",
+ "category": "atlas-trace",
+ "shape": "astrolabe",
+ "size_m": 0.25,
+ "atlas_nodes": [
+  28,
+  40,
+  82
+ ],
+ "loot": "hand-over",
+ "noLoot": false,
+ "noInteract": false,
+ "source": "scripts/story/atlas_nodes.py TRACES; own procedural drawing, no raw material",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
+}

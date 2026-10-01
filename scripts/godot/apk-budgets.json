@@ -1,0 +1,158 @@
+{
+  "doc": "docs/APK_REQUIREMENTS.md",
+  "version": 2,
+  "note": "Budgets of the Meta Quest build. Read by scripts/godot/check_budgets.py (sections apk, pck, tree; it also validates every section, scene and audio included) and godot/tools/measure_budgets.gd (sections scene, audio). Kept outside godot/ so the file does not ship in the APK; check_budgets.py --tree fails if a second copy appears at godot/data/apk-budgets.json. A limit is changed only in the same PR as docs/APK_REQUIREMENTS.md, with the reason.",
+  "exception_policy": {
+    "required": ["limit", "why", "approval", "blocker"],
+    "max_factor": 5,
+    "why": "An exception is a known breach recorded with its blocker in docs/APK_REQUIREMENTS.md and its approval: 'pending: ...' until the operator decides, then 'operator: <PR or date>'. Both gates refuse an exception without these fields or above 5x its base limit: past that it is another budget, changed only with a chorus line. The list of exceptions only shrinks without the operator's word."
+  },
+  "apk": {
+    "total_bytes": {
+      "limit": 134217728,
+      "why": "128 MiB: engine and runtime are 89,483,440 B (lib + dex) and fixed; the branch APK of CI run 78 is 100,820,608 B; about 13% of the Meta Store limit of 1 GB"
+    },
+    "native_libs_bytes": {
+      "limit": 88080384,
+      "why": "84 MiB: four .so of Godot 4.7.1 debug + vendors 5.1.0 are 83,393,888 B; a second ABI or a new native plugin trips it"
+    },
+    "dex_bytes": {
+      "limit": 8388608,
+      "why": "8 MiB: classes*.dex are 6,089,552 B; only a new Java/Kotlin plugin makes them grow"
+    },
+    "assets_bytes": {
+      "limit": 33554432,
+      "why": "32 MiB of game content (assets/ or PCK, uncompressed): about 2.9x the 11,657,414 B of assets/ in the branch APK of CI run 78"
+    },
+    "largest_asset_bytes": {
+      "limit": 1048576,
+      "why": "1 MiB per file: the largest JSON book, apostol-ru-sinod (743,528 B), took 8,273,496 B of heap to parse; a larger single file is a frame hitch"
+    },
+    "abis": [
+      "arm64-v8a"
+    ],
+    "required_entries": [
+      "classes.dex",
+      "assets/"
+    ],
+    "min_assets_entries": {
+      "limit": 300,
+      "why": "floor: build 44 has 549 files in assets/; far fewer means the export lost the game, and a gate that passes an empty APK measured nothing"
+    }
+  },
+  "pck": {
+    "min_files": {
+      "limit": 300,
+      "why": "floor for --pck: the same content as assets/ in the APK; an empty or near-empty pack is a broken export, not a small one"
+    }
+  },
+  "tree": {
+    "content_bytes": {
+      "limit": 33554432,
+      "why": "32 MiB of source over every file the export packs (all folders, not only art/models/data); the same ceiling as assets_bytes"
+    },
+    "largest_resource_bytes": {
+      "limit": 1048576,
+      "why": "same as apk.largest_asset_bytes, checked on the source before the build"
+    },
+    "min_models": {
+      "limit": 100,
+      "why": "floor: 145 .glb today; a gate that counts no models checked no triangles"
+    },
+    "min_exported_files": {
+      "limit": 300,
+      "why": "floor: 446 exported files today; a gate that sees no files checked nothing"
+    },
+    "model_triangles": {
+      "limit": 5000,
+      "why": "CLAUDE.md TABOO 0.32 p.4: a proxy is at most 5,000 triangles; counted in .glb and .gltf, and a model in .obj/.fbx/.dae/.blend is a breach because the gate cannot count it",
+      "exceptions": {
+        "models/rov/mangustik.glb": {
+          "limit": 20000,
+          "why": "docs/HLD_MANGUSTIK_COCKPIT_2026-09-30.md M2 and scripts/meta3d/mangustik_rov.py MAX_TRIANGLES = 20000 (whole vehicle). Conflicts with TABOO 0.32 p.4",
+          "approval": "pending: the operator chooses a 5,000-triangle proxy or an allowance in the rule; set by the HLD",
+          "blocker": "Б-2"
+        }
+      }
+    }
+  },
+  "scene": {
+    "draw_calls_frame": {
+      "limit": 100,
+      "quest3_reference": 200,
+      "why": "the project's own choice, stricter than Meta's load-dependent ranges: Meta recommends < 100 for Quest 2 and < 200 for Quest 3 (device-optimization-comparison), and export_presets.cfg has quest_2_support=true. Counted over the whole frame: the main view (one call covers both eyes under multiview) and every SubViewport, 3D and canvas. Known breaches are exceptions until blocker Б-1 is lifted; a new call above them turns CI red",
+      "exceptions": {
+        "hub": {
+          "limit": 99,
+          "why": "measured 99 (yard-se-ne: the worst reachable view of a 5x5 grid over the yard x 8 headings, main 3D only; first measurement of this view, not a raise), llvmpipe 1280x720, camera 75 deg, after the still geometry was merged (godot/scripts/static_batch.gd) and the cell's partition became an occluder; the same view was 558 before. The fixed views give at most 72 (courtyard). At the limit, not with headroom: at a 96 deg vertical field the worst view is about 101, so Б-1 stays open for the hub until a headset frame (Б-7). Ratchet: may only go down",
+          "approval": "pending: the operator decides on Quest 2 and on the strict limit",
+          "blocker": "Б-1"
+        },
+        "dive": {
+          "limit": 255,
+          "why": "measured 255 (depth-3m: main 3D 149 + canvas 4 + three SubViewports 102), llvmpipe 1280x720; ratchet: may only go down",
+          "approval": "pending: the operator decides on Quest 2 and on the strict limit",
+          "blocker": "Б-1"
+        },
+        "witness": {
+          "limit": 85,
+          "why": "measured 85 (end-back: the far end looking back, the whole path in sight; start 83), llvmpipe 1280x720, after the static batching of the kits (godot/scripts/witness_batch.gd); was 131 at end-back and 129 at start. Below the base 100, kept as a ratchet so the saving is not spent unnoticed; may only go down",
+          "approval": "pending: the operator decides whether the witness keeps this ratchet or returns to the base 100",
+          "blocker": "Б-1"
+        }
+      }
+    },
+    "primitives_two_eyes_est": {
+      "limit": 750000,
+      "quest3_reference": 1500000,
+      "why": "Quest 2 recommendation (< 750K triangles per frame). Whether Meta counts per eye or both eyes is unknown, so the estimate is the conservative one: 2 x main-view primitives + all SubViewports; the one-view figure is reported beside it"
+    },
+    "static_memory_delta_bytes": {
+      "limit": 67108864,
+      "why": "64 MiB of CPU heap over the engine baseline per scene: about 2.9x the worst scene (hub, about 23 MB, measure_budgets.gd method)"
+    },
+    "texture_memory_over_empty_bytes": {
+      "limit": 33554432,
+      "why": "32 MiB of texture memory above an empty 3D scene at the same size and MSAA (content, fonts, SubViewports)"
+    },
+    "subviewport_bytes": {
+      "limit": 4194304,
+      "bytes_per_px": 8,
+      "why": "4 MiB of SubViewport render targets; measured 8 B/px on the host"
+    },
+    "script_ms_mean_host": {
+      "limit": 3.47,
+      "why": "a quarter of the 72 Hz frame (13.89 ms) for the scene's own _process on the host, net of run-queue wait (close to CPU time); Quest core speed is unknown"
+    },
+    "script_ms_max_host": {
+      "limit": 6.94,
+      "why": "half of the 72 Hz frame on the host, net of run-queue wait"
+    },
+    "script_host_max_load_per_core": {
+      "limit": 1.5,
+      "why": "time is not judged when the host's one-minute load per core is above this as the run begins: at 0.6-0.75 per core five dive runs gave a mean of 2.70-3.07 ms and a peak of 7.39-11.34 ms; at 2.1-2.9 per core (eight extra busy loops) the mean was 2.73-3.62 ms and the peak 7.38-32.45 ms (docs/APK_REQUIREMENTS.md, row 17)"
+    },
+    "audio_generators": {
+      "limit": 2,
+      "why": "at most two synths fed by the CPU per scene; dive and witness have one each (dive_audio.gd, witness.gd)"
+    }
+  },
+  "device": {
+    "frame_ms_72hz": 13.89,
+    "frame_ms_90hz": 11.11,
+    "pss_bytes": 2147483648,
+    "particles_gpu_ms": 1.0,
+    "why": "measured only on the headset (OVR Metrics Tool, dumpsys meminfo); 2 GiB PSS is under half of the Quest 2 limit of 4.4 GiB"
+  },
+  "audio": {
+    "synth_ms_per_second_host": {
+      "limit": 50,
+      "why": "5% of one host core per second of audio, net of run-queue wait (close to CPU time); medians of 8 calls: DiveSynth 22.1-25.2 ms, WitnessAudio 23.1-24.2 ms with the ison near a kit"
+    },
+    "pcm_clips_bytes": {
+      "limit": 16777216,
+      "why": "16 MiB of float32 bell clips in RAM, checked against the worst two consecutive days of the 366 days from the scene's date (clips are kept once made, so a stay across a day boundary holds both days); 9,811,704 B from 2026-09-30"
+    },
+    "checked_by": "godot/tools/measure_budgets.gd --check, headless (the revisor; not in CI, since time does not reproduce on a shared runner)"
+  }
+}

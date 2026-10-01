@@ -27,9 +27,10 @@ window.LudusDialogueUI = (function () {
   };
 
   // Each sound carries a meaning (docs/SOUND_DESIGN_SYSTEM.md, 4.3):
-  // a soft chime confirms a choice, an ascending tone marks attribute
-  // gain, a blessing closes a teaching, a dissonant tone says a path is
-  // closed to the player's current FORM.
+  // a soft wooden tap confirms a choice, two gusli plucks rising a
+  // step mark attribute gain (a folk string, never a bell or a voice
+  // as a reward ding), a blessing closes a teaching, a muted knock
+  // says a path is closed to the player's current FORM.
   const SOUNDS = {
     choice: 'ui_neutral',
     gain: 'ui_positive',

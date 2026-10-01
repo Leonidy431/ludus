@@ -1339,6 +1339,7 @@
       // рабочем варианте (задокументировано здесь, не тихая заглушка).
       var VOICE_LOCALE = { ru: 'ru-RU', en: 'en-US', cu: 'ru-RU', el: 'el-GR', fr: 'fr-FR', zh: 'zh-CN', sw: 'sw-KE' };
       function startListening() {
+        if (voiceBtn.disabled) return;
         recognition = new SpeechRecognitionCtor();
         recognition.lang = VOICE_LOCALE[_vrLang] || 'ru-RU';
         recognition.continuous = true;
@@ -1366,6 +1367,16 @@
         if (listening) stopListening(); else startListening();
       });
       window.addEventListener('pagehide', stopListening);
+      // CLAUDE.md ТАБУ №0.26 и docs/SACRAMENTS_VR_SCENES.md: в зоне любого
+      // таинства микрофон выключается принудительно и кнопка прячется,
+      // пока игрок не выйдет из зоны; голос там не распознаётся и не
+      // пишется никогда.  Сцена шлёт событие ludus:sacred-zone {inside}.
+      document.addEventListener('ludus:sacred-zone', function (e) {
+        var inside = !!(e && e.detail && e.detail.inside);
+        if (inside) stopListening();
+        voiceBtn.hidden = inside;
+        voiceBtn.disabled = inside;
+      });
       document.addEventListener('visibilitychange', function () {
         if (document.hidden && listening) stopListening();
       });

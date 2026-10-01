@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="297.0mm" height="210.0mm" viewBox="0 0 297.0 210.0">
+<defs>
+<pattern id="hatch" patternUnits="userSpaceOnUse" width="2.2" height="2.2" patternTransform="rotate(45)">
+<line x1="0" y1="0" x2="0" y2="2.2" stroke="#333" stroke-width="0.25"/>
+</pattern>
+</defs>
+<style>
+  .outline{stroke:#111;stroke-width:0.35;fill:none}
+  .hatchrect{stroke:#111;stroke-width:0.35}
+  .thin{stroke:#111;stroke-width:0.2;fill:none}
+  .dim{stroke:#111;stroke-width:0.15;fill:none}
+  .ext{stroke:#555;stroke-width:0.12;fill:none}
+  .center{stroke:#933;stroke-width:0.15;stroke-dasharray:6,1.5,1,1.5;fill:none}
+  .fillblk{fill:#111;stroke:none}
+  .txt{fill:#111}
+  .hdr{fill:#111}
+  .note{fill:#333;font-style:italic}
+  .border{stroke:#111;stroke-width:0.5;fill:none}
+</style>
+<rect x="0" y="0" width="297.0" height="210.0" fill="#fdfdf7"/>
+<rect x="3.00" y="3.00" width="291.00" height="204.00" class="border" fill="none"/>
+<line x1="8.00" y1="84.00" x2="52.00" y2="84.00" class="center"/>
+<line x1="8.00" y1="136.00" x2="52.00" y2="136.00" class="center"/>
+<line x1="4.00" y1="110.00" x2="56.00" y2="110.00" class="center"/>
+<circle cx="30.0" cy="110.0" r="4.0" class="outline"/>
+<line x1="-2.40" y1="84.00" x2="-2.40" y2="101.20" class="outline"/>
+<line x1="-2.40" y1="136.00" x2="-2.40" y2="118.80" class="outline"/>
+<line x1="8.00" y1="84.00" x2="8.00" y2="101.20" class="thin"/>
+<line x1="8.00" y1="136.00" x2="8.00" y2="118.80" class="thin"/>
+<line x1="18.40" y1="84.00" x2="18.40" y2="101.20" class="outline"/>
+<line x1="18.40" y1="136.00" x2="18.40" y2="118.80" class="outline"/>
+<line x1="4.00" y1="120.40" x2="21.20" y2="120.40" class="outline"/>
+<line x1="56.00" y1="120.40" x2="38.80" y2="120.40" class="outline"/>
+<line x1="4.00" y1="110.00" x2="21.20" y2="110.00" class="thin"/>
+<line x1="56.00" y1="110.00" x2="38.80" y2="110.00" class="thin"/>
+<line x1="4.00" y1="99.60" x2="21.20" y2="99.60" class="outline"/>
+<line x1="56.00" y1="99.60" x2="38.80" y2="99.60" class="outline"/>
+<circle cx="30.00" cy="84.00" r="1.2" class="fillblk"/>
+<circle cx="30.00" cy="136.00" r="1.2" class="fillblk"/>
+<circle cx="56.00" cy="110.00" r="1.2" class="fillblk"/>
+<line x1="60.00" y1="84.00" x2="64.00" y2="84.00" class="ext"/>
+<line x1="60.00" y1="136.00" x2="64.00" y2="136.00" class="ext"/>
+<line x1="62.00" y1="84.00" x2="62.00" y2="136.00" class="dim"/>
+<polygon points="62.00,84.00 61.40,82.40 62.60,82.40" class="fillblk"/>
+<polygon points="62.00,136.00 61.40,137.60 62.60,137.60" class="fillblk"/>
+<text x="63.50" y="110.00" font-size="3.0" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">H=130</text>
+<line x1="4.00" y1="121.60" x2="4.00" y2="125.60" class="ext"/>
+<line x1="56.00" y1="121.60" x2="56.00" y2="125.60" class="ext"/>
+<line x1="4.00" y1="123.60" x2="56.00" y2="123.60" class="dim"/>
+<polygon points="4.00,123.60 2.40,123.00 2.40,124.20" class="fillblk"/>
+<polygon points="56.00,123.60 57.60,123.00 57.60,124.20" class="fillblk"/>
+<text x="30.00" y="122.40" font-size="3.0" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">W=130</text>
+<circle cx="237.0" cy="50" r="22" class="outline"/>
+<circle cx="237.0" cy="50" r="18.784615384615385" class="thin" fill="#fdfdf7"/>
+<line x1="237.00" y1="27.00" x2="237.00" y2="73.00" class="thin"/>
+<line x1="214.00" y1="50.00" x2="260.00" y2="50.00" class="thin"/>
+<text x="237.00" y="22.00" font-size="2.8" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Вид с торца (тройник)</text>
+<text x="20.00" y="20.00" font-size="4.8" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="bold" class="txt">Тройник электросварной ПЭ100 d110 (три раструба)</text>
+<text x="20.00" y="26.00" font-size="3.2" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">по SDR11-эквивалентной стенке</text>
+<text x="20.00" y="32.00" font-size="2.6" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">Схематичный вид — центральный узел + три ортогональных раструба</text>
+<text x="20.00" y="164.00" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">ОЦЕНОЧНАЯ ГЕОМЕТРИЯ: диаметр центрального узла (20мм), глубины раструбов (55мм),</text>
+<text x="20.00" y="167.00" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">расстояния между осями — инженерные оценки. Модель упрощена: гладкая сфера вместо</text>
+<text x="20.00" y="170.00" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">реальной конусной/пирамидальной переходной геометрии, характерной для</text>
+<text x="20.00" y="173.00" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">электросварных тройников. Применить реальный CAD от производителя перед производством.</text>
+<rect x="167.00" y="165.00" width="120.00" height="35.00" class="border" fill="none"/>
+<line x1="167.00" y1="172.00" x2="287.00" y2="172.00" class="thin"/>
+<line x1="167.00" y1="179.00" x2="287.00" y2="179.00" class="thin"/>
+<line x1="167.00" y1="186.00" x2="287.00" y2="186.00" class="thin"/>
+<line x1="167.00" y1="193.00" x2="287.00" y2="193.00" class="thin"/>
+<line x1="241.40" y1="165.00" x2="241.40" y2="200.00" class="thin"/>
+<text x="169.00" y="170.70" font-size="3.0" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="bold" class="txt">Обозн.: MNG-TEE-D110</text>
+<text x="169.00" y="177.70" font-size="3.0" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="bold" class="txt">Тройник ПЭ100 d110</text>
+<text x="169.00" y="184.70" font-size="2.8" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Материал: PE100, по SDR11-экв. стенке</text>
+<text x="169.00" y="191.70" font-size="2.8" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Расчётная масса: 0.57 кг</text>
+<text x="169.00" y="198.70" font-size="2.1" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">См. README.md (верифиц./оценочные размеры)</text>
+<text x="243.40" y="170.70" font-size="2.8" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Масштаб 0.40:1</text>
+<text x="243.40" y="177.70" font-size="2.8" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Лист 1 Листов 1</text>
+<text x="243.40" y="184.70" font-size="2.6" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Мангустик / welder-module</text>
+<text x="243.40" y="191.70" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">УПРОЩЁННЫЙ ШТАМП</text>
+<text x="243.40" y="198.70" font-size="2.2" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">(не для юр. подачи)</text>
+</svg>

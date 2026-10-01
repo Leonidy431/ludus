@@ -1,0 +1,72 @@
+{
+ "id": "lake-terrace-slope-2",
+ "kind": "lake",
+ "lod": "proxy",
+ "detail": "procedural-detailed",
+ "details": [
+  "step of the drowned shore",
+  "wave-cut notch",
+  "rounded beach pebbles of the old shoreline"
+ ],
+ "tris": 1236,
+ "bbox_m": [
+  4.0,
+  0.916,
+  2.0
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   4.0,
+   0.916,
+   2.0
+  ],
+  "centre_m": [
+   0.0,
+   0.568,
+   0.0
+  ]
+ },
+ "materials": [
+  {
+   "name": "terrace",
+   "colour": "#9a9078",
+   "roughness": 0.95,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "beach-pebble",
+   "colour": "#b3ac9a",
+   "roughness": 0.9,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "notch",
+   "colour": "#5c5648",
+   "roughness": 1,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 122038152816540,
+ "name": "Подводная терраса: старая береговая линия",
+ "category": "shelf",
+ "band": "slope",
+ "depth_m": [
+  20,
+  50
+ ],
+ "flags": {
+  "noLoot": false,
+  "loot": "keep"
+ },
+ "noLoot": false,
+ "noInteract": false,
+ "size_m": 4.0,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
+}

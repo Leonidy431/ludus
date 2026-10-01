@@ -1,0 +1,81 @@
+{
+ "id": "lake-bottle-shallows-0",
+ "kind": "lake",
+ "lod": "proxy",
+ "detail": "procedural-detailed",
+ "details": [
+  "shoulder and neck",
+  "lip ring",
+  "kicked-in punt",
+  "a patch of fouling",
+  "sand ridge along it"
+ ],
+ "tris": 470,
+ "bbox_m": [
+  0.519,
+  0.078,
+  0.468
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.519,
+   0.078,
+   0.468
+  ],
+  "centre_m": [
+   -0.02,
+   0.039,
+   0.0
+  ]
+ },
+ "materials": [
+  {
+   "name": "glass",
+   "colour": "#7a9a8a",
+   "roughness": 0.1,
+   "metallic": 0,
+   "alpha": 0.6
+  },
+  {
+   "name": "glass-lip",
+   "colour": "#627b6e",
+   "roughness": 0.1,
+   "metallic": 0,
+   "alpha": 0.75
+  },
+  {
+   "name": "fouling",
+   "colour": "#5a6a3a",
+   "roughness": 0.9,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "sand",
+   "colour": "#b8a888",
+   "roughness": 1,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 255355437064965,
+ "name": "Бутылка на песке: целая",
+ "category": "human",
+ "band": "shallows",
+ "depth_m": [
+  0,
+  5
+ ],
+ "flags": {
+  "noLoot": false,
+  "loot": "keep"
+ },
+ "noLoot": false,
+ "noInteract": false,
+ "size_m": 0.3,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
+}

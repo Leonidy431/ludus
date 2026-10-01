@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="297.0mm" height="210.0mm" viewBox="0 0 297.0 210.0">
+<defs>
+<pattern id="hatch" patternUnits="userSpaceOnUse" width="2.2" height="2.2" patternTransform="rotate(45)">
+<line x1="0" y1="0" x2="0" y2="2.2" stroke="#333" stroke-width="0.25"/>
+</pattern>
+</defs>
+<style>
+  .outline{stroke:#111;stroke-width:0.35;fill:none}
+  .hatchrect{stroke:#111;stroke-width:0.35}
+  .thin{stroke:#111;stroke-width:0.2;fill:none}
+  .dim{stroke:#111;stroke-width:0.15;fill:none}
+  .ext{stroke:#555;stroke-width:0.12;fill:none}
+  .center{stroke:#933;stroke-width:0.15;stroke-dasharray:6,1.5,1,1.5;fill:none}
+  .fillblk{fill:#111;stroke:none}
+  .txt{fill:#111}
+  .hdr{fill:#111}
+  .note{fill:#333;font-style:italic}
+  .border{stroke:#111;stroke-width:0.5;fill:none}
+</style>
+<rect x="0" y="0" width="297.0" height="210.0" fill="#fdfdf7"/>
+<rect x="3.00" y="3.00" width="291.00" height="204.00" class="border" fill="none"/>
+<line x1="50.00" y1="82.50" x2="77.50" y2="82.50" class="outline"/>
+<line x1="50.00" y1="137.50" x2="77.50" y2="137.50" class="outline"/>
+<line x1="50.00" y1="82.25" x2="77.50" y2="82.25" class="thin"/>
+<line x1="50.00" y1="137.75" x2="77.50" y2="137.75" class="thin"/>
+<path d="M 77.50 82.50 A 27.50 27.50 0 0 1 105.00 110.00" class="outline"/>
+<path d="M 77.50 137.50 A 27.50 27.50 0 0 0 105.00 110.00" class="outline"/>
+<rect x="50.00" y="82.50" width="27.50" height="-0.25" class="hatchrect" fill="url(#hatch)"/>
+<rect x="50.00" y="137.50" width="27.50" height="-0.25" class="hatchrect" fill="url(#hatch)"/>
+<line x1="47.50" y1="110.00" x2="107.50" y2="110.00" class="center"/>
+<circle cx="63.75" cy="84.00" r="1.2" class="fillblk"/>
+<circle cx="237.0" cy="50" r="20" class="hatchrect" fill="url(#hatch)"/>
+<circle cx="237.0" cy="50" r="17.076923076923077" class="outline" fill="#fdfdf7"/>
+<line x1="213.00" y1="50.00" x2="261.00" y2="50.00" class="center"/>
+<line x1="237.00" y1="26.00" x2="237.00" y2="74.00" class="center"/>
+<text x="237.00" y="24.00" font-size="2.8" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Вид с торца</text>
+<line x1="50.00" y1="88.50" x2="50.00" y2="92.50" class="ext"/>
+<line x1="77.50" y1="88.50" x2="77.50" y2="92.50" class="ext"/>
+<line x1="50.00" y1="90.50" x2="77.50" y2="90.50" class="dim"/>
+<polygon points="50.00,90.50 48.40,89.90 48.40,91.10" class="fillblk"/>
+<polygon points="77.50,90.50 79.10,89.90 79.10,91.10" class="fillblk"/>
+<text x="63.75" y="89.30" font-size="3.0" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">раструб 55</text>
+<line x1="77.50" y1="127.50" x2="77.50" y2="131.50" class="ext"/>
+<line x1="105.00" y1="127.50" x2="105.00" y2="131.50" class="ext"/>
+<line x1="77.50" y1="129.50" x2="105.00" y2="129.50" class="dim"/>
+<polygon points="77.50,129.50 75.90,128.90 75.90,130.10" class="fillblk"/>
+<polygon points="105.00,129.50 106.60,128.90 106.60,130.10" class="fillblk"/>
+<text x="91.25" y="128.30" font-size="3.0" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">купол R55</text>
+<line x1="113.00" y1="82.50" x2="117.00" y2="82.50" class="ext"/>
+<line x1="113.00" y1="137.50" x2="117.00" y2="137.50" class="ext"/>
+<line x1="115.00" y1="82.50" x2="115.00" y2="137.50" class="dim"/>
+<polygon points="115.00,82.50 114.40,80.90 115.60,80.90" class="fillblk"/>
+<polygon points="115.00,137.50 114.40,139.10 115.60,139.10" class="fillblk"/>
+<text x="116.50" y="110.00" font-size="3.0" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">⌀110</text>
+<text x="20.00" y="20.00" font-size="4.8" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="bold" class="txt">Заглушка электросварная ПЭ100 d110 (колпак)</text>
+<text x="20.00" y="26.00" font-size="3.2" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">по SDR11-эквивалентной стенке</text>
+<text x="20.00" y="32.00" font-size="2.6" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">Гемисферическая герметизирующая поверхность</text>
+<text x="20.00" y="164.00" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">ОЦЕНОЧНАЯ ГЕОМЕТРИЯ: диаметр купола (0.5×⌀110=55мм, гемисфера), глубина раструба —</text>
+<text x="20.00" y="167.00" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">инженерные оценки. Модель: идеальная полусфера, без фаски, без шероховатости</text>
+<text x="20.00" y="170.00" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">герметизирующей поверхности. Реальные заглушки включают камеру пазов/борозд для</text>
+<text x="20.00" y="173.00" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">смятия уплотнителя и точные контуры края. Уточнить по даташиту производителя.</text>
+<rect x="167.00" y="165.00" width="120.00" height="35.00" class="border" fill="none"/>
+<line x1="167.00" y1="172.00" x2="287.00" y2="172.00" class="thin"/>
+<line x1="167.00" y1="179.00" x2="287.00" y2="179.00" class="thin"/>
+<line x1="167.00" y1="186.00" x2="287.00" y2="186.00" class="thin"/>
+<line x1="167.00" y1="193.00" x2="287.00" y2="193.00" class="thin"/>
+<line x1="241.40" y1="165.00" x2="241.40" y2="200.00" class="thin"/>
+<text x="169.00" y="170.70" font-size="3.0" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="bold" class="txt">Обозн.: MNG-CAP-D110</text>
+<text x="169.00" y="177.70" font-size="3.0" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="bold" class="txt">Заглушка ПЭ100 d110</text>
+<text x="169.00" y="184.70" font-size="2.8" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Материал: PE100, по SDR11-экв. стенке</text>
+<text x="169.00" y="191.70" font-size="2.8" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Расчётная масса: 0.52 кг</text>
+<text x="169.00" y="198.70" font-size="2.1" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">См. README.md (верифиц./оценочные размеры)</text>
+<text x="243.40" y="170.70" font-size="2.8" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Масштаб 0.50:1</text>
+<text x="243.40" y="177.70" font-size="2.8" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Лист 1 Листов 1</text>
+<text x="243.40" y="184.70" font-size="2.6" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="txt">Мангустик / welder-module</text>
+<text x="243.40" y="191.70" font-size="2.4" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">УПРОЩЁННЫЙ ШТАМП</text>
+<text x="243.40" y="198.70" font-size="2.2" text-anchor="start" font-family="DejaVu Sans, Arial, sans-serif" font-weight="normal" class="note">(не для юр. подачи)</text>
+</svg>
