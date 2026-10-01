@@ -1054,7 +1054,8 @@
   const GUEST_KEY = 'ludus.guest.missions';
 
   const ui = { ctx: null, loading: null, state: emptyState(),
-    playerId: null, lastScene: null, trialGate: null, trialReply: null };
+    playerId: null, lastScene: null, trialGate: null, trialReply: null,
+    labels: null };
 
   function esc(value) {
     return String(value === null || value === undefined ? '' : value)
@@ -1101,7 +1102,11 @@
           throw new Error(`${DATA[key]}: HTTP ${res.status}`);
         }
         return [key, await res.json()];
-      })).then((pairs) => {
+      })).then(async (pairs) => {
+        // The Russian labels of the sources are for display only: a
+        // missing table never stops the road.
+        const L = root.LudusSourceLabels;
+        ui.labels = L ? await L.load() : null;
         const ctx = { actionsApi: root.LudusActions || null };
         pairs.forEach(([k, v]) => { ctx[k] = v; });
         ui.ctx = ctx;
@@ -1143,8 +1148,13 @@
       + '</div>';
   }
 
+  // The panel shows a source in its Russian form (data/source-labels-
+  // ru.json, ludus-source-labels.js); the data keeps the original, and
+  // a source without a label is shown as it is.
   function sourceLine(src) {
-    return src ? `<p class="ludus-mission-source">Источник: ${esc(src)}</p>`
+    const L = root.LudusSourceLabels;
+    const shown = L ? L.labelRu(ui.labels, src) : src;
+    return src ? `<p class="ludus-mission-source">Источник: ${esc(shown)}</p>`
       : '';
   }
 

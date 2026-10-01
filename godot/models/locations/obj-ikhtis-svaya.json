@@ -1,0 +1,16 @@
+{
+ "id": "obj-ikhtis-svaya",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 486,
+ "bbox_m": [
+  0.392,
+  0.392,
+  0.028
+ ],
+ "source": "SVG/obj/obj-ikhtis-svaya.svg",
+ "method": "layered-svg-extrusion",
+ "collider": "convex hull of the alpha silhouette",
+ "noInteract": false,
+ "noLoot": false
+}

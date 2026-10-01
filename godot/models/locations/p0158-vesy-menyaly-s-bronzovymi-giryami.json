@@ -1,0 +1,23 @@
+{
+ "id": "p0158-vesy-menyaly-s-bronzovymi-giryami",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 12,
+ "bbox_m": [
+  0.5,
+  0.5,
+  0.5
+ ],
+ "source": "docs/PROMPTS_1070_2026-09-29.json#157",
+ "name": "Весы менялы с бронзовыми гирями",
+ "type": "предмет",
+ "storyline": "м.1 (торговля)",
+ "box": "box 0.5м; взаимодействие хватом",
+ "shape": "box",
+ "size_m": 0.5,
+ "method": "primitive-from-box-field",
+ "collider": "box 0.5 m",
+ "hiddenInBuild": false,
+ "noInteract": false,
+ "noLoot": false
+}

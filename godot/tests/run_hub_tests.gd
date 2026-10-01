@@ -101,6 +101,12 @@ func _initialize() -> void:
 	load("res://tests/test_witness.gd").new().run(self)
 	print("witness: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# The ison and the bell on the path (HLD_WITNESS_SOUND_2026-09-30).
+	before = checks
+	fails = failures
+	load("res://tests/test_witness_sound.gd").new().run(self)
+	print("witness sound: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	# The thresholds of the gates (HLD_TETHER_TRIALS_PASSIONS T2).
 	before = checks
 	fails = failures
@@ -122,5 +128,76 @@ func _initialize() -> void:
 	fails = failures
 	load("res://tests/test_atlas.gd").new().run(self)
 	print("atlas: %d checks, %d failures" % [checks - before,
+		failures - fails])
+	# The campaign of missions (MissionCore, ludus-missions.js).
+	before = checks
+	fails = failures
+	load("res://tests/test_mission.gd").new().run(self)
+	print("mission: %d checks, %d failures" % [checks - before,
+		failures - fails])
+	# The Russian labels of the sources in the panel of missions.
+	before = checks
+	fails = failures
+	load("res://tests/test_source_labels.gd").new().run(self)
+	print("source labels: %d checks, %d failures" % [checks - before,
+		failures - fails])
+	# The journal of the way (JournalCore, ludus-journal.js).
+	before = checks
+	fails = failures
+	load("res://tests/test_journal.gd").new().run(self)
+	print("journal: %d checks, %d failures" % [checks - before,
+		failures - fails])
+	# The preparation sheet keeps nothing (TABOO 0.26).
+	before = checks
+	fails = failures
+	load("res://tests/test_confession.gd").new().run(self)
+	print("confession: %d checks, %d failures" % [checks - before,
+		failures - fails])
+	# The rule of prayer and the evening watch (RuleCore, ludus-actions.js).
+	before = checks
+	fails = failures
+	load("res://tests/test_rule.gd").new().run(self)
+	print("rule: %d checks, %d failures" % [checks - before,
+		failures - fails])
+	# The prayer rope as a breath metronome (RopeCore, RopeBreath).
+	before = checks
+	fails = failures
+	load("res://tests/test_rope.gd").new().run(self)
+	print("rope: %d checks, %d failures" % [checks - before,
+		failures - fails])
+	# The obitel's objects (TABOO 0.07, HLD_OBITEL_OBJECTS_2026-09-30).
+	before = checks
+	fails = failures
+	var obitel = load("res://tests/test_obitel.gd").new()
+	obitel.run(self)
+	await process_frame
+	obitel.in_hub(self)
+	print("obitel: %d checks, %d failures" % [checks - before,
+		failures - fails])
+	# The 99 locations of our plots (TABOO 0.013, HLD_LOCATIONS_99).
+	before = checks
+	fails = failures
+	load("res://tests/test_locations.gd").new().run(self)
+	print("locations: %d checks, %d failures" % [checks - before,
+		failures - fails])
+	# The 99 locations as the headset builds them (TABOO 0.013, L4).
+	before = checks
+	fails = failures
+	var built = load("res://tests/test_location_build.gd").new()
+	built.run(self)
+	await process_frame
+	built.in_scene(self)
+	print("location build: %d checks, %d failures" % [checks - before,
+		failures - fails])
+	# Static batching of the hub (StaticBatch, Б-1); a frame first, so
+	# the obitel's hub has left the tree, as one hub does in the game.
+	await process_frame
+	before = checks
+	fails = failures
+	var batch = load("res://tests/test_static_batch.gd").new()
+	batch.run(self)
+	await process_frame
+	batch.in_hub(self)
+	print("static batch: %d checks, %d failures" % [checks - before,
 		failures - fails])
 	quit(1 if failures else 0)

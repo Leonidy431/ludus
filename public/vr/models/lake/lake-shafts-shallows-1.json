@@ -2,12 +2,41 @@
  "id": "lake-shafts-shallows-1",
  "kind": "lake",
  "lod": "proxy",
- "tris": 12,
- "bbox_m": [
-  5,
-  0.02,
-  5
+ "detail": "procedural-detailed",
+ "details": [
+  "slanting shafts of light"
  ],
+ "tris": 36,
+ "bbox_m": [
+  3.985,
+  4.83,
+  1.751
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   3.985,
+   4.83,
+   1.751
+  ],
+  "centre_m": [
+   0.353,
+   2.5,
+   0.359
+  ]
+ },
+ "materials": [
+  {
+   "name": "water",
+   "colour": "#d8ecf0",
+   "roughness": 0.1,
+   "metallic": 0,
+   "alpha": 0.4
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 172363442171843,
  "name": "Лучи сквозь толщу: редкие",
  "category": "water",
  "band": "shallows",
@@ -19,6 +48,9 @@
   "noLoot": true,
   "loot": null
  },
- "source": "public/ludus/data/lake-objects-99.json",
- "method": "lake-kit-primitives"
+ "noLoot": true,
+ "noInteract": false,
+ "size_m": 5.0,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
 }

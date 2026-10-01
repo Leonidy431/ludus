@@ -19,6 +19,7 @@ Writes public/ludus/data/rights.json.
 """
 
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -86,19 +87,53 @@ def derived_objects():
     return out
 
 
-def with_file(item):
+def _previous():
+    """licence_file_present of the manifest as last written, by name."""
+    if not OUT.exists():
+        return {}
+    old = json.loads(OUT.read_text(encoding='utf-8'))
+    return {lib['name']: lib.get('licence_file_present')
+            for lib in [old.get('own', {})] + old.get('libraries', [])
+            if 'name' in lib}
+
+
+def _ignored(rel):
+    """Whether git ignores this path (installed, never committed)."""
+    out = subprocess.run(['git', 'check-ignore', '-q', rel], cwd=ROOT,
+                         stderr=subprocess.DEVNULL)
+    return out.returncode == 0
+
+
+def with_file(item, previous=None):
+    """The item with whether its licence text is present.
+
+    A licence file inside an installed, git-ignored folder (three.js in
+    scripts/meta3d/node_modules) is absent in a checkout that has not
+    run npm install; that says nothing about the library.  Then the last
+    written value is kept rather than turned to false (the review of
+    2026-09-30 found the Manuscript of rights claiming three.js had no
+    licence text after such a run)."""
     item = dict(item)
-    item['licence_file_present'] = (ROOT / item['licence_file']).exists()
+    rel = item['licence_file']
+    present = (ROOT / rel).exists()
+    if not present and _ignored(rel):
+        kept = (previous or {}).get(item['name'])
+        if kept is None:
+            raise SystemExit(f'{rel} is not installed and no earlier '
+                             'value is recorded: run npm install first')
+        present = kept
+    item['licence_file_present'] = present
     return item
 
 
 def main():
+    previous = _previous()
     manifest = {
         'title': 'Manuscript of rights',
         'title_ru': 'Манускрипт прав',
         'generated_by': 'scripts/build_rights_manifest.py',
-        'own': with_file(OWN),
-        'libraries': [with_file(lib) for lib in LIBRARIES],
+        'own': with_file(OWN, previous),
+        'libraries': [with_file(lib, previous) for lib in LIBRARIES],
         'raw_material': derived_objects(),
     }
     OUT.write_text(json.dumps(manifest, ensure_ascii=False, indent=1)

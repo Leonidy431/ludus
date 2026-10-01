@@ -19,6 +19,9 @@ const WATER_LOOP_SEC := 4.0
 const PULSE_LAMP := [0.45, 0.05]
 const PULSE_TAKE := [0.35, 0.08]
 const PULSE_ECHO := [0.12, 0.03]
+## Crossing the thermocline: a soft pulse with the layer's scatter and
+## its shimmering sheet (the response triad, TABOO 0.35 rule 17).
+const PULSE_LAYER := [0.2, 0.06]
 
 var synth := DiveSynth.new()
 var player: AudioStreamPlayer
@@ -173,9 +176,14 @@ func update(tel: Dictionary, rov: Dictionary, inp: Dictionary,
 	var still := Vector3(rov.vx, rov.vz, rov.vy).length() < 0.05
 	var silence: bool = tel.depth > 100.0 and not rov.lamp and still
 	var pings := synth.pending.size()
+	var crossed := synth.crossings.size()
 	synth.update({"depth": tel.depth, "thrust": thrust,
 		"shore_m": tel.shore_distance, "silence": silence,
-		"echo_delay": tel.echo_delay}, dt)
+		"echo_delay": tel.echo_delay,
+		"layer_echo": DiveCore.layer_echo(tel.depth, tel.floor)}, dt)
+	if synth.crossings.size() > crossed:
+		# Heard when the queued audio reaches the ear, felt then too.
+		_pulse("layer", PULSE_LAYER, _queued_sec())
 	if synth.pending.size() > pings:
 		# A ping has just gone out; the controller answers when its
 		# echo is heard: the queued audio plus the echo delay.

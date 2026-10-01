@@ -1,0 +1,4027 @@
+{
+ "note": "Every candidate place of our plots, scored (TABOO 0.07).",
+ "size": 145,
+ "candidates": [
+  {
+   "id": "weaving",
+   "title_ru": "Ткацкая: одна прядь до вечера",
+   "kind": "weaving",
+   "families": [
+    "craft",
+    "threshold"
+   ],
+   "plots": [
+    "M69",
+    "T:ascetic"
+   ],
+   "heart": "trial:ascetic",
+   "records": [
+    "loc-tkatskaya-masterskaya",
+    "p0567-tkatskaya-masterskaya-oblacheniy",
+    "p0502-yuzhnyy-bereg-kyzyl-tuu"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 10,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 47,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "archaeology-hq",
+   "title_ru": "Штаб подводной археологии",
+   "kind": "field-lab-2026",
+   "families": [
+    "craft",
+    "narrative",
+    "atlas"
+   ],
+   "plots": [
+    "M85",
+    "M93",
+    "A37",
+    "A64",
+    "A68",
+    "A96"
+   ],
+   "heart": "atlas:scribe",
+   "records": [
+    "loc-shtab-arkheologii"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 46,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "factory",
+   "title_ru": "Лавка-склад армянской фактории",
+   "kind": "trading-house",
+   "families": [
+    "trade"
+   ],
+   "plots": [
+    "M2"
+   ],
+   "heart": "talk:melik/m_prayer_silver",
+   "records": [
+    "loc-faktoriya",
+    "loc-gerat",
+    "p0535-vkhod-v-dom-kuptsa-armyanina"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 46,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "forge",
+   "title_ru": "Кузня обители",
+   "kind": "forge",
+   "families": [
+    "craft",
+    "atlas"
+   ],
+   "plots": [
+    "M66",
+    "A16",
+    "A43",
+    "A47",
+    "A54"
+   ],
+   "heart": "new:forge-nail",
+   "records": [
+    "loc-kuznya-obiteli",
+    "p0296-kuznechnyy-dvor",
+    "p0494-kuznya-u-kyzyl-suu"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 46,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "granary",
+   "title_ru": "Амбар обители в голодную зиму",
+   "kind": "granary",
+   "families": [
+    "trade",
+    "craft",
+    "road"
+   ],
+   "plots": [
+    "M5",
+    "M75",
+    "P:avarice"
+   ],
+   "heart": "passion:avarice",
+   "records": [
+    "loc-ambar-obiteli"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 46,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "infirmary",
+   "title_ru": "Лечебница у ворот",
+   "kind": "infirmary",
+   "families": [
+    "craft"
+   ],
+   "plots": [
+    "M76"
+   ],
+   "heart": "talk:tabib/bandage",
+   "records": [
+    "loc-lechebnitsa"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 46,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "khan-camp",
+   "title_ru": "Ставка хана улуса",
+   "kind": "khan-camp",
+   "families": [
+    "trade",
+    "diplomacy",
+    "atlas"
+   ],
+   "plots": [
+    "M4",
+    "M46",
+    "A10"
+   ],
+   "heart": "talk:khan/k_yasa",
+   "records": [
+    "loc-khan-yurt",
+    "p0484-stavka-khana-v-urochishche-san-tash"
+   ],
+   "score": {
+    "truth": 10,
+    "teaching": 8,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 46,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "map-workshop",
+   "title_ru": "Мастерская картографа на Майорке",
+   "kind": "map-workshop",
+   "families": [
+    "narrative",
+    "atlas"
+   ],
+   "plots": [
+    "M87",
+    "A76"
+   ],
+   "heart": "new:tell-only-true",
+   "records": [],
+   "score": {
+    "truth": 10,
+    "teaching": 9,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 46,
+   "gate": true,
+   "reasons": [],
+   "note": "Мастерская Крескесов, Пальма, Каталанский атлас 1375 г."
+  },
+  {
+   "id": "poor-suburb",
+   "title_ru": "Бедное предместье Алмалыка",
+   "kind": "suburb",
+   "families": [
+    "trade"
+   ],
+   "plots": [
+    "M9"
+   ],
+   "heart": "deed:secret_deed",
+   "records": [
+    "loc-predmestye-almalyk"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 10,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 46,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "sis-gate",
+   "title_ru": "Ворота Сиса под треснувшим сводом",
+   "kind": "city-gate",
+   "families": [
+    "atlas"
+   ],
+   "plots": [
+    "A7",
+    "A10",
+    "A26",
+    "A27",
+    "A38",
+    "A74"
+   ],
+   "heart": "atlas:chronicle",
+   "records": [],
+   "score": {
+    "truth": 10,
+    "teaching": 10,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 9
+   },
+   "total": 46,
+   "gate": true,
+   "reasons": [],
+   "note": "Сис пал в 1375 г.; боя в игре нет (узел 60)."
+  },
+  {
+   "id": "storehouse",
+   "title_ru": "Склад, где не сходится столбец",
+   "kind": "storehouse",
+   "families": [
+    "trade"
+   ],
+   "plots": [
+    "M11"
+   ],
+   "heart": "talk:vardan/v_mercy",
+   "records": [
+    "loc-sklad-obiteli",
+    "p0592-torgovyy-sklad-shelka"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 46,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "caravanserai-empty",
+   "title_ru": "Опустевший двор, откуда ушли караваны",
+   "kind": "caravanserai",
+   "families": [
+    "narrative",
+    "road"
+   ],
+   "plots": [
+    "M94",
+    "P:sadness"
+   ],
+   "heart": "talk:anahit/a_empty",
+   "records": [
+    "loc-karavan-saray-pustoy",
+    "p0581-razorennyy-karavan-saray"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 45,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "chancery",
+   "title_ru": "Канцелярия наместника: сверка грамоты",
+   "kind": "chancery",
+   "families": [
+    "diplomacy"
+   ],
+   "plots": [
+    "M47"
+   ],
+   "heart": "talk:vardan/v_receipt",
+   "records": [
+    "loc-kantselyariya"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 45,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "feast-yard",
+   "title_ru": "Двор в праздник, где учат общий голос",
+   "kind": "feast-yard",
+   "families": [
+    "spiritual",
+    "threshold"
+   ],
+   "plots": [
+    "M27",
+    "T:liturgical"
+   ],
+   "heart": "trial:liturgical",
+   "records": [
+    "loc-dvor-obiteli-prazdnik",
+    "p0590-khor-na-skale-a-cappella"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 10,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 45,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "finale-table",
+   "title_ru": "Стол под лампой: щит и письмо",
+   "kind": "finale-room",
+   "families": [
+    "narrative",
+    "atlas"
+   ],
+   "plots": [
+    "A83",
+    "A92",
+    "A99",
+    "M99"
+   ],
+   "heart": "rule:stillness",
+   "records": [],
+   "score": {
+    "truth": 8,
+    "teaching": 10,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 45,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "flooded-lower",
+   "title_ru": "Нижняя обитель, куда пришла вода",
+   "kind": "flood-obitel",
+   "families": [
+    "hydrology",
+    "narrative"
+   ],
+   "plots": [
+    "M32",
+    "M35",
+    "M90"
+   ],
+   "heart": "new:carry-archive-up",
+   "records": [
+    "loc-zatoplenie-obiteli"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 45,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "gate-night",
+   "title_ru": "Сторожка у ворот в бурную ночь",
+   "kind": "gate",
+   "families": [
+    "spiritual",
+    "diplomacy",
+    "threshold"
+   ],
+   "plots": [
+    "M25",
+    "M63",
+    "T:foundational"
+   ],
+   "heart": "trial:foundational",
+   "records": [
+    "loc-vorota-obiteli-noch"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 10,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 45,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "lampless-cell",
+   "title_ru": "Келья без лампы",
+   "kind": "hermit-cave",
+   "families": [
+    "atlas",
+    "threshold"
+   ],
+   "plots": [
+    "T:apophatic",
+    "A18"
+   ],
+   "heart": "trial:apophatic",
+   "records": [
+    "loc-peshchera-isikhasta",
+    "p0487-peshchera-otshelnika-nad-kara-oy",
+    "p0541-keli-molchalnikov",
+    "p0587-skit-na-severnom-sklone-kungey"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 10,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 45,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "obitel-caravanserai",
+   "title_ru": "Двор странноприимства у озера",
+   "kind": "caravanserai",
+   "families": [
+    "prologue",
+    "spiritual",
+    "diplomacy"
+   ],
+   "plots": [
+    "M1",
+    "M25",
+    "M26",
+    "M53",
+    "M54"
+   ],
+   "heart": "talk:anahit/a_first_night",
+   "records": [
+    "loc-karavansaray",
+    "loc-issyk-kul"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 45,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "papal-camp",
+   "title_ru": "Лагерь посольства с Запада",
+   "kind": "envoy-tent",
+   "families": [
+    "spiritual",
+    "diplomacy"
+   ],
+   "plots": [
+    "M54",
+    "M21"
+   ],
+   "heart": "talk:maximos/two_signatures",
+   "records": [
+    "p0562-lager-posolstva-papy-1338"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 45,
+   "gate": true,
+   "reasons": [],
+   "note": "Посольство Мариньолли через Алмалык (1338–1339) — реальное; святые латинян не выводятся (ТАБУ №0.2 п. 1)."
+  },
+  {
+   "id": "pottery",
+   "title_ru": "Гончарный двор",
+   "kind": "pottery",
+   "families": [
+    "craft"
+   ],
+   "plots": [
+    "M67"
+   ],
+   "heart": "rule:handiwork",
+   "records": [
+    "loc-goncharnyi-dvor",
+    "p0295-goncharnyy-kvartal",
+    "p0493-masterskaya-goncharov-ton"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 45,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "sarai-hall",
+   "title_ru": "Приёмная ханской канцелярии в Сарае",
+   "kind": "chancery",
+   "families": [
+    "trade"
+   ],
+   "plots": [
+    "M10"
+   ],
+   "heart": "talk:khan/k_price",
+   "records": [
+    "loc-saray"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 45,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "treasury-crypt",
+   "title_ru": "Подклеть с казной вдов и сирот",
+   "kind": "treasury-crypt",
+   "families": [
+    "craft",
+    "road"
+   ],
+   "plots": [
+    "M80",
+    "P:avarice"
+   ],
+   "heart": "deed:secret_deed",
+   "records": [
+    "loc-kripta-kazny"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 9,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 45,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "winter-hut",
+   "title_ru": "Зимовье на перевале",
+   "kind": "winter-hut",
+   "families": [
+    "trade"
+   ],
+   "plots": [
+    "M6"
+   ],
+   "heart": "deed:alms",
+   "records": [
+    "loc-pereval-zima",
+    "p0501-zimove-pastukhov-v-karkyre"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 45,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "archive-crypt",
+   "title_ru": "Подземная крипта архива",
+   "kind": "archive-crypt",
+   "families": [
+    "diplomacy",
+    "atlas"
+   ],
+   "plots": [
+    "M57",
+    "A21",
+    "A32"
+   ],
+   "heart": "new:seal-the-chronicle",
+   "records": [
+    "loc-kripta-arhiva"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 8,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "brickyard",
+   "title_ru": "Кирпичный двор у стройки",
+   "kind": "brickyard",
+   "families": [
+    "craft",
+    "atlas"
+   ],
+   "plots": [
+    "M71",
+    "A19"
+   ],
+   "heart": "deed:obedience",
+   "records": [
+    "loc-kirpichnyi-dvor"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "chu-community",
+   "title_ru": "Двор общины Мар-Авы в долине",
+   "kind": "valley-community",
+   "families": [
+    "diplomacy"
+   ],
+   "plots": [
+    "M59"
+   ],
+   "heart": "deed:forgive",
+   "records": [
+    "loc-chuiskaya-dolina",
+    "p0482-nestarianskaya-chasovnya-v-issyk-ata"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "chu-ford",
+   "title_ru": "Брод на Чу у общего костра",
+   "kind": "ford",
+   "families": [
+    "trade",
+    "diplomacy"
+   ],
+   "plots": [
+    "M8",
+    "M50"
+   ],
+   "heart": "deed:forgive",
+   "records": [
+    "loc-brod-chu",
+    "loc-steppe"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "crafts-school",
+   "title_ru": "Навес, где учат детей ремеслу",
+   "kind": "school",
+   "families": [
+    "craft"
+   ],
+   "plots": [
+    "M74"
+   ],
+   "heart": "new:teach-a-letter",
+   "records": [
+    "loc-shkola-remesel"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 9,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "crypt-museum",
+   "title_ru": "Крипта, где хранят находки разных вер",
+   "kind": "crypt",
+   "families": [
+    "hydrology"
+   ],
+   "plots": [
+    "M39"
+   ],
+   "heart": "find:bulla.shallows.0",
+   "records": [
+    "loc-kripta-muzei"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 8,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "debt-pit",
+   "title_ru": "Долговая яма у базара",
+   "kind": "debt-pit",
+   "families": [
+    "trade",
+    "road"
+   ],
+   "plots": [
+    "M5",
+    "P:avarice"
+   ],
+   "heart": "deed:alms",
+   "records": [
+    "p0593-dolgovaya-yama-kuptsa"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 9,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "divan-darugi",
+   "title_ru": "Диван даругачи",
+   "kind": "divan",
+   "families": [
+    "diplomacy"
+   ],
+   "plots": [
+    "M48"
+   ],
+   "heart": "talk:khan/k_flatter",
+   "records": [
+    "loc-divan-darugi",
+    "p0301-stavka-darugi-u-chu"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "divan-governor",
+   "title_ru": "Диван наместника в Алмалыке",
+   "kind": "divan",
+   "families": [
+    "diplomacy"
+   ],
+   "plots": [
+    "M65"
+   ],
+   "heart": "talk:melik/m_yarlyk",
+   "records": [
+    "loc-divan-namestnika",
+    "p0513-dvorets-namestnika-v-almalyke"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "feast-bek",
+   "title_ru": "Пир у бека",
+   "kind": "feast-hall",
+   "families": [
+    "road"
+   ],
+   "plots": [
+    "P:gluttony"
+   ],
+   "heart": "passion:gluttony",
+   "records": [
+    "p0595-pir-u-beka"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 9,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "gate-crowd",
+   "title_ru": "Ворота перед толпой",
+   "kind": "gate",
+   "families": [
+    "narrative",
+    "road"
+   ],
+   "plots": [
+    "M98",
+    "P:anger"
+   ],
+   "heart": "passion:anger",
+   "records": [
+    "loc-vorota-obiteli"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 9,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "hidden-library",
+   "title_ru": "Скрытая библиотека униторов",
+   "kind": "hidden-library",
+   "families": [
+    "diplomacy",
+    "atlas"
+   ],
+   "plots": [
+    "M64",
+    "A31"
+   ],
+   "heart": "talk:photius/creed_margin",
+   "records": [
+    "loc-tainaya-biblioteka"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 8,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "horde-tent",
+   "title_ru": "Шатёр посла Золотой Орды",
+   "kind": "envoy-tent",
+   "families": [
+    "diplomacy"
+   ],
+   "plots": [
+    "M46"
+   ],
+   "heart": "talk:khan/k_peace",
+   "records": [
+    "p0553-shater-posla-zolotoy-ordy"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "porch-court",
+   "title_ru": "Притвор, где судят единоверцев",
+   "kind": "court",
+   "families": [
+    "diplomacy"
+   ],
+   "plots": [
+    "M49"
+   ],
+   "heart": "new:hear-both-sides",
+   "records": [
+    "loc-pritvor-sud",
+    "p0554-sud-biya"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 8,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "silt-core",
+   "title_ru": "Слой ила — архив времени",
+   "kind": "silt-floor",
+   "families": [
+    "hydrology",
+    "atlas"
+   ],
+   "plots": [
+    "A13",
+    "M45"
+   ],
+   "heart": "new:take-core",
+   "records": [
+    "p0547-sloy-ila-70-m-arkhiv-vremeni"
+   ],
+   "score": {
+    "truth": 10,
+    "teaching": 9,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "silversmith",
+   "title_ru": "Мастерская серебряника",
+   "kind": "jeweller",
+   "families": [
+    "craft",
+    "road"
+   ],
+   "plots": [
+    "M81",
+    "P:avarice"
+   ],
+   "heart": "talk:melik/m_no_one",
+   "records": [
+    "loc-yuvelirnaya",
+    "p0570-yuvelirnaya-masterskaya"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 8
+   },
+   "total": 44,
+   "gate": true,
+   "reasons": [],
+   "note": "Потир на столе мастера — сделан для престола, noInteract; хору: достаточно ли этого места."
+  },
+  {
+   "id": "translators",
+   "title_ru": "Стол уйгурских толмачей",
+   "kind": "translators-camp",
+   "families": [
+    "spiritual",
+    "atlas"
+   ],
+   "plots": [
+    "M18",
+    "A49",
+    "A58"
+   ],
+   "heart": "talk:photius/slavic_mission",
+   "records": [
+    "p0556-lager-uygurskikh-perevodchikov",
+    "p0559-dom-tolmacha"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "caravaners-yard",
+   "title_ru": "Двор возчиков с общей кассой",
+   "kind": "guild-yard",
+   "families": [
+    "trade"
+   ],
+   "plots": [
+    "M15"
+   ],
+   "heart": "talk:sargis/open_hand",
+   "records": [
+    "loc-dvor-karavanshchikov"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 8,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "council-hall",
+   "title_ru": "Совет обителей перед картой",
+   "kind": "council-hall",
+   "families": [
+    "narrative",
+    "atlas"
+   ],
+   "plots": [
+    "M91",
+    "A65"
+   ],
+   "heart": "talk:macrina/teaching",
+   "records": [
+    "loc-sovet-obiteley"
+   ],
+   "score": {
+    "truth": 7,
+    "teaching": 8,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "court-yard",
+   "title_ru": "Двор, где рассуждают тяжбу о шёлке",
+   "kind": "court",
+   "families": [
+    "prologue"
+   ],
+   "plots": [
+    "M3"
+   ],
+   "heart": "talk:vardan/v_crooked",
+   "records": [
+    "loc-sudnyi-dvor-obiteli"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 8,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "dam",
+   "title_ru": "Запруда на стоке",
+   "kind": "dam",
+   "families": [
+    "hydrology"
+   ],
+   "plots": [
+    "M38"
+   ],
+   "heart": "new:share-water",
+   "records": [
+    "loc-plotina",
+    "p0600-irrigatsionnyy-aryk"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 9,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "dawn-shore",
+   "title_ru": "Берег на рассвете",
+   "kind": "shore",
+   "families": [
+    "narrative",
+    "atlas"
+   ],
+   "plots": [
+    "A99",
+    "M99"
+   ],
+   "heart": "rule:thanksgiving",
+   "records": [
+    "p0533-utrenniy-tuman-nad-vodoy"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "fair",
+   "title_ru": "Ярмарка за оградой",
+   "kind": "market",
+   "families": [
+    "trade",
+    "hydrology",
+    "diplomacy"
+   ],
+   "plots": [
+    "M8",
+    "M14",
+    "M44",
+    "M56"
+   ],
+   "heart": "talk:melik/m_weights",
+   "records": [
+    "loc-agora",
+    "p0557-yarmarka-u-kochkorki",
+    "p0303-bazar-v-balasagune",
+    "p0497-bazar-suyaba"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "field-kitchen",
+   "title_ru": "Походная кухня на стоянке",
+   "kind": "field-kitchen",
+   "families": [
+    "craft"
+   ],
+   "plots": [
+    "M83"
+   ],
+   "heart": "rule:fast",
+   "records": [
+    "loc-karavannaya-stoyanka"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "ice-bay",
+   "title_ru": "Лёд мелкого залива",
+   "kind": "ice",
+   "families": [
+    "hydrology"
+   ],
+   "plots": [
+    "M37"
+   ],
+   "heart": "new:test-ice",
+   "records": [
+    "loc-led-zaliva",
+    "p0578-zimniy-led-u-rybachego"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "reasons": [],
+   "note": "Иссык-Куль не замерзает; лёд бывает в мелких заливах — так и показывать."
+  },
+  {
+   "id": "island-prison",
+   "title_ru": "Островная крепость, где держат пленных",
+   "kind": "prison",
+   "families": [
+    "spiritual",
+    "diplomacy",
+    "atlas"
+   ],
+   "plots": [
+    "M24",
+    "M51",
+    "A62"
+   ],
+   "heart": "talk:abba_moses/robber_road",
+   "records": [
+    "loc-ostrov-krepost",
+    "loc-zamok-ostrov"
+   ],
+   "score": {
+    "truth": 7,
+    "teaching": 9,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "reasons": [],
+   "note": "Островная тюрьма Тимура на Иссык-Куле — предание, не факт."
+  },
+  {
+   "id": "kairak-valley",
+   "title_ru": "Надгробный камень в Чуйской долине",
+   "kind": "cemetery",
+   "families": [
+    "spiritual",
+    "hydrology"
+   ],
+   "plots": [
+    "M17",
+    "M39"
+   ],
+   "heart": "talk:tabib/theotokos",
+   "records": [
+    "loc-chuiskaya-dolina-kairaki",
+    "p0483-kladbishche-s-siriyskimi-nadgrobiyami",
+    "p0531-mogily-1338-goda"
+   ],
+   "score": {
+    "truth": 10,
+    "teaching": 9,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 9
+   },
+   "total": 43,
+   "gate": true,
+   "reasons": [],
+   "note": "Сирийские надгробия Чуйской долины XIII–XIV вв. и записи о море 1338–1339 гг. — реальные; сверить надпись для кадра."
+  },
+  {
+   "id": "money-changer",
+   "title_ru": "Меняльная лавка",
+   "kind": "money-changer",
+   "families": [
+    "trade",
+    "road"
+   ],
+   "plots": [
+    "M8",
+    "P:avarice"
+   ],
+   "heart": "talk:sargis/false_weights",
+   "records": [
+    "p0594-menyalnaya-lavka"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "naos",
+   "title_ru": "Под сводом, где хранят ковчежец",
+   "kind": "church-naos",
+   "families": [
+    "spiritual",
+    "diplomacy",
+    "narrative"
+   ],
+   "plots": [
+    "M18",
+    "M19",
+    "M20",
+    "M21",
+    "M60",
+    "M89"
+   ],
+   "heart": "rule:prostrations",
+   "records": [
+    "loc-hram-naos"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 8
+   },
+   "total": 43,
+   "gate": true,
+   "reasons": [],
+   "note": "Четыре из шести миссий здесь на переписке хора (реликвии, обращение); место держится на М21 и М60."
+  },
+  {
+   "id": "obitel-shore",
+   "title_ru": "Берег под обителью",
+   "kind": "shore",
+   "families": [
+    "spiritual",
+    "narrative"
+   ],
+   "plots": [
+    "M30",
+    "M87",
+    "M99"
+   ],
+   "heart": "talk:abba_moses/cell_teaches",
+   "records": [
+    "loc-issyk-kul"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "shipyard",
+   "title_ru": "Верфь на Светлом мысу",
+   "kind": "shipyard",
+   "families": [
+    "craft"
+   ],
+   "plots": [
+    "M68"
+   ],
+   "heart": "new:caulk-seam",
+   "records": [
+    "loc-verf-svetlyi-mys",
+    "p0297-lodochnaya-verf-u-tyupa",
+    "p0495-lodochnaya-verf-v-tamge",
+    "p0506-bukhta-svetlyy-mys"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "signal-tower",
+   "title_ru": "Сигнальная башня на холме",
+   "kind": "watchtower",
+   "families": [
+    "craft",
+    "atlas"
+   ],
+   "plots": [
+    "M84",
+    "A45"
+   ],
+   "heart": "rule:guard_thoughts",
+   "records": [
+    "loc-signalnaya-bashnya",
+    "p0536-storozhevaya-bashnya-na-beregu"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 10,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "star-shore",
+   "title_ru": "Ночной берег: путь по звёздам",
+   "kind": "night-shore",
+   "families": [
+    "craft",
+    "atlas"
+   ],
+   "plots": [
+    "M78",
+    "A40",
+    "A57"
+   ],
+   "heart": "new:find-pole-star",
+   "records": [
+    "loc-bereg-noch",
+    "p0584-nochnaya-step-pod-zvezdami",
+    "p0571-syrtovaya-observatoriya-pastukha"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "storm-bay",
+   "title_ru": "Штормовой залив",
+   "kind": "storm-bay",
+   "families": [
+    "atlas"
+   ],
+   "plots": [
+    "A48"
+   ],
+   "heart": "new:wait-out-storm",
+   "records": [
+    "p0532-shtormovoy-zaliv",
+    "p0603-shtil-posle-buri"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "survey-hill",
+   "title_ru": "Холм, где размечают двор верёвкой",
+   "kind": "survey-hill",
+   "families": [
+    "craft",
+    "atlas"
+   ],
+   "plots": [
+    "M72",
+    "A19"
+   ],
+   "heart": "new:rope-right-angle",
+   "records": [
+    "loc-plan-obiteli",
+    "loc-skit"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "tash-rabat",
+   "title_ru": "Каменный сарай в горной долине",
+   "kind": "rabat",
+   "families": [
+    "trade",
+    "narrative"
+   ],
+   "plots": [
+    "M12",
+    "M94"
+   ],
+   "heart": "talk:sargis/guesthouse",
+   "records": [
+    "p0293-karavan-saray-tash-rabat",
+    "p0521-tashrabat"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 8,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "reasons": [],
+   "note": "Таш-Рабат обычно датируют XV в.; для 1375 г. — тип горного рабата, а не сама постройка (историку)."
+  },
+  {
+   "id": "terrace-regression",
+   "title_ru": "Обнажившаяся терраса",
+   "kind": "terrace-shore",
+   "families": [
+    "hydrology",
+    "atlas"
+   ],
+   "plots": [
+    "M31",
+    "A29"
+   ],
+   "heart": "new:read-waterline",
+   "records": [
+    "loc-terrasa-regressiya"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "water-mill",
+   "title_ru": "Водяная мельница на ручье",
+   "kind": "mill",
+   "families": [
+    "craft",
+    "atlas"
+   ],
+   "plots": [
+    "M82",
+    "A23"
+   ],
+   "heart": "deed:alms",
+   "records": [
+    "loc-vodyanaya-melnitsa",
+    "p0568-melnitsa-na-karakolke"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "abandoned-skete",
+   "title_ru": "Брошенный скит",
+   "kind": "skete-ruin",
+   "families": [
+    "road"
+   ],
+   "plots": [
+    "P:acedia"
+   ],
+   "heart": "passion:acedia",
+   "records": [
+    "p0597-broshennyy-skit-akediya"
+   ],
+   "score": {
+    "truth": 7,
+    "teaching": 9,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "apiary",
+   "title_ru": "Пасека за стеной ульев",
+   "kind": "apiary",
+   "families": [
+    "threshold"
+   ],
+   "plots": [
+    "T:mystical"
+   ],
+   "heart": "trial:mystical",
+   "records": [
+    "p0525-paseka-u-ushchelya-grigorevskoe",
+    "p0566-svechnaya-masterskaya"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 10,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "barskoon-rabat",
+   "title_ru": "Караван-сарай у Барскоона",
+   "kind": "rabat",
+   "families": [
+    "trade"
+   ],
+   "plots": [
+    "M6",
+    "M12"
+   ],
+   "heart": "talk:sargis/overload",
+   "records": [
+    "p0473-karavan-saray-barskoon"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "chara-meadow",
+   "title_ru": "Харовый луг, где держится стайка",
+   "kind": "underwater-meadow",
+   "families": [
+    "atlas"
+   ],
+   "plots": [
+    "A41",
+    "A84"
+   ],
+   "heart": "find:chebachok.shallows.0",
+   "records": [
+    "p0503-podvodnye-sady-kharovykh-vodorosley"
+   ],
+   "score": {
+    "truth": 10,
+    "teaching": 7,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "customs-post",
+   "title_ru": "Застава на ущелье",
+   "kind": "customs",
+   "families": [
+    "diplomacy",
+    "road"
+   ],
+   "plots": [
+    "M65",
+    "P:anger"
+   ],
+   "heart": "talk:strazhnik/why_no_blade",
+   "records": [
+    "p0564-zastava-tamozhni",
+    "p0489-boomskoe-ushchele"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "drowned-posad",
+   "title_ru": "Затопленный посад: улицы и очаги",
+   "kind": "sunken-settlement",
+   "families": [
+    "hydrology",
+    "atlas",
+    "dive"
+   ],
+   "plots": [
+    "M34",
+    "M40",
+    "A13",
+    "A52",
+    "D:finds"
+   ],
+   "heart": "dive:finds",
+   "records": [
+    "loc-gorod-na-dne",
+    "p0478-zatoplennoe-poselenie-sary-bulun",
+    "loc-issyk-kul-underwater"
+   ],
+   "score": {
+    "truth": 10,
+    "teaching": 9,
+    "readable": 7,
+    "novelty": 6,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "elder-spring",
+   "title_ru": "Родник у скита, где стоит мутный кувшин",
+   "kind": "spring",
+   "families": [
+    "threshold"
+   ],
+   "plots": [
+    "T:contemplative"
+   ],
+   "heart": "trial:contemplative",
+   "records": [
+    "p0589-rodnik-u-skita",
+    "p0472-skit-na-myse-u-tamgi"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 10,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "farewell-road",
+   "title_ru": "Дорога, по которой уходит община",
+   "kind": "road",
+   "families": [
+    "narrative"
+   ],
+   "plots": [
+    "M95"
+   ],
+   "heart": "talk:anahit/a_farewell",
+   "records": [],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "ichthys-pier",
+   "title_ru": "Причал со знаком рыбы на сваях",
+   "kind": "pier-old",
+   "families": [
+    "spiritual"
+   ],
+   "plots": [
+    "M16"
+   ],
+   "heart": "talk:rybak_issyk_kul/ichthys",
+   "records": [
+    "loc-issyk-kul"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 9,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 9
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "ilya-izba",
+   "title_ru": "Изба Ильи: странники просят воды",
+   "kind": "izba",
+   "families": [
+    "kiberslav"
+   ],
+   "plots": [
+    "K13",
+    "K22",
+    "K79",
+    "K80",
+    "KM"
+   ],
+   "heart": "deed:alms",
+   "records": [],
+   "score": {
+    "truth": 6,
+    "teaching": 9,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "karakol-bay",
+   "title_ru": "Пристань купцов и послов в бухте",
+   "kind": "pier-old",
+   "families": [
+    "hydrology"
+   ],
+   "plots": [
+    "M36"
+   ],
+   "heart": "talk:melik/m_pier",
+   "records": [
+    "p0480-bukhta-karakol"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "mountain-bridge",
+   "title_ru": "Мост через горную речку",
+   "kind": "bridge",
+   "families": [
+    "hydrology",
+    "craft"
+   ],
+   "plots": [
+    "M41",
+    "M73"
+   ],
+   "heart": "rule:handiwork",
+   "records": [
+    "loc-gornaya-reka-most",
+    "p0520-most-cherez-naryn"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "north-shore",
+   "title_ru": "Северный берег, где высаживается караван",
+   "kind": "shore",
+   "families": [
+    "prologue",
+    "atlas"
+   ],
+   "plots": [
+    "M1",
+    "A9"
+   ],
+   "heart": "talk:rybak_issyk_kul/call",
+   "records": [
+    "p0467-severnyy-bereg-u-cholpon-aty"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "print-shop",
+   "title_ru": "Печатня с доской для оттиска",
+   "kind": "print-shop",
+   "families": [
+    "craft"
+   ],
+   "plots": [
+    "M79"
+   ],
+   "heart": "new:proof-the-block",
+   "records": [
+    "loc-tipografiya"
+   ],
+   "score": {
+    "truth": 6,
+    "teaching": 8,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": "Ксилография уйгуров известна (Турфан); «типография» обители — поздняя линия кампании, анахронизм пометить."
+  },
+  {
+   "id": "road-well",
+   "title_ru": "Колодец на привале",
+   "kind": "well",
+   "families": [
+    "prologue",
+    "trade"
+   ],
+   "plots": [
+    "M1",
+    "M3",
+    "M12"
+   ],
+   "heart": "talk:anahit/a_well",
+   "records": [
+    "loc-kolodets-na-puti",
+    "p0500-stepnoy-kolodets"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "sis-armourer",
+   "title_ru": "Мастерская оружейника в Сисе",
+   "kind": "armourer",
+   "families": [
+    "atlas"
+   ],
+   "plots": [
+    "A3",
+    "A16",
+    "A56",
+    "A63"
+   ],
+   "heart": "new:compare-forms",
+   "records": [],
+   "score": {
+    "truth": 9,
+    "teaching": 6,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "sis-library",
+   "title_ru": "Сгоревшая библиотека Сиса",
+   "kind": "library-ruin",
+   "families": [
+    "atlas"
+   ],
+   "plots": [
+    "A32"
+   ],
+   "heart": "passion:sadness",
+   "records": [],
+   "score": {
+    "truth": 8,
+    "teaching": 7,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "spawning-creek",
+   "title_ru": "Нерестовая речка",
+   "kind": "creek",
+   "families": [
+    "road"
+   ],
+   "plots": [
+    "P:gluttony"
+   ],
+   "heart": "passion:gluttony",
+   "records": [
+    "p0605-nerestovaya-rechka"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "sub-spring",
+   "title_ru": "Выход подводного источника",
+   "kind": "underwater-spring",
+   "families": [
+    "hydrology",
+    "atlas"
+   ],
+   "plots": [
+    "A42",
+    "M45"
+   ],
+   "heart": "find:spring.shallows.0",
+   "records": [
+    "p0548-podvodnyy-istochnik"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "sunken-chapel",
+   "title_ru": "Затопленная часовня на террасе",
+   "kind": "sunken-chapel",
+   "families": [
+    "spiritual",
+    "atlas"
+   ],
+   "plots": [
+    "M28",
+    "A5",
+    "A15"
+   ],
+   "heart": "dive:hover",
+   "records": [
+    "loc-zatoplennaya-chasovnya"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 9,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 9
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "tana-port",
+   "title_ru": "Причал генуэзцев в Тане",
+   "kind": "sea-port",
+   "families": [
+    "trade"
+   ],
+   "plots": [
+    "M7"
+   ],
+   "heart": "new:separate-contract",
+   "records": [
+    "loc-port-tana"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "upper-terrace",
+   "title_ru": "Верхняя терраса, куда переносят кельи",
+   "kind": "upper-terrace",
+   "families": [
+    "hydrology",
+    "narrative"
+   ],
+   "plots": [
+    "M35",
+    "M90"
+   ],
+   "heart": "deed:obedience",
+   "records": [
+    "loc-verhnyaya-terrasa",
+    "loc-verkhnyaya-terrasa"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "vineyard",
+   "title_ru": "Виноградник на нижней террасе",
+   "kind": "vineyard",
+   "families": [
+    "craft"
+   ],
+   "plots": [
+    "M70"
+   ],
+   "heart": "new:prune-vine",
+   "records": [
+    "loc-sad-vinogradnik"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 9,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": "Виноградарство у озера в XIV в. — сверить (историку)."
+  },
+  {
+   "id": "wedding-yard",
+   "title_ru": "Свадебный двор у обители",
+   "kind": "wedding-yard",
+   "families": [
+    "diplomacy",
+    "narrative"
+   ],
+   "plots": [
+    "M97",
+    "M60"
+   ],
+   "heart": "new:tell-custom-from-faith",
+   "records": [
+    "loc-svadebnyi-dvor"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 9,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 8
+   },
+   "total": 42,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "bedel-pass",
+   "title_ru": "Узкий перевал Бедель",
+   "kind": "pass",
+   "families": [
+    "trade",
+    "road"
+   ],
+   "plots": [
+    "M12",
+    "P:acedia"
+   ],
+   "heart": "passion:acedia",
+   "records": [
+    "p0300-pereval-bedel"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "bishop-stone",
+   "title_ru": "Камень епископа Иоанна на берегу",
+   "kind": "grave-shore",
+   "families": [
+    "spiritual"
+   ],
+   "plots": [
+    "M29"
+   ],
+   "heart": "talk:macrina/seed",
+   "records": [
+    "loc-kamen-ioanna"
+   ],
+   "score": {
+    "truth": 7,
+    "teaching": 9,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 9
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": "Епископ Иоанн — фигура кампании; реальность проверить."
+  },
+  {
+   "id": "brothers-walls",
+   "title_ru": "Стены обители братьев на дне",
+   "kind": "sunken-monastery",
+   "families": [
+    "narrative",
+    "atlas"
+   ],
+   "plots": [
+    "M96",
+    "M99",
+    "A19",
+    "A76"
+   ],
+   "heart": "find:fundament.shallows.1",
+   "records": [
+    "p0469-zatoplennyy-armyanskiy-monastyr-koysary",
+    "p0298-zatoplennye-ruiny-u-koysary"
+   ],
+   "score": {
+    "truth": 7,
+    "teaching": 9,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": "Место обители Каталанского атласа неизвестно; Койсары — гипотеза, её так и называть."
+  },
+  {
+   "id": "burnt-mission",
+   "title_ru": "Пустырь сожжённой миссии",
+   "kind": "burnt-ruin",
+   "families": [
+    "narrative",
+    "road"
+   ],
+   "plots": [
+    "P:anger",
+    "M98"
+   ],
+   "heart": "deed:forgive",
+   "records": [
+    "p0575-pustyr-sozhzhennoy-missii"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 9,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "canyon",
+   "title_ru": "Подводный каньон реки",
+   "kind": "underwater-canyon",
+   "families": [
+    "atlas",
+    "dive"
+   ],
+   "plots": [
+    "A2",
+    "A81",
+    "D:tether"
+   ],
+   "heart": "dive:tether",
+   "records": [
+    "p0504-podvodnyy-kanon-reki-dzhergalan"
+   ],
+   "score": {
+    "truth": 7,
+    "teaching": 9,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "deacon-cell",
+   "title_ru": "Келья, где пишут правду о братии",
+   "kind": "cell",
+   "families": [
+    "spiritual",
+    "diplomacy"
+   ],
+   "plots": [
+    "M22",
+    "M58"
+   ],
+   "heart": "talk:vardan/v_legend",
+   "records": [
+    "loc-kelia"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 9,
+    "readable": 9,
+    "novelty": 5,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "expedition-camp",
+   "title_ru": "Лагерь экспедиции на берегу, 2026",
+   "kind": "camp-2026",
+   "families": [
+    "atlas"
+   ],
+   "plots": [
+    "A33",
+    "A38",
+    "A61",
+    "A73"
+   ],
+   "heart": "deed:alms",
+   "records": [],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 4,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "fishers-camp",
+   "title_ru": "Ночной костёр рыбаков",
+   "kind": "fishers-camp",
+   "families": [
+    "narrative",
+    "atlas"
+   ],
+   "plots": [
+    "M88",
+    "A33"
+   ],
+   "heart": "talk:rybak_issyk_kul/mending",
+   "records": [
+    "p0486-rybatskiy-stan-v-ananevo",
+    "p0302-rybatskoe-stoybishche-na-yuzhnom-beregu",
+    "p0576-khizhina-starogo-rybaka"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "hot-spring",
+   "title_ru": "Горячий ключ, где омывают больных",
+   "kind": "hot-spring",
+   "families": [
+    "craft"
+   ],
+   "plots": [
+    "M76"
+   ],
+   "heart": "talk:tabib/wound_wash",
+   "records": [
+    "p0491-goryachie-istochniki-altyn-arashan",
+    "p0299-goryachie-istochniki-dzhety-oguz"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "kam-yurt",
+   "title_ru": "Юрта кама под небом степи",
+   "kind": "yurt-kam",
+   "families": [
+    "diplomacy"
+   ],
+   "plots": [
+    "M55"
+   ],
+   "heart": "new:speak-of-maker",
+   "records": [
+    "loc-yurta-kama"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 7
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": "Бубен кама не ставится: чужой обряд не награждается и не истинен (ТАБУ №0.4 п. 6)."
+  },
+  {
+   "id": "mamluk-captivity",
+   "title_ru": "Двор плена у мамлюков",
+   "kind": "prison",
+   "families": [
+    "atlas"
+   ],
+   "plots": [
+    "A62"
+   ],
+   "heart": "rule:stillness",
+   "records": [],
+   "score": {
+    "truth": 8,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "merchants-hall",
+   "title_ru": "Длинный стол схода купцов",
+   "kind": "refectory",
+   "families": [
+    "trade",
+    "diplomacy"
+   ],
+   "plots": [
+    "M13",
+    "M61"
+   ],
+   "heart": "talk:abba_moses/silent_council",
+   "records": [
+    "loc-trapeznaya",
+    "loc-trapeza"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 9,
+    "novelty": 5,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "mirror-pool",
+   "title_ru": "Зеркальная заводь",
+   "kind": "still-pool",
+   "families": [
+    "road"
+   ],
+   "plots": [
+    "P:vainglory"
+   ],
+   "heart": "passion:vainglory",
+   "records": [
+    "p0598-zerkalnaya-zavod"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 8,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "offline-tavern",
+   "title_ru": "Корчма с одним проводным телефоном",
+   "kind": "tavern",
+   "families": [
+    "kiberslav"
+   ],
+   "plots": [
+    "K84",
+    "KM"
+   ],
+   "heart": "rule:stillness",
+   "records": [],
+   "score": {
+    "truth": 5,
+    "teaching": 9,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "order-servers",
+   "title_ru": "Серверная Ордена",
+   "kind": "server-room",
+   "families": [
+    "atlas"
+   ],
+   "plots": [
+    "A7",
+    "A10",
+    "A35",
+    "A44",
+    "A55",
+    "A67",
+    "A86",
+    "A87",
+    "A97"
+   ],
+   "heart": "passion:pride",
+   "records": [],
+   "score": {
+    "truth": 7,
+    "teaching": 8,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 9
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "prologue-ford",
+   "title_ru": "Отмель у брода",
+   "kind": "ford",
+   "families": [
+    "prologue"
+   ],
+   "plots": [
+    "M1",
+    "M3"
+   ],
+   "heart": "find:yakor.shallows.0",
+   "records": [],
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "red-rocks",
+   "title_ru": "Красные скалы у долины",
+   "kind": "red-rocks",
+   "families": [
+    "road"
+   ],
+   "plots": [
+    "P:anger"
+   ],
+   "heart": "passion:anger",
+   "records": [
+    "p0475-dolina-dzhety-oguz",
+    "p0543-smotrovaya-skala-sem-bykov-izdali"
+   ],
+   "score": {
+    "truth": 10,
+    "teaching": 7,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "santash-pass",
+   "title_ru": "Перевал Санташ, где кладут камень",
+   "kind": "pass",
+   "families": [
+    "spiritual"
+   ],
+   "plots": [
+    "M23"
+   ],
+   "heart": "new:lay-a-stone",
+   "records": [
+    "loc-pereval-santash",
+    "loc-nebo-stepi",
+    "p0485-kurgan-san-tash-schet-kamney"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 9
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": "Предание о кургане Сан-Таш (камни воинов) — легенда; крест на перевале — рисунок свой, из сырья не берётся."
+  },
+  {
+   "id": "sunken-pier",
+   "title_ru": "Затопленная пристань XIV века",
+   "kind": "sunken-pier",
+   "families": [
+    "spiritual",
+    "hydrology"
+   ],
+   "plots": [
+    "M16",
+    "M40"
+   ],
+   "heart": "find:yakor.shallows.0",
+   "records": [
+    "p0505-zatoplennaya-pristan-xiv-v"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "terrace-gardens",
+   "title_ru": "Сады на низких террасах",
+   "kind": "orchard",
+   "families": [
+    "hydrology",
+    "atlas"
+   ],
+   "plots": [
+    "M42",
+    "A29"
+   ],
+   "heart": "rule:thanksgiving",
+   "records": [
+    "loc-terrasy-sady"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 8,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "washed-road",
+   "title_ru": "Размытая горная дорога",
+   "kind": "washed-road",
+   "families": [
+    "hydrology"
+   ],
+   "plots": [
+    "M41"
+   ],
+   "heart": "talk:sargis/overload",
+   "records": [
+    "loc-razmytaya-doroga",
+    "p0516-razliv-vesenniy-zatoplennaya-tropa"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "zero-board",
+   "title_ru": "Нулевая плата, где Илья называет себя",
+   "kind": "server-vault",
+   "families": [
+    "kiberslav"
+   ],
+   "plots": [
+    "K6",
+    "K12",
+    "K82",
+    "K91",
+    "K92"
+   ],
+   "heart": "new:type-by-memory",
+   "records": [],
+   "score": {
+    "truth": 5,
+    "teaching": 9,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "arabel-syrts",
+   "title_ru": "Сырты Арабеля",
+   "kind": "high-plateau",
+   "families": [
+    "trade"
+   ],
+   "plots": [
+    "M6"
+   ],
+   "heart": "deed:fast",
+   "records": [
+    "p0474-syrty-arabel"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "ascent-line",
+   "title_ru": "Буйреп медленного всплытия",
+   "kind": "ascent-line",
+   "families": [
+    "atlas",
+    "dive"
+   ],
+   "plots": [
+    "A89",
+    "D:slowrise"
+   ],
+   "heart": "dive:slowrise",
+   "records": [],
+   "score": {
+    "truth": 10,
+    "teaching": 8,
+    "readable": 6,
+    "novelty": 6,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "ayas-harbour",
+   "title_ru": "Гавань Аяса, где ушёл корабль",
+   "kind": "sea-port",
+   "families": [
+    "atlas"
+   ],
+   "plots": [
+    "A9"
+   ],
+   "heart": "rule:thanksgiving",
+   "records": [],
+   "score": {
+    "truth": 7,
+    "teaching": 8,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "reasons": [],
+   "note": "Аяс взят мамлюками в 1347 г.; к 1375 г. — уже не киликийская гавань (историку)."
+  },
+  {
+   "id": "deep-shield",
+   "title_ru": "Самая глубокая точка: щит в свете лампы",
+   "kind": "deep-floor",
+   "families": [
+    "atlas",
+    "dive"
+   ],
+   "plots": [
+    "A92",
+    "A83",
+    "A41",
+    "D:silence"
+   ],
+   "heart": "trace:shield",
+   "records": [
+    "p0471-glubokovodnaya-vpadina-668-m"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 10,
+    "readable": 6,
+    "novelty": 6,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "diary-shelf",
+   "title_ru": "Шельф, где лежит дневник",
+   "kind": "underwater-shelf",
+   "families": [
+    "narrative",
+    "atlas"
+   ],
+   "plots": [
+    "A4",
+    "A77",
+    "A96",
+    "M86"
+   ],
+   "heart": "trace:diary",
+   "records": [],
+   "score": {
+    "truth": 8,
+    "teaching": 10,
+    "readable": 6,
+    "novelty": 6,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "millstone-shelf",
+   "title_ru": "Жернов на шельфе — неподвижная точка",
+   "kind": "underwater-shelf",
+   "families": [
+    "atlas",
+    "dive"
+   ],
+   "plots": [
+    "A22",
+    "A23",
+    "A36",
+    "D:heading"
+   ],
+   "heart": "dive:heading",
+   "records": [],
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 6,
+    "novelty": 6,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "sacristy",
+   "title_ru": "Ризница с протоколом",
+   "kind": "sacristy",
+   "families": [
+    "diplomacy"
+   ],
+   "plots": [
+    "M52"
+   ],
+   "heart": "rule:stillness",
+   "records": [
+    "loc-riznitsa"
+   ],
+   "score": {
+    "truth": 9,
+    "teaching": 5,
+    "readable": 9,
+    "novelty": 9,
+    "safety": 8
+   },
+   "total": 40,
+   "gate": false,
+   "reasons": [
+    "plots-on-rewrite"
+   ],
+   "note": "Миссия 52 на переписке хора (реликвия как предмет торга)."
+  },
+  {
+   "id": "svetloyar",
+   "title_ru": "Берег Светлояра: слышно, не найти",
+   "kind": "kitezh-shore",
+   "families": [
+    "kiberslav"
+   ],
+   "plots": [
+    "K76",
+    "KM"
+   ],
+   "heart": "listen:kitezh",
+   "records": [],
+   "score": {
+    "truth": 7,
+    "teaching": 10,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 9
+   },
+   "total": 40,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "thermocline",
+   "title_ru": "Слой скачка на пятидесяти метрах",
+   "kind": "thermocline",
+   "families": [
+    "atlas",
+    "dive"
+   ],
+   "plots": [
+    "A6",
+    "A90",
+    "D:thermocline"
+   ],
+   "heart": "dive:thermocline",
+   "records": [
+    "p0470-termoklin-na-40-m"
+   ],
+   "score": {
+    "truth": 10,
+    "teaching": 8,
+    "readable": 6,
+    "novelty": 6,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "reasons": [],
+   "note": "В промте термоклин на 40 м; по ТАБУ №0.03 п. 6 — 50 м."
+  },
+  {
+   "id": "belfry",
+   "title_ru": "Звонница у скита",
+   "kind": "belfry",
+   "families": [
+    "atlas"
+   ],
+   "plots": [
+    "A91"
+   ],
+   "heart": "typikon:hear",
+   "records": [
+    "p0524-kolokolnya-zvonnitsa-u-skita"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 8
+   },
+   "total": 39,
+   "gate": true,
+   "reasons": [],
+   "note": "Колокол — только по kolokol и Типикону; игрок не звонит."
+  },
+  {
+   "id": "chon-kemin",
+   "title_ru": "Долина, где собирают травы",
+   "kind": "meadow",
+   "families": [
+    "craft"
+   ],
+   "plots": [
+    "M76"
+   ],
+   "heart": "talk:tabib/cosmas",
+   "records": [
+    "p0508-dolina-chon-kemin"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 7,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 39,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "dry-bed",
+   "title_ru": "Сухое русло в засуху",
+   "kind": "dry-bed",
+   "families": [
+    "road"
+   ],
+   "plots": [
+    "P:sadness"
+   ],
+   "heart": "passion:sadness",
+   "records": [
+    "p0599-sukhoe-ruslo-zasukha"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 7,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 39,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "weather-post",
+   "title_ru": "Погодная точка на мысу",
+   "kind": "weather-post",
+   "families": [
+    "hydrology"
+   ],
+   "plots": [
+    "M33"
+   ],
+   "heart": "new:note-the-wind",
+   "records": [
+    "p0602-meteotochka-na-myse",
+    "p0601-burovaya-tochka-zamerov-glubiny"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 7,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 39,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "amphora-slope",
+   "title_ru": "Склон с амфорой о литье",
+   "kind": "underwater-slope",
+   "families": [
+    "atlas"
+   ],
+   "plots": [
+    "A14"
+   ],
+   "heart": "trace:amphora",
+   "records": [],
+   "score": {
+    "truth": 8,
+    "teaching": 8,
+    "readable": 6,
+    "novelty": 6,
+    "safety": 10
+   },
+   "total": 38,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "chigu",
+   "title_ru": "Городище под водой у восточного берега",
+   "kind": "sunken-city",
+   "families": [
+    "hydrology",
+    "atlas"
+   ],
+   "plots": [
+    "M40",
+    "A19"
+   ],
+   "heart": "find:fundament.shallows.0",
+   "records": [
+    "p0479-gorodishche-chigu-podvodnoe"
+   ],
+   "score": {
+    "truth": 6,
+    "teaching": 7,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 38,
+   "gate": true,
+   "reasons": [],
+   "note": "Чигу (столица усуней) на дне — гипотеза исследователей."
+  },
+  {
+   "id": "cloud-ancestors",
+   "title_ru": "Облако слепков",
+   "kind": "cloud-sim",
+   "families": [
+    "atlas",
+    "kiberslav"
+   ],
+   "plots": [
+    "K7",
+    "K74",
+    "A8"
+   ],
+   "heart": "passion:sadness",
+   "records": [],
+   "score": {
+    "truth": 5,
+    "teaching": 9,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 7
+   },
+   "total": 38,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "dream-cell",
+   "title_ru": "Келья, где начинается долгий сон",
+   "kind": "cell",
+   "families": [
+    "kiberslav"
+   ],
+   "plots": [
+    "KM",
+    "K70",
+    "K75"
+   ],
+   "heart": "rule:vigil",
+   "records": [],
+   "score": {
+    "truth": 8,
+    "teaching": 8,
+    "readable": 8,
+    "novelty": 5,
+    "safety": 9
+   },
+   "total": 38,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "khan-garden",
+   "title_ru": "Сад хана",
+   "kind": "palace-garden",
+   "families": [
+    "road"
+   ],
+   "plots": [
+    "P:lust"
+   ],
+   "heart": "passion:lust",
+   "records": [
+    "p0560-sad-khana"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 8,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 8
+   },
+   "total": 38,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "ledge-70",
+   "title_ru": "Уступ на семидесяти метрах",
+   "kind": "underwater-ledge",
+   "families": [
+    "atlas"
+   ],
+   "plots": [
+    "A5",
+    "A15",
+    "A86"
+   ],
+   "heart": "dive:hover",
+   "records": [],
+   "score": {
+    "truth": 8,
+    "teaching": 9,
+    "readable": 6,
+    "novelty": 6,
+    "safety": 9
+   },
+   "total": 38,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "reactor-izba",
+   "title_ru": "Реакторная изба с маревом",
+   "kind": "reactor-izba",
+   "families": [
+    "kiberslav"
+   ],
+   "plots": [
+    "K33",
+    "K41"
+   ],
+   "heart": "new:spot-the-haze",
+   "records": [],
+   "score": {
+    "truth": 5,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 38,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "rip-current",
+   "title_ru": "Разрывное течение на свале",
+   "kind": "current",
+   "families": [
+    "atlas",
+    "dive"
+   ],
+   "plots": [
+    "A48",
+    "A69",
+    "D:slope"
+   ],
+   "heart": "dive:slope",
+   "records": [
+    "p0550-zona-techeniya-golfstrim-ozera"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 8,
+    "readable": 6,
+    "novelty": 6,
+    "safety": 10
+   },
+   "total": 38,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "rock-island",
+   "title_ru": "Остров-скала посреди залива",
+   "kind": "rock-island",
+   "families": [
+    "atlas",
+    "kiberslav"
+   ],
+   "plots": [
+    "A18",
+    "K70"
+   ],
+   "heart": "rule:vigil",
+   "records": [
+    "p0492-ostrov-skala-posredi-zaliva"
+   ],
+   "score": {
+    "truth": 7,
+    "teaching": 8,
+    "readable": 4,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 38,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "slope-niche",
+   "title_ru": "Ниша в скале на свале",
+   "kind": "underwater-cave",
+   "families": [
+    "atlas"
+   ],
+   "plots": [
+    "A26",
+    "A27"
+   ],
+   "heart": "atlas:chronicle",
+   "records": [
+    "p0544-podvodnyy-vkhod-v-peshcheru-u-korumdu"
+   ],
+   "score": {
+    "truth": 7,
+    "teaching": 9,
+    "readable": 6,
+    "novelty": 6,
+    "safety": 10
+   },
+   "total": 38,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "sunken-barque",
+   "title_ru": "Затонувший караванный барк",
+   "kind": "sunken-boat",
+   "families": [
+    "craft",
+    "atlas"
+   ],
+   "plots": [
+    "A28",
+    "A40",
+    "A82",
+    "M78"
+   ],
+   "heart": "trace:astrolabe",
+   "records": [
+    "p0549-zatonuvshiy-karavan-bark"
+   ],
+   "score": {
+    "truth": 7,
+    "teaching": 9,
+    "readable": 6,
+    "novelty": 6,
+    "safety": 10
+   },
+   "total": 38,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "martyrs-1339",
+   "title_ru": "Место гибели миссии 1339 года",
+   "kind": "memorial",
+   "families": [
+    "road"
+   ],
+   "plots": [
+    "P:anger"
+   ],
+   "heart": "deed:forgive",
+   "records": [
+    "p0515-mesto-muchenichestva-missionerov-1339"
+   ],
+   "score": {
+    "truth": 10,
+    "teaching": 7,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 6
+   },
+   "total": 37,
+   "gate": false,
+   "reasons": [
+    "safety"
+   ],
+   "note": "Погибшие 1339 г. — латинские миссионеры; святыми они в игре не выводятся (ТАБУ №0.2 п. 1). Хору 12."
+  },
+  {
+   "id": "offline-forest",
+   "title_ru": "Лес вне покрытия",
+   "kind": "forest",
+   "families": [
+    "kiberslav"
+   ],
+   "plots": [
+    "K24",
+    "K50",
+    "K86",
+    "KM"
+   ],
+   "heart": "new:walk-by-compass",
+   "records": [],
+   "score": {
+    "truth": 6,
+    "teaching": 8,
+    "readable": 4,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 37,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "technoslavie",
+   "title_ru": "Пустая оболочка культа",
+   "kind": "prelest-shell",
+   "families": [
+    "kiberslav"
+   ],
+   "plots": [
+    "K9",
+    "K62"
+   ],
+   "heart": "passion:vainglory",
+   "records": [],
+   "score": {
+    "truth": 5,
+    "teaching": 8,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 7
+   },
+   "total": 37,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "veche",
+   "title_ru": "Вече, где голоса разнесены по спектру",
+   "kind": "veche",
+   "families": [
+    "kiberslav"
+   ],
+   "plots": [
+    "K20",
+    "K66",
+    "K94"
+   ],
+   "heart": "new:tell-bots-from-people",
+   "records": [],
+   "score": {
+    "truth": 5,
+    "teaching": 8,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 37,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "yaga-hut",
+   "title_ru": "Изба на опорах, что знает только офлайн-ключ",
+   "kind": "air-gap-hut",
+   "families": [
+    "kiberslav"
+   ],
+   "plots": [
+    "K37",
+    "K38",
+    "K88"
+   ],
+   "heart": "new:show-offline-key",
+   "records": [],
+   "score": {
+    "truth": 5,
+    "teaching": 6,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 37,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "dead-cache",
+   "title_ru": "Кэш мёртвых машин",
+   "kind": "wreck-yard",
+   "families": [
+    "kiberslav"
+   ],
+   "plots": [
+    "K12",
+    "K45",
+    "K74",
+    "K89"
+   ],
+   "heart": "new:match-serials",
+   "records": [],
+   "score": {
+    "truth": 5,
+    "teaching": 7,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 36,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "harem-wing",
+   "title_ru": "Закрытое крыло дворца",
+   "kind": "palace-closed",
+   "families": [
+    "road"
+   ],
+   "plots": [
+    "P:lust"
+   ],
+   "heart": "passion:lust",
+   "records": [
+    "p0561-garem-krylo-zakryto-dlya-igroka"
+   ],
+   "score": {
+    "truth": 7,
+    "teaching": 6,
+    "readable": 8,
+    "novelty": 9,
+    "safety": 6
+   },
+   "total": 36,
+   "gate": false,
+   "reasons": [
+    "safety"
+   ],
+   "note": "Для шлема и Meta Store место избыточно: хватает сада хана."
+  },
+  {
+   "id": "memory-market",
+   "title_ru": "Рынок сжатой памяти",
+   "kind": "market-dream",
+   "families": [
+    "kiberslav"
+   ],
+   "plots": [
+    "K22"
+   ],
+   "heart": "passion:avarice",
+   "records": [],
+   "score": {
+    "truth": 5,
+    "teaching": 8,
+    "readable": 4,
+    "novelty": 9,
+    "safety": 9
+   },
+   "total": 35,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "baptism-ford",
+   "title_ru": "Брод, куда входят оглашенные",
+   "kind": "ford-witness",
+   "families": [
+    "hydrology",
+    "witness"
+   ],
+   "plots": [
+    "M43",
+    "W:baptism"
+   ],
+   "heart": "witness:baptism",
+   "records": [
+    "p0542-krestilnyy-brod",
+    "p0476-ushchele-barskoon-s-vodopadom"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 8,
+    "readable": 6,
+    "novelty": 5,
+    "safety": 7
+   },
+   "total": 34,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "first-liturgy-shore",
+   "title_ru": "Первая служба на берегу",
+   "kind": "shore-witness",
+   "families": [
+    "narrative",
+    "witness"
+   ],
+   "plots": [
+    "W:eucharist",
+    "M99"
+   ],
+   "heart": "witness:eucharist",
+   "records": [
+    "p0610-pervaya-liturgiya-na-beregu"
+   ],
+   "score": {
+    "truth": 8,
+    "teaching": 6,
+    "readable": 6,
+    "novelty": 9,
+    "safety": 5
+   },
+   "total": 34,
+   "gate": false,
+   "reasons": [
+    "safety"
+   ],
+   "note": "В промте игрок служит (диакон): игра таинств не совершает (ТАБУ №0.26 п. 8); издали это уже есть на тропе свидетеля."
+  },
+  {
+   "id": "iriy",
+   "title_ru": "Премиум-сад, где всё безупречно",
+   "kind": "prelest-sim",
+   "families": [
+    "atlas",
+    "kiberslav"
+   ],
+   "plots": [
+    "K18",
+    "A97"
+   ],
+   "heart": "passion:pride",
+   "records": [],
+   "score": {
+    "truth": 5,
+    "teaching": 8,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 7
+   },
+   "total": 34,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "mast-wasteland",
+   "title_ru": "Пустошь с мачтами",
+   "kind": "wasteland",
+   "families": [
+    "kiberslav"
+   ],
+   "plots": [
+    "K65"
+   ],
+   "heart": "new:find-live-mast",
+   "records": [],
+   "score": {
+    "truth": 5,
+    "teaching": 6,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 9
+   },
+   "total": 34,
+   "gate": true,
+   "reasons": [],
+   "note": ""
+  },
+  {
+   "id": "confession-stone",
+   "title_ru": "Камень у воды для покаяния",
+   "kind": "stone-witness",
+   "families": [
+    "witness"
+   ],
+   "plots": [
+    "W:confession"
+   ],
+   "heart": "witness:confession",
+   "records": [
+    "p0588-mesto-ispovedi-u-kamnya"
+   ],
+   "score": {
+    "truth": 7,
+    "teaching": 5,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 4
+   },
+   "total": 30,
+   "gate": false,
+   "reasons": [
+    "safety"
+   ],
+   "note": "Исповедь — не место-награда и не механика (ТАБУ №0.26 п. 3)."
+  }
+ ]
+}

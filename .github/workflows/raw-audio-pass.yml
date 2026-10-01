@@ -1,0 +1,83 @@
+# Audio pass over the 99 backlog repos as a git pass (operator,
+# 2026-09-30: "добавь из 99 репо 299 звуков ... гит проходом"; CLAUDE.md
+# TABOO 0.35 rule 1: raw material is processed through the git runner).
+#
+# scripts/raw_assets/audio_pass.py indexes nothing itself: the job first
+# builds the blobless index, then the pass fetches only the candidate
+# sounds into a cache outside the checkout, measures them (ffmpeg decode,
+# numpy) and writes the reference table, the props register, the
+# contact sheet and the headset copy of the slot medians.
+#
+# TABOO 0.35 rule 8: audio from the 99 repos is a spectral reference
+# only, so no audio file is committed.  There is no autocommit either:
+# the outputs and the full contact sheets go up as an artifact, and a
+# person reviews the licences and the sheets before anything is merged.
+name: Raw audio pass (manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: raw-audio-pass
+  cancel-in-progress: false
+
+jobs:
+  pass:
+    runs-on: ${{ fromJSON(vars.LUDUS_RAW_RUNNER || '"ubuntu-latest"') }}
+    timeout-minutes: 90
+    # The index and the audio cache live under $RUNNER_TEMP, outside the
+    # checkout: audio_pass.py refuses a cache inside the repository.  The
+    # runner context is not available in a job-level env, so the shell
+    # variable is used in the steps.
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install tools
+        # ffmpeg decodes ogg, wav, mp3, flac and opus to float samples;
+        # numpy measures them; pillow draws the contact sheets.
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg >/dev/null
+          ffmpeg -version | head -1
+          pip install pillow pycodestyle numpy
+
+      - name: PEP 8 and pass tests
+        run: |
+          python -m pycodestyle scripts/raw_assets/
+          python -m unittest scripts/raw_assets/tests/test_audio_pass.py
+
+      - name: Index the 99 backlog repos
+        run: |
+          python scripts/raw_assets/index_repos.py --backlog backlog \
+            --out "$RUNNER_TEMP/raw-repos" --jobs 4
+
+      - name: Audio pass
+        run: |
+          python scripts/raw_assets/audio_pass.py \
+            --index "$RUNNER_TEMP/raw-repos" --cache "$RUNNER_TEMP/raw-audio" \
+            --jobs 4 --write --full-sheets
+
+      - name: Tests on the written data
+        run: python -m unittest scripts/raw_assets/tests/test_audio_pass.py
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: raw-audio-pass
+          path: |
+            docs/RAW_AUDIO_299_2026-09-30.md
+            docs/RAW_AUDIO_REFERENCES.json
+            docs/RAW_AUDIO_PROPS.json
+            docs/audit/2026-09-30/raw-audio-299-spectra.png
+            docs/RAW_OSINT_CURSOR.json
+            godot/data/audio-references.json
+            THIRD_PARTY_NOTICES.md
+            ${{ runner.temp }}/raw-audio/_sheets/
+            ${{ runner.temp }}/raw-repos/index-report.json
+          retention-days: 14

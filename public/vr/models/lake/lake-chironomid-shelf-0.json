@@ -2,12 +2,57 @@
  "id": "lake-chironomid-shelf-0",
  "kind": "lake",
  "lod": "proxy",
- "tris": 12,
- "bbox_m": [
-  0.02,
-  0.02,
-  0.02
+ "detail": "procedural-detailed",
+ "details": [
+  "silt patch",
+  "silk-and-silt tubes",
+  "red larva peeking out"
  ],
+ "tris": 648,
+ "bbox_m": [
+  0.16,
+  0.026,
+  0.16
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.16,
+   0.026,
+   0.16
+  ],
+  "centre_m": [
+   0.0,
+   0.013,
+   0.0
+  ]
+ },
+ "materials": [
+  {
+   "name": "silt",
+   "colour": "#6a655a",
+   "roughness": 1,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "tube",
+   "colour": "#8a6a50",
+   "roughness": 1,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "larva",
+   "colour": "#a02020",
+   "roughness": 0.6,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 207550314251462,
  "name": "Трубочки мотыля в иле: в иле",
  "category": "life",
  "band": "shelf",
@@ -19,6 +64,9 @@
   "noLoot": false,
   "loot": "keep"
  },
- "source": "public/ludus/data/lake-objects-99.json",
- "method": "lake-kit-primitives"
+ "noLoot": false,
+ "noInteract": false,
+ "size_m": 0.02,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
 }

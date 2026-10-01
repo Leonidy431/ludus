@@ -6,8 +6,10 @@
 ##                 as the web game (TABOO 0.39 point 6);
 ##   pier        - the ROV on its birch stand; it leads into the dive;
 ##   gate ladder - six steps whose lanterns burn when a gate is open.
-## Beside them: the prayer rope on the lectern (a knot is counted and
-## shown, never scored, TABOO 0.35 rule 16) and the corner of stillness.
+## Beside them: the prayer rope on the lectern, kept in the pace of the
+## breath (RopeCore; a knot is counted and shown, never scored, TABOO
+## 0.35 rule 16), the corner of stillness and the cell of the evening
+## watch over thoughts (RuleCell, RuleCore).
 ##
 ## Three classes of light (TABOO 0.38 point 1): the lampada at 1800 K,
 ## the hearth at about 2200 K, the instrument light of the pier at
@@ -26,6 +28,17 @@ const RU_ATTR := {"wisdom": "Мудрость", "faith": "Вера",
 const LAMPADA_K := Color(1.0, 0.52, 0.16)   # About 1800 K.
 const HEARTH_K := Color(1.0, 0.62, 0.3)     # About 2200 K.
 const INSTRUMENT_K := Color(0.95, 0.97, 1.0)  # About 6500 K.
+## The cell of the evening watch behind its partition (RuleCell): its
+## still geometry is batched apart from the yard's.
+const CELL_ZONE := AABB(Vector3(-7.0, -0.1, -8.5), Vector3(3.8, 3.2, 3.0))
+## Occluders [size, centre], 5 cm inside the wall they stand for.  Only
+## the cell's partition (RuleCell): it hides the workshop and the yard
+## from the cell.  Nothing stands behind the yard's west or north wall,
+## so occluders there would cost the CPU buffer every frame and hide
+## nothing (the counts were the same with and without them).
+const OCCLUDERS := [
+	[Vector3(0.1, 2.3, 3.1), Vector3(-3.3, 1.15, -7.1)],
+]
 
 var trees: Dictionary = {}
 var form := HubCore.new_form()
@@ -59,10 +72,35 @@ var road_sprite: Sprite3D
 var atlas: Dictionary = AtlasCore.load_data()
 var atlas_page := 0
 var atlas_board: Label3D
+# The chronicle of the knight (AtlasTraces): written once at the
+# scriptorium table; chron is {choice, reply} while its page is open.
+const DIVE_SAVE := "user://dive.json"
+var chronicle := ""
+var chron := {}
+# The road of the obitel: the campaign of missions (MissionCore,
+# ludus-missions.js) on a birch-bark board in the courtyard.  The fall
+# and the crossed thresholds stay in trial_state (one state in the web);
+# mission_state keeps the rest.  mission is the open panel: {choice,
+# start}, where start is the mission offered at the board (-1 once one
+# is under way).
+const MISSION_BOARD_AT := Vector3(3.6, 0, 1.2)
+var mission_data: Dictionary = MissionCore.load_data()
+var mission_state := {"done": {}, "current": null, "flags": {},
+	"lines": {}}
+var mission := {}
+var mission_board: Label3D
 var select_was := false
 var interact_was := false
 var stick_was := 0.0
 var still_for := 0.0
+# The rule's cell and the rope (RuleCell, RuleCore, RopeCore): rule is
+# the open panel, {kind: "watch" | "rope", choice}; rope keeps the
+# breath the rope is tied in, and the breath heard while it is held.
+var rule := {}
+var rope := RopeCore.new_state()
+var rope_breath: AudioStreamPlayer
+var rope_streams := {}
+var rope_ring: Node3D
 var message := ""
 var message_left := 0.0
 
@@ -82,6 +120,8 @@ var webxr: XRInterface
 var vr_button: Button
 
 var shots_dir := ""
+# The viewport's occlusion culling before the hub turned it on.
+var occlusion_was := false
 var shot_frame := 0
 
 
@@ -179,6 +219,51 @@ func _build_world() -> void:
 	_build_road(oak)
 	_build_refectory(oak)
 	_build_atlas(oak)
+	_build_chronicle(oak)
+	_build_mission_board(oak)
+	# B2 hook: the journal of the way on its lectern (JournalBook).
+	things.append(JournalBook.place(self))
+	# The road of places: the 99 locations of our plots (PlacesLectern).
+	things.append(PlacesLectern.place(self))
+	things.append(RuleCell.build(self, oak))
+	rope_ring = RuleCell.build_rope(self)
+	# The K things of the obitel (TABOO 0.07, scripts/obitel_layout.gd).
+	var obitel := ObitelLayout.build_obitel_objects(self)
+	# Б-1 (docs/APK_REQUIREMENTS.md): the still geometry above is baked
+	# into a few meshes, one per material and place (StaticBatch), and
+	# the cell stays its own zone.  The rope turns, and the holy image is
+	# never baked into one mesh with the things around it (TABOO 0.2):
+	# each is merged only within itself.  Anything built after this line
+	# is drawn as built.
+	var apart: Array = [rope_ring]
+	for h in obitel.get_children():
+		if h.has_meta("obitel") and h.get_meta("obitel").flags.get("holy",
+				false):
+			apart.append(h)
+	StaticBatch.merge(self, {"scopes": apart, "zones": [CELL_ZONE]})
+	_build_occluders()
+
+
+## Б-1: occluders for the renderer's occlusion culling, a little inside
+## the walls they stand for, so nothing seen past an edge is hidden.
+## The culling runs on the CPU (the raycast module, which the Android
+## export has and the web export lacks: there it draws everything, as
+## before), and only in this scene's viewport.
+func _build_occluders() -> void:
+	for o in OCCLUDERS:
+		var oi := OccluderInstance3D.new()
+		var box := BoxOccluder3D.new()
+		box.size = o[0]
+		oi.occluder = box
+		oi.position = o[1]
+		add_child(oi)
+	occlusion_was = get_viewport().use_occlusion_culling
+	get_viewport().use_occlusion_culling = true
+
+
+func _exit_tree() -> void:
+	# The next scene (the dive, the witness) has no occluders.
+	get_viewport().use_occlusion_culling = occlusion_was
 
 
 ## The way out to the path of the witness: a plain oak arch on the south
@@ -206,6 +291,9 @@ func _build_atlas(oak: Color) -> void:
 	atlas_board.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	atlas_board.modulate = Color(0.2, 0.15, 0.1)
 	atlas_board.outline_size = 0
+	# Read from the front only: from the scriptorium table behind it the
+	# page showed through mirrored.
+	atlas_board.double_sided = false
 	atlas_board.position = at + Vector3(0, 2.0, -0.35)
 	add_child(atlas_board)
 	_board_back(atlas_board.position + Vector3(0, 0, -0.02),
@@ -213,6 +301,61 @@ func _build_atlas(oak: Color) -> void:
 	atlas_board.text = AtlasCore.page_text(atlas, atlas_page)
 	things.append({"id": "atlas", "kind": "atlas", "pos": at,
 		"ru": "Аналой: «Атлас воды» — читать дальше"})
+
+
+## The chronicle on the scriptorium table: an open codex.  What the
+## knight did under the vault of Sis is written here once; the lake
+## keeps the trace of it (TABOO 0.03 rule 3).
+func _build_chronicle(oak: Color) -> void:
+	_box(Vector3(0.42, 0.05, 0.3), Vector3(-5.5, 0.83, 2.2),
+		Color(0.93, 0.88, 0.76))
+	_box(Vector3(0.44, 0.03, 0.32), Vector3(-5.5, 0.81, 2.2), oak.darkened(0.3))
+	things.append({"id": "chronicle", "kind": "chronicle",
+		"pos": Vector3(-5.0, 0, 2.2), "ru": "Летопись обители: 1375 год"})
+
+
+## What the scribe says of the knight's things handed over in the dive.
+func _scribe_page() -> String:
+	if not FileAccess.file_exists(DIVE_SAVE):
+		return ""
+	var data = JSON.parse_string(FileAccess.get_file_as_string(DIVE_SAVE))
+	if not data is Dictionary:
+		return ""
+	var given = data.get("bag", {}).get("atlas", [])
+	return AtlasTraces.scribe_page(atlas, given if given is Array else [])
+
+
+## The board of the road: birch bark on two oak posts with a lantern of
+## the hearth (about 2200 K), the same material logic as the other
+## boards (TABOO 0.38).  It lists the acts, their locks and the open
+## missions of the act under way; at the board the player sets out.
+func _build_mission_board(oak: Color) -> void:
+	var at := MISSION_BOARD_AT
+	_box(Vector3(0.14, 2.4, 0.14), at + Vector3(0.1, 1.2, -1.05), oak)
+	_box(Vector3(0.14, 2.4, 0.14), at + Vector3(0.1, 1.2, 1.05), oak)
+	_box(Vector3(0.14, 0.12, 2.3), at + Vector3(0.1, 2.42, 0), oak)
+	mission_board = Label3D.new()
+	mission_board.font_size = 26
+	mission_board.pixel_size = 0.0021
+	mission_board.width = 900
+	mission_board.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	mission_board.modulate = Color(0.2, 0.15, 0.1)
+	mission_board.outline_size = 0
+	mission_board.position = at + Vector3(0, 1.45, 0)
+	mission_board.rotation_degrees = Vector3(0, -90, 0)
+	add_child(mission_board)
+	_board_back(at + Vector3(0.03, 1.45, 0), Vector2(2.0, 1.8),
+		mission_board.rotation_degrees)
+	var lantern := OmniLight3D.new()
+	lantern.light_color = HEARTH_K
+	lantern.light_energy = 0.5
+	lantern.omni_range = 3.2
+	lantern.position = at + Vector3(-0.5, 2.3, 1.05)
+	add_child(lantern)
+	things.append({"id": "missions", "kind": "missions",
+		"pos": at + Vector3(-0.6, 0, 0),
+		"ru": "Доска дороги: миссии обители"})
+	_refresh_mission_board()
 
 
 ## The refectory table, bare: today's fast is kept here once a day,
@@ -373,7 +516,7 @@ func _build_practice(oak: Color) -> void:
 	# The lectern with the prayer rope, and the corner of stillness.
 	_box(Vector3(0.5, 1.1, 0.4), Vector3(-3.0, 0.55, 3.2), oak)
 	things.append({"id": "rope", "kind": "rope",
-		"pos": Vector3(-3.0, 0, 3.2), "ru": "Вервица: завязать узел"})
+		"pos": Vector3(-3.0, 0, 3.2), "ru": "Вервица: взять в руку"})
 	_box(Vector3(1.6, 0.45, 0.4), Vector3(4.0, 0.22, 4.4), oak)
 	hearth = OmniLight3D.new()
 	hearth.light_color = HEARTH_K
@@ -506,7 +649,8 @@ func _save() -> void:
 	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if f:
 		f.store_string(JSON.stringify({"form": form, "actions": actions,
-			"trials": trial_state, "passions": passion_record}))
+			"trials": trial_state, "passions": passion_record,
+			"chronicle": chronicle, "missions": mission_state}))
 
 
 func _load() -> void:
@@ -523,6 +667,10 @@ func _load() -> void:
 		actions.lastFastDay = lfd if typeof(lfd) == TYPE_STRING else null
 		actions.met = act.get("met", {})
 		actions.gifts = act.get("gifts", {})
+		# The deeds of the rule that missions ask (MissionCore.do_practice).
+		# Only known practices and shapes come back (RuleCore.normalize).
+		actions.practices = RuleCore.normalize({"practices":
+			act.get("practices", {})}).practices
 		# Only known shapes come back, as normalizeState does in JS.
 		var ts: Dictionary = data.get("trials", {})
 		for g in TrialCore.GATE_IDS:
@@ -533,10 +681,16 @@ func _load() -> void:
 				trial_state.trial_wait[g] = int(w)
 		passion_record = PassionCore.normalize_record(data.get("passions",
 			{}))
+		chronicle = AtlasTraces.write_chronicle(atlas,
+			data.get("chronicle"), "")
 		var f = ts.get("fall")
 		if f is Dictionary and not TrialCore.passion_of(trial_data,
 				f.get("passion")).is_empty():
 			trial_state.fall = f
+		# The road of missions: only known shapes come back.
+		var ms := MissionCore.normalize_state(data.get("missions", {}))
+		mission_state = {"done": ms.done, "current": ms.current,
+			"flags": ms.flags, "lines": ms.lines}
 
 
 # --- Controls -----------------------------------------------------------------
@@ -602,8 +756,16 @@ func _process(dt: float) -> void:
 			if not encounter.is_empty():
 				encounter.choice = posmod(encounter.choice - int(signf(nav)),
 					maxi(1, _encounter_options().size()))
+			elif not chron.is_empty():
+				chron.choice = posmod(chron.choice - int(signf(nav)), 2)
 			elif not trial.is_empty():
 				trial.choice = posmod(trial.choice - int(signf(nav)), 3)
+			elif not mission.is_empty():
+				mission.choice = posmod(mission.choice - int(signf(nav)),
+					maxi(1, _mission_choices().size()))
+			elif not rule.is_empty():
+				rule.choice = posmod(rule.choice - int(signf(nav)),
+					_rule_choices().size())
 			else:
 				var n := HubCore.open_branches(talk.node, form).size()
 				talk.choice = posmod(talk.choice - int(signf(nav)),
@@ -614,8 +776,14 @@ func _process(dt: float) -> void:
 	if interact and not interact_was:
 		if not encounter.is_empty():
 			_select(encounter.choice)
+		elif not chron.is_empty():
+			_select(chron.choice)
 		elif not trial.is_empty():
 			_select(trial.choice)
+		elif not mission.is_empty():
+			_select(mission.choice)
+		elif not rule.is_empty():
+			_select(rule.choice)
 		elif talk.is_empty():
 			_interact()
 		else:
@@ -624,6 +792,7 @@ func _process(dt: float) -> void:
 	_stillness(dt, move)
 	_check_fall()
 	_road_tick(dt)
+	_rope_tick(dt)
 	hearth.light_energy = 1.3 + 0.15 * sin(t * 7.0) * sin(t * 2.3)
 	message_left = maxf(0.0, message_left - dt)
 	_refresh_boards()
@@ -655,22 +824,28 @@ func _interact() -> void:
 				tree.startNode), "choice": 0}
 			_save()
 		"rope":
-			actions = HubCore.pray_knot(actions)
-			_say("Узел завязан. Узлов: %d." % int(actions.prayerCount))
-			_save()
+			_open_rope()
+		"watch":
+			rule = {"kind": "watch", "choice": 0}
 		"pier":
 			# A fall closes the road to the deep until it is lifted.
 			var fs := TrialCore.fall_status(trial_data, trial_state, actions)
 			if fs.fallen:
-				_say("Путь в глубину закрыт: %s. Признак: %s Открывают трезвение (угол безмолвия) и беседа с наставником." % [fs.passion_ru, fs.cue])
+				_say("Путь в глубину закрыт: %s. Признак: %s Открывают трезвение (угол безмолвия или вечерний дозор в келье) и беседа с наставником." % [fs.passion_ru, fs.cue])
 				return
 			_save()
 			get_tree().change_scene_to_file("res://scenes/dive.tscn")
 		"road":
 			_road()
 		"atlas":
-			atlas_page = AtlasCore.next_page(atlas, atlas_page)
-			atlas_board.text = AtlasCore.page_text(atlas, atlas_page)
+			var scribe := _scribe_page()
+			atlas_page = AtlasCore.next_page(atlas, atlas_page, scribe)
+			atlas_board.text = AtlasCore.page_text(atlas, atlas_page, scribe)
+		"chronicle":
+			if chronicle != "":
+				_say(AtlasTraces.option(atlas, chronicle).written_ru)
+			else:
+				chron = {"choice": 0, "reply": ""}
 		"fast":
 			var before := float(actions.fastDays)
 			actions = HubCore.keep_fast(actions,
@@ -686,8 +861,12 @@ func _interact() -> void:
 			get_tree().change_scene_to_file("res://scenes/witness.tscn")
 		"ladder":
 			_ladder()
+		"missions":
+			_open_missions()
 		"stillness":
 			_say("Постой здесь, не двигаясь. Время идёт само.")
+		"node":  # B2 hook: a thing that answers for itself (JournalBook).
+			th.node.use()
 
 
 ## At the ladder: the bow when a gift is ready, else the threshold of
@@ -726,11 +905,20 @@ func _bow() -> void:
 
 
 func _select(i: int) -> void:
+	if not chron.is_empty():
+		_write_chronicle(i)
+		return
 	if not encounter.is_empty():
 		_choose_on_road(i)
 		return
 	if not trial.is_empty():
 		_choose_threshold(i)
+		return
+	if not mission.is_empty():
+		_choose_mission(i)
+		return
+	if not rule.is_empty():
+		_rule_select(i)
 		return
 	var open := HubCore.open_branches(talk.node, form)
 	if i >= open.size():
@@ -744,6 +932,20 @@ func _select(i: int) -> void:
 	else:
 		talk.node = HubCore.node_of(tree, res.next)
 		talk.choice = 0
+	_save()
+
+
+## The chronicle is written once; the answer says where its trace is.
+## Nothing is scored: mercy is not paid in points (Constitution).
+func _write_chronicle(i: int) -> void:
+	if chron.reply != "":
+		chron = {}
+		return
+	var opts := AtlasTraces.options(atlas)
+	if i >= opts.size():
+		return
+	chronicle = AtlasTraces.write_chronicle(atlas, chronicle, opts[i].id)
+	chron.reply = AtlasTraces.option(atlas, chronicle).written_ru
 	_save()
 
 
@@ -778,7 +980,137 @@ func _check_fall() -> void:
 
 func _panel_open() -> bool:
 	return not talk.is_empty() or not trial.is_empty() \
-		or not encounter.is_empty()
+		or not encounter.is_empty() or not chron.is_empty() or not mission.is_empty() \
+		or not rule.is_empty()
+
+
+# --- The road of missions ---------------------------------------------------
+
+## The campaign state as MissionCore reads it: the road's own keys with
+## the thresholds and the fall of trial_state.
+func _mstate() -> Dictionary:
+	var st := mission_state.duplicate(true)
+	st.trials = trial_state.trials.duplicate()
+	st.trial_wait = trial_state.trial_wait.duplicate()
+	st.fall = trial_state.fall
+	return st
+
+
+## Keep a new campaign state.  The fall is written back only when a
+## choice has just produced it, so a fall from a threshold is never
+## touched by the road.
+func _mkeep(st: Dictionary, fell: bool) -> void:
+	mission_state = {"done": st.done, "current": st.current,
+		"flags": st.flags, "lines": st.lines}
+	if fell:
+		trial_state.fall = st.fall
+	_refresh_mission_board()
+
+
+## At the board: the mission under way, else the next one to set out on,
+## else why the road waits (an act not yet crossed, or all walked).
+func _open_missions() -> void:
+	var st := _mstate()
+	if st.current != null:
+		mission = {"choice": 0, "start": -1}
+		return
+	var nxt := MissionCore.next_mission(mission_data, st)
+	if nxt >= 0:
+		mission = {"choice": 0, "start": nxt}
+		return
+	for act in MissionCore.catalog(mission_data, st):
+		if act.lock != "" and not act.complete:
+			_say("%s: %s." % [act.title, act.lock])
+			return
+	_say("Все миссии, что можно пройти, пройдены.")
+
+
+## The lines of the open panel to choose from: {id, text, disabled,
+## reason, cue}.  The last one always steps away from the board.
+func _mission_choices() -> Array:
+	var away := {"id": "away", "text": "Отойти: дорога подождёт.",
+		"disabled": false, "reason": "", "cue": ""}
+	if mission.is_empty():
+		return []
+	if mission.start >= 0:
+		var can := MissionCore.can_start(mission_data, _mstate(),
+			mission.start)
+		return [{"id": "set_out", "text": "Выйти в путь",
+			"disabled": not can.ok, "reason": can.reason, "cue": ""}, away]
+	var v := MissionCore.view(mission_data, _mstate(), form, actions)
+	if v.is_empty():
+		return [away]
+	if v.scene != null:
+		return [{"id": "next", "text": "Завершить миссию" if v.last
+			else "Дальше", "disabled": false, "reason": "", "cue": ""}]
+	return v.step.choices + [away]
+
+
+func _choose_mission(i: int) -> void:
+	var choices := _mission_choices()
+	if i >= choices.size():
+		return
+	var c: Dictionary = choices[i]
+	if c.disabled:
+		_say(c.reason)
+		return
+	match c.id:
+		"away":
+			mission = {}
+		"set_out":
+			_mkeep(MissionCore.start(mission_data, _mstate(), mission.start),
+				false)
+			mission = {"choice": 0, "start": -1}
+			_save()
+		"next":
+			var res := MissionCore.advance(mission_data, _mstate())
+			_mkeep(res.state, false)
+			mission.choice = 0
+			if res.completed != null:
+				mission = {}
+				_say("Миссия %d пройдена." % res.completed)
+			_save()
+		_:
+			var res := MissionCore.choose(mission_data, _mstate(), c.id,
+				form, actions)
+			var ap := MissionCore.apply_effects(form, actions, res.effects,
+				Time.get_date_string_from_system())
+			form = ap.form
+			actions = ap.actions
+			_mkeep(res.state, res.effects.fall != null)
+			mission.choice = 0
+			_save()
+
+
+func _refresh_mission_board() -> void:
+	if mission_board == null:
+		return
+	var st := _mstate()
+	var lines := ["ДОРОГА ОБИТЕЛИ"]
+	if st.fall != null:
+		lines.append("Свет приглушён: дорога ждёт трезвения и беседы.")
+	for act in MissionCore.catalog(mission_data, st):
+		var runnable := 0
+		var walked := 0
+		for m in act.missions:
+			if m.status != "chorus":
+				runnable += 1
+			if m.status == "done":
+				walked += 1
+		if act.complete:
+			lines.append("%s — пройден" % act.title)
+		elif act.lock != "":
+			lines.append("%s — %s" % [act.title, act.lock])
+		else:
+			lines.append("%s — %d из %d" % [act.title, walked, runnable])
+			var shown := 0
+			for m in act.missions:
+				if m.status in ["done", "chorus"] or shown >= 5:
+					continue
+				var mark := "▸" if m.status in ["next", "current"] else "·"
+				lines.append("   %s %d. %s" % [mark, m.id, m.title])
+				shown += 1
+	mission_board.text = "\n".join(lines)
 
 
 func _passion(id) -> Dictionary:
@@ -877,8 +1209,52 @@ func _say(text: String) -> void:
 	message_left = 5.0
 
 
+## The panel of a mission, like the threshold's: the step, its source
+## (in its Russian form, SourceLabels) and the choices; a closed choice
+## says why, a lure shows its sign once the player has learnt it.
+func _mission_panel_text() -> String:
+	var choices := _mission_choices()
+	var lines := []
+	if mission.start >= 0:
+		var m := MissionCore.build_mission(mission_data, mission.start)
+		lines += [m.actTitle, "%d. %s" % [m.id, m.title], "", m.intro,
+			SourceLabels.line(m.source), ""]
+	else:
+		var v := MissionCore.view(mission_data, _mstate(), form, actions)
+		if v.is_empty():
+			return ""
+		var s: Dictionary = v.step
+		lines += ["%d. %s — шаг %d из %d: %s" % [v.mission.id,
+			v.mission.title, v.index + 1, v.total, v.kind_ru], "",
+			s.title, s.text]
+		if s.source != "":
+			lines.append(SourceLabels.line(s.source))
+		lines.append("")
+		if v.scene != null:
+			lines.append("— " + v.scene.choice)
+			if v.scene.speaker != "":
+				lines.append(v.scene.speaker + ":")
+			lines.append(v.scene.text)
+			if v.scene.source != "":
+				lines.append(SourceLabels.line(v.scene.source))
+			lines.append("")
+	for j in choices.size():
+		var c: Dictionary = choices[j]
+		var mark := "▸ " if j == mission.choice else "  "
+		var line := "%s%d. %s" % [mark, j + 1, c.text]
+		if c.disabled and c.reason != "":
+			line += "  (%s)" % c.reason
+		lines.append(line)
+		if c.cue != "":
+			lines.append("      " + c.cue)
+	return "\n".join(lines)
+
+
 func _refresh_prompt() -> void:
 	panel.visible = _panel_open()
+	# A mission step says more than a talk; its charter uses a smaller
+	# hand so it stays inside the birch bark.
+	panel.font_size = 36 if not mission.is_empty() else 40
 	panel_bg.visible = panel.visible
 	var low := -0.3 if not encounter.is_empty() else 0.0
 	panel.position.y = -0.05 + low
@@ -889,7 +1265,8 @@ func _refresh_prompt() -> void:
 		match encounter.stage:
 			"virtue":
 				lines += ["Помысел прошёл. %s — %s; %s." % [p.virtue_ru,
-					p.source, p.ladder], "", "(нажми — идти дальше)"]
+					SourceLabels.ru(p.source), SourceLabels.ru(p.ladder)],
+					"", "(нажми — идти дальше)"]
 			"captive":
 				lines += ["Он повёл тебя. Он вернётся; наставники научат его признаку.",
 					"", "(нажми — идти дальше)"]
@@ -903,6 +1280,16 @@ func _refresh_prompt() -> void:
 						lines.append("%s%d. %s" % [mark, j + 1,
 							opts[j].text_ru])
 		panel.text = "\n".join(lines)
+	elif not chron.is_empty():
+		var lines := ["Летопись обители", "", atlas.chronicle.scene_ru, ""]
+		if chron.reply != "":
+			lines += [chron.reply, "", "(нажми — закрыть летопись)"]
+		else:
+			var opts := AtlasTraces.options(atlas)
+			for j in opts.size():
+				var mark := "▸ " if j == chron.choice else "  "
+				lines.append("%s%d. %s" % [mark, j + 1, opts[j].text_ru])
+		panel.text = "\n".join(lines)
 	elif not trial.is_empty():
 		var tv := TrialCore.trial_view(trial_data, trial_state, trial.gate,
 			form, actions)
@@ -915,6 +1302,10 @@ func _refresh_prompt() -> void:
 				var mark := "▸ " if j == trial.choice else "  "
 				lines.append("%s%d. %s" % [mark, j + 1, tv.options[j].text])
 		panel.text = "\n".join(lines)
+	elif not mission.is_empty():
+		panel.text = _mission_panel_text()
+	elif not rule.is_empty():
+		panel.text = _rule_panel_text()
 	elif not talk.is_empty():
 		var tree: Dictionary = trees[talk.npc]
 		var lines := [tree.get("npcName_ru", talk.npc) + ":",
@@ -932,6 +1323,108 @@ func _refresh_prompt() -> void:
 			text = th.ru
 	prompt3d.text = text
 	hud.text = text
+
+
+# --- The rule's cell and the rope (RuleCell) ----------------------------------
+
+func _rule_choices() -> Array:
+	if rule.get("kind") == "rope":
+		return RuleCell.rope_choices(rope)
+	return RuleCell.watch_choices(actions, Time.get_date_string_from_system())
+
+
+func _rule_panel_text() -> String:
+	var lines := []
+	if rule.kind == "rope":
+		lines = RuleCell.rope_lines(rope, actions)
+	else:
+		var fs := TrialCore.fall_status(trial_data, trial_state, actions)
+		var tree: Dictionary = trees.get(fs.get("teacher", ""), {})
+		lines = RuleCell.watch_lines(actions,
+			Time.get_date_string_from_system(), fs,
+			tree.get("npcName_ru", fs.get("teacher", "")))
+	return "\n".join(lines + RuleCell.choice_lines(_rule_choices(),
+		rule.choice))
+
+
+## The rope taken in hand: the breath starts with an inhale.
+func _open_rope() -> void:
+	rope = RopeCore.new_state(rope.pattern)
+	rule = {"kind": "rope", "choice": 0}
+	_breathe()
+
+
+## One's own breath, one cycle, started at each inhale (RopeBreath).
+func _breathe() -> void:
+	if rope_breath == null:
+		rope_breath = AudioStreamPlayer.new()
+		add_child(rope_breath)
+	if not rope_streams.has(rope.pattern):
+		rope_streams[rope.pattern] = RopeBreath.stream(rope.pattern)
+	rope_breath.stream = rope_streams[rope.pattern]
+	rope_breath.play()
+
+
+func _pulse(amplitude: float, seconds: float) -> void:
+	# The touch of the knot in the hand that holds the rope (Quest).
+	if xr_active:
+		right_hand.trigger_haptic_pulse("haptic", 0.0, amplitude, seconds,
+			0.0)
+
+
+func _rule_select(i: int) -> void:
+	var choices := _rule_choices()
+	if i >= choices.size():
+		return
+	var c: Dictionary = choices[i]
+	if c.disabled:
+		_say(c.reason)
+		return
+	match c.id:
+		"away":
+			rule = {}
+			if rope_breath:
+				rope_breath.stop()
+		"turn":
+			rope = RopeCore.turn(rope, 1)
+			_breathe()
+		"knot":
+			var r := RopeCore.tie(rope, actions)
+			rope = r.state
+			actions = r.actions
+			if r.tied:
+				rope_ring.rotation.y += TAU / RuleCell.ROPE_KNOTS
+				_pulse(0.5, 0.05)
+				_say("Узел.")
+				_save()
+			elif r.why == "inhale":
+				_say("Узел — на выдохе.")
+			else:
+				_say("У этого дыхания узел уже есть.")
+		"keep":
+			var before := TrialCore.fall_status(trial_data, trial_state,
+				actions)
+			actions = RuleCore.do_practice(actions, RuleCell.WATCH_ID,
+				{"day": Time.get_date_string_from_system()})
+			_save()
+			if before.get("fallen", false) and not before.taught:
+				_say("Дозор держан. Осталась беседа с наставником.")
+			else:
+				_say("Дозор держан. Сторож не спал.")
+
+
+## The breath goes on while the rope is in hand: the hand is touched as
+## the breath turns outward, and the breath is heard from each inhale.
+func _rope_tick(dt: float) -> void:
+	if rule.get("kind") != "rope":
+		return
+	var t0: float = rope.clock
+	rope.clock += dt
+	for cue in RopeCore.cues_between(rope.pattern, t0, rope.clock):
+		if cue.kind == "exhale":
+			_pulse(0.2, 0.08)
+		else:
+			_breathe()
 
 
 # --- XR -----------------------------------------------------------------------
@@ -985,7 +1478,9 @@ func _on_webxr_started() -> void:
 
 # --- Proof frames -------------------------------------------------------------
 
-## --shots=<dir>: the courtyard, the mentors, a talk, the pier, the ladder.
+## --shots=<dir>: the courtyard, the mentors, a talk, the pier, the ladder,
+## the thresholds, the road, the atlas, the board of missions, the cell
+## of the evening watch with its panel, and the rope in hand.
 func _shots() -> void:
 	var plan := [
 		{"name": "courtyard", "pos": Vector3(0, 0, 5.5), "yaw": 0.0},
@@ -1000,6 +1495,19 @@ func _shots() -> void:
 		{"name": "road", "pos": Vector3(-5.6, 0, 4.6), "yaw": PI,
 			"road": true},
 		{"name": "atlas", "pos": Vector3(-4.4, 0, 6.2), "yaw": 0.0},
+		{"name": "chronicle", "pos": Vector3(-3.8, 0, 2.4), "yaw": PI / 2.0,
+			"chronicle": true},
+		{"name": "mission-board", "pos": Vector3(0.9, 0, 1.2),
+			"yaw": -PI / 2.0},
+		{"name": "missions", "pos": Vector3(1.0, 0, 1.2), "yaw": -PI / 2.0,
+			"mission": true},
+		{"name": "journal", "pos": Vector3(0.2, 0, 6.0), "yaw": PI / 2.0},
+		{"name": "places", "pos": Vector3(4.2, 0, 2.4), "yaw": -PI / 2.0},
+		{"name": "evening-cell", "pos": Vector3(-5.0, 0, -5.0), "yaw": 0.0},
+		{"name": "rope", "pos": Vector3(-3.0, 0, 4.0), "yaw": 0.0,
+			"rope": true},
+		{"name": "evening-watch", "pos": Vector3(-5.0, 0, -5.4), "yaw": 0.0,
+			"watch": true},
 	]
 	var n := shot_frame / 20
 	if n >= plan.size():
@@ -1024,6 +1532,8 @@ func _shots() -> void:
 		# not follow the player to the next place.
 		encounter = {}
 		road_sprite.visible = false
+	# The chronicle's page open, nothing written (a proof frame only).
+	chron = {"choice": 0, "reply": ""} if s.has("chronicle") else {}
 	if s.has("trial") and trial.is_empty():
 		# The first gate opened as the ladder asks: Wisdom 4, ten knots,
 		# a talk with Theodora (a proof frame only; nothing is saved).
@@ -1031,6 +1541,34 @@ func _shots() -> void:
 		actions.prayerCount = 10.0
 		actions.met["theodora"] = 1
 		trial = {"gate": s.trial, "choice": 1, "reply": ""}
+	if s.has("mission") and mission.is_empty():
+		# The first mission set out on at the board, its first step open
+		# (a proof frame only; nothing is saved).
+		trial = {}
+		var st := MissionCore.start(mission_data, _mstate(),
+			MissionCore.next_mission(mission_data, _mstate()))
+		mission_state = {"done": st.done, "current": st.current,
+			"flags": st.flags, "lines": st.lines}
+		mission = {"choice": 0, "start": -1}
+	elif not s.has("mission"):
+		mission = {}
+	if s.has("rope") and rule.is_empty():
+		# The rope in hand on the Athonite breath (a proof frame only;
+		# nothing is saved).
+		mission = {}
+		rope = RopeCore.new_state("athonite")
+		rule = {"kind": "rope", "choice": 0}
+	if s.has("rope"):
+		# Held at seven seconds: the breath going out, the knot's moment.
+		rope.clock = 7.0
+	elif s.has("watch") and rule.get("kind") != "watch":
+		# After a fall on the road of lust: the watch shows what lifts it
+		# (a proof frame only; nothing is saved).
+		trial_state.fall = null
+		TrialCore._fall_into(trial_data, trial_state, "lust", actions)
+		rule = {"kind": "watch", "choice": 0}
+	elif not s.has("rope") and not s.has("watch"):
+		rule = {}
 	if shot_frame % 20 == 19:
 		get_viewport().get_texture().get_image().save_png(
 			"%s/hub-%s.png" % [shots_dir, s.name])

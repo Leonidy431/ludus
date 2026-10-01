@@ -2,12 +2,56 @@
  "id": "lake-boulder-shallows-0",
  "kind": "lake",
  "lod": "proxy",
- "tris": 12,
- "bbox_m": [
-  1.2,
-  0.84,
-  0.96
+ "detail": "procedural-detailed",
+ "details": [
+  "rounded granite",
+  "feldspar and mica grains"
  ],
+ "tris": 1040,
+ "bbox_m": [
+  1.183,
+  0.85,
+  0.925
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   1.183,
+   0.85,
+   0.925
+  ],
+  "centre_m": [
+   -0.003,
+   0.408,
+   -0.026
+  ]
+ },
+ "materials": [
+  {
+   "name": "granite",
+   "colour": "#8a8680",
+   "roughness": 0.9,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "feldspar",
+   "colour": "#b4968a",
+   "roughness": 0.85,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "mica",
+   "colour": "#292826",
+   "roughness": 0.5,
+   "metallic": 0.2,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 92877559863911,
  "name": "Гранитный валун: одиночный",
  "category": "shelf",
  "band": "shallows",
@@ -19,6 +63,9 @@
   "noLoot": false,
   "loot": "keep"
  },
- "source": "public/ludus/data/lake-objects-99.json",
- "method": "lake-kit-primitives"
+ "noLoot": false,
+ "noInteract": false,
+ "size_m": 1.2,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
 }

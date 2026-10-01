@@ -129,6 +129,12 @@ func _initialize() -> void:
 		tfx.said])
 	_near(tr.yaw, tfx.yaw, "tether yaw")
 	print("dive_core: %d checks, %d failures" % [checks, failures])
+	# Biomes, bubbles and the thermocline heard (HLD_DIVE_BIOMES_BUBBLES).
+	var b0 := checks
+	var f0 := failures
+	var biomes: RefCounted = load("res://tests/test_biomes.gd").new()
+	biomes.run(self)
+	print("biomes: %d checks, %d failures" % [checks - b0, failures - f0])
 	# Sound of the dive (scripts/audio, HLD_FOLLOWUPS D5).
 	var before := checks
 	var fails := failures
@@ -140,5 +146,28 @@ func _initialize() -> void:
 	fails = failures
 	load("res://tests/test_cockpit.gd").new().run(self)
 	print("cockpit: %d checks, %d failures" % [checks - before,
+		failures - fails])
+	# The posoh hydrophone on the Mangustik (HLD_POSOH_HYDROPHONE).
+	before = checks
+	fails = failures
+	load("res://tests/test_posoh.gd").new().run(self)
+	print("posoh: %d checks, %d failures" % [checks - before,
+		failures - fails])
+	# Things of the 99 locations from the 99 repos (HLD_LOCATION_ITEMS).
+	before = checks
+	fails = failures
+	load("res://tests/test_location_items.gd").new().run(self)
+	print("location items: %d checks, %d failures" % [checks - before,
+		failures - fails])
+	# The real dive scene: the holy things carry no band (it enters the
+	# tree with the root, after _initialize, so wait a frame).
+	before = checks
+	fails = failures
+	var dive: Node = (load("res://scenes/dive.tscn") as PackedScene) \
+		.instantiate()
+	root.add_child(dive)
+	await process_frame
+	biomes.in_dive(dive)
+	print("dive scene: %d checks, %d failures" % [checks - before,
 		failures - fails])
 	quit(1 if failures else 0)

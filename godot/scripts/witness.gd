@@ -4,15 +4,18 @@
 ## its dawn, along one path.  The player walks, stands, turns, bows the
 ## head and leaves; the path's edge is every kit's witness line.  There
 ## is no prompt, no counter, no reward and no record of the visit, and
-## no microphone is ever opened (TABOO 0.26 point 10).  The only sound
-## is the room's own tone, never digital zero.  B or Esc: back to the
-## courtyard (Nav).
+## no microphone is ever opened (TABOO 0.26 point 10).  The sound is the
+## room's own tone (never digital zero), the ison of the brethren a
+## cappella by the kit one stands at, and the far monastery's bells at
+## the hours the Typikon sets (WitnessAudio, docs/HLD_WITNESS_SOUND_
+## 2026-09-30.md).  Nothing the walker does rings a bell.  B or Esc:
+## back to the courtyard (Nav).  --now=YYYY-MM-DDTHH:MM sets the clock
+## (for shots and listening tests).
 extends Node3D
 
 const WALK_MPS := 1.2
 const LAMPADA_K := Color(1.0, 0.52, 0.16)   # About 1800 K.
 const DAWN := Color(1.0, 0.72, 0.5)
-const MIX_RATE := 22050.0
 
 var bays: Array = []
 var pos := WitnessCore.START
@@ -26,7 +29,7 @@ var camera: XRCamera3D
 var left_hand: XRController3D
 var right_hand: XRController3D
 var tone: AudioStreamGeneratorPlayback
-var tone_state := {"seed": 7, "lp": 0.0}
+var audio := WitnessAudio.new()
 var webxr: XRInterface
 var vr_button: Button
 
@@ -35,6 +38,14 @@ var shot_frame := 0
 
 
 func _ready() -> void:
+	var now := Time.get_datetime_dict_from_system()
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--now="):
+			var text := arg.trim_prefix("--now=")
+			if text.length() == 16:
+				text += ":00"
+			now = Time.get_datetime_dict_from_datetime_string(text, false)
+	audio.set_now(now)
 	_build_world()
 	_build_bays()
 	_build_rig()
@@ -152,6 +163,11 @@ func _build_bays() -> void:
 		# from anywhere on the path and never lies on the ground.
 		plaque.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
 		add_child(plaque)
+		# The kit's static parts that are not holy are drawn together
+		# (Б-1: 100 draw calls a frame); holy objects keep their nodes.
+		WitnessBatch.batch_kit(kit, b.meta.get("holyObjects", []))
+	# B2 hook: the preparation sheet at the corner of repentance.
+	ConfessionSheet.place(self, bays[WitnessCore.ORDER.find("confession")])
 
 
 ## A doll's-house cut: tall parts that stand between the path and the
@@ -161,8 +177,9 @@ func _build_bays() -> void:
 func _cut_away(kit: Node3D, witness_z: float) -> void:
 	for m in kit.find_children("*", "MeshInstance3D", true, false):
 		var mi := m as MeshInstance3D
-		var box := kit.global_transform.affine_inverse() \
-			* mi.global_transform * mi.get_aabb()
+		# In the kit's own frame, walked through the parents, so the path
+		# builds the same outside the tree (test_witness.gd).
+		var box := WitnessBatch.relative(mi, kit) * mi.get_aabb()
 		if box.get_center().z > witness_z + 0.2 and box.size.y > 1.6:
 			mi.visible = false
 
@@ -186,7 +203,7 @@ func _build_rig() -> void:
 
 func _build_tone() -> void:
 	var gen := AudioStreamGenerator.new()
-	gen.mix_rate = MIX_RATE
+	gen.mix_rate = WitnessAudio.MIX_RATE
 	gen.buffer_length = 0.3
 	var player := AudioStreamPlayer.new()
 	player.stream = gen
@@ -195,14 +212,29 @@ func _build_tone() -> void:
 	tone = player.get_stream_playback() as AudioStreamGeneratorPlayback
 
 
+## Leaving the path: a bell clip still rendering on the worker thread
+## finishes first, so the thread never outlives the synth it writes to.
+func _exit_tree() -> void:
+	if audio.bells.task != -1:
+		WorkerThreadPool.wait_for_task_completion(audio.bells.task)
+		audio.bells.task = -1
+
+
 func _feed_tone() -> void:
 	if tone == null:
 		return
+	# The day's bell strokes are rendered ahead of the hour, so no frame
+	# waits for a bell: on a worker thread in the APK, a little every
+	# frame in the Web build, which is exported without threads.
+	if OS.has_feature("web"):
+		audio.bells.warm(WitnessAudio.WARM_PER_FRAME_WEB)
+	else:
+		audio.bells.warm_async()
+	audio.listen(pos, bays)
 	var n := tone.get_frames_available()
 	if n <= 0:
 		return
-	for v in WitnessCore.room_tone(n, tone_state):
-		tone.push_frame(Vector2(v, v))
+	tone.push_buffer(audio.generate(n))
 
 
 func _stick(hand: XRController3D) -> Vector2:
@@ -304,7 +336,8 @@ func _shots() -> void:
 	var plan := [[WitnessCore.START, -PI / 2.0, "entrance"],
 		[Vector3(bays[0].x - 3.0, 0, -1.2), -PI / 2.0 + 0.9, "shore"],
 		[Vector3(bays[2].x - 3.0, 0, -1.2), -PI / 2.0 + 0.9, "west-wall"],
-		[Vector3(bays[3].x - 3.0, 0, 1.2), -PI / 2.0 - 0.9, "waiting"]]
+		[Vector3(bays[3].x - 3.0, 0, 1.2), -PI / 2.0 - 0.9, "waiting"],
+		[Vector3(bays[3].x - 5.2, 0, 0.4), PI, "confession-sheet"]]
 	var n := shot_frame / 20
 	if n >= plan.size():
 		get_tree().quit()

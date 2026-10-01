@@ -1,5 +1,5 @@
 {
- "next": 13,
+ "next": 8,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -976,6 +976,1902 @@
    ],
    "accepted_objects": 0,
    "code_candidates": 50
+  },
+  {
+   "time": "2026-09-30T11:41:53.244961+00:00",
+   "deficits": [
+    {
+     "id": "DEF-027",
+     "skipped": "audio-pipeline-pending"
+    },
+    {
+     "id": "DEF-028",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 157
+     },
+     "added_keywords": [
+      "effect",
+      "audio",
+      "cpp",
+      "spriteshader",
+      "supplier",
+      "bevy",
+      "crates",
+      "drag",
+      "logic",
+      "map",
+      "post",
+      "process"
+     ],
+     "keywords_total": 23
+    },
+    {
+     "id": "DEF-031",
+     "skipped": "not-raw-material"
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 43,
+   "note": "Agent A2 round (code deficits only): code candidates listed in docs/RAW_CODE_CANDIDATES.json, nothing fetched as image. Index /home/user/raw-repos from 2026-09-29 reused (within the daily refresh)."
+  },
+  {
+   "time": "2026-09-30T11:42:14.841832+00:00",
+   "deficits": [
+    {
+     "id": "DEF-035",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 178
+     },
+     "added_keywords": [
+      "java",
+      "lua",
+      "screens",
+      "com",
+      "corsixth",
+      "desktop",
+      "home",
+      "unciv",
+      "worldscreen",
+      "lblmenuitem",
+      "minimaptile",
+      "minimaptileutil"
+     ],
+     "keywords_total": 20
+    },
+    {
+     "id": "DEF-036",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 182,
+      "sacred-never-raw": 2
+     },
+     "added_keywords": [
+      "building",
+      "construction",
+      "client",
+      "content",
+      "itemstatussheetlet",
+      "sheetlets",
+      "stylesheets"
+     ],
+     "keywords_total": 14
+    },
+    {
+     "id": "DEF-040",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 1,
+      "dogma-stop-list": 2,
+      "not-a-game-object": 108
+     },
+     "added_keywords": [
+      "java",
+      "com",
+      "shatteredpixel",
+      "shatteredpixeldungeon",
+      "rotp",
+      "bevy",
+      "crates",
+      "client",
+      "cpp",
+      "render",
+      "content",
+      "gamesys"
+     ],
+     "keywords_total": 19
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 127,
+   "note": "Agent A2 round (code deficits only): code candidates listed in docs/RAW_CODE_CANDIDATES.json, nothing fetched as image. Index /home/user/raw-repos from 2026-09-29 reused (within the daily refresh)."
+  },
+  {
+   "time": "2026-09-30T11:44:14.741373+00:00",
+   "deficits": [
+    {
+     "id": "DEF-047",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 1,
+      "dogma-stop-list": 2,
+      "not-a-game-object": 107
+     },
+     "added_keywords": [
+      "java",
+      "com",
+      "shatteredpixel",
+      "shatteredpixeldungeon",
+      "rotp",
+      "cpp",
+      "client",
+      "dlg",
+      "gtk",
+      "custom",
+      "gamemap",
+      "loader"
+     ],
+     "keywords_total": 18
+    },
+    {
+     "id": "DEF-048",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 189,
+      "sacred-never-raw": 6
+     },
+     "added_keywords": [
+      "java",
+      "com",
+      "mindustry",
+      "shatteredpixel",
+      "shatteredpixeldungeon",
+      "cpp",
+      "iteminfo",
+      "character",
+      "coreitemsdisplay",
+      "creator",
+      "dialogs",
+      "dock"
+     ],
+     "keywords_total": 20
+    },
+    {
+     "id": "DEF-055",
+     "hits": 54,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 54
+     },
+     "added_keywords": [],
+     "keywords_total": 6
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 95,
+   "note": "Agent A2 round (code deficits only): code candidates listed in docs/RAW_CODE_CANDIDATES.json, nothing fetched as image. Index /home/user/raw-repos from 2026-09-29 reused (within the daily refresh)."
+  },
+  {
+   "time": "2026-09-30T11:45:14.323013+00:00",
+   "deficits": [
+    {
+     "id": "DEF-001",
+     "hits": 200,
+     "taken": 5,
+     "refused": {
+      "not-a-game-object": 121,
+      "sacred-never-raw": 3,
+      "dogma-stop-list": 1
+     },
+     "added_keywords": [
+      "female",
+      "lord",
+      "outline",
+      "alchemize",
+      "armorability",
+      "ascendedform",
+      "assassinsblade",
+      "auraofprotection",
+      "battleaxe",
+      "beaconofreturning",
+      "beam",
+      "beamingray"
+     ],
+     "keywords_total": 57
+    },
+    {
+     "id": "DEF-039",
+     "hits": 200,
+     "taken": 6,
+     "refused": {},
+     "added_keywords": [
+      "amazons",
+      "booth",
+      "buildings",
+      "productionsites",
+      "tribes",
+      "weaver",
+      "gateways",
+      "stairs",
+      "idle",
+      "unoccupied",
+      "working",
+      "down"
+     ],
+     "keywords_total": 18
+    },
+    {
+     "id": "DEF-056",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "not-a-game-object": 56,
+      "hostile-for-neutral-slot": 5
+     },
+     "added_keywords": [
+      "sardine",
+      "sturgeon",
+      "eel",
+      "bass",
+      "cod",
+      "mackerel",
+      "anchovy",
+      "sprat",
+      "fishing",
+      "aquarium",
+      "fishes",
+      "water"
+     ],
+     "keywords_total": 45
+    }
+   ],
+   "accepted_objects": 5,
+   "code_candidates": 72,
+   "reverted": "Eye check docs/audit/2026-09-30/raw-round4-DEF-001-contact.png: the 5 DEF-001 kits auto-copied by the pass came from wesnoth Rogue_Mage unit sprites. ant_avarice_055bf3b162 and ant_avarice_c12399d853 still read as a robed human figure with a staff (a person is not a passion; the chorus keeps bodies out of the passion kits); ant_sadness_31104e9418, _370fcda25f and _3a5ff12051 were cut from engine \"-outline\" frames and their variants are near-empty strokes (v02-v04 almost blank). All five removed before commit, their NOTICES rows not kept. osint_cycle now refuses \"*-outline.png\" frames (outline-helper). DEF-039: 6 rope-weaver booth frames, DEF-056: 6 deep-water tiles, all unlike-real-object, nothing shipped.",
+   "shipped": []
+  },
+  {
+   "time": "2026-09-30T11:49:23.555306+00:00",
+   "deficits": [
+    {
+     "id": "DEF-057",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "not-a-game-object": 58,
+      "dogma-stop-list": 1
+     },
+     "added_keywords": [
+      "mussel",
+      "snail",
+      "clam",
+      "conch",
+      "scallop",
+      "shells",
+      "ore",
+      "mineral",
+      "sands",
+      "dirt",
+      "ground",
+      "floor"
+     ],
+     "keywords_total": 43
+    },
+    {
+     "id": "DEF-049",
+     "hits": 200,
+     "taken": 6,
+     "refused": {},
+     "added_keywords": [
+      "castle",
+      "dwarven",
+      "dark",
+      "effect",
+      "flowers",
+      "necropolis",
+      "pedestal",
+      "outside",
+      "long",
+      "calc",
+      "gold",
+      "square"
+     ],
+     "keywords_total": 23
+    },
+    {
+     "id": "DEF-052",
+     "hits": 200,
+     "taken": 6,
+     "refused": {},
+     "added_keywords": [
+      "tribes",
+      "idle",
+      "unoccupied",
+      "working",
+      "cassava",
+      "digger",
+      "dwelling",
+      "gold",
+      "gatherers",
+      "hut",
+      "brewery",
+      "charcoal"
+     ],
+     "keywords_total": 27
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 17,
+   "note": "Nothing shipped: DEF-057 pebbles1/pebbles3 (Mindustry, GPL) reached only a shortfall of neutral variants, the rest unlike-real-object; DEF-049 dwarven floor tiles and DEF-052 dwelling frames have no real-object profile (unlike-real-object)."
+  },
+  {
+   "time": "2026-09-30T11:51:44.474895+00:00",
+   "deficits": [
+    {
+     "id": "DEF-058",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "hostile-for-neutral-slot": 74,
+      "not-a-game-object": 7,
+      "sacred-never-raw": 20
+     },
+     "added_keywords": [
+      "terrain",
+      "fungi",
+      "litter",
+      "water",
+      "fungus",
+      "blocks",
+      "floor",
+      "environment",
+      "unused",
+      "gulch",
+      "dead",
+      "vines"
+     ],
+     "keywords_total": 55
+    },
+    {
+     "id": "DEF-059",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "hostile-for-neutral-slot": 6,
+      "not-a-game-object": 47,
+      "sacred-never-raw": 1
+     },
+     "added_keywords": [
+      "bridge",
+      "terrain",
+      "blocks",
+      "short",
+      "rpg",
+      "java",
+      "crates",
+      "cyclone",
+      "generic",
+      "power",
+      "props",
+      "titan"
+     ],
+     "keywords_total": 56
+    },
+    {
+     "id": "DEF-003",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 139,
+      "sacred-never-raw": 1,
+      "dogma-stop-list": 2
+     },
+     "added_keywords": [
+      "shatteredpixel",
+      "shatteredpixeldungeon",
+      "particles",
+      "entrance",
+      "leveledit",
+      "beam",
+      "blastparticle",
+      "blobemitter",
+      "bloodparticle",
+      "cellemitter",
+      "challengeparticle",
+      "checkedcell"
+     ],
+     "keywords_total": 37
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 62,
+   "note": "Nothing shipped: DEF-058 wesnoth dead-kelp terrain unlike-real-object; DEF-059 wesnoth dock planks shortfall (the lesson of D6 attempt 2 repeated); DEF-003 code only."
+  },
+  {
+   "time": "2026-09-30T12:09:23.295193+00:00",
+   "deficits": [
+    {
+     "id": "DEF-057",
+     "own_drawing": true
+    },
+    {
+     "id": "DEF-058",
+     "own_drawing": true
+    },
+    {
+     "id": "DEF-059",
+     "own_drawing": true
+    }
+   ],
+   "accepted_objects": 6,
+   "code_candidates": 0,
+   "note": "D6, not a raw pass: operator agreed (\"все вопросы да\") that the neutral slots move to own procedural drawing. scripts/raw_assets/neutral_procedural.py draws six things of the lake register (granite boulder, quartz pebbles, shore reeds, pondweed, timber beam, khum jar), 12 variants each, every pair >= 35 % apart by alpha, each fitting the real-object profile. Eye check docs/audit/2026-09-30/neutral-procedural-D6-contact.png on five biomes: all six recognisable (after two fixes: a jar laid on its side read as a fish and was replaced by a leaning jar; plain boxes were refused by the fill profile, so beams got worn arrises and a propped state). No third-party material, so no NOTICES rows.",
+   "shipped": [
+    "own_boulder_4d9da8b0ae",
+    "own_quartz_e0197ebc07",
+    "own_trostnik_cbc1190335",
+    "own_rdest_2d5b9cbcc1",
+    "own_balka_fc14815fb5",
+    "own_khum_04712f8b8b"
+   ]
+  },
+  {
+   "time": "2026-09-30T12:51:11.457778+00:00",
+   "deficits": [
+    {
+     "id": "DEF-024",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 4,
+      "dogma-stop-list": 3,
+      "not-a-game-object": 71
+     },
+     "added_keywords": [
+      "shatteredpixel",
+      "shatteredpixeldungeon",
+      "effects",
+      "hero",
+      "spells",
+      "particles",
+      "abilities",
+      "npcs",
+      "buildings",
+      "cleric",
+      "duelist",
+      "huntress"
+     ],
+     "keywords_total": 38
+    },
+    {
+     "id": "DEF-027",
+     "skipped": "audio-pipeline-pending"
+    },
+    {
+     "id": "DEF-028",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 123
+     },
+     "added_keywords": [
+      "effects",
+      "servers",
+      "stack",
+      "filter",
+      "board",
+      "card",
+      "cockatrice",
+      "distortion",
+      "limiter",
+      "modules",
+      "reverb",
+      "aberration"
+     ],
+     "keywords_total": 35
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 199
+  },
+  {
+   "time": "2026-09-30T13:51:18.633927+00:00",
+   "deficits": [
+    {
+     "id": "DEF-031",
+     "skipped": "not-raw-material"
+    },
+    {
+     "id": "DEF-035",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 171
+     },
+     "added_keywords": [
+      "unit",
+      "actions",
+      "overviewscreen",
+      "presenter",
+      "devconsole",
+      "autoplay",
+      "bottombar",
+      "citypresenter",
+      "cityscreen",
+      "cityscreentiletable",
+      "consoletilecommands",
+      "consoleunitcommands"
+     ],
+     "keywords_total": 32
+    },
+    {
+     "id": "DEF-036",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "not-a-game-object": 179
+     },
+     "added_keywords": [
+      "atmos",
+      "xaml",
+      "entitysystems",
+      "objectstab",
+      "overlays",
+      "administration",
+      "tabs",
+      "anomaly",
+      "cartridgeloader",
+      "cartridges",
+      "clear",
+      "effects"
+     ],
+     "keywords_total": 26
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 50
+  },
+  {
+   "time": "2026-09-30T14:51:17.901504+00:00",
+   "deficits": [
+    {
+     "id": "DEF-040",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 3,
+      "dogma-stop-list": 1,
+      "not-a-game-object": 126
+     },
+     "added_keywords": [
+      "actors",
+      "hero",
+      "spells",
+      "effects",
+      "abilities",
+      "npcs",
+      "cleric",
+      "duelist",
+      "huntress",
+      "mage",
+      "rogue",
+      "warrior"
+     ],
+     "keywords_total": 31
+    },
+    {
+     "id": "DEF-047",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 3,
+      "dogma-stop-list": 1,
+      "not-a-game-object": 126
+     },
+     "added_keywords": [
+      "actors",
+      "hero",
+      "spells",
+      "effects",
+      "abilities",
+      "npcs",
+      "cleric",
+      "duelist",
+      "huntress",
+      "mage",
+      "rogue",
+      "warrior"
+     ],
+     "keywords_total": 30
+    },
+    {
+     "id": "DEF-048",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 4,
+      "dogma-stop-list": 1,
+      "not-a-game-object": 101
+     },
+     "added_keywords": [
+      "actors",
+      "hero",
+      "effects",
+      "spells",
+      "abilities",
+      "npcs",
+      "particles",
+      "cleric",
+      "duelist",
+      "huntress",
+      "mage",
+      "rogue"
+     ],
+     "keywords_total": 32
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 234
+  },
+  {
+   "time": "2026-09-30T13:31:00.540801+00:00",
+   "pass_id": "osint-2026-09-30T13:31:00Z",
+   "deficits": [
+    {
+     "id": "DEF-031",
+     "skipped": "not-raw-material"
+    },
+    {
+     "id": "DEF-035",
+     "hits": 200,
+     "taken": 0,
+     "refused": {},
+     "to_props": 171,
+     "added_keywords": [
+      "unit",
+      "actions",
+      "overviewscreen",
+      "presenter",
+      "devconsole",
+      "autoplay",
+      "bottombar",
+      "citypresenter",
+      "cityscreen",
+      "cityscreentiletable",
+      "consoletilecommands",
+      "consoleunitcommands"
+     ],
+     "keywords_total": 32,
+     "props": {
+      "screenshot": 171
+     }
+    },
+    {
+     "id": "DEF-036",
+     "hits": 200,
+     "taken": 0,
+     "refused": {},
+     "to_props": 179,
+     "added_keywords": [
+      "atmos",
+      "xaml",
+      "entitysystems",
+      "objectstab",
+      "overlays",
+      "administration",
+      "tabs",
+      "anomaly",
+      "cartridgeloader",
+      "cartridges",
+      "clear",
+      "effects"
+     ],
+     "keywords_total": 26,
+     "props": {
+      "other": 179
+     }
+    }
+   ],
+   "props_taken": {
+    "other": 179,
+    "screenshot": 171
+   },
+   "props_duplicates": 0,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 2205163,
+   "props_store_files": 350,
+   "props_store_bytes": 2205163,
+   "props_register_bytes": 225398,
+   "props_register_growth_bytes": 225398,
+   "accepted_objects": 0,
+   "code_candidates": 50,
+   "reverted": "Props part only (first pass with the TABOO 0.012 props store): props.prop_kind read \"ui/screens/\" as screenshots, so 171 Unciv and Forge UI classes (*.kt, *.java) were filed as \"screenshot\"; the register also stored the derivable cache path (116 of 641 bytes a line). The register and the cache were never committed; both were removed and rebuilt by the next pass with the fixed kinds. Keywords and the 50 code candidates of this pass stand."
+  },
+  {
+   "time": "2026-09-30T13:38:01.579690+00:00",
+   "pass_id": "osint-2026-09-30T13:38:01Z",
+   "deficits": [
+    {
+     "id": "DEF-040",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 4,
+      "dogma-stop-list": 1
+     },
+     "to_props": 125,
+     "added_keywords": [
+      "actors",
+      "hero",
+      "spells",
+      "effects",
+      "abilities",
+      "npcs",
+      "cleric",
+      "duelist",
+      "huntress",
+      "mage",
+      "rogue",
+      "warrior"
+     ],
+     "keywords_total": 31,
+     "props": {
+      "other": 125
+     }
+    },
+    {
+     "id": "DEF-047",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 4,
+      "dogma-stop-list": 1
+     },
+     "to_props": 125,
+     "added_keywords": [
+      "actors",
+      "hero",
+      "spells",
+      "effects",
+      "abilities",
+      "npcs",
+      "cleric",
+      "duelist",
+      "huntress",
+      "mage",
+      "rogue",
+      "warrior"
+     ],
+     "keywords_total": 30
+    },
+    {
+     "id": "DEF-048",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 5,
+      "dogma-stop-list": 1
+     },
+     "to_props": 100,
+     "added_keywords": [
+      "actors",
+      "hero",
+      "effects",
+      "spells",
+      "abilities",
+      "npcs",
+      "particles",
+      "cleric",
+      "duelist",
+      "huntress",
+      "mage",
+      "rogue"
+     ],
+     "keywords_total": 32,
+     "props": {
+      "other": 2
+     }
+    }
+   ],
+   "props_taken": {
+    "other": 127
+   },
+   "props_duplicates": 223,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 482676,
+   "props_store_files": 127,
+   "props_store_bytes": 482676,
+   "props_register_bytes": 73668,
+   "props_register_growth_bytes": 73668,
+   "accepted_objects": 0,
+   "code_candidates": 234
+  },
+  {
+   "time": "2026-09-30T14:45:49.916687+00:00",
+   "pass_id": "osint-2026-09-30T14:45:49Z",
+   "deficits": [
+    {
+     "id": "DEF-035",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 1
+     },
+     "to_props": 170,
+     "hits_uncapped": 53990,
+     "props_uncapped": 48893,
+     "props_uncapped_repos": 59,
+     "added_keywords": [
+      "idleunitbutton",
+      "pickerscreens",
+      "quest",
+      "smallunitbutton",
+      "spypresenter",
+      "status",
+      "summarypresenter",
+      "tileinfotable",
+      "unitactionmodifiers",
+      "unitactions",
+      "unitactionsfromuniques",
+      "unitactionsgreatperson"
+     ],
+     "keywords_total": 44,
+     "props": {
+      "other": 166,
+      "promo": 4
+     },
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-036",
+     "hits": 200,
+     "taken": 0,
+     "refused": {},
+     "to_props": 168,
+     "hits_uncapped": 12242,
+     "props_uncapped": 9080,
+     "props_uncapped_repos": 44,
+     "added_keywords": [
+      "lobby",
+      "disposal",
+      "absorbentitemstatus",
+      "channelitem",
+      "characterpickerbutton",
+      "charactersetupgui",
+      "charactersetupguisavepanel",
+      "chemistry",
+      "clientinnerbodysystem",
+      "colorflasheffectsystem",
+      "disposalunitwindow",
+      "effectvisualizersystem"
+     ],
+     "keywords_total": 38,
+     "props": {
+      "other": 167,
+      "editor": 1
+     },
+     "props_seen": 0
+    }
+   ],
+   "props_taken": {
+    "editor": 1,
+    "other": 333,
+    "promo": 4
+   },
+   "props_taken_by_index_kind": {
+    "code": 338
+   },
+   "props_duplicates": 0,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 2148923,
+   "props_store_files": 465,
+   "props_store_bytes": 2631599,
+   "props_cache_files_on_disk": 3674,
+   "props_cache_bytes_on_disk": 69829661,
+   "props_cache_missing": 0,
+   "props_register_bytes": 268393,
+   "props_register_growth_bytes": 194497,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 61
+  },
+  {
+   "time": "2026-09-30T14:50:06.309757+00:00",
+   "note_for": "osint-2026-09-30T13:31:00Z",
+   "note": "Correction to pass osint-2026-09-30T13:31:00Z (its entry stays as written). Its 'reverted' text says the props register and cache 'were removed and rebuilt by the next pass'. They were not rebuilt: the next pass (13:38Z) covered DEF-040, DEF-047 and DEF-048, so nothing of DEF-035 or DEF-036 reached the register. The uncommitted register file of 13:31Z was deleted outright instead of being kept with a reverted mark, against TABOO 0.25 p. 5; its numbers survive only in that entry (350 things, 2 205 163 B). The pass of 13:51Z on the integration branch, run with the code before TABOO 0.012, refused the same hits as not-a-game-object. The props of DEF-035 and DEF-036 were taken by pass osint-2026-09-30T14:45:49Z (--only, cursor unchanged): 170 and 168 things, 338 lines, 2 148 923 B; the 200-hit cap per deficit is the same, the 12 new keywords of each deficit changed which 200 hits came first, and one sacred hit was refused.",
+   "deficits": []
+  },
+  {
+   "time": "2026-09-30T15:14:54.808300+00:00",
+   "pass_id": "osint-2026-09-30T15:14:54Z",
+   "deficits": [
+    {
+     "id": "DEF-024",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 16,
+      "dogma-stop-list": 1
+     },
+     "to_props": 87,
+     "hits_uncapped": 53500,
+     "props_uncapped": 47985,
+     "props_uncapped_repos": 56,
+     "added_keywords": [
+      "mage",
+      "rogue",
+      "warrior",
+      "buffs",
+      "alchemize",
+      "amulet",
+      "ankh",
+      "arcaneresin",
+      "armorability",
+      "auraofprotection",
+      "beaconofreturning",
+      "beam"
+     ],
+     "keywords_total": 49,
+     "props": {
+      "other": 3
+     },
+     "props_seen": 84
+    },
+    {
+     "id": "DEF-028",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 2,
+      "dogma-stop-list": 2
+     },
+     "to_props": 68,
+     "hits_uncapped": 66691,
+     "props_uncapped": 61001,
+     "props_uncapped_repos": 61,
+     "added_keywords": [
+      "java",
+      "renderer",
+      "rendering",
+      "com",
+      "shatteredpixel",
+      "shatteredpixeldungeon",
+      "drivers",
+      "gles",
+      "abstract",
+      "fsr",
+      "copy",
+      "amplify"
+     ],
+     "keywords_total": 47,
+     "props": {
+      "promo": 3,
+      "other": 20
+     },
+     "props_seen": 45
+    },
+    {
+     "id": "DEF-047",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 15,
+      "dogma-stop-list": 1
+     },
+     "to_props": 93,
+     "hits_uncapped": 62137,
+     "props_uncapped": 56656,
+     "props_uncapped_repos": 62,
+     "added_keywords": [
+      "particles",
+      "buffs",
+      "acidicsprite",
+      "albinosprite",
+      "alchemize",
+      "armorability",
+      "auraofprotection",
+      "banditsprite",
+      "batsprite",
+      "beaconofreturning",
+      "beam",
+      "beamingray"
+     ],
+     "keywords_total": 41,
+     "props": {},
+     "props_seen": 93
+    }
+   ],
+   "props_taken": {
+    "other": 23,
+    "promo": 3
+   },
+   "props_taken_by_index_kind": {
+    "code": 26
+   },
+   "props_duplicates": 222,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 376943,
+   "props_store_files": 491,
+   "props_store_bytes": 3008542,
+   "props_cache_files_on_disk": 3702,
+   "props_cache_bytes_on_disk": 70223075,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 284364,
+   "props_register_growth_bytes": 15971,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 315
+  },
+  {
+   "time": "2026-09-30T16:51:02.540586+00:00",
+   "pass_id": "osint-2026-09-30T16:51:02Z",
+   "deficits": [
+    {
+     "id": "DEF-055",
+     "hits": 54,
+     "taken": 0,
+     "refused": {},
+     "to_props": 54,
+     "hits_uncapped": 54,
+     "props_uncapped": 54,
+     "props_uncapped_repos": 9,
+     "added_keywords": [],
+     "keywords_total": 6,
+     "keywords_not_searched": [],
+     "props": {
+      "other": 49,
+      "test": 3,
+      "example": 2
+     },
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-001",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "outline-helper": 4,
+      "sacred-never-raw": 2
+     },
+     "to_props": 3,
+     "hits_uncapped": 46112,
+     "props_uncapped": 15606,
+     "props_uncapped_repos": 46,
+     "added_keywords": [
+      "effect",
+      "powerscoal",
+      "industryl",
+      "rsi",
+      "speech",
+      "drill",
+      "dwarf",
+      "elf",
+      "madness",
+      "sword",
+      "tank",
+      "asteroid"
+     ],
+     "keywords_total": 62,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "java",
+      "mage",
+      "mindustry",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 3
+     },
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-039",
+     "hits": 200,
+     "taken": 6,
+     "refused": {},
+     "to_props": 0,
+     "hits_uncapped": 45913,
+     "props_uncapped": 25995,
+     "props_uncapped_repos": 36,
+     "added_keywords": [
+      "marauder",
+      "rider",
+      "rsi",
+      "dough",
+      "ingredients",
+      "metal",
+      "one",
+      "sealed",
+      "shoals",
+      "slimy",
+      "stone",
+      "way"
+     ],
+     "keywords_total": 30,
+     "keywords_not_searched": [],
+     "props": {},
+     "props_seen": 0
+    }
+   ],
+   "props_taken": {
+    "example": 2,
+    "other": 52,
+    "test": 3
+   },
+   "props_taken_by_index_kind": {
+    "code": 54,
+    "image": 3
+   },
+   "props_duplicates": 0,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 386693,
+   "props_store_files": 548,
+   "props_store_bytes": 3395235,
+   "props_cache_files_on_disk": 3759,
+   "props_cache_bytes_on_disk": 70609768,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 317185,
+   "props_register_growth_bytes": 32821,
+   "stage": "done",
+   "accepted_objects": 6,
+   "code_candidates": 18,
+   "reverted": [
+    {
+     "object": "ant_avarice_c12399d853",
+     "slot": "DEF-001",
+     "source": "wesnoth data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-defend2.png",
+     "reason": "duplicate animation frame of ant_avarice_055bf3b162 (defend1): aligned silhouette IoU 0.922 > 0.85; the per-file dedup list let it through, fixed in transform.py (per slot, bbox-cropped)",
+     "checked": "contact sheet by eye, 2026-09-30T17:00Z"
+    }
+   ]
+  },
+  {
+   "time": "2026-09-30T14:26:33.537305+00:00",
+   "type": "audio-pass",
+   "pass_id": "audio-299-2026-09-30",
+   "deficits": [
+    {
+     "id": "DEF-027",
+     "taken": 299
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 0,
+   "counts": {
+    "ceiling-two-states-per-thing": 304,
+    "chosen": 299,
+    "chosen-tier1-only": 130,
+    "chosen-tier2": 169,
+    "cut-by-diversity-caps": 0,
+    "excluded:acoustic-clipping": 30,
+    "excluded:acoustic-duration": 7,
+    "excluded:acoustic-sample-rate": 71,
+    "excluded:acoustic-weak": 18,
+    "excluded:chance-or-card-game": 60,
+    "excluded:combat": 665,
+    "excluded:decode-error": 1,
+    "excluded:duplicate-content": 7,
+    "excluded:eye-check": 33,
+    "excluded:hostile": 53,
+    "excluded:licence-nc-nd": 33,
+    "excluded:licence-weak": 6,
+    "excluded:meaning-weak": 163,
+    "excluded:music": 320,
+    "excluded:no-licence-repo": 516,
+    "excluded:no-neutral-slot": 833,
+    "excluded:not-decodable-format": 61,
+    "excluded:review": 8,
+    "excluded:reward-ding": 42,
+    "excluded:sacred-never-raw": 47,
+    "excluded:sacred-sound": 144,
+    "excluded:toy-or-joke": 59,
+    "excluded:voice": 268,
+    "fetched": 599,
+    "index-audio": 3877,
+    "pool": 465
+   },
+   "props_taken": {
+    "audio": 599
+   },
+   "by_slot": {
+    "rov.motor": 22,
+    "rov.sonar": 15,
+    "rov.hull": 20,
+    "rov.bubbles": 4,
+    "rov.console": 16,
+    "rov.tether": 1,
+    "lake.water": 10,
+    "lake.splash": 3,
+    "lake.rain": 3,
+    "lake.wind": 11,
+    "lake.birds": 8,
+    "lake.insects": 6,
+    "workshop.wood": 27,
+    "workshop.stone": 25,
+    "workshop.forge": 33,
+    "workshop.hearth": 10,
+    "workshop.scroll": 7,
+    "workshop.cloth": 9,
+    "workshop.door": 8,
+    "road.footsteps": 31,
+    "road.animals": 27,
+    "road.caravan": 2,
+    "road.breath": 1
+   },
+   "by_repo": {
+    "space-wizards__space-station-14": 173,
+    "endless-sky__endless-sky": 6,
+    "Anuken__Mindustry": 25,
+    "00-Evan__shattered-pixel-dungeon": 12,
+    "yairm210__Unciv": 7,
+    "widelands__widelands": 45,
+    "raysan5__raylib": 1,
+    "magefree__mage": 3,
+    "panda3d__panda3d": 1,
+    "wesnoth__wesnoth": 7,
+    "OpenDungeons__OpenDungeons": 5,
+    "drwhut__tabletop-club": 6,
+    "lincity-ng__lincity-ng": 5,
+    "FyroxEngine__Fyrox": 1,
+    "defold__defold": 2
+   },
+   "cache_mb": 36.7,
+   "taken_mb": 33.2,
+   "cache_pruned_files": 0,
+   "written_bytes": {
+    "RAW_AUDIO_REFERENCES.json": 338969,
+    "RAW_AUDIO_PROPS.json": 201177,
+    "raw-audio-299-spectra.png": 370725,
+    "RAW_AUDIO_299_2026-09-30.md": 58051
+   },
+   "note": "Spectral references only (TABOO 0.35 rule 8): no audio file in the repository, godot/ or public/. Props rows in docs/RAW_AUDIO_PROPS.json (TABOO 0.012).",
+   "reverted": "superseded by audio-299-2026-09-30-r2 after review: 86 space-station-14 files without per-file metadata were recorded as MIT (the README makes assets CC-BY-SA 3.0 and warns of NC), Unciv as MPL; combat, magic and sci-fi things passed as neutral; the single-blow test let trains of blows and sustained sounds into slot T60 medians"
+  },
+  {
+   "time": "2026-09-30T16:59:57.296504+00:00",
+   "type": "audio-pass",
+   "pass_id": "audio-299-2026-09-30-r2",
+   "supersedes": "audio-299-2026-09-30",
+   "deficits": [
+    {
+     "id": "DEF-027",
+     "taken": 140
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 0,
+   "counts": {
+    "ceiling-two-states-per-thing": 145,
+    "ceiling-two-tiers": 140,
+    "chosen": 140,
+    "chosen-tier1-only": 111,
+    "chosen-tier2": 29,
+    "cut-by-tier1-caps": 116,
+    "excluded:acoustic-clipping": 17,
+    "excluded:acoustic-duration": 5,
+    "excluded:acoustic-sample-rate": 58,
+    "excluded:acoustic-weak": 5,
+    "excluded:chance-or-card-game": 60,
+    "excluded:combat": 665,
+    "excluded:credit-combat": 1,
+    "excluded:credit-not-real-thing": 2,
+    "excluded:decode-error": 1,
+    "excluded:duplicate-content": 5,
+    "excluded:eye-check": 30,
+    "excluded:hostile": 53,
+    "excluded:licence-ambiguous": 12,
+    "excluded:licence-nc-nd": 33,
+    "excluded:licence-nc-unknown": 82,
+    "excluded:licence-unknown": 13,
+    "excluded:meaning-weak": 179,
+    "excluded:music": 320,
+    "excluded:no-licence-repo": 516,
+    "excluded:no-neutral-slot": 809,
+    "excluded:not-decodable-format": 61,
+    "excluded:not-real-thing": 87,
+    "excluded:review": 21,
+    "excluded:reward-ding": 42,
+    "excluded:sacred-never-raw": 47,
+    "excluded:sacred-sound": 199,
+    "excluded:toy-or-joke": 59,
+    "excluded:voice": 268,
+    "fetched": 348,
+    "held-for-lawyer": 107,
+    "impulsive": 9,
+    "index-audio": 3877,
+    "index-audio-repos": 36,
+    "index-repos-failed": 17,
+    "index-repos-ok": 82,
+    "not-chosen": 87,
+    "not-chosen-name-lacks-slot-word": 7,
+    "pool": 227,
+    "pool-before-eye-check": 257
+   },
+   "props_media": "audio",
+   "props_taken": {
+    "example": 3,
+    "game": 332,
+    "test": 13
+   },
+   "by_slot": {
+    "rov.motor": 12,
+    "rov.sonar": 2,
+    "rov.hull": 7,
+    "rov.bubbles": 3,
+    "rov.console": 9,
+    "lake.water": 6,
+    "lake.splash": 3,
+    "lake.rain": 2,
+    "lake.wind": 8,
+    "lake.birds": 7,
+    "lake.insects": 5,
+    "workshop.wood": 15,
+    "workshop.stone": 14,
+    "workshop.forge": 8,
+    "workshop.hearth": 5,
+    "workshop.scroll": 3,
+    "workshop.door": 5,
+    "road.footsteps": 9,
+    "road.animals": 14,
+    "road.caravan": 2,
+    "road.breath": 1
+   },
+   "by_repo": {
+    "space-wizards__space-station-14": 55,
+    "Anuken__Mindustry": 17,
+    "widelands__widelands": 31,
+    "endless-sky__endless-sky": 1,
+    "yairm210__Unciv": 3,
+    "panda3d__panda3d": 1,
+    "OpenDungeons__OpenDungeons": 5,
+    "wesnoth__wesnoth": 7,
+    "00-Evan__shattered-pixel-dungeon": 6,
+    "FyroxEngine__Fyrox": 2,
+    "drwhut__tabletop-club": 6,
+    "lincity-ng__lincity-ng": 4,
+    "defold__defold": 2
+   },
+   "cache_mb": 20.9,
+   "taken_mb": 19.5,
+   "cache_pruned_files": 0,
+   "written_bytes": {
+    "RAW_AUDIO_REFERENCES.json": 177560,
+    "RAW_AUDIO_PROPS.json": 121852,
+    "raw-audio-299-spectra.png": 406307,
+    "RAW_AUDIO_299_2026-09-30.md": 61696,
+    "audio-references.json": 4498
+   },
+   "note": "Spectral references only (TABOO 0.35 rule 8): no audio file in the repository or public/; godot/data holds slot medians only. Props rows in docs/RAW_AUDIO_PROPS.json (TABOO 0.012)."
+  },
+  {
+   "time": "2026-09-30T17:51:10.326375+00:00",
+   "pass_id": "osint-2026-09-30T17:51:10Z",
+   "deficits": [
+    {
+     "id": "DEF-056",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "hostile-for-neutral-slot": 4
+     },
+     "to_props": 45,
+     "hits_uncapped": 31906,
+     "props_uncapped": 12671,
+     "props_uncapped_repos": 37,
+     "added_keywords": [
+      "rsi",
+      "blaze",
+      "inhand",
+      "effect",
+      "hit",
+      "projectile",
+      "generic",
+      "left",
+      "props",
+      "right",
+      "rpg",
+      "carpplush"
+     ],
+     "keywords_total": 57,
+     "keywords_not_searched": [],
+     "props": {
+      "other": 45
+     },
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-049",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "sacred-never-raw": 2,
+      "hostile-for-neutral-slot": 1
+     },
+     "to_props": 19,
+     "hits_uncapped": 37855,
+     "props_uncapped": 12625,
+     "props_uncapped_repos": 35,
+     "added_keywords": [
+      "rsi",
+      "environment",
+      "tracker",
+      "plasma",
+      "ashfall",
+      "gridfire",
+      "heavy",
+      "snowfall",
+      "wall",
+      "generic",
+      "light",
+      "props"
+     ],
+     "keywords_total": 35,
+     "keywords_not_searched": [],
+     "props": {
+      "other": 19
+     },
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-052",
+     "hits": 200,
+     "taken": 6,
+     "refused": {},
+     "to_props": 0,
+     "hits_uncapped": 52145,
+     "props_uncapped": 26250,
+     "props_uncapped_repos": 37,
+     "added_keywords": [
+      "corner",
+      "deep",
+      "concave",
+      "ink",
+      "shallow",
+      "convex",
+      "dead",
+      "archiv",
+      "dough",
+      "ingredients",
+      "ogl",
+      "rsi"
+     ],
+     "keywords_total": 39,
+     "keywords_not_searched": [],
+     "props": {},
+     "props_seen": 0
+    }
+   ],
+   "props_taken": {
+    "other": 64
+   },
+   "props_taken_by_index_kind": {
+    "image": 64
+   },
+   "props_duplicates": 0,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 47896,
+   "props_store_files": 612,
+   "props_store_bytes": 3443131,
+   "props_cache_files_on_disk": 3823,
+   "props_cache_bytes_on_disk": 70657664,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 358097,
+   "props_register_growth_bytes": 40912,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 4
+  },
+  {
+   "time": "2026-09-30T15:12:54+00:00",
+   "pass": "loc-items-2026-09-30-p1",
+   "kind": "location-items (TABOO 0.013 p. 3, track B)",
+   "things_looked_up": 112,
+   "things_not_looked_up": {
+    "church-furniture": 2,
+    "devotional": 2,
+    "document": 28,
+    "expedition-instrument": 3,
+    "holy-never-raw": 7,
+    "lake-own-drawing": 21,
+    "through-story-trace": 3
+   },
+   "never_taken": {
+    "sacred-never-raw": 120,
+    "no-licence": 121,
+    "dogma-stop-list": 55,
+    "font": 2
+   },
+   "props_taken": 3204,
+   "props_by_kind": {
+    "image": 3187,
+    "model": 17
+   },
+   "props_by_place": {
+    "game": 3043,
+    "screenshot": 1,
+    "doc": 20,
+    "editor": 93,
+    "example": 29,
+    "test": 16,
+    "promo": 2
+   },
+   "props_bytes_outside_repo": 67187634,
+   "register_growth_bytes": 1640537,
+   "kits_built": 23,
+   "kits_shipped": [
+    "obj_bench_41042cf8fd",
+    "obj_bridge_log_40b14237a3",
+    "obj_hourglass_e49ab22431",
+    "obj_tools_9b09b1f302"
+   ],
+   "kits_rolled_back": [
+    {
+     "kit": "anvil",
+     "reason": "shortfall: an anvil only sinks, is overgrown or leans; its real states give fewer than twelve"
+    },
+    {
+     "kit": "archive-chest",
+     "reason": "reads as a cabinet or a crate, not a chest; the cast shadow of the source turns with it"
+    },
+    {
+     "kit": "barrel",
+     "reason": "the cast shadow of the source turns and breaks with the barrel, and a stacked barrel floats on it"
+    },
+    {
+     "kit": "basket",
+     "reason": "shortfall"
+    },
+    {
+     "kit": "campfire",
+     "reason": "shortfall"
+    },
+    {
+     "kit": "caravan-lantern",
+     "reason": "shortfall"
+    },
+    {
+     "kit": "caulker",
+     "reason": "all twelve are sunk or overgrown, none for a room; a chisel does not stand stuck in sand"
+    },
+    {
+     "kit": "cloth",
+     "reason": "shortfall"
+    },
+    {
+     "kit": "forge",
+     "reason": "shortfall"
+    },
+    {
+     "kit": "fruit-crate",
+     "reason": "the grey weathered variants read as metal boxes and the crate on its end as a locker"
+    },
+    {
+     "kit": "hand-mill",
+     "reason": "shortfall"
+    },
+    {
+     "kit": "khadak",
+     "reason": "shortfall; a looped scarf icon reads as a knot"
+    },
+    {
+     "kit": "knotted-line",
+     "reason": "shortfall; a short thick rope, not a measuring line"
+    },
+    {
+     "kit": "refugee-cart",
+     "reason": "seen from above: reads as a box with shafts, not a cart"
+    },
+    {
+     "kit": "silk-bale",
+     "reason": "shortfall"
+    },
+    {
+     "kit": "silver-ingot",
+     "reason": "shortfall"
+    },
+    {
+     "kit": "spade",
+     "reason": "the blade of the icon reads as a club head"
+    },
+    {
+     "kit": "store-key",
+     "reason": "shortfall"
+    },
+    {
+     "kit": "tongs",
+     "reason": "the icon reads as scissors"
+    }
+   ],
+   "refused_by_eye_on_candidates": {
+    "adze": "battle axes and a pole-axe, not a carpenter's adze",
+    "anchor-stone": "an iron anchor and station anchors; ours is stone",
+    "banner": "logos and interface banners, no linen banner",
+    "beehive": "magic hives of a roguelike",
+    "binding-press": "factory blocks and an icon",
+    "boat": "the heraldic boats are CC-BY-NC-SA (non-commercial); the rest are boats in painted waves or portraits",
+    "boat-hull": "no bare hull; wrecks in painted waves",
+    "bread-loaf": "bakery buildings and unsliced strips of frames",
+    "bread-table": "bakery buildings and unsliced strips of frames",
+    "brick-mould": "brick walls and kiln buildings",
+    "camel-saddle": "camels, not a saddle",
+    "caravan-staff": "wizards' staves",
+    "cauldron-camp": "the heraldic pot is CC-BY-NC-SA (non-commercial)",
+    "cauldron-common": "the heraldic pot is CC-BY-NC-SA (non-commercial)",
+    "coin-purse": "heaps of gold coins read as loot, not a purse",
+    "compass": "interface compass roses",
+    "crucible": "factory blocks",
+    "dove": "the heraldic dove is CC-BY-NC-SA (non-commercial)",
+    "drying-rack": "weapon racks",
+    "dye-vat": "barrels, not an open vat",
+    "exoskeleton": "a fabricator machine and a tech icon",
+    "felt": "carpet floor tiles",
+    "float": "a map",
+    "grain-pit": "granary buildings",
+    "grain-sack": "a magic sack of spiders and a sheaf",
+    "herbs": "a herb inside an item marker ring",
+    "horn": "a magic horn",
+    "inkwell": "a magic inkwell talisman",
+    "jeweller-crucible": "factory blocks",
+    "keyboard": "interface glyphs",
+    "kiln": "factory blocks and kiln buildings",
+    "level-mark": "map markers",
+    "measuring-rod": "steel rods and magic rods",
+    "mill-wheel": "a texture of a CC-BY-NC watermill (non-commercial)",
+    "money-scales": "dragon-scale armour",
+    "net": "fishermen figures and icons",
+    "oar": "a baker's peel and pong paddles, not an oar",
+    "paper-bale": "paper sheets and icons",
+    "potter-wheel": "an amphora icon",
+    "probe-staff": "wizards' staves",
+    "rope-coil": "straight rope and cables, no coil",
+    "salt-sack": "salt walls and a magic sack",
+    "scales": "dragon-scale armour",
+    "screen": "loading-screen pictures",
+    "sealed-case": "an open locker",
+    "spice-sack": "a magic sack and an icon",
+    "spindle": "a spaceship",
+    "stakes": "execution stakes of a bonfire",
+    "stone-pile": "natural rock outcrops with cast shadows, not a masonry pile",
+    "torch": "thrusters and a light texture",
+    "vine": "a vine monster",
+    "water-gauge": "an interface gauge",
+    "water-sampler": "a magic potion",
+    "well-bucket": "the heraldic bucket is CC-BY-NC-SA (non-commercial)"
+   },
+   "godot_files": 12,
+   "godot_bytes": 25821,
+   "notices_rows": 4,
+   "models": {
+    "models/Anvil.mesh": "Ogre binary mesh: no reader here",
+    "models/Forge.mesh": "Ogre binary mesh: no reader here",
+    "models/Lamp.mesh": "Ogre binary mesh: no reader here",
+    "models/Staff.mesh": "Ogre binary mesh: no reader here; a wizard's staff",
+    "editor/test/resources/build_project/SideScroller/model/treasure_chest.gltf": "a treasure chest in the engine's editor tests; the Defold licence of test data is unclear, and treasure reads as loot",
+    "editor/test/resources/build_project/SideScroller/model/treasure_chest_anim_out.gltf": "a treasure chest in the engine's editor tests; the Defold licence of test data is unclear, and treasure reads as loot",
+    "editor/test/resources/test_project/mesh/morph_weights_anim.gltf": "a morph-target test mesh, not weights",
+    "editor/test/resources/test_project/mesh/treasure_chest.gltf": "a treasure chest in the engine's editor tests; the Defold licence of test data is unclear, and treasure reads as loot",
+    "editor/test/resources/test_project/mesh/treasure_chest_anim_out.gltf": "a treasure chest in the engine's editor tests; the Defold licence of test data is unclear, and treasure reads as loot",
+    "engine/gamesys/src/gamesys/test/model/morph_weights_anim.gltf": "a morph-target test mesh, not weights",
+    "engine/modelc/src/test/assets/morph_weights_anim.gltf": "a morph-target test mesh, not weights",
+    "assets/TabletopClub/containers/Pot.obj": "kit for karas",
+    "assets/TabletopClub/containers/Purse.gltf": "kit for coin-purse",
+    "assets/TabletopClub/tables/Picnic Bench.obj": "a picnic table with fixed seats, not a bench",
+    "data/graphics/cimpletoon/XYZ_art/pt-boat.blend": "a Blender file (no Blender here) of a torpedo boat",
+    "data/models/pottery.blend": "a Blender file (no Blender here)",
+    "examples/shaders/resources/models/watermill.obj": "CC-BY-NC 4.0 (raylib examples/shaders/resources/LICENSE.md): non-commercial"
+   },
+   "mesh_kits_rolled_back": [
+    {
+     "kit": "coin-purse",
+     "name": "obj_coin_purse_c1be9bcd8b",
+     "reason": "shortfall",
+     "variants": 2,
+     "pool": {
+      "size": 67,
+      "measured": 16,
+      "refused": {
+       "shape-below-threshold": 51,
+       "too-close-to-a-sibling": 14
+      },
+      "chosen": 2
+     }
+    },
+    {
+     "kit": "karas",
+     "name": "obj_karas_a464c8d0b7",
+     "reason": "shortfall",
+     "variants": 6,
+     "pool": {
+      "size": 110,
+      "measured": 37,
+      "refused": {
+       "duplicate-hitbox": 5,
+       "shape-below-threshold": 73,
+       "too-close-to-a-sibling": 26
+      },
+      "chosen": 6
+     }
+    }
+   ]
+  },
+  {
+   "time": "2026-09-30T17:54:31+00:00",
+   "pass": "loc-props-licences-2026-09-30",
+   "kind": "props register licences and withdrawals (TABOO 0.012 p. 1-2; review 2026-09-30)",
+   "licence_corrections": 1814,
+   "by_change": {
+    "GPL -> GPL-3.0": 137,
+    "GPL -> GPL-2.0": 1532,
+    "GPL -> CC-BY-NC-ND-4.0": 40,
+    "UNKNOWN -> LicenseRef-Defold-1.0": 20,
+    "UNKNOWN -> CC-BY-SA-4.0": 38,
+    "UNKNOWN -> MIT": 18,
+    "UNKNOWN -> Zlib": 11,
+    "UNKNOWN -> Artistic-1.0": 8,
+    "UNKNOWN -> CC-BY-4.0": 4,
+    "UNKNOWN -> LicenseRef-qskinny": 2,
+    "UNKNOWN -> Apache-2.0": 4
+   },
+   "withdrawn": 7,
+   "withdrawn_why": [
+    "demonic"
+   ],
+   "without_licence_after": 0
+  },
+  {
+   "time": "2026-09-30T17:19:59.717166+00:00",
+   "type": "own-drawing",
+   "pass_id": "own-fish-DEF-056-2026-09-30",
+   "deficits": [
+    {
+     "id": "DEF-056",
+     "own_drawing": true
+    }
+   ],
+   "accepted_objects": 9,
+   "code_candidates": 0,
+   "note": "Track C, not a raw pass: DEF-056 (fish) follows D6 and moves to own drawing, because the raw passes never gave a recognisable fish (a jellyfish, a fiend and pikemen for \"pike\"; later fish-like pieces failed the real-object profile). scripts/raw_assets/fish_procedural.py draws nine species of the lake register side-on by genus shape (length, body depth, dorsal and adipose fins, barbels, tail fork, skin pattern from godot/data/issyk-kul-fish.json and docs/ISSYK_KUL_FISH.md; proportions approximate, for an ichthyologist to check), 12 variants each from age classes x register poses, every pair >= 35 % apart by alpha, each fitting the fish profile. Eye check docs/audit/2026-09-30/fish-own-DEF-056-contact.png on five biomes: all nine recognisable after two fixes (eyes drawn at full radius read as cartoons and were reduced; fins first hung as spikes and were swept back, which also lifted the fill into the profile). School and young as one sprite are refused by the fish profile (fill 0.21-0.26); a scene builds a school from several sprites. No headset copy: the dive already shows 3D fish and no Godot scene loads the sprites (TABOO 0.011). No third-party material, so no NOTICES rows.",
+   "shipped": [
+    "own_chebachok_4a8e60a860",
+    "own_marinka_877962c94d",
+    "own_osman_dac0c4d124",
+    "own_gubach_035ddd127e",
+    "own_ishkhan_e07c061221",
+    "own_sudak_622aadc00f",
+    "own_leshch_c96de5267b",
+    "own_sazan_9a7d5cf44c",
+    "own_sig_9979af3a69"
+   ],
+   "reverted": true,
+   "reverted_reason": "Review of 2026-09-30: the 35 % between siblings came from placement (a \"bottom\" variant was the \"single\" one moved down the canvas: pixel-identical after cropping, yet about 100 % apart) and from uniform 0.8x age rescales, not from form (TABOO 0.3 rules 15, 62, 71). Withdrawn; see the next entry."
+  },
+  {
+   "time": "2026-09-30T19:00:00+00:00",
+   "type": "own-drawing",
+   "pass_id": "own-fish-DEF-056-2026-09-30-r2",
+   "deficits": [
+    {
+     "id": "DEF-056",
+     "own_drawing": true
+    }
+   ],
+   "accepted_objects": 0,
+   "code_candidates": 0,
+   "note": "fish-drawing-r2: the sibling distance is now measured on silhouettes cropped to their bbox and fitted to a common 200x80 box, so placement, size and stretch count for nothing; size (age), height in the water and tilt are engine parameters, not variants. Variants come only from real forms: body flexion (bow, arch, S-wave, head or tail bend, several strengths), fins raised or folded, tail fanned, mouth open, young proportions, pair layouts. Honest result per species (pool size / fitting / chosen): chebachok 26/20/5, marinka 33/12/7, osman 27/19/7, gubach 27/18/7, ishkhan 33/25/9, sudak 37/30/9, leshch 34/22/7, sazan 29/25/8, sig 30/13/7. No kit reaches 12, so nothing ships (TABOO 0.1: never fewer than 12; TABOO 0.07 item 2: the count is not padded). Genus cues strengthened after the eye check (sig: small pointed head, big adipose fin, pale back; chebachok: deeper body, dark back; marinka: long pointed head, long barbels; osman: blunt head, big spots). Contact sheet of the short kits: docs/audit/2026-09-30/fish-own-DEF-056-contact.png.",
+   "shipped": [],
+   "shortfall": {
+    "chebachok": 7,
+    "marinka": 5,
+    "osman": 5,
+    "gubach": 5,
+    "ishkhan": 3,
+    "sudak": 3,
+    "leshch": 5,
+    "sazan": 4,
+    "sig": 5
+   }
+  },
+  {
+   "time": "2026-09-30T18:50:57.963863+00:00",
+   "pass_id": "osint-2026-09-30T18:50:57Z",
+   "deficits": [
+    {
+     "id": "DEF-008",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 2
+     },
+     "to_props": 176,
+     "hits_uncapped": 3181,
+     "props_uncapped": 2992,
+     "props_uncapped_repos": 36,
+     "added_keywords": [
+      "proplist",
+      "unit"
+     ],
+     "keywords_total": 15,
+     "keywords_not_searched": [],
+     "props": {
+      "test": 22,
+      "editor": 71,
+      "other": 70,
+      "doc": 1,
+      "example": 7
+     },
+     "props_seen": 2
+    },
+    {
+     "id": "DEF-012",
+     "skipped": "audio-pipeline-pending"
+    },
+    {
+     "id": "DEF-019",
+     "hits": 143,
+     "taken": 0,
+     "refused": {},
+     "to_props": 143,
+     "hits_uncapped": 143,
+     "props_uncapped": 143,
+     "props_uncapped_repos": 26,
+     "added_keywords": [],
+     "keywords_total": 8,
+     "keywords_not_searched": [],
+     "props": {
+      "other": 109,
+      "test": 5,
+      "example": 5,
+      "editor": 8
+     },
+     "props_seen": 0
+    }
+   ],
+   "props_taken": {
+    "doc": 1,
+    "editor": 79,
+    "example": 12,
+    "other": 179,
+    "test": 27
+   },
+   "props_taken_by_index_kind": {
+    "code": 298
+   },
+   "props_duplicates": 2,
+   "props_errors": 0,
+   "props_refused": {
+    "licence-UNKNOWN": 11,
+    "licence-Defold-1.0": 8
+   },
+   "props_new_bytes": 3508967,
+   "props_store_files": 910,
+   "props_store_bytes": 6952098,
+   "props_cache_files_on_disk": 4121,
+   "props_cache_bytes_on_disk": 74166631,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 514709,
+   "props_register_growth_bytes": 156612,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 22
   }
  ],
  "keywords": {
@@ -1003,7 +2899,31 @@
    "fry",
    "shoal",
    "fins",
-   "herring"
+   "herring",
+   "sardine",
+   "sturgeon",
+   "eel",
+   "bass",
+   "cod",
+   "mackerel",
+   "anchovy",
+   "sprat",
+   "fishing",
+   "aquarium",
+   "fishes",
+   "water",
+   "rsi",
+   "blaze",
+   "inhand",
+   "effect",
+   "hit",
+   "projectile",
+   "generic",
+   "left",
+   "props",
+   "right",
+   "rpg",
+   "carpplush"
   ],
   "DEF-057": [
    "granite",
@@ -1029,7 +2949,19 @@
    "shore",
    "beach",
    "cliff",
-   "marble"
+   "marble",
+   "mussel",
+   "snail",
+   "clam",
+   "conch",
+   "scallop",
+   "shells",
+   "ore",
+   "mineral",
+   "sands",
+   "dirt",
+   "ground",
+   "floor"
   ],
   "DEF-058": [
    "pondweed",
@@ -1067,7 +2999,19 @@
    "foliage",
    "vegetation",
    "swamp",
-   "marsh"
+   "marsh",
+   "terrain",
+   "fungi",
+   "litter",
+   "water",
+   "fungus",
+   "blocks",
+   "floor",
+   "environment",
+   "unused",
+   "gulch",
+   "dead",
+   "vines"
   ],
   "DEF-059": [
    "jar",
@@ -1105,7 +3049,19 @@
    "planks",
    "barrels",
    "pots",
-   "jugs"
+   "jugs",
+   "bridge",
+   "terrain",
+   "blocks",
+   "short",
+   "rpg",
+   "java",
+   "crates",
+   "cyclone",
+   "generic",
+   "power",
+   "props",
+   "titan"
   ],
   "DEF-001": [
    "beast",
@@ -1138,12 +3094,60 @@
    "rogue",
    "warrior",
    "buffs",
-   "defend"
+   "defend",
+   "female",
+   "lord",
+   "outline",
+   "alchemize",
+   "armorability",
+   "ascendedform",
+   "assassinsblade",
+   "auraofprotection",
+   "battleaxe",
+   "beaconofreturning",
+   "beam",
+   "beamingray",
+   "effect",
+   "powerscoal",
+   "industryl",
+   "rsi",
+   "speech",
+   "drill",
+   "dwarf",
+   "elf",
+   "madness",
+   "sword",
+   "tank",
+   "asteroid"
   ],
   "DEF-049": [
    "terrain",
    "floor",
-   "litter"
+   "litter",
+   "castle",
+   "dwarven",
+   "dark",
+   "effect",
+   "flowers",
+   "necropolis",
+   "pedestal",
+   "outside",
+   "long",
+   "calc",
+   "gold",
+   "square",
+   "rsi",
+   "environment",
+   "tracker",
+   "plasma",
+   "ashfall",
+   "gridfire",
+   "heavy",
+   "snowfall",
+   "wall",
+   "generic",
+   "light",
+   "props"
   ],
   "DEF-052": [
    "water",
@@ -1152,7 +3156,31 @@
    "amazons",
    "booth",
    "buildings",
-   "productionsites"
+   "productionsites",
+   "tribes",
+   "idle",
+   "unoccupied",
+   "working",
+   "cassava",
+   "digger",
+   "dwelling",
+   "gold",
+   "gatherers",
+   "hut",
+   "brewery",
+   "charcoal",
+   "corner",
+   "deep",
+   "concave",
+   "ink",
+   "shallow",
+   "convex",
+   "dead",
+   "archiv",
+   "dough",
+   "ingredients",
+   "ogl",
+   "rsi"
   ],
   "DEF-003": [
    "lua",
@@ -1166,12 +3194,26 @@
    "editor",
    "effects",
    "left",
-   "right"
+   "right",
+   "shatteredpixel",
+   "shatteredpixeldungeon",
+   "particles",
+   "entrance",
+   "leveledit",
+   "beam",
+   "blastparticle",
+   "blobemitter",
+   "bloodparticle",
+   "cellemitter",
+   "challengeparticle",
+   "checkedcell"
   ],
   "DEF-008": [
    "controllers",
    "editor",
-   "units"
+   "units",
+   "proplist",
+   "unit"
   ],
   "DEF-019": [],
   "DEF-024": [
@@ -1186,7 +3228,257 @@
    "traits",
    "widget",
    "actors",
-   "com"
+   "com",
+   "shatteredpixel",
+   "shatteredpixeldungeon",
+   "effects",
+   "hero",
+   "spells",
+   "particles",
+   "abilities",
+   "npcs",
+   "buildings",
+   "cleric",
+   "duelist",
+   "huntress",
+   "mage",
+   "rogue",
+   "warrior",
+   "buffs",
+   "alchemize",
+   "amulet",
+   "ankh",
+   "arcaneresin",
+   "armorability",
+   "auraofprotection",
+   "beaconofreturning",
+   "beam"
+  ],
+  "DEF-028": [
+   "effect",
+   "audio",
+   "cpp",
+   "spriteshader",
+   "supplier",
+   "bevy",
+   "crates",
+   "drag",
+   "logic",
+   "map",
+   "post",
+   "process",
+   "effects",
+   "servers",
+   "stack",
+   "filter",
+   "board",
+   "card",
+   "cockatrice",
+   "distortion",
+   "limiter",
+   "modules",
+   "reverb",
+   "aberration",
+   "java",
+   "renderer",
+   "rendering",
+   "com",
+   "shatteredpixel",
+   "shatteredpixeldungeon",
+   "drivers",
+   "gles",
+   "abstract",
+   "fsr",
+   "copy",
+   "amplify"
+  ],
+  "DEF-035": [
+   "java",
+   "lua",
+   "screens",
+   "com",
+   "corsixth",
+   "desktop",
+   "home",
+   "unciv",
+   "worldscreen",
+   "lblmenuitem",
+   "minimaptile",
+   "minimaptileutil",
+   "unit",
+   "actions",
+   "overviewscreen",
+   "presenter",
+   "devconsole",
+   "autoplay",
+   "bottombar",
+   "citypresenter",
+   "cityscreen",
+   "cityscreentiletable",
+   "consoletilecommands",
+   "consoleunitcommands",
+   "idleunitbutton",
+   "pickerscreens",
+   "quest",
+   "smallunitbutton",
+   "spypresenter",
+   "status",
+   "summarypresenter",
+   "tileinfotable",
+   "unitactionmodifiers",
+   "unitactions",
+   "unitactionsfromuniques",
+   "unitactionsgreatperson"
+  ],
+  "DEF-036": [
+   "building",
+   "construction",
+   "client",
+   "content",
+   "itemstatussheetlet",
+   "sheetlets",
+   "stylesheets",
+   "atmos",
+   "xaml",
+   "entitysystems",
+   "objectstab",
+   "overlays",
+   "administration",
+   "tabs",
+   "anomaly",
+   "cartridgeloader",
+   "cartridges",
+   "clear",
+   "effects",
+   "lobby",
+   "disposal",
+   "absorbentitemstatus",
+   "channelitem",
+   "characterpickerbutton",
+   "charactersetupgui",
+   "charactersetupguisavepanel",
+   "chemistry",
+   "clientinnerbodysystem",
+   "colorflasheffectsystem",
+   "disposalunitwindow",
+   "effectvisualizersystem"
+  ],
+  "DEF-040": [
+   "java",
+   "com",
+   "shatteredpixel",
+   "shatteredpixeldungeon",
+   "rotp",
+   "bevy",
+   "crates",
+   "client",
+   "cpp",
+   "render",
+   "content",
+   "gamesys",
+   "actors",
+   "hero",
+   "spells",
+   "effects",
+   "abilities",
+   "npcs",
+   "cleric",
+   "duelist",
+   "huntress",
+   "mage",
+   "rogue",
+   "warrior"
+  ],
+  "DEF-047": [
+   "java",
+   "com",
+   "shatteredpixel",
+   "shatteredpixeldungeon",
+   "rotp",
+   "cpp",
+   "client",
+   "dlg",
+   "gtk",
+   "custom",
+   "gamemap",
+   "loader",
+   "actors",
+   "hero",
+   "spells",
+   "effects",
+   "abilities",
+   "npcs",
+   "cleric",
+   "duelist",
+   "huntress",
+   "mage",
+   "rogue",
+   "warrior",
+   "particles",
+   "buffs",
+   "acidicsprite",
+   "albinosprite",
+   "alchemize",
+   "armorability",
+   "auraofprotection",
+   "banditsprite",
+   "batsprite",
+   "beaconofreturning",
+   "beam",
+   "beamingray"
+  ],
+  "DEF-048": [
+   "java",
+   "com",
+   "mindustry",
+   "shatteredpixel",
+   "shatteredpixeldungeon",
+   "cpp",
+   "iteminfo",
+   "character",
+   "coreitemsdisplay",
+   "creator",
+   "dialogs",
+   "dock",
+   "actors",
+   "hero",
+   "effects",
+   "spells",
+   "abilities",
+   "npcs",
+   "particles",
+   "cleric",
+   "duelist",
+   "huntress",
+   "mage",
+   "rogue"
+  ],
+  "DEF-055": [],
+  "DEF-039": [
+   "amazons",
+   "booth",
+   "buildings",
+   "productionsites",
+   "tribes",
+   "weaver",
+   "gateways",
+   "stairs",
+   "idle",
+   "unoccupied",
+   "working",
+   "down",
+   "marauder",
+   "rider",
+   "rsi",
+   "dough",
+   "ingredients",
+   "metal",
+   "one",
+   "sealed",
+   "shoals",
+   "slimy",
+   "stone",
+   "way"
   ]
  }
 }

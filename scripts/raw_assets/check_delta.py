@@ -6,6 +6,12 @@ shape change of at least the threshold.  A missing meta, an unlisted
 image or a smaller change fails the build with "Требуется Антагонист":
 the object is still a recolour and must be replaced by its passion.
 
+The project's own drawings (neutral_procedural.py, D6) sit under the
+same gate.  They have no source to be reshaped from, so their meta says
+"shape_basis": "nearest-sibling": each variant differs by at least the
+threshold from every other variant of its kit, which keeps the queue of
+twelve free of look-alikes (TABOO 0.3 rules 49 and 53).
+
 Usage:
     python3 scripts/raw_assets/check_delta.py \
         [--root public/ludus/art/derived] [--threshold 0.35]
@@ -41,6 +47,18 @@ def load_meta(root):
             if lacking:
                 problems.append(f'{meta_path}: antagonist lacks '
                                 f'{", ".join(lacking)} (rule 13)')
+        # An own drawing (D6, own_passion.py) has no third-party source;
+        # it may say so only if nothing in its meta points to one, and
+        # it must name what its shape_change is measured against.
+        if meta.get('origin') == 'own-procedural-drawing':
+            if meta.get('raw_material') is not False or \
+                    'github.com' in str(meta.get('repo', '')):
+                problems.append(f'{meta_path}: own drawing names a '
+                                f'third-party source')
+            if not str(meta.get('name', '')).startswith('ant_') and \
+                    not meta.get('shape_basis'):
+                problems.append(f'{meta_path}: own drawing lacks '
+                                f'shape_basis')
         for variant in meta['variants']:
             listed[meta_path.parent / variant['file']] = variant
     return listed, problems

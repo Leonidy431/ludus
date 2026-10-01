@@ -2,12 +2,50 @@
  "id": "lake-kleshchi-shallows-0",
  "kind": "lake",
  "lod": "proxy",
- "tris": 12,
- "bbox_m": [
-  0.4,
-  0.28,
-  0.32
+ "detail": "procedural-detailed",
+ "details": [
+  "two forged handles",
+  "bowed gripping jaws",
+  "rivet at the pivot"
  ],
+ "tris": 276,
+ "bbox_m": [
+  0.397,
+  0.032,
+  0.099
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.397,
+   0.032,
+   0.099
+  ],
+  "centre_m": [
+   -0.05,
+   0.014,
+   0.0
+  ]
+ },
+ "materials": [
+  {
+   "name": "iron",
+   "colour": "#4a4a48",
+   "roughness": 0.7,
+   "metallic": 0.5,
+   "alpha": 1.0
+  },
+  {
+   "name": "rust",
+   "colour": "#6a3a22",
+   "roughness": 0.95,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 44400544601588,
  "name": "Кузнечные клещи: в песке",
  "category": "find",
  "band": "shallows",
@@ -19,6 +57,9 @@
   "noLoot": false,
   "loot": "hand-over"
  },
- "source": "public/ludus/data/lake-objects-99.json",
- "method": "lake-kit-primitives"
+ "noLoot": false,
+ "noInteract": false,
+ "size_m": 0.4,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
 }

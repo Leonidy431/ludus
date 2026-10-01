@@ -1,0 +1,34 @@
+{
+ "note": "Measured, not chosen: godot/tests/test_biomes.gd computes the luminance contrast (WCAG ratio) of every lake object, Atlas trace and D6 own drawing against the five biome backgrounds (TABOO 0.3 rule 59) under the operator's decision of 2026-09-30 (godot/scripts/rim_light.gd): 'lamp' is the lamp on, its light on the body (DiveCore.seen_colour, unchanged) and its highlight on the outline; 'rim' is the lamp off, the body lit by what sun is left and the rim light on the outline.  A pair is listed when both its body and its outline stay below 1.5.  The test fails on any new entry and on any entry that no longer fails, so this list is the honest state.  Before the decision (the lamp always on, no outline) 375 of 885 pairs were below 1.5; see docs/HLD_DIVE_BIOMES_BUBBLES_2026-09-30.md, phases P3 and P6.",
+ "reasons": {
+  "lamp": "Empty: under the lamp every thing is read, by its lit body or by the lamp's highlight on its outline, and the test also sweeps grey, brown and blue-green of every brightness to show no colour can fail.  The khachkar and the bulla get no highlight, and read by their lit stone and lead alone.",
+  "rim": "Only the holy.  The khachkar (holy in the Atlas data) and the bulla (it bears a cross) get no rim light, nothing that could read as a halo (TABOO 0.2 p. 2, 0.4 rule 2, 0.35 rule 7).  With the lamp off their bodies stay close to the water: they are read by the lamp, or by their outline against the water, or not at all.  This is the rule, not a defect: they stay listed, so that giving them a light fails the test.",
+  "sweep_worse": "Measured by the sweep off the reading point (1.5-8 m, 0-40 deg off the lamp's axis): the only points where the lamp on reads below 1.5 and below the lamp off.  All are in the sediments at 1.5 m on the axis, at arm's length over the lit silt: the lamp lights the floor behind the thing more than 1/d (less water to cross), the thing's body comes close to it, and the highlight, sized to the background at the reading point (3 m), lifts it to 1.45-1.50, while the rim light alone would give about 2.04.  Kept as the honest state (HLD P6, open question 11), so any change fails the test."
+ },
+ "lamp": {},
+ "rim": {
+  "atlas:khachkar": [
+   "shallows",
+   "thermocline",
+   "deep",
+   "night",
+   "sediments"
+  ],
+  "lake:bulla.shallows.0": [
+   "shallows",
+   "thermocline",
+   "deep",
+   "night",
+   "sediments"
+  ]
+ },
+ "sweep_worse": [
+  "d6:own_khum_04712f8b8b_v10:sediments:1.5:0",
+  "d6:own_trostnik_cbc1190335_v03:sediments:1.5:0",
+  "d6:own_trostnik_cbc1190335_v06:sediments:1.5:0",
+  "d6:own_trostnik_cbc1190335_v07:sediments:1.5:0",
+  "d6:own_trostnik_cbc1190335_v11:sediments:1.5:0",
+  "d6:own_trostnik_cbc1190335_v12:sediments:1.5:0",
+  "lake:nyrok.shallows.0:sediments:1.5:0"
+ ]
+}

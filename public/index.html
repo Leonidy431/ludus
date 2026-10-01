@@ -137,6 +137,12 @@
 
         <!-- ROV Lake Panel Container (optional, for telemetry display) -->
         <div id="ludus-rov-container"></div>
+
+        <!-- The dive cross-section is its own page; without this link it
+             could be opened only by typing its URL. -->
+        <p class="ludus-rights-link">
+            <a class="ludus-link-btn" href="/ludus/dive/index.html">Погружение: разрез берега</a>
+        </p>
     </div>
 
     <!--
@@ -352,6 +358,7 @@
     <script src="/ludus/ludus-passion.js"></script>
     <!-- Missions listen for ludus:player-changed and
          ludus:gate-selected, so they load before the game core. -->
+    <script src="/ludus/ludus-source-labels.js"></script>
     <script src="/ludus/ludus-missions.js"></script>
     <script src="/ludus/ludus-game.js"></script>
 </body>

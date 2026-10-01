@@ -10,7 +10,9 @@
 extends Node3D
 
 const THERMO_Y := -DiveCore.THERMOCLINE_M
-const LAMP_COLOUR := Color(0.95, 0.97, 1.0)  # Instrument light, 6500 K.
+# Instrument light, 6500 K; the lamp's numbers live in RimLight, where
+# the readability test reads them too.
+const LAMP_COLOUR := RimLight.LAMP_COLOUR
 const FLOW_SHAPES := ["current", "eddy", "intwave", "plume", "langmuir",
 	"upwelling", "layer", "cloud"]
 const ZONE_SHAPES := ["ripples", "gravel", "silt", "meadow", "swarm",
@@ -55,6 +57,12 @@ var console_alpha := 1.0
 # Holy things on the lake floor (the bulla bears a cross): near them the
 # console goes out (TABOO 0.4 rule 2).
 var holy_points: Array = []
+# The Water Atlas (TABOO 0.03): the knight's traces on the lake floor,
+# placed by the chronicle's choice written in the hub (AtlasTraces).
+const HUB_SAVE := "user://hub.json"
+var atlas_data: Dictionary = AtlasCore.load_data()
+var chronicle := ""
+var traces: Array = []
 # The Mangustik's body (godot/models/rov/mangustik.glb, the operator's
 # drawings).  Third person: the camera rides behind and above it, as a
 # chase camera; first person: the camera is the ROV's own eye and the
@@ -65,9 +73,10 @@ const CHASE := Vector3(0.45, 0.85, 2.6)
 const CHASE_PITCH := -0.22
 const CHASE_YAW := 0.17
 var body: RovBody
-# The console's second screen (M8): the front camera's picture and the
-# sonar, in its own viewport so screen and headset share it.
-const SCREENS_PX := Vector2i(504, 196)
+# The console's second screen (M8): the front camera's picture, the
+# sonar and the posoh hydrophone (HLD_POSOH_HYDROPHONE), in its own
+# viewport so screen and headset share it.
+const SCREENS_PX := Vector2i(724, 196)
 const SONAR_HZ := 10.0
 var screens_view: SubViewport
 var screens: CockpitScreens
@@ -76,6 +85,9 @@ var screens_xr: MeshInstance3D
 var eye_view: SubViewport
 var eye: Camera3D
 var sonar_left := 0.0
+# The hydrophone card refreshes as the posoh firmware reports: every
+# PosohCore.REPORT_S seconds.
+var hydro_left := 0.0
 var third_person := true
 var view_was := false
 # The manipulator reached out this frame: the tether task needs it.
@@ -94,6 +106,36 @@ var lamp_was := false
 var shots_dir := ""
 var shot_plan := [3.0, 12.0, 35.0, 60.0, 120.0]
 var shot_frame := 0
+# After the plan, one close look at the hydrophone on the body.
+var shot_closeup := false
+# The five biomes (HLD_DIVE_BIOMES_BUBBLES): the one the ROV is in now.
+var biome := ""
+var thermo_mat: ShaderMaterial
+# Bubble columns: seeps and bubble streams of the lake, and the
+# Mangustik's vent; one MultiMesh for all of them.
+const BUBBLE_DRAW := 4.0
+const BUBBLE_NEAR_M := 60.0
+var columns: Array = []
+var vent: Dictionary = {}
+var bubble_mm: MultiMesh
+var bubble_inst: MultiMeshInstance3D
+# Reading things against the water (operator 2026-09-30): the lamp's
+# highlight while it shines, the rim light without it; holy things get
+# neither.  Made before any material, as it registers the shader globals.
+var rim := RimLight.new()
+## The node of every lake object and trace built, by id: the test walks
+## them to see that no holy thing carries the band.
+var thing_nodes := {}
+# Proof frames show the settled light, not a fade caught half way.
+var rim_settled := false
+var rim_us := 0.0
+var rim_frames := 0
+var drawings := 0
+# GPU and CPU render time with the bubbles hidden and shown (shots).
+var gpu_ms := {"off": [], "on": []}
+# Rough cost of the bubbles, microseconds of CPU per frame (shots only).
+var bubble_us := 0.0
+var bubble_frames := 0
 
 
 func _ready() -> void:
@@ -102,24 +144,34 @@ func _ready() -> void:
 	placed = DiveCore.place_objects(lake.objects)
 	schools = DiveCore.fish_schools(fish.fish)
 	_load_bag()
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--shots="):
+			shots_dir = arg.trim_prefix("--shots=")
+		# The same frames without the band, for before/after and cost.
+		if arg == "--rim=off":
+			rim.enabled = false
+	chronicle = _load_chronicle()
+	traces = AtlasTraces.place(atlas_data, chronicle)
+	holy_points.append_array(AtlasTraces.holy_points(traces))
 	_build_environment()
 	_build_floor()
 	_build_surface()
 	_build_thermocline()
 	_build_objects()
 	_build_stones()
+	_build_traces()
+	_build_own_drawings()
 	_build_fish()
 	_build_lines()
 	_build_snow()
+	_build_bubbles()
 	_build_rig()
 	_build_body()
 	_build_hud()
 	_start_xr()
 	_build_audio()
-	for arg in OS.get_cmdline_user_args():
-		if arg.begins_with("--shots="):
-			shots_dir = arg.trim_prefix("--shots=")
-			DirAccess.make_dir_recursive_absolute(shots_dir)
+	if shots_dir != "":
+		DirAccess.make_dir_recursive_absolute(shots_dir)
 
 
 func _load_json(path: String) -> Variant:
@@ -131,11 +183,8 @@ func _load_json(path: String) -> Variant:
 ## Colour of the water around the ROV: surface light scattered by clear
 ## water and dimmed band by band (Beer-Lambert, ludus-water.js).
 func water_colour(depth: float) -> Color:
-	var left := DiveCore.light_left(depth)
-	var k := 1.0 / (1.0 + depth / 60.0)
-	return Color((40.0 * left.red * k + 4.0) / 255.0,
-		(150.0 * left.green * k + 8.0) / 255.0,
-		(190.0 * left.blue * k + 14.0) / 255.0)
+	var w := DiveCore.water_colour(depth)
+	return Color(w[0], w[1], w[2])
 
 
 func _build_environment() -> void:
@@ -211,20 +260,55 @@ func _build_surface() -> void:
 	add_child(plane)
 
 
-## The thermocline is a boundary one can see: a faint shimmering sheet.
+## The thermocline is a boundary one can see: two shimmering sheets
+## the thickness of the layer apart, refraction bands drifting on them
+## (the temperature step bends light as it bends sound).  The sheets
+## brighten while the ROV is inside the band, so the crossing is seen
+## together with its sound and pulse (TABOO 0.35 rules 17, 19).
+const THERMO_SHADER := """
+shader_type spatial;
+render_mode unshaded, cull_disabled, depth_draw_never, blend_mix;
+uniform vec4 tint : source_color = vec4(0.72, 0.85, 0.9, 0.1);
+uniform float strength = 1.0;
+uniform float clock = 0.0;
+varying vec3 wp;
+void vertex() {
+	wp = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+}
+void fragment() {
+	float warp = sin(wp.z * 0.21 + clock * 0.4) * 1.7;
+	float band = 0.5 + 0.5 * sin(wp.x * 0.35 + warp + clock * 0.25);
+	float fine = 0.5 + 0.5 * sin(wp.x * 1.3 - wp.z * 0.9 + clock * 0.9);
+	ALBEDO = tint.rgb;
+	ALPHA = tint.a * strength * (0.35 + 0.45 * band + 0.2 * fine);
+}
+"""
+
+
 func _build_thermocline() -> void:
-	var sheet := MeshInstance3D.new()
-	var pm := PlaneMesh.new()
-	pm.size = Vector2(DiveCore.LENGTH_M, DiveCore.HALF_WIDTH_M * 2.0)
-	sheet.mesh = pm
-	var mat := StandardMaterial3D.new()
-	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
-	mat.albedo_color = Color(0.72, 0.85, 0.9, 0.07)
-	sheet.material_override = mat
-	sheet.position = Vector3(DiveCore.LENGTH_M / 2.0 + 150.0, THERMO_Y, 0.0)
-	add_child(sheet)
+	var shader := Shader.new()
+	shader.code = THERMO_SHADER
+	thermo_mat = ShaderMaterial.new()
+	thermo_mat.shader = shader
+	for dy in [-DiveCore.THERMO_BAND_M * 0.5, DiveCore.THERMO_BAND_M * 0.5]:
+		var sheet := MeshInstance3D.new()
+		var pm := PlaneMesh.new()
+		pm.size = Vector2(DiveCore.LENGTH_M, DiveCore.HALF_WIDTH_M * 2.0)
+		sheet.mesh = pm
+		sheet.material_override = thermo_mat
+		sheet.position = Vector3(DiveCore.LENGTH_M / 2.0 + 150.0,
+			THERMO_Y + dy, 0.0)
+		add_child(sheet)
+
+
+## The sheets shimmer with the scene clock; inside the band they are
+## twice as strong.  Reduced motion stills the bands.
+func _update_thermocline(depth: float) -> void:
+	var inside := absf(depth - DiveCore.THERMOCLINE_M) \
+		<= DiveCore.THERMO_BAND_M
+	thermo_mat.set_shader_parameter("strength", 2.0 if inside else 1.0)
+	thermo_mat.set_shader_parameter("clock",
+		0.0 if audio.reduced_motion else t)
 
 
 func _build_objects() -> void:
@@ -247,12 +331,236 @@ func _build_objects() -> void:
 		node.position = Vector3(p.x, -p.depth, p.z)
 		node.rotation.y = p.yaw
 		add_child(node)
-		if str(p.id).begins_with("bulla"):
+		thing_nodes[p.id] = node
+		# The bulla bears a cross (holy in its data): no outline of light
+		# on it, and the console falls silent there.
+		rim.dress(node, RimLight.is_holy(p))
+		if RimLight.is_holy(p):
 			holy_points.append(node.position)
 
 
 ## Stones and pebbles that dress the floor of the dive corridor.  They
 ## are scenery, not lake objects: placed by seed, never loot.
+## The knight's traces, drawn from simple shapes by their `shape` (own
+## procedural drawing: the khachkar above all is never raw material,
+## TABOO 0.35 rule 6).  Stone and iron only: no glow, no gold.
+func _build_traces() -> void:
+	for p in traces:
+		var node := Node3D.new()
+		node.position = Vector3(p.x, -p.depth, p.z)
+		node.rotation.y = p.yaw
+		if p.shape in ["khachkar", "spare", "vault"]:
+			# A khachkar faces west, and on this shore west is up the
+			# slope, where the ROV comes from; so does the passage.
+			node.rotation.y = -PI / 2.0
+		var c := Color(p.colour)
+		# The five traces have their own models (scripts/meta3d,
+		# godot/models/atlas); the primitives below stay as the fallback
+		# and draw the passage, which has no model.
+		var path := "res://models/atlas/atlas-%s.glb" % p.id
+		if p.kind == "trace" and ResourceLoader.exists(path):
+			node.add_child((load(path) as PackedScene).instantiate())
+			add_child(node)
+			thing_nodes[p.id] = node
+			# The khachkar is holy: it keeps its plain stone.
+			rim.dress(node, RimLight.is_holy(p))
+			continue
+		match p.shape:
+			"book":
+				_part(node, BoxMesh, Vector3(0.3, 0.08, 0.22),
+					Vector3(0, 0.02, 0), c)
+			"amphora":
+				# Lying on its side, half in the silt.
+				var a := _part(node, CylinderMesh, Vector3(0.22, 0.55, 0.22),
+					Vector3(0, 0.08, 0), c)
+				a.rotation.z = 1.4
+				_part(node, SphereMesh, Vector3(0.3, 0.3, 0.3),
+					Vector3(0.05, 0.08, 0), c)
+			"astrolabe":
+				var ring := _part(node, TorusMesh, Vector3(0.26, 0.26, 0.26),
+					Vector3(0, 0.03, 0), c, 0.35, 0.8)
+				ring.rotation.x = 0.25
+				_part(node, BoxMesh, Vector3(0.24, 0.015, 0.03),
+					Vector3(0, 0.04, 0), c.darkened(0.2), 0.4, 0.8)
+			"shield":
+				var disc := _part(node, CylinderMesh, Vector3(0.9, 0.05, 0.9),
+					Vector3(0, 0.05, 0), c, 0.7, 0.6)
+				disc.rotation.x = 0.3
+				_part(node, SphereMesh, Vector3(0.18, 0.1, 0.18),
+					Vector3(0, 0.14, -0.03), c.darkened(0.15), 0.6, 0.6)
+			"khachkar":
+				_khachkar(node, c)
+			"spare":
+				for dx in [-1.1, 1.1]:
+					_part(node, BoxMesh, Vector3(0.5, 2.2, 0.6),
+						Vector3(dx, 1.1, 0), c)
+				_part(node, BoxMesh, Vector3(2.8, 0.45, 0.7),
+					Vector3(0, 2.4, 0), c)
+			"vault":
+				var r := DiveCore.rng("atlas:rubble")
+				for i in 9:
+					var k := _part(node, BoxMesh, Vector3(0.5, 0.35, 0.45)
+						* (0.7 + 0.6 * r.call()), Vector3((r.call() - 0.5)
+						* 2.4, 0.15 + 0.2 * (i % 3), (r.call() - 0.5) * 1.6),
+						c.darkened(0.1 * (i % 3)))
+					k.rotation = Vector3(r.call(), r.call() * TAU, r.call())
+		add_child(node)
+		thing_nodes[p.id] = node
+		rim.dress(node, RimLight.is_holy(p))
+
+
+## A khachkar of our own drawing: an upright slab with a cross in low
+## relief, its arms ending in split tips, and a rosette under it.  The
+## same stone as the slab; it is seen by its shadows, not by a light.
+func _khachkar(node: Node3D, stone: Color) -> void:
+	_part(node, BoxMesh, Vector3(0.9, 1.6, 0.22), Vector3(0, 0.8, 0), stone)
+	var relief := stone.lightened(0.15)
+	var z := 0.14
+	_part(node, BoxMesh, Vector3(0.1, 0.8, 0.07), Vector3(0, 1.0, z), relief)
+	_part(node, BoxMesh, Vector3(0.56, 0.1, 0.07), Vector3(0, 1.15, z),
+		relief)
+	for tip in [Vector3(0, 1.42, z), Vector3(0, 0.58, z),
+			Vector3(-0.3, 1.15, z), Vector3(0.3, 1.15, z)]:
+		_part(node, BoxMesh, Vector3(0.12, 0.12, 0.07), tip, relief)
+	var rose := _part(node, CylinderMesh, Vector3(0.22, 0.04, 0.22),
+		Vector3(0, 0.3, z), relief)
+	rose.rotation.x = PI / 2.0
+
+
+func _part(parent: Node3D, kind, size: Vector3, at: Vector3, colour: Color,
+		rough := 0.95, metal := 0.0) -> MeshInstance3D:
+	var m := MeshInstance3D.new()
+	var mesh: PrimitiveMesh = kind.new()
+	if mesh is BoxMesh:
+		mesh.size = size
+	elif mesh is CylinderMesh:
+		mesh.top_radius = size.x / 2.0
+		mesh.bottom_radius = size.z / 2.0
+		mesh.height = size.y
+	elif mesh is SphereMesh:
+		mesh.radius = 0.5
+		mesh.height = 1.0
+		m.scale = size
+	elif mesh is TorusMesh:
+		mesh.outer_radius = size.x / 2.0
+		mesh.inner_radius = size.x / 2.0 - 0.025
+	m.mesh = mesh
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color = colour
+	mat.roughness = rough
+	mat.metallic = metal
+	m.material_override = mat
+	m.position = at
+	parent.add_child(m)
+	return m
+
+
+## The neutral things of the shore drawn by our own generator (D6,
+## scripts/raw_assets/neutral_procedural.py): each kit has 12 variants,
+## laid out in a deterministic queue so no two neighbours repeat
+## (TABOO 0.3 rule 53).  Real size in metres and the depth band where
+## the thing lives on this shore; scenery only, never loot.
+const OWN_DRAWINGS := [
+	{"dir": "DEF-057", "kit": "own_boulder", "size": 0.9, "depth": [3.0, 25.0], "n": 24},
+	{"dir": "DEF-057", "kit": "own_quartz", "size": 0.25, "depth": [0.5, 6.0], "n": 24},
+	{"dir": "DEF-058", "kit": "own_trostnik", "size": 1.6, "depth": [0.3, 2.0], "n": 36},
+	{"dir": "DEF-058", "kit": "own_rdest", "size": 0.9, "depth": [1.5, 8.0], "n": 30},
+	{"dir": "DEF-059", "kit": "own_balka", "size": 1.8, "depth": [4.0, 18.0], "n": 12},
+	{"dir": "DEF-059", "kit": "own_khum", "size": 0.8, "depth": [8.0, 22.0], "n": 8},
+]
+
+
+func _build_own_drawings() -> void:
+	for kit in OWN_DRAWINGS:
+		for spot in own_drawing_spots(kit):
+			var sp := Sprite3D.new()
+			sp.texture = load(spot.file) as Texture2D
+			sp.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
+			sp.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
+			# Lit like everything else under water: an unshaded sprite
+			# kept its full colour at 140 m, against Beer-Lambert.
+			sp.shaded = true
+			sp.pixel_size = float(kit.size) / 256.0
+			# The drawing stands on its lower edge, on the floor
+			# (own_drawing_spots, shared with the web fixture).
+			sp.position = Vector3(spot.x, -spot.y, spot.z)
+			# Its material turns it to the eye, cuts its alpha and draws
+			# the band on its edge (RimLight.drawing).
+			rim.drawing(sp)
+			drawings += 1
+			add_child(sp)
+
+
+## Where each drawing of one kit stands: the one placement the scene
+## builds and test_atlas.gd checks against the web fixture, so the two
+## cannot part.  y is the depth of the drawing's centre: it stands on
+## its lower edge, on the floor.  Empty when the kit has no files.
+static func own_drawing_spots(kit: Dictionary) -> Array:
+	var out := []
+	var files := _kit_files("res://art/derived/%s" % kit.dir, kit.kit)
+	if files.is_empty():
+		return out
+	var r := DiveCore.rng("own:" + str(kit.kit))
+	for i in int(kit.n):
+		var d: float = lerpf(kit.depth[0], kit.depth[1], r.call())
+		var z: float = (r.call() * 2.0 - 1.0) * DiveCore.CORRIDOR_M
+		var x := DiveCore.x_for_depth(d)
+		out.append({"x": x, "z": z,
+			"y": DiveCore.floor_depth(x, z) - float(kit.size) * 0.45,
+			"file": files[i % files.size()]})
+	return out
+
+
+## The kit's variant files, sorted; in an exported build the folder
+## lists the ".import" stubs, so the suffix is dropped.
+static func _kit_files(dir: String, kit: String) -> Array:
+	var out := []
+	for f in DirAccess.get_files_at(dir):
+		var name := f.trim_suffix(".import").trim_suffix(".remap")
+		if name.begins_with(kit) and name.ends_with(".png") \
+				and not dir.path_join(name) in out:
+			out.append(dir.path_join(name))
+	out.sort()
+	return out
+
+
+## After the depth frames: the knight's diary, the khachkar (the console
+## gone, as it settles after FADE_SECONDS) and the passage of the
+## chronicle, each from behind the body, the ROV 3 m short of it.
+func _atlas_shots() -> void:
+	var plan := ["diary", "khachkar", "passage"]
+	# After the depth frames and the 20 frames of the hydrophone close-up.
+	var k := (shot_frame - 40 * shot_plan.size() - 20) / 40
+	if k >= plan.size():
+		_biome_shots(k - plan.size())
+		return
+	var p := {}
+	for tr in traces:
+		if tr.id == plan[k]:
+			p = tr
+	if not third_person:
+		third_person = true
+		_place_view()
+	var back: float = {"diary": 3.5, "khachkar": 2.6,
+		"passage": 7.0}[plan[k]]
+	# Coming down the slope from the shore, a little to one side so the
+	# body does not hide the thing; the ROV hangs over its own floor.
+	rov.x = p.x - back
+	rov.z = p.z - 1.2
+	rov.depth = DiveCore.floor_depth(rov.x, rov.z) - 1.2
+	rov.yaw = 0.0
+	pitch = -0.2
+	var here := Vector3(rov.x, -rov.depth, rov.z)
+	var nearest := INF
+	for h in holy_points:
+		nearest = minf(nearest, here.distance_to(h))
+	console_alpha = CockpitCore.fade_target(nearest)
+	if shot_frame % 40 == 39:
+		get_viewport().get_texture().get_image().save_png(
+			"%s/dive-atlas-%s.png" % [shots_dir, plan[k]])
+	shot_frame += 1
+
+
 func _build_stones() -> void:
 	var r := DiveCore.rng("dive:stones")
 	var mm := MultiMesh.new()
@@ -340,6 +648,8 @@ func _build_fish() -> void:
 		mat.roughness = 0.5
 		mat.cull_mode = BaseMaterial3D.CULL_DISABLED
 		inst.material_override = mat
+		# One material per school: the band costs nothing more here.
+		rim.dress(inst)
 		add_child(inst)
 		fish_meshes.append(inst)
 
@@ -390,6 +700,241 @@ func _build_snow() -> void:
 	add_child(snow)
 
 
+## Bubble columns (DEF-006, HLD_DIVE_BIOMES_BUBBLES): the bubble
+## streams and the spring seep of the lake rise from their floor to the
+## surface, the Mangustik's vent bleeds the air of its frame in the
+## first 10.2 m.  They leave only on the exhale of the player's breath
+## (DiveSynth.PLAYER_BREATH, hesychasm module), rise at 0.25 m/s and
+## swell by Boyle's law.  Each instance is a small puff of bubbles,
+## drawn BUBBLE_DRAW times the physical radius so it reads in the
+## headset; the ratio between depths stays physical.
+func _build_bubbles() -> void:
+	var p: Dictionary = DiveSynth.BREATH[DiveSynth.PLAYER_BREATH]
+	for o in placed:
+		if o.item == "bubbles" or o.item == "spring":
+			var bottom := DiveCore.floor_depth(o.x, o.z)
+			columns.append(DiveCore.bubble_column(str(o.id), o.x, o.z,
+				bottom, 0.0, 5 if o.item == "bubbles" else 2, p))
+	vent = DiveCore.bubble_column("mangustik:vent", 0.0, 0.0, 2.0, 0.0,
+		3, p)
+	var total: int = vent.count
+	for c in columns:
+		total += c.count
+	bubble_mm = MultiMesh.new()
+	bubble_mm.transform_format = MultiMesh.TRANSFORM_3D
+	var s := SphereMesh.new()
+	s.radius = 1.0
+	s.height = 2.0
+	s.radial_segments = 6
+	s.rings = 3
+	bubble_mm.mesh = s
+	bubble_mm.instance_count = total
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color = Color(0.91, 0.96, 0.97, 0.6)
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	mat.roughness = 0.15
+	mat.metallic_specular = 0.9
+	bubble_inst = MultiMeshInstance3D.new()
+	bubble_inst.multimesh = bubble_mm
+	bubble_inst.material_override = mat
+	bubble_inst.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	add_child(bubble_inst)
+
+
+func _update_bubbles() -> void:
+	var t0 := Time.get_ticks_usec()
+	var wobble := not audio.reduced_motion
+	var here := Vector3(rov.x, -rov.depth, rov.z)
+	var n := 0
+	var hidden := Transform3D(Basis.from_scale(Vector3.ZERO), Vector3.ZERO)
+	for c in columns:
+		var near := Vector2(c.x - here.x, c.z - here.z).length() \
+			< BUBBLE_NEAR_M
+		if not near and not c.get("shown", true):
+			# Far and already hidden: nothing to write this frame.
+			n += int(c.count)
+			continue
+		c["shown"] = near
+		for i in c.count:
+			var q := DiveCore.bubble_at(c, i, t, wobble) if near else {}
+			n = _put_bubble(n, q, Vector3.ZERO, hidden)
+	# The vent rides on the ROV: its column is the 2 m above the body,
+	# and it breathes only while the frame still holds air.
+	var venting: bool = rov.depth < DiveCore.VENT_UNTIL_M
+	# Born 0.3 m above the centre of the body, 2 m below the column top.
+	var origin := here + Vector3(0.0, 0.3 + vent.bottom, 0.0)
+	for i in vent.count:
+		var q := DiveCore.bubble_at(vent, i, t, wobble) if venting else {}
+		n = _put_bubble(n, q, origin, hidden)
+	bubble_us += Time.get_ticks_usec() - t0
+	bubble_frames += 1
+
+
+func _put_bubble(n: int, q: Dictionary, origin: Vector3,
+		hidden: Transform3D) -> int:
+	if q.is_empty() or not q.visible:
+		bubble_mm.set_instance_transform(n, hidden)
+	else:
+		var r: float = q.size * BUBBLE_DRAW
+		bubble_mm.set_instance_transform(n, Transform3D(
+			Basis.from_scale(Vector3(r, r * 0.8, r)),
+			origin + Vector3(q.x, -q.depth, q.z)))
+	return n + 1
+
+
+## Proof frames of the five biomes, from behind the body: 40 frames
+## each, the bubbles hidden for frames 10-24 and shown for 25-39 so the
+## render time of both halves can be compared; the frame is saved last.
+const BIOME_SHOTS := [
+	{"name": "shallows", "depth": 9.0, "column": "bubbles.shelf.1"},
+	{"name": "thermocline", "depth": 49.0},
+	{"name": "deep", "depth": 80.0},
+	{"name": "night", "depth": 140.0},
+	{"name": "sediments", "depth": 90.0, "clearance": 1.0},
+]
+
+
+func _biome_shots(k: int) -> void:
+	var f := shot_frame % 40
+	if k >= BIOME_SHOTS.size():
+		_rim_shots(k - BIOME_SHOTS.size())
+		return
+	var plan: Dictionary = BIOME_SHOTS[k]
+	var rid := get_viewport().get_viewport_rid()
+	RenderingServer.viewport_set_measure_render_time(rid, true)
+	if not third_person:
+		third_person = true
+		_place_view()
+	rov.yaw = 0.0
+	pitch = -0.1
+	rov.z = 0.0
+	if plan.has("column"):
+		for c in columns:
+			if c.id == plan.column:
+				rov.x = c.x - 6.0
+				rov.z = c.z
+		rov.depth = plan.depth
+	elif plan.has("clearance"):
+		rov.x = DiveCore.x_for_depth(plan.depth)
+		rov.depth = DiveCore.floor_depth(rov.x, 0.0) - plan.clearance
+		pitch = -0.35
+	else:
+		# Out over deeper water, so the floor does not make it the
+		# sediments.
+		rov.x = DiveCore.x_for_depth(plan.depth + 30.0)
+		rov.depth = plan.depth
+	# The night of the deep: the lamp stays on, it is the only light.
+	rov.lamp = true
+	t = 30.0 + k
+	bubble_inst.visible = f < 10 or f >= 25
+	if f >= 12 and f < 25:
+		gpu_ms.off.append(RenderingServer.viewport_get_measured_render_time_gpu(
+			rid))
+	elif f >= 27:
+		gpu_ms.on.append(RenderingServer.viewport_get_measured_render_time_gpu(
+			rid))
+	if f == 39:
+		print("biome shot %s: in %s at %.1f m; GPU ms hidden %.2f, shown %.2f"
+			% [plan.name, biome, rov.depth, _mean(gpu_ms.off.slice(-13)),
+			_mean(gpu_ms.on.slice(-13))])
+		get_viewport().get_texture().get_image().save_png(
+			"%s/dive-biome-%s.png" % [shots_dir, plan.name])
+	shot_frame += 1
+
+
+## Proof frames of the operator's decision on reading things (RimLight):
+## the knight's shield in the night of the deep with the lamp off (the
+## rim light) and on (its highlight), in first and third person; the
+## khachkar with the lamp off and on and the bulla with the lamp off (no
+## light on the holy); the passage of the chronicle and the diary with
+## the lamp off and on.  In first person the lamp rides on the eye and
+## looks where it looks.
+const RIM_SHOTS := [
+	{"name": "night-off", "trace": "shield", "lamp": false, "back": 3.0,
+		"above": 3.0, "first": true},
+	{"name": "night-on", "trace": "shield", "lamp": true, "back": 3.0,
+		"above": 3.0, "first": true},
+	{"name": "night-off-3p", "trace": "shield", "lamp": false, "back": 4.0,
+		"above": 3.0, "first": false},
+	{"name": "night-on-3p", "trace": "shield", "lamp": true, "back": 4.0,
+		"above": 3.0, "first": false},
+	{"name": "khachkar-off", "trace": "khachkar", "lamp": false, "back": 2.6,
+		"above": 1.2, "first": false},
+	{"name": "khachkar-on", "trace": "khachkar", "lamp": true, "back": 2.6,
+		"above": 1.2, "first": false},
+	{"name": "bulla-off", "thing": "bulla.shallows.0", "lamp": false,
+		"back": 0.9, "above": 0.5, "first": true},
+	{"name": "passage-off", "trace": "passage", "lamp": false, "back": 7.0,
+		"above": 1.2, "first": false},
+	{"name": "passage-on", "trace": "passage", "lamp": true, "back": 7.0,
+		"above": 1.2, "first": false},
+	{"name": "diary-off", "trace": "diary", "lamp": false, "back": 3.5,
+		"above": 1.2, "first": false},
+]
+var rim_lights := {}
+
+
+func _rim_shots(k: int) -> void:
+	if k >= RIM_SHOTS.size():
+		_report_costs()
+		get_tree().quit()
+		return
+	var plan: Dictionary = RIM_SHOTS[k]
+	rim_settled = true
+	rov.lamp = plan.lamp
+	if third_person == plan.first:
+		third_person = not plan.first
+		_place_view()
+	var p := {}
+	for tr in traces + placed:
+		if tr.id == plan.get("trace", plan.get("thing")):
+			p = tr
+	rov.yaw = 0.0
+	rov.x = p.x - plan.back
+	rov.z = p.z - (0.0 if plan.first else 1.2)
+	rov.depth = minf(DiveCore.floor_depth(rov.x, rov.z), p.depth) \
+		- plan.above
+	# In first person the eye (and the lamp on it) looks down at the
+	# thing; from behind, the chase camera does.
+	pitch = -atan2(plan.above, plan.back + RovBody.EYE.z) if plan.first \
+		else -0.2
+	t = 40.0 + k
+	if shot_frame % 40 == 39:
+		print("rim shot %s: in %s at %.1f m, lamp %s, rim %.3f, lamp %.3f"
+			% [plan.name, biome, rov.depth, "on" if plan.lamp else "off",
+			_y(rim_lights.get("rim", Vector3.ZERO)),
+			_y(rim_lights.get("lamp", Vector3.ZERO))])
+		get_viewport().get_texture().get_image().save_png(
+			"%s/dive-rim-%s.png" % [shots_dir, plan.name])
+	shot_frame += 1
+
+
+## Luminance of a linear colour.
+static func _y(c: Vector3) -> float:
+	return 0.2126 * c.x + 0.7152 * c.y + 0.0722 * c.z
+
+
+static func _mean(a: Array) -> float:
+	var sum := 0.0
+	for v in a:
+		sum += v
+	return sum / maxf(1.0, a.size())
+
+
+func _report_costs() -> void:
+	print("bubbles: %d instances, %.1f us CPU per frame over %d frames"
+		% [bubble_mm.instance_count, bubble_us / maxf(1.0, bubble_frames),
+		bubble_frames])
+	print("render GPU ms: bubbles hidden %.3f, shown %.3f (n=%d/%d)" % [
+		_mean(gpu_ms.off), _mean(gpu_ms.on), gpu_ms.off.size(),
+		gpu_ms.on.size()])
+	print("rim: %d surfaces dressed with %d materials, %d kept as they "
+		% [rim.dressed, rim.materials.size(), rim.kept]
+		+ "were, %d drawings with %d materials, %d shaders; %.1f us CPU"
+		% [drawings, rim.drawing_materials.size(), rim.shaders.size(),
+		rim_us / maxf(1.0, rim_frames)] + " per frame")
+
+
 func _build_rig() -> void:
 	rig = XROrigin3D.new()
 	add_child(rig)
@@ -400,9 +945,11 @@ func _build_rig() -> void:
 	rig.add_child(camera)
 	lamp = SpotLight3D.new()
 	lamp.light_color = LAMP_COLOUR
-	lamp.light_energy = 4.0
-	lamp.spot_range = 22.0
-	lamp.spot_angle = 32.0
+	lamp.light_energy = RimLight.LAMP_ENERGY
+	lamp.spot_range = RimLight.LAMP_RANGE_M
+	lamp.spot_angle = RimLight.LAMP_ANGLE_DEG
+	lamp.spot_attenuation = RimLight.LAMP_ATTENUATION
+	lamp.spot_angle_attenuation = RimLight.LAMP_ANGLE_ATTENUATION
 	camera.add_child(lamp)
 	left_hand = XRController3D.new()
 	left_hand.tracker = &"left_hand"
@@ -431,7 +978,9 @@ func _place_view() -> void:
 	if lamp.get_parent() != holder:
 		lamp.reparent(holder, false)
 	lamp.position = Vector3(0, 0.02, -0.72) if third_person else Vector3.ZERO
-	lamp.rotation = Vector3(-0.12, 0, 0) if third_person else Vector3.ZERO
+	# Down with the drawn beams, onto the floor where things are read.
+	lamp.rotation = Vector3(RimLight.LAMP_PITCH_3P, 0, 0) if third_person \
+		else Vector3.ZERO
 
 
 # --- Telemetry and messages ---------------------------------------------
@@ -537,7 +1086,7 @@ func _build_screens(layer: CanvasLayer) -> void:
 	layer.add_child(screens_screen)
 	# In the headset: a panel to the right of the gaze, turned to it.
 	var quad := QuadMesh.new()
-	quad.size = Vector2(0.34, 0.34 * SCREENS_PX.y / SCREENS_PX.x)
+	quad.size = Vector2(0.47, 0.47 * SCREENS_PX.y / SCREENS_PX.x)
 	var mat := StandardMaterial3D.new()
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
@@ -546,21 +1095,26 @@ func _build_screens(layer: CanvasLayer) -> void:
 	screens_xr = MeshInstance3D.new()
 	screens_xr.mesh = quad
 	screens_xr.material_override = mat
-	screens_xr.position = Vector3(0.42, -0.1, -0.7)
+	screens_xr.position = Vector3(0.5, -0.1, -0.7)
 	screens_xr.rotation_degrees = Vector3(0, -30, 0)
 	screens_xr.visible = false
 	camera.add_child(screens_xr)
 
 
 ## The camera follows the skid; the sonar pings SONAR_HZ times a second
-## (enough for the eye, and cheap on the Quest's CPU).
-func _update_screens(dt: float) -> void:
+## (enough for the eye, and cheap on the Quest's CPU); the hydrophone
+## hears the ROV's own thrusters at the command the sticks give.
+func _update_screens(dt: float, thrust: float) -> void:
+	hydro_left -= dt
+	if hydro_left <= 0.0:
+		hydro_left = PosohCore.REPORT_S
+		screens.hydro.show_reading(rov.depth, thrust)
 	eye.global_transform = body.global_transform \
 		* Transform3D(Basis(), RovBody.EYE)
 	sonar_left -= dt
 	if sonar_left <= 0.0:
 		sonar_left = 1.0 / SONAR_HZ
-		var things: Array = placed.duplicate()
+		var things: Array = placed + traces
 		for sc in schools:
 			var p := DiveCore.fish_at(sc, 0, t)
 			things.append({"x": p.x, "z": p.z, "depth": p.depth,
@@ -642,17 +1196,29 @@ func _read_input() -> Dictionary:
 
 
 func _interact() -> void:
-	# The arm reaches whatever it finds: an empty reach is the answer
-	# "nothing here" too.
-	body.reach(t)
-	audio.on_arm()
-	arm_now = true
-	var things: Array = placed.duplicate()
+	var things: Array = placed + traces
 	for s in schools:
 		var p := DiveCore.fish_at(s, 0, t)
 		things.append({"id": s.id, "loot": s.loot, "x": p.x, "z": p.z,
 			"depth": p.depth, "ru": s.ru, "category": "fish"})
 	var hit := DiveCore.nearest(rov, things, REACH_M)
+	if not hit.is_empty() and hit.thing.get("kind") in ["trace", "passage"]:
+		# The knight's things go to the scribe; at the khachkar the arm
+		# does not move at all (TABOO 0.4 rule 1).
+		var res := AtlasTraces.take(bag, hit.thing)
+		if res.reach:
+			body.reach(t)
+			audio.on_arm()
+			arm_now = true
+		bag = res.bag
+		_save_bag()
+		_say(res.text)
+		return
+	# The arm reaches whatever it finds: an empty reach is the answer
+	# "nothing here" too.
+	body.reach(t)
+	audio.on_arm()
+	arm_now = true
 	if hit.is_empty():
 		# With the tether unwound the empty reach lifts the loop, and the
 		# core says so itself this frame.
@@ -662,7 +1228,11 @@ func _interact() -> void:
 		_say("Рядом ничего нет. Подойди ближе.")
 		return
 	var res := DiveCore.loot_action(hit.thing, bag)
+	# loot_action is the port of dive-core.js and knows three pockets;
+	# what went to the scribe from the Atlas stays where it is.
+	var atlas_given: Array = bag.get("atlas", [])
 	bag = res.bag
+	bag["atlas"] = atlas_given
 	_save_bag()
 	audio.on_taken(res.rule)
 	_say("%s. %s" % [hit.thing.ru, res.text])
@@ -688,6 +1258,19 @@ func _save_bag() -> void:
 	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if f:
 		f.store_string(JSON.stringify({"bag": bag, "done": game.done}))
+
+
+## The chronicle's choice is written in the hub (hub.json); the dive only
+## reads it.  Proof frames show the "spare" floor without saving it.
+func _load_chronicle() -> String:
+	if FileAccess.file_exists(HUB_SAVE):
+		var data = JSON.parse_string(FileAccess.get_file_as_string(HUB_SAVE))
+		if data is Dictionary:
+			var c := AtlasTraces.write_chronicle(atlas_data,
+				data.get("chronicle"), "")
+			if c != "":
+				return c
+	return "spare" if shots_dir != "" else ""
 
 
 func _load_bag() -> void:
@@ -811,8 +1394,22 @@ func _process(dt: float) -> void:
 		camera.rotation.y = CHASE_YAW if third_person else 0.0
 	lamp.visible = rov.lamp and rov.battery > 0.0
 	# A fall dims the world until the safety stop is held.
-	lamp.light_energy = 1.2 if game.fallen else 4.0
+	lamp.light_energy = RimLight.LAMP_ENERGY * (0.3 if game.fallen else 1.0)
 	_update_water(tel)
+	# Things are read by the lamp's highlight where it shines and by the
+	# rim light where it does not (the operator's decision, RimLight).
+	# The proof frames jump from place to place: there the lights are
+	# settled at once instead of easing.
+	if rim_settled:
+		rim.weight = 0.0 if lamp.visible else 1.0
+		rim.settle_background()
+	var rim_t0 := Time.get_ticks_usec()
+	rim_lights = rim.update(lamp, lamp.visible, lamp.light_energy,
+		tel.depth, maxf(0.0, tel.floor - tel.depth), dt)
+	rim_us += Time.get_ticks_usec() - rim_t0
+	rim_frames += 1
+	_update_thermocline(tel.depth)
+	_update_bubbles()
 	audio.update(tel, rov, inp, schools, t, dt, xr_active)
 	if game.fallen:
 		env.ambient_light_energy *= 0.35
@@ -827,7 +1424,16 @@ func _process(dt: float) -> void:
 	shown["lamp"] = rov.lamp
 	console.show_cards(CockpitCore.cards(shown, bag, game.turns))
 	_fade_console(dt)
-	_update_screens(dt)
+	# Every thruster answers some stick, turning included: the largest
+	# command is what the hydrophone hears.
+	var thrust := 0.0
+	for k in ["forward", "strafe", "vertical", "turn"]:
+		thrust = maxf(thrust, absf(inp.get(k, 0.0)))
+	if rov.battery <= 0.0:
+		thrust = 0.0
+	_update_screens(dt, thrust)
+	if shot_closeup:
+		_closeup_view()
 	hud_label.text = text
 	hud_prompt.text = prompt
 	xr_label.text = text
@@ -858,7 +1464,7 @@ func _shots() -> void:
 	# Each depth twice: from the ROV's eye, then from behind its body.
 	var n := shot_frame / 40
 	if n >= shot_plan.size():
-		get_tree().quit()
+		_shot_closeup(n)
 		return
 	var chase := shot_frame % 40 >= 20
 	if chase != third_person:
@@ -880,6 +1486,39 @@ func _shots() -> void:
 	shot_frame += 1
 
 
+## The last proof frame: third person at 12 m, the camera beside the
+## top tube's bow end, looking at the hydrophone (docs/audit).
+func _shot_closeup(n: int) -> void:
+	var k := shot_frame - 40 * shot_plan.size()
+	if k >= 20:
+		# Then the knight's traces of the Water Atlas.
+		shot_closeup = false
+		_atlas_shots()
+		return
+	shot_closeup = true
+	if not third_person:
+		third_person = true
+		_place_view()
+	rov.x = DiveCore.x_for_depth(18.0) - 8.0
+	rov.z = 0.0
+	rov.depth = 12.0
+	rov.yaw = 0.0
+	t = 20.0 + n
+	if k == 19:
+		var img := get_viewport().get_texture().get_image()
+		img.save_png("%s/dive-posoh-closeup.png" % shots_dir)
+	shot_frame += 1
+
+
+func _closeup_view() -> void:
+	var target := body.to_global(PosohCore.MOUNT
+		+ Vector3(0, 0, -PosohCore.TUBE_LEN_M / 2.0))
+	rig.global_position = body.to_global(Vector3(0.42, 0.62, -0.62))
+	rig.rotation = Vector3.ZERO
+	camera.rotation = Vector3.ZERO
+	camera.look_at(target, Vector3.UP)
+
+
 func _build_audio() -> void:
 	audio = DiveAudio.new()
 	add_child(audio)
@@ -891,8 +1530,11 @@ func _build_audio() -> void:
 
 
 func _hint() -> String:
-	var things: Array = placed.duplicate()
+	var things: Array = placed + traces
 	var hit := DiveCore.nearest(rov, things, REACH_M)
+	if not hit.is_empty() and RimLight.is_holy(hit.thing):
+		# No hint at a holy thing: the interface is gone there.
+		return ""
 	if hit.is_empty():
 		# The first seconds teach the view switch, then stay quiet.
 		return "V (или Y на левом контроллере) — вид: из глаза ROV или " \
@@ -900,20 +1542,23 @@ func _hint() -> String:
 	return "%s — нажми, чтобы взять или рассмотреть" % hit.thing.ru
 
 
+## The water per biome (DiveCore.biome_look): colour and light from the
+## absorption of clear water, fog per biome; in the night of the deep
+## the lamp is the only light.
 func _update_water(tel: Dictionary) -> void:
-	var c := water_colour(tel.depth)
+	var look := DiveCore.biome_look(tel.depth, maxf(0.0, tel.floor
+		- tel.depth))
+	biome = look.biome
+	var c := Color(look.water[0], look.water[1], look.water[2])
 	env.background_color = c
 	env.fog_light_color = c
-	# Issyk-Kul is clear: some 25-30 m of view near the surface, less
-	# in the dark below the thermocline.
-	env.fog_density = 0.035 if tel.depth < DiveCore.THERMOCLINE_M else 0.05
+	env.fog_density = look.fog
 	var left: Dictionary = tel.light
-	var avg: float = (left.red + left.green + left.blue) / 3.0
-	sun.light_energy = 0.15 + 1.1 * avg
+	sun.light_energy = look.sun
 	sun.light_color = Color(0.35 + 0.65 * left.red,
 		0.5 + 0.5 * left.green, 0.6 + 0.4 * left.blue)
 	env.ambient_light_color = c.lightened(0.3)
-	env.ambient_light_energy = 0.25 + 0.6 * avg
+	env.ambient_light_energy = look.ambient
 
 
 func _update_fish() -> void:

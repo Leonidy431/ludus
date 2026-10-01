@@ -2,12 +2,108 @@
  "id": "lake-cormorant-shallows-0",
  "kind": "lake",
  "lod": "proxy",
- "tris": 12,
- "bbox_m": [
-  0.8,
-  0.02,
-  0.8
+ "detail": "procedural-detailed",
+ "details": [
+  "back plumage",
+  "belly plumage",
+  "folded wings",
+  "neck",
+  "head",
+  "hooked bill",
+  "yellow throat patch",
+  "eyes",
+  "tail",
+  "legs set far back",
+  "webbed feet",
+  "air bubbles off the plumage"
  ],
+ "tris": 741,
+ "bbox_m": [
+  0.846,
+  0.824,
+  0.293
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.846,
+   0.824,
+   0.293
+  ],
+  "centre_m": [
+   0.091,
+   0.44,
+   0.0
+  ]
+ },
+ "materials": [
+  {
+   "name": "bird-body",
+   "colour": "#1c1c1c",
+   "roughness": 0.8,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "bird-belly",
+   "colour": "#262626",
+   "roughness": 0.8,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "bird-head",
+   "colour": "#1c1c1c",
+   "roughness": 0.7,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "bird-bill",
+   "colour": "#3a3a30",
+   "roughness": 0.5,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "bird-feet",
+   "colour": "#3a3a34",
+   "roughness": 0.7,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "bird-eye",
+   "colour": "#1a3a2a",
+   "roughness": 0.2,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "air",
+   "colour": "#e8f4f8",
+   "roughness": 0.1,
+   "metallic": 0.0,
+   "alpha": 0.45
+  },
+  {
+   "name": "bird-wing",
+   "colour": "#161616",
+   "roughness": 0.8,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "bird-throat",
+   "colour": "#d8a840",
+   "roughness": 0.6,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 63122854125474,
  "name": "Баклан под водой: ныряет",
  "category": "bird",
  "band": "shallows",
@@ -19,6 +115,9 @@
   "noLoot": true,
   "loot": null
  },
- "source": "public/ludus/data/lake-objects-99.json",
- "method": "lake-kit-primitives"
+ "noLoot": true,
+ "noInteract": false,
+ "size_m": 0.8,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
 }

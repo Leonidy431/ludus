@@ -10,14 +10,17 @@
  *     already belongs to the next day;
  *   - Pascha by the Julian computus (the Orthodox Paschalion), converted
  *     to the civil (Gregorian) date: +13 days for 1900-2099;
- *   - Great Friday and Great Saturday: no трезвон and no перезвон; a
- *     slow перебор (mourning) is allowed for the burial rite;
- *   - weekdays of Great Lent: благовест only (the Lenten call), no
- *     трезвон;
- *   - Bright Week: трезвон all day, it is the ringing of joy;
- *   - Sundays and the twelve great feasts are ranked "great" and allow
- *     the full order; other days allow благовест and трезвон for the
- *     services.
+ *   - the orders each period allows are PERIOD_ORDERS, the
+ *     "periodOrders" of the one bell table public/ludus/data/
+ *     bell-rules.json (godot/data/bell-rules.json is the same file),
+ *     where each list carries its source in the Typikon or the bell
+ *     book (docs/HLD_BELL_RULES_TYPIKON_2026-09-30.md).  The test
+ *     compares the two, so the web and the headset cannot drift:
+ *     Great Friday: благовест and звон в двои (Typikon: «звон в двои,
+ *     един долгий»; «клеплет в великое»), no трезвон; Great Saturday:
+ *     благовест only; weekdays of Great Lent and Holy Week: благовест
+ *     and двои; Pascha and Bright Week: благовест and трезвон; a
+ *     Sunday or feast in Lent keeps its трезвон; other days all five.
  * Astronomy is used only for the Paschalion (TABOO 0.35 rule 23).
  * Pure logic with an injected date, so tests never depend on the clock;
  * the browser global is window.LudusLiturgicalClock.
@@ -108,25 +111,29 @@
         .slice(0, 10) };
   }
 
+  // Bell orders the sources name for each period: "periodOrders" of
+  // bell-rules.json, copied here so the module stays synchronous and
+  // pure (tests/ludus-liturgical-clock.test.js checks the copy).
+  const PERIOD_ORDERS = {
+    ordinary: ['благовест', 'трезвон', 'перезвон', 'перебор', 'двои'],
+    'great-lent/daily': ['благовест', 'двои'],
+    'great-lent/great': ['благовест', 'трезвон', 'двои'],
+    'holy-week': ['благовест', 'двои'],
+    'great-friday': ['благовест', 'двои'],
+    'great-saturday': ['благовест'],
+    pascha: ['благовест', 'трезвон'],
+    'bright-week': ['благовест', 'трезвон'],
+  };
+
   // Bell orders the Typikon allows on this day.
   function allowedOrders(info) {
-    switch (info.period) {
-      case 'great-friday':
-      case 'great-saturday':
-        return ['благовест', 'перебор'];
-      case 'holy-week':
-        return ['благовест'];
-      case 'great-lent':
-        // A Lenten Sunday or great feast keeps its festal ringing; a
-        // weekday has the call and the restrained ringing in two bells.
-        return info.rank === 'great' ? ['благовест', 'трезвон', 'двои']
-          : ['благовест', 'двои'];
-      case 'pascha':
-      case 'bright-week':
-        return ['благовест', 'трезвон', 'перезвон'];
-      default:
-        return ['благовест', 'трезвон', 'перезвон', 'перебор', 'двои'];
+    let key = info.period;
+    if (key === 'great-lent') {
+      // A Lenten Sunday or great feast keeps its festal ringing; a
+      // weekday has the call and the restrained ringing in two bells.
+      key += info.rank === 'great' ? '/great' : '/daily';
     }
+    return (PERIOD_ORDERS[key] || PERIOD_ORDERS.ordinary).slice();
   }
 
   function mayRing(order, now) {
@@ -134,7 +141,7 @@
   }
 
   const api = { paschaCivil, liturgicalDate, describe, allowedOrders,
-    mayRing, VESPERS_HOUR };
+    mayRing, VESPERS_HOUR, PERIOD_ORDERS };
   if (typeof module === 'object' && module.exports) {
     module.exports = api;
   }

@@ -198,6 +198,9 @@
     // { id, endsAt, timer } or null.  Only one runs at a time.
     practiceTimer: null,
     passionData: null,
+    // The Russian labels of the sources (data/source-labels-ru.json),
+    // for display only; null shows each source as it is.
+    sourceLabels: null,
     passionRecord: {},
     encounter: null,
     stillTimer: null,
@@ -951,6 +954,13 @@
     dialog.showModal();
   }
 
+  // A source in its Russian form, as the headset shows it
+  // (SourceLabels.ru in hub.gd); a missing label keeps the original.
+  function sourceRu(src) {
+    const L = window.LudusSourceLabels;
+    return L ? L.labelRu(state.sourceLabels, src) : src;
+  }
+
   function renderRoadPanel() {
     const api = window.LudusPassion;
     const data = state.passionData;
@@ -982,8 +992,9 @@
       // reward, hidden from screen readers (the text says it all).
       body = '<div class="ludus-light-nepsis" aria-hidden="true"></div>'
         + `<p class="ludus-road-end">The thought has passed. `
-        + `${escapeHtml(passion.virtue)} — ${escapeHtml(passion.source)}; `
-        + `${escapeHtml(passion.ladder)}.</p>`
+        + `${escapeHtml(passion.virtue)} — `
+        + `${escapeHtml(sourceRu(passion.source))}; `
+        + `${escapeHtml(sourceRu(passion.ladder))}.</p>`
         + '<button type="button" class="ludus-rule-btn"'
         + ' data-action="passion-close">Walk on</button>';
     } else if (stage === 'captive') {
@@ -1847,6 +1858,14 @@
     state.initialized = true;
     console.log('[Ludus] Initializing module...');
     bindListeners();
+    // The labels load beside the connection and never block it: the
+    // road panel falls back to the original source until they arrive.
+    const labels = window.LudusSourceLabels;
+    if (labels) {
+      labels.load().then((table) => {
+        state.sourceLabels = table;
+      });
+    }
     await connect();
     console.log(`[Ludus] Module initialized (${state.mode})`);
   }

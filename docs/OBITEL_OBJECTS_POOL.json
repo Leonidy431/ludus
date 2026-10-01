@@ -1,0 +1,4832 @@
+{
+ "note": "Every proxy x place of the obitel register, scored.",
+ "size": 129,
+ "candidates": [
+  {
+   "id": "obj-hronika-urovney@scriptorium",
+   "proxy": "obj-hronika-urovney",
+   "thing": "lake-levels",
+   "place": "scriptorium",
+   "ru": "Летопись уровней озера",
+   "lesson": "Уровень озера записан по годам: вода поднималась и топила посады, отсюда находки на дне (узел 13).",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 820,
+   "source": "SVG/obj/obj-hronika-urovney.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 45,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-ikona@scriptorium",
+   "proxy": "obj-ikona",
+   "thing": "icon",
+   "place": "scriptorium",
+   "ru": "Икона в красном углу",
+   "lesson": "У святыни интерфейс уходит: без подписи, цифр и подсказки (ТАБУ №0.38 п. 3).",
+   "state": "board",
+   "mount": "red-corner",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 826,
+   "source": "public/ludus/art/obj-ikona.svg",
+   "method": "flat-board",
+   "score": {
+    "truth": 10,
+    "teaching": 9,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 9
+   },
+   "total": 45,
+   "gate": true,
+   "flags": {
+    "holy": true,
+    "noInteract": true,
+    "noLoot": true
+   }
+  },
+  {
+   "id": "obj-letopis-urovney@scriptorium",
+   "proxy": "obj-letopis-urovney",
+   "thing": "lake-levels",
+   "place": "scriptorium",
+   "ru": "Летопись уровней озера",
+   "lesson": "Уровень озера записан по годам: вода поднималась и топила посады, отсюда находки на дне (узел 13).",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 394,
+   "source": "SVG/obj/obj-letopis-urovney.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 45,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-termometr-vody@pier",
+   "proxy": "obj-termometr-vody",
+   "thing": "thermometer",
+   "place": "pier",
+   "ru": "Термометр воды",
+   "lesson": "Термоклин один, на 50 м: слой скачка температуры (узел 90).",
+   "state": "card",
+   "mount": "stand",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 722,
+   "source": "public/ludus/art/obj-termometr-vody.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 10,
+    "teaching": 9,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 45,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0206-vodomernaya-reyka-beregovaya@pier",
+   "proxy": "p0206-vodomernaya-reyka-beregovaya",
+   "thing": "water-gauge",
+   "place": "pier",
+   "ru": "Водомерная рейка",
+   "lesson": "Уровень воды читают по зарубкам: наблюдение, а не догадка.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    0.1,
+    2.0,
+    0.05
+   ],
+   "scale": [
+    1.0,
+    20.0,
+    0.5
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#205",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 10,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 45,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0207-prozrachnyy-disk-glubiny-disk-sekki@pier",
+   "proxy": "p0207-prozrachnyy-disk-glubiny-disk-sekki",
+   "thing": "secchi",
+   "place": "pier",
+   "ru": "Диск Секки",
+   "lesson": "Прозрачность меряют, пока диск не скроется: терпение глаза (узел 39).",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.25,
+    0.02,
+    0.25
+   ],
+   "scale": [
+    1.25,
+    0.1,
+    1.25
+   ],
+   "tris": 64,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#206",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 10,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 45,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-chernilnitsa@scriptorium",
+   "proxy": "obj-chernilnitsa",
+   "thing": "inkwell",
+   "place": "scriptorium",
+   "ru": "Чернильница писца",
+   "lesson": "Писец сверяет каждую строку: рука медленнее сканера, но отвечает за строку (узел 4).",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 524,
+   "source": "public/ludus/art/obj-chernilnitsa.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 10,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-mernaya-rejka@pier",
+   "proxy": "obj-mernaya-rejka",
+   "thing": "water-gauge",
+   "place": "pier",
+   "ru": "Водомерная рейка",
+   "lesson": "Уровень воды читают по зарубкам: наблюдение, а не догадка.",
+   "state": "card",
+   "mount": "stand",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 508,
+   "source": "SVG/obj/obj-mernaya-rejka.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 10,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0102-slova-isaaka-sirina-svitok@cell",
+   "proxy": "p0102-slova-isaaka-sirina-svitok",
+   "thing": "isaac-scroll",
+   "place": "cell",
+   "ru": "Свиток слов Исаака Сирина",
+   "lesson": "Пересказ: безмолвие — таинство будущего века (прп. Исаак Сирин; номер Слова сверить с data/patristic-canon.json).",
+   "state": "volume",
+   "mount": "table",
+   "lay": true,
+   "size_m": [
+    0.07,
+    0.32,
+    0.07
+   ],
+   "scale": [
+    0.4667,
+    1.0667,
+    0.4667
+   ],
+   "tris": 408,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#101",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 8,
+    "teaching": 9,
+    "readable": 7,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0190-lot-gruzilo-s-salom@pier",
+   "proxy": "p0190-lot-gruzilo-s-salom",
+   "thing": "sounding-lead",
+   "place": "pier",
+   "ru": "Лот с салом",
+   "lesson": "Дно отвечает песком на сале: промер честный, как у водолаза.",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.08,
+    0.14,
+    0.08
+   ],
+   "scale": [
+    0.8,
+    1.4,
+    0.8
+   ],
+   "tris": 64,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#189",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 10,
+    "teaching": 9,
+    "readable": 5,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0237-goncharnyy-krug@workshop",
+   "proxy": "p0237-goncharnyy-krug",
+   "thing": "potter-wheel",
+   "place": "workshop",
+   "ru": "Гончарный круг",
+   "lesson": "Глина берёт форму по мере вращения: ФОРМА даётся терпением руки.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    0.5,
+    0.8,
+    0.5
+   ],
+   "scale": [
+    1.0,
+    1.6,
+    1.0
+   ],
+   "tris": 64,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#236",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0249-vydelannyy-pergamen@scriptorium",
+   "proxy": "p0249-vydelannyy-pergamen",
+   "thing": "parchment",
+   "place": "scriptorium",
+   "ru": "Выделанный пергамен",
+   "lesson": "Кожу выделывают неделями: письмо начинается с терпения.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    0.8,
+    1.0,
+    0.02
+   ],
+   "scale": [
+    1.0,
+    0.9398,
+    1.0
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#248",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 10,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0249-vydelannyy-pergamen@workshop",
+   "proxy": "p0249-vydelannyy-pergamen",
+   "thing": "parchment",
+   "place": "workshop",
+   "ru": "Выделанный пергамен",
+   "lesson": "Кожу выделывают неделями: письмо начинается с терпения.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    0.8,
+    1.0,
+    0.02
+   ],
+   "scale": [
+    1.0,
+    0.9398,
+    1.0
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#248",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 10,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0259-ruchnaya-melnitsa-zhernov@courtyard",
+   "proxy": "p0259-ruchnaya-melnitsa-zhernov",
+   "thing": "millstone",
+   "place": "courtyard",
+   "ru": "Жернов",
+   "lesson": "Жернов — неподвижная точка: калибруют по нему, а не по кресту (узел 23).",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    0.7,
+    0.2,
+    0.7
+   ],
+   "scale": [
+    1.4,
+    0.4,
+    1.4
+   ],
+   "tris": 64,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#258",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 44,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-chasha-dlya-omoveniya-nog@refectory",
+   "proxy": "obj-chasha-dlya-omoveniya-nog",
+   "thing": "foot-basin",
+   "place": "refectory",
+   "ru": "Таз для омовения ног путнику",
+   "lesson": "Дьякон сам омывает ноги путнику: служение, а не почёт (Ин. 13:14).",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 612,
+   "source": "SVG/obj/obj-chasha-dlya-omoveniya-nog.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 8,
+    "teaching": 9,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-goncharny-krug@workshop",
+   "proxy": "obj-goncharny-krug",
+   "thing": "potter-wheel",
+   "place": "workshop",
+   "ru": "Гончарный круг",
+   "lesson": "Глина берёт форму по мере вращения: ФОРМА даётся терпением руки.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 698,
+   "source": "SVG/obj/obj-goncharny-krug.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-goncharnyi-krug@workshop",
+   "proxy": "obj-goncharnyi-krug",
+   "thing": "potter-wheel",
+   "place": "workshop",
+   "ru": "Гончарный круг",
+   "lesson": "Глина берёт форму по мере вращения: ФОРМА даётся терпением руки.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 590,
+   "source": "SVG/obj/obj-goncharnyi-krug.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-khleb-karavay@refectory",
+   "proxy": "obj-khleb-karavay",
+   "thing": "bread",
+   "place": "refectory",
+   "ru": "Трапезный хлеб",
+   "lesson": "Хлеб делят за общим столом (узел 38).",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 754,
+   "source": "SVG/obj/obj-khleb-karavay.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-portulan@scriptorium",
+   "proxy": "obj-portulan",
+   "thing": "portolan",
+   "place": "scriptorium",
+   "ru": "Портулан",
+   "lesson": "Каталанский атлас 1375 года — карта этой школы; он и отметил обитель братьев на озере (ТАБУ №0.03 п. 2).",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 710,
+   "source": "SVG/obj/obj-portulan.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-trapeznyi-khleb@refectory",
+   "proxy": "obj-trapeznyi-khleb",
+   "thing": "bread",
+   "place": "refectory",
+   "ru": "Трапезный хлеб",
+   "lesson": "Хлеб делят за общим столом (узел 38).",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 512,
+   "source": "SVG/obj/obj-trapeznyi-khleb.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-zhernov@courtyard",
+   "proxy": "obj-zhernov",
+   "thing": "millstone",
+   "place": "courtyard",
+   "ru": "Жернов",
+   "lesson": "Жернов — неподвижная точка: калибруют по нему, а не по кресту (узел 23).",
+   "state": "card",
+   "mount": "stand",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 642,
+   "source": "SVG/obj/obj-zhernov.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 9,
+    "readable": 7,
+    "novelty": 6,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0182-mednyy-kotel-obshchey-trapezy@refectory",
+   "proxy": "p0182-mednyy-kotel-obshchey-trapezy",
+   "thing": "cauldron",
+   "place": "refectory",
+   "ru": "Медный котёл общей трапезы",
+   "lesson": "Один котёл на всю братию: никто не ест отдельно.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.45,
+    0.6
+   ],
+   "scale": [
+    1.0,
+    0.75,
+    1.0
+   ],
+   "tris": 64,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#181",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0254-liteynaya-forma-dlya-kolokola@workshop",
+   "proxy": "p0254-liteynaya-forma-dlya-kolokola",
+   "thing": "bell-mould",
+   "place": "workshop",
+   "ru": "Литейная форма для колокола",
+   "lesson": "Мастера знали акустику: по форме понимают эхо (узел 14). Форма — не колокол; колокол звучит только по уставу.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    0.9,
+    1.1,
+    0.9
+   ],
+   "scale": [
+    0.9,
+    1.1,
+    0.9
+   ],
+   "tris": 64,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#253",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 8,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": true
+   }
+  },
+  {
+   "id": "p0265-tandyr@refectory",
+   "proxy": "p0265-tandyr",
+   "thing": "tonir",
+   "place": "refectory",
+   "ru": "Тонир (тандыр)",
+   "lesson": "Армянский тонир врыт в землю: хлеб печётся жаром стен.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    0.9,
+    0.9,
+    0.9
+   ],
+   "scale": [
+    0.9,
+    0.9,
+    0.9
+   ],
+   "tris": 64,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#264",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 10,
+    "teaching": 6,
+    "readable": 7,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 43,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-kotel-pokhodnyi@refectory",
+   "proxy": "obj-kotel-pokhodnyi",
+   "thing": "cauldron",
+   "place": "refectory",
+   "ru": "Медный котёл общей трапезы",
+   "lesson": "Один котёл на всю братию: никто не ест отдельно.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 680,
+   "source": "SVG/obj/obj-kotel-pokhodnyi.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-polotno-perevyazki@cell",
+   "proxy": "obj-polotno-perevyazki",
+   "thing": "bandage",
+   "place": "cell",
+   "ru": "Перевязочное полотно",
+   "lesson": "Рану перевязывает живой человек, а не заговор.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 732,
+   "source": "SVG/obj/obj-polotno-perevyazki.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 8,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-sunduk-arkhiva@scriptorium",
+   "proxy": "obj-sunduk-arkhiva",
+   "thing": "archive-chest",
+   "place": "scriptorium",
+   "ru": "Сундук архива",
+   "lesson": "Память обители хранится рукой; в 2026 её копии поднимают из резервной копии (узел 21).",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 1050,
+   "source": "SVG/obj/obj-sunduk-arkhiva.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-tigel@workshop",
+   "proxy": "obj-tigel",
+   "thing": "crucible",
+   "place": "workshop",
+   "ru": "Тигель",
+   "lesson": "Металл очищается огнём, и не сразу.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 769,
+   "source": "SVG/obj/obj-tigel.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0053-doska-ikonnaya-lipovaya@workshop",
+   "proxy": "p0053-doska-ikonnaya-lipovaya",
+   "thing": "icon-board",
+   "place": "workshop",
+   "ru": "Доска для иконы, ещё без образа",
+   "lesson": "Доска ещё без образа: иконописец начинает с левкаса и поста.",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.4,
+    0.53,
+    0.02
+   ],
+   "scale": [
+    1.0,
+    0.9962,
+    1.0
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#52",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 7,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": true,
+    "noLoot": true
+   }
+  },
+  {
+   "id": "p0136-poklonnyy-kovrik@cell",
+   "proxy": "p0136-poklonnyy-kovrik",
+   "thing": "prostration-mat",
+   "place": "cell",
+   "ru": "Поклонный коврик",
+   "lesson": "Коврик у стены: поклон виден по стёртому месту, не по счётчику.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": true,
+   "size_m": [
+    0.6,
+    0.8,
+    0.02
+   ],
+   "scale": [
+    1.0,
+    1.0025,
+    1.0
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#135",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 8,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0191-mernyy-lin-s-uzlami@pier",
+   "proxy": "p0191-mernyy-lin-s-uzlami",
+   "thing": "knotted-line",
+   "place": "pier",
+   "ru": "Мерный линь с узлами",
+   "lesson": "Трос распутывают тем же путём, каким закрутили (узел 2).",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.3,
+    0.12,
+    0.3
+   ],
+   "scale": [
+    1.5,
+    0.6,
+    1.5
+   ],
+   "tris": 352,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#190",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 10,
+    "teaching": 7,
+    "readable": 5,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0245-brevno-tyan-shanskoy-eli@courtyard",
+   "proxy": "p0245-brevno-tyan-shanskoy-eli",
+   "thing": "spruce-log",
+   "place": "courtyard",
+   "ru": "Бревно тянь-шаньской ели",
+   "lesson": "Ель Шренка с гор над озером: сруб обители из своего леса.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": true,
+   "size_m": [
+    0.4,
+    4.0,
+    0.4
+   ],
+   "scale": [
+    0.2,
+    1.0,
+    0.2
+   ],
+   "tris": 408,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#244",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 10,
+    "teaching": 5,
+    "readable": 7,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0245-brevno-tyan-shanskoy-eli@workshop",
+   "proxy": "p0245-brevno-tyan-shanskoy-eli",
+   "thing": "spruce-log",
+   "place": "workshop",
+   "ru": "Бревно тянь-шаньской ели",
+   "lesson": "Ель Шренка с гор над озером: сруб обители из своего леса.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": true,
+   "size_m": [
+    0.4,
+    4.0,
+    0.4
+   ],
+   "scale": [
+    0.2,
+    1.0,
+    0.2
+   ],
+   "tris": 408,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#244",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 10,
+    "teaching": 5,
+    "readable": 7,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0252-voylochnaya-koshma@cell",
+   "proxy": "p0252-voylochnaya-koshma",
+   "thing": "felt",
+   "place": "cell",
+   "ru": "Войлочная кошма",
+   "lesson": "Кошма кочевника в келье: гость и брат спят на одном войлоке.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": true,
+   "size_m": [
+    1.2,
+    1.6,
+    0.02
+   ],
+   "scale": [
+    0.6,
+    0.6015,
+    1.0
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#251",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 10,
+    "teaching": 5,
+    "readable": 7,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 42,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-etalon-giri@refectory",
+   "proxy": "obj-etalon-giri",
+   "thing": "scales",
+   "place": "refectory",
+   "ru": "Весы и эталонные гири",
+   "lesson": "Честная мера: гири сверяют с эталоном.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 760,
+   "source": "SVG/obj/obj-etalon-giri.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-etalon-giri@workshop",
+   "proxy": "obj-etalon-giri",
+   "thing": "scales",
+   "place": "workshop",
+   "ru": "Весы и эталонные гири",
+   "lesson": "Честная мера: гири сверяют с эталоном.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 760,
+   "source": "SVG/obj/obj-etalon-giri.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-karas-kuvshin@refectory",
+   "proxy": "obj-karas-kuvshin",
+   "thing": "karas",
+   "place": "refectory",
+   "ru": "Армянский карас",
+   "lesson": "Карас врыт в землю по плечи: братья принесли его ремесло с собой из Армении.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 836,
+   "source": "SVG/obj/obj-karas-kuvshin.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 10,
+    "teaching": 5,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-kolyshki-razmetki@courtyard",
+   "proxy": "obj-kolyshki-razmetki",
+   "thing": "marking-cord",
+   "place": "courtyard",
+   "ru": "Разметочная верёвка 3-4-5",
+   "lesson": "Прямой угол дают двенадцать равных узлов: знание ремесла, не тайна.",
+   "state": "card",
+   "mount": "stand",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 684,
+   "source": "SVG/obj/obj-kolyshki-razmetki.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-kuvshin-vody@refectory",
+   "proxy": "obj-kuvshin-vody",
+   "thing": "water-jug",
+   "place": "refectory",
+   "ru": "Кувшин воды",
+   "lesson": "Рыцарь отдал воду раненому: выбор, а не молитва (узел 30).",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 674,
+   "source": "SVG/obj/obj-kuvshin-vody.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-lodka@pier",
+   "proxy": "obj-lodka",
+   "thing": "boat",
+   "place": "pier",
+   "ru": "Лодка-плоскодонка",
+   "lesson": "Плыть от террасы к террасе, не спеша.",
+   "state": "card",
+   "mount": "stand",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 550,
+   "source": "SVG/obj/obj-lodka.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-meshok-zerna@refectory",
+   "proxy": "obj-meshok-zerna",
+   "thing": "grain",
+   "place": "refectory",
+   "ru": "Мешок зерна",
+   "lesson": "Зерно даётся в долг и хранится для всех.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 614,
+   "source": "SVG/obj/obj-meshok-zerna.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-nakovalnya@workshop",
+   "proxy": "obj-nakovalnya",
+   "thing": "anvil",
+   "place": "workshop",
+   "ru": "Наковальня",
+   "lesson": "Стук молота кузницы и пинг эхолота — один ритм (узел 16).",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 934,
+   "source": "SVG/obj/obj-nakovalnya.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-sinaksar-tetrad@scriptorium",
+   "proxy": "obj-sinaksar-tetrad",
+   "thing": "synaxar",
+   "place": "scriptorium",
+   "ru": "Тетрадь синаксаря",
+   "lesson": "Календарь обители — Синаксарь и седмица, а не звёзды (ТАБУ №0.35 п. 23).",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 920,
+   "source": "SVG/obj/obj-sinaksar-tetrad.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 8,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-sonar@pier",
+   "proxy": "obj-sonar",
+   "thing": "sonar",
+   "place": "pier",
+   "ru": "Сонар",
+   "lesson": "Сигнал уходит и возвращается эхом: слушать, а не кричать (узел 18).",
+   "state": "card",
+   "mount": "stand",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 540,
+   "source": "public/ludus/art/obj-sonar.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-svitok-yazykov@scriptorium",
+   "proxy": "obj-svitok-yazykov",
+   "thing": "languages",
+   "place": "scriptorium",
+   "ru": "Свиток языков",
+   "lesson": "Перевод ложится в словарь писца трудом, не мгновенно (узел 49).",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 1284,
+   "source": "public/ludus/art/obj-svitok-yazykov.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 8,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-verevka-kolya@courtyard",
+   "proxy": "obj-verevka-kolya",
+   "thing": "marking-cord",
+   "place": "courtyard",
+   "ru": "Разметочная верёвка 3-4-5",
+   "lesson": "Прямой угол дают двенадцать равных узлов: знание ремесла, не тайна.",
+   "state": "card",
+   "mount": "stand",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 742,
+   "source": "SVG/obj/obj-verevka-kolya.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-vesy@refectory",
+   "proxy": "obj-vesy",
+   "thing": "scales",
+   "place": "refectory",
+   "ru": "Весы и эталонные гири",
+   "lesson": "Честная мера: гири сверяют с эталоном.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 556,
+   "source": "public/ludus/art/obj-vesy.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-vesy@workshop",
+   "proxy": "obj-vesy",
+   "thing": "scales",
+   "place": "workshop",
+   "ru": "Весы и эталонные гири",
+   "lesson": "Честная мера: гири сверяют с эталоном.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 556,
+   "source": "public/ludus/art/obj-vesy.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-voskovaya-tablichka@cell",
+   "proxy": "obj-voskovaya-tablichka",
+   "thing": "wax-tablet",
+   "place": "cell",
+   "ru": "Восковая табличка",
+   "lesson": "Черновик на воске заглаживают и пишут снова: терпение, а не стирание памяти.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 856,
+   "source": "SVG/obj/obj-voskovaya-tablichka.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-voskovaya-tablichka@scriptorium",
+   "proxy": "obj-voskovaya-tablichka",
+   "thing": "wax-tablet",
+   "place": "scriptorium",
+   "ru": "Восковая табличка",
+   "lesson": "Черновик на воске заглаживают и пишут снова: терпение, а не стирание памяти.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 856,
+   "source": "SVG/obj/obj-voskovaya-tablichka.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0180-kipa-khlopkovoy-bumagi-samarkanda@scriptorium",
+   "proxy": "p0180-kipa-khlopkovoy-bumagi-samarkanda",
+   "thing": "paper-bale",
+   "place": "scriptorium",
+   "ru": "Кипа самаркандской бумаги",
+   "lesson": "Бумага пришла караваном: обитель на перекрёстке дорог.",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.35,
+    0.25,
+    0.3
+   ],
+   "scale": [
+    1.1667,
+    0.8333,
+    1.0
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#179",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 5,
+    "readable": 7,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0187-set-dlya-chebaka@pier",
+   "proxy": "p0187-set-dlya-chebaka",
+   "thing": "net",
+   "place": "pier",
+   "ru": "Сеть рыбака",
+   "lesson": "Сеть с поплавками и грузилами: мера улова — мера жизни озера.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    2.0,
+    1.0,
+    0.02
+   ],
+   "scale": [
+    2.0,
+    0.7519,
+    1.0
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#186",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 10,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0189-veslo-grebok-dolblenki@pier",
+   "proxy": "p0189-veslo-grebok-dolblenki",
+   "thing": "oar",
+   "place": "pier",
+   "ru": "Весло долблёнки",
+   "lesson": "Весло ведёт лодку только в руках гребца.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    0.12,
+    1.8,
+    0.05
+   ],
+   "scale": [
+    0.1333,
+    1.0,
+    0.0556
+   ],
+   "tris": 408,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#188",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 5,
+    "readable": 7,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0202-buy-marker-nakhodki@pier",
+   "proxy": "p0202-buy-marker-nakhodki",
+   "thing": "marker-buoy",
+   "place": "pier",
+   "ru": "Буй-маркер находки",
+   "lesson": "Место находки отмечают, а не берут всё подряд.",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.3,
+    0.3,
+    0.3
+   ],
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "tris": 352,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#201",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 6,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0209-zhurnal-nablyudeniy-rov@pier",
+   "proxy": "p0209-zhurnal-nablyudeniy-rov",
+   "thing": "rov-log",
+   "place": "pier",
+   "ru": "Журнал наблюдений ROV",
+   "lesson": "Журнал — свидетельство, а не душа (узел 24).",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.3,
+    0.05,
+    0.22
+   ],
+   "scale": [
+    1.0,
+    0.1667,
+    0.7333
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#208",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0234-kipchakskiy-slovar-glossariy@scriptorium",
+   "proxy": "p0234-kipchakskiy-slovar-glossariy",
+   "thing": "glossary",
+   "place": "scriptorium",
+   "ru": "Кипчакский словарь",
+   "lesson": "Словарь соседа: слово Евангелия ищет язык кочевника (кодекс Куманикус, 1303).",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.25,
+    0.06,
+    0.18
+   ],
+   "scale": [
+    1.0,
+    0.24,
+    0.72
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#233",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 5,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0260-yuvelirnyy-tigel@workshop",
+   "proxy": "p0260-yuvelirnyy-tigel",
+   "thing": "crucible",
+   "place": "workshop",
+   "ru": "Тигель",
+   "lesson": "Металл очищается огнём, и не сразу.",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.1,
+    0.1,
+    0.1
+   ],
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "tris": 64,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#259",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 41,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-arkhiv-svitkov@scriptorium",
+   "proxy": "obj-arkhiv-svitkov",
+   "thing": "scroll-niche",
+   "place": "scriptorium",
+   "ru": "Ниша свитков",
+   "lesson": "Запись находят по нити ярлыков: поиск, который различает монах (узел 66).",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 1584,
+   "source": "SVG/obj/obj-arkhiv-svitkov.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-germetichny-futlyar@pier",
+   "proxy": "obj-germetichny-futlyar",
+   "thing": "sealed-case",
+   "place": "pier",
+   "ru": "Герметичный футляр",
+   "lesson": "Воск и кожа берегут письмо от воды (узел 37).",
+   "state": "card",
+   "mount": "stand",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 956,
+   "source": "SVG/obj/obj-germetichny-futlyar.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 8,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-germetichny-futlyar@scriptorium",
+   "proxy": "obj-germetichny-futlyar",
+   "thing": "sealed-case",
+   "place": "scriptorium",
+   "ru": "Герметичный футляр",
+   "lesson": "Воск и кожа берегут письмо от воды (узел 37).",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 956,
+   "source": "SVG/obj/obj-germetichny-futlyar.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 8,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-glubinomer@pier",
+   "proxy": "obj-glubinomer",
+   "thing": "depth-gauge",
+   "place": "pier",
+   "ru": "Глубиномер",
+   "lesson": "Стрелка показывает глубину: медленный спуск, медленное всплытие (узел 89).",
+   "state": "card",
+   "mount": "stand",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 722,
+   "source": "public/ludus/art/obj-glubinomer.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-kirpich-forma@courtyard",
+   "proxy": "obj-kirpich-forma",
+   "thing": "brick-mould",
+   "place": "courtyard",
+   "ru": "Форма для кирпича",
+   "lesson": "Кирпич обители тот же, что лежит глазурованным на дне.",
+   "state": "card",
+   "mount": "stand",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 424,
+   "source": "SVG/obj/obj-kirpich-forma.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-kirpich-forma@workshop",
+   "proxy": "obj-kirpich-forma",
+   "thing": "brick-mould",
+   "place": "workshop",
+   "ru": "Форма для кирпича",
+   "lesson": "Кирпич обители тот же, что лежит глазурованным на дне.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 424,
+   "source": "SVG/obj/obj-kirpich-forma.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-melnichnoe-koleso@courtyard",
+   "proxy": "obj-melnichnoe-koleso",
+   "thing": "water-wheel",
+   "place": "courtyard",
+   "ru": "Мельничное колесо",
+   "lesson": "Вода, которую никто не заставлял, мелет зерно общины.",
+   "state": "card",
+   "mount": "stand",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 638,
+   "source": "SVG/obj/obj-melnichnoe-koleso.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 8,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-set-rybaka@pier",
+   "proxy": "obj-set-rybaka",
+   "thing": "net",
+   "place": "pier",
+   "ru": "Сеть рыбака",
+   "lesson": "Сеть с поплавками и грузилами: мера улова — мера жизни озера.",
+   "state": "card",
+   "mount": "stand",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 802,
+   "source": "SVG/obj/obj-set-rybaka.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 10,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 6,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-tkatskiy-stanok@workshop",
+   "proxy": "obj-tkatskiy-stanok",
+   "thing": "loom",
+   "place": "workshop",
+   "ru": "Ткацкий станок",
+   "lesson": "Уток ложится нить за нитью; узор виден только в конце.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 758,
+   "source": "SVG/obj/obj-tkatskiy-stanok.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 8,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-zernovaya-yama@refectory",
+   "proxy": "obj-zernovaya-yama",
+   "thing": "grain-pit",
+   "place": "refectory",
+   "ru": "Зерновая яма",
+   "lesson": "Яма обмазана обожжённой глиной: запас хранят от сырости и мыши.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 1216,
+   "source": "SVG/obj/obj-zernovaya-yama.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 6,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0054-levkas-v-gorshke@workshop",
+   "proxy": "p0054-levkas-v-gorshke",
+   "thing": "gesso",
+   "place": "workshop",
+   "ru": "Левкас в горшке",
+   "lesson": "Левкас кладут слой за слоем, до гладкости.",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.2,
+    0.2,
+    0.2
+   ],
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "tris": 64,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#53",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 8,
+    "teaching": 5,
+    "readable": 7,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0132-vedro-kozhanoe-dlya-kolodtsa-obiteli@courtyard",
+   "proxy": "p0132-vedro-kozhanoe-dlya-kolodtsa-obiteli",
+   "thing": "well-bucket",
+   "place": "courtyard",
+   "ru": "Кожаное ведро колодца",
+   "lesson": "Воду из колодца носят для всех, не для себя.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    0.3,
+    0.3,
+    0.3
+   ],
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "tris": 64,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#131",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 8,
+    "teaching": 5,
+    "readable": 7,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0198-gidrofon@pier",
+   "proxy": "p0198-gidrofon",
+   "thing": "hydrophone",
+   "place": "pier",
+   "ru": "Гидрофон",
+   "lesson": "Уходят из сети, чтобы слышать (узел 18).",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.06,
+    0.2,
+    0.06
+   ],
+   "scale": [
+    0.8,
+    1.3333,
+    0.8
+   ],
+   "tris": 408,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#197",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 10,
+    "teaching": 9,
+    "readable": 5,
+    "novelty": 6,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0240-stupa-dlya-rastiraniya-lazuri@workshop",
+   "proxy": "p0240-stupa-dlya-rastiraniya-lazuri",
+   "thing": "lapis-mortar",
+   "place": "workshop",
+   "ru": "Ступа для лазури",
+   "lesson": "Лазурь из Бадахшана растирают часами: синий дорог трудом.",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.25,
+    0.2,
+    0.25
+   ],
+   "scale": [
+    0.8333,
+    0.6667,
+    0.8333
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#239",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 6,
+    "readable": 5,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0242-kuznechnyy-gorn-s-mekhami@workshop",
+   "proxy": "p0242-kuznechnyy-gorn-s-mekhami",
+   "thing": "forge",
+   "place": "workshop",
+   "ru": "Кузнечный горн с мехами",
+   "lesson": "Кованый вручную гвоздь заменяет потерянную шайбу (узел 47).",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    1.0,
+    0.9,
+    0.8
+   ],
+   "scale": [
+    0.8333,
+    0.75,
+    0.6667
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#241",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 6,
+    "readable": 5,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0243-nakovalnya@workshop",
+   "proxy": "p0243-nakovalnya",
+   "thing": "anvil",
+   "place": "workshop",
+   "ru": "Наковальня",
+   "lesson": "Стук молота кузницы и пинг эхолота — один ритм (узел 16).",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    0.5,
+    0.45,
+    0.25
+   ],
+   "scale": [
+    1.0,
+    0.9,
+    0.5
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#242",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0248-perepletnyy-press@scriptorium",
+   "proxy": "p0248-perepletnyy-press",
+   "thing": "binding-press",
+   "place": "scriptorium",
+   "ru": "Переплётный пресс",
+   "lesson": "Книгу сжимают неделями, чтобы листы легли: спешка портит кодекс.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    0.5,
+    0.6,
+    0.4
+   ],
+   "scale": [
+    1.0,
+    1.2,
+    0.8
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#247",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 6,
+    "readable": 5,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0257-ostov-rybatskoy-lodki@pier",
+   "proxy": "p0257-ostov-rybatskoy-lodki",
+   "thing": "boat",
+   "place": "pier",
+   "ru": "Лодка-плоскодонка",
+   "lesson": "Плыть от террасы к террасе, не спеша.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    3.6,
+    0.8,
+    1.1
+   ],
+   "scale": [
+    3.0,
+    0.6667,
+    0.9167
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#256",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0262-pryalka-vereteno@cell",
+   "proxy": "p0262-pryalka-vereteno",
+   "thing": "spindle",
+   "place": "cell",
+   "ru": "Прялка-веретено",
+   "lesson": "Нить тянется ровно, пока рука терпелива.",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.05,
+    0.32,
+    0.05
+   ],
+   "scale": [
+    0.3333,
+    1.0667,
+    0.3333
+   ],
+   "tris": 408,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#261",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 6,
+    "readable": 5,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0262-pryalka-vereteno@workshop",
+   "proxy": "p0262-pryalka-vereteno",
+   "thing": "spindle",
+   "place": "workshop",
+   "ru": "Прялка-веретено",
+   "lesson": "Нить тянется ровно, пока рука терпелива.",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.05,
+    0.32,
+    0.05
+   ],
+   "scale": [
+    0.3333,
+    1.0667,
+    0.3333
+   ],
+   "tris": 408,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#261",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 6,
+    "readable": 5,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0263-krasilnyy-chan-s-marenoy@workshop",
+   "proxy": "p0263-krasilnyy-chan-s-marenoy",
+   "thing": "dye-vat",
+   "place": "workshop",
+   "ru": "Красильный чан с мареной",
+   "lesson": "Цвет входит в нить медленно, варка за варкой.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    0.8,
+    0.7,
+    0.8
+   ],
+   "scale": [
+    1.0,
+    0.875,
+    1.0
+   ],
+   "tris": 64,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#262",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 8,
+    "teaching": 5,
+    "readable": 7,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 40,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-ambar@courtyard",
+   "proxy": "obj-ambar",
+   "thing": "barn",
+   "place": "courtyard",
+   "ru": "Амбар на сваях",
+   "lesson": "Плоские камни на сваях против мышей: запас берегут умом.",
+   "state": "card",
+   "mount": "stand",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 546,
+   "source": "SVG/obj/obj-ambar.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 8,
+    "teaching": 6,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 39,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-brevno-svaya@pier",
+   "proxy": "obj-brevno-svaya",
+   "thing": "pile",
+   "place": "pier",
+   "ru": "Свая причала",
+   "lesson": "Свая держит причал, пока не сгниёт; её остатки ROV находит на дне.",
+   "state": "card",
+   "mount": "stand",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 854,
+   "source": "SVG/obj/obj-brevno-svaya.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 6,
+    "safety": 10
+   },
+   "total": 39,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-instrumenty@workshop",
+   "proxy": "obj-instrumenty",
+   "thing": "tools",
+   "place": "workshop",
+   "ru": "Плотницкий инструмент",
+   "lesson": "Орудие труда, не оружие: у мастера нет боя.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 1019,
+   "source": "public/ludus/art/obj-instrumenty.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 6,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 39,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-karta-putey@scriptorium",
+   "proxy": "obj-karta-putey",
+   "thing": "route-map",
+   "place": "scriptorium",
+   "ru": "Карта караванных путей",
+   "lesson": "Путь рыцаря к братьям на озере — караванная дорога кампании (ТАБУ №0.03 п. 2).",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 908,
+   "source": "SVG/obj/obj-karta-putey.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 8,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 39,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-sluzhebnik-perevod@scriptorium",
+   "proxy": "obj-sluzhebnik-perevod",
+   "thing": "translation",
+   "place": "scriptorium",
+   "ru": "Тетрадь перевода в два столбца",
+   "lesson": "Подлинник слева, перевод справа: строку сверяют, а не пересказывают (узел 58).",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 508,
+   "source": "SVG/obj/obj-sluzhebnik-perevod.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 8,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 39,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-topor-teslo@workshop",
+   "proxy": "obj-topor-teslo",
+   "thing": "adze",
+   "place": "workshop",
+   "ru": "Топор и тесло",
+   "lesson": "Топор воткнут в бревно, тесло рядом: работа, не бой.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 567,
+   "source": "SVG/obj/obj-topor-teslo.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 6,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 39,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-vyazanka-drov@cell",
+   "proxy": "obj-vyazanka-drov",
+   "thing": "firewood",
+   "place": "cell",
+   "ru": "Вязанка дров",
+   "lesson": "Дрова носят на спине: тепло трапезы — чей-то труд.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 1348,
+   "source": "SVG/obj/obj-vyazanka-drov.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 6,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 39,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-vyazanka-drov@courtyard",
+   "proxy": "obj-vyazanka-drov",
+   "thing": "firewood",
+   "place": "courtyard",
+   "ru": "Вязанка дров",
+   "lesson": "Дрова носят на спине: тепло трапезы — чей-то труд.",
+   "state": "card",
+   "mount": "stand",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 1348,
+   "source": "SVG/obj/obj-vyazanka-drov.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 6,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 39,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0033-kvashnya-prosfornika@refectory",
+   "proxy": "p0033-kvashnya-prosfornika",
+   "thing": "trough",
+   "place": "refectory",
+   "ru": "Квашня",
+   "lesson": "Тесто подходит само, в тепле и покое.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    0.8,
+    0.3,
+    0.4
+   ],
+   "scale": [
+    1.6,
+    0.6,
+    0.8
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#32",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 5,
+    "readable": 5,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 39,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0034-muka-pshenichnaya-chistaya@refectory",
+   "proxy": "p0034-muka-pshenichnaya-chistaya",
+   "thing": "flour",
+   "place": "refectory",
+   "ru": "Мешок чистой муки",
+   "lesson": "Мука чистая: мера и чистота одного труда.",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.4,
+    0.55,
+    0.3
+   ],
+   "scale": [
+    1.0,
+    1.375,
+    0.75
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#33",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 5,
+    "readable": 5,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 39,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0045-vosk-pchelinyy-brusok@workshop",
+   "proxy": "p0045-vosk-pchelinyy-brusok",
+   "thing": "wax",
+   "place": "workshop",
+   "ru": "Брусок пчелиного воска",
+   "lesson": "Воск — материал обители: свеча делается руками, не покупается.",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.14,
+    0.07,
+    0.09
+   ],
+   "scale": [
+    1.4,
+    0.7,
+    0.9
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#44",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 6,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 39,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0143-pesochnye-chasy-molitvy@cell",
+   "proxy": "p0143-pesochnye-chasy-molitvy",
+   "thing": "hourglass",
+   "place": "cell",
+   "ru": "Песочные часы",
+   "lesson": "Песок меряет время, а не молитву: счёт видит только сам брат.",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.09,
+    0.16,
+    0.09
+   ],
+   "scale": [
+    1.2,
+    1.0667,
+    1.2
+   ],
+   "tris": 408,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#142",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 7,
+    "teaching": 7,
+    "readable": 5,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 39,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0192-sosud-dlya-otbora-vody@pier",
+   "proxy": "p0192-sosud-dlya-otbora-vody",
+   "thing": "water-sampler",
+   "place": "pier",
+   "ru": "Сосуд для отбора воды",
+   "lesson": "Пробу воды берут с глубины и подписывают: память воды — это ил и пробы (узел 13).",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.09,
+    0.3,
+    0.09
+   ],
+   "scale": [
+    0.72,
+    1.2,
+    0.72
+   ],
+   "tris": 408,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#191",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 6,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 39,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0218-korzina-dlya-obraztsov-so-dna@pier",
+   "proxy": "p0218-korzina-dlya-obraztsov-so-dna",
+   "thing": "sample-basket",
+   "place": "pier",
+   "ru": "Корзина для образцов со дна",
+   "lesson": "Находки идут писцу в книгу находок, а не на продажу (узел 68).",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.45,
+    0.3,
+    0.35
+   ],
+   "scale": [
+    1.125,
+    0.75,
+    0.875
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#217",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 6,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 39,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0246-voskovaya-svecha-zagotovka@workshop",
+   "proxy": "p0246-voskovaya-svecha-zagotovka",
+   "thing": "candle-blank",
+   "place": "workshop",
+   "ru": "Восковая свеча-заготовка",
+   "lesson": "Свечу макают в воск слой за слоем.",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.03,
+    0.32,
+    0.03
+   ],
+   "scale": [
+    0.15,
+    1.6,
+    0.15
+   ],
+   "tris": 64,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#245",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 6,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 39,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0258-sushilnye-ramy-dlya-ryby@pier",
+   "proxy": "p0258-sushilnye-ramy-dlya-ryby",
+   "thing": "drying-rack",
+   "place": "pier",
+   "ru": "Сушильные рамы для рыбы",
+   "lesson": "Улов сушат на ветру: запас на зиму.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    2.0,
+    1.5,
+    0.08
+   ],
+   "scale": [
+    1.0,
+    0.75,
+    0.04
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#257",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 5,
+    "readable": 5,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 39,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-letopis@scriptorium",
+   "proxy": "obj-letopis",
+   "thing": "chronicle",
+   "place": "scriptorium",
+   "ru": "Раскрытая летопись",
+   "lesson": "Погодные записи: что было, записано один раз.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 536,
+   "source": "SVG/obj/obj-letopis.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 4,
+    "safety": 10
+   },
+   "total": 38,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-loza@courtyard",
+   "proxy": "obj-loza",
+   "thing": "vine",
+   "place": "courtyard",
+   "ru": "Виноградная лоза на шпалере",
+   "lesson": "Сухую ветвь отсекают, чтобы лоза принесла плод (Ин. 15:2).",
+   "state": "card",
+   "mount": "stand",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 904,
+   "source": "SVG/obj/obj-loza.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 6,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 38,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-pechatnaya-doska@scriptorium",
+   "proxy": "obj-pechatnaya-doska",
+   "thing": "print-block",
+   "place": "scriptorium",
+   "ru": "Печатная доска",
+   "lesson": "Оттиск повторяет доску точно; ошибка доски повторится в каждом листе.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 466,
+   "source": "SVG/obj/obj-pechatnaya-doska.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 7,
+    "teaching": 6,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 38,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-uchetnaya-kniga@refectory",
+   "proxy": "obj-uchetnaya-kniga",
+   "thing": "account-book",
+   "place": "refectory",
+   "ru": "Учётная книга",
+   "lesson": "Приход и расход записаны честно: мера, а не цена.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 810,
+   "source": "SVG/obj/obj-uchetnaya-kniga.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 8,
+    "teaching": 6,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 38,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-uchetnaya-kniga@scriptorium",
+   "proxy": "obj-uchetnaya-kniga",
+   "thing": "account-book",
+   "place": "scriptorium",
+   "ru": "Учётная книга",
+   "lesson": "Приход и расход записаны честно: мера, а не цена.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 810,
+   "source": "SVG/obj/obj-uchetnaya-kniga.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 8,
+    "teaching": 6,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 38,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0211-sonarnyy-buy-mayak@pier",
+   "proxy": "p0211-sonarnyy-buy-mayak",
+   "thing": "sonar-beacon",
+   "place": "pier",
+   "ru": "Сонарный буй-маяк",
+   "lesson": "Маяк зовёт аппарат домой одним и тем же звуком.",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.3,
+    0.6,
+    0.3
+   ],
+   "scale": [
+    0.6,
+    1.2,
+    0.6
+   ],
+   "tris": 64,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#210",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 8,
+    "teaching": 6,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 38,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0244-plotnitskiy-teslo@workshop",
+   "proxy": "p0244-plotnitskiy-teslo",
+   "thing": "adze",
+   "place": "workshop",
+   "ru": "Топор и тесло",
+   "lesson": "Топор воткнут в бревно, тесло рядом: работа, не бой.",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.07,
+    0.4,
+    0.07
+   ],
+   "scale": [
+    0.35,
+    1.0,
+    0.35
+   ],
+   "tris": 408,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#243",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 6,
+    "readable": 5,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 38,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0264-veslo-lopata-pekarya@refectory",
+   "proxy": "p0264-veslo-lopata-pekarya",
+   "thing": "peel",
+   "place": "refectory",
+   "ru": "Лопата пекаря",
+   "lesson": "Лопата ставит хлеб в жар и достаёт вовремя.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    0.2,
+    1.3,
+    0.04
+   ],
+   "scale": [
+    0.4,
+    1.3,
+    0.08
+   ],
+   "tris": 408,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#263",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 4,
+    "readable": 5,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 38,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-pismo-vesti@scriptorium",
+   "proxy": "obj-pismo-vesti",
+   "thing": "letter",
+   "place": "scriptorium",
+   "ru": "Письмо с вестями",
+   "lesson": "Почта сквозь горы: голуби Киликии и радиопакеты (узел 45).",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 778,
+   "source": "SVG/obj/obj-pismo-vesti.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 7,
+    "teaching": 6,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 37,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-posokh-promer@pier",
+   "proxy": "obj-posokh-promer",
+   "thing": "sounding-staff",
+   "place": "pier",
+   "ru": "Посох промера",
+   "lesson": "Путник проверяет лёд посохом, прежде чем ступить.",
+   "state": "card",
+   "mount": "stand",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 376,
+   "source": "SVG/obj/obj-posokh-promer.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 8,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 5,
+    "safety": 10
+   },
+   "total": 37,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-tkan-otrez@workshop",
+   "proxy": "obj-tkan-otrez",
+   "thing": "cloth",
+   "place": "workshop",
+   "ru": "Отрез ткани",
+   "lesson": "Ткань мерят шнуром, а не на глаз.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 830,
+   "source": "SVG/obj/obj-tkan-otrez.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 8,
+    "teaching": 5,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 37,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0185-meshok-soli-iz-kochkora@refectory",
+   "proxy": "p0185-meshok-soli-iz-kochkora",
+   "thing": "salt",
+   "place": "refectory",
+   "ru": "Мешок соли",
+   "lesson": "Соль берегут: её везли горами.",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.35,
+    0.45,
+    0.3
+   ],
+   "scale": [
+    0.875,
+    1.125,
+    0.75
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#184",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 8,
+    "teaching": 4,
+    "readable": 5,
+    "novelty": 10,
+    "safety": 10
+   },
+   "total": 37,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0186-kamennyy-yakor-rybatskoy-lodki@pier",
+   "proxy": "p0186-kamennyy-yakor-rybatskoy-lodki",
+   "thing": "anchor-stone",
+   "place": "pier",
+   "ru": "Каменный якорь",
+   "lesson": "Такой же якорный камень лежит на дне: вещь, а не символ.",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.35,
+    0.25,
+    0.3
+   ],
+   "scale": [
+    1.1667,
+    0.8333,
+    1.0
+   ],
+   "tris": 352,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#185",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 10,
+    "teaching": 6,
+    "readable": 5,
+    "novelty": 6,
+    "safety": 10
+   },
+   "total": 37,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-kovchezhets-matfeya@scriptorium",
+   "proxy": "obj-kovchezhets-matfeya",
+   "thing": "matthew-reliquary",
+   "place": "scriptorium",
+   "ru": "Ковчежец апостола Матфея",
+   "lesson": "Мощи апостола Матфея — сердце обители Каталанского атласа; их место — храм, которого в хабе ещё нет.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 716,
+   "source": "SVG/obj/obj-kovchezhets-matfeya.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 10,
+    "teaching": 9,
+    "readable": 7,
+    "novelty": 10,
+    "safety": 0
+   },
+   "total": 36,
+   "gate": false,
+   "flags": {
+    "holy": true,
+    "noInteract": true,
+    "noLoot": true
+   }
+  },
+  {
+   "id": "obj-kryukovaya-notatsiya@scriptorium",
+   "proxy": "obj-kryukovaya-notatsiya",
+   "thing": "neumes",
+   "place": "scriptorium",
+   "ru": "Лист певческих знаков",
+   "lesson": "Знаки напева без текста: пение а капелла записывают, а не синтезируют.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 1308,
+   "source": "SVG/obj/obj-kryukovaya-notatsiya.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 5,
+    "teaching": 6,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 10
+   },
+   "total": 36,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-raka-matfeya@scriptorium",
+   "proxy": "obj-raka-matfeya",
+   "thing": "matthew-reliquary",
+   "place": "scriptorium",
+   "ru": "Ковчежец апостола Матфея",
+   "lesson": "Мощи апостола Матфея — сердце обители Каталанского атласа; их место — храм, которого в хабе ещё нет.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 700,
+   "source": "SVG/obj/obj-raka-matfeya.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 10,
+    "teaching": 9,
+    "readable": 7,
+    "novelty": 10,
+    "safety": 0
+   },
+   "total": 36,
+   "gate": false,
+   "flags": {
+    "holy": true,
+    "noInteract": true,
+    "noLoot": true
+   }
+  },
+  {
+   "id": "obj-stupka@refectory",
+   "proxy": "obj-stupka",
+   "thing": "mortar",
+   "place": "refectory",
+   "ru": "Ступка",
+   "lesson": "Толчёт тот, кто ждёт.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 602,
+   "source": "public/ludus/art/obj-stupka.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 8,
+    "teaching": 4,
+    "readable": 7,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 36,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0239-tkatskiy-stanok@workshop",
+   "proxy": "p0239-tkatskiy-stanok",
+   "thing": "loom",
+   "place": "workshop",
+   "ru": "Ткацкий станок",
+   "lesson": "Уток ложится нить за нитью; узор виден только в конце.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    1.2,
+    1.4,
+    0.8
+   ],
+   "scale": [
+    0.8,
+    0.9333,
+    0.5333
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#238",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 8,
+    "teaching": 7,
+    "readable": 2,
+    "novelty": 9,
+    "safety": 10
+   },
+   "total": 36,
+   "gate": false,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "p0312-korzina-s-kamnyami-gruzilami-dlya-seti@pier",
+   "proxy": "p0312-korzina-s-kamnyami-gruzilami-dlya-seti",
+   "thing": "sinker-basket",
+   "place": "pier",
+   "ru": "Корзина камней-грузил",
+   "lesson": "Грузила сети: такие же лежат на дне у свай.",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.35,
+    0.3,
+    0.35
+   ],
+   "scale": [
+    1.1667,
+    1.0,
+    1.1667
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#311",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 5,
+    "readable": 5,
+    "novelty": 7,
+    "safety": 10
+   },
+   "total": 36,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-evangelie@scriptorium",
+   "proxy": "obj-evangelie",
+   "thing": "gospel",
+   "place": "scriptorium",
+   "ru": "Евангелие напрестольное",
+   "lesson": "Место Евангелия — престол; в хабе его нет.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 858,
+   "source": "public/ludus/art/obj-evangelie.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 10,
+    "teaching": 9,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 0
+   },
+   "total": 35,
+   "gate": false,
+   "flags": {
+    "holy": true,
+    "noInteract": true,
+    "noLoot": true
+   }
+  },
+  {
+   "id": "obj-poklonnyi-krest@pier",
+   "proxy": "obj-poklonnyi-krest",
+   "thing": "worship-cross",
+   "place": "pier",
+   "ru": "Поклонный крест у берега",
+   "lesson": "Нет прокси формы креста: карточка и куб 2,5 м его не заменяют.",
+   "state": "card",
+   "mount": "stand",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 516,
+   "source": "SVG/obj/obj-poklonnyi-krest.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 10,
+    "teaching": 9,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 0
+   },
+   "total": 35,
+   "gate": false,
+   "flags": {
+    "holy": true,
+    "noInteract": true,
+    "noLoot": true
+   }
+  },
+  {
+   "id": "obj-bell@courtyard",
+   "proxy": "obj-bell",
+   "thing": "bell",
+   "place": "courtyard",
+   "ru": "Колокол",
+   "lesson": "Нет звонницы; колокол — только по уставу.",
+   "state": "card",
+   "mount": "stand",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    2.1739,
+    2.1739,
+    2.1739
+   ],
+   "tris": 234,
+   "source": "public/ludus/art/obj-bell.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 10,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 0
+   },
+   "total": 34,
+   "gate": false,
+   "flags": {
+    "holy": true,
+    "noInteract": true,
+    "noLoot": true
+   }
+  },
+  {
+   "id": "obj-gramota@scriptorium",
+   "proxy": "obj-gramota",
+   "thing": "charter",
+   "place": "scriptorium",
+   "ru": "Берестяная грамота",
+   "lesson": "Факт процарапан, гипотеза записана углём (ТАБУ №0.38 п. 3).",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.3333,
+    1.3333,
+    1.3333
+   ],
+   "tris": 270,
+   "source": "public/ludus/art/obj-gramota.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 5,
+    "teaching": 6,
+    "readable": 7,
+    "novelty": 6,
+    "safety": 10
+   },
+   "total": 34,
+   "gate": true,
+   "flags": {
+    "holy": false,
+    "noInteract": false,
+    "noLoot": false
+   }
+  },
+  {
+   "id": "obj-kadilo@scriptorium",
+   "proxy": "obj-kadilo",
+   "thing": "censer",
+   "place": "scriptorium",
+   "ru": "Кадило",
+   "lesson": "Место кадила — храм; в хабе его нет.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 644,
+   "source": "public/ludus/art/obj-kadilo.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 10,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 0
+   },
+   "total": 34,
+   "gate": false,
+   "flags": {
+    "holy": true,
+    "noInteract": true,
+    "noLoot": true
+   }
+  },
+  {
+   "id": "obj-potir@refectory",
+   "proxy": "obj-potir",
+   "thing": "chalice",
+   "place": "refectory",
+   "ru": "Потир",
+   "lesson": "Место потира — алтарь; в хабе его нет.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 582,
+   "source": "SVG/obj/obj-potir.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 10,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 0
+   },
+   "total": 34,
+   "gate": false,
+   "flags": {
+    "holy": true,
+    "noInteract": true,
+    "noLoot": true
+   }
+  },
+  {
+   "id": "obj-prosfora@refectory",
+   "proxy": "obj-prosfora",
+   "thing": "prosphora",
+   "place": "refectory",
+   "ru": "Просфора",
+   "lesson": "Просфора — для литургии, не для трапезы.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 561,
+   "source": "public/ludus/art/obj-prosfora.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 10,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 0
+   },
+   "total": 34,
+   "gate": false,
+   "flags": {
+    "holy": true,
+    "noInteract": true,
+    "noLoot": true
+   }
+  },
+  {
+   "id": "obj-kairak@courtyard",
+   "proxy": "obj-kairak",
+   "thing": "kairak",
+   "place": "courtyard",
+   "ru": "Кайрак — надгробный камень с крестом",
+   "lesson": "Надгробие — на кладбище, не во дворе; мёртвые не ресурс.",
+   "state": "card",
+   "mount": "stand",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 936,
+   "source": "SVG/obj/obj-kairak.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 10,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 0
+   },
+   "total": 33,
+   "gate": false,
+   "flags": {
+    "holy": true,
+    "noInteract": true,
+    "noLoot": true
+   }
+  },
+  {
+   "id": "obj-kayrak@courtyard",
+   "proxy": "obj-kayrak",
+   "thing": "kairak",
+   "place": "courtyard",
+   "ru": "Кайрак — надгробный камень с крестом",
+   "lesson": "Надгробие — на кладбище, не во дворе; мёртвые не ресурс.",
+   "state": "card",
+   "mount": "stand",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 988,
+   "source": "SVG/obj/obj-kayrak.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 10,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 0
+   },
+   "total": 33,
+   "gate": false,
+   "flags": {
+    "holy": true,
+    "noInteract": true,
+    "noLoot": true
+   }
+  },
+  {
+   "id": "obj-kutya@refectory",
+   "proxy": "obj-kutya",
+   "thing": "kutya",
+   "place": "refectory",
+   "ru": "Кутья",
+   "lesson": "Кутью приносят в храм на память усопших.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 1130,
+   "source": "SVG/obj/obj-kutya.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 9,
+    "safety": 0
+   },
+   "total": 32,
+   "gate": false,
+   "flags": {
+    "holy": true,
+    "noInteract": true,
+    "noLoot": true
+   }
+  },
+  {
+   "id": "p0065-poklonnyy-krest-u-berega@pier",
+   "proxy": "p0065-poklonnyy-krest-u-berega",
+   "thing": "worship-cross",
+   "place": "pier",
+   "ru": "Поклонный крест у берега",
+   "lesson": "Нет прокси формы креста: карточка и куб 2,5 м его не заменяют.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    0.9,
+    2.5,
+    0.12
+   ],
+   "scale": [
+    0.36,
+    1.0,
+    0.048
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#64",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 10,
+    "teaching": 9,
+    "readable": 2,
+    "novelty": 10,
+    "safety": 0
+   },
+   "total": 31,
+   "gate": false,
+   "flags": {
+    "holy": true,
+    "noInteract": true,
+    "noLoot": true
+   }
+  },
+  {
+   "id": "p0144-lampadka-keleynaya-glinyanaya@cell",
+   "proxy": "p0144-lampadka-keleynaya-glinyanaya",
+   "thing": "cell-lampada",
+   "place": "cell",
+   "ru": "Лампадка келейная",
+   "lesson": "Лампада горит перед образом; в келье хаба образа нет.",
+   "state": "volume",
+   "mount": "table",
+   "lay": false,
+   "size_m": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "scale": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "tris": 352,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#143",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 5,
+    "novelty": 9,
+    "safety": 0
+   },
+   "total": 31,
+   "gate": false,
+   "flags": {
+    "holy": true,
+    "noInteract": true,
+    "noLoot": true
+   }
+  },
+  {
+   "id": "obj-chasha-ikhtis@refectory",
+   "proxy": "obj-chasha-ikhtis",
+   "thing": "ichthys-bowl",
+   "place": "refectory",
+   "ru": "Чаша со знаком рыбы",
+   "lesson": "Знак ИХТИС — имя Христово: не посуда-декор.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 512,
+   "source": "SVG/obj/obj-chasha-ikhtis.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 7,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 0
+   },
+   "total": 29,
+   "gate": false,
+   "flags": {
+    "holy": true,
+    "noInteract": true,
+    "noLoot": true
+   }
+  },
+  {
+   "id": "obj-ikhtis-keramika@refectory",
+   "proxy": "obj-ikhtis-keramika",
+   "thing": "ichthys-bowl",
+   "place": "refectory",
+   "ru": "Чаша со знаком рыбы",
+   "lesson": "Знак ИХТИС — имя Христово: не посуда-декор.",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 606,
+   "source": "SVG/obj/obj-ikhtis-keramika.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 7,
+    "teaching": 7,
+    "readable": 7,
+    "novelty": 8,
+    "safety": 0
+   },
+   "total": 29,
+   "gate": false,
+   "flags": {
+    "holy": true,
+    "noInteract": true,
+    "noLoot": true
+   }
+  },
+  {
+   "id": "p0081-bilo-derevyannoe@courtyard",
+   "proxy": "p0081-bilo-derevyannoe",
+   "thing": "semantron",
+   "place": "courtyard",
+   "ru": "Било деревянное",
+   "lesson": "Било зовёт на службу по уставу; прокси — куб 1 м.",
+   "state": "volume",
+   "mount": "floor",
+   "lay": false,
+   "size_m": [
+    1.2,
+    0.2,
+    0.08
+   ],
+   "scale": [
+    1.2,
+    0.2,
+    0.08
+   ],
+   "tris": 12,
+   "source": "docs/PROMPTS_1070_2026-09-29.json#80",
+   "method": "primitive-from-box-field",
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 2,
+    "novelty": 10,
+    "safety": 0
+   },
+   "total": 29,
+   "gate": false,
+   "flags": {
+    "holy": true,
+    "noInteract": true,
+    "noLoot": true
+   }
+  },
+  {
+   "id": "obj-chetki@cell",
+   "proxy": "obj-chetki",
+   "thing": "prayer-rope",
+   "place": "cell",
+   "ru": "Чётки",
+   "lesson": "Вервица уже есть в хабе (узлы практики).",
+   "state": "card",
+   "mount": "wall",
+   "lay": false,
+   "size_m": [
+    0.6,
+    0.6
+   ],
+   "scale": [
+    1.5306,
+    1.5306,
+    1.5306
+   ],
+   "tris": 1126,
+   "source": "public/ludus/art/obj-chetki.svg",
+   "method": "layered-svg-extrusion",
+   "score": {
+    "truth": 9,
+    "teaching": 8,
+    "readable": 7,
+    "novelty": 0,
+    "safety": 0
+   },
+   "total": 24,
+   "gate": false,
+   "flags": {
+    "holy": true,
+    "noInteract": true,
+    "noLoot": true
+   }
+  }
+ ]
+}

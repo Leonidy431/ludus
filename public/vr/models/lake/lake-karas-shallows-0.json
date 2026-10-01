@@ -2,12 +2,85 @@
  "id": "lake-karas-shallows-0",
  "kind": "lake",
  "lod": "proxy",
- "tris": 24,
- "bbox_m": [
-  0.306,
-  0.075,
-  0.03
+ "detail": "procedural-detailed",
+ "details": [
+  "dark back",
+  "pale belly",
+  "dorsal fin",
+  "anal fin",
+  "fork tail fin",
+  "pectoral fins",
+  "pelvic fins",
+  "eyes",
+  "gill cover",
+  "school of 5"
  ],
+ "tris": 2195,
+ "bbox_m": [
+  0.55,
+  0.307,
+  0.279
+ ],
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.55,
+   0.307,
+   0.279
+  ],
+  "centre_m": [
+   -0.153,
+   0.041,
+   -0.107
+  ]
+ },
+ "materials": [
+  {
+   "name": "fish-back",
+   "colour": "#726d59",
+   "roughness": 0.55,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-belly",
+   "colour": "#d1ccb7",
+   "roughness": 0.4,
+   "metallic": 0.1,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-fin",
+   "colour": "#938d73",
+   "roughness": 0.7,
+   "metallic": 0.0,
+   "alpha": 0.85
+  },
+  {
+   "name": "fish-mark",
+   "colour": "#37352b",
+   "roughness": 0.7,
+   "metallic": 0.0,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-iris",
+   "colour": "#c8b070",
+   "roughness": 0.3,
+   "metallic": 0.3,
+   "alpha": 1.0
+  },
+  {
+   "name": "fish-pupil",
+   "colour": "#0a0a0a",
+   "roughness": 0.2,
+   "metallic": 0.0,
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "generator": "scripts/meta3d/lake_details.py",
+ "seed": 111222630759751,
  "name": "Серебряный карась: стайка",
  "category": "fish",
  "band": "shallows",
@@ -19,6 +92,9 @@
   "noLoot": false,
   "loot": "keep"
  },
- "source": "public/ludus/data/lake-objects-99.json",
- "method": "lake-kit-primitives"
+ "noLoot": false,
+ "noInteract": false,
+ "size_m": 0.25,
+ "source": "godot/data/lake-objects-99.json (scripts/lake/lake_objects.py) + docs/ISSYK_KUL_FISH.md",
+ "method": "lake-detail-kit (numpy, own glTF writer)"
 }

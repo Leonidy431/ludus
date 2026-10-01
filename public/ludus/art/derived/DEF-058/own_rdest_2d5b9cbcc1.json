@@ -1,0 +1,1200 @@
+{
+  "name": "own_rdest_2d5b9cbcc1",
+  "id": "2d5b9cbcc1",
+  "seed": "2d5b9cbcc1d15410dc220f80502c1741af864cc2",
+  "slot": "DEF-058",
+  "thing": "rdest",
+  "register": {
+    "id": "rdest",
+    "category": "plant",
+    "ru": "Рдест",
+    "en": "Pondweed",
+    "depth_m": [
+      0,
+      8
+    ],
+    "shape": "stems",
+    "size_m": 0.8,
+    "colour": "#6d8a4c",
+    "states": [
+      "густой",
+      "редкий",
+      "колышется"
+    ]
+  },
+  "origin": "own-procedural-drawing",
+  "method": "own-procedural",
+  "raw_material": false,
+  "source": {
+    "repo": "ludus (own drawing)",
+    "path": "scripts/raw_assets/neutral_procedural.py",
+    "commit": "neutral-drawing-r1"
+  },
+  "repo": "ludus (own drawing)",
+  "path": "scripts/raw_assets/neutral_procedural.py",
+  "commit": "neutral-drawing-r1",
+  "license": "project (own drawing, no third-party material)",
+  "license_file": null,
+  "threshold": 0.35,
+  "shape_basis": "nearest-sibling",
+  "reference_profile": {
+    "name": "plants",
+    "aspect": [
+      0.1,
+      0.9
+    ],
+    "fill": [
+      0.1,
+      0.7
+    ],
+    "category": "plant"
+  },
+  "pool": {
+    "size": 72,
+    "fitting_seen": 12,
+    "refused": {},
+    "chosen": 12
+  },
+  "constitution": "FORM: a real thing of the lake register in its real states -> ACTION: the player reads the floor by it -> GOAL: reading a place by its real traces (TABOO 0.03 rule 3)",
+  "variants": [
+    {
+      "slot": "v01",
+      "file": "own_rdest_2d5b9cbcc1_v01.png",
+      "state": "dense",
+      "params": {
+        "state": "dense",
+        "n": 3,
+        "height": 214,
+        "lean": 0.0,
+        "sway": 8,
+        "key": "rdest:dense:3:214:0.0"
+      },
+      "shape_change": 0.4715,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.465,
+        "fill": 0.384,
+        "base": 0.185
+      },
+      "area": 7292,
+      "hitbox": {
+        "bbox": [
+          85,
+          37,
+          179,
+          239
+        ],
+        "area": 7292,
+        "radius": 48.18,
+        "hull": [
+          [
+            85,
+            187
+          ],
+          [
+            87,
+            117
+          ],
+          [
+            92,
+            59
+          ],
+          [
+            104,
+            37
+          ],
+          [
+            106,
+            37
+          ],
+          [
+            124,
+            38
+          ],
+          [
+            163,
+            65
+          ],
+          [
+            179,
+            80
+          ],
+          [
+            179,
+            83
+          ],
+          [
+            176,
+            148
+          ],
+          [
+            174,
+            180
+          ],
+          [
+            157,
+            238
+          ],
+          [
+            156,
+            239
+          ],
+          [
+            103,
+            239
+          ],
+          [
+            85,
+            189
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.rdest.2d5b9cbcc1.v01"
+    },
+    {
+      "slot": "v02",
+      "file": "own_rdest_2d5b9cbcc1_v02.png",
+      "state": "sparse",
+      "params": {
+        "state": "sparse",
+        "n": 1,
+        "height": 214,
+        "lean": 0.0,
+        "sway": 10,
+        "key": "rdest:sparse:1:214:0.0"
+      },
+      "shape_change": 0.732,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.246,
+        "fill": 0.276,
+        "base": 0.182
+      },
+      "area": 2479,
+      "hitbox": {
+        "bbox": [
+          101,
+          48,
+          148,
+          239
+        ],
+        "area": 2479,
+        "radius": 28.09,
+        "hull": [
+          [
+            101,
+            85
+          ],
+          [
+            104,
+            55
+          ],
+          [
+            119,
+            48
+          ],
+          [
+            121,
+            48
+          ],
+          [
+            136,
+            68
+          ],
+          [
+            142,
+            104
+          ],
+          [
+            148,
+            173
+          ],
+          [
+            148,
+            175
+          ],
+          [
+            129,
+            239
+          ],
+          [
+            125,
+            239
+          ],
+          [
+            107,
+            190
+          ],
+          [
+            103,
+            122
+          ],
+          [
+            101,
+            87
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.rdest.2d5b9cbcc1.v02"
+    },
+    {
+      "slot": "v03",
+      "file": "own_rdest_2d5b9cbcc1_v03.png",
+      "state": "swaying",
+      "params": {
+        "state": "swaying",
+        "n": 1,
+        "height": 214,
+        "lean": 0.0,
+        "sway": 24,
+        "key": "rdest:swaying:1:214:0.0"
+      },
+      "shape_change": 0.4611,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.287,
+        "fill": 0.277,
+        "base": 0.154
+      },
+      "area": 2414,
+      "hitbox": {
+        "bbox": [
+          110,
+          65,
+          160,
+          239
+        ],
+        "area": 2414,
+        "radius": 27.72,
+        "hull": [
+          [
+            110,
+            193
+          ],
+          [
+            118,
+            68
+          ],
+          [
+            125,
+            65
+          ],
+          [
+            126,
+            65
+          ],
+          [
+            154,
+            82
+          ],
+          [
+            160,
+            115
+          ],
+          [
+            160,
+            117
+          ],
+          [
+            159,
+            146
+          ],
+          [
+            150,
+            182
+          ],
+          [
+            149,
+            185
+          ],
+          [
+            129,
+            238
+          ],
+          [
+            128,
+            239
+          ],
+          [
+            125,
+            239
+          ],
+          [
+            111,
+            198
+          ],
+          [
+            110,
+            195
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.rdest.2d5b9cbcc1.v03"
+    },
+    {
+      "slot": "v04",
+      "file": "own_rdest_2d5b9cbcc1_v04.png",
+      "state": "dense",
+      "params": {
+        "state": "dense",
+        "n": 2,
+        "height": 214,
+        "lean": 0.0,
+        "sway": 8,
+        "key": "rdest:dense:2:214:0.0"
+      },
+      "shape_change": 0.4376,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.397,
+        "fill": 0.388,
+        "base": 0.16
+      },
+      "area": 4930,
+      "hitbox": {
+        "bbox": [
+          94,
+          60,
+          165,
+          239
+        ],
+        "area": 4930,
+        "radius": 39.61,
+        "hull": [
+          [
+            94,
+            157
+          ],
+          [
+            96,
+            126
+          ],
+          [
+            101,
+            95
+          ],
+          [
+            107,
+            65
+          ],
+          [
+            124,
+            60
+          ],
+          [
+            125,
+            60
+          ],
+          [
+            150,
+            62
+          ],
+          [
+            151,
+            63
+          ],
+          [
+            165,
+            79
+          ],
+          [
+            165,
+            85
+          ],
+          [
+            163,
+            147
+          ],
+          [
+            161,
+            179
+          ],
+          [
+            144,
+            238
+          ],
+          [
+            143,
+            239
+          ],
+          [
+            115,
+            239
+          ],
+          [
+            98,
+            201
+          ],
+          [
+            95,
+            192
+          ],
+          [
+            94,
+            160
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.rdest.2d5b9cbcc1.v04"
+    },
+    {
+      "slot": "v05",
+      "file": "own_rdest_2d5b9cbcc1_v05.png",
+      "state": "sparse",
+      "params": {
+        "state": "sparse",
+        "n": 2,
+        "height": 214,
+        "lean": 0.0,
+        "sway": 10,
+        "key": "rdest:sparse:2:214:0.0"
+      },
+      "shape_change": 0.5462,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.352,
+        "fill": 0.315,
+        "base": 0.19
+      },
+      "area": 5168,
+      "hitbox": {
+        "bbox": [
+          88,
+          23,
+          164,
+          239
+        ],
+        "area": 5168,
+        "radius": 40.56,
+        "hull": [
+          [
+            88,
+            129
+          ],
+          [
+            89,
+            97
+          ],
+          [
+            94,
+            70
+          ],
+          [
+            149,
+            23
+          ],
+          [
+            150,
+            23
+          ],
+          [
+            164,
+            28
+          ],
+          [
+            164,
+            66
+          ],
+          [
+            163,
+            97
+          ],
+          [
+            159,
+            170
+          ],
+          [
+            142,
+            239
+          ],
+          [
+            111,
+            239
+          ],
+          [
+            93,
+            196
+          ],
+          [
+            90,
+            162
+          ],
+          [
+            88,
+            130
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.rdest.2d5b9cbcc1.v05"
+    },
+    {
+      "slot": "v06",
+      "file": "own_rdest_2d5b9cbcc1_v06.png",
+      "state": "swaying",
+      "params": {
+        "state": "swaying",
+        "n": 2,
+        "height": 214,
+        "lean": 0.0,
+        "sway": 24,
+        "key": "rdest:swaying:2:214:0.0"
+      },
+      "shape_change": 0.4376,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.407,
+        "fill": 0.305,
+        "base": 0.174
+      },
+      "area": 5162,
+      "hitbox": {
+        "bbox": [
+          84,
+          35,
+          167,
+          239
+        ],
+        "area": 5162,
+        "radius": 40.54,
+        "hull": [
+          [
+            84,
+            117
+          ],
+          [
+            88,
+            87
+          ],
+          [
+            95,
+            57
+          ],
+          [
+            125,
+            35
+          ],
+          [
+            127,
+            35
+          ],
+          [
+            135,
+            36
+          ],
+          [
+            161,
+            113
+          ],
+          [
+            167,
+            143
+          ],
+          [
+            167,
+            146
+          ],
+          [
+            165,
+            179
+          ],
+          [
+            164,
+            183
+          ],
+          [
+            141,
+            237
+          ],
+          [
+            140,
+            239
+          ],
+          [
+            115,
+            239
+          ],
+          [
+            94,
+            192
+          ],
+          [
+            93,
+            189
+          ],
+          [
+            84,
+            118
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.rdest.2d5b9cbcc1.v06"
+    },
+    {
+      "slot": "v07",
+      "file": "own_rdest_2d5b9cbcc1_v07.png",
+      "state": "dense",
+      "params": {
+        "state": "dense",
+        "n": 3,
+        "height": 214,
+        "lean": 0.4,
+        "sway": 8,
+        "key": "rdest:dense:3:214:0.4"
+      },
+      "shape_change": 0.4715,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.471,
+        "fill": 0.367,
+        "base": 0.207
+      },
+      "area": 7485,
+      "hitbox": {
+        "bbox": [
+          81,
+          31,
+          179,
+          239
+        ],
+        "area": 7485,
+        "radius": 48.81,
+        "hull": [
+          [
+            81,
+            153
+          ],
+          [
+            84,
+            119
+          ],
+          [
+            91,
+            86
+          ],
+          [
+            101,
+            53
+          ],
+          [
+            164,
+            31
+          ],
+          [
+            167,
+            31
+          ],
+          [
+            179,
+            34
+          ],
+          [
+            179,
+            102
+          ],
+          [
+            177,
+            141
+          ],
+          [
+            174,
+            173
+          ],
+          [
+            153,
+            239
+          ],
+          [
+            101,
+            239
+          ],
+          [
+            81,
+            191
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.rdest.2d5b9cbcc1.v07"
+    },
+    {
+      "slot": "v08",
+      "file": "own_rdest_2d5b9cbcc1_v08.png",
+      "state": "sparse",
+      "params": {
+        "state": "sparse",
+        "n": 1,
+        "height": 214,
+        "lean": 0.4,
+        "sway": 10,
+        "key": "rdest:sparse:1:214:0.4"
+      },
+      "shape_change": 0.6097,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.305,
+        "fill": 0.256,
+        "base": 0.167
+      },
+      "area": 2447,
+      "hitbox": {
+        "bbox": [
+          107,
+          62,
+          161,
+          239
+        ],
+        "area": 2447,
+        "radius": 27.91,
+        "hull": [
+          [
+            107,
+            158
+          ],
+          [
+            113,
+            128
+          ],
+          [
+            121,
+            96
+          ],
+          [
+            131,
+            64
+          ],
+          [
+            155,
+            62
+          ],
+          [
+            157,
+            62
+          ],
+          [
+            161,
+            79
+          ],
+          [
+            161,
+            82
+          ],
+          [
+            148,
+            180
+          ],
+          [
+            131,
+            238
+          ],
+          [
+            130,
+            239
+          ],
+          [
+            127,
+            239
+          ],
+          [
+            109,
+            196
+          ],
+          [
+            108,
+            193
+          ],
+          [
+            107,
+            160
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.rdest.2d5b9cbcc1.v08"
+    },
+    {
+      "slot": "v09",
+      "file": "own_rdest_2d5b9cbcc1_v09.png",
+      "state": "swaying",
+      "params": {
+        "state": "swaying",
+        "n": 1,
+        "height": 214,
+        "lean": 0.4,
+        "sway": 24,
+        "key": "rdest:swaying:1:214:0.4"
+      },
+      "shape_change": 0.4611,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.266,
+        "fill": 0.303,
+        "base": 0.154
+      },
+      "area": 2524,
+      "hitbox": {
+        "bbox": [
+          114,
+          62,
+          161,
+          239
+        ],
+        "area": 2524,
+        "radius": 28.34,
+        "hull": [
+          [
+            114,
+            191
+          ],
+          [
+            116,
+            65
+          ],
+          [
+            128,
+            62
+          ],
+          [
+            129,
+            62
+          ],
+          [
+            153,
+            78
+          ],
+          [
+            161,
+            113
+          ],
+          [
+            161,
+            147
+          ],
+          [
+            158,
+            178
+          ],
+          [
+            157,
+            181
+          ],
+          [
+            132,
+            237
+          ],
+          [
+            131,
+            239
+          ],
+          [
+            128,
+            239
+          ],
+          [
+            114,
+            194
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.rdest.2d5b9cbcc1.v09"
+    },
+    {
+      "slot": "v10",
+      "file": "own_rdest_2d5b9cbcc1_v10.png",
+      "state": "dense",
+      "params": {
+        "state": "dense",
+        "n": 2,
+        "height": 214,
+        "lean": 0.4,
+        "sway": 8,
+        "key": "rdest:dense:2:214:0.4"
+      },
+      "shape_change": 0.4213,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.356,
+        "fill": 0.36,
+        "base": 0.205
+      },
+      "area": 5393,
+      "hitbox": {
+        "bbox": [
+          98,
+          34,
+          171,
+          239
+        ],
+        "area": 5393,
+        "radius": 41.43,
+        "hull": [
+          [
+            98,
+            187
+          ],
+          [
+            101,
+            155
+          ],
+          [
+            105,
+            118
+          ],
+          [
+            111,
+            86
+          ],
+          [
+            119,
+            55
+          ],
+          [
+            143,
+            35
+          ],
+          [
+            155,
+            34
+          ],
+          [
+            157,
+            34
+          ],
+          [
+            171,
+            35
+          ],
+          [
+            171,
+            104
+          ],
+          [
+            166,
+            173
+          ],
+          [
+            144,
+            239
+          ],
+          [
+            116,
+            239
+          ],
+          [
+            100,
+            195
+          ],
+          [
+            98,
+            189
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.rdest.2d5b9cbcc1.v10"
+    },
+    {
+      "slot": "v11",
+      "file": "own_rdest_2d5b9cbcc1_v11.png",
+      "state": "sparse",
+      "params": {
+        "state": "sparse",
+        "n": 2,
+        "height": 214,
+        "lean": 0.4,
+        "sway": 10,
+        "key": "rdest:sparse:2:214:0.4"
+      },
+      "shape_change": 0.4213,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.385,
+        "fill": 0.306,
+        "base": 0.186
+      },
+      "area": 5096,
+      "hitbox": {
+        "bbox": [
+          93,
+          31,
+          173,
+          239
+        ],
+        "area": 5096,
+        "radius": 40.28,
+        "hull": [
+          [
+            93,
+            188
+          ],
+          [
+            96,
+            154
+          ],
+          [
+            110,
+            55
+          ],
+          [
+            156,
+            31
+          ],
+          [
+            158,
+            31
+          ],
+          [
+            173,
+            33
+          ],
+          [
+            173,
+            38
+          ],
+          [
+            170,
+            102
+          ],
+          [
+            164,
+            171
+          ],
+          [
+            141,
+            238
+          ],
+          [
+            140,
+            239
+          ],
+          [
+            111,
+            239
+          ],
+          [
+            110,
+            238
+          ],
+          [
+            93,
+            192
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.rdest.2d5b9cbcc1.v11"
+    },
+    {
+      "slot": "v12",
+      "file": "own_rdest_2d5b9cbcc1_v12.png",
+      "state": "swaying",
+      "params": {
+        "state": "swaying",
+        "n": 2,
+        "height": 214,
+        "lean": 0.4,
+        "sway": 24,
+        "key": "rdest:swaying:2:214:0.4"
+      },
+      "shape_change": 0.4878,
+      "shape_basis": "nearest-sibling",
+      "fits_reference": true,
+      "reference_stats": {
+        "aspect": 0.481,
+        "fill": 0.283,
+        "base": 0.17
+      },
+      "area": 4867,
+      "hitbox": {
+        "bbox": [
+          94,
+          50,
+          185,
+          239
+        ],
+        "area": 4867,
+        "radius": 39.36,
+        "hull": [
+          [
+            94,
+            189
+          ],
+          [
+            98,
+            155
+          ],
+          [
+            106,
+            120
+          ],
+          [
+            135,
+            56
+          ],
+          [
+            155,
+            51
+          ],
+          [
+            165,
+            50
+          ],
+          [
+            166,
+            50
+          ],
+          [
+            167,
+            51
+          ],
+          [
+            185,
+            70
+          ],
+          [
+            185,
+            73
+          ],
+          [
+            184,
+            108
+          ],
+          [
+            183,
+            113
+          ],
+          [
+            166,
+            181
+          ],
+          [
+            145,
+            238
+          ],
+          [
+            144,
+            239
+          ],
+          [
+            114,
+            239
+          ],
+          [
+            94,
+            192
+          ]
+        ]
+      },
+      "analytics_id": "ludus.variant.neutral.rdest.2d5b9cbcc1.v12"
+    }
+  ],
+  "status": "ok",
+  "shortfall": 0,
+  "shape_change": 0.4213
+}
