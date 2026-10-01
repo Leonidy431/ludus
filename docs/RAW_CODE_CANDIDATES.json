@@ -17009,5 +17009,2075 @@
   "score": 5,
   "attribution": [],
   "slot": "DEF-039"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/ActivateAbilitiesAnyTimeYouCouldCastInstantEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/AddBasicLandTypeAllLandsEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/AddCardColorAttachedEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/AddCardSubTypeSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/AddCardSubTypeTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/AddCardSubtypeAllEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/AddCardSubtypeAttachedEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/AddCardSuperTypeAttachedEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/AddCardTypeAttachedEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/AddCardTypeSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/AddCardTypeTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/AddChosenSubtypeEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/AddCreatureSubTypeAllMultiZoneEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/AddCreatureTypeAdditionEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/AssignNoCombatDamageSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/AssignNoCombatDamageTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BecomesAllBasicsControlledEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BecomesAuraSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BecomesBasicLandEnchantedEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BecomesBasicLandTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BecomesChosenCreatureTypeSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BecomesChosenCreatureTypeTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BecomesColorOrColorsTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BecomesColorSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BecomesColorTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BecomesCreatureAllEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BecomesCreatureAttachedEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BecomesCreatureAttachedWithActivatedAbilityOrSpellEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BecomesCreatureIfVehicleEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BecomesCreatureSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BecomesCreatureTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BecomesCreatureTypeTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BecomesEnchantmentSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BecomesFaceDownCreatureAllEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BecomesFaceDownCreatureEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BecomesSubtypeAllEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BoostAllEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BoostAllOfChosenSubtypeEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BoostControlledEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BoostEnchantedEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BoostEquippedEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BoostOpponentsEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BoostPairedEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BoostSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BoostSourceWhileControlsEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/BoostTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/CantBeSacrificedSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/CantCastMoreThanOneSpellEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/CantGainLifeAllEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/CantGainLifeRestOfGameTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/CantGainLifeTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/CantLoseGameSourceControllerEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/CastAsThoughItHadFlashAllEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/CastAsThoughItHadFlashSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/CastFromHandWithoutPayingManaCostEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/CommanderManaReplacementEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/CommanderReplacementEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/ControlEnchantedEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/CreaturesBecomeOtherTypeEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/CreaturesCantGetOrHaveAbilityEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/DamageCantBePreventedEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/DontLoseByZeroOrLessLifeEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/EachSpellYouCastHasReplicateEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/ExchangeControlTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainAbilityAllEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainAbilityAllOfChosenSubtypeEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainAbilityAttachedEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainAbilityControlledEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainAbilityControlledSpellsEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainAbilityControllerEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainAbilityPairedEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainAbilitySourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainAbilityTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainAbilityWithAttachmentEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainAllCreatureTypesAttachedEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainAllCreatureTypesTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainAnchorWordAbilitySourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainClassAbilitySourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainControlAllControlledTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainControlAllEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainControlAllOwnedEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainControlAllUntapGainHasteEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainControlTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainEvokeAbilityEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainFlashbackTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainHarnessedAbilitySourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainProtectionFromColorAllEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainProtectionFromColorSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainProtectionFromColorTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainProtectionFromTypeTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainRetraceYourGraveyardEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/GainSuspendEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/HasSubtypesSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/IsAllCreatureTypesSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/LifeTotalCantChangeControllerEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/LookAtOpponentFaceDownCreaturesAnyTimeEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/LookAtTopCardOfLibraryAnyTimeEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/LoseAbilityAllEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/LoseAbilityAttachedEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/LoseAbilitySourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/LoseAbilityTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/LoseAllAbilitiesAllEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/LoseAllAbilitiesAttachedEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/LoseAllAbilitiesTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/LoseAllCreatureTypesTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/LoseArtifactTypeTargetEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/LoseCreatureTypeSourceEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/MaximumHandSizeControllerEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/ModifyObjectAllMultiZoneEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/NextSpellCastHasAbilityEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/NonbasicLandsAreMountainsEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/PlayAdditionalLandsAllEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/PlayAdditionalLandsControllerEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/PlayFromTopOfLibraryEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage/src/main/java/mage/abilities/effects/common/continuous/PlayWithHandRevealedEffect.java",
+  "kind": "code",
+  "hits": [
+   "effect",
+   "effects",
+   "abilities",
+   "continuous"
+  ],
+  "score": 4,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-024"
  }
 ]
