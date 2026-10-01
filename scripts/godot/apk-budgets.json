@@ -89,8 +89,8 @@
           "blocker": "Б-1"
         },
         "dive": {
-          "limit": 255,
-          "why": "measured 255 (depth-3m: main 3D 149 + canvas 4 + three SubViewports 102), llvmpipe 1280x720; ratchet: may only go down",
+          "limit": 96,
+          "why": "measured 96 (depth-3m: main 3D 60 + canvas 4 + one cockpit SubViewport a frame, the console's 32), llvmpipe 1280x720, after DiveBatch (godot/scripts/dive_batch.gd: the body, each thing within itself, the drawings from texture arrays) and the cockpit viewports taking turns; was 255 (149 + 4 + 32 + 51 + 19). Below the base 100, kept as a ratchet so the saving is not spent unnoticed; may only go down",
           "approval": "pending: the operator decides on Quest 2 and on the strict limit",
           "blocker": "Б-1"
         },

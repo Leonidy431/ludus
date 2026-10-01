@@ -70,6 +70,13 @@ var by_view := {}
 var proc_max_view := ""
 var worst := {}
 var dc_breakdown: Array = []
+# A scene whose SubViewports take turns (dive.gd drawn_views) says which
+# of them it set to draw.  The render info read in a frame is that of
+# the frame drawn before it, so the set from the previous call is the
+# one the numbers hold; a viewport not in it keeps its last render's
+# numbers, which are not in this frame.  null: every SubViewport counts.
+var drawn_set = null
+var drawn_frame = null
 var failed := false
 var sched_ok := false
 var sched_cost_ns := 0
@@ -176,7 +183,10 @@ func _process(delta: float) -> bool:
 		return true
 	var v: Dictionary = views[step]
 	_apply(v)
+	drawn_frame = drawn_set
 	var ms := _timed(func(): node._process(delta))
+	var dv = node.get("drawn_views")
+	drawn_set = (dv as Array).duplicate() if dv is Array else null
 	if frame > SETTLE:
 		if proc_ms.is_empty() or ms[1] > proc_ms.max():
 			proc_max_view = v.name
@@ -335,9 +345,12 @@ func _sample(view: String) -> void:
 	var sub_px := 0
 	for sv in node.find_children("*", "SubViewport", true, false):
 		var s := sv as SubViewport
+		# Its memory is held whether it draws this frame or not.
+		sub_px += s.size.x * s.size.y
+		if drawn_frame != null and not (drawn_frame as Array).has(s):
+			continue
 		var rid: RID = s.get_viewport_rid()
 		sub_prim += _info(rid, vis, pr) + _info(rid, can, pr)
-		sub_px += s.size.x * s.size.y
 		var label := "%s %dx%d" % [s.name, s.size.x, s.size.y]
 		parts.append({"viewport": label, "kind": "3d",
 			"draw_calls": _info(rid, vis, dc)})
@@ -578,6 +591,9 @@ func _finish() -> void:
 		"worst": worst,
 		"draw_calls_breakdown": dc_breakdown,
 	}
+	var bs = node.get("batch_stats")
+	if bs is Dictionary and not (bs as Dictionary).is_empty():
+		out["batch_stats"] = bs
 	if worst.has("subviewport_px"):
 		out["subviewport_bytes_est"] = worst.subviewport_px.value * per_px
 	if _headless():
@@ -650,6 +666,19 @@ func _check(out: Dictionary, budgets: Dictionary) -> int:
 		rows.append(["subviewport_bytes",
 			float(out.get("subviewport_bytes_est", 0)), b.subviewport_bytes,
 			"-", false])
+		# The dive's draw calls are counted with its drawings batched
+		# (DiveBatch.merge_drawings, from texels read back from the
+		# renderer).  If none were, the frame measured is not the frame
+		# the exception describes: the run fails rather than pass on
+		# another scene.
+		if scene_name == "dive" and not node.get("batch_off") \
+				and int(out.get("batch_stats", {}).get(
+					"drawings_batched", 0)) <= 0:
+			print(("БЮДЖЕТ dive | drawings_batched: 0 — НАРУШЕНО: рисунки "
+				+ "берега не собраны в массив текстур (рендер не вернул "
+				+ "текселы), вызовы отрисовки не те, что в исключении"))
+			print("ИТОГ dive: нарушено бюджетов — 1 (docs/APK_REQUIREMENTS.md).")
+			return 1
 	else:
 		var a: Dictionary = budgets.get("audio", {})
 		for k in ["script_ms_mean_host", "script_ms_max_host",

@@ -131,6 +131,16 @@ var rim_settled := false
 var rim_us := 0.0
 var rim_frames := 0
 var drawings := 0
+# The D6 drawings as built, for DiveBatch.merge_drawings.
+var own_sprites: Array = []
+# Б-1: what the batches took (DiveBatch), for the report and the tests.
+var batch_stats := {}
+# Б-1: the cockpit's viewports take turns (_turn_viewports).
+var view_turn := 0
+# The cockpit viewports set to draw in the coming frame, so that a
+# measurement can tell which of them the frame's draw calls hold.
+var drawn_views: Array = []
+var batch_off := false
 # GPU and CPU render time with the bubbles hidden and shown (shots).
 var gpu_ms := {"off": [], "on": []}
 # Rough cost of the bubbles, microseconds of CPU per frame (shots only).
@@ -150,6 +160,9 @@ func _ready() -> void:
 		# The same frames without the band, for before/after and cost.
 		if arg == "--rim=off":
 			rim.enabled = false
+		# The scene as drawn before Б-1's batches, for before/after.
+		if arg == "--batch=off":
+			batch_off = true
 	chronicle = _load_chronicle()
 	traces = AtlasTraces.place(atlas_data, chronicle)
 	holy_points.append_array(AtlasTraces.holy_points(traces))
@@ -167,6 +180,7 @@ func _ready() -> void:
 	_build_bubbles()
 	_build_rig()
 	_build_body()
+	_batch()
 	_build_hud()
 	_start_xr()
 	_build_audio()
@@ -489,6 +503,47 @@ func _build_own_drawings() -> void:
 			rim.drawing(sp)
 			drawings += 1
 			add_child(sp)
+			own_sprites.append(sp)
+
+
+## Б-1 (docs/APK_REQUIREMENTS.md): the still parts are drawn in fewer
+## calls (DiveBatch).  The body's model, its hydrophone and each link of
+## the arm are baked within themselves; each lake object and trace keeps
+## its own node, its box and its band, and only its own surfaces are
+## joined, so the arm reaches it as before; a holy thing is not touched;
+## the drawings of the shore are drawn from texture arrays.
+func _batch() -> void:
+	if batch_off:
+		return
+	batch_stats["body"] = DiveBatch.merge_body(body)
+	var cache := {}
+	var joined := 0
+	for p in placed + traces:
+		if thing_nodes.has(p.id) and not RimLight.is_holy(p):
+			joined += DiveBatch.merge_thing(thing_nodes[p.id], rim, cache)
+	batch_stats["thing_surfaces_joined"] = joined
+	batch_stats["drawings_batched"] = DiveBatch.merge_drawings(own_sprites,
+		rim)
+	own_sprites = own_sprites.filter(func(s): return is_instance_valid(s))
+
+
+## Б-1: the three cockpit viewports were drawn every frame (102 calls at
+## 3 m on top of the view).  They take turns now, one a frame: the front
+## camera, then the screens that show its picture, then the console.
+## Each is drawn at a third of the frame rate (24 Hz in the headset at
+## 72 Hz), and no frame carries more than one; the screens show the
+## camera's picture of the frame before, as a monitor does.
+func _turn_viewports() -> void:
+	if batch_off:
+		drawn_views = [eye_view, screens_view, console_view]
+		for v in drawn_views:
+			v.render_target_update_mode = SubViewport.UPDATE_ONCE
+		return
+	view_turn = (view_turn + 1) % 3
+	var views: Array = [eye_view, screens_view, console_view]
+	(views[view_turn] as SubViewport).render_target_update_mode = \
+		SubViewport.UPDATE_ONCE
+	drawn_views = [views[view_turn]]
 
 
 ## Where each drawing of one kit stands: the one placement the scene
@@ -998,7 +1053,7 @@ func _build_hud() -> void:
 	console_view = SubViewport.new()
 	console_view.transparent_bg = true
 	console_view.size = CONSOLE_PX
-	console_view.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	console_view.render_target_update_mode = SubViewport.UPDATE_ONCE
 	add_child(console_view)
 	console = CockpitPanel.new()
 	console.position = Vector2(8, 8)
@@ -1060,7 +1115,7 @@ func _build_screens(layer: CanvasLayer) -> void:
 	eye_view = SubViewport.new()
 	eye_view.size = CockpitScreens.CAMERA_PX
 	eye_view.world_3d = get_viewport().world_3d
-	eye_view.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	eye_view.render_target_update_mode = SubViewport.UPDATE_ONCE
 	add_child(eye_view)
 	eye = Camera3D.new()
 	eye.fov = 70.0
@@ -1071,7 +1126,7 @@ func _build_screens(layer: CanvasLayer) -> void:
 	screens_view = SubViewport.new()
 	screens_view.transparent_bg = true
 	screens_view.size = SCREENS_PX
-	screens_view.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	screens_view.render_target_update_mode = SubViewport.UPDATE_ONCE
 	add_child(screens_view)
 	screens = CockpitScreens.new()
 	screens.position = Vector2(8, 8)
@@ -1432,6 +1487,7 @@ func _process(dt: float) -> void:
 	if rov.battery <= 0.0:
 		thrust = 0.0
 	_update_screens(dt, thrust)
+	_turn_viewports()
 	if shot_closeup:
 		_closeup_view()
 	hud_label.text = text
