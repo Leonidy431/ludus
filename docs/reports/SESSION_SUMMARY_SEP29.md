@@ -50,7 +50,7 @@ Continue and work all day until finished before game tests. Find all blind spots
    - Status: ✅ DEPLOYED
 
 3. **gap_006: No Local Dev Setup Documentation**
-   - Created: `docs/LOCAL_DEV_SETUP.md` (400+ lines)
+   - Created: `docs/version-3.0/LOCAL_DEV_SETUP.md` (400+ lines)
    - Coverage: Prerequisites, Firebase setup, backend/frontend install, troubleshooting
    - Includes: Step-by-step guide, environment variables, common errors
    - Status: ✅ DEPLOYED
@@ -374,7 +374,7 @@ Resolved 7 TypeScript compilation errors:
 **Environment & Setup:**
 - `public/index.html` — Web app entry point (80 lines)
 - `functions/.env.local.example` — Environment template (20 lines)
-- `docs/LOCAL_DEV_SETUP.md` — Complete setup guide (378 lines)
+- `docs/version-3.0/LOCAL_DEV_SETUP.md` — Complete setup guide (378 lines)
 
 ---
 
@@ -385,7 +385,7 @@ Resolved 7 TypeScript compilation errors:
 1. **Start at 05:45 UTC:**
    ```bash
    # Pre-session checks
-   ls -lh PHASE_3_*.md docs/LOCAL_DEV_SETUP.md
+   ls -lh PHASE_3_*.md docs/version-3.0/LOCAL_DEV_SETUP.md
    cd functions && npm run build
    ```
 
@@ -450,7 +450,7 @@ If issues arise during Oct 1 execution:
 
 1. **Check** `docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md` remediation section
 2. **Review** `docs/reports/PHASE_3_QUICK_START.md` for command syntax
-3. **Consult** `docs/LOCAL_DEV_SETUP.md` for environment issues
+3. **Consult** `docs/version-3.0/LOCAL_DEV_SETUP.md` for environment issues
 4. **Check** Firebase logs: `firebase functions:log`
 5. **Open** GitHub issue if blocker found
 

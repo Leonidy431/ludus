@@ -51,10 +51,10 @@ firebase deploy --only functions,firestore:rules
 | File | Lines | Purpose | Who Should Read |
 |------|-------|---------|-----------------|
 | `docs/PERFORMANCE_PROFILING_BASELINE.md` | 300 | Performance targets | QA + benchmarking |
-| `docs/API_ERROR_HANDLING_GUIDE.md` | 250 | All error scenarios | API testers |
+| `docs/version-3.0/API_ERROR_HANDLING_GUIDE.md` | 250 | All error scenarios | API testers |
 | `docs/INTEGRATION_TEST_SCENARIOS.md` | 400 | 13 test scenarios | Test execution |
-| `docs/LOCAL_DEV_SETUP.md` | 400 | Local dev guide | Developers |
-| `docs/CLOUD_FUNCTIONS_DIALOGUE_API.md` | 550 | API reference | API users |
+| `docs/version-3.0/LOCAL_DEV_SETUP.md` | 400 | Local dev guide | Developers |
+| `docs/version-3.0/CLOUD_FUNCTIONS_DIALOGUE_API.md` | 550 | API reference | API users |
 
 ### Execution Scripts
 
@@ -105,7 +105,7 @@ chmod +x scripts/*.sh
 - [ ] `docs/reports/PHASE_3_QUICK_START.md` exists (180 lines)
 - [ ] `docs/reports/PHASE_3_FINAL_BACKLOG.md` exists (400 lines)
 - [ ] `docs/PERFORMANCE_PROFILING_BASELINE.md` exists (NEW)
-- [ ] `docs/API_ERROR_HANDLING_GUIDE.md` exists (NEW)
+- [ ] `docs/version-3.0/API_ERROR_HANDLING_GUIDE.md` exists (NEW)
 - [ ] `docs/INTEGRATION_TEST_SCENARIOS.md` exists (NEW)
 
 **Quick Check:**
@@ -276,7 +276,7 @@ cd functions && npm run build 2>&1 | tail -5
 → See `docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md` section "Phase 3B.1: Firebase Emulator Startup"
 
 ### If API Tests Fail
-→ See `docs/API_ERROR_HANDLING_GUIDE.md` for expected responses
+→ See `docs/version-3.0/API_ERROR_HANDLING_GUIDE.md` for expected responses
 → See `docs/INTEGRATION_TEST_SCENARIOS.md` for test scenarios
 
 ### If Performance Seems Bad

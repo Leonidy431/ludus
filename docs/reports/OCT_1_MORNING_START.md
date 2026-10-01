@@ -85,7 +85,7 @@ npx ts-node functions/src/scripts/seedComprehensiveTestData.ts
 - `docs/reports/PHASE_3_QUICK_START.md` ← 5-COMMAND OVERVIEW
 - `docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md` ← DETAILED WALKTHROUGH
 - `docs/INTEGRATION_TEST_SCENARIOS.md` ← 13 TEST SCENARIOS
-- `docs/API_ERROR_HANDLING_GUIDE.md` ← ERROR CASES
+- `docs/version-3.0/API_ERROR_HANDLING_GUIDE.md` ← ERROR CASES
 - `docs/PERFORMANCE_PROFILING_BASELINE.md` ← PERFORMANCE TARGETS
 
 ---
@@ -170,7 +170,7 @@ npx ts-node functions/src/scripts/seedComprehensiveTestData.ts
 | **docs/reports/PHASE_3_MASTER_CHECKLIST.md** | Before starting (quick review) | Verification results, readiness scorecard |
 | **docs/reports/PHASE_3_QUICK_START.md** | If you forget the 5 steps | Command-by-command reference |
 | **docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md** | If something fails | Detailed troubleshooting, remediation |
-| **docs/API_ERROR_HANDLING_GUIDE.md** | If you see unexpected errors | What each error code means |
+| **docs/version-3.0/API_ERROR_HANDLING_GUIDE.md** | If you see unexpected errors | What each error code means |
 | **docs/INTEGRATION_TEST_SCENARIOS.md** | After tests pass | Detailed test case documentation |
 | **docs/PERFORMANCE_PROFILING_BASELINE.md** | If performance seems off | Performance targets & measurement method |
 

@@ -97,7 +97,7 @@ firebase deploy --only functions,firestore:rules
 
 ```bash
 # 1. Verify all Phase 3 files exist
-ls -lh PHASE_3_*.md docs/LOCAL_DEV_SETUP.md functions/jest.config.js
+ls -lh PHASE_3_*.md docs/version-3.0/LOCAL_DEV_SETUP.md functions/jest.config.js
 
 # 2. Verify scripts are executable
 [ -x scripts/phase3-validation.sh ] && echo "✓ Validation script ready"
@@ -160,7 +160,7 @@ firebase emulators:start --only firestore,functions
 
 - **Full Checklist:** `docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md` (1000+ lines, detailed)
 - **Backlog:** `docs/reports/PHASE_3_FINAL_BACKLOG.md` (gap tracking, priorities)
-- **Dev Setup:** `docs/LOCAL_DEV_SETUP.md` (environment configuration)
+- **Dev Setup:** `docs/version-3.0/LOCAL_DEV_SETUP.md` (environment configuration)
 - **This Guide:** `docs/reports/PHASE_3_QUICK_START.md` (you are here)
 
 ---
