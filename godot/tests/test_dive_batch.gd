@@ -121,6 +121,12 @@ func in_dive(t: Object, scene: Node) -> void:
 	var body: RovBody = scene.body
 	t._check(body.arm_upper.is_inside_tree() and body.arm_fore.is_inside_tree()
 		and body.fingers.size() == 2, "the arm keeps its joints")
+	# The full model is merged within itself, under "Full", so the far
+	# proxy still hides it (RovLod, Б-2).
+	var full := body.model.get_node_or_null("Full") as Node3D
+	t._check(full != null and not full.visibility_parent.is_empty()
+		and _drawn(full).size() <= 2,
+		"the full model is merged under its LOD switch")
 	var n := _drawn(body).size()
 	t._check(n <= BODY_INSTANCES_MAX, "the body draws %d instances (<= %d)"
 		% [n, BODY_INSTANCES_MAX])

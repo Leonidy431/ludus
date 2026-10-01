@@ -39,7 +39,14 @@ const MAX_LAYERS := 256
 static func merge_body(body: RovBody) -> Dictionary:
 	var out := {}
 	if body.model != null:
-		out["model"] = StaticBatch.merge(body.model)
+		# RovLod's full model hides behind its far proxy by a visibility
+		# parent, so StaticBatch never walks into it from above.  It is
+		# merged within itself instead: the merged meshes stay under
+		# "Full", whose visibility parent covers its whole subtree, and
+		# the switch to the proxy is kept.
+		var full := body.model.get_node_or_null("Full") as Node3D
+		out["model"] = StaticBatch.merge(full if full != null
+			else body.model)
 	if body.hydrophone != null:
 		# The piezo disc behind the end cap came out striped when baked
 		# (the close-up proof frame, about 200 px): it stays its own.
