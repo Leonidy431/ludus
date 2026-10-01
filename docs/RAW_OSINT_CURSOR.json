@@ -1,5 +1,5 @@
 {
- "next": 17,
+ "next": 20,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -3240,6 +3240,116 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 350
+  },
+  {
+   "time": "2026-10-01T08:50:43.161537+00:00",
+   "pass_id": "osint-2026-10-01T08:50:43Z",
+   "deficits": [
+    {
+     "id": "DEF-055",
+     "hits": 54,
+     "taken": 0,
+     "refused": {},
+     "to_props": 54,
+     "hits_uncapped": 54,
+     "props_uncapped": 54,
+     "props_uncapped_repos": 9,
+     "added_keywords": [],
+     "keywords_total": 6,
+     "keywords_not_searched": [],
+     "props": {},
+     "props_seen": 54
+    },
+    {
+     "id": "DEF-001",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "outline-helper": 4,
+      "sacred-never-raw": 14,
+      "dogma-stop-list": 1
+     },
+     "to_props": 5,
+     "hits_uncapped": 31755,
+     "props_uncapped": 7604,
+     "props_uncapped_repos": 55,
+     "added_keywords": [
+      "berserker",
+      "building",
+      "city",
+      "forest",
+      "oracle",
+      "parsers",
+      "talker",
+      "tilemap",
+      "tileobject",
+      "widget",
+      "archiv",
+      "artificer"
+     ],
+     "keywords_total": 73,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "java",
+      "mage",
+      "mindustry",
+      "rsi",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 3
+     },
+     "props_seen": 2
+    },
+    {
+     "id": "DEF-039",
+     "hits": 200,
+     "taken": 6,
+     "refused": {},
+     "to_props": 0,
+     "hits_uncapped": 24131,
+     "props_uncapped": 16070,
+     "props_uncapped_repos": 50,
+     "added_keywords": [
+      "zot",
+      "cotton",
+      "floor",
+      "init",
+      "menu",
+      "plan",
+      "register"
+     ],
+     "keywords_total": 36,
+     "keywords_not_searched": [
+      "rsi"
+     ],
+     "props": {},
+     "props_seen": 0
+    }
+   ],
+   "props_taken": {
+    "other": 3
+   },
+   "props_taken_by_index_kind": {
+    "code": 3
+   },
+   "props_duplicates": 56,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 11446,
+   "props_store_files": 1240,
+   "props_store_bytes": 9448029,
+   "props_cache_files_on_disk": 4451,
+   "props_cache_bytes_on_disk": 76662562,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 694500,
+   "props_register_growth_bytes": 1751,
+   "stage": "done",
+   "accepted_objects": 5,
+   "code_candidates": 85
   }
  ],
  "keywords": {
@@ -3486,7 +3596,19 @@
    "madness",
    "sword",
    "tank",
-   "asteroid"
+   "asteroid",
+   "berserker",
+   "building",
+   "city",
+   "forest",
+   "oracle",
+   "parsers",
+   "talker",
+   "tilemap",
+   "tileobject",
+   "widget",
+   "archiv",
+   "artificer"
   ],
   "DEF-049": [
    "terrain",
@@ -3909,7 +4031,14 @@
    "shoals",
    "slimy",
    "stone",
-   "way"
+   "way",
+   "zot",
+   "cotton",
+   "floor",
+   "init",
+   "menu",
+   "plan",
+   "register"
   ]
  }
 }
