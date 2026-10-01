@@ -28,15 +28,12 @@ RUN echo '#!/bin/sh' > /healthcheck.sh && \
     echo 'curl -f http://localhost:3000/health || exit 1' >> /healthcheck.sh && \
     chmod +x /healthcheck.sh
 
-# Create non-root user for security
-RUN addgroup -g 1000 ludus && \
-    adduser -D -u 1000 -G ludus ludus
+# Run as the image's own non-root user: node:18-alpine already has
+# "node" with uid/gid 1000, so creating "ludus" with the same ids failed
+# the build (addgroup: gid '1000' in use).
+RUN chown -R node:node /app
 
-# Change ownership of app directory
-RUN chown -R ludus:ludus /app
-
-# Switch to non-root user
-USER ludus
+USER node
 
 # Expose port (VPC-internal only, see docker-compose)
 EXPOSE 3000
