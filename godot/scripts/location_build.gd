@@ -787,10 +787,10 @@ static func _person(world: Node3D, p: Dictionary) -> void:
 ## The ROV over the heart of a dive's task, lamp on: the instrument
 ## world (6500 K), the operator's own Mangustik.
 static func _rov(world: Node3D, p: Dictionary) -> void:
-	var scene := load("res://models/rov/mangustik.glb") as PackedScene
-	if scene == null:
+	# Б-2: the far-view proxy beyond RovLod.NEAR_M, the full model near.
+	var rov := RovLod.build()
+	if rov.get_child_count() == 0:
 		return
-	var rov := scene.instantiate() as Node3D
 	rov.name = "Rov"
 	rov.position = p.heart + Vector3(0, 1.2, 0)
 	rov.rotation_degrees = Vector3(0, 90, 0)
