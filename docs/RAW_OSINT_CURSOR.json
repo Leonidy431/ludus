@@ -1,5 +1,5 @@
 {
- "next": 5,
+ "next": 8,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -4415,6 +4415,111 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 22
+  },
+  {
+   "time": "2026-10-01T20:51:54.792316+00:00",
+   "pass_id": "osint-2026-10-01T20:51:54Z",
+   "deficits": [
+    {
+     "id": "DEF-024",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "font": 1
+     },
+     "to_props": 16,
+     "hits_uncapped": 11395,
+     "props_uncapped": 8350,
+     "props_uncapped_repos": 59,
+     "added_keywords": [
+      "layer",
+      "layers",
+      "level",
+      "light",
+      "lock",
+      "polymorph",
+      "popup",
+      "random",
+      "rattle",
+      "rejuventate",
+      "release",
+      "repulse"
+     ],
+     "keywords_total": 89,
+     "keywords_not_searched": [
+      "amulet",
+      "ankh",
+      "cleric",
+      "com",
+      "java",
+      "mage",
+      "openra",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 3,
+      "test": 1
+     },
+     "props_seen": 12
+    },
+    {
+     "id": "DEF-027",
+     "skipped": "audio-pipeline-pending"
+    },
+    {
+     "id": "DEF-028",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 1,
+      "dogma-stop-list": 2
+     },
+     "to_props": 44,
+     "hits_uncapped": 7927,
+     "props_uncapped": 5760,
+     "props_uncapped_repos": 53,
+     "added_keywords": [],
+     "keywords_total": 39,
+     "keywords_not_searched": [
+      "bevy",
+      "card",
+      "cockatrice",
+      "com",
+      "cpp",
+      "crates",
+      "java",
+      "map",
+      "renderer",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 44
+    }
+   ],
+   "props_taken": {
+    "other": 3,
+    "test": 1
+   },
+   "props_taken_by_index_kind": {
+    "code": 4
+   },
+   "props_duplicates": 56,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 45984,
+   "props_store_files": 1374,
+   "props_store_bytes": 10265046,
+   "props_cache_files_on_disk": 4585,
+   "props_cache_bytes_on_disk": 77479579,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 766246,
+   "props_register_growth_bytes": 2131,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 336
   }
  ],
  "keywords": {
@@ -4885,7 +4990,19 @@
    "jitter",
    "kick",
    "knockdown",
-   "launch"
+   "launch",
+   "layer",
+   "layers",
+   "level",
+   "light",
+   "lock",
+   "polymorph",
+   "popup",
+   "random",
+   "rattle",
+   "rejuventate",
+   "release",
+   "repulse"
   ],
   "DEF-028": [
    "effect",
