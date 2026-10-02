@@ -23,8 +23,12 @@ func _ready() -> void:
 	player.stream = g
 	player.volume_db = -8.0
 	add_child(player)
-	player.play()
-	playback = player.get_stream_playback()
+	# Headless (CI) has no audio device: a playing generator there is
+	# torn down mid-mix at quit and crashed the test run (signal 11), so
+	# it plays only where it can be heard, as the pilot's synth does.
+	if DisplayServer.get_name() != "headless":
+		player.play()
+		playback = player.get_stream_playback()
 
 
 func _white() -> float:

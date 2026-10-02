@@ -44,4 +44,5 @@ func run(t: Object) -> void:
 	var col2: Color = (other.material_override as StandardMaterial3D) \
 		.albedo_color
 	t._check(col2.g < 0.5, "the power diode, not yet repaired, stays red")
-	p.queue_free()
+	t.root.remove_child(p)
+	p.free()
