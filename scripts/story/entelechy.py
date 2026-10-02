@@ -422,7 +422,10 @@ def build():
             s = {'n': n, 'text_ru': text}
             key = '%s.%d' % (node['id'], n)
             if key in READINGS:
-                s['reading_ru'], s['chorus'] = READINGS[key]
+                # The chorus line stays here, in the development source;
+                # the headset carries the reading the game follows (the
+                # APK content budget, TABOO 0.011).
+                s['reading_ru'] = READINGS[key][0]
             signs.append(s)
         out = {k: node[k] for k in ('id', 'title_ru', 'sub_ru',
                                     'meaning_ru', 'beats', 'cue')}
@@ -447,6 +450,11 @@ def check():
                                                  len(node['signs'])))
         for s in node['signs']:
             count += 1
+            key = '%s.%d' % (node['id'], s['n'])
+            if key in READINGS and not all(
+                    w in READINGS[key][1]
+                    for w in ('Предубеждение', 'Контраргумент', 'Почему')):
+                bad.append('%s: the chorus line is incomplete' % key)
             if s['text_ru'] not in claude:
                 bad.append('CLAUDE.md lacks %s.%d' % (node['id'], s['n']))
     if count != 99 or len(data['nodes']) != 9:
@@ -461,8 +469,10 @@ def main(argv):
             print('entelechy:', b)
         print('entelechy: %s' % ('ok' if not bad else 'FAIL'))
         return 1 if bad else 0
-    OUT.write_text(json.dumps(build(), ensure_ascii=False, indent=2)
-                   + '\n', encoding='utf-8')
+    # Compact: the file rides in the APK, where every kilobyte counts.
+    OUT.write_text(json.dumps(build(), ensure_ascii=False,
+                              separators=(',', ':')) + '\n',
+                   encoding='utf-8')
     print('wrote', OUT.relative_to(ROOT))
     return 0
 
