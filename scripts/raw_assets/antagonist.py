@@ -472,8 +472,16 @@ def shape_lust(mask, st, s):
                      lambda t: amp2 * math.sin(2 * math.pi * t + phase))
 
 
-def shape_sadness(mask, st, s):
-    """Sadness sags in the middle and weeps drops below itself."""
+def shape_sadness_sag(mask, st, s):
+    """The first form of sadness: it sagged and wept drops below itself.
+
+    Kept so the sadness kits shipped before 2026-10-02 can still be
+    rebuilt byte for byte (rule 48).  It is no longer the passion's
+    form: on a square source it sagged into a stemless U-shaped cup that
+    can read as a chalice (pass osint-2026-10-02T09:51:32Z, rejected by
+    eye), and a passion must never resemble a holy thing (TABOO 0.2
+    item 3, 0.35 rule 6).
+    """
     _, _, _, box = _centre(mask)
     depth = 0.22 * (box[3] - box[1]) * s
     out = warp_cols(mask, lambda t: 0.85,
@@ -491,6 +499,130 @@ def shape_sadness(mask, st, s):
         draw.line([(x, y), (x, y + length)], fill=255, width=4)
         draw.ellipse([x - 7, y + length - 4, x + 7, y + length + 14],
                      fill=255)
+    return out
+
+
+# The cracked jug of sadness, in fractions of the source's box.  A jug
+# of daily craft, never a cup: a lip with a spout, a narrow neck, a
+# loop handle, a belly wider than its foot, and it lies on its side.
+JUG_WIDTH = 0.66
+JUG_LIP = 0.36
+JUG_NECK = 0.24
+JUG_FOOT = 0.6
+# Tipped over: the mouth turned to the left and a little down, so the
+# water runs out of it (degrees counter-clockwise, as PIL turns).
+JUG_TILT = 100
+JUG_GROUND = 200
+
+
+def _jug_width(t):
+    """Width of the standing jug at height t (0 rim, 1 foot), 0..1.
+
+    A lip, a narrow neck to t = 0.2, then a shoulder that swells to the
+    widest belly at t = 0.6 and draws in to a foot narrower than the
+    belly: the profile of a water jug, not of a bowl.
+    """
+    if t < 0.06:
+        return JUG_LIP
+    if t < 0.1:
+        return JUG_LIP + (JUG_NECK - JUG_LIP) * (t - 0.06) / 0.04
+    if t < 0.2:
+        return JUG_NECK
+    u = (t - 0.2) / 0.8
+    if u < 0.5:
+        return JUG_NECK + (1 - JUG_NECK) * math.sin(math.pi * u) ** 1.3
+    return 1 - (1 - JUG_FOOT) * ((u - 0.5) / 0.5) ** 2
+
+
+def _jug_upright(mask):
+    """The source's rows drawn into a standing jug with spout and handle.
+
+    The form is still the source's: its holes filled and its notches
+    closed, every row is rescaled to the jug's profile (warp_rows keeps
+    what the row holds), then the spout and the loop of the handle are
+    drawn on.  Returns the jug mask and its box.
+    """
+    closed = _erode(_dilate(fill_holes(mask), 15), 15)
+    out = warp_rows(closed, lambda t: JUG_WIDTH * _jug_width(t))
+    box = out.getbbox()
+    if box is None:
+        return out, box
+    x0, y0, x1, y1 = box
+    cx, h = (x0 + x1) / 2, y1 - y0
+    half = (x1 - x0) / 2
+
+    def y_at(t):
+        return y0 + h * t
+
+    def half_at(t):
+        return half * _jug_width(t)
+
+    draw = ImageDraw.Draw(out)
+    # The spout: the lip pinched out on one side.
+    lip = half_at(0.0)
+    draw.polygon([(cx - lip + 2, y_at(0.0)),
+                  (cx - lip - 0.16 * h, y_at(0.0) - 0.05 * h),
+                  (cx - lip + 2, y_at(0.09))], fill=255)
+    # The handle: a loop from the neck to the shoulder on the other
+    # side, thick enough to stay a loop after erosion and facets.
+    neck = half_at(0.16)
+    draw.arc([cx + neck - 0.2 * h, y_at(0.08), cx + neck + 0.2 * h,
+              y_at(0.5)], -90, 90, fill=255,
+             width=max(9, round(0.07 * h)))
+    return out, box
+
+
+def shape_sadness(mask, st, s):
+    """Sadness is a cracked clay jug fallen on its side.
+
+    Evagrius (Praktikos 10) says sadness comes when a desire is not
+    fulfilled and the thoughts bring back home and the former life; the
+    Apostle sets the sorrow of the world, which works death, against the
+    sorrow according to God (2 Cor 7:10).  So the form is a vessel of
+    everyday work that no longer holds what it was made for: a jug
+    knocked over, a crack in its belly, the water running out of the
+    mouth into a puddle and dripping from the crack.  It is never a cup
+    and never stands upright on a foot, with or without a stem (the
+    first form sagged into a stemless cup; see shape_sadness_sag).
+    """
+    jug, box = _jug_upright(mask)
+    if box is None:
+        return jug
+    # Lay it down: turn it about its own centre, then rest the belly on
+    # the ground line with the mouth to the left.
+    turned = jug.rotate(JUG_TILT, resample=Image.NEAREST, expand=True)
+    part = turned.crop(turned.getbbox())
+    k = min(1.0, (CANVAS - 40) / part.width, 0.62 * CANVAS / part.height)
+    part = part.resize((max(1, round(part.width * k)),
+                        max(1, round(part.height * k))), Image.NEAREST)
+    out = Image.new('L', mask.size, 0)
+    out.paste(part, ((CANVAS - part.width) // 2 + 8,
+                     JUG_GROUND - part.height))
+    x0, y0, x1, y1 = out.getbbox()
+    w, h = x1 - x0, y1 - y0
+    draw = ImageDraw.Draw(out)
+    # The crack: a zig-zag cut up from the underside of the belly into
+    # its middle, cut out of the alpha, so it shows on every variant
+    # that keeps the edge.
+    cx = x0 + w * st.uniform(0.56, 0.64)
+    pts = [(cx + st.uniform(-3, 3), y1 + 2)]
+    for i in range(1, 5):
+        dx = (7 if i % 2 else -7) * (1 + 0.3 * (s - 1))
+        pts.append((cx + dx + st.uniform(-2, 2), y1 - h * 0.58 * i / 4))
+    draw.line(pts, fill=0, width=3 + s, joint='curve')
+    # Water: drops from the crack and a puddle spread from the mouth.
+    for i in range(2 + s):
+        dx = st.uniform(-5, 5)
+        dy = 10 + 11 * i
+        r = 3.5 + 0.8 * i
+        draw.ellipse([cx + dx - r, y1 + dy - r * 1.6, cx + dx + r,
+                      y1 + dy + r], fill=255)
+    pud_y = min(CANVAS - 14, y1 + 22 + 6 * s)
+    draw.ellipse([x0 - 6, pud_y - 6, x0 + w * 0.5, pud_y + 6], fill=255)
+    # The stream from the mouth down to the puddle.
+    mouth_x = x0 + 4
+    draw.line([(mouth_x, y0 + h * 0.62), (mouth_x - 6, y0 + h * 0.85),
+               (mouth_x - 2, pud_y)], fill=255, width=5, joint='curve')
     return out
 
 
@@ -567,6 +699,10 @@ SHAPES = {
     'sadness': shape_sadness, 'acedia': shape_acedia,
     'vainglory': shape_vainglory, 'pride': shape_pride,
 }
+
+# Forms a passion once had, kept only to rebuild the kits shipped with
+# them (rule 48); the runner never chooses them.
+LEGACY_SHAPES = {'sadness-sag': shape_sadness_sag}
 
 
 # --- The twelve variants ------------------------------------------------

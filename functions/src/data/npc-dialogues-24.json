@@ -6758,6 +6758,15 @@
        "faith": 1,
        "wisdom": 1
       }
+     },
+     {
+      "text": "Once I carried a jug that leaked, and I still grieve over the water.",
+      "text_ru": "Я однажды нёс кувшин, что протекал, и до сих пор жалею той воды.",
+      "nextNodeId": "cracked_jug",
+      "attributeBonuses": {
+       "wisdom": 1
+      },
+      "narrativeEffect": "Theodora wipes her hands and nods toward the water jug by the trough."
      }
     ]
    },
@@ -6839,6 +6848,35 @@
       "narrativeEffect": "She presses a small loaf into your hand anyway: 'Given, not taken. Now it will not go stale.'"
      }
     ]
+   },
+   {
+    "id": "cracked_jug",
+    "voice": "paraphrase",
+    "text": "See the jug by the trough? A cracked jug holds water until evening, and by morning there is nothing to knead with. Sadness is like that: the crack is small and all the water goes. A desert teacher wrote that sadness comes when what we wanted did not come true, and then the mind paints home, kin and the old table as if paradise were there and only potsherds were here. Know it by this: it praises yesterday and spoils today. We do not weep over a cracked jug; we daub it with clay and carry it to the well. There is a sorrow that mends the jug and a sorrow that breaks it.",
+    "text_ru": "Видишь кувшин у квашни? Треснувший держит воду до вечера, а к утру месить нечем. Так и печаль: трещина малая, а вода уходит вся. Один пустынный учитель писал: печаль приходит, когда не сбылось желанное, и тогда ум рисует дом, родню, прежний стол, будто там был рай, а здесь одни черепки. Узнаешь её по этому: она хвалит вчерашнее и порочит нынешний день. Над треснувшим кувшином не плачут: его подмазывают глиной и несут к колодцу. Есть печаль, что кувшин чинит, и есть печаль, что его разбивает.",
+    "meaning": "Discernment cue for the passion of sadness: it comes when a desire is frustrated and paints the past (home, kin, the former life) as a lost paradise and the present as worthless. Its sign is praise of yesterday joined to contempt for today. Sorrow according to God leads to repentance and takes up today's work; the sorrow of the world works death (2 Cor 7:10). The opposing virtue is joy in God, kept by patient work in the present.",
+    "source": "Evagrius Ponticus, Praktikos 10 (on sadness); 2 Corinthians 7:10",
+    "branches": [
+     {
+      "text": "So its sign is that it praises yesterday and spoils today.",
+      "text_ru": "Значит, её признак: хвалит вчерашнее и порочит нынешнее.",
+      "nextNodeId": "leaven",
+      "attributeBonuses": {
+       "wisdom": 2,
+       "faith": 1
+      },
+      "narrativeEffect": "Theodora pours fresh water into the trough from a whole jug and goes on kneading."
+     },
+     {
+      "text": "I will daub my jug with clay and take it to the well.",
+      "text_ru": "Подмажу свой кувшин глиной и понесу к колодцу.",
+      "nextNodeId": null,
+      "attributeBonuses": {
+       "constitution": 1
+      },
+      "narrativeEffect": "She hands you a pinch of the oven's clay: 'Mend it before evening, and the morning will have water.'"
+     }
+    ]
    }
   ],
   "decisions": [
@@ -6853,7 +6891,8 @@
    "(patrologist) bias: Homily 50 on Matthew is an exact reference / counter: Chrysostom's Matthew homilies are numbered differently in different editions (NPNF 50, some Migne-based editions 51) / why: both numbers are given so that a reader using either edition finds the passage; the teaching and the Antioch setting are authentic.",
    "(Aristotle-skeptic) bias: the leaven parable describes the service / counter: Mt 13:33 is a parable of the Kingdom of Heaven, and making the rite its subject quietly shifts doctrine / why: the line now says 'what is received at the service' works in the village; the Kingdom stays the subject of the parable in the meaning field.",
    "(Aristotle-skeptic) bias: the closing choice 'I only wanted a loaf for the road' is vivid / counter: avarice_cue is also reached from street_loaf by a player who never asked for bread, and the line then contradicts their path / why: it is replaced by the path-neutral 'I have held something back too'; this keeps the author's lesson 'given, not taken' on both paths.",
-   "(Aristotle-skeptic) bias: 'voice: paraphrase' is reserved for saints, so Theodora, not a saint, should always be 'own' / counter: in three nodes she retells a Father's teaching, and the tag marks that retelling so it is never shown as a citation / why: the tag is kept on those nodes; her own sayings stay 'own'. Theodora is a fictional baker, and no words of her own are attributed to any saint."
+   "(Aristotle-skeptic) bias: 'voice: paraphrase' is reserved for saints, so Theodora, not a saint, should always be 'own' / counter: in three nodes she retells a Father's teaching, and the tag marks that retelling so it is never shown as a citation / why: the tag is kept on those nodes; her own sayings stay 'own'. Theodora is a fictional baker, and no words of her own are attributed to any saint.",
+   "bias: the sign of sadness should be taught where the thought is met, by a potter at the potters' yard / counter: the 24 trees have no potter, inventing a new teacher for one sign breaks the closed cast of the chorus, and Theodora is already the teacher of sadness in public/ludus/data/passions.json; she carries water to the trough every dawn, so a cracked jug is her own image / why: the cue is taught by Theodora in her own idiom (water jug, trough, morning dough) and met at the potters' yard, where the cracked jug lies (docs/HLD_SADNESS_VESSEL_2026-10-02.md). Evagrius is retold, not quoted, and named only as 'a desert teacher' (voice paraphrase). Dissent kept: the playwright wanted the potter himself to speak; that waits for a potter NPC in the cast."
   ],
   "review": {
    "reviewer": null,

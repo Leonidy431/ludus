@@ -5848,6 +5848,30 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 183
+  },
+  {
+   "time": "2026-10-02T13:00:00+00:00",
+   "type": "rework",
+   "pass_id": "rework-sadness-4bbd8e3f97-2026-10-02",
+   "reworks": "osint-2026-10-02T09:51:32Z",
+   "deficits": [
+    {
+     "id": "DEF-001",
+     "taken": 1
+    }
+   ],
+   "accepted_objects": 1,
+   "code_candidates": 0,
+   "shipped": [
+    "ant_sadness_4bbd8e3f97"
+   ],
+   "source": "https://github.com/crawl/crawl @ 7c31f6e797, crawl-ref/source/rltiles/gui/spells/monster/summon_drakes.png #0 (GPL), sha1 1f008a6d803fefe2b309e047b3b49e0b1cbeaec7",
+   "form": "cracked-jug-r1",
+   "shape_change_min": 0.4273,
+   "colour_change_min": 0.6857,
+   "sibling_iou_max": 0.5472,
+   "eye_check": "docs/audit/2026-10-02/sadness-vessel-contact.png",
+   "note": "The record of pass osint-2026-10-02T09:51:32Z stays as it is (reverted: the old sadness form sagged the square icon into a stemless cup that can read as a chalice). The same source piece was run again through the pipeline with the reworked form of sadness, antagonist.shape_sadness (cracked-jug-r1): the source rows drawn into a water jug (lip, spout, narrow neck, loop handle, belly wider than the foot), laid on its side, a crack cut up into its belly, water running from the mouth into a puddle and dripping from the crack. Same seed and id (sha1 of repo + path + piece), cold passion hue 220 instead of the warm complement (rule 13), 12/12 variants with distinct hitboxes, no variant rejected. Eye check on five biomes: no variant reads as a cup or a chalice; v04 (amorphous) is a blob, v10 (inverted gravity) a tall leaning jug. The old form is kept as antagonist.shape_sadness_sag only to rebuild the four sadness kits shipped before. Rebuilt by scripts/raw_assets/sadness_vessel.py; story beat at the potters' yard, docs/HLD_SADNESS_VESSEL_2026-10-02.md."
   }
  ],
  "keywords": {

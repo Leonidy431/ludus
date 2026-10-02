@@ -30,6 +30,9 @@ MENTOR_NODES = {
     'lust': 'returning_knock',
     'pride': 'own_light',
     'acedia': 'noonday_thief',
+    # Theodora's cracked jug by the trough (2026-10-02): the sign of
+    # sadness in a baker's words, met at the potters' yard.
+    'sadness': 'cracked_jug',
 }
 
 

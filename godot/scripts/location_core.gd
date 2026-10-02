@@ -41,6 +41,10 @@ const CARD_M := 0.6
 ## How near the heart and the way back answer a press.
 const REACH_M := 2.2
 const EXIT_REACH_M := 0.9
+## A beat of the road (a passion met at a thing of the place) answers
+## this near its thing, and stands at least REACH_M + BEAT_REACH_M from
+## the heart, so the two never answer the same press.
+const BEAT_REACH_M := 1.0
 ## The player starts this far inside the way back, well outside its
 ## reach, so on arrival the heart (or nothing) answers, never the door
 ## (TABOO 0.013 item 1: a neighbour does not take over the choice).
@@ -179,7 +183,9 @@ static func model_of(key: String, thing: Dictionary,
 ## How a model's proxy was made, from the data alone: a volume of the
 ## obitel's register ("obj:") is a stand-in shape from a prompt's box
 ## field; lake and Atlas things are measured kits; an item of the props
-## store keeps its proportions.  The proxy's .json says the same (the
+## store keeps its proportions, and so does an obitel volume drawn to its
+## real size from code (state "drawn": the jugs of the potters' yard,
+## scripts/meta3d/pottery_jugs.py).  The proxy's .json says the same (the
 ## test compares them), but it is not packed into the APK, so the
 ## headset must not need it.
 static func method_of(thing: Dictionary, model: Dictionary) -> String:
@@ -300,6 +306,16 @@ static func plan(loc: Dictionary, things: Dictionary,
 	for s in slots:
 		if s.holy:
 			holy_at = s.pos
+	# A beat of the road answers at its own thing, out of the heart's
+	# reach (the generator checks the gap; tests/test_sadness_beat.gd
+	# checks it again here).
+	var beat = null
+	var b = loc.get("beat")
+	if b is Dictionary and not b.is_empty():
+		var a: Array = b.at
+		beat = {"id": b.id, "thing": b.thing, "ru": b.ru,
+			"at": Vector3(float(a[0]), 0.0, float(a[2])),
+			"reach": float(b.get("reach_m", BEAT_REACH_M))}
 	return {"id": loc.id, "title": loc.title_ru, "kind": loc.kind,
 		"families": loc.families, "type": sh.type, "w": w, "d": d, "h": h,
 		"heart": heart, "heart_spec": loc.heart, "hint": loc.heart.ru,
@@ -310,7 +326,7 @@ static func plan(loc: Dictionary, things: Dictionary,
 		"lampada": holy_key != "" and loc.holy_place.lampada,
 		"holy_key": holy_key, "holy_at": holy_at, "slots": slots,
 		"missing": missing,
-		"kits_skipped": skipped,
+		"kits_skipped": skipped, "beat": beat,
 		"lesson": loc.lesson, "constitution": loc.constitution,
 		"kiberslav": "kiberslav" in loc.families}
 
@@ -645,6 +661,8 @@ static func labels(p: Dictionary) -> Array:
 	var out := [p.title, p.hint, exit_ru(p)]
 	if p.person != "":
 		out.append(p.person)
+	if p.get("beat") != null:
+		out.append(p.beat.ru)
 	for s in p.slots:
 		if s.tag:
 			out.append(s.ru)

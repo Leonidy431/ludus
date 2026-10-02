@@ -359,6 +359,28 @@ func in_scene(t: Object) -> void:
 	scene.pos = scene.p.start
 	t._check(scene._nearest().get("id") == "heart",
 		"on arrival in the cell the heart answers, not the door")
+	# A beat of the road (the cracked jug of the potters' yard) answers
+	# at its thing, not at the heart, and shows its thought's figure.
+	scene.open_place("pottery")
+	var bt: Vector3 = scene.p.beat.at
+	scene.pos = bt + Vector3(-bt.x, 0, -bt.z).normalized() * 0.8
+	t._check(scene._nearest().get("id") == "beat",
+		"at the cracked jug the beat answers")
+	scene._interact()
+	t._check(scene.heart_panel.get("beat", false)
+		and scene.heart_panel.kind == "passion",
+		"a press at the jug opens the meeting with sadness")
+	scene._refresh()
+	t._check(scene.figure.visible and scene.figure.texture != null
+		and scene.figure.position.distance_to(bt) < 2.0,
+		"the thought's figure stands over the jug")
+	n =LocationHeart.choices(scene.heart_panel, scene.loc, scene.st,
+		scene.ctx).size()
+	scene._select(n - 1)
+	t._check(scene.heart_panel.is_empty(), "away closes the jug's panel")
+	scene.pos = scene.p.heart + Vector3(0, 0, 1.0)
+	t._check(scene._nearest().get("id") == "heart",
+		"at the yard's heart the heart answers, not the jug")
 	print("locations built: worst place %d triangles in the whole scene; %d failures in the scene checks"
 		% [worst_tris, t.failures - fails_before])
 	scene.free()

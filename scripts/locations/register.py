@@ -339,6 +339,15 @@ obj('potter-wheel', 'Гончарный круг', (0.5, 0.8, 0.5), 'дерев�
     'obj:p0237-goncharnyy-krug', [('potter', 'wheel'), 'pottery'])
 obj('kiln', 'Печь для обжига', (1.2, 1.4, 1.2), 'глина, кирпич',
     'obj:p0238-pech-dlya-obzhiga', ['kiln'])
+# The cracked jug of the potters' yard and the same jug mended with
+# clay (docs/HLD_SADNESS_VESSEL_2026-10-02.md); drawn from code by
+# scripts/meta3d/pottery_jugs.py, sizes as the proxies measure them.
+obj('cracked-jug', 'Треснувший кувшин на боку', (0.49, 0.235, 0.245),
+    'обожжённая глина, вода', 'obj:obj-kuvshin-tresnuvshiy',
+    [('broken', 'jug'), ('cracked', 'pot')])
+obj('patched-jug', 'Кувшин, подмазанный глиной', (0.235, 0.314, 0.222),
+    'обожжённая и сырая глина', 'obj:obj-kuvshin-podmazannyy',
+    [('clay', 'jug')])
 obj('potter-stamp', 'Клеймо мастера-гончара', (0.06, 0.1, 0.06),
     'обожжённая глина', 'obj:p0314-kleymo-mastera-gonchara', ['stamp'])
 obj('anvil', 'Наковальня', (0.5, 0.45, 0.25), 'железо',
@@ -602,14 +611,32 @@ PLACES = []
 
 def place(pid, title, kind, shell, size, plots, heart, light, objs,
           lesson, truth, teach, recs=(), sky='day', safety=10, note='',
-          exists=''):
+          exists='', beat=None):
     """Add one candidate place of the pool."""
     PLACES.append({
         'id': pid, 'title_ru': title, 'kind': kind, 'shell': shell,
         'size_m': list(size), 'plots': list(plots), 'heart': heart,
         'light': list(light), 'objects': list(objs), 'lesson': lesson,
         'truth': truth, 'teach': teach, 'records': list(recs),
-        'sky': sky, 'safety': safety, 'note': note, 'exists': exists})
+        'sky': sky, 'safety': safety, 'note': note, 'exists': exists,
+        'beat': beat})
+
+
+# A beat of the road met at a place, beside its heart (not instead of
+# it): one passion met at one real thing of the place, the sign taught
+# by a mentor in the mentor's own idiom (TABOO 0.35 rule 13, 0.39).  The
+# heart keeps its one practice (TABOO 0.013 item 1); the beat answers
+# only at its thing, out of the heart's reach.  The choice of place is
+# written in docs/HLD_SADNESS_VESSEL_2026-10-02.md (TABOO 0.07).
+BEAT_CRACKED_JUG = {
+    'passion': 'sadness', 'thing': 'cracked-jug',
+    'kit': '4bbd8e3f97', 'mentor': 'theodora/cracked_jug',
+    'ru': 'Треснувший кувшин: вода уходит',
+    'scene_ru': 'Кувшин опрокинут, по брюху трещина, вода уходит в '
+                'землю. От него тянет прежним домом.',
+    'lesson': 'Треснувший кувшин держит воду до вечера; печаль хвалит '
+              'вчерашнее и порочит нынешний день, а кувшин подмазывают '
+              'глиной и несут к колодцу (2 Кор 7:10).'}
 
 
 # Light: (class, kelvin, source).  hearth 1900-2500 K is human work,
@@ -1297,11 +1324,13 @@ place('forge', 'Кузня обители', 'forge', 'room', (8, 6, 3.5),
             'p0494-kuznya-u-kyzyl-suu'], sky='indoor')
 place('pottery', 'Гончарный двор', 'pottery', 'yard', (10, 8, 2.4),
       ['M67'], 'rule:handiwork', (H, 2400, 'печь для обжига'),
-      ['potter-wheel', 'kiln', 'potter-stamp', 'karas', 'water-jug'],
+      ['potter-wheel', 'kiln', 'potter-stamp', 'karas', 'water-jug',
+       'cracked-jug', 'patched-jug'],
       'Глина берёт форму по мере вращения; знак рыбы на посуде '
       'свидетельствует, а не поднимает цену.', 9, 9,
       recs=['loc-goncharnyi-dvor', 'p0295-goncharnyy-kvartal',
-            'p0493-masterskaya-goncharov-ton'])
+            'p0493-masterskaya-goncharov-ton'],
+      beat=BEAT_CRACKED_JUG)
 place('shipyard', 'Верфь на Светлом мысу', 'shipyard', 'shore',
       (16, 10, 0), ['M68'], 'new:caulk-seam', (H, 2200, 'смоляной котёл'),
       ['boat-hull', 'caulker', 'spruce-log', 'adze', 'oar'],

@@ -1,0 +1,53 @@
+{
+ "id": "obj-kuvshin-podmazannyy",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 744,
+ "bbox_m": [
+  0.235,
+  0.314,
+  0.222
+ ],
+ "source": "scripts/meta3d/pottery_jugs.py (own procedural drawing, no raw material)",
+ "name": "Кувшин, подмазанный глиной",
+ "what": "the same jug standing, its crack daubed with raw clay",
+ "method": "pottery-jug-kit (numpy, own glTF writer)",
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.235,
+   0.314,
+   0.222
+  ],
+  "centre_m": [
+   0.01,
+   0.157,
+   0.005
+  ]
+ },
+ "materials": [
+  {
+   "name": "clay",
+   "colour": "#a0603a",
+   "alpha": 1.0
+  },
+  {
+   "name": "inside",
+   "colour": "#5a321e",
+   "alpha": 1.0
+  },
+  {
+   "name": "crack",
+   "colour": "#24160e",
+   "alpha": 1.0
+  },
+  {
+   "name": "patch",
+   "colour": "#c79e70",
+   "alpha": 1.0
+  }
+ ],
+ "textures": 0,
+ "noInteract": false,
+ "noLoot": false
+}

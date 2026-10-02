@@ -100,6 +100,8 @@ func _ready() -> void:
 		elif arg.begins_with("--locations="):
 			shot_list = Array(arg.trim_prefix("--locations=").split(",",
 				false))
+		elif arg == "--beat":
+			shot_views = BEAT_VIEWS
 	proof = shots_dir != ""
 	if proof:
 		DirAccess.make_dir_recursive_absolute(shots_dir)
@@ -150,6 +152,11 @@ func open_place(id: String) -> void:
 			"ru": p.hint},
 		{"id": "exit", "pos": p.exit, "reach": LocationCore.EXIT_REACH_M,
 			"ru": LocationCore.exit_ru(p)}]
+	# A beat of the road answers at its own thing (the cracked jug of
+	# the potters' yard), never at the heart.
+	if p.get("beat") != null:
+		things.append({"id": "beat", "pos": p.beat.at,
+			"reach": p.beat.reach, "ru": p.beat.ru})
 	figure = Sprite3D.new()
 	figure.pixel_size = 0.008
 	figure.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
@@ -364,6 +371,9 @@ func _interact() -> void:
 	if th.id == "exit":
 		_leave()
 		return
+	if th.id == "beat":
+		_apply(LocationHeart.open_beat(loc, st, ctx))
+		return
 	_apply(LocationHeart.open(loc, st, ctx))
 
 
@@ -468,8 +478,17 @@ func _refresh() -> void:
 	# when it has passed.
 	var met: bool = open and heart_panel.kind == "passion" \
 		and heart_panel.enc.stage != "virtue"
+	# At a beat the figure stands over its thing, not over the heart.
+	var at_beat: bool = met and heart_panel.get("beat", false)
+	# The thing is met from under a metre away, so its figure is drawn
+	# smaller over it, above the lowered panel, and does not fill the view.
+	figure.position = p.beat.at + Vector3(0, 1.8, 0) if at_beat \
+		else p.heart + Vector3(0, 1.75, -0.6)
+	figure.pixel_size = 0.005 if at_beat else 0.008
+	if not met:
+		figure.texture = null
 	if met and figure.texture == null:
-		var art := LocationHeart.passion_art(loc, st, ctx)
+		var art := LocationHeart.passion_art(loc, st, ctx, heart_panel)
 		if art != "" and ResourceLoader.exists(art):
 			figure.texture = load(art) as Texture2D
 	figure.visible = met and figure.texture != null
@@ -544,17 +563,25 @@ func _on_webxr_started() -> void:
 ## reads right), and with the heart's panel open ("panel").  The panel
 ## is opened on the saved state and nothing is written.
 const SHOT_VIEWS := ["heart", "near", "panel"]
+## With --beat, two frames at the place's beat instead: standing by its
+## thing with the prompt read ("beat-near") and with its panel open and
+## the thought's figure over the thing ("beat-panel").
+const BEAT_VIEWS := ["beat-near", "beat-panel"]
+## Where the frames at a beat are taken: inside its reach, between the
+## thing and the middle of the place, facing the thing.
+const BEAT_NEAR_M := 0.9
+var shot_views: Array = SHOT_VIEWS
 
 
 func _shots() -> void:
-	var views := SHOT_VIEWS.size()
+	var views := shot_views.size()
 	var n := shot_frame / (views * SHOT_FRAMES)
 	if n >= shot_list.size():
 		get_tree().quit()
 		return
 	if p.id != shot_list[n]:
 		open_place(shot_list[n])
-	var view: String = SHOT_VIEWS[(shot_frame / SHOT_FRAMES) % views]
+	var view: String = shot_views[(shot_frame / SHOT_FRAMES) % views]
 	camera.rotation.x = -0.12
 	yaw = 0.0
 	match view:
@@ -571,6 +598,19 @@ func _shots() -> void:
 			if heart_panel.is_empty():
 				message_left = 0.0
 				_apply(LocationHeart.open(loc, st, ctx))
+		"beat-near", "beat-panel":
+			var at: Vector3 = p.beat.at
+			var to_mid := Vector3(-at.x, 0.0, -at.z).normalized()
+			pos = at + to_mid * BEAT_NEAR_M
+			yaw = atan2(-(at.x - pos.x), -(at.z - pos.z))
+			# Looking down at the jug on the floor; up at its figure.
+			camera.rotation.x = -0.9 if view == "beat-near" else -0.2
+			if view == "beat-near":
+				heart_panel = {}
+				message_left = 0.0
+			elif heart_panel.is_empty():
+				message_left = 0.0
+				_apply(LocationHeart.open_beat(loc, st, ctx))
 	ui_alpha = LocationCore.holy_fade_target(p, pos)
 	rig.position = pos
 	rig.rotation.y = yaw

@@ -103,6 +103,8 @@ MAX_DRAWS = 100
 MAX_TRIS_TWO_EYES = 750000
 MAX_FILE_BYTES = 1048576
 PENDING_TRIS = MAX_TRIS  # Worst case for a thing still to be made.
+# The proxies of scripts/meta3d/pottery_jugs.py.
+POTTERY_METHOD = 'pottery-jug-kit (numpy, own glTF writer)'
 CARD_M = 0.6
 
 SHELL_READ = {'room': 8, 'cave': 7, 'yard': 7, 'shore': 6, 'open': 5,
@@ -377,8 +379,13 @@ def thing(key):
         assert glb.exists() and meta_path.exists(), (key, glb)
         meta = json.loads(meta_path.read_text(encoding='utf-8'))
         method = meta.get('method') or meta.get('detail')
+        # A volume drawn to its real size from code keeps its
+        # proportions in the headset ("drawn"); the other obitel
+        # volumes are stand-in shapes from a prompt's box field and are
+        # stretched to the thing's size (LocationCore.method_of).
         state = {'layered-svg-extrusion': 'card',
-                 'flat-board': 'board'}.get(method, 'volume')
+                 'flat-board': 'board',
+                 POTTERY_METHOD: 'drawn'}.get(method, 'volume')
         if o['source'].startswith(('lake:', 'atlas:')) and not any(
                 o['size_m']):
             bx = meta['bbox_m']
@@ -896,6 +903,54 @@ def thing_record(key, hits):
             'holy': o['holy']}
 
 
+# A beat answers at its thing within BEAT_REACH_M, and the heart within
+# HEART_REACH_M (LocationCore.REACH_M): the two reaches must not meet,
+# so the thing never takes over the heart's choice (TABOO 0.013 item 1).
+HEART_REACH_M = 2.2
+BEAT_REACH_M = 1.0
+EXIT_REACH_M = 0.9
+DERIVED = ROOT / 'public' / 'ludus' / 'art' / 'derived' / 'DEF-001'
+
+
+def beat_of(c, plan, inv):
+    """The beat of the road met at a place's thing, checked; or None.
+
+    The passion must exist, its art kit must be shipped, the mentor's
+    node must teach the passion's sign (a discernment node of the
+    teacher of that passion), the thing must stand in the place, not be
+    holy, and stand out of the heart's and the way back's reach.
+    """
+    b = c.get('beat')
+    if not b:
+        return None
+    passion = inv['passions'][b['passion']]
+    npc, _, node = b['mentor'].partition('/')
+    assert npc == passion['teacher'], (c['id'], npc)
+    tree = inv['trees'][npc]
+    n = next(x for x in tree['nodes'] if x['id'] == node)
+    assert n['meaning'].startswith('Discernment cue'), node
+    assert b['passion'] in n['meaning'], node
+    kit = 'ant_%s_%s' % (b['passion'], b['kit'])
+    assert (DERIVED / (kit + '.json')).exists(), kit
+    o = reg.OBJECTS[b['thing']]
+    assert not o['holy'], b['thing']
+    slot = next(p for p in plan['placed'] if p['object'] == b['thing'])
+    x, _, z = slot['pos']
+    hx, _, hz = plan['heart_at']
+    d = plan['entrance'][2] - 0.3
+    gap = math.hypot(x - hx, z - hz)
+    assert gap >= HEART_REACH_M + BEAT_REACH_M, (c['id'], gap)
+    assert math.hypot(x, z - d) >= EXIT_REACH_M + BEAT_REACH_M, c['id']
+    for text in (b['ru'], b['scene_ru']):
+        assert not has_church_word(text), text
+    return {'core': 'PassionCore', 'id': b['passion'],
+            'thing': b['thing'], 'at': [x, 0.0, z],
+            'reach_m': BEAT_REACH_M, 'kit': b['kit'],
+            'npc': npc, 'node': node, 'ru': b['ru'],
+            'scene_ru': b['scene_ru'], 'lesson': b['lesson'],
+            'teacher_ru': tree['npcName_ru']}
+
+
 def location(c, inv):
     plan = layout(c)
     holy = [k for k in c['objects'] if reg.OBJECTS[k]['holy']]
@@ -906,7 +961,7 @@ def location(c, inv):
                       'form': o['holy'], 'state': o['state'],
                       'lampada': c['light'][0] == 'lampada',
                       'noInteract': True, 'noLoot': True, 'tag': False}
-    return {
+    out = {
         'id': c['id'], 'title_ru': c['title_ru'], 'kind': c['kind'],
         'families': c['families'], 'plots': c['plots'],
         'heart': c['heart'],
@@ -927,6 +982,12 @@ def location(c, inv):
         'constitution': constitution(c), 'lesson': c['lesson'],
         'sources': c['records'], 'note': c['note'],
         'exists': c['exists']}
+    # Only a place with a beat carries the key, so the other 98 lines
+    # of the data stay as they were.
+    beat = beat_of(c, plan, inv)
+    if beat:
+        out['beat'] = beat
+    return out
 
 
 def coverage(chosen, inv):
