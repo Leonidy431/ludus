@@ -1,5 +1,5 @@
 {
- "next": 11,
+ "next": 14,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -5568,6 +5568,113 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 155
+  },
+  {
+   "time": "2026-10-02T08:50:59.372586+00:00",
+   "pass_id": "osint-2026-10-02T08:50:59Z",
+   "deficits": [
+    {
+     "id": "DEF-047",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 14,
+      "dogma-stop-list": 1
+     },
+     "to_props": 54,
+     "hits_uncapped": 46510,
+     "props_uncapped": 42354,
+     "props_uncapped_repos": 62,
+     "added_keywords": [
+      "transport",
+      "treasury",
+      "view",
+      "year"
+     ],
+     "keywords_total": 98,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "cpp",
+      "java",
+      "mage",
+      "rotp",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 2,
+      "editor": 2
+     },
+     "props_seen": 50
+    },
+    {
+     "id": "DEF-048",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 19,
+      "dogma-stop-list": 1
+     },
+     "to_props": 88,
+     "hits_uncapped": 11427,
+     "props_uncapped": 8236,
+     "props_uncapped_repos": 59,
+     "added_keywords": [],
+     "keywords_total": 65,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "cpp",
+      "java",
+      "mage",
+      "mindustry",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 87
+    },
+    {
+     "id": "DEF-055",
+     "hits": 54,
+     "taken": 0,
+     "refused": {},
+     "to_props": 54,
+     "hits_uncapped": 54,
+     "props_uncapped": 54,
+     "props_uncapped_repos": 9,
+     "added_keywords": [],
+     "keywords_total": 6,
+     "keywords_not_searched": [],
+     "props": {},
+     "props_seen": 54
+    }
+   ],
+   "props_taken": {
+    "editor": 2,
+    "other": 2
+   },
+   "props_taken_by_index_kind": {
+    "code": 4
+   },
+   "props_duplicates": 191,
+   "props_errors": 0,
+   "props_refused": {
+    "licence-UNKNOWN": 1
+   },
+   "props_new_bytes": 43732,
+   "props_store_files": 1454,
+   "props_store_bytes": 10827682,
+   "props_cache_files_on_disk": 4665,
+   "props_cache_bytes_on_disk": 78042215,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 811650,
+   "props_register_growth_bytes": 2156,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 223
   }
  ],
  "keywords": {
@@ -6398,7 +6505,11 @@
    "status",
    "stop",
    "tilemap",
-   "train"
+   "train",
+   "transport",
+   "treasury",
+   "view",
+   "year"
   ],
   "DEF-048": [
    "java",
