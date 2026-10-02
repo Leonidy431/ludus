@@ -235,4 +235,5 @@ func _initialize() -> void:
 	print("module loader: %d checks, %d failures" % [checks - before,
 		failures - fails])
 	load("res://tests/test_story_12.gd").new().run(self)  # Prints its own.
+	load("res://tests/test_story_check.gd").new().run(self)  # Prints too.
 	quit(1 if failures else 0)

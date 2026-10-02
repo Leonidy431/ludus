@@ -34,8 +34,6 @@ const ITEMS := "res://data/location-items.json"
 ## The scene reads the chosen place from this meta on the tree's root,
 ## so it outlives the change of scene.
 const META_KEY := "ludus_location"
-const HUB_SAVE := "user://hub.json"
-const DIVE_SAVE := "user://dive.json"
 ## A name tag shows only when the player comes close (TABOO 0.013 item 4).
 const TAG_RANGE_M := 3.2
 ## A drawn card hangs at this width (as LocationsCore.CARD_M).
@@ -683,8 +681,13 @@ static func _read(path: String) -> Dictionary:
 
 ## What a place reads of the hub's save, in the same known shapes the
 ## hub's _load keeps (a hand-edited save cannot smuggle in counters).
-static func read_state(hub_path := HUB_SAVE, dive_path := DIVE_SAVE,
+## An empty path is the active slot (SaveSlot).
+static func read_state(hub_path := "", dive_path := "",
 		day := "") -> Dictionary:
+	if hub_path == "":
+		hub_path = SaveSlot.hub()
+	if dive_path == "":
+		dive_path = SaveSlot.dive()
 	var data := _read(hub_path)
 	var form := HubCore.new_form()
 	var src_form = data.get("form", {})
@@ -726,7 +729,9 @@ static func _missions(raw) -> Dictionary:
 ## Write back what a place may change, keeping every other key of the
 ## hub's save.  The road of missions is written only when the state
 ## carries it (a story's step done at a heart, StoryRoute).
-static func write_state(st: Dictionary, hub_path := HUB_SAVE) -> void:
+static func write_state(st: Dictionary, hub_path := "") -> void:
+	if hub_path == "":
+		hub_path = SaveSlot.hub()
 	var data := _read(hub_path)
 	if st.has("missions"):
 		data["missions"] = _missions(st.missions)
@@ -744,7 +749,9 @@ static func write_state(st: Dictionary, hub_path := HUB_SAVE) -> void:
 
 ## The knight's things handed to the scribe go into the dive's save,
 ## beside its own pockets, as dive.gd keeps them.
-static func write_given(given: Array, dive_path := DIVE_SAVE) -> void:
+static func write_given(given: Array, dive_path := "") -> void:
+	if dive_path == "":
+		dive_path = SaveSlot.dive()
 	var data := _read(dive_path)
 	var bag = data.get("bag", {})
 	if not bag is Dictionary:

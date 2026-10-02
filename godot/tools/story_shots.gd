@@ -11,14 +11,20 @@
 ## Writes <out>/story-<mission>.png (the four steps, two by two, each at
 ## half size) and <out>/story-board.png; --full keeps every frame whole.
 ## The player's save is set for each frame and put back as it was after.
+##
+## --check=<png> takes only the frame of the tester's entry (StoryCheck,
+## debug builds): the test slot opened on the last story, the board's
+## list of the 12 open in front, with the test banner first.  The test
+## slot is left afterwards; the player's save is not touched.
 extends SceneTree
 
-const SAVE := "user://hub.json"
+var SAVE := SaveSlot.hub()
 const WAIT := 24
 const NEAR_M := 1.3
 
 var out := ""
 var full := ""
+var check := ""
 
 
 func _initialize() -> void:
@@ -27,6 +33,11 @@ func _initialize() -> void:
 			out = arg.trim_prefix("--out=")
 		elif arg.begins_with("--full="):
 			full = arg.trim_prefix("--full=")
+		elif arg.begins_with("--check="):
+			check = arg.trim_prefix("--check=")
+	if check != "":
+		_check_frame.call_deferred()
+		return
 	if out == "":
 		printerr("story_shots: --out=<dir> is needed")
 		quit(2)
@@ -57,6 +68,38 @@ func _save_for(mission_id: int, step: int, mdata: Dictionary) -> void:
 		"missions": {"done": done, "current": {"id": mission_id,
 			"step": step, "scene": null}, "flags": {}, "lines": {}}}))
 	f.close()
+
+
+func _check_frame() -> void:
+	var story := StoryRoute.load_data()
+	var mdata := MissionCore.load_data()
+	var last: Dictionary = story.stories[story.stories.size() - 1]
+	var res := StoryCheck.enter(mdata, int(last.mission))
+	if not res.ok:
+		printerr("story_shots: ", res.reason)
+		quit(1)
+		return
+	var hub: Node3D = (load("res://scenes/hub.tscn") as PackedScene) \
+		.instantiate()
+	root.add_child(hub)
+	await _frames(4)
+	hub.pos = Vector3(1.0, 0, 1.2)
+	hub.yaw = -PI / 2.0
+	hub.camera.rotation.x = -0.12
+	hub.mission = {"choice": 0, "start": -1, "check": true}
+	await _frames(WAIT)
+	_grab().save_png(check)
+	# The board itself, from a step back: the banner over the road.
+	hub.mission = {}
+	hub.pos = Vector3(1.6, 0, 1.2)
+	await _frames(WAIT)
+	_grab().save_png(check.get_basename() + "-text.png")
+	print("check frame: %s (test slot on story %d)" % [check,
+		int(last.mission)])
+	hub.queue_free()
+	await _frames(2)
+	StoryCheck.leave()
+	quit()
 
 
 func _frames(n: int) -> void:
