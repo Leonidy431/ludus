@@ -20,6 +20,19 @@ extends RefCounted
 
 const SHARE := "share-water"
 const SIDE_RU := {"upper": "верхний", "lower": "нижний"}
+## The numbers of the lake two acts read (blind spot 14 of docs/
+## BLINDSPOTS_CODE_BREAKTHROUGH_2026-10-01.md): they come from the data
+## and the dive's own rules, not from the text, so the silt the player
+## cores here is the silt plain the dive lays on its slope, at its depth
+## and its water's warmth, and the old shore under the terrace is the
+## drowned terrace of the lake's registry.
+const LAKE := "res://data/lake-objects-99.json"
+## The silt plain of the silt-core place (one of its slots).
+const SILT := "silt.slope.0"
+## The drowned shore terrace: an old shoreline under the water.
+const OLD_SHORE := "terrace.shelf.2"
+
+static var _facts := {}
 
 ## For a sequence act: "intro" is the panel text; each button holds
 ## either "at" (the step where it is right, "ok" the answer when it is,
@@ -95,9 +108,9 @@ const ACTS := {
 		],
 	},
 	"take-core": {
-		"intro": ["Ил на дне лежит слоями, как страницы.",
-			"Внизу старше, вверху моложе.",
-			"Керн берут один и чисто."],
+		"intro": ["Ил лежит слоями, как страницы: внизу старше.",
+			"Прибор: глубина {depth} м, вода {temp} °C,"
+				+ " слой скачка на {thermo} м."],
 		"buttons": [
 			{"id": "basket", "text": "Уложить керн в корзину для проб",
 				"at": 4,
@@ -110,7 +123,8 @@ const ACTS := {
 					+ " Керн берут трубкой, отвесно."},
 			{"id": "label", "text": "Подписать: место, глубина, день",
 				"at": 3,
-				"ok": "Подпись выведена. Без неё керн просто грязь.",
+				"ok": "Подпись выведена: {depth} м, {temp} °C. Без неё"
+					+ " керн просто грязь.",
 				"early": "Подписывать нечего: керна ещё нет в руках."},
 			{"id": "ask", "text": "Спросить у воды, что она помнит",
 				"wrong": "Вода молчит, слои помнят. Читают ил,"
@@ -119,7 +133,8 @@ const ACTS := {
 				"ok": "Столбик ила вышел целым: слои на местах.",
 				"early": "Нечего вынимать: трубка ещё не в иле."},
 			{"id": "tube", "text": "Опустить трубку отвесно", "at": 1,
-				"ok": "Трубка вошла ровно и села на нужную глубину.",
+				"ok": "Трубка вошла ровно: дно на {depth} м,"
+					+ " {side} слоя скачка.",
 				"early": "Сперва выбери место, где ил не тронут."},
 			{"id": "flat", "text": "Выбрать ровное место нетронутого ила",
 				"at": 0,
@@ -133,7 +148,7 @@ const ACTS := {
 	"read-waterline": {
 		"intro": ["Вода ушла и оставила террасу.",
 			"На склоне старые метки: докуда она приходила.",
-			"Надёжную землю не видно с первого взгляда."],
+			"Под водой лежит прежний берег, на {lo}–{hi} м."],
 		"buttons": [
 			{"id": "cord", "text": "Натянуть шнур между кольями", "at": 4,
 				"ok": "Шнур лёг выше всех меток. Надёжная земля"
@@ -154,7 +169,8 @@ const ACTS := {
 				"early": "Сверять не с чем: метки или рейку ещё не"
 					+ " читал."},
 			{"id": "marks", "text": "Найти старые метки на склоне", "at": 1,
-				"ok": "Три полосы ила на камне: вода приходила не раз.",
+				"ok": "Три полосы ила на камне. Вода то уходила"
+					+ " на {lo}–{hi} м ниже, то приходила.",
 				"early": "Сперва прочти, где вода стоит сейчас."},
 			{"id": "gauge", "text": "Прочесть рейку у кромки воды", "at": 0,
 				"ok": "Рейка показала нынешнюю воду.",
@@ -162,6 +178,42 @@ const ACTS := {
 		],
 	},
 }
+
+
+## The lake numbers by name, for "{name}" in the texts of ACTS:
+## depth (m, whole) and temp (°C at that depth, one decimal, with a
+## comma) of the silt plain where DiveCore.place_objects lays it; side
+## ("выше" or "ниже") of the thermocline; thermo (m); lo and hi (m) of
+## the drowned shore's band.  A name the data lacks stays in braces, and
+## the group test fails on it.
+static func facts() -> Dictionary:
+	if not _facts.is_empty():
+		return _facts
+	var lake := {}
+	var f := FileAccess.open(LAKE, FileAccess.READ)
+	if f != null:
+		var d = JSON.parse_string(f.get_as_text())
+		if d is Dictionary:
+			for o in d.get("objects", []):
+				lake[str(o.id)] = o
+	var out := {"thermo": int(DiveCore.THERMOCLINE_M)}
+	if lake.has(SILT):
+		var placed: Dictionary = DiveCore.place_objects([lake[SILT]])[0]
+		var depth := int(round(float(placed.depth)))
+		out["depth"] = depth
+		out["temp"] = ("%.1f" % DiveCore.temperature(depth)).replace(
+			".", ",")
+		out["side"] = "выше" if depth < DiveCore.THERMOCLINE_M else "ниже"
+	if lake.has(OLD_SHORE):
+		out["lo"] = int(lake[OLD_SHORE].depth[0])
+		out["hi"] = int(lake[OLD_SHORE].depth[1])
+	_facts = out
+	return out
+
+
+## A text of ACTS with the lake's numbers put in.
+static func say(text: String) -> String:
+	return text.format(facts())
 
 
 static func ids() -> Array:
@@ -187,19 +239,13 @@ static func _steps(id: String) -> int:
 static func lines(id: String, s: Dictionary) -> Array:
 	if id == SHARE:
 		return _share_lines(s)
-	var out: Array = ACTS[id].intro.duplicate()
-	var step: int = s.get("step", 0)
-	if step > 0:
-		out.append("")
-		# The finished steps in their own order, so the panel reads as a
-		# short log of what the hands did.
-		var done_steps: Array = []
-		for b in ACTS[id].buttons:
-			if b.has("at") and b.at < step:
-				done_steps.append(b)
-		done_steps.sort_custom(func(a, b): return a.at < b.at)
-		for b in done_steps:
-			out.append("Сделано: " + str(b.text))
+	# The steps already done are not listed again: their buttons stay
+	# on the panel, closed, with "Это уже сделано." beside them.  A log
+	# of the same words above them made the panel taller than its bark
+	# (tools/measure_panel_text.gd: 25 lines on a bark of 19).
+	var out: Array = []
+	for line in ACTS[id].intro:
+		out.append(say(line))
 	return out
 
 
@@ -241,16 +287,16 @@ static func choose(id: String, s: Dictionary, c: String) -> Dictionary:
 		if b.id != c:
 			continue
 		if b.has("wrong"):
-			s.reply = b.wrong
+			s.reply = say(b.wrong)
 		elif b.at == s.step:
 			s.step += 1
-			s.reply = b.ok
+			s.reply = say(b.ok)
 			if s.step >= _steps(id):
 				s.done = true
 		elif b.at < s.step:
 			s.reply = "Это уже сделано."
 		else:
-			s.reply = b.early
+			s.reply = say(b.early)
 		return s
 	return s
 
@@ -268,8 +314,8 @@ static func tick(_id: String, s: Dictionary, _dt: float,
 static func _share_lines(s: Dictionary) -> Array:
 	var out: Array = ["Одна заслонка, два русла: верхнее и нижнее.",
 		"Воды в обоих мало, а ждут оба."]
-	if s.measured:
-		out.append("Сделано: воду смерили рейкой.")
+	# The measuring is not listed: its button stays, closed, with "Это
+	# уже сделано." beside it (the panel must fit its bark).
 	for side in s.served:
 		out.append("Сделано: %s арык напоен." % SIDE_RU[side])
 	if s.open != "":
