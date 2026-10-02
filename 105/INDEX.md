@@ -2,7 +2,7 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 443
+- файлов кода: 445
 - документов: 203
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
@@ -30,7 +30,7 @@
 - [.github/workflows/raw-audio-pass.yml](../.github/workflows/raw-audio-pass.yml) — Audio pass over the 99 backlog repos as a git pass (operator,
 - [.github/workflows/raw-osint-cycle.yml](../.github/workflows/raw-osint-cycle.yml) — OSINT pass over the 99 backlog repos every 1.5 hours (CLAUDE.md TABOO
 
-## Игра для шлема: код (GDScript) (70)
+## Игра для шлема: код (GDScript) (71)
 
 - [godot/scripts/atlas_core.gd](../godot/scripts/atlas_core.gd) — "The Water Atlas" read at the lectern of the scriptorium (CLAUDE.md
 - [godot/scripts/atlas_traces.gd](../godot/scripts/atlas_traces.gd) — The knight's traces in the lake and the chronicle's choice (TABOO
@@ -91,6 +91,7 @@
 - [godot/scripts/rule_cell.gd](../godot/scripts/rule_cell.gd) — The two practices of the rule that the hub gives a place
 - [godot/scripts/rule_core.gd](../godot/scripts/rule_core.gd) — The rule of prayer, ported from public/ludus/ludus-actions.js
 - [godot/scripts/save_slot.gd](../godot/scripts/save_slot.gd) — Which save the game reads and writes: the player's own, or the tester's.
+- [godot/scripts/screen_feed.gd](../godot/scripts/screen_feed.gd) — The video of the operator's instruments (CLAUDE.md TABOO 0.022): what
 - [godot/scripts/source_labels.gd](../godot/scripts/source_labels.gd) — The Russian form of a source, for the panels of the headset.
 - [godot/scripts/static_batch.gd](../godot/scripts/static_batch.gd) — Static batching of still geometry (docs/APK_REQUIREMENTS.md, Б-1).
 - [godot/scripts/storm_calm.gd](../godot/scripts/storm_calm.gd) — How a place shows that standing still counts while an act asks to
@@ -220,7 +221,7 @@
 - [scripts/decisions/stoplist_choice.py](../scripts/decisions/stoplist_choice.py) — One decision for the church-word stop-list, chosen in the open.
 - [scripts/decisions/stream_choice.py](../scripts/decisions/stream_choice.py) — How the heavy data reaches the headset: one way from the honest pool.
 
-## Скрипты проекта: раннер, данные, сюжеты (74)
+## Скрипты проекта: раннер, данные, сюжеты (75)
 
 - [scripts/build-campaign-spine.py](../scripts/build-campaign-spine.py) — Build the Issyk-Kul campaign spine from webtypicon2's missions.
 - [scripts/build_rights_manifest.py](../scripts/build_rights_manifest.py) — Build the "Manuscript of rights": the licence register shown in-game.
@@ -251,6 +252,7 @@
 - [scripts/phase3-validation.sh](../scripts/phase3-validation.sh) — Phase 3 Final Validation Script
 - [scripts/prerender/build_closeups.py](../scripts/prerender/build_closeups.py) — The examine videos of episode 1 (TABOO 0.019, 0.020): voice, pack
 - [scripts/prerender/build_intro.py](../scripts/prerender/build_intro.py) — The blockbuster intro of every next launch, as a preview video
+- [scripts/prerender/render_insights.py](../scripts/prerender/render_insights.py) — Still frames of the insights (CLAUDE.md TABOO 0.021): one realistic
 - [scripts/prerender/render_items.py](../scripts/prerender/render_items.py) — Close-up stills for the swap on examine (docs/HLD_SWAP_RENDERING_
 - [scripts/raw_assets/antagonist.py](../scripts/raw_assets/antagonist.py) — Antagonist protocol: the eight passions and their twelve variants.
 - [scripts/raw_assets/audio_pass.py](../scripts/raw_assets/audio_pass.py) — Audio pass: sounds from the 99 repos as spectral references only.
