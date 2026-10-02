@@ -1,5 +1,5 @@
 {
- "next": 11,
+ "next": 14,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -5072,6 +5072,153 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 52
+  },
+  {
+   "time": "2026-10-02T03:51:16.729422+00:00",
+   "pass_id": "osint-2026-10-02T03:51:16Z",
+   "deficits": [
+    {
+     "id": "DEF-040",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 3
+     },
+     "to_props": 111,
+     "hits_uncapped": 20046,
+     "props_uncapped": 16716,
+     "props_uncapped_repos": 60,
+     "added_keywords": [
+      "ast",
+      "balsa",
+      "battlescape",
+      "bflib",
+      "bitmap",
+      "category",
+      "circular",
+      "click",
+      "component",
+      "context",
+      "continue",
+      "control"
+     ],
+     "keywords_total": 81,
+     "keywords_not_searched": [
+      "bevy",
+      "cleric",
+      "com",
+      "cpp",
+      "crates",
+      "java",
+      "mage",
+      "rotp",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 20,
+      "editor": 1,
+      "test": 3
+     },
+     "props_seen": 56
+    },
+    {
+     "id": "DEF-047",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 14,
+      "dogma-stop-list": 1
+     },
+     "to_props": 50,
+     "hits_uncapped": 46207,
+     "props_uncapped": 42081,
+     "props_uncapped_repos": 62,
+     "added_keywords": [
+      "paint",
+      "palettes",
+      "parser",
+      "properties",
+      "range",
+      "relocation",
+      "report",
+      "spy",
+      "status",
+      "stop",
+      "tilemap",
+      "train"
+     ],
+     "keywords_total": 94,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "cpp",
+      "java",
+      "mage",
+      "rotp",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 11,
+      "editor": 2
+     },
+     "props_seen": 37
+    },
+    {
+     "id": "DEF-048",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 19,
+      "dogma-stop-list": 1
+     },
+     "to_props": 88,
+     "hits_uncapped": 11427,
+     "props_uncapped": 8236,
+     "props_uncapped_repos": 59,
+     "added_keywords": [],
+     "keywords_total": 65,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "cpp",
+      "java",
+      "mage",
+      "mindustry",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 87
+    }
+   ],
+   "props_taken": {
+    "editor": 3,
+    "other": 31,
+    "test": 3
+   },
+   "props_taken_by_index_kind": {
+    "code": 37
+   },
+   "props_duplicates": 180,
+   "props_errors": 0,
+   "props_refused": {
+    "licence-Defold-1.0": 31,
+    "licence-UNKNOWN": 1
+   },
+   "props_new_bytes": 312500,
+   "props_store_files": 1450,
+   "props_store_bytes": 10783950,
+   "props_cache_files_on_disk": 4661,
+   "props_cache_bytes_on_disk": 77998483,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 809494,
+   "props_register_growth_bytes": 21027,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 313
   }
  ],
  "keywords": {
@@ -5775,7 +5922,19 @@
    "advisor",
    "alerts",
    "animated",
-   "annotation"
+   "annotation",
+   "ast",
+   "balsa",
+   "battlescape",
+   "bflib",
+   "bitmap",
+   "category",
+   "circular",
+   "click",
+   "component",
+   "context",
+   "continue",
+   "control"
   ],
   "DEF-047": [
    "java",
@@ -5861,7 +6020,19 @@
    "name",
    "oksprite",
    "out",
-   "packer"
+   "packer",
+   "paint",
+   "palettes",
+   "parser",
+   "properties",
+   "range",
+   "relocation",
+   "report",
+   "spy",
+   "status",
+   "stop",
+   "tilemap",
+   "train"
   ],
   "DEF-048": [
    "java",

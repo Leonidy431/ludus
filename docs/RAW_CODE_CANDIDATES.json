@@ -19559,5 +19559,40 @@
    "LICENSE.TXT"
   ],
   "slot": "DEF-048"
+ },
+ {
+  "repo": "https://github.com/OpenTTD/OpenTTD",
+  "commit": "6059ce2bbb27afdd73d45153657fe9bc087d1c01",
+  "license_file": "COPYING.md",
+  "path": "src/table/train_sprites.h",
+  "kind": "code",
+  "hits": [
+   "sprites",
+   "table",
+   "train"
+  ],
+  "score": 3,
+  "attribution": [
+   "COPYING.md",
+   "CREDITS.md"
+  ],
+  "slot": "DEF-047"
+ },
+ {
+  "repo": "https://github.com/magefree/mage",
+  "commit": "3d3f4320ed0bb07cb2331f29e3d7cdadf5746ac0",
+  "license_file": "LICENSE.txt",
+  "path": "Mage.Client/src/main/java/org/mage/plugins/card/dl/beans/properties/Property.java",
+  "kind": "code",
+  "hits": [
+   "client",
+   "property",
+   "properties"
+  ],
+  "score": 3,
+  "attribution": [
+   "LICENSE.txt"
+  ],
+  "slot": "DEF-047"
  }
 ]
