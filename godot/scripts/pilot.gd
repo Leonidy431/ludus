@@ -132,6 +132,11 @@ var narration := {}
 var narr: Label3D
 var narr_left := 0.0
 var narrated: Array[String] = []
+## The language of subtitles and voice: "ru" by default, or "lang" in
+## user://settings.json (en, de, fr, es, it; the chorus' translation in
+## data/pilot-narration-i18n.json).
+var lang := "ru"
+var i18n := {}
 
 var passion := {}
 var state := {}
@@ -160,6 +165,8 @@ func _ready() -> void:
 	data = PilotCore.load_data()
 	details = PilotCore.load_details(data)
 	narration = PilotCore.load_narration()
+	lang = PilotCore.language()
+	i18n = PilotCore.load_i18n()
 	passion = _passion(data.taboo.passion)
 	state = PassionCore.start(passion)
 	body = PilotCore.body_start()
@@ -1209,7 +1216,8 @@ func open_examine(e: Dictionary) -> void:
 ## the holy the line is empty: the narrator is silent (TABOO 0.020).
 func narrate(group: String, key: String, again := false) -> void:
 	var x: Dictionary = narration.get(group, {}).get(key, {})
-	var text := str(x.get("line_ru", ""))
+	var text := PilotCore.narration_text(narration, i18n, group, key,
+		lang)
 	var tag := group + "." + key
 	if text == "" or x.get("voice", true) == false:
 		return
@@ -1219,7 +1227,7 @@ func narrate(group: String, key: String, again := false) -> void:
 		narrated.append(tag)
 	narr.text = text
 	narr_left = 7.0
-	var voice := "res://narration/%s.ogg" % key
+	var voice := "res://narration/%s/%s.ogg" % [lang, key]
 	if narrator and FileAccess.file_exists(voice):
 		narrator.stream = AudioStreamOggVorbis.load_from_file(voice)
 		narrator.play()

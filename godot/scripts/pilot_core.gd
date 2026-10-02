@@ -22,6 +22,8 @@ const DATA := "res://data/pilot-1.json"
 const COLD_OPEN_MAX_S := 10.0
 const DETAILS := "res://data/pilot-details.json"
 const NARRATION := "res://data/pilot-narration.json"
+const I18N := "res://data/pilot-narration-i18n.json"
+const LANGS := ["ru", "en", "de", "fr", "es", "it"]
 ## What a detail may do at the holy: dip the machine, dim the light,
 ## settle the murk, leave the line empty (TABOO 0.4 item 2).
 const QUIET := ["duck", "lamp", "fog", "line"]
@@ -389,3 +391,31 @@ static func check_ads(data: Dictionary) -> Array:
 static func load_narration() -> Dictionary:
 	var d = JSON.parse_string(FileAccess.get_file_as_string(NARRATION))
 	return d if d is Dictionary else {}
+
+
+
+static func load_i18n() -> Dictionary:
+	var d = JSON.parse_string(FileAccess.get_file_as_string(I18N))
+	return d if d is Dictionary else {}
+
+
+## The player's language from user://settings.json ("lang"), else ru.
+static func language() -> String:
+	var path := "user://settings.json"
+	if FileAccess.file_exists(path):
+		var d = JSON.parse_string(FileAccess.get_file_as_string(path))
+		if d is Dictionary and str(d.get("lang", "")) in LANGS:
+			return str(d.lang)
+	return "ru"
+
+
+## A narrator line in a language; the Russian original when the
+## translation is missing, so a line is never silent by accident.
+static func narration_text(n: Dictionary, tr: Dictionary, group: String,
+		key: String, lang: String) -> String:
+	var ru := str(n.get(group, {}).get(key, {}).get("line_ru", ""))
+	if lang == "ru" or ru == "":
+		return ru
+	var t := str(tr.get("narration", {}).get(group, {}).get(key, {})
+		.get(lang, ""))
+	return t if t != "" else ru

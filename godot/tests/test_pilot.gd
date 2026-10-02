@@ -127,6 +127,20 @@ func run(t: Object) -> void:
 		{"n": 31, "inp": look}, {"n": 1, "inp": reach}])
 	t._check(again == fallen, "the same body gives the same ladder")
 	clues(t)
+	var nr := PilotCore.load_narration()
+	var tr := PilotCore.load_i18n()
+	for lg in ["en", "de", "fr", "es", "it"]:
+		var missing := 0
+		for g in ["beats", "objects"]:
+			for k in nr[g]:
+				var ru := str(nr[g][k].get("line_ru", ""))
+				var x := PilotCore.narration_text(nr, tr, g, k, lg)
+				if ru != "" and (x == ru or x.length() > 140):
+					missing += 1
+				if ru == "" and x != "":
+					missing += 1
+		t._check(missing == 0, "narration in %s: every line, silent at "
+			% lg + "the holy, ≤ 140 (%d off)" % missing)
 	var nb := PilotCore.check_narration(d, PilotCore.load_narration())
 	t._check(nb.is_empty(), "the narrator's lines keep TABOO 0.020: %s"
 		% [nb])
