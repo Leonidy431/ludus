@@ -63,6 +63,10 @@ CI_APK = {
 # first recorded takes replace them.
 WORDS_PER_SEC = 2.2
 PAUSE_PER_LINE_SEC = 0.6
+# English words are shorter (fewer syllables a word), so the same calm
+# delivery says more of them a second: 2.5 words/s (about 150 a
+# minute, a calm narrator).  An assumption like the one above.
+WORDS_PER_SEC_EN = 2.5
 
 # Bitrates in kilobits a second (1 kbit = 1000 bit).  Ogg Vorbis keeps
 # its size in the Godot build (it is imported as is and decoded while
@@ -155,8 +159,8 @@ def kbps_bytes(kbps, seconds):
     return int(kbps * 1000 / 8 * seconds)
 
 
-def speech_seconds(words, lines):
-    return words / WORDS_PER_SEC + lines * PAUSE_PER_LINE_SEC
+def speech_seconds(words, lines, rate=WORDS_PER_SEC):
+    return words / rate + lines * PAUSE_PER_LINE_SEC
 
 
 def forecast(apk_path):
@@ -166,8 +170,9 @@ def forecast(apk_path):
 
     voice_sec = speech_seconds(text['words_ru'], text['lines'])
     voice = kbps_bytes(KBPS['voice_mono_vorbis'], voice_sec)
-    voice_en = kbps_bytes(KBPS['voice_mono_vorbis'],
-                          speech_seconds(text['words_en'], text['lines']))
+    voice_en_sec = speech_seconds(text['words_en'], text['lines'],
+                                  WORDS_PER_SEC_EN)
+    voice_en = kbps_bytes(KBPS['voice_mono_vorbis'], voice_en_sec)
 
     music = {}
     for k, (n, lo, hi) in MUSIC_PLAN.items():
@@ -204,6 +209,8 @@ def forecast(apk_path):
     phases = [
         ('now', 'APK today', 0),
         ('voices_ru', '+ Russian voices of the 34 trees', voice),
+        ('voices_en', '+ English voices of the 34 trees', voice_en),
+        ('voices_ru_en', '+ Russian and English voices', voice + voice_en),
         ('sound_min', '+ sound plan, low (40 unique, short, RU voice)',
          audio_min),
         ('sound_max', '+ sound plan, high (full list, long, RU+EN voice)',
@@ -235,6 +242,7 @@ def forecast(apk_path):
         'apk_now': apk, 'dialogue': text, 'models_now': models,
         'assumptions': {
             'words_per_sec': WORDS_PER_SEC,
+            'words_per_sec_en': WORDS_PER_SEC_EN,
             'pause_per_line_sec': PAUSE_PER_LINE_SEC, 'kbps': KBPS,
             'unique_tracks': UNIQUE_TRACKS, 'listed_tracks': listed,
             'sfx_count': SFX_COUNT, 'sfx_sec': SFX_SEC,
@@ -243,7 +251,7 @@ def forecast(apk_path):
         'limits': {'store_apk': STORE_APK, 'store_obb': STORE_OBB,
                    'own_apk': OWN_APK},
         'voice': {'seconds_ru': voice_sec, 'bytes_ru': voice,
-                  'bytes_en': voice_en},
+                  'seconds_en': voice_en_sec, 'bytes_en': voice_en},
         'music': music, 'choir': choir, 'sfx_bytes': sfx,
         'final_model_bytes_each': final_one,
         'final_models_bytes': final_models,
@@ -264,10 +272,11 @@ def report(f):
     print('Dialogue: %d trees, %d lines, %d words RU, %d words EN' % (
         d['trees'], d['lines'], d['words_ru'], d['words_en']))
     v = f['voice']
-    print('Voice RU: %.1f min, %s MiB (Vorbis mono %d kbit/s); EN %s MiB'
-          % (v['seconds_ru'] / 60, mb(v['bytes_ru']),
-             f['assumptions']['kbps']['voice_mono_vorbis'],
-             mb(v['bytes_en'])))
+    print('Voice RU: %.1f min, %s MiB; EN: %.1f min, %s MiB '
+          '(Vorbis mono %d kbit/s)' % (
+              v['seconds_ru'] / 60, mb(v['bytes_ru']),
+              v['seconds_en'] / 60, mb(v['bytes_en']),
+              f['assumptions']['kbps']['voice_mono_vorbis']))
     for k, m in f['music'].items():
         print('Music %-17s %2d tracks %5.1f-%5.1f min  %s-%s MiB' % (
             k, m['count'], m['min_minutes'], m['max_minutes'],

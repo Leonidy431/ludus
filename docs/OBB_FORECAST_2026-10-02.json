@@ -19,6 +19,7 @@
  },
  "assumptions": {
   "words_per_sec": 2.2,
+  "words_per_sec_en": 2.5,
   "pause_per_line_sec": 0.6,
   "kbps": {
    "voice_mono_vorbis": 64,
@@ -42,7 +43,8 @@
  "voice": {
   "seconds_ru": 4662.854545454545,
   "bytes_ru": 37302836,
-  "bytes_en": 47648290
+  "seconds_en": 5259.599999999999,
+  "bytes_en": 42076799
  },
  "music": {
   "ambient": {
@@ -120,6 +122,26 @@
    "over_store": false
   },
   {
+   "phase": "voices_en",
+   "label": "+ English voices of the 34 trees",
+   "added": 42076799,
+   "apk_if_one_file": 147148599,
+   "own_budget_share": 1.096342496573925,
+   "store_share": 0.147148599,
+   "over_own": true,
+   "over_store": false
+  },
+  {
+   "phase": "voices_ru_en",
+   "label": "+ Russian and English voices",
+   "added": 79379635,
+   "apk_if_one_file": 184451435,
+   "own_budget_share": 1.3742702826857567,
+   "store_share": 0.184451435,
+   "over_own": true,
+   "over_store": false
+  },
+  {
    "phase": "sound_min",
    "label": "+ sound plan, low (40 unique, short, RU voice)",
    "added": 144257145,
@@ -132,20 +154,20 @@
   {
    "phase": "sound_max",
    "label": "+ sound plan, high (full list, long, RU+EN voice)",
-   "added": 428461626,
-   "apk_if_one_file": 533533426,
-   "own_budget_share": 3.975133791565895,
-   "store_share": 0.533533426,
+   "added": 422890135,
+   "apk_if_one_file": 527961935,
+   "own_budget_share": 3.9336229488253593,
+   "store_share": 0.527961935,
    "over_own": true,
    "over_store": false
   },
   {
    "phase": "models_final",
    "label": "+ final models in place of proxies",
-   "added": 1350709362,
-   "apk_if_one_file": 1455781162,
-   "own_budget_share": 10.846414878964424,
-   "store_share": 1.455781162,
+   "added": 1345137871,
+   "apk_if_one_file": 1450209671,
+   "own_budget_share": 10.804904036223888,
+   "store_share": 1.450209671,
    "over_own": true,
    "over_store": true
   }
