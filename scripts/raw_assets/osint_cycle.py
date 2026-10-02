@@ -238,6 +238,28 @@ def rotation():
     return rows
 
 
+# An object reverted by the eye check stays reverted: the pass log names
+# it either in a "reverted" list of {"object": ...} or in a
+# "reverted_reason" text.  Without this memory the runner shipped the
+# same chalice-like sadness kit (ant_sadness_5338273a79) three times
+# (passes of cycles 89 and 93); the journal is the memory, so it is read.
+REVERTED_ID = re.compile(r'\b(?:ant|obj)_[a-z]+_[0-9a-f]{10}\b')
+
+
+def reverted_objects(cursor):
+    """The names of every object an earlier pass reverted."""
+    out = set()
+    for entry in cursor.get('log', []):
+        rev = entry.get('reverted')
+        if isinstance(rev, list):
+            for r in rev:
+                if isinstance(r, dict) and r.get('object'):
+                    out.add(r['object'])
+        out.update(REVERTED_ID.findall(str(entry.get('reverted_reason',
+                                                     ''))))
+    return out
+
+
 def load_cursor():
     if CURSOR.exists():
         return json.loads(CURSOR.read_text(encoding='utf-8'))
@@ -710,7 +732,12 @@ def pipeline(manifest, raw_dir, out_dir, work):
         slots = {m['path']: m['slot'] for m in manifest}
         report = json.loads((out_dir / 'report.json').read_text('utf-8'))
         shipped = set()
+        refused = reverted_objects(load_cursor())
         for rec in report['accepted']:
+            if rec['name'] in refused:
+                print(f'{rec["name"]}: reverted by an earlier eye check, '
+                      'not shipped again')
+                continue
             # Fewer than twelve variants never ships (TABOO 0.1: never
             # stop at eleven); such objects stay in the build for review.
             if rec.get('status') != 'ok':

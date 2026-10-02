@@ -2,7 +2,7 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 467
+- файлов кода: 468
 - документов: 226
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
@@ -239,7 +239,7 @@
 - [scripts/decisions/stoplist_choice.py](../scripts/decisions/stoplist_choice.py) — One decision for the church-word stop-list, chosen in the open.
 - [scripts/decisions/stream_choice.py](../scripts/decisions/stream_choice.py) — How the heavy data reaches the headset: one way from the honest pool.
 
-## Скрипты проекта: раннер, данные, сюжеты (79)
+## Скрипты проекта: раннер, данные, сюжеты (80)
 
 - [scripts/build-campaign-spine.py](../scripts/build-campaign-spine.py) — Build the Issyk-Kul campaign spine from webtypicon2's missions.
 - [scripts/build_rights_manifest.py](../scripts/build_rights_manifest.py) — Build the "Manuscript of rights": the licence register shown in-game.
@@ -311,6 +311,7 @@
 - [scripts/raw_assets/tests/test_passion_fields.py](../scripts/raw_assets/tests/test_passion_fields.py) — Rule 13 (CLAUDE.md TABOO 0.35): an antagonist ships with its teaching.
 - [scripts/raw_assets/tests/test_props.py](../scripts/raw_assets/tests/test_props.py) — The props store takes every non-game hit, and nothing holy.
 - [scripts/raw_assets/tests/test_reference.py](../scripts/raw_assets/tests/test_reference.py) — The runner selects by the real object and grows its keys by twelve.
+- [scripts/raw_assets/tests/test_reverted_memory.py](../scripts/raw_assets/tests/test_reverted_memory.py) — The runner remembers what the eye check reverted (cycle 93 lesson).
 - [scripts/raw_assets/transform.py](../scripts/raw_assets/transform.py) — Transform raw third-party images into Ludus art and measure the change.
 - [scripts/story/atlas_nodes.py](../scripts/story/atlas_nodes.py) — The 99 nodes of "The Water Atlas" as the chorus of five editors left
 - [scripts/story/cast_12.py](../scripts/story/cast_12.py) — Where the people of the 12 stories stand in the headset.
