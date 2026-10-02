@@ -369,8 +369,14 @@ jobs:
           fi
           # The certificate's fingerprint in the log shows whether two
           # builds share one key (then the APK installs over the old one).
-          keytool -list -v -keystore "$RUNNER_TEMP/debug.keystore" \
-            -storepass android | grep -m1 "SHA256:"
+          # It is also posted as a notice, so the check's page shows the
+          # key without opening the full log.
+          fp=$(keytool -list -v -keystore "$RUNNER_TEMP/debug.keystore" \
+            -storepass android | grep -m1 "SHA256:" | sed 's/.*SHA256: //')
+          echo "SHA256: $fp"
+          if [ -n "$key_ok" ]; then src="LUDUS_DEBUG_KEYSTORE_B64"
+          else src="cached interim key"; fi
+          echo "::notice title=APK signing key::$src, SHA256 $fp"
           mkdir -p ~/.config/godot
           cat > ~/.config/godot/editor_settings-4.7.tres <<EOF
           [gd_resource type="EditorSettings" format=3]
