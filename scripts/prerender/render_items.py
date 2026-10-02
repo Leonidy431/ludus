@@ -24,7 +24,9 @@ import bpy
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / 'godot' / 'art' / 'prerender'
 SEED = 1375
-ITEMS = ('amphora', 'souvenir', 'drams', 'logbook', 'diary')
+ITEMS = ('amphora', 'souvenir', 'drams', 'logbook', 'diary', 'glasses',
+         'backup', 'echomug', 'echobook', 'echocoil', 'astrolabe',
+         'shield')
 # The pack of the examine videos: sources only, never in the APK.
 PACK = ROOT / 'godot' / 'packs' / 'closeups-ep1' / 'closeups'
 
@@ -298,6 +300,118 @@ def build(item, sc):
         clasp.scale = (0.03, 0.03, 0.074)
         link(clasp, brass)
         studio(sc, 0.3, 1.0, 0.03, yaw=0.5, pitch=0.6)
+    elif item == 'glasses':
+        frame = mat('frame', (0.03, 0.025, 0.02), rough=0.3, coat=0.5)
+        lens = mat('lens', (0.9, 0.95, 1.0), rough=0.02)
+        lens.node_tree.nodes['Principled BSDF'].inputs[
+            'Transmission Weight'].default_value = 1.0
+        for x in (-0.032, 0.032):
+            bpy.ops.mesh.primitive_torus_add(
+                major_radius=0.024, minor_radius=0.0022,
+                location=(x, 0, 0.026), rotation=(math.radians(90), 0, 0))
+            link(smooth(bpy.context.object, 0), frame)
+            bpy.ops.mesh.primitive_cylinder_add(
+                vertices=64, radius=0.023, depth=0.002,
+                location=(x, 0, 0.026), rotation=(math.radians(90), 0, 0))
+            link(bpy.context.object, lens)
+        bpy.ops.mesh.primitive_cube_add(size=1, location=(0, 0, 0.03))
+        bridge = bpy.context.object
+        bridge.scale = (0.018, 0.003, 0.003)
+        link(bridge, frame)
+        for x in (-0.058, 0.058):
+            bpy.ops.mesh.primitive_cube_add(size=1,
+                                            location=(x, 0.06, 0.026))
+            arm = bpy.context.object
+            arm.scale = (0.003, 0.12, 0.003)
+            link(arm, frame)
+        studio(sc, 0.1, 0.5, 0.025, yaw=0.6, pitch=0.35)
+    elif item == 'backup':
+        plastic = mat('drive', (0.10, 0.18, 0.40), rough=0.35, coat=0.3)
+        metal = mat('plug', (0.75, 0.75, 0.72), rough=0.2, metal=1.0)
+        tape = mat('tape', (0.92, 0.90, 0.82), rough=0.7, bump=0.2,
+                   scale=300)
+        bpy.ops.mesh.primitive_cube_add(size=1, location=(0, 0, 0.006))
+        body = bpy.context.object
+        body.scale = (0.05, 0.018, 0.009)
+        link(body, plastic)
+        bev = body.modifiers.new('bev', 'BEVEL')
+        bev.width = 0.002
+        bev.segments = 3
+        bpy.ops.mesh.primitive_cube_add(size=1, location=(0.032, 0, 0.006))
+        plug = bpy.context.object
+        plug.scale = (0.014, 0.012, 0.0045)
+        link(plug, metal)
+        bpy.ops.mesh.primitive_cube_add(size=1, location=(0, 0, 0.0108))
+        strip = bpy.context.object
+        strip.scale = (0.08, 0.03, 0.0004)
+        strip.rotation_euler = (0, 0, math.radians(6))
+        link(strip, tape)
+        studio(sc, 0.05, 0.3, 0.005, yaw=0.5, pitch=0.6)
+    elif item in ('echomug', 'echobook', 'echocoil'):
+        rust = mat('rust', (0.22, 0.10, 0.04), rough=0.95, bump=1.2,
+                   scale=70, spots=(0.10, 0.08, 0.06))
+        silt = mat('silt', (0.08, 0.075, 0.06), rough=1.0, bump=0.6,
+                   scale=150)
+        bpy.ops.mesh.primitive_plane_add(size=0.6, location=(0, 0, 0.001))
+        link(bpy.context.object, silt)
+        if item == 'echomug':
+            bpy.ops.mesh.primitive_cylinder_add(
+                vertices=64, radius=0.024, depth=0.057,
+                location=(0, 0, 0.022),
+                rotation=(math.radians(72), 0, math.radians(30)))
+            link(smooth(bpy.context.object, 0), rust)
+        elif item == 'echobook':
+            bpy.ops.mesh.primitive_cube_add(size=1,
+                                            location=(0, 0, 0.012))
+            b = bpy.context.object
+            b.scale = (0.094, 0.132, 0.014)
+            b.rotation_euler = (math.radians(14), math.radians(-9), 0.4)
+            link(b, rust)
+        else:
+            for i in range(3):
+                bpy.ops.mesh.primitive_torus_add(
+                    major_radius=0.09 - 0.005 * i, minor_radius=0.006,
+                    location=(0, 0, 0.007 + 0.011 * i),
+                    rotation=(math.radians(8 * i), math.radians(5), 0))
+                link(smooth(bpy.context.object, 0), rust)
+        studio(sc, 0.12, 0.6, 0.02, yaw=0.5, pitch=0.55)
+    elif item in ('astrolabe', 'shield'):
+        bronze = mat('bronze', (0.45, 0.30, 0.14), rough=0.4, metal=1.0,
+                     bump=0.5, scale=90, spots=(0.14, 0.22, 0.16))
+        if item == 'astrolabe':
+            bpy.ops.mesh.primitive_cylinder_add(
+                vertices=128, radius=0.09, depth=0.006,
+                location=(0, 0, 0.1), rotation=(math.radians(90), 0, 0))
+            link(smooth(bpy.context.object, 0), bronze)
+            bpy.ops.mesh.primitive_torus_add(
+                major_radius=0.09, minor_radius=0.005,
+                location=(0, 0, 0.1), rotation=(math.radians(90), 0, 0))
+            link(smooth(bpy.context.object, 0), bronze)
+            bpy.ops.mesh.primitive_torus_add(
+                major_radius=0.012, minor_radius=0.003,
+                location=(0, 0, 0.198), rotation=(math.radians(90), 0, 0))
+            link(smooth(bpy.context.object, 0), bronze)
+            bpy.ops.mesh.primitive_cube_add(size=1,
+                                            location=(0, -0.006, 0.1))
+            rule = bpy.context.object
+            rule.scale = (0.17, 0.003, 0.012)
+            rule.rotation_euler = (0, math.radians(32), 0)
+            link(rule, bronze)
+            studio(sc, 0.22, 0.75, 0.1, yaw=0.35, pitch=0.15)
+        else:
+            iron = mat('iron', (0.16, 0.14, 0.12), rough=0.7, metal=0.8,
+                       bump=1.0, scale=40, spots=(0.25, 0.12, 0.05))
+            bpy.ops.mesh.primitive_uv_sphere_add(
+                segments=96, ring_count=48, radius=0.5,
+                location=(0, 0, 0.02))
+            sh = bpy.context.object
+            sh.scale = (0.7, 0.85, 0.12)
+            link(smooth(sh, 0), iron)
+            bpy.ops.mesh.primitive_uv_sphere_add(
+                segments=48, ring_count=24, radius=0.06,
+                location=(0, 0, 0.075))
+            link(smooth(bpy.context.object, 0), bronze)
+            studio(sc, 0.9, 2.4, 0.03, yaw=0.4, pitch=0.7)
 
 
 def turntable_root():

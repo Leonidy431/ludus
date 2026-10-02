@@ -63,6 +63,10 @@ func run(t: Object) -> void:
 			and p.khachkar.get_meta("noLoot", false),
 			"%s: the khachkar is noInteract and noLoot" % body)
 		t._check(p.mark.visible, "%s: the comet is on the hand" % body)
+		t._check("beats.drop" in p.narrated and "beats.title" in p.narrated,
+			"%s: the narrator speaks from the drop to the title" % body)
+		t._check(not "beats.khachkar" in p.narrated,
+			"%s: the narrator is silent at the khachkar" % body)
 		t._check(p.title.visible and p.title.text == "АТЛАС ВОДЫ · СЕРИЯ 1 · ТАБУ",
 			"%s: the title" % body)
 		t._check(p.world == "room", "%s: it ends in the room" % body)
@@ -219,6 +223,14 @@ func swap(t: Object) -> void:
 		"the close-up closes")
 	p._examine(1.0)
 	t._check(p.examining == "", "and does not reopen until the eye leaves")
+	# The memory cache of examine videos: kept two minutes, then freed.
+	p.clip_cache["Fake"] = {"clip": {"frames": 1}, "idle": 0.0}
+	p.age_clips(60.0)
+	t._check(p.clip_cache.has("Fake"), "a clip stays a minute after")
+	p.age_clips(61.0)
+	t._check(not p.clip_cache.has("Fake"), "and leaves after two")
+	t._check(p.cached_clip("Nothing").is_empty(),
+		"no pack, no clip: the still stays")
 	# Under water at the lure: the lens is "look closer".
 	p.t = 445.0
 	p._set_world("lake")

@@ -14,6 +14,12 @@ extends Node
 
 const MANIFEST := "res://data/packs.json"
 const DIR := "user://packs"
+## The disk the packs may take on the headset.  Over it, the packs not
+## used the longest are deleted first (LRU by file time); a pack the
+## player needs again is fetched again.  Not by the clock: a pack
+## deleted every two minutes would be fetched over and over, and gone
+## when there is no network (operator's question of 2026-10-02).
+const DISK_MAX_BYTES := 512 * 1024 * 1024
 
 ## id -> "queued" | "loading" | "ready" | "failed: <why>"
 var status := {}
@@ -117,9 +123,42 @@ static func accept(id: String, m: Dictionary) -> String:
 	return "ready"
 
 
+## Delete the least recently used packs until the rest fit `limit`;
+## `keep` is never deleted (the pack being mounted).  Returns the ids
+## deleted.
+static func evict(limit: int, keep := "") -> Array:
+	var files := []
+	var total := 0
+	var d := DirAccess.open(DIR)
+	if d == null:
+		return []
+	for n in d.get_files():
+		if not n.ends_with(".pck"):
+			continue
+		var path := DIR.path_join(n)
+		var size := FileAccess.open(path, FileAccess.READ).get_length()
+		total += size
+		files.append([FileAccess.get_modified_time(path), n, size])
+	files.sort()
+	var gone := []
+	for f in files:
+		if total <= limit:
+			break
+		var id: String = f[1].get_basename()
+		if id == keep:
+			continue
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(
+			DIR.path_join(f[1])))
+		total -= int(f[2])
+		gone.append(id)
+	return gone
+
+
 func _finish(st: String) -> void:
 	status[_current] = st
 	if st == "ready":
+		for id in evict(DISK_MAX_BYTES, _current):
+			status.erase(id)
 		var dp := get_node_or_null("/root/DataPacks")
 		if dp:
 			dp.mount(_path(_current))

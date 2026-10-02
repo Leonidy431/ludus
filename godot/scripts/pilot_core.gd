@@ -21,6 +21,7 @@ extends RefCounted
 const DATA := "res://data/pilot-1.json"
 const COLD_OPEN_MAX_S := 10.0
 const DETAILS := "res://data/pilot-details.json"
+const NARRATION := "res://data/pilot-narration.json"
 ## What a detail may do at the holy: dip the machine, dim the light,
 ## settle the murk, leave the line empty (TABOO 0.4 item 2).
 const QUIET := ["duck", "lamp", "fog", "line"]
@@ -382,3 +383,9 @@ static func check_ads(data: Dictionary) -> Array:
 					bad.append("%s: '%s' is not a placeholder word" % [a.id,
 						clean])
 	return bad
+
+
+
+static func load_narration() -> Dictionary:
+	var d = JSON.parse_string(FileAccess.get_file_as_string(NARRATION))
+	return d if d is Dictionary else {}

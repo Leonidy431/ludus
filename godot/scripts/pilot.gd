@@ -118,6 +118,20 @@ var clip := {}
 var clip_t := 0.0
 var clip_check_s := 0.0
 var narrator: AudioStreamPlayer
+## Decoded examine videos kept in memory after their close-up closes:
+## id -> {clip, idle}; a second look within CLIP_KEEP_S starts at once,
+## later the atlas leaves memory (operator, 2026-10-02: keep a cache and
+## clear it after two minutes).  The pack itself stays on disk.
+const CLIP_KEEP_S := 120.0
+var clip_cache := {}
+## The narrator (TABOO 0.019, 0.020): the chorus' lines of
+## data/pilot-narration.json, a subtitle under the scribe's line and,
+## when the pack brings it, the recorded voice; seconds left on screen;
+## the keys already spoken.
+var narration := {}
+var narr: Label3D
+var narr_left := 0.0
+var narrated: Array[String] = []
 
 var passion := {}
 var state := {}
@@ -145,6 +159,7 @@ func _ready() -> void:
 		return
 	data = PilotCore.load_data()
 	details = PilotCore.load_details(data)
+	narration = PilotCore.load_narration()
 	passion = _passion(data.taboo.passion)
 	state = PassionCore.start(passion)
 	body = PilotCore.body_start()
@@ -762,6 +777,8 @@ func _build_screens() -> void:
 	# The scribe's line reads over a close-up, never under it.
 	line.render_priority = 4
 	title = _label(64, Vector3(0, 0.02, -1.2), Color(0.95, 0.93, 0.88))
+	narr = _label(28, Vector3(0, -0.33, -1.0), Color(0.93, 0.93, 0.90))
+	narr.render_priority = 4
 	title.visible = false
 	# The left hand with the comet on its back: a dim head and a tail,
 	# ink, no glow (node 99).  In the headset it rides the left
@@ -927,6 +944,7 @@ func _process(dt: float) -> void:
 func _enter(b: Dictionary) -> void:
 	beat_id = b.id
 	reached.append(beat_id)
+	narrate("beats", b.id)
 	if b.has("message_ru"):
 		screen.text = b.message_ru
 	if b.has("line_ru"):
@@ -946,6 +964,9 @@ func _enter(b: Dictionary) -> void:
 			jerk_from = t
 		"choice_echo":
 			echo = PilotCore.echo(data, str(state.stage))
+			narrate("objects", "echo_" + str(echo.get("episode2", "")
+				).replace("order_first", "captive").replace("scribe_first",
+				"virtue").replace("prior_waits", "unresolved"))
 			screen.text = echo.message_ru
 			line.text = echo.get("scribe_ru", "")
 		"khachkar":
@@ -985,6 +1006,8 @@ func _sync() -> void:
 	hand.visible = xr_active or t >= 860.0
 	# The ink comes up on the skin as on a wet page (detail r04).
 	mark.visible = t >= 869.0
+	if mark.visible:
+		narrate("objects", "Mark")
 	title.visible = t >= 900.0
 
 
@@ -1025,6 +1048,11 @@ func _head() -> Array:
 
 ## Glasses on, then a close-up on gaze; closed by a press or in time.
 func _examine(dt: float) -> void:
+	age_clips(dt)
+	if narr_left > 0.0:
+		narr_left -= dt
+		if narr_left <= 0.0:
+			narr.text = ""
 	var press := Input.is_key_pressed(KEY_G) \
 		or right_hand.is_button_pressed("ax_button")
 	var pressed := press and not glasses_was
@@ -1037,7 +1065,7 @@ func _examine(dt: float) -> void:
 			# The pack may arrive while the still is up: the video then
 			# takes its place without closing the close-up.
 			clip_check_s = 0.0
-			var c := load_clip(examining)
+			var c := cached_clip(examining)
 			if not c.is_empty():
 				for e in data.examine:
 					if e.id == examining:
@@ -1086,6 +1114,7 @@ func put_on_glasses() -> void:
 	glasses_on = true
 	things["Glasses"].visible = false
 	line.text = "Очки."
+	narrate("objects", "Glasses")
 	# The moment the glasses go on, the pack of examine videos is asked
 	# for over the network (TABOO 0.019 item 1).
 	_want_pack()
@@ -1130,8 +1159,7 @@ func _start_clip(e: Dictionary, c: Dictionary) -> void:
 	m.uv1_scale = Vector3(1.0 / float(c.cols), 1.0 / float(c.rows), 1.0)
 	m.uv1_offset = Vector3.ZERO
 	close_up.visible = true
-	if e.has("narration_ru"):
-		line.text = e.narration_ru
+	narrate("objects", e.id, true)
 	synth.event_click()
 	if c.has("voice"):
 		narrator.stream = c.voice
@@ -1163,7 +1191,7 @@ func open_examine(e: Dictionary) -> void:
 	synth.event_servo()
 	if world == "lake":
 		_want_pack()
-	var c := load_clip(e.id)
+	var c := cached_clip(e.id)
 	if not c.is_empty():
 		_start_clip(e, c)
 	if not e.id in examined:
@@ -1173,6 +1201,50 @@ func open_examine(e: Dictionary) -> void:
 		# Through the lens at the lure: that is "look closer", the
 		# first step down the ladder of a thought (PassionCore).
 		state = PassionCore.choose(state, "look", passion, {}, {})
+
+
+## Speak a line of the narrator: its subtitle for seven seconds and its
+## voice from the pack (res://narration/<key>.ogg) when recorded.  Each
+## line once, unless `again` (the examine video repeats its own).  At
+## the holy the line is empty: the narrator is silent (TABOO 0.020).
+func narrate(group: String, key: String, again := false) -> void:
+	var x: Dictionary = narration.get(group, {}).get(key, {})
+	var text := str(x.get("line_ru", ""))
+	var tag := group + "." + key
+	if text == "" or x.get("voice", true) == false:
+		return
+	if tag in narrated and not again:
+		return
+	if not tag in narrated:
+		narrated.append(tag)
+	narr.text = text
+	narr_left = 7.0
+	var voice := "res://narration/%s.ogg" % key
+	if narrator and FileAccess.file_exists(voice):
+		narrator.stream = AudioStreamOggVorbis.load_from_file(voice)
+		narrator.play()
+
+
+## The clip of a thing from the memory cache, or decoded from the pack
+## and put in it.
+func cached_clip(id: String) -> Dictionary:
+	if clip_cache.has(id):
+		clip_cache[id].idle = 0.0
+		return clip_cache[id].clip
+	var c := load_clip(id)
+	if not c.is_empty():
+		clip_cache[id] = {"clip": c, "idle": 0.0}
+	return c
+
+
+## Age the cached clips that are not on screen; drop the old ones.
+func age_clips(dt: float) -> void:
+	for id in clip_cache.keys():
+		if id == examining:
+			continue
+		clip_cache[id].idle += dt
+		if clip_cache[id].idle >= CLIP_KEEP_S:
+			clip_cache.erase(id)
 
 
 func close_examine() -> void:
@@ -1205,6 +1277,7 @@ func _clues(dt: float) -> void:
 			if clue_hold[c.id] >= float(c.hold_s):
 				clues_found.append(c.id)
 				line.text = c.line_ru
+				narrate("objects", c.id)
 				synth.event_click()
 		else:
 			clue_hold[c.id] = 0.0

@@ -48,6 +48,18 @@ func run(t: Object) -> void:
 	for p in shipped.packs:
 		t._check(str(p.get("sha256", "")).length() == 64,
 			"pack %s has a SHA-256" % p.id)
+	# Disk: over the limit, the oldest pack goes first, the kept one
+	# stays.
+	for n in ["__old", "__new"]:
+		var w := FileAccess.open(pf._path(n), FileAccess.WRITE)
+		w.store_buffer(PackedByteArray([1, 2, 3, 4, 5, 6, 7, 8]))
+		w.close()
+	var gone: Array = pf.evict(12, "__new")
+	t._check(gone == ["__old"], "LRU deletes the oldest pack: %s" % [gone])
+	t._check(FileAccess.file_exists(pf._path("__new")),
+		"the kept pack stays")
+	DirAccess.remove_absolute(ProjectSettings.globalize_path(
+		pf._path("__new")))
 	# Privacy: the request sends no id, no save, no telemetry.
 	var code := ""
 	for ln in FileAccess.get_file_as_string(

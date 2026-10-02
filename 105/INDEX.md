@@ -2,8 +2,8 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 440
-- документов: 191
+- файлов кода: 441
+- документов: 198
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -218,7 +218,7 @@
 - [scripts/decisions/stoplist_choice.py](../scripts/decisions/stoplist_choice.py) — One decision for the church-word stop-list, chosen in the open.
 - [scripts/decisions/stream_choice.py](../scripts/decisions/stream_choice.py) — How the heavy data reaches the headset: one way from the honest pool.
 
-## Скрипты проекта: раннер, данные, сюжеты (73)
+## Скрипты проекта: раннер, данные, сюжеты (74)
 
 - [scripts/build-campaign-spine.py](../scripts/build-campaign-spine.py) — Build the Issyk-Kul campaign spine from webtypicon2's missions.
 - [scripts/build_rights_manifest.py](../scripts/build_rights_manifest.py) — Build the "Manuscript of rights": the licence register shown in-game.
@@ -248,6 +248,7 @@
 - [scripts/phase2-deploy.sh](../scripts/phase2-deploy.sh)
 - [scripts/phase3-validation.sh](../scripts/phase3-validation.sh) — Phase 3 Final Validation Script
 - [scripts/prerender/build_closeups.py](../scripts/prerender/build_closeups.py) — The examine videos of episode 1 (TABOO 0.019, 0.020): voice, pack
+- [scripts/prerender/build_intro.py](../scripts/prerender/build_intro.py) — The blockbuster intro of every next launch, as a preview video
 - [scripts/prerender/render_items.py](../scripts/prerender/render_items.py) — Close-up stills for the swap on examine (docs/HLD_SWAP_RENDERING_
 - [scripts/raw_assets/antagonist.py](../scripts/raw_assets/antagonist.py) — Antagonist protocol: the eight passions and their twelve variants.
 - [scripts/raw_assets/audio_pass.py](../scripts/raw_assets/audio_pass.py) — Audio pass: sounds from the 99 repos as spectral references only.
@@ -401,12 +402,13 @@
 - [docs/decisions/SIZE_STRATEGIES_7_2026-10-02.md](../docs/decisions/SIZE_STRATEGIES_7_2026-10-02.md) 📄 — Решение: семь способов уложить игру в шлем — по опыту других разработчиков и 48 параметрам проекта (2026-10-02)
 - [docs/decisions/STOPLIST_SINGLE_SOURCE_2026-10-02.md](../docs/decisions/STOPLIST_SINGLE_SOURCE_2026-10-02.md) 📄 — Решение: стоп-лист церковных слов — один источник (2026-10-02)
 
-## МД-ревью ревизора лимитов APK (12)
+## МД-ревью ревизора лимитов APK (13)
 
 - [docs/review/МД_РЕВЬЮ_APK_КЕЛЬЯ_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_КЕЛЬЯ_2026-09-30.md) 📄 — МД-ревью APK, Ф1: келья вечернего дозора с предметами обители
 - [docs/review/МД_РЕВЬЮ_APK_ЛЮДИ_СЮЖЕТОВ_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_ЛЮДИ_СЮЖЕТОВ_2026-10-02.md) 📄 — МД-ревью — люди 12 сюжетов (2026-10-02)
 - [docs/review/МД_РЕВЬЮ_APK_РЕКВИЗИТ_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_РЕКВИЗИТ_2026-09-30.md) 📄 — МД-ревью APK, Ф1: склад реквизита (ТАБУ №0.012)
 - [docs/review/МД_РЕВЬЮ_APK_СВИДЕТЕЛЬ_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_СВИДЕТЕЛЬ_2026-09-30.md) 📄 — МД-ревью APK: пакетирование тропы свидетеля
+- [docs/review/МД_РЕВЬЮ_APK_Ф10_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_Ф10_2026-10-02.md) 📄 — МД-ревью Ф10 (2026-10-02): видео осмотра, голос рассказчика, пакет closeups-ep1
 - [docs/review/МД_РЕВЬЮ_APK_Ф1_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_Ф1_2026-09-30.md) 📄 — МД-ревью APK, Ф1: сборка шлема на ветке PR 13 и «+20 книг»
 - [docs/review/МД_РЕВЬЮ_APK_Ф2_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_Ф2_2026-09-30.md) 📄 — МД-ревью APK, Ф2: вызовы отрисовки хаба (Б-1)
 - [docs/review/МД_РЕВЬЮ_APK_Ф4_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_Ф4_2026-09-30.md) 📄 — МД-ревью APK Ф4 — вещи 99 мест и исправления по ревью (2026-09-30)
@@ -421,7 +423,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (137)
+## Документация проекта (143)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -469,9 +471,11 @@
 - [docs/HLD_STORY_12_CHARACTERS_2026-10-02.md](../docs/HLD_STORY_12_CHARACTERS_2026-10-02.md) 📄 — HLD — люди 12 сюжетов в шлеме (2026-10-02)
 - [docs/HLD_SWAP_RENDERING_2026-10-02.md](../docs/HLD_SWAP_RENDERING_2026-10-02.md) 📄 — HLD: подмена при осмотре (Swap Rendering) — «очки героя» (2026-10-02)
 - [docs/HLD_TETHER_TRIALS_PASSIONS_2026-09-30.md](../docs/HLD_TETHER_TRIALS_PASSIONS_2026-09-30.md) 📄 — HLD: трос, пороги врат и страсти — в APK
+- [docs/HLD_VIDEO_TECH_2026-10-02.md](../docs/HLD_VIDEO_TECH_2026-10-02.md) 📄 — HLD: видео в шлеме — что делают другие, что делаем мы, как улучшать по фазам (2026-10-02)
 - [docs/HLD_WEB_DIVE_ATLAS_2026-09-30.md](../docs/HLD_WEB_DIVE_ATLAS_2026-09-30.md) 📄 — HLD: «Атлас воды» и свои рисунки берега в веб-погружении (2026-09-30)
 - [docs/HLD_WITNESS_SOUND_2026-09-30.md](../docs/HLD_WITNESS_SOUND_2026-09-30.md) 📄 — HLD: исон и колокол на тропе свидетеля (шлем, Godot)
 - [docs/IMPROVEMENTS_99_2026-09-29.md](../docs/IMPROVEMENTS_99_2026-09-29.md) 📄 — 99 улучшений игры — хор 12 гуру (2026-09-29)
+- [docs/INSTALL_GODOT_AND_HEADSET_TESTING.md](../docs/INSTALL_GODOT_AND_HEADSET_TESTING.md) 📄 — Godot для Ludus: как он стоит у Claude и как поставить его оператору для тестов со шлемом
 - [docs/INTEGRATION_TEST_SCENARIOS.md](../docs/INTEGRATION_TEST_SCENARIOS.md) 📄 — Integration Test Scenarios & Coverage Matrix
 - [docs/ISSYK_KUL_FISH.md](../docs/ISSYK_KUL_FISH.md) 📄 — Рыбы и реальный мир Иссык-Куля: список видов, источники, что сверить с ихтиологом
 - [docs/LAKE_OBJECTS_99.md](../docs/LAKE_OBJECTS_99.md) 📄 — 99 objects of the lake and the pool they came from
@@ -539,9 +543,13 @@
 - [docs/reports/PHASE_3_TEST_LOG.md](../docs/reports/PHASE_3_TEST_LOG.md) 📄 — Phase 3 Test Execution Log
 - [docs/reports/PROJECT_STATUS_SEP29_2026.md](../docs/reports/PROJECT_STATUS_SEP29_2026.md) 📄 — Ludus Project Status — Sep 29, 2026
 - [docs/reports/SESSION_SUMMARY_SEP29.md](../docs/reports/SESSION_SUMMARY_SEP29.md) 📄 — Session Summary: Sep 29, 2026
+- [docs/research/GODOT_VR_VIDEO_AND_STREAMING.md](../docs/research/GODOT_VR_VIDEO_AND_STREAMING.md) 📄 — Godot в VR/XR: игры, видео, подгрузка контента, XR-стек (исследование, 2026-10-02)
+- [docs/research/VIDEO_IN_HEADSET_GAMES_1996-2026.md](../docs/research/VIDEO_IN_HEADSET_GAMES_1996-2026.md) 📄 — Видео и подгрузка в играх для шлемов, 1995–2026: честный обзор
 - [docs/story/ATLAS_99_NODES_OPERATOR.md](../docs/story/ATLAS_99_NODES_OPERATOR.md) 📄 — «Атлас воды»: исходник оператора (дословно, 2026-09-30)
 - [docs/story/ATLAS_SYNTHESIS_5_EDITORS.md](../docs/story/ATLAS_SYNTHESIS_5_EDITORS.md) 📄 — «Атлас воды»: редакция хора пяти редакторов
+- [docs/story/INTRO_SIERRA_ECOQUEST_2026-10-02.md](../docs/story/INTRO_SIERRA_ECOQUEST_2026-10-02.md) 📄 — Заставка «Ранее в „Атласе воды“» — вход в игру (хор, 2026-10-02)
 - [docs/story/PILOT_EPISODE_1_TABU_2026-10-02.md](../docs/story/PILOT_EPISODE_1_TABU_2026-10-02.md) 📄 — «Атлас воды», серия 1 — «Табу». Пилот: первые 15 минут (Quest 3S)
+- [docs/story/PROMPT_INTRO_SIERRA_ECOQUEST_2026-10-02.md](../docs/story/PROMPT_INTRO_SIERRA_ECOQUEST_2026-10-02.md) 📄 — Промпт заставки и входа в игру: «Атлас воды» в духе Sierra (оммаж EcoQuest) — 2026-10-02
 - [docs/version-3.0/A10_OFFLINE_SYNC.md](../docs/version-3.0/A10_OFFLINE_SYNC.md) 📄 — A10: Offline Sync & Client-Side Caching
 - [docs/version-3.0/API_ERROR_HANDLING_GUIDE.md](../docs/version-3.0/API_ERROR_HANDLING_GUIDE.md) 📄 — API Error Handling & Edge Cases Guide
 - [docs/version-3.0/CLOUD_FUNCTIONS_DIALOGUE_API.md](../docs/version-3.0/CLOUD_FUNCTIONS_DIALOGUE_API.md) 📄 — Ludus Cloud Functions Dialogue API

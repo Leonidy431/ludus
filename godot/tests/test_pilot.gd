@@ -127,6 +127,13 @@ func run(t: Object) -> void:
 		{"n": 31, "inp": look}, {"n": 1, "inp": reach}])
 	t._check(again == fallen, "the same body gives the same ladder")
 	clues(t)
+	var nb := PilotCore.check_narration(d, PilotCore.load_narration())
+	t._check(nb.is_empty(), "the narrator's lines keep TABOO 0.020: %s"
+		% [nb])
+	var spoken := PilotCore.load_narration().duplicate(true)
+	spoken.beats.khachkar.line_ru = "Камень говорит."
+	t._check(not PilotCore.check_narration(d, spoken).is_empty(),
+		"a narrator at the holy fails")
 	t._check(PilotCore.check_ads(d).is_empty(), "the ad slot is a "
 		+ "placeholder without brands: %s" % [PilotCore.check_ads(d)])
 	var brand := d.duplicate(true)

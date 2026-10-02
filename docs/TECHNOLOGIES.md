@@ -13,6 +13,8 @@
 | **Пакеты ресурсов `.pck`, OBB** | монтирование пакетов без подмены файлов игры | `godot/scripts/data_packs.gd` | `docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md` | `test_data_packs.gd` |
 | **Папка 105** | указатель и комплект сборки | `105/make_105.py`, `.github/workflows/build-105.yml` | `105/СБОРКА.md` | `make_105.py --check` |
 
+| **Установка Godot у Claude и у оператора** | тесты на сервере, тест в шлеме | `scripts/godot/ci_setup.sh` | [docs/INSTALL_GODOT_AND_HEADSET_TESTING.md](INSTALL_GODOT_AND_HEADSET_TESTING.md) | — |
+
 ## Мера (ревизор лимитов APK, ТАБУ №0.011)
 
 | Технология | Зачем | Код | Проверка |
@@ -34,11 +36,16 @@
 | Гравитация кодом: посадка по нижней вершине | ничего не висит в воздухе (физика вырезана) | `pilot.gd` `_land`, `bottom_of` | ТАБУ №0.016 |
 | Три класса света (лампада, лучина, прибор) | стиль «Киберслав» | `ludus-design-system.css`, сцены | ТАБУ №0.38 |
 
+| **Видео осмотра — флипбук-атлас** (оборот 24 кадра, смена UV), кэш 2 мин в памяти, LRU на диске | видео без видеоплеера в движке | `pilot.gd` `load_clip`, `render_items.py --turntable` | `docs/HLD_VIDEO_TECH_2026-10-02.md`, исследования `docs/research/` |
+| **Сборка пакета `.pck`** с SHA-256 | «CD» серии | `godot/tools/make_pack.gd` | ТАБУ №0.018 |
+
 ## Звук
 
 | Технология | Код | Документ |
 |---|---|---|
 | Процедурный синтез: колокол по kolokol, исон, сонар, вода | `godot/scripts/audio/` | ТАБУ №0.2, №0.35 п. 8–10 |
+| **Черновой голос рассказчика**: Piper TTS, голос «irina» (данные RHVoice, GPLv2), Ogg Vorbis в пакете — до живой записи | `scripts/prerender/build_closeups.py` | ТАБУ №0.019 п. 5, Д-22 |
+| **Закадровый текст хора** | `godot/data/pilot-narration.json`, `PilotCore.check_narration` | ТАБУ №0.020, `docs/story/chorus-ep1/` |
 | Правила звона по Типикону | `godot/data/bell-rules.json`, `TypikonCore` | `docs/HLD_BELL_RULES_TYPIKON_2026-09-30.md` |
 
 ## Игра и смысл
