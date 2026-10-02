@@ -708,13 +708,25 @@ static func read_state(hub_path := HUB_SAVE, dive_path := DIVE_SAVE,
 		"chronicle": data.get("chronicle"),
 		"atlas_given": given if given is Array else [],
 		"deeds": PlaceDeeds.normalize(data.get("deeds", {})),
+		# The road of missions, for the step of a story done at a heart
+		# (StoryRoute); only the shapes MissionCore keeps come back.
+		"missions": _missions(data.get("missions", {})),
 		"day": day if day != "" else Time.get_date_string_from_system()}
 
 
+static func _missions(raw) -> Dictionary:
+	var ms := MissionCore.normalize_state(raw)
+	return {"done": ms.done, "current": ms.current, "flags": ms.flags,
+		"lines": ms.lines}
+
+
 ## Write back what a place may change, keeping every other key of the
-## hub's save (the road of missions stays the hub's).
+## hub's save.  The road of missions is written only when the state
+## carries it (a story's step done at a heart, StoryRoute).
 static func write_state(st: Dictionary, hub_path := HUB_SAVE) -> void:
 	var data := _read(hub_path)
+	if st.has("missions"):
+		data["missions"] = _missions(st.missions)
 	data["form"] = st.form
 	data["actions"] = st.actions
 	data["trials"] = st.trials

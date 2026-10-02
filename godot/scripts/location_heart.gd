@@ -20,6 +20,12 @@
 ## Prayer never pays (TABOO 0.35 rule 16): a practice changes a counter
 ## that is only shown, never FORM.  The witness's line records nothing
 ## (TABOO 0.26 point 10).
+##
+## When the current step of one of the 12 stories is done at this place
+## (StoryRoute, data/story-12.json), the heart opens on that step first
+## (kind "mission"): MissionCore's own view and choices, through the same
+## path the board of the courtyard uses; "Иное здесь" opens the place's
+## own act.
 class_name LocationHeart
 extends RefCounted
 
@@ -36,15 +42,19 @@ const LISTEN_SECONDS := 60.0
 
 
 ## What the hearts read, loaded once per place.
+## The 12 stories (StoryRoute) ride on the same trees, lake and passions.
 static func context() -> Dictionary:
 	var lake := {}
 	for o in _json("res://data/lake-objects-99.json").objects:
 		lake[o.id] = o
 	var passions: Dictionary = _json("res://data/passions.json")
-	return {"trees": _json("res://data/dialogue-trees.json").trees,
+	var trees: Dictionary = _json("res://data/dialogue-trees.json").trees
+	return {"trees": trees,
 		"trial_data": TrialCore.load_data(), "passion_data": passions,
 		"manifest": _json("res://data/antagonist-manifest.json").manifest,
-		"atlas": AtlasCore.load_data(), "lake": lake}
+		"atlas": AtlasCore.load_data(), "lake": lake,
+		"story": StoryRoute.load_data(),
+		"mission_data": StoryRoute.mission_data(trees, lake, passions)}
 
 
 static func _json(path: String) -> Variant:
@@ -107,7 +117,17 @@ static func _result(p: Dictionary, st: Dictionary, say := "",
 	return {"panel": p, "st": st, "say": say, "save": save, "scene": scene}
 
 
+## When a story's current step is done at this place, the heart shows the
+## mission's step first (StoryRoute); "own" opens the place's own act.
 static func open(loc: Dictionary, st: Dictionary,
+		ctx: Dictionary) -> Dictionary:
+	var sp := StoryRoute.open(loc, st, ctx)
+	if not sp.is_empty():
+		return _result(sp, st.duplicate(true))
+	return _open_own(loc, st, ctx)
+
+
+static func _open_own(loc: Dictionary, st: Dictionary,
 		ctx: Dictionary) -> Dictionary:
 	var h: Dictionary = loc.heart
 	var p := {"kind": kind_of(h), "choice": 0, "reply": ""}
@@ -195,6 +215,8 @@ static func lines(p: Dictionary, loc: Dictionary, st: Dictionary,
 	var h: Dictionary = loc.heart
 	var out := []
 	match p.kind:
+		"mission":
+			return StoryRoute.heart_lines(p, loc, st, ctx)
 		"talk":
 			out = [LocationCore.person_of(h) + ":",
 				str(p.node.get("text_ru", p.node.get("text", "")))]
@@ -323,6 +345,12 @@ static func choices(p: Dictionary, loc: Dictionary, st: Dictionary,
 		ctx: Dictionary) -> Array:
 	var h: Dictionary = loc.heart
 	match p.kind:
+		"mission":
+			var list := StoryRoute.heart_choices(loc, st, ctx)
+			if list.is_empty():
+				return [AWAY]
+			return list + [{"id": "own", "text": "Иное здесь: " + str(h.get(
+				"ru", "")), "disabled": false, "reason": ""}, AWAY]
 		"act":
 			if p.deed.get("done", false):
 				return [AWAY]
@@ -433,6 +461,10 @@ static func choose(p: Dictionary, loc: Dictionary, st: Dictionary,
 	if c.id == "away":
 		return _result({}, st)
 	var h: Dictionary = loc.heart
+	if p.kind == "mission":
+		if c.id == "own":
+			return _open_own(loc, st, ctx)
+		return StoryRoute.heart_choose(p, loc, st, ctx, c.id)
 	var q := p.duplicate(true)
 	var s := st.duplicate(true)
 	match p.kind:
@@ -591,5 +623,8 @@ static func passion_art(loc: Dictionary, st: Dictionary,
 ## The panel's text: its lines and its choices, the current one marked.
 static func text(p: Dictionary, loc: Dictionary, st: Dictionary,
 		ctx: Dictionary) -> String:
+	if p.get("kind") == "mission":
+		return "\n".join(StoryRoute.heart_lines(p, loc, st, ctx)
+			+ StoryRoute.choice_lines(choices(p, loc, st, ctx), p.choice))
 	return "\n".join(lines(p, loc, st, ctx) + RuleCell.choice_lines(
 		choices(p, loc, st, ctx), p.choice))

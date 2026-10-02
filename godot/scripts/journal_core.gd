@@ -298,6 +298,11 @@ static func pages_ru(state: Dictionary) -> Array:
 		p.append("%s: %s (встреч: %s)." % [m.p.get("name_ru", m.p.id), how,
 			_js(_num(r.get("meetings")))])
 	pages.append("\n".join(p))
+	# The 12 stories walked on foot (StoryRoute.journal_lines), when the
+	# book is given them; the web page has no such part.
+	var stories = state.get("stories", [])
+	if stories is Array and not stories.is_empty():
+		pages.append("\n".join(["СЮЖЕТЫ НОГАМИ", ""] + stories))
 	var dv := dive_summary(state.get("dive"))
 	p = ["ПОД ВОДОЙ", ""]
 	if dv.is_empty():
