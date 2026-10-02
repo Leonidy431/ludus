@@ -1,0 +1,78 @@
+{
+  "doc": "docs/HLD_LOCK_MATCH3_2026-10-02.md",
+  "rule": "CLAUDE.md TABOO 0.024: a lock is opened by a calm match-three board made of the lock's own parts; the board and its refill come from the lock's seed, never from chance; no timer, no lives, no money, no loss.",
+  "width": 6,
+  "height": 6,
+  "locks": [
+    {
+      "id": "pult_gateway",
+      "name_ru": "шлюз доступа к пульту",
+      "where": "surface",
+      "beat": "bookmark",
+      "apparatus": "control_gateway",
+      "holy": false,
+      "tiles": ["packet", "key", "log", "port", "checksum"],
+      "tiles_ru": ["пакет", "ключ", "журнал", "порт", "контрольная сумма"],
+      "goal": {"log": 9},
+      "teaches_ru": "Журнал пульта складывается в ряд, и в нём видно чужой вход в три двенадцать.",
+      "opens_ru": "запись о чужом входе в 03:12 и адрес получателя телеметрии",
+      "whose_ru": "своё: пульт оператора"
+    },
+    {
+      "id": "rov_server",
+      "name_ru": "сервер кода аппарата",
+      "where": "robot",
+      "beat": "price_rises",
+      "apparatus": "telemetry_router",
+      "holy": false,
+      "tiles": ["packet", "key", "log", "port", "checksum"],
+      "tiles_ru": ["пакет", "ключ", "журнал", "порт", "контрольная сумма"],
+      "goal": {"key": 6, "port": 6},
+      "teaches_ru": "Раздатчик телеметрии отдаёт глубину двоим. Сложи ключи и порты — увидишь второго получателя.",
+      "opens_ru": "второй получатель телеметрии: так Приор знает глубину",
+      "whose_ru": "своё: аппарат оператора, но доступ к нему купил Орден"
+    },
+    {
+      "id": "backup_drive",
+      "name_ru": "зашифрованная флешка",
+      "where": "surface",
+      "beat": "water_rises",
+      "apparatus": "",
+      "holy": false,
+      "tiles": ["packet", "key", "log", "port", "checksum"],
+      "tiles_ru": ["пакет", "ключ", "журнал", "порт", "контрольная сумма"],
+      "goal": {"checksum": 8},
+      "teaches_ru": "Копию проверяют суммой: совпала — копия честная.",
+      "opens_ru": "копия журнала погружения, снятая в 03:12",
+      "whose_ru": "своё: флешка оператора"
+    },
+    {
+      "id": "expedition_safe",
+      "name_ru": "ящик пропавшей экспедиции",
+      "where": "surface",
+      "beat": "episode2",
+      "apparatus": "",
+      "holy": false,
+      "tiles": ["pin", "spring", "cam", "bit", "tumbler"],
+      "tiles_ru": ["штифт", "пружина", "кулачок", "бородка", "сувальда"],
+      "goal": {"pin": 6, "tumbler": 6},
+      "teaches_ru": "Сувальды встают по одной, как буквы в строке: спешка их не поднимает.",
+      "opens_ru": "журнал экспедиции 2019 года — к блесне из пасти судака",
+      "whose_ru": "чужое: ящик экспедиции; вскрытие — с записью в журнал, для родных пропавших"
+    },
+    {
+      "id": "buyer_safe",
+      "name_ru": "сейф перекупщика",
+      "where": "surface",
+      "beat": "episode2",
+      "apparatus": "",
+      "holy": false,
+      "tiles": ["pin", "spring", "cam", "bit", "tumbler"],
+      "tiles_ru": ["штифт", "пружина", "кулачок", "бородка", "сувальда"],
+      "goal": {"cam": 8},
+      "teaches_ru": "Кулачок поворачивает механизм, только когда встанет на место. Сила здесь не помогает.",
+      "opens_ru": "карта свай с отметкой астролябии",
+      "whose_ru": "чужое: сейф перекупщика; цена — строка в журнале и разговор с рыбаками"
+    }
+  ]
+}
