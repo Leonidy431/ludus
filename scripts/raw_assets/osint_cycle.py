@@ -81,7 +81,15 @@ PLAIN_WORDS = {'png', 'svg', 'jpg', 'gif', 'img', 'image', 'images', 'res',
                'with', 'for', 'from', 'into',
                # Sprite-format folders and view words, not things (the
                # 17:51 pass grew rsi, inhand, left, right, generic).
-               'rsi', 'inhand', 'left', 'right', 'generic', 'props'}
+               'rsi', 'inhand', 'left', 'right', 'generic', 'props',
+               # Words of tools and code, not things (the 12:50 pass of
+               # 2026-10-02 grew load, manager, name, out, output and
+               # layer for DEF-040).
+               'load', 'loader', 'manager', 'name', 'names', 'out',
+               'output', 'input', 'layer', 'layers', 'model', 'models',
+               'test', 'tests', 'example', 'examples', 'editor', 'tool',
+               'tools', 'util', 'utils', 'tmp', 'temp', 'file', 'files',
+               'export', 'import', 'preview', 'thumb', 'thumbs', 'index'}
 
 # Rule 5: paths that must never enter the pipeline at all.
 DOGMA_STOP = re.compile(
