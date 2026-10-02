@@ -1378,6 +1378,11 @@ func _mission_panel_text() -> String:
 		if not StoryRoute.story_of(story, m.id).is_empty():
 			lines += ["Этот путь проходят ногами: доска скажет, куда идти, а шаг делается у сердца места.",
 				""]
+			# The other people the story calls for, and where they stand
+			# (StoryCast; docs/STORY_12_CHARACTERS_2026-10-02.md).
+			var people := StoryCast.people_lines(m.id)
+			if not people.is_empty():
+				lines += people + [""]
 	else:
 		var ms := _mstate()
 		var v := MissionCore.view(mission_data, ms, form, actions)
@@ -1389,6 +1394,9 @@ func _mission_panel_text() -> String:
 			lines += ["%d. %s — шаг %d из %d: %s" % [v.mission.id,
 				v.mission.title, v.index + 1, v.total, v.kind_ru], "",
 				go, ""]
+			var people := StoryCast.people_lines(v.mission.id)
+			if not people.is_empty():
+				lines += people + [""]
 		else:
 			lines += StoryRoute.step_lines(v)
 			if go != "":

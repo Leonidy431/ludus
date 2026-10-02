@@ -3,7 +3,8 @@
 CLAUDE.md TABOO 0.35 rule 18 and TABOO 0.37: a teaching line names its
 source, and the source must come from the hand-curated canon in
 data/patristic-canon.json.  This script reads:
-  - the 24 chorus trees (functions/src/data/npc-dialogues-24.json),
+  - the 24 chorus trees (functions/src/data/npc-dialogues-24.json) and
+    the people of the 12 stories (npc-dialogues-story12.json),
   - the eight passions (public/ludus/data/passions.json),
   - the confession questions (public/ludus/ludus-confession.js; read as
     text, because that module must stay free of imports),
@@ -29,6 +30,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CANON = ROOT / 'data' / 'patristic-canon.json'
 TREES = ROOT / 'functions' / 'src' / 'data' / 'npc-dialogues-24.json'
+STORY = ROOT / 'functions' / 'src' / 'data' / 'npc-dialogues-story12.json'
 PASSIONS = ROOT / 'public' / 'ludus' / 'data' / 'passions.json'
 CONFESSION = ROOT / 'public' / 'ludus' / 'ludus-confession.js'
 
@@ -191,6 +193,8 @@ def topic_errors(work, topics, cited, segment):
 
 def iter_sources():
     trees = json.loads(TREES.read_text(encoding='utf-8'))
+    if STORY.exists():
+        trees += json.loads(STORY.read_text(encoding='utf-8'))
     for tree in trees:
         for node in tree['nodes']:
             yield f'{tree["npcId"]}/{node["id"]}', node.get('source', ''), \

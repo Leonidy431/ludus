@@ -1,5 +1,6 @@
-## The 24 mentors of the dialogue trees in the headset (HLD
-## docs/HLD_APK_GRAPHICS_SOUND_2026-10-01.md, track B).
+## The mentors of the dialogue trees in the headset (HLD
+## docs/HLD_APK_GRAPHICS_SOUND_2026-10-01.md, track B): the 24 of the
+## chorus and the people of the 12 stories (StoryCast).
 ##
 ## Where a mentor stands is read from the data, not invented: a mentor
 ## whose talk is the heart of one of the 99 places
@@ -133,6 +134,20 @@ const DRESS := {
 	"symeon_stylite": ["hood", Color(0.3, 0.27, 0.22)],
 	"tabib": ["cap", Color(0.36, 0.34, 0.3)],
 	"vardan": ["bare", Color(0.26, 0.22, 0.18)],
+	# The people of the 12 stories (StoryCast): the bishop and the blind
+	# brother in a monk's hood, the old spinner in a head cloth, the
+	# merchants, the carter, the guide and the dealer in the felt or fur
+	# caps of the road, the carpenter in a plain cap.
+	"episkop_ioann": ["hood", Color(0.09, 0.09, 0.1)],
+	"brat_gevond": ["hood", Color(0.17, 0.14, 0.12)],
+	"starukha_shushan": ["veil", Color(0.24, 0.2, 0.18)],
+	"kupets_ovanes": ["cap", Color(0.38, 0.22, 0.16)],
+	"kupets_sauma": ["cap", Color(0.42, 0.36, 0.24)],
+	"kupets_kutlug": ["cap", Color(0.3, 0.27, 0.22)],
+	"vozchik_davit": ["cap", Color(0.33, 0.29, 0.21)],
+	"mostovshik_toros": ["cap", Color(0.35, 0.28, 0.19)],
+	"provodnik_buri": ["cap", Color(0.29, 0.23, 0.17)],
+	"perekupshik_arshak": ["cap", Color(0.27, 0.2, 0.24)],
 }
 const SKIN := Color(0.78, 0.62, 0.5)
 
@@ -141,21 +156,32 @@ static func _json(path: String) -> Variant:
 	return JSON.parse_string(FileAccess.get_file_as_string(path))
 
 
-## Every mentor's place: {id: {"hub": Vector3 or null, "places": [ids]}},
-## from the trees and the 99 places.  Deterministic: data order.
-static func places(trees = null, locations = null) -> Dictionary:
+## Every mentor's place: {id: {"hub": Vector3 or null, "places": [ids],
+## "cast": [ids]}}, from the trees, the 99 places and the people of the
+## 12 stories (StoryCast: beside the heart of a place of their story).
+## Deterministic: data order.
+static func places(trees = null, locations = null,
+		cast = null) -> Dictionary:
 	if trees == null:
 		trees = _json(TREES).trees
 	if locations == null:
 		locations = _json(LOCATIONS).locations
+	if cast == null:
+		cast = StoryCast.load_data()
 	var out := {}
 	for id in trees:
-		out[id] = {"hub": HUB_AT.get(id), "places": []}
+		out[id] = {"hub": HUB_AT.get(id), "places": [], "cast": []}
 	for loc in locations:
 		var h: Dictionary = loc.get("heart", {})
 		var npc := str(h.get("npc", ""))
 		if npc != "" and out.has(npc):
 			out[npc].places.append(loc.id)
+	var ids: Array = cast.get("places", {}).keys()
+	ids.sort()
+	for lid in ids:
+		for c in cast.places[lid]:
+			if out.has(c.npc) and not lid in out[c.npc].cast:
+				out[c.npc].cast.append(lid)
 	return out
 
 

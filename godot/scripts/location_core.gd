@@ -300,7 +300,7 @@ static func plan(loc: Dictionary, things: Dictionary,
 	for s in slots:
 		if s.holy:
 			holy_at = s.pos
-	return {"id": loc.id, "title": loc.title_ru, "kind": loc.kind,
+	var out := {"id": loc.id, "title": loc.title_ru, "kind": loc.kind,
 		"families": loc.families, "type": sh.type, "w": w, "d": d, "h": h,
 		"heart": heart, "heart_spec": loc.heart, "hint": loc.heart.ru,
 		"person": person_of(loc.heart), "exit": exit, "start": start,
@@ -313,6 +313,10 @@ static func plan(loc: Dictionary, things: Dictionary,
 		"kits_skipped": skipped,
 		"lesson": loc.lesson, "constitution": loc.constitution,
 		"kiberslav": "kiberslav" in loc.families}
+	# The people of the 12 stories who stand here beside the heart
+	# (StoryCast, data/story-cast-12.json), on spots clear of all above.
+	out["cast"] = StoryCast.spots(out, StoryCast.at(str(loc.id)))
+	return out
 
 
 ## How visible the interface should be with the player at pos: 1 far
@@ -645,10 +649,41 @@ static func labels(p: Dictionary) -> Array:
 	var out := [p.title, p.hint, exit_ru(p)]
 	if p.person != "":
 		out.append(p.person)
+	for c in p.get("cast", []):
+		out.append(c.tag)
+		out.append(StoryCast.prompt(c))
 	for s in p.slots:
 		if s.tag:
 			out.append(s.ru)
 	return out
+
+
+## What answers a press in a place: the heart, the way back, and the
+## people of the 12 stories beside the heart (StoryCast), each of whom
+## answers only near himself, so the heart's prompt stays the heart's.
+static func interactables(p: Dictionary) -> Array:
+	var out := [{"id": "heart", "pos": p.heart, "reach": REACH_M,
+			"ru": p.hint},
+		{"id": "exit", "pos": p.exit, "reach": EXIT_REACH_M,
+			"ru": exit_ru(p)}]
+	for c in p.get("cast", []):
+		if c.placed:
+			out.append({"id": "cast:" + str(c.npc), "pos": c.pos,
+				"reach": StoryCast.REACH_M, "ru": StoryCast.prompt(c),
+				"person": c})
+	return out
+
+
+## The nearest of them within its own reach of the player, or {}.
+static func nearest(things: Array, pos: Vector3) -> Dictionary:
+	var best := {}
+	var best_d := INF
+	for th in things:
+		var d := Vector2(th.pos.x - pos.x, th.pos.z - pos.z).length()
+		if d < float(th.reach) and d < best_d:
+			best = th
+			best_d = d
+	return best
 
 
 static func exit_ru(p: Dictionary) -> String:

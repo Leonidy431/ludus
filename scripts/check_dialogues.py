@@ -21,6 +21,12 @@ the build with the first problems it finds:
   - bonuses are whole numbers 1-5 on the seven attributes only;
   - player choices never use the words the UI must not carry (0.39).
 
+The people of the 12 stories walked in the headset
+(functions/src/data/npc-dialogues-story12.json, docs/STORY_12_CHARACTERS_
+2026-10-02.md) keep the same contract; with no path both files are
+checked, the 24 of the chorus and the people of the stories, and an
+npcId may not repeat across them.
+
 Usage: python3 scripts/check_dialogues.py [path]
 """
 
@@ -31,6 +37,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT = ROOT / 'functions' / 'src' / 'data' / 'npc-dialogues-24.json'
+STORY = ROOT / 'functions' / 'src' / 'data' / 'npc-dialogues-story12.json'
 
 ATTRS = {'wisdom', 'faith', 'dexterity', 'constitution', 'charisma',
          'cunning', 'erudition'}
@@ -143,22 +150,40 @@ def check_tree(tree):
     return errors
 
 
-def main():
-    path = Path(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT
+def check_file(path, count=None):
+    """The problems of one file of trees; count is the expected size."""
     trees = json.loads(path.read_text('utf-8'))
     errors = []
-    if len(trees) != 24:
-        errors.append(f'{len(trees)} trees, expected 24')
+    if count is not None and len(trees) != count:
+        errors.append(f'{path.name}: {len(trees)} trees, expected {count}')
     if len({t.get('npcId') for t in trees}) != len(trees):
-        errors.append('duplicate npcId')
+        errors.append(f'{path.name}: duplicate npcId')
     for tree in trees:
         errors += check_tree(tree)
+    return trees, errors
+
+
+def main():
+    if len(sys.argv) > 1:
+        files = [(Path(sys.argv[1]), None)]
+    else:
+        # The 24 of the chorus are exactly 24; the people of the stories
+        # are as many as the census found (never padded).
+        files = [(DEFAULT, 24), (STORY, None)]
+    errors, ids, total = [], [], 0
+    for path, count in files:
+        trees, errs = check_file(path, count)
+        errors += errs
+        ids += [t.get('npcId') for t in trees]
+        total += len(trees)
+    if len(set(ids)) != len(ids):
+        errors.append('an npcId repeats across the files')
     if errors:
         print(f'check_dialogues: {len(errors)} problem(s)')
         for line in errors[:60]:
             print('  ', line)
         sys.exit(1)
-    print(f'check_dialogues: {len(trees)} trees ok')
+    print(f'check_dialogues: {total} trees ok')
 
 
 if __name__ == '__main__':

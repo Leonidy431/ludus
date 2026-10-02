@@ -51,6 +51,20 @@ if (fs.existsSync(CHORUS)) {
   });
   sources = ['functions/src/data/npc-dialogues-24.json', ...sources];
 }
+// The people of the 12 stories walked in the headset (docs/STORY_12_
+// CHARACTERS_2026-10-02.md) are added after the 24, under the same
+// contract (scripts/check_dialogues.py); they replace nothing.
+const STORY = path.join(ROOT, 'functions/src/data/npc-dialogues-story12.json');
+if (fs.existsSync(STORY)) {
+  JSON.parse(fs.readFileSync(STORY, 'utf8')).forEach((tree) => {
+    if (merged[tree.npcId]) {
+      throw new Error(`story tree ${tree.npcId} repeats an existing NPC`);
+    }
+    const { review, decisions, ...shipped } = tree;
+    merged[tree.npcId] = shipped;
+  });
+  sources = [...sources, 'functions/src/data/npc-dialogues-story12.json'];
+}
 const pack = { source: sources.join(' + '), trees: merged };
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
 fs.writeFileSync(OUT, JSON.stringify(pack, null, 2) + '\n');
