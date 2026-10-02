@@ -123,3 +123,40 @@ func run(t: Object) -> void:
 	var again := _run(t, p, cfg, [{"n": 21, "inp": look},
 		{"n": 31, "inp": look}, {"n": 1, "inp": reach}])
 	t._check(again == fallen, "the same body gives the same ladder")
+	clues(t)
+	var fb := PilotCore.check_finds(d)
+	t._check(fb.is_empty(), "the classes of finds keep their laws: %s"
+		% [fb])
+	var cheat := d.duplicate(true)
+	cheat.find_classes.holy["path"] = true
+	t._check(not PilotCore.check_finds(cheat).is_empty(),
+		"leaving the holy alone may not feed the path")
+	var bow := d.duplicate(true)
+	bow.find_classes.effort["path"] = true
+	t._check(not PilotCore.check_finds(bow).is_empty(),
+		"bending the body may not score a virtue")
+
+
+## Pandora V1: the clues under the table and on the ceiling are found by
+## the body only.
+func clues(t: Object) -> void:
+	var d := PilotCore.load_data()
+	var under: Dictionary = d.clues[0]
+	var over: Dictionary = d.clues[1]
+	var to_drive := Vector3(0.05, 0.70, -1.15)
+	var seated := Vector3(0, 1.2, 0)
+	var low := Vector3(0, 0.7, 0)
+	t._check(not PilotCore.clue_seen(seated, to_drive - seated, under),
+		"sitting up, the drive under the table is not seen")
+	t._check(PilotCore.clue_seen(low, to_drive - low, under),
+		"crouched and looking under, it is")
+	t._check(not PilotCore.clue_seen(low, Vector3.BACK, under),
+		"crouched but looking away, it is not")
+	var stain := Vector3(0.35, 2.6, -0.7)
+	t._check(PilotCore.clue_seen(seated, stain - seated, over),
+		"head up at the ceiling: the stain is seen")
+	t._check(not PilotCore.clue_seen(seated, Vector3(0.35, 1.0, -0.7)
+		- seated, over), "looking level: not seen")
+	for c in d.clues:
+		t._check(LocationsCore.church_word(str(c.line_ru)) == "",
+			"clue %s has no church word" % c.id)

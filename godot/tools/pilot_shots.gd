@@ -10,7 +10,9 @@ extends SceneTree
 
 const VIEWS := [["room", 2.0], ["water", 20.0], ["immersion", 40.0],
 	["walls", 150.0], ["lure", 450.0], ["khachkar", 655.0],
-	["diary", 730.0], ["mark", 875.0], ["title", 902.0]]
+	["diary", 730.0], ["mark", 875.0], ["title", 902.0],
+	# Pandora V1: crouched under the table, head up at the ceiling.
+	["under", 4.0, -0.55, 14.0], ["ceiling", 5.0, 0.0, 55.0]]
 ## Frames held per view: past the console's 1.75 s fade at 60 fps.
 const HOLD := 130
 
@@ -43,7 +45,15 @@ func _initialize() -> void:
 func _process(_dt: float) -> bool:
 	if view >= VIEWS.size():
 		return true
+	if VIEWS[view][1] < node.t:
+		# The clock goes back for the room views: the console's last
+		# words belong to the end, not to the start.
+		node.screen.text = ""
+		node.line.text = ""
 	node.t = VIEWS[view][1]
+	var v: Array = VIEWS[view]
+	node.rig.position.y = v[2] if v.size() > 2 else 0.0
+	node.camera.rotation.x = deg_to_rad(v[3]) if v.size() > 3 else 0.0
 	if triple:
 		node.camera.rotation.y = deg_to_rad(YAWS[yaw][1])
 	node.override = {"gaze": true, "away_deg": 2.0, "hand_m": 2.0}

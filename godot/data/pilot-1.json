@@ -217,5 +217,113 @@
    "who_ru": "оператор «Мангустика»",
    "writes_ru": "журнал погружения"
   }
+ ],
+ "clues": [
+  {
+   "id": "backup",
+   "need": "under",
+   "pos": [
+    0.05,
+    0.7,
+    -1.15
+   ],
+   "max_eye_y": 0.9,
+   "range_m": 1.6,
+   "cone_deg": 20.0,
+   "hold_s": 0.8,
+   "line_ru": "Под столом приклеена флешка: «копия журнала». Почерк мой. Не помню, когда клеил.",
+   "node": 21
+  },
+  {
+   "id": "stain",
+   "need": "over",
+   "pos": [
+    0.35,
+    2.6,
+    -0.7
+   ],
+   "min_pitch_deg": 40.0,
+   "range_m": 2.6,
+   "cone_deg": 20.0,
+   "hold_s": 0.8,
+   "line_ru": "Пятно на потолке — очертания озера. Вода уже была здесь.",
+   "node": 13
+  }
+ ],
+ "crouch_m": 0.5,
+ "find_classes": {
+  "praxis": {
+   "ru": "находки праксиса: быт и труд",
+   "examine": true,
+   "line": true,
+   "path": false,
+   "batch": false
+  },
+  "effort": {
+   "ru": "находки-усилия: под и над",
+   "examine": false,
+   "line": true,
+   "path": false,
+   "needs_body": true
+  },
+  "rupture": {
+   "ru": "находки-разрывы: живое в ровном",
+   "examine": false,
+   "line": true,
+   "path": false
+  },
+  "holy": {
+   "ru": "святыня: только смотреть",
+   "examine": false,
+   "line": false,
+   "path": false,
+   "no_interact": true
+  }
+ },
+ "finds": [
+  {
+   "id": "Souvenir",
+   "class": "praxis"
+  },
+  {
+   "id": "EchoMug",
+   "class": "praxis"
+  },
+  {
+   "id": "EchoBook",
+   "class": "praxis"
+  },
+  {
+   "id": "EchoCoil",
+   "class": "praxis"
+  },
+  {
+   "id": "Amphora",
+   "class": "praxis"
+  },
+  {
+   "id": "backup",
+   "class": "effort"
+  },
+  {
+   "id": "stain",
+   "class": "effort"
+  },
+  {
+   "id": "Diary",
+   "class": "rupture"
+  },
+  {
+   "id": "Logbook",
+   "class": "rupture"
+  },
+  {
+   "id": "Khachkar",
+   "class": "holy"
+  }
+ ],
+ "path_deeds": [
+  "drams_left",
+  "drams_taken"
  ]
 }

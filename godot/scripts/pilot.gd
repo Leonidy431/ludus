@@ -93,6 +93,14 @@ var fired: Array[String] = []
 var effects: Array = []
 ## The deepest dip of the machine's sound asked by a live detail, dB.
 var duck_db := 0.0
+## The room's clues (Pandora V1): seconds each has been held in view,
+## the ids found, and the crouch (a seated player's Ctrl, as in Tex).
+var clue_hold := {}
+var clues_found: Array[String] = []
+var crouched := false
+var crouch_was := false
+## Set by a test: {head, forward} in place of the camera.
+var clue_override := {}
 
 var passion := {}
 var state := {}
@@ -130,6 +138,7 @@ func _ready() -> void:
 	_build_screens()
 	_build_sound()
 	_start_xr()
+	_place_console()
 	_set_world("room")
 
 
@@ -365,6 +374,7 @@ func _build_room() -> void:
 		_box(still, Vector3(0.06, 0.05, 0.02), Vector3(x, 0.15, -1.355),
 			_mat(Color(0.85, 0.66, 0.12)))
 	_build_things()
+	_build_clues()
 	StaticBatch.merge(still)
 	water = MeshInstance3D.new()
 	var wp := PlaneMesh.new()
@@ -426,6 +436,34 @@ func _build_things() -> void:
 	room.add_child(floor_dram)
 	things["FloorDram"] = floor_dram
 	_land(floor_dram, FLOOR_Y)
+
+
+## The flash drive taped under the table and the water stain on the
+## ceiling in the shape of the lake.  Neither lies on a surface: one is
+## taped, one is on the plaster, so neither goes through _land.
+func _build_clues() -> void:
+	var drive := MeshInstance3D.new()
+	var dm := BoxMesh.new()
+	dm.size = Vector3(0.06, 0.012, 0.02)
+	drive.mesh = dm
+	drive.material_override = _mat(Color(0.20, 0.30, 0.55))
+	drive.position = Vector3(0.05, 0.709, -1.15)
+	drive.name = "Backup"
+	room.add_child(drive)
+	# Wide white tape: the eye finds the tape first, then the drive.
+	_box(room, Vector3(0.16, 0.002, 0.07), Vector3(0.05, 0.7135, -1.15),
+		_mat(Color(0.92, 0.90, 0.82), 0.2))
+	var stain := MeshInstance3D.new()
+	var sm := CylinderMesh.new()
+	sm.top_radius = 0.35
+	sm.bottom_radius = 0.35
+	sm.height = 0.002
+	stain.mesh = sm
+	stain.material_override = _mat(Color(0.40, 0.36, 0.30))
+	stain.position = Vector3(0.35, 2.574, -0.7)
+	stain.scale = Vector3(1.0, 1.0, 0.42)
+	stain.name = "Stain"
+	room.add_child(stain)
 
 
 func _thing(n: String, size: Vector3, at: Vector3, m: Material,
@@ -727,6 +765,21 @@ func _start_xr() -> void:
 		passthrough = XRInterface.XR_ENV_BLEND_MODE_ALPHA_BLEND in modes
 
 
+## In the headset the Prior's screen lives on the left wrist, read by
+## turning the hand, as a gauge on a diver's arm (diegetic interface,
+## Into the Radius; docs/HLD_PANDORA_SURPASS_2026-10-02.md §8): text
+## nailed to the eyes follows every head turn and tires them.  On a
+## screen it stays where it was.
+func _place_console() -> void:
+	if not xr_active or screen.get_parent() == left_hand:
+		return
+	screen.reparent(left_hand, false)
+	screen.position = Vector3(0.0, 0.04, 0.02)
+	screen.rotation = Vector3(-PI / 2.0 + 0.5, 0.0, 0.0)
+	screen.pixel_size = 0.0004
+	screen.width = 500
+
+
 ## The room or the lake.  With passthrough the room is the player's
 ## own, so the grey cell is hidden and the background is clear.
 func _set_world(w: String) -> void:
@@ -837,6 +890,8 @@ func _tick(dt: float) -> void:
 		_do(details[detail_i])
 		detail_i += 1
 	_effects()
+	if world == "room":
+		_clues(dt)
 	# The water climbs from the floor to the eyes in the 17 s before
 	# the lake; at the drain it goes back into the floor.
 	if beat_id == "water_rises":
@@ -856,6 +911,32 @@ func _tick(dt: float) -> void:
 	console_level = move_toward(console_level, target, dt / 1.75)
 	screen.modulate.a = console_level
 	_sound(dt)
+
+
+## The body finds the room's clues: hold one in view for its seconds
+## and the line is written; each is found once.
+func _clues(dt: float) -> void:
+	var c_btn := Input.is_key_pressed(KEY_C) \
+		or right_hand.is_button_pressed("by_button")
+	if c_btn and not crouch_was:
+		crouched = not crouched
+		rig.position.y = -float(data.crouch_m) if crouched else 0.0
+	crouch_was = c_btn
+	var head: Vector3 = clue_override.get("head",
+		_xf(camera).origin)
+	var fwd: Vector3 = clue_override.get("forward",
+		-_xf(camera).basis.z)
+	for c in data.get("clues", []):
+		if c.id in clues_found:
+			continue
+		if PilotCore.clue_seen(head, fwd, c):
+			clue_hold[c.id] = float(clue_hold.get(c.id, 0.0)) + dt
+			if clue_hold[c.id] >= float(c.hold_s):
+				clues_found.append(c.id)
+				line.text = c.line_ru
+				synth.event_click()
+		else:
+			clue_hold[c.id] = 0.0
 
 
 ## One detail: every primitive in order; a primitive with "if" plays

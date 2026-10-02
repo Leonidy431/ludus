@@ -240,3 +240,59 @@ static func check_details(data: Dictionary, details: Array) -> Array:
 				if w != "":
 					bad.append("%s says «%s»" % [d.id, w])
 	return bad
+
+
+## A clue of the room is seen (Pandora's look under the table and up at
+## the ceiling, done with the body; docs/HLD_PANDORA_SURPASS_2026-10-02.md
+## V1): the head within range and the clue in its cone, and for "under"
+## the eyes low enough, for "over" the head tipped up far enough.  Only
+## geometry: the own engine has no physics to cast rays with.
+static func clue_seen(head: Vector3, forward: Vector3,
+		clue: Dictionary) -> bool:
+	var pos: Array = clue.pos
+	var to := Vector3(pos[0], pos[1], pos[2]) - head
+	if to.length() > float(clue.range_m):
+		return false
+	if not gaze_on(forward, to, float(clue.cone_deg)):
+		return false
+	match str(clue.need):
+		"under":
+			return head.y <= float(clue.max_eye_y)
+		"over":
+			var pitch := rad_to_deg(asin(clampf(forward.normalized().y,
+				-1.0, 1.0)))
+			return pitch >= float(clue.min_pitch_deg)
+	return true
+
+
+## The laws of the four classes of finds (docs/HLD_PANDORA_SURPASS_
+## 2026-10-02.md §7): the holy has no line, no hand and no count; an
+## effort is found by the body (a clue with "under" or "over"); and no
+## class but a deed towards another feeds the path: bending the body is
+## knowing, not a virtue scored (TABOO 0.35 item 16), and leaving the
+## holy alone is not a bonus.
+static func check_finds(data: Dictionary) -> Array:
+	var bad := []
+	var classes: Dictionary = data.get("find_classes", {})
+	var clue_ids := {}
+	for c in data.get("clues", []):
+		clue_ids[c.id] = c
+	for f in data.get("finds", []):
+		var k: Dictionary = classes.get(f["class"], {})
+		if k.is_empty():
+			bad.append("%s: no class %s" % [f.id, f["class"]])
+			continue
+		if k.get("path", false):
+			bad.append("%s: class %s feeds the path" % [f.id, f["class"]])
+		if f["class"] == "holy" and (k.get("line", false)
+				or k.get("examine", false)):
+			bad.append("%s: the holy is handled or labelled" % f.id)
+		if f["class"] == "effort":
+			var c: Dictionary = clue_ids.get(f.id, {})
+			if not str(c.get("need", "")) in ["under", "over"]:
+				bad.append("%s: an effort without the body" % f.id)
+	for deed in data.get("path_deeds", []):
+		for f in data.get("finds", []):
+			if str(deed).begins_with(str(f.id).to_lower()):
+				bad.append("path deed %s is a find, not a deed" % deed)
+	return bad

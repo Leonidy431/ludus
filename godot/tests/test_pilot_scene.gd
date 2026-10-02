@@ -82,6 +82,8 @@ func run(t: Object) -> void:
 			p.save_path))
 		p.queue_free()
 	gravity(t)
+	scene_clues(t)
+	wrist(t)
 	# The details fired in the run: all 55 on the clock.
 	var last := _play(t, "keep")
 	t._check(last.fired.size() == 55, "every detail fired (%d)"
@@ -132,4 +134,48 @@ func gravity(t: Object) -> void:
 	t._check(PilotCore.check_details(p.data, details).is_empty(),
 		"the details keep the rules: %s"
 		% [PilotCore.check_details(p.data, details)])
+	p.queue_free()
+
+
+## The scene finds a clue when the head is held on it, once.
+func scene_clues(t: Object) -> void:
+	var p: Node = (load("res://scenes/pilot.tscn") as PackedScene) \
+		.instantiate()
+	p.replay = true
+	p.stay = true
+	t.root.add_child(p)
+	if p.data.is_empty():
+		p._ready()
+	var low := Vector3(0, 0.7, 0)
+	p.clue_override = {"head": low,
+		"forward": Vector3(0.05, 0.70, -1.15) - low}
+	for i in 12:
+		p.override = {"gaze": false}
+		p._process(0.1)
+	t._check("backup" in p.clues_found, "the drive is found crouching")
+	t._check(p.line.text.begins_with("Под столом"), "its line is written")
+	p.clue_override = {"head": Vector3(0, 1.2, 0), "forward":
+		Vector3(0.35, 1.4, -0.7)}
+	for i in 12:
+		p._process(0.1)
+	t._check("stain" in p.clues_found, "the stain is found looking up")
+	t._check(p.clues_found.size() == 2, "each clue is found once")
+	p.queue_free()
+
+
+## In the headset the Prior's words are on the wrist, not on the eyes.
+func wrist(t: Object) -> void:
+	var p: Node = (load("res://scenes/pilot.tscn") as PackedScene) \
+		.instantiate()
+	p.replay = true
+	p.stay = true
+	t.root.add_child(p)
+	if p.data.is_empty():
+		p._ready()
+	t._check(p.screen.get_parent() == p.camera,
+		"on a screen the console stays before the eyes")
+	p.xr_active = true
+	p._place_console()
+	t._check(p.screen.get_parent() == p.left_hand,
+		"in the headset the console is on the left wrist")
 	p.queue_free()
