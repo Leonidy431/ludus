@@ -1,5 +1,5 @@
 {
- "next": 14,
+ "next": 3,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -5675,6 +5675,107 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 223
+  },
+  {
+   "time": "2026-10-02T09:51:32.460200+00:00",
+   "pass_id": "osint-2026-10-02T09:51:32Z",
+   "deficits": [
+    {
+     "id": "DEF-001",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "outline-helper": 4,
+      "sacred-never-raw": 12,
+      "dogma-stop-list": 1
+     },
+     "to_props": 0,
+     "hits_uncapped": 34050,
+     "props_uncapped": 9047,
+     "props_uncapped_repos": 59,
+     "added_keywords": [
+      "summon",
+      "awaken",
+      "bind",
+      "create",
+      "creeping",
+      "draining",
+      "drakes",
+      "injury",
+      "phantom",
+      "prism",
+      "puppet",
+      "rattle"
+     ],
+     "keywords_total": 114,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "java",
+      "mage",
+      "mindustry",
+      "rsi",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-003",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 2
+     },
+     "to_props": 143,
+     "hits_uncapped": 8148,
+     "props_uncapped": 5879,
+     "props_uncapped_repos": 53,
+     "added_keywords": [],
+     "keywords_total": 40,
+     "keywords_not_searched": [
+      "com",
+      "corsixth",
+      "java",
+      "left",
+      "lua",
+      "right",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 143
+    },
+    {
+     "id": "DEF-012",
+     "skipped": "audio-pipeline-pending"
+    }
+   ],
+   "props_taken": {},
+   "props_taken_by_index_kind": {},
+   "props_duplicates": 143,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 0,
+   "props_store_files": 1454,
+   "props_store_bytes": 10827682,
+   "props_cache_files_on_disk": 4665,
+   "props_cache_bytes_on_disk": 78042215,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 811650,
+   "props_register_growth_bytes": 0,
+   "stage": "done",
+   "accepted_objects": 6,
+   "code_candidates": 90,
+   "reverted": [
+    {
+     "object": "ant_sadness_4bbd8e3f97",
+     "source": "crawl/crawl crawl-ref/source/rltiles/gui/spells/monster/summon_drakes.png",
+     "reason": "eye check: the silhouette reads as a stemless cup or vessel, close to a chalice; a passion must not resemble a holy thing (CLAUDE.md TABOO 0.2 item 3, 0.35 item 6); contact sheet docs/audit/2026-10-02/raw-sadness-4bbd8e3f97-contact-rejected.png"
+    }
+   ]
   }
  ],
  "keywords": {
@@ -5962,7 +6063,19 @@
    "sorcerer",
    "spell",
    "square",
-   "troll"
+   "troll",
+   "summon",
+   "awaken",
+   "bind",
+   "create",
+   "creeping",
+   "draining",
+   "drakes",
+   "injury",
+   "phantom",
+   "prism",
+   "puppet",
+   "rattle"
   ],
   "DEF-049": [
    "terrain",
