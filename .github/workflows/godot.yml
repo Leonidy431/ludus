@@ -150,7 +150,12 @@ jobs:
       # against scripts/godot/apk-budgets.json, with floors so a gate
       # that finds nothing fails (docs/APK_REQUIREMENTS.md).
       - name: Budgets of the headset build (source)
-        run: python3 scripts/godot/check_budgets.py --tree
+        run: |
+          python3 scripts/godot/check_budgets.py --tree
+          # The forecast of voices, choir and final models against the
+          # APK and OBB limits still reads the current data
+          # (docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md).
+          python3 scripts/godot/obb_forecast.py > /dev/null
 
       - name: Import and test
         working-directory: godot
