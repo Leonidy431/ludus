@@ -53,6 +53,10 @@ var modules := {}
 var dropping: Array[String] = []
 ## The module looked ahead to (ahead); "" if none.
 var ahead_path := ""
+## Set by the budget tools only: while true nothing is fetched ahead, so
+## a place or a scene is measured alone (TABOO 0.011 item 7); the tool
+## asks for a module itself when it measures "scene + module".
+var hold_ahead := false
 ## The scene the player is going to, while the fade holds; "" if none.
 var pending := ""
 ## 0 clear, 1 black.
@@ -93,6 +97,8 @@ func prefetch(path: String) -> void:
 ## its place, so the courtyard never holds the dive and a place at once
 ## (item 4: two big modules together only on the way over).
 func ahead(path: String) -> void:
+	if hold_ahead:
+		path = ""
 	if path == ahead_path:
 		return
 	if ahead_path != "" and ahead_path != pending:

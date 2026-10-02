@@ -30,6 +30,10 @@
 ## headset's own numbers are the OVR Metrics Tool's.
 extends SceneTree
 
+## The id of the row of a place with the dive module fetched ahead.
+const DIVE_SUFFIX := "+dive-ahead"
+const DIVE_SCENE := "res://scenes/dive.tscn"
+
 const SETTLE := 6
 const SAMPLE := 3
 const EMPTY_FRAMES := 8
@@ -38,6 +42,7 @@ const CHECKED := ["draw_calls_frame", "primitives_two_eyes_est",
 	"static_memory_delta_bytes", "texture_memory_over_empty_bytes"]
 
 var out_path := ""
+var with_dive := false
 var budgets_path := ""
 var check := false
 var only: Array = []
@@ -81,6 +86,16 @@ func _initialize() -> void:
 	box.mesh = BoxMesh.new()
 	empty.add_child(box)
 	root.add_child(empty)
+	# Each place is measured alone: nothing is fetched ahead while the
+	# player stands in it (TABOO 0.011 item 7, 0.013 item 8).  A place
+	# whose heart leads to the dive gets a second row, the place with the
+	# dive module fetched ahead, the peak of the way to the water (TABOO
+	# 0.014 item 4).
+	_ml().hold_ahead = true
+
+
+func _ml() -> Node:
+	return root.get_node("ModuleLoader")
 
 
 func _views(p: Dictionary) -> Array:
@@ -123,14 +138,37 @@ func _process(_dt: float) -> bool:
 			scene.ctx).panel
 	elif not v.get("panel", false):
 		scene.heart_panel = {}
+	if with_dive and not _ml().is_ready(DIVE_SCENE):
+		# The row counts the dive once it is in memory, not a half load.
+		frame = mini(frame, SETTLE)
+		return false
 	if frame > SETTLE:
 		_sample(v.name)
 	if frame >= SETTLE + SAMPLE:
 		view += 1
 		frame = 0
 		if view >= views.size():
-			scene.heart_panel = {}
 			rows.append(row)
+			if LocationHeart.kind_of(scene.loc.heart) == "dive" \
+					and not str(row.id).ends_with(DIVE_SUFFIX):
+				# Stand at the open panel again, now with the dive held.
+				row = row.duplicate()
+				row.id = str(row.id) + DIVE_SUFFIX
+				for k in ["draw_calls_frame", "draw_calls_3d",
+						"draw_calls_canvas", "primitives",
+						"primitives_two_eyes_est", "objects",
+						"static_memory_delta_bytes",
+						"texture_memory_over_empty_bytes"]:
+					row[k] = 0
+				with_dive = true
+				_ml().prefetch(DIVE_SCENE)
+				view = views.size() - 1
+				frame = 0
+				return false
+			if with_dive:
+				_ml().release(DIVE_SCENE)
+				with_dive = false
+			scene.heart_panel = {}
 			step += 1
 			if step >= ids.size():
 				quit(_finish())
