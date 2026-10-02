@@ -3,19 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://db3fq24hvavvb"
-path="res://.godot/imported/echocoil.png-36a423796f73c3898586ae3d7951596c.ctex"
+path.s3tc="res://.godot/imported/echocoil.png-36a423796f73c3898586ae3d7951596c.s3tc.ctex"
+path.etc2="res://.godot/imported/echocoil.png-36a423796f73c3898586ae3d7951596c.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://art/prerender/echocoil.png"
-dest_files=["res://.godot/imported/echocoil.png-36a423796f73c3898586ae3d7951596c.ctex"]
+dest_files=["res://.godot/imported/echocoil.png-36a423796f73c3898586ae3d7951596c.s3tc.ctex", "res://.godot/imported/echocoil.png-36a423796f73c3898586ae3d7951596c.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

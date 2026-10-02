@@ -2,8 +2,8 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 441
-- документов: 200
+- файлов кода: 443
+- документов: 203
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -30,7 +30,7 @@
 - [.github/workflows/raw-audio-pass.yml](../.github/workflows/raw-audio-pass.yml) — Audio pass over the 99 backlog repos as a git pass (operator,
 - [.github/workflows/raw-osint-cycle.yml](../.github/workflows/raw-osint-cycle.yml) — OSINT pass over the 99 backlog repos every 1.5 hours (CLAUDE.md TABOO
 
-## Игра для шлема: код (GDScript) (69)
+## Игра для шлема: код (GDScript) (70)
 
 - [godot/scripts/atlas_core.gd](../godot/scripts/atlas_core.gd) — "The Water Atlas" read at the lectern of the scriptorium (CLAUDE.md
 - [godot/scripts/atlas_traces.gd](../godot/scripts/atlas_traces.gd) — The knight's traces in the lake and the chronicle's choice (TABOO
@@ -64,6 +64,7 @@
 - [godot/scripts/haptics.gd](../godot/scripts/haptics.gd) — The one table of controller pulses for the whole headset game: the
 - [godot/scripts/hub.gd](../godot/scripts/hub.gd) — The monastery hub: the courtyard of the obitel on the Issyk-Kul shore.
 - [godot/scripts/hub_core.gd](../godot/scripts/hub_core.gd) — The rules of the monastery hub, ported from the web game.
+- [godot/scripts/insight_core.gd](../godot/scripts/insight_core.gd) — Insights: flashbacks to another epoch that come by themselves when
 - [godot/scripts/journal_book.gd](../godot/scripts/journal_book.gd) — The journal of the way in the scriptorium: a birch-bark book on an oak
 - [godot/scripts/journal_core.gd](../godot/scripts/journal_core.gd) — The player's journal of the way, ported from the web game.
 - [godot/scripts/location.gd](../godot/scripts/location.gd) — One location of our plots in the headset (CLAUDE.md TABOO 0.013,
@@ -128,7 +129,7 @@
 - [godot/tools/stress_place_switch.gd](../godot/tools/stress_place_switch.gd) — Switch places fast, again and again, to shake out a crash of the
 - [godot/tools/witness_wav_check.py](../godot/tools/witness_wav_check.py) — Measure the offline render of the path of the witness.
 
-## Игра для шлема: тесты (50)
+## Игра для шлема: тесты (51)
 
 - [godot/tests/confession_walker.gd](../godot/tests/confession_walker.gd) — A stand-in for the witness path in test_confession.gd: the sheet reads
 - [godot/tests/deeds/panel_text.gd](../godot/tests/deeds/panel_text.gd) — The heart's panel of a place as location.gd builds it, measured with
@@ -152,6 +153,7 @@
 - [godot/tests/test_data_packs.gd](../godot/tests/test_data_packs.gd) — Data packs beside the APK (DataPacks; docs/decisions/SIZE_STRATEGIES_
 - [godot/tests/test_dive_batch.gd](../godot/tests/test_dive_batch.gd) — The dive's batches (DiveBatch, Б-1 in docs/APK_REQUIREMENTS.md).
 - [godot/tests/test_haptics.gd](../godot/tests/test_haptics.gd) — The shared table of controller pulses (Haptics; DEF-008, blind spot
+- [godot/tests/test_insights.gd](../godot/tests/test_insights.gd) — Insights (InsightCore, docs/HLD_INSIGHTS_FLASHBACKS_2026-10-02.md):
 - [godot/tests/test_journal.gd](../godot/tests/test_journal.gd) — The journal of the way (JournalCore): the exported page is the web
 - [godot/tests/test_location_build.gd](../godot/tests/test_location_build.gd) — The 99 locations as the headset builds them (CLAUDE.md TABOO 0.013,
 - [godot/tests/test_location_items.gd](../godot/tests/test_location_items.gd) — The things of the 99 locations that come from the 99 cloned repos
@@ -402,13 +404,14 @@
 - [docs/decisions/SIZE_STRATEGIES_7_2026-10-02.md](../docs/decisions/SIZE_STRATEGIES_7_2026-10-02.md) 📄 — Решение: семь способов уложить игру в шлем — по опыту других разработчиков и 48 параметрам проекта (2026-10-02)
 - [docs/decisions/STOPLIST_SINGLE_SOURCE_2026-10-02.md](../docs/decisions/STOPLIST_SINGLE_SOURCE_2026-10-02.md) 📄 — Решение: стоп-лист церковных слов — один источник (2026-10-02)
 
-## МД-ревью ревизора лимитов APK (13)
+## МД-ревью ревизора лимитов APK (14)
 
 - [docs/review/МД_РЕВЬЮ_APK_КЕЛЬЯ_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_КЕЛЬЯ_2026-09-30.md) 📄 — МД-ревью APK, Ф1: келья вечернего дозора с предметами обители
 - [docs/review/МД_РЕВЬЮ_APK_ЛЮДИ_СЮЖЕТОВ_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_ЛЮДИ_СЮЖЕТОВ_2026-10-02.md) 📄 — МД-ревью — люди 12 сюжетов (2026-10-02)
 - [docs/review/МД_РЕВЬЮ_APK_РЕКВИЗИТ_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_РЕКВИЗИТ_2026-09-30.md) 📄 — МД-ревью APK, Ф1: склад реквизита (ТАБУ №0.012)
 - [docs/review/МД_РЕВЬЮ_APK_СВИДЕТЕЛЬ_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_СВИДЕТЕЛЬ_2026-09-30.md) 📄 — МД-ревью APK: пакетирование тропы свидетеля
 - [docs/review/МД_РЕВЬЮ_APK_Ф10_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_Ф10_2026-10-02.md) 📄 — МД-ревью Ф10 (2026-10-02): видео осмотра, голос рассказчика, пакет closeups-ep1
+- [docs/review/МД_РЕВЬЮ_APK_Ф11_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_Ф11_2026-10-02.md) 📄 — МД-ревью Ф11 — инсайты-флешбеки пилота (2026-10-02)
 - [docs/review/МД_РЕВЬЮ_APK_Ф1_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_Ф1_2026-09-30.md) 📄 — МД-ревью APK, Ф1: сборка шлема на ветке PR 13 и «+20 книг»
 - [docs/review/МД_РЕВЬЮ_APK_Ф2_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_Ф2_2026-09-30.md) 📄 — МД-ревью APK, Ф2: вызовы отрисовки хаба (Б-1)
 - [docs/review/МД_РЕВЬЮ_APK_Ф4_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_Ф4_2026-09-30.md) 📄 — МД-ревью APK Ф4 — вещи 99 мест и исправления по ревью (2026-09-30)
@@ -423,7 +426,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (145)
+## Документация проекта (147)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -453,6 +456,7 @@
 - [docs/HLD_FOLLOWUPS_2026-09-30.md](../docs/HLD_FOLLOWUPS_2026-09-30.md) 📄 — HLD: доделки после PR 10 — от Pages до хаба и звука в шлеме
 - [docs/HLD_HEADSET_BUILD_2026-09-30.md](../docs/HLD_HEADSET_BUILD_2026-09-30.md) 📄 — HLD: сборка для шлема — Godot 4, сцена погружения первой
 - [docs/HLD_IMPLEMENTATION_F1_F5_2026-09-29.md](../docs/HLD_IMPLEMENTATION_F1_F5_2026-09-29.md) 📄 — HLD внедрения по фазам F1–F5 (Конституция, сюжеты, вердикты Архитектурного Собора)
+- [docs/HLD_INSIGHTS_FLASHBACKS_2026-10-02.md](../docs/HLD_INSIGHTS_FLASHBACKS_2026-10-02.md) 📄 — HLD: инсайты и флешбеки — память эпох, которую вызывает место, порядок, время и тело (2026-10-02)
 - [docs/HLD_JOURNAL_CONFESSION_APK_2026-09-30.md](../docs/HLD_JOURNAL_CONFESSION_APK_2026-09-30.md) 📄 — HLD: журнал пути и листок подготовки в шлеме (Godot)
 - [docs/HLD_L3_PLACE_DEEDS_2026-10-01.md](../docs/HLD_L3_PLACE_DEEDS_2026-10-01.md) 📄 — HLD — L3: логика 26 сердец мест (2026-10-01)
 - [docs/HLD_LAKE_99_DETAILS_2026-09-30.md](../docs/HLD_LAKE_99_DETAILS_2026-09-30.md) 📄 — HLD: мелкие детали 99 объектов озера и пять следов рыцаря (2026-09-30)
@@ -551,6 +555,7 @@
 - [docs/story/INTRO_SIERRA_ECOQUEST_2026-10-02.md](../docs/story/INTRO_SIERRA_ECOQUEST_2026-10-02.md) 📄 — Заставка «Ранее в „Атласе воды“» — вход в игру (хор, 2026-10-02)
 - [docs/story/PILOT_EPISODE_1_TABU_2026-10-02.md](../docs/story/PILOT_EPISODE_1_TABU_2026-10-02.md) 📄 — «Атлас воды», серия 1 — «Табу». Пилот: первые 15 минут (Quest 3S)
 - [docs/story/PROMPT_INTRO_SIERRA_ECOQUEST_2026-10-02.md](../docs/story/PROMPT_INTRO_SIERRA_ECOQUEST_2026-10-02.md) 📄 — Промпт заставки и входа в игру: «Атлас воды» в духе Sierra (оммаж EcoQuest) — 2026-10-02
+- [docs/story/chorus-ep1/INSIGHTS_CHORUS_2026-10-02.md](../docs/story/chorus-ep1/INSIGHTS_CHORUS_2026-10-02.md) 📄 — Хор: 12 инсайтов первой серии «Табу» — 2026-10-02
 - [docs/story/chorus-ep1/NARRATION_v4_24_LENSES.md](../docs/story/chorus-ep1/NARRATION_v4_24_LENSES.md) 📄 — Закадровый текст v4 — «Атлас воды · Серия 1 · Табу»
 - [docs/version-3.0/A10_OFFLINE_SYNC.md](../docs/version-3.0/A10_OFFLINE_SYNC.md) 📄 — A10: Offline Sync & Client-Side Caching
 - [docs/version-3.0/API_ERROR_HANDLING_GUIDE.md](../docs/version-3.0/API_ERROR_HANDLING_GUIDE.md) 📄 — API Error Handling & Edge Cases Guide

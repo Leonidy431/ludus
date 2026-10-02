@@ -3,19 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://qi61lauefmgm"
-path="res://.godot/imported/echomug.png-aeb60dddb2bf509340c62d87c8f481ea.ctex"
+path.s3tc="res://.godot/imported/echomug.png-aeb60dddb2bf509340c62d87c8f481ea.s3tc.ctex"
+path.etc2="res://.godot/imported/echomug.png-aeb60dddb2bf509340c62d87c8f481ea.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://art/prerender/echomug.png"
-dest_files=["res://.godot/imported/echomug.png-aeb60dddb2bf509340c62d87c8f481ea.ctex"]
+dest_files=["res://.godot/imported/echomug.png-aeb60dddb2bf509340c62d87c8f481ea.s3tc.ctex", "res://.godot/imported/echomug.png-aeb60dddb2bf509340c62d87c8f481ea.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
