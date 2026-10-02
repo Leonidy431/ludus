@@ -2,8 +2,8 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 460
-- документов: 216
+- файлов кода: 464
+- документов: 218
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -30,12 +30,13 @@
 - [.github/workflows/raw-audio-pass.yml](../.github/workflows/raw-audio-pass.yml) — Audio pass over the 99 backlog repos as a git pass (operator,
 - [.github/workflows/raw-osint-cycle.yml](../.github/workflows/raw-osint-cycle.yml) — OSINT pass over the 99 backlog repos every 1.5 hours (CLAUDE.md TABOO
 
-## Игра для шлема: код (GDScript) (79)
+## Игра для шлема: код (GDScript) (80)
 
 - [godot/scripts/apparatus_core.gd](../godot/scripts/apparatus_core.gd) — The operator's own apparatus in the game (CLAUDE.md TABOO 0.022): 41
 - [godot/scripts/atlas_core.gd](../godot/scripts/atlas_core.gd) — "The Water Atlas" read at the lectern of the scriptorium (CLAUDE.md
 - [godot/scripts/atlas_traces.gd](../godot/scripts/atlas_traces.gd) — The knight's traces in the lake and the chronicle's choice (TABOO
 - [godot/scripts/audio/bell_synth.gd](../godot/scripts/audio/bell_synth.gd) — The bells of the far monastery, heard on the path of the witness.
+- [godot/scripts/audio/cosmos_synth.gd](../godot/scripts/audio/cosmos_synth.gd) — The suite «Наука. Любовь. Познание.»: cosmic background music for
 - [godot/scripts/audio/dive_audio.gd](../godot/scripts/audio/dive_audio.gd) — The dive's sound in the scene: feeds DiveSynth into a generator,
 - [godot/scripts/audio/dive_synth.gd](../godot/scripts/audio/dive_synth.gd) — The sound of the dive, sample by sample (HLD_FOLLOWUPS D5, HLD shlema
 - [godot/scripts/audio/ison_synth.gd](../godot/scripts/audio/ison_synth.gd) — The ison of the brethren near a scene kit on the path of the witness.
@@ -121,7 +122,7 @@
 - [godot/scenes/pilot.tscn](../godot/scenes/pilot.tscn)
 - [godot/scenes/witness.tscn](../godot/scenes/witness.tscn)
 
-## Игра для шлема: инструменты замера и кадров (16)
+## Игра для шлема: инструменты замера и кадров (17)
 
 - [godot/tools/debug_layers.gd](../godot/tools/debug_layers.gd) — Debug: render the start view with one child of the scene hidden at a
 - [godot/tools/fish_shots.gd](../godot/tools/fish_shots.gd) — Proof frames of the fish of our own drawing (DEF-056) in the dive:
@@ -133,6 +134,7 @@
 - [godot/tools/measure_transition.gd](../godot/tools/measure_transition.gd) — The way from the courtyard into a big module, measured (CLAUDE.md
 - [godot/tools/pilot_shots.gd](../godot/tools/pilot_shots.gd) — Proof frames of the pilot "Taboo" (TABOO 0.013 item 7, TABOO 0.015):
 - [godot/tools/place_wav_check.py](../godot/tools/place_wav_check.py) — Measure the offline render of the places' sound.
+- [godot/tools/render_cosmos.gd](../godot/tools/render_cosmos.gd) — Offline render of the suite «Наука. Любовь. Познание.» with the same
 - [godot/tools/render_place_audio.gd](../godot/tools/render_place_audio.gd) — Offline render of the places' sound (track A of docs/HLD_APK_
 - [godot/tools/render_witness_audio.gd](../godot/tools/render_witness_audio.gd) — Offline render of the path of the witness for measurement
 - [godot/tools/rov_lod_shots.gd](../godot/tools/rov_lod_shots.gd) — Frames and triangle counts of the Mangustik's level of detail
@@ -140,7 +142,7 @@
 - [godot/tools/stress_place_switch.gd](../godot/tools/stress_place_switch.gd) — Switch places fast, again and again, to shake out a crash of the
 - [godot/tools/witness_wav_check.py](../godot/tools/witness_wav_check.py) — Measure the offline render of the path of the witness.
 
-## Игра для шлема: тесты (56)
+## Игра для шлема: тесты (57)
 
 - [godot/tests/confession_walker.gd](../godot/tests/confession_walker.gd) — A stand-in for the witness path in test_confession.gd: the sheet reads
 - [godot/tests/deeds/panel_text.gd](../godot/tests/deeds/panel_text.gd) — The heart's panel of a place as location.gd builds it, measured with
@@ -163,6 +165,7 @@
 - [godot/tests/test_cockpit.gd](../godot/tests/test_cockpit.gd) — The pilot's console (CockpitCore, docs/HLD_MANGUSTIK_COCKPIT M4) and
 - [godot/tests/test_confession.gd](../godot/tests/test_confession.gd) — The preparation sheet in the headset (ConfessionSheet), the static
 - [godot/tests/test_contract.gd](../godot/tests/test_contract.gd) — The contract "The Shark of Issyk-Kul" (ContractCore): its data keeps
+- [godot/tests/test_cosmos.gd](../godot/tests/test_cosmos.gd) — The suite «Наука. Любовь. Познание.» (CosmosSynth) and the 99 signs
 - [godot/tests/test_data_packs.gd](../godot/tests/test_data_packs.gd) — Data packs beside the APK (DataPacks; docs/decisions/SIZE_STRATEGIES_
 - [godot/tests/test_destiny.gd](../godot/tests/test_destiny.gd) — Destiny (DestinyCore): seven branches on the seven attributes, seven
 - [godot/tests/test_dive_batch.gd](../godot/tests/test_dive_batch.gd) — The dive's batches (DiveBatch, Б-1 in docs/APK_REQUIREMENTS.md).
@@ -236,7 +239,7 @@
 - [scripts/decisions/stoplist_choice.py](../scripts/decisions/stoplist_choice.py) — One decision for the church-word stop-list, chosen in the open.
 - [scripts/decisions/stream_choice.py](../scripts/decisions/stream_choice.py) — How the heavy data reaches the headset: one way from the honest pool.
 
-## Скрипты проекта: раннер, данные, сюжеты (75)
+## Скрипты проекта: раннер, данные, сюжеты (76)
 
 - [scripts/build-campaign-spine.py](../scripts/build-campaign-spine.py) — Build the Issyk-Kul campaign spine from webtypicon2's missions.
 - [scripts/build_rights_manifest.py](../scripts/build_rights_manifest.py) — Build the "Manuscript of rights": the licence register shown in-game.
@@ -309,6 +312,7 @@
 - [scripts/raw_assets/transform.py](../scripts/raw_assets/transform.py) — Transform raw third-party images into Ludus art and measure the change.
 - [scripts/story/atlas_nodes.py](../scripts/story/atlas_nodes.py) — The 99 nodes of "The Water Atlas" as the chorus of five editors left
 - [scripts/story/cast_12.py](../scripts/story/cast_12.py) — Where the people of the 12 stories stand in the headset.
+- [scripts/story/entelechy.py](../scripts/story/entelechy.py) — Entelechy 99: the operator's 99 signs-impulses in 9 nodes, and the
 - [scripts/story/render.py](../scripts/story/render.py) — Build "The Water Atlas" from its one list (atlas_nodes.py).
 - [scripts/story/select_12.py](../scripts/story/select_12.py) — Choose the 12 stories the headset walks on foot (TABOO 0.07).
 - [scripts/test-api-endpoints.sh](../scripts/test-api-endpoints.sh) — Ludus API Endpoint Test Suite
@@ -421,7 +425,7 @@
 - [docs/decisions/SIZE_STRATEGIES_7_2026-10-02.md](../docs/decisions/SIZE_STRATEGIES_7_2026-10-02.md) 📄 — Решение: семь способов уложить игру в шлем — по опыту других разработчиков и 48 параметрам проекта (2026-10-02)
 - [docs/decisions/STOPLIST_SINGLE_SOURCE_2026-10-02.md](../docs/decisions/STOPLIST_SINGLE_SOURCE_2026-10-02.md) 📄 — Решение: стоп-лист церковных слов — один источник (2026-10-02)
 
-## МД-ревью ревизора лимитов APK (15)
+## МД-ревью ревизора лимитов APK (16)
 
 - [docs/review/МД_РЕВЬЮ_APK_КЕЛЬЯ_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_КЕЛЬЯ_2026-09-30.md) 📄 — МД-ревью APK, Ф1: келья вечернего дозора с предметами обители
 - [docs/review/МД_РЕВЬЮ_APK_ЛЮДИ_СЮЖЕТОВ_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_ЛЮДИ_СЮЖЕТОВ_2026-10-02.md) 📄 — МД-ревью — люди 12 сюжетов (2026-10-02)
@@ -430,6 +434,7 @@
 - [docs/review/МД_РЕВЬЮ_APK_Ф10_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_Ф10_2026-10-02.md) 📄 — МД-ревью Ф10 (2026-10-02): видео осмотра, голос рассказчика, пакет closeups-ep1
 - [docs/review/МД_РЕВЬЮ_APK_Ф11_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_Ф11_2026-10-02.md) 📄 — МД-ревью Ф11 — инсайты-флешбеки пилота (2026-10-02)
 - [docs/review/МД_РЕВЬЮ_APK_Ф12_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_Ф12_2026-10-02.md) 📄 — МД-ревью Ф12 — инсайты v2, аппараты оператора, контракт «Акула», замки «три в ряд» (2026-10-02)
+- [docs/review/МД_РЕВЬЮ_APK_Ф13_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_Ф13_2026-10-02.md) 📄 — МД-ревью Ф13 (2026-10-02)
 - [docs/review/МД_РЕВЬЮ_APK_Ф1_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_Ф1_2026-09-30.md) 📄 — МД-ревью APK, Ф1: сборка шлема на ветке PR 13 и «+20 книг»
 - [docs/review/МД_РЕВЬЮ_APK_Ф2_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_Ф2_2026-09-30.md) 📄 — МД-ревью APK, Ф2: вызовы отрисовки хаба (Б-1)
 - [docs/review/МД_РЕВЬЮ_APK_Ф4_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_Ф4_2026-09-30.md) 📄 — МД-ревью APK Ф4 — вещи 99 мест и исправления по ревью (2026-09-30)
@@ -444,7 +449,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (159)
+## Документация проекта (160)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -468,6 +473,7 @@
 - [docs/HLD_AUDIO_299_2026-09-30.md](../docs/HLD_AUDIO_299_2026-09-30.md) 📄 — HLD: звуки из 99 репо — спектральные эталоны по трём параметрам
 - [docs/HLD_BELL_RULES_TYPIKON_2026-09-30.md](../docs/HLD_BELL_RULES_TYPIKON_2026-09-30.md) 📄 — HLD: устав звона из Типикона и книги о колоколе (веб и шлем)
 - [docs/HLD_CONTRACT_AKULA_2026-10-02.md](../docs/HLD_CONTRACT_AKULA_2026-10-02.md) 📄 — HLD: контракт «Акула Иссык-Куля» — поймать Мега-щуку (2026-10-02)
+- [docs/HLD_COSMIC_MUSIC_ENTELECHY_2026-10-02.md](../docs/HLD_COSMIC_MUSIC_ENTELECHY_2026-10-02.md) 📄 — HLD: сюита «Наука. Любовь. Познание.» и Энтелехия-99 в Конституции (2026-10-02)
 - [docs/HLD_DEEDS_WEB_PARITY_2026-10-02.md](../docs/HLD_DEEDS_WEB_PARITY_2026-10-02.md) 📄 — HLD — паритет 26 дел мест: шлем и веб (2026-10-02)
 - [docs/HLD_DESTINY_BRANCHES_FINALES_2026-10-02.md](../docs/HLD_DESTINY_BRANCHES_FINALES_2026-10-02.md) 📄 — HLD: «лут» — ветки развития персонажа и семь финалов «ближе к раю или ближе к аду» (2026-10-02)
 - [docs/HLD_DIVE_BIOMES_BUBBLES_2026-09-30.md](../docs/HLD_DIVE_BIOMES_BUBBLES_2026-09-30.md) 📄 — HLD: пять подводных биомов, пузырьковые столбы в ритме дыхания, термоклин видим и слышим

@@ -26,6 +26,8 @@ func _play(t: Object, body: String) -> Node:
 	var dt := 0.1
 	var guard := 0
 	var console_at_khachkar := -1.0
+	var music_at_khachkar := 0.0
+	var cues := {}
 	var breaths := 0
 	while not p.finished and guard < 20000:
 		guard += 1
@@ -42,10 +44,14 @@ func _play(t: Object, body: String) -> Node:
 		else:
 			p.override = IDLE
 		p._process(dt)
+		cues[p.beat_id] = p.music.cue_id
 		if p.beat_id == "khachkar" and p.t > 645.0 \
 				and console_at_khachkar < 0.0:
 			console_at_khachkar = p.console_level
+			music_at_khachkar = p.music_player.volume_db
 	p.set_meta("console_at_khachkar", console_at_khachkar)
+	p.set_meta("music_at_khachkar", music_at_khachkar)
+	p.set_meta("cues", cues)
 	return p
 
 
@@ -59,6 +65,16 @@ func run(t: Object) -> void:
 		t._check(p.reached == ids, "%s: every beat in order" % body)
 		t._check(float(p.get_meta("console_at_khachkar")) == 0.0,
 			"%s: the console is out at the khachkar" % body)
+		t._check(float(p.get_meta("music_at_khachkar")) <= -59.0,
+			"%s: the music goes down to -60 dB at the khachkar" % body)
+		var cues: Dictionary = p.get_meta("cues")
+		var heard := {}
+		for b in cues:
+			heard[cues[b]] = true
+		t._check(heard.size() == 9 and cues.get("thermocline") == "VI"
+			and cues.get("title") == "IX",
+			"%s: the nine nodes of Entelechy sound across the episode: %s"
+			% [body, cues])
 		t._check(p.khachkar.get_meta("noInteract", false)
 			and p.khachkar.get_meta("noLoot", false),
 			"%s: the khachkar is noInteract and noLoot" % body)

@@ -183,6 +183,11 @@ var trigger_was := false
 var synth := DiveSynth.new()
 var player: AudioStreamPlayer
 var playback: AudioStreamGeneratorPlayback
+## The suite «Наука. Любовь. Познание.»: the music of each beat's node
+## of Entelechy (CosmosSynth), on its own bus with the space's reverb.
+var music := CosmosSynth.new()
+var music_player: AudioStreamPlayer
+var music_playback: AudioStreamGeneratorPlayback
 
 
 func _ready() -> void:
@@ -890,9 +895,19 @@ func _build_sound() -> void:
 	player.stream = gen
 	player.bus = AudioServer.get_bus_name(bus)
 	add_child(player)
+	music_player = AudioStreamPlayer.new()
+	music_player.name = "Music"
+	var mgen := AudioStreamGenerator.new()
+	mgen.mix_rate = CosmosSynth.MIX_RATE
+	mgen.buffer_length = 0.3
+	music_player.stream = mgen
+	music_player.bus = AudioServer.get_bus_name(CosmosSynth.ensure_bus())
+	add_child(music_player)
 	if DisplayServer.get_name() != "headless":
 		player.play()
 		playback = player.get_stream_playback()
+		music_player.play()
+		music_playback = music_player.get_stream_playback()
 
 
 # --- XR -----------------------------------------------------------------------
@@ -1539,6 +1554,20 @@ func _sound(dt: float) -> void:
 			for i in frames:
 				buf[i] = Vector2(mono[i], mono[i])
 			playback.push_buffer(buf)
+	_music()
+
+
+## The music follows the beat's node; at the khachkar it goes down with
+## the console, as every machine sound does (-60 dB, TABOO 0.4 rule 2),
+## and it gives way to the narrator and to an insight.
+func _music() -> void:
+	music.set_cue(CosmosSynth.cue_for_beat(music.data, beat_id))
+	music_player.volume_db = minf(minf(lerpf(-60.0, 0.0, console_level),
+		duck_db), ins_duck * 0.5)
+	if music_playback:
+		var frames := music_playback.get_frames_available()
+		if frames > 0:
+			music_playback.push_buffer(music.generate(frames))
 
 
 func _finish() -> void:

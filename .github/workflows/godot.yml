@@ -101,6 +101,7 @@ jobs:
           # The Water Atlas: one list of nodes, its copies current and
           # every node with its Constitution line (TABOO 0.03).
           python3 scripts/story/render.py --check
+          python3 scripts/story/entelechy.py --check
           cmp public/ludus/data/atlas-99.json godot/data/atlas-99.json
           # The 12 stories walked on foot and the people who stand in
           # their places: the routes, and who stands where with which
