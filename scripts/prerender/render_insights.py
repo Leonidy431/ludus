@@ -391,24 +391,27 @@ def harbor_of_ayas(sc):
     oak = ri.mat('oak', (0.18, 0.12, 0.07), rough=0.7, bump=0.5,
                  scale=50)
     iron = ri.mat('iron', (0.08, 0.07, 0.06), rough=0.6, metal=0.8)
-    hemp = ri.mat('hemp', (0.40, 0.31, 0.18), rough=0.8, bump=0.8,
+    hemp = ri.mat('hemp', (0.45, 0.36, 0.22), rough=0.8, bump=0.8,
                   scale=400)
     for i in range(7):
         for j in range(4):
             box((0.79, 0.39, 0.4), (-2.4 + 0.8 * i + 0.4 * (j % 2),
                 -1.6 + 0.4 * j, -0.2), stone, bevel=0.02)
     water((0, 40, -0.35), 80, colour=(0.02, 0.05, 0.06))
-    cyl(0.12, 0.5, (0.3, -0.5, 0.25), oak)
+    cyl(0.12, 0.5, (0.6, -1.0, 0.25), oak)
     for z in (0.1, 0.38):
         bpy.ops.mesh.primitive_torus_add(major_radius=0.122,
                                          minor_radius=0.01,
-                                         location=(0.3, -0.5, z))
+                                         location=(0.6, -1.0, z))
         ri.link(ri.smooth(bpy.context.object, 0), iron)
     # Off the bollard, along the stones to the edge (y = -0.2), over it
     # and into the water.
-    rope([(0.3, -0.5, 0.36), (0.24, -0.46, 0.06), (0.12, -0.36, 0.03),
-          (0.02, -0.26, 0.03), (-0.03, -0.19, -0.02), (-0.06, -0.15, -0.2),
-          (-0.1, -0.08, -0.35), (-0.3, 0.5, -0.37)], 0.03, hemp)
+    # From the bollard across the stones to the edge (y = -0.2), over it
+    # and into the water: laid in front of the bollard, in view.
+    rope([(0.62, -1.13, 0.1), (0.5, -1.13, 0.045), (0.3, -1.05, 0.045),
+          (0.05, -0.8, 0.045), (-0.15, -0.45, 0.045), (-0.22, -0.24, 0.045),
+          (-0.25, -0.18, -0.05), (-0.27, -0.12, -0.3), (-0.4, 0.4, -0.37)],
+         0.045, hemp)
     box((0.3, 1.6, 0.04), (-0.9, -0.2, 0.03), oak,
         rot=(0, math.radians(8), math.radians(20)))
     bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=3, radius=0.2,
@@ -430,8 +433,8 @@ def harbor_of_ayas(sc):
     cyl(0.04, 1.6, (1.6, -0.9, 0.8), oak)
     haze(0.004, (0.8, 0.7, 0.65), size=60, at=(0, 30, 5))
     exposure(sc, 0.4)
-    camera(sc, (1.3, -1.4, 0.8), (-0.2, 1.2, 0.0), lens=40, fstop=5.6,
-           focus=1.6)
+    camera(sc, (1.2, -1.9, 0.75), (-0.1, -0.4, 0.0), lens=35,
+           fstop=5.6, focus=1.6)
 
 
 @scene
@@ -467,9 +470,11 @@ def purse_at_the_gate(sc):
     cyl(0.012, 0.03, (-0.22, -0.05, 0.015), ri.mat('tallow',
         (0.8, 0.75, 0.6), rough=0.6), verts=24)
     glow((-0.22, -0.05, 0.045), 0.005, 1850, 60)
-    light('POINT', (-0.22, -0.05, 0.06), 2.5, 1850, size=0.005)
-    light('SPOT', (0.9, 0.06, 0.2), 120, 8000, size=0.01,
-          aim=(0.2, 0.06, 0.0)).data.spot_size = math.radians(5)
+    light('POINT', (-0.22, -0.05, 0.06), 1.2, 1850, size=0.005)
+    # The moon's stripe falls across the coins and the key, so the
+    # silver reads cold against the candle's amber.
+    light('SPOT', (0.28, -0.2, 0.32), 60, 8000, size=0.01,
+          aim=(0.06, -0.02, 0.0)).data.spot_size = math.radians(22)
     exposure(sc, -0.3)
     haze(0.03, (0.6, 0.6, 0.6), size=1.5, at=(0, 0, 0.3))
     camera(sc, (0.12, -0.42, 0.36), (0.1, 0.03, 0.0), lens=45,
@@ -523,7 +528,7 @@ def bread_in_siege(sc):
     glow((-1.0, 0.3, 0.16), 0.08, 1700, 4)
     light('AREA', (1.5, -1.0, 3.0), 40, 6500, size=3, aim=(0, 0.2, 0))
     haze(0.01, (0.8, 0.8, 0.8), size=6, at=(0, 0, 1))
-    camera(sc, (0.3, -0.7, 0.55), (0.0, 0.45, 0.4), lens=32,
+    camera(sc, (0.22, -0.55, 0.62), (0.02, 0.15, 0.08), lens=35,
            fstop=2.8, focus=0.75)
 
 
@@ -585,6 +590,248 @@ def error_of_a_finger(sc):
     haze(0.003, (0.6, 0.65, 0.8), size=40, at=(0, 15, 0.5))
     camera(sc, (0.2, -1.15, 0.7), (0.0, 0.6, 0.4), lens=30, fstop=2.8,
            focus=1.3)
+
+
+def cell(sc, morning=False):
+    """The copyist's cell of ink_first_line, shared with
+    scribe_lifts_eyes (the same room in spring, window open)."""
+    lime = ri.mat('lime', (0.42, 0.39, 0.33), rough=0.95, bump=1.2,
+                  scale=25, spots=(0.30, 0.28, 0.24))
+    walnut = ri.mat('walnut', (0.09, 0.05, 0.03), rough=0.55, bump=0.3,
+                    scale=60)
+    box((4, 0.3, 3), (0, 1.0, 1.5), lime)
+    box((4, 4, 0.1), (0, 0, -0.05), lime)
+    box((1.0, 0.6, 0.05), (0, 0.15, 0.725), walnut, bevel=0.01)
+    for x in (-0.45, 0.45):
+        box((0.05, 0.5, 0.7), (x, 0.15, 0.35), walnut)
+    return lime, walnut
+
+
+@scene
+def scribe_lifts_eyes(sc):
+    world(sc, kelvin(9000), 0.6)
+    lime, walnut = cell(sc, morning=True)
+    vellum = ri.mat('vellum', (0.72, 0.64, 0.48), rough=0.9, bump=0.4,
+                    scale=180, spots=(0.58, 0.50, 0.36))
+    ink = ri.mat('ink', (0.05, 0.03, 0.02), rough=0.6)
+    clay = ri.mat('clay', (0.32, 0.15, 0.07), rough=0.85, bump=0.6,
+                  scale=60)
+    # The back wall with an open window onto the lake.
+    box((1.6, 0.3, 3), (-1.2, 1.0, 1.5), lime)
+    box((1.6, 0.3, 3), (1.2, 1.0, 1.5), lime)
+    box((0.8, 0.3, 0.9), (0, 1.0, 0.45), lime)
+    box((0.8, 0.3, 1.2), (0, 1.0, 2.4), lime)
+    water((0, 300, -2.0), 900, colour=(0.03, 0.09, 0.12), rough=0.02)
+    import random
+    rnd = random.Random(7)
+    ridge = [(-900 + 60 * i, 700, rnd.uniform(60, 180)) for i in range(31)]
+    verts = [(x, y, -2.0) for x, y, _ in ridge]
+    verts += [(x, y, z) for x, y, z in ridge]
+    n = len(ridge)
+    me = bpy.data.meshes.new('ridge')
+    me.from_pydata(verts, [], [(i, i + 1, n + i + 1, n + i)
+                               for i in range(n - 1)])
+    ob = bpy.data.objects.new('ridge', me)
+    bpy.context.collection.objects.link(ob)
+    ri.link(ob, ri.mat('mount', (0.10, 0.12, 0.16), rough=1.0))
+    light('SUN', (0, 0, 10), 3.0, 5600, size=0.05, aim=(0.2, -1.0, -0.6))
+    page((-0.085, 0.1, 0.756), (0.16, 0.24), vellum,
+         rot=(0, math.radians(4), 0))
+    page((0.085, 0.1, 0.756), (0.16, 0.24), vellum,
+         rot=(0, math.radians(-4), 0))
+    script_lines((-0.085, -0.01, 0.7575), 0.13, 17, ink, step=0.013)
+    script_lines((0.085, -0.01, 0.7575), 0.06, 1, ink, step=0.013, seed=9)
+    glow((0.1, -0.01, 0.7578), 0.002, 1000, 0.0)
+    pot = ri.lathe('inkpot', [(0.0, 0.0), (0.03, 0.0), (0.033, 0.03),
+                              (0.025, 0.055), (0.018, 0.06),
+                              (0.0, 0.058)], 64)
+    pot.location = (0.25, 0.25, 0.75)
+    ri.link(pot, clay)
+    cyl(0.003, 0.2, (0.25, 0.18, 0.81), ri.mat('reed', (0.45, 0.36, 0.2),
+        rough=0.6), rot=(math.radians(70), 0, math.radians(15)), verts=12)
+    haze(0.0004, (0.8, 0.85, 0.9), size=60, at=(0, 40, 0))
+    exposure(sc, -0.4)
+    camera(sc, (0.15, -0.55, 1.15), (0.0, 1.0, 1.25), lens=35, fstop=4.0,
+           focus=1.6)
+
+
+@scene
+def same_comet(sc):
+    vellum = ri.mat('vellum', (0.74, 0.66, 0.50), rough=0.9, bump=0.8,
+                    scale=260, spots=(0.60, 0.52, 0.38))
+    ink = ri.mat('ink', (0.04, 0.025, 0.015), rough=0.55)
+    page((0, 0, 0), (0.3, 0.3), vellum)
+    script_lines((-0.03, -0.11, 0.0003), 0.16, 18, ink, step=0.012)
+    # The margin notes everywhere but beside the comet.
+    script_lines((0.11, -0.11, 0.0003), 0.04, 7, ink, step=0.009, seed=3)
+    script_lines((0.11, 0.07, 0.0003), 0.04, 4, ink, step=0.009, seed=4)
+    # The comet: a round head and one long tail, never a star (a star of
+    # five points reads as a pentagram, on the dogmatic stop-list).
+    cyl(0.0035, 0.0004, (0.085, -0.01, 0.0004), ink, verts=32)
+    for k in range(8):
+        w = 0.0028 * (1.0 - k / 9.0)
+        box((0.004, w, 0.0003), (0.091 + 0.004 * k, -0.01 - 0.0006 * k,
+                                 0.0004), ink,
+            rot=(0, 0, math.radians(-8)))
+    light('POINT', (0.4, 0.0, 0.07), 3, 1900, size=0.02)
+    world(sc, (0.003, 0.002, 0.001))
+    exposure(sc, -0.6)
+    camera(sc, (0.06, -0.12, 0.28), (0.1, -0.01, 0.0), lens=100,
+           fstop=4.0, focus=0.3)
+
+
+@scene
+def bazaar_jug(sc):
+    world(sc, kelvin(9000), 0.5)
+    earth = ri.mat('earth', (0.35, 0.27, 0.18), rough=1.0, bump=0.8,
+                   scale=20)
+    poplar = ri.mat('poplar', (0.55, 0.45, 0.32), rough=0.8, bump=0.4,
+                    scale=50)
+    glaze = ri.mat('glaze', (0.06, 0.32, 0.30), rough=0.12, coat=0.8,
+                   bump=0.05, scale=30)
+    terra = ri.mat('terracotta', (0.45, 0.20, 0.10), rough=0.85, bump=0.4,
+                   scale=60)
+    box((6, 6, 0.1), (0, 0, -0.05), earth)
+    box((1.8, 0.7, 0.04), (0, 0.2, 0.78), poplar, bevel=0.005)
+    for x in (-0.8, 0.8):
+        box((0.05, 0.6, 0.76), (x, 0.2, 0.38), poplar)
+    j = ri.amphora(glaze)
+    j.scale = (0.4, 0.4, 0.4)
+    j.location = (0.0, 0.0, 0.8)
+    for i in range(8):
+        k = 0.36 - 0.02 * i
+        jj = ri.amphora(glaze if i % 2 else terra)
+        jj.scale = (k, k, k)
+        jj.location = (-0.75 + 0.2 * i, 0.4, 0.8)
+    bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=3, radius=0.05,
+                                          location=(0.5, -0.05, 0.82))
+    ri.link(ri.smooth(bpy.context.object, 1),
+            ri.mat('wetclay', (0.25, 0.25, 0.24), rough=0.3, bump=0.5))
+    box((0.12, 0.025, 0.006), (0.35, -0.08, 0.805), poplar,
+        rot=(0, 0, math.radians(25)))
+    # The awning: cotton stripes of light and shade.
+    cotton = ri.mat('cotton', (0.85, 0.82, 0.74), rough=0.9)
+    for i in range(4):
+        box((2.4, 0.18, 0.005), (0, -0.4 + 0.36 * i, 2.2), cotton)
+    light('SUN', (0, 0, 10), 4.0, 3500, size=0.03, aim=(-1.0, 0.2, -0.18))
+    haze(0.01, (0.9, 0.85, 0.7), size=6, at=(0, 0, 1.2))
+    camera(sc, (0.45, -1.1, 1.2), (0.0, 0.1, 0.9), lens=35, fstop=4.0,
+           focus=1.1)
+
+
+@scene
+def ford_of_cold(sc):
+    world(sc, kelvin(10000), 0.45)
+    granite = ri.mat('granite', (0.12, 0.12, 0.12), rough=0.6, bump=0.8,
+                     scale=30, spots=(0.08, 0.08, 0.09))
+    rime = ri.mat('rime', (0.42, 0.44, 0.46), rough=0.5, bump=1.2,
+                  scale=200, spots=(0.85, 0.88, 0.92))
+    gravel = ri.mat('gravel', (0.30, 0.29, 0.27), rough=0.7, bump=1.5,
+                    scale=90)
+    box((8, 12, 0.2), (0, 2, -0.7), gravel)
+    stones(60, 2.5, (0, 1.5, -0.45), granite, 11, scale=(0.25, 0.2, 0.15))
+    stones(14, 0.6, (0, -0.4, -0.25), rime, 12, scale=(0.12, 0.1, 0.06))
+    water((0, 2, -0.3), 12, colour=(0.10, 0.28, 0.30), rough=0.03)
+    box((8, 3, 0.4), (0, 5.2, -0.4), gravel,
+        rot=(math.radians(-4), 0, 0))
+    for i in range(4):
+        bpy.ops.mesh.primitive_cylinder_add(vertices=24, radius=0.06,
+                                            depth=0.02,
+                                            location=(-0.3 + 0.25 * i,
+                                                      4.2 + 0.1 * (i % 2),
+                                                      -0.215))
+        ri.link(bpy.context.object, ri.mat('print', (0.05, 0.08, 0.09),
+                                           rough=0.02))
+    rope([(-2.0, 1.0, -0.28), (-1.2, 1.4, -0.29), (-0.6, 1.9, -0.28)],
+         0.012, ri.mat('halter', (0.30, 0.22, 0.12), rough=0.8))
+    water((0, 200, -0.6), 600, colour=(0.02, 0.06, 0.12), rough=0.05)
+    import random
+    rnd = random.Random(21)
+    ridge = [(-600 + 40 * i, 450, rnd.uniform(60, 160)) for i in range(31)]
+    verts = [(x, y, -0.6) for x, y, _ in ridge]
+    verts += [(x, y, z) for x, y, z in ridge]
+    n = len(ridge)
+    me = bpy.data.meshes.new('ridge')
+    me.from_pydata(verts, [], [(i, i + 1, n + i + 1, n + i)
+                               for i in range(n - 1)])
+    ob = bpy.data.objects.new('ridge', me)
+    bpy.context.collection.objects.link(ob)
+    ri.link(ob, ri.mat('snow', (0.8, 0.82, 0.86), rough=0.8))
+    light('SUN', (0, 0, 10), 2.0, 2800, size=0.02, aim=(0.3, 1.0, -0.05))
+    haze(0.03, (0.85, 0.9, 0.95), size=8, at=(0, 2, -0.1))
+    exposure(sc, -0.5)
+    camera(sc, (0.2, -1.2, 0.25), (0.0, 4.2, -0.25), lens=28, fstop=5.6,
+           focus=5.2)
+
+
+@scene
+def hands_of_masons(sc):
+    world(sc, kelvin(8000), 0.7)
+    granite = ri.mat('granite', (0.40, 0.40, 0.39), rough=0.8, bump=1.0,
+                     scale=25)
+    sand = ri.mat('sandstone', (0.62, 0.50, 0.34), rough=0.9, bump=1.0,
+                  scale=25)
+    dust = ri.mat('dust', (0.55, 0.48, 0.38), rough=1.0, bump=0.5,
+                  scale=40)
+    ash = ri.mat('ash', (0.55, 0.45, 0.32), rough=0.7)
+    linen = ri.mat('linen', (0.9, 0.9, 0.86), rough=0.8)
+    box((10, 10, 0.1), (0, 0, -0.05), dust)
+    import random
+    rnd = random.Random(1375)
+    for c in range(3):
+        x = -1.5
+        while x < 1.5:
+            w = rnd.uniform(0.3, 0.5)
+            box((w - 0.02, 0.45, 0.28), (x + w / 2, 0, 0.15 + 0.3 * c),
+                granite if rnd.random() < 0.6 else sand, bevel=0.03,
+                rot=(0, 0, rnd.uniform(-0.03, 0.03)))
+            x += w
+    for x in (-1.7, 1.7):
+        cyl(0.025, 0.6, (x, 0.26, 0.3), ash, verts=12)
+    rope([(-1.7, 0.26, 0.93), (1.7, 0.26, 0.93)], 0.002, linen)
+    box((0.12, 0.08, 0.2), (0.7, -0.6, 0.1), ash)
+    water((0, 60, -0.5), 200, colour=(0.08, 0.20, 0.30), rough=0.02)
+    light('SUN', (0, 0, 10), 3.0, 5500, size=0.02, aim=(0.5, 0.3, -0.9))
+    exposure(sc, -1.0)
+    camera(sc, (-3.4, -1.1, 1.15), (1.0, 0.3, 0.75), lens=45, fstop=4.0,
+           focus=1.9)
+
+
+@scene
+def gate_opened_inside(sc):
+    world(sc, (0.001, 0.001, 0.002))
+    oak = ri.mat('oak', (0.14, 0.09, 0.05), rough=0.7, bump=0.6, scale=40)
+    iron = ri.mat('iron', (0.05, 0.045, 0.04), rough=0.55, metal=0.9,
+                  bump=0.4, scale=60)
+    stone = ri.mat('stone', (0.28, 0.25, 0.21), rough=0.9, bump=1.0,
+                   scale=12)
+    silver = ri.mat('silver', (0.85, 0.84, 0.8), rough=0.25, metal=1.0)
+    box((6, 8, 0.1), (0, -2, -0.05), stone)
+    box((0.4, 8, 4), (-1.6, -2, 2), stone)
+    box((0.4, 8, 4), (1.6, -2, 2), stone)
+    box((1.4, 0.15, 3.5), (-0.7, 0.6, 1.75), oak)
+    box((1.4, 0.15, 3.5), (0.85, 0.75, 1.75), oak,
+        rot=(0, 0, math.radians(-12)))
+    for z in (0.6, 1.8, 3.0):
+        box((1.4, 0.02, 0.08), (-0.7, 0.52, z), iron)
+    panel((0.25, 3.4), (0.13, 1.3, 1.75), (math.radians(90), 0, 0),
+          11000, 1.2)
+    light('AREA', (0.13, 1.6, 1.5), 40, 11000, size=0.3,
+          aim=(0.0, -1.0, 0.0))
+    box((0.25, 0.25, 2.6), (-1.2, -0.2, 1.25), oak,
+        rot=(math.radians(-10), 0, 0))
+    coins((0.2, -0.5, 0.0), 5, silver, standing=False)
+    bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=3, radius=0.05,
+                                          location=(0.4, -0.8, 0.02))
+    pur = bpy.context.object
+    pur.scale = (1.2, 0.9, 0.3)
+    ri.link(ri.smooth(pur, 1), ri.mat('leather', (0.2, 0.12, 0.06),
+                                      rough=0.6))
+    cyl(0.03, 0.4, (-1.38, -0.8, 1.6), iron, rot=(0, math.radians(30), 0))
+    glow((-1.28, -0.8, 1.85), 0.05, 1800, 20)
+    light('POINT', (-1.2, -0.8, 1.9), 40, 1800, size=0.05)
+    haze(0.02, (0.6, 0.55, 0.5), size=6, at=(0, -2, 2))
+    camera(sc, (-0.3, -3.2, 1.4), (0.1, 0.6, 1.0), lens=28, fstop=8.0)
 
 
 def render(name, size, samples):
