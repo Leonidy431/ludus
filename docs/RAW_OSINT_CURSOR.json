@@ -1,5 +1,5 @@
 {
- "next": 15,
+ "next": 4,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -6149,6 +6149,78 @@
      "reason": "eye check: the old sadness shape (shape_sadness, a sagging basin) again reads as a wide cup or bowl, close to a chalice; a passion must not resemble a holy thing (CLAUDE.md TABOO 0.2 item 3, 0.35 item 6). PR 17 replaces this shape with a cracked jug; until it is merged no sadness kit ships. Contact sheet docs/audit/2026-10-02/raw-sadness-5338273a79-contact-rejected.png"
     }
    ]
+  },
+  {
+   "time": "2026-10-02T14:54:14.546068+00:00",
+   "pass_id": "osint-2026-10-02T14:54:14Z",
+   "deficits": [
+    {
+     "id": "DEF-003",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 2
+     },
+     "to_props": 143,
+     "hits_uncapped": 6063,
+     "props_uncapped": 3814,
+     "props_uncapped_repos": 52,
+     "added_keywords": [],
+     "keywords_total": 39,
+     "keywords_not_searched": [
+      "com",
+      "corsixth",
+      "editor",
+      "java",
+      "left",
+      "lua",
+      "right",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 143
+    },
+    {
+     "id": "DEF-012",
+     "skipped": "audio-pipeline-pending"
+    },
+    {
+     "id": "DEF-019",
+     "hits": 143,
+     "taken": 0,
+     "refused": {},
+     "to_props": 143,
+     "hits_uncapped": 143,
+     "props_uncapped": 143,
+     "props_uncapped_repos": 26,
+     "added_keywords": [],
+     "keywords_total": 8,
+     "keywords_not_searched": [],
+     "props": {},
+     "props_seen": 127
+    }
+   ],
+   "props_taken": {},
+   "props_taken_by_index_kind": {},
+   "props_duplicates": 270,
+   "props_errors": 0,
+   "props_refused": {
+    "licence-Defold-1.0": 8,
+    "licence-UNKNOWN": 8
+   },
+   "props_new_bytes": 0,
+   "props_store_files": 1454,
+   "props_store_bytes": 10827682,
+   "props_cache_files_on_disk": 4665,
+   "props_cache_bytes_on_disk": 78042215,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 811650,
+   "props_register_growth_bytes": 0,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 55
   }
  ],
  "keywords": {
