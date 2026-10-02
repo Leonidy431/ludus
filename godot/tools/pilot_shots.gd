@@ -19,6 +19,16 @@ const VIEWS := [["room", 2.0], ["water", 20.0], ["immersion", 40.0],
 	["closeup-amphora", 100.0, 0.0, 0.0, "Amphora"],
 	["closeup-drams", 450.0, 0.0, 0.0, "Drams"],
 	["closeup-diary", 730.0, 0.0, 0.0, "Diary"]]
+## The insights (docs/HLD_INSIGHTS_FLASHBACKS_2026-10-02.md): each opened
+## at the start of its window, the veil faded in, the skip icon up.
+## Shot alone with --insights; in the other views no insight may come by
+## itself, so all count as shown.
+const INSIGHT_VIEWS := [["insight-ink", 56.0, "ink_first_line"],
+	["insight-jug", 12.0, "bazaar_jug"],
+	["insight-ford", 190.0, "ford_of_cold"],
+	["insight-purse", 450.0, "purse_at_the_gate"],
+	["insight-skip", 730.0, "scribe_lifts_eyes"],
+	["insight-finger", 830.0, "error_of_a_finger"]]
 ## Frames held per view: past the console's 1.75 s fade at 60 fps.
 const HOLD := 130
 
@@ -28,6 +38,8 @@ const YAWS := [["left", 35.0], ["ahead", 0.0], ["right", -35.0]]
 
 var out := "user://pilot-shots"
 var triple := false
+var only_insights := false
+var views: Array = VIEWS
 var yaw := 0
 var node: Node
 var view := 0
@@ -40,6 +52,12 @@ func _initialize() -> void:
 			out = a.trim_prefix("--out=")
 		elif a == "--triple":
 			triple = true
+		elif a == "--insights":
+			only_insights = true
+	if only_insights:
+		views = []
+		for v in INSIGHT_VIEWS:
+			views.append([v[0], v[1], 0.0, 0.0, "", v[2]])
 	DirAccess.make_dir_recursive_absolute(out)
 	node = (load("res://scenes/pilot.tscn") as PackedScene).instantiate()
 	node.replay = true
@@ -49,20 +67,41 @@ func _initialize() -> void:
 
 
 func _process(_dt: float) -> bool:
-	if view >= VIEWS.size():
+	if view >= views.size():
 		return true
-	if VIEWS[view][1] < node.t:
+	if node.shown.is_empty():
+		for x in node.insights.get("insights", []):
+			node.shown.append(str(x.id))
+	if views[view][1] < node.t:
 		# The clock goes back for the room views: the console's last
 		# words belong to the end, not to the start.
 		node.screen.text = ""
 		node.line.text = ""
-	node.t = VIEWS[view][1]
-	var v: Array = VIEWS[view]
+	node.t = views[view][1]
+	var v: Array = views[view]
+	if frame == 0:
+		node.skip_override = {}
+		if not node.insight.is_empty():
+			node.close_insight()
+	if v.size() > 5 and frame == 5:
+		for x in node.insights.insights:
+			if x.id == v[5]:
+				node.open_insight(x)
+	if v.size() > 5 and frame > 5:
+		# Held in the middle of the memory: the veil full, the clock
+		# standing.  The skip view holds the stick half way through its
+		# second, so the icon shows the pull filling.
+		node.insight_s = 2.0
+		# A slow first frame under Xvfb must not run the subtitle out.
+		node.narr_left = 5.0
+		if v[0] == "insight-skip":
+			node.skip = {"stick_s": 0.5}
+			node.skip_override = {"stick": 1.0}
 	if frame == 0 and node.examining != "":
 		# Each view starts with the world running, so the scene enters
 		# its beat (the lake) before a close-up pauses it.
 		node.close_examine()
-	if v.size() > 4 and frame == 5:
+	if v.size() > 4 and v[4] != "" and frame == 5:
 		# Open the close-up of that thing, glasses on.
 		node.glasses_on = true
 		for e in node.data.examine:
@@ -76,7 +115,7 @@ func _process(_dt: float) -> bool:
 	frame += 1
 	if frame >= HOLD:
 		var img := root.get_texture().get_image()
-		var name := "pilot-%02d-%s" % [view + 1, VIEWS[view][0]]
+		var name := "pilot-%02d-%s" % [view + 1, views[view][0]]
 		if triple:
 			name += "-" + YAWS[yaw][0]
 		var path: String = out.path_join(name + ".png")

@@ -53,6 +53,7 @@
 | Технология | Код | Документ |
 |---|---|---|
 | Пилот «Табу»: ритм серии, табу телом, 55 деталей | `godot/scripts/pilot_core.gd`, `pilot.gd`, `godot/data/pilot-1.json`, `pilot-details.json` | ТАБУ №0.015, `docs/story/PILOT_EPISODE_1_TABU_2026-10-02.md` |
+| **Инсайты-флешбеки**: память эпох по месту, порядку, времени, глубине, ступени помысла и неподвижности; часы стоят; пропуск стиком 1 с, рукоятями или взглядом/лучом на значок в мире | `godot/scripts/insight_core.gd`, `godot/data/pilot-insights.json`, `pilot.gd` `_insight` | `docs/HLD_INSIGHTS_FLASHBACKS_2026-10-02.md` |
 | Улики «под и над», классы находок | `PilotCore.clue_seen`, `check_finds` | ТАБУ №0.017, `docs/HLD_PANDORA_SURPASS_2026-10-02.md` |
 | Лестница помысла (страсти) | `godot/scripts/passion_core.gd` | ТАБУ №0.2 п. 8 |
 | Отбор «из N лучших K» | `scripts/decisions/*.py`, `scripts/lake/lake_objects.py` | ТАБУ №0.07, `docs/OBJECT_SELECTION_TECHNOLOGY.md` |

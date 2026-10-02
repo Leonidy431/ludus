@@ -15,6 +15,7 @@ For each examined thing of godot/data/pilot-1.json:
   docs/audit/2026-10-02/closeup-<id>.mp4.
 
     python3 scripts/prerender/build_closeups.py
+    python3 scripts/prerender/build_closeups.py --insights ru,en,de,fr,es,it
 
 Constitution: ФОРМА (the thing turning in true light, and a word about
 the man who looks at it) → ДЕЙСТВИЕ (render, speak, pack) → ЦЕЛЬ (the
@@ -50,6 +51,7 @@ VOICES = {
 }
 VOICE = VOICES['ru']
 I18N = ROOT / 'godot' / 'data' / 'pilot-narration-i18n.json'
+INSIGHTS = ROOT / 'godot' / 'data' / 'pilot-insights.json'
 FONT = '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
 
 
@@ -123,6 +125,31 @@ def voices_all(lang):
     return n, total
 
 
+def voices_insights(lang):
+    """The twelve insights of episode 1 (docs/HLD_INSIGHTS_FLASHBACKS_
+    2026-10-02.md, phase I6) into narration/<lang>/<id>.ogg, the key the
+    scene speaks them by; returns (lines, seconds)."""
+    data = json.loads(INSIGHTS.read_text(encoding='utf-8'))
+    i18n = json.loads(I18N.read_text(encoding='utf-8'))
+    out = PACK.parent / 'narration' / lang
+    out.mkdir(parents=True, exist_ok=True)
+    tmp = ROOT / 'build' / 'voice' / lang
+    tmp.mkdir(parents=True, exist_ok=True)
+    n, total = 0, 0.0
+    for x in data['insights']:
+        text = x['line_ru'] if lang == 'ru' else (
+            i18n['narration']['insights'].get(x['id'], {}).get(lang, ''))
+        if not text:
+            continue
+        wav = tmp / ('%s.wav' % x['id'])
+        total += speak(text, wav, lang)
+        subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i',
+                        str(wav), '-c:a', 'libvorbis', '-q:a', '3',
+                        str(out / ('%s.ogg' % x['id']))], check=True)
+        n += 1
+    return n, total
+
+
 def previews(lang):
     narr = json.loads(NARRATION.read_text(encoding='utf-8'))
     i18n = json.loads(I18N.read_text(encoding='utf-8'))
@@ -138,6 +165,11 @@ def previews(lang):
 
 
 def main():
+    if '--insights' in sys.argv:
+        for lang in sys.argv[sys.argv.index('--insights') + 1].split(','):
+            n, sec = voices_insights(lang)
+            print('%s: %d insights, %.1f s' % (lang, n, sec))
+        return
     if '--langs' in sys.argv:
         for lang in sys.argv[sys.argv.index('--langs') + 1].split(','):
             n, sec = voices_all(lang)

@@ -138,6 +138,29 @@ var narrated: Array[String] = []
 var lang := "ru"
 var i18n := {}
 
+# Insights: flashbacks called by place, order, clock, depth, the step of
+# the thought or stillness (InsightCore, godot/data/pilot-insights.json).
+# While one plays the clock stands, as under the glasses.
+var insights := {}
+var events: Array[String] = []
+var shown: Array[String] = []
+var insight := {}
+var insight_s := 0.0
+var insight_dur := 0.0
+var since_insight := INF
+var look_s := {}
+var still_s := 0.0
+var last_head := Vector3.ZERO
+var last_fwd := Vector3.FORWARD
+var skip := {}
+var skip_progress := 0.0
+var skip_override := {}
+var skipped: Array[String] = []
+var veil: MeshInstance3D
+var memory: MeshInstance3D
+var skip_icon: Label3D
+var ins_duck := 0.0
+
 var passion := {}
 var state := {}
 var body := {}
@@ -167,6 +190,12 @@ func _ready() -> void:
 	narration = PilotCore.load_narration()
 	lang = PilotCore.language()
 	i18n = PilotCore.load_i18n()
+	insights = InsightCore.load_data()
+	# The insights' lines speak through the narrator like the others.
+	var lines := {}
+	for x in insights.get("insights", []):
+		lines[x.id] = {"line_ru": x.line_ru, "bridge_to": x.bridge_to}
+	narration["insights"] = lines
 	passion = _passion(data.taboo.passion)
 	state = PassionCore.start(passion)
 	body = PilotCore.body_start()
@@ -887,6 +916,7 @@ func _build_close_up() -> void:
 	narrator = AudioStreamPlayer.new()
 	narrator.name = "Narrator"
 	add_child(narrator)
+	_build_insight()
 
 
 ## In the headset the Prior's screen lives on the left wrist, read by
@@ -938,6 +968,9 @@ func _process(dt: float) -> void:
 	if examining != "":
 		# Pandora's swap: the world waits while the eye reads the thing.
 		return
+	if _insight(dt):
+		# A memory has come: the clock of the dive stands while it plays.
+		return
 	var step := dt * speed
 	t += step
 	var b := PilotCore.beat_at(data, t)
@@ -951,6 +984,7 @@ func _process(dt: float) -> void:
 func _enter(b: Dictionary) -> void:
 	beat_id = b.id
 	reached.append(beat_id)
+	events.append("beat:" + str(b.id))
 	narrate("beats", b.id)
 	if b.has("message_ru"):
 		screen.text = b.message_ru
@@ -1206,6 +1240,7 @@ func open_examine(e: Dictionary) -> void:
 		_start_clip(e, c)
 	if not e.id in examined:
 		examined.append(e.id)
+	events.append("look:" + str(e.id))
 	duck_db = -18.0
 	if e.get("lure", false) and str(state.get("stage")) == "prilog":
 		# Through the lens at the lure: that is "look closer", the
@@ -1287,6 +1322,7 @@ func _clues(dt: float) -> void:
 			clue_hold[c.id] = float(clue_hold.get(c.id, 0.0)) + dt
 			if clue_hold[c.id] >= float(c.hold_s):
 				clues_found.append(c.id)
+				events.append("clue:" + str(c.id))
 				line.text = c.line_ru
 				narrate("objects", c.id)
 				synth.event_click()
@@ -1438,6 +1474,7 @@ func _taboo(dt: float) -> void:
 	body = r.body
 	if state.stage == was:
 		return
+	events.append("stage:" + str(state.stage))
 	match state.stage:
 		"converse":
 			# The lamp turns to the shine by itself: "I am seen".
@@ -1478,7 +1515,8 @@ func _sound(dt: float) -> void:
 	else:
 		synth.update({"depth": _depth(), "thrust": 0.15,
 			"shore_m": 2000.0, "echo_delay": 2.0 * 2.0 / 1480.0}, dt)
-	player.volume_db = minf(lerpf(-60.0, 0.0, console_level), duck_db)
+	player.volume_db = minf(minf(lerpf(-60.0, 0.0, console_level),
+		duck_db), ins_duck)
 	if playback:
 		var frames := playback.get_frames_available()
 		if frames > 0:
@@ -1500,3 +1538,204 @@ func _finish() -> void:
 		f.close()
 	if not stay:
 		ModuleLoader.go(ModuleLoader.HUB)
+
+
+# --- Insights -----------------------------------------------------------------
+
+## The look of a memory: an ink-brown veil darker at the edges, as an old
+## page around a lit line, and the thing of the other epoch in its
+## middle, warm, as under a lamp (1900 K, the class of human work,
+## TABOO 0.38).  The skip icon hangs in the world, not on the eyes.
+func _build_insight() -> void:
+	veil = MeshInstance3D.new()
+	var vq := QuadMesh.new()
+	# At 0.5 m it covers the eye of a Quest (about 104 x 96 degrees) and
+	# a 16:9 screen, so its dark rim lies at the edge of what is seen.
+	vq.size = Vector2(1.6, 1.4)
+	veil.mesh = vq
+	var g := Gradient.new()
+	g.set_color(0, Color(1, 1, 1, 0.45))
+	g.set_color(1, Color(1, 1, 1, 1.0))
+	var gt := GradientTexture2D.new()
+	gt.gradient = g
+	gt.fill = GradientTexture2D.FILL_RADIAL
+	gt.fill_from = Vector2(0.5, 0.5)
+	gt.fill_to = Vector2(1.0, 0.5)
+	gt.width = 128
+	gt.height = 128
+	var vm := StandardMaterial3D.new()
+	vm.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	vm.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	vm.no_depth_test = true
+	vm.render_priority = 2
+	vm.albedo_texture = gt
+	vm.albedo_color = Color(0.20, 0.13, 0.07, 0.0)
+	veil.material_override = vm
+	veil.position = Vector3(0, 0, -0.5)
+	veil.visible = false
+	camera.add_child(veil)
+	memory = MeshInstance3D.new()
+	var mq := QuadMesh.new()
+	mq.size = Vector2(0.36, 0.36)
+	memory.mesh = mq
+	var mm := StandardMaterial3D.new()
+	mm.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mm.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	mm.no_depth_test = true
+	mm.render_priority = 3
+	mm.albedo_color = Color(1.0, 0.80, 0.58, 0.0)
+	memory.material_override = mm
+	memory.position = Vector3(0, 0.07, -0.72)
+	memory.visible = false
+	camera.add_child(memory)
+	skip_icon = Label3D.new()
+	skip_icon.name = "SkipIcon"
+	skip_icon.font_size = 40
+	skip_icon.pixel_size = 0.0012
+	skip_icon.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	skip_icon.no_depth_test = true
+	skip_icon.render_priority = 4
+	skip_icon.modulate = Color(0.96, 0.86, 0.66)
+	skip_icon.outline_size = 8
+	skip_icon.visible = false
+	add_child(skip_icon)
+
+
+## One frame of the insights.  Returns true while one plays (the clock
+## of the dive then stands).  Between them it keeps what the triggers
+## read: the seconds a place is held in view, the seconds of stillness.
+func _insight(dt: float) -> bool:
+	if insights.is_empty():
+		return false
+	if not insight.is_empty():
+		_play_insight(dt)
+		return true
+	since_insight += dt
+	var hv := _head()
+	var head: Vector3 = hv[0]
+	var fwd: Vector3 = hv[1]
+	var moved := head.distance_to(last_head) / maxf(dt, 0.001)
+	var turned := rad_to_deg(fwd.angle_to(last_fwd)) / maxf(dt, 0.001)
+	last_head = head
+	last_fwd = fwd
+	var calm: Dictionary = insights.still
+	if moved <= float(calm.move_m_s) and turned <= float(calm.turn_deg_s):
+		still_s += dt
+	else:
+		still_s = 0.0
+	for x in insights.insights:
+		if InsightCore.on_place(x, head, fwd):
+			look_s[x.id] = float(look_s.get(x.id, 0.0)) + dt
+		else:
+			look_s[x.id] = 0.0
+	var ctx := {"t": t, "world": world, "beat": beat_id, "depth": _depth(),
+		"events": events, "stage": str(state.get("stage", "")),
+		"still_s": still_s, "shown": shown, "since_last": since_insight,
+		"look_s": look_s, "busy": examining != ""}
+	var due := InsightCore.due(insights, ctx)
+	if due.is_empty():
+		return false
+	open_insight(due)
+	return true
+
+
+## A memory begins: the veil and the thing fade in, the machine sinks to
+## a murmur (room tone stays, never a digital zero), a soft click and a
+## knot under both hands, the narrator's line, the skip icon low right.
+func open_insight(x: Dictionary) -> void:
+	insight = x
+	insight_s = 0.0
+	skip = {}
+	skip_progress = 0.0
+	shown.append(str(x.id))
+	var img := str(x.get("image", ""))
+	var tex = load(img) if img != "" and ResourceLoader.exists(img) \
+		else null
+	(memory.material_override as StandardMaterial3D).albedo_texture = tex
+	memory.visible = tex != null
+	veil.visible = true
+	var hv := _head()
+	skip_icon.position = InsightCore.icon_at(insights.skip, hv[0], hv[1])
+	skip_icon.visible = true
+	_skip_text()
+	ins_duck = -24.0
+	synth.event_click()
+	Haptics.pulse(right_hand, "knot", reduced)
+	Haptics.pulse(left_hand, "knot", reduced)
+	narrate("insights", str(x.id))
+	# The memory lasts at least as long as its voice, so a line is never
+	# cut mid-word (the draft Russian voice runs near 9 s).
+	insight_dur = float(insights.duration_s)
+	if narrator and narrator.playing and narrator.stream:
+		insight_dur = maxf(insight_dur,
+			narrator.stream.get_length() + float(insights.fade_s))
+	narr_left = maxf(narr_left, insight_dur)
+
+
+func _play_insight(dt: float) -> void:
+	insight_s += dt
+	var fade := float(insights.fade_s)
+	if reduced:
+		fade = 0.3
+	var dur := insight_dur
+	var k := clampf(insight_s / fade, 0.0, 1.0) \
+		* clampf((dur - insight_s) / fade, 0.0, 1.0)
+	(veil.material_override as StandardMaterial3D).albedo_color.a = 0.82 * k
+	(memory.material_override as StandardMaterial3D).albedo_color.a = k
+	# The room tone and breath of the synth keep sounding under the memory.
+	_sound(dt)
+	var r := InsightCore.skip_step(skip, insights.skip, dt, _skip_input())
+	skip = r.state
+	skip_progress = r.progress
+	_skip_text()
+	if r.skip:
+		skipped.append(str(insight.id))
+		close_insight()
+	elif insight_s >= dur:
+		close_insight()
+
+
+func close_insight() -> void:
+	insight = {}
+	since_insight = 0.0
+	veil.visible = false
+	memory.visible = false
+	skip_icon.visible = false
+	ins_duck = 0.0
+	if narrator and narrator.playing:
+		narrator.stop()
+	narr.text = ""
+	narr_left = 0.0
+
+
+## The icon fills as the hands pull or the eyes rest: » » and a bar.
+func _skip_text() -> void:
+	var n := int(round(skip_progress * 6.0))
+	skip_icon.text = "» »\n" + "▰".repeat(n) + "▱".repeat(6 - n)
+
+
+## The hands and eyes asking to skip.  Either thumbstick pulled far, or
+## both grips held; the head or a controller's ray on the icon.  On a
+## screen, Tab held is the stick.  A test sets skip_override.
+func _skip_input() -> Dictionary:
+	if not skip_override.is_empty():
+		return skip_override
+	var stick := 1.0 if Input.is_key_pressed(KEY_TAB) else 0.0
+	var grips := xr_active
+	var cone := float(insights.skip.icon_cone_deg)
+	var hv := _head()
+	var on := PilotCore.gaze_on(hv[1], skip_icon.position - hv[0], cone)
+	for h in [left_hand, right_hand]:
+		if not xr_active:
+			break
+		var v: Vector2 = h.get_vector2("primary")
+		if v == Vector2.ZERO:
+			v = h.get_vector2("thumbstick")
+		stick = maxf(stick, v.length())
+		grips = grips and h.get_float("grip") >= 0.8
+		var ray: Vector3 = -h.global_basis.z
+		var from: Vector3 = h.global_position
+		if PilotCore.gaze_on(ray, skip_icon.position - from,
+				cone):
+			on = true
+	return {"stick": stick, "grips": grips, "icon": on}
