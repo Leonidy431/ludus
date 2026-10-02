@@ -111,6 +111,19 @@
    "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
   },
   {
+   "object": "ant_anger_fb79893509",
+   "slot": "DEF-001",
+   "passion": "anger",
+   "repo": "https://github.com/crawl/crawl",
+   "commit": "7c31f6e797",
+   "path": "crawl-ref/source/rltiles/gui/spells/monster/summon_sin_beast.png",
+   "licence": "GPL",
+   "colour_change": 0.5869,
+   "min_shape_change": 0.5069,
+   "variants": 12,
+   "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
+  },
+  {
    "object": "ant_avarice_055bf3b162",
    "slot": "DEF-001",
    "passion": "avarice",
