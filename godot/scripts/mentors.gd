@@ -75,7 +75,7 @@ const YARD_CENTRE := Vector3(1.0, 0, 1.0)
 ## hearts ("Макрина с зерном на ладони", "Фотий-книжник у светильника"),
 ## a sign of his craft from the tree's idiom.  No church word and no
 ## epithet of the calendar (TABOO 0.39 p. 3, 0.013 p. 6): the epithets
-## "Столпник", "Двоеслов", "мироносица" are in LocationsCore.CHURCH_WORDS.
+## "Столпник", "Двоеслов", "мироносица" are in data/church-words.json.
 ## The list goes to the chorus of 12 (TABOO 0.37) with the place of the
 ## guests (docs/APK_PARITY.md).
 const HUB_TAG := {
