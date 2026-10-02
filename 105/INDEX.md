@@ -2,8 +2,8 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 451
-- документов: 212
+- файлов кода: 455
+- документов: 213
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -30,7 +30,7 @@
 - [.github/workflows/raw-audio-pass.yml](../.github/workflows/raw-audio-pass.yml) — Audio pass over the 99 backlog repos as a git pass (operator,
 - [.github/workflows/raw-osint-cycle.yml](../.github/workflows/raw-osint-cycle.yml) — OSINT pass over the 99 backlog repos every 1.5 hours (CLAUDE.md TABOO
 
-## Игра для шлема: код (GDScript) (74)
+## Игра для шлема: код (GDScript) (76)
 
 - [godot/scripts/apparatus_core.gd](../godot/scripts/apparatus_core.gd) — The operator's own apparatus in the game (CLAUDE.md TABOO 0.022): 41
 - [godot/scripts/atlas_core.gd](../godot/scripts/atlas_core.gd) — "The Water Atlas" read at the lectern of the scriptorium (CLAUDE.md
@@ -74,7 +74,9 @@
 - [godot/scripts/location_core.gd](../godot/scripts/location_core.gd) — The builder's logic for the 99 locations of our plots (CLAUDE.md
 - [godot/scripts/location_heart.gd](../godot/scripts/location_heart.gd) — The heart of a location: the one practice or action at its centre
 - [godot/scripts/locations_core.gd](../godot/scripts/locations_core.gd) — The 99 locations of our plots (docs/HLD_LOCATIONS_99_2026-09-30.md,
+- [godot/scripts/lock_board.gd](../godot/scripts/lock_board.gd) — The board of a lock in the headset (CLAUDE.md TABOO 0.024, phase Z4 of
 - [godot/scripts/lock_core.gd](../godot/scripts/lock_core.gd) — Locks opened by a calm match-three board (CLAUDE.md TABOO 0.024):
+- [godot/scripts/lock_scene.gd](../godot/scripts/lock_scene.gd) — A lock on its own: the board in front of the eyes, lit like a survey
 - [godot/scripts/mentors.gd](../godot/scripts/mentors.gd) — The mentors of the dialogue trees in the headset (HLD
 - [godot/scripts/mission_core.gd](../godot/scripts/mission_core.gd) — The campaign of missions, ported from public/ludus/ludus-missions.js
 - [godot/scripts/module_loader.gd](../godot/scripts/module_loader.gd) — Big modules load in the background (autoload "ModuleLoader").
@@ -107,18 +109,20 @@
 - [godot/scripts/witness_batch.gd](../godot/scripts/witness_batch.gd) — Static batching of the path of the witness (docs/APK_REQUIREMENTS.md,
 - [godot/scripts/witness_core.gd](../godot/scripts/witness_core.gd) — The path of the witness: seven scene kits along one path, where the
 
-## Игра для шлема: сцены (5)
+## Игра для шлема: сцены (6)
 
 - [godot/scenes/dive.tscn](../godot/scenes/dive.tscn)
 - [godot/scenes/hub.tscn](../godot/scenes/hub.tscn)
 - [godot/scenes/location.tscn](../godot/scenes/location.tscn)
+- [godot/scenes/lock.tscn](../godot/scenes/lock.tscn)
 - [godot/scenes/pilot.tscn](../godot/scenes/pilot.tscn)
 - [godot/scenes/witness.tscn](../godot/scenes/witness.tscn)
 
-## Игра для шлема: инструменты замера и кадров (15)
+## Игра для шлема: инструменты замера и кадров (16)
 
 - [godot/tools/debug_layers.gd](../godot/tools/debug_layers.gd) — Debug: render the start view with one child of the scene hidden at a
 - [godot/tools/fish_shots.gd](../godot/tools/fish_shots.gd) — Proof frames of the fish of our own drawing (DEF-056) in the dive:
+- [godot/tools/lock_shots.gd](../godot/tools/lock_shots.gd) — Proof frames of a lock board (TABOO 0.024, phase Z4): the board as it
 - [godot/tools/make_pack.gd](../godot/tools/make_pack.gd) — Build a pack (TABOO 0.018) from a folder of sources: every file under
 - [godot/tools/measure_budgets.gd](../godot/tools/measure_budgets.gd) — Runtime budgets of one headset scene (docs/APK_REQUIREMENTS.md).
 - [godot/tools/measure_locations.gd](../godot/tools/measure_locations.gd) — Budgets of the 99 locations (CLAUDE.md TABOO 0.011; docs/HLD_LOCATIONS_
@@ -435,7 +439,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (155)
+## Документация проекта (156)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -566,6 +570,7 @@
 - [docs/story/ATLAS_99_NODES_OPERATOR.md](../docs/story/ATLAS_99_NODES_OPERATOR.md) 📄 — «Атлас воды»: исходник оператора (дословно, 2026-09-30)
 - [docs/story/ATLAS_SYNTHESIS_5_EDITORS.md](../docs/story/ATLAS_SYNTHESIS_5_EDITORS.md) 📄 — «Атлас воды»: редакция хора пяти редакторов
 - [docs/story/INTRO_SIERRA_ECOQUEST_2026-10-02.md](../docs/story/INTRO_SIERRA_ECOQUEST_2026-10-02.md) 📄 — Заставка «Ранее в „Атласе воды“» — вход в игру (хор, 2026-10-02)
+- [docs/story/LOCK_CALIBRATION_DESIGN_2026-10-02.md](../docs/story/LOCK_CALIBRATION_DESIGN_2026-10-02.md) 📄 — Калибровка акустической матрицы — модуль вскрытия замков: три поправки, графика, промты (2026-10-02)
 - [docs/story/MISSION_AKULA_ISSYK_KUL_2026-10-02.md](../docs/story/MISSION_AKULA_ISSYK_KUL_2026-10-02.md) 📄 — Миссия-контракт «Акула Иссык-Куля» — поймать Мега-щуку (2026-10-02)
 - [docs/story/OPERATOR_APPARATUS_2026-10-02.md](../docs/story/OPERATOR_APPARATUS_2026-10-02.md) 📄 — Аппараты и репо оператора в «Атласе воды» (опись по ТАБУ №0.022)
 - [docs/story/PILOT_EPISODE_1_TABU_2026-10-02.md](../docs/story/PILOT_EPISODE_1_TABU_2026-10-02.md) 📄 — «Атлас воды», серия 1 — «Табу». Пилот: первые 15 минут (Quest 3S)

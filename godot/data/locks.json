@@ -1,6 +1,6 @@
 {
   "doc": "docs/HLD_LOCK_MATCH3_2026-10-02.md",
-  "rule": "CLAUDE.md TABOO 0.024: a lock is opened by a calm match-three board made of the lock's own parts; the board and its refill come from the lock's seed, never from chance; no timer, no lives, no money, no loss.",
+  "rule": "CLAUDE.md TABOO 0.024: a lock is opened by calibrating an acoustic matrix: a calm board of five engineering elements (chip, sealed connector, hydrophone, optical lens, quartz resonator); the board and its refill come from the lock's seed; no real-time pressure, no purchase, no wall in progress.",
   "width": 6,
   "height": 6,
   "locks": [
@@ -11,10 +11,24 @@
       "beat": "bookmark",
       "apparatus": "control_gateway",
       "holy": false,
-      "tiles": ["packet", "key", "log", "port", "checksum"],
-      "tiles_ru": ["пакет", "ключ", "журнал", "порт", "контрольная сумма"],
-      "goal": {"log": 9},
-      "teaches_ru": "Журнал пульта складывается в ряд, и в нём видно чужой вход в три двенадцать.",
+      "tiles": [
+        "chip",
+        "connector",
+        "hydrophone",
+        "lens",
+        "quartz"
+      ],
+      "tiles_ru": [
+        "микросхема",
+        "герморазъём",
+        "гидрофон",
+        "оптическая линза",
+        "кварцевый резонатор"
+      ],
+      "goal": {
+        "hydrophone": 9
+      },
+      "teaches_ru": "Гидрофоны пульта складываются в ряд, и в журнале слышно чужой вход в три двенадцать.",
       "opens_ru": "запись о чужом входе в 03:12 и адрес получателя телеметрии",
       "whose_ru": "своё: пульт оператора"
     },
@@ -25,10 +39,25 @@
       "beat": "price_rises",
       "apparatus": "telemetry_router",
       "holy": false,
-      "tiles": ["packet", "key", "log", "port", "checksum"],
-      "tiles_ru": ["пакет", "ключ", "журнал", "порт", "контрольная сумма"],
-      "goal": {"key": 6, "port": 6},
-      "teaches_ru": "Раздатчик телеметрии отдаёт глубину двоим. Сложи ключи и порты — увидишь второго получателя.",
+      "tiles": [
+        "chip",
+        "connector",
+        "hydrophone",
+        "lens",
+        "quartz"
+      ],
+      "tiles_ru": [
+        "микросхема",
+        "герморазъём",
+        "гидрофон",
+        "оптическая линза",
+        "кварцевый резонатор"
+      ],
+      "goal": {
+        "connector": 6,
+        "lens": 6
+      },
+      "teaches_ru": "Раздатчик телеметрии отдаёт глубину двоим. Сведи герморазъёмы и линзы — увидишь второго получателя.",
       "opens_ru": "второй получатель телеметрии: так Приор знает глубину",
       "whose_ru": "своё: аппарат оператора, но доступ к нему купил Орден"
     },
@@ -39,10 +68,24 @@
       "beat": "water_rises",
       "apparatus": "",
       "holy": false,
-      "tiles": ["packet", "key", "log", "port", "checksum"],
-      "tiles_ru": ["пакет", "ключ", "журнал", "порт", "контрольная сумма"],
-      "goal": {"checksum": 8},
-      "teaches_ru": "Копию проверяют суммой: совпала — копия честная.",
+      "tiles": [
+        "chip",
+        "connector",
+        "hydrophone",
+        "lens",
+        "quartz"
+      ],
+      "tiles_ru": [
+        "микросхема",
+        "герморазъём",
+        "гидрофон",
+        "оптическая линза",
+        "кварцевый резонатор"
+      ],
+      "goal": {
+        "quartz": 8
+      },
+      "teaches_ru": "Копию проверяют резонатором: совпала частота — копия честная.",
       "opens_ru": "копия журнала погружения, снятая в 03:12",
       "whose_ru": "своё: флешка оператора"
     },
@@ -53,10 +96,25 @@
       "beat": "episode2",
       "apparatus": "",
       "holy": false,
-      "tiles": ["pin", "spring", "cam", "bit", "tumbler"],
-      "tiles_ru": ["штифт", "пружина", "кулачок", "бородка", "сувальда"],
-      "goal": {"pin": 6, "tumbler": 6},
-      "teaches_ru": "Сувальды встают по одной, как буквы в строке: спешка их не поднимает.",
+      "tiles": [
+        "chip",
+        "connector",
+        "hydrophone",
+        "lens",
+        "quartz"
+      ],
+      "tiles_ru": [
+        "микросхема",
+        "герморазъём",
+        "гидрофон",
+        "оптическая линза",
+        "кварцевый резонатор"
+      ],
+      "goal": {
+        "connector": 6,
+        "quartz": 6
+      },
+      "teaches_ru": "Электронный замок ящика держат герморазъём и резонатор: спешка их не синхронизирует.",
       "opens_ru": "журнал экспедиции 2019 года — к блесне из пасти судака",
       "whose_ru": "чужое: ящик экспедиции; вскрытие — с записью в журнал, для родных пропавших"
     },
@@ -67,12 +125,27 @@
       "beat": "episode2",
       "apparatus": "",
       "holy": false,
-      "tiles": ["pin", "spring", "cam", "bit", "tumbler"],
-      "tiles_ru": ["штифт", "пружина", "кулачок", "бородка", "сувальда"],
-      "goal": {"cam": 8},
-      "teaches_ru": "Кулачок поворачивает механизм, только когда встанет на место. Сила здесь не помогает.",
+      "tiles": [
+        "chip",
+        "connector",
+        "hydrophone",
+        "lens",
+        "quartz"
+      ],
+      "tiles_ru": [
+        "микросхема",
+        "герморазъём",
+        "гидрофон",
+        "оптическая линза",
+        "кварцевый резонатор"
+      ],
+      "goal": {
+        "chip": 8
+      },
+      "teaches_ru": "Герморазъёмы встают только на своё место. Сила здесь не помогает.",
       "opens_ru": "карта свай с отметкой астролябии",
       "whose_ru": "чужое: сейф перекупщика; цена — строка в журнале и разговор с рыбаками"
     }
-  ]
+  ],
+  "mode_ru": "калибровка акустической матрицы"
 }
