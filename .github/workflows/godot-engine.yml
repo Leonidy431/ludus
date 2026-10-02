@@ -59,6 +59,9 @@ jobs:
           git clone -q --depth 1 --branch "$GODOT_TAG" \
             https://github.com/godotengine/godot.git "$RUNNER_TEMP/godot"
           git -C "$RUNNER_TEMP/godot" rev-parse HEAD
+          # Swappy frame pacing, as in the official builds: without it
+          # SCons stops, and an Android build without it stutters.
+          cd "$RUNNER_TEMP/godot" && python misc/scripts/install_swappy_android.py
 
       - name: Build the engine libraries (debug and release)
         if: steps.cache.outputs.cache-hit != 'true'
