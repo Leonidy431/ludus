@@ -66,6 +66,10 @@ MODULES_OFF = {
     'jolt_physics': r'Body3D|Area3D|CollisionShape3D|RayCast3D'
                     r'|direct_space_state|PhysicsServer3D',
 }
+# 3D physics itself stays in the core: the OpenXR module's plane tracker
+# builds BoxShape3D and ConcavePolygonShape3D, which are compiled only
+# with it (the first trial link, 2026-10-02, stopped on them).  Both 3D
+# physics engines stay out, so the core runs its dummy physics server.
 
 # The words behind each disabled build option.
 OPTIONS_OFF = {
