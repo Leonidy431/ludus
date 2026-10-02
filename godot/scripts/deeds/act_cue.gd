@@ -23,11 +23,9 @@ class_name ActCue
 extends RefCounted
 
 const RATE := 44100
-## Controller pulses: amplitude 0..1 and seconds.  The wrong step is
-## softer and longer, a dull push; the right one short and clear; the
-## closing one the fullest, still gentle.
-const HAPTIC := {"right": [0.25, 0.04], "wrong": [0.12, 0.09],
-	"done": [0.4, 0.14]}
+## The controller pulse of each kind is Haptics.PULSES "act_<kind>":
+## the wrong step softer and longer, a dull push; the right one short and
+## clear; the closing one the fullest, still gentle.
 ## The place's lamp brightens only when the act closes, and for a short
 ## while: the work is lit, not rewarded with a flash.
 const LIGHT_DONE := 1.25

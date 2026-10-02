@@ -75,6 +75,13 @@ var cue_player: AudioStreamPlayer3D
 var lamp: OmniLight3D
 var lamp_energy := 0.0
 var lamp_glow := 0.0
+## Standing still while an act asks to wait (StormCalm): the stick's
+## watch with its dead zone and grace, and the calm the place shows
+## (-1 where the act asks no waiting).
+var still_watch := StormCalm.new_watch()
+var storm_shown := -1.0
+## The kinds of ActCue answered in this visit, for tests (not saved).
+var cues: Array = []
 
 var shots_dir := ""
 var shot_list: Array = []
@@ -132,6 +139,8 @@ func open_place(id: String) -> void:
 	cue_player.position = p.heart + Vector3(0, 1.0, 0)
 	lamp = null
 	lamp_glow = 0.0
+	storm_shown = -1.0
+	still_watch = StormCalm.new_watch()
 	for n in ["HearthLight", "InstrumentLight"]:
 		var l := world.find_child(n, true, false)
 		if l is OmniLight3D:
@@ -242,11 +251,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _process(dt: float) -> void:
-	# The lamp's brief brightening after an act closes, easing back.
-	if lamp != null and lamp_glow > 0.0:
-		lamp_glow = maxf(0.0, lamp_glow - dt)
-		var f := lamp_glow / ActCue.LIGHT_SECONDS
-		lamp.light_energy = lamp_energy * lerpf(1.0, ActCue.LIGHT_DONE, f)
+	_light(dt)
 	dt = minf(dt, 0.1)
 	t += dt
 	if proof:
@@ -302,12 +307,29 @@ func _process(dt: float) -> void:
 		else:
 			_select(int(heart_panel.choice))
 	interact_was = interact
+	# A tremor of the thumb is not a step (StormCalm.watch).
+	still_watch = StormCalm.watch(still_watch, move.length(), dt)
 	if not heart_panel.is_empty():
 		_apply(LocationHeart.tick(heart_panel, loc, st, ctx, dt,
-			move.length() < 0.1))
+			still_watch.still), true)
+	_storm(dt)
 	message_left = maxf(0.0, message_left - dt)
 	_fade(dt)
+	_look_ahead()
 	_refresh()
+
+
+## TABOO 0.014: the module behind a way out loads while the player comes
+## to it: the courtyard at the door, the dive at a heart that leads into
+## the lake or once its panel is open.  What was looked ahead to stays
+## until another way is nearer, so pacing at the door loads it once.
+func _look_ahead() -> void:
+	var th := _nearest()
+	if th.get("id") == "exit":
+		ModuleLoader.ahead(HUB)
+	elif LocationHeart.kind_of(loc.heart) == "dive" \
+			and (th.get("id") == "heart" or not heart_panel.is_empty()):
+		ModuleLoader.ahead(ModuleLoader.DIVE)
 
 
 ## The interface goes near the holy thing and returns after, never
@@ -350,15 +372,20 @@ func _select(i: int) -> void:
 
 
 ## Keep what a choice changed: the panel, the state, the words, the save
-## (never while proof frames are taken) and a change of scene.
-func _apply(r: Dictionary) -> void:
+## (never while proof frames are taken) and a change of scene.  A tick
+## (from_tick) answers only when it closes the act: the seconds of a
+## wait move the act's state every frame, and each of them read as a
+## "right" step knocked and pulsed every frame of the wait.
+func _apply(r: Dictionary, from_tick := false) -> void:
 	var given_before: Array = st.get("atlas_given", [])
 	var deed_before = heart_panel.get("deed")
 	st = r.st
 	heart_panel = r.panel
 	var deed_after = r.panel.get("deed")
 	if deed_before is Dictionary and deed_after is Dictionary:
-		_cue(ActCue.kind(deed_before, deed_after))
+		var k := ActCue.kind(deed_before, deed_after)
+		if not from_tick or k == "done":
+			_cue(k)
 	if r.say != "":
 		_say(r.say)
 	if r.save and not proof:
@@ -366,16 +393,16 @@ func _apply(r: Dictionary) -> void:
 		if st.atlas_given != given_before:
 			LocationCore.write_given(st.atlas_given)
 	if r.scene != "" and not proof:
-		get_tree().change_scene_to_file(r.scene)
+		ModuleLoader.go(r.scene)
 
 
 ## Touch, sound and light for one step of the act, in the same frame.
 func _cue(k: String) -> void:
 	if k == "":
 		return
-	if xr_active and ActCue.HAPTIC.has(k):
-		var hp: Array = ActCue.HAPTIC[k]
-		right_hand.trigger_haptic_pulse("haptic", 0.0, hp[0], hp[1], 0.0)
+	cues.append(k)
+	Haptics.pulse(right_hand if xr_active else null, "act_" + k,
+		Haptics.prefers_reduced())
 	if not proof:
 		cue_player.stream = ActCue.wav(k)
 		cue_player.play()
@@ -383,8 +410,42 @@ func _cue(k: String) -> void:
 		lamp_glow = ActCue.LIGHT_SECONDS
 
 
+## The place's lamp in one place: the brief brightening after an act
+## closes, easing back, and the lantern's flicker in a storm.
+func _light(dt: float) -> void:
+	if lamp == null:
+		return
+	lamp_glow = maxf(0.0, lamp_glow - dt)
+	var e := lamp_energy * lerpf(1.0, ActCue.LIGHT_DONE,
+		lamp_glow / ActCue.LIGHT_SECONDS)
+	if storm_shown >= 0.0:
+		e *= StormCalm.lamp_factor(storm_shown, t)
+	lamp.light_energy = e
+
+
+## While the heart's act asks to wait, the place answers the waiting
+## with no number (StormCalm): the lantern steadies and the surf and the
+## rain grow quieter as the seconds are stood, and the storm comes back
+## when the player moves.  Once the act is done the storm has passed.
+func _storm(dt: float) -> void:
+	var id := PlaceDeeds.act_of(loc.get("heart", {}))
+	if not StormCalm.has_wait(id):
+		storm_shown = -1.0
+		sound.craft_db = 0.0
+		return
+	var deed = heart_panel.get("deed")
+	var target := storm_shown if storm_shown >= 0.0 else 0.0
+	if deed is Dictionary:
+		target = StormCalm.calm(id, deed)
+	elif storm_shown < 1.0:
+		# Away from the panel the wait is not counted: the storm is full.
+		target = 0.0
+	storm_shown = StormCalm.follow(maxf(storm_shown, 0.0), target, dt)
+	sound.craft_db = StormCalm.surf_db(storm_shown)
+
+
 func _leave() -> void:
-	get_tree().change_scene_to_file(HUB)
+	ModuleLoader.go(HUB)
 
 
 func _say(text: String) -> void:

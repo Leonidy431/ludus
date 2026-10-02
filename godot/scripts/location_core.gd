@@ -34,8 +34,6 @@ const ITEMS := "res://data/location-items.json"
 ## The scene reads the chosen place from this meta on the tree's root,
 ## so it outlives the change of scene.
 const META_KEY := "ludus_location"
-const HUB_SAVE := "user://hub.json"
-const DIVE_SAVE := "user://dive.json"
 ## A name tag shows only when the player comes close (TABOO 0.013 item 4).
 const TAG_RANGE_M := 3.2
 ## A drawn card hangs at this width (as LocationsCore.CARD_M).
@@ -662,7 +660,10 @@ static func exit_ru(p: Dictionary) -> String:
 
 static func go(tree: SceneTree, id: String) -> void:
 	tree.root.set_meta(META_KEY, id)
-	tree.change_scene_to_file(SCENE)
+	# The place loads behind the black (ModuleLoader, TABOO 0.014).  The
+	# autoload is found by its node, not its global name: tools run with
+	# -s compile this class before the autoloads exist.
+	tree.root.get_node("ModuleLoader").go(SCENE)
 
 
 static func chosen(tree: SceneTree) -> String:
@@ -680,8 +681,13 @@ static func _read(path: String) -> Dictionary:
 
 ## What a place reads of the hub's save, in the same known shapes the
 ## hub's _load keeps (a hand-edited save cannot smuggle in counters).
-static func read_state(hub_path := HUB_SAVE, dive_path := DIVE_SAVE,
+## An empty path is the active slot (SaveSlot).
+static func read_state(hub_path := "", dive_path := "",
 		day := "") -> Dictionary:
+	if hub_path == "":
+		hub_path = SaveSlot.hub()
+	if dive_path == "":
+		dive_path = SaveSlot.dive()
 	var data := _read(hub_path)
 	var form := HubCore.new_form()
 	var src_form = data.get("form", {})
@@ -708,13 +714,27 @@ static func read_state(hub_path := HUB_SAVE, dive_path := DIVE_SAVE,
 		"chronicle": data.get("chronicle"),
 		"atlas_given": given if given is Array else [],
 		"deeds": PlaceDeeds.normalize(data.get("deeds", {})),
+		# The road of missions, for the step of a story done at a heart
+		# (StoryRoute); only the shapes MissionCore keeps come back.
+		"missions": _missions(data.get("missions", {})),
 		"day": day if day != "" else Time.get_date_string_from_system()}
 
 
+static func _missions(raw) -> Dictionary:
+	var ms := MissionCore.normalize_state(raw)
+	return {"done": ms.done, "current": ms.current, "flags": ms.flags,
+		"lines": ms.lines}
+
+
 ## Write back what a place may change, keeping every other key of the
-## hub's save (the road of missions stays the hub's).
-static func write_state(st: Dictionary, hub_path := HUB_SAVE) -> void:
+## hub's save.  The road of missions is written only when the state
+## carries it (a story's step done at a heart, StoryRoute).
+static func write_state(st: Dictionary, hub_path := "") -> void:
+	if hub_path == "":
+		hub_path = SaveSlot.hub()
 	var data := _read(hub_path)
+	if st.has("missions"):
+		data["missions"] = _missions(st.missions)
 	data["form"] = st.form
 	data["actions"] = st.actions
 	data["trials"] = st.trials
@@ -729,7 +749,9 @@ static func write_state(st: Dictionary, hub_path := HUB_SAVE) -> void:
 
 ## The knight's things handed to the scribe go into the dive's save,
 ## beside its own pockets, as dive.gd keeps them.
-static func write_given(given: Array, dive_path := DIVE_SAVE) -> void:
+static func write_given(given: Array, dive_path := "") -> void:
+	if dive_path == "":
+		dive_path = SaveSlot.dive()
 	var data := _read(dive_path)
 	var bag = data.get("bag", {})
 	if not bag is Dictionary:

@@ -6,8 +6,9 @@
    "form": {},
    "actions": {},
    "passions": {},
+   "deeds": {},
    "date": "2026-09-30",
-   "md": "# The way: a page from my journal\n\nWritten on 2026-09-30.\n\n## Form\n\n- Wisdom: 0\n- Faith: 0\n- Dexterity: 0\n- Constitution: 0\n- Charisma: 0\n- Cunning: 0\n- Erudition: 0\n\n## Rule of prayer\n\n- Prayer rope: one knot — 0\n- Keep today's fast — 0 days\n- Stillness — 0 min\n- Prostration — 0\n- Night vigil — 0 min\n- Handiwork — 0 min\n- Give alms — 0 days\n- Forgive an offence — 0 days\n- Glory to God for all things — 0 days\n- Evening watch over thoughts — 0 days\n- Fulfil the mentor's obedience — 0 days\n- A good deed in secret — known to God\n\n## Steps of the ladder\n\n- None yet: the first step is still ahead.\n\n## On the road\n\n- No thought met on the road yet.\n\n---\n\nOne good deed is kept out of this page on purpose: it is known to God. This page counts steps on a road; it does not measure a soul.\n"
+   "md": "# The way: a page from my journal\n\nWritten on 2026-09-30.\n\n## Form\n\n- Wisdom: 0\n- Faith: 0\n- Dexterity: 0\n- Constitution: 0\n- Charisma: 0\n- Cunning: 0\n- Erudition: 0\n\n## Rule of prayer\n\n- Prayer rope: one knot — 0\n- Keep today's fast — 0 days\n- Stillness — 0 min\n- Prostration — 0\n- Night vigil — 0 min\n- Handiwork — 0 min\n- Give alms — 0 days\n- Forgive an offence — 0 days\n- Glory to God for all things — 0 days\n- Evening watch over thoughts — 0 days\n- Fulfil the mentor's obedience — 0 days\n- A good deed in secret — known to God\n\n## Steps of the ladder\n\n- None yet: the first step is still ahead.\n\n## On the road\n\n- No thought met on the road yet.\n\n## Deeds of places\n\n- No act at the heart of a place done yet.\n\n---\n\nOne good deed is kept out of this page on purpose: it is known to God. This page counts steps on a road; it does not measure a soul.\n"
   },
   {
    "name": "guest",
@@ -31,8 +32,14 @@
     "gifts": {}
    },
    "passions": {},
+   "deeds": {
+    "wait-out-storm": {
+     "count": 0,
+     "lastDay": null
+    }
+   },
    "date": "2026-01-02",
-   "md": "# The way: a page from my journal\n\nWritten on 2026-01-02.\n\n## Form\n\n- Wisdom: 1\n- Faith: 1\n- Dexterity: 1\n- Constitution: 1\n- Charisma: 1\n- Cunning: 1\n- Erudition: 1\n\n## Rule of prayer\n\n- Prayer rope: one knot — 0\n- Keep today's fast — 0 days\n- Stillness — 0 min\n- Prostration — 0\n- Night vigil — 0 min\n- Handiwork — 0 min\n- Give alms — 0 days\n- Forgive an offence — 0 days\n- Glory to God for all things — 0 days\n- Evening watch over thoughts — 0 days\n- Fulfil the mentor's obedience — 0 days\n- A good deed in secret — known to God\n\n## Steps of the ladder\n\n- None yet: the first step is still ahead.\n\n## On the road\n\n- No thought met on the road yet.\n\n---\n\nOne good deed is kept out of this page on purpose: it is known to God. This page counts steps on a road; it does not measure a soul.\n"
+   "md": "# The way: a page from my journal\n\nWritten on 2026-01-02.\n\n## Form\n\n- Wisdom: 1\n- Faith: 1\n- Dexterity: 1\n- Constitution: 1\n- Charisma: 1\n- Cunning: 1\n- Erudition: 1\n\n## Rule of prayer\n\n- Prayer rope: one knot — 0\n- Keep today's fast — 0 days\n- Stillness — 0 min\n- Prostration — 0\n- Night vigil — 0 min\n- Handiwork — 0 min\n- Give alms — 0 days\n- Forgive an offence — 0 days\n- Glory to God for all things — 0 days\n- Evening watch over thoughts — 0 days\n- Fulfil the mentor's obedience — 0 days\n- A good deed in secret — known to God\n\n## Steps of the ladder\n\n- None yet: the first step is still ahead.\n\n## On the road\n\n- No thought met on the road yet.\n\n## Deeds of places\n\n- No act at the heart of a place done yet.\n\n---\n\nOne good deed is kept out of this page on purpose: it is known to God. This page counts steps on a road; it does not measure a soul.\n"
   },
   {
    "name": "first-step",
@@ -65,8 +72,14 @@
      "discerned": false
     }
    },
+   "deeds": {
+    "forge-nail": {
+     "count": 1,
+     "lastDay": "2026-09-30"
+    }
+   },
    "date": "2026-09-30",
-   "md": "# The way: a page from my journal\n\nWritten on 2026-09-30.\n\n## Form\n\n- Wisdom: 4\n- Faith: 3\n- Dexterity: 1\n- Constitution: 1\n- Charisma: 1\n- Cunning: 1\n- Erudition: 1\n\n## Rule of prayer\n\n- Prayer rope: one knot — 10\n- Keep today's fast — 0 days\n- Stillness — 0 min\n- Prostration — 0\n- Night vigil — 0 min\n- Handiwork — 0 min\n- Give alms — 0 days\n- Forgive an offence — 0 days\n- Glory to God for all things — 0 days\n- Evening watch over thoughts — 0 days\n- Fulfil the mentor's obedience — 0 days\n- A good deed in secret — known to God\n\n## Steps of the ladder\n\n- Foundational\n\n## On the road\n\n- Gluttony: met, and it will come back (1 meeting).\n\n---\n\nOne good deed is kept out of this page on purpose: it is known to God. This page counts steps on a road; it does not measure a soul.\n"
+   "md": "# The way: a page from my journal\n\nWritten on 2026-09-30.\n\n## Form\n\n- Wisdom: 4\n- Faith: 3\n- Dexterity: 1\n- Constitution: 1\n- Charisma: 1\n- Cunning: 1\n- Erudition: 1\n\n## Rule of prayer\n\n- Prayer rope: one knot — 10\n- Keep today's fast — 0 days\n- Stillness — 0 min\n- Prostration — 0\n- Night vigil — 0 min\n- Handiwork — 0 min\n- Give alms — 0 days\n- Forgive an offence — 0 days\n- Glory to God for all things — 0 days\n- Evening watch over thoughts — 0 days\n- Fulfil the mentor's obedience — 0 days\n- A good deed in secret — known to God\n\n## Steps of the ladder\n\n- Foundational\n\n## On the road\n\n- Gluttony: met, and it will come back (1 meeting).\n\n## Deeds of places\n\n- Кузня обители: done 1 time, last on 2026-09-30.\n\n---\n\nOne good deed is kept out of this page on purpose: it is known to God. This page counts steps on a road; it does not measure a soul.\n"
   },
   {
    "name": "busy",
@@ -138,8 +151,26 @@
      "discerned": false
     }
    },
+   "deeds": {
+    "wait-out-storm": {
+     "count": 3,
+     "lastDay": "2026-09-30"
+    },
+    "share-water": {
+     "count": 1,
+     "lastDay": "2026-09-29"
+    },
+    "find:bulla.shallows.0": {
+     "count": 2,
+     "lastDay": "2026-09-28"
+    },
+    "type-by-memory": {
+     "count": 12,
+     "lastDay": "2026-09-30"
+    }
+   },
    "date": "2026-09-30",
-   "md": "# The way: a page from my journal\n\nWritten on 2026-09-30.\n\n## Form\n\n- Wisdom: 12\n- Faith: 7\n- Dexterity: 1\n- Constitution: 1\n- Charisma: 1\n- Cunning: 0\n- Erudition: 5\n\n## Rule of prayer\n\n- Prayer rope: one knot — 33\n- Keep today's fast — 1 day\n- Stillness — 61 min\n- Prostration — 2\n- Night vigil — 10 min\n- Handiwork — 0 min\n- Give alms — 1 day\n- Forgive an offence — 2 days\n- Glory to God for all things — 0 days\n- Evening watch over thoughts — 0 days\n- Fulfil the mentor's obedience — 0 days\n- A good deed in secret — known to God\n\n## Steps of the ladder\n\n- Foundational\n- Liturgical\n- Ascetic\n- Contemplative\n- Mystical\n\n## On the road\n\n- Gluttony: passed; answered by Temperance, named at its first sign (2 meetings).\n- Anger: passed; answered by Meekness (1 meeting).\n- Pride: met, and it will come back (3 meetings).\n\n---\n\nOne good deed is kept out of this page on purpose: it is known to God. This page counts steps on a road; it does not measure a soul.\n"
+   "md": "# The way: a page from my journal\n\nWritten on 2026-09-30.\n\n## Form\n\n- Wisdom: 12\n- Faith: 7\n- Dexterity: 1\n- Constitution: 1\n- Charisma: 1\n- Cunning: 0\n- Erudition: 5\n\n## Rule of prayer\n\n- Prayer rope: one knot — 33\n- Keep today's fast — 1 day\n- Stillness — 61 min\n- Prostration — 2\n- Night vigil — 10 min\n- Handiwork — 0 min\n- Give alms — 1 day\n- Forgive an offence — 2 days\n- Glory to God for all things — 0 days\n- Evening watch over thoughts — 0 days\n- Fulfil the mentor's obedience — 0 days\n- A good deed in secret — known to God\n\n## Steps of the ladder\n\n- Foundational\n- Liturgical\n- Ascetic\n- Contemplative\n- Mystical\n\n## On the road\n\n- Gluttony: passed; answered by Temperance, named at its first sign (2 meetings).\n- Anger: passed; answered by Meekness (1 meeting).\n- Pride: met, and it will come back (3 meetings).\n\n## Deeds of places\n\n- Крипта, где хранят находки разных вер: done 2 times, last on 2026-09-28.\n- Запруда на стоке: done 1 time, last on 2026-09-29.\n- Нулевая плата, где Илья называет себя: done 12 times, last on 2026-09-30.\n- Штормовой залив: done 3 times, last on 2026-09-30.\n\n---\n\nOne good deed is kept out of this page on purpose: it is known to God. This page counts steps on a road; it does not measure a soul.\n"
   },
   {
    "name": "tampered",
@@ -181,8 +212,23 @@
      "discerned": true
     }
    },
+   "deeds": {
+    "no-such-act": {
+     "count": 5,
+     "lastDay": "2026-12-31"
+    },
+    "test-ice": {
+     "count": 2.9,
+     "lastDay": "yesterday"
+    },
+    "take-core": {
+     "count": -4,
+     "lastDay": "2026-12-30"
+    },
+    "prune-vine": "x"
+   },
    "date": "2026-12-31",
-   "md": "# The way: a page from my journal\n\nWritten on 2026-12-31.\n\n## Form\n\n- Wisdom: 20\n- Faith: 1\n- Dexterity: 1\n- Constitution: 1\n- Charisma: 1\n- Cunning: 1\n- Erudition: 1\n\n## Rule of prayer\n\n- Prayer rope: one knot — 0\n- Keep today's fast — 0 days\n- Stillness — 30 min\n- Prostration — 0\n- Night vigil — 0 min\n- Handiwork — 0 min\n- Give alms — 3 days\n- Forgive an offence — 0 days\n- Glory to God for all things — 0 days\n- Evening watch over thoughts — 0 days\n- Fulfil the mentor's obedience — 0 days\n- A good deed in secret — known to God\n\n## Steps of the ladder\n\n- None yet: the first step is still ahead.\n\n## On the road\n\n- Despondency: passed; answered by Patient endurance, named at its first sign (1 meeting).\n\n---\n\nOne good deed is kept out of this page on purpose: it is known to God. This page counts steps on a road; it does not measure a soul.\n"
+   "md": "# The way: a page from my journal\n\nWritten on 2026-12-31.\n\n## Form\n\n- Wisdom: 20\n- Faith: 1\n- Dexterity: 1\n- Constitution: 1\n- Charisma: 1\n- Cunning: 1\n- Erudition: 1\n\n## Rule of prayer\n\n- Prayer rope: one knot — 0\n- Keep today's fast — 0 days\n- Stillness — 30 min\n- Prostration — 0\n- Night vigil — 0 min\n- Handiwork — 0 min\n- Give alms — 3 days\n- Forgive an offence — 0 days\n- Glory to God for all things — 0 days\n- Evening watch over thoughts — 0 days\n- Fulfil the mentor's obedience — 0 days\n- A good deed in secret — known to God\n\n## Steps of the ladder\n\n- None yet: the first step is still ahead.\n\n## On the road\n\n- Despondency: passed; answered by Patient endurance, named at its first sign (1 meeting).\n\n## Deeds of places\n\n- Лёд мелкого залива: done 2 times.\n\n---\n\nOne good deed is kept out of this page on purpose: it is known to God. This page counts steps on a road; it does not measure a soul.\n"
   }
  ]
 }

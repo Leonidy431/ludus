@@ -178,6 +178,7 @@ func _initialize() -> void:
 	before = checks
 	fails = failures
 	load("res://tests/test_locations.gd").new().run(self)
+	load("res://tests/test_church_words.gd").new().run(self)
 	print("locations: %d checks, %d failures" % [checks - before,
 		failures - fails])
 	# The 99 locations as the headset builds them (TABOO 0.013, L4).
@@ -223,6 +224,16 @@ func _initialize() -> void:
 	fails = failures
 	load("res://tests/test_place_deeds.gd").new().run(self)
 	load("res://tests/test_act_cue.gd").new().run(self)
+	load("res://tests/test_haptics.gd").new().run(self)
+	load("res://tests/test_storm_calm.gd").new().run(self)
 	print("place deeds: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# Big modules load in the background (ModuleLoader, TABOO 0.014, S1).
+	before = checks
+	fails = failures
+	await load("res://tests/test_module_loader.gd").new().run(self)
+	print("module loader: %d checks, %d failures" % [checks - before,
+		failures - fails])
+	load("res://tests/test_story_12.gd").new().run(self)  # Prints its own.
+	load("res://tests/test_story_check.gd").new().run(self)  # Prints too.
 	quit(1 if failures else 0)

@@ -1,5 +1,5 @@
 {
- "next": 5,
+ "next": 6,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -5379,6 +5379,475 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 22
+  },
+  {
+   "time": "2026-10-02T06:50:41.461007+00:00",
+   "pass_id": "osint-2026-10-02T06:50:41Z",
+   "deficits": [
+    {
+     "id": "DEF-024",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "font": 1
+     },
+     "to_props": 16,
+     "hits_uncapped": 46186,
+     "props_uncapped": 41315,
+     "props_uncapped_repos": 62,
+     "added_keywords": [],
+     "keywords_total": 100,
+     "keywords_not_searched": [
+      "amulet",
+      "ankh",
+      "cleric",
+      "com",
+      "java",
+      "mage",
+      "openra",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 16
+    },
+    {
+     "id": "DEF-027",
+     "skipped": "audio-pipeline-pending"
+    },
+    {
+     "id": "DEF-028",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 1,
+      "dogma-stop-list": 2
+     },
+     "to_props": 44,
+     "hits_uncapped": 7927,
+     "props_uncapped": 5760,
+     "props_uncapped_repos": 53,
+     "added_keywords": [],
+     "keywords_total": 39,
+     "keywords_not_searched": [
+      "bevy",
+      "card",
+      "cockatrice",
+      "com",
+      "cpp",
+      "crates",
+      "java",
+      "map",
+      "renderer",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 44
+    }
+   ],
+   "props_taken": {},
+   "props_taken_by_index_kind": {},
+   "props_duplicates": 60,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 0,
+   "props_store_files": 1450,
+   "props_store_bytes": 10783950,
+   "props_cache_files_on_disk": 4661,
+   "props_cache_bytes_on_disk": 77998483,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 809494,
+   "props_register_growth_bytes": 0,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 336
+  },
+  {
+   "time": "2026-10-02T07:50:27.685506+00:00",
+   "pass_id": "osint-2026-10-02T07:50:27Z",
+   "deficits": [
+    {
+     "id": "DEF-035",
+     "hits": 200,
+     "taken": 0,
+     "refused": {},
+     "to_props": 176,
+     "hits_uncapped": 4379,
+     "props_uncapped": 3784,
+     "props_uncapped_repos": 56,
+     "added_keywords": [],
+     "keywords_total": 49,
+     "keywords_not_searched": [
+      "com",
+      "corsixth",
+      "java",
+      "lua",
+      "unciv"
+     ],
+     "props": {},
+     "props_seen": 176
+    },
+    {
+     "id": "DEF-036",
+     "hits": 200,
+     "taken": 0,
+     "refused": {},
+     "to_props": 172,
+     "hits_uncapped": 12281,
+     "props_uncapped": 9111,
+     "props_uncapped_repos": 46,
+     "added_keywords": [],
+     "keywords_total": 39,
+     "keywords_not_searched": [
+      "xaml"
+     ],
+     "props": {},
+     "props_seen": 172
+    },
+    {
+     "id": "DEF-040",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 2,
+      "font": 1
+     },
+     "to_props": 94,
+     "hits_uncapped": 20914,
+     "props_uncapped": 17495,
+     "props_uncapped_repos": 60,
+     "added_keywords": [
+      "create",
+      "dds",
+      "dismiss",
+      "effect",
+      "emitter",
+      "encode",
+      "event",
+      "extra",
+      "frm",
+      "grid",
+      "harvester",
+      "help"
+     ],
+     "keywords_total": 93,
+     "keywords_not_searched": [
+      "bevy",
+      "cleric",
+      "com",
+      "cpp",
+      "crates",
+      "java",
+      "mage",
+      "rotp",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 63
+    }
+   ],
+   "props_taken": {},
+   "props_taken_by_index_kind": {},
+   "props_duplicates": 411,
+   "props_errors": 0,
+   "props_refused": {
+    "licence-Defold-1.0": 31
+   },
+   "props_new_bytes": 0,
+   "props_store_files": 1450,
+   "props_store_bytes": 10783950,
+   "props_cache_files_on_disk": 4661,
+   "props_cache_bytes_on_disk": 77998483,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 809494,
+   "props_register_growth_bytes": 0,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 155
+  },
+  {
+   "time": "2026-10-02T08:50:59.372586+00:00",
+   "pass_id": "osint-2026-10-02T08:50:59Z",
+   "deficits": [
+    {
+     "id": "DEF-047",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 14,
+      "dogma-stop-list": 1
+     },
+     "to_props": 54,
+     "hits_uncapped": 46510,
+     "props_uncapped": 42354,
+     "props_uncapped_repos": 62,
+     "added_keywords": [
+      "transport",
+      "treasury",
+      "view",
+      "year"
+     ],
+     "keywords_total": 98,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "cpp",
+      "java",
+      "mage",
+      "rotp",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {
+      "other": 2,
+      "editor": 2
+     },
+     "props_seen": 50
+    },
+    {
+     "id": "DEF-048",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 19,
+      "dogma-stop-list": 1
+     },
+     "to_props": 88,
+     "hits_uncapped": 11427,
+     "props_uncapped": 8236,
+     "props_uncapped_repos": 59,
+     "added_keywords": [],
+     "keywords_total": 65,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "cpp",
+      "java",
+      "mage",
+      "mindustry",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 87
+    },
+    {
+     "id": "DEF-055",
+     "hits": 54,
+     "taken": 0,
+     "refused": {},
+     "to_props": 54,
+     "hits_uncapped": 54,
+     "props_uncapped": 54,
+     "props_uncapped_repos": 9,
+     "added_keywords": [],
+     "keywords_total": 6,
+     "keywords_not_searched": [],
+     "props": {},
+     "props_seen": 54
+    }
+   ],
+   "props_taken": {
+    "editor": 2,
+    "other": 2
+   },
+   "props_taken_by_index_kind": {
+    "code": 4
+   },
+   "props_duplicates": 191,
+   "props_errors": 0,
+   "props_refused": {
+    "licence-UNKNOWN": 1
+   },
+   "props_new_bytes": 43732,
+   "props_store_files": 1454,
+   "props_store_bytes": 10827682,
+   "props_cache_files_on_disk": 4665,
+   "props_cache_bytes_on_disk": 78042215,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 811650,
+   "props_register_growth_bytes": 2156,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 223
+  },
+  {
+   "time": "2026-10-02T09:51:32.460200+00:00",
+   "pass_id": "osint-2026-10-02T09:51:32Z",
+   "deficits": [
+    {
+     "id": "DEF-001",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "outline-helper": 4,
+      "sacred-never-raw": 12,
+      "dogma-stop-list": 1
+     },
+     "to_props": 0,
+     "hits_uncapped": 34050,
+     "props_uncapped": 9047,
+     "props_uncapped_repos": 59,
+     "added_keywords": [
+      "summon",
+      "awaken",
+      "bind",
+      "create",
+      "creeping",
+      "draining",
+      "drakes",
+      "injury",
+      "phantom",
+      "prism",
+      "puppet",
+      "rattle"
+     ],
+     "keywords_total": 114,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "java",
+      "mage",
+      "mindustry",
+      "rsi",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-003",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 2
+     },
+     "to_props": 143,
+     "hits_uncapped": 8148,
+     "props_uncapped": 5879,
+     "props_uncapped_repos": 53,
+     "added_keywords": [],
+     "keywords_total": 40,
+     "keywords_not_searched": [
+      "com",
+      "corsixth",
+      "java",
+      "left",
+      "lua",
+      "right",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 143
+    },
+    {
+     "id": "DEF-012",
+     "skipped": "audio-pipeline-pending"
+    }
+   ],
+   "props_taken": {},
+   "props_taken_by_index_kind": {},
+   "props_duplicates": 143,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 0,
+   "props_store_files": 1454,
+   "props_store_bytes": 10827682,
+   "props_cache_files_on_disk": 4665,
+   "props_cache_bytes_on_disk": 78042215,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 811650,
+   "props_register_growth_bytes": 0,
+   "stage": "done",
+   "accepted_objects": 6,
+   "code_candidates": 90,
+   "reverted": [
+    {
+     "object": "ant_sadness_4bbd8e3f97",
+     "source": "crawl/crawl crawl-ref/source/rltiles/gui/spells/monster/summon_drakes.png",
+     "reason": "eye check: the silhouette reads as a stemless cup or vessel, close to a chalice; a passion must not resemble a holy thing (CLAUDE.md TABOO 0.2 item 3, 0.35 item 6); contact sheet docs/audit/2026-10-02/raw-sadness-4bbd8e3f97-contact-rejected.png"
+    }
+   ]
+  },
+  {
+   "time": "2026-10-02T10:51:11.863967+00:00",
+   "pass_id": "osint-2026-10-02T10:51:11Z",
+   "deficits": [
+    {
+     "id": "DEF-019",
+     "hits": 143,
+     "taken": 0,
+     "refused": {},
+     "to_props": 143,
+     "hits_uncapped": 143,
+     "props_uncapped": 143,
+     "props_uncapped_repos": 26,
+     "added_keywords": [],
+     "keywords_total": 8,
+     "keywords_not_searched": [],
+     "props": {},
+     "props_seen": 127
+    },
+    {
+     "id": "DEF-024",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "font": 1
+     },
+     "to_props": 16,
+     "hits_uncapped": 46186,
+     "props_uncapped": 41315,
+     "props_uncapped_repos": 62,
+     "added_keywords": [],
+     "keywords_total": 100,
+     "keywords_not_searched": [
+      "amulet",
+      "ankh",
+      "cleric",
+      "com",
+      "java",
+      "mage",
+      "openra",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 16
+    },
+    {
+     "id": "DEF-027",
+     "skipped": "audio-pipeline-pending"
+    }
+   ],
+   "props_taken": {},
+   "props_taken_by_index_kind": {},
+   "props_duplicates": 143,
+   "props_errors": 0,
+   "props_refused": {
+    "licence-Defold-1.0": 8,
+    "licence-UNKNOWN": 8
+   },
+   "props_new_bytes": 0,
+   "props_store_files": 1454,
+   "props_store_bytes": 10827682,
+   "props_cache_files_on_disk": 4665,
+   "props_cache_bytes_on_disk": 78042215,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 811650,
+   "props_register_growth_bytes": 0,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 183
   }
  ],
  "keywords": {
@@ -5666,7 +6135,19 @@
    "sorcerer",
    "spell",
    "square",
-   "troll"
+   "troll",
+   "summon",
+   "awaken",
+   "bind",
+   "create",
+   "creeping",
+   "draining",
+   "drakes",
+   "injury",
+   "phantom",
+   "prism",
+   "puppet",
+   "rattle"
   ],
   "DEF-049": [
    "terrain",
@@ -6099,7 +6580,19 @@
    "component",
    "context",
    "continue",
-   "control"
+   "control",
+   "create",
+   "dds",
+   "dismiss",
+   "effect",
+   "emitter",
+   "encode",
+   "event",
+   "extra",
+   "frm",
+   "grid",
+   "harvester",
+   "help"
   ],
   "DEF-047": [
    "java",
@@ -6197,7 +6690,11 @@
    "status",
    "stop",
    "tilemap",
-   "train"
+   "train",
+   "transport",
+   "treasury",
+   "view",
+   "year"
   ],
   "DEF-048": [
    "java",

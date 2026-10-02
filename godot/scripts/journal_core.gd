@@ -8,9 +8,11 @@
 ## exports is the page the web game exports, letter for letter.
 ##
 ## The journal is the player's own record: the seven attributes of
-## FORM, the rule of prayer as counted, the open steps of the ladder and
-## the passions met on the road.  What it leaves out, on purpose, as the
-## web page does:
+## FORM, the rule of prayer as counted, the open steps of the ladder, the
+## passions met on the road and the acts done at the hearts of places
+## (the save's "deeds", PlaceDeeds: how many times and the last day; the
+## web keeps the same record as "ludus.deeds").  What it leaves out, on
+## purpose, as the web page does:
 ##   - the good deed in secret: its count is "known to God" (Mt 6:3-4);
 ##   - the preparation for confession: it is never kept anywhere, so it
 ##     cannot be written here (TABOO 0.26);
@@ -186,6 +188,41 @@ static func _met(passion_data: Dictionary, record) -> Array:
 	return out
 
 
+## The act id of each place's heart and the title of its place, from
+## the data of the 99 places (LocationCore.load_data): the names the
+## journal gives the deeds, the same the web reads from place-deeds.json.
+static func deed_titles(locations: Dictionary) -> Dictionary:
+	var out := {}
+	for loc in locations.get("locations", []):
+		var id := PlaceDeeds.act_of(loc.get("heart", {}))
+		if id != "" and not out.has(id):
+			out[id] = str(loc.get("title_ru", id))
+	return out
+
+
+## deedsDone() of ludus-journal.js: the acts done, in the order of their
+## ids, in the known shape only (PlaceDeeds.normalize) and only those
+## whose place has a title: [{title, count, lastDay}].
+static func deeds_done(record, titles: Dictionary) -> Array:
+	var rec := PlaceDeeds.normalize(record)
+	var ids := rec.keys()
+	ids.sort()
+	var out := []
+	for id in ids:
+		if titles.has(id) and int(rec[id].count) > 0:
+			out.append({"title": str(titles[id]), "count": int(rec[id].count),
+				"lastDay": rec[id].lastDay})
+	return out
+
+
+static func _times_ru(n: int) -> String:
+	var d := n % 10
+	var h := n % 100
+	if d >= 2 and d <= 4 and (h < 12 or h > 14):
+		return "%d раза" % n
+	return "%d раз" % n
+
+
 ## Under the water (the headset only: the web game has no dive yet).
 ## dive is the content of user://dive.json: {bag, done}.
 static func dive_summary(dive) -> Dictionary:
@@ -210,7 +247,9 @@ static func dive_summary(dive) -> Dictionary:
 
 
 ## toMarkdown() of ludus-journal.js.  state: {form, actions, passions,
-## passion_data, date: "YYYY-MM-DD", dive (optional, headset only)}.
+## passion_data, date: "YYYY-MM-DD", deeds (the save's record of the
+## place acts), deed_titles (deed_titles()), dive (optional, headset
+## only)}.
 static func to_markdown(state: Dictionary) -> String:
 	var form: Dictionary = state.get("form", {})
 	var actions := normalize(state.get("actions", {}))
@@ -247,6 +286,14 @@ static func to_markdown(state: Dictionary) -> String:
 		var n := _js(_num(r.get("meetings")))
 		lines.append("- %s: %s%s (%s meeting%s)." % [m.p.get("name", m.p.id),
 			how, sign, n, "" if n == "1" else "s"])
+	lines += ["", "## Deeds of places", ""]
+	var deeds := deeds_done(state.get("deeds"), state.get("deed_titles", {}))
+	if deeds.is_empty():
+		lines.append("- No act at the heart of a place done yet.")
+	for d in deeds:
+		var last := ", last on %s" % d.lastDay if d.lastDay != null else ""
+		lines.append("- %s: done %d time%s%s." % [d.title, d.count,
+			"" if d.count == 1 else "s", last])
 	var dv := dive_summary(state.get("dive"))
 	if not dv.is_empty():
 		lines += ["", "## Under the water", "",
@@ -298,6 +345,20 @@ static func pages_ru(state: Dictionary) -> Array:
 		p.append("%s: %s (встреч: %s)." % [m.p.get("name_ru", m.p.id), how,
 			_js(_num(r.get("meetings")))])
 	pages.append("\n".join(p))
+	p = ["ДЕЛА МЕСТ", ""]
+	var deeds := deeds_done(state.get("deeds"), state.get("deed_titles", {}))
+	if deeds.is_empty():
+		p.append("Дел у сердец мест ещё не было.")
+	for d in deeds:
+		var last := "; последний раз %s" % d.lastDay \
+			if d.lastDay != null else ""
+		p.append("%s — %s%s." % [d.title, _times_ru(d.count), last])
+	pages.append("\n".join(p))
+	# The 12 stories walked on foot (StoryRoute.journal_lines), when the
+	# book is given them; the web page has no such part.
+	var stories = state.get("stories", [])
+	if stories is Array and not stories.is_empty():
+		pages.append("\n".join(["СЮЖЕТЫ НОГАМИ", ""] + stories))
 	var dv := dive_summary(state.get("dive"))
 	p = ["ПОД ВОДОЙ", ""]
 	if dv.is_empty():

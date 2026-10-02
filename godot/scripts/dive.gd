@@ -17,7 +17,6 @@ const FLOW_SHAPES := ["current", "eddy", "intwave", "plume", "langmuir",
 	"upwelling", "layer", "cloud"]
 const ZONE_SHAPES := ["ripples", "gravel", "silt", "meadow", "swarm",
 	"fuzz", "shells", "particles", "cloud", "light", "bubbles", "sherds"]
-const SAVE_PATH := "user://dive.json"
 const REACH_M := 4.0
 
 var rov := DiveCore.new_rov()
@@ -59,10 +58,12 @@ var console_alpha := 1.0
 var holy_points: Array = []
 # The Water Atlas (TABOO 0.03): the knight's traces on the lake floor,
 # placed by the chronicle's choice written in the hub (AtlasTraces).
-const HUB_SAVE := "user://hub.json"
 var atlas_data: Dictionary = AtlasCore.load_data()
 var chronicle := ""
 var traces: Array = []
+# The thing a story's step sent the ROV down for (StoryRoute.dive_target):
+# named in the task line; the step closes back in the courtyard.
+var story_target := {}
 # The Mangustik's body (godot/models/rov/mangustik.glb, the operator's
 # drawings).  Third person: the camera rides behind and above it, as a
 # chase camera; first person: the camera is the ROV's own eye and the
@@ -154,6 +155,11 @@ func _ready() -> void:
 	var lake: Dictionary = _load_json("res://data/lake-objects-99.json")
 	var fish: Dictionary = _load_json("res://data/issyk-kul-fish.json")
 	placed = DiveCore.place_objects(lake.objects)
+	var lake_by_id := {}
+	for o in lake.objects:
+		lake_by_id[o.id] = o
+	story_target = StoryRoute.dive_target(StoryRoute.load_data(),
+		lake_by_id)
 	schools = DiveCore.fish_schools(fish.fish)
 	_load_bag()
 	for arg in OS.get_cmdline_user_args():
@@ -1311,6 +1317,16 @@ func _say(text: String) -> void:
 
 ## The next task not yet done, in the order of the bands downwards.
 func _task_line() -> String:
+	var target := ""
+	if not story_target.is_empty():
+		target = "Миссия %d: %s, %s–%s м. " % [story_target.mission,
+			story_target.ru.get_slice(":", 0),
+			MissionCore.js_num(story_target.depth[0]),
+			MissionCore.js_num(story_target.depth[1])]
+	return target + _dive_task_line()
+
+
+func _dive_task_line() -> String:
 	if game.fallen:
 		return "Остановка безопасности: стой на месте %d с." % maxi(0,
 			roundi(DiveCore.SAFETY_STOP_SEC - game.still_for))
@@ -1321,7 +1337,7 @@ func _task_line() -> String:
 
 
 func _save_bag() -> void:
-	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	var f := FileAccess.open(SaveSlot.dive(), FileAccess.WRITE)
 	if f:
 		f.store_string(JSON.stringify({"bag": bag, "done": game.done}))
 
@@ -1329,8 +1345,9 @@ func _save_bag() -> void:
 ## The chronicle's choice is written in the hub (hub.json); the dive only
 ## reads it.  Proof frames show the "spare" floor without saving it.
 func _load_chronicle() -> String:
-	if FileAccess.file_exists(HUB_SAVE):
-		var data = JSON.parse_string(FileAccess.get_file_as_string(HUB_SAVE))
+	var hub_save := SaveSlot.hub()
+	if FileAccess.file_exists(hub_save):
+		var data = JSON.parse_string(FileAccess.get_file_as_string(hub_save))
 		if data is Dictionary:
 			var c := AtlasTraces.write_chronicle(atlas_data,
 				data.get("chronicle"), "")
@@ -1340,8 +1357,9 @@ func _load_chronicle() -> String:
 
 
 func _load_bag() -> void:
-	if FileAccess.file_exists(SAVE_PATH):
-		var data = JSON.parse_string(FileAccess.get_file_as_string(SAVE_PATH))
+	var save := SaveSlot.dive()
+	if FileAccess.file_exists(save):
+		var data = JSON.parse_string(FileAccess.get_file_as_string(save))
 		if data is Dictionary and data.has("bag"):
 			bag.merge(data.bag, true)
 			game.done = data.get("done", [])

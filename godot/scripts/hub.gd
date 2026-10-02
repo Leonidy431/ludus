@@ -18,7 +18,6 @@
 ## reads the controls.
 extends Node3D
 
-const SAVE_PATH := "user://hub.json"
 const REACH_M := 2.2
 const WALK_MPS := 1.4
 const BOUNDS := Rect2(-7.0, -8.5, 16.0, 16.0)
@@ -78,7 +77,6 @@ var atlas_page := 0
 var atlas_board: Label3D
 # The chronicle of the knight (AtlasTraces): written once at the
 # scriptorium table; chron is {choice, reply} while its page is open.
-const DIVE_SAVE := "user://dive.json"
 var chronicle := ""
 var chron := {}
 # The road of the obitel: the campaign of missions (MissionCore,
@@ -95,6 +93,9 @@ var mission_state := {"done": {}, "current": null, "flags": {},
 	"lines": {}}
 var mission := {}
 var mission_board: Label3D
+## The 12 stories walked on foot (StoryRoute): for these the board names
+## the place and the step is done at that place's heart.
+var story: Dictionary = StoryRoute.load_data()
 var select_was := false
 var interact_was := false
 var stick_was := 0.0
@@ -138,6 +139,10 @@ func _ready() -> void:
 	trees = JSON.parse_string(FileAccess.get_file_as_string(
 		"res://data/dialogue-trees.json")).trees
 	_load()
+	# Back from the dive of a story's step: the board's panel opens on the
+	# step's "walk on", which closes it (StoryRoute.returned).
+	if StoryRoute.returned(story, _mstate()):
+		mission = {"choice": 0, "start": -1}
 	_build_world()
 	_build_rig()
 	_build_ui()
@@ -340,9 +345,10 @@ func _build_chronicle(oak: Color) -> void:
 
 ## What the scribe says of the knight's things handed over in the dive.
 func _scribe_page() -> String:
-	if not FileAccess.file_exists(DIVE_SAVE):
+	var dive_save := SaveSlot.dive()
+	if not FileAccess.file_exists(dive_save):
 		return ""
-	var data = JSON.parse_string(FileAccess.get_file_as_string(DIVE_SAVE))
+	var data = JSON.parse_string(FileAccess.get_file_as_string(dive_save))
 	if not data is Dictionary:
 		return ""
 	var given = data.get("bag", {}).get("atlas", [])
@@ -652,7 +658,8 @@ func _refresh_boards() -> void:
 # --- Save ---------------------------------------------------------------------
 
 func _save() -> void:
-	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	# The active slot: the player's own, or the tester's (SaveSlot).
+	var f := FileAccess.open(SaveSlot.hub(), FileAccess.WRITE)
 	if f:
 		f.store_string(JSON.stringify({"form": form, "actions": actions,
 			"trials": trial_state, "passions": passion_record,
@@ -661,9 +668,10 @@ func _save() -> void:
 
 
 func _load() -> void:
-	if not FileAccess.file_exists(SAVE_PATH):
+	var save := SaveSlot.hub()
+	if not FileAccess.file_exists(save):
 		return
-	var data = JSON.parse_string(FileAccess.get_file_as_string(SAVE_PATH))
+	var data = JSON.parse_string(FileAccess.get_file_as_string(save))
 	if data is Dictionary:
 		# The small acts of the places (PlaceDeeds): the hub keeps them
 		# through its own save, as it keeps every key a place writes.
@@ -804,6 +812,7 @@ func _process(dt: float) -> void:
 	_check_fall()
 	_road_tick(dt)
 	_rope_tick(dt)
+	_look_ahead()
 	hearth.light_energy = 1.3 + 0.15 * sin(t * 7.0) * sin(t * 2.3)
 	message_left = maxf(0.0, message_left - dt)
 	_refresh_boards()
@@ -821,6 +830,43 @@ func _nearest() -> Dictionary:
 			best = th
 			best_d = d
 	return best
+
+
+## TABOO 0.014: the big module behind a way out of the yard loads while
+## the player walks to it (ModuleLoader.ahead), not in the frame of the
+## press.  The nearest way within AHEAD_M is looked ahead to; the one
+## already loading is kept a little farther, so that a player pacing at
+## the edge does not start the load again and again.
+const AHEAD_M := 4.0
+const AHEAD_KEEP_M := 5.5
+const AHEAD := {"rov": "res://scenes/dive.tscn",
+	"witness": "res://scenes/witness.tscn",
+	"places": "res://scenes/location.tscn"}
+
+
+func _look_ahead() -> void:
+	# The board of a story names the place to walk to: its scene loads
+	# while the panel is open, before "Идти" is pressed (TABOO 0.014
+	# item 2), wherever the player stands.
+	if not mission.is_empty():
+		var ms := _mstate()
+		if not StoryRoute.where(story, ms).is_empty() \
+				and not StoryRoute.returned(story, ms):
+			ModuleLoader.ahead(AHEAD.places)
+			return
+	var best := ""
+	var best_d := INF
+	for th in things:
+		var to: String = AHEAD.get(th.id, "")
+		if to == "":
+			continue
+		var d := Vector2(th.pos.x - pos.x, th.pos.z - pos.z).length()
+		var reach := AHEAD_KEEP_M if to == ModuleLoader.ahead_path \
+			else AHEAD_M
+		if d < reach and d < best_d:
+			best = to
+			best_d = d
+	ModuleLoader.ahead(best)
 
 
 func _interact() -> void:
@@ -845,7 +891,7 @@ func _interact() -> void:
 				_say("Путь в глубину закрыт: %s. Признак: %s Открывают трезвение (угол безмолвия или вечерний дозор в келье) и беседа с наставником." % [fs.passion_ru, fs.cue])
 				return
 			_save()
-			get_tree().change_scene_to_file("res://scenes/dive.tscn")
+			ModuleLoader.go(ModuleLoader.DIVE)
 		"road":
 			_road()
 		"atlas":
@@ -869,7 +915,7 @@ func _interact() -> void:
 		"witness":
 			# Leaving for the path writes nothing about the visit.
 			_save()
-			get_tree().change_scene_to_file("res://scenes/witness.tscn")
+			ModuleLoader.go(ModuleLoader.WITNESS)
 		"ladder":
 			_ladder()
 		"missions":
@@ -1029,16 +1075,63 @@ func _open_missions() -> void:
 	if nxt >= 0:
 		mission = {"choice": 0, "start": nxt}
 		return
+	var note := "Все миссии, что можно пройти, пройдены."
 	for act in MissionCore.catalog(mission_data, st):
 		if act.lock != "" and not act.complete:
-			_say("%s: %s." % [act.title, act.lock])
-			return
-	_say("Все миссии, что можно пройти, пройдены.")
+			note = "%s: %s." % [act.title, act.lock]
+			break
+	# A debug build opens the panel anyway, so the tester's entry to the
+	# 12 stories is there even where the road waits (StoryCheck).
+	if StoryCheck.shown():
+		mission = {"choice": 0, "start": -1, "note": note}
+		return
+	_say(note)
 
 
 ## The lines of the open panel to choose from: {id, text, disabled,
-## reason, cue}.  The last one always steps away from the board.
+## reason, cue}.  In a debug build the tester's entry (StoryCheck) comes
+## after the road's own lines: the list of the 12 stories, and the way
+## out of the test slot while it is active.
 func _mission_choices() -> Array:
+	if mission.is_empty():
+		return []
+	if mission.get("check", false):
+		return _check_choices()
+	var out := _road_choices() if not mission.has("note") else [
+		{"id": "away", "text": "Отойти: дорога подождёт.",
+			"disabled": false, "reason": "", "cue": ""}]
+	if StoryCheck.shown():
+		out += _check_doors()
+	return out
+
+
+func _check_doors() -> Array:
+	var out := [{"id": "check", "text": StoryCheck.ENTRY_RU,
+		"disabled": false, "reason": "", "cue": ""}]
+	if SaveSlot.testing():
+		out.append({"id": "check_leave", "text": StoryCheck.LEAVE_RU,
+			"disabled": false, "reason": "", "cue": ""})
+	return out
+
+
+## The 12 stories to open in the test slot, then the way out of it and a
+## step back to the road's panel.
+func _check_choices() -> Array:
+	var out := []
+	for s in StoryCheck.listing(story):
+		out.append({"id": "check_m%d" % s.mission,
+			"text": "%d. %s — %s" % [s.mission, s.title, s.act_ru],
+			"disabled": false, "reason": "", "cue": ""})
+	if SaveSlot.testing():
+		out.append({"id": "check_leave", "text": StoryCheck.LEAVE_RU,
+			"disabled": false, "reason": "", "cue": ""})
+	out.append({"id": "check_back", "text": "Назад к доске",
+		"disabled": false, "reason": "", "cue": ""})
+	return out
+
+
+## The road's own lines.  The last one always steps away from the board.
+func _road_choices() -> Array:
 	var away := {"id": "away", "text": "Отойти: дорога подождёт.",
 		"disabled": false, "reason": "", "cue": ""}
 	if mission.is_empty():
@@ -1048,13 +1141,20 @@ func _mission_choices() -> Array:
 			mission.start)
 		return [{"id": "set_out", "text": "Выйти в путь",
 			"disabled": not can.ok, "reason": can.reason, "cue": ""}, away]
-	var v := MissionCore.view(mission_data, _mstate(), form, actions)
+	var ms := _mstate()
+	var v := MissionCore.view(mission_data, ms, form, actions)
 	if v.is_empty():
 		return [away]
-	if v.scene != null:
-		return [{"id": "next", "text": "Завершить миссию" if v.last
-			else "Дальше", "disabled": false, "reason": "", "cue": ""}]
-	return v.step.choices + [away]
+	# A story's step is done at its place's heart: the board names the
+	# place and opens it; only the "walk on" after its dive closes here.
+	var r := StoryRoute.where(story, ms)
+	if not r.is_empty():
+		if StoryRoute.returned(story, ms):
+			return StoryRoute.choices(mission_data, story, ms, form, actions)
+		return [{"id": "go", "text": "Идти: " + str(r.place_ru),
+			"disabled": false, "reason": "", "cue": ""}, away]
+	return StoryRoute.choices(mission_data, story, ms, form, actions) \
+		+ ([away] if v.scene == null else [])
 
 
 func _choose_mission(i: int) -> void:
@@ -1065,6 +1165,9 @@ func _choose_mission(i: int) -> void:
 	if c.disabled:
 		_say(c.reason)
 		return
+	if str(c.id).begins_with("check"):
+		_choose_check(str(c.id))
+		return
 	match c.id:
 		"away":
 			mission = {}
@@ -1073,24 +1176,55 @@ func _choose_mission(i: int) -> void:
 				false)
 			mission = {"choice": 0, "start": -1}
 			_save()
-		"next":
-			var res := MissionCore.advance(mission_data, _mstate())
-			_mkeep(res.state, false)
+		"go":
+			# The courtyard is saved before leaving, as at the pier.
+			var r := StoryRoute.where(story, _mstate())
+			mission = {}
+			_save()
+			LocationCore.go(get_tree(), str(r.place))
+		_:
+			# The step's choice and its "walk on" go the one way the
+			# hearts of the places use too (StoryRoute.choose: MissionCore
+			# choose, apply_effects, advance).
+			var res := StoryRoute.choose(mission_data, story, _mstate(), form,
+				actions, c.id, Time.get_date_string_from_system())
+			form = res.form
+			actions = res.actions
+			_mkeep(res.state, res.fell)
 			mission.choice = 0
 			if res.completed != null:
 				mission = {}
-				_say("Миссия %d пройдена." % res.completed)
+			if res.say != "":
+				_say(res.say)
 			_save()
+
+
+## The tester's entry (StoryCheck, debug builds only): open a story in
+## the test slot, or leave it.  Both reload the courtyard through
+## ModuleLoader (TABOO 0.014), so every scene reads the slot anew.
+func _choose_check(id: String) -> void:
+	if not StoryCheck.shown():
+		return
+	match id:
+		"check":
+			mission = {"choice": 0, "start": -1, "check": true}
+		"check_back":
+			mission = {}
+			_open_missions()
+		"check_leave":
+			# The test save is not written back: the player's own save
+			# was never touched and is read again as it was.
+			StoryCheck.leave()
+			mission = {}
+			ModuleLoader.go(ModuleLoader.HUB)
 		_:
-			var res := MissionCore.choose(mission_data, _mstate(), c.id,
-				form, actions)
-			var ap := MissionCore.apply_effects(form, actions, res.effects,
-				Time.get_date_string_from_system())
-			form = ap.form
-			actions = ap.actions
-			_mkeep(res.state, res.effects.fall != null)
-			mission.choice = 0
-			_save()
+			var res := StoryCheck.enter(mission_data,
+				int(id.trim_prefix("check_m")))
+			if not res.ok:
+				_say(res.reason)
+				return
+			mission = {}
+			ModuleLoader.go(ModuleLoader.HUB)
 
 
 func _refresh_mission_board() -> void:
@@ -1098,6 +1232,11 @@ func _refresh_mission_board() -> void:
 		return
 	var st := _mstate()
 	var lines := ["ДОРОГА ОБИТЕЛИ"]
+	if SaveSlot.testing():
+		lines.push_front(StoryCheck.BANNER)
+	var go := StoryRoute.go_line(story, st)
+	if go != "":
+		lines.append(go)
 	if st.fall != null:
 		lines.append("Свет приглушён: дорога ждёт трезвения и беседы.")
 	for act in MissionCore.catalog(mission_data, st):
@@ -1225,39 +1364,36 @@ func _say(text: String) -> void:
 ## says why, a lure shows its sign once the player has learnt it.
 func _mission_panel_text() -> String:
 	var choices := _mission_choices()
-	var lines := []
-	if mission.start >= 0:
+	# The test slot says so first on every panel of the board.
+	var lines := [StoryCheck.BANNER, ""] if SaveSlot.testing() else []
+	if mission.get("check", false):
+		lines += ["Проверка сюжета: отдельное сохранение, настоящее не меняется.",
+			"Выбери сюжет: двор откроется заново, сюжет уже начат.", ""]
+	elif mission.has("note"):
+		lines += ["ДОРОГА ОБИТЕЛИ", "", str(mission.note), ""]
+	elif mission.start >= 0:
 		var m := MissionCore.build_mission(mission_data, mission.start)
 		lines += [m.actTitle, "%d. %s" % [m.id, m.title], "", m.intro,
 			SourceLabels.line(m.source), ""]
+		if not StoryRoute.story_of(story, m.id).is_empty():
+			lines += ["Этот путь проходят ногами: доска скажет, куда идти, а шаг делается у сердца места.",
+				""]
 	else:
-		var v := MissionCore.view(mission_data, _mstate(), form, actions)
+		var ms := _mstate()
+		var v := MissionCore.view(mission_data, ms, form, actions)
 		if v.is_empty():
 			return ""
-		var s: Dictionary = v.step
-		lines += ["%d. %s — шаг %d из %d: %s" % [v.mission.id,
-			v.mission.title, v.index + 1, v.total, v.kind_ru], "",
-			s.title, s.text]
-		if s.source != "":
-			lines.append(SourceLabels.line(s.source))
-		lines.append("")
-		if v.scene != null:
-			lines.append("— " + v.scene.choice)
-			if v.scene.speaker != "":
-				lines.append(v.scene.speaker + ":")
-			lines.append(v.scene.text)
-			if v.scene.source != "":
-				lines.append(SourceLabels.line(v.scene.source))
-			lines.append("")
-	for j in choices.size():
-		var c: Dictionary = choices[j]
-		var mark := "▸ " if j == mission.choice else "  "
-		var line := "%s%d. %s" % [mark, j + 1, c.text]
-		if c.disabled and c.reason != "":
-			line += "  (%s)" % c.reason
-		lines.append(line)
-		if c.cue != "":
-			lines.append("      " + c.cue)
+		var go := StoryRoute.go_line(story, ms)
+		if go != "" and not StoryRoute.returned(story, ms):
+			# A story: the board says where, not the step's choices.
+			lines += ["%d. %s — шаг %d из %d: %s" % [v.mission.id,
+				v.mission.title, v.index + 1, v.total, v.kind_ru], "",
+				go, ""]
+		else:
+			lines += StoryRoute.step_lines(v)
+			if go != "":
+				lines += [go, ""]
+	lines += StoryRoute.choice_lines(choices, int(mission.choice))
 	return "\n".join(lines)
 
 
@@ -1385,11 +1521,11 @@ func _breathe() -> void:
 	rope_breath.play()
 
 
-func _pulse(amplitude: float, seconds: float) -> void:
-	# The touch of the knot in the hand that holds the rope (Quest).
-	if xr_active:
-		right_hand.trigger_haptic_pulse("haptic", 0.0, amplitude, seconds,
-			0.0)
+func _pulse(kind: String) -> void:
+	# The touch of the knot and of the breath in the hand that holds the
+	# rope (Quest); the numbers live in the shared table (Haptics).
+	Haptics.pulse(right_hand if xr_active else null, kind,
+		Haptics.prefers_reduced())
 
 
 func _rule_select(i: int) -> void:
@@ -1414,7 +1550,7 @@ func _rule_select(i: int) -> void:
 			actions = r.actions
 			if r.tied:
 				rope_ring.rotation.y += TAU / RuleCell.ROPE_KNOTS
-				_pulse(0.5, 0.05)
+				_pulse("knot")
 				_say("Узел.")
 				_save()
 			elif r.why == "inhale":
@@ -1442,7 +1578,7 @@ func _rope_tick(dt: float) -> void:
 	rope.clock += dt
 	for cue in RopeCore.cues_between(rope.pattern, t0, rope.clock):
 		if cue.kind == "exhale":
-			_pulse(0.2, 0.08)
+			_pulse("breath")
 		else:
 			_breathe()
 

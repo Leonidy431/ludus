@@ -13,10 +13,16 @@ func run(t: Object) -> void:
 	var passions: Dictionary = JSON.parse_string(
 		FileAccess.get_file_as_string("res://data/passions.json"))
 	t._check(fx.records.size() >= 5, "journal fixture has its pages")
+	# The places are named from the headset's own data; the web named them
+	# from place-deeds.json, so a page alike proves the names alike.
+	var titles := JournalCore.deed_titles(LocationCore.load_data())
+	t._check(titles.size() == PlaceDeeds.GROUPS.size(),
+		"every act of a place has its title (%d)" % titles.size())
 	for r in fx.records:
 		var md := JournalCore.to_markdown({"form": r.form,
 			"actions": r.actions, "passions": r.passions,
-			"passion_data": passions, "date": r.date})
+			"passion_data": passions, "date": r.date,
+			"deeds": r.get("deeds", {}), "deed_titles": titles})
 		t._check(md == r.md, "journal %s: page as in the web" % r.name)
 		if md != r.md:
 			var a := md.split("\n")
@@ -29,7 +35,7 @@ func run(t: Object) -> void:
 	var busy: Dictionary = fx.records[3]
 	var state := {"form": busy.form, "actions": busy.actions,
 		"passions": busy.passions, "passion_data": passions,
-		"date": busy.date}
+		"date": busy.date, "deeds": busy.deeds, "deed_titles": titles}
 	var md := JournalCore.to_markdown(state)
 	# The secret deed is named but never counted, on the page and in
 	# the book (Mt 6:3-4).
@@ -39,7 +45,23 @@ func run(t: Object) -> void:
 			t._check(RegEx.create_from_string("\\d").search(line) == null,
 				"no number on the secret line")
 	var pages := JournalCore.pages_ru(state)
-	t._check(pages.size() == 5, "five pages in the book")
+	t._check(pages.size() == 6, "six pages in the book")
+	# The deeds of places: on the page and in the book, each place by
+	# its title, how many times and the last day; nothing else.
+	t._check(md.contains("## Deeds of places")
+		and md.contains("- Штормовой залив: done 3 times, last on 2026-09-30.")
+		and md.contains("done 1 time, last on 2026-09-29."),
+		"deeds section on the page")
+	t._check(pages[4].begins_with("ДЕЛА МЕСТ")
+		and pages[4].contains(
+			"Штормовой залив — 3 раза; последний раз 2026-09-30.")
+		and pages[4].contains("— 12 раз;")
+		and pages[4].contains("— 1 раз;"), "deeds page in the book")
+	var none := state.duplicate()
+	none["deeds"] = {"wait-out-storm": {"count": 0}, "junk": 5}
+	t._check(JournalCore.pages_ru(none)[4].contains("ещё не было")
+		and JournalCore.to_markdown(none).contains("No act at the heart"),
+		"no deed done: said so, nothing invented")
 	t._check(pages[1].contains("Доброе тайно — ведомо Богу"),
 		"secret in the book: known to God")
 	t._check(pages[1].contains("Простить обиду — 2 дня")
@@ -62,7 +84,7 @@ func run(t: Object) -> void:
 		"dive section")
 	t._check(md.contains("Under the water") == false,
 		"no dive section without a dive save")
-	t._check(JournalCore.pages_ru(state)[4].contains("из 8"),
+	t._check(JournalCore.pages_ru(state)[5].contains("из 8"),
 		"dive page in the book")
 	t._check(JournalCore.dive_summary("junk").is_empty()
 		and JournalCore.dive_summary({"bag": 5, "done": "x"}).tasks == [],

@@ -22,5 +22,5 @@ func _process(_dt: float) -> void:
 				and (c as XRController3D).is_button_pressed("by_button"):
 			back = true
 	if back and not was:
-		get_tree().change_scene_to_file(HUB)
+		ModuleLoader.go(HUB)
 	was = back
