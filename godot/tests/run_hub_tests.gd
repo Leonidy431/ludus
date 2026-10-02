@@ -233,6 +233,13 @@ func _initialize() -> void:
 	load("res://tests/test_storm_calm.gd").new().run(self)
 	print("place deeds: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# Data packs beside the APK: the English voices first (DataPacks;
+	# docs/decisions/SIZE_STRATEGIES_7_2026-10-02.md).
+	before = checks
+	fails = failures
+	load("res://tests/test_data_packs.gd").new().run(self)
+	print("data packs: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	# Big modules load in the background (ModuleLoader, TABOO 0.014, S1).
 	before = checks
 	fails = failures
