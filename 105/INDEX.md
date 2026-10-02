@@ -2,8 +2,8 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 465
-- документов: 219
+- файлов кода: 467
+- документов: 226
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -239,7 +239,7 @@
 - [scripts/decisions/stoplist_choice.py](../scripts/decisions/stoplist_choice.py) — One decision for the church-word stop-list, chosen in the open.
 - [scripts/decisions/stream_choice.py](../scripts/decisions/stream_choice.py) — How the heavy data reaches the headset: one way from the honest pool.
 
-## Скрипты проекта: раннер, данные, сюжеты (77)
+## Скрипты проекта: раннер, данные, сюжеты (79)
 
 - [scripts/build-campaign-spine.py](../scripts/build-campaign-spine.py) — Build the Issyk-Kul campaign spine from webtypicon2's missions.
 - [scripts/build_rights_manifest.py](../scripts/build_rights_manifest.py) — Build the "Manuscript of rights": the licence register shown in-game.
@@ -254,6 +254,7 @@
 - [scripts/locations/ship_models.py](../scripts/locations/ship_models.py) — Ship the proxies the 99 locations use into the headset build.
 - [scripts/locations/tests/test_church_words.py](../scripts/locations/tests/test_church_words.py) — The generator's stop-list gives the shared corpus's verdict.
 - [scripts/locations/tests/test_locations_99.py](../scripts/locations/tests/test_locations_99.py) — The 99 locations keep the standard of the evening-watch cell.
+- [scripts/logs/talk_log.py](../scripts/logs/talk_log.py) — Daily talk log of the work with the operator: docs/logs/talk_log_<date>.md.
 - [scripts/meta3d/build.js](../scripts/meta3d/build.js) — Meta 3D generator (CLAUDE.md TABOO 0.32): every SVG and every text
 - [scripts/meta3d/check_coverage.py](../scripts/meta3d/check_coverage.py) — Fail the build when an SVG or a prompt has no Meta 3D object.
 - [scripts/meta3d/lake_details.py](../scripts/meta3d/lake_details.py) — Detailed procedural proxies of the 99 lake objects and the knight's
@@ -318,6 +319,7 @@
 - [scripts/story/select_12.py](../scripts/story/select_12.py) — Choose the 12 stories the headset walks on foot (TABOO 0.07).
 - [scripts/test-api-endpoints.sh](../scripts/test-api-endpoints.sh) — Ludus API Endpoint Test Suite
 - [scripts/tests/test_check_canon.py](../scripts/tests/test_check_canon.py) — Negative tests for scripts/check_canon.py.
+- [scripts/video/insights_reel.py](../scripts/video/insights_reel.py) — The reel of the twelve insights of episode 1, with the suite under it.
 
 ## Веб-версия игры (34)
 
@@ -450,7 +452,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (161)
+## Документация проекта (167)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -566,6 +568,12 @@
 - [docs/kiberslav/STYLE_BIBLE_LUDUS_KIBERSLAV.md](../docs/kiberslav/STYLE_BIBLE_LUDUS_KIBERSLAV.md) 📄 — Стилевая библия Ludus × «Киберслав»: образ, цвет, свет, материал, звук, среда
 - [docs/logs/aider_agent_loop.txt](../docs/logs/aider_agent_loop.txt) 📄
 - [docs/logs/talk_log_2026-09-23.md](../docs/logs/talk_log_2026-09-23.md) 📄 — Talk log — 2026-09-23
+- [docs/logs/talk_log_2026-09-27.md](../docs/logs/talk_log_2026-09-27.md) 📄 — Talk log — 2026-09-27
+- [docs/logs/talk_log_2026-09-28.md](../docs/logs/talk_log_2026-09-28.md) 📄 — Talk log — 2026-09-28
+- [docs/logs/talk_log_2026-09-29.md](../docs/logs/talk_log_2026-09-29.md) 📄 — Talk log — 2026-09-29
+- [docs/logs/talk_log_2026-09-30.md](../docs/logs/talk_log_2026-09-30.md) 📄 — Talk log — 2026-09-30
+- [docs/logs/talk_log_2026-10-01.md](../docs/logs/talk_log_2026-10-01.md) 📄 — Talk log — 2026-10-01
+- [docs/logs/talk_log_2026-10-02.md](../docs/logs/talk_log_2026-10-02.md) 📄 — Talk log — 2026-10-02
 - [docs/logs/talklog.md](../docs/logs/talklog.md) 📄 — Ludus Development Talklog
 - [docs/music/cosmos/README.md](../docs/music/cosmos/README.md) 📄 — Сюита «Наука. Любовь. Познание.»: космическая музыка Ludus
 - [docs/reports/COMPREHENSIVE_GAPS_ANALYSIS.md](../docs/reports/COMPREHENSIVE_GAPS_ANALYSIS.md) 📄 — Ludus Project: Comprehensive Gaps Analysis & Status
@@ -614,7 +622,7 @@
 - [docs/version-3.0/VM8_BACKEND_CONTAINER_DEPLOYMENT.md](../docs/version-3.0/VM8_BACKEND_CONTAINER_DEPLOYMENT.md) 📄 — VM8 Backend Container Deployment — Ludus Services on panopticon-mirror-vm
 - [docs/СПИСОК_ТЕХНОЛОГИЙ_ПРОЕКТА.md](../docs/СПИСОК_ТЕХНОЛОГИЙ_ПРОЕКТА.md) 📄 — Список технологий проекта Ludus (реестр собственных технических решений)
 
-## Прочее (133)
+## Прочее (134)
 
 - [.claude/agents/apk-revisor.md](../.claude/agents/apk-revisor.md) 📄 — Жёсткие правила
 - [CONSTITUTION.md](../CONSTITUTION.md) 📄 — РОЛЬ 1: Lead Game Designer & Principal Luau Engineer (Roblox/LiveOps).
@@ -749,3 +757,4 @@
 - [third_party/posoh/hardware/cad/tube_enclosure_heatsink.scad](../third_party/posoh/hardware/cad/tube_enclosure_heatsink.scad)
 - [third_party/posoh/hardware/cad/z_axis_stack.scad](../third_party/posoh/hardware/cad/z_axis_stack.scad)
 - [third_party/posoh/hardware/thermal/THERMAL_BUDGET.md](../third_party/posoh/hardware/thermal/THERMAL_BUDGET.md) 📄 — Tube Enclosure Thermal Budget — Посох Z-axis Bay
+- [video/insights/README.md](../video/insights/README.md) 📄 — Видео: двенадцать инсайтов серии 1
