@@ -244,88 +244,88 @@
   },
   "insights": {
    "ink_first_line": {
-    "en": "Long ago a copyist at the monastery warmed his fingers over a page too. Under another man's diary he began a note: \"Whoever reads…\"",
-    "de": "Einst wärmte ein Abschreiber im Kloster seine Finger über dem Blatt. Unter ein fremdes Tagebuch begann er seinen Vermerk: „Wer dies liest…“",
-    "fr": "Jadis, un copiste du monastère réchauffait ses doigts au-dessus d'une page. Sous le journal d'un autre, il commença : « Qui lira… »",
-    "es": "Hace siglos, un copista del monasterio se calentaba los dedos sobre la hoja. Bajo el diario ajeno empezó su nota: «Quien lea…»",
-    "it": "Un tempo un copista del monastero si scaldava le dita sul foglio. Sotto il diario di un altro iniziò la sua nota: «Chi leggerà…»"
+    "en": "Winter at the monastery. The copyist blows on his fingers so the ink won't set, and under the knight's words writes: \"Whoever reads…\"",
+    "de": "Winter im Kloster. Der Abschreiber haucht in die Finger, damit die Tinte nicht stockt, und schreibt unter des Ritters Worte: „Wer liest…“",
+    "fr": "Hiver au monastère. Le copiste souffle sur ses doigts pour que l'encre ne fige pas, et sous les mots du chevalier écrit : « Qui lira… »",
+    "es": "Invierno en el monasterio. El copista se sopla los dedos para que la tinta no cuaje y bajo las palabras del caballero escribe: «Quien lea…»",
+    "it": "Inverno al monastero. Il copista soffia sulle dita perché l'inchiostro non geli, e sotto le parole del cavaliere scrive: «Chi leggerà…»"
    },
    "bazaar_jug": {
-    "en": "A year ago, the Karakol bazaar. He haggled over a jug, not knowing he was buying a rhyme for what waited for him on the bottom.",
-    "de": "Vor einem Jahr, Basar in Karakol. Er feilschte um einen Krug und ahnte nicht, dass er einen Reim auf das kaufte, was am Grund wartet.",
-    "fr": "Il y a un an, au bazar de Karakol. Il marchandait une cruche sans savoir qu'il achetait la rime de ce qui l'attendait au fond.",
-    "es": "Hace un año, el bazar de Karakol. Regateaba por una jarra sin saber que compraba la rima de lo que le esperaba en el fondo.",
-    "it": "Un anno fa, il bazar di Karakol. Contrattava una brocca e non sapeva di comprare la rima di ciò che lo aspettava sul fondo."
+    "en": "Karakol bazaar, a year ago. The potter said, \"They were always made like this.\" He paid for the copy, never asking where the original lay.",
+    "de": "Basar von Karakol, vor einem Jahr. Der Töpfer: „So hat man sie immer geformt.“ Er zahlte die Kopie und fragte nie nach dem Original.",
+    "fr": "Bazar de Karakol, il y a un an. Le potier dit : « On les a toujours faites ainsi. » Il paya la copie sans demander où gisait l'original.",
+    "es": "Bazar de Karakol, hace un año. El alfarero dijo: «Siempre se han hecho así». Pagó la copia y no preguntó dónde estaba el original.",
+    "it": "Bazar di Karakol, un anno fa. Il vasaio disse: «Si sono sempre fatte così». Pagò la copia e non chiese dove fosse l'originale."
    },
    "tape_at_night": {
-    "en": "Night, three twelve. His hands tape a drive under the desk in a hurry, as if hiding it from his own. They look like a stranger's.",
-    "de": "Nacht, drei Uhr zwölf. Seine Hände kleben einen Stick unter den Tisch, hastig, wie man vor den Eigenen versteckt. Sie wirken ihm fremd.",
-    "fr": "Nuit, trois heures douze. Ses mains collent une clé sous la table, vite, comme on cache aux siens. Il ne les reconnaît pas.",
-    "es": "Noche, las tres y doce. Sus manos pegan un pendrive bajo la mesa, deprisa, como quien esconde algo de los suyos. Las mira como ajenas.",
-    "it": "Notte, le tre e dodici. Le sue mani attaccano una chiavetta sotto il tavolo, in fretta, come si nasconde ai propri. Le guarda come altrui."
+    "en": "Three-twelve at night. The tape crackles. He sticks a copy of the log under the desk, hidden from his own. The time means nothing yet.",
+    "de": "Drei Uhr zwölf. Das Band knistert. Er klebt eine Kopie des Logbuchs unter den Tisch, versteckt vor den Seinen. Die Uhrzeit sagt noch nichts.",
+    "fr": "Trois heures douze. Le ruban crépite fort. Il colle une copie du journal sous la table, cachée des siens. L'heure ne veut encore rien dire.",
+    "es": "Las tres y doce. La cinta cruje fuerte. Pega una copia del diario bajo la mesa, oculta de los suyos. La hora aún no significa nada.",
+    "it": "Le tre e dodici. Il nastro crepita forte. Attacca una copia del giornale sotto il tavolo, nascosta ai suoi. L'ora non dice ancora nulla."
    },
    "ford_of_cold": {
-    "en": "The threshold of cold. In 1375 the knight led his horse across an icy ford and, just the same, held his breath midstream.",
-    "de": "Die Schwelle der Kälte. 1375 führte der Ritter sein Pferd durch eine eisige Furt und hielt in der Mitte genauso den Atem an.",
-    "fr": "Le seuil du froid. En 1375, le chevalier menait son cheval à gué dans une rivière glacée et retint, lui aussi, son souffle au milieu.",
-    "es": "El umbral del frío. En 1375 el caballero vadeaba un río helado con su caballo y, igual, contuvo el aliento a mitad del cauce.",
-    "it": "La soglia del freddo. Nel 1375 il cavaliere guadava un fiume gelido col cavallo e, allo stesso modo, trattenne il fiato a metà."
+    "en": "Threshold of cold. The knight led his horse through a mountain ford to a lake that never freezes. Midstream it stopped. He held his breath.",
+    "de": "Schwelle der Kälte. Der Ritter führte sein Pferd durch die Furt zum See, der nie zufriert. Mittendrin blieb es stehen. Er atmete nicht.",
+    "fr": "Le seuil du froid. Le chevalier passait un gué vers un lac qui ne gèle jamais. Au milieu, le cheval s'arrêta. Il retint son souffle.",
+    "es": "El umbral del frío. El caballero vadeaba un río de montaña hacia un lago que nunca se hiela. A mitad, el caballo se detuvo; él no respiraba.",
+    "it": "La soglia del freddo. Il cavaliere guadava un torrente verso un lago che non gela mai. A metà il cavallo si fermò; lui trattenne il respiro."
    },
    "hands_of_masons": {
-    "en": "Long before the knight, the brothers stretched a cord and laid stone along it, course by course. A cord holds true until someone pulls it.",
-    "de": "Lange vor dem Ritter spannten die Brüder eine Schnur und setzten Stein für Stein daran. Die Schnur hält die Gerade, bis jemand daran zieht.",
-    "fr": "Bien avant le chevalier, les frères tendaient un cordeau et posaient la pierre, rang après rang. Le cordeau tient droit, si on ne tire pas.",
-    "es": "Mucho antes del caballero, los hermanos tensaban un cordel y alineaban la piedra, hilada a hilada. El cordel va recto hasta que tiran.",
-    "it": "Molto prima del cavaliere i fratelli tendevano una corda e posavano la pietra, filare su filare. La corda tiene dritto, finché non tirano."
+    "en": "The brothers stretched a cord between two stakes; each course of stone followed it. The wall stays true till one of their own touches it.",
+    "de": "Die Brüder spannten eine Schnur zwischen zwei Pflöcke; jede Steinlage folgte ihr. Die Mauer bleibt gerade, bis einer der Ihren sie berührt.",
+    "fr": "Les frères tendaient un cordeau entre deux piquets ; chaque assise le suivait. Le mur reste droit tant qu'un des leurs n'y touche pas.",
+    "es": "Los hermanos tendían un cordel entre dos estacas y cada hilada lo seguía. El muro sigue recto hasta que uno de los suyos toca el cordel.",
+    "it": "I fratelli tendevano una cordicella tra due paletti e ogni filare la seguiva. Il muro resta dritto finché uno dei loro non tocca la corda."
    },
    "harbor_of_ayas": {
-    "en": "As a youth, in the harbor of Ayas, the knight saw one of his own cast off the line; the ship sailed without him. The tether says the same.",
-    "de": "Jung sah der Ritter im Hafen von Ayas, wie einer der Seinen die Leine löste und das Schiff ohne ihn fuhr. Der Ruck sagt dasselbe.",
-    "fr": "Jeune, au port d'Ayas, le chevalier vit l'un des siens larguer l'amarre : le navire partit sans lui. La secousse du câble dit la même chose.",
-    "es": "De joven, en el puerto de Ayas, el caballero vio a uno de los suyos soltar la amarra; el barco zarpó sin él. El tirón dice lo mismo.",
-    "it": "Da giovane, nel porto di Ayas, il cavaliere vide uno dei suoi mollare l'ormeggio: la nave partì senza di lui. Lo strattone dice lo stesso."
+    "en": "Ayas, Marco Polo's port, before the Mamluks. The young knight saw one of his own cast off; the ship left without him. Ropes fail near.",
+    "de": "Ayas, Hafen Marco Polos, vor den Mamluken. Der junge Ritter sah einen der Seinen die Leine lösen; das Schiff fuhr. Seile reißen nah.",
+    "fr": "Ayas, port de Marco Polo, avant les Mamelouks. Le jeune chevalier vit un des siens larguer l'amarre ; le navire partit. On coupe de près.",
+    "es": "Ayas, puerto de Marco Polo, antes de los mamelucos. El joven caballero vio a uno de los suyos soltar amarras; el barco zarpó. Cortan cerca.",
+    "it": "Ayas, porto di Marco Polo, prima dei Mamelucchi. Il giovane cavaliere vide uno dei suoi mollare la cima; la nave partì. Si taglia da vicino."
    },
    "purse_at_the_gate": {
-    "en": "Sis, 1374. They pressed a purse of drams on the knight for an open gate. He held it till the silver warmed. His answer: the next page.",
-    "de": "Sis, 1374. Man gab dem Ritter einen Beutel Drams für ein offenes Tor. Er hielt ihn, bis das Silber warm war. Die Antwort: nächstes Blatt.",
-    "fr": "Sis, 1374. On tendit au chevalier une bourse de drams pour une porte ouverte. Il la tint jusqu'à ce que l'argent tiédisse. Suite plus loin.",
-    "es": "Sis, 1374. Al caballero le dieron una bolsa de drams por una puerta abierta. La sostuvo hasta entibiar la plata. La respuesta, en otra hoja.",
-    "it": "Sis, 1374. Al cavaliere diedero una borsa di dram per una porta aperta. La tenne finché l'argento si scaldò. La risposta, nel foglio dopo."
+    "en": "Sis, 1374. At night a purse of drams was pressed on the knight: a king on horseback. He held it till the silver warmed. Answer: next page.",
+    "de": "Sis, 1374. Nachts gab man dem Ritter Drams: ein König zu Pferd. Er hielt sie, bis das Silber warm war. Die Antwort steht auf dem Folgeblatt.",
+    "fr": "Sis, 1374. La nuit, on glissa au chevalier des drams : un roi à cheval. Il les tint jusqu'à ce que l'argent tiédisse. Suite page suivante.",
+    "es": "Sis, 1374. De noche le dieron al caballero una bolsa de drams: un rey a caballo. La tuvo hasta que la plata se entibió. Sigue en otra hoja.",
+    "it": "Sis, 1374. Di notte diedero al cavaliere una borsa di dram: un re a cavallo. La tenne finché l'argento si scaldò. Risposta: pagina dopo."
    },
    "gate_opened_inside": {
-    "en": "They say the gates of Sis were opened from inside for the same glint. That man, too, thought he would only look.",
-    "de": "Man sagt, die Tore von Sis wurden von innen geöffnet, für denselben Glanz. Auch jener Mann dachte, er würde nur hinsehen.",
-    "fr": "On dit que les portes de Sis furent ouvertes de l'intérieur pour le même éclat. Cet homme aussi croyait qu'il ne ferait que regarder.",
-    "es": "Dicen que las puertas de Sis se abrieron desde dentro por el mismo brillo. Aquel hombre también creía que solo iba a mirar.",
-    "it": "Si dice che le porte di Sis furono aperte da dentro per lo stesso luccichio. Anche quell'uomo pensava di guardare soltanto."
+    "en": "They say the gates of Sis were opened from inside for the same silver. That man, too, only looked at first. The bolt creaked just once.",
+    "de": "Man sagt, die Tore von Sis wurden für solches Silber von innen geöffnet. Auch jener Mann schaute erst nur. Der Riegel knarrte einmal.",
+    "fr": "On dit que les portes de Sis furent ouvertes du dedans pour un tel argent. Cet homme aussi ne faisait que regarder. Le verrou grinça.",
+    "es": "Dicen que las puertas de Sis se abrieron desde dentro por esa plata. Aquel hombre también solo miraba. El cerrojo crujió una vez.",
+    "it": "Si dice che le porte di Sis furono aperte da dentro per quell'argento. Anche quell'uomo prima guardava solo. Il chiavistello cigolò."
    },
    "bread_in_siege": {
-    "en": "In the siege of Sis the knight broke his bread with a neighbor and turned from the man jingling silver by the gate. And breathed slowly.",
-    "de": "In der Belagerung von Sis teilte der Ritter sein Brot und wandte sich von dem ab, der am Tor mit Silber klimperte. Er atmete langsam.",
-    "fr": "Au siège de Sis, le chevalier partagea son pain et se détourna de celui qui faisait tinter l'argent à la porte. Il respirait lentement.",
-    "es": "En el asedio de Sis el caballero partió su pan con un vecino y se apartó del que hacía sonar plata junto a la puerta. Y respiraba despacio.",
-    "it": "Nell'assedio di Sis il cavaliere spezzò il pane col vicino e si voltò da chi faceva tintinnare argento alla porta. E respirava piano."
+    "en": "The siege of Sis. The knight broke his last bread and gave half to his neighbour. He heard silver ring at the gate. Stayed. Breathed slowly.",
+    "de": "Belagerung von Sis. Der Ritter brach sein letztes Brot und gab dem Nachbarn die Hälfte. Am Tor klang Silber. Er blieb. Atmete langsam.",
+    "fr": "Siège de Sis. Le chevalier rompit son dernier pain, en donna la moitié au voisin. L'argent tintait à la porte. Il resta. Respira lentement.",
+    "es": "El asedio de Sis. El caballero partió su último pan y dio la mitad al vecino. Oyó sonar la plata en la puerta. No fue. Respiró despacio.",
+    "it": "Assedio di Sis. Il cavaliere spezzò l'ultimo pane e ne diede metà al vicino. Alla porta tintinnava l'argento. Non andò. Respirò piano."
    },
    "scribe_lifts_eyes": {
-    "en": "The copyist finished the knight's line, lifted his eyes to the lake beyond the window, and his own note was never finished.",
-    "de": "Der Abschreiber beendete die Zeile des Ritters, hob den Blick zum See vor dem Fenster, und sein eigener Vermerk blieb unvollendet.",
-    "fr": "Le copiste acheva la ligne du chevalier, leva les yeux vers le lac derrière la fenêtre, et sa propre note resta inachevée.",
-    "es": "El copista terminó la línea del caballero, alzó la vista al lago tras la ventana, y su propia nota quedó sin terminar.",
-    "it": "Il copista finì la riga del cavaliere, alzò gli occhi al lago oltre la finestra, e la sua nota rimase incompiuta."
+    "en": "The copyist finished the knight's line and looked up at the lake. The pen dried on the inkpot rim. His \"Whoever reads…\" was never finished.",
+    "de": "Der Abschreiber beendete die Zeile des Ritters und sah zum See. Die Feder trocknete am Tintenfass. Sein „Wer liest…“ blieb unvollendet.",
+    "fr": "Le copiste acheva la ligne du chevalier et leva les yeux vers le lac. La plume sécha au bord de l'encrier. Son « Qui lira… » resta inachevé.",
+    "es": "El copista terminó la línea del caballero y alzó la vista al lago. La pluma se secó en el tintero. Su «Quien lea…» nunca se terminó.",
+    "it": "Il copista finì la riga del cavaliere e alzò gli occhi al lago. La penna si asciugò sul calamaio. Il suo «Chi leggerà…» rimase incompiuto."
    },
    "same_comet": {
-    "en": "The copyist reached the line about the comet mark, copied it word for word and left the margin silent. Whose hand? The page won't say.",
-    "de": "Der Abschreiber kam zur Zeile über das Kometenmal, schrieb sie Wort für Wort ab und ließ den Rand stumm. Wessen Hand, sagt das Blatt nicht.",
-    "fr": "Le copiste arriva à la ligne sur la marque en comète, la recopia mot pour mot et laissa la marge muette. À qui la main ? La page se tait.",
-    "es": "El copista llegó a la línea de la marca de cometa, la copió tal cual y calló en el margen. ¿De quién es la mano? La hoja no lo dice.",
-    "it": "Il copista giunse alla riga sul segno a cometa, la copiò parola per parola e tacque a margine. Di chi sia la mano, il foglio non lo dice."
+    "en": "The copyist copied the comet sign letter for letter. Margins where he argued with every line are blank here. Whose hand? The page is silent.",
+    "de": "Das Kometenzeichen schrieb der Abschreiber getreu ab. Sonst stritt er am Rand mit jeder Zeile, hier nicht. Wessen Hand? Das Blatt schweigt.",
+    "fr": "Le copiste reproduisit le signe-comète lettre à lettre. Ses marges discutent chaque ligne ; ici, rien. À qui la main ? La page se tait.",
+    "es": "El copista copió el signo del cometa letra a letra. Sus márgenes discuten cada línea; aquí, nada. ¿De quién es la mano? La hoja calla.",
+    "it": "Il copista copiò il segno della cometa lettera per lettera. I suoi margini discutono ogni riga; qui nulla. Di chi la mano? Il foglio tace."
    },
    "error_of_a_finger": {
-    "en": "At night in a boat the knight sighted a star by astrolabe; the swell threw him off by a finger. So the diary lay where it was found.",
-    "de": "Nachts im Boot peilte der Ritter einen Stern an; der Seegang verschob das Astrolabium um Fingerbreite. Darum lag das Tagebuch dort.",
-    "fr": "La nuit, en barque, le chevalier visait une étoile à l'astrolabe ; la houle le fit dévier d'un doigt. Voilà pourquoi le journal gisait là.",
-    "es": "De noche, en la barca, el caballero tomó una estrella con el astrolabio; el oleaje lo desvió un dedo. Por eso el diario estaba allí.",
-    "it": "Di notte, in barca, il cavaliere puntò una stella con l'astrolabio e il moto ondoso lo sviò di un dito. Per questo il diario giaceva lì."
+    "en": "Night in the boat. The swell put the astrolabe off by a finger; the knight landed not where he meant, but by the brothers. Error became map.",
+    "de": "Nacht im Boot. Wellen verschoben das Astrolabium um einen Finger; so landete der Ritter bei den Brüdern statt am Ziel. Irrtum wurde Karte.",
+    "fr": "Nuit en barque. La houle décala l'astrolabe d'un doigt ; le chevalier accosta non où il voulait, mais chez les frères. L'erreur fit carte.",
+    "es": "Noche en la barca. El oleaje desvió el astrolabio un dedo; el caballero no atracó donde quería sino junto a los hermanos. El error fue mapa.",
+    "it": "Notte in barca. Il rollio spostò l'astrolabio di un dito, e il cavaliere approdò non dove voleva ma dai fratelli. L'errore divenne mappa."
    }
   }
  },

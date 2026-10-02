@@ -157,6 +157,16 @@ var skip_progress := 0.0
 var skip_override := {}
 var skipped: Array[String] = []
 var veil: MeshInstance3D
+
+# The operator's own instruments (TABOO 0.022, ApparatusCore): a panel
+# for the robot and one for the surface, their video drawn from the
+# scene's telemetry by ScreenFeed.
+var apparatus := {}
+var panels := {}
+var panel_s := 0.0
+var field_log: Array = []
+var track: Array = []
+var track_s := 0.0
 var memory: MeshInstance3D
 var skip_icon: Label3D
 var ins_duck := 0.0
@@ -191,6 +201,7 @@ func _ready() -> void:
 	lang = PilotCore.language()
 	i18n = PilotCore.load_i18n()
 	insights = InsightCore.load_data()
+	apparatus = ApparatusCore.load_data()
 	# The insights' lines speak through the narrator like the others.
 	var lines := {}
 	for x in insights.get("insights", []):
@@ -917,6 +928,7 @@ func _build_close_up() -> void:
 	narrator.name = "Narrator"
 	add_child(narrator)
 	_build_insight()
+	_build_panels()
 
 
 ## In the headset the Prior's screen lives on the left wrist, read by
@@ -1058,6 +1070,7 @@ func _tick(dt: float) -> void:
 		_do(details[detail_i])
 		detail_i += 1
 	_effects()
+	_panels(dt)
 	if world == "room":
 		_clues(dt)
 	# The water climbs from the floor to the eyes in the 17 s before
@@ -1739,3 +1752,162 @@ func _skip_input() -> Dictionary:
 				cone):
 			on = true
 	return {"stick": stick, "grips": grips, "icon": on}
+
+
+# --- Instruments ---------------------------------------------------------------
+
+## Two small screens low in the view, the robot's on the left, the
+## surface's on the right, each with the name of the instrument above.
+func _build_panels() -> void:
+	for side in [["robot", -0.36], ["surface", 0.36]]:
+		var mi := MeshInstance3D.new()
+		var q := QuadMesh.new()
+		q.size = Vector2(0.256, 0.16)
+		mi.mesh = q
+		var m := StandardMaterial3D.new()
+		m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		m.no_depth_test = true
+		m.render_priority = 3
+		var img := ScreenFeed.blank()
+		m.albedo_texture = ImageTexture.create_from_image(img)
+		mi.material_override = m
+		mi.position = Vector3(side[1], -0.29, -0.62)
+		mi.visible = false
+		camera.add_child(mi)
+		var tag := _label(20, Vector3(side[1], -0.39, -0.62),
+			ScreenFeed.INK)
+		tag.width = 260
+		tag.render_priority = 3
+		panels[side[0]] = {"quad": mi, "tag": tag, "img": img, "item": {}}
+
+
+## The telemetry the screens draw, each tick at 8 Hz: what instrument the
+## beat shows in each place, and its picture from the scene as it is.
+func _panels(dt: float) -> void:
+	if apparatus.is_empty() or panels.is_empty():
+		return
+	track_s += dt
+	if world == "lake" and track_s >= 1.0:
+		track_s = 0.0
+		var h: Vector3 = _head()[0]
+		track.append(Vector2(h.x, h.z))
+		if track.size() > 60:
+			track.pop_front()
+	var h0: Vector3 = _head()[0]
+	field_log.append(ScreenFeed.field_nt(h0, _iron()))
+	if field_log.size() > ScreenFeed.W:
+		field_log.pop_front()
+	panel_s += dt
+	if panel_s < 0.125:
+		return
+	panel_s = 0.0
+	var quiet := beat_id in ApparatusCore.HOLY_BEATS or not insight.is_empty()
+	for where in panels:
+		var p: Dictionary = panels[where]
+		var it := {} if quiet or (where == "robot" and world != "lake") \
+			else ApparatusCore.screen_of(apparatus, beat_id, where)
+		p.item = it
+		p.quad.visible = not it.is_empty()
+		p.tag.visible = not it.is_empty()
+		if it.is_empty():
+			continue
+		p.tag.text = str(it.name_ru)
+		p.img.fill(ScreenFeed.BG)
+		_draw_feed(p.img, it)
+		(p.quad.material_override as StandardMaterial3D).albedo_texture \
+			.update(p.img)
+
+
+func _draw_feed(img: Image, it: Dictionary) -> void:
+	var hv := _head()
+	var head: Vector3 = hv[0]
+	var fwd: Vector3 = hv[1]
+	match str(it.video.kind):
+		"sonar":
+			ScreenFeed.sonar(img, _sonar_ranges(head, fwd), 12.0,
+				fmod(t, 2.0) / 2.0)
+		"curve":
+			var id := str(it.id)
+			if "sound_speed" in id:
+				var v: Array = []
+				for k in 60:
+					var d := lerpf(38.0, _depth(), float(k) / 59.0)
+					v.append(1480.0 if d < 50.0 else 1435.0)
+				ScreenFeed.curve(img, v, 1420.0, 1500.0)
+			elif "magnet" in id or "profiler" in id or "compass" in id:
+				ScreenFeed.curve(img, field_log, 54950.0, 55450.0, 55150.0)
+			else:
+				var v2: Array = []
+				for k in 60:
+					v2.append(_depth() - 0.02 * float(59 - k))
+				ScreenFeed.curve(img, v2, 0.0, 60.0)
+		"spectrogram":
+			var cols: Array = []
+			for k in 96:
+				var tt := t - float(95 - k) * 0.05
+				var ping := 1.0 if fmod(tt, 2.0) < 0.06 else 0.0
+				cols.append([0.35, 0.5 if world == "lake" else 0.1, 0.25,
+					0.15, 0.1, 0.1, ping, ping * 0.7])
+			ScreenFeed.spectrogram(img, cols)
+		"range":
+			ScreenFeed.range_bar(img, _ahead(head, fwd), 12.0)
+		"camera":
+			var r := _ahead(head, fwd)
+			ScreenFeed.camera_overlay(img, Vector2(0.5, 0.5)
+				if r < 3.0 else Vector2(-1, -1))
+		"map":
+			ScreenFeed.map(img, track, 8.0)
+		_:
+			ScreenFeed.range_bar(img, 0.0, 1.0)
+
+
+## What the sonar's beams meet: the walls, the things on the silt; never
+## the khachkar's shape as a picture to play with (it stays out).
+func _sonar_points() -> Array:
+	var pts: Array = []
+	if world != "lake":
+		return pts
+	for n in lake.get_node("Walls").get_children():
+		if n is Node3D and (n as Node3D).visible:
+			pts.append(_xf(n).origin)
+	for id in ["Amphora", "Drams", "EchoMug", "EchoBook", "EchoCoil"]:
+		if things.has(id) and (things[id] as Node3D).is_visible_in_tree():
+			pts.append(_xf(things[id]).origin)
+	return pts
+
+
+func _sonar_ranges(head: Vector3, fwd: Vector3) -> Array:
+	var out: Array = []
+	var pts := _sonar_points()
+	var f := Vector3(fwd.x, 0.0, fwd.z).normalized()
+	for i in 24:
+		var a := deg_to_rad(-60.0 + 5.0 * float(i) + 2.5)
+		var beam := f.rotated(Vector3.UP, -a)
+		var r := 99.0
+		for p in pts:
+			var to: Vector3 = p - head
+			to.y = 0.0
+			if to.length() < 12.0 and rad_to_deg(beam.angle_to(to)) <= 4.0:
+				r = minf(r, to.length())
+		out.append(r)
+	return out
+
+
+func _ahead(head: Vector3, fwd: Vector3) -> float:
+	var best := 99.0
+	for p in _sonar_points():
+		var to: Vector3 = p - head
+		if PilotCore.gaze_on(fwd, to, 15.0):
+			best = minf(best, to.length())
+	return best
+
+
+## Iron on the silt for the magnetometer: the rusted echoes; silver is
+## not magnetic, so the drams leave the curve quiet (the inventory's
+## point: the instrument does not flatter the lure).
+func _iron() -> Array:
+	var out: Array = []
+	for id in ["EchoMug", "EchoCoil"]:
+		if world == "lake" and things.has(id):
+			out.append({"at": _xf(things[id]).origin, "moment": 1600.0})
+	return out

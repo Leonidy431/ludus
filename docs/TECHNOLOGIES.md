@@ -54,6 +54,9 @@
 |---|---|---|
 | Пилот «Табу»: ритм серии, табу телом, 55 деталей | `godot/scripts/pilot_core.gd`, `pilot.gd`, `godot/data/pilot-1.json`, `pilot-details.json` | ТАБУ №0.015, `docs/story/PILOT_EPISODE_1_TABU_2026-10-02.md` |
 | **Инсайты-флешбеки**: память эпох по месту, порядку, времени, глубине, ступени помысла и неподвижности; часы стоят; пропуск стиком 1 с, рукоятями или взглядом/лучом на значок в мире | `godot/scripts/insight_core.gd`, `godot/data/pilot-insights.json`, `pilot.gd` `_insight` | `docs/HLD_INSIGHTS_FLASHBACKS_2026-10-02.md` |
+| **Аппараты оператора в игре**: опись 41 идеи из его репо, прибор бита на панели робота и поверхности | `godot/scripts/apparatus_core.gd`, `godot/data/apparatus.json` | `docs/HLD_APPARATUS_IN_GAME_2026-10-02.md`, `docs/story/OPERATOR_APPARATUS_2026-10-02.md` |
+| **Видео приборов кодом** (`ScreenFeed`): сонар, магнитометр в нТл, спектр гидрофона, дальность, камера, карта — из телеметрии сцены, 8 Гц, без видеофайлов | `godot/scripts/screen_feed.gd` | ТАБУ №0.022 |
+| **Контракт в духе «Ведьмака»** (`ContractCore`): улики → бестиарий → подготовка → встреча → проба → лаборатория → выбор; длина рыбы по силе эха | `godot/scripts/contract_core.gd`, `godot/data/contract-akula.json` | `docs/HLD_CONTRACT_AKULA_2026-10-02.md` |
 | Улики «под и над», классы находок | `PilotCore.clue_seen`, `check_finds` | ТАБУ №0.017, `docs/HLD_PANDORA_SURPASS_2026-10-02.md` |
 | Лестница помысла (страсти) | `godot/scripts/passion_core.gd` | ТАБУ №0.2 п. 8 |
 | Отбор «из N лучших K» | `scripts/decisions/*.py`, `scripts/lake/lake_objects.py` | ТАБУ №0.07, `docs/OBJECT_SELECTION_TECHNOLOGY.md` |

@@ -11,13 +11,13 @@ class_name ScreenFeed
 extends RefCounted
 
 const KINDS := ["sonar", "curve", "spectrogram", "range", "status",
-	"camera"]
+	"camera", "map"]
 const W := 192
 const H := 120
 ## The instrument palette: cyan of the instrument class (TABOO 0.38).
 const INK := Color(0.45, 0.92, 1.0)
-const DIM := Color(0.10, 0.30, 0.36)
-const BG := Color(0.02, 0.05, 0.06)
+const DIM := Color(0.14, 0.40, 0.46)
+const BG := Color(0.03, 0.08, 0.10)
 const WARN := Color(1.0, 0.72, 0.35)
 
 
@@ -109,6 +109,51 @@ static func range_bar(img: Image, metres: float, max_m: float) -> void:
 		var x := 8 + int(float(i) / 10.0 * float(W - 16))
 		for y in range(H / 2 + 8, H / 2 + 14):
 			_put(img, x, y, DIM)
+
+
+## A camera's overlay: frame corners and, when the instrument has found
+## something, a box around it (target in 0..1 screen coordinates and its
+## size).  The picture itself is the robot's own view; the overlay is
+## what the code of the operator's camera adds to it.
+static func camera_overlay(img: Image, target := Vector2(-1, -1),
+		size := 0.2) -> void:
+	for k in 12:
+		for c in [[k, 2], [2, k], [W - 1 - k, 2], [W - 3, k],
+				[k, H - 3], [2, H - 1 - k], [W - 1 - k, H - 3],
+				[W - 3, H - 1 - k]]:
+			_put(img, c[0], c[1], INK)
+	if target.x < 0.0:
+		return
+	var x0 := int((target.x - size / 2.0) * float(W))
+	var x1 := int((target.x + size / 2.0) * float(W))
+	var y0 := int((target.y - size / 2.0) * float(H))
+	var y1 := int((target.y + size / 2.0) * float(H))
+	for x in range(x0, x1 + 1):
+		_put(img, x, y0, WARN)
+		_put(img, x, y1, WARN)
+	for y in range(y0, y1 + 1):
+		_put(img, x0, y, WARN)
+		_put(img, x1, y, WARN)
+
+
+## A map of the bottom: a grid and the track of the robot (points in
+## metres, x right and z down the screen), the newest point bright.
+static func map(img: Image, track: Array, half_m: float) -> void:
+	for x in range(0, W, 16):
+		for y in range(0, H, 2):
+			_put(img, x, y, DIM)
+	for y in range(0, H, 16):
+		for x in range(0, W, 2):
+			_put(img, x, y, DIM)
+	var n := track.size()
+	for i in n:
+		var p: Vector2 = track[i]
+		var x := W / 2 + int(p.x / half_m * float(W / 2))
+		var y := H / 2 + int(p.y / half_m * float(H / 2))
+		var c := INK if i == n - 1 else INK.darkened(0.5)
+		for d in 2:
+			_put(img, x + d, y, c)
+			_put(img, x, y + d, c)
 
 
 static func _put(img: Image, x: int, y: int, c: Color) -> void:

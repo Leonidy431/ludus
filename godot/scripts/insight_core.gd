@@ -211,6 +211,12 @@ static func check(data: Dictionary, pilot: Dictionary) -> Array:
 				bad.append("%s: not third person" % id)
 		if not beats.has(str(x.get("bridge_to", ""))):
 			bad.append("%s: bridges to nothing" % id)
+		# TABOO 0.021 item 1 and TABOO 0.023 item 5: an insight explains a
+		# law of the world and says how every faith and none reads it.
+		if str(x.get("explains", "")) == "":
+			bad.append("%s: explains no law of the world" % id)
+		if str(x.get("all_faiths", "")) == "":
+			bad.append("%s: no reading for every faith" % id)
 		var img := str(x.get("image", ""))
 		if img != "" and not img.begins_with("res://art/prerender/"):
 			bad.append("%s: an image outside the prerenders" % id)

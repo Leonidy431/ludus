@@ -1,0 +1,280 @@
+{
+  "id": "contract_akula",
+  "title_ru": "Контракт: Акула Иссык-Куля",
+  "doc": "docs/story/MISSION_AKULA_ISSYK_KUL_2026-10-02.md",
+  "hld": "docs/HLD_CONTRACT_AKULA_2026-10-02.md",
+  "rule": "A contract in the manner of The Witcher, by the Constitution: no weapon, no kill, no randomness. The loot is knowledge and evidence; the same deeds give the same outcome.",
+  "creature": {
+    "legend_ru": "Мега-щука, Акула Иссык-Куля: в три метра, ломает сети, перекусывает трос",
+    "truth_ru": "Старый судак, Sander lucioperca, вселён в 1954–1956 годах; клыки, глаза с отражающим слоем, охотится в сумерках у свай",
+    "species_id": "sudak",
+    "latin": "Sander lucioperca",
+    "length_m": 1.18,
+    "mass_kg": 13.0,
+    "depth_m": [
+      25.0,
+      35.0
+    ],
+    "status": "introduced",
+    "lair": "old_piles",
+    "lair_ru": "сваи затопленной пристани на 32 м",
+    "mass_note": "1.18 m is near the top of the species (usually up to 1 m); by length-weight 13-16 kg; no Issyk-Kul record found, to verify"
+  },
+  "sonar": {
+    "formula": "TS = 20 lg L - 67.4",
+    "source": "Foote 1987, 38 kHz: physoclists (gadoids) TS = 20 lg L - 67.4, clupeoids -71.9. Zander is a physoclist, but percid coefficients are to verify (Frouzova et al. 2005). One fish scatters +-3..5 dB with tilt, so -26 dB reads as about 0.8-1.7 m.",
+    "freq_khz": 38.0,
+    "a": 20.0,
+    "b": -67.4
+  },
+  "stages": [
+    {
+      "id": "notice",
+      "kind": "notice",
+      "beat_ru": "Записка рыбаков на причале"
+    },
+    {
+      "id": "clues",
+      "kind": "clues",
+      "need": 4
+    },
+    {
+      "id": "identify",
+      "kind": "identify",
+      "need_facts": [
+        "tooth_marks",
+        "scale",
+        "sonar_ts",
+        "dusk_pattern"
+      ]
+    },
+    {
+      "id": "prepare",
+      "kind": "prepare",
+      "need_prep": [
+        "red_filter",
+        "tether_sleeve",
+        "dusk"
+      ]
+    },
+    {
+      "id": "encounter",
+      "kind": "encounter"
+    },
+    {
+      "id": "sample",
+      "kind": "sample"
+    },
+    {
+      "id": "lab",
+      "kind": "lab"
+    },
+    {
+      "id": "choice",
+      "kind": "choice"
+    },
+    {
+      "id": "after",
+      "kind": "after"
+    }
+  ],
+  "clues": [
+    {
+      "id": "tether_nick",
+      "fact": "tooth_marks",
+      "where": "surface",
+      "line_ru": "На оболочке троса — две параллельные зарубки, как от клыков. Не камень и не винт."
+    },
+    {
+      "id": "net_hole",
+      "fact": "tooth_marks",
+      "where": "surface",
+      "line_ru": "В сети рыбаков дыра с рваными краями, а не перерезанная. Рвали изнутри, головой."
+    },
+    {
+      "id": "scale_in_mesh",
+      "fact": "scale",
+      "where": "surface",
+      "line_ru": "В ячее застряла чешуя с гребнем шипиков по краю — ктеноидная, как у окуневых. У щуки чешуя циклоидная, с гладким краем."
+    },
+    {
+      "id": "sonar_echo",
+      "fact": "sonar_ts",
+      "where": "surface",
+      "line_ru": "Эхолот лодки с расщеплённым лучом видит одиночную цель у свай: сила эха минус двадцать шесть децибел. Рыба больше метра, но не три."
+    },
+    {
+      "id": "dusk_log",
+      "fact": "dusk_pattern",
+      "where": "robot",
+      "line_ru": "Журнал аппарата: удары по тросу — только в сумерках и только при белой лампе. Свет собирает чебачка, а хищник бьёт из тёмного края."
+    },
+    {
+      "id": "fisher_story",
+      "fact": "legend",
+      "where": "surface",
+      "line_ru": "Старый рыбак клянётся, что видел пасть шире ведра. Ведро у него маленькое."
+    }
+  ],
+  "bestiary": {
+    "id": "zander_not_pike",
+    "title_ru": "Не щука, а судак",
+    "text_ru": "Ктеноидная чешуя, клыки, глаза с отражающим слоем: яркий свет слепит его, в сумерках он видит лучше добычи. Вселён в озеро в 1950-х, держится у свай и коряг.",
+    "explains_ru": "Легенда больше правды, но правда тоже страшна: мерь, а не верь на слово."
+  },
+  "prep": [
+    {
+      "id": "red_filter",
+      "line_ru": "Тёмно-красный фильтр на лампу (не короче 660 нм): оранжево-красный судак видит, тёмно-красный ему тусклее, а камера видит."
+    },
+    {
+      "id": "tether_sleeve",
+      "line_ru": "Спиральный рукав на трос у аппарата: клык соскальзывает."
+    },
+    {
+      "id": "dusk",
+      "line_ru": "Выход в сумерки: судак выходит к сваям сам, искать его не нужно."
+    },
+    {
+      "id": "white_light",
+      "line_ru": "Белый прожектор на полную.",
+      "wrong": true,
+      "why_ru": "Слепит рыбу и собирает к аппарату чебачка: хищник бьёт по тросу из темноты, проба невозможна."
+    }
+  ],
+  "encounter": {
+    "max_speed_m_s": 0.3,
+    "min_dist_m": 0.4,
+    "max_dist_m": 0.8,
+    "hold_s": 3.0,
+    "light_nm_min": 660.0,
+    "flee_line_ru": "Он ушёл в сваи. Не беда: завтра сумерки снова.",
+    "hold_line_ru": "Он стоит в тёмно-красном свете, как в своей темноте, и смотрит на аппарат."
+  },
+  "lab": [
+    {
+      "id": "uv_oil",
+      "line_ru": "Под ультрафиолетом слизь светится голубым — дизельная плёнка. Такую сливают с моторных лодок у южного мыса.",
+      "points_to": "sector_south_cape"
+    },
+    {
+      "id": "fibres",
+      "line_ru": "Под микроскопом — синие волокна капрона: старая сеть, а не пластик с берега.",
+      "points_to": "ghost_net"
+    },
+    {
+      "id": "brass_spoon",
+      "line_ru": "В углу пасти — латунная блесна с клеймом пропавшей экспедиции 2019 года.",
+      "points_to": "expedition_2019"
+    }
+  ],
+  "choices": [
+    {
+      "id": "release_tagged",
+      "label_ru": "Отпустить с меткой",
+      "line_ru": "Ихтиолог вживляет ему акустическую метку, и рыбу на спуске возвращают на глубину. Приёмник у буя будет слышать метку там, где он ходит.",
+      "bonus": {
+        "wisdom": 2,
+        "erudition": 1
+      },
+      "flags": [
+        "tag_pings",
+        "piles_guarded"
+      ],
+      "cost_ru": "Ночь работы: поднятую с 32 м рыбу раздувает пузырь, её надо вернуть на глубину живой. Чебачок у свай по-прежнему под ударом; рыбаки ворчат."
+    },
+    {
+      "id": "hand_over",
+      "label_ru": "Передать ихтиологам",
+      "line_ru": "Вселённый хищник уходит в институт: возраст прочтут по чешуе, корм — по желудку.",
+      "bonus": {
+        "erudition": 2,
+        "charisma": 1
+      },
+      "flags": [
+        "shoal_recovers",
+        "piles_open"
+      ],
+      "cost_ru": "Рыба из института не вернётся. Сваи остаются без сторожа: к астролябии теперь может подойти и чужой аппарат."
+    },
+    {
+      "id": "sell",
+      "label_ru": "Продать перекупщику",
+      "line_ru": "Перекупщик платит наличными и спрашивает, где сваи. Он уже знает, что там лежит.",
+      "bonus": {
+        "cunning": 1
+      },
+      "flags": [
+        "buyer_knows_piles"
+      ],
+      "passion": "avarice",
+      "cost_ru": "Цена растёт сама: тот, кто купил рыбу, купил и место. А торговать уловом с озера под запретом промысла нельзя."
+    }
+  ],
+  "treasure": {
+    "id": "astrolabe",
+    "line_ru": "Под сваями, в иле — бронзовый диск с кольцом. Астролябия, которую рыбак назвал бы сокровищем, а писец — свидетелем.",
+    "rule": "hand-over",
+    "holy": false
+  },
+  "narration": {
+    "notice": "На доске у причала — записка рыбаков: «Акула рвёт сети и трос. Кто поймает — тому уха и спасибо».",
+    "identify": "Он сложил зарубки, чешую и эхо. Чудовище стало рыбой — и от этого не стало меньше.",
+    "encounter": "В тёмно-красном луче хищник почти не замечает лампы. Перед ним только аппарат, который никуда не торопится.",
+    "after_release": "Метка ушла в темноту у свай. Теперь у озера есть сторож, которого слышно.",
+    "after_hand": "Рыбу увезли в институт, назад она не вернётся. Сваи стоят без сторожа, и ночь вокруг них стала тише.",
+    "after_sell": "Перекупщик ушёл с рыбой и с местом. Утром у свай была чужая лодка."
+  },
+  "narration_i18n": {
+    "notice": {
+      "en": "On the board by the pier, a fishermen's note: \"The Shark tears our nets and the tether. Whoever catches it gets fish soup and thanks.\"",
+      "de": "Am Brett beim Steg ein Zettel der Fischer: „Der Hai zerreißt Netze und Kabel. Wer ihn fängt, bekommt Fischsuppe und Dank.“",
+      "fr": "Sur le panneau du ponton, un mot des pêcheurs : « Le Requin déchire filets et câble. À qui l'attrape : soupe de poisson et merci. »",
+      "es": "En el tablón del muelle, una nota de pescadores: «El Tiburón rompe redes y cable. Quien lo atrape tendrá sopa de pescado y gracias».",
+      "it": "Sulla bacheca del molo, un biglietto dei pescatori: «Lo Squalo strappa reti e cavo. A chi lo prende, zuppa di pesce e grazie»."
+    },
+    "identify": {
+      "en": "He laid the tooth marks, the scale and the echo side by side. The monster became a fish, and was no smaller for it.",
+      "de": "Er legte Zahnspuren, Schuppe und Echo nebeneinander. Das Ungeheuer wurde zum Fisch und war darum nicht kleiner.",
+      "fr": "Il rapprocha les entailles, l'écaille et l'écho. Le monstre devint un poisson, et n'en fut pas plus petit.",
+      "es": "Juntó las marcas de dientes, la escama y el eco. El monstruo se volvió pez, y no por eso se hizo menor.",
+      "it": "Mise insieme i segni dei denti, la scaglia e l'eco. Il mostro divenne un pesce, e non per questo più piccolo."
+    },
+    "encounter": {
+      "en": "In the deep-red beam the predator barely notices the lamp. Before it there is only the machine, in no hurry at all.",
+      "de": "Im tiefroten Strahl bemerkt der Räuber die Lampe kaum. Vor ihm nur das Gerät, das es nirgendwohin eilig hat.",
+      "fr": "Dans le faisceau rouge sombre, le prédateur remarque à peine la lampe. Devant lui, seul l'engin, qui ne se presse pas.",
+      "es": "En el haz rojo oscuro el depredador apenas nota la lámpara. Ante él solo está la máquina, que no tiene ninguna prisa.",
+      "it": "Nel fascio rosso cupo il predatore quasi non nota la lampada. Davanti a lui solo la macchina, che non ha alcuna fretta."
+    },
+    "after_release": {
+      "en": "The tag went into the dark by the piles. Now the lake has a watchman one can hear.",
+      "de": "Die Marke verschwand im Dunkel bei den Pfählen. Nun hat der See einen Wächter, den man hören kann.",
+      "fr": "La balise s'en alla dans le noir, près des pieux. Le lac a désormais un gardien qu'on entend.",
+      "es": "La marca se fue a la oscuridad junto a los pilotes. Ahora el lago tiene un guardián al que se oye.",
+      "it": "Il marcatore sparì nel buio tra i pali. Ora il lago ha un guardiano che si può sentire."
+    },
+    "after_hand": {
+      "en": "They took the fish to the institute; it will not come back. The piles stand unguarded, and the night around them grew quieter.",
+      "de": "Der Fisch kam ins Institut und kehrt nicht zurück. Die Pfähle stehen unbewacht, und die Nacht um sie wurde stiller.",
+      "fr": "Le poisson partit à l'institut, il ne reviendra pas. Les pieux restent sans gardien, et la nuit autour devint plus calme.",
+      "es": "Llevaron el pez al instituto; no volverá. Los pilotes quedan sin guardián y la noche a su alrededor se volvió más quieta.",
+      "it": "Il pesce fu portato all'istituto e non tornerà. I pali restano senza guardiano, e la notte intorno si fece più quieta."
+    },
+    "after_sell": {
+      "en": "The dealer left with the fish and with the place. By morning a stranger's boat stood over the piles.",
+      "de": "Der Aufkäufer ging mit dem Fisch und mit dem Ort. Am Morgen lag ein fremdes Boot über den Pfählen.",
+      "fr": "Le revendeur partit avec le poisson et avec l'endroit. Au matin, un bateau inconnu mouillait au-dessus des pieux.",
+      "es": "El revendedor se fue con el pez y con el lugar. Por la mañana había un bote ajeno sobre los pilotes.",
+      "it": "Il ricettatore se ne andò col pesce e col luogo. Al mattino una barca sconosciuta stava sopra i pali."
+    }
+  },
+  "narration_bridge": {
+    "notice": "clues",
+    "identify": "prepare",
+    "encounter": "lab",
+    "after_release": "episode2",
+    "after_hand": "episode2",
+    "after_sell": "episode2"
+  }
+}
