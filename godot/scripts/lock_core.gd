@@ -65,13 +65,24 @@ static func start(data: Dictionary, id: String) -> Dictionary:
 		"open": false, "turns": 0}
 	for k in l.tiles:
 		st.cleared[k] = 0
+	st.board = _fresh(st)
+	if find_move(st).is_empty():
+		_turn(st)
+	return st
+
+
+## A board with no run of three, drawn from the lock's stream: each
+## tile steps through the kinds until it makes no three with its left or
+## upper pair.
+static func _fresh(st: Dictionary) -> Array:
+	var w: int = st.w
+	var h: int = st.h
+	var kinds: int = st.kinds
 	var b: Array = []
 	b.resize(w * h)
 	for y in h:
 		for x in w:
 			var t := _tile(st, kinds)
-			# No match at the start: step through the kinds until the
-			# tile does not make three with its left or upper pair.
 			for _i in kinds:
 				var row: bool = x >= 2 and b[y * w + x - 1] == t \
 					and b[y * w + x - 2] == t
@@ -81,10 +92,7 @@ static func start(data: Dictionary, id: String) -> Dictionary:
 					break
 				t = (t + 1) % kinds
 			b[y * w + x] = t
-	st.board = b
-	if find_move(st).is_empty():
-		_turn(st)
-	return st
+	return b
 
 
 ## Cells in a run of three or more, in a row or a column.
@@ -147,7 +155,10 @@ static func find_move(st: Dictionary) -> Array:
 
 
 ## The board turns over by a fixed rule when no move is left: rotated a
-## quarter, then re-coloured one step, until a move exists.  No charge.
+## quarter and re-coloured one step, up to eight times; if that finds no
+## move, fresh boards are drawn from the stream; and as the last resort a
+## move is laid by hand (A A B A in the first row).  So a board always
+## ends with no run and at least one move.  No charge.
 static func _turn(st: Dictionary) -> void:
 	for _i in 8:
 		var w: int = st.w
@@ -162,6 +173,25 @@ static func _turn(st: Dictionary) -> void:
 		st.turns = int(st.turns) + 1
 		if matches(st).is_empty() and not find_move(st).is_empty():
 			return
+	for _j in 32:
+		st.board = _fresh(st)
+		st.turns = int(st.turns) + 1
+		if not find_move(st).is_empty():
+			return
+	var a := int(st.board[st.w]) if int(st.w) < st.board.size() else 0
+	var k := (a + 1) % int(st.kinds)
+	var other := (k + 1) % int(st.kinds)
+	st.board[0] = k
+	st.board[1] = k
+	st.board[2] = other
+	st.board[3] = k
+	while not matches(st).is_empty():
+		var hit: Array = matches(st)
+		for i in hit:
+			if int(i) > 3:
+				st.board[i] = (int(st.board[i]) + 2) % int(st.kinds)
+		if matches(st) == hit:
+			break
 
 
 ## A swap of two neighbours.  If it makes no match nothing changes (no

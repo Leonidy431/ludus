@@ -34,6 +34,27 @@ func run(t: Object) -> void:
 	var same := LockCore.swap(d, a, 0, 2)
 	t._check(same.moves == 0 and same.board == a.board,
 		"a swap of cells that are not neighbours does nothing")
+	# Step 20 of the roadmap: whatever the seed, a board starts with no
+	# run and with a move, and keeps a move after every swap.
+	var many := d.duplicate(true)
+	var ok := true
+	for n in 60:
+		var l: Dictionary = many.locks[0].duplicate(true)
+		l.id = "probe_%d" % n
+		many.locks.append(l)
+		var s := LockCore.start(many, l.id)
+		if not LockCore.matches(s).is_empty() \
+				or LockCore.find_move(s).is_empty():
+			ok = false
+		for i in 12:
+			var m := LockCore.find_move(s)
+			if m.is_empty():
+				ok = false
+				break
+			s = LockCore.swap(many, s, m[0], m[1])
+			if s.open:
+				break
+	t._check(ok, "60 seeds: no run at the start, a move always left")
 	for id in ["pult_gateway", "rov_server", "backup_drive",
 			"expedition_safe", "buyer_safe"]:
 		var p := _play(d, id)

@@ -2,8 +2,8 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 455
-- документов: 213
+- файлов кода: 457
+- документов: 215
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -30,7 +30,7 @@
 - [.github/workflows/raw-audio-pass.yml](../.github/workflows/raw-audio-pass.yml) — Audio pass over the 99 backlog repos as a git pass (operator,
 - [.github/workflows/raw-osint-cycle.yml](../.github/workflows/raw-osint-cycle.yml) — OSINT pass over the 99 backlog repos every 1.5 hours (CLAUDE.md TABOO
 
-## Игра для шлема: код (GDScript) (76)
+## Игра для шлема: код (GDScript) (77)
 
 - [godot/scripts/apparatus_core.gd](../godot/scripts/apparatus_core.gd) — The operator's own apparatus in the game (CLAUDE.md TABOO 0.022): 41
 - [godot/scripts/atlas_core.gd](../godot/scripts/atlas_core.gd) — "The Water Atlas" read at the lectern of the scriptorium (CLAUDE.md
@@ -58,6 +58,7 @@
 - [godot/scripts/deeds/deeds_d.gd](../godot/scripts/deeds/deeds_d.gd) — Group d of the small acts at the hearts of places (PlaceDeeds; the
 - [godot/scripts/deeds/deeds_e.gd](../godot/scripts/deeds/deeds_e.gd) — Group e of the small acts at the hearts of places: storm, Kiberslav and
 - [godot/scripts/deeds/place_deeds.gd](../godot/scripts/deeds/place_deeds.gd) — The small acts at the hearts of 26 places (docs/HLD_L3_PLACE_DEEDS_
+- [godot/scripts/destiny_core.gd](../godot/scripts/destiny_core.gd) — Destiny: the loot of the game is not things but the person (operator,
 - [godot/scripts/dialogue_core.gd](../godot/scripts/dialogue_core.gd) — The rules of a talk with a mentor, ported from the web game's
 - [godot/scripts/dive.gd](../godot/scripts/dive.gd) — The dive scene: the ROV goes down the Issyk-Kul shore.
 - [godot/scripts/dive_batch.gd](../godot/scripts/dive_batch.gd) — Fewer draw calls in the dive (docs/APK_REQUIREMENTS.md, blocker Б-1:
@@ -137,7 +138,7 @@
 - [godot/tools/stress_place_switch.gd](../godot/tools/stress_place_switch.gd) — Switch places fast, again and again, to shake out a crash of the
 - [godot/tools/witness_wav_check.py](../godot/tools/witness_wav_check.py) — Measure the offline render of the path of the witness.
 
-## Игра для шлема: тесты (54)
+## Игра для шлема: тесты (55)
 
 - [godot/tests/confession_walker.gd](../godot/tests/confession_walker.gd) — A stand-in for the witness path in test_confession.gd: the sheet reads
 - [godot/tests/deeds/panel_text.gd](../godot/tests/deeds/panel_text.gd) — The heart's panel of a place as location.gd builds it, measured with
@@ -161,6 +162,7 @@
 - [godot/tests/test_confession.gd](../godot/tests/test_confession.gd) — The preparation sheet in the headset (ConfessionSheet), the static
 - [godot/tests/test_contract.gd](../godot/tests/test_contract.gd) — The contract "The Shark of Issyk-Kul" (ContractCore): its data keeps
 - [godot/tests/test_data_packs.gd](../godot/tests/test_data_packs.gd) — Data packs beside the APK (DataPacks; docs/decisions/SIZE_STRATEGIES_
+- [godot/tests/test_destiny.gd](../godot/tests/test_destiny.gd) — Destiny (DestinyCore): seven branches on the seven attributes, seven
 - [godot/tests/test_dive_batch.gd](../godot/tests/test_dive_batch.gd) — The dive's batches (DiveBatch, Б-1 in docs/APK_REQUIREMENTS.md).
 - [godot/tests/test_haptics.gd](../godot/tests/test_haptics.gd) — The shared table of controller pulses (Haptics; DEF-008, blind spot
 - [godot/tests/test_insights.gd](../godot/tests/test_insights.gd) — Insights (InsightCore, docs/HLD_INSIGHTS_FLASHBACKS_2026-10-02.md):
@@ -439,7 +441,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (156)
+## Документация проекта (158)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -464,6 +466,7 @@
 - [docs/HLD_BELL_RULES_TYPIKON_2026-09-30.md](../docs/HLD_BELL_RULES_TYPIKON_2026-09-30.md) 📄 — HLD: устав звона из Типикона и книги о колоколе (веб и шлем)
 - [docs/HLD_CONTRACT_AKULA_2026-10-02.md](../docs/HLD_CONTRACT_AKULA_2026-10-02.md) 📄 — HLD: контракт «Акула Иссык-Куля» — поймать Мега-щуку (2026-10-02)
 - [docs/HLD_DEEDS_WEB_PARITY_2026-10-02.md](../docs/HLD_DEEDS_WEB_PARITY_2026-10-02.md) 📄 — HLD — паритет 26 дел мест: шлем и веб (2026-10-02)
+- [docs/HLD_DESTINY_BRANCHES_FINALES_2026-10-02.md](../docs/HLD_DESTINY_BRANCHES_FINALES_2026-10-02.md) 📄 — HLD: «лут» — ветки развития персонажа и семь финалов «ближе к раю или ближе к аду» (2026-10-02)
 - [docs/HLD_DIVE_BIOMES_BUBBLES_2026-09-30.md](../docs/HLD_DIVE_BIOMES_BUBBLES_2026-09-30.md) 📄 — HLD: пять подводных биомов, пузырьковые столбы в ритме дыхания, термоклин видим и слышим
 - [docs/HLD_ENGINE_BUILD_2026-10-02.md](../docs/HLD_ENGINE_BUILD_2026-10-02.md) 📄 — HLD — свой шаблон движка Godot для шлема: без лишних библиотек (2026-10-02)
 - [docs/HLD_EVENING_WATCH_ROPE_2026-09-30.md](../docs/HLD_EVENING_WATCH_ROPE_2026-09-30.md) 📄 — HLD: вечерний дозор над помыслами и вервица-метроном дыхания — в APK
@@ -522,6 +525,7 @@
 - [docs/RAW_D6_HLD_2026-09-30.md](../docs/RAW_D6_HLD_2026-09-30.md) 📄 — HLD: раннер дефицитов по 99 репо и D6 — собственный рисунок нейтральных слотов (2026-09-30)
 - [docs/RAW_RUNNER_ROUNDS.md](../docs/RAW_RUNNER_ROUNDS.md) 📄 — Deficit runner: rounds of one full turn
 - [docs/RESULTS_2026-09-29.md](../docs/RESULTS_2026-09-29.md) 📄 — Результаты 2026-09-29 — сводка для оператора (до коммита в документацию)
+- [docs/ROADMAP_99_CALIBRATION_2026-10-02.md](../docs/ROADMAP_99_CALIBRATION_2026-10-02.md) 📄 — Дорожная карта 99 шагов: «Калибровка акустической матрицы» — головоломка пространственной связи элементов (2026-10-02)
 - [docs/ROV_LAKE_FRONTEND_INTEGRATION.md](../docs/ROV_LAKE_FRONTEND_INTEGRATION.md) 📄 — ROV Lake Tab — Ludus Frontend Integration
 - [docs/SACRAMENTS_VR_SCENES.md](../docs/SACRAMENTS_VR_SCENES.md) 📄 — Семь таинств в VR-сцене: свидетель, а не участник
 - [docs/SOUND_DESIGN_SYSTEM.md](../docs/SOUND_DESIGN_SYSTEM.md) 📄 — Ludus Sound Design System — Beautiful Orchestral & Choir Audio
