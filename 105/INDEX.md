@@ -2,8 +2,8 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 423
-- документов: 180
+- файлов кода: 426
+- документов: 182
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -29,7 +29,7 @@
 - [.github/workflows/raw-audio-pass.yml](../.github/workflows/raw-audio-pass.yml) — Audio pass over the 99 backlog repos as a git pass (operator,
 - [.github/workflows/raw-osint-cycle.yml](../.github/workflows/raw-osint-cycle.yml) — OSINT pass over the 99 backlog repos every 1.5 hours (CLAUDE.md TABOO
 
-## Игра для шлема: код (GDScript) (66)
+## Игра для шлема: код (GDScript) (67)
 
 - [godot/scripts/atlas_core.gd](../godot/scripts/atlas_core.gd) — "The Water Atlas" read at the lectern of the scriptorium (CLAUDE.md
 - [godot/scripts/atlas_traces.gd](../godot/scripts/atlas_traces.gd) — The knight's traces in the lake and the chronicle's choice (TABOO
@@ -76,6 +76,7 @@
 - [godot/scripts/nav.gd](../godot/scripts/nav.gd) — Moving between the hub and the dive (autoload "Nav").
 - [godot/scripts/obitel_layout.gd](../godot/scripts/obitel_layout.gd) — The obitel's objects in the hub: the K proxies chosen from the honest
 - [godot/scripts/passion_core.gd](../godot/scripts/passion_core.gd) — The meeting of a passion on the road, ported from the web game.
+- [godot/scripts/pilot_core.gd](../godot/scripts/pilot_core.gd) — Episode 1 of "The Water Atlas", "Taboo": the first fifteen minutes
 - [godot/scripts/places_lectern.gd](../godot/scripts/places_lectern.gd) — The road of places in the courtyard: a birch-bark board on two oak
 - [godot/scripts/posoh_core.gd](../godot/scripts/posoh_core.gd) — The operator's own hydrophone, "model 1" of the posoh repo, mounted
 - [godot/scripts/rim_light.gd](../godot/scripts/rim_light.gd) — Reading things against the water by light, not by paint (operator,
@@ -121,7 +122,7 @@
 - [godot/tools/stress_place_switch.gd](../godot/tools/stress_place_switch.gd) — Switch places fast, again and again, to shake out a crash of the
 - [godot/tools/witness_wav_check.py](../godot/tools/witness_wav_check.py) — Measure the offline render of the path of the witness.
 
-## Игра для шлема: тесты (47)
+## Игра для шлема: тесты (48)
 
 - [godot/tests/confession_walker.gd](../godot/tests/confession_walker.gd) — A stand-in for the witness path in test_confession.gd: the sheet reads
 - [godot/tests/deeds/panel_text.gd](../godot/tests/deeds/panel_text.gd) — The heart's panel of a place as location.gd builds it, measured with
@@ -154,6 +155,7 @@
 - [godot/tests/test_module_loader.gd](../godot/tests/test_module_loader.gd) — Big modules load in the background (ModuleLoader, CLAUDE.md TABOO
 - [godot/tests/test_obitel.gd](../godot/tests/test_obitel.gd) — The obitel's objects in the hub (TABOO 0.07, 0.32).  Called from
 - [godot/tests/test_passion.gd](../godot/tests/test_passion.gd) — The meeting of a passion (PassionCore) against the JS reference
+- [godot/tests/test_pilot.gd](../godot/tests/test_pilot.gd) — Episode 1 "Taboo" (PilotCore, TABOO 0.015): the rhythm of a series
 - [godot/tests/test_place_deeds.gd](../godot/tests/test_place_deeds.gd) — The small acts at the hearts of 26 places (PlaceDeeds, phase L3 of
 - [godot/tests/test_place_sound.gd](../godot/tests/test_place_sound.gd) — The sound of the 99 places and of the courtyard (track A of docs/
 - [godot/tests/test_posoh.gd](../godot/tests/test_posoh.gd) — The posoh hydrophone (PosohCore, docs/HLD_POSOH_HYDROPHONE_2026-09-30)
@@ -197,9 +199,10 @@
 - [scripts/godot/make_trial_fixture.js](../scripts/godot/make_trial_fixture.js) — Write godot/tests/trial_fixture.json from public/ludus/ludus-missions.js:
 - [scripts/godot/obb_forecast.py](../scripts/godot/obb_forecast.py) — Forecast of the headset build's weight: when do we need an OBB?
 
-## Выборы из честного пула по 48 параметрам (3)
+## Выборы из честного пула по 48 параметрам (4)
 
 - [scripts/decisions/engine_build_choice.py](../scripts/decisions/engine_build_choice.py) — One way to make the headset engine smaller, chosen in the open.
+- [scripts/decisions/pilot_20mb.py](../scripts/decisions/pilot_20mb.py) — What fills the 20 MB the own engine frees: the series pilot first.
 - [scripts/decisions/size_strategy_choice.py](../scripts/decisions/size_strategy_choice.py) — Seven ways to fit the game in the headset, chosen in the open.
 - [scripts/decisions/stoplist_choice.py](../scripts/decisions/stoplist_choice.py) — One decision for the church-word stop-list, chosen in the open.
 
@@ -401,7 +404,7 @@
 
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 
-## Документация проекта (129)
+## Документация проекта (131)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -416,6 +419,7 @@
 - [docs/DEMIURGE_ARCHITECTURE.md](../docs/DEMIURGE_ARCHITECTURE.md) 📄 — Ludus Demiurge Engine — Graph-Based World Simulator
 - [docs/GAME_TAB_INTEGRATION.md](../docs/GAME_TAB_INTEGRATION.md) 📄 — Ludus Game Tab Integration (U1)
 - [docs/HLD_12_STORIES_HEADSET_2026-10-02.md](../docs/HLD_12_STORIES_HEADSET_2026-10-02.md) 📄 — HLD — 12 сюжетов для шлема, подгрузка модулей, прорыв по слепым зонам (2026-10-02)
+- [docs/HLD_20MB_PILOT_2026-10-02.md](../docs/HLD_20MB_PILOT_2026-10-02.md) 📄 — HLD: 20 МБ прорыва — пилот «Табу» в шлем (2026-10-02)
 - [docs/HLD_APK_GRAPHICS_SOUND_2026-10-01.md](../docs/HLD_APK_GRAPHICS_SOUND_2026-10-01.md) 📄 — HLD: графика и звук APK — пять треков (2026-10-01)
 - [docs/HLD_APK_PRIORITY_2026-09-30.md](../docs/HLD_APK_PRIORITY_2026-09-30.md) 📄 — HLD: сборка APK для шлема — приоритет, каждая задача дополняет APK
 - [docs/HLD_ATLAS_OF_WATER_2026-09-30.md](../docs/HLD_ATLAS_OF_WATER_2026-09-30.md) 📄 — HLD: «Атлас воды» — сквозной сюжет, хор пяти, в шлеме
@@ -514,6 +518,7 @@
 - [docs/reports/SESSION_SUMMARY_SEP29.md](../docs/reports/SESSION_SUMMARY_SEP29.md) 📄 — Session Summary: Sep 29, 2026
 - [docs/story/ATLAS_99_NODES_OPERATOR.md](../docs/story/ATLAS_99_NODES_OPERATOR.md) 📄 — «Атлас воды»: исходник оператора (дословно, 2026-09-30)
 - [docs/story/ATLAS_SYNTHESIS_5_EDITORS.md](../docs/story/ATLAS_SYNTHESIS_5_EDITORS.md) 📄 — «Атлас воды»: редакция хора пяти редакторов
+- [docs/story/PILOT_EPISODE_1_TABU_2026-10-02.md](../docs/story/PILOT_EPISODE_1_TABU_2026-10-02.md) 📄 — «Атлас воды», серия 1 — «Табу». Пилот: первые 15 минут (Quest 3S)
 - [docs/version-3.0/A10_OFFLINE_SYNC.md](../docs/version-3.0/A10_OFFLINE_SYNC.md) 📄 — A10: Offline Sync & Client-Side Caching
 - [docs/version-3.0/API_ERROR_HANDLING_GUIDE.md](../docs/version-3.0/API_ERROR_HANDLING_GUIDE.md) 📄 — API Error Handling & Edge Cases Guide
 - [docs/version-3.0/CLOUD_FUNCTIONS_DIALOGUE_API.md](../docs/version-3.0/CLOUD_FUNCTIONS_DIALOGUE_API.md) 📄 — Ludus Cloud Functions Dialogue API
