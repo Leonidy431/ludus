@@ -149,6 +149,9 @@ jobs:
           # (docs/decisions/SIZE_STRATEGIES_7_2026-10-02.md).
           python3 scripts/decisions/size_strategy_choice.py --check
           python3 scripts/decisions/pilot_20mb.py --check
+          python3 scripts/decisions/pilot_details.py --check
+          python3 scripts/decisions/prerender_choice.py --check
+          python3 scripts/decisions/stream_choice.py --check
           # The path of the witness uses the same scene kits as the web
           # VR scene (docs/SACRAMENTS_VR_SCENES.md).
           for f in public/vr/models/scene/sacrament-*; do
@@ -270,6 +273,8 @@ jobs:
               data/atlas-99.json \
               data/bell-rules.json \
               data/campaign-spine.json data/pilot-1.json \
+              data/pilot-details.json data/packs.json \
+              art/prerender/amphora.png \
               scenes/pilot.tscn.remap \
               scenes/hub.tscn.remap \
               scenes/dive.tscn.remap scenes/witness.tscn.remap; do

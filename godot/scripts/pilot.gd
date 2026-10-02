@@ -101,6 +101,17 @@ var crouched := false
 var crouch_was := false
 ## Set by a test: {head, forward} in place of the camera.
 var clue_override := {}
+## The glasses (the close-up swap, docs/HLD_SWAP_RENDERING_2026-10-02.md):
+## on the face or not; the thing in close-up ("" if none) and for how
+## long; the seconds of gaze on a candidate; things already examined.
+var glasses_on := false
+var examining := ""
+var examine_open_s := 0.0
+var examine_hold := {}
+var examine_rest := ""
+var examined: Array[String] = []
+var close_up: MeshInstance3D
+var glasses_was := false
 
 var passion := {}
 var state := {}
@@ -137,6 +148,7 @@ func _ready() -> void:
 	_build_lake()
 	_build_screens()
 	_build_sound()
+	_build_close_up()
 	_start_xr()
 	_place_console()
 	_set_world("room")
@@ -375,6 +387,7 @@ func _build_room() -> void:
 			_mat(Color(0.85, 0.66, 0.12)))
 	_build_things()
 	_build_clues()
+	_build_glasses()
 	StaticBatch.merge(still)
 	water = MeshInstance3D.new()
 	var wp := PlaneMesh.new()
@@ -464,6 +477,31 @@ func _build_clues() -> void:
 	stain.scale = Vector3(1.0, 1.0, 0.42)
 	stain.name = "Stain"
 	room.add_child(stain)
+
+
+## Reading glasses on the table by the laptop: two rims and a bridge.
+func _build_glasses() -> void:
+	var g := Node3D.new()
+	g.name = "Glasses"
+	var pos: Array = data.glasses.pos
+	g.position = Vector3(pos[0], pos[1] + 0.02, pos[2])
+	g.rotation.y = 0.4
+	var frame := _mat(Color(0.12, 0.10, 0.09))
+	for x in [-0.032, 0.032]:
+		var rim := MeshInstance3D.new()
+		var tm := TorusMesh.new()
+		tm.inner_radius = 0.022
+		tm.outer_radius = 0.026
+		rim.mesh = tm
+		rim.material_override = frame
+		rim.position = Vector3(x, 0, 0)
+		g.add_child(rim)
+	_box(g, Vector3(0.02, 0.003, 0.004), Vector3.ZERO, frame)
+	for x in [-0.058, 0.058]:
+		_box(g, Vector3(0.003, 0.003, 0.12), Vector3(x, 0, 0.06), frame)
+	room.add_child(g)
+	things["Glasses"] = g
+	_land(g, TABLE_Y)
 
 
 func _thing(n: String, size: Vector3, at: Vector3, m: Material,
@@ -681,6 +719,8 @@ func _build_screens() -> void:
 	# the scribe and the diary below it, warm; the title in the middle.
 	screen = _label(34, Vector3(0.28, 0.12, -1.0), Color(0.55, 0.92, 1.0))
 	line = _label(30, Vector3(0, -0.22, -1.0), Color(1.0, 0.88, 0.66))
+	# The scribe's line reads over a close-up, never under it.
+	line.render_priority = 4
 	title = _label(64, Vector3(0, 0.02, -1.2), Color(0.95, 0.93, 0.88))
 	title.visible = false
 	# The left hand with the comet on its back: a dim head and a tail,
@@ -765,6 +805,23 @@ func _start_xr() -> void:
 		passthrough = XRInterface.XR_ENV_BLEND_MODE_ALPHA_BLEND in modes
 
 
+## The close-up: a picture before the eyes, unlit (its light is the
+## render's), drawn over the world while the world is paused.
+func _build_close_up() -> void:
+	close_up = MeshInstance3D.new()
+	var qm := QuadMesh.new()
+	qm.size = Vector2(0.4, 0.4)
+	close_up.mesh = qm
+	var m := StandardMaterial3D.new()
+	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	m.no_depth_test = true
+	m.render_priority = 3
+	close_up.material_override = m
+	close_up.position = Vector3(0, 0.09, -0.7)
+	close_up.visible = false
+	camera.add_child(close_up)
+
+
 ## In the headset the Prior's screen lives on the left wrist, read by
 ## turning the hand, as a gauge on a diver's arm (diegetic interface,
 ## Into the Radius; docs/HLD_PANDORA_SURPASS_2026-10-02.md §8): text
@@ -809,6 +866,10 @@ func _set_world(w: String) -> void:
 
 func _process(dt: float) -> void:
 	if finished or data.is_empty():
+		return
+	_examine(dt)
+	if examining != "":
+		# Pandora's swap: the world waits while the eye reads the thing.
 		return
 	var step := dt * speed
 	t += step
@@ -913,6 +974,89 @@ func _tick(dt: float) -> void:
 	_sound(dt)
 
 
+## The head and its forward, from the camera or a test.
+func _head() -> Array:
+	return [clue_override.get("head", _xf(camera).origin),
+		clue_override.get("forward", -_xf(camera).basis.z)]
+
+
+## Glasses on, then a close-up on gaze; closed by a press or in time.
+func _examine(dt: float) -> void:
+	var press := Input.is_key_pressed(KEY_G) \
+		or right_hand.is_button_pressed("ax_button")
+	var pressed := press and not glasses_was
+	glasses_was = press
+	if examining != "":
+		examine_open_s += dt
+		if pressed or examine_open_s >= float(
+				data.examine_rule.close_after_s):
+			close_examine()
+		return
+	var hv := _head()
+	var head: Vector3 = hv[0]
+	var fwd: Vector3 = hv[1]
+	if world == "room" and not glasses_on:
+		var g: Dictionary = data.glasses
+		var gp: Array = g.pos
+		var to := Vector3(gp[0], gp[1], gp[2]) - head
+		var near := to.length() <= float(g.range_m) and PilotCore.gaze_on(
+			fwd, to, float(g.cone_deg))
+		examine_hold["Glasses"] = float(examine_hold.get("Glasses",
+			0.0)) + dt if near else 0.0
+		if pressed or examine_hold["Glasses"] >= float(g.hold_s):
+			put_on_glasses()
+		return
+	for e in data.get("examine", []):
+		if e.world != world or not things.has(e.id):
+			continue
+		var n: Node3D = things[e.id]
+		if not n.visible:
+			continue
+		var to: Vector3 = _xf(n).origin - head
+		var on := to.length() <= float(e.range_m) and PilotCore.gaze_on(
+			fwd, to, float(data.examine_rule.cone_deg))
+		if not on:
+			examine_hold[e.id] = 0.0
+			if examine_rest == e.id:
+				examine_rest = ""
+			continue
+		if examine_rest == e.id:
+			continue
+		examine_hold[e.id] = float(examine_hold.get(e.id, 0.0)) + dt
+		if examine_hold[e.id] >= float(data.examine_rule.hold_s):
+			open_examine(e)
+			return
+
+
+func put_on_glasses() -> void:
+	glasses_on = true
+	things["Glasses"].visible = false
+	line.text = "Очки."
+
+
+func open_examine(e: Dictionary) -> void:
+	examining = e.id
+	examine_open_s = 0.0
+	var tex = load(e.image) if ResourceLoader.exists(e.image) else null
+	(close_up.material_override as StandardMaterial3D).albedo_texture = tex
+	close_up.visible = tex != null
+	line.text = e.line_ru
+	if not e.id in examined:
+		examined.append(e.id)
+	duck_db = -18.0
+	if e.get("lure", false) and str(state.get("stage")) == "prilog":
+		# Through the lens at the lure: that is "look closer", the
+		# first step down the ladder of a thought (PassionCore).
+		state = PassionCore.choose(state, "look", passion, {}, {})
+
+
+func close_examine() -> void:
+	examine_rest = examining
+	examining = ""
+	close_up.visible = false
+	line.text = ""
+
+
 ## The body finds the room's clues: hold one in view for its seconds
 ## and the line is written; each is found once.
 func _clues(dt: float) -> void:
@@ -922,10 +1066,9 @@ func _clues(dt: float) -> void:
 		crouched = not crouched
 		rig.position.y = -float(data.crouch_m) if crouched else 0.0
 	crouch_was = c_btn
-	var head: Vector3 = clue_override.get("head",
-		_xf(camera).origin)
-	var fwd: Vector3 = clue_override.get("forward",
-		-_xf(camera).basis.z)
+	var hv := _head()
+	var head: Vector3 = hv[0]
+	var fwd: Vector3 = hv[1]
 	for c in data.get("clues", []):
 		if c.id in clues_found:
 			continue

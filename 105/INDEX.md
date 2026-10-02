@@ -2,8 +2,8 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 432
-- документов: 185
+- файлов кода: 438
+- документов: 191
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -17,7 +17,7 @@
 
 - [CLAUDE.md](../CLAUDE.md) 📄 — ludus — ядро правил (CLAUDE.md)
 
-## Сборки и проверки CI (YAML) (9)
+## Сборки и проверки CI (YAML) (10)
 
 - [.github/workflows/backend-image.yml](../.github/workflows/backend-image.yml) — Backend 3.0, phase P3 (docs/version-3.0/HLD_BACKEND_3.0_VM8_HOT_MIRROR_2026-10-01.md):
 - [.github/workflows/build-105.yml](../.github/workflows/build-105.yml) — Folder 105: every piece of code and every document of the headset
@@ -25,11 +25,12 @@
 - [.github/workflows/godot-engine.yml](../.github/workflows/godot-engine.yml) — The headset's own Godot engine: the Android export template built
 - [.github/workflows/godot.yml](../.github/workflows/godot.yml) — Headset build (CLAUDE.md TABOO 0.02; docs/HLD_HEADSET_BUILD_2026-09-30.md).
 - [.github/workflows/pages.yml](../.github/workflows/pages.yml) — Publish the ludus front-end to GitHub Pages so the operator can open it
+- [.github/workflows/prerender.yml](../.github/workflows/prerender.yml) — Our Silicon Graphics (docs/HLD_SWAP_RENDERING_2026-10-02.md): the
 - [.github/workflows/raw-asset-intake.yml](../.github/workflows/raw-asset-intake.yml) — Raw-material intake (CLAUDE.md TABOO 0.1): third-party art from the
 - [.github/workflows/raw-audio-pass.yml](../.github/workflows/raw-audio-pass.yml) — Audio pass over the 99 backlog repos as a git pass (operator,
 - [.github/workflows/raw-osint-cycle.yml](../.github/workflows/raw-osint-cycle.yml) — OSINT pass over the 99 backlog repos every 1.5 hours (CLAUDE.md TABOO
 
-## Игра для шлема: код (GDScript) (68)
+## Игра для шлема: код (GDScript) (69)
 
 - [godot/scripts/atlas_core.gd](../godot/scripts/atlas_core.gd) — "The Water Atlas" read at the lectern of the scriptorium (CLAUDE.md
 - [godot/scripts/atlas_traces.gd](../godot/scripts/atlas_traces.gd) — The knight's traces in the lake and the chronicle's choice (TABOO
@@ -75,6 +76,7 @@
 - [godot/scripts/module_loader.gd](../godot/scripts/module_loader.gd) — Big modules load in the background (autoload "ModuleLoader").
 - [godot/scripts/nav.gd](../godot/scripts/nav.gd) — Moving between the hub and the dive (autoload "Nav").
 - [godot/scripts/obitel_layout.gd](../godot/scripts/obitel_layout.gd) — The obitel's objects in the hub: the K proxies chosen from the honest
+- [godot/scripts/pack_fetch.gd](../godot/scripts/pack_fetch.gd) — The "CD" of TABOO 0.018: packs fetched over the network in the
 - [godot/scripts/passion_core.gd](../godot/scripts/passion_core.gd) — The meeting of a passion on the road, ported from the web game.
 - [godot/scripts/pilot.gd](../godot/scripts/pilot.gd) — Episode 1 "Taboo" in the headset (phase P2 of
 - [godot/scripts/pilot_core.gd](../godot/scripts/pilot_core.gd) — Episode 1 of "The Water Atlas", "Taboo": the first fifteen minutes
@@ -125,7 +127,7 @@
 - [godot/tools/stress_place_switch.gd](../godot/tools/stress_place_switch.gd) — Switch places fast, again and again, to shake out a crash of the
 - [godot/tools/witness_wav_check.py](../godot/tools/witness_wav_check.py) — Measure the offline render of the path of the witness.
 
-## Игра для шлема: тесты (49)
+## Игра для шлема: тесты (50)
 
 - [godot/tests/confession_walker.gd](../godot/tests/confession_walker.gd) — A stand-in for the witness path in test_confession.gd: the sheet reads
 - [godot/tests/deeds/panel_text.gd](../godot/tests/deeds/panel_text.gd) — The heart's panel of a place as location.gd builds it, measured with
@@ -157,6 +159,7 @@
 - [godot/tests/test_mission.gd](../godot/tests/test_mission.gd) — MissionCore against the JS reference (public/ludus/ludus-missions.js):
 - [godot/tests/test_module_loader.gd](../godot/tests/test_module_loader.gd) — Big modules load in the background (ModuleLoader, CLAUDE.md TABOO
 - [godot/tests/test_obitel.gd](../godot/tests/test_obitel.gd) — The obitel's objects in the hub (TABOO 0.07, 0.32).  Called from
+- [godot/tests/test_pack_fetch.gd](../godot/tests/test_pack_fetch.gd) — Packs over the network (PackFetch, TABOO 0.018): a pack is accepted
 - [godot/tests/test_passion.gd](../godot/tests/test_passion.gd) — The meeting of a passion (PassionCore) against the JS reference
 - [godot/tests/test_pilot.gd](../godot/tests/test_pilot.gd) — Episode 1 "Taboo" (PilotCore, TABOO 0.015): the rhythm of a series
 - [godot/tests/test_pilot_scene.gd](../godot/tests/test_pilot_scene.gd) — The pilot scene (phase P2, docs/HLD_20MB_PILOT_2026-10-02.md) played
@@ -203,16 +206,18 @@
 - [scripts/godot/make_trial_fixture.js](../scripts/godot/make_trial_fixture.js) — Write godot/tests/trial_fixture.json from public/ludus/ludus-missions.js:
 - [scripts/godot/obb_forecast.py](../scripts/godot/obb_forecast.py) — Forecast of the headset build's weight: when do we need an OBB?
 
-## Выборы из честного пула по 48 параметрам (6)
+## Выборы из честного пула по 48 параметрам (8)
 
 - [scripts/decisions/engine_build_choice.py](../scripts/decisions/engine_build_choice.py) — One way to make the headset engine smaller, chosen in the open.
 - [scripts/decisions/pilot_20mb.py](../scripts/decisions/pilot_20mb.py) — What fills the 20 MB the own engine frees: the series pilot first.
 - [scripts/decisions/pilot_details.py](../scripts/decisions/pilot_details.py) — 55 details for the pilot "Taboo", chosen from every variant of 119 seeds.
 - [scripts/decisions/pilot_details_seeds.py](../scripts/decisions/pilot_details_seeds.py) — The 111 seed details of the pilot "Taboo", each from a named craft.
+- [scripts/decisions/prerender_choice.py](../scripts/decisions/prerender_choice.py) — Our Silicon Graphics: the one offline renderer for the close-up swap.
 - [scripts/decisions/size_strategy_choice.py](../scripts/decisions/size_strategy_choice.py) — Seven ways to fit the game in the headset, chosen in the open.
 - [scripts/decisions/stoplist_choice.py](../scripts/decisions/stoplist_choice.py) — One decision for the church-word stop-list, chosen in the open.
+- [scripts/decisions/stream_choice.py](../scripts/decisions/stream_choice.py) — How the heavy data reaches the headset: one way from the honest pool.
 
-## Скрипты проекта: раннер, данные, сюжеты (71)
+## Скрипты проекта: раннер, данные, сюжеты (72)
 
 - [scripts/build-campaign-spine.py](../scripts/build-campaign-spine.py) — Build the Issyk-Kul campaign spine from webtypicon2's missions.
 - [scripts/build_rights_manifest.py](../scripts/build_rights_manifest.py) — Build the "Manuscript of rights": the licence register shown in-game.
@@ -241,6 +246,7 @@
 - [scripts/phase2-deploy-full.sh](../scripts/phase2-deploy-full.sh)
 - [scripts/phase2-deploy.sh](../scripts/phase2-deploy.sh)
 - [scripts/phase3-validation.sh](../scripts/phase3-validation.sh) — Phase 3 Final Validation Script
+- [scripts/prerender/render_items.py](../scripts/prerender/render_items.py) — Close-up stills for the swap on examine (docs/HLD_SWAP_RENDERING_
 - [scripts/raw_assets/antagonist.py](../scripts/raw_assets/antagonist.py) — Antagonist protocol: the eight passions and their twelve variants.
 - [scripts/raw_assets/audio_pass.py](../scripts/raw_assets/audio_pass.py) — Audio pass: sounds from the 99 repos as spectral references only.
 - [scripts/raw_assets/check_delta.py](../scripts/raw_assets/check_delta.py) — CI gate: every shipped derived sprite must prove its 35 % reshaping.
@@ -393,7 +399,7 @@
 - [docs/decisions/SIZE_STRATEGIES_7_2026-10-02.md](../docs/decisions/SIZE_STRATEGIES_7_2026-10-02.md) 📄 — Решение: семь способов уложить игру в шлем — по опыту других разработчиков и 48 параметрам проекта (2026-10-02)
 - [docs/decisions/STOPLIST_SINGLE_SOURCE_2026-10-02.md](../docs/decisions/STOPLIST_SINGLE_SOURCE_2026-10-02.md) 📄 — Решение: стоп-лист церковных слов — один источник (2026-10-02)
 
-## МД-ревью ревизора лимитов APK (11)
+## МД-ревью ревизора лимитов APK (12)
 
 - [docs/review/МД_РЕВЬЮ_APK_КЕЛЬЯ_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_КЕЛЬЯ_2026-09-30.md) 📄 — МД-ревью APK, Ф1: келья вечернего дозора с предметами обители
 - [docs/review/МД_РЕВЬЮ_APK_ЛЮДИ_СЮЖЕТОВ_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_ЛЮДИ_СЮЖЕТОВ_2026-10-02.md) 📄 — МД-ревью — люди 12 сюжетов (2026-10-02)
@@ -406,12 +412,14 @@
 - [docs/review/МД_РЕВЬЮ_APK_Ф6_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_Ф6_2026-10-02.md) 📄 — МД-ревью Ф6 — 12 сюжетов, подгрузка модулей, единый стоп-лист (2026-10-02)
 - [docs/review/МД_РЕВЬЮ_APK_Ф7_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_Ф7_2026-10-02.md) 📄 — МД-ревью Ф7 — люди 12 сюжетов, ограниченные ожидания замера, ключ подписи (2026-10-02)
 - [docs/review/МД_РЕВЬЮ_APK_Ф8_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_Ф8_2026-10-02.md) 📄 — МД-ревью Ф8 (2026-10-02): пилот «Табу», фазы P1–P2 `docs/HLD_20MB_PILOT_2026-10-02.md`
+- [docs/review/МД_РЕВЬЮ_APK_Ф9_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_Ф9_2026-10-02.md) 📄 — МД-ревью Ф9 (2026-10-02): пилот — комната, 55 деталей, гравитация, Pandora V1, очки и пререндер, подкачка пакетов
 
-## Документы по ГОСТ (1)
+## Документы по ГОСТ (2)
 
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
+- [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (133)
+## Документация проекта (137)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -450,12 +458,14 @@
 - [docs/HLD_MISSIONS_APK_2026-09-30.md](../docs/HLD_MISSIONS_APK_2026-09-30.md) 📄 — HLD: кампания миссий — в APK (доска дороги во дворе)
 - [docs/HLD_OBB_FORECAST_2026-10-02.md](../docs/HLD_OBB_FORECAST_2026-10-02.md) 📄 — HLD — прогноз веса сборки и технология пакета расширения OBB (2026-10-02)
 - [docs/HLD_OBITEL_OBJECTS_2026-09-30.md](../docs/HLD_OBITEL_OBJECTS_2026-09-30.md) 📄 — HLD: вещи обители в хабе шлема — отбор из прокси по ТАБУ №0.07 (2026-09-30)
+- [docs/HLD_PACKS_STREAM_2026-10-02.md](../docs/HLD_PACKS_STREAM_2026-10-02.md) 📄 — HLD: малая установка и подкачка — «жёсткий диск» 128 МиБ и «CD» по сети (2026-10-02)
 - [docs/HLD_PANDORA_SURPASS_2026-10-02.md](../docs/HLD_PANDORA_SURPASS_2026-10-02.md) 📄 — HLD: превзойти The Pandora Directive (1996) — первая серия «Табу» (2026-10-02)
 - [docs/HLD_PILOT_DETAILS_55_2026-10-02.md](../docs/HLD_PILOT_DETAILS_55_2026-10-02.md) 📄 — HLD: 55 деталей пилота «Табу», комната оператора и интерьер страха (2026-10-02)
 - [docs/HLD_POSOH_HYDROPHONE_2026-09-30.md](../docs/HLD_POSOH_HYDROPHONE_2026-09-30.md) 📄 — HLD: гидрофон оператора (posoh «модель 1») на «Мангустике»
 - [docs/HLD_PROPS_STORE_2026-09-30.md](../docs/HLD_PROPS_STORE_2026-09-30.md) 📄 — HLD: склад реквизита — раннер берёт всё, даже не игровое (2026-09-30)
 - [docs/HLD_SOURCE_LABELS_RU_2026-09-30.md](../docs/HLD_SOURCE_LABELS_RU_2026-09-30.md) 📄 — HLD: русские подписи источников в миссиях (2026-09-30)
 - [docs/HLD_STORY_12_CHARACTERS_2026-10-02.md](../docs/HLD_STORY_12_CHARACTERS_2026-10-02.md) 📄 — HLD — люди 12 сюжетов в шлеме (2026-10-02)
+- [docs/HLD_SWAP_RENDERING_2026-10-02.md](../docs/HLD_SWAP_RENDERING_2026-10-02.md) 📄 — HLD: подмена при осмотре (Swap Rendering) — «очки героя» (2026-10-02)
 - [docs/HLD_TETHER_TRIALS_PASSIONS_2026-09-30.md](../docs/HLD_TETHER_TRIALS_PASSIONS_2026-09-30.md) 📄 — HLD: трос, пороги врат и страсти — в APK
 - [docs/HLD_WEB_DIVE_ATLAS_2026-09-30.md](../docs/HLD_WEB_DIVE_ATLAS_2026-09-30.md) 📄 — HLD: «Атлас воды» и свои рисунки берега в веб-погружении (2026-09-30)
 - [docs/HLD_WITNESS_SOUND_2026-09-30.md](../docs/HLD_WITNESS_SOUND_2026-09-30.md) 📄 — HLD: исон и колокол на тропе свидетеля (шлем, Godot)
@@ -479,6 +489,7 @@
 - [docs/PHASE6_FSM_13STATES.md](../docs/PHASE6_FSM_13STATES.md) 📄 — Phase 6: Extended Dive State Machine (13 Operational States)
 - [docs/PHASE_3_OVERVIEW.md](../docs/PHASE_3_OVERVIEW.md) 📄 — Phase 3: Testing & Deployment Overview
 - [docs/PHASE_3_QUICK_START.md](../docs/PHASE_3_QUICK_START.md) 📄 — Phase 3: Quick Start Guide
+- [docs/PRIVACY_POLICY_DRAFT.md](../docs/PRIVACY_POLICY_DRAFT.md) 📄 — Ludus — политика приватности (черновик для Meta Store, Д-21)
 - [docs/PROMPTS_1070_2026-09-29.md](../docs/PROMPTS_1070_2026-09-29.md) 📄 — Промты на создание недостающего — 1070 записей (2026-09-29)
 - [docs/RAW_AUDIO_299_2026-09-30.md](../docs/RAW_AUDIO_299_2026-09-30.md) 📄 — RAW_AUDIO_299 — звуки из 99 репо как спектральные эталоны (2026-09-30)
 - [docs/RAW_D6_HLD_2026-09-30.md](../docs/RAW_D6_HLD_2026-09-30.md) 📄 — HLD: раннер дефицитов по 99 репо и D6 — собственный рисунок нейтральных слотов (2026-09-30)
@@ -492,6 +503,7 @@
 - [docs/STORY_12_CHARACTERS_2026-10-02.md](../docs/STORY_12_CHARACTERS_2026-10-02.md) 📄 — Люди 12 сюжетов — перепись (2026-10-02)
 - [docs/STORY_12_HEADSET_TEST_2026-10-02.md](../docs/STORY_12_HEADSET_TEST_2026-10-02.md) 📄 — Проверка 12 сюжетов в Quest 3 — инструкция оператору (2026-10-02)
 - [docs/STORY_12_SELECTION_2026-10-02.md](../docs/STORY_12_SELECTION_2026-10-02.md) 📄 — Отбор 12 сюжетов для шлема (2026-10-02)
+- [docs/TECHNOLOGIES.md](../docs/TECHNOLOGIES.md) 📄 — Технологии Ludus — реестр
 - [docs/UI_UX_POLISH_COMPLETE.md](../docs/UI_UX_POLISH_COMPLETE.md) 📄 — Ludus UI/UX Polish Complete — Production-Ready Design System
 - [docs/VR_JOYSTICK_DIVECOMPUTER_CONTROL.md](../docs/VR_JOYSTICK_DIVECOMPUTER_CONTROL.md) 📄 — VR Joystick & ROV DiveComputer Control — Meta Quest 3 Integration
 - [docs/VR_SCENE_MIGRATION.md](../docs/VR_SCENE_MIGRATION.md) 📄 — VR scene migration: webtypicon2 `public/game/vr*` → ludus `public/vr/`

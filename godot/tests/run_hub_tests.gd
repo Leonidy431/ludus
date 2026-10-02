@@ -238,6 +238,7 @@ func _initialize() -> void:
 	before = checks
 	fails = failures
 	load("res://tests/test_data_packs.gd").new().run(self)
+	load("res://tests/test_pack_fetch.gd").new().run(self)
 	load("res://tests/test_pilot.gd").new().run(self)
 	load("res://tests/test_pilot_scene.gd").new().run(self)
 	print("data packs: %d checks, %d failures" % [checks - before,

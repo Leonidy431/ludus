@@ -296,3 +296,19 @@ static func check_finds(data: Dictionary) -> Array:
 			if str(deed).begins_with(str(f.id).to_lower()):
 				bad.append("path deed %s is a find, not a deed" % deed)
 	return bad
+
+
+## The close-up swap's rules (docs/HLD_SWAP_RENDERING_2026-10-02.md):
+## the holy is never a close-up, every close-up has its picture path
+## and a line without a church word.
+static func check_examine(data: Dictionary) -> Array:
+	var bad := []
+	for e in data.get("examine", []):
+		if str(e.id).to_lower() in ["khachkar", "cross", "icon"]:
+			bad.append("%s: the holy is not a close-up" % e.id)
+		if not str(e.get("image", "")).begins_with("res://art/prerender/"):
+			bad.append("%s: no prerendered picture" % e.id)
+		var w := LocationsCore.church_word(str(e.get("line_ru", "")))
+		if w != "":
+			bad.append("%s says «%s»" % [e.id, w])
+	return bad

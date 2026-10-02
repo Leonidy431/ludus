@@ -1,0 +1,6 @@
+{
+ "doc": "docs/HLD_PACKS_STREAM_2026-10-02.md",
+ "about": "Packs beside the APK (TABOO 0.018): each is a Godot .pck fetched from a GitHub Release in the background before it is needed, checked by SHA-256, kept in user://packs and mounted by DataPacks. Empty until the first pack is published by CI.",
+ "base": "https://github.com/Leonidy431/ludus/releases/download/",
+ "packs": []
+}

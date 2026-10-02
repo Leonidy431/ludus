@@ -325,5 +325,58 @@
  "path_deeds": [
   "drams_left",
   "drams_taken"
- ]
+ ],
+ "examine": [
+  {
+   "id": "Logbook",
+   "world": "room",
+   "image": "res://art/prerender/logbook.png",
+   "range_m": 1.6,
+   "line_ru": "Журнал погружения. Сорок страниц моих. Одна — чужая."
+  },
+  {
+   "id": "Souvenir",
+   "world": "room",
+   "image": "res://art/prerender/souvenir.png",
+   "range_m": 2.4,
+   "line_ru": "Кувшин с базара. Глазурь — как вода у берега. Купил, не зная, что внизу лежит такой же, только настоящий."
+  },
+  {
+   "id": "Amphora",
+   "world": "lake",
+   "image": "res://art/prerender/amphora.png",
+   "range_m": 4.5,
+   "line_ru": "Горло залеплено илом, ручки целы. Её положили бережно — так кладут то, за чем вернутся."
+  },
+  {
+   "id": "Drams",
+   "world": "lake",
+   "image": "res://art/prerender/drams.png",
+   "range_m": 4.5,
+   "lure": true,
+   "line_ru": "Серебро чистое, без чёрного налёта. Шесть веков в иле так не лежат. Положили недавно."
+  },
+  {
+   "id": "Diary",
+   "world": "lake",
+   "image": "res://art/prerender/diary.png",
+   "range_m": 4.5,
+   "line_ru": "Кожа, медная застёжка, ремни истлели. Ил без кислорода сберёг пергамент."
+  }
+ ],
+ "glasses": {
+  "pos": [
+   0.32,
+   0.765,
+   -1.25
+  ],
+  "hold_s": 0.8,
+  "range_m": 1.6,
+  "cone_deg": 14.0
+ },
+ "examine_rule": {
+  "hold_s": 0.6,
+  "cone_deg": 10.0,
+  "close_after_s": 8.0
+ }
 }

@@ -84,6 +84,7 @@ func run(t: Object) -> void:
 	gravity(t)
 	scene_clues(t)
 	wrist(t)
+	swap(t)
 	# The details fired in the run: all 55 on the clock.
 	var last := _play(t, "keep")
 	t._check(last.fired.size() == 55, "every detail fired (%d)"
@@ -178,4 +179,55 @@ func wrist(t: Object) -> void:
 	p._place_console()
 	t._check(p.screen.get_parent() == p.left_hand,
 		"in the headset the console is on the left wrist")
+	p.queue_free()
+
+
+## The close-up swap: no glasses, no close-up in the room; the glasses
+## are put on by looking at them; a close-up pauses the clock; the holy
+## is never one; at the lure the lens is "look closer".
+func swap(t: Object) -> void:
+	t._check(PilotCore.check_examine(PilotCore.load_data()).is_empty(),
+		"the close-ups keep their rules")
+	var p: Node = (load("res://scenes/pilot.tscn") as PackedScene) \
+		.instantiate()
+	p.replay = true
+	p.stay = true
+	t.root.add_child(p)
+	if p.data.is_empty():
+		p._ready()
+	var head := Vector3(0, 1.2, 0)
+	var book: Vector3 = p._xf(p.things["Logbook"]).origin
+	p.clue_override = {"head": head, "forward": book - head}
+	p._examine(1.0)
+	t._check(p.examining == "", "no glasses, no close-up")
+	var gp: Array = p.data.glasses.pos
+	p.clue_override = {"head": head, "forward": Vector3(gp[0], gp[1],
+		gp[2]) - head}
+	for i in 10:
+		p._examine(0.1)
+	t._check(p.glasses_on, "the glasses are put on by looking at them")
+	p.clue_override = {"head": head, "forward": book - head}
+	for i in 8:
+		p._examine(0.1)
+	t._check(p.examining == "Logbook", "in glasses the log comes close")
+	var before: float = p.t
+	for i in 5:
+		p._process(0.1)
+	t._check(p.t == before, "the clock waits during a close-up")
+	p.close_examine()
+	t._check(p.examining == "" and not p.close_up.visible,
+		"the close-up closes")
+	p._examine(1.0)
+	t._check(p.examining == "", "and does not reopen until the eye leaves")
+	# Under water at the lure: the lens is "look closer".
+	p.t = 445.0
+	p._set_world("lake")
+	p._sync()
+	var dr: Vector3 = p._xf(p.things["Drams"]).origin
+	p.clue_override = {"head": head, "forward": dr - head}
+	for i in 8:
+		p._examine(0.1)
+	t._check(p.examining == "Drams", "the drams come close")
+	t._check(p.state.stage == "converse",
+		"looking at the lure through the lens is a converse")
 	p.queue_free()

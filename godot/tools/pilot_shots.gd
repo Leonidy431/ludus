@@ -12,7 +12,13 @@ const VIEWS := [["room", 2.0], ["water", 20.0], ["immersion", 40.0],
 	["walls", 150.0], ["lure", 450.0], ["khachkar", 655.0],
 	["diary", 730.0], ["mark", 875.0], ["title", 902.0],
 	# Pandora V1: crouched under the table, head up at the ceiling.
-	["under", 4.0, -0.55, 14.0], ["ceiling", 5.0, 0.0, 55.0]]
+	["under", 4.0, -0.55, 14.0], ["ceiling", 5.0, 0.0, 55.0],
+	# The close-up swap in glasses (docs/HLD_SWAP_RENDERING_2026-10-02.md).
+	["closeup-logbook", 6.0, 0.0, 0.0, "Logbook"],
+	["closeup-souvenir", 7.0, 0.0, 0.0, "Souvenir"],
+	["closeup-amphora", 100.0, 0.0, 0.0, "Amphora"],
+	["closeup-drams", 450.0, 0.0, 0.0, "Drams"],
+	["closeup-diary", 730.0, 0.0, 0.0, "Diary"]]
 ## Frames held per view: past the console's 1.75 s fade at 60 fps.
 const HOLD := 130
 
@@ -52,6 +58,16 @@ func _process(_dt: float) -> bool:
 		node.line.text = ""
 	node.t = VIEWS[view][1]
 	var v: Array = VIEWS[view]
+	if frame == 0 and node.examining != "":
+		# Each view starts with the world running, so the scene enters
+		# its beat (the lake) before a close-up pauses it.
+		node.close_examine()
+	if v.size() > 4 and frame == 5:
+		# Open the close-up of that thing, glasses on.
+		node.glasses_on = true
+		for e in node.data.examine:
+			if e.id == v[4]:
+				node.open_examine(e)
 	node.rig.position.y = v[2] if v.size() > 2 else 0.0
 	node.camera.rotation.x = deg_to_rad(v[3]) if v.size() > 3 else 0.0
 	if triple:
