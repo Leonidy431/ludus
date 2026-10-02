@@ -95,6 +95,9 @@ var mission_state := {"done": {}, "current": null, "flags": {},
 	"lines": {}}
 var mission := {}
 var mission_board: Label3D
+## The 12 stories walked on foot (StoryRoute): for these the board names
+## the place and the step is done at that place's heart.
+var story: Dictionary = StoryRoute.load_data()
 var select_was := false
 var interact_was := false
 var stick_was := 0.0
@@ -138,6 +141,10 @@ func _ready() -> void:
 	trees = JSON.parse_string(FileAccess.get_file_as_string(
 		"res://data/dialogue-trees.json")).trees
 	_load()
+	# Back from the dive of a story's step: the board's panel opens on the
+	# step's "walk on", which closes it (StoryRoute.returned).
+	if StoryRoute.returned(story, _mstate()):
+		mission = {"choice": 0, "start": -1}
 	_build_world()
 	_build_rig()
 	_build_ui()
@@ -1077,13 +1084,20 @@ func _mission_choices() -> Array:
 			mission.start)
 		return [{"id": "set_out", "text": "Выйти в путь",
 			"disabled": not can.ok, "reason": can.reason, "cue": ""}, away]
-	var v := MissionCore.view(mission_data, _mstate(), form, actions)
+	var ms := _mstate()
+	var v := MissionCore.view(mission_data, ms, form, actions)
 	if v.is_empty():
 		return [away]
-	if v.scene != null:
-		return [{"id": "next", "text": "Завершить миссию" if v.last
-			else "Дальше", "disabled": false, "reason": "", "cue": ""}]
-	return v.step.choices + [away]
+	# A story's step is done at its place's heart: the board names the
+	# place and opens it; only the "walk on" after its dive closes here.
+	var r := StoryRoute.where(story, ms)
+	if not r.is_empty():
+		if StoryRoute.returned(story, ms):
+			return StoryRoute.choices(mission_data, story, ms, form, actions)
+		return [{"id": "go", "text": "Идти: " + str(r.place_ru),
+			"disabled": false, "reason": "", "cue": ""}, away]
+	return StoryRoute.choices(mission_data, story, ms, form, actions) \
+		+ ([away] if v.scene == null else [])
 
 
 func _choose_mission(i: int) -> void:
@@ -1102,23 +1116,26 @@ func _choose_mission(i: int) -> void:
 				false)
 			mission = {"choice": 0, "start": -1}
 			_save()
-		"next":
-			var res := MissionCore.advance(mission_data, _mstate())
-			_mkeep(res.state, false)
+		"go":
+			# The courtyard is saved before leaving, as at the pier.
+			var r := StoryRoute.where(story, _mstate())
+			mission = {}
+			_save()
+			LocationCore.go(get_tree(), str(r.place))
+		_:
+			# The step's choice and its "walk on" go the one way the
+			# hearts of the places use too (StoryRoute.choose: MissionCore
+			# choose, apply_effects, advance).
+			var res := StoryRoute.choose(mission_data, story, _mstate(), form,
+				actions, c.id, Time.get_date_string_from_system())
+			form = res.form
+			actions = res.actions
+			_mkeep(res.state, res.fell)
 			mission.choice = 0
 			if res.completed != null:
 				mission = {}
-				_say("Миссия %d пройдена." % res.completed)
-			_save()
-		_:
-			var res := MissionCore.choose(mission_data, _mstate(), c.id,
-				form, actions)
-			var ap := MissionCore.apply_effects(form, actions, res.effects,
-				Time.get_date_string_from_system())
-			form = ap.form
-			actions = ap.actions
-			_mkeep(res.state, res.effects.fall != null)
-			mission.choice = 0
+			if res.say != "":
+				_say(res.say)
 			_save()
 
 
@@ -1127,6 +1144,9 @@ func _refresh_mission_board() -> void:
 		return
 	var st := _mstate()
 	var lines := ["ДОРОГА ОБИТЕЛИ"]
+	var go := StoryRoute.go_line(story, st)
+	if go != "":
+		lines.append(go)
 	if st.fall != null:
 		lines.append("Свет приглушён: дорога ждёт трезвения и беседы.")
 	for act in MissionCore.catalog(mission_data, st):
@@ -1259,34 +1279,25 @@ func _mission_panel_text() -> String:
 		var m := MissionCore.build_mission(mission_data, mission.start)
 		lines += [m.actTitle, "%d. %s" % [m.id, m.title], "", m.intro,
 			SourceLabels.line(m.source), ""]
+		if not StoryRoute.story_of(story, m.id).is_empty():
+			lines += ["Этот путь проходят ногами: доска скажет, куда идти, а шаг делается у сердца места.",
+				""]
 	else:
-		var v := MissionCore.view(mission_data, _mstate(), form, actions)
+		var ms := _mstate()
+		var v := MissionCore.view(mission_data, ms, form, actions)
 		if v.is_empty():
 			return ""
-		var s: Dictionary = v.step
-		lines += ["%d. %s — шаг %d из %d: %s" % [v.mission.id,
-			v.mission.title, v.index + 1, v.total, v.kind_ru], "",
-			s.title, s.text]
-		if s.source != "":
-			lines.append(SourceLabels.line(s.source))
-		lines.append("")
-		if v.scene != null:
-			lines.append("— " + v.scene.choice)
-			if v.scene.speaker != "":
-				lines.append(v.scene.speaker + ":")
-			lines.append(v.scene.text)
-			if v.scene.source != "":
-				lines.append(SourceLabels.line(v.scene.source))
-			lines.append("")
-	for j in choices.size():
-		var c: Dictionary = choices[j]
-		var mark := "▸ " if j == mission.choice else "  "
-		var line := "%s%d. %s" % [mark, j + 1, c.text]
-		if c.disabled and c.reason != "":
-			line += "  (%s)" % c.reason
-		lines.append(line)
-		if c.cue != "":
-			lines.append("      " + c.cue)
+		var go := StoryRoute.go_line(story, ms)
+		if go != "" and not StoryRoute.returned(story, ms):
+			# A story: the board says where, not the step's choices.
+			lines += ["%d. %s — шаг %d из %d: %s" % [v.mission.id,
+				v.mission.title, v.index + 1, v.total, v.kind_ru], "",
+				go, ""]
+		else:
+			lines += StoryRoute.step_lines(v)
+			if go != "":
+				lines += [go, ""]
+	lines += StoryRoute.choice_lines(choices, int(mission.choice))
 	return "\n".join(lines)
 
 

@@ -120,6 +120,8 @@ func state() -> Dictionary:
 		"deeds": hub.get("deeds", {}), "deed_titles": _deed_titles,
 		"passions": PassionCore.normalize_record(hub.get("passions", {})),
 		"passion_data": passions, "dive": _read(DIVE_SAVE),
+		"stories": StoryRoute.journal_lines(StoryRoute.load_data(),
+			hub.get("missions", {})),
 		"date": Time.get_date_string_from_system()}
 
 
