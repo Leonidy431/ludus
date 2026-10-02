@@ -2,8 +2,8 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 449
-- документов: 210
+- файлов кода: 451
+- документов: 211
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -30,7 +30,7 @@
 - [.github/workflows/raw-audio-pass.yml](../.github/workflows/raw-audio-pass.yml) — Audio pass over the 99 backlog repos as a git pass (operator,
 - [.github/workflows/raw-osint-cycle.yml](../.github/workflows/raw-osint-cycle.yml) — OSINT pass over the 99 backlog repos every 1.5 hours (CLAUDE.md TABOO
 
-## Игра для шлема: код (GDScript) (73)
+## Игра для шлема: код (GDScript) (74)
 
 - [godot/scripts/apparatus_core.gd](../godot/scripts/apparatus_core.gd) — The operator's own apparatus in the game (CLAUDE.md TABOO 0.022): 41
 - [godot/scripts/atlas_core.gd](../godot/scripts/atlas_core.gd) — "The Water Atlas" read at the lectern of the scriptorium (CLAUDE.md
@@ -74,6 +74,7 @@
 - [godot/scripts/location_core.gd](../godot/scripts/location_core.gd) — The builder's logic for the 99 locations of our plots (CLAUDE.md
 - [godot/scripts/location_heart.gd](../godot/scripts/location_heart.gd) — The heart of a location: the one practice or action at its centre
 - [godot/scripts/locations_core.gd](../godot/scripts/locations_core.gd) — The 99 locations of our plots (docs/HLD_LOCATIONS_99_2026-09-30.md,
+- [godot/scripts/lock_core.gd](../godot/scripts/lock_core.gd) — Locks opened by a calm match-three board (CLAUDE.md TABOO 0.024):
 - [godot/scripts/mentors.gd](../godot/scripts/mentors.gd) — The mentors of the dialogue trees in the headset (HLD
 - [godot/scripts/mission_core.gd](../godot/scripts/mission_core.gd) — The campaign of missions, ported from public/ludus/ludus-missions.js
 - [godot/scripts/module_loader.gd](../godot/scripts/module_loader.gd) — Big modules load in the background (autoload "ModuleLoader").
@@ -132,7 +133,7 @@
 - [godot/tools/stress_place_switch.gd](../godot/tools/stress_place_switch.gd) — Switch places fast, again and again, to shake out a crash of the
 - [godot/tools/witness_wav_check.py](../godot/tools/witness_wav_check.py) — Measure the offline render of the path of the witness.
 
-## Игра для шлема: тесты (53)
+## Игра для шлема: тесты (54)
 
 - [godot/tests/confession_walker.gd](../godot/tests/confession_walker.gd) — A stand-in for the witness path in test_confession.gd: the sheet reads
 - [godot/tests/deeds/panel_text.gd](../godot/tests/deeds/panel_text.gd) — The heart's panel of a place as location.gd builds it, measured with
@@ -163,6 +164,7 @@
 - [godot/tests/test_location_build.gd](../godot/tests/test_location_build.gd) — The 99 locations as the headset builds them (CLAUDE.md TABOO 0.013,
 - [godot/tests/test_location_items.gd](../godot/tests/test_location_items.gd) — The things of the 99 locations that come from the 99 cloned repos
 - [godot/tests/test_locations.gd](../godot/tests/test_locations.gd) — The 99 locations keep the standard of the evening-watch cell (CLAUDE.md
+- [godot/tests/test_lock.gd](../godot/tests/test_lock.gd) — Locks as match-three (LockCore, TABOO 0.024): the data keeps its
 - [godot/tests/test_mentors.gd](../godot/tests/test_mentors.gd) — The 24 mentors in the headset (HLD_APK_GRAPHICS_SOUND_2026-10-01,
 - [godot/tests/test_mission.gd](../godot/tests/test_mission.gd) — MissionCore against the JS reference (public/ludus/ludus-missions.js):
 - [godot/tests/test_module_loader.gd](../godot/tests/test_module_loader.gd) — Big modules load in the background (ModuleLoader, CLAUDE.md TABOO
@@ -432,7 +434,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (154)
+## Документация проекта (155)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -471,6 +473,7 @@
 - [docs/HLD_LAKE_99_DETAILS_2026-09-30.md](../docs/HLD_LAKE_99_DETAILS_2026-09-30.md) 📄 — HLD: мелкие детали 99 объектов озера и пять следов рыцаря (2026-09-30)
 - [docs/HLD_LOCATIONS_99_2026-09-30.md](../docs/HLD_LOCATIONS_99_2026-09-30.md) 📄 — HLD: 99 локаций по нашим сюжетам — основание (2026-09-30)
 - [docs/HLD_LOCATION_ITEMS_2026-09-30.md](../docs/HLD_LOCATION_ITEMS_2026-09-30.md) 📄 — HLD: вещи 99 локаций из 99 склонированных репо — трек B (2026-09-30)
+- [docs/HLD_LOCK_MATCH3_2026-10-02.md](../docs/HLD_LOCK_MATCH3_2026-10-02.md) 📄 — HLD: вскрытие сейфов, кодовых замков и сервера аппарата — казуальная головоломка «три в ряд» (2026-10-02)
 - [docs/HLD_MANGUSTIK_COCKPIT_2026-09-30.md](../docs/HLD_MANGUSTIK_COCKPIT_2026-09-30.md) 📄 — HLD: кокпит и аппарат «Мангустик» в погружении
 - [docs/HLD_MISSIONS_APK_2026-09-30.md](../docs/HLD_MISSIONS_APK_2026-09-30.md) 📄 — HLD: кампания миссий — в APK (доска дороги во дворе)
 - [docs/HLD_OBB_FORECAST_2026-10-02.md](../docs/HLD_OBB_FORECAST_2026-10-02.md) 📄 — HLD — прогноз веса сборки и технология пакета расширения OBB (2026-10-02)
