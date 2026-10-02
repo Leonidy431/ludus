@@ -3,7 +3,8 @@
 ##
 ## It reads the player's own saves, user://hub.json and user://dive.json,
 ## and never writes to them.  Each press turns a page: FORM, the rule,
-## the steps of the ladder, the road, under the water, and last the page
+## the steps of the ladder, the road, the deeds of places, under the
+## water, and last the page
 ## where the player may ask for the record to be written out.  Only a
 ## press on that last page writes a file, user://journal-<date>.md, the
 ## same Markdown page the web game exports; an earlier page of the same
@@ -28,6 +29,10 @@ const BARK := Color(0.93, 0.88, 0.76)
 const INK := Color(0.2, 0.15, 0.1)
 ## The hearth's warm light over the page, about 2200 K (TABOO 0.38).
 const HEARTH_K := Color(1.0, 0.62, 0.3)
+
+## The titles of the places whose hearts hold an act (JournalCore.
+## deed_titles), read once: the data of the 99 places does not change.
+static var _deed_titles = null
 
 var page := 0
 var written := ""
@@ -108,8 +113,11 @@ func state() -> Dictionary:
 	var passions: Dictionary = JSON.parse_string(
 		FileAccess.get_file_as_string("res://data/passions.json"))
 	var form = hub.get("form")
+	if _deed_titles == null:
+		_deed_titles = JournalCore.deed_titles(LocationCore.load_data())
 	return {"form": form if form is Dictionary else HubCore.new_form(),
 		"actions": hub.get("actions", {}),
+		"deeds": hub.get("deeds", {}), "deed_titles": _deed_titles,
 		"passions": PassionCore.normalize_record(hub.get("passions", {})),
 		"passion_data": passions, "dive": _read(DIVE_SAVE),
 		"date": Time.get_date_string_from_system()}

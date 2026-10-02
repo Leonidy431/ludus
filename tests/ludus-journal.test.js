@@ -47,3 +47,25 @@ test('no church words as labels and nothing about confession', () => {
   assert.doesNotMatch(md, /confession|исповед/i);
   assert.doesNotMatch(md, /\b(grace|saint|holiness level|martyr)\b/i);
 });
+
+// The acts done at the hearts of places (blind spot 12): the place's
+// title, how many times and the last day; unknown acts are dropped.
+test('the deeds of places: title, times and last day, known acts only',
+  () => {
+    const graph = require('../public/ludus/data/place-deeds.json');
+    const places = {};
+    Object.keys(graph.acts).forEach((id) => {
+      places[id] = graph.acts[id].place.title;
+    });
+    const md = J.toMarkdown(Object.assign(sample(), {
+      deeds: { 'wait-out-storm': { count: 2, lastDay: '2026-10-01' },
+        'forge-nail': { count: 0, lastDay: null },
+        'no-such-act': { count: 9, lastDay: '2026-10-01' } },
+      deedPlaces: places,
+    }), A);
+    assert.match(md, new RegExp('## Deeds of places\\n\\n- Штормовой '
+      + 'залив: done 2 times, last on 2026-10-01\\.\\n\\n'));
+    assert.doesNotMatch(md, /no-such-act|Кузня/);
+    const none = J.toMarkdown(sample(), A);
+    assert.match(none, /- No act at the heart of a place done yet\./);
+  });

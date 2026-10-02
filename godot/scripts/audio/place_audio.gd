@@ -60,6 +60,9 @@ var paced_render := OS.has_feature("web")
 var pace: PlaceSynth.Pace
 var paced_out: Dictionary = {}
 var machine_open := 1.0
+## Offset of the crafts' loudness in dB, set by the scene: the surf and
+## the rain of a storm settle while the player waits it out (StormCalm).
+var craft_db := 0.0
 var listener := Vector3.ZERO
 var hush_tone: AudioStreamGeneratorPlayback
 var hush_state: Dictionary = {}
@@ -306,6 +309,8 @@ func _process(dt: float) -> void:
 		var db := SILENT_DB if g <= 0.0 else linear_to_db(g)
 		if k == "machine":
 			db += PlaceSound.machine_gain_db(plan, machine_open)
+		elif k.begins_with("craft:"):
+			db += craft_db
 		players[k].volume_db = maxf(SILENT_DB, db)
 	_feed_hush()
 	_feed_bell()
