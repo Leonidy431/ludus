@@ -49,7 +49,7 @@ VOICES = {
            'it-riccardo_fasol-x-low.onnx'),                     # M-AILABS
 }
 VOICE = VOICES['ru']
-I18N = ROOT / 'docs' / 'story' / 'chorus-ep1' / 'narration_i18n.json'
+I18N = ROOT / 'godot' / 'data' / 'pilot-narration-i18n.json'
 FONT = '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
 
 
