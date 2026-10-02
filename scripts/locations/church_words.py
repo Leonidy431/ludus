@@ -39,6 +39,15 @@ def words(text):
 
 
 def church_word(text, data=None):
+    """The gate: the first church word while the stop-list is enforced,
+    '' when the operator has lifted it (2026-10-02, "enforce": false)."""
+    data = data or LIST
+    if not data.get('enforce', True):
+        return ''
+    return find_church_word(text, data)
+
+
+def find_church_word(text, data=None):
     """Return the first church word of a text, or '' when it is plain."""
     data = data or LIST
     for w in words(text):

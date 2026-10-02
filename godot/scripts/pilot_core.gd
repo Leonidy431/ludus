@@ -312,3 +312,73 @@ static func check_examine(data: Dictionary) -> Array:
 		if w != "":
 			bad.append("%s says «%s»" % [e.id, w])
 	return bad
+
+
+## The narrator's lines (TABOO 0.020): every beat and every thing has
+## one, in the third person, at most 140 characters, bridged to a beat
+## that exists (or to the next episode); the holy beat is silent; no
+## church word (TABOO 0.39).
+static func check_narration(data: Dictionary, n: Dictionary) -> Array:
+	var bad := []
+	var beats := {"episode2": true}
+	for b in data.beats:
+		beats[b.id] = b
+	var need: Array = []
+	for e in data.get("examine", []):
+		need.append(e.id)
+	for c in data.get("clues", []):
+		need.append(c.id)
+	need.append_array(["Glasses", "Mark", "echo_captive", "echo_virtue",
+		"echo_unresolved"])
+	for b in data.beats:
+		if not n.get("beats", {}).has(b.id):
+			bad.append("beat %s has no line" % b.id)
+	for id in need:
+		if not n.get("objects", {}).has(id):
+			bad.append("thing %s has no line" % id)
+	for group in ["beats", "objects"]:
+		for id in n.get(group, {}):
+			var x: Dictionary = n[group][id]
+			var line := str(x.get("line_ru", ""))
+			var holy: bool = group == "beats" and beats.has(id) \
+				and beats[id] is Dictionary and beats[id].get("holy", false)
+			if holy and line != "":
+				bad.append("the narrator speaks at the holy (%s)" % id)
+			if not holy and line == "":
+				bad.append("%s %s is silent" % [group, id])
+			if line.length() > 140:
+				bad.append("%s %s is %d long" % [group, id, line.length()])
+			for w in LocationsCore.words(line):
+				if w in ["я", "ты", "мне", "меня", "тебя", "тебе"]:
+					bad.append("%s %s is not third person" % [group, id])
+			var cw := LocationsCore.church_word(line)
+			if cw != "":
+				bad.append("%s %s says «%s»" % [group, id, cw])
+			if not beats.has(str(x.get("bridge_to", ""))):
+				bad.append("%s %s bridges to nothing" % [group, id])
+	return bad
+
+
+## Ad slots (operator, 2026-10-02: «рекламу можно … здесь могла быть
+## Ваша реклама на английском … no brand names»): a placeholder in
+## English, no brand or product name, never under water at the holy
+## and never in a sacred zone.  Brand names are kept out by keeping the
+## text to the placeholder words alone.
+const AD_WORDS := ["your", "ad", "could", "be", "here", "space",
+	"contact", "the", "studio"]
+
+
+static func check_ads(data: Dictionary) -> Array:
+	var bad := []
+	for a in data.get("ad_slots", []):
+		if str(a.get("world", "")) != "room":
+			bad.append("%s: an ad outside the room" % a.id)
+		for k in ["text_en", "small_en"]:
+			for w in str(a.get(k, "")).to_lower().split(" ", false):
+				var clean := w.strip_edges().trim_suffix(".").trim_suffix(",")
+				if clean == "·":
+					continue
+				if not clean in AD_WORDS:
+					bad.append("%s: '%s' is not a placeholder word" % [a.id,
+						clean])
+	return bad

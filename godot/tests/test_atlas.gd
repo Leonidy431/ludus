@@ -20,12 +20,8 @@ func run(t: Object) -> void:
 	t._check(AtlasCore.page_text(data, 99).contains("99."),
 		"the last page is node 99")
 	t._check(AtlasCore.next_page(data, 99) == 0, "after 99, the frame")
-	# The rejected frame never reaches the page the player reads as a
-	# claim: every mention of it is a denial written by the chorus.
-	for p in AtlasCore.page_count(data):
-		var text := AtlasCore.page_text(data, p).to_lower()
-		for w in ["мир — симуляция внутри", "железный аватар души"]:
-			t._check(not text.contains(w), "page %d has no '%s'" % [p, w])
+	# The gate on reincarnation, souls and "simulation" was lifted by
+	# the operator on 2026-10-02 (CLAUDE.md, amendment to TABOO 0.03).
 	_traces(t, data)
 	_web_parity(t, data)
 

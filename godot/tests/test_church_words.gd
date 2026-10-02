@@ -23,9 +23,9 @@ func run(t: Object) -> void:
 	t._check(corpus.must_flag.size() >= 30
 		and corpus.must_pass.size() >= 10, "the corpus is not empty")
 	for row in corpus.must_flag:
-		var got := LocationsCore.church_word(str(row[0]))
+		var got := LocationsCore.find_church_word(str(row[0]))
 		t._check(got == str(row[1]), "caught %s: %s (got %s)"
 			% [row[1], row[0], got])
 	for row in corpus.must_pass:
-		var got := LocationsCore.church_word(str(row[0]))
+		var got := LocationsCore.find_church_word(str(row[0]))
 		t._check(got == "", "passes %s (got %s)" % [row[0], got])

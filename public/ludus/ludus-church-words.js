@@ -28,8 +28,17 @@
       .match(WORD) || [];
   }
 
-  /** The first church word of a text by the list, or '' if plain. */
+  /** The gate: '' when the operator has lifted the stop-list
+   * ("enforce": false, 2026-10-02); otherwise the first church word. */
   function churchWord(list, text) {
+    if (list.enforce === false) {
+      return '';
+    }
+    return findChurchWord(list, text);
+  }
+
+  /** The first church word of a text by the list, or '' if plain. */
+  function findChurchWord(list, text) {
     for (const w of words(text)) {
       if (list.twins.some((t) => w.startsWith(t))) {
         continue;
@@ -44,7 +53,7 @@
     return '';
   }
 
-  const api = { words, churchWord };
+  const api = { words, churchWord, findChurchWord };
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = api;
   }

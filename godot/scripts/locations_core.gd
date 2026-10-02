@@ -170,7 +170,16 @@ static func words(text: String) -> PackedStringArray:
 ## The first church word of a text, or "" when the text is plain: a word
 ## that is not an allowed twin («крестьянин») and either is a listed
 ## form («мощей») or begins with a stem («Богородицы»).
+## The gate: the first church word of a text while the stop-list is
+## enforced, "" when the operator has lifted it ("enforce": false in
+## data/church-words.json, 2026-10-02).  find_church_word always looks.
 static func church_word(text: String) -> String:
+	if not church_list().get("enforce", true):
+		return ""
+	return find_church_word(text)
+
+
+static func find_church_word(text: String) -> String:
 	var data := church_list()
 	var twins: Array = data.get("twins", [])
 	var forms: Array = data.get("forms", [])

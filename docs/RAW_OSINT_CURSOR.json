@@ -1,5 +1,5 @@
 {
- "next": 10,
+ "next": 13,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -6374,6 +6374,149 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 52
+  },
+  {
+   "time": "2026-10-02T18:00:27.136042+00:00",
+   "pass_id": "osint-2026-10-02T18:00:27Z",
+   "deficits": [
+    {
+     "id": "DEF-040",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 2,
+      "font": 1
+     },
+     "to_props": 94,
+     "hits_uncapped": 23641,
+     "props_uncapped": 20135,
+     "props_uncapped_repos": 62,
+     "added_keywords": [
+      "palette",
+      "panel",
+      "parser",
+      "raloader",
+      "range",
+      "relocation",
+      "remastered",
+      "report",
+      "rubber",
+      "scanner",
+      "scene",
+      "script"
+     ],
+     "keywords_total": 106,
+     "keywords_not_searched": [
+      "bevy",
+      "cleric",
+      "com",
+      "cpp",
+      "crates",
+      "file",
+      "java",
+      "layer",
+      "layers",
+      "load",
+      "loader",
+      "mage",
+      "manager",
+      "model",
+      "name",
+      "out",
+      "output",
+      "rotp",
+      "shatteredpixel",
+      "shatteredpixeldungeon",
+      "tmp"
+     ],
+     "props": {
+      "test": 1
+     },
+     "props_seen": 62
+    },
+    {
+     "id": "DEF-047",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 14,
+      "dogma-stop-list": 1
+     },
+     "to_props": 52,
+     "hits_uncapped": 46269,
+     "props_uncapped": 42125,
+     "props_uncapped_repos": 62,
+     "added_keywords": [],
+     "keywords_total": 95,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "cpp",
+      "java",
+      "loader",
+      "mage",
+      "name",
+      "out",
+      "rotp",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 52
+    },
+    {
+     "id": "DEF-048",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 22,
+      "dogma-stop-list": 1
+     },
+     "to_props": 85,
+     "hits_uncapped": 11078,
+     "props_uncapped": 7891,
+     "props_uncapped_repos": 58,
+     "added_keywords": [],
+     "keywords_total": 63,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "cpp",
+      "file",
+      "java",
+      "mage",
+      "mindustry",
+      "preview",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 85
+    }
+   ],
+   "props_taken": {
+    "test": 1
+   },
+   "props_taken_by_index_kind": {
+    "code": 1
+   },
+   "props_duplicates": 199,
+   "props_errors": 0,
+   "props_refused": {
+    "licence-Defold-1.0": 31
+   },
+   "props_new_bytes": 55,
+   "props_store_files": 1455,
+   "props_store_bytes": 10827737,
+   "props_cache_files_on_disk": 4666,
+   "props_cache_bytes_on_disk": 78042270,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 812239,
+   "props_register_growth_bytes": 589,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 328
   }
  ],
  "keywords": {
@@ -7139,7 +7282,19 @@
    "oksprite",
    "out",
    "output",
-   "paint"
+   "paint",
+   "palette",
+   "panel",
+   "parser",
+   "raloader",
+   "range",
+   "relocation",
+   "remastered",
+   "report",
+   "rubber",
+   "scanner",
+   "scene",
+   "script"
   ],
   "DEF-047": [
    "java",

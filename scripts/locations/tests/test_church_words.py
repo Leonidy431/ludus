@@ -31,11 +31,11 @@ class ChurchWordsTest(unittest.TestCase):
 
     def test_must_flag(self):
         for text, word in self.corpus['must_flag']:
-            self.assertEqual(C.church_word(text), word, text)
+            self.assertEqual(C.find_church_word(text), word, text)
 
     def test_must_pass(self):
         for text, _why in self.corpus['must_pass']:
-            self.assertEqual(C.church_word(text), '', text)
+            self.assertEqual(C.find_church_word(text), '', text)
 
 
 if __name__ == '__main__':

@@ -112,6 +112,12 @@ var examine_rest := ""
 var examined: Array[String] = []
 var close_up: MeshInstance3D
 var glasses_was := false
+## The examine video (TABOO 0.019): a flipbook atlas from the pack,
+## played on the close-up; its clip.json; the frame clock; the voice.
+var clip := {}
+var clip_t := 0.0
+var clip_check_s := 0.0
+var narrator: AudioStreamPlayer
 
 var passion := {}
 var state := {}
@@ -388,6 +394,7 @@ func _build_room() -> void:
 	_build_things()
 	_build_clues()
 	_build_glasses()
+	_build_ads()
 	StaticBatch.merge(still)
 	water = MeshInstance3D.new()
 	var wp := PlaneMesh.new()
@@ -477,6 +484,39 @@ func _build_clues() -> void:
 	stain.scale = Vector3(1.0, 1.0, 0.42)
 	stain.name = "Stain"
 	room.add_child(stain)
+
+
+## The ad slot of the operator's room: a printed flyer pinned to the
+## wall, "YOUR AD COULD BE HERE", no brand (operator, 2026-10-02).
+func _build_ads() -> void:
+	for a in data.get("ad_slots", []):
+		var pos: Array = a.pos
+		var flyer := Node3D.new()
+		flyer.name = "Ad_" + str(a.id)
+		flyer.position = Vector3(pos[0], pos[1], pos[2])
+		flyer.rotation.y = -PI / 2.0
+		_box(flyer, Vector3(0.42, 0.3, 0.004), Vector3.ZERO,
+			_mat(Color(0.93, 0.90, 0.80)))
+		var big := Label3D.new()
+		big.text = str(a.text_en)
+		big.font_size = 44
+		big.pixel_size = 0.0007
+		big.width = 520
+		big.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		big.modulate = Color(0.12, 0.10, 0.09)
+		big.outline_size = 0
+		big.position = Vector3(0, 0.03, 0.004)
+		flyer.add_child(big)
+		var small := Label3D.new()
+		small.text = str(a.small_en)
+		small.font_size = 22
+		small.pixel_size = 0.0007
+		small.modulate = Color(0.30, 0.27, 0.24)
+		small.outline_size = 0
+		small.position = Vector3(0, -0.1, 0.004)
+		flyer.add_child(small)
+		room.add_child(flyer)
+		things[flyer.name] = flyer
 
 
 ## Reading glasses on the table by the laptop: two rims and a bridge.
@@ -820,6 +860,9 @@ func _build_close_up() -> void:
 	close_up.position = Vector3(0, 0.09, -0.7)
 	close_up.visible = false
 	camera.add_child(close_up)
+	narrator = AudioStreamPlayer.new()
+	narrator.name = "Narrator"
+	add_child(narrator)
 
 
 ## In the headset the Prior's screen lives on the left wrist, read by
@@ -988,6 +1031,17 @@ func _examine(dt: float) -> void:
 	glasses_was = press
 	if examining != "":
 		examine_open_s += dt
+		_play_clip(dt)
+		clip_check_s += dt
+		if clip.is_empty() and clip_check_s >= 0.5:
+			# The pack may arrive while the still is up: the video then
+			# takes its place without closing the close-up.
+			clip_check_s = 0.0
+			var c := load_clip(examining)
+			if not c.is_empty():
+				for e in data.examine:
+					if e.id == examining:
+						_start_clip(e, c)
 		if pressed or examine_open_s >= float(
 				data.examine_rule.close_after_s):
 			close_examine()
@@ -1032,6 +1086,66 @@ func put_on_glasses() -> void:
 	glasses_on = true
 	things["Glasses"].visible = false
 	line.text = "Очки."
+	# The moment the glasses go on, the pack of examine videos is asked
+	# for over the network (TABOO 0.019 item 1).
+	_want_pack()
+
+
+func _want_pack() -> void:
+	# Through the tree's root: the scene may be built before it enters
+	# the tree (tests), and the autoload is there either way.
+	var tree := Engine.get_main_loop() as SceneTree
+	var pf: Node = tree.root.get_node_or_null("PackFetch") if tree else null
+	if pf and data.has("examine_pack"):
+		pf.want(str(data.examine_pack))
+
+
+## The examine video of a thing, when its pack is mounted: the atlas
+## and its layout, or {} (the still from the APK stays).
+static func load_clip(id: String) -> Dictionary:
+	var base := "res://closeups/%s/" % id.to_lower()
+	if not FileAccess.file_exists(base + "clip.json"):
+		return {}
+	var meta = JSON.parse_string(FileAccess.get_file_as_string(
+		base + "clip.json"))
+	var img := Image.new()
+	if not meta is Dictionary or img.load_jpg_from_buffer(
+			FileAccess.get_file_as_bytes(base + "atlas.jpg")) != OK:
+		return {}
+	var out: Dictionary = meta
+	out["texture"] = ImageTexture.create_from_image(img)
+	var voice := base + "voice_ru.ogg"
+	if FileAccess.file_exists(voice):
+		out["voice"] = AudioStreamOggVorbis.load_from_file(voice)
+	return out
+
+
+## Show the clip on the close-up from frame 0; the voice, if recorded,
+## lies over it, and the narrator's line replaces the scribe's.
+func _start_clip(e: Dictionary, c: Dictionary) -> void:
+	clip = c
+	clip_t = 0.0
+	var m := close_up.material_override as StandardMaterial3D
+	m.albedo_texture = c.texture
+	m.uv1_scale = Vector3(1.0 / float(c.cols), 1.0 / float(c.rows), 1.0)
+	m.uv1_offset = Vector3.ZERO
+	close_up.visible = true
+	if e.has("narration_ru"):
+		line.text = e.narration_ru
+	synth.event_click()
+	if c.has("voice"):
+		narrator.stream = c.voice
+		narrator.play()
+
+
+func _play_clip(dt: float) -> void:
+	if clip.is_empty():
+		return
+	clip_t += dt
+	var f := int(clip_t * float(clip.fps)) % int(clip.frames)
+	var m := close_up.material_override as StandardMaterial3D
+	m.uv1_offset = Vector3(float(f % int(clip.cols)) / float(clip.cols),
+		float(f / int(clip.cols)) / float(clip.rows), 0.0)
 
 
 func open_examine(e: Dictionary) -> void:
@@ -1041,6 +1155,17 @@ func open_examine(e: Dictionary) -> void:
 	(close_up.material_override as StandardMaterial3D).albedo_texture = tex
 	close_up.visible = tex != null
 	line.text = e.line_ru
+	clip = {}
+	var m := close_up.material_override as StandardMaterial3D
+	m.uv1_scale = Vector3.ONE
+	m.uv1_offset = Vector3.ZERO
+	# The lens focusing: the sound of the close-up.
+	synth.event_servo()
+	if world == "lake":
+		_want_pack()
+	var c := load_clip(e.id)
+	if not c.is_empty():
+		_start_clip(e, c)
 	if not e.id in examined:
 		examined.append(e.id)
 	duck_db = -18.0
@@ -1051,6 +1176,9 @@ func open_examine(e: Dictionary) -> void:
 
 
 func close_examine() -> void:
+	clip = {}
+	if narrator and narrator.playing:
+		narrator.stop()
 	examine_rest = examining
 	examining = ""
 	close_up.visible = false

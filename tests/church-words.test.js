@@ -26,14 +26,14 @@ test('the web copy is the headset file byte for byte', () => {
 test('the corpus: every must-flag line is caught by its word', () => {
   assert.ok(CORPUS.must_flag.length >= 30);
   CORPUS.must_flag.forEach(([text, word]) => {
-    assert.equal(C.churchWord(LIST, text), word, text);
+    assert.equal(C.findChurchWord(LIST, text), word, text);
   });
 });
 
 test('the corpus: every look-alike twin passes', () => {
   assert.ok(CORPUS.must_pass.length >= 10);
   CORPUS.must_pass.forEach(([text]) => {
-    assert.equal(C.churchWord(LIST, text), '', text);
+    assert.equal(C.findChurchWord(LIST, text), '', text);
   });
 });
 

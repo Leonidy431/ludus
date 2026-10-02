@@ -2,7 +2,7 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 438
+- файлов кода: 440
 - документов: 191
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
@@ -110,10 +110,11 @@
 - [godot/scenes/pilot.tscn](../godot/scenes/pilot.tscn)
 - [godot/scenes/witness.tscn](../godot/scenes/witness.tscn)
 
-## Игра для шлема: инструменты замера и кадров (14)
+## Игра для шлема: инструменты замера и кадров (15)
 
 - [godot/tools/debug_layers.gd](../godot/tools/debug_layers.gd) — Debug: render the start view with one child of the scene hidden at a
 - [godot/tools/fish_shots.gd](../godot/tools/fish_shots.gd) — Proof frames of the fish of our own drawing (DEF-056) in the dive:
+- [godot/tools/make_pack.gd](../godot/tools/make_pack.gd) — Build a pack (TABOO 0.018) from a folder of sources: every file under
 - [godot/tools/measure_budgets.gd](../godot/tools/measure_budgets.gd) — Runtime budgets of one headset scene (docs/APK_REQUIREMENTS.md).
 - [godot/tools/measure_locations.gd](../godot/tools/measure_locations.gd) — Budgets of the 99 locations (CLAUDE.md TABOO 0.011; docs/HLD_LOCATIONS_
 - [godot/tools/measure_panel_text.gd](../godot/tools/measure_panel_text.gd) — How much text the heart's panel of a place holds, measured with its
@@ -217,7 +218,7 @@
 - [scripts/decisions/stoplist_choice.py](../scripts/decisions/stoplist_choice.py) — One decision for the church-word stop-list, chosen in the open.
 - [scripts/decisions/stream_choice.py](../scripts/decisions/stream_choice.py) — How the heavy data reaches the headset: one way from the honest pool.
 
-## Скрипты проекта: раннер, данные, сюжеты (72)
+## Скрипты проекта: раннер, данные, сюжеты (73)
 
 - [scripts/build-campaign-spine.py](../scripts/build-campaign-spine.py) — Build the Issyk-Kul campaign spine from webtypicon2's missions.
 - [scripts/build_rights_manifest.py](../scripts/build_rights_manifest.py) — Build the "Manuscript of rights": the licence register shown in-game.
@@ -246,6 +247,7 @@
 - [scripts/phase2-deploy-full.sh](../scripts/phase2-deploy-full.sh)
 - [scripts/phase2-deploy.sh](../scripts/phase2-deploy.sh)
 - [scripts/phase3-validation.sh](../scripts/phase3-validation.sh) — Phase 3 Final Validation Script
+- [scripts/prerender/build_closeups.py](../scripts/prerender/build_closeups.py) — The examine videos of episode 1 (TABOO 0.019, 0.020): voice, pack
 - [scripts/prerender/render_items.py](../scripts/prerender/render_items.py) — Close-up stills for the swap on examine (docs/HLD_SWAP_RENDERING_
 - [scripts/raw_assets/antagonist.py](../scripts/raw_assets/antagonist.py) — Antagonist protocol: the eight passions and their twelve variants.
 - [scripts/raw_assets/audio_pass.py](../scripts/raw_assets/audio_pass.py) — Audio pass: sounds from the 99 repos as spectral references only.

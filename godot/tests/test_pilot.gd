@@ -62,7 +62,10 @@ func run(t: Object) -> void:
 	t._check(not PilotCore.check(cuts).is_empty(), "a second hard cut fails")
 	var word := d.duplicate(true)
 	word.beats[1].hook_ru = "Где икона?"
-	t._check(not PilotCore.check(word).is_empty(), "a church word fails")
+	t._check(PilotCore.check(word).is_empty(),
+		"a church word is allowed now (lifted by the operator)")
+	t._check(LocationsCore.find_church_word("Где икона?") != "",
+		"the stop-list still finds it")
 
 	var flat := d.duplicate(true)
 	for b in flat.beats:
@@ -124,6 +127,12 @@ func run(t: Object) -> void:
 		{"n": 31, "inp": look}, {"n": 1, "inp": reach}])
 	t._check(again == fallen, "the same body gives the same ladder")
 	clues(t)
+	t._check(PilotCore.check_ads(d).is_empty(), "the ad slot is a "
+		+ "placeholder without brands: %s" % [PilotCore.check_ads(d)])
+	var brand := d.duplicate(true)
+	brand.ad_slots[0].text_en = "DRINK FIZZCOLA"
+	t._check(not PilotCore.check_ads(brand).is_empty(),
+		"a brand on the slot fails")
 	var fb := PilotCore.check_finds(d)
 	t._check(fb.is_empty(), "the classes of finds keep their laws: %s"
 		% [fb])

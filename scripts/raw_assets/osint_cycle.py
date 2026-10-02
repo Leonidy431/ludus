@@ -89,7 +89,10 @@ PLAIN_WORDS = {'png', 'svg', 'jpg', 'gif', 'img', 'image', 'images', 'res',
                'output', 'input', 'layer', 'layers', 'model', 'models',
                'test', 'tests', 'example', 'examples', 'editor', 'tool',
                'tools', 'util', 'utils', 'tmp', 'temp', 'file', 'files',
-               'export', 'import', 'preview', 'thumb', 'thumbs', 'index'}
+               'export', 'import', 'preview', 'thumb', 'thumbs', 'index',
+               # The 17:51 pass grew these for DEF-040.
+               'parser', 'report', 'script', 'scripts', 'scene', 'scenes',
+               'panel', 'range', 'relocation', 'raloader', 'remastered'}
 
 # Rule 5: paths that must never enter the pipeline at all.
 DOGMA_STOP = re.compile(

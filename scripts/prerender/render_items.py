@@ -25,6 +25,8 @@ ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / 'godot' / 'art' / 'prerender'
 SEED = 1375
 ITEMS = ('amphora', 'souvenir', 'drams', 'logbook', 'diary')
+# The pack of the examine videos: sources only, never in the APK.
+PACK = ROOT / 'godot' / 'packs' / 'closeups-ep1' / 'closeups'
 
 
 def arg(name, default):
@@ -298,8 +300,64 @@ def build(item, sc):
         studio(sc, 0.3, 1.0, 0.03, yaw=0.5, pitch=0.6)
 
 
+def turntable_root():
+    """Everything of the thing (not the sweep, lights or camera) under
+    one empty, so the thing turns on its stand under a still light."""
+    root = bpy.data.objects.new('turn', None)
+    bpy.context.collection.objects.link(root)
+    for ob in list(bpy.data.objects):
+        if ob is root or ob.parent is not None:
+            continue
+        if ob.type in ('MESH', 'CURVE') and not ob.name.startswith(
+                'Plane'):
+            ob.parent = root
+    return root
+
+
+def turntable(item, frames, size, samples):
+    """The examine video (TABOO 0.019): the thing turned once round in
+    `frames` steps, saved as frames and as one JPEG atlas for the pack
+    godot/packs/closeups-ep1 (a flipbook: the engine has no video)."""
+    from PIL import Image
+    tmp = ROOT / 'build' / 'turntable' / item
+    tmp.mkdir(parents=True, exist_ok=True)
+    sc = reset()
+    sc.cycles.samples = samples
+    sc.render.resolution_x = size
+    sc.render.resolution_y = size
+    build(item, sc)
+    root = turntable_root()
+    paths = []
+    for f in range(frames):
+        root.rotation_euler = (0, 0, 2 * math.pi * f / frames)
+        sc.render.filepath = str(tmp / ('f%02d.png' % f))
+        bpy.ops.render.render(write_still=True)
+        paths.append(sc.render.filepath)
+    cols = 6
+    rows = (frames + cols - 1) // cols
+    atlas = Image.new('RGB', (cols * size, rows * size))
+    for f, pth in enumerate(paths):
+        atlas.paste(Image.open(pth).convert('RGB'),
+                    ((f % cols) * size, (f // cols) * size))
+    out = PACK / item
+    out.mkdir(parents=True, exist_ok=True)
+    atlas.save(out / 'atlas.jpg', quality=88, optimize=True)
+    (out / 'clip.json').write_text(
+        '{"cols": %d, "rows": %d, "frames": %d, "fps": 8}\n'
+        % (cols, rows, frames), encoding='utf-8')
+    print('turntable', out / 'atlas.jpg')
+
+
 def main():
     only = arg('--only', '')
+    if '--turntable' in sys.argv:
+        for item in ITEMS:
+            if only and item != only:
+                continue
+            turntable(item, int(arg('--frames', 24)),
+                      int(arg('--size', 320)),
+                      int(arg('--samples', 96)))
+        return
     OUT.mkdir(parents=True, exist_ok=True)
     for item in ITEMS:
         if only and item != only:
