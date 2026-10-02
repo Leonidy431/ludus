@@ -70,7 +70,7 @@
         "models/rov/mangustik.glb": {
           "limit": 20000,
           "why": "docs/HLD_MANGUSTIK_COCKPIT_2026-09-30.md M2 and scripts/meta3d/mangustik_rov.py MAX_TRIANGLES = 20000 (whole vehicle). Conflicts with TABOO 0.32 p.4",
-          "approval": "pending: the operator chooses a 5,000-triangle proxy or an allowance in the rule; set by the HLD",
+          "approval": "operator: 2026-10-02 («Все вопросы да»): the full model stays, drawn only within 2.0 m; the 4,444-triangle proxy beyond",
           "blocker": "Б-2",
           "drawn_within_m": 2.0,
           "far_view": "models/rov/mangustik-lod1.glb (4,444 triangles, one draw call) beyond 2.0 m from the camera, by visibility ranges (godot/scripts/rov_lod.gd); measured 2026-10-01: dive depth-3m 255 -> 242 calls, 154,199 -> 140,391 main-view primitives; hub pier 22,826 -> 8,654, yard-se-ne 99 -> 98 calls, 71,383 -> 57,211. The full model stays for the near look on the pier and the front camera's own view"
