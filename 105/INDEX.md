@@ -2,8 +2,8 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 464
-- документов: 218
+- файлов кода: 465
+- документов: 219
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -239,7 +239,7 @@
 - [scripts/decisions/stoplist_choice.py](../scripts/decisions/stoplist_choice.py) — One decision for the church-word stop-list, chosen in the open.
 - [scripts/decisions/stream_choice.py](../scripts/decisions/stream_choice.py) — How the heavy data reaches the headset: one way from the honest pool.
 
-## Скрипты проекта: раннер, данные, сюжеты (76)
+## Скрипты проекта: раннер, данные, сюжеты (77)
 
 - [scripts/build-campaign-spine.py](../scripts/build-campaign-spine.py) — Build the Issyk-Kul campaign spine from webtypicon2's missions.
 - [scripts/build_rights_manifest.py](../scripts/build_rights_manifest.py) — Build the "Manuscript of rights": the licence register shown in-game.
@@ -263,6 +263,7 @@
 - [scripts/meta3d/page.js](../scripts/meta3d/page.js) — Browser side of the Meta 3D generator (CLAUDE.md TABOO 0.32).
 - [scripts/meta3d/posoh_hydrophone.py](../scripts/meta3d/posoh_hydrophone.py) — Build the game's hydrophone from the operator's own OpenSCAD drawing.
 - [scripts/meta3d/preview.js](../scripts/meta3d/preview.js) — Render a contact sheet of .glb proxies so a person can check them by
+- [scripts/music/cosmos_preview.py](../scripts/music/cosmos_preview.py) — Build the listening copy and the pictures of the suite
 - [scripts/obitel/obitel_objects.py](../scripts/obitel/obitel_objects.py) — The obitel's objects: the honest pool of proxies and the K the hub shows.
 - [scripts/patent/object_claims.py](../scripts/patent/object_claims.py) — Draft claim sheets for every prompted game object (operator request).
 - [scripts/phase2-deploy-full.sh](../scripts/phase2-deploy-full.sh)
@@ -449,7 +450,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (160)
+## Документация проекта (161)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -566,6 +567,7 @@
 - [docs/logs/aider_agent_loop.txt](../docs/logs/aider_agent_loop.txt) 📄
 - [docs/logs/talk_log_2026-09-23.md](../docs/logs/talk_log_2026-09-23.md) 📄 — Talk log — 2026-09-23
 - [docs/logs/talklog.md](../docs/logs/talklog.md) 📄 — Ludus Development Talklog
+- [docs/music/cosmos/README.md](../docs/music/cosmos/README.md) 📄 — Сюита «Наука. Любовь. Познание.»: космическая музыка Ludus
 - [docs/reports/COMPREHENSIVE_GAPS_ANALYSIS.md](../docs/reports/COMPREHENSIVE_GAPS_ANALYSIS.md) 📄 — Ludus Project: Comprehensive Gaps Analysis & Status
 - [docs/reports/COMPREHENSIVE_PROJECT_AUDIT.md](../docs/reports/COMPREHENSIVE_PROJECT_AUDIT.md) 📄 — Ludus: Comprehensive Project Audit & Gap Analysis
 - [docs/reports/OCT_1_MORNING_START.md](../docs/reports/OCT_1_MORNING_START.md) 📄 — Oct 1, 2026 — 06:00 UTC MORNING START GUIDE
