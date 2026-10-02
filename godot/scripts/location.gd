@@ -307,7 +307,21 @@ func _process(dt: float) -> void:
 			move.length() < 0.1))
 	message_left = maxf(0.0, message_left - dt)
 	_fade(dt)
+	_look_ahead()
 	_refresh()
+
+
+## TABOO 0.014: the module behind a way out loads while the player comes
+## to it: the courtyard at the door, the dive at a heart that leads into
+## the lake or once its panel is open.  What was looked ahead to stays
+## until another way is nearer, so pacing at the door loads it once.
+func _look_ahead() -> void:
+	var th := _nearest()
+	if th.get("id") == "exit":
+		ModuleLoader.ahead(HUB)
+	elif LocationHeart.kind_of(loc.heart) == "dive" \
+			and (th.get("id") == "heart" or not heart_panel.is_empty()):
+		ModuleLoader.ahead(ModuleLoader.DIVE)
 
 
 ## The interface goes near the holy thing and returns after, never
@@ -366,7 +380,7 @@ func _apply(r: Dictionary) -> void:
 		if st.atlas_given != given_before:
 			LocationCore.write_given(st.atlas_given)
 	if r.scene != "" and not proof:
-		get_tree().change_scene_to_file(r.scene)
+		ModuleLoader.go(r.scene)
 
 
 ## Touch, sound and light for one step of the act, in the same frame.
@@ -384,7 +398,7 @@ func _cue(k: String) -> void:
 
 
 func _leave() -> void:
-	get_tree().change_scene_to_file(HUB)
+	ModuleLoader.go(HUB)
 
 
 func _say(text: String) -> void:

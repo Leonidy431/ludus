@@ -804,6 +804,7 @@ func _process(dt: float) -> void:
 	_check_fall()
 	_road_tick(dt)
 	_rope_tick(dt)
+	_look_ahead()
 	hearth.light_energy = 1.3 + 0.15 * sin(t * 7.0) * sin(t * 2.3)
 	message_left = maxf(0.0, message_left - dt)
 	_refresh_boards()
@@ -821,6 +822,34 @@ func _nearest() -> Dictionary:
 			best = th
 			best_d = d
 	return best
+
+
+## TABOO 0.014: the big module behind a way out of the yard loads while
+## the player walks to it (ModuleLoader.ahead), not in the frame of the
+## press.  The nearest way within AHEAD_M is looked ahead to; the one
+## already loading is kept a little farther, so that a player pacing at
+## the edge does not start the load again and again.
+const AHEAD_M := 4.0
+const AHEAD_KEEP_M := 5.5
+const AHEAD := {"rov": "res://scenes/dive.tscn",
+	"witness": "res://scenes/witness.tscn",
+	"places": "res://scenes/location.tscn"}
+
+
+func _look_ahead() -> void:
+	var best := ""
+	var best_d := INF
+	for th in things:
+		var to: String = AHEAD.get(th.id, "")
+		if to == "":
+			continue
+		var d := Vector2(th.pos.x - pos.x, th.pos.z - pos.z).length()
+		var reach := AHEAD_KEEP_M if to == ModuleLoader.ahead_path \
+			else AHEAD_M
+		if d < reach and d < best_d:
+			best = to
+			best_d = d
+	ModuleLoader.ahead(best)
 
 
 func _interact() -> void:
@@ -845,7 +874,7 @@ func _interact() -> void:
 				_say("Путь в глубину закрыт: %s. Признак: %s Открывают трезвение (угол безмолвия или вечерний дозор в келье) и беседа с наставником." % [fs.passion_ru, fs.cue])
 				return
 			_save()
-			get_tree().change_scene_to_file("res://scenes/dive.tscn")
+			ModuleLoader.go(ModuleLoader.DIVE)
 		"road":
 			_road()
 		"atlas":
@@ -869,7 +898,7 @@ func _interact() -> void:
 		"witness":
 			# Leaving for the path writes nothing about the visit.
 			_save()
-			get_tree().change_scene_to_file("res://scenes/witness.tscn")
+			ModuleLoader.go(ModuleLoader.WITNESS)
 		"ladder":
 			_ladder()
 		"missions":

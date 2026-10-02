@@ -662,7 +662,10 @@ static func exit_ru(p: Dictionary) -> String:
 
 static func go(tree: SceneTree, id: String) -> void:
 	tree.root.set_meta(META_KEY, id)
-	tree.change_scene_to_file(SCENE)
+	# The place loads behind the black (ModuleLoader, TABOO 0.014).  The
+	# autoload is found by its node, not its global name: tools run with
+	# -s compile this class before the autoloads exist.
+	tree.root.get_node("ModuleLoader").go(SCENE)
 
 
 static func chosen(tree: SceneTree) -> String:

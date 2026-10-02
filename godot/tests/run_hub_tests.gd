@@ -226,4 +226,10 @@ func _initialize() -> void:
 	load("res://tests/test_act_cue.gd").new().run(self)
 	print("place deeds: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# Big modules load in the background (ModuleLoader, TABOO 0.014, S1).
+	before = checks
+	fails = failures
+	await load("res://tests/test_module_loader.gd").new().run(self)
+	print("module loader: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	quit(1 if failures else 0)
