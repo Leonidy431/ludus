@@ -844,6 +844,15 @@ const AHEAD := {"rov": "res://scenes/dive.tscn",
 
 
 func _look_ahead() -> void:
+	# The board of a story names the place to walk to: its scene loads
+	# while the panel is open, before "Идти" is pressed (TABOO 0.014
+	# item 2), wherever the player stands.
+	if not mission.is_empty():
+		var ms := _mstate()
+		if not StoryRoute.where(story, ms).is_empty() \
+				and not StoryRoute.returned(story, ms):
+			ModuleLoader.ahead(AHEAD.places)
+			return
 	var best := ""
 	var best_d := INF
 	for th in things:
