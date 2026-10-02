@@ -14,9 +14,19 @@
 # voices in a lighter APK).
 name: Godot engine template (headset)
 
+# GitHub scopes a cache to the ref that saved it: the android job of a
+# pull request reads only its own merge ref's caches and main's, so the
+# template is built on pull_request (for PRs) and on push to main (for
+# main); a push to a branch alone would cache it where no APK build
+# looks (the first trial, 2026-10-02, built it there).
 on:
   workflow_dispatch:
   push:
+    branches: [main]
+    paths:
+      - 'scripts/godot/engine/**'
+      - '.github/workflows/godot-engine.yml'
+  pull_request:
     paths:
       - 'scripts/godot/engine/**'
       - '.github/workflows/godot-engine.yml'
