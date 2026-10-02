@@ -81,9 +81,55 @@ func run(t: Object) -> void:
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(
 			p.save_path))
 		p.queue_free()
+	gravity(t)
+	# The details fired in the run: all 55 on the clock.
+	var last := _play(t, "keep")
+	t._check(last.fired.size() == 55, "every detail fired (%d)"
+		% last.fired.size())
+	DirAccess.remove_absolute(ProjectSettings.globalize_path(
+		last.save_path))
+	last.queue_free()
 	# The lake lights only what the beats name: no shine before the lure.
 	var code := FileAccess.get_file_as_string("res://scripts/pilot.gd")
 	t._check(not "change_scene_to_file" in code,
 		"the pilot goes on through ModuleLoader only")
 	t._check(not "randf" in code and not "randi" in code,
 		"no randomness in the pilot")
+
+
+## Gravity (TABOO 0.016 item 3): every thing set down lies on its
+## surface within 5 mm, measured again from its vertices; the echo is
+## 30-60 % smaller than its source and tipped; the holy is never echoed.
+func gravity(t: Object) -> void:
+	var p: Node = (load("res://scenes/pilot.tscn") as PackedScene) \
+		.instantiate()
+	p.replay = true
+	p.stay = true
+	t.root.add_child(p)
+	if p.data.is_empty():
+		p._ready()
+	t._check(p.grounded.size() >= 12, "things are set down (%d)"
+		% p.grounded.size())
+	for g in p.grounded:
+		if not is_instance_valid(g.node):
+			# Merged into the still furniture: it was measured when set.
+			continue
+		var gap: float = p.bottom_of(g.node) - float(g.surface)
+		t._check(absf(gap) <= 0.005, "%s rests on its surface (%.4f m)"
+			% [g.name, gap])
+	for e in p.ECHO:
+		var s: float = e[2]
+		t._check(s >= 0.4 and s <= 0.7, "%s is 30-60 %% smaller" % e[0])
+		var n: Node3D = p.things[e[0]]
+		t._check(absf(n.rotation.x) > 0.05 or absf(n.rotation.z) > 0.05,
+			"%s lies tipped" % e[0])
+		t._check(p._tip(e[0]) == p._tip(e[0]), "%s tips the same way"
+			% e[0])
+	t._check(not "Khachkar" in p.things.keys(),
+		"the holy is not a thing the details move or echo")
+	var details := PilotCore.load_details(p.data)
+	t._check(details.size() == 55, "55 details")
+	t._check(PilotCore.check_details(p.data, details).is_empty(),
+		"the details keep the rules: %s"
+		% [PilotCore.check_details(p.data, details)])
+	p.queue_free()

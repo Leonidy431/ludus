@@ -20,6 +20,12 @@ extends RefCounted
 
 const DATA := "res://data/pilot-1.json"
 const COLD_OPEN_MAX_S := 10.0
+const DETAILS := "res://data/pilot-details.json"
+## What a detail may do at the holy: dip the machine, dim the light,
+## settle the murk, leave the line empty (TABOO 0.4 item 2).
+const QUIET := ["duck", "lamp", "fog", "line"]
+const PRIMS := ["say", "line", "lamp", "flicker", "haptic", "sfx", "duck",
+	"fog", "move", "show", "hide", "water"]
 
 
 static func load_data() -> Dictionary:
@@ -182,3 +188,55 @@ static func echo(data: Dictionary, stage: String) -> Dictionary:
 	if stage == "virtue":
 		return data.choice_echo.virtue
 	return data.choice_echo.unresolved
+
+
+## The details of godot/data/pilot-details.json, each with "t", its
+## second on the episode's clock, in the order they fire.
+static func load_details(data: Dictionary) -> Array:
+	var d = JSON.parse_string(FileAccess.get_file_as_string(DETAILS))
+	if not d is Dictionary:
+		return []
+	var start := {}
+	for b in data.beats:
+		start[b.id] = float(b.t)
+	var out := []
+	for x in d.chosen:
+		var y: Dictionary = x.duplicate(true)
+		y["t"] = start.get(x.beat, 0.0) + float(x.at)
+		out.append(y)
+	out.sort_custom(func(a, b): return a.t < b.t or (a.t == b.t
+		and a.id < b.id))
+	return out
+
+
+static func _prim(p: Dictionary) -> String:
+	for k in PRIMS:
+		if p.has(k):
+			return k
+	return ""
+
+
+## Every rule a set of details breaks; empty when they are sound.
+static func check_details(data: Dictionary, details: Array) -> Array:
+	var bad := []
+	var beats := {}
+	for b in data.beats:
+		beats[b.id] = b
+	for d in details:
+		if not beats.has(d.beat):
+			bad.append("%s: no beat %s" % [d.id, d.beat])
+			continue
+		var holy: bool = beats[d.beat].get("holy", false)
+		for p in d["do"]:
+			var k := _prim(p)
+			if k == "":
+				bad.append("%s: unknown primitive" % d.id)
+			elif holy and not k in QUIET:
+				bad.append("%s: %s at the holy" % [d.id, k])
+			elif holy and k == "line" and str(p.line) != "":
+				bad.append("%s: words at the holy" % d.id)
+			if k in ["say", "line"]:
+				var w := LocationsCore.church_word(str(p[k]))
+				if w != "":
+					bad.append("%s says «%s»" % [d.id, w])
+	return bad

@@ -2,7 +2,7 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 430
+- файлов кода: 432
 - документов: 183
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
@@ -203,10 +203,12 @@
 - [scripts/godot/make_trial_fixture.js](../scripts/godot/make_trial_fixture.js) — Write godot/tests/trial_fixture.json from public/ludus/ludus-missions.js:
 - [scripts/godot/obb_forecast.py](../scripts/godot/obb_forecast.py) — Forecast of the headset build's weight: when do we need an OBB?
 
-## Выборы из честного пула по 48 параметрам (4)
+## Выборы из честного пула по 48 параметрам (6)
 
 - [scripts/decisions/engine_build_choice.py](../scripts/decisions/engine_build_choice.py) — One way to make the headset engine smaller, chosen in the open.
 - [scripts/decisions/pilot_20mb.py](../scripts/decisions/pilot_20mb.py) — What fills the 20 MB the own engine frees: the series pilot first.
+- [scripts/decisions/pilot_details.py](../scripts/decisions/pilot_details.py) — 55 details for the pilot "Taboo", chosen from every variant of 119 seeds.
+- [scripts/decisions/pilot_details_seeds.py](../scripts/decisions/pilot_details_seeds.py) — The 111 seed details of the pilot "Taboo", each from a named craft.
 - [scripts/decisions/size_strategy_choice.py](../scripts/decisions/size_strategy_choice.py) — Seven ways to fit the game in the headset, chosen in the open.
 - [scripts/decisions/stoplist_choice.py](../scripts/decisions/stoplist_choice.py) — One decision for the church-word stop-list, chosen in the open.
 

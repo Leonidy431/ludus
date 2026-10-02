@@ -28,6 +28,17 @@ const ROOM_HALF := 2.0
 const WATER_TOP := 1.75
 ## Light classes (TABOO 0.38): human work light in the room, the
 ## instrument's 6500 K lamp under water.
+## The surfaces things rest on, metres (top faces of the boxes below).
+const FLOOR_Y := 0.0
+const TABLE_Y := 0.765
+const SHELF_Y := 1.365
+const SILT_Y := 0.0
+## The distorted echo on the lake floor (TABOO 0.016 items 1-2): the
+## operator's own things, smaller, rusted, tipped where they fell; a
+## trail from the seat towards the amphora.  [name, place, scale]
+const ECHO := [["EchoMug", Vector3(0.30, 0, -1.55), 0.6],
+	["EchoBook", Vector3(0.50, 0, -2.15), 0.55],
+	["EchoCoil", Vector3(1.10, 0, -2.55), 0.45]]
 const ROOM_LIGHT := Color(1.0, 0.78, 0.55)
 const LAMP_LIGHT := Color(0.92, 0.96, 1.0)
 
@@ -62,9 +73,26 @@ var screen: Label3D
 var line: Label3D
 var title: Label3D
 var mark: Node3D
+var hand: Node3D
 var drams: Node3D
 var khachkar: Node3D
 var console_level := 1.0
+## Named things the details act on (pilot-details.json "show", "hide",
+## "move").
+var things := {}
+## Every thing set down by _land: {node, surface, name}; the gravity test
+## measures each again (TABOO 0.016 item 3).
+var grounded: Array = []
+## The 55 details (godot/data/pilot-details.json), each with its second
+## on the episode's clock; the next to fire; the ids fired, for tests.
+var details: Array = []
+var detail_i := 0
+var fired: Array[String] = []
+## Short effects of details: {k, until, v, ...}; they lie over what
+## _sync sets and end by the clock.
+var effects: Array = []
+## The deepest dip of the machine's sound asked by a live detail, dB.
+var duck_db := 0.0
 
 var passion := {}
 var state := {}
@@ -91,6 +119,7 @@ func _ready() -> void:
 		finished = true
 		return
 	data = PilotCore.load_data()
+	details = PilotCore.load_details(data)
 	passion = _passion(data.taboo.passion)
 	state = PassionCore.start(passion)
 	body = PilotCore.body_start()
@@ -169,35 +198,178 @@ func _build_world() -> void:
 	add_child(we)
 
 
-## The operator's room where there is no passthrough: four walls, a
-## table, one warm lamp.  The water plane rises in it either way.
+## The operator's room where there is no passthrough: the rented room
+## of an expedition hand on the shore, lived in (the interior chorus,
+## docs/story/PILOT_EPISODE_1_TABU_2026-10-02.md §3б).  Every thing in
+## it says one thing about him and the story; none is holy (the red
+## corner is an open question to the operator, Д-20).  The still
+## furniture is merged by StaticBatch so the room keeps to the draw
+## call budget; the things the details move stay apart (THINGS).
 func _build_room() -> void:
 	room = Node3D.new()
 	add_child(room)
-	var wall := _mat(Color(0.42, 0.40, 0.37))
+	var still := Node3D.new()
+	still.name = "Furniture"
+	room.add_child(still)
+	var wall := _mat(Color(0.47, 0.44, 0.39))
+	var wood := _mat(Color(0.45, 0.32, 0.20))
+	var dark_wood := _mat(Color(0.28, 0.19, 0.12))
 	var h := 2.6
-	_box(room, Vector3(ROOM_HALF * 2, 0.05, ROOM_HALF * 2),
-		Vector3(0, -0.025, 0), _mat(Color(0.30, 0.25, 0.20)))
-	_box(room, Vector3(ROOM_HALF * 2, h, 0.05),
+	_box(still, Vector3(ROOM_HALF * 2, 0.05, ROOM_HALF * 2),
+		Vector3(0, -0.025, 0), _mat(Color(0.33, 0.26, 0.19)))
+	_box(still, Vector3(ROOM_HALF * 2, 0.05, ROOM_HALF * 2),
+		Vector3(0, h, 0), _mat(Color(0.62, 0.60, 0.56)))
+	_box(still, Vector3(ROOM_HALF * 2, h, 0.05),
 		Vector3(0, h / 2, -ROOM_HALF), wall)
-	_box(room, Vector3(ROOM_HALF * 2, h, 0.05),
+	_box(still, Vector3(ROOM_HALF * 2, h, 0.05),
 		Vector3(0, h / 2, ROOM_HALF), wall)
-	_box(room, Vector3(0.05, h, ROOM_HALF * 2),
+	_box(still, Vector3(0.05, h, ROOM_HALF * 2),
 		Vector3(-ROOM_HALF, h / 2, 0), wall)
-	_box(room, Vector3(0.05, h, ROOM_HALF * 2),
+	_box(still, Vector3(0.05, h, ROOM_HALF * 2),
 		Vector3(ROOM_HALF, h / 2, 0), wall)
-	_box(room, Vector3(1.2, 0.05, 0.6), Vector3(0, 0.74, -1.1),
-		_mat(Color(0.45, 0.32, 0.20)))
+	# A felt rug, the way rooms on the Issyk-Kul shore are kept.
+	_box(still, Vector3(1.8, 0.012, 1.2), Vector3(0, 0.006, -0.4),
+		_mat(Color(0.48, 0.20, 0.16)))
+	_box(still, Vector3(1.5, 0.014, 0.9), Vector3(0, 0.008, -0.4),
+		_mat(Color(0.62, 0.48, 0.30)))
+	# The work table: four legs, the top.
+	_box(still, Vector3(1.2, 0.05, 0.6), Vector3(0, 0.74, -1.1), wood)
+	for x in [-0.55, 0.55]:
+		for z in [-1.35, -0.85]:
+			_box(still, Vector3(0.05, 0.72, 0.05), Vector3(x, 0.36, z),
+				dark_wood)
+	# The laptop with the dive log open: the instrument's cold light in
+	# a warm room (TABOO 0.38: 6500 K belongs to the instrument).
+	_box(still, Vector3(0.34, 0.02, 0.24), Vector3(-0.28, 0.775, -1.08),
+		_mat(Color(0.18, 0.18, 0.20)))
+	var scr := MeshInstance3D.new()
+	var sb := BoxMesh.new()
+	sb.size = Vector3(0.34, 0.22, 0.01)
+	scr.mesh = sb
+	scr.material_override = _mat(Color(0.55, 0.75, 0.85), 0.6)
+	scr.position = Vector3(-0.28, 0.89, -1.2)
+	scr.rotation.x = -0.25
+	room.add_child(scr)
+	# A mug gone cold beside it: he has been up all night.
+	var mug := MeshInstance3D.new()
+	var mm := CylinderMesh.new()
+	mm.top_radius = 0.04
+	mm.bottom_radius = 0.036
+	mm.height = 0.095
+	mug.mesh = mm
+	mug.material_override = _mat(Color(0.86, 0.84, 0.78))
+	mug.position = Vector3(0.18, 0.815, -0.92)
+	still.add_child(mug)
+	_land(mug, TABLE_Y)
+	# The desk lamp: the human work light, 2500 K (TABOO 0.38).
+	var lamp_base := MeshInstance3D.new()
+	var lb := CylinderMesh.new()
+	lb.top_radius = 0.05
+	lb.bottom_radius = 0.06
+	lb.height = 0.02
+	lamp_base.mesh = lb
+	lamp_base.material_override = dark_wood
+	lamp_base.position = Vector3(0.48, 0.775, -1.28)
+	still.add_child(lamp_base)
+	_land(lamp_base, TABLE_Y)
+	_box(still, Vector3(0.015, 0.34, 0.015), Vector3(0.48, 0.95, -1.28),
+		dark_wood)
+	var shade := MeshInstance3D.new()
+	var sh := CylinderMesh.new()
+	sh.top_radius = 0.03
+	sh.bottom_radius = 0.09
+	sh.height = 0.1
+	shade.mesh = sh
+	shade.material_override = _mat(Color(0.30, 0.42, 0.30))
+	shade.position = Vector3(0.48, 1.13, -1.22)
+	still.add_child(shade)
 	var light := OmniLight3D.new()
+	light.name = "RoomLight"
 	light.light_color = ROOM_LIGHT
-	light.light_energy = 1.2
+	light.light_energy = 1.3
 	light.omni_range = 6.0
-	light.position = Vector3(0.6, 1.3, -1.0)
+	light.position = Vector3(0.48, 1.05, -1.15)
 	room.add_child(light)
+	# The window over the lake at night, one upright bar.
+	_box(still, Vector3(0.95, 0.75, 0.04), Vector3(-0.95, 1.55, -1.97),
+		dark_wood)
+	var pane := MeshInstance3D.new()
+	var pb := BoxMesh.new()
+	pb.size = Vector3(0.85, 0.65, 0.02)
+	pane.mesh = pb
+	pane.material_override = _mat(Color(0.05, 0.09, 0.16), 0.4)
+	pane.position = Vector3(-0.95, 1.55, -1.95)
+	room.add_child(pane)
+	_box(still, Vector3(0.03, 0.65, 0.03), Vector3(-0.95, 1.55, -1.93),
+		dark_wood)
+	# The chart of the lake on the wall, a red pin at the find: the
+	# stakes are pinned where he sleeps.
+	_box(still, Vector3(0.8, 0.55, 0.01), Vector3(0.75, 1.6, -1.97),
+		_mat(Color(0.86, 0.80, 0.66)))
+	var lake_map := MeshInstance3D.new()
+	var lm := CylinderMesh.new()
+	lm.top_radius = 0.3
+	lm.bottom_radius = 0.3
+	lm.height = 0.004
+	lake_map.mesh = lm
+	lake_map.material_override = _mat(Color(0.30, 0.48, 0.62))
+	lake_map.position = Vector3(0.75, 1.6, -1.96)
+	lake_map.rotation.x = PI / 2
+	lake_map.scale = Vector3(1.0, 1.0, 0.42)
+	still.add_child(lake_map)
+	var pin := MeshInstance3D.new()
+	var pm := SphereMesh.new()
+	pm.radius = 0.012
+	pm.height = 0.024
+	pin.mesh = pm
+	pin.material_override = _mat(Color(0.75, 0.10, 0.08))
+	pin.position = Vector3(0.83, 1.58, -1.94)
+	still.add_child(pin)
+	# The bed along the right wall, the blanket thrown back.
+	_box(still, Vector3(0.9, 0.35, 1.9), Vector3(1.5, 0.175, 0.7),
+		dark_wood)
+	_box(still, Vector3(0.86, 0.12, 1.84), Vector3(1.5, 0.41, 0.7),
+		_mat(Color(0.80, 0.78, 0.72)))
+	_box(still, Vector3(0.88, 0.06, 1.1), Vector3(1.48, 0.49, 1.05),
+		_mat(Color(0.32, 0.36, 0.48)))
+	_box(still, Vector3(0.6, 0.1, 0.32), Vector3(1.5, 0.52, -0.05),
+		_mat(Color(0.90, 0.88, 0.84)))
+	# The shelf on the left wall: books, and the souvenir jug (below).
+	_box(still, Vector3(0.26, 0.03, 1.3), Vector3(-1.86, 1.35, -0.6),
+		dark_wood)
+	var book_colors := [Color(0.45, 0.12, 0.10), Color(0.15, 0.25, 0.40),
+		Color(0.55, 0.45, 0.25), Color(0.20, 0.32, 0.20),
+		Color(0.35, 0.30, 0.28), Color(0.50, 0.18, 0.14)]
+	for i in book_colors.size():
+		var bh := 0.2 + 0.03 * (i % 3)
+		_box(still, Vector3(0.18, bh, 0.045),
+			Vector3(-1.86, 1.365 + bh / 2, -1.15 + 0.055 * i),
+			_mat(book_colors[i]))
+	# The tether coiled on the floor in the corner, yellow as on the
+	# slipway: the trade of the man who lives here.
+	for i in 3:
+		var coil := MeshInstance3D.new()
+		var tm := TorusMesh.new()
+		tm.inner_radius = 0.2 - 0.012 * i
+		tm.outer_radius = 0.23 - 0.012 * i
+		coil.mesh = tm
+		coil.material_override = _mat(Color(0.85, 0.66, 0.12))
+		coil.position = Vector3(-1.45, 0.0, -1.45)
+		still.add_child(coil)
+		# Each turn of the coil rests on the one below it.
+		_land(coil, FLOOR_Y + 0.03 * i)
+	# The console case, black with yellow latches.
+	_box(still, Vector3(0.55, 0.22, 0.38), Vector3(1.35, 0.11, -1.55),
+		_mat(Color(0.08, 0.08, 0.09)))
+	for x in [1.18, 1.52]:
+		_box(still, Vector3(0.06, 0.05, 0.02), Vector3(x, 0.15, -1.355),
+			_mat(Color(0.85, 0.66, 0.12)))
+	_build_things()
+	StaticBatch.merge(still)
 	water = MeshInstance3D.new()
-	var pm := PlaneMesh.new()
-	pm.size = Vector2(ROOM_HALF * 2, ROOM_HALF * 2)
-	water.mesh = pm
+	var wp := PlaneMesh.new()
+	wp.size = Vector2(ROOM_HALF * 2, ROOM_HALF * 2)
+	water.mesh = wp
 	var wm := _mat(Color(0.05, 0.16, 0.20, 0.72), 0.15)
 	wm.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	wm.cull_mode = BaseMaterial3D.CULL_DISABLED
@@ -205,6 +377,166 @@ func _build_room() -> void:
 	water.material_override = wm
 	water.position.y = -0.01
 	add_child(water)
+
+
+## The room's things the details show, hide or move (pilot-details.json),
+## and the souvenir jug: the same amphora as on the lake floor, smaller,
+## glazed another colour, lying on the shelf at another angle; the
+## viewer sees the rhyme before knowing it (Chekhov's gun).
+func _build_things() -> void:
+	var jug := _glb("res://models/atlas/atlas-amphora.glb",
+		Vector3(-1.86, 1.43, -0.3), room)
+	jug.name = "Souvenir"
+	# 60 % smaller than the one on the lake floor (TABOO 0.016 item 1).
+	jug.scale = Vector3.ONE * 0.4
+	# Upright and leaning a little on the wall: a jug kept, not lost.
+	jug.rotation = Vector3(0.0, 0.5, PI / 2.0 - 0.12)
+	jug.position.x = -1.9
+	_paint(jug, _mat(Color(0.18, 0.40, 0.36)))
+	_land(jug, SHELF_Y)
+	var log_book := _thing("Logbook", Vector3(0.17, 0.025, 0.24),
+		Vector3(0.12, 0.778, -1.12), _mat(Color(0.22, 0.13, 0.08)), room)
+	log_book.rotation.y = 0.18
+	_land(log_book, TABLE_Y)
+	var ring := MeshInstance3D.new()
+	var rm := CylinderMesh.new()
+	rm.top_radius = 0.045
+	rm.bottom_radius = 0.045
+	rm.height = 0.002
+	ring.mesh = rm
+	ring.material_override = _mat(Color(0.30, 0.21, 0.13))
+	ring.position = Vector3(0.38, 0.766, -0.98)
+	ring.name = "Ring"
+	ring.visible = false
+	room.add_child(ring)
+	things["Ring"] = ring
+	_land(ring, TABLE_Y)
+	var floor_dram := MeshInstance3D.new()
+	var fm := CylinderMesh.new()
+	fm.top_radius = 0.035
+	fm.bottom_radius = 0.035
+	fm.height = 0.006
+	floor_dram.mesh = fm
+	var silver := _mat(Color(0.86, 0.86, 0.80), 0.6)
+	silver.metallic = 1.0
+	floor_dram.material_override = silver
+	floor_dram.position = Vector3(0.25, 0.018, -0.7)
+	floor_dram.name = "FloorDram"
+	floor_dram.visible = false
+	room.add_child(floor_dram)
+	things["FloorDram"] = floor_dram
+	_land(floor_dram, FLOOR_Y)
+
+
+func _thing(n: String, size: Vector3, at: Vector3, m: Material,
+		parent: Node3D) -> MeshInstance3D:
+	var mi := MeshInstance3D.new()
+	var bm := BoxMesh.new()
+	bm.size = size
+	mi.mesh = bm
+	mi.material_override = m
+	mi.position = at
+	mi.name = n
+	parent.add_child(mi)
+	things[n] = mi
+	return mi
+
+
+## The echo on the silt: the room's mug, logbook and coil again, 40-55 %
+## of their size, rust and silt in place of their colours, tipped by
+## angles from their names' hash (no randomness).  Shown with the lamp.
+func _build_echo() -> void:
+	var echo_node := Node3D.new()
+	echo_node.name = "Echo"
+	lake.add_child(echo_node)
+	var rust := _mat(Color(0.36, 0.22, 0.13))
+	rust.roughness = 1.0
+	for e in ECHO:
+		var n := Node3D.new()
+		n.name = e[0]
+		n.position = e[1]
+		echo_node.add_child(n)
+		var mi := MeshInstance3D.new()
+		match e[0]:
+			"EchoMug":
+				var cm := CylinderMesh.new()
+				cm.top_radius = 0.04
+				cm.bottom_radius = 0.036
+				cm.height = 0.095
+				mi.mesh = cm
+			"EchoBook":
+				var bm := BoxMesh.new()
+				bm.size = Vector3(0.17, 0.025, 0.24)
+				mi.mesh = bm
+			"EchoCoil":
+				var tm := TorusMesh.new()
+				tm.inner_radius = 0.2
+				tm.outer_radius = 0.23
+				mi.mesh = tm
+		mi.material_override = rust
+		n.add_child(mi)
+		n.scale = Vector3.ONE * float(e[2])
+		n.rotation = _tip(e[0])
+		things[e[0]] = n
+		_land(n, SILT_Y)
+
+
+## A fallen thing's tilt from its name: up to 80 degrees on x and z, any
+## heading; the same name always falls the same way.
+static func _tip(n: String) -> Vector3:
+	var h := n.sha256_text()
+	var a := float(h.substr(0, 4).hex_to_int()) / 65535.0
+	var b := float(h.substr(4, 4).hex_to_int()) / 65535.0
+	var c := float(h.substr(8, 4).hex_to_int()) / 65535.0
+	return Vector3(deg_to_rad(80.0 * a), TAU * b, deg_to_rad(80.0 * c))
+
+
+## The transform of n in the pilot's own space, without the tree (the
+## scene may be built before it enters one, as in the tests).
+func _xf(n: Node3D) -> Transform3D:
+	var xf := n.transform
+	var p := n.get_parent()
+	while p != null and p != self:
+		if p is Node3D:
+			xf = (p as Node3D).transform * xf
+		p = p.get_parent()
+	return xf
+
+
+## The lowest point of every mesh under n, in the pilot's space.
+func bottom_of(n: Node3D) -> float:
+	var low := INF
+	var stack: Array = [n]
+	while not stack.is_empty():
+		var c = stack.pop_back()
+		if c is MeshInstance3D and c.mesh != null:
+			# The real vertices, not the box around them: a tipped
+			# cylinder's box reaches lower than its rim, and the thing
+			# would hang a centimetre over the silt.
+			var xf := _xf(c)
+			for v in c.mesh.get_faces():
+				low = minf(low, (xf * v).y)
+		for k in c.get_children():
+			stack.append(k)
+	return low
+
+
+## Set n down so its lowest point lies on the surface at height y
+## (TABOO 0.016 item 3: gravity is code, not a word).
+func _land(n: Node3D, y: float) -> void:
+	var low := bottom_of(n)
+	if low == INF:
+		return
+	n.position.y += y - low
+	grounded.append({"node": n, "surface": y, "name": str(n.name)})
+
+
+## Give every mesh of an imported model one material.
+func _paint(n: Node, m: Material) -> void:
+	if n is MeshInstance3D:
+		n.material_override = m
+	for c in n.get_children():
+		_paint(c, m)
 
 
 func _glb(path: String, at: Vector3, parent: Node3D) -> Node3D:
@@ -226,13 +558,19 @@ func _build_lake() -> void:
 	var amphora := _glb("res://models/atlas/atlas-amphora.glb",
 		AMPHORA_AT, lake)
 	amphora.rotation.z = 1.2
+	amphora.name = "Amphora"
+	things["Amphora"] = amphora
+	_land(amphora, SILT_Y)
 	khachkar = _glb("res://models/atlas/atlas-khachkar.glb",
 		KHACHKAR_AT, lake)
 	khachkar.set_meta("noInteract", true)
 	khachkar.set_meta("noLoot", true)
+	# The stone stands on the silt as it is: set down, never echoed.
+	_land(khachkar, SILT_Y)
 	khachkar.visible = false
 	var diary := _glb("res://models/atlas/atlas-diary.glb", DIARY_AT, lake)
 	diary.name = "Diary"
+	_land(diary, SILT_Y)
 	diary.visible = false
 	# The walls the sonar finds: straight lines among the stones.
 	var stone := _mat(Color(0.33, 0.31, 0.27))
@@ -242,12 +580,25 @@ func _build_lake() -> void:
 	lake.add_child(walls)
 	_box(walls, Vector3(4.0, 0.5, 0.4), Vector3(-1.5, 0.25, -6.5), stone)
 	_box(walls, Vector3(0.4, 0.5, 3.0), Vector3(-3.5, 0.25, -5.2), stone)
+	# The blocked doorway and the comet cut in a stone of the wall: the
+	# details show them when the sonar has drawn the walls.
+	_thing("Doorway", Vector3(0.7, 0.45, 0.42), Vector3(-0.9, 0.24, -6.48),
+		_mat(Color(0.05, 0.05, 0.05)), walls).visible = false
+	var wall_mark := _comet(Color(0.16, 0.14, 0.12), 3.0)
+	wall_mark.position = Vector3(-2.2, 0.32, -6.28)
+	wall_mark.rotation.x = PI / 2.0
+	wall_mark.name = "WallMark"
+	wall_mark.visible = false
+	walls.add_child(wall_mark)
+	things["WallMark"] = wall_mark
 	# The lure: silver drams that shine without the lamp (the shine is
 	# the prilog's sign, TABOO 0.2 item 8).
 	drams = Node3D.new()
 	drams.position = DRAMS_AT
 	drams.visible = false
+	drams.name = "Drams"
 	lake.add_child(drams)
+	things["Drams"] = drams
 	var silver := _mat(Color(0.86, 0.86, 0.80), 0.9)
 	silver.metallic = 1.0
 	for i in 7:
@@ -262,6 +613,8 @@ func _build_lake() -> void:
 			0.05 * (i / 4))
 		c.rotation.x = 0.15 * (i % 3)
 		drams.add_child(c)
+	_land(drams, SILT_Y)
+	_build_echo()
 	lamp = SpotLight3D.new()
 	lamp.light_color = LAMP_LIGHT
 	lamp.light_energy = 0.0
@@ -292,26 +645,58 @@ func _build_screens() -> void:
 	line = _label(30, Vector3(0, -0.22, -1.0), Color(1.0, 0.88, 0.66))
 	title = _label(64, Vector3(0, 0.02, -1.2), Color(0.95, 0.93, 0.88))
 	title.visible = false
-	# The comet on the hand: a dim head and a tail, no glow (node 99).
-	mark = Node3D.new()
+	# The left hand with the comet on its back: a dim head and a tail,
+	# ink, no glow (node 99).  In the headset it rides the left
+	# controller; on a screen it is held up in front of the eyes at the
+	# drain, so it reads as a hand and not as a thing in the air.
+	hand = Node3D.new()
+	hand.name = "Hand"
+	hand.visible = false
+	var skin := _mat(Color(0.80, 0.62, 0.50))
+	_box(hand, Vector3(0.085, 0.026, 0.095), Vector3.ZERO, skin)
+	for i in 4:
+		_box(hand, Vector3(0.017, 0.02, 0.075 - 0.008 * absi(i - 1)),
+			Vector3(-0.03 + 0.02 * i, 0, -0.08), skin)
+	var thumb := MeshInstance3D.new()
+	var tb := BoxMesh.new()
+	tb.size = Vector3(0.02, 0.02, 0.06)
+	thumb.mesh = tb
+	thumb.material_override = skin
+	thumb.position = Vector3(0.055, -0.004, -0.02)
+	thumb.rotation.y = -0.6
+	hand.add_child(thumb)
+	_box(hand, Vector3(0.07, 0.05, 0.14), Vector3(0, 0, 0.11),
+		_mat(Color(0.20, 0.22, 0.26)))
+	mark = _comet(Color(0.30, 0.18, 0.14), 1.0)
+	mark.position = Vector3(-0.01, 0.0135, 0.0)
+	mark.name = "Mark"
 	mark.visible = false
+	hand.add_child(mark)
+	things["Mark"] = mark
+	left_hand.add_child(hand)
+
+
+## A comet of ink: a head and a tail lying flat, `k` times the size of
+## the one on the hand.
+func _comet(c: Color, k: float) -> Node3D:
+	var n := Node3D.new()
+	var ink := _mat(c)
 	var head := MeshInstance3D.new()
 	var sm := SphereMesh.new()
-	sm.radius = 0.006
-	sm.height = 0.012
+	sm.radius = 0.006 * k
+	sm.height = 0.004 * k
 	head.mesh = sm
-	var ink := _mat(Color(0.32, 0.20, 0.16))
 	head.material_override = ink
-	mark.add_child(head)
+	n.add_child(head)
 	var tail := MeshInstance3D.new()
-	var tm := BoxMesh.new()
-	tm.size = Vector3(0.035, 0.002, 0.004)
+	var tm := PrismMesh.new()
+	tm.size = Vector3(0.012 * k, 0.03 * k, 0.001 * k)
 	tail.mesh = tm
 	tail.material_override = ink
-	tail.position = Vector3(0.02, 0, 0.002)
-	tail.rotation.y = 0.2
-	mark.add_child(tail)
-	left_hand.add_child(mark)
+	tail.rotation = Vector3(-PI / 2.0, 0, -PI / 2.0 - 0.3)
+	tail.position = Vector3(0.017 * k, 0, 0.005 * k)
+	n.add_child(tail)
+	return n
 
 
 func _build_sound() -> void:
@@ -414,11 +799,12 @@ func _enter(b: Dictionary) -> void:
 		"room_drains":
 			screen.text = ""
 			line.text = ""
-			if not xr_active and mark.get_parent() != camera:
-				# On a screen the hand is held up in front of the eyes.
-				mark.reparent(camera, false)
-				mark.position = Vector3(-0.12, -0.12, -0.45)
-				mark.scale = Vector3.ONE * 2.0
+			if not xr_active and hand.get_parent() != camera:
+				# On a screen the hand is held up in front of the eyes,
+				# its back to them.
+				hand.reparent(camera, false)
+				hand.position = Vector3(-0.07, -0.16, -0.36)
+				hand.rotation = Vector3(0.9, 0.35, 0.0)
 		"title":
 			title.text = b.title_ru
 			screen.text = ""
@@ -430,19 +816,27 @@ func _enter(b: Dictionary) -> void:
 ## that walked through it.
 func _sync() -> void:
 	lamp.light_energy = 3.0 if t >= 70.0 and t < 860.0 else 0.0
+	env.fog_density = 0.12 if world == "lake" else 0.0
 	if t >= 590.0:
 		# After the choice the lamp is the operator's again.
 		lamp.rotation = Vector3.ZERO
 	lake.get_node("Walls").visible = t >= 140.0
+	lake.get_node("Echo").visible = t >= 70.0
 	drams.visible = t >= 440.0 and t < 590.0
 	khachkar.visible = t >= 640.0
 	lake.get_node("Diary").visible = t >= 720.0
-	mark.visible = t >= 860.0
+	hand.visible = xr_active or t >= 860.0
+	# The ink comes up on the skin as on a wet page (detail r04).
+	mark.visible = t >= 869.0
 	title.visible = t >= 900.0
 
 
 func _tick(dt: float) -> void:
 	_sync()
+	while detail_i < details.size() and float(details[detail_i].t) <= t:
+		_do(details[detail_i])
+		detail_i += 1
+	_effects()
 	# The water climbs from the floor to the eyes in the 17 s before
 	# the lake; at the drain it goes back into the floor.
 	if beat_id == "water_rises":
@@ -462,6 +856,104 @@ func _tick(dt: float) -> void:
 	console_level = move_toward(console_level, target, dt / 1.75)
 	screen.modulate.a = console_level
 	_sound(dt)
+
+
+## One detail: every primitive in order; a primitive with "if" plays
+## only for the stage the player's thought has reached.
+func _do(d: Dictionary) -> void:
+	fired.append(d.id)
+	for p in d["do"]:
+		if p.has("if") and str(p["if"]) != str(state.get("stage")):
+			continue
+		var k := float(p.get("s", 0.0))
+		var strong: bool = p.get("strong", false)
+		if p.has("say"):
+			screen.text = p.say
+		elif p.has("line"):
+			line.text = p.line
+		elif p.has("lamp"):
+			effects.append({"k": "lamp", "until": t + k,
+				"v": float(p.lamp) * (1.5 if strong else 1.0),
+				"room": p.get("room", false)})
+		elif p.has("flicker"):
+			effects.append({"k": "flicker", "from": t,
+				"until": t + 0.3 * float(p.flicker),
+				"room": p.get("room", false)})
+		elif p.has("haptic"):
+			var kind := str(p.haptic)
+			if p.get("hand", "both") != "right":
+				Haptics.pulse(left_hand, kind, reduced)
+			if p.get("hand", "both") != "left":
+				Haptics.pulse(right_hand, kind, reduced)
+		elif p.has("sfx"):
+			match str(p.sfx):
+				"click":
+					synth.event_click()
+				"take":
+					synth.event_take()
+				"servo":
+					synth.event_servo()
+		elif p.has("duck"):
+			effects.append({"k": "duck", "until": t + k,
+				"v": float(p.duck)})
+		elif p.has("fog"):
+			effects.append({"k": "fog", "until": t + k,
+				"v": float(p.fog) * (1.5 if strong else 1.0)})
+		elif p.has("move") and things.has(p.move):
+			var n: Node3D = things[p.move]
+			var by: Array = p.by
+			effects.append({"k": "move", "node": n, "from": t,
+				"until": t + maxf(k, 0.01), "start": n.position,
+				"by": Vector3(by[0], by[1], by[2])})
+		elif p.has("show") and things.has(p.show):
+			things[p.show].visible = true
+		elif p.has("hide") and things.has(p.hide):
+			things[p.hide].visible = false
+		elif p.has("water"):
+			effects.append({"k": "water", "until": t + k,
+				"v": float(p.water)})
+
+
+## Lay the live effects over the frame and drop the ended ones.  Light
+## and murk go back to what _sync set; a moved thing stays moved.
+func _effects() -> void:
+	var keep := []
+	var room_light: OmniLight3D = room.get_node("RoomLight")
+	room_light.light_energy = 1.3
+	duck_db = 0.0
+	for e in effects:
+		var done := t >= float(e.until)
+		match e.k:
+			"lamp":
+				if not done:
+					if e.room:
+						room_light.light_energy = e.v
+					else:
+						lamp.light_energy = minf(lamp.light_energy, e.v) \
+							if beat_id == "khachkar" else e.v
+			"flicker":
+				if not done and int((t - float(e.from)) / 0.15) % 2 == 0:
+					if e.room:
+						room_light.light_energy = 0.0
+					else:
+						lamp.light_energy = 0.0
+			"duck":
+				if not done:
+					duck_db = minf(duck_db, e.v)
+			"fog":
+				if not done and world == "lake":
+					env.fog_density = e.v
+			"move":
+				var k := clampf((t - float(e.from))
+					/ (float(e.until) - float(e.from)), 0.0, 1.0)
+				e.node.position = e.start + e.by * k
+			"water":
+				if not done and beat_id == "water_rises":
+					# A push of the water, in step with the ping.
+					water.position.y += e.v * 0.5
+		if not done:
+			keep.append(e)
+	effects = keep
 
 
 func _jerk() -> void:
@@ -550,7 +1042,7 @@ func _sound(dt: float) -> void:
 	else:
 		synth.update({"depth": _depth(), "thrust": 0.15,
 			"shore_m": 2000.0, "echo_delay": 2.0 * 2.0 / 1480.0}, dt)
-	player.volume_db = lerpf(-60.0, 0.0, console_level)
+	player.volume_db = minf(lerpf(-60.0, 0.0, console_level), duck_db)
 	if playback:
 		var frames := playback.get_frames_available()
 		if frames > 0:
