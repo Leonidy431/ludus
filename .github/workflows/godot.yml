@@ -145,6 +145,9 @@ jobs:
           # Nothing the game exports uses a part cut from its engine
           # (scripts/godot/engine/ludus.gdbuild and the modules off).
           python3 scripts/godot/engine/profile.py --check
+          # Seven ways to fit the headset, from other developers' practice
+          # (docs/decisions/SIZE_STRATEGIES_7_2026-10-02.md).
+          python3 scripts/decisions/size_strategy_choice.py --check
           # The path of the witness uses the same scene kits as the web
           # VR scene (docs/SACRAMENTS_VR_SCENES.md).
           for f in public/vr/models/scene/sacrament-*; do
