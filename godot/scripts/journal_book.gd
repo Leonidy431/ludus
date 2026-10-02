@@ -1,8 +1,8 @@
 ## The journal of the way in the scriptorium: a birch-bark book on an oak
 ## lectern at the north end of the long table (JournalCore).
 ##
-## It reads the player's own saves, user://hub.json and user://dive.json,
-## and never writes to them.  Each press turns a page: FORM, the rule,
+## It reads the player's own saves, user://hub.json and user://dive.json
+## (or the tester's, SaveSlot), and never writes to them.  Each press turns a page: FORM, the rule,
 ## the steps of the ladder, the road, the deeds of places, under the
 ## water, and last the page
 ## where the player may ask for the record to be written out.  Only a
@@ -22,8 +22,6 @@ extends Node3D
 # its reach covered the lectern of the evening cell, and by the north
 # wall it stood in the workshop.
 const AT := Vector3(-1.4, 0, 6.0)
-const HUB_SAVE := "user://hub.json"
-const DIVE_SAVE := "user://dive.json"
 const OAK := Color(0.42, 0.29, 0.17)
 const BARK := Color(0.93, 0.88, 0.76)
 const INK := Color(0.2, 0.15, 0.1)
@@ -107,7 +105,7 @@ static func _read(path: String) -> Variant:
 
 ## The record as the saves hold it now (read-only).
 func state() -> Dictionary:
-	var hub = _read(HUB_SAVE)
+	var hub = _read(SaveSlot.hub())
 	if not hub is Dictionary:
 		hub = {}
 	var passions: Dictionary = JSON.parse_string(
@@ -119,7 +117,7 @@ func state() -> Dictionary:
 		"actions": hub.get("actions", {}),
 		"deeds": hub.get("deeds", {}), "deed_titles": _deed_titles,
 		"passions": PassionCore.normalize_record(hub.get("passions", {})),
-		"passion_data": passions, "dive": _read(DIVE_SAVE),
+		"passion_data": passions, "dive": _read(SaveSlot.dive()),
 		"stories": StoryRoute.journal_lines(StoryRoute.load_data(),
 			hub.get("missions", {})),
 		"date": Time.get_date_string_from_system()}

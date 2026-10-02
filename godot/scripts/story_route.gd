@@ -30,7 +30,6 @@ extends RefCounted
 
 const DATA := "res://data/story-12.json"
 const DIVE_SCENE := "res://scenes/dive.tscn"
-const HUB_SAVE := "user://hub.json"
 const HOW_RU := {"heart": "у сердца места", "thing": "у сердца места",
 	"dive": "спуском аппарата от сердца места"}
 
@@ -332,7 +331,9 @@ static func heart_choose(p: Dictionary, loc: Dictionary, st: Dictionary,
 ## of the current story step's object once the ROV was let down for it,
 ## else {}.  The dive shows it in its task line; nothing else changes.
 static func dive_target(story: Dictionary, lake: Dictionary,
-		hub_path := HUB_SAVE) -> Dictionary:
+		hub_path := "") -> Dictionary:
+	if hub_path == "":
+		hub_path = SaveSlot.hub()
 	if not FileAccess.file_exists(hub_path):
 		return {}
 	var data = JSON.parse_string(FileAccess.get_file_as_string(hub_path))
