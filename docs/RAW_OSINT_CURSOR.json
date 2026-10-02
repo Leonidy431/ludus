@@ -1,5 +1,5 @@
 {
- "next": 3,
+ "next": 6,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -5776,6 +5776,78 @@
      "reason": "eye check: the silhouette reads as a stemless cup or vessel, close to a chalice; a passion must not resemble a holy thing (CLAUDE.md TABOO 0.2 item 3, 0.35 item 6); contact sheet docs/audit/2026-10-02/raw-sadness-4bbd8e3f97-contact-rejected.png"
     }
    ]
+  },
+  {
+   "time": "2026-10-02T10:51:11.863967+00:00",
+   "pass_id": "osint-2026-10-02T10:51:11Z",
+   "deficits": [
+    {
+     "id": "DEF-019",
+     "hits": 143,
+     "taken": 0,
+     "refused": {},
+     "to_props": 143,
+     "hits_uncapped": 143,
+     "props_uncapped": 143,
+     "props_uncapped_repos": 26,
+     "added_keywords": [],
+     "keywords_total": 8,
+     "keywords_not_searched": [],
+     "props": {},
+     "props_seen": 127
+    },
+    {
+     "id": "DEF-024",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "font": 1
+     },
+     "to_props": 16,
+     "hits_uncapped": 46186,
+     "props_uncapped": 41315,
+     "props_uncapped_repos": 62,
+     "added_keywords": [],
+     "keywords_total": 100,
+     "keywords_not_searched": [
+      "amulet",
+      "ankh",
+      "cleric",
+      "com",
+      "java",
+      "mage",
+      "openra",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 16
+    },
+    {
+     "id": "DEF-027",
+     "skipped": "audio-pipeline-pending"
+    }
+   ],
+   "props_taken": {},
+   "props_taken_by_index_kind": {},
+   "props_duplicates": 143,
+   "props_errors": 0,
+   "props_refused": {
+    "licence-Defold-1.0": 8,
+    "licence-UNKNOWN": 8
+   },
+   "props_new_bytes": 0,
+   "props_store_files": 1454,
+   "props_store_bytes": 10827682,
+   "props_cache_files_on_disk": 4665,
+   "props_cache_bytes_on_disk": 78042215,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 811650,
+   "props_register_growth_bytes": 0,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 183
   }
  ],
  "keywords": {
