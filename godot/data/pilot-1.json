@@ -22,46 +22,200 @@
   "hard_cuts": 1
  },
  "beats": [
-  {"id": "drop", "t": 0, "world": "room", "sound": "drop_overhead", "haptic": "drop",
-   "hook_ru": "Откуда вода?"},
-  {"id": "water_rises", "t": 8, "world": "room", "sound": "sonar_below", "preload": "dive",
-   "hook_ru": "Что там, под полом?"},
-  {"id": "immersion", "t": 25, "world": "lake", "sound": "lake_room_tone", "message_ru": "ОПЕРАТОР. КООРДИНАТЫ НАХОДКИ. СЕЙЧАС. — ПРИОР",
-   "hook_ru": "Кто такой Приор? Какая находка?"},
-  {"id": "hands_on_stick", "t": 70, "world": "lake", "sound": "lamp_on", "trace": "amphora",
-   "hook_ru": "Что в амфоре?"},
-  {"id": "walls", "t": 140, "world": "lake", "sound": "sonar_lines", "node": 19, "line_ru": "Это не скала. Это стены.",
-   "hook_ru": "Кто строил на дне озера?"},
-  {"id": "thermocline", "t": 210, "world": "lake", "sound": "thermocline_hush", "node": 90, "line_ru": "здесь пели",
-   "hook_ru": "Кто здесь пел?"},
-  {"id": "tether_jerk", "t": 290, "world": "lake", "sound": "tether_strain", "haptic": "jerk", "node": 17, "message_ru": "ТЕЛЕМЕТРИЯ: РАСХОЖДЕНИЕ",
-   "hook_ru": "Это авария или кто-то тянет?"},
-  {"id": "bookmark", "t": 360, "world": "lake", "sound": "console_tick", "node": 35, "line_ru": "Сеть экспедиции куплена Орденом сегодня в 03:12.",
-   "hook_ru": "Кто нас продал?"},
-  {"id": "lure", "t": 440, "world": "lake", "sound": "lure_shimmer", "taboo": true, "node": 68, "message_ru": "Координаты — и драмы ваши. Никто не узнает.",
-   "hook_ru": "Возьмёшь?"},
-  {"id": "price_rises", "t": 520, "world": "lake", "sound": "lure_shimmer", "taboo": true,
-   "hook_ru": "Откуда он это знает?"},
-  {"id": "choice_echo", "t": 590, "world": "lake", "sound": "drone_pass",
-   "hook_ru": "Что сделает Орден?"},
-  {"id": "khachkar", "t": 640, "world": "lake", "sound": "room_tone_breath", "holy": true, "trace": "khachkar", "node": 15,
-   "hook_ru": "Что машина не может посчитать?"},
-  {"id": "diary", "t": 720, "world": "lake", "sound": "scanner_lines", "trace": "diary", "node": 4, "line_ru": "Лета 1375. Сис пал. Иду к братьям на озеро…",
-   "hook_ru": "Кто писал?"},
-  {"id": "mark_line", "t": 790, "world": "lake", "sound": "scanner_lines", "node": 1, "line_ru": "…и знак на руке моей, как звезда с хвостом, не смывается водой.",
-   "hook_ru": "Знак?"},
-  {"id": "ascent", "t": 820, "world": "lake", "sound": "ascent_light", "node": 89,
-   "hook_ru": "Успеем?"},
-  {"id": "room_drains", "t": 860, "world": "room", "sound": "silence_room", "hard_cut": true, "mark": true, "node": 99,
-   "hook_ru": "Это что, я?"},
-  {"id": "prior_last", "t": 885, "world": "room", "sound": "console_tick", "message_ru": "У рыцаря был такой же. Его щит мы нашли первыми. — ПРИОР",
-   "hook_ru": "Где щит? Что Орден знает про знак?"},
-  {"id": "title", "t": 900, "world": "room", "sound": "sonar_flute", "title_ru": "АТЛАС ВОДЫ · СЕРИЯ 1 · ТАБУ",
-   "hook_ru": "Что во второй серии?"}
+  {
+   "id": "drop",
+   "t": 0,
+   "world": "room",
+   "sound": "drop_overhead",
+   "haptic": "drop",
+   "hook_ru": "Откуда вода?"
+  },
+  {
+   "id": "water_rises",
+   "t": 8,
+   "world": "room",
+   "sound": "sonar_below",
+   "preload": "dive",
+   "hook_ru": "Что там, под полом?"
+  },
+  {
+   "id": "immersion",
+   "t": 25,
+   "world": "lake",
+   "sound": "lake_room_tone",
+   "message_ru": "ОПЕРАТОР. КООРДИНАТЫ НАХОДКИ. СЕЙЧАС. — ПРИОР",
+   "hook_ru": "Кто такой Приор? Какая находка?",
+   "line_ru": "Журнал погружения. 2026. Оператор «Мангустика». Кто прочтёт эти строки — прочтёт и тех, кого читал я.",
+   "reads": true
+  },
+  {
+   "id": "hands_on_stick",
+   "t": 70,
+   "world": "lake",
+   "sound": "lamp_on",
+   "trace": "amphora",
+   "hook_ru": "Что в амфоре?"
+  },
+  {
+   "id": "walls",
+   "t": 140,
+   "world": "lake",
+   "sound": "sonar_lines",
+   "node": 19,
+   "line_ru": "Это не скала. Это стены.",
+   "hook_ru": "Кто строил на дне озера?"
+  },
+  {
+   "id": "thermocline",
+   "t": 210,
+   "world": "lake",
+   "sound": "thermocline_hush",
+   "node": 90,
+   "line_ru": "здесь пели",
+   "hook_ru": "Кто здесь пел?"
+  },
+  {
+   "id": "tether_jerk",
+   "t": 290,
+   "world": "lake",
+   "sound": "tether_strain",
+   "haptic": "jerk",
+   "node": 17,
+   "message_ru": "ТЕЛЕМЕТРИЯ: РАСХОЖДЕНИЕ",
+   "hook_ru": "Это авария или кто-то тянет?"
+  },
+  {
+   "id": "bookmark",
+   "t": 360,
+   "world": "lake",
+   "sound": "console_tick",
+   "node": 35,
+   "line_ru": "Сеть экспедиции куплена Орденом сегодня в 03:12.",
+   "hook_ru": "Кто нас продал?"
+  },
+  {
+   "id": "lure",
+   "t": 440,
+   "world": "lake",
+   "sound": "lure_shimmer",
+   "taboo": true,
+   "node": 68,
+   "message_ru": "Координаты — и драмы ваши. Никто не узнает.",
+   "hook_ru": "Возьмёшь?"
+  },
+  {
+   "id": "price_rises",
+   "t": 520,
+   "world": "lake",
+   "sound": "lure_shimmer",
+   "taboo": true,
+   "hook_ru": "Откуда он это знает?"
+  },
+  {
+   "id": "choice_echo",
+   "t": 590,
+   "world": "lake",
+   "sound": "drone_pass",
+   "hook_ru": "Что сделает Орден?"
+  },
+  {
+   "id": "khachkar",
+   "t": 640,
+   "world": "lake",
+   "sound": "room_tone_breath",
+   "holy": true,
+   "trace": "khachkar",
+   "node": 15,
+   "hook_ru": "Что машина не может посчитать?"
+  },
+  {
+   "id": "diary",
+   "t": 720,
+   "world": "lake",
+   "sound": "scanner_lines",
+   "trace": "diary",
+   "node": 4,
+   "line_ru": "Список писца обители со слов рыцаря. Лета 1375. Сис пал. Иду к братьям на озеро…",
+   "hook_ru": "Кто писал?"
+  },
+  {
+   "id": "mark_line",
+   "t": 790,
+   "world": "lake",
+   "sound": "scanner_lines",
+   "node": 1,
+   "line_ru": "…и знак на руке моей, как звезда с хвостом, не смыва—",
+   "hook_ru": "Знак?",
+   "broken": true
+  },
+  {
+   "id": "ascent",
+   "t": 820,
+   "world": "lake",
+   "sound": "ascent_light",
+   "node": 89,
+   "hook_ru": "Успеем?"
+  },
+  {
+   "id": "room_drains",
+   "t": 860,
+   "world": "room",
+   "sound": "silence_room",
+   "hard_cut": true,
+   "mark": true,
+   "node": 99,
+   "hook_ru": "Это что, я?"
+  },
+  {
+   "id": "prior_last",
+   "t": 885,
+   "world": "room",
+   "sound": "console_tick",
+   "message_ru": "У рыцаря был такой же. Его щит мы нашли первыми. — ПРИОР",
+   "hook_ru": "Где щит? Что Орден знает про знак?"
+  },
+  {
+   "id": "title",
+   "t": 900,
+   "world": "room",
+   "sound": "sonar_flute",
+   "title_ru": "АТЛАС ВОДЫ · СЕРИЯ 1 · ТАБУ",
+   "hook_ru": "Что во второй серии?"
+  }
  ],
  "choice_echo": {
-  "captive": {"message_ru": "КООРДИНАТЫ ПЕРЕДАНЫ", "sound": "drone_pass", "episode2": "order_first"},
-  "virtue": {"message_ru": "Вы пожалеете. — ПРИОР", "sound": "silence_room", "scribe_ru": "Драмы серебряные — в книгу находок.", "episode2": "scribe_first"},
-  "unresolved": {"message_ru": "Я подожду. — ПРИОР", "sound": "console_tick", "episode2": "prior_waits"}
- }
+  "captive": {
+   "message_ru": "КООРДИНАТЫ ПЕРЕДАНЫ",
+   "sound": "drone_pass",
+   "episode2": "order_first"
+  },
+  "virtue": {
+   "message_ru": "Вы пожалеете. — ПРИОР",
+   "sound": "silence_room",
+   "scribe_ru": "Драмы серебряные — в книгу находок.",
+   "episode2": "scribe_first"
+  },
+  "unresolved": {
+   "message_ru": "Я подожду. — ПРИОР",
+   "sound": "console_tick",
+   "episode2": "prior_waits"
+  }
+ },
+ "nesting": [
+  {
+   "era": "1375",
+   "who_ru": "рыцарь из Сиса",
+   "writes_ru": "дневник на грабаре"
+  },
+  {
+   "era": "XV век",
+   "who_ru": "писец обители армянских братьев",
+   "writes_ru": "список дневника"
+  },
+  {
+   "era": "2026",
+   "who_ru": "оператор «Мангустика»",
+   "writes_ru": "журнал погружения"
+  }
+ ]
 }

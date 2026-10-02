@@ -82,6 +82,23 @@ static func check(data: Dictionary) -> Array:
 			var w := LocationsCore.church_word(str(b.get(k, "")))
 			if w != "":
 				bad.append("beat %s says «%s»" % [b.id, w])
+	# The Cloud Atlas idea, kept plain (TABOO 0.015 item 8): the eras
+	# nest, the first minute says who reads whom, and an era's story
+	# breaks off in the middle of a word.
+	if data.get("nesting", []).size() < 2:
+		bad.append("no nesting of eras")
+	var reads := false
+	var broken := false
+	for b in data.beats:
+		if b.get("reads", false) and float(b.t) <= 60.0:
+			reads = true
+		if b.get("broken", false) and str(b.get("line_ru", "")).ends_with(
+				"—"):
+			broken = true
+	if not reads:
+		bad.append("the first minute does not say who reads whom")
+	if not broken:
+		bad.append("no story breaks off mid-word")
 	if cuts > int(data.comfort.hard_cuts):
 		bad.append("%d hard cuts, %d allowed" % [cuts,
 			int(data.comfort.hard_cuts)])

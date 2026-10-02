@@ -64,6 +64,17 @@ func run(t: Object) -> void:
 	word.beats[1].hook_ru = "Где икона?"
 	t._check(not PilotCore.check(word).is_empty(), "a church word fails")
 
+	var flat := d.duplicate(true)
+	for b in flat.beats:
+		b.erase("broken")
+	t._check(not PilotCore.check(flat).is_empty(),
+		"a story that does not break off fails")
+	var nobody := d.duplicate(true)
+	for b in nobody.beats:
+		b.erase("reads")
+	t._check(not PilotCore.check(nobody).is_empty(),
+		"a first minute without who reads whom fails")
+
 	# Head gaze in a 12 degree cone.
 	var c: float = d.taboo.gaze_cone_deg
 	t._check(PilotCore.gaze_on(Vector3.FORWARD, Vector3(0.1, 0, -1), c),
