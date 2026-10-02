@@ -2,8 +2,8 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 445
-- документов: 203
+- файлов кода: 449
+- документов: 209
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -30,8 +30,9 @@
 - [.github/workflows/raw-audio-pass.yml](../.github/workflows/raw-audio-pass.yml) — Audio pass over the 99 backlog repos as a git pass (operator,
 - [.github/workflows/raw-osint-cycle.yml](../.github/workflows/raw-osint-cycle.yml) — OSINT pass over the 99 backlog repos every 1.5 hours (CLAUDE.md TABOO
 
-## Игра для шлема: код (GDScript) (71)
+## Игра для шлема: код (GDScript) (73)
 
+- [godot/scripts/apparatus_core.gd](../godot/scripts/apparatus_core.gd) — The operator's own apparatus in the game (CLAUDE.md TABOO 0.022): 41
 - [godot/scripts/atlas_core.gd](../godot/scripts/atlas_core.gd) — "The Water Atlas" read at the lectern of the scriptorium (CLAUDE.md
 - [godot/scripts/atlas_traces.gd](../godot/scripts/atlas_traces.gd) — The knight's traces in the lake and the chronicle's choice (TABOO
 - [godot/scripts/audio/bell_synth.gd](../godot/scripts/audio/bell_synth.gd) — The bells of the far monastery, heard on the path of the witness.
@@ -48,6 +49,7 @@
 - [godot/scripts/cockpit_panel.gd](../godot/scripts/cockpit_panel.gd) — The pilot's console drawn as the operator's BlueOS panels: a row of
 - [godot/scripts/cockpit_screens.gd](../godot/scripts/cockpit_screens.gd) — The console's second screen, as DiveGuard's panel has it: the front
 - [godot/scripts/confession_sheet.gd](../godot/scripts/confession_sheet.gd) — The preparation sheet at the corner of repentance on the path of the
+- [godot/scripts/contract_core.gd](../godot/scripts/contract_core.gd) — A contract in the manner of The Witcher (operator, 2026-10-02: the
 - [godot/scripts/data_packs.gd](../godot/scripts/data_packs.gd) — Data packs beside the APK: the English voices first (operator,
 - [godot/scripts/deeds/act_cue.gd](../godot/scripts/deeds/act_cue.gd) — The felt answer to a step of a place's act (PlaceDeeds): touch, sound
 - [godot/scripts/deeds/deeds_a.gd](../godot/scripts/deeds/deeds_a.gd) — Group a of the small acts at the hearts of places: craft (PlaceDeeds;
@@ -130,7 +132,7 @@
 - [godot/tools/stress_place_switch.gd](../godot/tools/stress_place_switch.gd) — Switch places fast, again and again, to shake out a crash of the
 - [godot/tools/witness_wav_check.py](../godot/tools/witness_wav_check.py) — Measure the offline render of the path of the witness.
 
-## Игра для шлема: тесты (51)
+## Игра для шлема: тесты (53)
 
 - [godot/tests/confession_walker.gd](../godot/tests/confession_walker.gd) — A stand-in for the witness path in test_confession.gd: the sheet reads
 - [godot/tests/deeds/panel_text.gd](../godot/tests/deeds/panel_text.gd) — The heart's panel of a place as location.gd builds it, measured with
@@ -145,12 +147,14 @@
 - [godot/tests/run_hub_tests.gd](../godot/tests/run_hub_tests.gd) — Headless tests of the hub: godot --headless --path godot --script
 - [godot/tests/run_tests.gd](../godot/tests/run_tests.gd) — Headless test runner: godot --headless --path godot --script
 - [godot/tests/test_act_cue.gd](../godot/tests/test_act_cue.gd) — The felt answer to a step of a place's act (ActCue).  Called from
+- [godot/tests/test_apparatus.gd](../godot/tests/test_apparatus.gd) — The operator's apparatus (ApparatusCore, ScreenFeed, TABOO 0.022): the
 - [godot/tests/test_atlas.gd](../godot/tests/test_atlas.gd) — The Water Atlas at the lectern (TABOO 0.03).  Called from
 - [godot/tests/test_audio.gd](../godot/tests/test_audio.gd) — Sound of the dive: the rules that can be proved without a headset.
 - [godot/tests/test_biomes.gd](../godot/tests/test_biomes.gd) — Biomes, bubble columns and the thermocline heard
 - [godot/tests/test_church_words.gd](../godot/tests/test_church_words.gd) — The church-word stop-list gives the same verdict as the web on one
 - [godot/tests/test_cockpit.gd](../godot/tests/test_cockpit.gd) — The pilot's console (CockpitCore, docs/HLD_MANGUSTIK_COCKPIT M4) and
 - [godot/tests/test_confession.gd](../godot/tests/test_confession.gd) — The preparation sheet in the headset (ConfessionSheet), the static
+- [godot/tests/test_contract.gd](../godot/tests/test_contract.gd) — The contract "The Shark of Issyk-Kul" (ContractCore): its data keeps
 - [godot/tests/test_data_packs.gd](../godot/tests/test_data_packs.gd) — Data packs beside the APK (DataPacks; docs/decisions/SIZE_STRATEGIES_
 - [godot/tests/test_dive_batch.gd](../godot/tests/test_dive_batch.gd) — The dive's batches (DiveBatch, Б-1 in docs/APK_REQUIREMENTS.md).
 - [godot/tests/test_haptics.gd](../godot/tests/test_haptics.gd) — The shared table of controller pulses (Haptics; DEF-008, blind spot
@@ -428,7 +432,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (147)
+## Документация проекта (153)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -446,10 +450,12 @@
 - [docs/HLD_20MB_PILOT_2026-10-02.md](../docs/HLD_20MB_PILOT_2026-10-02.md) 📄 — HLD: 20 МБ прорыва — пилот «Табу» в шлем (2026-10-02)
 - [docs/HLD_APK_GRAPHICS_SOUND_2026-10-01.md](../docs/HLD_APK_GRAPHICS_SOUND_2026-10-01.md) 📄 — HLD: графика и звук APK — пять треков (2026-10-01)
 - [docs/HLD_APK_PRIORITY_2026-09-30.md](../docs/HLD_APK_PRIORITY_2026-09-30.md) 📄 — HLD: сборка APK для шлема — приоритет, каждая задача дополняет APK
+- [docs/HLD_APPARATUS_IN_GAME_2026-10-02.md](../docs/HLD_APPARATUS_IN_GAME_2026-10-02.md) 📄 — HLD: аппараты и репо оператора в игре — видео на роботе и на поверхности (2026-10-02)
 - [docs/HLD_ATLAS_OF_WATER_2026-09-30.md](../docs/HLD_ATLAS_OF_WATER_2026-09-30.md) 📄 — HLD: «Атлас воды» — сквозной сюжет, хор пяти, в шлеме
 - [docs/HLD_ATLAS_TRACES_2026-09-30.md](../docs/HLD_ATLAS_TRACES_2026-09-30.md) 📄 — HLD: «Атлас воды» S4 — следы рыцаря на дне, летопись, хачкар
 - [docs/HLD_AUDIO_299_2026-09-30.md](../docs/HLD_AUDIO_299_2026-09-30.md) 📄 — HLD: звуки из 99 репо — спектральные эталоны по трём параметрам
 - [docs/HLD_BELL_RULES_TYPIKON_2026-09-30.md](../docs/HLD_BELL_RULES_TYPIKON_2026-09-30.md) 📄 — HLD: устав звона из Типикона и книги о колоколе (веб и шлем)
+- [docs/HLD_CONTRACT_AKULA_2026-10-02.md](../docs/HLD_CONTRACT_AKULA_2026-10-02.md) 📄 — HLD: контракт «Акула Иссык-Куля» — поймать Мега-щуку (2026-10-02)
 - [docs/HLD_DEEDS_WEB_PARITY_2026-10-02.md](../docs/HLD_DEEDS_WEB_PARITY_2026-10-02.md) 📄 — HLD — паритет 26 дел мест: шлем и веб (2026-10-02)
 - [docs/HLD_DIVE_BIOMES_BUBBLES_2026-09-30.md](../docs/HLD_DIVE_BIOMES_BUBBLES_2026-09-30.md) 📄 — HLD: пять подводных биомов, пузырьковые столбы в ритме дыхания, термоклин видим и слышим
 - [docs/HLD_ENGINE_BUILD_2026-10-02.md](../docs/HLD_ENGINE_BUILD_2026-10-02.md) 📄 — HLD — свой шаблон движка Godot для шлема: без лишних библиотек (2026-10-02)
@@ -555,9 +561,13 @@
 - [docs/story/ATLAS_99_NODES_OPERATOR.md](../docs/story/ATLAS_99_NODES_OPERATOR.md) 📄 — «Атлас воды»: исходник оператора (дословно, 2026-09-30)
 - [docs/story/ATLAS_SYNTHESIS_5_EDITORS.md](../docs/story/ATLAS_SYNTHESIS_5_EDITORS.md) 📄 — «Атлас воды»: редакция хора пяти редакторов
 - [docs/story/INTRO_SIERRA_ECOQUEST_2026-10-02.md](../docs/story/INTRO_SIERRA_ECOQUEST_2026-10-02.md) 📄 — Заставка «Ранее в „Атласе воды“» — вход в игру (хор, 2026-10-02)
+- [docs/story/MISSION_AKULA_ISSYK_KUL_2026-10-02.md](../docs/story/MISSION_AKULA_ISSYK_KUL_2026-10-02.md) 📄 — Миссия-контракт «Акула Иссык-Куля» — поймать Мега-щуку (2026-10-02)
+- [docs/story/OPERATOR_APPARATUS_2026-10-02.md](../docs/story/OPERATOR_APPARATUS_2026-10-02.md) 📄 — Аппараты и репо оператора в «Атласе воды» (опись по ТАБУ №0.022)
 - [docs/story/PILOT_EPISODE_1_TABU_2026-10-02.md](../docs/story/PILOT_EPISODE_1_TABU_2026-10-02.md) 📄 — «Атлас воды», серия 1 — «Табу». Пилот: первые 15 минут (Quest 3S)
 - [docs/story/PROMPT_INTRO_SIERRA_ECOQUEST_2026-10-02.md](../docs/story/PROMPT_INTRO_SIERRA_ECOQUEST_2026-10-02.md) 📄 — Промпт заставки и входа в игру: «Атлас воды» в духе Sierra (оммаж EcoQuest) — 2026-10-02
+- [docs/story/chorus-ep1/AKULA_CHORUS_2026-10-02.md](../docs/story/chorus-ep1/AKULA_CHORUS_2026-10-02.md) 📄 — Хор: проверка контракта «Акула Иссык-Куля» (2026-10-02)
 - [docs/story/chorus-ep1/INSIGHTS_CHORUS_2026-10-02.md](../docs/story/chorus-ep1/INSIGHTS_CHORUS_2026-10-02.md) 📄 — Хор: 12 инсайтов первой серии «Табу» — 2026-10-02
+- [docs/story/chorus-ep1/INSIGHT_PROMPTS_2026-10-02.md](../docs/story/chorus-ep1/INSIGHT_PROMPTS_2026-10-02.md) 📄 — Промты кадров 12 инсайтов — хор сценаристов (2026-10-02)
 - [docs/story/chorus-ep1/NARRATION_v4_24_LENSES.md](../docs/story/chorus-ep1/NARRATION_v4_24_LENSES.md) 📄 — Закадровый текст v4 — «Атлас воды · Серия 1 · Табу»
 - [docs/version-3.0/A10_OFFLINE_SYNC.md](../docs/version-3.0/A10_OFFLINE_SYNC.md) 📄 — A10: Offline Sync & Client-Side Caching
 - [docs/version-3.0/API_ERROR_HANDLING_GUIDE.md](../docs/version-3.0/API_ERROR_HANDLING_GUIDE.md) 📄 — API Error Handling & Edge Cases Guide
