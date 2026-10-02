@@ -3,7 +3,7 @@
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
 - файлов кода: 441
-- документов: 199
+- документов: 200
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -423,7 +423,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (144)
+## Документация проекта (145)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -543,6 +543,7 @@
 - [docs/reports/PHASE_3_TEST_LOG.md](../docs/reports/PHASE_3_TEST_LOG.md) 📄 — Phase 3 Test Execution Log
 - [docs/reports/PROJECT_STATUS_SEP29_2026.md](../docs/reports/PROJECT_STATUS_SEP29_2026.md) 📄 — Ludus Project Status — Sep 29, 2026
 - [docs/reports/SESSION_SUMMARY_SEP29.md](../docs/reports/SESSION_SUMMARY_SEP29.md) 📄 — Session Summary: Sep 29, 2026
+- [docs/research/AUDIENCE_LUDUS_2026-10-02.md](../docs/research/AUDIENCE_LUDUS_2026-10-02.md) 📄 — Ludus «Атлас воды»: для кого мы пишем
 - [docs/research/GODOT_VR_VIDEO_AND_STREAMING.md](../docs/research/GODOT_VR_VIDEO_AND_STREAMING.md) 📄 — Godot в VR/XR: игры, видео, подгрузка контента, XR-стек (исследование, 2026-10-02)
 - [docs/research/VIDEO_IN_HEADSET_GAMES_1996-2026.md](../docs/research/VIDEO_IN_HEADSET_GAMES_1996-2026.md) 📄 — Видео и подгрузка в играх для шлемов, 1995–2026: честный обзор
 - [docs/story/ATLAS_99_NODES_OPERATOR.md](../docs/story/ATLAS_99_NODES_OPERATOR.md) 📄 — «Атлас воды»: исходник оператора (дословно, 2026-09-30)

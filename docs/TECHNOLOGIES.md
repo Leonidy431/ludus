@@ -56,3 +56,9 @@
 | Улики «под и над», классы находок | `PilotCore.clue_seen`, `check_finds` | ТАБУ №0.017, `docs/HLD_PANDORA_SURPASS_2026-10-02.md` |
 | Лестница помысла (страсти) | `godot/scripts/passion_core.gd` | ТАБУ №0.2 п. 8 |
 | Отбор «из N лучших K» | `scripts/decisions/*.py`, `scripts/lake/lake_objects.py` | ТАБУ №0.07, `docs/OBJECT_SELECTION_TECHNOLOGY.md` |
+
+## Аудитория
+
+| Документ | Что |
+|---|---|
+| [docs/research/AUDIENCE_LUDUS_2026-10-02.md](research/AUDIENCE_LUDUS_2026-10-02.md) | хор 24 линз, 7 сегментов, 8 персон, 91 успешная игра с цифрой и источником (+25 без цифры, 6 поучительных неудач), тон, крючки, цена, языки, риски |
