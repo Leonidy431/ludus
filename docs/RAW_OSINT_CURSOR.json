@@ -1,5 +1,5 @@
 {
- "next": 5,
+ "next": 8,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -6686,6 +6686,67 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 187
+  },
+  {
+   "time": "2026-10-02T21:05:16.184467+00:00",
+   "pass_id": "osint-2026-10-02T21:05:16Z",
+   "deficits": [
+    {
+     "id": "DEF-027",
+     "skipped": "audio-pipeline-pending"
+    },
+    {
+     "id": "DEF-028",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 1,
+      "dogma-stop-list": 2
+     },
+     "to_props": 44,
+     "hits_uncapped": 7927,
+     "props_uncapped": 5760,
+     "props_uncapped_repos": 53,
+     "added_keywords": [],
+     "keywords_total": 39,
+     "keywords_not_searched": [
+      "bevy",
+      "card",
+      "cockatrice",
+      "com",
+      "cpp",
+      "crates",
+      "java",
+      "map",
+      "renderer",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 44
+    },
+    {
+     "id": "DEF-031",
+     "skipped": "not-raw-material"
+    }
+   ],
+   "props_taken": {},
+   "props_taken_by_index_kind": {},
+   "props_duplicates": 44,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 0,
+   "props_store_files": 1455,
+   "props_store_bytes": 10827737,
+   "props_cache_files_on_disk": 4666,
+   "props_cache_bytes_on_disk": 78042270,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 812239,
+   "props_register_growth_bytes": 0,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 153
   }
  ],
  "keywords": {
