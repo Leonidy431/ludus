@@ -44,6 +44,8 @@
 extends SceneTree
 
 const SETTLE := 20
+## Frames a view may wait for a module fetched ahead (about 20 s).
+const AHEAD_WAIT_MAX := 1200
 const SAMPLE := 10
 const EMPTY_FRAMES := 6
 ## Calls of a synth's generate() for its time per second of sound.
@@ -61,6 +63,7 @@ var node: Node
 var views: Array = []
 var step := -1
 var frame := 0
+var ahead_waits := 0
 var empty: Node3D
 var empty_tex := 0
 var base_static := 0
@@ -187,6 +190,16 @@ func _process(delta: float) -> bool:
 	var ms := _timed(func(): node._process(delta))
 	var dv = node.get("drawn_views")
 	drawn_set = (dv as Array).duplicate() if dv is Array else null
+	# A module fetched ahead at this view (TABOO 0.014) counts once it is
+	# in memory: the view settles only after the load is done, so the
+	# peak of hub plus module is what is measured, not a half load.
+	var ml := root.get_node_or_null("ModuleLoader")
+	if ml != null and str(ml.ahead_path) != "" \
+			and not ml.is_ready(ml.ahead_path) and frame <= SETTLE + 1:
+		frame = mini(frame, SETTLE)
+		ahead_waits += 1
+		if ahead_waits < AHEAD_WAIT_MAX:
+			return false
 	if frame > SETTLE:
 		if proc_ms.is_empty() or ms[1] > proc_ms.max():
 			proc_max_view = v.name
@@ -260,6 +273,11 @@ func _views() -> Array:
 					"yaw": PI / 4.0},
 				{"name": "yard-south", "pos": Vector3(-2.0, 0, 7.0),
 					"yaw": 0.0},
+				# At the ROV slipway, where the dive module is fetched
+				# ahead (TABOO 0.014): the hub and the dive in memory
+				# at once, the peak of the way to the water.
+				{"name": "slipway", "pos": Vector3(7.0, 0, 0.0),
+					"yaw": -PI / 2.0},
 			]
 		"dive":
 			var out := []
