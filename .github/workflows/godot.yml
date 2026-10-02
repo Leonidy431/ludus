@@ -102,6 +102,12 @@ jobs:
           # every node with its Constitution line (TABOO 0.03).
           python3 scripts/story/render.py --check
           cmp public/ludus/data/atlas-99.json godot/data/atlas-99.json
+          # The 12 stories walked on foot and the people who stand in
+          # their places: the routes, and who stands where with which
+          # node, are current with the trees and the places
+          # (docs/STORY_12_CHARACTERS_2026-10-02.md).
+          python3 scripts/story/select_12.py --check
+          python3 scripts/story/cast_12.py --check
           # The 99 locations of our plots: pool, K and data current, and
           # the selection keeps the standard of the evening-watch cell
           # (TABOO 0.013, 0.07; docs/HLD_LOCATIONS_99_2026-09-30.md).

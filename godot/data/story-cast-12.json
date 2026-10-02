@@ -1,0 +1,649 @@
+{
+ "note": "Written by scripts/story/cast_12.py; do not edit by hand. The people of the 12 stories beyond the talk step, where each stands (docs/STORY_12_CHARACTERS_2026-10-02.md).",
+ "date": "2026-10-02",
+ "stories": [
+  {
+   "mission": 3,
+   "title": "Епископ-арбитр",
+   "talk": {
+    "npc": "anahit",
+    "place": "road-well"
+   },
+   "people": [
+    {
+     "npc": "episkop_ioann",
+     "name_ru": "Епископ Иоанн",
+     "place": "court-yard",
+     "place_ru": "Двор, где рассуждают тяжбу о шёлке",
+     "node": "b_silk",
+     "basis": "Реплики: 6 узлов",
+     "on_route": false
+    },
+    {
+     "npc": "kupets_ovanes",
+     "name_ru": "Ованес, торговец тканями",
+     "place": "court-yard",
+     "place_ru": "Двор, где рассуждают тяжбу о шёлке",
+     "node": "o_start",
+     "basis": "Реплики: 3 узла",
+     "on_route": false
+    },
+    {
+     "npc": "kupets_sauma",
+     "name_ru": "Саума, торговец пряностями",
+     "place": "court-yard",
+     "place_ru": "Двор, где рассуждают тяжбу о шёлке",
+     "node": "s_start",
+     "basis": "Реплики: 3 узла",
+     "on_route": false
+    }
+   ]
+  },
+  {
+   "mission": 6,
+   "title": "Миссия-логист",
+   "talk": {
+    "npc": "anahit",
+    "place": "road-well"
+   },
+   "people": [
+    {
+     "npc": "sargis",
+     "name_ru": "Саргис, караван-баши",
+     "place": "winter-hut",
+     "place_ru": "Зимовье на перевале",
+     "node": "overload",
+     "basis": "Реплики: 4 узла",
+     "on_route": true
+    },
+    {
+     "npc": "rybak_issyk_kul",
+     "name_ru": "Рыбак Иссык-Куля",
+     "place": "winter-hut",
+     "place_ru": "Зимовье на перевале",
+     "node": "greeting",
+     "basis": "Реплики: 3 узла",
+     "on_route": true
+    },
+    {
+     "npc": "elder_sergius",
+     "name_ru": "Старец Сергий",
+     "place": "hub",
+     "place_ru": "во дворе обители",
+     "node": "greeting",
+     "basis": "Реплики: 3 узла"
+    }
+   ]
+  },
+  {
+   "mission": 15,
+   "title": "Братство караванщиков",
+   "talk": {
+    "npc": "sargis",
+    "place": "caravaners-yard"
+   },
+   "people": [
+    {
+     "npc": "vozchik_davit",
+     "name_ru": "Давит, молодой возчик",
+     "place": "caravaners-yard",
+     "place_ru": "Двор возчиков с общей кассой",
+     "node": "d_start",
+     "basis": "Реплики: 3 узла",
+     "on_route": true
+    },
+    {
+     "npc": "theodora",
+     "name_ru": "Феодора",
+     "place": "hub",
+     "place_ru": "во дворе обители",
+     "node": "greeting",
+     "basis": "Реплики: 4 узла"
+    }
+   ]
+  },
+  {
+   "mission": 27,
+   "title": "Хор диаспоры",
+   "talk": {
+    "npc": "photius",
+    "place": "translators"
+   },
+   "people": [
+    {
+     "npc": "anahit",
+     "name_ru": "Анаит, хозяйка караван-сарая",
+     "place": "feast-yard",
+     "place_ru": "Двор в праздник, где учат общий голос",
+     "node": "a_bread",
+     "basis": "Реплики: 2 узла",
+     "on_route": false
+    },
+    {
+     "npc": "tabib",
+     "name_ru": "Табиб Мар-Ава",
+     "place": "feast-yard",
+     "place_ru": "Двор в праздник, где учат общий голос",
+     "node": "theotokos",
+     "basis": "Реплики: 2 узла",
+     "on_route": false
+    },
+    {
+     "npc": "rybak_issyk_kul",
+     "name_ru": "Рыбак Иссык-Куля",
+     "place": "feast-yard",
+     "place_ru": "Двор в праздник, где учат общий голос",
+     "node": "ichthys",
+     "basis": "Реплики: 2 узла",
+     "on_route": false
+    },
+    {
+     "npc": "kassiani",
+     "name_ru": "Кассия песнописица",
+     "place": "hub",
+     "place_ru": "во дворе обители",
+     "node": "k_greeting",
+     "basis": "Реплики: 6 узлов"
+    }
+   ]
+  },
+  {
+   "mission": 31,
+   "title": "Фаза регрессии",
+   "talk": {
+    "npc": "rybak_issyk_kul",
+    "place": "fishers-camp"
+   },
+   "people": [
+    {
+     "npc": "vardan",
+     "name_ru": "Вардан-переписчик",
+     "place": "terrace-regression",
+     "place_ru": "Обнажившаяся терраса",
+     "node": "v_marks",
+     "basis": "Реплики: 3 узла",
+     "on_route": false
+    },
+    {
+     "npc": "elder_sergius",
+     "name_ru": "Старец Сергий",
+     "place": "hub",
+     "place_ru": "во дворе обители",
+     "node": "greeting",
+     "basis": "Реплики: 2 узла"
+    }
+   ]
+  },
+  {
+   "mission": 34,
+   "title": "«Город-на-дне»",
+   "talk": {
+    "npc": "tabib",
+    "place": "kairak-valley"
+   },
+   "people": [
+    {
+     "npc": "rybak_issyk_kul",
+     "name_ru": "Рыбак Иссык-Куля",
+     "place": "kairak-valley",
+     "place_ru": "Надгробный камень в Чуйской долине",
+     "node": "avarice",
+     "basis": "Реплики: 5 узлов",
+     "on_route": true
+    },
+    {
+     "npc": "vardan",
+     "name_ru": "Вардан-переписчик",
+     "place": "kairak-valley",
+     "place_ru": "Надгробный камень в Чуйской долине",
+     "node": "v_legend",
+     "basis": "Реплики: 2 узла",
+     "on_route": true
+    }
+   ]
+  },
+  {
+   "mission": 49,
+   "title": "Судебная автономия",
+   "talk": {
+    "npc": "macrina",
+    "place": "bishop-stone"
+   },
+   "people": [
+    {
+     "npc": "episkop_ioann",
+     "name_ru": "Епископ Иоанн",
+     "place": "porch-court",
+     "place_ru": "Притвор, где судят единоверцев",
+     "node": "b_debt",
+     "basis": "Реплики: 3 узла",
+     "on_route": false
+    },
+    {
+     "npc": "sargis",
+     "name_ru": "Саргис, караван-баши",
+     "place": "porch-court",
+     "place_ru": "Притвор, где судят единоверцев",
+     "node": "open_hand",
+     "basis": "Реплики: 3 узла",
+     "on_route": false
+    },
+    {
+     "npc": "kupets_kutlug",
+     "name_ru": "Кутлуг, скотовод-должник",
+     "place": "porch-court",
+     "place_ru": "Притвор, где судят единоверцев",
+     "node": "k_start",
+     "basis": "Реплики: 3 узла",
+     "on_route": false
+    }
+   ]
+  },
+  {
+   "mission": 61,
+   "title": "Политический монастырь",
+   "talk": {
+    "npc": "khan",
+    "place": "divan-darugi"
+   },
+   "people": [
+    {
+     "npc": "melik",
+     "name_ru": "Мелик Ашот, хранитель весов",
+     "place": "divan-darugi",
+     "place_ru": "Диван даругачи",
+     "node": "m_gift",
+     "basis": "Реплики: 3 узла",
+     "on_route": true
+    },
+    {
+     "npc": "elder_sergius",
+     "name_ru": "Старец Сергий",
+     "place": "hub",
+     "place_ru": "во дворе обители",
+     "node": "greeting",
+     "basis": "Реплики: 4 узла"
+    }
+   ]
+  },
+  {
+   "mission": 73,
+   "title": "Мосты и дороги миссии",
+   "talk": {
+    "npc": "tabib",
+    "place": "infirmary"
+   },
+   "people": [
+    {
+     "npc": "mostovshik_toros",
+     "name_ru": "Торос, плотник-мостовщик",
+     "place": "mountain-bridge",
+     "place_ru": "Мост через горную речку",
+     "node": "t_start",
+     "basis": "Реплики: ≈4 узла",
+     "on_route": false
+    },
+    {
+     "npc": "sargis",
+     "name_ru": "Саргис, караван-баши",
+     "place": "mountain-bridge",
+     "place_ru": "Мост через горную речку",
+     "node": "overload",
+     "basis": "Реплики: ≈4 узла",
+     "on_route": false
+    },
+    {
+     "npc": "sister_catherine",
+     "name_ru": "Сестра Екатерина",
+     "place": "hub",
+     "place_ru": "во дворе обители",
+     "node": "greeting",
+     "basis": "Реплики: ≈4 узла"
+    }
+   ]
+  },
+  {
+   "mission": 78,
+   "title": "Навигация по звёздам и берегам",
+   "talk": {
+    "npc": "tabib",
+    "place": "infirmary"
+   },
+   "people": [
+    {
+     "npc": "provodnik_buri",
+     "name_ru": "Бури, проводник каравана",
+     "place": "star-shore",
+     "place_ru": "Ночной берег: путь по звёздам",
+     "node": "u_start",
+     "basis": "Реплики: ≈5 узлов",
+     "on_route": false
+    },
+    {
+     "npc": "rybak_issyk_kul",
+     "name_ru": "Рыбак Иссык-Куля",
+     "place": "star-shore",
+     "place_ru": "Ночной берег: путь по звёздам",
+     "node": "cold_layer",
+     "basis": "Реплики: ≈3 узла",
+     "on_route": false
+    },
+    {
+     "npc": "elder_sergius",
+     "name_ru": "Старец Сергий",
+     "place": "hub",
+     "place_ru": "во дворе обители",
+     "node": "greeting",
+     "basis": "Реплики: ≈4 узла"
+    }
+   ]
+  },
+  {
+   "mission": 88,
+   "title": "Легенда о затонувшем монастыре",
+   "talk": {
+    "npc": "rybak_issyk_kul",
+    "place": "fishers-camp"
+   },
+   "people": [
+    {
+     "npc": "perekupshik_arshak",
+     "name_ru": "Аршак, перекупщик",
+     "place": "fishers-camp",
+     "place_ru": "Ночной костёр рыбаков",
+     "node": "r_start",
+     "basis": "Реплики: ≈3 узла",
+     "on_route": true
+    },
+    {
+     "npc": "starukha_shushan",
+     "name_ru": "Старая Шушан",
+     "place": "fishers-camp",
+     "place_ru": "Ночной костёр рыбаков",
+     "node": "h_start",
+     "basis": "Сценарий: три версии легенды",
+     "on_route": true
+    },
+    {
+     "npc": "abba_john",
+     "name_ru": "Авва Иоанн",
+     "place": "hub",
+     "place_ru": "во дворе обители",
+     "node": "greeting",
+     "basis": "Реплики: ≈5 узлов"
+    }
+   ]
+  },
+  {
+   "mission": 90,
+   "title": "Ветвление судьбы",
+   "talk": {
+    "npc": "macrina",
+    "place": "council-hall"
+   },
+   "people": [
+    {
+     "npc": "episkop_ioann",
+     "name_ru": "Епископ Иоанн",
+     "place": "flooded-lower",
+     "place_ru": "Нижняя обитель, куда пришла вода",
+     "node": "b_flock",
+     "basis": "Реплики: ≈2 узла",
+     "on_route": false
+    },
+    {
+     "npc": "brat_gevond",
+     "name_ru": "Слепой брат Гевонд",
+     "place": "flooded-lower",
+     "place_ru": "Нижняя обитель, куда пришла вода",
+     "node": "g_start",
+     "basis": "Реплики: ≈3 узла",
+     "on_route": false
+    },
+    {
+     "npc": "vardan",
+     "name_ru": "Вардан-переписчик",
+     "place": "flooded-lower",
+     "place_ru": "Нижняя обитель, куда пришла вода",
+     "node": "v_marks",
+     "basis": "Реплики: ≈4 узла",
+     "on_route": false
+    },
+    {
+     "npc": "elder_sergius",
+     "name_ru": "Старец Сергий",
+     "place": "hub",
+     "place_ru": "во дворе обители",
+     "node": "greeting",
+     "basis": "Реплики: ≈5 узлов"
+    }
+   ]
+  }
+ ],
+ "places": {
+  "caravaners-yard": [
+   {
+    "npc": "vozchik_davit",
+    "tag": "Давит, молодой возчик",
+    "node": "d_start",
+    "missions": [
+     15
+    ]
+   }
+  ],
+  "court-yard": [
+   {
+    "npc": "episkop_ioann",
+    "tag": "Иоанн, что мирит купцов",
+    "node": "b_silk",
+    "missions": [
+     3
+    ]
+   },
+   {
+    "npc": "kupets_ovanes",
+    "tag": "Ованес, торговец тканями",
+    "node": "o_start",
+    "missions": [
+     3
+    ]
+   },
+   {
+    "npc": "kupets_sauma",
+    "tag": "Саума, торговец пряностями",
+    "node": "s_start",
+    "missions": [
+     3
+    ]
+   }
+  ],
+  "divan-darugi": [
+   {
+    "npc": "melik",
+    "tag": "Мелик Ашот, хранитель весов",
+    "node": "m_gift",
+    "missions": [
+     61
+    ]
+   }
+  ],
+  "feast-yard": [
+   {
+    "npc": "anahit",
+    "tag": "Анаит, хозяйка караван-сарая",
+    "node": "a_bread",
+    "missions": [
+     27
+    ]
+   },
+   {
+    "npc": "tabib",
+    "tag": "Табиб Мар-Ава",
+    "node": "theotokos",
+    "missions": [
+     27
+    ]
+   },
+   {
+    "npc": "rybak_issyk_kul",
+    "tag": "Рыбак Иссык-Куля",
+    "node": "ichthys",
+    "missions": [
+     27
+    ]
+   }
+  ],
+  "fishers-camp": [
+   {
+    "npc": "perekupshik_arshak",
+    "tag": "Аршак, перекупщик",
+    "node": "r_start",
+    "missions": [
+     88
+    ]
+   },
+   {
+    "npc": "starukha_shushan",
+    "tag": "Старая Шушан с веретеном",
+    "node": "h_start",
+    "missions": [
+     88
+    ]
+   }
+  ],
+  "flooded-lower": [
+   {
+    "npc": "episkop_ioann",
+    "tag": "Иоанн, что мирит купцов",
+    "node": "b_flock",
+    "missions": [
+     90
+    ]
+   },
+   {
+    "npc": "brat_gevond",
+    "tag": "Слепой брат Гевонд",
+    "node": "g_start",
+    "missions": [
+     90
+    ]
+   },
+   {
+    "npc": "vardan",
+    "tag": "Вардан-переписчик",
+    "node": "v_marks",
+    "missions": [
+     90
+    ]
+   }
+  ],
+  "kairak-valley": [
+   {
+    "npc": "rybak_issyk_kul",
+    "tag": "Рыбак Иссык-Куля",
+    "node": "avarice",
+    "missions": [
+     34
+    ]
+   },
+   {
+    "npc": "vardan",
+    "tag": "Вардан-переписчик",
+    "node": "v_legend",
+    "missions": [
+     34
+    ]
+   }
+  ],
+  "mountain-bridge": [
+   {
+    "npc": "mostovshik_toros",
+    "tag": "Торос, плотник-мостовщик",
+    "node": "t_start",
+    "missions": [
+     73
+    ]
+   },
+   {
+    "npc": "sargis",
+    "tag": "Саргис, караван-баши",
+    "node": "overload",
+    "missions": [
+     73
+    ]
+   }
+  ],
+  "porch-court": [
+   {
+    "npc": "episkop_ioann",
+    "tag": "Иоанн, что мирит купцов",
+    "node": "b_debt",
+    "missions": [
+     49
+    ]
+   },
+   {
+    "npc": "sargis",
+    "tag": "Саргис, караван-баши",
+    "node": "open_hand",
+    "missions": [
+     49
+    ]
+   },
+   {
+    "npc": "kupets_kutlug",
+    "tag": "Кутлуг с расщеплённой биркой",
+    "node": "k_start",
+    "missions": [
+     49
+    ]
+   }
+  ],
+  "star-shore": [
+   {
+    "npc": "provodnik_buri",
+    "tag": "Бури, проводник каравана",
+    "node": "u_start",
+    "missions": [
+     78
+    ]
+   },
+   {
+    "npc": "rybak_issyk_kul",
+    "tag": "Рыбак Иссык-Куля",
+    "node": "cold_layer",
+    "missions": [
+     78
+    ]
+   }
+  ],
+  "terrace-regression": [
+   {
+    "npc": "vardan",
+    "tag": "Вардан-переписчик",
+    "node": "v_marks",
+    "missions": [
+     31
+    ]
+   }
+  ],
+  "winter-hut": [
+   {
+    "npc": "sargis",
+    "tag": "Саргис, караван-баши",
+    "node": "overload",
+    "missions": [
+     6
+    ]
+   },
+   {
+    "npc": "rybak_issyk_kul",
+    "tag": "Рыбак Иссык-Куля",
+    "node": "greeting",
+    "missions": [
+     6
+    ]
+   }
+  ]
+ }
+}

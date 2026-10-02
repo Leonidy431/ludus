@@ -219,6 +219,11 @@ func _initialize() -> void:
 	mentors.in_hub(self)
 	print("mentors: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# The people of the 12 stories beside the hearts of their places
+	# (StoryCast; docs/HLD_STORY_12_CHARACTERS_2026-10-02.md).  Run before
+	# the module loader's test, whose background loads stay in the cache.
+	await process_frame
+	load("res://tests/test_story_cast.gd").new().run(self)  # Prints its own.
 	# The small acts at the hearts of 26 places (PlaceDeeds, phase L3).
 	before = checks
 	fails = failures

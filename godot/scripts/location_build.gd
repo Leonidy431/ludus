@@ -240,6 +240,7 @@ static func build(p: Dictionary) -> Node3D:
 		if s.tag:
 			tags.add_child(_tag(s, node))
 	_heart(world, p)
+	_cast(world, p)
 	_lights(world, p)
 	return world
 
@@ -763,6 +764,30 @@ static func _person(world: Node3D, p: Dictionary) -> void:
 	# door it was a few pixels high and could not be read.
 	name_label.visibility_range_end = LocationCore.TAG_RANGE_M
 	world.add_child(name_label)
+
+
+## The people of the 12 stories who stand here beside the heart
+## (StoryCast): the mentors' own figure each, all of them joined into one
+## mesh "Cast" (one draw call for the place's people, as the person at
+## the heart is one), with a name tag each, seen only near and with no
+## church word.  People, not statues: no light, no glow, no halo.
+static func _cast(world: Node3D, p: Dictionary) -> void:
+	var g := Node3D.new()
+	g.name = "Cast"
+	for c in p.get("cast", []):
+		if not c.placed:
+			continue
+		var fig := Mentors.figure(str(c.npc))
+		fig.position = c.pos
+		fig.rotation_degrees = Vector3(0, c.yaw, 0)
+		g.add_child(fig)
+		var name_label := Mentors.tag(str(c.tag), c.pos,
+			"CastName_" + str(c.npc))
+		world.add_child(name_label)
+	if g.get_child_count() > 0:
+		world.add_child(join(g, 0.9))
+	else:
+		g.free()
 
 
 ## The ROV over the heart of a dive's task, lamp on: the instrument

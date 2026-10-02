@@ -1,5 +1,5 @@
 {
-  "source": "functions/src/data/npc-dialogues-24.json + functions/src/scripts/seedComprehensiveTestData.ts",
+  "source": "functions/src/data/npc-dialogues-24.json + functions/src/scripts/seedComprehensiveTestData.ts + functions/src/data/npc-dialogues-story12.json",
   "trees": {
     "elder_sergius": {
       "npcId": "elder_sergius",
@@ -6399,6 +6399,1938 @@
               "nextNodeId": null,
               "attributeBonuses": {
                 "erudition": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "episkop_ioann": {
+      "npcId": "episkop_ioann",
+      "npcName": "Bishop John",
+      "npcName_ru": "Епископ Иоанн",
+      "theology": "The bishop of the mission on Issyk-Kul, a figure of fiction in the historical frame of the campaign (the 14th-century mission on the Silk Road; the art file says so and the census keeps the mark). He judges between brothers as a servant, not a ruler (Mk 10:42-45; 1 Cor 6:1-7): the court of the obitel reconciles and takes no fine, and in the rising water he sets the order of love, persons above the treasury (Lk 12:32-34). He is not a saint of the calendar and is given no saint's words; he speaks in his own voice with Scripture behind him.",
+      "idiom": {
+        "worldview": "A quarrel between brothers is a wound in one body; the judge is the one who washes it, not the one who wins it.",
+        "craft": "Bishop of the lakeside mission: hears disputes of the merchants of his flock on a stone bench, keeps the guest-house, carries the community's books and old men up when the water rises.",
+        "images": [
+          "staff",
+          "stone bench",
+          "receipt",
+          "two scale pans",
+          "torn seam",
+          "guest-house gate",
+          "rising water",
+          "stretcher"
+        ],
+        "metaphors": [
+          "a case is not won, a brother is won",
+          "the receipt speaks before the oath",
+          "the stick is for the road, the bench for the quarrel",
+          "what the water takes was only lent"
+        ],
+        "silence": "He sets his staff across his knees and lets both men finish, even when they repeat themselves."
+      },
+      "startNode": "b_greeting",
+      "nodes": [
+        {
+          "id": "b_greeting",
+          "text": "Sit, deacon. A bishop on this shore has a stick and a bench, not a throne: the stick for the road, the bench for those who quarrel. Which quarrel brought you?",
+          "text_ru": "Садись, дьякон. У епископа на этом берегу посох и скамья, а не престол: посох для дороги, скамья для тех, кто спорит. Какой спор тебя привёл?",
+          "meaning": "The bishop's office is service, not lordship: whoever would be first is servant of all. He judges from a bench, not from power.",
+          "source": "Mk 10:42-45",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Two merchants quarrel over a bale of silk.",
+              "text_ru": "Двое купцов спорят о тюке шёлка.",
+              "nextNodeId": "b_silk",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            },
+            {
+              "text": "Kutlug has not paid Sargis his debt.",
+              "text_ru": "Кутлуг не вернул долг Саргису.",
+              "nextNodeId": "b_debt",
+              "attributeBonuses": {
+                "charisma": 1
+              }
+            },
+            {
+              "text": "The water is in the lower court. What do we carry first?",
+              "text_ru": "Вода уже в нижнем дворе. Что нести первым?",
+              "nextNodeId": "b_flock",
+              "attributeBonuses": {
+                "constitution": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "b_silk",
+          "text": "Hovhannes says the silk was sound when he unrolled it at the well. Sauma says it rotted in the bale. Both are ready to swear. Before I hear an oath, I hear the receipt: Vardan has it. Read the dates for me, deacon.",
+          "text_ru": "Ованес говорит, что шёлк был цел, когда он разворачивал его у колодца. Саума говорит, что шёлк сгнил в тюке. Оба готовы клясться. Прежде клятвы я выслушаю расписку: она у Вардана. Прочти мне даты, дьякон.",
+          "meaning": "A judge hears both sides fully and tests the witnesses before any verdict; between brothers there must be one wise enough to judge, and he does not respect persons.",
+          "source": "Deut 1:16-17; 1 Cor 6:5",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "The date was scraped off and written again in fresh ink.",
+              "text_ru": "Дату выскоблили и написали заново свежими чернилами.",
+              "condition": {
+                "wisdom": 4
+              },
+              "nextNodeId": "b_dates",
+              "attributeBonuses": {
+                "wisdom": 2
+              },
+              "narrativeEffect": "The bishop holds the receipt to the light."
+            },
+            {
+              "text": "I cannot read it yet. Let me hear both of them to the end first.",
+              "text_ru": "Я пока не разберу. Дай сперва выслушать обоих до конца.",
+              "nextNodeId": "b_reconcile",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "b_dates",
+          "text": "You saw it. The bale stood a week longer in the damp than the paper says: the week at the ford. Neither lied about the silk; one of them lied to the paper. Now: do we shame him before the whole yard, or call him aside?",
+          "text_ru": "Ты увидел. Тюк простоял в сырости на неделю дольше, чем говорит бумага: неделю у брода. О шёлке не солгал никто; один из них солгал бумаге. Теперь скажи: позорим его перед всем двором или зовём в сторону?",
+          "meaning": "The truth found is used to restore a brother, not to humiliate him: first tell him his fault between you and him alone. What is hidden comes to light, but the light is not a pillory.",
+          "source": "Mt 18:15; Lk 12:2",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Call him aside, without witnesses.",
+              "text_ru": "Позвать его в сторону, без свидетелей.",
+              "condition": {
+                "charisma": 4
+              },
+              "nextNodeId": "b_reconcile",
+              "attributeBonuses": {
+                "charisma": 2
+              }
+            },
+            {
+              "text": "You decide. I will write it down.",
+              "text_ru": "Решай ты, я запишу.",
+              "nextNodeId": "b_reconcile",
+              "attributeBonuses": {
+                "erudition": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "b_reconcile",
+          "text": "Here a case is not won; a brother is won. The Lord said: leave your gift and first be reconciled. So the paper is signed by both, the one who wronged pays what he can, the one wronged forgives what he can, and I take no fine: the guest-house needs no silver bought with a quarrel.",
+          "text_ru": "Здесь дело не выигрывают — здесь выигрывают брата. Сказано: оставь дар свой и пойди прежде примирись. Поэтому бумагу подписывают оба: кто обидел, платит сколько может, кого обидели, прощает сколько может, а я пени не беру. Странноприимному двору не нужно серебро, купленное ссорой.",
+          "meaning": "The court of the community aims at reconciliation, not punishment; better to suffer wrong than to win against a brother. The bishop takes no profit from the dispute, so the judgment is not bought loyalty.",
+          "source": "Mt 5:23-24; 1 Cor 6:7; St John Chrysostom, Homilies on First Corinthians, Homily 16",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "How do I hold back anger when the right is on my side?",
+              "text_ru": "Как удержать гнев, когда правда на моей стороне?",
+              "condition": {
+                "faith": 5
+              },
+              "nextNodeId": "b_anger",
+              "attributeBonuses": {
+                "faith": 2
+              }
+            },
+            {
+              "text": "I will write that both have signed.",
+              "text_ru": "Запишу, что оба подписали.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "erudition": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "b_anger",
+          "text": "Anger with the right on its side is the most dangerous: it calls itself justice. Here is its sign. You want the other to lose more than you want the truth found. You rehearse your speech at night. When he gives back the bale, you still remember the grain he shaved. When you notice that, close your mouth and open your ears.",
+          "text_ru": "Гнев, на чьей стороне правда, опаснее всех: он зовёт себя справедливостью. Вот его признак. Ты хочешь, чтобы другой проиграл, сильнее, чем хочешь найти правду. Ночью повторяешь свою речь. Он уже вернул тюк, а ты всё помнишь сбритое зерно. Заметил это — закрой рот и открой уши.",
+          "meaning": "Discernment cue for anger: the wish that the other lose more than the wish for truth, rehearsed speeches, and remembered wrongs after restitution. It is recognised by these signs and healed by meekness, slowness to speak and quickness to hear.",
+          "source": "Ladder, step 8; Jas 1:19-20",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Slow to speak, quick to hear. I will remember.",
+              "text_ru": "Медленно говорить, скоро слушать. Запомню.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "b_debt",
+          "text": "Sargis lent Kutlug silver for forty ewes. The murrain took the flock and the day of payment passed. Sargis wanted the darugachi's officer to take Kutlug's yurt; I asked him to bring the case to this porch instead. We do not stand against the khan's law; we ask only leave to reconcile our own before it comes to the house and the children.",
+          "text_ru": "Саргис дал Кутлугу серебро на сорок овец. Падёж унёс отару, и срок прошёл. Саргис хотел, чтобы пристав даругачи забрал юрту Кутлуга; я попросил принести дело сюда, в притвор. Мы не спорим с ханским законом. Мы просим лишь права примирить своих, пока дело не дошло до дома и детей.",
+          "meaning": "Disputes among brothers are better settled among them than before outside courts; the mission seeks the service of reconciliation, not power against the civil authority, to which what is due is rendered.",
+          "source": "1 Cor 6:1-7; Rom 13:7",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "The debt is late not from idleness: the murrain came.",
+              "text_ru": "Долг просрочен не по лени: пришёл падёж.",
+              "condition": {
+                "wisdom": 6
+              },
+              "nextNodeId": "b_mercy_law",
+              "attributeBonuses": {
+                "wisdom": 2
+              }
+            },
+            {
+              "text": "Then let both of them speak here.",
+              "text_ru": "Тогда пусть оба скажут здесь.",
+              "nextNodeId": "b_reconcile",
+              "attributeBonuses": {
+                "charisma": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "b_mercy_law",
+          "text": "You looked at the man and not only at the paper. Moses wrote: if you take your neighbour's cloak in pledge, give it back before the sun goes down, for it is his only covering. Kutlug keeps his yurt and pays after the lambing. Sargis is not a cruel man; he will say so himself if he is asked rightly.",
+          "text_ru": "Ты посмотрел на человека, а не только на бумагу. Моисей написал: если возьмёшь в залог одежду ближнего, верни её до захода солнца, ибо она у него единственный покров. Кутлуг оставит юрту и заплатит после окота. Саргис не жестокий человек; он сам скажет это, если попросить его как следует.",
+          "meaning": "The law itself protects the necessities of the debtor; mercy and truth meet together. Judgment that sees the person behind the debt is not weakness but the fulfilment of the law.",
+          "source": "Ex 22:26-27; Deut 24:10-13; Ps 84:11 (LXX; 85:10)",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Let me ask Sargis for the delay before everyone, without reproach.",
+              "text_ru": "Я попрошу Саргиса об отсрочке при всех, без упрёка.",
+              "condition": {
+                "charisma": 5
+              },
+              "nextNodeId": "b_reconcile",
+              "attributeBonuses": {
+                "charisma": 2
+              },
+              "narrativeEffect": "Sargis and Kutlug shake hands over the split tally stick."
+            },
+            {
+              "text": "Ask him yourself; I will hold the tally stick.",
+              "text_ru": "Попроси его сам, а я подержу бирку.",
+              "nextNodeId": "b_reconcile",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "b_flock",
+          "text": "Carry the Gospel book up first, then the old brothers who cannot walk, then the chronicle scrolls. The treasury box goes last, if there are hands left. Fear not, little flock: what the water takes was only ever lent to us. Walk, do not run; the holy things are carried as on a feast, not thrown like sacks.",
+          "text_ru": "Наверх неси сначала Евангелие, потом старых братьев, что не могут идти, потом свитки летописи. Ящик казны — последним, если останутся руки. Не бойся, малое стадо: что берёт вода, было нам только одолжено. Иди, не беги: святыню несут как в праздник, а не швыряют как мешки.",
+          "meaning": "The order of love in the flood: the word, then persons, then memory, goods last. Holy things are carried with reverence and never scored as points; the outcome is decided by the order of love, not by what is saved of the treasury.",
+          "source": "Lk 12:32-34",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "I will carry brother Ghevond's stretcher first.",
+              "text_ru": "Я первым понесу носилки брата Гевонда.",
+              "condition": {
+                "constitution": 6
+              },
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "constitution": 2
+              }
+            },
+            {
+              "text": "I am going.",
+              "text_ru": "Иду.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "constitution": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "kupets_ovanes": {
+      "npcId": "kupets_ovanes",
+      "npcName": "Hovhannes the cloth merchant",
+      "npcName_ru": "Ованес, торговец тканями",
+      "theology": "An Armenian cloth merchant of the bishop's flock in the dispute over a bale of silk (mission 3). Drawn with dignity, a man in a quarrel and not a villain: he scraped a date on a receipt to hide his hurried loading, and the talk leads him from self-defence to confession and reconciliation (Prov 18:17; Lk 12:2; Mt 5:23-24). His turning is his own; the game shows it only in his words.",
+      "idiom": {
+        "worldview": "Cloth tells the truth to the fingers before it tells it to the eye; a man is the same.",
+        "craft": "Cloth and silk merchant on the caravan road: unrolls bolts at the halt, measures by the ell, packs bales under felt against the damp.",
+        "images": [
+          "bolt of silk",
+          "ell measure",
+          "felt cover",
+          "damp",
+          "moth",
+          "fast dye",
+          "receipt",
+          "ford"
+        ],
+        "metaphors": [
+          "the parchment remembers the knife",
+          "a bale under felt keeps dry, a heart under excuses rots",
+          "fast dye does not run, a true word does not either",
+          "two shaved grains, two shaved words"
+        ],
+        "silence": "He rubs a corner of silk between finger and thumb and does not look up."
+      },
+      "startNode": "o_start",
+      "nodes": [
+        {
+          "id": "o_start",
+          "text": "They say I sold Sauma rotten silk. Feel this bolt, deacon: sound, tight, the dye fast. I unrolled it before him at the well. What he carried away rotted in his bale, not in mine.",
+          "text_ru": "Говорят, я продал Сауме гнилой шёлк. Пощупай этот отрез, дьякон: целый, плотный, краска не бежит. Я разворачивал его перед ним у колодца. Что он унёс, сгнило в его тюке, а не в моём.",
+          "meaning": "A man in a dispute speaks from his hurt; the first to plead seems right until the other comes and examines him. Hearing him fully is the first justice.",
+          "source": "Prov 18:17",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Where did the bale stand after the well?",
+              "text_ru": "Где стоял тюк после колодца?",
+              "nextNodeId": "o_damp",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            },
+            {
+              "text": "Show me the receipt. Why is the date fresher than the ink around it?",
+              "text_ru": "Покажи расписку. Почему дата свежее остальных чернил?",
+              "condition": {
+                "wisdom": 4
+              },
+              "nextNodeId": "o_receipt",
+              "attributeBonuses": {
+                "wisdom": 2
+              }
+            },
+            {
+              "text": "How much will you give if I put in a word for you with the bishop?",
+              "text_ru": "Сколько дашь, если я замолвлю за тебя слово перед епископом?",
+              "nextNodeId": "o_refuse",
+              "attributeBonuses": {
+                "cunning": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "o_damp",
+          "text": "After the well? The caravan waited a week at the ford for the river to fall. Mine stood under felt. His... I did not look. A man looks after his own bales.",
+          "text_ru": "После колодца? Караван неделю ждал у брода, пока спадёт вода. Мои тюки стояли под войлоком. Его… я не смотрел. Каждый смотрит за своими тюками.",
+          "meaning": "Not hiding oneself from a brother's goods is part of the law; to see the neighbour's loss and look away shares in the wrong.",
+          "source": "Deut 22:1-3",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "You saw his bale getting wet?",
+              "text_ru": "Ты видел, что его тюк мокнет?",
+              "nextNodeId": "o_shame",
+              "attributeBonuses": {
+                "charisma": 1
+              }
+            },
+            {
+              "text": "At the ford all bales are one caravan's. Say it plainly.",
+              "text_ru": "У брода все тюки — одного каравана. Скажи прямо.",
+              "condition": {
+                "charisma": 4
+              },
+              "nextNodeId": "o_shame",
+              "attributeBonuses": {
+                "charisma": 2
+              }
+            }
+          ]
+        },
+        {
+          "id": "o_receipt",
+          "text": "(Silence.) I scraped the date. The week at the ford was my fault: I hurried the loading and left his bale on the wet stones. I thought: one week, one scrape, who will see? The parchment saw.",
+          "text_ru": "(Молчит.) Дату выскоблил я. Неделя у брода — моя вина: я торопил погрузку и оставил его тюк на мокрых камнях. Думал: одна неделя, одна черта ножом, кто заметит? Пергамент заметил.",
+          "meaning": "Nothing covered will not be revealed; whoever confesses and forsakes his fault finds mercy. The confession of a small fraud is the beginning of reconciliation.",
+          "source": "Lk 12:2-3; Prov 28:13",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Then tell Sauma yourself, before the bishop sits down.",
+              "text_ru": "Тогда скажи это Сауме сам, до того как сядет епископ.",
+              "condition": {
+                "faith": 4
+              },
+              "nextNodeId": "o_peace",
+              "attributeBonuses": {
+                "faith": 2
+              }
+            },
+            {
+              "text": "What holds you back?",
+              "text_ru": "Что тебя держит?",
+              "nextNodeId": "o_shame",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "o_shame",
+          "text": "Shame. If I say it before the whole yard, every merchant from here to Tana will weigh my bolts twice.",
+          "text_ru": "Стыд. Скажу при всём дворе — и каждый купец отсюда до Таны станет перемеривать мои отрезы дважды.",
+          "meaning": "Fear of men's opinion holds back repentance; the Lord's way is to tell the fault first between the two alone, and confession to the one wronged heals more than a defence before many.",
+          "source": "Mt 18:15; Ladder, step 4",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Then tell him alone. The bishop asks only for the truth.",
+              "text_ru": "Тогда скажи ему наедине. Епископ просит только правды.",
+              "nextNodeId": "o_peace",
+              "attributeBonuses": {
+                "charisma": 1
+              }
+            },
+            {
+              "text": "Think it over until evening.",
+              "text_ru": "Подумай до вечера.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "o_peace",
+          "text": "Then I will go to his fire, without the bishop. I will pay for the damp week. If he forgives the scrape, I forgive him the word 'thief' he shouted at the well. Two shaved grains, two shaved words.",
+          "text_ru": "Тогда пойду к его костру, без епископа. Заплачу за сырую неделю. Простит он мне черту ножом — я прощу ему «вора», которого он крикнул у колодца. Два сбритых зерна, два сбритых слова.",
+          "meaning": "Go first and be reconciled with your brother; forgive one another as you have been forgiven. Restitution and mutual forgiveness end the quarrel better than any verdict.",
+          "source": "Mt 5:23-24; Col 3:13",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Go. I will tell the bishop you went.",
+              "text_ru": "Иди. Я скажу епископу, что ты пошёл.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "charisma": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "o_refuse",
+          "text": "A judge's helper who sells his word sells the scales too. No, deacon. Keep your word clean; mine is dirty enough already.",
+          "text_ru": "Помощник судьи, что продаёт своё слово, продаёт и весы. Нет, дьякон. Береги своё слово чистым: моё и так запачкано.",
+          "meaning": "A gift blinds the eyes of the wise and twists the words of the righteous. The cunning way opens no teaching; the way back is to begin again honestly.",
+          "source": "Ex 23:8; Deut 16:19",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Forgive me. Let us begin again.",
+              "text_ru": "Прости. Начнём сначала.",
+              "nextNodeId": "o_start",
+              "attributeBonuses": {}
+            }
+          ]
+        }
+      ]
+    },
+    "kupets_sauma": {
+      "npcId": "kupets_sauma",
+      "npcName": "Sauma the spice merchant",
+      "npcName_ru": "Саума, торговец пряностями",
+      "theology": "A spice merchant of the Turkic Christians of the Chu valley (the name Sauma is borne by Christians of the region, as by Rabban Sauma of the Öngüt), the second party in the dispute over the silk (mission 3). He shouted 'thief' at the well; the talk teaches the sign of anger with right on its side and leads him to see his own share and to forgive (Jas 1:19-20; Mt 7:3-5; Eph 4:32). Drawn with dignity, a man in a dispute and not a villain.",
+      "idiom": {
+        "worldview": "Saffron forgives nothing: one damp night and the whole jar smells of it. A grudge is the same.",
+        "craft": "Spice merchant: weighs pepper, saffron and cloves on a small brass hand-scale in a closed room, seals jars with wax, keeps a bundle of receipts.",
+        "images": [
+          "brass hand-scale",
+          "saffron",
+          "pepper",
+          "wax seal",
+          "jar",
+          "draught",
+          "bundle of receipts",
+          "well"
+        ],
+        "metaphors": [
+          "anger is pepper in a wound: it burns, and the wound stays",
+          "a draught steals a grain from every scoop",
+          "a sealed jar waits out the damp, an open mouth does not",
+          "take the word back at the same well"
+        ],
+        "silence": "He closes the lid of the scale box and keeps his hand on it."
+      },
+      "startNode": "s_start",
+      "nodes": [
+        {
+          "id": "s_start",
+          "text": "My nose knew at once: the silk smelled of the river. I paid for dry cloth. I shouted 'thief' at the well so that the whole halt heard. Was I wrong to shout, deacon?",
+          "text_ru": "Нос понял сразу: шёлк пах рекой. Я платил за сухую ткань. Я крикнул «вор» у колодца, чтобы слышал весь привал. Разве я был неправ, что крикнул, дьякон?",
+          "meaning": "Anger at a real wrong is still to be tested: the wrath of man does not work the righteousness of God. Be quick to hear, slow to speak, slow to wrath.",
+          "source": "Jas 1:19-20",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Everyone at the well heard the shout. What did it give you?",
+              "text_ru": "Крик у колодца слышали все. Что он тебе дал?",
+              "nextNodeId": "s_shout",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            },
+            {
+              "text": "Show me your own receipts for the same caravan.",
+              "text_ru": "Покажи свои расписки за тот же караван.",
+              "condition": {
+                "wisdom": 5
+              },
+              "nextNodeId": "s_receipts",
+              "attributeBonuses": {
+                "wisdom": 2
+              }
+            }
+          ]
+        },
+        {
+          "id": "s_shout",
+          "text": "It gave me a crowd and took away my sleep. Now every man at the well has a side, and nobody has the silk. Anger is like pepper in a wound: it burns, and the wound is still there.",
+          "text_ru": "Он дал мне толпу и отнял сон. Теперь у каждого у колодца есть своя сторона, а шёлка нет ни у кого. Гнев — как перец в ране: жжёт, а рана остаётся.",
+          "meaning": "Anger multiplies a quarrel and heals nothing; a soft answer turns away wrath, a harsh word stirs it up.",
+          "source": "Prov 15:1; Ladder, step 8",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Why are you so sure it was theft?",
+              "text_ru": "Почему ты так уверен, что это кража?",
+              "condition": {
+                "wisdom": 4
+              },
+              "nextNodeId": "s_draught",
+              "attributeBonuses": {
+                "wisdom": 2
+              }
+            },
+            {
+              "text": "What would you need to make peace?",
+              "text_ru": "Что тебе нужно, чтобы помириться?",
+              "nextNodeId": "s_price",
+              "attributeBonuses": {
+                "charisma": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "s_draught",
+          "text": "Do you know why pepper is weighed in a closed room? A draught steals a grain from every scoop. A merchant who loses grains to the draught for years begins to smell theft in every bale and every face. I have become that merchant.",
+          "text_ru": "Знаешь, почему перец вешают в закрытой комнате? Сквозняк крадёт зерно с каждого совка. Купец, что годами теряет зёрна на сквозняке, начинает чуять кражу в каждом тюке и в каждом лице. Я стал таким купцом.",
+          "meaning": "Discernment cue for anger: suspicion that grows out of small losses until every neighbour looks like a thief, and the remembrance of wrongs that keeps the account open. It is recognised by these signs; let not the sun go down on your wrath.",
+          "source": "Ladder, step 9; Eph 4:26",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Then close the door to the draught, not to Hovhannes.",
+              "text_ru": "Тогда закрой дверь от сквозняка, а не от Ованеса.",
+              "nextNodeId": "s_price",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "s_receipts",
+          "text": "Here. The same caravan, the same ford. My jars were sealed with wax; they waited the week and nothing spoiled. So the water came in at his loading... or at mine, when I left the bale on the wet ground at the well. I did that too.",
+          "text_ru": "Вот. Тот же караван, тот же брод. Мои кувшины были запечатаны воском: простояли неделю, и ничего не испортилось. Значит, вода вошла при его погрузке… или при моей, когда я оставил тюк на мокрой земле у колодца. Это тоже было.",
+          "meaning": "Honest examination finds one's own share of the fault: first take the beam out of your own eye, then you will see clearly to help your brother.",
+          "source": "Mt 7:3-5",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Are you ready to forgive his share?",
+              "text_ru": "Ты готов простить его долю?",
+              "condition": {
+                "faith": 4
+              },
+              "nextNodeId": "s_forgive",
+              "attributeBonuses": {
+                "faith": 2
+              }
+            },
+            {
+              "text": "Then what is a fair end?",
+              "text_ru": "Тогда какой конец будет честным?",
+              "nextNodeId": "s_price",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "s_price",
+          "text": "The price of the damp week, and the word 'thief' taken back at the same well where I shouted it. I want my name clean as much as my silver, and his too.",
+          "text_ru": "Цена сырой недели — и слово «вор», взятое назад у того же колодца, где я его кричал. Мне чистое имя дорого не меньше серебра. И его имя тоже.",
+          "meaning": "Restitution restores the goods, and taking back an insult restores a good name, which is better than great riches.",
+          "source": "Prov 22:1",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Say that to him, not only to me.",
+              "text_ru": "Скажи это ему, а не только мне.",
+              "nextNodeId": "s_forgive",
+              "attributeBonuses": {
+                "charisma": 1
+              }
+            },
+            {
+              "text": "I will tell the bishop.",
+              "text_ru": "Передам епископу.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "erudition": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "s_forgive",
+          "text": "My grandfather in the Chu valley carved over his door: 'forgive, as you were forgiven'. If Hovhannes pays the week, I forgive the scrape. And I will take back 'thief' at the same well.",
+          "text_ru": "Дед мой в Чуйской долине вырезал над дверью: «прощай, как тебя простили». Заплатит Ованес за неделю — прощу ему выскобленную дату. И «вора» возьму назад у того же колодца.",
+          "meaning": "Be kind, tender-hearted, forgiving one another, as God in Christ forgave you; a forgiven wrong is not kept in memory.",
+          "source": "Eph 4:32; Ladder, step 9",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Peace to you both.",
+              "text_ru": "Мир вам обоим.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "faith": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "kupets_kutlug": {
+      "npcId": "kupets_kutlug",
+      "npcName": "Kutlug the herder-merchant",
+      "npcName_ru": "Кутлуг, скотовод-должник",
+      "theology": "A Turkic Christian herder and cattle merchant of the Chu valley (Qutlugh is a name on the Christian tombstones of the valley), the debtor of mission 49: the murrain took his flock and the day of payment passed. He comes to the court of the community and shows the debt honestly; the talk teaches that the law protects the debtor's necessities and that mercy and truth meet (Ex 22:26-27; Deut 24:10-13; Ps 84:11 LXX).",
+      "idiom": {
+        "worldview": "A tally stick has two halves and both remember; a man who runs off with his half is a thief, a man who brings it is a debtor.",
+        "craft": "Herder and cattle merchant: keeps ewes on the summer pastures, sells lambs to the caravans, counts debts on split tally sticks.",
+        "images": [
+          "split tally stick",
+          "notches",
+          "ewes",
+          "murrain",
+          "yurt",
+          "felt cap",
+          "lambing",
+          "empty purse"
+        ],
+        "metaphors": [
+          "a stick does not argue",
+          "the thaw brought the cough",
+          "a debtor can look a man in the face",
+          "a lamb besides, not as interest but as thanks"
+        ],
+        "silence": "He turns the half of the tally stick in his fingers and counts the notches with his thumb."
+      },
+      "startNode": "k_start",
+      "nodes": [
+        {
+          "id": "k_start",
+          "text": "The tally stick is split, deacon: one half with Sargis, one with me. Twelve notches of silver for forty ewes. The ewes are dead, the murrain took them in the thaw. I have the stick and an empty purse. I did not hide.",
+          "text_ru": "Бирка расщеплена, дьякон: одна половина у Саргиса, другая у меня. Двенадцать зарубок серебра за сорок овец. Овцы пали: падёж пришёл с оттепелью. У меня бирка и пустой кошель. Я не прятался.",
+          "meaning": "He owns the debt openly: owe no one anything except love, and the righteous does not hide from his creditor. Coming to the court with the debt shown is already honesty.",
+          "source": "Rom 13:8; Ps 36:21 (LXX; 37:21)",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Tell me about the murrain.",
+              "text_ru": "Расскажи о падеже.",
+              "nextNodeId": "k_murrain",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            },
+            {
+              "text": "Show me the stick: how many notches are already paid?",
+              "text_ru": "Покажи бирку: сколько зарубок уже погашено?",
+              "condition": {
+                "wisdom": 6
+              },
+              "nextNodeId": "k_tally",
+              "attributeBonuses": {
+                "wisdom": 2
+              }
+            },
+            {
+              "text": "Go over the pass before Sargis comes with the officer.",
+              "text_ru": "Уходи за перевал, пока Саргис не пришёл с приставом.",
+              "nextNodeId": "k_refuse",
+              "attributeBonuses": {
+                "cunning": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "k_murrain",
+          "text": "It came with the thaw: the ewes coughed, then lay down. I burned the carcasses as the old men taught, so the sickness would not pass to my neighbours' flocks. That cost me the hides too. I could have sold the hides.",
+          "text_ru": "Пришло с оттепелью: овцы кашляли, потом ложились. Я сжёг туши, как учили старики, чтобы мор не перешёл на стада соседей. Это стоило мне и шкур. Шкуры я мог бы продать.",
+          "meaning": "He chose the neighbour's good over his own gain: love your neighbour as yourself. The loss borne honestly is not idleness, and the court must see it.",
+          "source": "Lk 10:27; Lev 19:18",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "You burned the hides for other men's flocks. That will not be forgotten.",
+              "text_ru": "Ты сжёг шкуры ради чужих стад. Этого не забудут.",
+              "condition": {
+                "faith": 4
+              },
+              "nextNodeId": "k_fear",
+              "attributeBonuses": {
+                "faith": 2
+              }
+            },
+            {
+              "text": "What do you fear at the court?",
+              "text_ru": "Чего ты боишься на суде?",
+              "nextNodeId": "k_fear",
+              "attributeBonuses": {
+                "charisma": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "k_tally",
+          "text": "Five notches are already cut off: I paid five before the snow. Seven remain. Sargis remembers twelve; the stick remembers seven. A stick does not argue.",
+          "text_ru": "Пять зарубок уже срезаны: пять я отдал до снега. Осталось семь. Саргис помнит двенадцать, а бирка помнит семь. Бирка не спорит.",
+          "meaning": "The two halves are two witnesses, and by two witnesses a matter is established; truth of measure protects the debtor as much as the lender.",
+          "source": "Deut 19:15",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Offer Sargis a term after the lambing, and show him the stick.",
+              "text_ru": "Предложи Саргису срок до окота и покажи ему бирку.",
+              "condition": {
+                "charisma": 5
+              },
+              "nextNodeId": "k_lambing",
+              "attributeBonuses": {
+                "charisma": 2
+              }
+            },
+            {
+              "text": "And what do you fear?",
+              "text_ru": "А чего ты боишься?",
+              "nextNodeId": "k_fear",
+              "attributeBonuses": {
+                "erudition": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "k_fear",
+          "text": "That the darugachi's officer takes the yurt. My children sleep in it. The officer's law is quick: the house for the debt. The bishop's court is slow, but it looks at faces.",
+          "text_ru": "Что пристав даругачи заберёт юрту. В ней спят мои дети. Закон пристава скорый: дом за долг. Суд епископа медленный, зато смотрит в лица.",
+          "meaning": "The law of Moses forbids taking the necessities of life in pledge and entering a poor man's house to seize it; the court of the community looks at the person, mercy with truth.",
+          "source": "Deut 24:10-13",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Then how will you pay?",
+              "text_ru": "Тогда как ты заплатишь?",
+              "nextNodeId": "k_lambing",
+              "attributeBonuses": {
+                "charisma": 1
+              }
+            },
+            {
+              "text": "Wait for the court. I will be there.",
+              "text_ru": "Жди суда. Я буду рядом.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "constitution": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "k_lambing",
+          "text": "After the lambing I can pay three notches, after the shearing four. If Sargis waits a year, he gets all seven and a lamb besides: not as interest, as thanks.",
+          "text_ru": "После окота отдам три зарубки, после стрижки — четыре. Подождёт Саргис год — получит все семь и ягнёнка в придачу: не в рост, а в благодарность.",
+          "meaning": "Restitution in its time; lending to the poor without usury, and gratitude given freely, not exacted as interest.",
+          "source": "Ex 22:25; Lk 6:35",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Say it to Sargis before the bishop.",
+              "text_ru": "Скажи это Саргису при епископе.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "charisma": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "k_refuse",
+          "text": "Run? And leave my half of the stick to rot? Then I am a thief, not a debtor. No. A debtor can still look a man in the face.",
+          "text_ru": "Бежать? И бросить свою половину бирки гнить? Тогда я вор, а не должник. Нет. Должник ещё может смотреть человеку в лицо.",
+          "meaning": "Flight would turn misfortune into fraud; whoever covers his transgressions will not prosper. The cunning way opens no teaching; the way back is to begin again.",
+          "source": "Prov 28:13",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Forgive me, that was bad advice.",
+              "text_ru": "Прости, это был дурной совет.",
+              "nextNodeId": "k_start",
+              "attributeBonuses": {}
+            }
+          ]
+        }
+      ]
+    },
+    "vozchik_davit": {
+      "npcId": "vozchik_davit",
+      "npcName": "Davit the young carter",
+      "npcName_ru": "Давит, молодой возчик",
+      "theology": "An orphaned young carter of the caravaners' yard (mission 15) who cannot pay the fee to join the brotherhood. Through him the brotherhood is tested by how it receives the one who cannot pay (Jas 2:1-5), and his own gratitude becomes its rule: the box for widows, the free guide for the poor pilgrim, no discount 'only for our own' (Acts 2:44-45; Lk 10:29-37; Gregory the Theologian, Oration 14).",
+      "idiom": {
+        "worldview": "The slowest cart sets the pace of the caravan; leave it at the ford and the river takes it.",
+        "craft": "Young carter of an arba (a two-wheeled cart) in the caravan: greases axles, reads fords by the colour of the water, drives in snow.",
+        "images": [
+          "cart wheel",
+          "reins",
+          "axle grease",
+          "ford",
+          "ruts",
+          "ox",
+          "snow",
+          "widows' box"
+        ],
+        "metaphors": [
+          "the slowest cart sets the pace",
+          "a squeaking wheel asks for grease, not for blows",
+          "the first pay, not the leftover",
+          "the stranger's cart sinks in the same mud"
+        ],
+        "silence": "He looks at the wheel and runs his thumb along its rim."
+      },
+      "startNode": "d_start",
+      "nodes": [
+        {
+          "id": "d_start",
+          "text": "Mind the wheel, it squeaks: no grease till the next pay. I drive for the caravaners' yard. They say the brotherhood takes a fee to join. I have the reins and these hands.",
+          "text_ru": "Осторожно с колесом, оно скрипит: смазки нет до следующей платы. Я вожу для двора возчиков. Говорят, в братство берут со взносом. У меня есть вожжи и эти руки.",
+          "meaning": "A community is judged by how it receives the one who cannot pay: God chose the poor of this world to be rich in faith, and favour shown to the rich over the poor is partiality.",
+          "source": "Jas 2:1-5",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "What has the road taught you?",
+              "text_ru": "Чему тебя научила дорога?",
+              "nextNodeId": "d_road",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            },
+            {
+              "text": "The brotherhood will take you without a fee. I will ask for it.",
+              "text_ru": "Братство примет тебя без взноса. Я попрошу.",
+              "condition": {
+                "faith": 4
+              },
+              "nextNodeId": "d_fee",
+              "attributeBonuses": {
+                "faith": 2
+              }
+            },
+            {
+              "text": "Tell the brothers yourself what you can give.",
+              "text_ru": "Скажи братьям сам, что ты можешь дать.",
+              "condition": {
+                "charisma": 3
+              },
+              "nextNodeId": "d_voice",
+              "attributeBonuses": {
+                "charisma": 2
+              }
+            }
+          ]
+        },
+        {
+          "id": "d_road",
+          "text": "That the slowest cart sets the pace of the caravan. My old master used to leave the slow ones at the ford. A cart left at the ford is a cart the river takes.",
+          "text_ru": "Что караван идёт со скоростью самой медленной повозки. Мой прежний хозяин оставлял отстающих у брода. Повозка, оставленная у брода, — повозка, которую забирает река.",
+          "meaning": "Bear one another's burdens; the strong ought to bear with the failings of the weak and not please themselves.",
+          "source": "Gal 6:2; Rom 15:1",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "And what would you say about a box for widows?",
+              "text_ru": "А что бы ты сказал о кассе для вдов?",
+              "nextNodeId": "d_widows",
+              "attributeBonuses": {
+                "charisma": 1
+              }
+            },
+            {
+              "text": "Then the brotherhood's first rule: nobody is left at the ford.",
+              "text_ru": "Тогда первое правило братства: у брода никого не оставляют.",
+              "condition": {
+                "wisdom": 4
+              },
+              "nextNodeId": "d_widows",
+              "attributeBonuses": {
+                "wisdom": 2
+              }
+            }
+          ]
+        },
+        {
+          "id": "d_fee",
+          "text": "Without a fee? Then I owe the brothers my hands. I will grease every axle in the yard before the pass. That is my fee.",
+          "text_ru": "Без взноса? Тогда я должен братьям руки. Перед перевалом смажу все оси во дворе. Вот мой взнос.",
+          "meaning": "Freely you have received, freely give: what is received as a gift moves to service freely given, not to a debt to be paid off.",
+          "source": "Mt 10:8",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Grease them, and that is your fee.",
+              "text_ru": "Смажь — это и будет твой взнос.",
+              "nextNodeId": "d_widows",
+              "attributeBonuses": {
+                "dexterity": 1
+              }
+            },
+            {
+              "text": "Go to Sargis, he keeps the list.",
+              "text_ru": "Иди к Саргису, он ведёт список.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "faith": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "d_voice",
+          "text": "(He swallows, then speaks to the yard.) I can drive in snow. I can find a ford by the colour of the water. I cannot pay. If that is not enough, I will still drive the poor pilgrims for nothing: someone drove me once.",
+          "text_ru": "(Сглатывает и говорит на весь двор.) Я умею ехать по снегу. Нахожу брод по цвету воды. Платить мне нечем. Если этого мало, я всё равно буду возить бедных паломников даром: когда-то и меня так везли.",
+          "meaning": "The first believers had all things in common and gave to each as anyone had need; his own gratitude becomes the rule of the brotherhood.",
+          "source": "Acts 2:44-45; Mt 10:8",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Write it into the rule: a free guide for the poor pilgrim.",
+              "text_ru": "Запиши в устав: бедному паломнику — проводник даром.",
+              "nextNodeId": "d_widows",
+              "attributeBonuses": {
+                "charisma": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "d_widows",
+          "text": "My mother was a carter's widow. Nobody kept a box for her. If the brotherhood keeps a box for widows, put my first pay in it: the first pay, not the leftover.",
+          "text_ru": "Мать моя была вдовой возчика. Ни у кого для неё не было кружки. Если братство заведёт кассу вдов, положи туда мою первую плату — первую, а не остаток.",
+          "meaning": "Honour the Lord with the first fruits, not the leftovers; pure religion is to visit widows and orphans in their affliction.",
+          "source": "Prov 3:9; Jas 1:27",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "And if the brothers want a discount 'only for our own'?",
+              "text_ru": "А если братья захотят скидку «только своим»?",
+              "condition": {
+                "wisdom": 5
+              },
+              "nextNodeId": "d_own",
+              "attributeBonuses": {
+                "wisdom": 2
+              }
+            },
+            {
+              "text": "I will write it into the rule.",
+              "text_ru": "Я впишу это в устав.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "erudition": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "d_own",
+          "text": "Then it is a club, not a brotherhood. On the road the stranger's cart sinks in the same mud as ours. The Samaritan did not ask whose cart it was.",
+          "text_ru": "Тогда это лавочка, а не братство. В дороге чужая повозка вязнет в той же грязи, что и наша. Самарянин не спрашивал, чья это повозка.",
+          "meaning": "A love that shuts out the stranger is the love of money in disguise; the neighbour is whoever lies on the road, and love of the poor is the measure of a brotherhood.",
+          "source": "Lk 10:29-37; St Gregory the Theologian, Oration 14",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "That will be the first article.",
+              "text_ru": "Это и будет первая статья.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "charisma": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "mostovshik_toros": {
+      "npcId": "mostovshik_toros",
+      "npcName": "Toros the bridge-wright",
+      "npcName_ru": "Торос, плотник-мостовщик",
+      "theology": "A bridge carpenter of the mission (mission 73), son of a bridge-builder of Cilicia (the bridges over the Pyramus, the Ceyhan, before the Mamluk conquest), so the Cilician thread of the Atlas of water runs through his craft without any mysticism (TABOO 0.03). His work is mercy that eases another's way (Lk 10:33-35; Mt 25:40); the toll is the temptation of avarice, the twentieth blow of the mallet the cure of acedia (Ladder 13).",
+      "idiom": {
+        "worldview": "The river decides where the pile stands; the carpenter only listens to it.",
+        "craft": "Bridge carpenter: measures fords with a notched rod, drives larch piles with a mallet, lays decking across the current, cuts notch joints with an adze.",
+        "images": [
+          "notched rod",
+          "larch pile",
+          "mallet",
+          "adze",
+          "decking",
+          "spring flood",
+          "rope",
+          "milestone"
+        ],
+        "metaphors": [
+          "the river decides, not my wish",
+          "the work begins at the twentieth blow",
+          "a bridge that fights the river loses",
+          "whoever crosses dry is her bridge"
+        ],
+        "silence": "He lays the rod in the water and watches where the current breaks on it."
+      },
+      "startNode": "t_start",
+      "nodes": [
+        {
+          "id": "t_start",
+          "text": "Stand back from the edge, the bank is soft. I am Toros. My father built bridges over the Pyramus in Cilicia before the Mamluks came. Here the river is younger and angrier. What is a bridge to you, deacon: a road for silver or a road for feet?",
+          "text_ru": "Отойди от края, берег мягкий. Я Торос. Мой отец ставил мосты через Пирам в Киликии, пока не пришли мамлюки. Здесь река моложе и злее. Что для тебя мост, дьякон: дорога для серебра или дорога для ног?",
+          "meaning": "The bridge is built for the passer-by: the Samaritan went to the man on the road and bound his wounds. Work that eases another's way is a work of mercy.",
+          "source": "Lk 10:33-35",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Show me how you measure the ford.",
+              "text_ru": "Покажи, как ты меришь брод.",
+              "nextNodeId": "t_rod",
+              "attributeBonuses": {
+                "erudition": 1
+              }
+            },
+            {
+              "text": "Give me the mallet: I will drive a pile myself.",
+              "text_ru": "Дай колотушку: вобью сваю сам.",
+              "condition": {
+                "constitution": 5
+              },
+              "nextNodeId": "t_piles",
+              "attributeBonuses": {
+                "constitution": 2
+              }
+            }
+          ]
+        },
+        {
+          "id": "t_rod",
+          "text": "The rod has a notch for every span of a hand. Where the water reaches the third notch and the stones roll, no pile stands. Where it reaches the second and the bed is gravel, there. The river decides, not my wish.",
+          "text_ru": "На трости зарубка на каждую пядь. Где вода доходит до третьей зарубки и камни катятся, там свая не устоит. Где до второй и дно — галька, там ставим. Решает река, а не моё желание.",
+          "meaning": "Wisdom builds the house by learning how creation is made: the wise man built on rock, and the flood beat on that house and it did not fall.",
+          "source": "Prov 24:3; Mt 7:24-25",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Then the piles go on the gravel. Let me drive one.",
+              "text_ru": "Значит, сваи — на гальку. Дай вбить одну.",
+              "nextNodeId": "t_piles",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            },
+            {
+              "text": "Show me how to lay the decking.",
+              "text_ru": "Покажи, как класть настил.",
+              "condition": {
+                "dexterity": 4
+              },
+              "nextNodeId": "t_deck",
+              "attributeBonuses": {
+                "dexterity": 2
+              }
+            }
+          ]
+        },
+        {
+          "id": "t_piles",
+          "text": "Good blows: not hard, true. A pile driven crooked holds a season; driven true it holds a lifetime. The arm tires at the twentieth blow. That is where the work begins.",
+          "text_ru": "Хорошие удары: не сильные, а верные. Криво вбитая свая держит сезон, прямо вбитая — всю жизнь. На двадцатом ударе рука устаёт. Там работа и начинается.",
+          "meaning": "Perseverance in the work of the hands guards against despondency: the elders worked and prayed, and the tiredness of the twentieth blow is where acedia is overcome by patience.",
+          "source": "Ladder, step 13; Apophthegmata Patrum, Antony the Great 1",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "For whom do you build, if not for pay?",
+              "text_ru": "Для кого ты строишь, если не за плату?",
+              "condition": {
+                "faith": 4
+              },
+              "nextNodeId": "t_pay",
+              "attributeBonuses": {
+                "faith": 2
+              }
+            },
+            {
+              "text": "Who pays for the larch?",
+              "text_ru": "А кто платит за лиственницу?",
+              "nextNodeId": "t_toll",
+              "attributeBonuses": {
+                "constitution": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "t_deck",
+          "text": "Larch on top: it grows harder in water. Planks across the current, never along it, so a cart wheel crosses the seams. Leave a hand's gap at the edge for the spring flood. A bridge that fights the river loses.",
+          "text_ru": "Сверху лиственница: в воде она только твердеет. Доски — поперёк течения, никогда вдоль, чтобы колесо переезжало швы. У края оставь щель в ладонь для весеннего паводка. Мост, который борется с рекой, проигрывает.",
+          "meaning": "The craftsman's wisdom serves the common life; meekness that yields to the flood is strength, not weakness.",
+          "source": "Sir 38:31-34; Mt 5:5",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "And who will pay for it all?",
+              "text_ru": "А кто за всё это заплатит?",
+              "nextNodeId": "t_toll",
+              "attributeBonuses": {
+                "dexterity": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "t_pay",
+          "text": "For whom? For the woman with the bundle who drowned at this ford last spring. I never knew her name. Whoever crosses dry crosses on her bridge.",
+          "text_ru": "Для кого? Для женщины с узлом, что утонула у этого брода прошлой весной. Я так и не узнал её имени. Кто перейдёт посуху — перейдёт по её мосту.",
+          "meaning": "What is done for the least of these, the unknown neighbour, is done for the Lord; the work is offered to the one who will never thank for it.",
+          "source": "Mt 25:40",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Then who pays for the larch?",
+              "text_ru": "Тогда кто заплатит за лиственницу?",
+              "nextNodeId": "t_toll",
+              "attributeBonuses": {
+                "faith": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "t_toll",
+          "text": "Sargis came by. He says: a toll on every crossing, and the bridge pays for itself in two years. He is not wrong about the larch, it costs. But my father's bridges had a stone at the end: 'whoever crosses, cross in peace'.",
+          "text_ru": "Заходил Саргис. Говорит: пошлину с каждого перехода, и мост окупится за два года. Про лиственницу он прав: она дорогая. Но у мостов моего отца в конце стоял камень: «кто идёт — иди с миром».",
+          "meaning": "The toll is the temptation of avarice on a work of mercy; what is given to the poor is lent to the Lord, and freely received is to be freely given.",
+          "source": "Mt 10:8; Prov 19:17",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Let the poor and the pilgrims cross for nothing. I will tell Sargis.",
+              "text_ru": "Пусть бедные и странники ходят даром. Я скажу Саргису.",
+              "condition": {
+                "charisma": 5
+              },
+              "nextNodeId": "t_free",
+              "attributeBonuses": {
+                "charisma": 2
+              }
+            },
+            {
+              "text": "Let Sargis decide.",
+              "text_ru": "Пусть решит Саргис.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "t_free",
+          "text": "If you can turn Sargis, I will cut the stone myself: free for feet, a coin for a loaded caravan. The coin pays the larch, the feet pay nothing. A bridge like that is crossed with a light heart.",
+          "text_ru": "Уговоришь Саргиса — сам вырублю камень: пешему даром, гружёному каравану — монета. Монета платит за лиственницу, ноги не платят ничего. По такому мосту идут с лёгким сердцем.",
+          "meaning": "Justice and mercy together: those who carry much pay, the poor go freely, so that there is equality and no one is burdened. Do justly, love mercy.",
+          "source": "Mic 6:8; 2 Cor 8:13-14",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Cut the stone.",
+              "text_ru": "Руби камень.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "faith": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "provodnik_buri": {
+      "npcId": "provodnik_buri",
+      "npcName": "Buri the caravan guide",
+      "npcName_ru": "Бури, проводник каравана",
+      "theology": "A steppe guide of the caravans (mission 78) who keeps the road by the stars at night and by the ridges and cairns by day. His people's image of the Pole Star as the Iron Stake (Temir Kazyk) and the sky-lore of his uncle's camp are told with respect, never as true and never rewarded (TABOO 0.4 item 6). He asks whether the stars write a man's fate; the deacon answers that they are signs for seasons and ways, not fate (Gen 1:14; Deut 18:10-12; Deut 30:19). Basil's Hexaemeron (homily 6) makes the same point but is not in the closed canon; the census asks the chorus to add it.",
+      "idiom": {
+        "worldview": "The sky is tethered to one star; the man who knows it is never lost, but he still has to walk.",
+        "craft": "Caravan guide of the steppe: keeps the course by the Pole Star and the Seven of the Ladle at night, by ridges, passes and stone cairns by day, leads the slow camel at the tail.",
+        "images": [
+          "Iron Stake (Pole Star)",
+          "the Seven of the Ladle",
+          "horse on a tether",
+          "white tooth of the ridge",
+          "stone cairn",
+          "fur cap",
+          "night wind",
+          "slow camel"
+        ],
+        "metaphors": [
+          "the stars graze around the Stake like horses",
+          "a cairn is a word left for the next man",
+          "the Stake shows the north, the man chooses to walk",
+          "I never leave the slow camel"
+        ],
+        "silence": "He turns his face to the north and says nothing until the Ladle has moved a hand's breadth."
+      },
+      "startNode": "u_start",
+      "nodes": [
+        {
+          "id": "u_start",
+          "text": "Look up, deacon. My people call that one the Iron Stake: the sky is tethered to it, and the other stars graze around it like horses. Whoever knows the Stake does not lose the road.",
+          "text_ru": "Подними глаза, дьякон. Мой народ зовёт ту звезду Железным Колом: к нему привязано небо, а прочие звёзды пасутся вокруг, как кони. Кто знает Кол, тот не теряет дороги.",
+          "meaning": "The guide's knowledge of creation is real: the lights of heaven are set for signs, for seasons, for days and years. His people's image is heard with respect; it is neither made true nor rewarded.",
+          "source": "Gen 1:14",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "And by day, how do you keep the road?",
+              "text_ru": "А днём как ты держишь путь?",
+              "nextNodeId": "u_ridges",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            },
+            {
+              "text": "Show me how to find the Stake from the seven stars.",
+              "text_ru": "Покажи, как найти Кол по семи звёздам.",
+              "condition": {
+                "wisdom": 5
+              },
+              "nextNodeId": "u_seven",
+              "attributeBonuses": {
+                "wisdom": 2
+              }
+            }
+          ]
+        },
+        {
+          "id": "u_seven",
+          "text": "The Seven of the Ladle: follow the two stars at its lip, five times the gap between them, and there is the Stake. The Ladle turns through the night like a horse on its tether; the Stake does not move. Learn the turn and you can tell the hour too.",
+          "text_ru": "Семь звёзд Ковша: иди от двух звёзд на его краю, пять раз по расстоянию между ними, — там и Кол. Ковш за ночь обходит кругом, как конь на привязи, а Кол стоит. Выучишь круг — узнаешь и час.",
+          "meaning": "Patient observation of the heavens reads the order the Creator set in them: the heavens declare the glory of God. Navigation is knowledge, not divination.",
+          "source": "Ps 18:2 (LXX; 19:1)",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "And the shore marks by day?",
+              "text_ru": "А береговые знаки днём?",
+              "condition": {
+                "erudition": 4
+              },
+              "nextNodeId": "u_ridges",
+              "attributeBonuses": {
+                "erudition": 2
+              }
+            },
+            {
+              "text": "You read the sky like a ledger.",
+              "text_ru": "Ты читаешь небо, как книгу счёта.",
+              "nextNodeId": "u_fate",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "u_ridges",
+          "text": "By day the mountains: the white tooth over the south shore, the saddle to the east. And the cairns of stones my grandfather stacked at every turn. A cairn is a word left for the next man: 'here, not there'.",
+          "text_ru": "Днём — горы: белый зуб над южным берегом, седловина на востоке. И каменные туры, что дед ставил на каждом повороте. Тур — это слово, оставленное следующему: «здесь, а не там».",
+          "meaning": "Landmarks set by those who went before are handed on and not moved: do not remove the ancient landmark which your fathers have set.",
+          "source": "Prov 22:28",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Your grandfather spoke to you through stones.",
+              "text_ru": "Твой дед говорит с тобой камнями.",
+              "nextNodeId": "u_fate",
+              "attributeBonuses": {
+                "erudition": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "u_fate",
+          "text": "Tell me, deacon of the lake people. The old man of my uncle's camp says the stars write each man's road at his birth. Your brothers say otherwise. Which is true?",
+          "text_ru": "Скажи мне, дьякон озёрных людей. Старик из стойбища моего дяди говорит, что звёзды пишут каждому дорогу при рождении. Твои братья говорят иначе. Как же правда?",
+          "meaning": "The question of astrology, asked honestly by a man of another tradition: do not be dismayed at the signs of heaven as the nations are. The answer is given with respect for the one who asks.",
+          "source": "Jer 10:2",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "The stars are signs of seasons and roads, not fate: a man chooses his road himself, before his Maker.",
+              "text_ru": "Звёзды — знаки времён и дорог, а не судьба: дорогу человек выбирает сам, перед Творцом.",
+              "condition": {
+                "faith": 5
+              },
+              "nextNodeId": "u_signs",
+              "attributeBonuses": {
+                "faith": 2
+              }
+            },
+            {
+              "text": "The stars show the way, but you walk it yourself.",
+              "text_ru": "Звёзды показывают путь, а идёшь по нему ты сам.",
+              "nextNodeId": "u_signs",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "u_signs",
+          "text": "So you say: the Stake shows the north, and the man chooses whether to walk north. That I understand. A guide who reads fate in the sky would leave the slow camel to the wolves: 'it was written'. I never leave the slow camel.",
+          "text_ru": "Значит, так: Кол показывает север, а идти ли на север, выбирает человек. Это я понимаю. Проводник, что читает судьбу по небу, бросил бы отставшего верблюда волкам: «так написано». А я отставшего не бросаю.",
+          "meaning": "The lights are signs for seasons, not lords of fate; divination is forbidden, and before every man life and death are set, and he is told to choose. Freedom and responsibility, not a written fate.",
+          "source": "Gen 1:14; Deut 18:10-12; Deut 30:19",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "And whoever wants to know his fate in advance: what is he looking for?",
+              "text_ru": "А кто хочет знать судьбу заранее — чего он ищет?",
+              "condition": {
+                "wisdom": 6
+              },
+              "nextNodeId": "u_pride",
+              "attributeBonuses": {
+                "wisdom": 2
+              }
+            },
+            {
+              "text": "Lead on, guide.",
+              "text_ru": "Веди, проводник.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "dexterity": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "u_pride",
+          "text": "Power over tomorrow. A man who knows his fate need not ask anyone for anything: not the guide, not God. Such men ride ahead of the caravan and fall into the crevasse first.",
+          "text_ru": "Власти над завтрашним днём. Кто знает свою судьбу, тому не нужно никого ни о чём просить: ни проводника, ни Бога. Такие едут впереди каравана и первыми падают в трещину.",
+          "meaning": "Discernment cue for pride: wanting to know the future so as to depend on no one, riding ahead of the others. Pride goes before destruction; its sign is that one stops asking.",
+          "source": "Ladder, step 23; Prov 16:18",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Then I will ride with the caravan.",
+              "text_ru": "Тогда я поеду с караваном.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "perekupshik_arshak": {
+      "npcId": "perekupshik_arshak",
+      "npcName": "Arshak the dealer",
+      "npcName_ru": "Аршак, перекупщик",
+      "theology": "A dealer of the bazaar at the fishers' fire (mission 88) who wants to raise the chest of the apostle from the lake and sell it across the sea. He is the image of prelest: the holy presented as treasure, a lure that looks like a reward (TABOO 0.2 item 8); its sign is that the holy is spoken of by its price. He is one of the shore's own people, so that no other people or faith is made the villain, and his remembrance of his father is the only turning the game shows. The holy is venerated, not traded (Acts 8:20; St John of Damascus, Exact Exposition IV).",
+      "idiom": {
+        "worldview": "Everything has a buyer; the trick is to reach it before the others.",
+        "craft": "Dealer of the bazaar: buys cheap and sells far, keeps a boat and a grappling hook, knows the men across the sea who pay in gold.",
+        "images": [
+          "grappling hook",
+          "boat",
+          "gold dinar",
+          "pearl",
+          "buyer across the sea",
+          "lid of a chest",
+          "fire",
+          "night counting"
+        ],
+        "metaphors": [
+          "everyone gains",
+          "the hook catches on the lid",
+          "old women's stories don't pay",
+          "a man with a boat and nothing to sell"
+        ],
+        "silence": "He laughs too quickly, then counts on his fingers under the edge of his coat."
+      },
+      "startNode": "r_start",
+      "nodes": [
+        {
+          "id": "r_start",
+          "text": "Sit by the fire, deacon, the fishers won't mind. You heard the old men's tale? The chest of the apostle lies down there under the brothers' walls. Gold, silver, pearls, and the bones, of course, the bones. I have a boat, a hook and a buyer across the sea. You have the brothers' map.",
+          "text_ru": "Садись к огню, дьякон, рыбаки не против. Слыхал стариковскую сказку? Ковчег апостола лежит там, под стенами братьев. Золото, серебро, жемчуг — и кости, конечно, кости. У меня есть лодка, крюк и покупатель за морем. У тебя — карта братьев.",
+          "meaning": "The lure of prelest: the holy presented as treasure, a reward to be taken. It looks like a reward and is recognised by its price; money does not obtain the gift of God.",
+          "source": "Acts 8:20",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Who is your buyer?",
+              "text_ru": "Кто твой покупатель?",
+              "nextNodeId": "r_buyer",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            },
+            {
+              "text": "This is no find and no merchandise. People come to bow to it, not to raise it with a hook.",
+              "text_ru": "Это не находка и не товар. К этому приходят поклониться, а не поднимают крюком.",
+              "condition": {
+                "faith": 6
+              },
+              "nextNodeId": "r_no",
+              "attributeBonuses": {
+                "faith": 3
+              }
+            },
+            {
+              "text": "And what is my share?",
+              "text_ru": "А какая доля моя?",
+              "nextNodeId": "r_share",
+              "attributeBonuses": {
+                "cunning": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "r_buyer",
+          "text": "Men across the sea who pay gold for any bone with a name. Do they ask whose bone? No. Do I? No. Everyone gains: they get their relic, I get gold, the lake gets lighter.",
+          "text_ru": "Люди за морем, что платят золотом за любую кость с именем. Спрашивают они, чья кость? Нет. А я? Нет. Все в выигрыше: им реликвия, мне золото, озеру легче.",
+          "meaning": "Trading in the holy is the sin of Simon: thinking that the gift of God can be bought or sold. The trade asks no witness and no blessing, only a price.",
+          "source": "Acts 8:18-20",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "How much have you counted already, Arshak?",
+              "text_ru": "Сколько ты уже насчитал, Аршак?",
+              "condition": {
+                "wisdom": 5
+              },
+              "nextNodeId": "r_sign",
+              "attributeBonuses": {
+                "wisdom": 2
+              }
+            },
+            {
+              "text": "You count quickly.",
+              "text_ru": "Быстро ты считаешь.",
+              "nextNodeId": "r_sign",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "r_sign",
+          "text": "(He laughs.) Counted? Every night. Three hundred dinars, four with the pearls. I dream of the hook catching on the lid... Why do you look at me like that?",
+          "text_ru": "(Смеётся.) Насчитал? Каждую ночь. Триста динаров, четыреста с жемчугом. Мне снится, как крюк цепляет крышку… Что ты так на меня смотришь?",
+          "meaning": "Discernment cue for avarice in the guise of a holy prize: the holy is spoken of by its price, counted at night, dreamed of as gain, and no one is asked whose it is. The lure is recognised by these signs.",
+          "source": "Ladder, step 16; 1 Tim 6:9-10",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "This is no find and no merchandise. People come to bow to it, not to raise it with a hook.",
+              "text_ru": "Это не находка и не товар. К этому приходят поклониться, а не поднимают крюком.",
+              "condition": {
+                "faith": 6
+              },
+              "nextNodeId": "r_no",
+              "attributeBonuses": {
+                "faith": 3
+              }
+            },
+            {
+              "text": "Have you heard how old Shushan tells it?",
+              "text_ru": "Ты слышал, как это рассказывает старая Шушан?",
+              "nextNodeId": "r_tale",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "r_tale",
+          "text": "Shushan? Her tale has no gold in it. The brothers carried the chest up the hill when the water came, she says, and nobody knows where it rests. Old women's stories don't pay.",
+          "text_ru": "Шушан? В её сказке нет золота. Братья, мол, унесли ковчег на гору, когда пришла вода, и никто не знает, где он покоится. Бабьи сказки не кормят.",
+          "meaning": "The pious tradition keeps memory and asks nothing; the rumour of treasure asks for a hook. Turn from idle tales that itch the ear; test them by what they ask of you.",
+          "source": "1 Tim 4:7; 2 Tim 4:3-4",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "And if she is right, what will you sell?",
+              "text_ru": "А если она права — что ты продашь?",
+              "nextNodeId": "r_end",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "r_no",
+          "text": "...You say it like the old monk at the brothers' gate. 'One comes to bow, not to hook.' (He is quiet.) My father bowed at that gate. He brought the brothers fish in lean years and took no coin. I had forgotten.",
+          "text_ru": "…Ты говоришь, как старый монах у ворот братьев. «Приходят поклониться, а не крюком». (Молчит.) Мой отец кланялся у тех ворот. В худые годы носил братьям рыбу и не брал монеты. Я забыл.",
+          "meaning": "The holy is venerated, not traded: the remains of the saints are honoured as a source of blessing, never as merchandise. Refusing the lure reminds the tempted man of himself; the game shows his turning only as a remembrance, not as a button.",
+          "source": "St John of Damascus, An Exact Exposition of the Orthodox Faith, Book IV; Acts 8:20",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Then you remember now.",
+              "text_ru": "Значит, теперь вспомнил.",
+              "nextNodeId": "r_end",
+              "attributeBonuses": {
+                "faith": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "r_end",
+          "text": "Then I am a man with a boat and a hook and nothing to sell. Perhaps I will fish. The fishers say there are good fish under the cold layer.",
+          "text_ru": "Тогда я человек с лодкой и крюком, и продать мне нечего. Может, стану рыбачить. Рыбаки говорят, под холодным слоем хорошая рыба.",
+          "meaning": "Repentance turns to honest work: let him who stole steal no longer, but labour, working with his hands what is good, that he may give to him who has need.",
+          "source": "Eph 4:28",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "The fishers will take you into the boat.",
+              "text_ru": "Рыбаки возьмут тебя в лодку.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "charisma": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "r_share",
+          "text": "A third. The boat is mine. (He grins; behind the grin his eyes are counting.) You see, the gold already divides us.",
+          "text_ru": "Треть. Лодка моя. (Ухмыляется; за ухмылкой глаза считают.) Видишь, золото нас уже делит.",
+          "meaning": "The cunning way enters the passion's bargaining and opens no teaching; the gold divides before it is found. The way back is sobriety: to begin again or to leave the fire.",
+          "source": "1 Tim 6:9-10",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "No. Let us begin again.",
+              "text_ru": "Нет. Начнём сначала.",
+              "nextNodeId": "r_start",
+              "attributeBonuses": {}
+            },
+            {
+              "text": "Step away from the fire.",
+              "text_ru": "Отойти от костра.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "starukha_shushan": {
+      "npcId": "starukha_shushan",
+      "npcName": "Old Shushan",
+      "npcName_ru": "Старая Шушан",
+      "theology": "An old woman of the shore who keeps the pious tradition of the brothers' house under the lake as her grandmother told it (mission 88): the brothers carried the old, the books and last of all the chest of the apostle up the hill, 'it is not lost, it is kept'. Her tale is marked as tradition [предание], its historical root the Catalan Atlas of 1375; it asks nothing but memory (Deut 32:7; 1 Thess 5:21). The game makes no hunt of it.",
+      "idiom": {
+        "worldview": "A tale is wool: spin it as you got it, add nothing and take nothing, or the thread breaks.",
+        "craft": "Spinner of wool at the fishers' fire, keeper of her grandmother's tales; sets a lamp in her window toward the lake on the feast.",
+        "images": [
+          "spindle",
+          "wool",
+          "hearth ash",
+          "window lamp",
+          "lake wind",
+          "grandmother",
+          "hill path",
+          "salt"
+        ],
+        "metaphors": [
+          "my spindle would know if I added",
+          "it is not lost, it is kept",
+          "three tales, one lake",
+          "go down as to a grave of good people"
+        ],
+        "silence": "The spindle stops; she waits for the wind to change before she goes on."
+      },
+      "startNode": "h_start",
+      "nodes": [
+        {
+          "id": "h_start",
+          "text": "Sit closer, child, the wind is off the water. You want the tale of the brothers' house under the lake? I tell it as my grandmother told it. I add nothing, I take nothing away: my spindle would know.",
+          "text_ru": "Садись ближе, дитя, ветер с воды. Хочешь сказ про дом братьев под озером? Я говорю, как говорила бабка. Ничего не прибавляю и не убавляю: веретено бы заметило.",
+          "meaning": "A tradition is handed down faithfully, without addition: ask your father and he will show you, your elders and they will tell you. It is marked as tradition, not as a record.",
+          "source": "Deut 32:7",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Tell it.",
+              "text_ru": "Расскажи.",
+              "nextNodeId": "h_tale",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            },
+            {
+              "text": "The fisher tells it differently. Why?",
+              "text_ru": "Рыбак рассказывает иначе. Почему?",
+              "condition": {
+                "wisdom": 5
+              },
+              "nextNodeId": "h_versions",
+              "attributeBonuses": {
+                "wisdom": 2
+              }
+            }
+          ]
+        },
+        {
+          "id": "h_tale",
+          "text": "When the water came up the shore, the brothers did not run. They sang the evening psalm, carried the old ones and the books up the hill, and last of all four brothers carried the chest of the apostle, slowly, as at a feast. Where they set it down, my grandmother did not know. 'It is not lost,' she said. 'It is kept.'",
+          "text_ru": "Когда вода пошла на берег, братья не побежали. Пропели вечерний псалом, отнесли на гору стариков и книги, а последними четверо братьев несли ковчег апостола — медленно, как в праздник. Куда поставили, бабка не знала. «Не потерян, — говорила, — сохранён».",
+          "meaning": "The holy is carried with reverence and kept, not hidden as treasure: the Lord keeps all the bones of the righteous. The tradition does not say where the chest rests, and the game makes no search for it.",
+          "source": "Ps 33:21 (LXX; 34:20)",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Then there is nothing to search for: there is something to remember.",
+              "text_ru": "Значит, искать не нужно — нужно помнить.",
+              "condition": {
+                "faith": 5
+              },
+              "nextNodeId": "h_keep",
+              "attributeBonuses": {
+                "faith": 2
+              }
+            },
+            {
+              "text": "Arshak says there is gold down there.",
+              "text_ru": "Аршак говорит, что там золото.",
+              "nextNodeId": "h_gold",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "h_versions",
+          "text": "The fisher tells of bells under the water on calm nights; the dealer tells of gold; I tell of the carrying. Three tales, one lake. Weigh them, child: the one that asks nothing of you but memory is the oldest.",
+          "text_ru": "Рыбак рассказывает про колокола под водой в тихие ночи, перекупщик — про золото, а я — про то, как несли. Три сказа, одно озеро. Взвесь их, дитя: тот, что ничего не просит, кроме памяти, — самый старый.",
+          "meaning": "Discernment between tradition and rumour: test all things, hold fast what is good. The tale that asks for a hook or a price is not the tale of the brothers.",
+          "source": "1 Thess 5:21",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "And what of Arshak's gold?",
+              "text_ru": "А что же золото Аршака?",
+              "nextNodeId": "h_gold",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            },
+            {
+              "text": "Then I will keep your tale.",
+              "text_ru": "Тогда я сберегу твой сказ.",
+              "nextNodeId": "h_keep",
+              "attributeBonuses": {
+                "faith": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "h_gold",
+          "text": "Gold. Every generation has its Arshak. My grandmother's had one too: he went down into the cold and the lake kept him. Do not say it to frighten Arshak; say it to warn him. He is somebody's son.",
+          "text_ru": "Золото. У каждого поколения свой Аршак. Был такой и при бабке: полез в холод, и озеро его оставило себе. Скажи это Аршаку не чтобы напугать, а чтобы предостеречь. Он ведь чей-то сын.",
+          "meaning": "Warn the one who errs in a spirit of meekness, without contempt; the sinner is still a brother to be restored.",
+          "source": "Gal 6:1",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "I will tell him gently.",
+              "text_ru": "Скажу ему по-доброму.",
+              "nextNodeId": "h_keep",
+              "attributeBonuses": {
+                "charisma": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "h_keep",
+          "text": "Yes. We do not dig for it; we remember it. On the feast my grandmother set a lamp in the window toward the lake. Not to find anything: to say, we have not forgotten you.",
+          "text_ru": "Да. Мы его не копаем — мы его помним. На праздник бабка ставила светильник в окно, к озеру. Не чтобы найти, а чтобы сказать: мы вас не забыли.",
+          "meaning": "Veneration is remembrance, not possession: the righteous shall be in everlasting remembrance. The lamp is the old woman's own piety at home, not a sign the game counts.",
+          "source": "Ps 111:6 (LXX; 112:6)",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Thank you, grandmother.",
+              "text_ru": "Спасибо, бабушка.",
+              "nextNodeId": "h_end",
+              "attributeBonuses": {
+                "faith": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "h_end",
+          "text": "Now go, the fire is low. If you go down with your iron fish to the walls, child, go as to the grave of good people: quietly, and come back up slowly.",
+          "text_ru": "А теперь иди, огонь догорает. Если спустишься со своей железной рыбой к стенам, дитя, иди как на могилу добрых людей: тихо, и поднимайся медленно.",
+          "meaning": "The dive is a visit of memory, not a raid: here we have no lasting city. Quiet and slow ascent are both the physics of the lake and reverence.",
+          "source": "Heb 13:14",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "I will go quietly.",
+              "text_ru": "Пойду тихо.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "constitution": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "brat_gevond": {
+      "npcId": "brat_gevond",
+      "npcName": "Brother Ghevond, the blind",
+      "npcName_ru": "Слепой брат Гевонд",
+      "theology": "An old blind monk of the brothers' house (mission 90) who knows the steps by the wall and tells the deacon to carry the books first. The order of love answers him: the word, the persons who cannot walk, the chronicle, the treasury last (Lk 12:32-34; Mt 6:19-21); the choice of the blind brother over the treasury box is the deepest (+3 Faith). He teaches the sign of the bad grief that stops a man from carrying the next brother, against the godly sorrow that remembers (2 Cor 7:10; Ladder 7).",
+      "idiom": {
+        "worldview": "Steps are counted, not seen; a house is known by its sound, and the sound stays when the house goes.",
+        "craft": "Old blind brother of the house by the lake: knows every step by count and by the wall, tells water by its sound, keeps the gate though he cannot see it.",
+        "images": [
+          "hand on the wall",
+          "counted steps",
+          "sound of water",
+          "staff",
+          "poplars",
+          "stretcher",
+          "treasury box",
+          "upper terrace"
+        ],
+        "metaphors": [
+          "the water is quicker than us, but it is not our master",
+          "silver can be counted again, the old men cannot",
+          "a blind man is still a gatekeeper",
+          "the house is still in my ears"
+        ],
+        "silence": "He lays his palm flat on the wall and listens to the water through the stone."
+      },
+      "startNode": "g_start",
+      "nodes": [
+        {
+          "id": "g_start",
+          "text": "Who is there? Your step is young and in a hurry. The water is in the lower court: I hear it on the third step already. Take the books up first, brother. I know the way along the wall.",
+          "text_ru": "Кто здесь? Шаг у тебя молодой и торопливый. Вода уже в нижнем дворе: я слышу её на третьей ступени. Неси сначала книги, брат. Я дорогу знаю по стене.",
+          "meaning": "The humility of the elder who puts the things of the community before himself; but the deacon must weigh the order of love: let each look not only to his own things but also to the things of others.",
+          "source": "Phil 2:3-4",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "What should be carried first?",
+              "text_ru": "Что нести первым?",
+              "nextNodeId": "g_order",
+              "attributeBonuses": {
+                "wisdom": 1
+              }
+            },
+            {
+              "text": "You first. The treasury after, if there are hands left.",
+              "text_ru": "Сначала тебя. Казну — потом, если останутся руки.",
+              "condition": {
+                "faith": 7
+              },
+              "nextNodeId": "g_carry",
+              "attributeBonuses": {
+                "faith": 3
+              }
+            },
+            {
+              "text": "Hold my shoulder, I will carry the stretcher.",
+              "text_ru": "Держись за моё плечо, я понесу носилки.",
+              "condition": {
+                "constitution": 6
+              },
+              "nextNodeId": "g_carry",
+              "attributeBonuses": {
+                "constitution": 2
+              }
+            }
+          ]
+        },
+        {
+          "id": "g_order",
+          "text": "The Gospel book first: it is the word. Then the brothers who cannot walk; I am one, but there are older. Then the scrolls of the chronicle. The treasury box last: silver can be counted again, the old men cannot.",
+          "text_ru": "Сперва Евангелие: это слово. Потом братьев, что не могут идти; я из них, но есть и старше. Потом свитки летописи. Ящик казны — последним: серебро можно пересчитать заново, стариков — нет.",
+          "meaning": "The order of love: the word, then persons, then memory, goods last. Where your treasure is, there your heart will be also; fear not, little flock.",
+          "source": "Lk 12:32-34; Mt 6:19-21",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Then I begin with you.",
+              "text_ru": "Тогда начну с тебя.",
+              "nextNodeId": "g_carry",
+              "attributeBonuses": {
+                "faith": 1
+              }
+            },
+            {
+              "text": "The brother treasurer asks to carry the box first.",
+              "text_ru": "Брат-казначей просит нести ящик первым.",
+              "condition": {
+                "wisdom": 6
+              },
+              "nextNodeId": "g_box",
+              "attributeBonuses": {
+                "wisdom": 2
+              }
+            }
+          ]
+        },
+        {
+          "id": "g_box",
+          "text": "The treasurer is afraid, and fear counts loudly. Tell him: the lake does not steal, it only takes back. What the poor were given from the box is already safe, it is in the treasury above. What is left in the box is the part that was not given.",
+          "text_ru": "Казначей боится, а страх считает громко. Скажи ему: озеро не крадёт, оно только забирает назад. Что из ящика отдано бедным, то уже в сохранности, в сокровищнице наверху. А в ящике осталась та часть, что не была отдана.",
+          "meaning": "Fear of loss is healed by trust, not by haste: treasure laid up in heaven is not taken by moth or water, and alms given are kept.",
+          "source": "Mt 6:19-21; Lk 12:32",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "I will tell him. Now, your shoulder.",
+              "text_ru": "Скажу ему. А теперь — плечо.",
+              "nextNodeId": "g_carry",
+              "attributeBonuses": {
+                "charisma": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "g_carry",
+          "text": "(He takes your shoulder. His hand is light.) Forty years I counted these steps. Twenty-two to the gate, eleven to the cistern. Now you count them for me. Do not hurry: the water is quicker than us, but it is not our master.",
+          "text_ru": "(Берёт тебя за плечо. Рука у него лёгкая.) Сорок лет я считал эти ступени. Двадцать две до ворот, одиннадцать до водоёма. Теперь считай за меня ты. Не торопись: вода быстрее нас, но она нам не хозяйка.",
+          "meaning": "Patience and trust as the water rises: God is our refuge and strength, therefore we will not fear though the waters roar. Fear and sadness are defeated by hope, not by haste.",
+          "source": "Ps 45:2-4 (LXX; 46:1-3)",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Twenty-two to the gate. We are going.",
+              "text_ru": "Двадцать две до ворот. Идём.",
+              "nextNodeId": "g_hill",
+              "attributeBonuses": {
+                "constitution": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "g_hill",
+          "text": "Is this the upper terrace? I smell the poplars the brothers planted. Good. Set me down by the wall; I will tell the novices which steps are loose. A blind man is still a gatekeeper.",
+          "text_ru": "Это верхняя терраса? Пахнет тополями, что сажали братья. Хорошо. Посади меня у стены — я скажу послушникам, какие ступени шатаются. Слепой ещё годится в привратники.",
+          "meaning": "Every member has its service: the parts of the body that seem weaker are necessary. The old and the blind are not burdens but members.",
+          "source": "1 Cor 12:21-22",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "Do you not grieve for the lower house?",
+              "text_ru": "Ты не горюешь о нижней обители?",
+              "condition": {
+                "wisdom": 5
+              },
+              "nextNodeId": "g_sad",
+              "attributeBonuses": {
+                "wisdom": 2
+              }
+            },
+            {
+              "text": "Rest, brother.",
+              "text_ru": "Отдохни, брат.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "charisma": 1
+              }
+            }
+          ]
+        },
+        {
+          "id": "g_sad",
+          "text": "I grieved for a night. Then I remembered: I never saw the lower house, I only heard it, and it is still in my ears. Grief that keeps you from carrying the next brother is the bad grief. Grief that remembers and carries is good.",
+          "text_ru": "Горевал одну ночь. Потом вспомнил: я ведь нижний дом никогда не видел, только слышал, и он до сих пор у меня в ушах. Горе, что мешает нести следующего брата, — худое горе. Горе, что помнит и несёт, — доброе.",
+          "meaning": "Discernment cue for sadness: grief that paralyses and turns a man from the next task, against the godly sorrow that remembers and acts. Worldly sorrow works death, godly sorrow leads to repentance.",
+          "source": "2 Cor 7:10; Ladder, step 7",
+          "voice": "own",
+          "branches": [
+            {
+              "text": "I will go for the next one.",
+              "text_ru": "Пойду за следующим.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "constitution": 1
               }
             }
           ]

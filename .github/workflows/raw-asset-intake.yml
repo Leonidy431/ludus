@@ -37,6 +37,8 @@ on:
       - 'functions/src/tests/api/**'
       - 'functions/src/schemas/**'
       - 'functions/src/data/npc-dialogues-24.json'
+      - 'functions/src/data/npc-dialogues-story12.json'
+      - 'scripts/check_dialogues.py'
       - 'public/ludus/data/passions.json'
       - 'public/ludus/ludus-confession.js'
       - '.github/workflows/raw-asset-intake.yml'
@@ -87,7 +89,7 @@ jobs:
       # CLAUDE.md TABOO 0.37/0.39: the 24 NPC trees keep the chorus
       # contract (idiom, meaning, source, paraphrase for saints, FORM
       # gates, no church words on buttons).
-      - name: Dialogue contract (24 NPCs)
+      - name: Dialogue contract (24 NPCs and the people of the 12 stories)
         run: python scripts/check_dialogues.py
 
       # CLAUDE.md TABOO 0.35 rule 18: every teaching source (dialogue
