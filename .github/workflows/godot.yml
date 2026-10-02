@@ -139,6 +139,9 @@ jobs:
           cmp public/ludus/data/church-words.json \
               godot/data/church-words.json
           python3 scripts/decisions/stoplist_choice.py --check
+          # The engine build chosen from its honest pool on 48 parameters
+          # (docs/decisions/ENGINE_BUILD_2026-10-02.md).
+          python3 scripts/decisions/engine_build_choice.py --check
           # The path of the witness uses the same scene kits as the web
           # VR scene (docs/SACRAMENTS_VR_SCENES.md).
           for f in public/vr/models/scene/sacrament-*; do
