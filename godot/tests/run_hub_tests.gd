@@ -258,4 +258,11 @@ func _initialize() -> void:
 		failures - fails])
 	load("res://tests/test_story_12.gd").new().run(self)  # Prints its own.
 	load("res://tests/test_story_check.gd").new().run(self)  # Prints too.
+	# Resources held in static caches outlive the rendering and audio
+	# servers when the process ends: the log showed material_set_shader
+	# on a freed material at exit, and CI crashed there (signal 11) after
+	# every check had passed.  The caches let go of them before quit.
+	FishDrawings._shaders.clear()
+	ActCue._cache.clear()
+	PlaceSound._refs.clear()
 	quit(1 if failures else 0)
