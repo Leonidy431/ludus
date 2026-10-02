@@ -1,0 +1,13 @@
+{
+  "doc": "docs/story/LOCK_CALIBRATION_DESIGN_2026-10-02.md",
+  "rule": "The first techno-artefact to restore (TABOO 0.024 item 8): the operator's autonomous buoy (his repo stm32_bouy, inventory item mooring_buoy). Each calibrated matrix repairs one system; parts are not a currency and are never bought.",
+  "name_ru": "автономный буй",
+  "systems": [
+    {"id": "hearing", "name_ru": "слух: гидрофон буя", "lock": "buoy_hearing", "shows_ru": "кабель гидрофона уходит в воду, диод зелёный", "serves_ru": "слышит метку судака и пинги аппарата"},
+    {"id": "power", "name_ru": "питание", "lock": "", "shows_ru": "диод питания зелёный", "serves_ru": "держит буй всю ночь"},
+    {"id": "winch", "name_ru": "якорная лебёдка", "lock": "", "shows_ru": "трос натянут", "serves_ru": "буй стоит над сваями, не дрейфует"},
+    {"id": "beacon", "name_ru": "радиомаяк", "lock": "", "shows_ru": "мачта с огнём", "serves_ru": "лодка находит буй ночью"},
+    {"id": "solar", "name_ru": "солнечная панель", "lock": "", "shows_ru": "все ячейки целы", "serves_ru": "заряжает днём"},
+    {"id": "thermistors", "name_ru": "цепь термодатчиков по слоям", "lock": "", "shows_ru": "цепь уходит до 60 м", "serves_ru": "видит термоклин на 50 м"}
+  ]
+}

@@ -71,7 +71,7 @@
         10.0,
         25.0
       ],
-      "image": "res://art/prerender/souvenir.png",
+      "image": "res://art/prerender/insight_bazaar_jug.jpg",
       "node": 76,
       "line_ru": "Каракол, базар, год назад. Гончар сказал: «Так лепили всегда». Он заплатил за копию и не спросил, где лежит подлинник.",
       "bridge_to": "immersion",
@@ -120,7 +120,7 @@
         140.0,
         289.0
       ],
-      "image": "",
+      "image": "res://art/prerender/insight_ford_of_cold.jpg",
       "node": 90,
       "line_ru": "Порог холода. Рыцарь вёл коня вброд горной рекой к озеру, которое не замерзает. На середине конь встал, и рыцарь не дышал.",
       "bridge_to": "tether_jerk",
@@ -151,7 +151,7 @@
         150.0,
         289.0
       ],
-      "image": "",
+      "image": "res://art/prerender/insight_hands_of_masons.jpg",
       "node": 19,
       "line_ru": "Братья натягивали шнур меж двух колышков, и ряд камня ложился по нему. Стена ровна, пока шнур не тронут. А тронуть может только свой.",
       "bridge_to": "tether_jerk",
@@ -225,7 +225,7 @@
         440.0,
         600.0
       ],
-      "image": "",
+      "image": "res://art/prerender/insight_gate_opened_inside.jpg",
       "node": 7,
       "line_ru": "Говорят, ворота Сиса отворили изнутри за такое же серебро. Тот человек тоже сперва только смотрел. Засов скрипнул один раз.",
       "bridge_to": "choice_echo",
@@ -272,7 +272,7 @@
         720.0,
         789.0
       ],
-      "image": "res://art/prerender/diary.png",
+      "image": "res://art/prerender/insight_scribe_lifts_eyes.jpg",
       "node": 49,
       "line_ru": "Переписчик дописал строку рыцаря и поднял глаза на озеро. Перо сохло на краю чернильницы. Своё «Кто прочтёт…» он так и не кончил.",
       "bridge_to": "mark_line",
@@ -298,7 +298,7 @@
         790.0,
         819.0
       ],
-      "image": "",
+      "image": "res://art/prerender/insight_same_comet.jpg",
       "node": 1,
       "line_ru": "Знак-комету переписчик скопировал буква в букву. На полях, где он спорил с каждой строкой, тут пусто. Чья это рука, лист молчит.",
       "bridge_to": "ascent",

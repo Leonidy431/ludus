@@ -246,6 +246,7 @@ func _initialize() -> void:
 	load("res://tests/test_apparatus.gd").new().run(self)
 	load("res://tests/test_lock.gd").new().run(self)
 	load("res://tests/test_destiny.gd").new().run(self)
+	load("res://tests/test_lock_scene.gd").new().run(self)
 	print("data packs: %d checks, %d failures" % [checks - before,
 		failures - fails])
 	# Big modules load in the background (ModuleLoader, TABOO 0.014, S1).

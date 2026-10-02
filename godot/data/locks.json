@@ -5,6 +5,35 @@
   "height": 6,
   "locks": [
     {
+      "id": "buoy_hearing",
+      "name_ru": "узел слуха буя",
+      "where": "surface",
+      "beat": "episode2",
+      "apparatus": "mooring_buoy",
+      "holy": false,
+      "tiles": [
+        "chip",
+        "connector",
+        "hydrophone",
+        "lens",
+        "quartz"
+      ],
+      "tiles_ru": [
+        "микросхема",
+        "герморазъём",
+        "гидрофон",
+        "оптическая линза",
+        "кварцевый резонатор"
+      ],
+      "goal": {
+        "hydrophone": 9
+      },
+      "teaches_ru": "Гидрофоны сводятся в один ряд — и буй снова слышит воду.",
+      "opens_ru": "гидрофон буя работает: буй слышит метку судака и пинги аппарата",
+      "whose_ru": "своё: буй оператора",
+      "repairs": "hearing"
+    },
+    {
       "id": "pult_gateway",
       "name_ru": "шлюз доступа к пульту",
       "where": "surface",

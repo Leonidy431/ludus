@@ -36,6 +36,16 @@ func run(t: Object) -> void:
 	t._check(DestinyCore.band(d, turned) >= -1,
 		"repentance lifts even the worst path (band %d)"
 		% DestinyCore.band(d, turned))
+	var back := DestinyCore.finale(d, turned)
+	t._check(back.get("repentant", false)
+		and back.line_ru == back.get("repent_line_ru", back.line_ru)
+		and back.line_ru != DestinyCore.finale(d, ["drams_taken"]).line_ru,
+		"the repentant gets his own scene, not the reproach of the lukewarm")
+	t._check(DestinyCore.score(d, ["repent"]) == 0,
+		"repentance buys no points: it works through the floor alone")
+	t._check(DestinyCore._has_image("покров и черта") == ""
+		and DestinyCore._has_image("огонь") != "",
+		"the image stop-list matches words, not parts of words")
 	t._check(DestinyCore.finale(d, worst).id
 		== DestinyCore.finale(d, worst).id, "the same deeds, the same end")
 	t._check(DestinyCore.score(d, ["drams_left", "drams_left"])

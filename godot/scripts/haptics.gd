@@ -47,6 +47,11 @@ const PULSES := {
 	"dive_take": [0.35, 0.08],
 	"dive_echo": [0.12, 0.03],
 	"dive_layer": [0.2, 0.06],
+	# The lock board (TABOO 0.024): a relay's tick on a pick, a sealed
+	# toggle on a swap, a slow resonance when the matrix is calibrated.
+	"lock_pick": [0.15, 0.03],
+	"lock_swap": [0.3, 0.05],
+	"lock_open": [0.45, 0.12],
 }
 ## Pulses the player did not cause: under reduced motion they go.
 const AMBIENT := ["dive_echo"]

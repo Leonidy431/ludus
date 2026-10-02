@@ -6,7 +6,7 @@
 ##         -s res://tools/lock_shots.gd -- --out=../docs/audit/2026-10-02/locks
 extends SceneTree
 
-const LOCKS := ["rov_server", "expedition_safe", "pult_gateway"]
+const LOCKS := ["buoy_hearing", "rov_server", "expedition_safe"]
 var out := "user://lock-shots"
 var node: Node
 var li := 0

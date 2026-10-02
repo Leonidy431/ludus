@@ -17,6 +17,9 @@ class_name LockBoard
 extends Node3D
 
 signal opened(lock_id: String)
+## Every press the board accepted: "pick", "swap" (a run made) or
+## "miss" (no run: the tiles stay), for the sound and the hands.
+signal pressed(kind: String)
 
 const CELL := 0.07
 const TILE := 0.054
@@ -274,14 +277,34 @@ func press(i: int) -> void:
 	if picked < 0:
 		picked = i
 	else:
-		var before: Dictionary = state.cleared.duplicate()
 		var s := LockCore.swap(data, state, picked, i)
 		if s.moves == state.moves:
 			picked = i
-		else:
-			flash = {}
-			state = s
-			picked = -1
-			if state.open:
-				opened.emit(str(lock.id))
+			pressed.emit("pick")
+			_draw()
+			return
+		flash = {}
+		state = s
+		picked = -1
+		pressed.emit("swap")
+		if state.open:
+			opened.emit(str(lock.id))
+		_draw()
+		return
+	pressed.emit("pick")
 	_draw()
+
+
+## A pinch in the world (the meeting point of thumb and index tips) to a
+## cell: the point must be within 4 cm of the board's face.
+func cell_at_point(p: Vector3) -> int:
+	var q := global_transform.affine_inverse() * p
+	if absf(q.z - 0.012) > 0.04:
+		return -1
+	var w: int = state.w
+	var h: int = state.h
+	var x := int(floor(q.x / CELL + float(w) / 2.0))
+	var y := int(floor(float(h) / 2.0 - q.y / CELL))
+	if x < 0 or y < 0 or x >= w or y >= h:
+		return -1
+	return y * w + x

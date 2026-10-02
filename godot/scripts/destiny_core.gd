@@ -24,8 +24,11 @@ const ATTRS := ["wisdom", "faith", "dexterity", "constitution", "charisma",
 	"cunning", "erudition"]
 ## Images the finales must not use: hell is shown as a loop without love,
 ## never as fire, pit or torment on screen (TABOO 0.4, 0.015 item 3).
-const NO_IMAGES := ["огонь", "пламя", "пытк", "кров", "демон", "черт",
-	"мучени", "котёл", "котел"]
+## Matched as word stems at a word's start, so «покров» or «черта» do
+## not trip «кровь» or «чёрт» (the chorus's correction).
+const NO_IMAGES := ["огон", "огн", "пламя", "пламен", "пытк", "кровь",
+	"кровав", "демон", "чёрт", "черти", "чертей", "чертовщ", "мучени",
+	"котёл", "котел"]
 
 
 static func load_data() -> Dictionary:
@@ -85,12 +88,28 @@ static func band(data: Dictionary, deeds: Array) -> int:
 	return b
 
 
+## The finale of a path.  A repentant path keeps its band's finale but
+## with the repentant's own scene and line where the finale has them (the
+## chorus: a man who came back is not reproached as lukewarm).
 static func finale(data: Dictionary, deeds: Array) -> Dictionary:
 	var b := band(data, deeds)
 	for f in data.finales:
 		if int(f.band) == b:
-			return f
+			var out: Dictionary = f.duplicate()
+			if repented(data, deeds) and f.has("repent_scene_ru"):
+				out.scene_ru = f.repent_scene_ru
+				out.line_ru = f.repent_line_ru
+				out["repentant"] = true
+			return out
 	return {}
+
+
+static func _has_image(text: String) -> String:
+	for w in LocationsCore.words(text.to_lower()):
+		for stem in NO_IMAGES:
+			if w.begins_with(stem):
+				return stem
+	return ""
 
 
 ## The nodes of the seven branches a form has opened: a node opens when
@@ -117,9 +136,12 @@ static func check(data: Dictionary) -> Array:
 			if int(n.need) <= last:
 				bad.append("%s: needs must rise" % n.id)
 			last = int(n.need)
+			# No branch, Faith included, turns the holy or prayer into a
+			# gain of growth (the chorus: the shrine's silence and the
+			# bell are for everyone, never gated by an attribute).
 			var g := str(n.gives_ru).to_lower()
-			for w in ["благодать", "молитв", "святын"]:
-				if w in g and br.attr != "faith":
+			for w in ["благодать", "молитв", "святын", "благовест", "колокол"]:
+				if w in g:
 					bad.append("%s: the holy as a gift of growth" % n.id)
 		if br.attr == "cunning":
 			for n in br.nodes:
@@ -137,12 +159,17 @@ static func check(data: Dictionary) -> Array:
 				"door_ru"]:
 			if str(f.get(k, "")) == "":
 				bad.append("%s: no %s" % [f.id, k])
-		if str(f.line_ru).length() > 140:
-			bad.append("%s: line too long" % f.id)
-		var text := (str(f.scene_ru) + " " + str(f.line_ru)).to_lower()
-		for w in NO_IMAGES:
-			if w in text:
-				bad.append("%s: «%s» on screen" % [f.id, w])
+		for k in ["line_ru", "repent_line_ru"]:
+			if str(f.get(k, "")).length() > 140:
+				bad.append("%s: %s too long" % [f.id, k])
+		if f.has("repent_scene_ru") != f.has("repent_line_ru"):
+			bad.append("%s: a repentant scene without its line" % f.id)
+		var text := " ".join([str(f.scene_ru), str(f.line_ru),
+			str(f.get("repent_scene_ru", "")),
+			str(f.get("repent_line_ru", ""))])
+		var hit := _has_image(text)
+		if hit != "":
+			bad.append("%s: «%s» on screen" % [f.id, hit])
 	bands.sort()
 	if bands != [-3, -2, -1, 0, 1, 2, 3]:
 		bad.append("seven finales must cover -3..+3: %s" % [bands])
