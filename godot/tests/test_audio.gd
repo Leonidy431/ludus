@@ -336,10 +336,10 @@ func _haptics() -> void:
 	audio.free()
 	var calm := DiveAudio.new()
 	calm.reduced_motion = true
-	calm._pulse("echo", DiveAudio.PULSE_ECHO, 0.0)
+	calm._pulse("dive_echo", 0.0)
 	calm.on_lamp_toggled(false)
 	t._check(calm.pulses.size() == 1 and calm.pulses[0][1]
-		== DiveAudio.PULSE_LAMP[0] * 0.5,
+		== Haptics.PULSES.dive_lamp[0] * 0.5,
 		"reduced motion: no echo pulse, halved lamp pulse")
 	calm.free()
 

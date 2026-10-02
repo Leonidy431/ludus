@@ -33,7 +33,8 @@ func run(t: Object) -> void:
 		var db := 20.0 * log(maxf(peak, 1) / 32767.0) / log(10.0)
 		t._check(db <= ActCue.PEAK_DB + 0.1 and db > ActCue.PEAK_DB - 1.0,
 			"%s: peak %.1f dBFS at its level, far under -1 dBTP" % [k, db])
-		t._check(ActCue.HAPTIC.has(k) and ActCue.HAPTIC[k][0] <= 0.5,
+		var hp := Haptics.spec("act_" + k)
+		t._check(not hp.is_empty() and hp[0] <= 0.5,
 			k + ": a gentle pulse")
 
 

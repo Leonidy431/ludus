@@ -2,8 +2,11 @@
 // Write godot/tests/journal_fixture.json from public/ludus/ludus-journal.js
 // and ludus-actions.js: the exported Markdown page of the journal, the
 // reference for JournalCore.to_markdown.  Each record keeps its inputs
-// (form, actions, passions, date), so the GDScript side replays the very
-// same page and compares it letter for letter.
+// (form, actions, passions, deeds, date), so the GDScript side replays the
+// very same page and compares it letter for letter.  The titles of the
+// places come from public/ludus/data/place-deeds.json here and from
+// godot/data/locations-99.json there, so the fixture also proves that the
+// two name every place alike.
 // Usage: node scripts/godot/make_journal_fixture.js
 
 const fs = require('fs');
@@ -13,6 +16,12 @@ const J = require('../../public/ludus/ludus-journal.js');
 
 const root = path.join(__dirname, '..', '..');
 const passionData = require(path.join(root, 'public/ludus/data/passions.json'));
+const deedGraph = require(path.join(root,
+  'public/ludus/data/place-deeds.json'));
+const deedPlaces = {};
+Object.keys(deedGraph.acts).forEach((id) => {
+  deedPlaces[id] = deedGraph.acts[id].place.title;
+});
 const form = (w, rest) => Object.assign({ wisdom: w, faith: 1,
   dexterity: 1, constitution: 1, charisma: 1, cunning: 1, erudition: 1 },
 rest || {});
@@ -45,9 +54,10 @@ function busy() {
 }
 
 const cases = [
-  { name: 'empty', form: {}, actions: {}, passions: {},
+  { name: 'empty', form: {}, actions: {}, passions: {}, deeds: {},
     date: '2026-09-30' },
   { name: 'guest', form: form(1), actions: A.normalize({}), passions: {},
+    deeds: { 'wait-out-storm': { count: 0, lastDay: null } },
     date: '2026-01-02' },
   { name: 'first-step', form: form(4, { faith: 3 }),
     actions: (() => {
@@ -59,6 +69,7 @@ const cases = [
     })(),
     passions: { gluttony: { meetings: 1, overcome: 0, captive: 1,
       discerned: false } },
+    deeds: { 'forge-nail': { count: 1, lastDay: '2026-09-30' } },
     date: '2026-09-30' },
   { name: 'busy', form: form(12, { faith: 7, erudition: 5, cunning: 0 }),
     actions: busy(),
@@ -66,6 +77,12 @@ const cases = [
       gluttony: { meetings: 2, overcome: 1, captive: 1, discerned: true },
       anger: { meetings: 1, overcome: 1, captive: 0, discerned: false },
       pride: { meetings: 3, overcome: 0, captive: 3, discerned: false },
+    },
+    deeds: {
+      'wait-out-storm': { count: 3, lastDay: '2026-09-30' },
+      'share-water': { count: 1, lastDay: '2026-09-29' },
+      'find:bulla.shallows.0': { count: 2, lastDay: '2026-09-28' },
+      'type-by-memory': { count: 12, lastDay: '2026-09-30' },
     },
     date: '2026-09-30' },
   { name: 'tampered', form: form(20),
@@ -75,6 +92,10 @@ const cases = [
         prayer_rope: { count: 99 } } },
     passions: { acedia: { meetings: 1, overcome: 2, captive: 0,
       discerned: true } },
+    deeds: { 'no-such-act': { count: 5, lastDay: '2026-12-31' },
+      'test-ice': { count: 2.9, lastDay: 'yesterday' },
+      'take-core': { count: -4, lastDay: '2026-12-30' },
+      'prune-vine': 'x' },
     date: '2026-12-31' },
 ];
 
@@ -83,9 +104,10 @@ const records = cases.map((c) => ({
   form: clone(c.form),
   actions: clone(c.actions),
   passions: clone(c.passions),
+  deeds: clone(c.deeds),
   date: c.date,
   md: J.toMarkdown({ form: c.form, actions: c.actions,
-    passions: c.passions, passionData,
+    passions: c.passions, passionData, deeds: c.deeds, deedPlaces,
     now: new Date(`${c.date}T08:00:00Z`) }, A),
 }));
 

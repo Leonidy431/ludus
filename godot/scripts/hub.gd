@@ -1414,11 +1414,11 @@ func _breathe() -> void:
 	rope_breath.play()
 
 
-func _pulse(amplitude: float, seconds: float) -> void:
-	# The touch of the knot in the hand that holds the rope (Quest).
-	if xr_active:
-		right_hand.trigger_haptic_pulse("haptic", 0.0, amplitude, seconds,
-			0.0)
+func _pulse(kind: String) -> void:
+	# The touch of the knot and of the breath in the hand that holds the
+	# rope (Quest); the numbers live in the shared table (Haptics).
+	Haptics.pulse(right_hand if xr_active else null, kind,
+		Haptics.prefers_reduced())
 
 
 func _rule_select(i: int) -> void:
@@ -1443,7 +1443,7 @@ func _rule_select(i: int) -> void:
 			actions = r.actions
 			if r.tied:
 				rope_ring.rotation.y += TAU / RuleCell.ROPE_KNOTS
-				_pulse(0.5, 0.05)
+				_pulse("knot")
 				_say("Узел.")
 				_save()
 			elif r.why == "inhale":
@@ -1471,7 +1471,7 @@ func _rope_tick(dt: float) -> void:
 	rope.clock += dt
 	for cue in RopeCore.cues_between(rope.pattern, t0, rope.clock):
 		if cue.kind == "exhale":
-			_pulse(0.2, 0.08)
+			_pulse("breath")
 		else:
 			_breathe()
 

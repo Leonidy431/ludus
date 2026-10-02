@@ -224,6 +224,8 @@ func _initialize() -> void:
 	fails = failures
 	load("res://tests/test_place_deeds.gd").new().run(self)
 	load("res://tests/test_act_cue.gd").new().run(self)
+	load("res://tests/test_haptics.gd").new().run(self)
+	load("res://tests/test_storm_calm.gd").new().run(self)
 	print("place deeds: %d checks, %d failures" % [checks - before,
 		failures - fails])
 	# Big modules load in the background (ModuleLoader, TABOO 0.014, S1).

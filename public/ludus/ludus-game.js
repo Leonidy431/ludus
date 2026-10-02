@@ -147,6 +147,7 @@
   // "said" to a thought) and the data that describes them.
   const GUEST_PASSIONS_KEY = 'ludus.guest.passions';
   const PASSIONS_URL = '/ludus/data/passions.json';
+  const PLACE_DEEDS_URL = '/ludus/data/place-deeds.json';
   // Three breaths of stillness close a good encounter; five seconds a
   // breath keeps it short enough for a headset and long enough to be a
   // pause rather than a click.
@@ -870,6 +871,34 @@
   // passion, never the warm lamp of holy things (TABOO 0.38).
   // The player's own journal as a Markdown file, built on the device and
   // handed over as a download; nothing is sent (ludus-journal.js).
+  // The acts done at the hearts of places for the journal: the record
+  // the page of the acts keeps in this browser ("ludus.deeds") and the
+  // titles of their places from the walk of the acts.  Read only when
+  // the journal is written; offline the section says nothing was done.
+  async function loadDeedsForJournal() {
+    let record = {};
+    try {
+      record = JSON.parse(window.localStorage.getItem('ludus.deeds')
+        || '{}') || {};
+    } catch (error) {
+      record = {};
+    }
+    const places = {};
+    try {
+      const res = await fetch(PLACE_DEEDS_URL);
+      if (res.ok) {
+        const graph = await res.json();
+        Object.keys(graph.acts || {}).forEach((id) => {
+          const p = graph.acts[id].place;
+          places[id] = p ? String(p.title) : id;
+        });
+      }
+    } catch (error) {
+      console.warn('[Ludus] Place acts unavailable offline:', error.message);
+    }
+    return { record, places };
+  }
+
   async function saveJournal() {
     const journal = window.LudusJournal;
     const api = actionsApi();
@@ -877,12 +906,15 @@
       return;
     }
     await loadPassionData();
+    const deeds = await loadDeedsForJournal();
     const text = journal.toMarkdown({
       form: state.playerForm || {},
       actions: state.actions || {},
       passions: state.passionRecord || {},
       passionData: state.passionData,
       now: new Date(),
+      deeds: deeds.record,
+      deedPlaces: deeds.places,
     }, api);
     const url = URL.createObjectURL(new Blob([text],
       { type: 'text/markdown;charset=utf-8' }));

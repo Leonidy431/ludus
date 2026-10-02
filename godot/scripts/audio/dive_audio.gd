@@ -15,13 +15,10 @@ const WATER_DB := -20.0
 const WATER_UNIT_M := 3.0
 const WATER_MAX_M := 25.0
 const WATER_LOOP_SEC := 4.0
-## Haptics: frequency 0 lets the runtime choose its default.
-const PULSE_LAMP := [0.45, 0.05]
-const PULSE_TAKE := [0.35, 0.08]
-const PULSE_ECHO := [0.12, 0.03]
-## Crossing the thermocline: a soft pulse with the layer's scatter and
-## its shimmering sheet (the response triad, TABOO 0.35 rule 17).
-const PULSE_LAYER := [0.2, 0.06]
+## Haptics: the pulses (lamp, take, echo and the crossing of the
+## thermocline, felt with the layer's scatter and its shimmering sheet)
+## live in the shared table, Haptics.PULSES "dive_*" (TABOO 0.35 rule
+## 17; DEF-008).
 
 var synth := DiveSynth.new()
 var player: AudioStreamPlayer
@@ -183,11 +180,11 @@ func update(tel: Dictionary, rov: Dictionary, inp: Dictionary,
 		"layer_echo": DiveCore.layer_echo(tel.depth, tel.floor)}, dt)
 	if synth.crossings.size() > crossed:
 		# Heard when the queued audio reaches the ear, felt then too.
-		_pulse("layer", PULSE_LAYER, _queued_sec())
+		_pulse("dive_layer", _queued_sec())
 	if synth.pending.size() > pings:
 		# A ping has just gone out; the controller answers when its
 		# echo is heard: the queued audio plus the echo delay.
-		_pulse("echo", PULSE_ECHO, tel.echo_delay + _queued_sec())
+		_pulse("dive_echo", tel.echo_delay + _queued_sec())
 	for s in sources:
 		if s[1] == "school":
 			var p := DiveCore.fish_at(schools[s[2]], 0, t)
@@ -214,7 +211,7 @@ func _queued_sec() -> float:
 ## The lamp was switched: light (dive.gd), relay click, pulse.
 func on_lamp_toggled(_on: bool) -> void:
 	synth.event_click()
-	_pulse("lamp", PULSE_LAMP, 0.0)
+	_pulse("dive_lamp", 0.0)
 
 
 ## The manipulator reached out (dive.gd, RovBody.reach): servo whine.
@@ -229,15 +226,13 @@ func on_taken(rule) -> void:
 	if rule == null or not rule is String:
 		return
 	synth.event_take()
-	_pulse("take", PULSE_TAKE, 0.0)
+	_pulse("dive_take", 0.0)
 
 
-func _pulse(kind: String, spec: Array, delay: float) -> void:
-	var amp: float = spec[0]
-	if reduced_motion:
-		if kind == "echo":
-			return
-		amp *= 0.5
-	pulses.append([kind, amp, spec[1]])
-	if xr_active and right_hand:
-		right_hand.trigger_haptic_pulse("haptic", 0.0, amp, spec[1], delay)
+## One pulse of the shared table; under reduced motion the echo is not
+## felt and the rest are halved (Haptics.spec).
+func _pulse(kind: String, delay: float) -> void:
+	var felt := Haptics.pulse(right_hand if xr_active else null, kind,
+		reduced_motion, delay)
+	if not felt.is_empty():
+		pulses.append([kind, felt[0], felt[1]])
