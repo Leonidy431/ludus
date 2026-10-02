@@ -333,14 +333,16 @@ jobs:
           # in the repo secret LUDUS_DEBUG_KEYSTORE_B64 (base64 of a
           # keystore with alias androiddebugkey, password "android").
           # Without it a throwaway key is made and the log says so.
-          # A secret pasted with line breaks, a Windows CR or spaces is
-          # still read: whitespace is dropped before decoding.  A secret
+          # A secret pasted with line breaks, a Windows CR, spaces or the
+          # -----BEGIN/END----- lines of Windows certutil is still read:
+          # those are dropped before decoding.  A secret
           # that does not decode to a keystore keytool can open does not
           # stop the build; it falls back to the cached key, which keeps
           # the APK installing over the last one (TABOO 0.01 item 3).
           key_ok=""
           if [ -n "$KEYSTORE_B64" ]; then
-            if printf '%s' "$KEYSTORE_B64" | tr -d ' \t\r\n' \
+            if printf '%s\n' "$KEYSTORE_B64" | grep -v -- '-----' \
+                | tr -d ' \t\r\n' \
                 | base64 -d > "$RUNNER_TEMP/debug.keystore" 2>/dev/null \
               && keytool -list -keystore "$RUNNER_TEMP/debug.keystore" \
                 -storepass android -alias androiddebugkey >/dev/null 2>&1
