@@ -1,5 +1,5 @@
 {
- "next": 8,
+ "next": 11,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -5463,6 +5463,111 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 336
+  },
+  {
+   "time": "2026-10-02T07:50:27.685506+00:00",
+   "pass_id": "osint-2026-10-02T07:50:27Z",
+   "deficits": [
+    {
+     "id": "DEF-035",
+     "hits": 200,
+     "taken": 0,
+     "refused": {},
+     "to_props": 176,
+     "hits_uncapped": 4379,
+     "props_uncapped": 3784,
+     "props_uncapped_repos": 56,
+     "added_keywords": [],
+     "keywords_total": 49,
+     "keywords_not_searched": [
+      "com",
+      "corsixth",
+      "java",
+      "lua",
+      "unciv"
+     ],
+     "props": {},
+     "props_seen": 176
+    },
+    {
+     "id": "DEF-036",
+     "hits": 200,
+     "taken": 0,
+     "refused": {},
+     "to_props": 172,
+     "hits_uncapped": 12281,
+     "props_uncapped": 9111,
+     "props_uncapped_repos": 46,
+     "added_keywords": [],
+     "keywords_total": 39,
+     "keywords_not_searched": [
+      "xaml"
+     ],
+     "props": {},
+     "props_seen": 172
+    },
+    {
+     "id": "DEF-040",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 2,
+      "font": 1
+     },
+     "to_props": 94,
+     "hits_uncapped": 20914,
+     "props_uncapped": 17495,
+     "props_uncapped_repos": 60,
+     "added_keywords": [
+      "create",
+      "dds",
+      "dismiss",
+      "effect",
+      "emitter",
+      "encode",
+      "event",
+      "extra",
+      "frm",
+      "grid",
+      "harvester",
+      "help"
+     ],
+     "keywords_total": 93,
+     "keywords_not_searched": [
+      "bevy",
+      "cleric",
+      "com",
+      "cpp",
+      "crates",
+      "java",
+      "mage",
+      "rotp",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 63
+    }
+   ],
+   "props_taken": {},
+   "props_taken_by_index_kind": {},
+   "props_duplicates": 411,
+   "props_errors": 0,
+   "props_refused": {
+    "licence-Defold-1.0": 31
+   },
+   "props_new_bytes": 0,
+   "props_store_files": 1450,
+   "props_store_bytes": 10783950,
+   "props_cache_files_on_disk": 4661,
+   "props_cache_bytes_on_disk": 77998483,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 809494,
+   "props_register_growth_bytes": 0,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 155
   }
  ],
  "keywords": {
@@ -6183,7 +6288,19 @@
    "component",
    "context",
    "continue",
-   "control"
+   "control",
+   "create",
+   "dds",
+   "dismiss",
+   "effect",
+   "emitter",
+   "encode",
+   "event",
+   "extra",
+   "frm",
+   "grid",
+   "harvester",
+   "help"
   ],
   "DEF-047": [
    "java",
