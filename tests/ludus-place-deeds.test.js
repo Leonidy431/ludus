@@ -14,17 +14,16 @@ const D = require('../public/ludus/ludus-place-deeds.js');
 const GRAPH = JSON.parse(fs.readFileSync(path.join(__dirname,
   '../public/ludus/data/place-deeds.json'), 'utf8'));
 
-// The stop-list is read from godot/scripts/locations_core.gd
-// CHURCH_WORDS, so the page and the headset hold one list: no church
-// word on a button, a reply or a panel line (TABOO 0.39 item 3).
-const CORE = fs.readFileSync(path.join(__dirname,
-  '../godot/scripts/locations_core.gd'), 'utf8');
-const CHURCH = JSON.parse(CORE.match(
-  /const CHURCH_WORDS := (\[[^\]]*\])/)[1].replace(/\s+/g, ' '));
+// The stop-list is the headset's own file (godot/data/church-words.json,
+// copied byte for byte to the web) with its one rule of matching, so the
+// page and the headset hold one list: no church word on a button, a
+// reply or a panel line (TABOO 0.39 item 3; blind spot 16).
+const C = require('../public/ludus/ludus-church-words.js');
+const CHURCH = JSON.parse(fs.readFileSync(path.join(__dirname,
+  '../public/ludus/data/church-words.json'), 'utf8'));
 
 function hasChurchWord(s) {
-  const low = s.toLowerCase();
-  return CHURCH.some((w) => low.includes(w));
+  return C.churchWord(CHURCH, s) !== '';
 }
 
 test('all 26 acts are in the walk, each with its start', () => {
@@ -74,7 +73,7 @@ test('every act closes by its buttons or by waiting, and a closed act '
 });
 
 test('no church word in any button, reply or line', () => {
-  assert.ok(CHURCH.length >= 20 && CHURCH.includes('молитв'));
+  assert.ok(CHURCH.stems.length >= 20 && CHURCH.stems.includes('молитв'));
   D.ids(GRAPH).forEach((id) => {
     GRAPH.acts[id].nodes.forEach((n, i) => {
       const v = D.view(GRAPH, { act: id, node: i });

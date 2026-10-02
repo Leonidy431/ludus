@@ -178,6 +178,7 @@ func _initialize() -> void:
 	before = checks
 	fails = failures
 	load("res://tests/test_locations.gd").new().run(self)
+	load("res://tests/test_church_words.gd").new().run(self)
 	print("locations: %d checks, %d failures" % [checks - before,
 		failures - fails])
 	# The 99 locations as the headset builds them (TABOO 0.013, L4).

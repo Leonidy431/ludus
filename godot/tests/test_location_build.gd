@@ -25,6 +25,12 @@ const LESSONS_FOR_THE_CHORUS := ["factory", "sarai-hall", "tana-port",
 	"deacon-cell", "ichthys-pier", "kairak-valley", "naos", "obitel-shore",
 	"santash-pass", "sunken-chapel", "crypt-museum", "storm-bay",
 	"dream-cell"]
+## Lessons the stem matcher found on 2026-10-02 that the substring list
+## missed («Господом», «Евангелию», «освящается», «потир»; blind spot 16,
+## docs/decisions/STOPLIST_SINGLE_SOURCE_2026-10-02.md).  They wait for
+## the same chorus; frozen like the list above, it only shrinks.
+const LESSONS_FOUND_BY_STEMS := ["fair", "translators", "baptism-ford",
+	"silversmith"]
 
 var data: Dictionary = {}
 var scene: Node
@@ -129,7 +135,7 @@ func run(t: Object) -> void:
 				"%s: no church word on a label: %s" % [id, text])
 		var lesson := LocationHeart.teaching(loc)
 		t._check(not LocationsCore.has_church_word(lesson)
-			or id in LESSONS_FOR_THE_CHORUS,
+			or id in LESSONS_FOR_THE_CHORUS or id in LESSONS_FOUND_BY_STEMS,
 			"%s: the lesson's line has no church word, or waits for the "
 			% id + "chorus: " + lesson)
 		# The arrival: the door is well outside its reach from the start,

@@ -19,13 +19,14 @@ const CLEAR_M := 0.75
 ## A drawn card hangs at this width and is this thin on its wall.
 const CARD_M := 0.6
 const WALL_T := 0.1
-## Church words never label a place, a thing or a hint (TABOO 0.39
-## item 3); the same list as the generator's CHURCH_WORDS.
-const CHURCH_WORDS := ["свят", "благодат", "таинств", "мученик", "мучени",
-	"спасени", "литурги", "причаст", "причащ", "исповед", "крещен",
-	"молитв", "чудо", "мощи", "икон", "храм", "церк", "алтар", "крест",
-	"лампад", "прп.", "свт.", "вмц.", "столпник", "двоеслов",
-	"мироносиц"]
+## Church words never label a place, a thing, a button or a narrator's
+## line (TABOO 0.39 item 3).  The list lives once, in this file, and the
+## web tests and the generator read the same bytes, so the lists cannot
+## drift (docs/decisions/STOPLIST_SINGLE_SOURCE_2026-10-02.md).
+const CHURCH_DATA := "res://data/church-words.json"
+## Read once and kept: the panels ask for every line, so the file is
+## not opened again on the headset's frame.
+static var _church = null
 const LIGHT_K := {"lampada": [1800, 1800], "hearth": [1900, 2500],
 	"instrument": [6500, 6500]}
 
@@ -138,12 +139,60 @@ static func gap(p: Vector2, r: Rect2) -> float:
 	return Vector2(dx, dz).length()
 
 
+## The stop-list as stems, forms and twins (data/church-words.json).
+static func church_list() -> Dictionary:
+	if _church == null:
+		var d = JSON.parse_string(
+			FileAccess.get_file_as_string(CHURCH_DATA))
+		_church = d if d is Dictionary else {}
+	return _church
+
+
+## The words of a text as the web and the generator split them: runs of
+## a-z and а-я after lower case, with ё read as е.  Matching whole words
+## from their start keeps «помощи» clear of «мощи».
+static func words(text: String) -> PackedStringArray:
+	var low := text.to_lower().replace("ё", "е")
+	var out := PackedStringArray()
+	var cur := ""
+	for i in low.length():
+		var c := low.unicode_at(i)
+		if (c >= 97 and c <= 122) or (c >= 1072 and c <= 1103):
+			cur += char(c)
+		elif cur != "":
+			out.append(cur)
+			cur = ""
+	if cur != "":
+		out.append(cur)
+	return out
+
+
+## The first church word of a text, or "" when the text is plain: a word
+## that is not an allowed twin («крестьянин») and either is a listed
+## form («мощей») or begins with a stem («Богородицы»).
+static func church_word(text: String) -> String:
+	var data := church_list()
+	var twins: Array = data.get("twins", [])
+	var forms: Array = data.get("forms", [])
+	var stems: Array = data.get("stems", [])
+	for w in words(text):
+		var twin := false
+		for t in twins:
+			if w.begins_with(t):
+				twin = true
+				break
+		if twin:
+			continue
+		if w in forms:
+			return w
+		for s in stems:
+			if w.begins_with(s):
+				return w
+	return ""
+
+
 static func has_church_word(text: String) -> bool:
-	var low := text.to_lower()
-	for w in CHURCH_WORDS:
-		if low.contains(w):
-			return true
-	return false
+	return church_word(text) != ""
 
 
 ## The model file of a thing that already ships in the APK.

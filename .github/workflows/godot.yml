@@ -127,6 +127,12 @@ jobs:
           # One bell table for the web clock and the headset's bells,
           # every rule with its source (docs/HLD_BELL_RULES_TYPIKON_*).
           cmp public/ludus/data/bell-rules.json godot/data/bell-rules.json
+          # One church-word stop-list for the headset, the web and the
+          # generator, and the recorded choice of it (blind spot 16;
+          # docs/decisions/STOPLIST_SINGLE_SOURCE_2026-10-02.md).
+          cmp public/ludus/data/church-words.json \
+              godot/data/church-words.json
+          python3 scripts/decisions/stoplist_choice.py --check
           # The path of the witness uses the same scene kits as the web
           # VR scene (docs/SACRAMENTS_VR_SCENES.md).
           for f in public/vr/models/scene/sacrament-*; do

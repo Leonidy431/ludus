@@ -230,8 +230,7 @@ class StandardTest(unittest.TestCase):
                 reg.OBJECTS[k]['ru'] for k in x['wishlist']
                 if not reg.OBJECTS[k]['holy']]
             for text in texts:
-                for word in L.CHURCH_WORDS:
-                    self.assertNotIn(word, text.lower(), (x['id'], text))
+                self.assertFalse(L.has_church_word(text), (x['id'], text))
 
     def test_constitution_line(self):
         for x in LOCS:

@@ -62,6 +62,7 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(ROOT / 'scripts' / 'story'))
 
 import register as reg  # noqa: E402
+import church_words  # noqa: E402
 import atlas_nodes  # noqa: E402
 
 GODOT = ROOT / 'godot'
@@ -113,12 +114,10 @@ EXISTS_PENALTY = {'hub-cell': 4, 'hub-refectory': 4, 'witness': 4,
 LIGHT_K = {'lampada': (1800, 1800), 'hearth': (1900, 2500),
            'instrument': (6500, 6500)}
 # Church words never label a place, a thing or a hint (TABOO 0.39
-# item 3, 0.4 item 7); names of holy things are not labels either.
-CHURCH_WORDS = ['свят', 'благодат', 'таинств', 'мученик', 'мучени',
-                'спасени', 'литурги', 'причаст', 'причащ', 'исповед',
-                'крещен', 'молитв', 'чудо', 'мощи', 'икон', 'храм',
-                'церк', 'алтар', 'крест', 'лампад', 'прп.', 'свт.',
-                'вмц.', 'столпник', 'двоеслов', 'мироносиц']
+# item 3, 0.4 item 7); names of holy things are not labels either.  The
+# list is the headset's own file, godot/data/church-words.json, matched
+# by the same rule (docs/decisions/STOPLIST_SINGLE_SOURCE_2026-10-02.md).
+has_church_word = church_words.has_church_word
 
 PASSION_RU = {'gluttony': 'чревоугодие', 'lust': 'блуд',
               'avarice': 'сребролюбие', 'sadness': 'печаль',
