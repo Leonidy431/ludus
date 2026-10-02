@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Дела мест</title>
+  <meta name="description" content="Малые дела у сердец 26 мест обители и озера: те же шаги и те же слова, что в шлеме.">
+  <style>
+    :root {
+      --deeds-bg: #14110d;
+      --deeds-ink: #efe7da;
+      --deeds-muted: #b9ad9a;
+      --deeds-line: #3a3128;
+      --deeds-panel: #1d1813;
+      --deeds-hearth: #e0a35a;
+      --deeds-charcoal: #8a837b;
+      --deeds-focus: #cfe8ff;
+    }
+    html, body {
+      margin: 0;
+      background: var(--deeds-bg);
+      color: var(--deeds-ink);
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
+    main { max-width: 960px; margin: 0 auto; padding: 12px 16px 32px; }
+    h1 { font-size: 1.2rem; font-weight: 600; margin: 4px 0 10px; }
+    .layout { display: grid; grid-template-columns: minmax(0, 260px) 1fr;
+      gap: 16px; }
+    @media (max-width: 720px) { .layout { grid-template-columns: 1fr; } }
+    nav ul { list-style: none; margin: 0; padding: 0; }
+    nav button {
+      width: 100%;
+      min-height: 44px;
+      margin: 0 0 6px;
+      padding: 6px 10px;
+      text-align: left;
+      border-radius: 6px;
+      border: 1px solid var(--deeds-line);
+      background: var(--deeds-panel);
+      color: var(--deeds-ink);
+      font-size: 0.95rem;
+    }
+    nav button[aria-current="true"] { border-color: var(--deeds-hearth); }
+    nav .count { color: var(--deeds-muted); font-size: 0.82rem; }
+    .panel {
+      border: 1px solid var(--deeds-line);
+      border-radius: 8px;
+      background: var(--deeds-panel);
+      padding: 14px 16px;
+    }
+    .panel h2 { font-size: 1.05rem; margin: 0 0 4px; }
+    .heart { color: var(--deeds-hearth); margin: 0 0 8px; }
+    .teaching { color: var(--deeds-muted); font-style: italic; margin: 0 0 12px; }
+    .lines p { margin: 0 0 6px; line-height: 1.5; }
+    .reply { margin: 10px 0; padding: 8px 10px; border-left: 3px solid
+      var(--deeds-hearth); }
+    .today { color: var(--deeds-charcoal); }
+    .steps { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+    .steps button {
+      min-height: 48px;
+      padding: 8px 12px;
+      text-align: left;
+      border-radius: 6px;
+      border: 1px solid var(--deeds-line);
+      background: #2a221a;
+      color: var(--deeds-ink);
+      font-size: 1rem;
+    }
+    .steps button[disabled] { color: var(--deeds-charcoal); }
+    button:focus-visible { outline: 3px solid var(--deeds-focus);
+      outline-offset: 2px; }
+    .note { color: var(--deeds-muted); font-size: 0.9rem; line-height: 1.45; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Дела мест</h1>
+    <p class="note">У сердца каждого места — одно малое дело. Неверный шаг
+      отвечает языком ремесла и даёт попробовать снова. Сделанное дело
+      записывается один раз в день: сколько раз и когда.</p>
+    <div class="layout">
+      <nav aria-label="Места"><ul id="deeds-list"></ul></nav>
+      <section class="panel" id="deeds-panel" aria-live="polite"></section>
+    </div>
+    <p class="note"><a href="/" style="color: var(--deeds-muted)">← К игре</a></p>
+  </main>
+  <script src="../ludus-place-deeds.js"></script>
+  <script src="deeds-view.js"></script>
+</body>
+</html>

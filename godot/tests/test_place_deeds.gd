@@ -13,6 +13,8 @@
 ## and passions as they were.  A hand-edited record is cut to its shape.
 extends RefCounted
 
+const DeedsGraph := preload("res://tests/deeds_graph.gd")
+
 const DAY := "2026-10-01"
 const MAX_STEPS := 40
 ## How many of the 26 acts must have their logic.  A ratchet: it only
@@ -34,6 +36,7 @@ func run(t: Object) -> void:
 		PlaceDeeds.GROUPS.size()])
 	_record(t)
 	_hearts(t)
+	_web_walk(t)
 	for g in ["a", "b", "c", "d", "e"]:
 		var path := "res://tests/deeds/test_deeds_%s.gd" % g
 		# Every group has its own craft test; a missing one is a failure,
@@ -175,3 +178,18 @@ func _hearts(t: Object) -> void:
 		var lines := LocationHeart.lines(p, loc, s, ctx)
 		t._check("Сегодня уже сделано." in lines,
 			loc.id + ": the panel says it was done today")
+
+
+## The web page plays the walk of these acts (tests/deeds_graph.gd →
+## public/ludus/data/place-deeds.json).  A changed act without a new walk
+## fails here, so the page and the headset never part silently; write it
+## with: godot --headless --path godot -s res://tests/export_deeds_graph.gd
+func _web_walk(t: Object) -> void:
+	var g: Dictionary = DeedsGraph.build()
+	for id in g.acts:
+		t._check(not g.acts[id].overflow, id + ": the walk ends")
+	var path := DeedsGraph.out_path()
+	t._check(FileAccess.file_exists(path), "the web walk exists: " + path)
+	var have := FileAccess.get_file_as_string(path)
+	t._check(have == DeedsGraph.to_text(g),
+		"the web walk matches the acts (re-run tests/export_deeds_graph.gd)")
