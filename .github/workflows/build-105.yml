@@ -1,0 +1,66 @@
+# Folder 105: every piece of code and every document of the headset
+# build in one place (105/СБОРКА.md, 105/make_105.py).
+#
+# The index 105/INDEX.md links every file and is checked here so it
+# never goes stale; the folder itself (every file under 105/, with
+# MANIFEST.json of bytes and SHA-256 and the commit) is built as the
+# artifact ludus-105, and on main it is put beside the APK in the
+# headset-latest release.
+#
+# Constitution: ФОРМА (the whole build: its code and its word) →
+# ДЕЙСТВИЕ (gather it from one source, every file with a link and a
+# hash) → ЦЕЛЬ (whoever builds, tests or rules the game finds every
+# part of it, and the build can be repeated).
+name: Build 105
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  folder-105:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: The index of folder 105 is current
+        run: |
+          pip install pycodestyle >/dev/null
+          python3 -m pycodestyle 105/make_105.py
+          python3 105/make_105.py --check
+
+      - name: The folder 105 with its manifest
+        run: |
+          python3 105/make_105.py --bundle build/ludus-105.zip
+          sha256sum build/ludus-105.zip | tee build/ludus-105.zip.sha256
+          unzip -l build/ludus-105.zip | tail -1
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ludus-105
+          path: |
+            build/ludus-105.zip
+            build/ludus-105.zip.sha256
+          retention-days: 30
+
+      # Only a build of main reaches the release, as the APK does.
+      - name: Beside the APK in headset-latest
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd build
+          if gh release view headset-latest >/dev/null 2>&1; then
+            gh release upload headset-latest ludus-105.zip \
+              ludus-105.zip.sha256 --clobber
+          else
+            echo "::notice title=Folder 105::no headset-latest release yet; the folder stays an artifact"
+          fi
