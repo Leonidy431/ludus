@@ -1,5 +1,5 @@
 {
- "next": 8,
+ "next": 11,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -6747,6 +6747,139 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 153
+  },
+  {
+   "time": "2026-10-02T21:51:37.740567+00:00",
+   "pass_id": "osint-2026-10-02T21:51:37Z",
+   "deficits": [
+    {
+     "id": "DEF-035",
+     "hits": 200,
+     "taken": 0,
+     "refused": {},
+     "to_props": 176,
+     "hits_uncapped": 2598,
+     "props_uncapped": 2061,
+     "props_uncapped_repos": 50,
+     "added_keywords": [],
+     "keywords_total": 47,
+     "keywords_not_searched": [
+      "com",
+      "corsixth",
+      "java",
+      "lua",
+      "manager",
+      "unciv",
+      "util"
+     ],
+     "props": {},
+     "props_seen": 176
+    },
+    {
+     "id": "DEF-036",
+     "hits": 200,
+     "taken": 0,
+     "refused": {},
+     "to_props": 172,
+     "hits_uncapped": 12281,
+     "props_uncapped": 9111,
+     "props_uncapped_repos": 46,
+     "added_keywords": [],
+     "keywords_total": 39,
+     "keywords_not_searched": [
+      "xaml"
+     ],
+     "props": {},
+     "props_seen": 172
+    },
+    {
+     "id": "DEF-040",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 2,
+      "font": 1
+     },
+     "to_props": 96,
+     "hits_uncapped": 54173,
+     "props_uncapped": 49116,
+     "props_uncapped_repos": 60,
+     "added_keywords": [
+      "palettes",
+      "set",
+      "sheet",
+      "signal",
+      "spy",
+      "sse",
+      "status",
+      "stellar",
+      "task",
+      "tga",
+      "train",
+      "transport"
+     ],
+     "keywords_total": 109,
+     "keywords_not_searched": [
+      "bevy",
+      "cleric",
+      "com",
+      "cpp",
+      "crates",
+      "file",
+      "java",
+      "layer",
+      "layers",
+      "load",
+      "loader",
+      "mage",
+      "manager",
+      "model",
+      "name",
+      "out",
+      "output",
+      "panel",
+      "parser",
+      "raloader",
+      "range",
+      "relocation",
+      "remastered",
+      "report",
+      "rotp",
+      "scene",
+      "script",
+      "shatteredpixel",
+      "shatteredpixeldungeon",
+      "tmp"
+     ],
+     "props": {
+      "other": 4
+     },
+     "props_seen": 61
+    }
+   ],
+   "props_taken": {
+    "other": 4
+   },
+   "props_taken_by_index_kind": {
+    "code": 4
+   },
+   "props_duplicates": 409,
+   "props_errors": 0,
+   "props_refused": {
+    "licence-Defold-1.0": 31
+   },
+   "props_new_bytes": 2892,
+   "props_store_files": 1459,
+   "props_store_bytes": 10830629,
+   "props_cache_files_on_disk": 4670,
+   "props_cache_bytes_on_disk": 78045162,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 814549,
+   "props_register_growth_bytes": 2310,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 153
   }
  ],
  "keywords": {
@@ -7524,7 +7657,19 @@
    "rubber",
    "scanner",
    "scene",
-   "script"
+   "script",
+   "palettes",
+   "set",
+   "sheet",
+   "signal",
+   "spy",
+   "sse",
+   "status",
+   "stellar",
+   "task",
+   "tga",
+   "train",
+   "transport"
   ],
   "DEF-047": [
    "java",
