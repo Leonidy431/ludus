@@ -142,6 +142,9 @@ jobs:
           # The engine build chosen from its honest pool on 48 parameters
           # (docs/decisions/ENGINE_BUILD_2026-10-02.md).
           python3 scripts/decisions/engine_build_choice.py --check
+          # Nothing the game exports uses a part cut from its engine
+          # (scripts/godot/engine/ludus.gdbuild and the modules off).
+          python3 scripts/godot/engine/profile.py --check
           # The path of the witness uses the same scene kits as the web
           # VR scene (docs/SACRAMENTS_VR_SCENES.md).
           for f in public/vr/models/scene/sacrament-*; do
@@ -310,6 +313,27 @@ jobs:
 
       - name: Install Godot and Android templates
         run: scripts/godot/ci_setup.sh android
+
+      # The headset's own engine (godot-engine.yml), keyed by the hash of
+      # its profile and flags.  When it is not built for this profile
+      # yet, the stock template stays and the check page says so; the
+      # APK is built either way (TABOO 0.01 item 2).
+      - name: Own engine template, if built for this profile
+        id: engine
+        uses: actions/cache/restore@v4
+        with:
+          path: build/engine
+          key: engine-android-4.7.1-stable-${{ hashFiles('scripts/godot/engine/**', '.github/workflows/godot-engine.yml') }}
+
+      - name: Use the own engine template
+        run: |
+          TPL="$HOME/.local/share/godot/export_templates/4.7.1.stable"
+          if [ -f build/engine/android_source.zip ]; then
+            cp build/engine/android_source.zip "$TPL/android_source.zip"
+            echo "::notice title=Engine template::own build (scripts/godot/engine), $(cut -c1-12 build/engine/android_source.zip.sha256)"
+          else
+            echo "::notice title=Engine template::stock Godot 4.7.1; the own build for this profile is not in the cache yet (godot-engine.yml)"
+          fi
 
       # The Meta OpenXR loader and manifest entries come from the
       # vendors plugin (MIT); its binaries are fetched, not committed.

@@ -1,0 +1,104 @@
+# The headset's own Godot engine: the Android export template built
+# from Godot 4.7.1-stable with only what the game uses
+# (docs/decisions/ENGINE_BUILD_2026-10-02.md,
+# docs/HLD_ENGINE_BUILD_2026-10-02.md phase E2).
+#
+# The build profile and flags live in scripts/godot/engine/; their hash
+# keys the cache, so the engine is rebuilt only when the profile, the
+# flags or this workflow change.  The android job of godot.yml restores
+# the same key and uses the custom android_source.zip when it exists,
+# and the stock one, with a notice, when it does not.
+#
+# Constitution: ФОРМА (the engine as the game uses it) → ДЕЙСТВИЕ (build
+# it once per profile, measure it) → ЦЕЛЬ (room for the teaching's
+# voices in a lighter APK).
+name: Godot engine template (headset)
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/godot/engine/**'
+      - '.github/workflows/godot-engine.yml'
+
+concurrency:
+  group: godot-engine-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  android-template:
+    runs-on: ubuntu-latest
+    # A first engine build with thin LTO, debug and release, takes about
+    # an hour or two on a hosted runner; the job limit is the ceiling.
+    timeout-minutes: 300
+    env:
+      GODOT_TAG: 4.7.1-stable
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Profile is proven unused by the game
+        run: python3 scripts/godot/engine/profile.py --check
+
+      - name: Cache of the built template
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: build/engine
+          key: engine-android-4.7.1-stable-${{ hashFiles('scripts/godot/engine/**', '.github/workflows/godot-engine.yml') }}
+
+      - uses: actions/setup-java@v4
+        if: steps.cache.outputs.cache-hit != 'true'
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Engine source at the pinned tag
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          pip install scons
+          git clone -q --depth 1 --branch "$GODOT_TAG" \
+            https://github.com/godotengine/godot.git "$RUNNER_TEMP/godot"
+          git -C "$RUNNER_TEMP/godot" rev-parse HEAD
+
+      - name: Build the engine libraries (debug and release)
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          cd "$RUNNER_TEMP/godot"
+          # SCons installs the NDK the engine asks for (29.0.14206865)
+          # through the runner's sdkmanager.
+          for t in template_debug template_release; do
+            ARGS=$(python3 "$GITHUB_WORKSPACE/scripts/godot/engine/profile.py" \
+              --scons android "$t")
+            echo "scons $ARGS"
+            start=$(date +%s)
+            scons -j"$(nproc)" $ARGS
+            echo "$t built in $(( $(date +%s) - start )) s"
+          done
+          ls -la bin/
+
+      - name: Build the Android templates
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          cd "$RUNNER_TEMP/godot/platform/android/java"
+          ./gradlew generateGodotTemplates
+          mkdir -p "$GITHUB_WORKSPACE/build/engine"
+          cp "$RUNNER_TEMP/godot/bin/android_source.zip" \
+            "$GITHUB_WORKSPACE/build/engine/"
+          ls -la "$RUNNER_TEMP/godot/bin/"
+
+      - name: Sizes of the engine library, custom against stock
+        run: |
+          cd build/engine
+          unzip -o -q android_source.zip -d src
+          for a in $(find src -name 'godot-lib.template_*.aar'); do
+            echo "== $a"
+            unzip -lv "$a" | grep 'libgodot_android.so'
+          done
+          sha256sum android_source.zip | tee android_source.zip.sha256
+          rm -rf src
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ludus-engine-android-template
+          path: build/engine
+          retention-days: 30
