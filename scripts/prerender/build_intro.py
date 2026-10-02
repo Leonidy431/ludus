@@ -113,7 +113,7 @@ def frame(shot, src, out):
     img.save(out)
 
 
-def ping_track(seconds, out, lake_ranges):
+def ping_track(seconds, out, lake_ranges, quiet=()):
     rate = 22050
     n = int(seconds * rate)
     buf = [0.0] * n
@@ -129,6 +129,12 @@ def ping_track(seconds, out, lake_ranges):
                     buf[s0 + k] += 0.18 * env * math.sin(
                         2 * math.pi * 1500 * k / rate)
             t += 4.0
+    # While a thing's examine video is on screen, its world is silent:
+    # only the narrator speaks (operator, 2026-10-02: «звук когда
+    # вставляешь видео предметов, звук с предметов отключай»).
+    for a, b in quiet:
+        for i in range(int(a * rate), min(n, int(b * rate))):
+            buf[i] = 0.0
     with wave.open(str(out), 'w') as w:
         w.setnchannels(1)
         w.setsampwidth(2)
@@ -148,7 +154,7 @@ def main():
     shots.sort(key=lambda s: s['t'])
     WORK.mkdir(parents=True, exist_ok=True)
     total = float(intro['length_s'])
-    segs, voices, lake = [], [], []
+    segs, voices, lake, quiet = [], [], [], []
     for i, s in enumerate(shots):
         end = shots[i + 1]['t'] if i + 1 < len(shots) else total
         dur = end - s['t']
@@ -156,6 +162,7 @@ def main():
             lake.append((s['t'], end))
         seg = WORK / ('seg%02d.mp4' % i)
         if s['id'] in TURNS:
+            quiet.append((s['t'], end))
             fr = WORK / ('turn%02d' % i)
             fr.mkdir(exist_ok=True)
             for k in range(24):
@@ -197,7 +204,7 @@ def main():
                     '-safe', '0', '-i', str(lst), '-c', 'copy', str(video)],
                    check=True)
     ping = WORK / 'ping.wav'
-    ping_track(total, ping, lake)
+    ping_track(total, ping, lake, quiet)
     cmd = ['ffmpeg', '-y', '-loglevel', 'error', '-i', str(video), '-i',
            str(ping)]
     filt = []

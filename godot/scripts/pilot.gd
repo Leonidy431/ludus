@@ -1167,6 +1167,9 @@ func _start_clip(e: Dictionary, c: Dictionary) -> void:
 	m.uv1_offset = Vector3.ZERO
 	close_up.visible = true
 	narrate("objects", e.id, true)
+	# The thing's own world goes silent under its video: only the
+	# narrator is heard (operator, 2026-10-02).
+	duck_db = -80.0
 	synth.event_click()
 	if c.has("voice"):
 		narrator.stream = c.voice
