@@ -333,9 +333,26 @@ jobs:
           # in the repo secret LUDUS_DEBUG_KEYSTORE_B64 (base64 of a
           # keystore with alias androiddebugkey, password "android").
           # Without it a throwaway key is made and the log says so.
+          # A secret pasted with line breaks, a Windows CR or spaces is
+          # still read: whitespace is dropped before decoding.  A secret
+          # that does not decode to a keystore keytool can open does not
+          # stop the build; it falls back to the cached key, which keeps
+          # the APK installing over the last one (TABOO 0.01 item 3).
+          key_ok=""
           if [ -n "$KEYSTORE_B64" ]; then
-            echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/debug.keystore"
-            echo "signing key: LUDUS_DEBUG_KEYSTORE_B64"
+            if printf '%s' "$KEYSTORE_B64" | tr -d ' \t\r\n' \
+                | base64 -d > "$RUNNER_TEMP/debug.keystore" 2>/dev/null \
+              && keytool -list -keystore "$RUNNER_TEMP/debug.keystore" \
+                -storepass android -alias androiddebugkey >/dev/null 2>&1
+            then
+              key_ok=1
+              echo "signing key: LUDUS_DEBUG_KEYSTORE_B64"
+            else
+              echo "::warning::LUDUS_DEBUG_KEYSTORE_B64 is set but is not base64 of a keystore with alias androiddebugkey and password android; the cached key is used instead."
+            fi
+          fi
+          if [ -n "$key_ok" ]; then
+            :
           elif [ -f ~/.ludus-signing/debug.keystore ]; then
             cp ~/.ludus-signing/debug.keystore "$RUNNER_TEMP/debug.keystore"
             echo "signing key: interim key from the Actions cache"
