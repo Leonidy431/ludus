@@ -98,8 +98,9 @@ func _initialize() -> void:
 			budgets_path = a.trim_prefix("--budgets=")
 		elif a.begins_with("--view="):
 			only_view = a.trim_prefix("--view=")
-	if not scene_name in ["hub", "dive", "witness"]:
-		printerr("measure_budgets: --scene=hub|dive|witness is required")
+	if not scene_name in ["hub", "dive", "witness", "pilot"]:
+		printerr("measure_budgets: --scene=hub|dive|witness|pilot is "
+			+ "required")
 		failed = true
 		return
 	load_start = _loadavg()
@@ -230,6 +231,11 @@ func _measure_empty() -> bool:
 	base_static = int(Performance.get_monitor(Performance.MEMORY_STATIC))
 	var ps := load("res://scenes/%s.tscn" % scene_name) as PackedScene
 	node = ps.instantiate()
+	if scene_name == "pilot":
+		# The pilot is measured even where it was seen, and does not go
+		# on to the courtyard when its clock runs out.
+		node.replay = true
+		node.stay = true
 	root.add_child(node)
 	current_scene = node
 	node.set_process(false)
@@ -298,12 +304,27 @@ func _views() -> Array:
 			out.append({"name": "end-back", "pos": Vector3(104, 0, 0),
 				"yaw": PI / 2.0})
 			return out
+		"pilot":
+			# One view per world the pilot shows: the room, the water
+			# in it, the lake at its fullest beats, the room again.
+			var out := []
+			for v in [["room", 2.0], ["water", 20.0], ["amphora", 100.0],
+					["walls", 150.0], ["lure", 450.0],
+					["khachkar", 650.0], ["diary", 730.0],
+					["drains", 870.0], ["title", 902.0]]:
+				out.append({"name": v[0], "t": v[1]})
+			return out
 	return []
 
 
 ## Hold the player at the view every frame, as a still headset would.
 func _apply(v: Dictionary) -> void:
 	match scene_name:
+		"pilot":
+			# The clock is held at the view; the scene's own _process
+			# enters the beat and keeps its state there.
+			node.t = v.t
+			node.override = {"gaze": false, "away_deg": 30.0}
 		"hub":
 			node.pos = v.pos
 			node.yaw = v.yaw

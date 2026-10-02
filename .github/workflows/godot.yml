@@ -225,7 +225,7 @@ jobs:
         working-directory: godot
         run: |
           rc=0
-          for s in hub dive witness; do
+          for s in hub dive witness pilot; do
             timeout 600 xvfb-run -a -s "-screen 0 1280x720x24" \
               "$GODOT" --path . --rendering-driver opengl3 \
               -s res://tools/measure_budgets.gd -- --scene=$s --check \
@@ -269,7 +269,8 @@ jobs:
               data/passions.json data/antagonist-manifest.json \
               data/atlas-99.json \
               data/bell-rules.json \
-              data/campaign-spine.json \
+              data/campaign-spine.json data/pilot-1.json \
+              scenes/pilot.tscn.remap \
               scenes/hub.tscn.remap \
               scenes/dive.tscn.remap scenes/witness.tscn.remap; do
             strings "$PCK" | grep -qF "$f" || { echo "missing: $f"; missing=1; }
