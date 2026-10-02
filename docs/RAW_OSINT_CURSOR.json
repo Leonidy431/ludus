@@ -1,5 +1,5 @@
 {
- "next": 14,
+ "next": 17,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -5219,6 +5219,104 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 313
+  },
+  {
+   "time": "2026-10-02T04:51:04.535676+00:00",
+   "pass_id": "osint-2026-10-02T04:51:04Z",
+   "deficits": [
+    {
+     "id": "DEF-055",
+     "hits": 54,
+     "taken": 0,
+     "refused": {},
+     "to_props": 54,
+     "hits_uncapped": 54,
+     "props_uncapped": 54,
+     "props_uncapped_repos": 9,
+     "added_keywords": [],
+     "keywords_total": 6,
+     "keywords_not_searched": [],
+     "props": {},
+     "props_seen": 54
+    },
+    {
+     "id": "DEF-001",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "outline-helper": 4,
+      "sacred-never-raw": 12,
+      "dogma-stop-list": 1
+     },
+     "to_props": 0,
+     "hits_uncapped": 33953,
+     "props_uncapped": 8971,
+     "props_uncapped_repos": 59,
+     "added_keywords": [
+      "skin",
+      "sorcerer",
+      "spell",
+      "square",
+      "troll"
+     ],
+     "keywords_total": 102,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "java",
+      "mage",
+      "mindustry",
+      "rsi",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-003",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 2
+     },
+     "to_props": 143,
+     "hits_uncapped": 8148,
+     "props_uncapped": 5879,
+     "props_uncapped_repos": 53,
+     "added_keywords": [],
+     "keywords_total": 40,
+     "keywords_not_searched": [
+      "com",
+      "corsixth",
+      "java",
+      "left",
+      "lua",
+      "right",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 143
+    }
+   ],
+   "props_taken": {},
+   "props_taken_by_index_kind": {},
+   "props_duplicates": 197,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 0,
+   "props_store_files": 1450,
+   "props_store_bytes": 10783950,
+   "props_cache_files_on_disk": 4661,
+   "props_cache_bytes_on_disk": 77998483,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 809494,
+   "props_register_growth_bytes": 0,
+   "stage": "done",
+   "accepted_objects": 5,
+   "code_candidates": 90
   }
  ],
  "keywords": {
@@ -5501,7 +5599,12 @@
    "ogl",
    "ooze",
    "ranged",
-   "ravenous"
+   "ravenous",
+   "skin",
+   "sorcerer",
+   "spell",
+   "square",
+   "troll"
   ],
   "DEF-049": [
    "terrain",
