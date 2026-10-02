@@ -53,6 +53,10 @@ static func _json(path: String) -> Variant:
 
 ## The panel kind of a heart spec.
 static func kind_of(h: Dictionary) -> String:
+	# The 26 small acts and finds with their own logic (PlaceDeeds, L3).
+	var act := PlaceDeeds.act_of(h)
+	if act != "" and PlaceDeeds.has(act):
+		return "act"
 	match h.get("core", ""):
 		"MissionCore":
 			return {"dialogue": "talk", "practice": "deed",
@@ -123,7 +127,22 @@ static func open(loc: Dictionary, st: Dictionary,
 		"listen":
 			p["still"] = -1.0
 			p["heard"] = false
+		"act":
+			p["deed"] = PlaceDeeds.start(PlaceDeeds.act_of(h))
 	return _result(p, s)
+
+
+## After an act's step: the record changes only on the step that closes
+## the act (once a day counts, PlaceDeeds.record), and only then is the
+## save asked for.  FORM is never touched.
+static func _act_done(p: Dictionary, q: Dictionary, loc: Dictionary,
+		s: Dictionary) -> Dictionary:
+	var say := str(q.deed.get("reply", ""))
+	if q.deed.get("done", false) and not p.deed.get("done", false):
+		s["deeds"] = PlaceDeeds.record(s.get("deeds", {}),
+			PlaceDeeds.act_of(loc.heart), s.day)
+		return _result(q, s, say, true)
+	return _result(q, s, say)
 
 
 static func _passion(ctx: Dictionary, id) -> Dictionary:
@@ -185,6 +204,15 @@ static func lines(p: Dictionary, loc: Dictionary, st: Dictionary,
 					DialogueCore.closed_line(p.node, st.form)]:
 				if extra != "":
 					out.append(extra)
+			out.append("")
+		"act":
+			var act := PlaceDeeds.act_of(h)
+			out = [str(h.get("ru", "")), "", teaching(loc), ""]
+			out += PlaceDeeds.lines(act, p.deed)
+			if str(p.deed.get("reply", "")) != "":
+				out += ["", str(p.deed.reply)]
+			if PlaceDeeds.done_today(st.get("deeds", {}), act, st.day):
+				out.append("Сегодня уже сделано.")
 			out.append("")
 		"deed":
 			var pr: Dictionary = MissionCore.PRACTICE_RU[h.id]
@@ -295,6 +323,10 @@ static func choices(p: Dictionary, loc: Dictionary, st: Dictionary,
 		ctx: Dictionary) -> Array:
 	var h: Dictionary = loc.heart
 	match p.kind:
+		"act":
+			if p.deed.get("done", false):
+				return [AWAY]
+			return PlaceDeeds.options(PlaceDeeds.act_of(h), p.deed) + [AWAY]
 		"talk":
 			var out := []
 			var open := HubCore.open_branches(p.node, st.form)
@@ -404,6 +436,10 @@ static func choose(p: Dictionary, loc: Dictionary, st: Dictionary,
 	var q := p.duplicate(true)
 	var s := st.duplicate(true)
 	match p.kind:
+		"act":
+			q.deed = PlaceDeeds.choose(PlaceDeeds.act_of(h), p.deed, c.id)
+			q.choice = 0
+			return _act_done(p, q, loc, s)
 		"talk":
 			var open := HubCore.open_branches(p.node, s.form)
 			var res := HubCore.choose(s.form, open[int(c.id.substr(1))])
@@ -498,6 +534,12 @@ static func choose(p: Dictionary, loc: Dictionary, st: Dictionary,
 static func tick(p: Dictionary, loc: Dictionary, st: Dictionary,
 		ctx: Dictionary, dt: float, still: bool) -> Dictionary:
 	var h: Dictionary = loc.heart
+	if p.get("kind") == "act" and not p.deed.get("done", false):
+		var q := p.duplicate(true)
+		q.deed = PlaceDeeds.tick(PlaceDeeds.act_of(h), p.deed, dt, still)
+		if q.deed == p.deed:
+			return _result(p, st)
+		return _act_done(p, q, loc, st.duplicate(true))
 	if p.get("kind") == "rule" and p.timer >= 0.0:
 		var q := p.duplicate(true)
 		var pr := RuleCore.practice(h.id)

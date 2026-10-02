@@ -218,4 +218,11 @@ func _initialize() -> void:
 	mentors.in_hub(self)
 	print("mentors: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# The small acts at the hearts of 26 places (PlaceDeeds, phase L3).
+	before = checks
+	fails = failures
+	load("res://tests/test_place_deeds.gd").new().run(self)
+	load("res://tests/test_act_cue.gd").new().run(self)
+	print("place deeds: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	quit(1 if failures else 0)
