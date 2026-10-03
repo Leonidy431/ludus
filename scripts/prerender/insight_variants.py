@@ -529,6 +529,22 @@ LINES = {
 }
 
 
+# The chorus's pick of each insight, from the contact sheets
+# (build/insight_variants/<id>/sheet.jpg), and its remarks on the frames
+# it singled out: one weakness and two strengths each, as the operator
+# asked («на каждый негатив два позитива»).  The other frames get a
+# remark measured from their render (scripts/story/insight_branches.py).
+PICKS = {
+    'ink_first_line': 4, 'bazaar_jug': 8, 'tape_at_night': 12,
+    'ford_of_cold': 1, 'hands_of_masons': 4, 'harbor_of_ayas': 9,
+    'purse_at_the_gate': 11, 'gate_opened_inside': 1,
+    'bread_in_siege': 2, 'scribe_lifts_eyes': 4, 'same_comet': 11,
+    'error_of_a_finger': 11,
+}
+
+NOTES = {}
+
+
 def declination(doy):
     return -23.44 * math.cos(2.0 * math.pi * (doy + 10) / 365.0)
 
@@ -680,6 +696,8 @@ def build():
                        'doy': p['doy'], 'east': p['east'],
                        'kind': p['kind']}
                    for k, p in PLACES.items()},
+        'picks': PICKS,
+        'notes': NOTES,
         'variants': {},
     }
     for iid in PLACES:

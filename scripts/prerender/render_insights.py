@@ -1134,7 +1134,14 @@ def bread_in_siege(sc):
     # joints staggered, so the wall reads as laid stone, not plaster.
     joint = ri.mat('joint', (0.12, 0.11, 0.10), rough=1.0)
     for c, z in enumerate((0.3, 0.6, 0.9, 1.2)):
-        box((3.0, 0.01, 0.012), (0, 0.585, z), joint)
+        # Above the low wall the bed joint stops at the crenel (x 0.25
+        # to 0.85): a joint across the gap hung in the air as a black
+        # line over the sky in the variants of the hour (TABOO 0.016).
+        if z > 0.3:
+            box((1.75, 0.01, 0.012), (-0.625, 0.585, z), joint)
+            box((0.65, 0.01, 0.012), (1.175, 0.585, z), joint)
+        else:
+            box((3.0, 0.01, 0.012), (0, 0.585, z), joint)
         x = -1.5 + 0.22 * (c % 2)
         while x < 1.5:
             if z > 0.3 and 0.25 < x < 0.85:
