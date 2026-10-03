@@ -780,7 +780,7 @@
 - [oculus-knights/UnityVR/Assets/Scripts/Physics/CommandWrenchMap.cs](../oculus-knights/UnityVR/Assets/Scripts/Physics/CommandWrenchMap.cs) — <summary>
 - [oculus-knights/UnityVR/Assets/Scripts/Physics/ThrusterAllocator.cs](../oculus-knights/UnityVR/Assets/Scripts/Physics/ThrusterAllocator.cs) — <summary>
 - [oculus-knights/UnityVR/Assets/Tests/EditMode/DiveCockpitBridgeTests.cs](../oculus-knights/UnityVR/Assets/Tests/EditMode/DiveCockpitBridgeTests.cs) — <summary>
-- [rzhevsky/README.md](../rzhevsky/README.md) 📄 — «Поручик Ржевский против Ордена»
+- [rzhevsky/README.md](../rzhevsky/README.md) 📄 — «Ржевский и Ложа Трёх Циркулей» — вторая серия Ludus (единая папка)
 - [rzhevsky/texts/EDITORS_CHORUS_LOG.md](../rzhevsky/texts/EDITORS_CHORUS_LOG.md) 📄 — Журнал хора редакторов: три прохода (2026-10-03)
 - [rzhevsky/texts/OUTLINE_EP2_EP3.md](../rzhevsky/texts/OUTLINE_EP2_EP3.md) 📄 — Эпизоды 2 и 3: «Ржевский против Ордена» и «Ржевский против Ложи» — логлайны, акты, герои, Конституция
 - [third_party/mangustik/SOURCES.md](../third_party/mangustik/SOURCES.md) 📄 — Mangustik: drawings and panel looks (first-party, operator's repos)
