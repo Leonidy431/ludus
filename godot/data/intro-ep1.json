@@ -4,7 +4,22 @@
  "series_ru": "Ранее в «Атласе воды»",
  "when": "every launch after the first (TABOO 0.015 p.1: first launch is the cold open); if the pilot was not finished, the recap is not shown and the game resumes the pilot",
  "variant_rule": "deterministic: variant = PilotCore.echo(saved pilot stage): captive→captive, virtue→virtue, anything else or no choice saved→unresolved; no randomness",
- "structure": "EcoQuest curve: wonder (0–28 s: lamp, clear water, silt, walls whole on sonar) → mystery (29–33: who sang here) → alarm (34–45: tether, bookmark, Prior, lure) → player's own choice (46–55) → stillness at the khachkar (56–61) → manuscript and cliffhanger (62–81) → title and teaser (82–90)",
+ "structure": "цепь читателей (0–22) → дно и цена (22–47) → свой выбор и его рифма в 1374 (47–59) → тишина у кайрака (59–65) → лист и знак (65–85) → титр",
+ "branch_grade": {
+  "virtue": [
+   255,
+   170,
+   90
+  ],
+  "captive": [
+   150,
+   190,
+   255
+  ],
+  "unresolved": null
+ },
+ "branch_rule": "variant → branch of pilot-branches.json: virtue → light (warm, 2200 K), captive → purification (cold, 6500 K), unresolved → middle (no grade)",
+ "fit_rule": "every voice ends ≤ shot end − 0.1 s; build fails",
  "transitions": "fade to black 0.6–1.2 s or cuts by the world (lamp off, camera blackout, sonar sweep); no camera motion, no yaw, no shake; player's head is never moved",
  "after": "fade into the courtyard hub; hub is preloaded in the background during the recap (TABOO 0.014)",
  "shots": [
@@ -12,253 +27,293 @@
    "t": 0,
    "id": "open_black",
    "world": "void",
-   "show": "Чернота; через 2 с в глубине — одно кольцо пинга сонара (шейдер пинга из погружения), без логотипа",
-   "sound": "lake_room_tone с −40 dBFS, затем одиночный sonar ping",
+   "src": "card",
    "narration_ru": "",
    "text_ru": "Ранее в «Атласе воды»",
    "variant": "all",
-   "hook_ru": "",
-   "source": "pilot beat water_rises (sonar)"
+   "ping": true,
+   "sound": "room tone −40 dBFS, один пинг",
+   "hook_ru": ""
   },
   {
-   "t": 4,
-   "id": "room_water",
-   "world": "room",
-   "show": "Комната игрока в passthrough (как в пилоте): капля на руке, вода плавно поднимается до колен; голова свободна, мир её не двигает",
-   "sound": "drop_overhead → sonar_below из-под пола",
-   "narration_ru": "Капля упала ему на руку. Потолок был сухой. Стучали снизу — из-под пола звал сонар.",
-   "text_ru": "",
+   "t": 3,
+   "id": "reader_knight",
+   "world": "past",
+   "src": "prerender:insight_purse_at_the_gate.jpg",
+   "text_ru": "СИС · 1374",
+   "narration_ru": "Рыцарю дали серебро за ворота. Он записал это в дневник.",
    "variant": "all",
-   "hook_ru": "Откуда вода?",
-   "source": "beats drop, water_rises"
+   "sound": "очаг, камень; без пинга",
+   "hook_ru": "Что он ответил?"
   },
   {
-   "t": 10,
-   "id": "lake_wonder",
-   "world": "lake",
-   "show": "Затемнение 1,0 с (passthrough → погружение) → озеро, 38 м: луч лампы впервые открывает прозрачную воду и ил слоями; на пульте глубина и температура, Приора ещё нет — это восхищение (EcoQuest: лаборатория и море)",
-   "sound": "lamp_on, затем lake_room_tone, тихое дыхание",
-   "narration_ru": "Тридцать восемь метров. Ил лежит слоями, как листы книги. Озеро ничего не выбрасывает.",
-   "text_ru": "38 м",
+   "t": 9,
+   "id": "reader_scribe",
+   "world": "past",
+   "src": "prerender:insight_ink_first_line.jpg",
+   "text_ru": "ОБИТЕЛЬ НА ОЗЕРЕ · 1375",
+   "narration_ru": "Переписчик обители скопировал его дневник и приписал: «Кто прочтёт…»",
    "variant": "all",
-   "hook_ru": "",
-   "source": "beat immersion (без сообщения), объект Amphora рядом"
+   "sound": "перо, лучина",
+   "hook_ru": "Кто прочтёт?"
   },
   {
    "t": 16,
-   "id": "amphora_turn",
-   "world": "lake",
-   "show": "Пререндер amphora.png из APK → флипбук оборота из пакета closeups-ep1 (без сети — неподвижный кадр)",
-   "sound": "процедурный шорох ила, фокус линзы",
-   "narration_ru": "Луч нашёл горло амфоры. Её не уронили — поставили. Так делают те, кто живёт рядом.",
-   "text_ru": "",
+   "id": "reader_operator",
+   "world": "room",
+   "src": "audit:pilot-02-water.png",
+   "text_ru": "ИССЫК-КУЛЬ · 2026",
+   "narration_ru": "Читает он, шесть веков спустя. К нему пришла вода.",
    "variant": "all",
-   "hook_ru": "",
-   "source": "examine Amphora, beat hands_on_stick"
+   "sound": "drop_overhead → sonar_below",
+   "hook_ru": "Откуда вода?"
   },
   {
    "t": 22,
-   "id": "walls_whole",
+   "id": "lake_walls",
    "world": "lake",
-   "show": "Первый контакт с величественным: сонарная развёртка медленно, линия за линией, рисует стены обители целиком — прямые углы, громада рук человеческих; аппарат неподвижен, движутся только линии сонара. Не монстр и не трофей: это дом",
-   "sound": "sonar_lines, пинги реже и глубже; под ними тянется одна линия флейты из синтеза",
-   "narration_ru": "Сонар начертил прямые углы. Камни так не ложатся. Здесь жили люди.",
-   "text_ru": "",
+   "src": "audit:pilot-03-immersion.png",
+   "fx": {
+    "lift": 2.2
+   },
+   "ping": true,
+   "text_ru": "38 м · 17 °C",
+   "narration_ru": "",
+   "claud_voice": "claud_walls_enter",
+   "claud_ru": "Сонар рисует прямые линии. Камни так не лежат.",
    "variant": "all",
-   "hook_ru": "Кто строил на дне озера?",
-   "source": "beat walls, node 19"
+   "sound": "lamp_on, sonar_lines",
+   "hook_ru": ""
   },
   {
-   "t": 29,
-   "id": "thermocline",
-   "world": "lake",
-   "show": "Слой 50 м: муть редеет, цифра температуры на пульте падает; шум катера сверху гаснет",
-   "sound": "thermocline_hush + гул натянутого троса (синтез)",
-   "narration_ru": "Пятьдесят метров. Шум сверху заглох. Остались гул троса и строка писца: здесь пели.",
-   "text_ru": "здесь пели",
+   "t": 28,
+   "id": "masons",
+   "world": "past",
+   "src": "prerender:insight_hands_of_masons.jpg",
+   "text_ru": "",
+   "narration_ru": "Значит, здесь жили люди: камень клали по шнуру.",
    "variant": "all",
-   "hook_ru": "Кто здесь пел? Куда они ушли?",
-   "source": "beat thermocline, node 90/6"
+   "sound": "шнур, камень",
+   "hook_ru": "Кто строил на дне?"
   },
   {
    "t": 34,
-   "id": "tether_bookmark",
+   "id": "bookmark",
    "world": "lake",
-   "show": "Тревога: левая камера гаснет затемнением 1 с (без разворота и рывка: jerk_yaw пилота заменён гашением), на пульте — чужая строка журнала",
-   "sound": "tether_strain тихо, затем console_tick",
-   "narration_ru": "Трос дёрнуло, левая камера ослепла. А в журнале нашлась чужая строка.",
+   "src": "turn:logbook",
    "text_ru": "Сеть экспедиции куплена Орденом сегодня в 03:12.",
+   "narration_ru": "",
+   "claud_voice": "claud_bookmark_enter",
+   "claud_ru": "В журнале сети чужая запись. Нашу экспедицию продали сегодня ночью.",
    "variant": "all",
-   "hook_ru": "Почему Орден купил сеть именно сегодня?",
-   "source": "beats tether_jerk, bookmark, nodes 17, 35"
+   "sound": "console_tick; звук вещи выключен",
+   "hook_ru": "Кто продал?"
   },
   {
    "t": 40,
-   "id": "drams_lure",
+   "id": "lure",
    "world": "lake",
-   "show": "Приказ Приора на пульте → пререндер drams.png → флипбук оборота: серебро без чёрного налёта; на краю — предложение",
-   "sound": "console_tick, затем lure_shimmer (машинный FM-блеск, тихо)",
-   "narration_ru": "Приор хотел координаты. За них в иле блестело серебро — слишком чистое для шести веков.",
-   "text_ru": "Координаты — и драмы ваши. Никто не узнает.",
+   "src": "turn:drams",
+   "text_ru": "Координаты — и драмы ваши. Никто не узнает. — ПРИОР",
+   "narration_ru": "",
+   "claud_voice": "claud_lure_enter",
+   "claud_ru": "Предложение: серебро за координаты. Это цена, а не подарок. Решение — твоё.",
    "variant": "all",
-   "hook_ru": "Возьмёшь?",
-   "source": "beats immersion (приказ), lure, examine Drams"
+   "sound": "console_tick",
+   "hook_ru": "Возьмёт ли он?"
   },
   {
-   "t": 46,
+   "t": 47.5,
    "id": "echo_captive_a",
    "world": "lake",
-   "show": "Кадр драм гаснет; на пульте строка передачи; луч смотрит в пустой ил",
-   "sound": "drone_pass над поверхностью, далеко и сверху",
-   "narration_ru": "Он отдал, что просили. Координаты ушли.",
+   "src": "audit:pilot-05-lure.png",
+   "fx": {
+    "crop": [
+     240,
+     360,
+     880,
+     720
+    ],
+    "sub_top": true
+   },
+   "grade": true,
+   "ping": true,
    "text_ru": "КООРДИНАТЫ ПЕРЕДАНЫ",
+   "narration_ru": "Он отдал координаты. Серебро осталось лежать в иле.",
    "variant": "captive",
-   "hook_ru": "",
-   "source": "choice_echo.captive"
+   "sound": "drone_pass сверху",
+   "hook_ru": ""
   },
   {
-   "t": 51,
+   "t": 53.5,
    "id": "echo_captive_b",
-   "world": "lake",
-   "show": "Тот же план: гул дрона уходит вверх, на пульте метка чужого судна над точкой",
-   "sound": "drone_pass затухает",
-   "narration_ru": "Над катером беззвучно прошёл чужой дрон.",
-   "text_ru": "",
+   "world": "past",
+   "src": "prerender:insight_gate_opened_inside.jpg",
+   "grade": true,
+   "text_ru": "СИС · 1374",
+   "narration_ru": "Ворота Сиса тоже открыли изнутри — за такое же серебро.",
    "variant": "captive",
-   "hook_ru": "Что сделает Орден с координатами?",
-   "source": "choice_echo.captive, episode2=order_first"
+   "sound": "скрип засова один раз",
+   "hook_ru": "Что Орден сделает с координатами?"
   },
   {
-   "t": 46,
+   "t": 47.5,
    "id": "echo_virtue_a",
    "world": "lake",
-   "show": "Блеск на краю луча гаснет; в кадре только ил и вода",
-   "sound": "silence_room → room tone и дыхание около −45 dBFS",
-   "narration_ru": "Он отвернулся. Блеск погас, остались вода и дыхание.",
+   "src": "audit:pilot-05-lure.png",
+   "fx": {
+    "crop": [
+     240,
+     360,
+     880,
+     720
+    ],
+    "dim": 0.5,
+    "sub_top": true
+   },
+   "grade": true,
    "text_ru": "",
+   "narration_ru": "Он отвернулся и выдохнул трижды. Блеск погас.",
    "variant": "virtue",
-   "hook_ru": "",
-   "source": "choice_echo.virtue"
+   "sound": "room tone и дыхание −45 dBFS",
+   "hook_ru": ""
   },
   {
-   "t": 51,
+   "t": 53.5,
    "id": "echo_virtue_b",
-   "world": "lake",
-   "show": "Пульт: ответ Приора; ниже — строка книги находок углём (#5A5550)",
-   "sound": "console_tick",
-   "narration_ru": "Серебро легло писцу в книгу находок.",
+   "world": "past",
+   "src": "prerender:insight_bread_in_siege.jpg",
+   "grade": true,
    "text_ru": "Вы пожалеете. — ПРИОР",
+   "narration_ru": "Рыцарь в осаде тоже не пошёл к воротам. Отдал хлеб соседу.",
    "variant": "virtue",
-   "hook_ru": "Чем Приор ответит?",
-   "source": "choice_echo.virtue, episode2=scribe_first"
+   "sound": "очаг",
+   "hook_ru": "Чем ответит Приор?"
   },
   {
-   "t": 46,
+   "t": 47.5,
    "id": "echo_unresolved_a",
    "world": "lake",
-   "show": "Драмы всё ещё блестят на краю луча; на пульте — пустая строка координат",
-   "sound": "lure_shimmer на минимуме",
-   "narration_ru": "Он не взял и не отвернулся.",
+   "src": "audit:pilot-05-lure.png",
+   "fx": {
+    "crop": [
+     240,
+     360,
+     880,
+     720
+    ],
+    "sub_top": true
+   },
+   "ping": true,
    "text_ru": "",
+   "narration_ru": "Он не взял и не отвернулся. Серебро ждёт.",
    "variant": "unresolved",
-   "hook_ru": "",
-   "source": "choice_echo.unresolved"
+   "sound": "lure_shimmer на минимуме",
+   "hook_ru": ""
   },
   {
-   "t": 51,
+   "t": 53.5,
    "id": "echo_unresolved_b",
-   "world": "lake",
-   "show": "Пульт: ответ Приора, курсор мигает в пустой строке",
-   "sound": "console_tick размеренно",
-   "narration_ru": "Приор написал, что подождёт. И ожидание легло в журнал.",
+   "world": "past",
+   "src": "prerender:insight_purse_at_the_gate.jpg",
    "text_ru": "Я подожду. — ПРИОР",
+   "narration_ru": "Рыцарь тоже держал кошель, пока серебро не согрелось.",
    "variant": "unresolved",
-   "hook_ru": "Сколько он будет ждать?",
-   "source": "choice_echo.unresolved, episode2=prior_waits"
+   "sound": "тишина комнаты",
+   "hook_ru": "Сколько он будет ждать?"
   },
   {
-   "t": 56,
+   "t": 59.5,
    "id": "khachkar_far",
    "world": "lake",
-   "show": "Кайрак издали, дальше 8 м, на краю луча, не по центру; интерфейс уходит в ноль за 1,75 с; ни бирки, ни подсветки, ни приближения, ни флипбука — план кончается гашением пульта, а не «портретом» камня",
-   "sound": "машинный шум к −60 dBFS; room_tone_breath",
-   "narration_ru": "",
+   "src": "audit:pilot-06-khachkar.png",
+   "fx": {
+    "place": {
+     "scale": 0.45,
+     "cx": 0.86,
+     "cy": 0.55
+    },
+    "dim": 0.55,
+    "no_push": true,
+    "no_label": true,
+    "fade_out_s": 2.0
+   },
+   "ping": false,
    "text_ru": "",
+   "narration_ru": "",
    "variant": "all",
-   "hook_ru": "",
-   "source": "beat khachkar (святыня: рассказчик молчит)"
+   "sound": "машина и музыка к −60 dBFS; room tone и дыхание −45 dBFS; Клауд молчит",
+   "hook_ru": ""
   },
   {
-   "t": 62,
+   "t": 65.5,
    "id": "diary_scan",
    "world": "lake",
-   "show": "Затемнение → пререндер diary.png → флипбук оборота; строки сканера идут поверх",
-   "sound": "scanner_lines",
-   "narration_ru": "Слова рыцаря, почерк переписчика — а читает теперь он. Лист шёл к нему шесть веков.",
-   "text_ru": "Список писца обители со слов рыцаря. Лета 1375. Сис пал. Иду к братьям на озеро…",
+   "src": "turn:diary",
+   "text_ru": "Лета 1375. Сис пал. Иду к братьям на озеро…",
+   "narration_ru": "",
    "variant": "all",
-   "hook_ru": "Кто писал?",
-   "source": "beat diary, examine Diary"
+   "sound": "scanner_lines",
+   "hook_ru": "Кто писал?"
   },
   {
-   "t": 68,
+   "t": 70,
    "id": "mark_line",
    "world": "lake",
-   "show": "Последняя строка обрывается на срезе листа; сканер замирает на тире (текст не глитчится)",
-   "sound": "scanner_lines обрывается на полуслове, затем room tone",
-   "narration_ru": "Край листа срезан ножом. Кто-то не хотел, чтобы строку дочитали.",
+   "src": "prerender:insight_same_comet.jpg",
    "text_ru": "…и знак на руке моей, как звезда с хвостом, не смыва—",
+   "claud_voice": "claud_mark_line_enter",
+   "claud_ru": "Строка обрывается. Это не сканер — край листа истлел.",
+   "narration_ru": "Край срезан ножом.",
+   "voice_at": 4.9,
    "variant": "all",
-   "hook_ru": "Знак?",
-   "source": "beat mark_line, node 1"
-  },
-  {
-   "t": 72,
-   "id": "comet_mark",
-   "world": "room",
-   "show": "Затемнение 1,2 с (вместо жёсткой склейки пилота) → сухая комната в passthrough; на руке — метка-комета, тусклая, не светится",
-   "sound": "silence_room: room tone, дыхание",
-   "narration_ru": "Вода ушла в пол. Он посмотрел на руку медленно, как вскрывают чужое письмо.",
-   "text_ru": "",
-   "variant": "all",
-   "hook_ru": "Чей это знак?",
-   "source": "beat room_drains, object Mark"
+   "sound": "сканер обрывается на полуслове",
+   "hook_ru": "Кто не хотел, чтобы дочитали?"
   },
   {
    "t": 77,
-   "id": "prior_last",
+   "id": "comet_mark",
    "world": "room",
-   "show": "Пульт в комнате загорается одной строкой Приора",
-   "sound": "console_tick, один",
-   "narration_ru": "Орден был на дне раньше него. Кто прочтёт следующий лист первым?",
-   "text_ru": "У рыцаря был такой же. Его щит мы нашли первыми. — ПРИОР",
+   "src": "audit:pilot-08-mark.png",
+   "fx": {
+    "crop": [
+     400,
+     440,
+     720,
+     620
+    ]
+   },
+   "text_ru": "",
+   "narration_ru": "",
+   "claud_voice": "claud_room_drains_mark",
+   "claud_ru": "На твоей руке тот же знак. Вижу. Объяснить не могу.",
    "variant": "all",
-   "hook_ru": "Где щит? Что Орден знает про знак?",
-   "source": "beat prior_last; главный квест (EcoQuest: поиск Цетуса)"
+   "sound": "silence_room: дыхание",
+   "hook_ru": "Чей это знак?"
   },
   {
    "t": 82,
-   "id": "title",
-   "world": "title",
-   "show": "Затемнение → чернота; титр «АТЛАС ВОДЫ» процарапан золотом по бересте (интерфейс-грамота), медленно проявляется",
-   "sound": "sonar_flute: пинг сонара и одна линия флейты из синтеза (без дудука, без записей)",
+   "id": "prior_last",
+   "world": "room",
+   "src": "audit:pilot-08-mark.png",
+   "text_ru": "У рыцаря был такой же. Его щит мы нашли первыми. — ПРИОР",
    "narration_ru": "",
-   "text_ru": "АТЛАС ВОДЫ",
    "variant": "all",
-   "hook_ru": "",
-   "source": "beat title"
+   "sound": "console_tick один",
+   "hook_ru": "Где щит?"
   },
   {
-   "t": 86,
-   "id": "teaser_sis",
+   "t": 85,
+   "id": "title",
    "world": "title",
-   "show": "Под титром угольная строка тизера; затем растворение затемнением во двор (хаб)",
-   "sound": "флейта держит последнюю ноту, переходит в room tone двора",
-   "narration_ru": "Следующий лист лежит глубже — в городе Сис, за год до падения.",
-   "text_ru": "Серия 2 — Сис, 1374",
+   "src": "card",
+   "grade": true,
+   "text_ru": "",
+   "teaser_ru": "Серия 2 — Сис, 1374",
+   "narration_ru": "Следующий лист — в Сисе, за год до падения.",
    "variant": "all",
-   "hook_ru": "Что было в Сисе за год до падения?",
-   "source": "narration beats.title"
+   "sound": "sonar_flute → room tone двора",
+   "hook_ru": "Что было в Сисе?"
   }
  ],
  "skip": {
