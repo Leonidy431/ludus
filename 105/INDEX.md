@@ -3,7 +3,7 @@
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
 - файлов кода: 520
-- документов: 258
+- документов: 260
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -515,7 +515,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (188)
+## Документация проекта (189)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -682,6 +682,7 @@
 - [docs/story/chorus-ep1/INSIGHTS_CHORUS_2026-10-02.md](../docs/story/chorus-ep1/INSIGHTS_CHORUS_2026-10-02.md) 📄 — Хор: 12 инсайтов первой серии «Табу» — 2026-10-02
 - [docs/story/chorus-ep1/INSIGHT_BRANCHES_144_2026-10-03.md](../docs/story/chorus-ep1/INSIGHT_BRANCHES_144_2026-10-03.md) 📄 — Инсайты серии 1: 144 варианта как ветки развития игры
 - [docs/story/chorus-ep1/INSIGHT_PROMPTS_2026-10-02.md](../docs/story/chorus-ep1/INSIGHT_PROMPTS_2026-10-02.md) 📄 — Промты кадров 12 инсайтов — хор сценаристов (2026-10-02)
+- [docs/story/chorus-ep1/INSIGHT_VARIANTS_144_2026-10-03.md](../docs/story/chorus-ep1/INSIGHT_VARIANTS_144_2026-10-03.md) 📄 — Инсайты серии 1: 144 варианта — 12 часов дня на каждый (хор, 2026-10-03)
 - [docs/story/chorus-ep1/NARRATION_v4_24_LENSES.md](../docs/story/chorus-ep1/NARRATION_v4_24_LENSES.md) 📄 — Закадровый текст v4 — «Атлас воды · Серия 1 · Табу»
 - [docs/story/qviqa/ORDER_QVIQA_CODEX_2026-10-03.md](../docs/story/qviqa/ORDER_QVIQA_CODEX_2026-10-03.md) 📄 — Кодекс Братства QVIQA — лор, Конституция, контракты, путь, сообщество (2026-10-03)
 - [docs/story/qviqa/QVIQA_PROMPT_OPERATOR_2026-10-03.md](../docs/story/qviqa/QVIQA_PROMPT_OPERATOR_2026-10-03.md) 📄 — Исходник оператора: промпт «Орден QVIQA» (2026-10-03, дословно)
@@ -706,7 +707,7 @@
 - [docs/version-3.0/VM8_BACKEND_CONTAINER_DEPLOYMENT.md](../docs/version-3.0/VM8_BACKEND_CONTAINER_DEPLOYMENT.md) 📄 — VM8 Backend Container Deployment — Ludus Services on panopticon-mirror-vm
 - [docs/СПИСОК_ТЕХНОЛОГИЙ_ПРОЕКТА.md](../docs/СПИСОК_ТЕХНОЛОГИЙ_ПРОЕКТА.md) 📄 — Список технологий проекта Ludus (реестр собственных технических решений)
 
-## Прочее (135)
+## Прочее (136)
 
 - [.claude/agents/apk-revisor.md](../.claude/agents/apk-revisor.md) 📄 — Жёсткие правила
 - [CONSTITUTION.md](../CONSTITUTION.md) 📄 — РОЛЬ 1: Lead Game Designer & Principal Luau Engineer (Roblox/LiveOps).
@@ -841,5 +842,6 @@
 - [third_party/posoh/hardware/cad/tube_enclosure_heatsink.scad](../third_party/posoh/hardware/cad/tube_enclosure_heatsink.scad)
 - [third_party/posoh/hardware/cad/z_axis_stack.scad](../third_party/posoh/hardware/cad/z_axis_stack.scad)
 - [third_party/posoh/hardware/thermal/THERMAL_BUDGET.md](../third_party/posoh/hardware/thermal/THERMAL_BUDGET.md) 📄 — Tube Enclosure Thermal Budget — Посох Z-axis Bay
+- [video/insights-variants/README.md](../video/insights-variants/README.md) 📄 — 144 insight variants: videos
 - [video/insights/README.md](../video/insights/README.md) 📄 — Видео: двенадцать инсайтов серии 1
 - [video/intro/README.md](../video/intro/README.md) 📄 — Видео: заставка «Ранее в „Атласе воды“» (90 с, три варианта)
