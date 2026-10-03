@@ -2,7 +2,7 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 516
+- файлов кода: 518
 - документов: 255
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
@@ -278,7 +278,7 @@
 - [scripts/decisions/stoplist_choice.py](../scripts/decisions/stoplist_choice.py) — One decision for the church-word stop-list, chosen in the open.
 - [scripts/decisions/stream_choice.py](../scripts/decisions/stream_choice.py) — How the heavy data reaches the headset: one way from the honest pool.
 
-## Скрипты проекта: раннер, данные, сюжеты (94)
+## Скрипты проекта: раннер, данные, сюжеты (96)
 
 - [scripts/blueos/sandbox_up.sh](../scripts/blueos/sandbox_up.sh) — Raise BlueOS and the operator's extensions in the session sandbox
 - [scripts/build-campaign-spine.py](../scripts/build-campaign-spine.py) — Build the Issyk-Kul campaign spine from webtypicon2's missions.
@@ -322,6 +322,7 @@
 - [scripts/raw_assets/check_delta.py](../scripts/raw_assets/check_delta.py) — CI gate: every shipped derived sprite must prove its 35 % reshaping.
 - [scripts/raw_assets/clone_full.py](../scripts/raw_assets/clone_full.py) — Clone the 99 repositories of backlog with their working files.
 - [scripts/raw_assets/code_delta.py](../scripts/raw_assets/code_delta.py) — Measure how far our code departs from a third-party source module.
+- [scripts/raw_assets/corpus_chunks.py](../scripts/raw_assets/corpus_chunks.py) — Pull the 99 repositories' raw material in chunks of at most 100 MB,
 - [scripts/raw_assets/fish_procedural.py](../scripts/raw_assets/fish_procedural.py) — Our own procedural drawing of the fish of Issyk-Kul (DEF-056).
 - [scripts/raw_assets/form.py](../scripts/raw_assets/form.py) — Alpha-channel form: masks, shape delta, silhouette loss and hitboxes.
 - [scripts/raw_assets/index_repos.py](../scripts/raw_assets/index_repos.py) — Index every repository from backlog without downloading its content.
@@ -368,6 +369,7 @@
 - [scripts/story/select_12.py](../scripts/story/select_12.py) — Choose the 12 stories the headset walks on foot (TABOO 0.07).
 - [scripts/test-api-endpoints.sh](../scripts/test-api-endpoints.sh) — Ludus API Endpoint Test Suite
 - [scripts/tests/test_check_canon.py](../scripts/tests/test_check_canon.py) — Negative tests for scripts/check_canon.py.
+- [scripts/tests/test_corpus_chunks.py](../scripts/tests/test_corpus_chunks.py) — Tests of the chunked corpus puller (TABOO 0.033), without a network.
 - [scripts/tests/test_insight_branches.py](../scripts/tests/test_insight_branches.py) — The 144 insight branches pass the chorus's checks without Godot
 - [scripts/tests/test_multi_env_sets.py](../scripts/tests/test_multi_env_sets.py) — Tests of the twelve-sets generator (TABOO 0.032).
 - [scripts/video/insight_variant_sheets.py](../scripts/video/insight_variant_sheets.py) — Contact sheets of the 144 insight variants: one sheet per insight,
