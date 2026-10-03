@@ -46,6 +46,7 @@ from pathlib import Path
 
 import licences
 import props
+import register
 from intake import is_game_object
 from search_index import search
 
@@ -759,14 +760,31 @@ def pipeline(manifest, raw_dir, out_dir, work):
                 if line.startswith(('| ant_', '| obj_'))
                 and line.split('|')[1].strip() in shipped]
         existing = NOTICES.read_text('utf-8') if NOTICES.exists() else (
-            '# Third-party raw material register\n\n| Object | Source | '
-            'Commit | Path | Licence | Colour | Shape |\n'
-            '|---|---|---|---|---|---|---|\n')
+            '# Third-party raw material register\n\n'
+            + register.TABLE_HEAD)
         new = [r for r in rows if r not in existing]
-        NOTICES.write_text(existing.rstrip('\n') + '\n'
-                           + '\n'.join(new) + ('\n' if new else ''),
-                           'utf-8')
+        NOTICES.write_text(add_rows(existing, new), 'utf-8')
     return accepted
+
+
+def add_rows(text, rows):
+    """The register with rows added at the end of its first table.
+
+    Appending at the end of the file put rows under later sections
+    (the posoh and location tables) where no head matched them; they
+    belong to the raw-material table, whose head is register.TABLE_HEAD.
+    Nothing already there is rewritten (the register only grows)."""
+    if not rows:
+        return text
+    lines = text.rstrip('\n').split('\n')
+    head = register.TABLE_HEAD.split('\n')[0]
+    if head not in lines:
+        return '\n'.join(lines + [''] + register.TABLE_HEAD.split('\n')
+                         [:2] + rows) + '\n'
+    end = lines.index(head) + 2
+    while end < len(lines) and lines[end].startswith('|'):
+        end += 1
+    return '\n'.join(lines[:end] + rows + lines[end:]) + '\n'
 
 
 if __name__ == '__main__':

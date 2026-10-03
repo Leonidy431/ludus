@@ -1,17 +1,33 @@
 # Third-party raw material register
 
-| Object | Source | Commit | Path | Licence | Colour | Shape |
-|---|---|---|---|---|---|---|
-| ant_anger_8c10c90816 | anger | 12/12 | https://github.com/Card-Forge/forge | 647b5eac95 | forge-gui/res/adventure/common/sprites/enemy/beast/insect/smallworm.png #0 | GPL | 48.1% |
-| ant_gluttony_3b98248226 | gluttony | 12/12 | https://github.com/Card-Forge/forge | 647b5eac95 | forge-gui/res/adventure/common/sprites/enemy/ooze/giant_slime.png #0 | GPL | 37.2% |
-| ant_anger_3c331cda72 | anger | 12/12 | https://github.com/Card-Forge/forge | 647b5eac95 | forge-gui/res/adventure/common/sprites/enemy/plant/mushroom_monster.png #0 | GPL | 46.0% |
-| ant_anger_78b752dfa6 | anger | 12/12 | https://github.com/Card-Forge/forge | 647b5eac95 | forge-gui/res/adventure/common/sprites/enemy/plant/slimefoot.png #0 | GPL | 49.4% |
-| ant_anger_c3857f31c5 | anger | 12/12 | https://github.com/Card-Forge/forge | 647b5eac95 | forge-gui/res/adventure/common/sprites/enemy/undead/ghost.png #0 | GPL | 50.4% |
-| ant_acedia_7503efbff8 | acedia | 12/12 | https://github.com/Card-Forge/forge | 647b5eac95 | forge-gui/res/adventure/common/sprites/enemy/undead/ghost.png #1 | GPL | 69.4% |
-| ant_sadness_3f22d4e3ed | sadness | 12/12 | https://github.com/Card-Forge/forge | 647b5eac95 | forge-gui/res/adventure/common/sprites/enemy/undead/ghost_2.png #0 | GPL | 39.1% |
-| ant_pride_4a93e8590a | pride | 12/12 | https://github.com/Card-Forge/forge | 647b5eac95 | forge-gui/res/adventure/common/sprites/enemy/aberration/beholder.png #1 | GPL | 35.1% |
-| ant_avarice_f14d9c7468 | avarice | 12/12 | https://github.com/crawl/crawl | 7c31f6e797 | crawl-ref/source/rltiles/UNUSED/monsters/ravenous_mimic.png #0 | GPL | 40.2% |
-| ant_vainglory_12f32bbb0f | vainglory | 12/12 | https://github.com/crawl/crawl | 7c31f6e797 | crawl-ref/source/rltiles/item/misc/misc_phantom_mirror.png #0 | GPL | 56.6% |
+| Object | Passion | Variants | Source | Commit | Path | Licence (SPDX) | Colour % | Shape % |
+|---|---|---|---|---|---|---|---|---|
+| ant_anger_8c10c90816 | anger | 12/12 | https://github.com/Card-Forge/forge | 647b5eac95 | forge-gui/res/adventure/common/sprites/enemy/beast/insect/smallworm.png #0 | GPL-3.0-only | 100.0% | 48.1% |
+| ant_gluttony_3b98248226 | gluttony | 12/12 | https://github.com/Card-Forge/forge | 647b5eac95 | forge-gui/res/adventure/common/sprites/enemy/ooze/giant_slime.png #0 | GPL-3.0-only | 100.0% | 37.2% |
+| ant_anger_3c331cda72 | anger | 12/12 | https://github.com/Card-Forge/forge | 647b5eac95 | forge-gui/res/adventure/common/sprites/enemy/plant/mushroom_monster.png #0 | GPL-3.0-only | 100.0% | 46.0% |
+| ant_anger_78b752dfa6 | anger | 12/12 | https://github.com/Card-Forge/forge | 647b5eac95 | forge-gui/res/adventure/common/sprites/enemy/plant/slimefoot.png #0 | GPL-3.0-only | 99.6% | 49.4% |
+| ant_anger_c3857f31c5 | anger | 12/12 | https://github.com/Card-Forge/forge | 647b5eac95 | forge-gui/res/adventure/common/sprites/enemy/undead/ghost.png #0 | GPL-3.0-only | 89.5% | 50.4% |
+| ant_acedia_7503efbff8 | acedia | 12/12 | https://github.com/Card-Forge/forge | 647b5eac95 | forge-gui/res/adventure/common/sprites/enemy/undead/ghost.png #1 | GPL-3.0-only | 98.5% | 69.4% |
+| ant_sadness_3f22d4e3ed | sadness | 12/12 | https://github.com/Card-Forge/forge | 647b5eac95 | forge-gui/res/adventure/common/sprites/enemy/undead/ghost_2.png #0 | GPL-3.0-only | 100.0% | 39.1% |
+| ant_pride_4a93e8590a | pride | 12/12 | https://github.com/Card-Forge/forge | 647b5eac95 | forge-gui/res/adventure/common/sprites/enemy/aberration/beholder.png #1 | GPL-3.0-only | 99.7% | 35.1% |
+| ant_avarice_f14d9c7468 | avarice | 12/12 | https://github.com/crawl/crawl | 7c31f6e797 | crawl-ref/source/rltiles/UNUSED/monsters/ravenous_mimic.png #0 | GPL-2.0-or-later | 100.0% | 40.2% |
+| ant_vainglory_12f32bbb0f | vainglory | 12/12 | https://github.com/crawl/crawl | 7c31f6e797 | crawl-ref/source/rltiles/item/misc/misc_phantom_mirror.png #0 | GPL-2.0-or-later | 100.0% | 56.6% |
+| ant_sadness_b6a55c4b0e | sadness | 12/12 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | data/core/images/units/monsters/deep-tentacle-melee-defend-1.png #0 | GPL-2.0-or-later | 99.7% | 52.1% |
+| ant_sadness_5272495b7e | sadness | 12/12 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | data/core/images/units/monsters/deep-tentacle-melee-defend-2.png #0 | GPL-2.0-or-later | 99.4% | 51.7% |
+| ant_avarice_055bf3b162 | avarice | 12/12 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-defend1.png #0 | GPL-2.0-or-later | 100.0% | 35.1% |
+| ant_avarice_c12399d853 | avarice | 12/12 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-defend2.png #0 | GPL-2.0-or-later | not recorded | 35.1% |
+| ant_sadness_f52ff4a292 | sadness | 12/12 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-sword2.png #0 | GPL-2.0-or-later | 82.3% | 44.3% |
+| ant_avarice_e795010b0e | avarice | 12/12 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-sword3.png #0 | GPL-2.0-or-later | 99.9% | 45.4% |
+| ant_avarice_eb6a1405af | avarice | 12/12 | https://github.com/crawl/crawl | 7c31f6e797 | crawl-ref/source/rltiles/UNUSED/monsters/deep_dwarf_death_knight.png #0 | GPL-2.0-or-later | 100.0% | 35.6% |
+| ant_anger_7b0ce4d8c3 | anger | 12/12 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | data/core/images/units/monsters/deep-tentacle-ranged-defend.png #0 | GPL-2.0-or-later | 96.5% | 38.8% |
+| ant_anger_fb79893509 | anger | 12/12 | https://github.com/crawl/crawl | 7c31f6e797 | crawl-ref/source/rltiles/gui/spells/monster/summon_sin_beast.png #0 | GPL-2.0-or-later | 99.7% | 50.7% |
+| ant_sadness_5338273a79 | sadness | 12/12 | https://github.com/crawl/crawl | 7c31f6e797 | crawl-ref/source/rltiles/gui/spells/monster/create_tentacles.png #0 | GPL-2.0-or-later | not recorded | 39.6% |
+
+Withdrawn 2026-09-30 (row kept, the register only grows): `ant_avarice_c12399d853` was not shipped. It is a duplicate animation frame of `ant_avarice_055bf3b162` (aligned silhouette IoU 0.922). See docs/RAW_OSINT_CURSOR.json, pass 2026-09-30T16:51, field `reverted`.
+
+Withdrawn (row kept): `ant_sadness_5338273a79` was not shipped; its twelve variants read as a cup (TABOO 0.2, 0.4). See docs/RAW_OSINT_CURSOR.json, field `reverted`.
+
+Columns (2026-10-03, HLD CHORUS24 F7): the head now matches the rows, nine columns, with the colour change of each object from its meta-json ("not recorded" for the two withdrawn objects, which have none) and SPDX ids: Forge is GPL-3.0-only (its LICENSE is the GPL 3 text, README and pom.xml say GPL-3.0 with no "or later"); Crawl and Wesnoth are GPL-2.0-or-later ("version 2 ... or any later version"). Rows are the same objects, moved from under later sections, where the old cycle appended them, into this table.
 
 ## Engine and libraries of the headset build (used unchanged, not raw material)
 
@@ -19,17 +35,24 @@ These are dependencies under their own licences, not material reworked
 by the runner, so the 35 % rule does not apply to them. They are listed
 here so the lawyer sees every third-party component (TABOO 0.1).
 
-| Component | Licence | Commit or version | Where |
-|---|---|---|---|
-| Godot Engine | MIT | 4.7.1-stable | downloaded in CI (scripts/godot/ci_setup.sh) |
-| godot_openxr_vendors (Meta loader) | MIT | 5.1.0-stable | downloaded in CI for the APK |
-| godot-xr-tools | MIT | 2d8db860d1 | godot/addons/godot-xr-tools, vendor/godot |
-| beehave | MIT | fe589153fa | godot/addons/beehave, vendor/godot |
-| dialogic | MIT | 701b67bbe6 | godot/addons/dialogic, vendor/godot |
-| godot4-oceanfft | MIT | 01f32d7151 | godot/addons/tessarakkt.oceanfft, vendor/godot |
-| godot-jolt | MIT | 7f22589470 | vendor/godot (reference; Jolt is built into Godot) |
-| godot_voxel | MIT | fa52579ec9 | vendor/godot (reference, not built yet) |
-| godot-4-hitbox-hurtbox | MIT code, CC-BY-NC-SA art | 2238883d86 | vendor/godot (reference only; art never used) |
+| Component | Licence (SPDX) | Commit or version | Where | In APK |
+|---|---|---|---|---|
+| Godot Engine | MIT | 4.7.1-stable | downloaded in CI (scripts/godot/ci_setup.sh) | yes; text `godot/licenses/MIT-Godot-Engine.txt`, the engine's own third-party parts via `Engine.get_copyright_info()` |
+| godot_openxr_vendors (OpenXR loaders plugin) | MIT | 5.1.0-stable | downloaded in CI for the APK | yes; text `godot/licenses/MIT-godot_openxr_vendors.txt` |
+| Khronos OpenXR loader (inside godot_openxr_vendors) | Apache-2.0 | with 5.1.0-stable | downloaded in CI for the APK | yes; text `godot/licenses/Apache-2.0.txt` (the release's `khronos/LICENSE`) |
+| Meta OpenXR SDK notice (godot_openxr_vendors `meta/LICENSE-SDK`) | LicenseRef-Oculus-SDK | with 5.1.0-stable | downloaded in CI for the APK | yes; notice `godot/licenses/Meta-OpenXR-SDK-NOTICE.txt`; the agreement itself is named by address only |
+| godot-xr-tools | MIT | 2d8db860d1 | godot/addons/godot-xr-tools, vendor/godot | no (export exclude_filter) |
+| beehave | MIT | fe589153fa | godot/addons/beehave, vendor/godot | no (export exclude_filter) |
+| dialogic | MIT | 701b67bbe6 | godot/addons/dialogic, vendor/godot | no (export exclude_filter) |
+| godot4-oceanfft | MIT | 01f32d7151 | godot/addons/tessarakkt.oceanfft, vendor/godot | no (export exclude_filter) |
+| godot-jolt | MIT | 7f22589470 | vendor/godot (reference; Jolt is built into Godot) | no (Jolt in the engine is listed by the engine) |
+| godot_voxel | MIT | fa52579ec9 | vendor/godot (reference, not built yet) | no |
+| godot-4-hitbox-hurtbox | MIT code, CC-BY-NC-SA art | 2238883d86 | vendor/godot (reference only; art never used) | no |
+
+The licence texts of everything marked "yes", and of the GPL and CC
+BY-SA pictures that ship (`godot/data/rights.json`), are in the APK
+under `licenses/` and shown in the world by `RightsPanel`
+(`godot/scripts/rights_panel.gd`).
 
 ## Mangustik drawings and panel looks (operator's own repos, 2026-09-30)
 
@@ -49,14 +72,6 @@ claimed: these are not raw material through the runner.
 
 Details: `third_party/posoh/SOURCES.md`. No colour/shape delta is
 claimed: these are not raw material through the runner.
-| ant_sadness_b6a55c4b0e | sadness | 12/12 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | data/core/images/units/monsters/deep-tentacle-melee-defend-1.png #0 | GPL | 52.1% |
-| ant_sadness_5272495b7e | sadness | 12/12 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | data/core/images/units/monsters/deep-tentacle-melee-defend-2.png #0 | GPL | 51.7% |
-| ant_avarice_055bf3b162 | avarice | 12/12 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-defend1.png #0 | GPL | 35.1% |
-| ant_avarice_c12399d853 | avarice | 12/12 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-defend2.png #0 | GPL | 35.1% |
-| ant_sadness_f52ff4a292 | sadness | 12/12 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-sword2.png #0 | GPL | 44.3% |
-| ant_avarice_e795010b0e | avarice | 12/12 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-sword3.png #0 | GPL | 45.4% |
-
-Withdrawn 2026-09-30 (row kept, the register only grows): `ant_avarice_c12399d853` was not shipped. It is a duplicate animation frame of `ant_avarice_055bf3b162` (aligned silhouette IoU 0.922). See docs/RAW_OSINT_CURSOR.json, pass 2026-09-30T16:51, field `reverted`.
 
 
 ## Spectral references of the audio pass audio-299-2026-09-30
@@ -151,7 +166,3 @@ the GPL ask for. From each file's own licence record (the kit meta's
 
 The derived variants carry the same licence (share-alike); the claim of
 35 % change is the project's own rule, not a legal test (TABOO 0.1).
-| ant_avarice_eb6a1405af | avarice | 12/12 | https://github.com/crawl/crawl | 7c31f6e797 | crawl-ref/source/rltiles/UNUSED/monsters/deep_dwarf_death_knight.png #0 | GPL | 35.6% |
-| ant_anger_7b0ce4d8c3 | anger | 12/12 | https://github.com/wesnoth/wesnoth | 7747be0ff7 | data/core/images/units/monsters/deep-tentacle-ranged-defend.png #0 | GPL | 38.8% |
-| ant_anger_fb79893509 | anger | 12/12 | https://github.com/crawl/crawl | 7c31f6e797 | crawl-ref/source/rltiles/gui/spells/monster/summon_sin_beast.png #0 | GPL | 50.7% |
-| ant_sadness_5338273a79 | sadness | 12/12 | https://github.com/crawl/crawl | 7c31f6e797 | crawl-ref/source/rltiles/gui/spells/monster/create_tentacles.png #0 | GPL | 39.6% |

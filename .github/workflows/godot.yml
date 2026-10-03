@@ -1,5 +1,9 @@
 # Headset build (CLAUDE.md TABOO 0.02; docs/HLD_HEADSET_BUILD_2026-09-30.md).
 #
+# The path triggers name every path a step below reads: a check that
+# does not run protects nothing (docs/HLD_CHORUS24_FIXES_2026-10-03.md,
+# F8).  A new step that reads a new path adds it to both lists.
+#
 #   test     - the GDScript dive core against the JS reference fixture,
 #              data in sync with the web build, proof frames under Xvfb,
 #              and the Web (WebXR) export as an artifact;
@@ -18,11 +22,23 @@ on:
     branches: [main, 'claude/**']
     paths: ['godot/**', 'public/ludus/dive/**', 'public/ludus/data/**',
             'scripts/godot/**', 'scripts/story/**', 'scripts/locations/**',
-            'CLAUDE.md', '.github/workflows/godot.yml']
+            'CLAUDE.md', '.github/workflows/godot.yml', 'tests/**',
+            'public/ludus/*.js', 'public/ludus/art/derived/**',
+            'scripts/raw_assets/**', 'scripts/decisions/**',
+            'scripts/ci/**', 'scripts/export-dialogue-pack.js',
+            'functions/src/data/**',
+            'functions/src/scripts/seedComprehensiveTestData.ts',
+            'public/vr/models/scene/**']
   pull_request:
     paths: ['godot/**', 'public/ludus/dive/**', 'public/ludus/data/**',
             'scripts/godot/**', 'scripts/story/**', 'scripts/locations/**',
-            'CLAUDE.md', '.github/workflows/godot.yml']
+            'CLAUDE.md', '.github/workflows/godot.yml', 'tests/**',
+            'public/ludus/*.js', 'public/ludus/art/derived/**',
+            'scripts/raw_assets/**', 'scripts/decisions/**',
+            'scripts/ci/**', 'scripts/export-dialogue-pack.js',
+            'functions/src/data/**',
+            'functions/src/scripts/seedComprehensiveTestData.ts',
+            'public/vr/models/scene/**']
   workflow_dispatch:
 
 permissions:
@@ -42,6 +58,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+
+      # The web tests guard files the headset shares (the confession
+      # sheet's port, the bell rules, the fixtures' JS sources), so a PR
+      # that touches only godot/ runs them too (TABOO 0.26 item 5).  A key
+      # in the tree only warns the operator: the operator's word,
+      # 2026-10-03, "сборку валить не надо. просто предупреждай".
+      - name: Web tests and secrets
+        run: |
+          node --test tests/*.test.js
+          if git grep -nlIE 'sk-[a-f0-9]{32}|ghp_[A-Za-z0-9]{36}|-----BEGIN [A-Z ]*PRIVATE KEY' -- . ':!*.test.js'; then
+            echo "::warning::a key-like secret is in the files above; revoke it at the provider and cut it out"
+          fi
 
       - name: Cache Godot
         uses: actions/cache@v4
@@ -75,6 +103,9 @@ jobs:
           git diff --exit-code godot/tests/fixtures/atlas-traces.json
           node scripts/godot/make_dialogue_fixture.js
           git diff --exit-code godot/tests/fixtures/dialogue.json
+          # The offline pack of talks is current with the seed and the
+          # chorus trees; --check builds it in memory and writes nothing.
+          node scripts/export-dialogue-pack.js --check
           git diff --exit-code godot/tests/fixture.json \
             godot/tests/hub_fixture.json godot/tests/trial_fixture.json \
             godot/tests/passion_fixture.json \
@@ -82,27 +113,20 @@ jobs:
 
       - name: Lake data in sync with the web build
         run: |
-          cmp public/ludus/data/lake-objects-99.json \
-              godot/data/lake-objects-99.json
-          cmp public/ludus/data/issyk-kul-fish.json \
-              godot/data/issyk-kul-fish.json
-          # The hub reads the same talks as the web game (TABOO 0.39).
-          cmp public/ludus/data/dialogue-trees.json \
-              godot/data/dialogue-trees.json
-          # Thresholds and passions read the same data as the web game.
-          cmp public/ludus/data/gate-trials.json godot/data/gate-trials.json
-          cmp public/ludus/data/passions.json godot/data/passions.json
-          # The campaign of missions reads the same spine as the web game.
-          cmp public/ludus/data/campaign-spine.json \
-              godot/data/campaign-spine.json
-          # The Russian labels of its sources: one table for both panels.
-          cmp public/ludus/data/source-labels-ru.json \
-              godot/data/source-labels-ru.json
+          # Every JSON the headset shares with the web game (same name in
+          # godot/data and public/ludus/data) is the same byte for byte,
+          # and every derived image of the headset is a copy of the web's
+          # with its 35 % proof in the web's meta-json, or a fish atlas
+          # built from such cells (TABOO 0.1, 0.32 item 7).  A loop, not a
+          # list: a new shared file is checked without a new line here.
+          python3 scripts/ci/check_shared_copies.py
+          # The 35 % gate on the web's derived art itself.
+          python3 scripts/raw_assets/check_delta.py \
+            --root public/ludus/art/derived
           # The Water Atlas: one list of nodes, its copies current and
           # every node with its Constitution line (TABOO 0.03).
           python3 scripts/story/render.py --check
           python3 scripts/story/entelechy.py --check
-          cmp public/ludus/data/atlas-99.json godot/data/atlas-99.json
           # The 12 stories walked on foot and the people who stand in
           # their places: the routes, and who stands where with which
           # node, are current with the trees and the places
@@ -127,18 +151,12 @@ jobs:
           # and the headset, and the shipped kits, atlases and index are
           # what fish_procedural.py draws now (forms compared, not
           # bytes: Pillow versions differ by an antialiased pixel).
-          cmp public/ludus/data/fish-drawings.json \
-              godot/data/fish-drawings.json
           python3 scripts/raw_assets/fish_procedural.py --check
           python3 -m unittest scripts/raw_assets/tests/test_fish_procedural.py
-          # One bell table for the web clock and the headset's bells,
-          # every rule with its source (docs/HLD_BELL_RULES_TYPIKON_*).
-          cmp public/ludus/data/bell-rules.json godot/data/bell-rules.json
-          # One church-word stop-list for the headset, the web and the
-          # generator, and the recorded choice of it (blind spot 16;
+          # The bell table and the church-word stop-list are shared
+          # copies checked above; here the recorded choice of the one
+          # stop-list (blind spot 16;
           # docs/decisions/STOPLIST_SINGLE_SOURCE_2026-10-02.md).
-          cmp public/ludus/data/church-words.json \
-              godot/data/church-words.json
           python3 scripts/decisions/stoplist_choice.py --check
           # The engine build chosen from its honest pool on 48 parameters
           # (docs/decisions/ENGINE_BUILD_2026-10-02.md).
@@ -175,12 +193,58 @@ jobs:
         working-directory: godot
         run: |
           "$GODOT" --headless --path . --import || true
+          set -o pipefail
+          mkdir -p ../build/tests
           # A GDScript parse error leaves Godot waiting instead of
           # exiting; the timeout turns that into a red step.
           timeout 900 "$GODOT" --headless --path . \
-            --script res://tests/run_tests.gd
+            --script res://tests/run_tests.gd 2>&1 \
+            | tee ../build/tests/run_tests.log
           timeout 600 "$GODOT" --headless --path . \
-            --script res://tests/run_hub_tests.gd
+            --script res://tests/run_hub_tests.gd 2>&1 \
+            | tee ../build/tests/run_hub_tests.log
+          # A script error inside a test does not always fail the run: the
+          # engine prints it and goes on, and a green total can then count
+          # checks that never ran (QA, chorus 24).  Any of them is red.
+          if grep -n "SCRIPT ERROR" ../build/tests/*.log; then
+            echo "::error::SCRIPT ERROR in the Godot tests (lines above)"
+            exit 1
+          fi
+
+      # The dive's own script time at the headset's 72 Hz pace, without
+      # a renderer (docs/APK_REQUIREMENTS.md row 17): the mean and the
+      # peak of its _process net of run-queue wait, the synth's time per
+      # second of sound.  measure_budgets.gd exits 1 on a breach and 2
+      # when the host is too loaded to judge time; 2 only warns, since
+      # a busy shared runner says nothing about the scene.
+      - name: Budgets of the dive script (headless)
+        working-directory: godot
+        run: |
+          set +e
+          timeout 900 "$GODOT" --headless --max-fps 72 --path . \
+            -s res://tools/measure_budgets.gd -- --scene=dive --check \
+            2>&1 | grep -v '^BUDGET_JSON'
+          rc=${PIPESTATUS[0]}
+          # Script time does not reproduce on a shared runner, so by the
+          # chorus's decision on Б-3 (docs/APK_REQUIREMENTS.md) it warns
+          # here and the revisor and the lead hold the stop line.
+          if [ "$rc" = 2 ]; then
+            echo "::warning::dive script time not judged: host overloaded"
+          elif [ "$rc" != 0 ]; then
+            echo "::warning::dive script time over budget (Б-3); see above"
+          fi
+          exit 0
+
+      # Every repository path CLAUDE.md names exists.  Warn-only until
+      # the lead clears the current list (a missing path is a rule
+      # nobody can check, TABOO 0.6).
+      - name: Paths named in CLAUDE.md
+        run: |
+          out=$(python3 scripts/ci/check_claude_paths.py)
+          echo "$out"
+          if ! echo "$out" | grep -q ' 0 missing$'; then
+            echo "::warning::CLAUDE.md names paths that do not exist (above)"
+          fi
 
       # The shaders are built at run time (the rim light assembles its
       # own), so only a real render compiles them: every run is logged
@@ -303,6 +367,12 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    # Two pushes to main must not race to the release: the later build
+    # would be overwritten by the older one, or the .sha256 by another
+    # run's (release editor's audit 2026-10-03).
+    concurrency:
+      group: android-${{ github.ref }}
+      cancel-in-progress: false
     # Writing a release needs contents: write; only main publishes one.
     permissions:
       contents: write
@@ -493,11 +563,15 @@ jobs:
           cd build/godot
           sha256sum ludus-dive-quest.apk > ludus-dive-quest.apk.sha256
           cat ludus-dive-quest.apk.sha256
-          NOTES="Build ${{ github.run_number }} from ${GITHUB_SHA::7}. Sideload with Meta Quest Developer Hub, SideQuest or adb install -r. Ready to load into the headset; tested in the headset only when the operator says so."
+          NOTES="Build ${{ github.run_number }} (version code ${{ github.run_number }}) from ${GITHUB_SHA::7}. Sideload with Meta Quest Developer Hub, SideQuest or adb install -r; if a branch build with a higher code is on the headset, adb install -r -d keeps the saves. Ready to load into the headset; tested in the headset only when the operator says so."
           if gh release view headset-latest >/dev/null 2>&1; then
             gh release upload headset-latest ludus-dive-quest.apk \
               ludus-dive-quest.apk.sha256 --clobber
             gh release edit headset-latest --notes "$NOTES" --prerelease
+            # The tag follows the files, so the release's commit link
+            # and source archive name the build that is there.
+            git tag -f headset-latest "$GITHUB_SHA"
+            git push -f origin refs/tags/headset-latest
           else
             gh release create headset-latest ludus-dive-quest.apk \
               ludus-dive-quest.apk.sha256 --title "Ludus: headset build" \

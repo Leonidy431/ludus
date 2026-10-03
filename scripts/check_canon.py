@@ -8,6 +8,10 @@ data/patristic-canon.json.  This script reads:
   - the eight passions (public/ludus/data/passions.json),
   - the confession questions (public/ludus/ludus-confession.js; read as
     text, because that module must stay free of imports),
+  - the copies the player reads in the headset: the `lesson` of every
+    place in godot/data/locations-99.json (each citation in brackets)
+    and the GOAL of every story in godot/data/story-12.json, whose
+    citation must also treat the story's passion,
 and fails the build when a cited segment
   - matches no Scripture book and no canon work,
   - cites a chapter, step or book outside the work's bounds,
@@ -33,6 +37,12 @@ TREES = ROOT / 'functions' / 'src' / 'data' / 'npc-dialogues-24.json'
 STORY = ROOT / 'functions' / 'src' / 'data' / 'npc-dialogues-story12.json'
 PASSIONS = ROOT / 'public' / 'ludus' / 'data' / 'passions.json'
 CONFESSION = ROOT / 'public' / 'ludus' / 'ludus-confession.js'
+LOCATIONS = ROOT / 'godot' / 'data' / 'locations-99.json'
+STORIES = ROOT / 'godot' / 'data' / 'story-12.json'
+# Brackets in a lesson that point inside the project, not to a source:
+# a node of an atlas, a rule of CLAUDE.md.  Everything else in brackets
+# is read as a citation and must be in the canon.
+NOT_A_SOURCE = re.compile(r'^(?:узл?[а-я]*\s|ТАБУ|см\.\s)')
 
 AUTHORITY = {'scripture', 'father', 'council', 'canon-law', 'catechism',
              'hagiography', 'synaxarion'}
@@ -191,6 +201,12 @@ def topic_errors(work, topics, cited, segment):
             for t in named if t not in have]
 
 
+def work_has_topics(canon, segment):
+    """True when the work a segment names lists its topics."""
+    return any(w['_re'].search(segment) and w.get('topics')
+               for w in canon.works)
+
+
 def iter_sources():
     trees = json.loads(TREES.read_text(encoding='utf-8'))
     if STORY.exists():
@@ -207,6 +223,32 @@ def iter_sources():
     for m in re.finditer(r"passion:\s*'(\w+)'.*?source:\s*'([^']+)'", text,
                          re.DOTALL):
         yield f'confession/{m.group(1)}', m.group(2), m.group(1)
+    yield from game_copies()
+
+
+def game_copies():
+    """The Russian copies the headset shows (patrologist, 2026-10-03).
+
+    The gate used to read only the English sources of the trees, while
+    the player reads the lessons of the places and the goals of the
+    stories in Russian; so those copies are read here, against the
+    same canon, through its Russian aliases.
+    """
+    if LOCATIONS.exists():
+        places = json.loads(LOCATIONS.read_text(encoding='utf-8'))
+        for place in places['locations']:
+            for m in re.finditer(r'\(([^()]+)\)', place['lesson']):
+                if not NOT_A_SOURCE.match(m.group(1)):
+                    yield f'location/{place["id"]}', m.group(1), None
+    if STORIES.exists():
+        stories = json.loads(STORIES.read_text(encoding='utf-8'))
+        for story in stories['stories']:
+            goal = story['constitution'].split('ЦЕЛЬ', 1)[-1]
+            cited = re.findall(r'\(([^()]+)\)', goal)
+            # The last bracket of the goal is its source; the story's
+            # passion must be the topic of what it cites.
+            yield (f'story-12/{story["mission"]}',
+                   cited[-1] if cited else '', story['passion'])
 
 
 def main():
@@ -218,6 +260,14 @@ def main():
             problems.append(f'{where}: empty source')
             continue
         errors, _ = canon.check(source)
+        if where.startswith('story-12/') and not any(
+                canon.work(seg) and canon.work(seg).get('cited')
+                and work_has_topics(canon, seg)
+                for seg in split_segments(source)):
+            # A story fights one passion; a goal whose source has no
+            # list of topics could not show that it treats it.
+            errors.append('the goal cites no step or chapter whose '
+                          'topics the canon lists')
         if passion:
             # The passion itself must be the topic of what it cites.
             probe = f'{source} ({passion})'

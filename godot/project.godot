@@ -17,6 +17,7 @@ Nav="*res://scripts/nav.gd"
 ModuleLoader="*res://scripts/module_loader.gd"
 DataPacks="*res://scripts/data_packs.gd"
 PackFetch="*res://scripts/pack_fetch.gd"
+XrSession="*res://scripts/xr_session.gd"
 
 [display]
 

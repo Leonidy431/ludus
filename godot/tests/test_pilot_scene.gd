@@ -49,6 +49,13 @@ func _play(t: Object, body: String) -> Node:
 				and console_at_khachkar < 0.0:
 			console_at_khachkar = p.console_level
 			music_at_khachkar = p.music_player.volume_db
+		if p.wow.current.get("level", 0) > int(p.get_meta("wow_max", 0)):
+			p.set_meta("wow_max", p.wow.current.level)
+		if p.beat_id == "khachkar":
+			p.set_meta("wow_at_khachkar", p.wow.light.light_energy)
+			# The last frame of the beat: the ramps have had their time.
+			p.set_meta("water_at_khachkar", p.player.volume_db)
+			p.set_meta("silence_at_khachkar", p.synth.silence)
 	p.set_meta("console_at_khachkar", console_at_khachkar)
 	p.set_meta("music_at_khachkar", music_at_khachkar)
 	p.set_meta("cues", cues)
@@ -67,6 +74,34 @@ func run(t: Object) -> void:
 			"%s: the console is out at the khachkar" % body)
 		t._check(float(p.get_meta("music_at_khachkar")) <= -59.0,
 			"%s: the music goes down to -60 dB at the khachkar" % body)
+		# The ascent keeps 10 m/min, the limit the console names.
+		var keep_t: float = p.t
+		var fastest := 0.0
+		for i in range(800, 900):
+			p.t = float(i)
+			var a: float = p._depth()
+			p.t = float(i) + 1.0
+			fastest = maxf(fastest, (a - p._depth()) * 60.0)
+		p.t = keep_t
+		t._check(fastest <= DiveCore.MAX_ASCENT_M_PER_MIN + 0.01,
+			"%s: the ascent is not faster than 10 m/min (%.1f)"
+			% [body, fastest])
+		# Room tone and breath stay: only the machine layer goes down.
+		t._check(float(p.get_meta("water_at_khachkar", -99.0)) > -20.0,
+			"%s: room tone and breath stay at the khachkar" % body)
+		var said: Array = p.said_by_claud
+		t._check(said.size() >= 5, "%s: Клауд speaks (%d lines)"
+			% [body, said.size()])
+		t._check(said.filter(func(x): return x.begins_with("khachkar/"))
+			.is_empty(), "%s: Клауд is silent at the khachkar" % body)
+		t._check(int(p.get_meta("wow_max", 0)) == 10,
+			"%s: the wonder rises to level 10" % body)
+		t._check(float(p.get_meta("wow_at_khachkar", 1.0)) == 0.0,
+			"%s: no wonder at the khachkar" % body)
+		# The synth is told: its own ramp then takes the machine layer
+		# to -60 dB (DiveSynth.MACHINE_DUCKED, test_audio.gd).
+		t._check(bool(p.get_meta("silence_at_khachkar", false)),
+			"%s: the synth is told the khachkar's silence" % body)
 		var cues: Dictionary = p.get_meta("cues")
 		var heard := {}
 		for b in cues:

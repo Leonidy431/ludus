@@ -238,14 +238,19 @@ func _initialize() -> void:
 	before = checks
 	fails = failures
 	load("res://tests/test_data_packs.gd").new().run(self)
+	load("res://tests/test_xr_session.gd").new().run(self)
+	load("res://tests/test_rights.gd").new().run(self)
 	load("res://tests/test_pack_fetch.gd").new().run(self)
 	load("res://tests/test_pilot.gd").new().run(self)
 	load("res://tests/test_pilot_scene.gd").new().run(self)
 	load("res://tests/test_insights.gd").new().run(self)
+	load("res://tests/test_wow.gd").new().run(self)
+	load("res://tests/test_companion.gd").new().run(self)
 	load("res://tests/test_contract.gd").new().run(self)
 	load("res://tests/test_apparatus.gd").new().run(self)
 	load("res://tests/test_lock.gd").new().run(self)
 	load("res://tests/test_destiny.gd").new().run(self)
+	load("res://tests/test_branches.gd").new().run(self)
 	load("res://tests/test_lock_scene.gd").new().run(self)
 	load("res://tests/test_cosmos.gd").new().run(self)
 	print("data packs: %d checks, %d failures" % [checks - before,

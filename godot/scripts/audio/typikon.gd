@@ -72,8 +72,12 @@ static func _day(y: int, m: int, d: int) -> int:
 		"day": d, "hour": 0, "minute": 0, "second": 0})
 
 
-## Pascha by the Julian computus (Meeus), shifted to the civil calendar:
-## +13 days, valid for 1900-2099.  Returns the day index in seconds.
+## Pascha by the Julian computus (Meeus), shifted to the civil calendar
+## by the Julian-to-Gregorian offset of its year: 13 days for 1900-2099,
+## 14 for 2100-2199.  A fixed +13 would put Pascha 2100 on a Saturday.
+## Pascha is always after the Julian 1 March, so the year is enough.
+## Same rule as paschaCivil in public/ludus/ludus-liturgical-clock.js.
+## Returns the day index in seconds.
 static func pascha_civil(year: int) -> int:
 	var a := year % 4
 	var b := year % 7
@@ -82,7 +86,8 @@ static func pascha_civil(year: int) -> int:
 	var e := (2 * a + 4 * b - d + 34) % 7
 	var month := (d + e + 114) / 31
 	var day := ((d + e + 114) % 31) + 1
-	return _day(year, month, day) + 13 * DAY
+	var offset := year / 100 - year / 400 - 2
+	return _day(year, month, day) + offset * DAY
 
 
 ## The liturgical date of a local moment: after Vespers the next day.

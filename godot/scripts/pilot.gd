@@ -46,6 +46,8 @@ var data := {}
 var t := 0.0
 var speed := 1.0
 var reduced := false
+## Whether the tether's jerk may turn the world (opt-in, see _jerk).
+var world_turn := false
 var beat_id := ""
 ## Beats entered, in order, for tests and the proof frames.
 var reached: Array[String] = []
@@ -91,6 +93,14 @@ var fired: Array[String] = []
 ## Short effects of details: {k, until, v, ...}; they lie over what
 ## _sync sets and end by the clock.
 var effects: Array = []
+## The rising wonder of the episode (WowStage over WowCore's curve).
+var wow: WowStage
+## The hero's AI «Клауд» (TABOO 0.026): its lines, the ones already
+## said this run, its line on the right wrist and its draft voice.
+var companion := {}
+var said_by_claud: Array[String] = []
+var claud_line: Label3D
+var claud_voice: AudioStreamPlayer
 ## The deepest dip of the machine's sound asked by a live detail, dB.
 var duck_db := 0.0
 ## The room's clues (Pandora V1): seconds each has been held in view,
@@ -195,7 +205,9 @@ func _ready() -> void:
 	for a in args:
 		if a.begins_with("--pilot-speed="):
 			speed = maxf(1.0, float(a.get_slice("=", 1)))
+	Glyphs.install()
 	reduced = "--reduced-motion" in args or Haptics.prefers_reduced()
+	world_turn = "--world-turn" in args or _setting("world_turn")
 	if seen() and not replay and not "--pilot-replay" in args:
 		ModuleLoader.go(ModuleLoader.HUB)
 		finished = true
@@ -280,6 +292,11 @@ func _build_rig() -> void:
 	right_hand = XRController3D.new()
 	right_hand.tracker = &"right_hand"
 	rig.add_child(right_hand)
+	# The wonder is staged in front, below the horizon, at arm's length
+	# and more, so it is seen without turning the neck (pilot-wow.json).
+	wow = WowStage.new()
+	wow.position = Vector3(0, 0.9, -1.5)
+	rig.add_child(wow)
 
 
 func _build_world() -> void:
@@ -830,6 +847,13 @@ func _build_screens() -> void:
 	line.render_priority = 4
 	title = _label(64, Vector3(0, 0.02, -1.2), Color(0.95, 0.93, 0.88))
 	narr = _label(28, Vector3(0, -0.33, -1.0), Color(0.93, 0.93, 0.90))
+	# Клауд speaks in the instrument's cyan, a little apart from the
+	# Prior's screen; in the headset it lives on the right wrist.
+	claud_line = _label(26, Vector3(-0.30, 0.12, -1.0),
+		Color(0.62, 0.86, 1.0))
+	companion = CompanionCore.load_data()
+	claud_voice = AudioStreamPlayer.new()
+	add_child(claud_voice)
 	narr.render_priority = 4
 	title.visible = false
 	# The left hand with the comet on its back: a dim head and a tail,
@@ -959,6 +983,11 @@ func _place_console() -> void:
 	screen.rotation = Vector3(-PI / 2.0 + 0.5, 0.0, 0.0)
 	screen.pixel_size = 0.0004
 	screen.width = 500
+	claud_line.reparent(right_hand, false)
+	claud_line.position = Vector3(0.0, 0.04, 0.02)
+	claud_line.rotation = Vector3(-PI / 2.0 + 0.5, 0.0, 0.0)
+	claud_line.pixel_size = 0.0004
+	claud_line.width = 500
 
 
 ## The room or the lake.  With passthrough the room is the player's
@@ -1013,10 +1042,12 @@ func _enter(b: Dictionary) -> void:
 	reached.append(beat_id)
 	events.append("beat:" + str(b.id))
 	narrate("beats", b.id)
+	claud("enter")
 	if b.has("message_ru"):
-		screen.text = b.message_ru
+		screen.text = _ui(["screen", b.id, "message"], b.message_ru)
+		claud("message")
 	if b.has("line_ru"):
-		line.text = b.line_ru
+		line.text = _ui(["screen", b.id, "line"], b.line_ru)
 	if b.has("preload") and not stay:
 		# The courtyard comes after the title; it loads while the lake
 		# plays (TABOO 0.014), not in the frame of the change.
@@ -1030,12 +1061,15 @@ func _enter(b: Dictionary) -> void:
 	match b.id:
 		"tether_jerk":
 			jerk_from = t
+			claud("telemetry")
 		"choice_echo":
 			echo = PilotCore.echo(data, str(state.stage))
 			narrate("objects", "echo_" + str(echo.get("episode2", "")
 				).replace("order_first", "captive").replace("scribe_first",
 				"virtue").replace("prior_waits", "unresolved"))
-			screen.text = echo.message_ru
+			screen.text = _ui(["screen", "choice_echo", "outcomes",
+				str(state.stage) if str(state.stage) in ["captive", "virtue"]
+				else "unresolved", "message"], echo.message_ru)
 			line.text = echo.get("scribe_ru", "")
 		"khachkar":
 			# The machine has nothing to say at the holy; what it said
@@ -1076,6 +1110,12 @@ func _sync() -> void:
 	mark.visible = t >= 869.0
 	if mark.visible:
 		narrate("objects", "Mark")
+		claud("mark")
+	# At the khachkar Клауд goes out with the console (TABOO 0.026 item 2).
+	if beat_id == "khachkar":
+		claud_line.text = ""
+		if claud_voice.playing:
+			claud_voice.stop()
 	title.visible = t >= 900.0
 
 
@@ -1085,6 +1125,7 @@ func _tick(dt: float) -> void:
 		_do(details[detail_i])
 		detail_i += 1
 	_effects()
+	wow.update(t, reduced, [left_hand, right_hand])
 	_panels(dt)
 	if world == "room":
 		_clues(dt)
@@ -1122,8 +1163,10 @@ func _examine(dt: float) -> void:
 		narr_left -= dt
 		if narr_left <= 0.0:
 			narr.text = ""
+	# Either hand: the game is played with one hand too (a11y audit).
 	var press := Input.is_key_pressed(KEY_G) \
-		or right_hand.is_button_pressed("ax_button")
+		or right_hand.is_button_pressed("ax_button") \
+		or left_hand.is_button_pressed("ax_button")
 	var pressed := press and not glasses_was
 	glasses_was = press
 	if examining != "":
@@ -1254,7 +1297,11 @@ func open_examine(e: Dictionary) -> void:
 	var tex = load(e.image) if ResourceLoader.exists(e.image) else null
 	(close_up.material_override as StandardMaterial3D).albedo_texture = tex
 	close_up.visible = tex != null
-	line.text = e.line_ru
+	line.text = _ui(["examine", e.id, "line"], e.line_ru)
+	# The narrator's bridge line is spoken at once, pack or no pack: the
+	# episode is whole offline (TABOO 0.018 item 1; voice 4 of the audit).
+	narrate("objects", e.id)
+	claud("look:" + str(e.id))
 	clip = {}
 	var m := close_up.material_override as StandardMaterial3D
 	m.uv1_scale = Vector3.ONE
@@ -1280,6 +1327,32 @@ func open_examine(e: Dictionary) -> void:
 ## voice from the pack (res://narration/<key>.ogg) when recorded.  Each
 ## line once, unless `again` (the examine video repeats its own).  At
 ## the holy the line is empty: the narrator is silent (TABOO 0.020).
+## An on-screen line in the player's language (PilotCore.ui_text).
+func _ui(path: Array, ru: String) -> String:
+	return PilotCore.ui_text(i18n, path, lang, ru)
+
+
+## Клауд, the operator's AI, says its line for this beat and event,
+## once a run.  CompanionCore keeps it silent at the khachkar whatever
+## the data say; its voice is a draft from a pack and plays only when
+## the pack is there, the line is always written (TABOO 0.026 item 4).
+func claud(event: String) -> void:
+	var tag := beat_id + "/" + event
+	if tag in said_by_claud:
+		return
+	var text := CompanionCore.line_for(beat_id, event, lang, companion)
+	if text == "":
+		return
+	said_by_claud.append(tag)
+	events.append("claud:" + tag)
+	claud_line.text = text
+	var x := CompanionCore.entry(companion, beat_id, event)
+	var voice := CompanionCore.voice_path(companion, x, lang)
+	if FileAccess.file_exists(voice):
+		claud_voice.stream = AudioStreamOggVorbis.load_from_file(voice)
+		claud_voice.play()
+
+
 func narrate(group: String, key: String, again := false) -> void:
 	var x: Dictionary = narration.get(group, {}).get(key, {})
 	var text := PilotCore.narration_text(narration, i18n, group, key,
@@ -1335,7 +1408,8 @@ func close_examine() -> void:
 ## and the line is written; each is found once.
 func _clues(dt: float) -> void:
 	var c_btn := Input.is_key_pressed(KEY_C) \
-		or right_hand.is_button_pressed("by_button")
+		or right_hand.is_button_pressed("by_button") \
+		or left_hand.is_button_pressed("by_button")
 	if c_btn and not crouch_was:
 		crouched = not crouched
 		rig.position.y = -float(data.crouch_m) if crouched else 0.0
@@ -1351,7 +1425,7 @@ func _clues(dt: float) -> void:
 			if clue_hold[c.id] >= float(c.hold_s):
 				clues_found.append(c.id)
 				events.append("clue:" + str(c.id))
-				line.text = c.line_ru
+				line.text = _ui(["clues", c.id, "line"], c.line_ru)
 				narrate("objects", c.id)
 				synth.event_click()
 		else:
@@ -1432,11 +1506,20 @@ func _effects() -> void:
 						lamp.light_energy = minf(lamp.light_energy, e.v) \
 							if beat_id == "khachkar" else e.v
 			"flicker":
-				if not done and int((t - float(e.from)) / 0.15) % 2 == 0:
+				# Never to black and never above 3 flashes a second
+				# (WCAG 2.3.1): half-periods of 0.2 s dip to 35 %.  With
+				# reduced motion one smooth dip replaces the flashes.
+				if not done:
+					var f := 1.0
+					var u := t - float(e.from)
+					if reduced:
+						f = 1.0 - 0.4 * sin(clampf(u / 0.9, 0.0, 1.0) * PI)
+					elif int(u / 0.2) % 2 == 0:
+						f = 0.35
 					if e.room:
-						room_light.light_energy = 0.0
+						room_light.light_energy *= f
 					else:
-						lamp.light_energy = 0.0
+						lamp.light_energy *= f
 			"duck":
 				if not done:
 					duck_db = minf(duck_db, e.v)
@@ -1456,13 +1539,24 @@ func _effects() -> void:
 	effects = keep
 
 
+## A yes/no from the player's settings file (user://settings.json).
+static func _setting(key: String) -> bool:
+	if not FileAccess.file_exists(Haptics.SETTINGS):
+		return false
+	var d = JSON.parse_string(FileAccess.get_file_as_string(Haptics.SETTINGS))
+	return d is Dictionary and d.get(key, false) == true
+
+
 func _jerk() -> void:
 	if jerk_from < 0.0:
 		return
 	var k := clampf((t - jerk_from) / float(data.comfort.jerk_s), 0.0,
 		1.0)
-	if reduced:
-		# Reduced motion: no turn of the world, a dimming instead.
+	if reduced or not world_turn:
+		# No turn of the world unless the player asked for it in
+		# user://settings.json ("world_turn": true): a turn the body did
+		# not make is the strongest cause of sickness (comfort audit).
+		# A dimming tells the jerk instead, with the haptics.
 		env.ambient_light_energy = 1.0 - 0.6 * sin(k * PI)
 	else:
 		rig.rotation.y = deg_to_rad(float(data.comfort.jerk_yaw_deg)) \
@@ -1485,7 +1579,10 @@ func _body_input() -> Dictionary:
 		for h in [left_hand, right_hand]:
 			hand = minf(hand, h.global_position.distance_to(
 				drams.global_position))
+	# The breath on the rope is a squeeze of either trigger: the turn
+	# away from the lure must not need the right hand (a11y audit).
 	var trig := right_hand.is_button_pressed("trigger_click") \
+		or left_hand.is_button_pressed("trigger_click") \
 		or Input.is_key_pressed(KEY_SPACE)
 	var exhale := trig and not trigger_was
 	trigger_was = trig
@@ -1529,22 +1626,32 @@ func _depth() -> float:
 	var k := clampf((t - 25.0) / 185.0, 0.0, 1.0)
 	var d := lerpf(DEPTH_START, DEPTH_LAYER, k)
 	if t > 820.0:
-		d = lerpf(d, 5.0, clampf((t - 820.0) / 40.0, 0.0, 1.0))
+		# The ascent keeps the limit it names: 10 m/min at most
+		# (DiveCore.MAX_ASCENT_M_PER_MIN); the rest of the way up is cut
+		# by the dark of the room, not hurried (diver's audit 2026-10-03).
+		d -= DiveCore.MAX_ASCENT_M_PER_MIN / 60.0 * minf(t - 820.0, 40.0)
 	return d
 
 
 ## The dive's own synth: the sonar, the water, the layer's shimmer when
-## the depth crosses 50 m.  At the khachkar the machine goes down to
-## -60 dBFS over the console's 1.75 s, room tone and breath stay.
+## the depth crosses 50 m.  At the khachkar the synth itself takes its
+## machine layer down to -60 dB ("silence"), while room tone and breath
+## stay at about -45 dBFS: the stream is not muted as a whole, or the
+## sacred would get digital nothing instead of living quiet (TABOO 0.4
+## rule 2, TABOO 0.38 item 4).
 func _sound(dt: float) -> void:
+	var sacred := beat_id == "khachkar"
 	if beat_id in ["drop", "room_drains", "prior_last", "title"]:
 		synth.update({"depth": 0.0, "thrust": 0.0, "shore_m": 2000.0},
 			dt)
 	else:
-		synth.update({"depth": _depth(), "thrust": 0.15,
-			"shore_m": 2000.0, "echo_delay": 2.0 * 2.0 / 1480.0}, dt)
-	player.volume_db = minf(minf(lerpf(-60.0, 0.0, console_level),
-		duck_db), ins_duck)
+		var d := _depth()
+		synth.update({"depth": d, "thrust": 0.0 if sacred else 0.15,
+			"shore_m": 2000.0, "silence": sacred,
+			"echo_delay": 2.0 * 2.0 / DiveCore.sound_speed(d)}, dt)
+	# A glance or a close-up lowers the water, never below -18 dB, so
+	# the room tone is still there under the narrator (TABOO 0.019 item 4).
+	player.volume_db = minf(maxf(duck_db, -18.0), ins_duck)
 	if playback:
 		var frames := playback.get_frames_available()
 		if frames > 0:
@@ -1564,6 +1671,9 @@ func _music() -> void:
 	music.set_cue(CosmosSynth.cue_for_beat(music.data, beat_id))
 	music_player.volume_db = minf(minf(lerpf(-60.0, 0.0, console_level),
 		duck_db), ins_duck * 0.5)
+	# At -60 dB (the kayrak) the suite is not computed at all: zeros, its
+	# clock held, so the Quest's CPU is not spent on the unheard.
+	music.follow_volume(music_player.volume_db)
 	if music_playback:
 		var frames := music_playback.get_frames_available()
 		if frames > 0:

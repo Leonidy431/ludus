@@ -400,13 +400,35 @@ static func load_i18n() -> Dictionary:
 
 
 ## The player's language from user://settings.json ("lang"), else ru.
-static func language() -> String:
+static func language(system := "") -> String:
 	var path := "user://settings.json"
 	if FileAccess.file_exists(path):
 		var d = JSON.parse_string(FileAccess.get_file_as_string(path))
 		if d is Dictionary and str(d.get("lang", "")) in LANGS:
 			return str(d.lang)
-	return "ru"
+	# No choice written: the headset's own language, if the episode has
+	# it, so a German player is not left with Russian by default (no file
+	# can be written by hand in Quest; localisation audit 2026-10-03).
+	var sys := system if system != "" else OS.get_locale_language()
+	return sys if sys in LANGS else "ru"
+
+
+## A line the screen shows (the console's message, the scribe's line,
+## a close-up's or a clue's line) in a language: path walks the i18n
+## file ("screen", beat, "message"...), the Russian is kept when the
+## translation is missing.  Before this every on-screen line stayed
+## Russian whatever the language (localisation audit 2026-10-03).
+static func ui_text(tr: Dictionary, path: Array, lang: String,
+		ru: String) -> String:
+	if lang == "ru" or ru == "":
+		return ru
+	var node = tr
+	for k in path:
+		if not node is Dictionary:
+			return ru
+		node = node.get(str(k), {})
+	var t := str(node.get(lang, "")) if node is Dictionary else ""
+	return t if t != "" else ru
 
 
 ## A narrator line in a language; the Russian original when the

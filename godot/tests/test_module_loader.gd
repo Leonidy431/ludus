@@ -23,16 +23,40 @@ static func scripts_in(dir: String) -> Array:
 	return out
 
 
-## The lines of a script that change scene synchronously.  Any call at
-## all is reported, and the big modules by name; a comment is skipped.
+## A scene file named in a string: "res://scenes/<name>.tscn".
+const SCENE_RE := "\"res://scenes/[^\"]+\\.tscn\""
+
+
+## The lines of a script that open a scene synchronously, in any of the
+## three ways the frame of the press would carry the whole module:
+##   * change_scene_to_file anywhere;
+##   * change_scene_to_packed outside module_loader.gd, the one helper
+##     that may change scene, and only behind its black;
+##   * load or preload of a scene file, by its literal path or by a
+##     constant of the same script that holds one (ResourceLoader.load
+##     too; load_threaded_request is not a load and is not reported).
+## A line that is a comment is skipped.
 static func sync_changes(path: String) -> Array:
 	var out := []
 	var lines := FileAccess.get_file_as_string(path).split("\n")
+	var helper := path.get_file() == "module_loader.gd"
+	var loads := [SCENE_RE]
+	var consts := RegEx.create_from_string("^const\\s+(\\w+)\\s*(?::\\s*"
+		+ "\\w+\\s*)?:?=\\s*" + SCENE_RE)
+	for line in lines:
+		var m := consts.search(line.strip_edges())
+		if m != null:
+			loads.append(m.get_string(1) + "\\b")
+	var load_re := RegEx.create_from_string("\\b(?:pre)?load\\s*\\(\\s*(?:"
+		+ "|".join(loads) + ")")
 	for i in lines.size():
 		var line := lines[i].strip_edges()
 		if line.begins_with("#"):
 			continue
-		if "change_scene_to_file" in line:
+		var hit := "change_scene_to_file" in line
+		hit = hit or (not helper and "change_scene_to_packed" in line)
+		hit = hit or load_re.search(line) != null
+		if hit:
 			out.append("%s:%d %s" % [path, i + 1, line])
 	return out
 
@@ -44,16 +68,34 @@ func run(t: Object) -> void:
 	for path in scripts_in("res://scripts"):
 		found.append_array(sync_changes(path))
 	t._check(found.is_empty(),
-		"no change_scene_to_file in godot/scripts: %s" % [found])
-	# The check itself sees a call: a line written as the old hub had it.
+		"no synchronous scene change or scene load in godot/scripts: %s"
+		% [found])
+	# The check itself sees each way: a line written as the old hub had
+	# it, a packed change, a load by path and by constant, a preload;
+	# and it lets pass a comment, a threaded request, a constant alone
+	# and a model's load.
 	var probe := "user://module_loader_probe.gd"
 	var f := FileAccess.open(probe, FileAccess.WRITE)
-	f.store_string("\tget_tree().change_scene_to_file(\"res://scenes/"
-		+ "dive.tscn\")\n# change_scene_to_file in a comment\n")
+	f.store_string("\n".join([
+		"const LOCKS := \"res://scenes/lock.tscn\"",
+		"\tget_tree().change_scene_to_file(\"res://scenes/dive.tscn\")",
+		"\tget_tree().change_scene_to_packed(ps)",
+		"\tvar ps := load(\"res://scenes/witness.tscn\") as PackedScene",
+		"\tvar p2 = ResourceLoader.load(LOCKS)",
+		"const P := preload(\"res://scenes/hub.tscn\")",
+		"# change_scene_to_file in a comment",
+		"# load(\"res://scenes/dive.tscn\") in a comment",
+		"\tResourceLoader.load_threaded_request(\"res://scenes/dive.tscn\")",
+		"\tvar m := load(\"res://models/rov/mangustik.glb\")",
+		"\tvar q := load(LOCKS_EXTRA)",
+	]) + "\n")
 	f.close()
-	t._check(sync_changes(probe).size() == 1,
-		"the scan finds a synchronous change and skips a comment")
+	var seen := sync_changes(probe)
+	t._check(seen.size() == 5, "the scan finds the five synchronous "
+		+ "ways and skips the rest: %s" % [seen])
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(probe))
+	t._check(sync_changes("res://scripts/module_loader.gd").is_empty(),
+		"the helper's own packed change, behind its black, is allowed")
 	# 2. The helper is one, and it is the autoload.
 	var ml: Node = t.root.get_node_or_null("ModuleLoader")
 	t._check(ml != null, "ModuleLoader is an autoload")
@@ -129,3 +171,81 @@ func run(t: Object) -> void:
 		await t.process_frame
 	t._check(ml.phase == "" and ml.alpha == 0.0,
 		"the black is gone after a called-off go")
+	await _lock(t, ml)
+	await _missing(t, ml)
+
+
+## The lock is a module the hub can reach (phase F3 of docs/HLD_
+## CHORUS24_FIXES_2026-10-03.md), and B or Esc lead out of it.
+func _lock(t: Object, ml: Node) -> void:
+	var lock: String = ml.LOCK
+	t._check(ResourceLoader.exists(lock), "the lock scene exists: " + lock)
+	ml.prefetch(lock)
+	t._check(ml.modules[lock].items == [lock],
+		"the lock module is its scene alone (it loads no model)")
+	var n := 0
+	while not ml.is_ready(lock) and n < WAIT_FRAMES:
+		await t.process_frame
+		n += 1
+	t._check(ml.modules[lock].held.get(lock) is PackedScene,
+		"the lock scene is loaded ahead in %d frames" % n)
+	# The way in names the lock; the scene takes the id once.
+	ml.go_lock("buoy_hearing")
+	t._check(ml.pending == lock and ml.lock_id == "buoy_hearing",
+		"go_lock goes to the lock scene with its lock")
+	ml.release(lock)
+	t._check(ml.pending == "" and ml.modules.is_empty(),
+		"release calls off the way to the lock")
+	t._check(ml.take_lock_id() == "buoy_hearing"
+		and ml.take_lock_id() == "", "the lock id is taken once")
+	var nav: Node = t.root.get_node_or_null("Nav")
+	t._check(nav != null and lock in nav.EXITS
+		and nav.EXITS.has(ml.DIVE) and nav.EXITS.has(ml.WITNESS),
+		"B and Esc lead out of the lock, the dive and the witness")
+	for i in 40:
+		await t.process_frame
+
+
+## Catches the errors the loader pushes, so the test can see the path.
+## The loader pushes them from the main thread, in its _process; an
+## error of the engine's own loader thread may come in too, and only
+## appends a line.
+class Catch:
+	extends Logger
+	var lines: PackedStringArray = []
+
+	func _log_error(_function: String, _file: String, _line: int,
+			code: String, rationale: String, _editor_notify: bool,
+			_error_type: int, _script_backtraces: Array) -> void:
+		lines.append(rationale if rationale != "" else code)
+
+	func has(text: String) -> bool:
+		for l in lines:
+			if text in l:
+				return true
+		return false
+
+
+## A scene that does not load is named, not lost: push_error with its
+## path, the way over is called off and the black lifts.
+func _missing(t: Object, ml: Node) -> void:
+	var nope := "res://scenes/no_such_module.tscn"
+	var catch := Catch.new()
+	OS.add_logger(catch)
+	print("test_module_loader: two errors about %s are expected" % nope)
+	var before: Node = t.current_scene
+	ml.go(nope)
+	var n := 0
+	while (ml.pending != "" or ml.phase != "") and n < WAIT_FRAMES:
+		await t.process_frame
+		n += 1
+	OS.remove_logger(catch)
+	t._check(nope in ml.failed, "the failed path is recorded: %s"
+		% [ml.failed])
+	t._check(catch.has("ModuleLoader") and catch.has(nope),
+		"push_error names the scene that failed to load")
+	t._check(ml.pending == "" and ml.modules.is_empty()
+		and t.current_scene == before,
+		"a scene that fails to load calls the way over off")
+	t._check(ml.phase == "" and ml.alpha == 0.0,
+		"the black lifts after a failed way over")

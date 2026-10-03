@@ -1,0 +1,540 @@
+{
+ "doc": "docs/HLD_COMPANION_CLAUD_2026-10-03.md",
+ "about": "Claud, the ROV operator's AI companion in episode 1 (CLAUDE.md TABOO 0.026): a first-person voice in the headset and a line on the console, apart from the third-person narrator. A machine: it names depth, price and the truth of the water; it never prays, never judges, never chooses for the hero; at the khachkar it is silent. Lines keyed by beat and event; checked by CompanionCore.check().",
+ "name_ru": "Клауд",
+ "name_en": "Claud",
+ "name_note": "World name chosen by the operator; Claude is an Anthropic trademark - the operator confirms the name before a store release (TABOO 0.026 item 6).",
+ "draft_voice": true,
+ "draft_label_ru": "черновой голос",
+ "draft_label_en": "draft voice",
+ "voice_dir": "res://companion/{lang}/{voice_file}.ogg",
+ "pack": "voice-claud-ep1",
+ "max_chars": 120,
+ "holy_beats": [
+  "khachkar"
+ ],
+ "hint_beats": [
+  "hands_on_stick",
+  "walls",
+  "diary"
+ ],
+ "lines": [
+  {
+   "beat": "drop",
+   "event": "enter",
+   "kind": "personality",
+   "ru": "Датчик влажности сработал. Паниковать — моя работа. Твоя — посмотреть под ноги.",
+   "en": "Moisture sensor tripped. Panicking is my job. Yours is to look down.",
+   "voice_file": "claud_drop_enter",
+   "draft_voice": true
+  },
+  {
+   "beat": "water_rises",
+   "event": "enter",
+   "kind": "telemetry",
+   "ru": "Под полом пинг сонара. Это наш «Мангустик» зовёт. Поднимаю пульт.",
+   "en": "Sonar ping under the floor. That's our Mangustik calling. Waking the console.",
+   "voice_file": "claud_water_rises_enter",
+   "draft_voice": true
+  },
+  {
+   "beat": "immersion",
+   "event": "enter",
+   "kind": "telemetry",
+   "ru": "Глубина 38 метров. Вода около 17 градусов. Давление 4,7 бара. Аппарат цел.",
+   "en": "Depth 38 metres. Water about 17 degrees. Pressure 4.7 bar. Vehicle intact.",
+   "say_ru": "Глубина тридцать восемь метров. Вода около семнадцати градусов. Давление четыре и семь десятых бара. Аппарат цел.",
+   "say_en": "Depth thirty-eight metres. Water about seventeen degrees. Pressure four point seven bar. Vehicle intact.",
+   "facts": [
+    {
+     "k": "depth",
+     "v": 38
+    },
+    {
+     "k": "temp_c",
+     "at": 38,
+     "v": 17
+    },
+    {
+     "k": "pressure_bar",
+     "at": 38,
+     "v": 4.7
+    }
+   ],
+   "voice_file": "claud_immersion_enter",
+   "draft_voice": true
+  },
+  {
+   "beat": "immersion",
+   "event": "message",
+   "kind": "warning",
+   "ru": "Приор знает наш канал. Отвечать пока нечем: координат у нас ещё нет.",
+   "en": "The Prior knows our channel. Nothing to answer with yet: we have no coordinates.",
+   "voice_file": "claud_immersion_message",
+   "draft_voice": true
+  },
+  {
+   "beat": "hands_on_stick",
+   "event": "enter",
+   "kind": "telemetry",
+   "ru": "Свет включён. Управление твоё. Я считаю метры, ты смотришь.",
+   "en": "Lights on. The stick is yours. I count metres; you look.",
+   "voice_file": "claud_hands_on_stick_enter",
+   "draft_voice": true
+  },
+  {
+   "beat": "hands_on_stick",
+   "event": "hint:1",
+   "kind": "hint",
+   "step": 1,
+   "ru": "Глина любит лежать там, где течение устаёт.",
+   "en": "Clay likes to rest where the current gets tired.",
+   "voice_file": "claud_hands_on_stick_hint_1",
+   "draft_voice": true
+  },
+  {
+   "beat": "hands_on_stick",
+   "event": "hint:2",
+   "kind": "hint",
+   "step": 2,
+   "ru": "Левее и ниже, у кромки ила. Там форма слишком ровная для камня.",
+   "en": "Left and lower, at the edge of the silt. That shape is too smooth for a stone.",
+   "voice_file": "claud_hands_on_stick_hint_2",
+   "draft_voice": true
+  },
+  {
+   "beat": "hands_on_stick",
+   "event": "hint:3",
+   "kind": "hint",
+   "step": 3,
+   "ru": "Амфора в 2 метрах слева, горлом к тебе.",
+   "en": "The amphora is 2 metres to your left, neck towards you.",
+   "say_ru": "Амфора в двух метрах слева, горлом к тебе.",
+   "say_en": "The amphora is two metres to your left, neck towards you.",
+   "facts": [
+    {
+     "k": "plain",
+     "v": 2
+    }
+   ],
+   "voice_file": "claud_hands_on_stick_hint_3",
+   "draft_voice": true
+  },
+  {
+   "beat": "hands_on_stick",
+   "event": "idle",
+   "kind": "personality",
+   "ru": "Я не умею бояться глубины. Зато считаю её очень быстро.",
+   "en": "I can't be afraid of depth. I can measure it very fast, though.",
+   "voice_file": "claud_hands_on_stick_idle",
+   "draft_voice": true
+  },
+  {
+   "beat": "walls",
+   "event": "enter",
+   "kind": "telemetry",
+   "ru": "Сонар рисует прямые линии. Камни так не лежат.",
+   "en": "Sonar is drawing straight lines. Stones don't lie like that.",
+   "voice_file": "claud_walls_enter",
+   "draft_voice": true
+  },
+  {
+   "beat": "walls",
+   "event": "hint:1",
+   "kind": "hint",
+   "step": 1,
+   "ru": "Природа не чертит прямых углов.",
+   "en": "Nature doesn't draw right angles.",
+   "voice_file": "claud_walls_hint_1",
+   "draft_voice": true
+  },
+  {
+   "beat": "walls",
+   "event": "hint:2",
+   "kind": "hint",
+   "step": 2,
+   "ru": "Смотри на экран сонара: линии идут параллельно, вдоль склона.",
+   "en": "Watch the sonar screen: the lines run parallel, along the slope.",
+   "voice_file": "claud_walls_hint_2",
+   "draft_voice": true
+  },
+  {
+   "beat": "walls",
+   "event": "hint:3",
+   "kind": "hint",
+   "step": 3,
+   "ru": "Это кладка. Стены справа, на сонаре их видно целиком.",
+   "en": "It's masonry. The walls are on your right; the sonar shows them whole.",
+   "voice_file": "claud_walls_hint_3",
+   "draft_voice": true
+  },
+  {
+   "beat": "thermocline",
+   "event": "enter",
+   "kind": "telemetry",
+   "ru": "Слой скачка. Сонар путается в эхе — это не поломка, это вода.",
+   "en": "The jump layer. Sonar is tangled in echoes — not a fault, just water.",
+   "voice_file": "claud_thermocline_enter",
+   "draft_voice": true
+  },
+  {
+   "beat": "thermocline",
+   "event": "depth:50",
+   "kind": "telemetry",
+   "ru": "Термоклин, 50 метров. Ниже звук идёт 1435 метров в секунду, а не 1480.",
+   "en": "Thermocline, 50 metres. Below it sound runs 1435 metres a second, not 1480.",
+   "say_ru": "Термоклин, пятьдесят метров. Ниже звук идёт тысячу четыреста тридцать пять метров в секунду, а не тысячу четыреста восемьдесят.",
+   "say_en": "Thermocline, fifty metres. Below it sound runs fourteen thirty-five metres a second, not fourteen eighty.",
+   "facts": [
+    {
+     "k": "thermocline_m",
+     "v": 50
+    },
+    {
+     "k": "c_below",
+     "v": 1435
+    },
+    {
+     "k": "c_above",
+     "v": 1480
+    }
+   ],
+   "voice_file": "claud_thermocline_depth_50",
+   "draft_voice": true
+  },
+  {
+   "beat": "thermocline",
+   "event": "temp",
+   "kind": "telemetry",
+   "ru": "Вода падает с 18 до 4,5 градуса. Держи глубину ровно, без рывков.",
+   "en": "Water drops from 18 to 4.5 degrees. Hold the depth steady, no jerks.",
+   "say_ru": "Вода падает с восемнадцати до четырёх с половиной градусов. Держи глубину ровно, без рывков.",
+   "say_en": "Water drops from eighteen to four and a half degrees. Hold the depth steady, no jerks.",
+   "facts": [
+    {
+     "k": "t_surface",
+     "v": 18
+    },
+    {
+     "k": "t_deep",
+     "v": 4.5
+    }
+   ],
+   "voice_file": "claud_thermocline_temp",
+   "draft_voice": true
+  },
+  {
+   "beat": "thermocline",
+   "event": "idle",
+   "kind": "personality",
+   "ru": "Если что, я не тону. Одно из моих немногих преимуществ.",
+   "en": "For the record, I don't drown. One of my few advantages.",
+   "voice_file": "claud_thermocline_idle",
+   "draft_voice": true
+  },
+  {
+   "beat": "tether_jerk",
+   "event": "enter",
+   "kind": "warning",
+   "ru": "Рывок троса. Нагрузка выше нормы. Течение так не дёргает.",
+   "en": "Tether jerk. Load above normal. Currents don't pull like that.",
+   "voice_file": "claud_tether_jerk_enter",
+   "draft_voice": true
+  },
+  {
+   "beat": "tether_jerk",
+   "event": "telemetry",
+   "kind": "warning",
+   "ru": "Расхождение: глубина по датчику и по сонару не сходятся. Кто-то пишет в наш канал.",
+   "en": "Mismatch: the depth gauge and the sonar disagree. Someone is writing into our channel.",
+   "voice_file": "claud_tether_jerk_telemetry",
+   "draft_voice": true
+  },
+  {
+   "beat": "tether_jerk",
+   "event": "tether:kink",
+   "kind": "warning",
+   "ru": "Трос закручен на 3 оборота. Раскручивай тем же путём, в обратную сторону.",
+   "en": "The tether has 3 turns in it. Unwind the way you came, in reverse.",
+   "say_ru": "Трос закручен на три оборота. Раскручивай тем же путём, в обратную сторону.",
+   "say_en": "The tether has three turns in it. Unwind the way you came, in reverse.",
+   "facts": [
+    {
+     "k": "kink_turns",
+     "v": 3
+    }
+   ],
+   "voice_file": "claud_tether_jerk_tether_kink",
+   "draft_voice": true
+  },
+  {
+   "beat": "bookmark",
+   "event": "enter",
+   "kind": "telemetry",
+   "ru": "В журнале сети чужая запись. Нашу экспедицию продали сегодня ночью.",
+   "en": "A foreign entry in the network log. Our expedition was sold tonight.",
+   "voice_file": "claud_bookmark_enter",
+   "draft_voice": true
+  },
+  {
+   "beat": "lure",
+   "event": "enter",
+   "kind": "price",
+   "ru": "Предложение: серебро за координаты. Это цена, а не подарок. Решение — твоё.",
+   "en": "Offer: silver for coordinates. That's a price, not a gift. The call is yours.",
+   "voice_file": "claud_lure_enter",
+   "draft_voice": true
+  },
+  {
+   "beat": "lure",
+   "event": "look:Drams",
+   "kind": "price",
+   "ru": "Драмы настоящие, четырнадцатый век. Тот, кто их предлагает, — нет.",
+   "en": "The drams are real, fourteenth century. The one offering them is not.",
+   "voice_file": "claud_lure_look_drams",
+   "draft_voice": true
+  },
+  {
+   "beat": "lure",
+   "event": "stage:converse",
+   "kind": "price",
+   "ru": "Цена подстраивается под твой взгляд. Это не я, это его протокол.",
+   "en": "The price follows your gaze. That's not me; that's his protocol.",
+   "voice_file": "claud_lure_stage_converse",
+   "draft_voice": true
+  },
+  {
+   "beat": "price_rises",
+   "event": "enter",
+   "kind": "price",
+   "ru": "Цена растёт, пока ты смотришь. Сумму я назову. Чего она стоит — нет.",
+   "en": "The price rises while you look. I can name the sum. Not what it costs.",
+   "voice_file": "claud_price_rises_enter",
+   "draft_voice": true
+  },
+  {
+   "beat": "price_rises",
+   "event": "stage:consent",
+   "kind": "warning",
+   "ru": "Он знает нашу глубину. Значит, кто-то читает мою телеметрию.",
+   "en": "He knows our depth. So someone is reading my telemetry.",
+   "voice_file": "claud_price_rises_stage_consent",
+   "draft_voice": true
+  },
+  {
+   "beat": "price_rises",
+   "event": "stage:stillness",
+   "kind": "personality",
+   "ru": "Три выдоха. Я помолчу и посчитаю метры.",
+   "en": "Three breaths. I'll keep quiet and count the metres.",
+   "voice_file": "claud_price_rises_stage_stillness",
+   "draft_voice": true
+  },
+  {
+   "beat": "choice_echo",
+   "event": "enter",
+   "kind": "telemetry",
+   "ru": "Над нами прошёл дрон. Орден слышит то же, что и мы.",
+   "en": "A drone just passed overhead. The Order hears what we hear.",
+   "voice_file": "claud_choice_echo_enter",
+   "draft_voice": true
+  },
+  {
+   "beat": "khachkar",
+   "event": "enter",
+   "kind": "silence",
+   "ru": "",
+   "en": "",
+   "voice_file": "claud_khachkar_enter",
+   "draft_voice": true
+  },
+  {
+   "beat": "khachkar",
+   "event": "look:khachkar",
+   "kind": "silence",
+   "ru": "",
+   "en": "",
+   "voice_file": "claud_khachkar_look_khachkar",
+   "draft_voice": true
+  },
+  {
+   "beat": "diary",
+   "event": "enter",
+   "kind": "translation",
+   "ru": "Сканер читает грабар строка за строкой. Писец поправит, где я ошибаюсь.",
+   "en": "The scanner reads the Grabar line by line. The scribe corrects me where I'm wrong.",
+   "voice_file": "claud_diary_enter",
+   "draft_voice": true
+  },
+  {
+   "beat": "diary",
+   "event": "translate",
+   "kind": "translation",
+   "ru": "Первая строка: «Лета 1375. Сис пал». Дальше почерк мельче, нужна вторая проходка.",
+   "en": "First line: 'Year 1375. Sis has fallen.' The hand gets smaller; I need a second pass.",
+   "say_ru": "Первая строка: «Лета тысяча триста семьдесят пятого. Сис пал». Дальше почерк мельче, нужна вторая проходка.",
+   "say_en": "First line: 'Year thirteen seventy-five. Sis has fallen.' The hand gets smaller; I need a second pass.",
+   "facts": [
+    {
+     "k": "plain",
+     "v": 1375
+    }
+   ],
+   "voice_file": "claud_diary_translate",
+   "draft_voice": true
+  },
+  {
+   "beat": "diary",
+   "event": "line:holy",
+   "kind": "translation",
+   "ru": "Тип не определён. Эту строку читает человек, не я.",
+   "en": "Type undefined. A person reads this line, not me.",
+   "voice_file": "claud_diary_line_holy",
+   "draft_voice": true
+  },
+  {
+   "beat": "diary",
+   "event": "hint:1",
+   "kind": "hint",
+   "step": 1,
+   "ru": "Чернила темнее там, где писали медленно.",
+   "en": "The ink is darker where the hand went slowly.",
+   "voice_file": "claud_diary_hint_1",
+   "draft_voice": true
+  },
+  {
+   "beat": "diary",
+   "event": "hint:2",
+   "kind": "hint",
+   "step": 2,
+   "ru": "Опусти сканер ниже, на поле листа.",
+   "en": "Lower the scanner, onto the margin of the leaf.",
+   "voice_file": "claud_diary_hint_2",
+   "draft_voice": true
+  },
+  {
+   "beat": "diary",
+   "event": "hint:3",
+   "kind": "hint",
+   "step": 3,
+   "ru": "Строка на поле, рядом с рисунком кометы. Подведи сканер к ней.",
+   "en": "The line is in the margin, beside the drawn comet. Bring the scanner to it.",
+   "voice_file": "claud_diary_hint_3",
+   "draft_voice": true
+  },
+  {
+   "beat": "mark_line",
+   "event": "enter",
+   "kind": "translation",
+   "ru": "Строка обрывается. Это не сканер — край листа истлел.",
+   "en": "The line breaks off. Not the scanner — the edge of the leaf has rotted.",
+   "voice_file": "claud_mark_line_enter",
+   "draft_voice": true
+  },
+  {
+   "beat": "mark_line",
+   "event": "mark",
+   "kind": "personality",
+   "ru": "Звезда с хвостом. Совпадение формы, не больше. Выводы — по твоей части.",
+   "en": "A star with a tail. A match of shape, nothing more. Conclusions are your department.",
+   "voice_file": "claud_mark_line_mark",
+   "draft_voice": true
+  },
+  {
+   "beat": "ascent",
+   "event": "enter",
+   "kind": "ascent",
+   "ru": "Всплываем. Не быстрее 10 метров в минуту: с 52 метров это не меньше 6 минут.",
+   "en": "Ascending. No faster than 10 metres a minute: from 52 metres that's 6 minutes at least.",
+   "say_ru": "Всплываем. Не быстрее десяти метров в минуту: с пятидесяти двух метров это не меньше шести минут.",
+   "say_en": "Ascending. No faster than ten metres a minute: from fifty-two metres that's six minutes at least.",
+   "facts": [
+    {
+     "k": "max_ascent",
+     "v": 10
+    },
+    {
+     "k": "depth",
+     "v": 52
+    },
+    {
+     "k": "ascent_min",
+     "from": 52,
+     "v": 6
+    }
+   ],
+   "voice_file": "claud_ascent_enter",
+   "draft_voice": true
+  },
+  {
+   "beat": "ascent",
+   "event": "ascent:fast",
+   "kind": "ascent",
+   "ru": "Слишком быстро: больше 10 метров в минуту. Я с физикой не спорю. Тебе не советую.",
+   "en": "Too fast: over 10 metres a minute. I don't argue with physics. Neither should you.",
+   "say_ru": "Слишком быстро: больше десяти метров в минуту. Я с физикой не спорю. Тебе не советую.",
+   "say_en": "Too fast: over ten metres a minute. I don't argue with physics. Neither should you.",
+   "facts": [
+    {
+     "k": "max_ascent",
+     "v": 10
+    }
+   ],
+   "voice_file": "claud_ascent_ascent_fast",
+   "draft_voice": true
+  },
+  {
+   "beat": "ascent",
+   "event": "safety_stop",
+   "kind": "ascent",
+   "ru": "Остановка безопасности: 15 секунд. Да, я считаю их вслух.",
+   "en": "Safety stop: 15 seconds. Yes, I'm counting them out loud.",
+   "say_ru": "Остановка безопасности: пятнадцать секунд. Да, я считаю их вслух.",
+   "say_en": "Safety stop: fifteen seconds. Yes, I'm counting them out loud.",
+   "facts": [
+    {
+     "k": "safety_stop_s",
+     "v": 15
+    }
+   ],
+   "voice_file": "claud_ascent_safety_stop",
+   "draft_voice": true
+  },
+  {
+   "beat": "room_drains",
+   "event": "enter",
+   "kind": "telemetry",
+   "ru": "Связь с аппаратом потеряна. Вода уходит. Журнал я сохраняю.",
+   "en": "Link to the vehicle lost. The water is draining. I'm keeping the log.",
+   "voice_file": "claud_room_drains_enter",
+   "draft_voice": true
+  },
+  {
+   "beat": "room_drains",
+   "event": "mark",
+   "kind": "personality",
+   "ru": "На твоей руке тот же знак. Вижу. Объяснить не могу.",
+   "en": "The same mark is on your hand. I see it. I can't explain it.",
+   "voice_file": "claud_room_drains_mark",
+   "draft_voice": true
+  },
+  {
+   "beat": "prior_last",
+   "event": "enter",
+   "kind": "price",
+   "ru": "Приор знает больше, чем пишет. Журнал цел. Отвечать или нет — решаешь ты.",
+   "en": "The Prior knows more than he writes. The log is safe. Whether to answer is your call.",
+   "voice_file": "claud_prior_last_enter",
+   "draft_voice": true
+  },
+  {
+   "beat": "title",
+   "event": "enter",
+   "kind": "personality",
+   "ru": "Конец записи. До следующего погружения. Я буду на связи.",
+   "en": "End of log. Until the next dive. I'll be on the line.",
+   "voice_file": "claud_title_enter",
+   "draft_voice": true
+  }
+ ]
+}

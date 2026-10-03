@@ -130,5 +130,7 @@ static func leave(paths := {}) -> void:
 	for k in ["marker", "hub", "dive"]:
 		if p[k] in [SaveSlot.HUB, SaveSlot.DIVE]:
 			continue
-		if FileAccess.file_exists(p[k]):
-			DirAccess.remove_absolute(ProjectSettings.globalize_path(p[k]))
+		# The save and the copies SaveSlot leaves beside it.
+		for f in [p[k], p[k] + ".bak", p[k] + ".part"]:
+			if FileAccess.file_exists(f):
+				DirAccess.remove_absolute(ProjectSettings.globalize_path(f))

@@ -12,9 +12,10 @@
  *     Beer-Lambert (ludus-water.js), sound speed 1480/1435 m/s;
  *   - where each of the 99 lake objects and each fish school lives:
  *     always inside its own depth range (TABOO 0.07, no invention);
- *   - the ROV: thrust, drag, battery, the diver's ascent limit of
- *     10 m/min (TABOO 0.35 rule 19) and a sonar ping whose echo delay
- *     is the real 2 * range / c;
+ *   - the ROV: thrust, drag, battery (flat, it floats up and is hauled
+ *     in on the tether), the ascent limit of 10 m/min (TABOO 0.35
+ *     rule 19) and a sonar ping whose echo delay is the real
+ *     2 * range / c, summed leg by leg through the thermocline;
  *   - loot by the operator's rule (docs/ISSYK_KUL_FISH.md): keep,
  *     release, hand-over, or nothing to take.
  * No Math.random: every choice comes from a seed (TABOO 0.35 rule 15).
@@ -37,6 +38,16 @@
   const LENGTH_M = 700;
   const HALF_WIDTH_M = 90;
   const THERMOCLINE_M = 50;
+  // With the battery flat the vehicle is lost to the dive, never the
+  // person (CLAUDE.md TABOO 0.017): it is trimmed slightly positive, as
+  // real ROVs are, so it floats up while the tether is hauled in.  8
+  // m/min keeps a margin under the 10 m/min of rule 19.
+  const RECOVERY_RISE_M_PER_MIN = 8;
+  // The shallowest depth stepRov allows: the vehicle is at the surface.
+  const SURFACE_DEPTH_M = 0.3;
+  const RECOVERY_RU = 'Заряд кончился. Аппарат всплывает сам, его '
+    + 'выбирают тросом: медленно, не быстрее десяти метров в минуту.';
+  const RECOVERED_RU = 'Аппарат у поверхности. Его несут на стапель.';
   const CORRIDOR_M = 30;
   // Summer: warm mixed layer over cold deep water (about 4.5 degrees C
   // at depth in Issyk-Kul, which never freezes).  Surface value is a
@@ -257,7 +268,14 @@
       * ROV.accel * power;
     s.vx += (ax - ROV.drag * s.vx) * dt;
     s.vz += (az - ROV.drag * s.vz) * dt;
-    s.vy += (ver * ROV.accel * power - ROV.drag * s.vy) * dt;
+    if (power > 0) {
+      s.vy += (ver * ROV.accel - ROV.drag * s.vy) * dt;
+    } else {
+      // No thrust: buoyancy and the hauled tether lift it, and drag
+      // eases it towards the recovery rate, never past it.
+      const rise = RECOVERY_RISE_M_PER_MIN / 60;
+      s.vy = Math.min(s.vy + ROV.drag * (rise - s.vy) * dt, rise);
+    }
     const h = Math.hypot(s.vx, s.vz);
     if (h > ROV.maxSpeed) {
       s.vx *= ROV.maxSpeed / h;
@@ -278,6 +296,25 @@
     s.battery = Math.max(0, s.battery - load * dt / ROV.batterySec);
     s.history.push([dt, s.depth]);
     return s;
+  }
+
+  /**
+   * A ping down rangeM from depth and back: the part of the path above
+   * the layer runs at 1480 m/s and the part below it at 1435 m/s, so an
+   * echo through the thermocline is the sum of both legs.
+   */
+  function echoDelay(depth, rangeM) {
+    const bottom = depth + Math.max(0, rangeM);
+    const above = Math.max(0, Math.min(bottom, THERMOCLINE_M)
+      - Math.min(depth, THERMOCLINE_M));
+    const below = Math.max(0, Math.max(bottom, THERMOCLINE_M)
+      - Math.max(depth, THERMOCLINE_M));
+    return 2 * (above / Water.C_ABOVE + below / Water.C_BELOW);
+  }
+
+  /** True once a vehicle with a flat battery is back at the surface. */
+  function recovered(state) {
+    return state.battery <= 0 && state.depth <= SURFACE_DEPTH_M + 1e-6;
   }
 
   /** Ascent rate over the last second or more of history, m/min. */
@@ -310,7 +347,7 @@
       ascentTooFast: up.tooFast,
       battery: state.battery,
       soundSpeed: Water.soundSpeed(state.depth, THERMOCLINE_M),
-      echoDelay: Water.echoDelay(range, state.depth, THERMOCLINE_M),
+      echoDelay: echoDelay(state.depth, range),
       belowThermocline: state.depth > THERMOCLINE_M,
       light: Water.lightLeft(state.depth),
       shoreDistance: state.x,
@@ -440,7 +477,8 @@
     return { done: [], progress, fallen: false, fastFor: 0, stillFor: 0,
       holdDepth: null, holdHeading: null, riseFrom: null,
       crossedFrom: null, finds: 0, scribeTold: false,
-      turns: 0, lastYaw: null, wound: false, kinkWarned: false };
+      turns: 0, lastYaw: null, wound: false, kinkWarned: false,
+      recovering: false, recovered: false };
   }
 
   function speedOf(rov) {
@@ -490,13 +528,28 @@
     } else if (Math.abs(g.turns) < KINK_TURNS - 1) {
       g.kinkWarned = false;
     }
+    // A flat battery ends the dive quietly: the narrator says so once,
+    // the vehicle rises on its own, and nothing else counts (no task is
+    // earned by floating up).
+    if (rov.battery <= 0) {
+      if (!g.recovering) {
+        g.recovering = true;
+        say.push(RECOVERY_RU);
+      }
+      if (!g.recovered && recovered(rov)) {
+        g.recovered = true;
+        say.push(RECOVERED_RU);
+      }
+      return { game: g, say };
+    }
     // Fall: a sustained rise faster than the diver's limit.
     g.fastFor = tel.ascentTooFast ? g.fastFor + dt : 0;
     if (!g.fallen && g.fastFor >= FALL_AFTER_SEC) {
       g.fallen = true;
       g.stillFor = 0;
-      say.push('Слишком быстро вверх. Свет тускнеет. Остановись и '
-        + 'постой: остановка безопасности снимет это.');
+      say.push('Слишком быстро вверх: трос не успевают выбрать, слабина '
+        + 'ложится петлёй к винту. Свет тускнеет. Замри: остановка '
+        + 'безопасности даст выбрать слабину.');
     }
     const still = speedOf(rov) < 0.05;
     g.stillFor = still ? g.stillFor + dt : 0;
@@ -504,7 +557,7 @@
       if (g.stillFor >= SAFETY_STOP_SEC) {
         g.fallen = false;
         g.stillFor = 0;
-        say.push('Остановка выдержана. Свет вернулся.');
+        say.push('Слабина выбрана, винт чист. Свет вернулся.');
       }
       return { game: g, say };
     }
@@ -562,8 +615,8 @@
         g.riseFrom = d;
       }
       if (g.riseFrom - d >= 3) {
-        finish('slowrise', 'Медленное всплытие: воздух в теле успевает '
-          + 'за тобой.');
+        finish('slowrise', 'Медленное всплытие: трос выбирают без '
+          + 'слабины, петля не ложится на винт.');
       }
     } else {
       g.riseFrom = null;
@@ -850,7 +903,8 @@
   }
 
   const api = { PROFILE, LENGTH_M, HALF_WIDTH_M, THERMOCLINE_M, CORRIDOR_M,
-    TASKS, SCRIBE, SAFETY_STOP_SEC, KINK_TURNS, UNWOUND_TURNS, newGame,
+    TASKS, SCRIBE, SAFETY_STOP_SEC, RECOVERY_RISE_M_PER_MIN,
+    SURFACE_DEPTH_M, RECOVERY_RU, RECOVERED_RU, echoDelay, recovered, KINK_TURNS, UNWOUND_TURNS, newGame,
     stepGame, current,
     BIOMES, BIOME_REF, THERMO_BAND_M, NIGHT_LIGHT, VIEW_M, SILT,
     BUBBLE_RISE, BUBBLE_R0, VENT_UNTIL_M, biomeOf, biomeLook, waterColour,

@@ -9,8 +9,12 @@ the build with the first problems it finds:
     beyond the first (see max_nodes), unique ids, a real start node,
     every nextNodeId resolves or is null;
   - every node carries text, text_ru, meaning and source (0.35 rule 18);
-  - saints speak in paraphrase (voice "paraphrase"), never in invented
-    quotations (0.37);
+  - every node says whose words these are: voice "own" (the NPC in
+    his own words) or "paraphrase" (a retold teaching with its source);
+  - a saint carries the flag "saint": true, and so does every NPC whose
+    Russian name begins with a saint's title (Свт., Прп., Вмц., Пророк,
+    Ап. and their full forms); a saint speaks only in paraphrase, never
+    in invented quotations (0.37, 0.35 rule 18);
   - the start node has a branch with no condition, so a beginner can
     talk and the meeting is recorded (the gates depend on it);
   - at least two branches are gated by FORM; Cunning never opens a
@@ -44,6 +48,15 @@ ATTRS = {'wisdom', 'faith', 'dexterity', 'constitution', 'charisma',
 SAINTS = {'abba_moses', 'ekaterina', 'maximos', 'photius',
           'mary_magdalene', 'gregory_dialogist', 'symeon_stylite',
           'kassiani', 'gregory_palamas', 'macrina', 'isaias'}
+VOICES = ('own', 'paraphrase')
+# The titles that make a name a saint's.  Patrologist of the chorus,
+# 2026-10-03: prejudice «the list of saint ids is enough» / counter: a
+# new saint added by name and not to the list would speak in his own
+# invented words unchecked / why: the title in the name and the flag in
+# the data are checked against each other, and the list stays as a
+# third witness.
+SAINT_TITLE = re.compile(r'^(?:Свт\.|Святител|Прп\.|Преподобн|Вмц\.|'
+                         r'Мц\.|Пророк|Ап\.|Апостол|Св\.|Равноап)')
 FORBIDDEN = re.compile(r'\b(martyr\w*|saint\w*|grace|sacrament\w*|'
                        r'salvation)\b|мученик\w*|святой|святая|благодат\w*|'
                        r'таинств\w*|спасени\w*', re.IGNORECASE)
@@ -95,6 +108,14 @@ def check_tree(tree):
     if not 3 <= len(idiom.get('metaphors') or []) <= 5:
         err('idiom.metaphors must hold 3-5 metaphors')
 
+    saint = tree.get('saint') is True
+    if 'saint' in tree and not isinstance(tree['saint'], bool):
+        err('saint must be true or false')
+    if SAINT_TITLE.match(tree.get('npcName_ru') or '') and not saint:
+        err('the name carries a saint\'s title, but "saint" is not true')
+    if nid in SAINTS and not saint:
+        err('a saint of the chorus list without "saint": true')
+
     nodes = tree.get('nodes') or []
     ids = [n.get('id') for n in nodes]
     if not 6 <= len(nodes) <= max_nodes(nodes):
@@ -110,7 +131,10 @@ def check_tree(tree):
         for key in ('text', 'text_ru', 'meaning', 'source'):
             if not str(node.get(key) or '').strip():
                 err(f'{where}: {key} missing')
-        if nid in SAINTS and node.get('voice') not in ('paraphrase',):
+        if node.get('voice') not in VOICES:
+            err(f'{where}: voice {node.get("voice")!r} is not one of '
+                f'{", ".join(VOICES)}')
+        if saint and node.get('voice') != 'paraphrase':
             err(f'{where}: a saint speaks in paraphrase')
         for br in node.get('branches') or []:
             nxt = br.get('nextNodeId')

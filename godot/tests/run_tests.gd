@@ -76,6 +76,61 @@ func _initialize() -> void:
 	_near(t.temperature, fx.rov.telemetry.temperature, "telemetry temp")
 	_near(t.ascent_m_per_min, fx.rov.telemetry.ascentMPerMin, "ascent")
 	_near(t.echo_delay, fx.rov.telemetry.echoDelay, "echo")
+	_near(t.pressure_bar, fx.rov.telemetry.pressureBar, "pressure bar")
+	_near(t.sound_speed, fx.rov.telemetry.soundSpeed, "sound speed")
+	# The echo through the layer: each leg at its own speed of sound.
+	var le: Dictionary = fx.layeredEcho
+	var ls := DiveCore.new_rov()
+	ls.x = le.x
+	ls.depth = le.depth
+	var lt := DiveCore.telemetry(ls)
+	_near(lt.echo_delay, le.echoDelay, "layered echo")
+	_near(lt.sound_speed, le.soundSpeed, "layered sound speed")
+	_near(lt.pressure_bar, le.pressureBar, "layered pressure bar")
+	var lrange: float = lt.floor - lt.depth
+	_check(lt.echo_delay > 2.0 * lrange / DiveCore.C_ABOVE
+		and lt.echo_delay < 2.0 * lrange / DiveCore.C_BELOW,
+		"layered echo between the two speeds")
+	# A flat battery (TABOO 0.017, rule 19): the depth goes down, never
+	# faster than 10 m/min, and ends at the surface; the vehicle is lost
+	# to the dive, the player goes back to the slipway.
+	var rc := DiveCore.new_rov()
+	rc.x = 500.0
+	rc.depth = 120.0
+	rc.battery = 0.0
+	rc.vy = -0.4
+	var rg := DiveCore.new_game()
+	var rsaid := 0
+	var rdepths := []
+	var fastest := 0.0
+	var rising := true
+	var prev_d: float = rc.depth
+	for i in 2000:
+		rc = DiveCore.step_rov(rc, {"vertical": -1.0, "forward": 1.0}, 0.5)
+		fastest = maxf(fastest, (prev_d - rc.depth) / 0.5 * 60.0)
+		if i > 2 and rc.depth > prev_d + 1e-9:
+			rising = false
+		prev_d = rc.depth
+		var rout := DiveCore.step_game(rg, rc, 0.5, 0)
+		rg = rout.game
+		rsaid += rout.say.size()
+		if i % 200 == 0:
+			rdepths.append(rc.depth)
+		_check(not DiveCore.telemetry(rc).ascent_too_fast,
+			"recovery never too fast at step %d" % i)
+	var rfx: Dictionary = fx.recovery
+	_check(rising, "recovery: depth only decreases")
+	_check(fastest <= DiveCore.MAX_ASCENT_M_PER_MIN,
+		"recovery %.3f m/min <= 10" % fastest)
+	_check(DiveCore.recovered(rc) and rg.recovered,
+		"recovery ends at the surface")
+	_check(rg.done.is_empty(), "no task earned by floating up")
+	_check(rsaid == int(rfx.said), "recovery messages %d vs %s" % [rsaid,
+		rfx.said])
+	_near(rc.depth, rfx.final, "recovery final depth")
+	_near(fastest, rfx.fastest, "recovery fastest")
+	for k in mini(rdepths.size(), rfx.depths.size()):
+		_near(rdepths[k], rfx.depths[k], "recovery depth %d" % k)
 	# Loot rules: the endemic is released, the bulla is never taken.
 	var chebak: Dictionary = schools.filter(func(q): return q.id == "chebak")[0]
 	var res := DiveCore.loot_action(chebak, {})

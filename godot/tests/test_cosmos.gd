@@ -89,3 +89,38 @@ func run(t: Object) -> void:
 		"res://scripts/audio/cosmos_synth.gd")
 	t._check(not code.contains("randf") and not code.contains("randi"),
 		"no randomness in the music: seeded xorshift only")
+	_silent(t, d)
+
+
+## At the khachkar the music is at -60 dB and cannot be heard, so it is
+## not computed (phase F3 of docs/HLD_CHORUS24_FIXES_2026-10-03.md):
+## zeros come out, and the voices take up where they stopped.
+func _silent(t: Object, d: Dictionary) -> void:
+	var s := CosmosSynth.new(d)
+	s.follow_volume(-60.0)
+	t._check(s.silent, "at -60 dB (the khachkar) the music is silent")
+	s.follow_volume(CosmosSynth.SILENT_DB)
+	t._check(s.silent, "at the threshold itself it is silent")
+	s.follow_volume(-58.0)
+	t._check(not s.silent, "at -58 dB it is computed again")
+	var n := int(2.0 * CosmosSynth.MIX_RATE)
+	var a := CosmosSynth.new(d)
+	var b := CosmosSynth.new(d)
+	a.set_cue("III")
+	b.set_cue("III")
+	var a1 := a.generate(n)
+	var b1 := b.generate(n)
+	a.set_silent(true)
+	var zeros := a.generate(n)
+	var t0 := Time.get_ticks_usec()
+	a.generate(int(CosmosSynth.MIX_RATE))
+	var silent_us := Time.get_ticks_usec() - t0
+	t._check(_peak(zeros) == 0.0 and zeros.size() == n,
+		"silent: exact zeros, as many frames as asked")
+	t._check(a.sample == b.sample,
+		"silent: the picture's clock stands still (%d)" % a.sample)
+	t._check(silent_us < 20000,
+		"silent: a second of zeros costs %d us, not a voice" % silent_us)
+	a.set_silent(false)
+	t._check(a1 == b1 and a.generate(n) == b.generate(n),
+		"after the silence the music takes up where it stopped")

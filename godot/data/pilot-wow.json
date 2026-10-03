@@ -1,0 +1,598 @@
+{
+ "episode": 1,
+ "doc": "docs/HLD_WOW_ESCALATION_2026-10-03.md",
+ "operator_ru": "включи дизайнеров по смачности и эргономи и вау эффектам. должны по нарастающей постоянно вау эффекты",
+ "constitution": "ФОРМА (свет, вода, звук и руки игрока в шлеме) → ДЕЙСТВИЕ (каждый бит серии отвечает чуть сильнее прежнего, у кайрака мир стихает) → ЦЕЛЬ (игрок чувствует путь вглубь и к свету; тишина у святыни громче любого эффекта — IX.8)",
+ "rules": {
+  "max_flash_hz": 3.0,
+  "max_rise_gap_s": 180,
+  "max_dips": 2,
+  "max_particles": 256,
+  "max_gpu_ms": 1.0,
+  "min_distance_m": 0.5,
+  "flicker_half_s": 0.2
+ },
+ "beats": [
+  {
+   "id": "drop",
+   "t": 0,
+   "level": 1
+  },
+  {
+   "id": "water_rises",
+   "t": 8,
+   "level": 2
+  },
+  {
+   "id": "immersion",
+   "t": 25,
+   "level": 3
+  },
+  {
+   "id": "hands_on_stick",
+   "t": 70,
+   "level": 4
+  },
+  {
+   "id": "walls",
+   "t": 140,
+   "level": 4
+  },
+  {
+   "id": "thermocline",
+   "t": 210,
+   "level": 5
+  },
+  {
+   "id": "tether_jerk",
+   "t": 290,
+   "level": 6
+  },
+  {
+   "id": "bookmark",
+   "t": 360,
+   "level": 5,
+   "dip": true,
+   "why": "Затишье перед приманкой: после рывка троса мир выдыхает, чтобы свет приманки (7) прочёлся как соблазн, а не как ещё один удар (ТАБУ №0.015 п. 2: крючок, а не шок)."
+  },
+  {
+   "id": "lure",
+   "t": 440,
+   "level": 7
+  },
+  {
+   "id": "price_rises",
+   "t": 520,
+   "level": 8
+  },
+  {
+   "id": "choice_echo",
+   "t": 590,
+   "level": 8
+  },
+  {
+   "id": "khachkar",
+   "t": 640,
+   "level": 0,
+   "holy": true,
+   "why": "Кайрак: мир стихает, вау нет (ТАБУ №0.4 п. 2, №0.015 п. 5). Интерфейс гаснет, машинный шум к −60 dBFS, остаются room tone и дыхание; эти секунды не идут в счёт паузы роста."
+  },
+  {
+   "id": "diary",
+   "t": 720,
+   "level": 9
+  },
+  {
+   "id": "mark_line",
+   "t": 790,
+   "level": 9
+  },
+  {
+   "id": "ascent",
+   "t": 820,
+   "level": 10
+  },
+  {
+   "id": "room_drains",
+   "t": 860,
+   "level": 10
+  },
+  {
+   "id": "prior_last",
+   "t": 885,
+   "level": 9,
+   "dip": true,
+   "why": "Затишье перед титром: приор говорит последнее в сухой тишине комнаты, чтобы рассвет титра (10) пришёл как ответ, а не как фейерверк."
+  },
+  {
+   "id": "title",
+   "t": 900,
+   "level": 10
+  }
+ ],
+ "levels": {
+  "1": {
+   "name_ru": "Капля в тишине",
+   "visual": {
+    "do": "room_light",
+    "energy": 0.8,
+    "ramp_s": 1.5,
+    "particles": 0,
+    "gpu_ms": 0.0,
+    "flash_hz": 0.0,
+    "moves_camera": false
+   },
+   "sound": {
+    "synth": "click",
+    "duck_db": -6.0,
+    "meaning_ru": "одна капля — мир ещё сух"
+   },
+   "haptic": {
+    "kind": "knot",
+    "hands": "both"
+   },
+   "reduced": {
+    "visual": {
+     "do": "room_light",
+     "energy": 0.9,
+     "ramp_s": 2.5,
+     "particles": 0,
+     "gpu_ms": 0.0,
+     "flash_hz": 0.0,
+     "moves_camera": false
+    },
+    "haptic": {
+     "kind": "knot",
+     "hands": "both"
+    },
+    "note_ru": "свет гаснет медленнее, толчок вдвое слабее (Haptics)"
+   },
+   "ergonomics": {
+    "where_ru": "вся комната, без точки фокуса",
+    "fov_deg": 0,
+    "distance_m": 2.0,
+    "comfort_ru": "мир неподвижен, игрок стоит"
+   }
+  },
+  "2": {
+   "name_ru": "Вода поднимается толчками",
+   "visual": {
+    "do": "water",
+    "rise_m": 0.05,
+    "pulse_hz": 0.5,
+    "caustics_energy": 0.4,
+    "particles": 0,
+    "gpu_ms": 0.1,
+    "flash_hz": 0.0,
+    "moves_camera": false
+   },
+   "sound": {
+    "synth": "lowpass_sweep",
+    "cutoff_hz": [
+     8000,
+     1800
+    ],
+    "meaning_ru": "звук комнаты тонет вместе с полом"
+   },
+   "haptic": {
+    "kind": "dive_layer",
+    "hands": "both"
+   },
+   "reduced": {
+    "visual": {
+     "do": "water",
+     "rise_m": 0.05,
+     "pulse_hz": 0.0,
+     "caustics_energy": 0.15,
+     "particles": 0,
+     "gpu_ms": 0.1,
+     "flash_hz": 0.0,
+     "moves_camera": false
+    },
+    "haptic": {
+     "kind": "dive_layer",
+     "hands": "both"
+    },
+    "note_ru": "вода растёт ровно, без толчков; блики слабее"
+   },
+   "ergonomics": {
+    "where_ru": "пол, ниже горизонта 20–40°",
+    "fov_deg": 35,
+    "distance_m": 1.0,
+    "comfort_ru": "движется вода, не голова; горизонт стоит"
+   }
+  },
+  "3": {
+   "name_ru": "Муть в луче",
+   "visual": {
+    "do": "fog",
+    "density": 0.14,
+    "particles": 40,
+    "particles_kind": "silt",
+    "gpu_ms": 0.2,
+    "flash_hz": 0.0,
+    "moves_camera": false
+   },
+   "sound": {
+    "synth": "room_tone_underwater",
+    "lowpass_hz": 900,
+    "meaning_ru": "погружение вместо вторжения (Энтелехия I.2)"
+   },
+   "haptic": {
+    "kind": "dive_echo",
+    "hands": "both"
+   },
+   "reduced": {
+    "visual": {
+     "do": "fog",
+     "density": 0.13,
+     "particles": 15,
+     "particles_kind": "silt",
+     "gpu_ms": 0.1,
+     "flash_hz": 0.0,
+     "moves_camera": false
+    },
+    "haptic": {
+     "kind": "",
+     "hands": "none"
+    },
+    "note_ru": "окружающий толчок снят, частиц втрое меньше и они почти неподвижны"
+   },
+   "ergonomics": {
+    "where_ru": "конус лампы, центр ±25°",
+    "fov_deg": 25,
+    "distance_m": 1.5,
+    "comfort_ru": "частицы дрейфуют медленнее 0,1 м/с, без вектора, который тянет голову"
+   }
+  },
+  "4": {
+   "name_ru": "Лампа разогревается",
+   "visual": {
+    "do": "lamp_warmup",
+    "flashes": 3,
+    "flash_hz": 2.5,
+    "energy": 3.0,
+    "particles": 40,
+    "particles_kind": "silt",
+    "gpu_ms": 0.2,
+    "moves_camera": false
+   },
+   "sound": {
+    "synth": "servo",
+    "meaning_ru": "газоразрядная лампа честно греется"
+   },
+   "haptic": {
+    "kind": "dive_lamp",
+    "hands": "right"
+   },
+   "reduced": {
+    "visual": {
+     "do": "lamp_ramp",
+     "ramp_s": 1.2,
+     "flash_hz": 0.0,
+     "energy": 3.0,
+     "particles": 15,
+     "gpu_ms": 0.1,
+     "moves_camera": false
+    },
+    "haptic": {
+     "kind": "dive_lamp",
+     "hands": "right"
+    },
+    "note_ru": "вместо вспышек — плавный подъём света за 1,2 с"
+   },
+   "ergonomics": {
+    "where_ru": "луч вперёд, центр ±15°",
+    "fov_deg": 15,
+    "distance_m": 3.0,
+    "comfort_ru": "вспышки 2,5 Гц < 3 Гц (фоточувствительность), не в лицо — луч уходит от глаз"
+   }
+  },
+  "5": {
+   "name_ru": "Термоклин дрожит",
+   "visual": {
+    "do": "layer",
+    "fog_density": 0.16,
+    "fog_tint": [
+     0.02,
+     0.09,
+     0.12
+    ],
+    "particles": 80,
+    "particles_kind": "marine_snow",
+    "gpu_ms": 0.35,
+    "flash_hz": 0.0,
+    "moves_camera": false
+   },
+   "sound": {
+    "synth": "sonar_pitch",
+    "c_ms": [
+     1480,
+     1435
+    ],
+    "meaning_ru": "скорость звука падает под слоем скачка — эхо меняет голос"
+   },
+   "haptic": {
+    "kind": "dive_layer",
+    "hands": "both"
+   },
+   "reduced": {
+    "visual": {
+     "do": "layer",
+     "fog_density": 0.15,
+     "fog_tint": [
+      0.02,
+      0.09,
+      0.12
+     ],
+     "particles": 30,
+     "particles_kind": "marine_snow",
+     "gpu_ms": 0.15,
+     "flash_hz": 0.0,
+     "moves_camera": false
+    },
+    "haptic": {
+     "kind": "dive_layer",
+     "hands": "both"
+    },
+    "note_ru": "без ряби по экрану, цвет меняется за 3 с"
+   },
+   "ergonomics": {
+    "where_ru": "граница слоя на уровне глаз, ±10° по вертикали",
+    "fov_deg": 30,
+    "distance_m": 4.0,
+    "comfort_ru": "снег идёт вниз медленно и не заполняет ближние 0,5 м"
+   }
+  },
+  "6": {
+   "name_ru": "Трос дёрнули",
+   "visual": {
+    "do": "lamp_dip",
+    "energy": 1.2,
+    "dip_s": 0.8,
+    "fog_density": 0.2,
+    "particles": 100,
+    "particles_kind": "silt_burst",
+    "gpu_ms": 0.45,
+    "flash_hz": 0.0,
+    "moves_camera": false
+   },
+   "sound": {
+    "synth": "tether_strain",
+    "duck_db": -8.0,
+    "meaning_ru": "кто-то тянет — звук троса, а не музыкальный удар"
+   },
+   "haptic": {
+    "kind": "act_wrong",
+    "hands": "both"
+   },
+   "reduced": {
+    "visual": {
+     "do": "lamp_dip",
+     "energy": 1.8,
+     "dip_s": 1.2,
+     "fog_density": 0.17,
+     "particles": 30,
+     "gpu_ms": 0.15,
+     "flash_hz": 0.0,
+     "moves_camera": false
+    },
+    "haptic": {
+     "kind": "act_wrong",
+     "hands": "both"
+    },
+    "note_ru": "только мягкое потемнение, без поворота мира"
+   },
+   "ergonomics": {
+    "where_ru": "весь кадр темнеет, взрыв мути — у лампы впереди",
+    "fov_deg": 30,
+    "distance_m": 1.5,
+    "comfort_ru": "мир НЕ поворачивается: принудительный yaw 30° выключен по умолчанию, рывок — свет, звук и руки"
+   }
+  },
+  "7": {
+   "name_ru": "Приманка дышит",
+   "visual": {
+    "do": "glow",
+    "kelvin": 6500,
+    "breathe_hz": 0.25,
+    "energy": [
+     0.3,
+     1.0
+    ],
+    "particles": 120,
+    "particles_kind": "glints",
+    "gpu_ms": 0.55,
+    "flash_hz": 0.0,
+    "moves_camera": false
+   },
+   "sound": {
+    "synth": "fm_chime",
+    "doublets": false,
+    "meaning_ru": "сладкий машинный звон без дублетов — ухо не спутает его с колоколом; признак прелести — мигание и цена"
+   },
+   "haptic": {
+    "kind": "lock_pick",
+    "hands": "nearer"
+   },
+   "reduced": {
+    "visual": {
+     "do": "glow",
+     "kelvin": 6500,
+     "breathe_hz": 0.0,
+     "energy": [
+      0.6,
+      0.6
+     ],
+     "particles": 40,
+     "gpu_ms": 0.2,
+     "flash_hz": 0.0,
+     "moves_camera": false
+    },
+    "haptic": {
+     "kind": "lock_pick",
+     "hands": "nearer"
+    },
+    "note_ru": "свечение ровное, блёсток втрое меньше"
+   },
+   "ergonomics": {
+    "where_ru": "ниже горизонта 15°, в стороне 20° — чтобы отвернуться было телом легко",
+    "fov_deg": 20,
+    "distance_m": 1.5,
+    "comfort_ru": "на расстоянии руки, без поворота шеи больше 30°"
+   }
+  },
+  "8": {
+   "name_ru": "Цена растёт",
+   "visual": {
+    "do": "pressure",
+    "fog_density": 0.22,
+    "fog_tint": [
+     0.06,
+     0.05,
+     0.05
+    ],
+    "lamp_energy": 2.2,
+    "particles": 160,
+    "particles_kind": "silt",
+    "gpu_ms": 0.7,
+    "flash_hz": 0.0,
+    "moves_camera": false
+   },
+   "sound": {
+    "synth": "hull_creak",
+    "duck_db": -6.0,
+    "meaning_ru": "стон корпуса под давлением — мир цены сжимается"
+   },
+   "haptic": {
+    "kind": "act_wrong",
+    "hands": "both"
+   },
+   "reduced": {
+    "visual": {
+     "do": "pressure",
+     "fog_density": 0.19,
+     "fog_tint": [
+      0.06,
+      0.05,
+      0.05
+     ],
+     "lamp_energy": 2.5,
+     "particles": 50,
+     "gpu_ms": 0.25,
+     "flash_hz": 0.0,
+     "moves_camera": false
+    },
+    "haptic": {
+     "kind": "act_wrong",
+     "hands": "both"
+    },
+    "note_ru": "туман сгущается за 4 с, не рывком"
+   },
+   "ergonomics": {
+    "where_ru": "края поля зрения темнеют (виньетка), центр ±20° чист",
+    "fov_deg": 20,
+    "distance_m": 2.0,
+    "comfort_ru": "сужение по краям ещё и снижает укачивание"
+   }
+  },
+  "9": {
+   "name_ru": "Голоса сходятся над дневником",
+   "visual": {
+    "do": "warm_reveal",
+    "kelvin": 2200,
+    "energy": 2.6,
+    "fog_density": 0.1,
+    "particles": 200,
+    "particles_kind": "dust_motes",
+    "gpu_ms": 0.85,
+    "flash_hz": 0.0,
+    "moves_camera": false
+   },
+   "sound": {
+    "synth": "cosmos_converge",
+    "meaning_ru": "голоса тянутся друг к другу и сходятся в созвучие (Энтелехия IX.7)"
+   },
+   "haptic": {
+    "kind": "dive_take",
+    "hands": "right"
+   },
+   "reduced": {
+    "visual": {
+     "do": "warm_reveal",
+     "kelvin": 2200,
+     "energy": 2.4,
+     "fog_density": 0.11,
+     "particles": 60,
+     "gpu_ms": 0.3,
+     "flash_hz": 0.0,
+     "moves_camera": false
+    },
+    "haptic": {
+     "kind": "dive_take",
+     "hands": "right"
+    },
+    "note_ru": "тёплый свет приходит за 3 с, пылинки почти неподвижны"
+   },
+   "ergonomics": {
+    "where_ru": "страница в руке, центр ±10°",
+    "fov_deg": 10,
+    "distance_m": 0.5,
+    "comfort_ru": "0,5 м — ближе не надо (вергенция); текст крупный, не глитчится"
+   }
+  },
+  "10": {
+   "name_ru": "Рассвет снизу",
+   "visual": {
+    "do": "dawn",
+    "kelvin": [
+     6500,
+     3200
+    ],
+    "energy": 3.5,
+    "fog_density": 0.04,
+    "water_glow": 0.8,
+    "particles": 240,
+    "particles_kind": "bubbles_up",
+    "gpu_ms": 0.95,
+    "flash_hz": 0.0,
+    "moves_camera": false
+   },
+   "sound": {
+    "synth": "cosmos_resolve",
+    "meaning_ru": "сюита разрешается в созвучие; утро делает свет, а не машина (узел 99)"
+   },
+   "haptic": {
+    "kind": "breath",
+    "hands": "both"
+   },
+   "reduced": {
+    "visual": {
+     "do": "dawn",
+     "kelvin": [
+      6500,
+      3200
+     ],
+     "energy": 3.0,
+     "fog_density": 0.06,
+     "water_glow": 0.6,
+     "particles": 80,
+     "gpu_ms": 0.35,
+     "flash_hz": 0.0,
+     "moves_camera": false
+    },
+    "haptic": {
+     "kind": "breath",
+     "hands": "both"
+    },
+    "note_ru": "пузыри медленнее и реже, свет набирается за 6 с"
+   },
+   "ergonomics": {
+    "where_ru": "свет сверху-вперёд, пузыри идут вверх по краям поля, центр чист",
+    "fov_deg": 40,
+    "distance_m": 2.5,
+    "comfort_ru": "всплытие не быстрее 10 м/мин; голова не ведётся, вертикальный поток только по краям"
+   }
+  }
+ }
+}

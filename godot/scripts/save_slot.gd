@@ -54,11 +54,43 @@ static func test_paths() -> Dictionary:
 ## writer mid-write leaves the old save, never half of a new one (a load
 ## run of the tests, 2026-10-03, tore user://test-hub.json and read
 ## "Parse JSON failed").  Returns whether the save was replaced.
+##
+## The save it replaces is kept as <path>.bak, but only when it still
+## reads as a whole JSON object: a save already spoiled on disk (a hand
+## edit over adb, a bad sector) never overwrites the last good copy.
 static func write_json(path: String, data) -> bool:
 	var part := path + ".part"
 	var f := FileAccess.open(part, FileAccess.WRITE)
 	if f == null:
+		push_warning("SaveSlot: cannot write %s" % part)
 		return false
 	f.store_string(JSON.stringify(data))
 	f.close()
-	return DirAccess.rename_absolute(part, path) == OK
+	if _parse(path) is Dictionary:
+		DirAccess.copy_absolute(path, path + ".bak")
+	var ok := DirAccess.rename_absolute(part, path) == OK
+	if not ok:
+		push_warning("SaveSlot: cannot replace %s" % path)
+	return ok
+
+
+## Read a save: the file itself, or, if it is spoiled, its last good
+## copy <path>.bak.  {} only when neither reads, so a spoiled save no
+## longer turns into a fresh start that the next write would make
+## permanent (chorus audit 2026-10-03, voice 14).
+static func read_json(path: String) -> Dictionary:
+	var d = _parse(path)
+	if d is Dictionary:
+		return d
+	var bak = _parse(path + ".bak")
+	if bak is Dictionary:
+		if FileAccess.file_exists(path):
+			push_warning("SaveSlot: %s is spoiled, read its .bak" % path)
+		return bak
+	return {}
+
+
+static func _parse(path: String):
+	if not FileAccess.file_exists(path):
+		return null
+	return JSON.parse_string(FileAccess.get_file_as_string(path))

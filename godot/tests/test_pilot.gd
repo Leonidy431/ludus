@@ -31,6 +31,32 @@ func run(t: Object) -> void:
 	t._check(not d.is_empty(), "pilot data loads")
 	var bad := PilotCore.check(d)
 	t._check(bad.is_empty(), "the pilot keeps its rules: %s" % [bad])
+	# The screen speaks the player's language; Russian stays when a
+	# line has no translation; the system language is the default.
+	var ui_tr := PilotCore.load_i18n()
+	t._check(PilotCore.ui_text(ui_tr, ["screen", "lure", "message"], "de",
+		"x") != "x", "a screen line is translated")
+	t._check(PilotCore.ui_text(ui_tr, ["screen", "nope", "message"], "de",
+		"x") == "x", "a missing translation keeps the Russian")
+	if not FileAccess.file_exists("user://settings.json"):
+		t._check(PilotCore.language("de") == "de"
+			and PilotCore.language("xx") == "ru",
+			"the headset's language is the default")
+	# The symbols OpenSans lacks have a glyph (check_glyphs.py builds
+	# the subset and fails CI on tofu).
+	t._check(Glyphs.install(), "the fallback font is installed")
+	for ch in ["→", "▰", "▱", "▸", "←"]:
+		t._check(ThemeDB.fallback_font.has_char(ch.unicode_at(0)),
+			"a glyph for %s" % ch)
+	# The cold open needs the room (passthrough) and the lock's pinch
+	# needs bare hands: the Meta manifest must declare both, or Quest
+	# hides them without an error (chorus audit 2026-10-03).
+	var presets := ConfigFile.new()
+	if presets.load("res://export_presets.cfg") == OK:
+		for k in ["passthrough", "hand_tracking"]:
+			t._check(int(presets.get_value("preset.0.options",
+				"meta_xr_features/" + k, 0)) >= 1,
+				"the APK declares %s (optional)" % k)
 	t._check(d.beats.size() == 18, "18 beats")
 	t._check(PilotCore.longest_gap(d) <= 90.0,
 		"no stretch over 90 s without a question (%d s)"

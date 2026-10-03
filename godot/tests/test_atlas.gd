@@ -92,7 +92,7 @@ func _traces(t: Object, data: Dictionary) -> void:
 	var page := AtlasTraces.scribe_page(data, ["shield", "diary", "khachkar"])
 	t._check(page.find("Дневник") < page.find("Щит") and page.find("Дневник")
 		> 0, "the scribe's page lists the things in the list's order")
-	t._check(not page.contains("Хачкар"), "the khachkar is not on it")
+	t._check(not page.contains("Кайрак"), "the khachkar is not on it")
 	t._check(AtlasCore.page_count(data, page) == 101, "one more page")
 	t._check(AtlasCore.page_text(data, 100, page) == page,
 		"the scribe's page follows node 99")

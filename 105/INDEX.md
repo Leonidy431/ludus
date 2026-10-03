@@ -2,8 +2,8 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 469
-- документов: 227
+- файлов кода: 488
+- документов: 240
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -30,7 +30,7 @@
 - [.github/workflows/raw-audio-pass.yml](../.github/workflows/raw-audio-pass.yml) — Audio pass over the 99 backlog repos as a git pass (operator,
 - [.github/workflows/raw-osint-cycle.yml](../.github/workflows/raw-osint-cycle.yml) — OSINT pass over the 99 backlog repos every 1.5 hours (CLAUDE.md TABOO
 
-## Игра для шлема: код (GDScript) (80)
+## Игра для шлема: код (GDScript) (87)
 
 - [godot/scripts/apparatus_core.gd](../godot/scripts/apparatus_core.gd) — The operator's own apparatus in the game (CLAUDE.md TABOO 0.022): 41
 - [godot/scripts/atlas_core.gd](../godot/scripts/atlas_core.gd) — "The Water Atlas" read at the lectern of the scriptorium (CLAUDE.md
@@ -46,10 +46,12 @@
 - [godot/scripts/audio/render_mix.gd](../godot/scripts/audio/render_mix.gd) — Offline render of the dive mix for the loudness check (TABOO 0.4
 - [godot/scripts/audio/typikon.gd](../godot/scripts/audio/typikon.gd) — The Church day, the tone of the week and when the shore bell may ring.
 - [godot/scripts/audio/witness_audio.gd](../godot/scripts/audio/witness_audio.gd) — The sound of the path of the witness (docs/HLD_WITNESS_SOUND_
+- [godot/scripts/branch_core.gd](../godot/scripts/branch_core.gd) — Branches of episode 1 (CLAUDE.md TABOO 0.025, operator 2026-10-03:
 - [godot/scripts/buoy_core.gd](../godot/scripts/buoy_core.gd) — The operator's autonomous buoy, the first techno-artefact to restore
 - [godot/scripts/cockpit_core.gd](../godot/scripts/cockpit_core.gd) — The pilot's console: what the cards say and when they warn.
 - [godot/scripts/cockpit_panel.gd](../godot/scripts/cockpit_panel.gd) — The pilot's console drawn as the operator's BlueOS panels: a row of
 - [godot/scripts/cockpit_screens.gd](../godot/scripts/cockpit_screens.gd) — The console's second screen, as DiveGuard's panel has it: the front
+- [godot/scripts/companion_core.gd](../godot/scripts/companion_core.gd) — Claud, the ROV operator's AI companion (operator, 2026-10-03:
 - [godot/scripts/confession_sheet.gd](../godot/scripts/confession_sheet.gd) — The preparation sheet at the corner of repentance on the path of the
 - [godot/scripts/contract_core.gd](../godot/scripts/contract_core.gd) — A contract in the manner of The Witcher (operator, 2026-10-02: the
 - [godot/scripts/data_packs.gd](../godot/scripts/data_packs.gd) — Data packs beside the APK: the English voices first (operator,
@@ -66,6 +68,7 @@
 - [godot/scripts/dive_batch.gd](../godot/scripts/dive_batch.gd) — Fewer draw calls in the dive (docs/APK_REQUIREMENTS.md, blocker Б-1:
 - [godot/scripts/dive_core.gd](../godot/scripts/dive_core.gd) — The rules of the dive, ported from public/ludus/dive/dive-core.js.
 - [godot/scripts/fish_drawings.gd](../godot/scripts/fish_drawings.gd) — The fish of Issyk-Kul in our own drawing (DEF-056,
+- [godot/scripts/glyphs.gd](../godot/scripts/glyphs.gd) — The fallback font for the few symbols the built-in OpenSans lacks
 - [godot/scripts/haptics.gd](../godot/scripts/haptics.gd) — The one table of controller pulses for the whole headset game: the
 - [godot/scripts/hub.gd](../godot/scripts/hub.gd) — The monastery hub: the courtyard of the obitel on the Issyk-Kul shore.
 - [godot/scripts/hub_core.gd](../godot/scripts/hub_core.gd) — The rules of the monastery hub, ported from the web game.
@@ -92,6 +95,7 @@
 - [godot/scripts/pilot_core.gd](../godot/scripts/pilot_core.gd) — Episode 1 of "The Water Atlas", "Taboo": the first fifteen minutes
 - [godot/scripts/places_lectern.gd](../godot/scripts/places_lectern.gd) — The road of places in the courtyard: a birch-bark board on two oak
 - [godot/scripts/posoh_core.gd](../godot/scripts/posoh_core.gd) — The operator's own hydrophone, "model 1" of the posoh repo, mounted
+- [godot/scripts/rights_panel.gd](../godot/scripts/rights_panel.gd) — The Manuscript of rights in the world: one board that names every
 - [godot/scripts/rim_light.gd](../godot/scripts/rim_light.gd) — Reading things against the water by light, not by paint (operator,
 - [godot/scripts/rope_breath.gd](../godot/scripts/rope_breath.gd) — The soft sound of one's own breath at the lectern of the rope: one
 - [godot/scripts/rope_core.gd](../godot/scripts/rope_core.gd) — The prayer rope as a metronome of the breath
@@ -112,6 +116,9 @@
 - [godot/scripts/witness.gd](../godot/scripts/witness.gd) — The path of the witness in the headset (docs/HLD_APK_PRIORITY A3).
 - [godot/scripts/witness_batch.gd](../godot/scripts/witness_batch.gd) — Static batching of the path of the witness (docs/APK_REQUIREMENTS.md,
 - [godot/scripts/witness_core.gd](../godot/scripts/witness_core.gd) — The path of the witness: seven scene kits along one path, where the
+- [godot/scripts/wow_core.gd](../godot/scripts/wow_core.gd) — The rising curve of wow in episode 1 (operator, 2026-10-03: «должны
+- [godot/scripts/wow_stage.gd](../godot/scripts/wow_stage.gd) — The pilot's rising wonder on stage: one accent light and one small
+- [godot/scripts/xr_session.gd](../godot/scripts/xr_session.gd) — The headset's session and the game's clock (docs/HLD_CHORUS24_FIXES_
 
 ## Игра для шлема: сцены (6)
 
@@ -142,7 +149,7 @@
 - [godot/tools/stress_place_switch.gd](../godot/tools/stress_place_switch.gd) — Switch places fast, again and again, to shake out a crash of the
 - [godot/tools/witness_wav_check.py](../godot/tools/witness_wav_check.py) — Measure the offline render of the path of the witness.
 
-## Игра для шлема: тесты (57)
+## Игра для шлема: тесты (62)
 
 - [godot/tests/confession_walker.gd](../godot/tests/confession_walker.gd) — A stand-in for the witness path in test_confession.gd: the sheet reads
 - [godot/tests/deeds/panel_text.gd](../godot/tests/deeds/panel_text.gd) — The heart's panel of a place as location.gd builds it, measured with
@@ -161,8 +168,10 @@
 - [godot/tests/test_atlas.gd](../godot/tests/test_atlas.gd) — The Water Atlas at the lectern (TABOO 0.03).  Called from
 - [godot/tests/test_audio.gd](../godot/tests/test_audio.gd) — Sound of the dive: the rules that can be proved without a headset.
 - [godot/tests/test_biomes.gd](../godot/tests/test_biomes.gd) — Biomes, bubble columns and the thermocline heard
+- [godot/tests/test_branches.gd](../godot/tests/test_branches.gd) — Branches of episode 1 (BranchCore, CLAUDE.md TABOO 0.025): the
 - [godot/tests/test_church_words.gd](../godot/tests/test_church_words.gd) — The church-word stop-list gives the same verdict as the web on one
 - [godot/tests/test_cockpit.gd](../godot/tests/test_cockpit.gd) — The pilot's console (CockpitCore, docs/HLD_MANGUSTIK_COCKPIT M4) and
+- [godot/tests/test_companion.gd](../godot/tests/test_companion.gd) — Claud, the companion (CompanionCore,
 - [godot/tests/test_confession.gd](../godot/tests/test_confession.gd) — The preparation sheet in the headset (ConfessionSheet), the static
 - [godot/tests/test_contract.gd](../godot/tests/test_contract.gd) — The contract "The Shark of Issyk-Kul" (ContractCore): its data keeps
 - [godot/tests/test_cosmos.gd](../godot/tests/test_cosmos.gd) — The suite «Наука. Любовь. Познание.» (CosmosSynth) and the 99 signs
@@ -188,6 +197,7 @@
 - [godot/tests/test_place_deeds.gd](../godot/tests/test_place_deeds.gd) — The small acts at the hearts of 26 places (PlaceDeeds, phase L3 of
 - [godot/tests/test_place_sound.gd](../godot/tests/test_place_sound.gd) — The sound of the 99 places and of the courtyard (track A of docs/
 - [godot/tests/test_posoh.gd](../godot/tests/test_posoh.gd) — The posoh hydrophone (PosohCore, docs/HLD_POSOH_HYDROPHONE_2026-09-30)
+- [godot/tests/test_rights.gd](../godot/tests/test_rights.gd) — The Manuscript of rights in the headset build (HLD CHORUS24 F7,
 - [godot/tests/test_road.gd](../godot/tests/test_road.gd) — The road beyond the wicket (HLD_TETHER_TRIALS_PASSIONS T3): every
 - [godot/tests/test_rope.gd](../godot/tests/test_rope.gd) — The prayer rope as a breath metronome (RopeCore, RopeBreath).  The
 - [godot/tests/test_rov_lod.gd](../godot/tests/test_rov_lod.gd) — The Mangustik's far-view proxy and its switch by distance (RovLod,
@@ -201,17 +211,27 @@
 - [godot/tests/test_trial.gd](../godot/tests/test_trial.gd) — TrialCore against the JS reference: every record of
 - [godot/tests/test_witness.gd](../godot/tests/test_witness.gd) — The path of the witness (docs/HLD_APK_PRIORITY A3): the data of the
 - [godot/tests/test_witness_sound.gd](../godot/tests/test_witness_sound.gd) — The sound of the path of the witness (docs/HLD_WITNESS_SOUND_
+- [godot/tests/test_wow.gd](../godot/tests/test_wow.gd) — The rising curve of wow (WowCore, docs/HLD_WOW_ESCALATION_2026-10-03.md):
+- [godot/tests/test_xr_session.gd](../godot/tests/test_xr_session.gd) — The headset's session (XrSession, docs/HLD_CHORUS24_FIXES_2026-10-03.md
 
-## Игра для шлема: проект и прочее (4)
+## Игра для шлема: проект и прочее (11)
 
 - [godot/README.md](../godot/README.md) 📄 — Ludus — погружение: сборка для Meta Quest 3 (Godot 4)
 - [godot/export_presets.cfg](../godot/export_presets.cfg)
+- [godot/licenses/Apache-2.0.txt](../godot/licenses/Apache-2.0.txt) 📄
+- [godot/licenses/CC-BY-SA-3.0.txt](../godot/licenses/CC-BY-SA-3.0.txt) 📄
+- [godot/licenses/GPL-2.0.txt](../godot/licenses/GPL-2.0.txt) 📄
+- [godot/licenses/GPL-3.0.txt](../godot/licenses/GPL-3.0.txt) 📄
+- [godot/licenses/MIT-Godot-Engine.txt](../godot/licenses/MIT-Godot-Engine.txt) 📄
+- [godot/licenses/MIT-godot_openxr_vendors.txt](../godot/licenses/MIT-godot_openxr_vendors.txt) 📄
+- [godot/licenses/Meta-OpenXR-SDK-NOTICE.txt](../godot/licenses/Meta-OpenXR-SDK-NOTICE.txt) 📄
 - [godot/openxr_action_map.tres](../godot/openxr_action_map.tres)
 - [godot/project.godot](../godot/project.godot)
 
-## Сборка шлема: бюджеты, движок, прогноз (16)
+## Сборка шлема: бюджеты, движок, прогноз (18)
 
 - [scripts/godot/check_budgets.py](../scripts/godot/check_budgets.py) — Budget gate for the Meta Quest build (docs/APK_REQUIREMENTS.md).
+- [scripts/godot/check_glyphs.py](../scripts/godot/check_glyphs.py) — Glyph coverage of the headset's text: no tofu in Quest or WebXR.
 - [scripts/godot/ci_setup.sh](../scripts/godot/ci_setup.sh) — Install Godot and the export templates the headset build needs
 - [scripts/godot/engine/ludus.gdbuild](../scripts/godot/engine/ludus.gdbuild)
 - [scripts/godot/engine/profile.py](../scripts/godot/engine/profile.py) — The headset engine's build profile: what is cut, and proof it is unused.
@@ -221,6 +241,7 @@
 - [scripts/godot/make_dialogue_fixture.js](../scripts/godot/make_dialogue_fixture.js) — Write godot/tests/fixtures/dialogue.json from
 - [scripts/godot/make_fixture.js](../scripts/godot/make_fixture.js) — Write godot/tests/fixture.json from the JS dive core, so the GDScript
 - [scripts/godot/make_hub_fixture.js](../scripts/godot/make_hub_fixture.js) — Write godot/tests/hub_fixture.json from public/ludus/ludus-actions.js,
+- [scripts/godot/make_icons.py](../scripts/godot/make_icons.py) — Draw the launcher icons of the headset build (HLD_CHORUS24 phase F2).
 - [scripts/godot/make_journal_fixture.js](../scripts/godot/make_journal_fixture.js) — Write godot/tests/journal_fixture.json from public/ludus/ludus-journal.js
 - [scripts/godot/make_mission_fixture.js](../scripts/godot/make_mission_fixture.js) — Write godot/tests/fixtures/missions.json from public/ludus/ludus-missions.js:
 - [scripts/godot/make_passion_fixture.js](../scripts/godot/make_passion_fixture.js) — Write godot/tests/passion_fixture.json from public/ludus/ludus-passion.js,
@@ -228,8 +249,9 @@
 - [scripts/godot/make_trial_fixture.js](../scripts/godot/make_trial_fixture.js) — Write godot/tests/trial_fixture.json from public/ludus/ludus-missions.js:
 - [scripts/godot/obb_forecast.py](../scripts/godot/obb_forecast.py) — Forecast of the headset build's weight: when do we need an OBB?
 
-## Выборы из честного пула по 48 параметрам (8)
+## Выборы из честного пула по 48 параметрам (9)
 
+- [scripts/decisions/branch_craft.py](../scripts/decisions/branch_craft.py) — 99 of an honest pool of branching techniques for episode 1, by 7 marks.
 - [scripts/decisions/engine_build_choice.py](../scripts/decisions/engine_build_choice.py) — One way to make the headset engine smaller, chosen in the open.
 - [scripts/decisions/pilot_20mb.py](../scripts/decisions/pilot_20mb.py) — What fills the 20 MB the own engine frees: the series pilot first.
 - [scripts/decisions/pilot_details.py](../scripts/decisions/pilot_details.py) — 55 details for the pilot "Taboo", chosen from every variant of 119 seeds.
@@ -239,12 +261,14 @@
 - [scripts/decisions/stoplist_choice.py](../scripts/decisions/stoplist_choice.py) — One decision for the church-word stop-list, chosen in the open.
 - [scripts/decisions/stream_choice.py](../scripts/decisions/stream_choice.py) — How the heavy data reaches the headset: one way from the honest pool.
 
-## Скрипты проекта: раннер, данные, сюжеты (80)
+## Скрипты проекта: раннер, данные, сюжеты (83)
 
 - [scripts/build-campaign-spine.py](../scripts/build-campaign-spine.py) — Build the Issyk-Kul campaign spine from webtypicon2's missions.
 - [scripts/build_rights_manifest.py](../scripts/build_rights_manifest.py) — Build the "Manuscript of rights": the licence register shown in-game.
 - [scripts/check_canon.py](../scripts/check_canon.py) — Check every teaching source against the closed patristic canon.
 - [scripts/check_dialogues.py](../scripts/check_dialogues.py) — Validate the 24 NPC dialogue trees (CLAUDE.md TABOO 0.37 and 0.39).
+- [scripts/ci/check_claude_paths.py](../scripts/ci/check_claude_paths.py) — Check that every repository path named in CLAUDE.md exists.
+- [scripts/ci/check_shared_copies.py](../scripts/ci/check_shared_copies.py) — CI gate: the headset's copies of shared data and derived art.
 - [scripts/export-dialogue-pack.js](../scripts/export-dialogue-pack.js) — Export the seeded dialogue trees as the offline content pack.
 - [scripts/lake/lake_objects.py](../scripts/lake/lake_objects.py) — The lake's objects: a pool of 999 candidates and the best 99 of them.
 - [scripts/loadtest-api-endpoints.sh](../scripts/loadtest-api-endpoints.sh) — Ludus Load Testing Script (gap_028)
@@ -321,6 +345,7 @@
 - [scripts/test-api-endpoints.sh](../scripts/test-api-endpoints.sh) — Ludus API Endpoint Test Suite
 - [scripts/tests/test_check_canon.py](../scripts/tests/test_check_canon.py) — Negative tests for scripts/check_canon.py.
 - [scripts/video/insights_reel.py](../scripts/video/insights_reel.py) — The reel of the twelve insights of episode 1, with the suite under it.
+- [scripts/voice/build_claud_voice.py](../scripts/voice/build_claud_voice.py) — Build the draft voice of Claud, the ROV operator's AI companion.
 
 ## Веб-версия игры (34)
 
@@ -395,7 +420,7 @@
 - [functions/src/tests/api/store-mirror.test.ts](../functions/src/tests/api/store-mirror.test.ts) — Storage seam, phase P2 of
 - [functions/src/utils/logger.ts](../functions/src/utils/logger.ts) — Ludus Logging Utility
 
-## Тесты веба (node --test) (26)
+## Тесты веба (node --test) (27)
 
 - [tests/campaign-spine.test.js](../tests/campaign-spine.test.js) — The Issyk-Kul campaign spine (HLD F1, DEF-018), built read-only from
 - [tests/church-words.test.js](../tests/church-words.test.js) — The church-word stop-list: one file, one verdict.  The web copy is the
@@ -407,6 +432,7 @@
 - [tests/ludus-antagonist-factory.test.js](../tests/ludus-antagonist-factory.test.js) — AntagonistFactory (CLAUDE.md TABOO 0.3 rules 49-60, 95): the queue,
 - [tests/ludus-audio-parity.test.js](../tests/ludus-audio-parity.test.js) — The headset's sound (godot/scripts/audio) is a port of the JS sacred
 - [tests/ludus-confession.test.js](../tests/ludus-confession.test.js) — Static guarantees behind the confession-privacy declaration
+- [tests/ludus-f10-water-bells.test.js](../tests/ludus-f10-water-bells.test.js) — HLD F10 (CH24-24): the web build agrees with the water model and the
 - [tests/ludus-glas.test.js](../tests/ludus-glas.test.js) — The tone of the week (Octoechos) and its ison (TABOO 0.35 rule 10).
 - [tests/ludus-journal.test.js](../tests/ludus-journal.test.js) — The exported journal: the player's own record, no secret count, no
 - [tests/ludus-lake-view.test.js](../tests/ludus-lake-view.test.js) — The view from the ROV: deterministic, fish only in their depth range,
@@ -454,13 +480,14 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (168)
+## Документация проекта (174)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
 - [docs/BLINDSPOTS_AUDIT_2026-09-29.md](../docs/BLINDSPOTS_AUDIT_2026-09-29.md) 📄 — Аудит слепых зон: графика, звук, интерфейс — 2026-09-29
 - [docs/BLINDSPOTS_AUDIT_2026-09-30.md](../docs/BLINDSPOTS_AUDIT_2026-09-30.md) 📄 — Аудит слепых зон, 2026-09-30 03:00 UTC (ТАБУ №0.6)
 - [docs/BLINDSPOTS_AUDIT_2026-10-03.md](../docs/BLINDSPOTS_AUDIT_2026-10-03.md) 📄 — Аудит под нагрузкой, 2026-10-03 (ТАБУ №0.6)
+- [docs/BLINDSPOTS_AUDIT_2026-10-03_CHORUS24.md](../docs/BLINDSPOTS_AUDIT_2026-10-03_CHORUS24.md) 📄 — Слепые зоны: хор 24 выпускающих редакторов и гуру геймдева, 2026-10-03
 - [docs/BLINDSPOTS_CODE_BREAKTHROUGH_2026-10-01.md](../docs/BLINDSPOTS_CODE_BREAKTHROUGH_2026-10-01.md) 📄 — Слепые зоны: где код даст прорыв (2026-10-01)
 - [docs/BREAKTHROUGHS_5_2026-09-30.md](../docs/BREAKTHROUGHS_5_2026-09-30.md) 📄 — Пять направлений прорыва — хор гуру игр, 2026-09-30
 - [docs/CHORUS_DECISIONS_PHASE3.md](../docs/CHORUS_DECISIONS_PHASE3.md) 📄 — Chorus Decision Framework — Phase 3 Critical Decisions
@@ -478,6 +505,8 @@
 - [docs/HLD_ATLAS_TRACES_2026-09-30.md](../docs/HLD_ATLAS_TRACES_2026-09-30.md) 📄 — HLD: «Атлас воды» S4 — следы рыцаря на дне, летопись, хачкар
 - [docs/HLD_AUDIO_299_2026-09-30.md](../docs/HLD_AUDIO_299_2026-09-30.md) 📄 — HLD: звуки из 99 репо — спектральные эталоны по трём параметрам
 - [docs/HLD_BELL_RULES_TYPIKON_2026-09-30.md](../docs/HLD_BELL_RULES_TYPIKON_2026-09-30.md) 📄 — HLD: устав звона из Типикона и книги о колоколе (веб и шлем)
+- [docs/HLD_CHORUS24_FIXES_2026-10-03.md](../docs/HLD_CHORUS24_FIXES_2026-10-03.md) 📄 — HLD: доработка по слепым зонам хора 24 (2026-10-03)
+- [docs/HLD_COMPANION_CLAUD_2026-10-03.md](../docs/HLD_COMPANION_CLAUD_2026-10-03.md) 📄 — HLD: ИИ-напарник «Клауд» — голос в гарнитуре оператора ROV (2026-10-03)
 - [docs/HLD_CONTRACT_AKULA_2026-10-02.md](../docs/HLD_CONTRACT_AKULA_2026-10-02.md) 📄 — HLD: контракт «Акула Иссык-Куля» — поймать Мега-щуку (2026-10-02)
 - [docs/HLD_COSMIC_MUSIC_ENTELECHY_2026-10-02.md](../docs/HLD_COSMIC_MUSIC_ENTELECHY_2026-10-02.md) 📄 — HLD: сюита «Наука. Любовь. Познание.» и Энтелехия-99 в Конституции (2026-10-02)
 - [docs/HLD_DEEDS_WEB_PARITY_2026-10-02.md](../docs/HLD_DEEDS_WEB_PARITY_2026-10-02.md) 📄 — HLD — паритет 26 дел мест: шлем и веб (2026-10-02)
@@ -510,9 +539,11 @@
 - [docs/HLD_STORY_12_CHARACTERS_2026-10-02.md](../docs/HLD_STORY_12_CHARACTERS_2026-10-02.md) 📄 — HLD — люди 12 сюжетов в шлеме (2026-10-02)
 - [docs/HLD_SWAP_RENDERING_2026-10-02.md](../docs/HLD_SWAP_RENDERING_2026-10-02.md) 📄 — HLD: подмена при осмотре (Swap Rendering) — «очки героя» (2026-10-02)
 - [docs/HLD_TETHER_TRIALS_PASSIONS_2026-09-30.md](../docs/HLD_TETHER_TRIALS_PASSIONS_2026-09-30.md) 📄 — HLD: трос, пороги врат и страсти — в APK
+- [docs/HLD_TRIALS_LADDER_2026-10-03.md](../docs/HLD_TRIALS_LADDER_2026-10-03.md) 📄 — HLD: пороги врат, падение и лестница (F9 хора 24, 2026-10-03)
 - [docs/HLD_VIDEO_TECH_2026-10-02.md](../docs/HLD_VIDEO_TECH_2026-10-02.md) 📄 — HLD: видео в шлеме — что делают другие, что делаем мы, как улучшать по фазам (2026-10-02)
 - [docs/HLD_WEB_DIVE_ATLAS_2026-09-30.md](../docs/HLD_WEB_DIVE_ATLAS_2026-09-30.md) 📄 — HLD: «Атлас воды» и свои рисунки берега в веб-погружении (2026-09-30)
 - [docs/HLD_WITNESS_SOUND_2026-09-30.md](../docs/HLD_WITNESS_SOUND_2026-09-30.md) 📄 — HLD: исон и колокол на тропе свидетеля (шлем, Godot)
+- [docs/HLD_WOW_ESCALATION_2026-10-03.md](../docs/HLD_WOW_ESCALATION_2026-10-03.md) 📄 — HLD: нарастающая кривая вау в пилоте (2026-10-03)
 - [docs/IMPROVEMENTS_99_2026-09-29.md](../docs/IMPROVEMENTS_99_2026-09-29.md) 📄 — 99 улучшений игры — хор 12 гуру (2026-09-29)
 - [docs/INSTALL_GODOT_AND_HEADSET_TESTING.md](../docs/INSTALL_GODOT_AND_HEADSET_TESTING.md) 📄 — Godot для Ludus: как он стоит у Claude и как поставить его оператору для тестов со шлемом
 - [docs/INTEGRATION_TEST_SCENARIOS.md](../docs/INTEGRATION_TEST_SCENARIOS.md) 📄 — Integration Test Scenarios & Coverage Matrix
@@ -595,6 +626,7 @@
 - [docs/research/VIDEO_IN_HEADSET_GAMES_1996-2026.md](../docs/research/VIDEO_IN_HEADSET_GAMES_1996-2026.md) 📄 — Видео и подгрузка в играх для шлемов, 1995–2026: честный обзор
 - [docs/story/ATLAS_99_NODES_OPERATOR.md](../docs/story/ATLAS_99_NODES_OPERATOR.md) 📄 — «Атлас воды»: исходник оператора (дословно, 2026-09-30)
 - [docs/story/ATLAS_SYNTHESIS_5_EDITORS.md](../docs/story/ATLAS_SYNTHESIS_5_EDITORS.md) 📄 — «Атлас воды»: редакция хора пяти редакторов
+- [docs/story/BRANCHES_EP1_99_OF_999_2026-10-03.md](../docs/story/BRANCHES_EP1_99_OF_999_2026-10-03.md) 📄 — Ветки первой серии: 99 приёмов из честного пула — хор редакторов игр
 - [docs/story/INTRO_SIERRA_ECOQUEST_2026-10-02.md](../docs/story/INTRO_SIERRA_ECOQUEST_2026-10-02.md) 📄 — Заставка «Ранее в „Атласе воды“» — вход в игру (хор, 2026-10-02)
 - [docs/story/LOCK_CALIBRATION_DESIGN_2026-10-02.md](../docs/story/LOCK_CALIBRATION_DESIGN_2026-10-02.md) 📄 — Калибровка акустической матрицы — модуль вскрытия замков: три поправки, графика, промты (2026-10-02)
 - [docs/story/MISSION_AKULA_ISSYK_KUL_2026-10-02.md](../docs/story/MISSION_AKULA_ISSYK_KUL_2026-10-02.md) 📄 — Миссия-контракт «Акула Иссык-Куля» — поймать Мега-щуку (2026-10-02)

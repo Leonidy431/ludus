@@ -1,8 +1,8 @@
 ## The rules of the dive, ported from public/ludus/dive/dive-core.js.
 ##
 ## The JS module is the reference: tests/dive-core.test.js checks the
-## rules there, and godot/tests/test_dive_core.gd checks that this port
-## gives the same numbers on a shared fixture
+## rules there, and the dive block of godot/tests/run_tests.gd checks
+## that this port gives the same numbers on a shared fixture
 ## (godot/tests/fixture.json, written by scripts/godot/make_fixture.js).
 ## Everything is deterministic: the same seed gives the same lake
 ## (CLAUDE.md TABOO 0.35 rule 15, no randomness).
@@ -30,6 +30,16 @@ const C_BELOW := 1435.0
 const SURFACE_BAR := 1.01325
 const METRES_PER_BAR := 10.2
 const MAX_ASCENT_M_PER_MIN := 10.0
+## With the battery flat the vehicle is lost to the dive, never the
+## person (CLAUDE.md TABOO 0.017): it is trimmed slightly positive, as
+## real ROVs are, so it floats up while the tether is hauled in.  8
+## m/min keeps a margin under the 10 m/min of rule 19, so a step of
+## drag never measures as too fast.
+const RECOVERY_RISE_M_PER_MIN := 8.0
+## The shallowest depth step_rov allows: the vehicle is at the surface.
+const SURFACE_DEPTH_M := 0.3
+const RECOVERY_RU := "Заряд кончился. Аппарат всплывает сам, его выбирают тросом: медленно, не быстрее десяти метров в минуту."
+const RECOVERED_RU := "Аппарат у поверхности. Его несут на стапель."
 const ABSORPTION := {"red": 0.34, "green": 0.057, "blue": 0.009}
 const MASK := 0xFFFFFFFF
 const IN_WATER := ["plankton", "caustics", "shafts", "thermo", "snow",
@@ -126,6 +136,23 @@ static func light_left(depth: float) -> Dictionary:
 
 static func sound_speed(depth: float) -> float:
 	return C_BELOW if depth > THERMOCLINE_M else C_ABOVE
+
+
+## A ping down `range_m` from `depth` and back: the part of the path
+## above the layer runs at 1480 m/s and the part below it at 1435 m/s,
+## so an echo through the thermocline is the sum of both legs.
+static func echo_delay(depth: float, range_m: float) -> float:
+	var bottom := depth + maxf(0.0, range_m)
+	var above := maxf(0.0, minf(bottom, THERMOCLINE_M)
+		- minf(depth, THERMOCLINE_M))
+	var below := maxf(0.0, maxf(bottom, THERMOCLINE_M)
+		- maxf(depth, THERMOCLINE_M))
+	return 2.0 * (above / C_ABOVE + below / C_BELOW)
+
+
+## True once a vehicle with a flat battery is back at the surface.
+static func recovered(state: Dictionary) -> bool:
+	return state.battery <= 0.0 and state.depth <= SURFACE_DEPTH_M + 1e-6
 
 
 static func _placement(o: Dictionary) -> String:
@@ -240,7 +267,13 @@ static func step_rov(state: Dictionary, input: Dictionary,
 		* ROV.accel * power
 	s.vx += (ax - ROV.drag * s.vx) * dt
 	s.vz += (az - ROV.drag * s.vz) * dt
-	s.vy += (ver * ROV.accel * power - ROV.drag * s.vy) * dt
+	if power > 0.0:
+		s.vy += (ver * ROV.accel - ROV.drag * s.vy) * dt
+	else:
+		# No thrust: buoyancy and the hauled tether lift it, and drag
+		# eases it towards the recovery rate, never past it.
+		var rise := RECOVERY_RISE_M_PER_MIN / 60.0
+		s.vy = minf(s.vy + ROV.drag * (rise - s.vy) * dt, rise)
 	var h := Vector2(s.vx, s.vz).length()
 	if h > ROV.max_speed:
 		s.vx *= ROV.max_speed / h
@@ -290,7 +323,7 @@ static func telemetry(state: Dictionary) -> Dictionary:
 		"heading": fposmod(rad_to_deg(state.yaw), 360.0),
 		"ascent_m_per_min": up.m_per_min, "ascent_too_fast": up.too_fast,
 		"battery": state.battery, "sound_speed": c,
-		"echo_delay": 2.0 * rng_m / c,
+		"echo_delay": echo_delay(state.depth, rng_m),
 		"below_thermocline": state.depth > THERMOCLINE_M,
 		"light": light_left(state.depth), "shore_distance": state.x,
 	}
@@ -380,7 +413,8 @@ static func new_game() -> Dictionary:
 		"fast_for": 0.0, "still_for": 0.0, "hold_depth": null,
 		"hold_heading": null, "rise_from": null, "crossed_from": null,
 		"finds": 0, "scribe_told": false, "turns": 0.0, "last_yaw": null,
-		"wound": false, "kink_warned": false}
+		"wound": false, "kink_warned": false,
+		"recovering": false, "recovered": false}
 
 
 ## Tether turns, as a real ROV console counts them: every full turn of
@@ -411,6 +445,17 @@ static func step_game(game: Dictionary, rov: Dictionary, dt: float,
 		say.append("Трос закручен на три оборота: так ломают кабель. Разверни его обратно.")
 	elif absf(g.turns) < KINK_TURNS - 1.0:
 		g.kink_warned = false
+	# A flat battery ends the dive quietly: the narrator says so once,
+	# the vehicle rises on its own, and nothing else counts (no task is
+	# earned by floating up).
+	if rov.battery <= 0.0:
+		if not g.recovering:
+			g.recovering = true
+			say.append(RECOVERY_RU)
+		if not g.recovered and recovered(rov):
+			g.recovered = true
+			say.append(RECOVERED_RU)
+		return {"game": g, "say": say}
 	g.fast_for = g.fast_for + dt if tel.ascent_too_fast else 0.0
 	if not g.fallen and g.fast_for >= FALL_AFTER_SEC:
 		g.fallen = true
@@ -422,7 +467,7 @@ static func step_game(game: Dictionary, rov: Dictionary, dt: float,
 		if g.still_for >= SAFETY_STOP_SEC:
 			g.fallen = false
 			g.still_for = 0.0
-			say.append("Остановка выдержана. Свет вернулся.")
+			say.append("Слабина выбрана, винт чист. Свет вернулся.")
 		return {"game": g, "say": say}
 	var d: float = rov.depth
 	if d < 6.0:
@@ -461,7 +506,7 @@ static func step_game(game: Dictionary, rov: Dictionary, dt: float,
 		if g.rise_from == null:
 			g.rise_from = d
 		if g.rise_from - d >= 3.0:
-			finish.call("slowrise", "Медленное всплытие: воздух в теле успевает за тобой.")
+			finish.call("slowrise", "Медленное всплытие: трос выбирают без слабины, петля не ложится на винт.")
 	else:
 		g.rise_from = null
 	if handed_over > 0:

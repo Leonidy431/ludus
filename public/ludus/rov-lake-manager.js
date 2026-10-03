@@ -30,12 +30,34 @@
   // 1 Hz, so five missed posts means the dive link is really down.
   const STALE_AFTER_MS = 5000;
 
-  // Hydrostatic pressure in a fresh-water lake: rho * g = 1000 * 9.81
-  // Pa per metre = 0.0981 bar/m, on top of one standard atmosphere.
-  // Issyk-Kul is slightly saline (about 6 g/L), which changes the
-  // result by less than one percent, so fresh water is close enough.
+  // Pressure comes from the shared water model (ludus-water.js): one
+  // bar per 10.2 m of water on top of one standard atmosphere, the
+  // figure the chorus fixed for the whole game (TABU 0.35 rule 19).
+  // A private rho*g constant here once gave 1 bar per 10.19 m, so the
+  // panel and the dive drifted apart with depth.  The fallback below
+  // repeats the same formula only for a page that forgot to load
+  // ludus-water.js, so the panel still shows a number.
   const SURFACE_PRESSURE_BAR = 1.01325;
-  const BAR_PER_METRE = 0.0981;
+  const METRES_PER_BAR = 10.2;
+
+  function pressureFromDepth(depth) {
+    const water = typeof window !== 'undefined' ? window.LudusWater : null;
+    if (water && typeof water.pressureBar === 'function') {
+      return water.pressureBar(depth);
+    }
+    return SURFACE_PRESSURE_BAR + Math.max(0, depth) / METRES_PER_BAR;
+  }
+
+  // Issyk-Kul has one thermocline, at about 50 m (TABU 0.03 rule 6).
+  // The layer is decided by depth against that line, not by
+  // temperature bands: a single cold or warm reading must not move the
+  // ROV into another layer, and the lesson must agree with the sound
+  // speed the dive uses on the same side of the same line.
+  const THERMOCLINE_M = 50;
+
+  // How far either side of the line still counts as the boundary
+  // itself, so the player sees the thermocline lesson while crossing.
+  const THERMOCLINE_BAND_M = 5;
 
   // No lake reachable by the ROV exceeds about 700 m (70 bar), so an
   // untyped "pressure" above this threshold must have been sent in kPa.
@@ -47,24 +69,24 @@
   // insight lies.
   const WISDOM_DEPTH_BANDS_M = [30, 60, 120, 200, 300];
 
-  // Water layers of a temperate lake.  Below the thermocline the water
-  // settles near 4 degC, where fresh water is densest; the lesson for
-  // each layer follows the spiritual path from the surface inwards.
+  // Water layers of the lake, from the deep upwards.  Below the single
+  // thermocline the water stays cold and still; the lesson for each
+  // layer follows the spiritual path from the surface inwards.
   const WATER_LAYERS = [
     {
-      maxC: 4.5,
+      key: 'hypolimnion',
       name: 'Hypolimnion',
       lesson: 'Cold, still water that does not move with the wind: '
         + 'the stillness of hesychia (Isaac the Syrian).',
     },
     {
-      maxC: 15,
+      key: 'thermocline',
       name: 'Thermocline',
       lesson: 'A boundary where warmth gives way to depth: the soul '
         + 'passing from the senses to the heart (Gregory of Nyssa).',
     },
     {
-      maxC: Infinity,
+      key: 'epilimnion',
       name: 'Epilimnion',
       lesson: 'Sunlit surface water, stirred by every breeze: the '
         + 'beginning of the path, where attention is still scattered.',
@@ -153,7 +175,7 @@
     } else if (out.depth !== null) {
       // Without a sensor value the pressure is still known from depth,
       // but it is marked so the player can tell measured from derived.
-      out.pressure = SURFACE_PRESSURE_BAR + out.depth * BAR_PER_METRE;
+      out.pressure = pressureFromDepth(out.depth);
       out.pressureDerived = true;
     }
 
@@ -174,11 +196,17 @@
     return next === undefined ? null : next;
   }
 
-  function layerForTemperature(temperature) {
-    if (temperature === null) {
+  function layerForDepth(depth) {
+    if (depth === null || !Number.isFinite(depth)) {
       return null;
     }
-    return WATER_LAYERS.find((layer) => temperature <= layer.maxC);
+    if (depth < THERMOCLINE_M - THERMOCLINE_BAND_M) {
+      return WATER_LAYERS[2];
+    }
+    if (depth <= THERMOCLINE_M + THERMOCLINE_BAND_M) {
+      return WATER_LAYERS[1];
+    }
+    return WATER_LAYERS[0];
   }
 
   function formatValue(value, digits) {
@@ -324,7 +352,7 @@
     });
     const pressureCell = dom.values.pressure.parentNode;
     pressureCell.title = t && t.pressureDerived
-      ? 'Derived from depth (fresh water, 0.0981 bar/m + 1 atm)'
+      ? 'Derived from depth (1 bar per 10.2 m + 1 atm)'
       : '';
     dom.values.pressure.textContent = (t && t.pressureDerived ? '≈'
       : '') + dom.values.pressure.textContent;
@@ -359,7 +387,7 @@
         + '10 m/min or less, as a diver would.'
       : '';
 
-    const layer = layerForTemperature(t ? t.temperature : null);
+    const layer = layerForDepth(t ? t.depth : null);
     dom.lesson.hidden = !layer;
     dom.lesson.textContent = layer ? layer.name + ': ' + layer.lesson : '';
 
@@ -596,6 +624,13 @@
     renderStatus: scheduleRender,
     // The audit harness feeds samples without a live dive.
     _feed: handleTelemetryUpdate,
+    // Pure helpers, exposed so node tests check the physics directly.
+    _pressureFromDepth: pressureFromDepth,
+    _layerForDepth: (depth) => {
+      const layer = layerForDepth(depth);
+      return layer ? layer.key : null;
+    },
+    THERMOCLINE_M,
   };
 
   console.log('[ROVLake] Manager registered as window.__ROVLakeManager');

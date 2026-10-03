@@ -116,6 +116,11 @@ ctx.trials.trials.forEach((trial) => {
 falls.forEach((fall, i) => {
   const { a: a0, f } = openAll();
   let st = M.emptyState();
+  // The ladder asks for the threshold of gate N before gate N+1 opens
+  // (HLD_TRIALS_LADDER_2026-10-03), so the thresholds below are passed.
+  M.GATE_IDS.slice(0, M.GATE_IDS.indexOf(fall.gate))
+    .forEach((g) => { st.trials[g] = true; });
+  const startTrials = clone(st.trials);
   st = M.chooseTrial(ctx, st, fall.gate, fall.option, f, a0).state;
   const teacher = st.fall.teacher;
   const steps = [];
@@ -147,7 +152,7 @@ falls.forEach((fall, i) => {
     }
   });
   chains.push({ name: `fall ${fall.gate}/${fall.option}`, start: clone(a0),
-    fallGate: fall.gate, fallOption: fall.option, steps });
+    fallGate: fall.gate, fallOption: fall.option, startTrials, steps });
 });
 
 const out = path.join(root, 'godot/tests/fixtures/rule.json');

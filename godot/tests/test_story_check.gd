@@ -70,7 +70,20 @@ func _atomic(t: Object) -> void:
 	back = JSON.parse_string(FileAccess.get_file_as_string(path))
 	t._check(back is Dictionary and int(back.get("a", 0)) == 2,
 		"a torn .part from a crash leaves the save as it was")
-	for f in [path, path + ".part"]:
+	# A save spoiled on disk: the reader falls back to the last good
+	# copy, and the next write does not copy the spoiled file over it.
+	var bad := FileAccess.open(path, FileAccess.WRITE)
+	bad.store_string("{\"a\": ")
+	bad.close()
+	t._check(int(SaveSlot.read_json(path).get("a", 0)) == 1,
+		"a spoiled save reads its last good copy (.bak)")
+	SaveSlot.write_json(path, {"a": 5})
+	var kept = JSON.parse_string(FileAccess.get_file_as_string(path + ".bak"))
+	t._check(kept is Dictionary and int(kept.get("a", 0)) == 1,
+		"a spoiled save never overwrites the last good copy")
+	t._check(SaveSlot.read_json("user://test_story_check_none.json") == {},
+		"no save and no copy read as a fresh start")
+	for f in [path, path + ".part", path + ".bak"]:
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(f))
 
 

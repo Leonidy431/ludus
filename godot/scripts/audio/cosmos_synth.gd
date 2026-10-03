@@ -29,6 +29,13 @@
 ## toward the new one over MORPH_S, so the voices glide from node to
 ## node, as Artemyev's clusters do.  The pilot fades the player, not
 ## the synth, at the khachkar (-60 dB with the console).
+##
+## Once the player is down there (SILENT_DB or lower), the music cannot
+## be heard, so it is not computed: set_silent(true) makes generate()
+## hand back zeros and stop the clock of the picture, and the voices
+## take up again where they were.  Phase F3 of docs/HLD_CHORUS24_FIXES_
+## 2026-10-03.md: the pilot's synth time is measured, and the music at
+## -60 dB was most of it for nothing.
 class_name CosmosSynth
 extends RefCounted
 
@@ -46,6 +53,9 @@ const SPARK_LEN_S := 5.0
 const ECHO_DELAY_S := 1.2
 ## The whole picture's gain: a bed under the dive, not over it.
 const GAIN := 0.22
+## At this player volume and below (the khachkar's -60 dB) the music is
+## not heard and is not computed; one decibel above it still is.
+const SILENT_DB := -59.0
 
 var data: Dictionary = {}
 var cue_id := ""
@@ -55,12 +65,13 @@ var cur := {}
 var want := {}
 var _sin := PackedFloat32Array()
 var _ph := PackedFloat32Array()
-var _ph2 := PackedFloat32Array()
 var _dph := PackedFloat32Array()
 var _rng := 0
 var _lp := [0.0, 0.0, 0.0, 0.0]
 var _sparks: Array = []
 var _next_spark := 0.0
+## True while the music is below hearing: generate() gives zeros.
+var silent := false
 
 
 func _init(d: Dictionary = {}) -> void:
@@ -69,10 +80,8 @@ func _init(d: Dictionary = {}) -> void:
 	for i in TABLE:
 		_sin[i] = sin(TAU * float(i) / TABLE)
 	_ph.resize(VOICES)
-	_ph2.resize(VOICES)
-	_dph.resize(4)
+	_dph.resize(1)
 	_ph.fill(0.0)
-	_ph2.fill(0.0)
 	_dph.fill(0.0)
 
 
@@ -209,10 +218,23 @@ func _spark_due(t: float) -> void:
 				"pan": 1.0 - pan, "amp": cur.echo, "ph": 0.0})
 
 
+## Stop computing the voices while the music cannot be heard, and start
+## again where they stopped: the picture's clock does not run in the
+## silence, so no spark and no morph is spent on nothing.
+func set_silent(on: bool) -> void:
+	silent = on
+
+
+## The pilot's one call: silent when its player is at SILENT_DB or
+## lower (the khachkar), sounding otherwise.
+func follow_volume(volume_db: float) -> void:
+	set_silent(volume_db <= SILENT_DB)
+
+
 func generate(frames: int) -> PackedVector2Array:
 	var out := PackedVector2Array()
 	out.resize(frames)
-	if cur.is_empty():
+	if cur.is_empty() or silent:
 		return out
 	var done := 0
 	while done < frames:
@@ -234,14 +256,12 @@ func _block(out: PackedVector2Array, at: int, n: int) -> void:
 	var cl: PackedFloat32Array = cur.cluster
 	var tg: PackedFloat32Array = cur.target
 	var inc := PackedFloat32Array()
-	var inc2 := PackedFloat32Array()
 	var al := PackedFloat32Array()
 	var ar := PackedFloat32Array()
 	var a2 := PackedFloat32Array()
 	for v in VOICES:
 		var f := voice_hz(center, cl[v], tg[v], g)
 		inc.append(f / MIX_RATE)
-		inc2.append(2.0 * f / MIX_RATE)
 		# Each voice breathes on its own slow swell.
 		var sw := 0.65 + 0.35 * sin(TAU * (t / (cyc * 0.5) + v / 6.0))
 		var amp := sw / VOICES
@@ -253,47 +273,128 @@ func _block(out: PackedVector2Array, at: int, n: int) -> void:
 		a2.append(cur.unfold * 0.4 * (0.5 - 0.5 * cos(TAU * (phase
 			+ float(v) / VOICES))))
 	var root: float = cur.root_hz
-	var dinc := PackedFloat32Array([root / MIX_RATE, 2.0 * root / MIX_RATE,
-		3.0 * root / MIX_RATE, 4.0 * root / MIX_RATE])
-	var dw := PackedFloat32Array([1.0, 0.6, 0.35, 0.2])
 	var dg: float = cur.drone * 0.12 * (0.8 + 0.2 * sin(TAU * t / 31.0))
 	var wind_g: float = cur.wind * 0.35 * (0.6 + 0.4 * sin(TAU * t / 23.0))
 	var k1 := 1.0 - exp(-TAU * cur.wind_hz / MIX_RATE)
 	var k0 := 1.0 - exp(-TAU * cur.wind_hz * 0.25 / MIX_RATE)
 	_spark_due(t)
+	# The loop below runs MIX_RATE times a second, so it is written for
+	# GDScript's speed (phase F3 of docs/HLD_CHORUS24_FIXES_2026-10-03.md:
+	# the pilot's two synths were 66 ms per second of sound against a
+	# budget of 50).  The six voices are unrolled into locals, since an
+	# array read costs more than the sum it feeds.  The octave partial
+	# and the drone's harmonics read the table at a whole multiple of
+	# their fundamental's phase, so they need no phase of their own; a
+	# phase wraps by one subtraction, as an increment is below one.  The
+	# xorshift of the wind is the same as _rand(), inlined.
+	var sn := _sin
+	var mask := TABLE - 1
 	var tb := float(TABLE)
+	var tb2 := 2.0 * tb
+	var tb3 := 3.0 * tb
+	var tb4 := 4.0 * tb
+	var p0 := _ph[0]
+	var p1 := _ph[1]
+	var p2 := _ph[2]
+	var p3 := _ph[3]
+	var p4 := _ph[4]
+	var p5 := _ph[5]
+	var i0 := inc[0]
+	var i1 := inc[1]
+	var i2 := inc[2]
+	var i3 := inc[3]
+	var i4 := inc[4]
+	var i5 := inc[5]
+	var o0 := a2[0]
+	var o1 := a2[1]
+	var o2 := a2[2]
+	var o3 := a2[3]
+	var o4 := a2[4]
+	var o5 := a2[5]
+	var l0 := al[0]
+	var l1 := al[1]
+	var l2 := al[2]
+	var l3 := al[3]
+	var l4 := al[4]
+	var l5 := al[5]
+	var r0 := ar[0]
+	var r1 := ar[1]
+	var r2 := ar[2]
+	var r3 := ar[3]
+	var r4 := ar[4]
+	var r5 := ar[5]
+	var q := _dph[0]
+	var qi := root / MIX_RATE
+	var d1 := dg
+	var d2 := 0.6 * dg
+	var d3 := 0.35 * dg
+	var d4 := 0.2 * dg
+	var la: float = _lp[0]
+	var lb: float = _lp[1]
+	var ra: float = _lp[2]
+	var rb: float = _lp[3]
+	var x := _rng
 	for i in n:
-		var l := 0.0
-		var r := 0.0
-		for v in VOICES:
-			var p := _ph[v] + inc[v]
-			p -= floorf(p)
-			_ph[v] = p
-			var p2 := _ph2[v] + inc2[v]
-			p2 -= floorf(p2)
-			_ph2[v] = p2
-			var s := _sin[int(p * tb)] + a2[v] * _sin[int(p2 * tb)]
-			l += s * al[v]
-			r += s * ar[v]
-		var d := 0.0
-		for h in 4:
-			var q := _dph[h] + dinc[h]
-			q -= floorf(q)
-			_dph[h] = q
-			d += dw[h] * _sin[int(q * tb)]
-		d *= dg
+		p0 += i0
+		if p0 >= 1.0:
+			p0 -= 1.0
+		p1 += i1
+		if p1 >= 1.0:
+			p1 -= 1.0
+		p2 += i2
+		if p2 >= 1.0:
+			p2 -= 1.0
+		p3 += i3
+		if p3 >= 1.0:
+			p3 -= 1.0
+		p4 += i4
+		if p4 >= 1.0:
+			p4 -= 1.0
+		p5 += i5
+		if p5 >= 1.0:
+			p5 -= 1.0
+		var s0 := sn[int(p0 * tb)] + o0 * sn[int(p0 * tb2) & mask]
+		var s1 := sn[int(p1 * tb)] + o1 * sn[int(p1 * tb2) & mask]
+		var s2 := sn[int(p2 * tb)] + o2 * sn[int(p2 * tb2) & mask]
+		var s3 := sn[int(p3 * tb)] + o3 * sn[int(p3 * tb2) & mask]
+		var s4 := sn[int(p4 * tb)] + o4 * sn[int(p4 * tb2) & mask]
+		var s5 := sn[int(p5 * tb)] + o5 * sn[int(p5 * tb2) & mask]
+		var l := s0 * l0 + s1 * l1 + s2 * l2 + s3 * l3 + s4 * l4 + s5 * l5
+		var r := s0 * r0 + s1 * r1 + s2 * r2 + s3 * r3 + s4 * r4 + s5 * r5
+		q += qi
+		if q >= 1.0:
+			q -= 1.0
+		var d := d1 * sn[int(q * tb)] + d2 * sn[int(q * tb2) & mask] \
+			+ d3 * sn[int(q * tb3) & mask] + d4 * sn[int(q * tb4) & mask]
 		# Wind: a band of noise (low pass minus a slower low pass), its
-		# own generator per ear.
-		var nl := _rand() * 2.0 - 1.0
-		var nr := _rand() * 2.0 - 1.0
-		_lp[0] += (nl - _lp[0]) * k1
-		_lp[1] += (nl - _lp[1]) * k0
-		_lp[2] += (nr - _lp[2]) * k1
-		_lp[3] += (nr - _lp[3]) * k0
-		l += d + (_lp[0] - _lp[1]) * wind_g
-		r += d + (_lp[2] - _lp[3]) * wind_g
-		out[at + i] = Vector2(l, r) * GAIN
-		sample += 1
+		# own draw per ear.
+		x ^= (x << 13) & 0xffffffff
+		x ^= x >> 17
+		x ^= (x << 5) & 0xffffffff
+		var nl := float(x) / 2147483648.0 - 1.0
+		x ^= (x << 13) & 0xffffffff
+		x ^= x >> 17
+		x ^= (x << 5) & 0xffffffff
+		var nr := float(x) / 2147483648.0 - 1.0
+		la += (nl - la) * k1
+		lb += (nl - lb) * k0
+		ra += (nr - ra) * k1
+		rb += (nr - rb) * k0
+		out[at + i] = Vector2(l + d + (la - lb) * wind_g,
+			r + d + (ra - rb) * wind_g) * GAIN
+	sample += n
+	_ph[0] = p0
+	_ph[1] = p1
+	_ph[2] = p2
+	_ph[3] = p3
+	_ph[4] = p4
+	_ph[5] = p5
+	_dph[0] = q
+	_lp[0] = la
+	_lp[1] = lb
+	_lp[2] = ra
+	_lp[3] = rb
+	_rng = x
 	_add_sparks(out, at, n)
 
 

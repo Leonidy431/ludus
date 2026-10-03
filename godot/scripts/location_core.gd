@@ -73,7 +73,11 @@ const FAMILY_RU := {"prologue": "Пролог", "trade": "Акт I",
 ## of our own drawing waits for the chorus, TABOO 0.37).
 const OWN := ["lectern"]
 ## The lampada and the instrument light, as the hub has them.
-const LAMPADA_K := Color(1.0, 0.52, 0.16)
+# 1800 K by the project's own kelvin() (Tanner Helland): the old
+# (1.0, 0.52, 0.16) read about 2150 K, inside the hearth's 1900-2500 K,
+# so the holy light and the work light could not be told apart
+# (chorus audit 2026-10-03, voice 19).
+const LAMPADA_K := Color(1.0, 0.496, 0.0)
 const INSTRUMENT_K := Color(0.95, 0.97, 1.0)
 ## Proxies made from the box field of a prompt are stand-in shapes that
 ## may be stretched to the thing's size; drawn and measured models keep
@@ -708,10 +712,8 @@ static func chosen(tree: SceneTree) -> String:
 # --- The player's saves -------------------------------------------------------
 
 static func _read(path: String) -> Dictionary:
-	if not FileAccess.file_exists(path):
-		return {}
-	var d = JSON.parse_string(FileAccess.get_file_as_string(path))
-	return d if d is Dictionary else {}
+	# A spoiled save falls back to its last good copy (SaveSlot.read_json).
+	return SaveSlot.read_json(path)
 
 
 ## What a place reads of the hub's save, in the same known shapes the

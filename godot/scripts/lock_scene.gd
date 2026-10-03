@@ -32,6 +32,13 @@ func _ready() -> void:
 	for a in OS.get_cmdline_user_args():
 		if a.begins_with("--lock="):
 			lock_id = a.trim_prefix("--lock=")
+	# The way in from the hub (ModuleLoader.go_lock) names the lock;
+	# the id is taken once, so the next visit is not stuck on it.
+	var ml := get_node_or_null("/root/ModuleLoader")
+	if ml != null:
+		var sent: String = ml.take_lock_id()
+		if sent != "":
+			lock_id = sent
 	reduced = Haptics.prefers_reduced()
 	_world()
 	_rig()
@@ -68,7 +75,11 @@ func _world() -> void:
 	key.rotation = Vector3(-0.9, 0.5, 0.0)
 	key.light_energy = 1.3
 	key.light_color = Color(0.85, 0.92, 1.0)
-	key.shadow_enabled = true
+	# No shadow: the board's parts are millimetres high, their shadow is
+	# not read at arm's length, and the directional shadow drew every
+	# part again in each cascade (682 draw calls a frame against 142
+	# without it, measure_budgets --scene=lock, 2026-10-03).
+	key.shadow_enabled = false
 	add_child(key)
 	var floor := MeshInstance3D.new()
 	var pm := PlaneMesh.new()
