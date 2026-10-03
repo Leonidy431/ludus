@@ -1,0 +1,1529 @@
+{
+ "schema": "ludus.dialogue/1 (DialogueNode: id,npcId,text,audioFile?,branches[],attributeBonuses?; расширения: speaker,sceneId,kind,gate?,actEnd?)",
+ "episode": "ep2",
+ "title": "Ржевский и Бублик против Ордена Серебряной Печати — акт I «Приказ запечатать»",
+ "startNodeId": "ep2.a1.s1.n01",
+ "attributes": [
+  "wisdom",
+  "faith",
+  "dexterity",
+  "constitution",
+  "charisma",
+  "cunning",
+  "erudition"
+ ],
+ "startingAttributes": {
+  "wisdom": 1,
+  "faith": 2,
+  "dexterity": 3,
+  "constitution": 3,
+  "charisma": 5,
+  "cunning": 3,
+  "erudition": 1
+ },
+ "scenes": [
+  {
+   "sceneId": "ep2.a1.s1",
+   "title": "Усадьба Вьюжиной: двор и гостиная",
+   "location": "Вымышленная губерния, лето 1820",
+   "constitution": "Конституция: ФОРМА (Charisma Ржевского громка, Wisdom Бублика тиха) → ДЕЙСТВИЕ (выслушать и сделать руками, а не только прокричать; врата: часы Полины — Wisdom, рычаг — Dexterity) → ЦЕЛЬ (смирение: громкость не мудрость, дело ценнее хвастовства)"
+  },
+  {
+   "sceneId": "ep2.a1.s2",
+   "title": "Почтовая станция «Ямская»",
+   "location": "Станция с переговорными трубами",
+   "constitution": "Конституция: ФОРМА (Cunning и Charisma Ржевского) → ДЕЙСТВИЕ (безобидная хитрость выигрывает время, а правдивое слово открывает дверь; врата: розыгрыш — Cunning, просьба по правде — Wisdom) → ЦЕЛЬ (правда и милость сильнее страха и сургуча)"
+  },
+  {
+   "sceneId": "ep2.a1.s3",
+   "title": "Мост через Пескариху",
+   "location": "Разведённый мост, кузня, рыбацкая мостка",
+   "constitution": "Конституция: ФОРМА (Dexterity и Constitution Ржевского, Charisma коня и рыбака) → ДЕЙСТВИЕ (терпеливо выслушать, затем ловко подсечь; врата: стих коню — Charisma, подсечка — Dexterity) → ЦЕЛЬ (терпение и благодарность: мост поднимает согласие многих, а не сила одного)"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "ep2.a1.s1.n01",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Ваше благородие, прибыли. Усадьба Вьюжиной: в окнах чай, на воротах сургуч. Сургуч — тревожно, чай — обнадёживающе. Порядок — он как пирог, ваше благородие: сверху красиво, снизу — главное. А тут сверху одна печать.",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s1.n01.wav",
+   "branches": [
+    {
+     "text": "«Въедем как гром: громко и без предупреждения!»",
+     "nextNodeId": "ep2.a1.s1.n02",
+     "id": "ep2.a1.s1.n01.b1"
+    },
+    {
+     "text": "Осмотреть печать на воротах (Erudition)",
+     "nextNodeId": "ep2.a1.s1.n03",
+     "id": "ep2.a1.s1.n01.b2"
+    },
+    {
+     "text": "«Бублик, что тут за сургуч?»",
+     "nextNodeId": "ep2.a1.s1.n04",
+     "id": "ep2.a1.s1.n01.b3"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s1.n02",
+   "npcId": "rzhevsky",
+   "speaker": "Поручик Ржевский",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Я, братец, прибыл как гром: громко и без предупреждения!",
+   "audioFile": "audio/dialogue/rzhevsky/ep2.a1.s1.n02.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.n02b",
+     "id": "ep2.a1.s1.n02.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s1.n02b",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Гром, ваше благородие, сперва сверкает, а уж потом грохочет. Вы грохочете до. Ворота не открылись, зато с печати слетела пыль, а с вас — немного важности.",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s1.n02b.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.n05",
+     "id": "ep2.a1.s1.n02b.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s1.n03",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "На печати оттиск: «№ 1 000 001. Не вскрывать, не нюхать, не благодарить». Заметьте, ваше благородие: «не благодарить» стоит выше, чем «не нюхать». Выходит, благодарности они боятся сильнее, чем запаха.",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s1.n03.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.n05",
+     "id": "ep2.a1.s1.n03.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "erudition": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s1.n04",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Орден Серебряной Печати, ваше благородие. Скрепляют всё сургучом и ничего не отпускают. Говорят, у них и муха в канцелярии записана в штат.",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s1.n04.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.n05",
+     "id": "ep2.a1.s1.n04.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "wisdom": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s1.n05",
+   "npcId": "kondrat",
+   "speaker": "Рыцарь-вестовой Кондрат Сургучёв",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Именем Ордена Серебряной Печати! Стойте, где стоите, а где не стоите — встаньте! Оглашаю Указ номер один: «О запечатывании Масленицы». Блины считать неучтённым вкусом, ярмарку — самовольным весельем!",
+   "audioFile": "audio/dialogue/kondrat/ep2.a1.s1.n05.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.n06",
+     "id": "ep2.a1.s1.n05.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s1.n06",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Ваше благородие, они хотят запечатать праздник. Это уже не сургуч, это личное.",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s1.n06.wav",
+   "branches": [
+    {
+     "text": "Спорить с вестовым во весь голос (Charisma)",
+     "nextNodeId": "ep2.a1.s1.n07",
+     "id": "ep2.a1.s1.n06.b1"
+    },
+    {
+     "text": "Попросить Указ в трёх экземплярах (Erudition)",
+     "nextNodeId": "ep2.a1.s1.n08",
+     "id": "ep2.a1.s1.n06.b2"
+    },
+    {
+     "text": "Поклониться и спросить дорогу",
+     "nextNodeId": "ep2.a1.s1.n09",
+     "id": "ep2.a1.s1.n06.b3"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s1.n07",
+   "npcId": "rzhevsky",
+   "speaker": "Поручик Ржевский",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Милейший, да кто же запечатывает блины? Блин — он круглый, у него даже краёв нет, куда ставить вашу печать!",
+   "audioFile": "audio/dialogue/rzhevsky/ep2.a1.s1.n07.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.n07b",
+     "id": "ep2.a1.s1.n07.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s1.n07b",
+   "npcId": "kondrat",
+   "speaker": "Рыцарь-вестовой Кондрат Сургучёв",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Пункт девять: «У круглого края определяются по усмотрению». Ржевский, вы только что подтвердили, что спорите громко. Это сорок вторая графа — «Шум». Я вас записал.",
+   "audioFile": "audio/dialogue/kondrat/ep2.a1.s1.n07b.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.n10",
+     "id": "ep2.a1.s1.n07b.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s1.n08",
+   "npcId": "rzhevsky",
+   "speaker": "Поручик Ржевский",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Милейший, а в трёх экземплярах можно? Я люблю, когда мне отказывают подробно.",
+   "audioFile": "audio/dialogue/rzhevsky/ep2.a1.s1.n08.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.n08b",
+     "id": "ep2.a1.s1.n08.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s1.n08b",
+   "npcId": "kondrat",
+   "speaker": "Рыцарь-вестовой Кондрат Сургучёв",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Бланки выдаёт Приёмная. Приёмная закрыта на опечатывание. Опечатывание начнётся после выдачи бланков. Круг замкнут, сударь. По-нашему это называется «порядок», по-вашему — «карусель».",
+   "audioFile": "audio/dialogue/kondrat/ep2.a1.s1.n08b.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.n10",
+     "id": "ep2.a1.s1.n08b.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "erudition": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s1.n09",
+   "npcId": "rzhevsky",
+   "speaker": "Поручик Ржевский",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Любезнейший, не скажете ли дорогу к тому, кто всё это придумал?",
+   "audioFile": "audio/dialogue/rzhevsky/ep2.a1.s1.n09.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.n09b",
+     "id": "ep2.a1.s1.n09.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s1.n09b",
+   "npcId": "kondrat",
+   "speaker": "Рыцарь-вестовой Кондрат Сургучёв",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Приор сидит в башне «Сургучная». Дорога одна: через станцию «Ямская» и мост через Пескариху. Но вы, сударь, вежливы — запишу вас как «подозрительно приятный».",
+   "audioFile": "audio/dialogue/kondrat/ep2.a1.s1.n09b.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.n10",
+     "id": "ep2.a1.s1.n09b.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "wisdom": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s1.n10",
+   "npcId": "kondrat",
+   "speaker": "Рыцарь-вестовой Кондрат Сургучёв",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Я удаляюсь! Печатью по одному щелчку! (Спотыкается о собственный сургучный пистолет, штампует собственный сапог и скрывается за поворотом.)",
+   "audioFile": "audio/dialogue/kondrat/ep2.a1.s1.n10.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.n11",
+     "id": "ep2.a1.s1.n10.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s1.n11",
+   "npcId": "aglaya",
+   "speaker": "Барыня Аглая Спиридоновна Вьюжина",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Господа, чай стынет, а совесть остывает быстрее. Заходите в гостиную: у меня и самовар, и тайна, и ни одной печати — я их прячу за вареньем.",
+   "audioFile": "audio/dialogue/aglaya/ep2.a1.s1.n11.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.n12",
+     "id": "ep2.a1.s1.n11.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s1.n12",
+   "npcId": "aglaya",
+   "speaker": "Барыня Аглая Спиридоновна Вьюжина",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Орден хочет запечатать мой самовар первым, потому что с него всё начинается. Прибыл бы кто-нибудь с головой, руками и приличным запасом остроумия.",
+   "audioFile": "audio/dialogue/aglaya/ep2.a1.s1.n12.wav",
+   "branches": [
+    {
+     "text": "«Сударыня, у меня всё это есть, а также шпоры!»",
+     "nextNodeId": "ep2.a1.s1.n13",
+     "id": "ep2.a1.s1.n12.b1"
+    },
+    {
+     "text": "«Скажите, чем могу помочь, и без шпор»",
+     "nextNodeId": "ep2.a1.s1.n14",
+     "id": "ep2.a1.s1.n12.b2"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s1.n13",
+   "npcId": "aglaya",
+   "speaker": "Барыня Аглая Спиридоновна Вьюжина",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Шпоры у вас, поручик, от разных сапог. Но звенят в два голоса — это, признаю, мило. Слушайте дело.",
+   "audioFile": "audio/dialogue/aglaya/ep2.a1.s1.n13.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.n15",
+     "id": "ep2.a1.s1.n13.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s1.n14",
+   "npcId": "aglaya",
+   "speaker": "Барыня Аглая Спиридоновна Вьюжина",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Вот это слово человека, а не кивера. Слушайте дело.",
+   "audioFile": "audio/dialogue/aglaya/ep2.a1.s1.n14.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.n15",
+     "id": "ep2.a1.s1.n14.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "wisdom": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s1.n15",
+   "npcId": "aglaya",
+   "speaker": "Барыня Аглая Спиридоновна Вьюжина",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Приор Мглин даёт Ордену семь дней, чтобы запечатать Масленицу. Мне нужно, чтобы вы добрались до его башни. Короткий путь — через мой задний двор, но калитку стережёт моя кукушка Полина. Она отворяет только тому, кто слышит.",
+   "audioFile": "audio/dialogue/aglaya/ep2.a1.s1.n15.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.n16",
+     "id": "ep2.a1.s1.n15.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s1.n16",
+   "npcId": "polina",
+   "speaker": "Кукушка Полина",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Ку-ку по часам, ку-ку по делам. Скажи мне час, когда блин горяч и друг ещё не ушёл.",
+   "audioFile": "audio/dialogue/polina/ep2.a1.s1.n16.wav",
+   "branches": [
+    {
+     "text": "Прислушаться к часам и подумать",
+     "nextNodeId": "ep2.a1.s1.g01",
+     "id": "ep2.a1.s1.n16.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s1.g01",
+   "npcId": "polina",
+   "speaker": "Кукушка Полина",
+   "sceneId": "ep2.a1.s1",
+   "kind": "gate",
+   "text": "Три удара — кукушка рада. Куда поставить стрелки, сударь? (Врата: слушать — Wisdom 2.)",
+   "audioFile": "audio/dialogue/polina/ep2.a1.s1.g01.wav",
+   "branches": [
+    {
+     "text": "Поставить стрелки на три — как велит чай",
+     "nextNodeId": "ep2.a1.s1.n17",
+     "attributeCheck": "wisdom",
+     "requiredAttributes": {
+      "wisdom": 2
+     },
+     "action": "set_clock:15:00",
+     "id": "ep2.a1.s1.g01.b1"
+    },
+    {
+     "text": "Сначала спросить у барыни, когда у неё чай",
+     "nextNodeId": "ep2.a1.s1.soft01",
+     "once": true,
+     "id": "ep2.a1.s1.g01.b2"
+    }
+   ],
+   "gate": {
+    "attribute": "wisdom",
+    "min": 2,
+    "action": "set_clock:15:00",
+    "constitution": "Конституция: ФОРМА (Wisdom) → ДЕЙСТВИЕ (не угадывать, а выслушать подсказку хозяйки: «чай в три») → ЦЕЛЬ (смирение слуха: мудрость начинается с «я не знаю, спрошу»)"
+   }
+  },
+  {
+   "id": "ep2.a1.s1.soft01",
+   "npcId": "aglaya",
+   "speaker": "Барыня Аглая Спиридоновна Вьюжина",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Милый мой, чай у меня ровно в три. Это знают все, кроме тех, кто громко разговаривает.",
+   "audioFile": "audio/dialogue/aglaya/ep2.a1.s1.soft01.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.g01",
+     "id": "ep2.a1.s1.soft01.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "wisdom": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s1.n17",
+   "npcId": "polina",
+   "speaker": "Кукушка Полина",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Ку-ку! Ку-ку! Ку-ку! (Калитка распахивается, из неё выпадает забытая сургучная палочка.) Умница. Остальным — только ку.",
+   "audioFile": "audio/dialogue/polina/ep2.a1.s1.n17.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.n18",
+     "id": "ep2.a1.s1.n17.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s1.n18",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Ваше благородие, мой мешок «на все случаи» придавило оборвавшимся створом. Мне нужен рычаг, а вам — хотя бы придумать, где он.",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s1.n18.wav",
+   "branches": [
+    {
+     "text": "Командовать издали: «Бублик, поднимай силой воли!»",
+     "nextNodeId": "ep2.a1.s1.n19",
+     "id": "ep2.a1.s1.n18.b1"
+    },
+    {
+     "text": "Взять оглоблю и пень — устроить рычаг (Dexterity)",
+     "nextNodeId": "ep2.a1.s1.g02",
+     "id": "ep2.a1.s1.n18.b2"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s1.n19",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Сила воли, ваше благородие, весит ровно ничего, а мешок — пуд. Возьмите оглоблю.",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s1.n19.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.g02",
+     "id": "ep2.a1.s1.n19.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s1.g02",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s1",
+   "kind": "gate",
+   "text": "Оглобля — под створ, пень — под оглоблю, а вы — на конец. Не торопитесь: пока не подведёте под нужную точку, не жмите. (Врата: Dexterity 4.)",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s1.g02.wav",
+   "branches": [
+    {
+     "text": "Подвести оглоблю под нужную точку и нажать",
+     "nextNodeId": "ep2.a1.s1.n20",
+     "attributeCheck": "dexterity",
+     "requiredAttributes": {
+      "dexterity": 4
+     },
+     "action": "place_lever:oglobla+pen",
+     "id": "ep2.a1.s1.g02.b1"
+    },
+    {
+     "text": "Попробовать на пне — потренироваться",
+     "nextNodeId": "ep2.a1.s1.soft02",
+     "once": true,
+     "id": "ep2.a1.s1.g02.b2"
+    }
+   ],
+   "gate": {
+    "attribute": "dexterity",
+    "min": 4,
+    "action": "place_lever:oglobla+pen",
+    "constitution": "Конституция: ФОРМА (Dexterity) → ДЕЙСТВИЕ (расчёт и работа руками вместе с денщиком) → ЦЕЛЬ (смирение: дело учит там, где приказ не научил)"
+   }
+  },
+  {
+   "id": "ep2.a1.s1.soft02",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Вот так, ваше благородие: не рывком, а плавно. Рука запомнила — теперь пойдёт.",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s1.soft02.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.g02",
+     "id": "ep2.a1.s1.soft02.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "dexterity": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s1.n20",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Поддалось! Спасибо, ваше благородие. Первый раз вы работали руками, а не голосом. Запишем в историю.",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s1.n20.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.n21",
+     "id": "ep2.a1.s1.n20.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "constitution": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s1.n21",
+   "npcId": "aglaya",
+   "speaker": "Барыня Аглая Спиридоновна Вьюжина",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Теперь на станцию «Ямская». Почтмейстер Ямской ворчит, но честен. У него ключ от станции — а на станции переговорные трубы, по которым можно достучаться и до самого приора.",
+   "audioFile": "audio/dialogue/aglaya/ep2.a1.s1.n21.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.n22",
+     "id": "ep2.a1.s1.n21.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s1.n22",
+   "npcId": "rzhevsky",
+   "speaker": "Поручик Ржевский",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Сударыня, обещаю вернуть вам самовар непечатанным и себя — по возможности небитым.",
+   "audioFile": "audio/dialogue/rzhevsky/ep2.a1.s1.n22.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s1.n22b",
+     "id": "ep2.a1.s1.n22.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s1.n22b",
+   "npcId": "aglaya",
+   "speaker": "Барыня Аглая Спиридоновна Вьюжина",
+   "sceneId": "ep2.a1.s1",
+   "kind": "line",
+   "text": "Главное, возвращайтесь с совестью. Остальное починим. Кукушка Полина проводит вас кукованием.",
+   "audioFile": "audio/dialogue/aglaya/ep2.a1.s1.n22b.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s2.n01",
+     "id": "ep2.a1.s1.n22b.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "faith": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s2.n01",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Станция «Ямская». На двери табличка: «Труба для людей, а не для шуток». Вторая табличка, мелкая: «Мух не кормить».",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s2.n01.wav",
+   "branches": [
+    {
+     "text": "Постучать как гусар — громко",
+     "nextNodeId": "ep2.a1.s2.n02",
+     "id": "ep2.a1.s2.n01.b1"
+    },
+    {
+     "text": "Постучать тихо и представиться",
+     "nextNodeId": "ep2.a1.s2.n03",
+     "id": "ep2.a1.s2.n01.b2"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s2.n02",
+   "npcId": "yamskoy",
+   "speaker": "Почтмейстер Пантелей Ямской",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Кто так стучит? Это не дверь, это у меня рёбра! Станция закрыта на опечатывание, а опечатывание — на обед!",
+   "audioFile": "audio/dialogue/yamskoy/ep2.a1.s2.n02.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s2.n04",
+     "id": "ep2.a1.s2.n02.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s2.n03",
+   "npcId": "yamskoy",
+   "speaker": "Почтмейстер Пантелей Ямской",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Хоть кто-то стучит как человек. Станция закрыта на опечатывание, но вы хотя бы не ломаете дверь.",
+   "audioFile": "audio/dialogue/yamskoy/ep2.a1.s2.n03.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s2.n04",
+     "id": "ep2.a1.s2.n03.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "charisma": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s2.n04",
+   "npcId": "yamskoy",
+   "speaker": "Почтмейстер Пантелей Ямской",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Я Пантелей Ямской. Хозяин труб. Орден запретил выдавать ключи кому бы то ни было, кроме рыцарей с бланком. А бланка у рыцарей нет — вот я и ворчу.",
+   "audioFile": "audio/dialogue/yamskoy/ep2.a1.s2.n04.wav",
+   "branches": [
+    {
+     "text": "Польстить: «Какая прекрасная труба!»",
+     "nextNodeId": "ep2.a1.s2.n05",
+     "id": "ep2.a1.s2.n04.b1"
+    },
+    {
+     "text": "Расспросить про трубы по делу (Erudition)",
+     "nextNodeId": "ep2.a1.s2.n06",
+     "id": "ep2.a1.s2.n04.b2"
+    },
+    {
+     "text": "Сказать прямо: «Нам нужен ключ — и вот зачем»",
+     "nextNodeId": "ep2.a1.s2.n07",
+     "id": "ep2.a1.s2.n04.b3"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s2.n05",
+   "npcId": "yamskoy",
+   "speaker": "Почтмейстер Пантелей Ямской",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Лесть? В трубе? В трубе, милейший, слышно, как врёшь. Идите-ка вы… в соседнюю дверь.",
+   "audioFile": "audio/dialogue/yamskoy/ep2.a1.s2.n05.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s2.n04",
+     "id": "ep2.a1.s2.n05.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "cunning": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s2.n06",
+   "npcId": "yamskoy",
+   "speaker": "Почтмейстер Пантелей Ямской",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Труба — для дела. Из дома в дом, с кухни в канцелярию. К Ордену идёт самая толстая, на ней медная бирка «Отдел Опечатывания». Туда я не лезу — там сквозняк и приор.",
+   "audioFile": "audio/dialogue/yamskoy/ep2.a1.s2.n06.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s2.n08",
+     "id": "ep2.a1.s2.n06.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "erudition": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s2.n07",
+   "npcId": "yamskoy",
+   "speaker": "Почтмейстер Пантелей Ямской",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Прямо, говоришь? Давно мне прямо никто не говорил — всё больше «по распоряжению». Но ключ… ключ у меня на гвозде, а гвоздь опечатан. Придётся хитрить.",
+   "audioFile": "audio/dialogue/yamskoy/ep2.a1.s2.n07.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s2.n08",
+     "id": "ep2.a1.s2.n07.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "wisdom": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s2.n08",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Ваше благородие, станция — наш вход. Но к Ордену ведёт одна труба, и у неё ухо. Если отвлечь рыцаря-вестового Кондрата, мы выиграем час.",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s2.n08.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s2.n09",
+     "id": "ep2.a1.s2.n08.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s2.n09",
+   "npcId": "rzhevsky",
+   "speaker": "Поручик Ржевский",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Розыгрыш! Бублик, я возьму трубу и скажу… что я граф, и фамилия моя — Графикович.",
+   "audioFile": "audio/dialogue/rzhevsky/ep2.a1.s2.n09.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s2.n10",
+     "id": "ep2.a1.s2.n09.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s2.n10",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Ваше благородие, фамилия «Графикович» — это перегиб. Но давайте соберём розыгрыш честно: безобидно, без унижения и ровно на час.",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s2.n10.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s2.g01",
+     "id": "ep2.a1.s2.n10.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s2.g01",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s2",
+   "kind": "gate",
+   "text": "Собираем розыгрыш по частям: Кем назваться — Что сообщить — Чем закончить. Каждая часть без грубости и без злого умысла. (Врата: Cunning 3.)",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s2.g01.wav",
+   "branches": [
+    {
+     "text": "Собрать розыгрыш (Cunning)",
+     "nextNodeId": "ep2.a1.s2.n11",
+     "attributeCheck": "cunning",
+     "requiredAttributes": {
+      "cunning": 3
+     },
+     "action": "build_prank",
+     "id": "ep2.a1.s2.g01.b1"
+    },
+    {
+     "text": "Спросить Бублика, как вежливо шутить",
+     "nextNodeId": "ep2.a1.s2.soft01",
+     "once": true,
+     "id": "ep2.a1.s2.g01.b2"
+    }
+   ],
+   "gate": {
+    "attribute": "cunning",
+    "min": 3,
+    "action": "build_prank",
+    "constitution": "Конституция: ФОРМА (Cunning) → ДЕЙСТВИЕ (собрать безобидный розыгрыш из частей, где каждая часть без обиды) → ЦЕЛЬ (хитрость служит времени, а не обману во зло; правда придёт следом)"
+   }
+  },
+  {
+   "id": "ep2.a1.s2.soft01",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Шутка вежливая, ваше благородие, когда смеётся и тот, над кем шутят. Берите это за правило — и розыгрыш соберётся сам.",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s2.soft01.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s2.g01",
+     "id": "ep2.a1.s2.soft01.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "cunning": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s2.n11",
+   "npcId": "rzhevsky",
+   "speaker": "Поручик Ржевский",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Часть первая — кем назваться. Выбираем: «Ревизор расписаний, граф Гаврила Графикович»…",
+   "audioFile": "audio/dialogue/rzhevsky/ep2.a1.s2.n11.wav",
+   "branches": [
+    {
+     "text": "«Ревизор расписаний» — смешно и безобидно",
+     "nextNodeId": "ep2.a1.s2.n12",
+     "id": "ep2.a1.s2.n11.b1"
+    },
+    {
+     "text": "«Сам приор» — пусть боятся",
+     "nextNodeId": "ep2.a1.s2.n11x",
+     "id": "ep2.a1.s2.n11.b2"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s2.n11x",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Нельзя, ваше благородие: назваться приором — значит валить на человека чужую тень. Выберите другое.",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s2.n11x.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s2.n11",
+     "id": "ep2.a1.s2.n11x.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s2.n12",
+   "npcId": "rzhevsky",
+   "speaker": "Поручик Ржевский",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Часть вторая — что сообщить. «Расписание мостов утеряно, вестового Кондрата просят явиться на мост немедленно с линейкой и лестницей».",
+   "audioFile": "audio/dialogue/rzhevsky/ep2.a1.s2.n12.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s2.n13",
+     "id": "ep2.a1.s2.n12.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s2.n13",
+   "npcId": "rzhevsky",
+   "speaker": "Поручик Ржевский",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Часть третья — чем закончить. Поблагодарим и пожелаем здоровья!",
+   "audioFile": "audio/dialogue/rzhevsky/ep2.a1.s2.n13.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s2.n14",
+     "id": "ep2.a1.s2.n13.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "charisma": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s2.n14",
+   "npcId": "mglin",
+   "speaker": "Приор Зловерт Карлович Мглин (голос в трубе)",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Отдел Опечатывания слушает. Закройте форточку в моей трубе! Что? Расписание утеряно? Вестового Кондрата — на мост. С лестницей. И с линейкой. И со шпаргалкой!",
+   "audioFile": "audio/dialogue/mglin/ep2.a1.s2.n14.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s2.n15",
+     "id": "ep2.a1.s2.n14.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s2.n15",
+   "npcId": "mglin",
+   "speaker": "Приор Зловерт Карлович Мглин (голос в трубе)",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Графикович… Графикович… В штате такого нет. Занесу в ведомость. Исполнять! Благодарю за здоровье. (Трубу закрывает, потом открывает: ) Закройте форточку, я сказал!",
+   "audioFile": "audio/dialogue/mglin/ep2.a1.s2.n15.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s2.n16",
+     "id": "ep2.a1.s2.n15.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s2.n16",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Кондрат ушёл на мост с лестницей. Час у нас есть. И запишите, ваше благородие: шутка закончилась — начинается честность.",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s2.n16.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s2.n17",
+     "id": "ep2.a1.s2.n16.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s2.n17",
+   "npcId": "yamskoy",
+   "speaker": "Почтмейстер Пантелей Ямской",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Что за шум был в моей трубе? Выкладывайте как на духу. Слышал только «Графикович» — а такой фамилии на моём участке нет.",
+   "audioFile": "audio/dialogue/yamskoy/ep2.a1.s2.n17.wav",
+   "branches": [
+    {
+     "text": "Признаться во всём честно",
+     "nextNodeId": "ep2.a1.s2.g02",
+     "id": "ep2.a1.s2.n17.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s2.g02",
+   "npcId": "yamskoy",
+   "speaker": "Почтмейстер Пантелей Ямской",
+   "sceneId": "ep2.a1.s2",
+   "kind": "gate",
+   "text": "Правда — она как труба: в одном конце слышно ровно то, что сказали в другом. (Врата: правдивое слово — Wisdom 2.)",
+   "audioFile": "audio/dialogue/yamskoy/ep2.a1.s2.g02.wav",
+   "branches": [
+    {
+     "text": "Рассказать всё: про Указ, про шутку, про цель",
+     "nextNodeId": "ep2.a1.s2.n18",
+     "attributeCheck": "wisdom",
+     "requiredAttributes": {
+      "wisdom": 2
+     },
+     "action": "tell_truth",
+     "id": "ep2.a1.s2.g02.b1"
+    },
+    {
+     "text": "Спросить Бублика, как сказать правду, чтобы не обидеть",
+     "nextNodeId": "ep2.a1.s2.soft02",
+     "once": true,
+     "id": "ep2.a1.s2.g02.b2"
+    }
+   ],
+   "gate": {
+    "attribute": "wisdom",
+    "min": 2,
+    "action": "tell_truth",
+    "constitution": "Конституция: ФОРМА (Wisdom) → ДЕЙСТВИЕ (рассказать почтмейстеру всё: и про розыгрыш, и про Указ) → ЦЕЛЬ (правда открывает то, что хитрость лишь отвлекает; милость сильнее сургуча)"
+   }
+  },
+  {
+   "id": "ep2.a1.s2.soft02",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Правда без обиды, ваше благородие, — это правда с уважением: сперва извинитесь, потом расскажите, как было.",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s2.soft02.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s2.g02",
+     "id": "ep2.a1.s2.soft02.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "wisdom": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s2.n18",
+   "npcId": "yamskoy",
+   "speaker": "Почтмейстер Пантелей Ямской",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Ну вот. Разыграли вы Орден, а мне сказали правду. Это разные вещи, и вторая мне милее. Держите ключ. И вот ещё: возьмите овса для коня — на мосту пригодится.",
+   "audioFile": "audio/dialogue/yamskoy/ep2.a1.s2.n18.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s2.n19",
+     "id": "ep2.a1.s2.n18.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "wisdom": 1,
+    "faith": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s2.n19",
+   "npcId": "yamskoy",
+   "speaker": "Почтмейстер Пантелей Ямской",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Только не рассказывайте приору, что я помогал. А то он опечатает мою трубу, и мне нечем будет ворчать.",
+   "audioFile": "audio/dialogue/yamskoy/ep2.a1.s2.n19.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s2.n20",
+     "id": "ep2.a1.s2.n19.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s2.n20",
+   "npcId": "rzhevsky",
+   "speaker": "Поручик Ржевский",
+   "sceneId": "ep2.a1.s2",
+   "kind": "line",
+   "text": "Почтенный, клянусь: вашего ворчания в обиду не дадим.",
+   "audioFile": "audio/dialogue/rzhevsky/ep2.a1.s2.n20.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s3.n01",
+     "id": "ep2.a1.s2.n20.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s3.n01",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s3",
+   "kind": "line",
+   "text": "Мост через Пескариху. Разведён, как руки у рыбака, когда он рассказывает про улов. А конь наш, Громобой, встал, будто врос в землю.",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s3.n01.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s3.n02",
+     "id": "ep2.a1.s3.n01.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s3.n02",
+   "npcId": "gromoboy",
+   "speaker": "Конь Громобой",
+   "sceneId": "ep2.a1.s3",
+   "kind": "line",
+   "text": "(Фыркает, переступает копытом и смотрит на Ржевского как на счёт, который придётся оплатить.)",
+   "audioFile": "audio/dialogue/gromoboy/ep2.a1.s3.n02.wav",
+   "branches": [
+    {
+     "text": "Прикрикнуть на коня",
+     "nextNodeId": "ep2.a1.s3.n03",
+     "id": "ep2.a1.s3.n02.b1"
+    },
+    {
+     "text": "Предложить овёс с яблоком и стих (Charisma)",
+     "nextNodeId": "ep2.a1.s3.g01",
+     "id": "ep2.a1.s3.n02.b2"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s3.n03",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s3",
+   "kind": "line",
+   "text": "На коня, ваше благородие, кричать — всё равно что на самовар: кипит, но не едет.",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s3.n03.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s3.g01",
+     "id": "ep2.a1.s3.n03.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s3.g01",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s3",
+   "kind": "gate",
+   "text": "Овёс, яблоко и стих: коню нужно, чтобы с ним говорили, а не на него. (Врата: Charisma 4.)",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s3.g01.wav",
+   "branches": [
+    {
+     "text": "Прочесть стих коню и угостить",
+     "nextNodeId": "ep2.a1.s3.n04",
+     "attributeCheck": "charisma",
+     "requiredAttributes": {
+      "charisma": 4
+     },
+     "action": "feed_and_recite",
+     "id": "ep2.a1.s3.g01.b1"
+    }
+   ],
+   "gate": {
+    "attribute": "charisma",
+    "min": 4,
+    "action": "feed_and_recite",
+    "constitution": "Конституция: ФОРМА (Charisma) → ДЕЙСТВИЕ (сказать стих коню, накормить, не приказать) → ЦЕЛЬ (смирение: обаяние служит доброму слову, а не хвастовству)"
+   }
+  },
+  {
+   "id": "ep2.a1.s3.n04",
+   "npcId": "rzhevsky",
+   "speaker": "Поручик Ржевский",
+   "sceneId": "ep2.a1.s3",
+   "kind": "line",
+   "text": "«Овёс — это счастье, а яблоко — ласка. / Иди, Громобой, и закончим сказку!»",
+   "audioFile": "audio/dialogue/rzhevsky/ep2.a1.s3.n04.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s3.n05",
+     "id": "ep2.a1.s3.n04.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s3.n05",
+   "npcId": "gromoboy",
+   "speaker": "Конь Громобой",
+   "sceneId": "ep2.a1.s3",
+   "kind": "line",
+   "text": "(Съедает яблоко с таким видом, будто сам придумал каждую строчку, и ступает вперёд.)",
+   "audioFile": "audio/dialogue/gromoboy/ep2.a1.s3.n05.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s3.n06",
+     "id": "ep2.a1.s3.n05.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "charisma": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s3.n06",
+   "npcId": "terenty",
+   "speaker": "Рыбак Терентий Щукин",
+   "sceneId": "ep2.a1.s3",
+   "kind": "line",
+   "text": "Здравствуйте, господа. Тише: рыба нервная. Меня зовут Терентий Щукин. Мост разведён, потому что рыцари ушли на обед и забыли его опустить. Уже третий день обедают.",
+   "audioFile": "audio/dialogue/terenty/ep2.a1.s3.n06.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s3.n07",
+     "id": "ep2.a1.s3.n06.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s3.n07",
+   "npcId": "terenty",
+   "speaker": "Рыбак Терентий Щукин",
+   "sceneId": "ep2.a1.s3",
+   "kind": "line",
+   "text": "Механизм, как я вижу, зацепился за ёрша — вот он, видите, на цепи? Моей лескою можно зацепить рычаг, но руки у меня уже не те.",
+   "audioFile": "audio/dialogue/terenty/ep2.a1.s3.n07.wav",
+   "branches": [
+    {
+     "text": "«Давай я сам, рыбак — я гусар!»",
+     "nextNodeId": "ep2.a1.s3.n08",
+     "id": "ep2.a1.s3.n07.b1"
+    },
+    {
+     "text": "Выслушать, как устроен мост (Wisdom)",
+     "nextNodeId": "ep2.a1.s3.n09",
+     "id": "ep2.a1.s3.n07.b2"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s3.n08",
+   "npcId": "terenty",
+   "speaker": "Рыбак Терентий Щукин",
+   "sceneId": "ep2.a1.s3",
+   "kind": "line",
+   "text": "Гусар — это хорошо. Только леска тонкая, а гусар громкий. Рыба вас услышала ещё на подъезде и уже пишет жалобу.",
+   "audioFile": "audio/dialogue/terenty/ep2.a1.s3.n08.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s3.n09",
+     "id": "ep2.a1.s3.n08.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s3.n09",
+   "npcId": "terenty",
+   "speaker": "Рыбак Терентий Щукин",
+   "sceneId": "ep2.a1.s3",
+   "kind": "line",
+   "text": "Слушайте: леска идёт вдоль перил, поддевает рычаг и чуть-чуть тянет на себя. Не рывком — а как рыбу, что клюнула в первый раз.",
+   "audioFile": "audio/dialogue/terenty/ep2.a1.s3.n09.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s3.g02",
+     "id": "ep2.a1.s3.n09.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "wisdom": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s3.g02",
+   "npcId": "terenty",
+   "speaker": "Рыбак Терентий Щукин",
+   "sceneId": "ep2.a1.s3",
+   "kind": "gate",
+   "text": "Подсечка — ловкость и терпение. Справитесь? (Врата: Dexterity 4.)",
+   "audioFile": "audio/dialogue/terenty/ep2.a1.s3.g02.wav",
+   "branches": [
+    {
+     "text": "Закинуть леску и плавно подтянуть",
+     "nextNodeId": "ep2.a1.s3.n10",
+     "attributeCheck": "dexterity",
+     "requiredAttributes": {
+      "dexterity": 4
+     },
+     "action": "cast_line:lever",
+     "id": "ep2.a1.s3.g02.b1"
+    },
+    {
+     "text": "Потренироваться на пустой воде",
+     "nextNodeId": "ep2.a1.s3.soft01",
+     "once": true,
+     "id": "ep2.a1.s3.g02.b2"
+    }
+   ],
+   "gate": {
+    "attribute": "dexterity",
+    "min": 4,
+    "action": "cast_line:lever",
+    "constitution": "Конституция: ФОРМА (Dexterity) → ДЕЙСТВИЕ (подсечь рычаг лесой плавно, по совету рыбака) → ЦЕЛЬ (терпение и благодарность: мост опускает согласие, а не сила)"
+   }
+  },
+  {
+   "id": "ep2.a1.s3.soft01",
+   "npcId": "terenty",
+   "speaker": "Рыбак Терентий Щукин",
+   "sceneId": "ep2.a1.s3",
+   "kind": "line",
+   "text": "Вот так. Рука должна быть как хвост у щуки: тихо и точно.",
+   "audioFile": "audio/dialogue/terenty/ep2.a1.s3.soft01.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s3.g02",
+     "id": "ep2.a1.s3.soft01.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "dexterity": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s3.n10",
+   "npcId": "terenty",
+   "speaker": "Рыбак Терентий Щукин",
+   "sceneId": "ep2.a1.s3",
+   "kind": "line",
+   "text": "Клюнуло! Мост пошёл! Смотрите — вниз, ровно, без скрипа… почти без скрипа.",
+   "audioFile": "audio/dialogue/terenty/ep2.a1.s3.n10.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s3.n11",
+     "id": "ep2.a1.s3.n10.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "constitution": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s3.n11",
+   "npcId": "antip",
+   "speaker": "Кузнец Антип Подковкин",
+   "sceneId": "ep2.a1.s3",
+   "kind": "line",
+   "text": "Эй, господа, подкову на счастье не желаете? Ваш конь мне нравится: две подковы разные, третья — шатается, четвёртую вообще забыли.",
+   "audioFile": "audio/dialogue/antip/ep2.a1.s3.n11.wav",
+   "branches": [
+    {
+     "text": "Согласиться на подкову",
+     "nextNodeId": "ep2.a1.s3.g03",
+     "id": "ep2.a1.s3.n11.b1"
+    },
+    {
+     "text": "Отказаться и торопиться дальше",
+     "nextNodeId": "ep2.a1.s3.n12",
+     "id": "ep2.a1.s3.n11.b2"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s3.g03",
+   "npcId": "antip",
+   "speaker": "Кузнец Антип Подковкин",
+   "sceneId": "ep2.a1.s3",
+   "kind": "gate",
+   "text": "Бейте в такт: раз-два, раз-два, не спешите и не отставайте. Подкова на счастье любит ритм. (Врата: Constitution 3.)",
+   "audioFile": "audio/dialogue/antip/ep2.a1.s3.g03.wav",
+   "branches": [
+    {
+     "text": "Бить в такт: раз-два, раз-два",
+     "nextNodeId": "ep2.a1.s3.n13",
+     "attributeCheck": "constitution",
+     "requiredAttributes": {
+      "constitution": 3
+     },
+     "action": "rhythm:horseshoe",
+     "id": "ep2.a1.s3.g03.b1"
+    }
+   ],
+   "gate": {
+    "attribute": "constitution",
+    "min": 3,
+    "action": "rhythm:horseshoe",
+    "constitution": "Конституция: ФОРМА (Constitution) → ДЕЙСТВИЕ (отбить подкову в такт, не бросив работу на полпути) → ЦЕЛЬ (выносливость и честный труд: счастье куётся, а не выпрашивается)"
+   }
+  },
+  {
+   "id": "ep2.a1.s3.n12",
+   "npcId": "antip",
+   "speaker": "Кузнец Антип Подковкин",
+   "sceneId": "ep2.a1.s3",
+   "kind": "line",
+   "text": "Торопиться — дело гусарское. Но подкову возьмите — в долг, отдадите, когда вернётесь.",
+   "audioFile": "audio/dialogue/antip/ep2.a1.s3.n12.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s3.n14",
+     "id": "ep2.a1.s3.n12.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s3.n13",
+   "npcId": "antip",
+   "speaker": "Кузнец Антип Подковкин",
+   "sceneId": "ep2.a1.s3",
+   "kind": "line",
+   "text": "Вот это работа! Подкова ваша, на счастье. И запомните: счастье — это когда делаешь дело и не бросаешь на полпути.",
+   "audioFile": "audio/dialogue/antip/ep2.a1.s3.n13.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s3.n14",
+     "id": "ep2.a1.s3.n13.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "constitution": 1,
+    "faith": 1
+   }
+  },
+  {
+   "id": "ep2.a1.s3.n14",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s3",
+   "kind": "line",
+   "text": "Ваше благородие, смотрите: на том берегу — башня «Сургучная». Вся в сургуче, как пирог в глазури. Только пирог пахнет лучше.",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s3.n14.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s3.n15",
+     "id": "ep2.a1.s3.n14.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s3.n15",
+   "npcId": "mglin",
+   "speaker": "Приор Зловерт Карлович Мглин (голос в трубе)",
+   "sceneId": "ep2.a1.s3",
+   "kind": "line",
+   "text": "(Сверху, с балкона, в рупор.) Эй, на мосту! Кто там гремит копытами? Закройте форточку в моём ухе! Кто пропустил мост? Рыцарей — под арест на обед!",
+   "audioFile": "audio/dialogue/mglin/ep2.a1.s3.n15.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s3.n16",
+     "id": "ep2.a1.s3.n15.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s3.n16",
+   "npcId": "rzhevsky",
+   "speaker": "Поручик Ржевский",
+   "sceneId": "ep2.a1.s3",
+   "kind": "line",
+   "text": "Бублик, слышишь? Он страшен тем, что боится сквозняка. Это, по-моему, ключ ко всему.",
+   "audioFile": "audio/dialogue/rzhevsky/ep2.a1.s3.n16.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s3.n17",
+     "id": "ep2.a1.s3.n16.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s3.n17",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep2.a1.s3",
+   "kind": "line",
+   "text": "Ваше благородие, на кого-то злиться ещё рано. Сперва выясним, чего человек боится. А после уж — перо и добрые слова.",
+   "audioFile": "audio/dialogue/bublik/ep2.a1.s3.n17.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep2.a1.s3.n18",
+     "id": "ep2.a1.s3.n17.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep2.a1.s3.n18",
+   "npcId": "narrator",
+   "speaker": "Рассказчик",
+   "sceneId": "ep2.a1.s3",
+   "kind": "end",
+   "text": "Акт I окончен. Мост опущен, ключ у Ржевского, кукушка довольна. В Акте II героев ждёт «Ночная ревизия» — канцелярия Ордена, самоварные патрули и ящик с ярлыками «Опечатать» и «Распечатать».",
+   "audioFile": "audio/dialogue/narrator/ep2.a1.s3.n18.wav",
+   "branches": [],
+   "actEnd": "Акт II: Ночная ревизия"
+  }
+ ]
+}
