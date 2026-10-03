@@ -2,7 +2,7 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 498
+- файлов кода: 499
 - документов: 244
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
@@ -271,8 +271,9 @@
 - [scripts/decisions/stoplist_choice.py](../scripts/decisions/stoplist_choice.py) — One decision for the church-word stop-list, chosen in the open.
 - [scripts/decisions/stream_choice.py](../scripts/decisions/stream_choice.py) — How the heavy data reaches the headset: one way from the honest pool.
 
-## Скрипты проекта: раннер, данные, сюжеты (83)
+## Скрипты проекта: раннер, данные, сюжеты (84)
 
+- [scripts/blueos/sandbox_up.sh](../scripts/blueos/sandbox_up.sh) — Raise BlueOS and the operator's extensions in the session sandbox
 - [scripts/build-campaign-spine.py](../scripts/build-campaign-spine.py) — Build the Issyk-Kul campaign spine from webtypicon2's missions.
 - [scripts/build_rights_manifest.py](../scripts/build_rights_manifest.py) — Build the "Manuscript of rights": the licence register shown in-game.
 - [scripts/check_canon.py](../scripts/check_canon.py) — Check every teaching source against the closed patristic canon.
