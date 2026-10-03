@@ -206,7 +206,11 @@ PLACES = {
                     size=0.5, energy=6.0)),
     'error_of_a_finger': dict(
         place='лодка на Иссык-Куле', lat=42.5, doy=293, east=0,
-        kind='exterior', span=0.6, horizon=True, sky_ref='moon_night',
+        # near: within 45 % of the subject's distance a body belongs to
+        # the subject (the astrolabe hangs between the camera and its
+        # aim point), it is not an obstacle to walk around.
+        near=0.45, kind='exterior', span=0.6, horizon=True,
+        sky_ref='moon_night',
         fire=True, views=False, lens=30),
 }
 
@@ -822,7 +826,8 @@ def build():
                            'places.<id>.east',
         'places': {k: {'place': p['place'], 'lat': p['lat'],
                        'doy': p['doy'], 'east': p['east'],
-                       'kind': p['kind']}
+                       'kind': p['kind'],
+                       'near': p.get('near', 0.2)}
                    for k, p in PLACES.items()},
         'picks': PICKS,
         'notes': NOTES,

@@ -1839,6 +1839,7 @@ def place_camera(sc, var, place):
     # its own bearing, which are clear by construction (in
     # error_of_a_finger a low camera was pulled onto the astrolabe).
     pulled = False
+    near = place.get('near', 0.2)
     el0 = math.asin(max(-1.0, min(1.0, v.z / d0)))
     az0 = math.atan2(v.y, v.x)
     tries = [(az, min(math.radians(80), el + math.radians(lift)))
@@ -1846,7 +1847,7 @@ def place_camera(sc, var, place):
     for a, e in tries:
         u = Vector((math.cos(e) * math.cos(a), math.cos(e) * math.sin(a),
                     math.sin(e)))
-        h = hits(sc, aim, u, d, 0.2 * d0)
+        h = hits(sc, aim, u, d, near * d0)
         if h is None or h >= d:
             break
     else:
@@ -1856,7 +1857,7 @@ def place_camera(sc, var, place):
         # thwart in error_of_a_finger).
         u = Vector((math.cos(e) * math.cos(a), math.cos(e) * math.sin(a),
                     math.sin(e)))
-        h = hits(sc, aim, u, d, 0.2 * d0)
+        h = hits(sc, aim, u, d, near * d0)
         d = max(0.05, h - max(0.03, 0.04 * d))
         pulled = True
     loc = aim + u * d

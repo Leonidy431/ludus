@@ -10,84 +10,96 @@
    "lat": 42.5,
    "doy": 15,
    "east": 0,
-   "kind": "interior"
+   "kind": "interior",
+   "near": 0.2
   },
   "bazaar_jug": {
    "place": "Каракол, базар",
    "lat": 42.5,
    "doy": 222,
    "east": 0,
-   "kind": "exterior"
+   "kind": "exterior",
+   "near": 0.2
   },
   "tape_at_night": {
    "place": "Каракол, комната оператора",
    "lat": 42.5,
    "doy": 272,
    "east": 0,
-   "kind": "interior"
+   "kind": "interior",
+   "near": 0.2
   },
   "ford_of_cold": {
    "place": "брод горной реки у Иссык-Куля",
    "lat": 42.5,
    "doy": 301,
    "east": 90,
-   "kind": "exterior"
+   "kind": "exterior",
+   "near": 0.2
   },
   "hands_of_masons": {
    "place": "стройка обители на Иссык-Куле",
    "lat": 42.5,
    "doy": 156,
    "east": 0,
-   "kind": "exterior"
+   "kind": "exterior",
+   "near": 0.2
   },
   "harbor_of_ayas": {
    "place": "гавань Аяса, Киликия",
    "lat": 36.8,
    "doy": 171,
    "east": 180,
-   "kind": "exterior"
+   "kind": "exterior",
+   "near": 0.2
   },
   "purse_at_the_gate": {
    "place": "Сис, башня у ворот",
    "lat": 37.4,
    "doy": 335,
    "east": 0,
-   "kind": "interior"
+   "kind": "interior",
+   "near": 0.2
   },
   "gate_opened_inside": {
    "place": "Сис, ворота изнутри",
    "lat": 37.4,
    "doy": 103,
    "east": 0,
-   "kind": "interior"
+   "kind": "interior",
+   "near": 0.2
   },
   "bread_in_siege": {
    "place": "Сис, стена в осаде",
    "lat": 37.4,
    "doy": 51,
    "east": 180,
-   "kind": "exterior"
+   "kind": "exterior",
+   "near": 0.2
   },
   "scribe_lifts_eyes": {
    "place": "келья с окном на озеро",
    "lat": 42.5,
    "doy": 115,
    "east": 90,
-   "kind": "exterior"
+   "kind": "exterior",
+   "near": 0.2
   },
   "same_comet": {
    "place": "скрипторий обители, лист",
    "lat": 42.5,
    "doy": 314,
    "east": 0,
-   "kind": "interior"
+   "kind": "interior",
+   "near": 0.2
   },
   "error_of_a_finger": {
    "place": "лодка на Иссык-Куле",
    "lat": 42.5,
    "doy": 293,
    "east": 0,
-   "kind": "exterior"
+   "kind": "exterior",
+   "near": 0.45
   }
  },
  "picks": {
