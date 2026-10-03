@@ -1,0 +1,53 @@
+{
+ "id": "obj-kuvshin-tresnuvshiy",
+ "kind": "obj",
+ "lod": "proxy",
+ "tris": 788,
+ "bbox_m": [
+  0.49,
+  0.235,
+  0.245
+ ],
+ "source": "scripts/meta3d/pottery_jugs.py (own procedural drawing, no raw material)",
+ "name": "Треснувший кувшин на боку",
+ "what": "a water jug knocked over, cracked, its water spilt",
+ "method": "pottery-jug-kit (numpy, own glTF writer)",
+ "collider": {
+  "shape": "box",
+  "size_m": [
+   0.49,
+   0.235,
+   0.245
+  ],
+  "centre_m": [
+   -0.245,
+   0.118,
+   0.016
+  ]
+ },
+ "materials": [
+  {
+   "name": "clay",
+   "colour": "#a0603a",
+   "alpha": 1.0
+  },
+  {
+   "name": "inside",
+   "colour": "#5a321e",
+   "alpha": 1.0
+  },
+  {
+   "name": "crack",
+   "colour": "#24160e",
+   "alpha": 1.0
+  },
+  {
+   "name": "water",
+   "colour": "#7d9fb2",
+   "alpha": 0.6
+  }
+ ],
+ "textures": 0,
+ "noInteract": false,
+ "noLoot": false
+}

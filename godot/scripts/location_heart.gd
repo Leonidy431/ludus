@@ -152,6 +152,30 @@ static func _open_own(loc: Dictionary, st: Dictionary,
 	return _result(p, s)
 
 
+## A beat of the road met at a thing of the place, beside its heart
+## (data "beat", docs/HLD_SADNESS_VESSEL_2026-10-02.md): the cracked jug
+## of the potters' yard brings the thought of sadness.  It is the same
+## meeting as a passion's heart (PassionCore: the stages, the three
+## breaths of stillness, +1 Wisdom only for naming it the first time),
+## opened at the thing and not at the heart, so the heart keeps its one
+## practice (TABOO 0.013 item 1).  {} where the place has no beat.
+static func open_beat(loc: Dictionary, st: Dictionary,
+		ctx: Dictionary) -> Dictionary:
+	var b: Dictionary = loc.get("beat", {})
+	if b.is_empty():
+		return _result({}, st)
+	var p := {"kind": "passion", "beat": true, "choice": 0, "reply": "",
+		"enc": PassionCore.start(_passion(ctx, b.id)), "still": -1.0}
+	return _result(p, st.duplicate(true))
+
+
+## Where the sign is learned, in the mentor's own name and place (no
+## title, TABOO 0.39 item 3).
+static func beat_mentor_line(b: Dictionary) -> String:
+	return "Признак этого помысла знает %s: спроси её у квашни про кувшин." \
+		% str(b.get("teacher_ru", ""))
+
+
 ## After an act's step: the record changes only on the step that closes
 ## the act (once a day counts, PlaceDeeds.record), and only then is the
 ## save asked for.  FORM is never touched.
@@ -284,15 +308,26 @@ static func lines(p: Dictionary, loc: Dictionary, st: Dictionary,
 				out += ["У порога ждут: сперва вернись к наставнику и поговори.",
 					""]
 		"passion":
-			var q := _passion(ctx, h.id)
+			var q := _passion(ctx, p.enc.passionId)
+			var b: Dictionary = loc.get("beat", {}) \
+				if p.get("beat", false) else {}
 			out = ["На дороге: " + str(q.name_ru), "", str(q.lure_ru), ""]
+			if not b.is_empty():
+				# The beat is met at its thing: the thing is named first,
+				# then the thought it brings (docs/HLD_SADNESS_VESSEL).
+				out = [str(b.ru), "", str(b.scene_ru), "",
+					"Помысел: «%s»" % str(q.lure_ru), ""]
 			match p.enc.stage:
 				"virtue":
 					out += ["Помысел прошёл. %s — %s; %s." % [q.virtue_ru,
 						q.source, q.ladder], ""]
+					if not b.is_empty():
+						out += [str(b.lesson), ""]
 				"captive":
 					out += ["Он повёл тебя. Он вернётся; наставники научат его признаку.",
 						""]
+					if not b.is_empty():
+						out += [beat_mentor_line(b), ""]
 				_:
 					if p.still >= 0.0:
 						out += ["Помолчи… %d с" % ceili(p.still), ""]
@@ -405,8 +440,8 @@ static func choices(p: Dictionary, loc: Dictionary, st: Dictionary,
 			if p.still >= 0.0:
 				return []
 			var out := []
-			for o in PassionCore.options(p.enc, _passion(ctx, h.id), st.form,
-					st.actions):
+			for o in PassionCore.options(p.enc,
+					_passion(ctx, p.enc.passionId), st.form, st.actions):
 				out.append({"id": o.id, "text": o.text_ru, "disabled": false,
 					"reason": "", "breaths": o.get("breaths", 0)})
 			return out + [AWAY]
@@ -510,7 +545,7 @@ static func choose(p: Dictionary, loc: Dictionary, st: Dictionary,
 			q.choice = 0
 			return _result(q, s, "", true)
 		"passion":
-			var passion := _passion(ctx, h.id)
+			var passion := _passion(ctx, p.enc.passionId)
 			if c.id == "finish":
 				var res := PassionCore.finish(s.passions, p.enc)
 				s.passions = res.record
@@ -603,7 +638,7 @@ static func tick(p: Dictionary, loc: Dictionary, st: Dictionary,
 			return _result(q, st)
 		q.still = -1.0
 		q.enc = PassionCore.choose(p.enc, str(p.get("pending", "still")),
-			_passion(ctx, h.id), st.form, st.actions)
+			_passion(ctx, p.enc.passionId), st.form, st.actions)
 		q.choice = 0
 		return _result(q, st)
 	return _result(p, st)
@@ -611,10 +646,22 @@ static func tick(p: Dictionary, loc: Dictionary, st: Dictionary,
 
 ## The figure of the thought met at the heart, from the antagonist
 ## factory (the same variant the web game shows), or "" without art.
+## At a beat the figure is the beat's own kit (the cracked jug), still
+## taken from the factory's queue of that kit's twelve variants.
 static func passion_art(loc: Dictionary, st: Dictionary,
-		ctx: Dictionary) -> String:
+		ctx: Dictionary, p: Dictionary = {}) -> String:
 	var q := _passion(ctx, loc.heart.id)
-	var sprite = PassionCore.sprite_for(q, st.passions, ctx.manifest)
+	var manifest: Array = ctx.manifest
+	if p.get("beat", false):
+		var b: Dictionary = loc.get("beat", {})
+		q = _passion(ctx, b.get("id", ""))
+		manifest = []
+		for o in ctx.manifest:
+			if str(o.id) == str(b.get("kit", "")):
+				manifest.append(o)
+	if q.is_empty():
+		return ""
+	var sprite = PassionCore.sprite_for(q, st.passions, manifest)
 	if sprite == null:
 		return ""
 	return "res://art/derived/DEF-001/" + str(sprite.src).get_file()

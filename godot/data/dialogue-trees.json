@@ -542,6 +542,15 @@
                 "faith": 1,
                 "wisdom": 1
               }
+            },
+            {
+              "text": "Once I carried a jug that leaked, and I still grieve over the water.",
+              "text_ru": "Я однажды нёс кувшин, что протекал, и до сих пор жалею той воды.",
+              "nextNodeId": "cracked_jug",
+              "attributeBonuses": {
+                "wisdom": 1
+              },
+              "narrativeEffect": "Theodora wipes her hands and nods toward the water jug by the trough."
             }
           ]
         },
@@ -621,6 +630,35 @@
                 "wisdom": 1
               },
               "narrativeEffect": "She presses a small loaf into your hand anyway: 'Given, not taken. Now it will not go stale.'"
+            }
+          ]
+        },
+        {
+          "id": "cracked_jug",
+          "voice": "paraphrase",
+          "text": "See the jug by the trough? A cracked jug holds water until evening, and by morning there is nothing to knead with. Sadness is like that: the crack is small and all the water goes. A desert teacher wrote that sadness comes when what we wanted did not come true, and then the mind paints home, kin and the old table as if paradise were there and only potsherds were here. Know it by this: it praises yesterday and spoils today. We do not weep over a cracked jug; we daub it with clay and carry it to the well. There is a sorrow that mends the jug and a sorrow that breaks it.",
+          "text_ru": "Видишь кувшин у квашни? Треснувший держит воду до вечера, а к утру месить нечем. Так и печаль: трещина малая, а вода уходит вся. Один пустынный учитель писал: печаль приходит, когда не сбылось желанное, и тогда ум рисует дом, родню, прежний стол, будто там был рай, а здесь одни черепки. Узнаешь её по этому: она хвалит вчерашнее и порочит нынешний день. Над треснувшим кувшином не плачут: его подмазывают глиной и несут к колодцу. Есть печаль, что кувшин чинит, и есть печаль, что его разбивает.",
+          "meaning": "Discernment cue for the passion of sadness: it comes when a desire is frustrated and paints the past (home, kin, the former life) as a lost paradise and the present as worthless. Its sign is praise of yesterday joined to contempt for today. Sorrow according to God leads to repentance and takes up today's work; the sorrow of the world works death (2 Cor 7:10). The opposing virtue is joy in God, kept by patient work in the present.",
+          "source": "Evagrius Ponticus, Praktikos 10 (on sadness); 2 Corinthians 7:10",
+          "branches": [
+            {
+              "text": "So its sign is that it praises yesterday and spoils today.",
+              "text_ru": "Значит, её признак: хвалит вчерашнее и порочит нынешнее.",
+              "nextNodeId": "leaven",
+              "attributeBonuses": {
+                "wisdom": 2,
+                "faith": 1
+              },
+              "narrativeEffect": "Theodora pours fresh water into the trough from a whole jug and goes on kneading."
+            },
+            {
+              "text": "I will daub my jug with clay and take it to the well.",
+              "text_ru": "Подмажу свой кувшин глиной и понесу к колодцу.",
+              "nextNodeId": null,
+              "attributeBonuses": {
+                "constitution": 1
+              },
+              "narrativeEffect": "She hands you a pinch of the oven's clay: 'Mend it before evening, and the morning will have water.'"
             }
           ]
         }

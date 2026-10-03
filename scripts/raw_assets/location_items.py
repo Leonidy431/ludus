@@ -108,6 +108,10 @@ EXCLUDED = {
     # (TABOO 0.35 rule 6); the lectern is drawn in phase L5.
     'lectern': 'church-furniture', 'crypt-case': 'church-furniture',
     'hand-candle': 'devotional', 'prostration-mat': 'devotional',
+    # The jugs of the cracked-jug beat at the potters' yard are drawn to
+    # the story's need (scripts/meta3d/pottery_jugs.py); a raw drawing
+    # set beside them would stand where the thought is met.
+    'cracked-jug': 'story-own-drawing', 'patched-jug': 'story-own-drawing',
 }
 
 # The material family of every thing the search looks for.  It decides

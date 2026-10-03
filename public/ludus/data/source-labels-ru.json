@@ -481,6 +481,9 @@
       "ru": "«О мистическом богословии», гл. 1",
       "check": true,
       "why": "The source names no author; the label keeps it that way (Dionysius the Areopagite is not added)."
+    },
+    "Evagrius Ponticus, Praktikos 10 (on sadness); 2 Corinthians 7:10": {
+      "ru": "Евагрий Понтийский, «Практик», гл. 10 (о печали); 2 Кор. 7:10"
     }
   }
 }

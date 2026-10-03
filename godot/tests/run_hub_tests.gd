@@ -124,6 +124,12 @@ func _initialize() -> void:
 	load("res://tests/test_road.gd").new().run(self)
 	print("road: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# The cracked jug of the potters' yard: sadness met at a thing.
+	before = checks
+	fails = failures
+	load("res://tests/test_sadness_beat.gd").new().run(self)
+	print("sadness beat: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	before = checks
 	fails = failures
 	load("res://tests/test_atlas.gd").new().run(self)

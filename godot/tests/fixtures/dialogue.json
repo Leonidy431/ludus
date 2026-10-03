@@ -1536,6 +1536,13 @@
         "faith": 1
        },
        "nextNodeId": "offering"
+      },
+      {
+       "condition": {},
+       "attributeBonuses": {
+        "wisdom": 1
+       },
+       "nextNodeId": "cracked_jug"
       }
      ]
     },
@@ -1593,6 +1600,26 @@
        "nextNodeId": null
       }
      ]
+    },
+    {
+     "id": "cracked_jug",
+     "branches": [
+      {
+       "condition": {},
+       "attributeBonuses": {
+        "wisdom": 2,
+        "faith": 1
+       },
+       "nextNodeId": "leaven"
+      },
+      {
+       "condition": {},
+       "attributeBonuses": {
+        "constitution": 1
+       },
+       "nextNodeId": null
+      }
+     ]
     }
    ],
    "profiles": {
@@ -1618,7 +1645,8 @@
        0
       ],
       "lost_in_rite": [
-       0
+       0,
+       2
       ],
       "leaven": [
        0
@@ -1627,6 +1655,10 @@
        0
       ],
       "avarice_cue": [
+       0,
+       1
+      ],
+      "cracked_jug": [
        0,
        1
       ]
@@ -1792,7 +1824,8 @@
       ],
       "lost_in_rite": [
        0,
-       1
+       1,
+       2
       ],
       "leaven": [
        0
@@ -1802,6 +1835,10 @@
        1
       ],
       "avarice_cue": [
+       0,
+       1
+      ],
+      "cracked_jug": [
        0,
        1
       ]
@@ -2129,7 +2166,8 @@
       ],
       "lost_in_rite": [
        0,
-       1
+       1,
+       2
       ],
       "leaven": [
        0
@@ -2139,6 +2177,10 @@
        1
       ],
       "avarice_cue": [
+       0,
+       1
+      ],
+      "cracked_jug": [
        0,
        1
       ]
@@ -2456,7 +2498,8 @@
       ],
       "lost_in_rite": [
        0,
-       1
+       1,
+       2
       ],
       "leaven": [
        0
@@ -2466,6 +2509,10 @@
        1
       ],
       "avarice_cue": [
+       0,
+       1
+      ],
+      "cracked_jug": [
        0,
        1
       ]
@@ -2783,7 +2830,8 @@
       ],
       "lost_in_rite": [
        0,
-       1
+       1,
+       2
       ],
       "leaven": [
        0
@@ -2793,6 +2841,10 @@
        1
       ],
       "avarice_cue": [
+       0,
+       1
+      ],
+      "cracked_jug": [
        0,
        1
       ]
@@ -3110,7 +3162,8 @@
       ],
       "lost_in_rite": [
        0,
-       1
+       1,
+       2
       ],
       "leaven": [
        0
@@ -3120,6 +3173,10 @@
        1
       ],
       "avarice_cue": [
+       0,
+       1
+      ],
+      "cracked_jug": [
        0,
        1
       ]
@@ -3436,7 +3493,8 @@
       ],
       "lost_in_rite": [
        0,
-       1
+       1,
+       2
       ],
       "leaven": [
        0
@@ -3446,6 +3504,10 @@
        1
       ],
       "avarice_cue": [
+       0,
+       1
+      ],
+      "cracked_jug": [
        0,
        1
       ]

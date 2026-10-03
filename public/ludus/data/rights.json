@@ -214,6 +214,19 @@
    "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
   },
   {
+   "object": "ant_sadness_4bbd8e3f97",
+   "slot": "DEF-001",
+   "passion": "sadness",
+   "repo": "https://github.com/crawl/crawl",
+   "commit": "7c31f6e797",
+   "path": "crawl-ref/source/rltiles/gui/spells/monster/summon_drakes.png",
+   "licence": "GPL",
+   "colour_change": 0.5631,
+   "min_shape_change": 0.4273,
+   "variants": 12,
+   "note": "Copyleft: attribution and share-alike apply regardless of the 35 % rule; the lawyer decides."
+  },
+  {
    "object": "ant_sadness_5272495b7e",
    "slot": "DEF-001",
    "passion": "sadness",
