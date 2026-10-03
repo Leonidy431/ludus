@@ -2,8 +2,8 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 519
-- документов: 256
+- файлов кода: 520
+- документов: 258
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -278,7 +278,7 @@
 - [scripts/decisions/stoplist_choice.py](../scripts/decisions/stoplist_choice.py) — One decision for the church-word stop-list, chosen in the open.
 - [scripts/decisions/stream_choice.py](../scripts/decisions/stream_choice.py) — How the heavy data reaches the headset: one way from the honest pool.
 
-## Скрипты проекта: раннер, данные, сюжеты (97)
+## Скрипты проекта: раннер, данные, сюжеты (98)
 
 - [scripts/blueos/sandbox_up.sh](../scripts/blueos/sandbox_up.sh) — Raise BlueOS and the operator's extensions in the session sandbox
 - [scripts/build-campaign-spine.py](../scripts/build-campaign-spine.py) — Build the Issyk-Kul campaign spine from webtypicon2's missions.
@@ -296,6 +296,7 @@
 - [scripts/locations/ship_models.py](../scripts/locations/ship_models.py) — Ship the proxies the 99 locations use into the headset build.
 - [scripts/locations/tests/test_church_words.py](../scripts/locations/tests/test_church_words.py) — The generator's stop-list gives the shared corpus's verdict.
 - [scripts/locations/tests/test_locations_99.py](../scripts/locations/tests/test_locations_99.py) — The 99 locations keep the standard of the evening-watch cell.
+- [scripts/logs/archive_6h.py](../scripts/logs/archive_6h.py) — Archive the last 24 hours: the dialogue and the glove renders.
 - [scripts/logs/talk_log.py](../scripts/logs/talk_log.py) — Daily talk log of the work with the operator: docs/logs/talk_log_<date>.md.
 - [scripts/meta3d/build.js](../scripts/meta3d/build.js) — Meta 3D generator (CLAUDE.md TABOO 0.32): every SVG and every text
 - [scripts/meta3d/check_coverage.py](../scripts/meta3d/check_coverage.py) — Fail the build when an SVG or a prompt has no Meta 3D object.
@@ -514,7 +515,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (186)
+## Документация проекта (188)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -638,6 +639,8 @@
 - [docs/kiberslav/KIBERSLAV_SYNOPSIS_AV_5_EDITORS.md](../docs/kiberslav/KIBERSLAV_SYNOPSIS_AV_5_EDITORS.md) 📄 — «Киберслав» — визуально-аудиальный синопсис (хор 5 редакторов)
 - [docs/kiberslav/STYLE_BIBLE_LUDUS_KIBERSLAV.md](../docs/kiberslav/STYLE_BIBLE_LUDUS_KIBERSLAV.md) 📄 — Стилевая библия Ludus × «Киберслав»: образ, цвет, свет, материал, звук, среда
 - [docs/logs/aider_agent_loop.txt](../docs/logs/aider_agent_loop.txt) 📄
+- [docs/logs/archive/dialogue_2026-10-03_12h.md](../docs/logs/archive/dialogue_2026-10-03_12h.md) 📄 — Dialogue, 2026-10-02 12:10 - 2026-10-03 12:10 UTC
+- [docs/logs/archive/renders_2026-10-03_12h.md](../docs/logs/archive/renders_2026-10-03_12h.md) 📄 — Glove and volumetric-screen renders, up to 2026-10-03 12:10 UTC
 - [docs/logs/talk_log_2026-09-23.md](../docs/logs/talk_log_2026-09-23.md) 📄 — Talk log — 2026-09-23
 - [docs/logs/talk_log_2026-09-27.md](../docs/logs/talk_log_2026-09-27.md) 📄 — Talk log — 2026-09-27
 - [docs/logs/talk_log_2026-09-28.md](../docs/logs/talk_log_2026-09-28.md) 📄 — Talk log — 2026-09-28
