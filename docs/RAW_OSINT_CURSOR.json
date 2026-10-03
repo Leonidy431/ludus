@@ -1,5 +1,5 @@
 {
- "next": 13,
+ "next": 16,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -7816,6 +7816,99 @@
    "stage": "done",
    "accepted_objects": 0,
    "code_candidates": 330
+  },
+  {
+   "time": "2026-10-03T08:50:51.089005+00:00",
+   "pass_id": "osint-2026-10-03T08:50:51Z",
+   "deficits": [
+    {
+     "id": "DEF-055",
+     "hits": 54,
+     "taken": 0,
+     "refused": {},
+     "to_props": 54,
+     "hits_uncapped": 54,
+     "props_uncapped": 54,
+     "props_uncapped_repos": 9,
+     "added_keywords": [],
+     "keywords_total": 6,
+     "keywords_not_searched": [],
+     "props": {},
+     "props_seen": 54
+    },
+    {
+     "id": "DEF-001",
+     "hits": 200,
+     "taken": 6,
+     "refused": {
+      "outline-helper": 4,
+      "sacred-never-raw": 12,
+      "dogma-stop-list": 1
+     },
+     "to_props": 0,
+     "hits_uncapped": 34158,
+     "props_uncapped": 9084,
+     "props_uncapped_repos": 59,
+     "added_keywords": [],
+     "keywords_total": 123,
+     "keywords_not_searched": [
+      "cleric",
+      "com",
+      "java",
+      "mage",
+      "mindustry",
+      "rsi",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 0
+    },
+    {
+     "id": "DEF-003",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "sacred-never-raw": 2
+     },
+     "to_props": 143,
+     "hits_uncapped": 6063,
+     "props_uncapped": 3814,
+     "props_uncapped_repos": 52,
+     "added_keywords": [],
+     "keywords_total": 39,
+     "keywords_not_searched": [
+      "com",
+      "corsixth",
+      "editor",
+      "java",
+      "left",
+      "lua",
+      "right",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 143
+    }
+   ],
+   "props_taken": {},
+   "props_taken_by_index_kind": {},
+   "props_duplicates": 197,
+   "props_errors": 0,
+   "props_refused": {},
+   "props_new_bytes": 0,
+   "props_store_files": 1459,
+   "props_store_bytes": 10830629,
+   "props_cache_files_on_disk": 4670,
+   "props_cache_bytes_on_disk": 78045162,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 814549,
+   "props_register_growth_bytes": 0,
+   "stage": "done",
+   "accepted_objects": 3,
+   "code_candidates": 90
   }
  ],
  "keywords": {

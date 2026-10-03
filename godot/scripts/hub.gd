@@ -506,11 +506,11 @@ func _build_pier(oak: Color) -> void:
 	# acoustic matrix (TABOO 0.024), the lock scene reached through the
 	# loader like every big module (TABOO 0.014; chorus audit 2026-10-03:
 	# the lock was in the APK but no way led to it).
-	var buoy := _box(Vector3(0.36, 0.7, 0.36), Vector3(7.6, 0.35, 1.4),
+	var buoy := _box(Vector3(0.36, 0.7, 0.36), Vector3(8.6, 0.35, -1.4),
 		Color(0.85, 0.66, 0.12))
 	buoy.name = "Buoy"
 	things.append({"id": "buoy", "kind": "buoy",
-		"pos": Vector3(7.6, 0, 1.4), "ru": "Буй: калибровка слуха"})
+		"pos": Vector3(8.6, 0, -1.4), "ru": "Буй: калибровка слуха"})
 
 
 func _build_ladder() -> void:
