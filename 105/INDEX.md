@@ -3,7 +3,7 @@
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
 - файлов кода: 522
-- документов: 269
+- документов: 271
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -517,7 +517,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (195)
+## Документация проекта (197)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -646,7 +646,9 @@
 - [docs/kiberslav/STYLE_BIBLE_LUDUS_KIBERSLAV.md](../docs/kiberslav/STYLE_BIBLE_LUDUS_KIBERSLAV.md) 📄 — Стилевая библия Ludus × «Киберслав»: образ, цвет, свет, материал, звук, среда
 - [docs/logs/aider_agent_loop.txt](../docs/logs/aider_agent_loop.txt) 📄
 - [docs/logs/archive/dialogue_2026-10-03_12h.md](../docs/logs/archive/dialogue_2026-10-03_12h.md) 📄 — Dialogue, 2026-10-02 12:16 - 2026-10-03 12:16 UTC
+- [docs/logs/archive/dialogue_2026-10-03_18h.md](../docs/logs/archive/dialogue_2026-10-03_18h.md) 📄 — Dialogue, 2026-10-02 18:12 - 2026-10-03 18:12 UTC
 - [docs/logs/archive/renders_2026-10-03_12h.md](../docs/logs/archive/renders_2026-10-03_12h.md) 📄 — Glove and volumetric-screen renders, up to 2026-10-03 12:16 UTC
+- [docs/logs/archive/renders_2026-10-03_18h.md](../docs/logs/archive/renders_2026-10-03_18h.md) 📄 — Glove and volumetric-screen renders, up to 2026-10-03 18:12 UTC
 - [docs/logs/talk_log_2026-09-23.md](../docs/logs/talk_log_2026-09-23.md) 📄 — Talk log — 2026-09-23
 - [docs/logs/talk_log_2026-09-27.md](../docs/logs/talk_log_2026-09-27.md) 📄 — Talk log — 2026-09-27
 - [docs/logs/talk_log_2026-09-28.md](../docs/logs/talk_log_2026-09-28.md) 📄 — Talk log — 2026-09-28
