@@ -3,7 +3,7 @@
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
 - файлов кода: 469
-- документов: 226
+- документов: 227
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -454,12 +454,13 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (167)
+## Документация проекта (168)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
 - [docs/BLINDSPOTS_AUDIT_2026-09-29.md](../docs/BLINDSPOTS_AUDIT_2026-09-29.md) 📄 — Аудит слепых зон: графика, звук, интерфейс — 2026-09-29
 - [docs/BLINDSPOTS_AUDIT_2026-09-30.md](../docs/BLINDSPOTS_AUDIT_2026-09-30.md) 📄 — Аудит слепых зон, 2026-09-30 03:00 UTC (ТАБУ №0.6)
+- [docs/BLINDSPOTS_AUDIT_2026-10-03.md](../docs/BLINDSPOTS_AUDIT_2026-10-03.md) 📄 — Аудит под нагрузкой, 2026-10-03 (ТАБУ №0.6)
 - [docs/BLINDSPOTS_CODE_BREAKTHROUGH_2026-10-01.md](../docs/BLINDSPOTS_CODE_BREAKTHROUGH_2026-10-01.md) 📄 — Слепые зоны: где код даст прорыв (2026-10-01)
 - [docs/BREAKTHROUGHS_5_2026-09-30.md](../docs/BREAKTHROUGHS_5_2026-09-30.md) 📄 — Пять направлений прорыва — хор гуру игр, 2026-09-30
 - [docs/CHORUS_DECISIONS_PHASE3.md](../docs/CHORUS_DECISIONS_PHASE3.md) 📄 — Chorus Decision Framework — Phase 3 Critical Decisions
