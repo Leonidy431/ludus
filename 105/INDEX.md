@@ -2,7 +2,7 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 488
+- файлов кода: 491
 - документов: 241
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
@@ -30,7 +30,7 @@
 - [.github/workflows/raw-audio-pass.yml](../.github/workflows/raw-audio-pass.yml) — Audio pass over the 99 backlog repos as a git pass (operator,
 - [.github/workflows/raw-osint-cycle.yml](../.github/workflows/raw-osint-cycle.yml) — OSINT pass over the 99 backlog repos every 1.5 hours (CLAUDE.md TABOO
 
-## Игра для шлема: код (GDScript) (87)
+## Игра для шлема: код (GDScript) (88)
 
 - [godot/scripts/apparatus_core.gd](../godot/scripts/apparatus_core.gd) — The operator's own apparatus in the game (CLAUDE.md TABOO 0.022): 41
 - [godot/scripts/atlas_core.gd](../godot/scripts/atlas_core.gd) — "The Water Atlas" read at the lectern of the scriptorium (CLAUDE.md
@@ -113,6 +113,7 @@
 - [godot/scripts/story_route.gd](../godot/scripts/story_route.gd) — The 12 stories walked on foot (docs/HLD_12_STORIES_HEADSET_2026-10-02.md,
 - [godot/scripts/trial_core.gd](../godot/scripts/trial_core.gd) — The thresholds of the gates and the fall they can lead to, ported
 - [godot/scripts/typikon_core.gd](../godot/scripts/typikon_core.gd) — When the far monastery's bells ring over the path of the witness
+- [godot/scripts/volumetric_core.gd](../godot/scripts/volumetric_core.gd) — The physics and data of the volumetric laser screen (HLD
 - [godot/scripts/witness.gd](../godot/scripts/witness.gd) — The path of the witness in the headset (docs/HLD_APK_PRIORITY A3).
 - [godot/scripts/witness_batch.gd](../godot/scripts/witness_batch.gd) — Static batching of the path of the witness (docs/APK_REQUIREMENTS.md,
 - [godot/scripts/witness_core.gd](../godot/scripts/witness_core.gd) — The path of the witness: seven scene kits along one path, where the
@@ -149,7 +150,7 @@
 - [godot/tools/stress_place_switch.gd](../godot/tools/stress_place_switch.gd) — Switch places fast, again and again, to shake out a crash of the
 - [godot/tools/witness_wav_check.py](../godot/tools/witness_wav_check.py) — Measure the offline render of the path of the witness.
 
-## Игра для шлема: тесты (62)
+## Игра для шлема: тесты (63)
 
 - [godot/tests/confession_walker.gd](../godot/tests/confession_walker.gd) — A stand-in for the witness path in test_confession.gd: the sheet reads
 - [godot/tests/deeds/panel_text.gd](../godot/tests/deeds/panel_text.gd) — The heart's panel of a place as location.gd builds it, measured with
@@ -209,6 +210,7 @@
 - [godot/tests/test_story_cast.gd](../godot/tests/test_story_cast.gd) — The people of the 12 stories in the headset (StoryCast,
 - [godot/tests/test_story_check.gd](../godot/tests/test_story_check.gd) — The tester's entry to the 12 stories (StoryCheck, SaveSlot; debug
 - [godot/tests/test_trial.gd](../godot/tests/test_trial.gd) — TrialCore against the JS reference: every record of
+- [godot/tests/test_volumetric.gd](../godot/tests/test_volumetric.gd) — VolumetricCore against the Python numbers of the operator's repo
 - [godot/tests/test_witness.gd](../godot/tests/test_witness.gd) — The path of the witness (docs/HLD_APK_PRIORITY A3): the data of the
 - [godot/tests/test_witness_sound.gd](../godot/tests/test_witness_sound.gd) — The sound of the path of the witness (docs/HLD_WITNESS_SOUND_
 - [godot/tests/test_wow.gd](../godot/tests/test_wow.gd) — The rising curve of wow (WowCore, docs/HLD_WOW_ESCALATION_2026-10-03.md):
@@ -228,7 +230,7 @@
 - [godot/openxr_action_map.tres](../godot/openxr_action_map.tres)
 - [godot/project.godot](../godot/project.godot)
 
-## Сборка шлема: бюджеты, движок, прогноз (18)
+## Сборка шлема: бюджеты, движок, прогноз (19)
 
 - [scripts/godot/check_budgets.py](../scripts/godot/check_budgets.py) — Budget gate for the Meta Quest build (docs/APK_REQUIREMENTS.md).
 - [scripts/godot/check_glyphs.py](../scripts/godot/check_glyphs.py) — Glyph coverage of the headset's text: no tofu in Quest or WebXR.
@@ -247,6 +249,7 @@
 - [scripts/godot/make_passion_fixture.js](../scripts/godot/make_passion_fixture.js) — Write godot/tests/passion_fixture.json from public/ludus/ludus-passion.js,
 - [scripts/godot/make_rule_fixture.js](../scripts/godot/make_rule_fixture.js) — Write godot/tests/fixtures/rule.json from public/ludus/ludus-actions.js
 - [scripts/godot/make_trial_fixture.js](../scripts/godot/make_trial_fixture.js) — Write godot/tests/trial_fixture.json from public/ludus/ludus-missions.js:
+- [scripts/godot/make_volumetric_fixture.py](../scripts/godot/make_volumetric_fixture.py) — Write godot/tests/fixtures/volumetric_fixture.json for VolumetricCore.
 - [scripts/godot/obb_forecast.py](../scripts/godot/obb_forecast.py) — Forecast of the headset build's weight: when do we need an OBB?
 
 ## Выборы из честного пула по 48 параметрам (9)

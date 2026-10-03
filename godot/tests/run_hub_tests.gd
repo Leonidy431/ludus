@@ -248,6 +248,7 @@ func _initialize() -> void:
 	load("res://tests/test_companion.gd").new().run(self)
 	load("res://tests/test_contract.gd").new().run(self)
 	load("res://tests/test_apparatus.gd").new().run(self)
+	load("res://tests/test_volumetric.gd").new().run(self)
 	load("res://tests/test_lock.gd").new().run(self)
 	load("res://tests/test_destiny.gd").new().run(self)
 	load("res://tests/test_branches.gd").new().run(self)
