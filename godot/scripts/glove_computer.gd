@@ -47,7 +47,8 @@ static func best_wavelength(metres := 5.0) -> int:
 
 ## The wrist's text at `depth_m` with the course tasks `done` (ids);
 ## empty at the holy.
-static func text(depth_m: float, done: Array, holy := false) -> String:
+static func text(depth_m: float, done: Array, holy := false,
+		hour := -1.0) -> String:
 	if holy:
 		return ""
 	var radius := roundi(VolumetricCore.resonant_radius_um(BUBBLE_KHZ, 0.0,
@@ -61,11 +62,29 @@ static func text(depth_m: float, done: Array, holy := false) -> String:
 		"ПУЗЫРЬ %d кГц: %d мкм" % [int(BUBBLE_KHZ), radius],
 		"ЛАЗЕР %d нм: лучше всего в воде" % best_wavelength(),
 		"ЗАДАЧИ:"]
+	var tide := _tide_line(hour)
+	if tide != "":
+		lines.insert(4, tide)
 	for task in TASKS:
 		var mark := "[x]" if task[0] in done else "[ ]"
 		lines.append("%s %s" % [mark, task[1]])
 	lines.append("КЛАУД: на связи")
 	return "\n".join(lines)
+
+
+## The lake's astronomical tide at `hour` (hours from the baked start)
+## from the operator's tides module, in millimetres: the wrist shows what
+## the instrument says (a few millimetres) and where it comes from.
+## Empty when no hour is given or the data is missing.
+static func _tide_line(hour: float) -> String:
+	if hour < 0.0:
+		return ""
+	var data := TidesCore.load_data()
+	var p := TidesCore.at(data, "issyk_kul_cholpon_ata", hour)
+	if p.is_empty():
+		return ""
+	return "ПРИЛИВ: %+.1f мм (озеро, теория)" % (
+		float(p.get("astro", 0.0)) * 1000.0)
 
 
 ## The course tasks the pilot has done by its beat: the thermocline is

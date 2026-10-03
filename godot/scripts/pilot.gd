@@ -1374,8 +1374,10 @@ func _volume() -> void:
 		"tether_jerk": "layers", "bookmark": "oxygen", "lure": "floor",
 		"price_rises": "floor", "choice_echo": "floor"}.get(beat_id, "")
 	var d := _depth()
+	# The tide line runs on the baked series of the operator's tides
+	# module: noon of the baked day plus the minutes of the episode.
 	glove_text.text = GloveComputer.text(d, GloveComputer.done_in_pilot(d),
-		beat_id == "khachkar")
+		beat_id == "khachkar", 12.0 + t / 3600.0)
 	for v in [volume, glove_screen]:
 		if mode != "":
 			v.set_mode(mode)

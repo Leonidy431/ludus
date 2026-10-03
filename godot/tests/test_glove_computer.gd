@@ -26,4 +26,13 @@ func run(t: Object) -> void:
 		t._check(not brand in tx, "no %s on the player's wrist" % brand)
 	t._check(GloveComputer.text(60.0, [], true) == "",
 		"at the kayrak the wrist is empty")
+	t._check(not "ПРИЛИВ" in tx, "no tide line when no hour is given")
+	var tt := GloveComputer.text(20.0, [], false, 15.0)
+	t._check("ПРИЛИВ:" in tt and "мм" in tt,
+		"with an hour the wrist shows the lake's tide in millimetres")
+	for line in tt.split("\n"):
+		t._check(line.length() <= GloveComputer.WIDTH,
+			"the tide line fits the cuff too: %s" % line)
+	t._check(GloveComputer.text(20.0, [], true, 15.0) == "",
+		"at the holy the tide line is gone with the rest")
 	print("glove computer: %d checks" % (t.checks - before))
