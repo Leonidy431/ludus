@@ -202,6 +202,8 @@ func scene_clues(t: Object) -> void:
 	t.root.add_child(p)
 	if p.data.is_empty():
 		p._ready()
+	# The line is checked in Russian, whatever the machine's language.
+	p.lang = "ru"
 	var low := Vector3(0, 0.7, 0)
 	p.clue_override = {"head": low,
 		"forward": Vector3(0.05, 0.70, -1.15) - low}
