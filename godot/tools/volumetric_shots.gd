@@ -32,6 +32,7 @@ var cam: Camera3D
 ## The diver's glove with the small screen on its back (--glove).
 var glove: Node3D
 var glove_screen: VolumetricScreen
+var glove_text: Label3D
 
 
 func _initialize() -> void:
@@ -65,6 +66,10 @@ func _initialize() -> void:
 		shots.append({"name": "volumetric-%02d-glove-%s-%dm" % [n + 1, g[0],
 			int(g[1])], "mode": g[0], "depth": g[1], "angle": -1,
 			"t": 6.0, "holy": g[2], "dir": out})
+	# The wrist turned up to the eyes: the computer's lines read square.
+	shots.append({"name": "volumetric-%02d-glove-wrist-readout-60m" % (n + 2),
+		"mode": "layers", "depth": 60.0, "angle": -2, "t": 6.0,
+		"holy": false, "dir": out})
 	if seq != "":
 		for i in SEQ_FRAMES:
 			shots.append({"name": "seq-%03d" % i, "mode": "floor",
@@ -166,6 +171,16 @@ func _build_glove() -> void:
 	glove_screen.position = Vector3(0.0, 0.075, 0.09)
 	glove_screen.scale = Vector3.ONE * 0.16
 	glove.add_child(glove_screen)
+	# The wrist computer's lines, as pilot.gd mounts them.
+	glove_text = Label3D.new()
+	glove_text.font_size = 22
+	glove_text.pixel_size = 0.00035
+	glove_text.modulate = Color(0.62, 0.86, 1.0)
+	glove_text.outline_size = 4
+	glove_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	glove_text.position = Vector3(0.07, 0.05, 0.13)
+	glove_text.rotation = Vector3(-PI / 2.0 + 0.5, 0.0, 0.0)
+	glove.add_child(glove_text)
 	root.add_child(glove)
 
 
@@ -179,7 +194,13 @@ func _process(_dt: float) -> bool:
 		glove_screen.set_mode(s.mode)
 		glove.visible = s.angle < 0
 		screen.visible = s.angle >= 0
-		if s.angle < 0:
+		if s.angle == -2:
+			# Square to the lines: along their normal, 0.28 m away.
+			var at := glove_text.global_position
+			var nrm := glove_text.global_basis.z
+			cam.position = at + nrm * 0.28 + Vector3(0.0, 0.0, 0.0)
+			cam.look_at(at, glove_text.global_basis.y)
+		elif s.angle < 0:
 			cam.position = glove.position + Vector3(-0.08, 0.16, 0.34)
 			cam.look_at(glove.position + Vector3(0, 0.07, 0.02),
 				Vector3.UP)
@@ -188,6 +209,8 @@ func _process(_dt: float) -> bool:
 			cam.position = a[1]
 			cam.look_at(screen.position + Vector3(0, 0.0, 0), Vector3.UP)
 	glove_screen.update(s.t, s.depth, false)
+	glove_text.text = GloveComputer.text(s.depth,
+		GloveComputer.done_in_pilot(s.depth))
 	var t: float = s.t
 	if s.holy:
 		# Held half way through the 1.75 s fade of the holy ground.

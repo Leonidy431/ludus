@@ -2,8 +2,8 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 496
-- документов: 243
+- файлов кода: 498
+- документов: 244
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -30,7 +30,7 @@
 - [.github/workflows/raw-audio-pass.yml](../.github/workflows/raw-audio-pass.yml) — Audio pass over the 99 backlog repos as a git pass (operator,
 - [.github/workflows/raw-osint-cycle.yml](../.github/workflows/raw-osint-cycle.yml) — OSINT pass over the 99 backlog repos every 1.5 hours (CLAUDE.md TABOO
 
-## Игра для шлема: код (GDScript) (90)
+## Игра для шлема: код (GDScript) (91)
 
 - [godot/scripts/apparatus_core.gd](../godot/scripts/apparatus_core.gd) — The operator's own apparatus in the game (CLAUDE.md TABOO 0.022): 41
 - [godot/scripts/atlas_core.gd](../godot/scripts/atlas_core.gd) — "The Water Atlas" read at the lectern of the scriptorium (CLAUDE.md
@@ -68,6 +68,7 @@
 - [godot/scripts/dive_batch.gd](../godot/scripts/dive_batch.gd) — Fewer draw calls in the dive (docs/APK_REQUIREMENTS.md, blocker Б-1:
 - [godot/scripts/dive_core.gd](../godot/scripts/dive_core.gd) — The rules of the dive, ported from public/ludus/dive/dive-core.js.
 - [godot/scripts/fish_drawings.gd](../godot/scripts/fish_drawings.gd) — The fish of Issyk-Kul in our own drawing (DEF-056,
+- [godot/scripts/glove_computer.gd](../godot/scripts/glove_computer.gd) — The diver's wrist computer on the left glove: the lines beside the
 - [godot/scripts/glyphs.gd](../godot/scripts/glyphs.gd) — The fallback font for the few symbols the built-in OpenSans lacks
 - [godot/scripts/haptics.gd](../godot/scripts/haptics.gd) — The one table of controller pulses for the whole headset game: the
 - [godot/scripts/hub.gd](../godot/scripts/hub.gd) — The monastery hub: the courtyard of the obitel on the Issyk-Kul shore.
@@ -153,7 +154,7 @@
 - [godot/tools/volumetric_shots.gd](../godot/tools/volumetric_shots.gd) — Proof frames of the volumetric laser screen (docs/HLD_VOLUMETRIC_LASER_
 - [godot/tools/witness_wav_check.py](../godot/tools/witness_wav_check.py) — Measure the offline render of the path of the witness.
 
-## Игра для шлема: тесты (65)
+## Игра для шлема: тесты (66)
 
 - [godot/tests/confession_walker.gd](../godot/tests/confession_walker.gd) — A stand-in for the witness path in test_confession.gd: the sheet reads
 - [godot/tests/deeds/panel_text.gd](../godot/tests/deeds/panel_text.gd) — The heart's panel of a place as location.gd builds it, measured with
@@ -182,6 +183,7 @@
 - [godot/tests/test_data_packs.gd](../godot/tests/test_data_packs.gd) — Data packs beside the APK (DataPacks; docs/decisions/SIZE_STRATEGIES_
 - [godot/tests/test_destiny.gd](../godot/tests/test_destiny.gd) — Destiny (DestinyCore): seven branches on the seven attributes, seven
 - [godot/tests/test_dive_batch.gd](../godot/tests/test_dive_batch.gd) — The dive's batches (DiveBatch, Б-1 in docs/APK_REQUIREMENTS.md).
+- [godot/tests/test_glove_computer.gd](../godot/tests/test_glove_computer.gd) — The wrist computer on the glove (GloveComputer): its numbers come
 - [godot/tests/test_haptics.gd](../godot/tests/test_haptics.gd) — The shared table of controller pulses (Haptics; DEF-008, blind spot
 - [godot/tests/test_insights.gd](../godot/tests/test_insights.gd) — Insights (InsightCore, docs/HLD_INSIGHTS_FLASHBACKS_2026-10-02.md):
 - [godot/tests/test_journal.gd](../godot/tests/test_journal.gd) — The journal of the way (JournalCore): the exported page is the web
@@ -488,7 +490,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (177)
+## Документация проекта (178)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -618,6 +620,7 @@
 - [docs/logs/talk_log_2026-10-01.md](../docs/logs/talk_log_2026-10-01.md) 📄 — Talk log — 2026-10-01
 - [docs/logs/talk_log_2026-10-02.md](../docs/logs/talk_log_2026-10-02.md) 📄 — Talk log — 2026-10-02
 - [docs/logs/talklog.md](../docs/logs/talklog.md) 📄 — Ludus Development Talklog
+- [docs/missions/rov-pilot-akula/DESIGN_ROV_PILOT_PIKE.md](../docs/missions/rov-pilot-akula/DESIGN_ROV_PILOT_PIKE.md) 📄 — Дизайн-документ миссии: ROV Pilot — поиск щуки (Иссык-Куль)
 - [docs/missions/rov-pilot-akula/README.md](../docs/missions/rov-pilot-akula/README.md) 📄 — Миссия ROV-пилота: поиск щуки (Акула Иссык-Куля)
 - [docs/missions/rov-pilot-akula/ROV_VIDEO_DIVER_SPEC.md](../docs/missions/rov-pilot-akula/ROV_VIDEO_DIVER_SPEC.md) 📄 — Remote Operated Video Diver — Distinctive Specialty Instructor Outline
 - [docs/music/cosmos/README.md](../docs/music/cosmos/README.md) 📄 — Сюита «Наука. Любовь. Познание.»: космическая музыка Ludus

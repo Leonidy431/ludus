@@ -101,6 +101,8 @@ var volume: VolumetricScreen
 ## The same screen, small, on the back of the left glove: the diver reads
 ## the lake's layers on his own hand (operator, 2026-10-03).
 var glove_screen: VolumetricScreen
+## The wrist computer's lines beside it (GloveComputer).
+var glove_text: Label3D
 ## The hero's AI «Клауд» (TABOO 0.026): its lines, the ones already
 ## said this run, its line on the right wrist and its draft voice.
 var companion := {}
@@ -317,6 +319,16 @@ func _build_rig() -> void:
 	glove_screen.position = Vector3(0.0, 0.075, 0.09)
 	glove_screen.scale = Vector3.ONE * 0.16
 	left_hand.add_child(glove_screen)
+	glove_text = Label3D.new()
+	glove_text.name = "GloveText"
+	glove_text.font_size = 22
+	glove_text.pixel_size = 0.00035
+	glove_text.modulate = Color(0.62, 0.86, 1.0)
+	glove_text.outline_size = 4
+	glove_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	glove_text.position = Vector3(0.07, 0.05, 0.13)
+	glove_text.rotation = Vector3(-PI / 2.0 + 0.5, 0.0, 0.0)
+	left_hand.add_child(glove_text)
 
 
 func _build_world() -> void:
@@ -1355,11 +1367,15 @@ func open_examine(e: Dictionary) -> void:
 func _volume() -> void:
 	volume.visible = world == "lake"
 	glove_screen.visible = volume.visible
+	glove_text.visible = volume.visible
 	if not volume.visible:
 		return
 	var mode: String = {"walls": "floor", "thermocline": "layers",
 		"tether_jerk": "layers", "bookmark": "oxygen", "lure": "floor",
 		"price_rises": "floor", "choice_echo": "floor"}.get(beat_id, "")
+	var d := _depth()
+	glove_text.text = GloveComputer.text(d, GloveComputer.done_in_pilot(d),
+		beat_id == "khachkar")
 	for v in [volume, glove_screen]:
 		if mode != "":
 			v.set_mode(mode)
