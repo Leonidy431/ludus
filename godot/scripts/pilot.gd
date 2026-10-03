@@ -98,6 +98,9 @@ var wow: WowStage
 ## The operator's volumetric laser-bubble screen beside the console
 ## (docs/HLD_VOLUMETRIC_LASER_SCREEN_2026-10-03.md, TABOO 0.022).
 var volume: VolumetricScreen
+## The same screen, small, on the back of the left glove: the diver reads
+## the lake's layers on his own hand (operator, 2026-10-03).
+var glove_screen: VolumetricScreen
 ## The hero's AI «Клауд» (TABOO 0.026): its lines, the ones already
 ## said this run, its line on the right wrist and its draft voice.
 var companion := {}
@@ -307,6 +310,13 @@ func _build_rig() -> void:
 	volume.position = Vector3(0.75, 0.85, -1.3)
 	volume.scale = Vector3.ONE * 0.6
 	rig.add_child(volume)
+	# A wrist-sized copy rides the left controller, above the back of the
+	# hand: 10 cm across, read by turning the wrist like a dive computer.
+	glove_screen = VolumetricScreen.new()
+	glove_screen.name = "GloveScreen"
+	glove_screen.position = Vector3(0.0, 0.075, 0.09)
+	glove_screen.scale = Vector3.ONE * 0.16
+	left_hand.add_child(glove_screen)
 
 
 func _build_world() -> void:
@@ -1344,15 +1354,17 @@ func open_examine(e: Dictionary) -> void:
 ## water it is not there at all.
 func _volume() -> void:
 	volume.visible = world == "lake"
+	glove_screen.visible = volume.visible
 	if not volume.visible:
 		return
 	var mode: String = {"walls": "floor", "thermocline": "layers",
 		"tether_jerk": "layers", "bookmark": "oxygen", "lure": "floor",
 		"price_rises": "floor", "choice_echo": "floor"}.get(beat_id, "")
-	if mode != "":
-		volume.set_mode(mode)
-	volume.set_holy(beat_id == "khachkar")
-	volume.update(t, _depth(), reduced)
+	for v in [volume, glove_screen]:
+		if mode != "":
+			v.set_mode(mode)
+		v.set_holy(beat_id == "khachkar")
+		v.update(t, _depth(), reduced)
 
 
 ## An on-screen line in the player's language (PilotCore.ui_text).

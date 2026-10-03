@@ -74,12 +74,14 @@ const SLOTS := {
 	},
 	"pier": {
 		# Cards face the courtyard; the crate stands by the pier; the
-		# gauge stands in the water off the pier's north side.
+		# shore gauge stands at the water's edge north of the buoy, on
+		# the bank (TABOO 0.016 item 3: it stood 0.55 m down in the lake
+		# with nothing under it; the lake here is a surface, no bed).
 		"stand": [[8.6, 1.35, -2.8, -90], [8.6, 1.35, -3.6, -90],
 			[8.6, 1.35, -4.4, -90], [8.6, 1.35, 2.8, -90]],
 		"table": [[7.6, 0.45, -2.75, -90], [7.6, 0.45, -2.4, -90],
 			[7.6, 0.45, -2.05, -90]],
-		"floor": [[9.4, -0.55, -1.3, -90, 0.3], [7.6, 0.0, -4.0, -90, 1.0],
+		"floor": [[8.95, 0.0, -2.2, -90, 0.3], [7.6, 0.0, -4.0, -90, 1.0],
 			[7.6, 0.0, 2.6, -90, 1.0], [7.6, 0.0, 3.8, -90, 1.0]],
 	},
 	"courtyard": {
@@ -92,11 +94,13 @@ const SLOTS := {
 
 # The furniture the layout brings for its small volumes: a plank bench in
 # the cell, a work bench in the workshop, a birch crate on the shore.
-# [centre x, top y, centre z, size x, size z, colour].
+# [centre x, top y, centre z, size x, size z, colour].  The top is the
+# height of the slots' "table" rows above, so a thing rests on it and
+# does not hang 20 mm over it (TABOO 0.016 item 3; test_obitel.gd).
 const FURNITURE := [
-	[-4.6, 0.4, -8.0, 1.3, 0.45, "oak"],
-	[-2.1, 0.78, -8.05, 1.8, 0.5, "oak"],
-	[7.6, 0.43, -2.4, 0.5, 1.0, "birch"],
+	[-4.6, 0.42, -8.0, 1.3, 0.45, "oak"],
+	[-2.1, 0.8, -8.05, 1.8, 0.5, "oak"],
+	[7.6, 0.45, -2.4, 0.5, 1.0, "birch"],
 ]
 
 
@@ -178,7 +182,7 @@ static func local_aabb(root: Node3D) -> AABB:
 
 
 static func _box(parent: Node3D, size: Vector3, at: Vector3,
-		colour: Color) -> void:
+		colour: Color) -> MeshInstance3D:
 	var mi := MeshInstance3D.new()
 	var b := BoxMesh.new()
 	b.size = size
@@ -189,6 +193,7 @@ static func _box(parent: Node3D, size: Vector3, at: Vector3,
 	mi.material_override = m
 	mi.position = at
 	parent.add_child(mi)
+	return mi
 
 
 ## One object: the proxy scaled to the thing's size, laid down if it lies,
@@ -226,6 +231,34 @@ static func _instance(p: Dictionary) -> Node3D:
 	return holder
 
 
+## Two oak posts and a rail behind a card on a stand, built from the
+## card's own box: the posts stand on the ground, their front faces and
+## the rail's touch the card's back, hidden behind it, the rail at its
+## middle and the posts above it (TABOO 0.016 item 3: the posts stood
+## 0.36 m out to the sides and a card between them touched nothing).
+## Each part keeps its card's id for the landing test.
+static func _posts(root: Node3D, p: Dictionary, card: Node3D) -> void:
+	var bb := local_aabb(card)
+	var turn := deg_to_rad(p.yaw)
+	var post := 0.07
+	var back := bb.position.z - post / 2.0
+	var off := maxf(bb.size.x / 2.0 - 0.06, 0.0)
+	var mid_y: float = p.pos.y + bb.get_center().y
+	var top := maxf(p.pos.y + bb.end.y - 0.05, mid_y + 0.05)
+	var foot := Vector3(p.pos.x, 0.0, p.pos.z)
+	var parts := []
+	for sgn in [-1.0, 1.0]:
+		var at := Vector3(bb.get_center().x + sgn * off, top / 2.0, back)
+		parts.append([Vector3(post, top, post), at])
+	parts.append([Vector3(2.0 * off + post, 0.06, post),
+		Vector3(bb.get_center().x, mid_y, back)])
+	for part in parts:
+		var mi := _box(root, part[0], foot + (part[1] as Vector3).rotated(
+			Vector3.UP, turn), OAK)
+		mi.rotation.y = turn
+		mi.set_meta("card_of", p.id)
+
+
 ## Called once from hub.gd _build_world(): builds the furniture, places
 ## the objects and returns the parent node (named "Obitel").
 static func build_obitel_objects(hub: Node3D) -> Node3D:
@@ -251,14 +284,7 @@ static func build_obitel_objects(hub: Node3D) -> Node3D:
 			continue
 		root.add_child(node)
 		if p.mount == "stand":
-			# Two oak posts and a rail behind the card.
-			var back := Vector3(0, 0, -0.06).rotated(Vector3.UP,
-				deg_to_rad(p.yaw))
-			var side := Vector3(0.36, 0, 0).rotated(Vector3.UP,
-				deg_to_rad(p.yaw))
-			for sgn in [-1, 1]:
-				_box(root, Vector3(0.07, 1.75, 0.07),
-					Vector3(p.pos.x, 0.875, p.pos.z) + back + side * sgn, OAK)
+			_posts(root, p, node)
 		if not p.object.flags.get("holy", false):
 			var tag := Label3D.new()
 			tag.text = p.object.ru

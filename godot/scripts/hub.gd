@@ -144,6 +144,9 @@ func _ready() -> void:
 	var rights := RightsPanel.make("ru")
 	rights.position = Vector3(-6.9, 1.6, 2.6)
 	rights.rotation_degrees = Vector3(0, 90, 0)
+	# Drawn only within reading distance, like the things' tags: from the
+	# yard it costs no draw call (the yard is at its budget, Б-1).
+	rights.visibility_range_end = 3.2
 	add_child(rights)
 	trees = JSON.parse_string(FileAccess.get_file_as_string(
 		"res://data/dialogue-trees.json")).trees
@@ -506,8 +509,11 @@ func _build_pier(oak: Color) -> void:
 	# acoustic matrix (TABOO 0.024), the lock scene reached through the
 	# loader like every big module (TABOO 0.014; chorus audit 2026-10-03:
 	# the lock was in the APK but no way led to it).
+	# Birch white, the stand's own colour: one material with the stand,
+	# so the static batch draws them together and the yard stays within
+	# its draw-call budget (97, Б-1).
 	var buoy := _box(Vector3(0.36, 0.7, 0.36), Vector3(8.6, 0.35, -1.4),
-		Color(0.85, 0.66, 0.12))
+		birch)
 	buoy.name = "Buoy"
 	things.append({"id": "buoy", "kind": "buoy",
 		"pos": Vector3(8.6, 0, -1.4), "ru": "Буй: калибровка слуха"})

@@ -2,8 +2,8 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 494
-- документов: 241
+- файлов кода: 496
+- документов: 243
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -30,7 +30,7 @@
 - [.github/workflows/raw-audio-pass.yml](../.github/workflows/raw-audio-pass.yml) — Audio pass over the 99 backlog repos as a git pass (operator,
 - [.github/workflows/raw-osint-cycle.yml](../.github/workflows/raw-osint-cycle.yml) — OSINT pass over the 99 backlog repos every 1.5 hours (CLAUDE.md TABOO
 
-## Игра для шлема: код (GDScript) (89)
+## Игра для шлема: код (GDScript) (90)
 
 - [godot/scripts/apparatus_core.gd](../godot/scripts/apparatus_core.gd) — The operator's own apparatus in the game (CLAUDE.md TABOO 0.022): 41
 - [godot/scripts/atlas_core.gd](../godot/scripts/atlas_core.gd) — "The Water Atlas" read at the lectern of the scriptorium (CLAUDE.md
@@ -100,6 +100,7 @@
 - [godot/scripts/rope_breath.gd](../godot/scripts/rope_breath.gd) — The soft sound of one's own breath at the lectern of the rope: one
 - [godot/scripts/rope_core.gd](../godot/scripts/rope_core.gd) — The prayer rope as a metronome of the breath
 - [godot/scripts/rov_body.gd](../godot/scripts/rov_body.gd) — The Mangustik's body in the water: the model from the operator's
+- [godot/scripts/rov_course_core.gd](../godot/scripts/rov_course_core.gd) — The ROV pilot course inside the pike-search contract (RovCourseCore).
 - [godot/scripts/rov_lod.gd](../godot/scripts/rov_lod.gd) — The Mangustik with a far-view proxy (blocker Б-2,
 - [godot/scripts/rule_cell.gd](../godot/scripts/rule_cell.gd) — The two practices of the rule that the hub gives a place
 - [godot/scripts/rule_core.gd](../godot/scripts/rule_core.gd) — The rule of prayer, ported from public/ludus/ludus-actions.js
@@ -152,7 +153,7 @@
 - [godot/tools/volumetric_shots.gd](../godot/tools/volumetric_shots.gd) — Proof frames of the volumetric laser screen (docs/HLD_VOLUMETRIC_LASER_
 - [godot/tools/witness_wav_check.py](../godot/tools/witness_wav_check.py) — Measure the offline render of the path of the witness.
 
-## Игра для шлема: тесты (64)
+## Игра для шлема: тесты (65)
 
 - [godot/tests/confession_walker.gd](../godot/tests/confession_walker.gd) — A stand-in for the witness path in test_confession.gd: the sheet reads
 - [godot/tests/deeds/panel_text.gd](../godot/tests/deeds/panel_text.gd) — The heart's panel of a place as location.gd builds it, measured with
@@ -203,6 +204,7 @@
 - [godot/tests/test_rights.gd](../godot/tests/test_rights.gd) — The Manuscript of rights in the headset build (HLD CHORUS24 F7,
 - [godot/tests/test_road.gd](../godot/tests/test_road.gd) — The road beyond the wicket (HLD_TETHER_TRIALS_PASSIONS T3): every
 - [godot/tests/test_rope.gd](../godot/tests/test_rope.gd) — The prayer rope as a breath metronome (RopeCore, RopeBreath).  The
+- [godot/tests/test_rov_course.gd](../godot/tests/test_rov_course.gd) — The ROV pilot course in the pike-search contract (RovCourseCore):
 - [godot/tests/test_rov_lod.gd](../godot/tests/test_rov_lod.gd) — The Mangustik's far-view proxy and its switch by distance (RovLod,
 - [godot/tests/test_rule.gd](../godot/tests/test_rule.gd) — RuleCore and the evening watch against the JS reference: every chain
 - [godot/tests/test_source_labels.gd](../godot/tests/test_source_labels.gd) — The Russian labels of the sources (SourceLabels, source-labels-ru.json)
@@ -486,7 +488,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (175)
+## Документация проекта (177)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -616,6 +618,8 @@
 - [docs/logs/talk_log_2026-10-01.md](../docs/logs/talk_log_2026-10-01.md) 📄 — Talk log — 2026-10-01
 - [docs/logs/talk_log_2026-10-02.md](../docs/logs/talk_log_2026-10-02.md) 📄 — Talk log — 2026-10-02
 - [docs/logs/talklog.md](../docs/logs/talklog.md) 📄 — Ludus Development Talklog
+- [docs/missions/rov-pilot-akula/README.md](../docs/missions/rov-pilot-akula/README.md) 📄 — Миссия ROV-пилота: поиск щуки (Акула Иссык-Куля)
+- [docs/missions/rov-pilot-akula/ROV_VIDEO_DIVER_SPEC.md](../docs/missions/rov-pilot-akula/ROV_VIDEO_DIVER_SPEC.md) 📄 — Remote Operated Video Diver — Distinctive Specialty Instructor Outline
 - [docs/music/cosmos/README.md](../docs/music/cosmos/README.md) 📄 — Сюита «Наука. Любовь. Познание.»: космическая музыка Ludus
 - [docs/reports/COMPREHENSIVE_GAPS_ANALYSIS.md](../docs/reports/COMPREHENSIVE_GAPS_ANALYSIS.md) 📄 — Ludus Project: Comprehensive Gaps Analysis & Status
 - [docs/reports/COMPREHENSIVE_PROJECT_AUDIT.md](../docs/reports/COMPREHENSIVE_PROJECT_AUDIT.md) 📄 — Ludus: Comprehensive Project Audit & Gap Analysis

@@ -247,6 +247,7 @@ func _initialize() -> void:
 	load("res://tests/test_wow.gd").new().run(self)
 	load("res://tests/test_companion.gd").new().run(self)
 	load("res://tests/test_contract.gd").new().run(self)
+	load("res://tests/test_rov_course.gd").new().run(self)
 	load("res://tests/test_apparatus.gd").new().run(self)
 	load("res://tests/test_volumetric.gd").new().run(self)
 	load("res://tests/test_volumetric_screen.gd").new().run(self)

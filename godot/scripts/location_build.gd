@@ -227,8 +227,10 @@ static func build(p: Dictionary) -> Node3D:
 		if node == null:
 			continue
 		things.add_child(node)
-		if s.stand:
-			_posts(world, s)
+		# A card on a stand slot, a proxy or a drawing that fills it,
+		# hangs on its posts; nothing hangs in the air outdoors.
+		if s.stand or s.mount == "stand":
+			_posts(world, s, node)
 		if s.plinth != null:
 			var ph: float = s.plinth.h
 			var base := Vector3(0.5, ph, 0.12) if s.plinth.stone \
@@ -372,14 +374,18 @@ static func _shell(world: Node3D, p: Dictionary) -> void:
 			# The ground outside the walls.
 			box(g, Vector3(120, t, 120), Vector3(0, -t / 2 - 0.02, 0),
 				STEPPE)
+		# The place's own ground has its top at y = 0, where the plan sets
+		# every thing's bottom (TABOO 0.016 item 3: it once stood 10 mm
+		# higher and every thing on it sank by 10 mm).  The wide ground
+		# around lies 20 mm lower, so the two never fight for one pixel.
 		"shore":
-			box(g, Vector3(w, t, d), Vector3(0, -t / 2 + 0.01, 0), SAND)
-			box(g, Vector3(160, t, 80), Vector3(0, -t / 2 - 0.01,
+			box(g, Vector3(w, t, d), Vector3(0, -t / 2, 0), SAND)
+			box(g, Vector3(160, t, 80), Vector3(0, -t / 2 - 0.02,
 				-d / 2 + 40), STEPPE)
 		"open":
-			box(g, Vector3(w, t, d), Vector3(0, -t / 2 + 0.01, 0),
+			box(g, Vector3(w, t, d), Vector3(0, -t / 2, 0),
 				STEPPE.lightened(0.12))
-			box(g, Vector3(160, t, 160), Vector3(0, -t / 2 - 0.01, 0), STEPPE)
+			box(g, Vector3(160, t, 160), Vector3(0, -t / 2 - 0.02, 0), STEPPE)
 		"underwater":
 			box(g, Vector3(90, t, 90), Vector3(0, -t / 2, 0), SILT)
 	world.add_child(join(g, 0.95))
@@ -460,17 +466,34 @@ static func _bench(world: Node3D, p: Dictionary) -> void:
 	world.add_child(join(g, 0.9))
 
 
-## Two oak posts and a rail behind a card that stands outdoors.
-static func _posts(world: Node3D, s: Dictionary) -> void:
+## Two oak posts and a rail behind a card that stands outdoors, built
+## from the card's own box: the posts stand on the ground, their front
+## faces and the rail's touch the card's back, the rail crosses at the
+## card's middle and the posts reach above it, hidden behind the card
+## (TABOO 0.016 item 3: a card held by nothing reads as floating).  The
+## posts keep a reference to their card for the landing test.
+static func _posts(world: Node3D, s: Dictionary, card: Node3D) -> void:
+	var bb := local_box(card)
 	var g := Node3D.new()
 	g.name = "Posts_" + s.object
-	var back := Vector3(0, 0, -0.06).rotated(Vector3.UP, deg_to_rad(s.yaw))
-	var side := Vector3(0.36, 0, 0).rotated(Vector3.UP, deg_to_rad(s.yaw))
-	var bottom: float = s.pos.y - 0.34
-	for sgn in [-1, 1]:
-		box(g, Vector3(0.07, bottom + 0.4, 0.07), Vector3(s.pos.x, (bottom
-			+ 0.4) / 2.0, s.pos.z) + back + side * sgn, OAK)
-	world.add_child(join(g, 0.9))
+	g.position = Vector3(s.pos.x, 0.0, s.pos.z)
+	g.rotation_degrees = Vector3(0, s.yaw, 0)
+	var post := 0.07
+	var back := bb.position.z - post / 2.0
+	var mid_x := bb.get_center().x
+	var off := maxf(bb.size.x / 2.0 - 0.06, 0.0)
+	var mid_y: float = s.pos.y + bb.get_center().y
+	# Above the middle, under the top edge, so the posts stay unseen
+	# from the front and still hold the card's weight above its middle.
+	var top := maxf(s.pos.y + bb.end.y - 0.05, mid_y + 0.05)
+	for sgn in [-1.0, 1.0]:
+		box(g, Vector3(post, top, post), Vector3(mid_x + sgn * off,
+			top / 2.0, back), OAK)
+	box(g, Vector3(2.0 * off + post, 0.06, post), Vector3(mid_x, mid_y,
+		back), OAK)
+	var one := join(g, 0.9)
+	one.set_meta("card", card)
+	world.add_child(one)
 
 
 ## One thing: its model turned and scaled to the thing's size (fit),
@@ -526,7 +549,7 @@ static func instance(s: Dictionary) -> Node3D:
 	holder.rotation_degrees = Vector3(0, s.yaw, 0)
 	holder.set_meta("location_thing", {"object": s.object, "ru": s.ru,
 		"mount": s.mount, "holy": s.holy, "noInteract": s.flags.noInteract,
-		"noLoot": s.flags.noLoot, "from": s.model.from})
+		"noLoot": s.flags.noLoot, "from": s.model.from, "layer": s.layer})
 	return holder
 
 
@@ -566,7 +589,7 @@ static func kit(s: Dictionary) -> Node3D:
 	holder.rotation_degrees = Vector3(0, s.yaw, 0)
 	holder.set_meta("location_thing", {"object": s.object, "ru": s.ru,
 		"mount": s.mount, "holy": false, "noInteract": false,
-		"noLoot": false, "from": "kit", "kit": m.kit,
+		"noLoot": false, "from": "kit", "kit": m.kit, "layer": s.layer,
 		"licence": m.licence, "second": s.get("second", false)})
 	return holder
 
@@ -627,6 +650,103 @@ static func _tag(s: Dictionary, node: Node3D) -> Label3D:
 	tag.position = Vector3(s.pos.x, top + above, s.pos.z)
 	tag.set_meta("tag_of", s.object)
 	return tag
+
+
+# --- Landing (TABOO 0.016 item 3) --------------------------------------------
+
+## Every mesh at or under a node, the node itself included.
+static func meshes_of(root: Node) -> Array:
+	var out: Array = root.find_children("*", "MeshInstance3D", true, false)
+	if root is MeshInstance3D:
+		out.append(root)
+	return out
+
+
+## The highest surface of the given meshes straight under a point, no
+## higher than the point itself, in world space; -INF when there is
+## none.  A vertical ray against the meshes' own triangles: the engine's
+## physics is cut out of the APK (scripts/godot/engine/profile.py), so
+## the landing is proved by geometry, not by a ray of the physics world.
+## Triangles lying wholly inside one of the boxes in ignore are passed
+## over: where still geometry is baked into one mesh (the hub), a thing's
+## own baked copy must not be the surface it rests on.
+static func surface_below(meshes: Array, at: Vector3,
+		ignore: Array = []) -> float:
+	var best := -INF
+	for node in meshes:
+		var mi := node as MeshInstance3D
+		if mi == null or mi.mesh == null or not mi.is_inside_tree():
+			continue
+		var xf := mi.global_transform
+		var wb: AABB = xf * mi.mesh.get_aabb()
+		# Most meshes are nowhere under the point: skip them by the box.
+		if at.x < wb.position.x - 1e-4 or at.x > wb.end.x + 1e-4 \
+				or at.z < wb.position.z - 1e-4 or at.z > wb.end.z + 1e-4 \
+				or wb.position.y > at.y:
+			continue
+		var f := _faces(mi.mesh)
+		for k in range(0, f.size() - 2, 3):
+			var p0 := xf * f[k]
+			var p1 := xf * f[k + 1]
+			var p2 := xf * f[k + 2]
+			var y := _under(p0, p1, p2, at)
+			if y <= at.y and y > best \
+					and not _inside_any(ignore, p0, p1, p2):
+				best = y
+	return best
+
+
+## A mesh's triangles, read once per mesh: a probe of a big joined mesh
+## (the hub's batched yard) would otherwise copy them for every thing.
+static var _faces_of := {}
+
+
+static func _faces(mesh: Mesh) -> PackedVector3Array:
+	var key := mesh.get_instance_id()
+	if not _faces_of.has(key):
+		_faces_of[key] = mesh.get_faces()
+	return _faces_of[key]
+
+
+## Forget the triangles read by surface_below (a test calls it when its
+## scene is gone, so freed meshes are not kept).
+static func forget_faces() -> void:
+	_faces_of.clear()
+
+
+## Whether a triangle lies wholly inside one of the boxes.
+static func _inside_any(boxes: Array, a: Vector3, b: Vector3,
+		c: Vector3) -> bool:
+	for box in boxes:
+		if (box as AABB).has_point(a) and (box as AABB).has_point(b) \
+				and (box as AABB).has_point(c):
+			return true
+	return false
+
+
+## The height of a triangle straight under (at.x, at.z), or -INF when
+## the point is outside it or the triangle stands on edge.
+static func _under(a: Vector3, b: Vector3, c: Vector3, at: Vector3) -> float:
+	var den := (b.z - c.z) * (a.x - c.x) + (c.x - b.x) * (a.z - c.z)
+	if absf(den) < 1e-9:
+		return -INF
+	var l1 := ((b.z - c.z) * (at.x - c.x) + (c.x - b.x) * (at.z - c.z)) / den
+	var l2 := ((c.z - a.z) * (at.x - c.x) + (a.x - c.x) * (at.z - c.z)) / den
+	var l3 := 1.0 - l1 - l2
+	if l1 < -1e-6 or l2 < -1e-6 or l3 < -1e-6:
+		return -INF
+	return l1 * a.y + l2 * b.y + l3 * c.y
+
+
+## What a thing of a place may rest on: the ground and walls, the bench
+## or crate, a holy thing's plinth, the heart's own furniture.
+static func supports(world: Node3D) -> Array:
+	var out := []
+	for c in world.get_children():
+		var n := String(c.name)
+		if n in ["Shell", "Bench", "HeartProp"] or n.begins_with("Plinth_"):
+			out.append_array(meshes_of(c))
+	return out
 
 
 # --- The heart ------------------------------------------------------------------

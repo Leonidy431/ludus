@@ -32,7 +32,15 @@ const LESSONS_FOR_THE_CHORUS := ["factory", "sarai-hall", "tana-port",
 const LESSONS_FOUND_BY_STEMS := ["fair", "translators", "baptism-ford",
 	"silversmith"]
 
+## A thing rests on its support within this many millimetres (TABOO
+## 0.016 item 3); more is floating, less is sinking.
+const LAND_MM := 5.0
+
 var data: Dictionary = {}
+var landed := 0
+var cards := 0
+var walls := 0
+var worst_gap_mm := 0.0
 var scene: Node
 var missing_total := 0
 var kits: Dictionary = {}
@@ -359,6 +367,11 @@ func in_scene(t: Object) -> void:
 	scene.pos = scene.p.start
 	t._check(scene._nearest().get("id") == "heart",
 		"on arrival in the cell the heart answers, not the door")
+	print(("locations built: landing (TABOO 0.016 item 3): %d things "
+		+ "rest on their support within %.1f mm (worst %.2f mm), %d cards "
+		+ "hang on their posts, %d hang on a wall") % [landed, LAND_MM,
+			worst_gap_mm, cards, walls])
+	LocationBuild.forget_faces()
 	print("locations built: worst place %d triangles in the whole scene; %d failures in the scene checks"
 		% [worst_tris, t.failures - fails_before])
 	scene.free()
@@ -429,8 +442,14 @@ func _built(t: Object, loc: Dictionary) -> void:
 		if meta.holy:
 			t._check(meta.noInteract and meta.noLoot and not tagged.has(key),
 				"%s: holy %s flat, both flags, no tag" % [id, key])
-			t._check(box.size.z <= 0.2 or box.size.x <= 0.2,
-				"%s: holy %s is flat (%s)" % [id, key, box.size])
+			# Thin along the axis it faces (its own z, which the slot's yaw
+			# turns), not merely along some world axis: a board turned
+			# side-on would pass an "x or z" check and stand as a slab.
+			var own := LocationBuild.local_box(holder)
+			t._check(own.size.z <= 0.2,
+				"%s: holy %s is flat along its facing (%s)" % [id, key,
+					own.size])
+	_landing(t, id, world, things)
 	var drawn := 0
 	for s in p.slots:
 		drawn += int(s.model.from == "kit")
@@ -508,3 +527,79 @@ func _drawing(t: Object, id: String, holder: Node3D, meshes: Array) -> void:
 		t._check(absf(box.position.y) < 1e-3,
 			"%s: %s drawing stands on its lowest pixel (%.3f)" % [id, key,
 				box.position.y])
+
+
+## Absolute gravity (CLAUDE.md TABOO 0.016 item 3), proved on what the
+## scene built, not on the plan: every thing that is not on a wall rests
+## its lowest point on the surface straight under its middle (the
+## ground, the bench or crate, a plinth, the heart's furniture) within
+## LAND_MM, neither floating nor sunk.  A card on a stand hangs on its
+## own posts: their faces touch its back, they stand hidden behind it,
+## reach above its middle and stand on the ground.  Things on a wall
+## are flagged by their layer and only counted.
+func _landing(t: Object, id: String, world: Node3D, things: Node) -> void:
+	var under := LocationBuild.supports(world)
+	var posts := {}
+	for c in world.get_children():
+		if c.has_meta("card"):
+			posts[c.get_meta("card")] = c
+	for c in things.get_children():
+		var holder := c as Node3D
+		var meta: Dictionary = holder.get_meta("location_thing")
+		var key: String = meta.object
+		var own := LocationBuild.local_box(holder)
+		if meta.mount == "stand":
+			_on_posts(t, id, key, holder, own, posts.get(holder), under)
+			continue
+		if meta.layer == "wall":
+			walls += 1
+			continue
+		var box: AABB = holder.global_transform * own
+		var mid := box.get_center()
+		var top := LocationBuild.surface_below(under, Vector3(mid.x,
+			box.position.y + 0.05, mid.z))
+		var gap := (box.position.y - top) * 1000.0
+		t._check(absf(gap) <= LAND_MM,
+			"%s: %s (%s) rests on its support (%.1f mm)" % [id, key,
+				meta.layer, gap])
+		if absf(gap) <= LAND_MM:
+			landed += 1
+			worst_gap_mm = maxf(worst_gap_mm, absf(gap))
+
+
+func _on_posts(t: Object, id: String, key: String, holder: Node3D,
+		own: AABB, post: Variant, under: Array) -> void:
+	t._check(post != null, "%s: %s on a stand has its posts" % [id, key])
+	if post == null:
+		return
+	var inv := holder.global_transform.affine_inverse()
+	var pw := _world_box(post)
+	var pb: AABB = inv * pw
+	var touch := absf(own.position.z - pb.end.z) * 1000.0
+	t._check(touch <= LAND_MM,
+		"%s: %s touches its posts (%.1f mm)" % [id, key, touch])
+	t._check(pb.position.x >= own.position.x - 0.005
+		and pb.end.x <= own.end.x + 0.005,
+		"%s: %s's posts stand hidden behind it" % [id, key])
+	t._check(pb.end.y >= own.get_center().y,
+		"%s: %s's posts reach above its middle" % [id, key])
+	var mid := pw.get_center()
+	var top := LocationBuild.surface_below(under, Vector3(mid.x,
+		pw.position.y + 0.05, mid.z))
+	var gap := (pw.position.y - top) * 1000.0
+	t._check(absf(gap) <= LAND_MM,
+		"%s: %s's posts stand on the ground (%.1f mm)" % [id, key, gap])
+	if touch <= LAND_MM and absf(gap) <= LAND_MM:
+		cards += 1
+
+
+## The world box of every mesh at or under a node.
+static func _world_box(root: Node) -> AABB:
+	var box := AABB()
+	var first := true
+	for c in LocationBuild.meshes_of(root):
+		var mi := c as MeshInstance3D
+		var b: AABB = mi.global_transform * mi.mesh.get_aabb()
+		box = b if first else box.merge(b)
+		first = false
+	return box

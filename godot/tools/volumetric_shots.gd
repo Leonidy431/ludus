@@ -29,6 +29,9 @@ var idx := 0
 var frame := 0
 var screen: VolumetricScreen
 var cam: Camera3D
+## The diver's glove with the small screen on its back (--glove).
+var glove: Node3D
+var glove_screen: VolumetricScreen
 
 
 func _initialize() -> void:
@@ -42,6 +45,7 @@ func _initialize() -> void:
 		DirAccess.make_dir_recursive_absolute(seq)
 	root.size = Vector2i(1280, 720)
 	_build_set()
+	_build_glove()
 	var n := 0
 	for d in DEPTHS:
 		for m in MODES:
@@ -53,6 +57,14 @@ func _initialize() -> void:
 	shots.append({"name": "volumetric-%02d-holy-fade" % (n + 1),
 		"mode": "layers", "depth": 20.0, "angle": 0, "t": 6.0,
 		"holy": true, "dir": out})
+	# The glove under water, as the diver sees it when he turns his
+	# wrist: layers at 20 m, the floor at 60 m, and the holy fade.
+	for g in [["layers", 20.0, false], ["floor", 60.0, false],
+			["layers", 60.0, false]]:
+		n += 1
+		shots.append({"name": "volumetric-%02d-glove-%s-%dm" % [n + 1, g[0],
+			int(g[1])], "mode": g[0], "depth": g[1], "angle": -1,
+			"t": 6.0, "holy": g[2], "dir": out})
 	if seq != "":
 		for i in SEQ_FRAMES:
 			shots.append({"name": "seq-%03d" % i, "mode": "floor",
@@ -124,6 +136,39 @@ func _build_set() -> void:
 	cam.make_current()
 
 
+## A diver's neoprene glove: palm, four fingers, thumb and cuff, with the
+## volumetric screen a tenth of a metre across on the back of the wrist,
+## as pilot.gd mounts it on the left controller.
+func _build_glove() -> void:
+	glove = Node3D.new()
+	glove.position = Vector3(0.25, 1.35, -0.55)
+	glove.rotation = Vector3(0.0, 0.5, 0.0)
+	glove.visible = false
+	var neo := StandardMaterial3D.new()
+	neo.albedo_color = Color(0.16, 0.17, 0.20)
+	neo.roughness = 0.85
+	var parts := [[Vector3(0.09, 0.03, 0.10), Vector3.ZERO],
+		[Vector3(0.08, 0.06, 0.14), Vector3(0, 0, 0.12)]]
+	for i in 4:
+		parts.append([Vector3(0.018, 0.022, 0.08 - 0.008 * absi(i - 1)),
+			Vector3(-0.032 + 0.021 * i, 0, -0.088)])
+	parts.append([Vector3(0.022, 0.022, 0.065), Vector3(0.058, -0.004,
+		-0.02)])
+	for p in parts:
+		var mi := MeshInstance3D.new()
+		var bm := BoxMesh.new()
+		bm.size = p[0]
+		mi.mesh = bm
+		mi.material_override = neo
+		mi.position = p[1]
+		glove.add_child(mi)
+	glove_screen = VolumetricScreen.new()
+	glove_screen.position = Vector3(0.0, 0.075, 0.09)
+	glove_screen.scale = Vector3.ONE * 0.16
+	glove.add_child(glove_screen)
+	root.add_child(glove)
+
+
 func _process(_dt: float) -> bool:
 	if idx >= shots.size():
 		return true
@@ -131,9 +176,18 @@ func _process(_dt: float) -> bool:
 	if frame == 0:
 		screen.set_holy(false)
 		screen.set_mode(s.mode)
-		var a: Array = ANGLES[s.angle]
-		cam.position = a[1]
-		cam.look_at(screen.position + Vector3(0, 0.0, 0), Vector3.UP)
+		glove_screen.set_mode(s.mode)
+		glove.visible = s.angle < 0
+		screen.visible = s.angle >= 0
+		if s.angle < 0:
+			cam.position = glove.position + Vector3(-0.08, 0.16, 0.34)
+			cam.look_at(glove.position + Vector3(0, 0.07, 0.02),
+				Vector3.UP)
+		else:
+			var a: Array = ANGLES[s.angle]
+			cam.position = a[1]
+			cam.look_at(screen.position + Vector3(0, 0.0, 0), Vector3.UP)
+	glove_screen.update(s.t, s.depth, false)
 	var t: float = s.t
 	if s.holy:
 		# Held half way through the 1.75 s fade of the holy ground.
