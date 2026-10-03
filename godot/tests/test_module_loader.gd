@@ -213,17 +213,27 @@ func _lock(t: Object, ml: Node) -> void:
 class Catch:
 	extends Logger
 	var lines: PackedStringArray = []
+	# The threaded loader reports from its worker thread, so appends and
+	# reads are guarded: an unguarded append raced the test's own read
+	# and removal and crashed the engine in CI.
+	var lock := Mutex.new()
 
 	func _log_error(_function: String, _file: String, _line: int,
 			code: String, rationale: String, _editor_notify: bool,
 			_error_type: int, _script_backtraces: Array) -> void:
+		lock.lock()
 		lines.append(rationale if rationale != "" else code)
+		lock.unlock()
 
 	func has(text: String) -> bool:
+		lock.lock()
+		var found := false
 		for l in lines:
 			if text in l:
-				return true
-		return false
+				found = true
+				break
+		lock.unlock()
+		return found
 
 
 ## A scene that does not load is named, not lost: push_error with its
@@ -239,6 +249,9 @@ func _missing(t: Object, ml: Node) -> void:
 	while (ml.pending != "" or ml.phase != "") and n < WAIT_FRAMES:
 		await t.process_frame
 		n += 1
+	# Let the worker thread finish reporting before the logger goes.
+	for _i in 4:
+		await t.process_frame
 	OS.remove_logger(catch)
 	t._check(nope in ml.failed, "the failed path is recorded: %s"
 		% [ml.failed])
