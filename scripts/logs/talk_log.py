@@ -62,27 +62,60 @@ def text_of(content):
     return '\n'.join(parts)
 
 
+# What the harness wraps around text: never the operator's own words.
+WRAPPER = re.compile(r'^<(system-reminder|task-notification|local-command|'
+                     r'command-|wake|untrusted|environment|ide_|agent-message|'
+                     r'user-prompt-submit-hook)')
+# The client may put its own comment above a message ("<!-- attach -->",
+# "<!-- reply 1 -->"); it is not part of what the operator said.
+LEADING_COMMENT = re.compile(r'^(?:<!--.*?-->\s*)+', re.S)
+
+
+def spoken(text):
+    """The operator's words from a raw text, or '' if it is not his."""
+    text = LEADING_COMMENT.sub('', text.strip()).strip()
+    if not text or WRAPPER.match(text) or text.startswith(SKIP_PREFIXES):
+        return ''
+    return text
+
+
 def messages(transcript):
-    """{day: [(time, text)]} and {day: routine count}."""
+    """{day: [(time, text)]} and {day: routine count}.
+
+    Two kinds of record carry the operator's words: a "user" turn, and a
+    "queue-operation" enqueue, which is what a message sent while the
+    agent was still working becomes.  Missing the second kind lost most of
+    a busy day (found 2026-10-03: 10 messages logged of about 60).  The
+    same words never appear twice in one day.
+    """
     days = collections.defaultdict(list)
+    seen = collections.defaultdict(set)
     routine = collections.Counter()
     for line in open(transcript, encoding='utf-8'):
         try:
             rec = json.loads(line)
         except json.JSONDecodeError:
             continue
-        if rec.get('type') != 'user' or rec.get('isMeta'):
+        kind = rec.get('type')
+        if kind == 'user' and not rec.get('isMeta'):
+            raw = text_of(rec.get('message', {}).get('content'))
+        elif kind == 'queue-operation' and rec.get('operation') == 'enqueue':
+            raw = rec.get('content') if isinstance(rec.get('content'),
+                                                   str) else ''
+        else:
             continue
-        text = text_of(rec.get('message', {}).get('content')).strip()
+        text = spoken(raw)
         stamp = rec.get('timestamp', '')
-        if not text or not stamp or text.startswith('<'):
-            continue
-        if text.startswith(SKIP_PREFIXES):
+        if not text or not stamp:
             continue
         day = stamp[:10]
         if text.startswith(ROUTINE):
             routine[day] += 1
             continue
+        key = ' '.join(text.split())[:300]
+        if key in seen[day]:
+            continue
+        seen[day].add(key)
         days[day].append((stamp[11:16], mask(text)))
     return days, routine
 
