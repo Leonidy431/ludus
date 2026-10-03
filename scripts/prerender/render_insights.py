@@ -19,6 +19,37 @@ holy alone (TABOO 0.38); one main spot of contrast per frame, on the
 thing the narrator names; irregular stones and ridges instead of
 cubes and saw teeth; the camera sees as far as the mountains.
 
+Variants of the hour (2026-10-03; the operator: «другие точки
+постановки камеры угол свет наклон и текст сделай. разные по времени
+суток по 12 на каждые 12»; «в пеп 8 запиши технологию и опиши ее 144
+рендера для веток развития игры»).  The technology of the 144 renders,
+in full in docs/TECH_INSIGHT_RENDER_144_2026-10-03.md:
+
+1. scripts/prerender/insight_variants.py writes the recipe,
+   godot/data/pilot-insight-variants.json: twelve hours of the day for
+   each insight, the sun from the latitude and date of the place and
+   the solar hour, the camera as an orbit around the subject, the fire
+   in 1900-2200 K and the narrator's line of that hour.
+2. This script, with --variant-file and --variant N[,M] or
+   --all-variants, builds the insight's scene as for its canonical
+   frame and then moves the sun, sky, window light, fire and camera by
+   the recipe (apply_variant), lifts the camera over an obstacle or
+   pulls it in front of it (place_camera), meters the exposure toward
+   the hour's brightness (expose) and renders at 512 px, 56 samples,
+   seed 1375 + v, with Open Image Denoise, into
+   build/insight_variants/<id>/vNN.jpg with a vNN.json of the camera
+   and the seconds it took.  Never into godot/: nothing enters the APK.
+3. scripts/video/insight_variant_sheets.py lays the frames on contact
+   sheets; the chorus picks and remarks «− / + / +».
+4. scripts/story/insight_branches.py makes each variant a branch node
+   (godot/data/pilot-insight-branches.json) that converges into the
+   insight's next beat; scripts/story/check_branches.py checks them.
+5. scripts/video/insights_variants_reel.py builds the two reels.
+
+    /home/user/bpy-venv/bin/python scripts/prerender/render_insights.py \\
+        --variant-file godot/data/pilot-insight-variants.json \\
+        --all-variants --size 512 --samples 56 [--only id] [--force]
+
 Constitution: ФОРМА (the place of the other epoch, its light and the
 things people left) → ДЕЙСТВИЕ (render it once, exactly, offline) →
 ЦЕЛЬ (the memory looks true, so the law it explains is believed).
