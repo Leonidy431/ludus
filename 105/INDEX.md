@@ -2,7 +2,7 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 499
+- файлов кода: 501
 - документов: 245
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
@@ -30,7 +30,7 @@
 - [.github/workflows/raw-audio-pass.yml](../.github/workflows/raw-audio-pass.yml) — Audio pass over the 99 backlog repos as a git pass (operator,
 - [.github/workflows/raw-osint-cycle.yml](../.github/workflows/raw-osint-cycle.yml) — OSINT pass over the 99 backlog repos every 1.5 hours (CLAUDE.md TABOO
 
-## Игра для шлема: код (GDScript) (91)
+## Игра для шлема: код (GDScript) (92)
 
 - [godot/scripts/apparatus_core.gd](../godot/scripts/apparatus_core.gd) — The operator's own apparatus in the game (CLAUDE.md TABOO 0.022): 41
 - [godot/scripts/atlas_core.gd](../godot/scripts/atlas_core.gd) — "The Water Atlas" read at the lectern of the scriptorium (CLAUDE.md
@@ -113,6 +113,7 @@
 - [godot/scripts/story_cast.gd](../godot/scripts/story_cast.gd) — The people of the 12 stories in the headset (docs/HLD_STORY_12_
 - [godot/scripts/story_check.gd](../godot/scripts/story_check.gd) — The tester's entry to the 12 stories (debug builds only).
 - [godot/scripts/story_route.gd](../godot/scripts/story_route.gd) — The 12 stories walked on foot (docs/HLD_12_STORIES_HEADSET_2026-10-02.md,
+- [godot/scripts/tides_core.gd](../godot/scripts/tides_core.gd) — The water's daily rhythm around Issyk-Kul and the north Caspian, read
 - [godot/scripts/trial_core.gd](../godot/scripts/trial_core.gd) — The thresholds of the gates and the fall they can lead to, ported
 - [godot/scripts/typikon_core.gd](../godot/scripts/typikon_core.gd) — When the far monastery's bells ring over the path of the witness
 - [godot/scripts/volumetric_core.gd](../godot/scripts/volumetric_core.gd) — The physics and data of the volumetric laser screen (HLD
@@ -154,7 +155,7 @@
 - [godot/tools/volumetric_shots.gd](../godot/tools/volumetric_shots.gd) — Proof frames of the volumetric laser screen (docs/HLD_VOLUMETRIC_LASER_
 - [godot/tools/witness_wav_check.py](../godot/tools/witness_wav_check.py) — Measure the offline render of the path of the witness.
 
-## Игра для шлема: тесты (66)
+## Игра для шлема: тесты (67)
 
 - [godot/tests/confession_walker.gd](../godot/tests/confession_walker.gd) — A stand-in for the witness path in test_confession.gd: the sheet reads
 - [godot/tests/deeds/panel_text.gd](../godot/tests/deeds/panel_text.gd) — The heart's panel of a place as location.gd builds it, measured with
@@ -215,6 +216,7 @@
 - [godot/tests/test_story_12.gd](../godot/tests/test_story_12.gd) — The 12 stories walked on foot (StoryRoute, data/story-12.json;
 - [godot/tests/test_story_cast.gd](../godot/tests/test_story_cast.gd) — The people of the 12 stories in the headset (StoryCast,
 - [godot/tests/test_story_check.gd](../godot/tests/test_story_check.gd) — The tester's entry to the 12 stories (StoryCheck, SaveSlot; debug
+- [godot/tests/test_tides.gd](../godot/tests/test_tides.gd) — The baked tides series from the operator's BlueOS module (TABOO 0.029)
 - [godot/tests/test_trial.gd](../godot/tests/test_trial.gd) — TrialCore against the JS reference: every record of
 - [godot/tests/test_volumetric.gd](../godot/tests/test_volumetric.gd) — VolumetricCore against the Python numbers of the operator's repo
 - [godot/tests/test_volumetric_screen.gd](../godot/tests/test_volumetric_screen.gd) — The volumetric laser screen (VolumetricScreen, TABOO 0.022, phase V2):
@@ -646,7 +648,6 @@
 - [docs/story/LOCK_CALIBRATION_DESIGN_2026-10-02.md](../docs/story/LOCK_CALIBRATION_DESIGN_2026-10-02.md) 📄 — Калибровка акустической матрицы — модуль вскрытия замков: три поправки, графика, промты (2026-10-02)
 - [docs/story/MISSION_AKULA_ISSYK_KUL_2026-10-02.md](../docs/story/MISSION_AKULA_ISSYK_KUL_2026-10-02.md) 📄 — Миссия-контракт «Акула Иссык-Куля» — поймать Мега-щуку (2026-10-02)
 - [docs/story/OPERATOR_APPARATUS_2026-10-02.md](../docs/story/OPERATOR_APPARATUS_2026-10-02.md) 📄 — Аппараты и репо оператора в «Атласе воды» (опись по ТАБУ №0.022)
-- [docs/story/ORDER_QVIQA_CODEX_2026-10-03.md](../docs/story/ORDER_QVIQA_CODEX_2026-10-03.md) 📄 — Кодекс Ордена QVIQA — лор, Конституция, контракты, путь, сообщество (2026-10-03)
 - [docs/story/PILOT_EPISODE_1_TABU_2026-10-02.md](../docs/story/PILOT_EPISODE_1_TABU_2026-10-02.md) 📄 — «Атлас воды», серия 1 — «Табу». Пилот: первые 15 минут (Quest 3S)
 - [docs/story/PROMPT_INTRO_SIERRA_ECOQUEST_2026-10-02.md](../docs/story/PROMPT_INTRO_SIERRA_ECOQUEST_2026-10-02.md) 📄 — Промпт заставки и входа в игру: «Атлас воды» в духе Sierra (оммаж EcoQuest) — 2026-10-02
 - [docs/story/chorus-ep1/AKULA_CHORUS_2026-10-02.md](../docs/story/chorus-ep1/AKULA_CHORUS_2026-10-02.md) 📄 — Хор: проверка контракта «Акула Иссык-Куля» (2026-10-02)
@@ -654,6 +655,7 @@
 - [docs/story/chorus-ep1/INSIGHTS_CHORUS_2026-10-02.md](../docs/story/chorus-ep1/INSIGHTS_CHORUS_2026-10-02.md) 📄 — Хор: 12 инсайтов первой серии «Табу» — 2026-10-02
 - [docs/story/chorus-ep1/INSIGHT_PROMPTS_2026-10-02.md](../docs/story/chorus-ep1/INSIGHT_PROMPTS_2026-10-02.md) 📄 — Промты кадров 12 инсайтов — хор сценаристов (2026-10-02)
 - [docs/story/chorus-ep1/NARRATION_v4_24_LENSES.md](../docs/story/chorus-ep1/NARRATION_v4_24_LENSES.md) 📄 — Закадровый текст v4 — «Атлас воды · Серия 1 · Табу»
+- [docs/story/qviqa/ORDER_QVIQA_CODEX_2026-10-03.md](../docs/story/qviqa/ORDER_QVIQA_CODEX_2026-10-03.md) 📄 — Кодекс Ордена QVIQA — лор, Конституция, контракты, путь, сообщество (2026-10-03)
 - [docs/version-3.0/A10_OFFLINE_SYNC.md](../docs/version-3.0/A10_OFFLINE_SYNC.md) 📄 — A10: Offline Sync & Client-Side Caching
 - [docs/version-3.0/API_ERROR_HANDLING_GUIDE.md](../docs/version-3.0/API_ERROR_HANDLING_GUIDE.md) 📄 — API Error Handling & Edge Cases Guide
 - [docs/version-3.0/CLOUD_FUNCTIONS_DIALOGUE_API.md](../docs/version-3.0/CLOUD_FUNCTIONS_DIALOGUE_API.md) 📄 — Ludus Cloud Functions Dialogue API
