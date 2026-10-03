@@ -252,7 +252,10 @@ func _missing(t: Object, ml: Node) -> void:
 	# Let the worker thread finish reporting before the logger goes.
 	for _i in 4:
 		await t.process_frame
-	OS.remove_logger(catch)
+	# The logger is never removed: removing it while the loader's worker
+	# thread may still be logging crashed the CI runner now and then
+	# (signal 11 at this line).  The tree keeps it until the process ends.
+	t.set_meta("module_loader_catch", catch)
 	t._check(nope in ml.failed, "the failed path is recorded: %s"
 		% [ml.failed])
 	t._check(catch.has("ModuleLoader") and catch.has(nope),
