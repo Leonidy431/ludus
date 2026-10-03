@@ -39,8 +39,12 @@ func run(t: Object) -> void:
 		"size_m": [0.5, 0.5, 0.5]})
 	t._check(LocationsCore.gap(Vector2.ZERO, on_heart)
 		< LocationsCore.CLEAR_M, "a thing at the heart is caught")
-	t._check(LocationsCore.has_church_word("Святой ключ"),
-		"a church word on a label is caught")
+	# The operator lifted the stop-list on 2026-10-02: the finder still
+	# sees the word, the gate lets the label through.
+	t._check(LocationsCore.find_church_word("Святой ключ") != "",
+		"the stop-list still finds a church word on a label")
+	t._check(not LocationsCore.has_church_word("Святой ключ"),
+		"and the lifted gate lets it through")
 
 
 func _location(t: Object, loc: Dictionary, things: Dictionary,

@@ -37,6 +37,11 @@ const DIVE_SCENE := "res://scenes/dive.tscn"
 const SETTLE := 6
 const SAMPLE := 3
 const EMPTY_FRAMES := 8
+## Frames a place waits for the dive held ahead, and for a let-go load
+## to leave the loader before the next place opens.  At the host's
+## 10-30 frames a second that is minutes: a load that never ends is a
+## failure to name, not a run that hangs until CI kills it silently.
+const WAIT_MAX := 3000
 ## The metrics held to the budgets, each with the scene budget's key.
 const CHECKED := ["draw_calls_frame", "primitives_two_eyes_est",
 	"static_memory_delta_bytes", "texture_memory_over_empty_bytes"]
@@ -56,6 +61,9 @@ var frame := 0
 var rows: Array = []
 var row := {}
 var base_static := 0
+var waited := 0
+## True between two places: the next one opens when the loader is clear.
+var between := false
 
 
 func _initialize() -> void:
@@ -127,6 +135,17 @@ func _process(_dt: float) -> bool:
 			return false
 		_next()
 		return false
+	if between:
+		# The next place opens only when the dive let go is out of the
+		# loader: a place built while the loader still makes the dive's
+		# models would ask for the same files on two threads at once.
+		if not _ml().dropping.is_empty():
+			return _wait("let-go loads still running: %s"
+				% [_ml().dropping])
+		between = false
+		waited = 0
+		_next()
+		return false
 	var views := _views(scene.p)
 	var v: Dictionary = views[view]
 	scene.pos = v.pos
@@ -141,7 +160,8 @@ func _process(_dt: float) -> bool:
 	if with_dive and not _ml().is_ready(DIVE_SCENE):
 		# The row counts the dive once it is in memory, not a half load.
 		frame = mini(frame, SETTLE)
-		return false
+		return _wait("dive not loaded (%.0f %%)"
+			% [100.0 * _ml().progress(DIVE_SCENE)])
 	if frame > SETTLE:
 		_sample(v.name)
 	if frame >= SETTLE + SAMPLE:
@@ -161,6 +181,7 @@ func _process(_dt: float) -> bool:
 						"texture_memory_over_empty_bytes"]:
 					row[k] = 0
 				with_dive = true
+				waited = 0
 				_ml().prefetch(DIVE_SCENE)
 				view = views.size() - 1
 				frame = 0
@@ -169,12 +190,25 @@ func _process(_dt: float) -> bool:
 				_ml().release(DIVE_SCENE)
 				with_dive = false
 			scene.heart_panel = {}
+			print("place %d/%d %s" % [step + 1, ids.size(), ids[step]])
 			step += 1
 			if step >= ids.size():
 				quit(_finish())
 				return true
-			_next()
+			between = true
 	return false
+
+
+## One more frame of waiting; past WAIT_MAX the run stops with the
+## reason and the place, so a red CI step says what hung.
+func _wait(what: String) -> bool:
+	waited += 1
+	if waited < WAIT_MAX:
+		return false
+	push_error("ПРОВЕРКА мест: %s — %s после %d кадров" % [
+		ids[step] if step < ids.size() else "-", what, WAIT_MAX])
+	quit(1)
+	return true
 
 
 ## Build the next place and start its row.

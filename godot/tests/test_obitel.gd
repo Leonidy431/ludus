@@ -100,4 +100,101 @@ func in_hub(t: Object) -> void:
 		# The way from the courtyard to the pier stays open.
 		t._check(not (at.x > -1.0 and at.x < 9.0 and absf(at.y) < 1.2),
 			p.id + " off the way to the pier")
+	_landing(t)
+	LocationBuild.forget_faces()
 	hub.queue_free()
+
+
+## A thing rests on its support within this many millimetres (TABOO
+## 0.016 item 3); more is floating, less is sinking.
+const LAND_MM := 5.0
+
+
+## Absolute gravity in the hub (CLAUDE.md TABOO 0.016 item 3): a thing
+## on the floor or a table rests its lowest point on the surface straight
+## under its middle within LAND_MM; a card on a stand touches its own
+## posts, which stand hidden behind it on the ground and reach above its
+## middle.  Cards on a wall and the board of the red corner are flagged
+## by their mount and only counted.  A holy board is thin along the axis
+## it faces.  The hub bakes its still geometry into a few meshes
+## (StaticBatch), the things and posts among them, so the things are
+## measured on a second, unbaked build of the same plan, and the surfaces
+## are the real hub's, less each thing's own baked copy.
+func _landing(t: Object) -> void:
+	var fresh := Node3D.new()
+	(t as SceneTree).root.add_child(fresh)
+	var root := ObitelLayout.build_obitel_objects(fresh)
+	var under := LocationBuild.meshes_of(hub)
+	var own_boxes := []
+	var posts := {}
+	for c in root.get_children():
+		if c.has_meta("obitel"):
+			own_boxes.append((c as Node3D).global_transform
+				* ObitelLayout.local_aabb(c).grow(0.001))
+		if c.has_meta("card_of"):
+			var id: String = c.get_meta("card_of")
+			if not posts.has(id):
+				posts[id] = []
+			posts[id].append(c)
+	var landed := 0
+	var hung := 0
+	var walls := 0
+	for c in root.get_children():
+		if not c.has_meta("obitel"):
+			continue
+		var holder := c as Node3D
+		var o: Dictionary = holder.get_meta("obitel")
+		var mount: String = ObitelLayout.slot_mount(o)
+		var own := ObitelLayout.local_aabb(holder)
+		if o.flags.get("holy", false):
+			t._check(own.size.z <= 0.2, "%s: holy board is thin along its "
+				% o.id + "facing (%s)" % own.size)
+		if mount == "stand":
+			hung += int(_on_posts(t, o.id, holder, own, posts.get(o.id, []),
+				under, own_boxes))
+			continue
+		if not mount in ["floor", "table"]:
+			walls += 1
+			continue
+		var box: AABB = holder.global_transform * own
+		var mid := box.get_center()
+		var top := LocationBuild.surface_below(under, Vector3(mid.x,
+			box.position.y + 0.05, mid.z), own_boxes)
+		var gap := (box.position.y - top) * 1000.0
+		t._check(absf(gap) <= LAND_MM, "%s (%s) rests on its support "
+			% [o.id, mount] + "(%.1f mm)" % gap)
+		landed += int(absf(gap) <= LAND_MM)
+	fresh.free()
+	print(("obitel: landing (TABOO 0.016 item 3): %d things rest on "
+		+ "their support within %.1f mm, %d cards hang on their posts, "
+		+ "%d hang on a wall or in the red corner") % [landed, LAND_MM,
+			hung, walls])
+
+
+func _on_posts(t: Object, id: String, holder: Node3D, own: AABB,
+		parts: Array, under: Array, ignore: Array) -> bool:
+	t._check(parts.size() >= 2, id + " on a stand has its posts")
+	if parts.size() < 2:
+		return false
+	var pw := AABB()
+	for i in parts.size():
+		var mi := parts[i] as MeshInstance3D
+		var b: AABB = mi.global_transform * mi.mesh.get_aabb()
+		pw = b if i == 0 else pw.merge(b)
+	var pb: AABB = holder.global_transform.affine_inverse() * pw
+	var touch := absf(own.position.z - pb.end.z) * 1000.0
+	var hidden := pb.position.x >= own.position.x - 0.005 \
+		and pb.end.x <= own.end.x + 0.005
+	var mid := pw.get_center()
+	# The posts' own baked copy is passed over as well.
+	var top := LocationBuild.surface_below(under, Vector3(mid.x,
+		pw.position.y + 0.05, mid.z), ignore + [pw.grow(0.001)])
+	var gap := (pw.position.y - top) * 1000.0
+	t._check(touch <= LAND_MM, "%s touches its posts (%.1f mm)"
+		% [id, touch])
+	t._check(hidden, id + "'s posts stand hidden behind it")
+	t._check(pb.end.y >= own.get_center().y,
+		id + "'s posts reach above its middle")
+	t._check(absf(gap) <= LAND_MM, "%s's posts stand on the ground "
+		% id + "(%.1f mm)" % gap)
+	return touch <= LAND_MM and hidden and absf(gap) <= LAND_MM

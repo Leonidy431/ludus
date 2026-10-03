@@ -1,0 +1,1611 @@
+{
+ "doc": "docs/HLD_PILOT_DETAILS_55_2026-10-02.md",
+ "about": "Details of the pilot, chosen by scripts/decisions/pilot_details.py; do not edit.",
+ "generated": 833,
+ "seeds": 119,
+ "variants": [
+  "as_is",
+  "plus_haptic",
+  "plus_duck",
+  "later5",
+  "no_text",
+  "double",
+  "one_branch"
+ ],
+ "pruned": {
+  "barred variant": 285,
+  "holy": 1
+ },
+ "scored": 547,
+ "criteria": [
+  "surprise",
+  "clarity",
+  "body",
+  "stakes",
+  "mystery",
+  "eras",
+  "seen",
+  "payoff",
+  "truth",
+  "comfort",
+  "canon",
+  "cheapness"
+ ],
+ "chosen": [
+  {
+   "id": "d03.as_is",
+   "beat": "drop",
+   "at": 1,
+   "book": "schell",
+   "idea_ru": "Первая секунда — полная тишина, даже без room tone: ухо ищет звук.",
+   "do": [
+    {
+     "duck": -60,
+     "s": 1.5
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 9,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 73
+  },
+  {
+   "id": "d07.plus_haptic",
+   "beat": "drop",
+   "at": 4,
+   "book": "truby",
+   "idea_ru": "На столе лежит закрытая тетрадь — журнал погружения; позже он заговорит.",
+   "do": [
+    {
+     "show": "Logbook"
+    },
+    {
+     "haptic": "breath",
+     "hand": "both"
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 10,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 9,
+    "seen": 3,
+    "payoff": 8,
+    "truth": 6,
+    "comfort": 8,
+    "canon": 10,
+    "cheapness": 8
+   },
+   "total": 82
+  },
+  {
+   "id": "d02.as_is",
+   "beat": "drop",
+   "at": 5,
+   "book": "hitch",
+   "idea_ru": "Свет в комнате на миг проседает, будто кто-то открыл дверь внизу.",
+   "do": [
+    {
+     "lamp": 0.4,
+     "s": 0.6,
+     "room": true
+    }
+   ],
+   "scores": {
+    "surprise": 8,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 8,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 75
+  },
+  {
+   "id": "d06.as_is",
+   "beat": "drop",
+   "at": 7,
+   "book": "mckee",
+   "idea_ru": "Звук капли приходит из-под пола, а не с потолка.",
+   "do": [
+    {
+     "sfx": "click"
+    }
+   ],
+   "scores": {
+    "surprise": 8,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 71
+  },
+  {
+   "id": "w01.as_is",
+   "beat": "water_rises",
+   "at": 2,
+   "book": "tarkov",
+   "idea_ru": "Вода поднимается толчками, по ритму пинга сонара.",
+   "do": [
+    {
+     "water": 0.25,
+     "s": 1.0
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 9,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 9,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 76
+  },
+  {
+   "id": "w04.as_is",
+   "beat": "water_rises",
+   "at": 4,
+   "book": "schell",
+   "idea_ru": "Обе руки чувствуют лёгкую дрожь — вода у колен.",
+   "do": [
+    {
+     "haptic": "breath",
+     "hand": "both"
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 9,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 9,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 79
+  },
+  {
+   "id": "i01.plus_haptic",
+   "beat": "immersion",
+   "at": 2,
+   "book": "kafka",
+   "idea_ru": "Первое слово Приора приходит раньше, чем лампа: тьма уже говорит с тобой.",
+   "do": [
+    {
+     "say": "ОПЕРАТОР."
+    },
+    {
+     "haptic": "breath",
+     "hand": "both"
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 10,
+    "stakes": 8,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 9,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 8,
+    "canon": 10,
+    "cheapness": 9
+   },
+   "total": 82
+  },
+  {
+   "id": "i05.as_is",
+   "beat": "immersion",
+   "at": 15,
+   "book": "hitch",
+   "idea_ru": "Мутная взвесь на миг расходится — внизу что-то большое, и снова мгла.",
+   "do": [
+    {
+     "fog": 0.03,
+     "s": 1.2
+    }
+   ],
+   "scores": {
+    "surprise": 8,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 8,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 75
+  },
+  {
+   "id": "h01.as_is",
+   "beat": "hands_on_stick",
+   "at": 0,
+   "book": "tarkov",
+   "idea_ru": "Лампа загорается не сразу: три вспышки разогрева, как у настоящей газоразрядной.",
+   "do": [
+    {
+     "flicker": 3
+    }
+   ],
+   "scores": {
+    "surprise": 8,
+    "clarity": 8,
+    "body": 9,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 8,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 76
+  },
+  {
+   "id": "h03.plus_haptic",
+   "beat": "hands_on_stick",
+   "at": 6,
+   "book": "truby",
+   "idea_ru": "Амфора лежит горлом к стене, как будто её положили, а не уронили.",
+   "do": [
+    {
+     "line": "Её положили. Не уронили."
+    },
+    {
+     "haptic": "breath",
+     "hand": "both"
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 10,
+    "stakes": 4,
+    "mystery": 8,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 8,
+    "truth": 6,
+    "comfort": 8,
+    "canon": 10,
+    "cheapness": 9
+   },
+   "total": 81
+  },
+  {
+   "id": "h05.as_is",
+   "beat": "hands_on_stick",
+   "at": 14,
+   "book": "chekhov",
+   "idea_ru": "Писец: «Запомни, где амфора. Она понадобится». (Понадобится во 2-й серии.)",
+   "do": [
+    {
+     "line": "Запомни, где амфора."
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 8,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 72
+  },
+  {
+   "id": "h07.as_is",
+   "beat": "hands_on_stick",
+   "at": 30,
+   "book": "kafka",
+   "idea_ru": "Приор отмечает: «Амфора зарегистрирована». Он видит то же, что ты.",
+   "do": [
+    {
+     "say": "АМФОРА ЗАРЕГИСТРИРОВАНА."
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 8,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 71
+  },
+  {
+   "id": "a01.plus_haptic",
+   "beat": "walls",
+   "at": 0,
+   "book": "eco",
+   "idea_ru": "Сонар чертит прямой угол — природа так не строит.",
+   "do": [
+    {
+     "line": "Прямой угол. Природа так не строит."
+    },
+    {
+     "haptic": "breath",
+     "hand": "both"
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 10,
+    "stakes": 4,
+    "mystery": 8,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 9,
+    "comfort": 8,
+    "canon": 10,
+    "cheapness": 9
+   },
+   "total": 79
+  },
+  {
+   "id": "a07.as_is",
+   "beat": "walls",
+   "at": 30,
+   "book": "truby",
+   "idea_ru": "Камень стены с тем же знаком-кометой, что будет на руке.",
+   "do": [
+    {
+     "show": "WallMark"
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 8,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 9
+   },
+   "total": 71
+  },
+  {
+   "id": "t03.plus_haptic",
+   "beat": "thermocline",
+   "at": 6,
+   "book": "tarkov",
+   "idea_ru": "Взвесь над слоем висит неподвижной пеленой — граница видна.",
+   "do": [
+    {
+     "fog": 0.25,
+     "s": 4.0
+    },
+    {
+     "haptic": "breath",
+     "hand": "both"
+    }
+   ],
+   "scores": {
+    "surprise": 8,
+    "clarity": 8,
+    "body": 10,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 8,
+    "canon": 10,
+    "cheapness": 9
+   },
+   "total": 76
+  },
+  {
+   "id": "t06.as_is",
+   "beat": "thermocline",
+   "at": 20,
+   "book": "kafka",
+   "idea_ru": "Приор: «Ниже 50 м ваша страховка недействительна».",
+   "do": [
+    {
+     "say": "НИЖЕ 50 М ВАША СТРАХОВКА НЕДЕЙСТВИТЕЛЬНА."
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 8,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 71
+  },
+  {
+   "id": "t07.as_is",
+   "beat": "thermocline",
+   "at": 30,
+   "book": "iceberg",
+   "idea_ru": "Сонар на миг рисует силуэт человека в иле — и это камень.",
+   "do": [
+    {
+     "line": "Силуэт. Нет — камень."
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 8,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 71
+  },
+  {
+   "id": "j01.as_is",
+   "beat": "tether_jerk",
+   "at": 0,
+   "book": "hitch",
+   "idea_ru": "Перед рывком 2 с полной тишины — бомба под столом.",
+   "do": [
+    {
+     "duck": -60,
+     "s": 2.0
+    }
+   ],
+   "scores": {
+    "surprise": 8,
+    "clarity": 8,
+    "body": 9,
+    "stakes": 8,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 81
+  },
+  {
+   "id": "j04.plus_haptic",
+   "beat": "tether_jerk",
+   "at": 4,
+   "book": "mckee",
+   "idea_ru": "Пульт: «НАТЯЖЕНИЕ 340 КГ» — больше, чем весит аппарат.",
+   "do": [
+    {
+     "say": "НАТЯЖЕНИЕ ТРОСА 340 КГ"
+    },
+    {
+     "haptic": "breath",
+     "hand": "both"
+    }
+   ],
+   "scores": {
+    "surprise": 8,
+    "clarity": 8,
+    "body": 10,
+    "stakes": 8,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 8,
+    "canon": 10,
+    "cheapness": 9
+   },
+   "total": 80
+  },
+  {
+   "id": "j06.as_is",
+   "beat": "tether_jerk",
+   "at": 15,
+   "book": "kafka",
+   "idea_ru": "Приор: «Не беспокойтесь. Это мы».",
+   "do": [
+    {
+     "say": "НЕ БЕСПОКОЙТЕСЬ. ЭТО МЫ."
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 9,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 73
+  },
+  {
+   "id": "j07.as_is",
+   "beat": "tether_jerk",
+   "at": 25,
+   "book": "truby",
+   "idea_ru": "Писец замечает: трос дёрнули с берега, не с лодки.",
+   "do": [
+    {
+     "line": "Тянули с берега. Не с лодки."
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 8,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 72
+  },
+  {
+   "id": "b01.plus_haptic",
+   "beat": "bookmark",
+   "at": 0,
+   "book": "eco",
+   "idea_ru": "В журнале — строка, которую оператор не писал. Подпись: «03:12».",
+   "do": [
+    {
+     "line": "Строка не моя. 03:12."
+    },
+    {
+     "haptic": "breath",
+     "hand": "both"
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 10,
+    "stakes": 8,
+    "mystery": 8,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 8,
+    "canon": 10,
+    "cheapness": 9
+   },
+   "total": 80
+  },
+  {
+   "id": "b02.as_is",
+   "beat": "bookmark",
+   "at": 5,
+   "book": "mitchell",
+   "idea_ru": "Чужая строка написана тем же почерком, что и твоя.",
+   "do": [
+    {
+     "line": "Тот же почерк."
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 9,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 73
+  },
+  {
+   "id": "b03.as_is",
+   "beat": "bookmark",
+   "at": 9,
+   "book": "kafka",
+   "idea_ru": "Пульт: «ДОСТУП: ОРДЕН. УРОВЕНЬ: ВЛАДЕЛЕЦ».",
+   "do": [
+    {
+     "say": "ДОСТУП: ОРДЕН. УРОВЕНЬ: ВЛАДЕЛЕЦ"
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 8,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 71
+  },
+  {
+   "id": "b07.as_is",
+   "beat": "bookmark",
+   "at": 32,
+   "book": "lewis",
+   "idea_ru": "Приор называет тебя по должности, не по имени: «Оператор, вы устали».",
+   "do": [
+    {
+     "say": "ОПЕРАТОР, ВЫ УСТАЛИ."
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 9,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 73
+  },
+  {
+   "id": "l01.plus_haptic",
+   "beat": "lure",
+   "at": 0,
+   "book": "ladder",
+   "idea_ru": "Блеск драм появляется до лампы: прилог светит сам.",
+   "do": [
+    {
+     "show": "Drams"
+    },
+    {
+     "haptic": "breath",
+     "hand": "both"
+    }
+   ],
+   "scores": {
+    "surprise": 8,
+    "clarity": 8,
+    "body": 10,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 9,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 8,
+    "canon": 10,
+    "cheapness": 8
+   },
+   "total": 81
+  },
+  {
+   "id": "l02.one_branch",
+   "beat": "lure",
+   "at": 3,
+   "book": "lewis",
+   "idea_ru": "Приор не приказывает, он советует: «Это просто серебро. Никому не нужное».",
+   "do": [
+    {
+     "say": "ЭТО ПРОСТО СЕРЕБРО. НИКОМУ НЕ НУЖНОЕ.",
+     "if": "captive"
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 9,
+    "payoff": 4,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 74
+  },
+  {
+   "id": "l03.one_branch",
+   "beat": "lure",
+   "at": 6,
+   "book": "homer",
+   "idea_ru": "Тонкий звон, как от монет, слышен только когда смотришь на них.",
+   "do": [
+    {
+     "sfx": "take",
+     "if": "captive"
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 9,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 4,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 74
+  },
+  {
+   "id": "l06.one_branch",
+   "beat": "lure",
+   "at": 18,
+   "book": "hitch",
+   "idea_ru": "Одна драма скатывается ближе к руке.",
+   "do": [
+    {
+     "move": "Drams",
+     "by": [
+      0.05,
+      0,
+      0.08
+     ],
+     "s": 1.5,
+     "if": "captive"
+    }
+   ],
+   "scores": {
+    "surprise": 8,
+    "clarity": 8,
+    "body": 9,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 4,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 9
+   },
+   "total": 77
+  },
+  {
+   "id": "p01.one_branch",
+   "beat": "price_rises",
+   "at": 0,
+   "book": "lewis",
+   "idea_ru": "Цена в сообщении растёт на каждый лишний вдох взгляда.",
+   "do": [
+    {
+     "say": "ЦЕНА: 300. 400. 500.",
+     "if": "captive"
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 9,
+    "payoff": 4,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 74
+  },
+  {
+   "id": "p02.plus_haptic",
+   "beat": "price_rises",
+   "at": 5,
+   "book": "mckee",
+   "idea_ru": "Приор называет глубину до сантиметра: он видит твой прибор.",
+   "do": [
+    {
+     "say": "52,37 М. МЫ ВИДИМ ВАШ ПРИБОР."
+    },
+    {
+     "haptic": "breath",
+     "hand": "both"
+    }
+   ],
+   "scores": {
+    "surprise": 8,
+    "clarity": 8,
+    "body": 10,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 9,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 8,
+    "canon": 10,
+    "cheapness": 9
+   },
+   "total": 82
+  },
+  {
+   "id": "p05.one_branch",
+   "beat": "price_rises",
+   "at": 22,
+   "book": "dosto",
+   "idea_ru": "Приор: «Вам никто не скажет спасибо за отказ».",
+   "do": [
+    {
+     "say": "ВАМ НИКТО НЕ СКАЖЕТ СПАСИБО ЗА ОТКАЗ.",
+     "if": "captive"
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 8,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 4,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 72
+  },
+  {
+   "id": "p07.one_branch",
+   "beat": "price_rises",
+   "at": 40,
+   "book": "schell",
+   "idea_ru": "Если рука тянется — манипулятор начинает сам раскрывать захват.",
+   "do": [
+    {
+     "sfx": "servo",
+     "if": "captive"
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 9,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 4,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 74
+  },
+  {
+   "id": "c02.plus_haptic",
+   "beat": "choice_echo",
+   "at": 4,
+   "book": "hitch",
+   "idea_ru": "Взял: над водой проходит дрон — тень по дну.",
+   "do": [
+    {
+     "lamp": 0.6,
+     "s": 1.5,
+     "if": "captive"
+    },
+    {
+     "haptic": "breath",
+     "hand": "both"
+    }
+   ],
+   "scores": {
+    "surprise": 8,
+    "clarity": 8,
+    "body": 10,
+    "stakes": 8,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 8,
+    "canon": 10,
+    "cheapness": 9
+   },
+   "total": 80
+  },
+  {
+   "id": "c04.as_is",
+   "beat": "choice_echo",
+   "at": 8,
+   "book": "truby",
+   "idea_ru": "Отвернулся: писец вписывает драмы в книгу находок — твоим именем.",
+   "do": [
+    {
+     "line": "Записано в книгу находок.",
+     "if": "virtue"
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 8,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 72
+  },
+  {
+   "id": "c05.as_is",
+   "beat": "choice_echo",
+   "at": 12,
+   "book": "lewis",
+   "idea_ru": "Приор после отказа пишет ласково — и от этого холодно.",
+   "do": [
+    {
+     "say": "МЫ ВАС ПОНИМАЕМ.",
+     "if": "virtue"
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 9,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 73
+  },
+  {
+   "id": "c07.one_branch",
+   "beat": "choice_echo",
+   "at": 20,
+   "book": "chekhov",
+   "idea_ru": "Драмы исчезают из ила при любом исходе: кто-то их уже взял.",
+   "do": [
+    {
+     "hide": "Drams",
+     "if": "captive"
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 9,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 73
+  },
+  {
+   "id": "k03.as_is",
+   "beat": "khachkar",
+   "at": 5,
+   "book": "cousteau",
+   "idea_ru": "Взвесь оседает: вода у камня прозрачней.",
+   "do": [
+    {
+     "fog": 0.06,
+     "s": 10.0
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 9,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 70
+  },
+  {
+   "id": "k05.as_is",
+   "beat": "khachkar",
+   "at": 20,
+   "book": "mitchell",
+   "idea_ru": "Пульт возвращается только когда камень за спиной.",
+   "do": [
+    {
+     "duck": -60,
+     "s": 4.0
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 9,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 73
+  },
+  {
+   "id": "y01.plus_haptic",
+   "beat": "diary",
+   "at": 0,
+   "book": "eco",
+   "idea_ru": "Сканер читает грабар строку за строкой — буквы чужие, перевод свой.",
+   "do": [
+    {
+     "say": "СКАН: ГРАБАР. СТРОКА 1 ИЗ 40."
+    },
+    {
+     "haptic": "breath",
+     "hand": "both"
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 10,
+    "stakes": 4,
+    "mystery": 8,
+    "eras": 9,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 8,
+    "canon": 10,
+    "cheapness": 9
+   },
+   "total": 82
+  },
+  {
+   "id": "y02.as_is",
+   "beat": "diary",
+   "at": 4,
+   "book": "mitchell",
+   "idea_ru": "Под переводом — пометка писца на полях: «переписал с листов рыцаря».",
+   "do": [
+    {
+     "line": "На полях: переписал с листов рыцаря."
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 9,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 73
+  },
+  {
+   "id": "y07.as_is",
+   "beat": "diary",
+   "at": 35,
+   "book": "iceberg",
+   "idea_ru": "Между строками — пятно, похожее на воду. Или на слёзы.",
+   "do": [
+    {
+     "line": "Пятно. Вода? Или нет."
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 8,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 71
+  },
+  {
+   "id": "m01.plus_haptic",
+   "beat": "mark_line",
+   "at": 0,
+   "book": "mitchell",
+   "idea_ru": "Строка обрывается на слове — сканер пишет «КОНЕЦ ЛИСТА».",
+   "do": [
+    {
+     "say": "КОНЕЦ ЛИСТА."
+    },
+    {
+     "haptic": "breath",
+     "hand": "both"
+    }
+   ],
+   "scores": {
+    "surprise": 8,
+    "clarity": 8,
+    "body": 10,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 9,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 8,
+    "canon": 10,
+    "cheapness": 9
+   },
+   "total": 82
+  },
+  {
+   "id": "m04.as_is",
+   "beat": "mark_line",
+   "at": 10,
+   "book": "truby",
+   "idea_ru": "Писец: «Дальше листов нет. Ищи остальное».",
+   "do": [
+    {
+     "line": "Дальше листов нет. Ищи."
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 8,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 72
+  },
+  {
+   "id": "m05.as_is",
+   "beat": "mark_line",
+   "at": 14,
+   "book": "eco",
+   "idea_ru": "Обрыв не от времени: край листа срезан ножом.",
+   "do": [
+    {
+     "line": "Край срезан ножом."
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 8,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 71
+  },
+  {
+   "id": "m06.as_is",
+   "beat": "mark_line",
+   "at": 18,
+   "book": "lewis",
+   "idea_ru": "Приор: «Мы прочли этот лист раньше вас».",
+   "do": [
+    {
+     "say": "МЫ ПРОЧЛИ ЭТОТ ЛИСТ РАНЬШЕ ВАС."
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 9,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 73
+  },
+  {
+   "id": "u04.plus_haptic",
+   "beat": "ascent",
+   "at": 18,
+   "book": "mitchell",
+   "idea_ru": "Журнал пишет последнюю строку погружения — для того, кто прочтёт его потом.",
+   "do": [
+    {
+     "line": "Тому, кто прочтёт: я поднялся."
+    },
+    {
+     "haptic": "breath",
+     "hand": "both"
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 10,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 9,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 8,
+    "canon": 10,
+    "cheapness": 9
+   },
+   "total": 78
+  },
+  {
+   "id": "u05.as_is",
+   "beat": "ascent",
+   "at": 24,
+   "book": "hitch",
+   "idea_ru": "Лампа гаснет за метр до поверхности — сама.",
+   "do": [
+    {
+     "lamp": 0.0,
+     "s": 20.0
+    }
+   ],
+   "scores": {
+    "surprise": 8,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 71
+  },
+  {
+   "id": "r01.as_is",
+   "beat": "room_drains",
+   "at": 0,
+   "book": "tarkov",
+   "idea_ru": "Комната возвращается в тишине: ни звука, 2 с.",
+   "do": [
+    {
+     "duck": -60,
+     "s": 2.0
+    }
+   ],
+   "scores": {
+    "surprise": 8,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 71
+  },
+  {
+   "id": "r04.as_is",
+   "beat": "room_drains",
+   "at": 9,
+   "book": "mitchell",
+   "idea_ru": "Знак на руке проступает не сразу — как чернила на промокшем листе.",
+   "do": [
+    {
+     "show": "Mark"
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 9,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 9,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 9
+   },
+   "total": 78
+  },
+  {
+   "id": "r06.plus_haptic",
+   "beat": "room_drains",
+   "at": 15,
+   "book": "schell",
+   "idea_ru": "Тетрадь раскрыта на странице с твоей сегодняшней датой.",
+   "do": [
+    {
+     "line": "Журнал раскрыт на сегодняшнем дне."
+    },
+    {
+     "haptic": "breath",
+     "hand": "both"
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 10,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 9,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 8,
+    "canon": 10,
+    "cheapness": 9
+   },
+   "total": 78
+  },
+  {
+   "id": "q01.as_is",
+   "beat": "prior_last",
+   "at": 0,
+   "book": "lewis",
+   "idea_ru": "Последнее сообщение без подписи, но ты уже знаешь, чьё.",
+   "do": [
+    {
+     "say": "У РЫЦАРЯ БЫЛ ТАКОЙ ЖЕ."
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 9,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 73
+  },
+  {
+   "id": "q02.plus_haptic",
+   "beat": "prior_last",
+   "at": 4,
+   "book": "chekhov",
+   "idea_ru": "Вторая строка через паузу: «Его щит мы нашли первыми».",
+   "do": [
+    {
+     "say": "ЕГО ЩИТ МЫ НАШЛИ ПЕРВЫМИ."
+    },
+    {
+     "haptic": "breath",
+     "hand": "both"
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 10,
+    "stakes": 8,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 8,
+    "truth": 6,
+    "comfort": 8,
+    "canon": 10,
+    "cheapness": 9
+   },
+   "total": 81
+  },
+  {
+   "id": "q05.as_is",
+   "beat": "prior_last",
+   "at": 11,
+   "book": "iceberg",
+   "idea_ru": "Экран гаснет, а последнее слово ещё секунду висит в глазах.",
+   "do": [
+    {
+     "duck": -60,
+     "s": 3.0
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 4,
+    "mystery": 8,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 71
+  },
+  {
+   "id": "q06.as_is",
+   "beat": "prior_last",
+   "at": 13,
+   "book": "kafka",
+   "idea_ru": "Приор: «Ждите письма». Письма приходят во второй серии.",
+   "do": [
+    {
+     "say": "ЖДИТЕ ПИСЬМА."
+    }
+   ],
+   "scores": {
+    "surprise": 4,
+    "clarity": 8,
+    "body": 3,
+    "stakes": 8,
+    "mystery": 4,
+    "eras": 3,
+    "seen": 3,
+    "payoff": 3,
+    "truth": 6,
+    "comfort": 9,
+    "canon": 10,
+    "cheapness": 10
+   },
+   "total": 71
+  }
+ ]
+}

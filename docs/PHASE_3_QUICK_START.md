@@ -127,9 +127,9 @@ adb devices  # Verify connection
 - ✅ API responses < 500ms (warm)
 - ✅ Desktop dialogue flow works end-to-end
 - ✅ Mobile responsive without horizontal scroll
-- ✅ Quest 3 renders at 72+ FPS
-- ✅ Quest 3 spatial audio functional (voice from correct direction)
-- ✅ 10-minute play session on Quest 3 without crashes
+- ☐ Quest 3 renders at 72+ FPS — не проверено в шлеме; подтверждает оператор
+- ☐ Quest 3 spatial audio functional (voice from correct direction) — не проверено в шлеме; подтверждает оператор
+- ☐ 10-minute play session on Quest 3 without crashes — не проверено в шлеме; подтверждает оператор
 - ✅ No critical (P0) bugs blocking production
 - ✅ Firestore under quota
 

@@ -1,0 +1,43 @@
+{
+  "id": "evening_cell_sample",
+  "note": "A sample environment abstracted from the evening-watch cell (TABOO 0.013): slots and surfaces in metres. The real spec is exported from the scene's own layout (godot/scripts/obitel_layout.gd) before the sets are wired to its nodes.",
+  "room": {"min": [-2.5, 0.0, -2.0], "max": [2.5, 2.8, 2.0]},
+  "wall_rgb": [0.60, 0.55, 0.50],
+  "heart": {"at": [0.0, 0.0, 0.6], "clear_m": 0.75},
+  "no_go": [{"id": "door", "min": [1.8, 0.0, 1.2], "max": [2.5, 2.1, 2.0]}],
+  "surfaces": [
+    {"id": "floor", "rgb": [0.30, 0.24, 0.18], "top": 0.0, "min": [-2.5, -2.0], "max": [2.5, 2.0]},
+    {"id": "bench", "rgb": [0.42, 0.30, 0.20], "top": 0.45, "min": [-2.2, -1.9], "max": [-0.8, -1.0]},
+    {"id": "table", "rgb": [0.50, 0.36, 0.24], "top": 0.78, "min": [0.8, -1.0], "max": [2.2, 0.2]}
+  ],
+  "items": [
+    {"id": "oil_lamp", "surface": "table", "size": [0.12, 0.14, 0.12],
+     "key": true, "light": "hearth", "lit_periods": ["dawn_blue", "dusk", "night"],
+     "palettes": [[0.15, 0.11, 0.08], [0.78, 0.70, 0.55]]},
+    {"id": "codex", "key": true, "surface": "table", "size": [0.30, 0.04, 0.22],
+     "palettes": [[0.30, 0.20, 0.12], [0.22, 0.16, 0.10]]},
+    {"id": "ink_pot", "surface": "table", "size": [0.07, 0.08, 0.07],
+     "palettes": [[0.12, 0.12, 0.14], [0.20, 0.14, 0.10]]},
+    {"id": "cup", "surface": "table", "size": [0.08, 0.09, 0.08],
+     "palettes": [[0.70, 0.60, 0.45], [0.55, 0.30, 0.20]]},
+    {"id": "water_jug", "surface": "bench", "size": [0.20, 0.28, 0.20],
+     "palettes": [[0.62, 0.38, 0.25], [0.50, 0.36, 0.28]]},
+    {"id": "jug_echo", "surface": "bench", "size": [0.20, 0.28, 0.20],
+     "echo": true,
+     "palettes": [[0.28, 0.20, 0.16], [0.24, 0.18, 0.18]]},
+    {"id": "scroll", "surface": "bench", "size": [0.35, 0.08, 0.08],
+     "palettes": [[0.80, 0.72, 0.56], [0.70, 0.62, 0.48]]},
+    {"id": "stool", "surface": "floor", "size": [0.35, 0.45, 0.35],
+     "palettes": [[0.42, 0.29, 0.17], [0.35, 0.25, 0.15]]},
+    {"id": "basket", "surface": "floor", "size": [0.45, 0.35, 0.45],
+     "palettes": [[0.65, 0.52, 0.30], [0.55, 0.44, 0.26]]},
+    {"id": "mat", "surface": "floor", "size": [0.9, 0.02, 0.5],
+     "palettes": [[0.50, 0.30, 0.22], [0.36, 0.34, 0.26]]},
+    {"id": "hydrophone", "surface": "floor", "size": [0.30, 0.50, 0.30],
+     "light": "instrument",
+     "palettes": [[0.70, 0.72, 0.74], [0.55, 0.58, 0.62]]},
+    {"id": "icon_board", "surface": "wall", "holy": true,
+     "fixed": {"pos": [-2.33, 1.5, 0.0], "yaw": 90.0, "scale": 1.0},
+     "size": [0.05, 0.40, 0.30], "palettes": [[0.30, 0.22, 0.12]]}
+  ]
+}

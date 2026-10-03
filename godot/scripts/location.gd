@@ -86,6 +86,10 @@ var cues: Array = []
 var shots_dir := ""
 var shot_list: Array = []
 var shot_frame := 0
+## --cast adds two frames for every person of a story standing here: in
+## front of him with his prompt read, and with his talk open.
+var cast_shots := false
+var shot_index := 0
 
 
 func _ready() -> void:
@@ -100,6 +104,8 @@ func _ready() -> void:
 		elif arg.begins_with("--locations="):
 			shot_list = Array(arg.trim_prefix("--locations=").split(",",
 				false))
+		elif arg == "--cast":
+			cast_shots = true
 	proof = shots_dir != ""
 	if proof:
 		DirAccess.make_dir_recursive_absolute(shots_dir)
@@ -146,10 +152,7 @@ func open_place(id: String) -> void:
 		if l is OmniLight3D:
 			lamp = l
 			lamp_energy = lamp.light_energy
-	things = [{"id": "heart", "pos": p.heart, "reach": LocationCore.REACH_M,
-			"ru": p.hint},
-		{"id": "exit", "pos": p.exit, "reach": LocationCore.EXIT_REACH_M,
-			"ru": LocationCore.exit_ru(p)}]
+	things = LocationCore.interactables(p)
 	figure = Sprite3D.new()
 	figure.pixel_size = 0.008
 	figure.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
@@ -344,14 +347,7 @@ func _fade(dt: float) -> void:
 
 
 func _nearest() -> Dictionary:
-	var best := {}
-	var best_d := INF
-	for th in things:
-		var d := Vector2(th.pos.x - pos.x, th.pos.z - pos.z).length()
-		if d < float(th.reach) and d < best_d:
-			best = th
-			best_d = d
-	return best
+	return LocationCore.nearest(things, pos)
 
 
 func _interact() -> void:
@@ -363,6 +359,9 @@ func _interact() -> void:
 		return
 	if th.id == "exit":
 		_leave()
+		return
+	if str(th.id).begins_with("cast:"):
+		_apply(LocationHeart.open_cast(th.person, st, ctx))
 		return
 	_apply(LocationHeart.open(loc, st, ctx))
 
@@ -546,17 +545,35 @@ func _on_webxr_started() -> void:
 const SHOT_VIEWS := ["heart", "near", "panel"]
 
 
+## The views of one place: the three of SHOT_VIEWS, and with --cast two
+## more for each person of a story standing there.
+func _views() -> Array:
+	var out: Array = SHOT_VIEWS.duplicate()
+	if cast_shots:
+		for c in p.get("cast", []):
+			if c.placed:
+				out += ["cast-" + str(c.npc), "castpanel-" + str(c.npc)]
+	return out
+
+
 func _shots() -> void:
-	var views := SHOT_VIEWS.size()
-	var n := shot_frame / (views * SHOT_FRAMES)
-	if n >= shot_list.size():
+	# The views of the place being shot; a place's frames run one after
+	# another, so the frame counter restarts for each place.
+	if shot_index >= shot_list.size():
 		get_tree().quit()
 		return
-	if p.id != shot_list[n]:
-		open_place(shot_list[n])
-	var view: String = SHOT_VIEWS[(shot_frame / SHOT_FRAMES) % views]
+	if p.id != shot_list[shot_index]:
+		open_place(shot_list[shot_index])
+		shot_frame = 0
+	var list := _views()
+	if shot_frame >= list.size() * SHOT_FRAMES:
+		shot_index += 1
+		return
+	var view: String = list[shot_frame / SHOT_FRAMES]
 	camera.rotation.x = -0.12
 	yaw = 0.0
+	if view.begins_with("cast"):
+		_cast_view(view)
 	match view:
 		"heart":
 			pos = p.start
@@ -579,3 +596,27 @@ func _shots() -> void:
 		get_viewport().get_texture().get_image().save_png(
 			"%s/godot-loc-%s-%s.png" % [shots_dir, p.id, view])
 	shot_frame += 1
+
+
+## A frame of one person of a story: the player a metre in front of him,
+## inside his reach, looking at him (his prompt read), or with his talk
+## open.
+func _cast_view(view: String) -> void:
+	var npc := view.get_slice("-", 1)
+	for c in p.get("cast", []):
+		if str(c.npc) != npc or not c.placed:
+			continue
+		var f := StoryCast.approach(c.pos, p)
+		pos = Vector3(f.x, 0.0, f.y)
+		var d: Vector3 = c.pos - pos
+		yaw = atan2(-d.x, -d.z)
+		message_left = 0.0
+		if view.begins_with("castpanel-"):
+			if heart_panel.is_empty():
+				_apply(LocationHeart.open_cast(c, st, ctx))
+		else:
+			heart_panel = {}
+		ui_alpha = LocationCore.holy_fade_target(p, pos)
+		rig.position = pos
+		rig.rotation.y = yaw
+		_refresh()

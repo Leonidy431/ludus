@@ -23,6 +23,9 @@ const APART_M := 1.2
 ## (docs/APK_PARITY.md); the gate keeps the number from growing, and it
 ## is lowered as labels are added to source-labels-ru.json.
 const UNLABELLED_MAX := 84
+## The 24 trees of the chorus and the 10 people of the 12 stories
+## (StoryCast, functions/src/data/npc-dialogues-story12.json).
+const TREES_N := 34
 
 var hub: Node
 
@@ -34,7 +37,8 @@ func _json(path: String) -> Variant:
 func run(t: Object) -> void:
 	var trees: Dictionary = _json(Mentors.TREES).trees
 	var locs: Array = _json(Mentors.LOCATIONS).locations
-	t._check(trees.size() == 24, "24 trees (%d)" % trees.size())
+	t._check(trees.size() == TREES_N, "%d trees (%d)" % [TREES_N,
+		trees.size()])
 	_places(t, trees, locs)
 	_trees(t, trees)
 	_parity(t)
@@ -48,18 +52,21 @@ func run(t: Object) -> void:
 	(t as SceneTree).root.add_child(hub)
 
 
-## Each of the 24 stands somewhere, and only once: in the hub or at the
-## heart of his places.  The four of the gates stay in the hub.
+## Each stands somewhere, and only in one kind of place: in the hub, or
+## at the heart of his places and beside the hearts of the places of
+## his stories (StoryCast).  The four of the gates stay in the hub.
 func _places(t: Object, trees: Dictionary, locs: Array) -> void:
 	var pl := Mentors.places(trees, locs)
-	t._check(pl.size() == 24, "a place for every mentor (%d)" % pl.size())
+	t._check(pl.size() == TREES_N, "a place for every mentor (%d)"
+		% pl.size())
 	var in_hub := 0
 	for id in pl:
 		var p: Dictionary = pl[id]
 		var hub_at = p.hub
-		t._check(hub_at != null or not p.places.is_empty(),
-			id + " stands somewhere")
-		t._check(hub_at == null or p.places.is_empty(),
+		t._check(hub_at != null or not p.places.is_empty()
+			or not p.cast.is_empty(), id + " stands somewhere")
+		t._check(hub_at == null or (p.places.is_empty()
+			and p.cast.is_empty()),
 			id + " stands in one kind of place, not in both")
 		in_hub += int(hub_at != null)
 		for lid in p.places:
@@ -76,8 +83,11 @@ func _places(t: Object, trees: Dictionary, locs: Array) -> void:
 	for m in HubCore.MENTORS:
 		t._check(m in Mentors.GATE_MENTORS, m + " is a gate mentor")
 	t._check(in_hub == Mentors.HUB_AT.size(), "hub mentors %d" % in_hub)
-	print("mentors: %d in the hub, %d in places" % [in_hub,
-		pl.size() - in_hub])
+	var cast_only := 0
+	for id in pl:
+		cast_only += int(pl[id].hub == null and pl[id].places.is_empty())
+	print("mentors: %d in the hub, %d at hearts of places, %d only beside the hearts of their stories"
+		% [in_hub, pl.size() - in_hub - cast_only, cast_only])
 	# The tags carry no church word (TABOO 0.39 p. 3, 0.013 p. 6).
 	for m in Mentors.HUB_TAG:
 		t._check(not LocationsCore.has_church_word(Mentors.HUB_TAG[m]),

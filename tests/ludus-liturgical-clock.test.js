@@ -129,3 +129,31 @@ test('the audio manager refuses трезвон on Great Friday', async () => {
   assert.equal(audio.bellAllowed('choice', friday), true);
   assert.equal(await audio.playCue('trezvon', { now: friday }), null);
 });
+
+test('evenings of grief: no трезвон after Vespers either', () => {
+  // After Vespers the liturgical day moves on, but the civil day still
+  // grieves (TABOO 0.35 rule 9; headset: TypikonCore.trezvon_forbidden).
+  assert.equal(C.mayRing('трезвон', new Date('2026-04-09T19:00:00')), false);
+  assert.equal(C.mayRing('трезвон', new Date('2026-04-10T19:00:00')), false);
+  assert.equal(C.mayRing('трезвон', new Date('2026-04-11T20:00:00')), false);
+  assert.equal(C.mayRing('трезвон', new Date('2027-05-01T20:00:00')), false);
+  // The Paschal midnight rings.
+  assert.equal(C.mayRing('трезвон', new Date('2026-04-12T00:30:00')), true);
+});
+
+test('an opened gate calls the bell only through the Typikon', () => {
+  // TABOO 0.028: the canon is kept, veiled.  The gate asks for the
+  // blagovest, and the audio manager asks the liturgical clock
+  // (bellAllowed), so a day of grief keeps the gate silent.
+  const fs = require('node:fs');
+  const p = require('node:path');
+  const src = fs.readFileSync(p.join(__dirname,
+    '../public/ludus/ludus-game.js'), 'utf8');
+  const start = src.indexOf('function openGateRitual');
+  const body = src.slice(start, src.indexOf('\n  }\n', start));
+  assert.ok(/playCue\(\s*'blagovest'/.test(body));
+  assert.ok(!/playCue\(\s*'(trezvon|perezvon|perebor)'/.test(body));
+  const am = fs.readFileSync(p.join(__dirname,
+    '../public/ludus/ludus-audio-manager.js'), 'utf8');
+  assert.ok(/function bellAllowed/.test(am));
+});

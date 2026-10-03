@@ -110,11 +110,11 @@ date: 2026-09-28
 - Performance baseline: FPS, latency, battery impact
 
 **Success Criteria:**
-- ✅ Controllers detected < 0.5s
-- ✅ Player attributes update via joystick input
-- ✅ No offline sync data loss
-- ✅ 90 FPS maintained (Quest 3 native)
-- ✅ Telemetry latency < 100 ms end-to-end
+- ☐ Controllers detected < 0.5s — не проверено в шлеме; подтверждает оператор
+- ☐ Player attributes update via joystick input — не проверено в шлеме; подтверждает оператор
+- ☐ No offline sync data loss — не проверено в шлеме; подтверждает оператор
+- ☐ 90 FPS maintained (Quest 3 native) — не проверено в шлеме; подтверждает оператор
+- ☐ Telemetry latency < 100 ms end-to-end — не проверено в шлеме; подтверждает оператор
 
 ---
 
@@ -307,7 +307,7 @@ firebase functions:log --project ludus-dev --limit 50
 
 2. **Phase 3 Ready** → "webtypicon2 integration complete. ROV Lake tab live. Ready for Oct 1 device testing."
 
-3. **Device Testing Results** → "Quest 3 testing complete. Controllers detected in <0.5s. Telemetry sync 87 ms. 90 FPS maintained. Ready for production."
+3. **Device Testing Results** → шаблон, а не итог: «Quest 3: контроллеры за __ с, телеметрия __ мс, __ кадров/с» — числа вписывает оператор после проверки в шлеме (не проверено в шлеме; подтверждает оператор).
 
 4. **Go for Production** → "All systems green. Recommending merge to main + production deployment."
 

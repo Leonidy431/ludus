@@ -1354,7 +1354,7 @@ TRACES = [
     {'id': 'astrolabe', 'ru': 'Астролябия рыцаря', 'shape': 'astrolabe',
      'colour': '#b08d57', 'size': 0.25, 'loot': 'hand-over',
      'holy': False, 'nodes': [28, 40, 82]},
-    {'id': 'khachkar', 'ru': 'Хачкар — крест-камень братьев',
+    {'id': 'khachkar', 'ru': 'Кайрак — крест-камень братьев',
      'shape': 'khachkar', 'colour': '#8c8578', 'size': 1.6, 'loot': None,
      'holy': True, 'nodes': [15]},
     {'id': 'shield', 'ru': 'Щит рыцаря', 'shape': 'shield',

@@ -1,0 +1,45 @@
+# Our Silicon Graphics (docs/HLD_SWAP_RENDERING_2026-10-02.md): the
+# close-up stills of the swap on examine, rendered by Blender 4.5 LTS as
+# a Python module (Cycles on the CPU, Open Image Denoise, seed 1375).
+# scripts/decisions/prerender_choice.py chose this runner from 864 ways:
+# anyone can render the same pictures again from the same commit.
+#
+# The pictures are an artifact; a person looks at them and commits them
+# to godot/art/prerender/ (no autocommit, as for raw material).
+#
+# Constitution: ФОРМА (the thing as it is, in true light) → ДЕЙСТВИЕ
+# (render it once, exactly, offline) → ЦЕЛЬ (where the eye looks
+# closely, it finds truth, and the headset carries no renderer).
+name: Prerender close-ups
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/prerender/**'
+      - '.github/workflows/prerender.yml'
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Choice still holds
+        run: python3 scripts/decisions/prerender_choice.py --check
+      - name: Blender as a module (4.5 LTS)
+        run: pip install --no-cache-dir bpy==4.5.14
+      - name: Render
+        run: |
+          start=$(date +%s)
+          python scripts/prerender/render_items.py
+          echo "rendered in $(( $(date +%s) - start )) s"
+          sha256sum godot/art/prerender/*.png
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ludus-prerender
+          path: godot/art/prerender/*.png
+          retention-days: 30

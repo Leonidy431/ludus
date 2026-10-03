@@ -6,7 +6,11 @@
 // offline), so this script copies them instead of keeping a second,
 // hand-written set that would drift from the seed.
 //
-// Usage: node scripts/export-dialogue-pack.js
+// Usage: node scripts/export-dialogue-pack.js [--check]
+//
+// --check writes nothing: it builds the pack in memory and exits with 1
+// if the shipped file differs, so CI catches a seed or a chorus tree
+// edited without the pack being exported again.
 
 'use strict';
 
@@ -51,8 +55,32 @@ if (fs.existsSync(CHORUS)) {
   });
   sources = ['functions/src/data/npc-dialogues-24.json', ...sources];
 }
+// The people of the 12 stories walked in the headset (docs/STORY_12_
+// CHARACTERS_2026-10-02.md) are added after the 24, under the same
+// contract (scripts/check_dialogues.py); they replace nothing.
+const STORY = path.join(ROOT, 'functions/src/data/npc-dialogues-story12.json');
+if (fs.existsSync(STORY)) {
+  JSON.parse(fs.readFileSync(STORY, 'utf8')).forEach((tree) => {
+    if (merged[tree.npcId]) {
+      throw new Error(`story tree ${tree.npcId} repeats an existing NPC`);
+    }
+    const { review, decisions, ...shipped } = tree;
+    merged[tree.npcId] = shipped;
+  });
+  sources = [...sources, 'functions/src/data/npc-dialogues-story12.json'];
+}
 const pack = { source: sources.join(' + '), trees: merged };
-fs.mkdirSync(path.dirname(OUT), { recursive: true });
-fs.writeFileSync(OUT, JSON.stringify(pack, null, 2) + '\n');
-console.log(`wrote ${Object.keys(merged).length} trees -> `
-  + `${path.relative(ROOT, OUT)}`);
+const text = JSON.stringify(pack, null, 2) + '\n';
+const rel = path.relative(ROOT, OUT);
+if (process.argv.includes('--check')) {
+  const shipped = fs.existsSync(OUT) ? fs.readFileSync(OUT, 'utf8') : '';
+  if (shipped !== text) {
+    console.error(`${rel} is stale: run node scripts/export-dialogue-pack.js`);
+    process.exit(1);
+  }
+  console.log(`${rel} is current (${Object.keys(merged).length} trees)`);
+} else {
+  fs.mkdirSync(path.dirname(OUT), { recursive: true });
+  fs.writeFileSync(OUT, text);
+  console.log(`wrote ${Object.keys(merged).length} trees -> ${rel}`);
+}

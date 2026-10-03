@@ -14,7 +14,7 @@
 extends Node3D
 
 const WALK_MPS := 1.2
-const LAMPADA_K := Color(1.0, 0.52, 0.16)   # About 1800 K.
+const LAMPADA_K := LocationCore.LAMPADA_K   # 1800 K, one source.
 const DAWN := Color(1.0, 0.72, 0.5)
 
 var bays: Array = []

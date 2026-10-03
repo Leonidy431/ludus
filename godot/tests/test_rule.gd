@@ -56,6 +56,9 @@ func run(t: Object) -> void:
 	for chain in fx.chains:
 		var a := RuleCore.normalize(chain.start)
 		var st := TrialCore.empty_state()
+		# Thresholds below the fall's gate are passed (the ladder asks
+		# for gate N's threshold before gate N+1).
+		st.trials = chain.get("startTrials", {}).duplicate()
 		for i in chain.steps.size():
 			var s: Dictionary = chain.steps[i]
 			var tag := "%s #%d %s %s" % [chain.name, i, s.op, s.get("id", "")]

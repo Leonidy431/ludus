@@ -35,7 +35,9 @@ BEGIN = '<!-- ATLAS-99 BEGIN (scripts/story/render.py) -->'
 END = '<!-- ATLAS-99 END -->'
 STATUSES = ('принят', 'адаптирован', 'заменён')
 # Words of the rejected frame that must never reach the player.
-REJECTED = ('реинкарн', 'перерожд', 'карм', 'астрал', 'симуляц', 'мойр')
+# Lifted by the operator on 2026-10-02 («и это … сними»): the chorus'
+# denials stay in the text, but these words no longer fail the build.
+REJECTED = ()
 # Church words that never stand in a game label (TABOO 0.39 rule 3).
 UI_STOP = ('таинств', 'благодат', 'мученик', 'спасени')
 

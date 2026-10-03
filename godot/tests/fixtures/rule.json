@@ -13277,6 +13277,7 @@
    },
    "fallGate": "foundational",
    "fallOption": "tower",
+   "startTrials": {},
    "steps": [
     {
      "op": "fall",
@@ -13913,6 +13914,9 @@
    },
    "fallGate": "liturgical",
    "fallOption": "overrule",
+   "startTrials": {
+    "foundational": true
+   },
    "steps": [
     {
      "op": "fall",
@@ -14535,6 +14539,10 @@
    },
    "fallGate": "ascetic",
    "fallOption": "eat",
+   "startTrials": {
+    "foundational": true,
+    "liturgical": true
+   },
    "steps": [
     {
      "op": "fall",
@@ -15171,6 +15179,11 @@
    },
    "fallGate": "contemplative",
    "fallOption": "window",
+   "startTrials": {
+    "foundational": true,
+    "liturgical": true,
+    "ascetic": true
+   },
    "steps": [
     {
      "op": "fall",
@@ -15793,6 +15806,12 @@
    },
    "fallGate": "mystical",
    "fallOption": "chosen",
+   "startTrials": {
+    "foundational": true,
+    "liturgical": true,
+    "ascetic": true,
+    "contemplative": true
+   },
    "steps": [
     {
      "op": "fall",
@@ -16429,6 +16448,13 @@
    },
    "fallGate": "apophatic",
    "fallOption": "summit",
+   "startTrials": {
+    "foundational": true,
+    "liturgical": true,
+    "ascetic": true,
+    "contemplative": true,
+    "mystical": true
+   },
    "steps": [
     {
      "op": "fall",

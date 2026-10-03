@@ -73,6 +73,17 @@ class KeywordLadderTest(unittest.TestCase):
         self.assertNotIn('church', words)
         self.assertNotIn('enemy', words)
 
+    def test_neighbour_words_skip_tool_words(self):
+        # 2026-10-02: DEF-040 grew load, manager, name, out, output and
+        # layer from editor paths; they name no thing of the lake.
+        hits = [{'path': 'editor/layer_manager/load_output_name.png'},
+                {'path': 'art/ironwood/landscape.png'}]
+        words = osint_cycle.neighbour_words(hits, set())
+        self.assertIn('ironwood', words)
+        for word in ('layer', 'manager', 'load', 'output', 'name',
+                     'editor'):
+            self.assertNotIn(word, words)
+
     def test_neighbour_words_skip_the_package_path(self):
         # 2026-09-30: DEF-040, DEF-047 and DEF-048 all grew the same
         # twelve words from one repo's package path.  Only the file

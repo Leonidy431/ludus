@@ -1,19 +1,24 @@
 ## Moving between the hub and the dive (autoload "Nav").
 ##
-## The dive and the path of the witness have no exit of their own: B on
-## the right controller, or Esc, brings the player back to the obitel.
+## The dive, the path of the witness and the lock have no exit of their
+## own: B on the right controller, or Esc, brings the player back to the
+## obitel.  The lock lets the player stand up and come back later
+## (TABOO 0.024 item 4: no wall, the lock waits).
 ## Kept apart from the scenes so none has to know about the others.
 extends Node
 
 const HUB := "res://scenes/hub.tscn"
 const DIVE := "res://scenes/dive.tscn"
 const WITNESS := "res://scenes/witness.tscn"
+const LOCK := "res://scenes/lock.tscn"
+## The scenes B and Esc lead out of.
+const EXITS := [DIVE, WITNESS, LOCK]
 var was := false
 
 
 func _process(_dt: float) -> void:
 	var scene := get_tree().current_scene
-	if scene == null or not scene.scene_file_path in [DIVE, WITNESS]:
+	if scene == null or not scene.scene_file_path in EXITS:
 		was = false
 		return
 	var back := Input.is_key_pressed(KEY_ESCAPE)

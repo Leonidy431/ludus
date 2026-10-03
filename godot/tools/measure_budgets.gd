@@ -4,6 +4,9 @@
 ##   xvfb-run -a -s "-screen 0 1280x720x24" godot --path godot \
 ##     --rendering-driver opengl3 -s res://tools/measure_budgets.gd \
 ##     -- --scene=dive [--check]
+## --scene is hub, dive, witness, pilot or lock (the lock at arm's
+## length, TABOO 0.024: the board entered, half worked and open).  The
+## pilot's synth time is its water and its music together.
 ## Headless at the headset's 72 Hz pace (the scene's own script time,
 ## the synth's time per second of sound, the bells' PCM in RAM):
 ##   godot --headless --max-fps 72 --path godot \
@@ -98,8 +101,9 @@ func _initialize() -> void:
 			budgets_path = a.trim_prefix("--budgets=")
 		elif a.begins_with("--view="):
 			only_view = a.trim_prefix("--view=")
-	if not scene_name in ["hub", "dive", "witness"]:
-		printerr("measure_budgets: --scene=hub|dive|witness is required")
+	if not scene_name in ["hub", "dive", "witness", "pilot", "lock"]:
+		printerr("measure_budgets: --scene=hub|dive|witness|pilot|lock is "
+			+ "required")
 		failed = true
 		return
 	load_start = _loadavg()
@@ -230,6 +234,11 @@ func _measure_empty() -> bool:
 	base_static = int(Performance.get_monitor(Performance.MEMORY_STATIC))
 	var ps := load("res://scenes/%s.tscn" % scene_name) as PackedScene
 	node = ps.instantiate()
+	if scene_name == "pilot":
+		# The pilot is measured even where it was seen, and does not go
+		# on to the courtyard when its clock runs out.
+		node.replay = true
+		node.stay = true
 	root.add_child(node)
 	current_scene = node
 	node.set_process(false)
@@ -298,15 +307,42 @@ func _views() -> Array:
 			out.append({"name": "end-back", "pos": Vector3(104, 0, 0),
 				"yaw": PI / 2.0})
 			return out
+		"pilot":
+			# One view per world the pilot shows: the room, the water
+			# in it, the lake at its fullest beats, the room again.
+			var out := []
+			for v in [["room", 2.0], ["water", 20.0], ["amphora", 100.0],
+					["walls", 150.0], ["lure", 450.0],
+					["khachkar", 650.0], ["diary", 730.0],
+					["drains", 870.0], ["title", 902.0]]:
+				out.append({"name": v[0], "t": v[1]})
+			return out
+		"lock":
+			# The board as it is entered, half worked, and calibrated
+			# with the buoy's diode turned (TABOO 0.024): the cells
+			# that fall and the buoy's repair are the most in sight.
+			return [{"name": "board", "moves": 0},
+				{"name": "half", "moves": 6},
+				{"name": "open", "moves": -1}]
 	return []
 
 
 ## Hold the player at the view every frame, as a still headset would.
 func _apply(v: Dictionary) -> void:
 	match scene_name:
+		"pilot":
+			# The clock is held at the view; the scene's own _process
+			# enters the beat and keeps its state there.
+			node.t = v.t
+			node.override = {"gaze": false, "away_deg": 30.0}
 		"hub":
 			node.pos = v.pos
 			node.yaw = v.yaw
+		"lock":
+			# The moves are made once, at the view's first frame, the
+			# way a hand would: the scene's own press (sound, haptics).
+			if frame == 1:
+				_lock_moves(int(v.moves))
 		"witness":
 			node.pos = v.pos
 			node.yaw = v.get("yaw", -PI / 2.0)
@@ -338,6 +374,22 @@ func _apply(v: Dictionary) -> void:
 			if node.third_person == first:
 				node.third_person = not first
 				node._place_view()
+
+
+## Swaps on the lock's board found by the board's own solver; -1 plays
+## until the lock is open.  The solver is reached through the board's
+## script, not named here, for the reason _synth_probe gives.
+func _lock_moves(moves: int) -> void:
+	var b: Node = node.board
+	var solver = load("res://scripts/lock_core.gd")
+	var n := 0
+	while not b.state.open and (moves < 0 or n < moves) and n < 400:
+		var mv: Array = solver.find_move(b.state)
+		if mv.is_empty():
+			break
+		node._press(mv[0], 1)
+		node._press(mv[1], 1)
+		n += 1
 
 
 func _info(rid: RID, kind: int, what: int) -> int:
@@ -434,6 +486,8 @@ func _synth_probe() -> Dictionary:
 			target = node.audio.synth
 		"witness":
 			target = node.audio
+		"pilot":
+			return _pilot_synth_probe()
 		"hub":
 			# The courtyard's bell clock (PlaceAudio); the place's loops
 			# are rendered once, off the frame, and cost no synth time.
@@ -464,6 +518,50 @@ func _synth_probe() -> Dictionary:
 		"ms_per_second_max": snappedf(net.max(), 0.01),
 		"wall_ms_per_second_median": snappedf(_median(wall), 0.01),
 		"wall_ms_per_second_max": snappedf(wall.max(), 0.01)}
+
+
+## The pilot runs two synths at once, the dive's water (DiveSynth) and
+## the suite's music (CosmosSynth): their times per second of sound are
+## summed, call by call, since both are fed in the same frames.  The
+## music is timed sounding, as at every beat but the khachkar; the
+## time of its silence (CosmosSynth.set_silent) is reported apart.
+func _pilot_synth_probe() -> Dictionary:
+	var water: Object = node.synth
+	var music: Object = node.music
+	var wf := int(water.get_script().MIX_RATE)
+	var mf := int(music.get_script().MIX_RATE)
+	var was_silent: bool = music.get("silent") == true
+	if music.has_method("set_silent"):
+		music.set_silent(false)
+	var net := []
+	var wall := []
+	var parts := {"water": [], "music": []}
+	for i in SYNTH_CALLS:
+		var a := _timed(func(): water.generate(wf))
+		var b := _timed(func(): music.generate(mf))
+		parts.water.append(a[1])
+		parts.music.append(b[1])
+		net.append(a[1] + b[1])
+		wall.append(a[0] + b[0])
+	var quiet := []
+	if music.has_method("set_silent"):
+		music.set_silent(true)
+		for i in SYNTH_CALLS:
+			quiet.append(_timed(func(): music.generate(mf))[1])
+		music.set_silent(was_silent)
+	return {"synth": "%s+%s" % [water.get_script().get_global_name(),
+			music.get_script().get_global_name()],
+		"calls": SYNTH_CALLS,
+		"state": {"view": views.back().name if views.size() else "",
+			"cue": str(music.get("cue_id"))},
+		"ms_per_second_median": snappedf(_median(net), 0.01),
+		"ms_per_second_max": snappedf(net.max(), 0.01),
+		"wall_ms_per_second_median": snappedf(_median(wall), 0.01),
+		"wall_ms_per_second_max": snappedf(wall.max(), 0.01),
+		"water_ms_per_second_median": snappedf(_median(parts.water), 0.01),
+		"music_ms_per_second_median": snappedf(_median(parts.music), 0.01),
+		"music_silent_ms_per_second_median": snappedf(_median(quiet),
+			0.01) if not quiet.is_empty() else -1.0}
 
 
 ## Bytes of one rendered bell clip (float32): the clip is as long as

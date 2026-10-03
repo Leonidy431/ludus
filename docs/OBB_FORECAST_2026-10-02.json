@@ -1,0 +1,193 @@
+{
+ "apk_now": {
+  "source": "CI android 110851594608 (3c85b1f), check_budgets --apk",
+  "apk": 105071800,
+  "lib_so": 83393888,
+  "dex": 6089556,
+  "assets_uncompressed": 17895260,
+  "assets_compressed": 15076439
+ },
+ "dialogue": {
+  "trees": 34,
+  "lines": 254,
+  "words_ru": 9923,
+  "words_en": 12768
+ },
+ "models_now": {
+  "count": 260,
+  "bytes": 12764784
+ },
+ "assumptions": {
+  "words_per_sec": 2.2,
+  "words_per_sec_en": 2.5,
+  "pause_per_line_sec": 0.6,
+  "kbps": {
+   "voice_mono_vorbis": 64,
+   "music_stereo_vorbis": 160,
+   "choir_stereo_vorbis": 192,
+   "sfx_mono_qoa": 141.12
+  },
+  "unique_tracks": 40,
+  "listed_tracks": 63,
+  "sfx_count": 105,
+  "sfx_sec": 2.5,
+  "final_tris": 20000,
+  "bytes_per_tri": 40,
+  "texture_bytes": 2796202
+ },
+ "limits": {
+  "store_apk": 1000000000,
+  "store_obb": 4000000000,
+  "own_apk": 134217728
+ },
+ "voice": {
+  "seconds_ru": 4662.854545454545,
+  "bytes_ru": 37302836,
+  "seconds_en": 5259.599999999999,
+  "bytes_en": 42076799
+ },
+ "music": {
+  "ambient": {
+   "count": 12,
+   "min_minutes": 36.0,
+   "max_minutes": 72.0,
+   "min_bytes": 43200000,
+   "max_bytes": 86400000
+  },
+  "npc_themes": {
+   "count": 8,
+   "min_minutes": 12.0,
+   "max_minutes": 24.0,
+   "min_bytes": 14400000,
+   "max_bytes": 28800000
+  },
+  "gate_themes": {
+   "count": 6,
+   "min_minutes": 12.0,
+   "max_minutes": 18.0,
+   "min_bytes": 14400000,
+   "max_bytes": 21600000
+  },
+  "attribute_themes": {
+   "count": 9,
+   "min_minutes": 13.5,
+   "max_minutes": 18.0,
+   "min_bytes": 16200000,
+   "max_bytes": 21600000
+  },
+  "story_moments": {
+   "count": 8,
+   "min_minutes": 16.0,
+   "max_minutes": 32.0,
+   "min_bytes": 19200000,
+   "max_bytes": 38400000
+  },
+  "soloist": {
+   "count": 8,
+   "min_minutes": 16.0,
+   "max_minutes": 32.0,
+   "min_bytes": 19200000,
+   "max_bytes": 38400000
+  }
+ },
+ "choir": {
+  "count": 12,
+  "min_minutes": 24.0,
+  "max_minutes": 72.0,
+  "min_bytes": 34560000,
+  "max_bytes": 103680000
+ },
+ "sfx_bytes": 4630500,
+ "final_model_bytes_each": 3596202,
+ "final_models_bytes": 935012520,
+ "phases": [
+  {
+   "phase": "now",
+   "label": "APK today",
+   "added": 0,
+   "apk_if_one_file": 105071800,
+   "own_budget_share": 0.7828459143638611,
+   "store_share": 0.1050718,
+   "over_own": false,
+   "over_store": false
+  },
+  {
+   "phase": "voices_ru",
+   "label": "+ Russian voices of the 34 trees",
+   "added": 37302836,
+   "apk_if_one_file": 142374636,
+   "own_budget_share": 1.0607737004756927,
+   "store_share": 0.142374636,
+   "over_own": true,
+   "over_store": false
+  },
+  {
+   "phase": "voices_en",
+   "label": "+ English voices of the 34 trees",
+   "added": 42076799,
+   "apk_if_one_file": 147148599,
+   "own_budget_share": 1.096342496573925,
+   "store_share": 0.147148599,
+   "over_own": true,
+   "over_store": false
+  },
+  {
+   "phase": "voices_ru_en",
+   "label": "+ Russian and English voices",
+   "added": 79379635,
+   "apk_if_one_file": 184451435,
+   "own_budget_share": 1.3742702826857567,
+   "store_share": 0.184451435,
+   "over_own": true,
+   "over_store": false
+  },
+  {
+   "phase": "sound_min",
+   "label": "+ sound plan, low (40 unique, short, RU voice)",
+   "added": 144257145,
+   "apk_if_one_file": 249328945,
+   "own_budget_share": 1.8576453998684883,
+   "store_share": 0.249328945,
+   "over_own": true,
+   "over_store": false
+  },
+  {
+   "phase": "sound_max",
+   "label": "+ sound plan, high (full list, long, RU+EN voice)",
+   "added": 422890135,
+   "apk_if_one_file": 527961935,
+   "own_budget_share": 3.9336229488253593,
+   "store_share": 0.527961935,
+   "over_own": true,
+   "over_store": false
+  },
+  {
+   "phase": "models_final",
+   "label": "+ final models in place of proxies",
+   "added": 1345137871,
+   "apk_if_one_file": 1450209671,
+   "own_budget_share": 10.804904036223888,
+   "store_share": 1.450209671,
+   "over_own": true,
+   "over_store": true
+  }
+ ],
+ "room_minutes": {
+  "voice_mono_vorbis": {
+   "own_budget_min": 60.720683333333334,
+   "store_min": 1864.43375
+  },
+  "music_stereo_vorbis": {
+   "own_budget_min": 24.288273333333333,
+   "store_min": 745.7735
+  },
+  "choir_stereo_vorbis": {
+   "own_budget_min": 20.240227777777775,
+   "store_min": 621.4779166666667
+  },
+  "sfx_mono_qoa": {
+   "own_budget_min": 27.53772486772487,
+   "store_min": 845.548185941043
+  }
+ }
+}

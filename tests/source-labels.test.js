@@ -131,8 +131,9 @@ test('the table is one file for the web and the headset', () => {
   assert.ok(web.equals(godot), 'copies differ');
   const ci = fs.readFileSync(path.join(ROOT, '.github/workflows/godot.yml'),
     'utf8');
-  assert.ok(/cmp public\/ludus\/data\/source-labels-ru\.json/.test(ci),
-    'CI compares the copies');
+  // CI compares every same-named JSON of the two builds in one loop
+  // (scripts/ci/check_shared_copies.py), this file among them.
+  assert.ok(/check_shared_copies\.py/.test(ci), 'CI compares the copies');
 });
 
 test('the formatter falls back to the original, silently', async () => {

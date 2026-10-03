@@ -102,12 +102,10 @@ window.LudusAudioManager = (function () {
       theme: 'exploration',
       intensity: 0.3,
     },
-    monastery_bells: {
-      plannedFile: 'ambient/monastery-bells.mp3',
-      duration: 240,
-      theme: 'prayer',
-      intensity: 0.4,
-    },
+    // There is no bell track here.  A looped благовест as background
+    // music rang past the liturgical clock (playMusic never asks
+    // bellAllowed) and over the ison (TABOO 0.35 rules 9 and 10).
+    // Bells sound only as single cues the Typikon clock allows.
     hesychasm_flow: {
       plannedFile: 'ambient/hesychasm-flow.mp3',
       duration: 360,
@@ -207,9 +205,10 @@ window.LudusAudioManager = (function () {
     sand_footsteps: {
       plannedFile: 'sfx/environment/sand-footsteps.wav', duration: 3,
     },
+    // A bell of the place, asked of the liturgical clock like every
+    // bell.  It has no cue: a bell never answers the player's prayer.
     monastery_bell_toll: {
       plannedFile: 'sfx/environment/monastery-bell.wav', duration: 4,
-      cue: 'prayer_delivered',
     },
     water_flow: {
       plannedFile: 'sfx/environment/water-flow.wav', duration: 6,
@@ -242,10 +241,9 @@ window.LudusAudioManager = (function () {
       plannedFile: 'sfx/spiritual/transformation.wav', duration: 2.5,
       cue: 'world_change',
     },
-    meditation_bell: {
-      plannedFile: 'sfx/spiritual/meditation-bell.wav', duration: 3,
-      cue: 'prayer_delivered',
-    },
+    // "meditation_bell" was removed: a small bell struck when the
+    // player prays turns the bell into feedback for a prayer (TABOO
+    // 0.2 item 5).  Prayer is answered by breath, see prayer_delivered.
 
     // UI feedback.
     // No recording is planned for this key.  A "positive tone" would
@@ -275,8 +273,12 @@ window.LudusAudioManager = (function () {
   // sounds the same.  Bells appear only in their liturgical meanings
   // and never as a reward ding (docs/SOUND_THEOLOGY_RULES.md).
   const SEMANTIC_CUES = {
+    // Not a bell.  A bell as feedback for the player's prayer is the
+    // "ding for a reward" TABOO 0.2 item 5 forbids, and prayer is not a
+    // button that the world acknowledges.  The cue is one quiet breath
+    // at the 4:6 rhythm: the prayer goes on, nothing is announced.
     prayer_delivered: {
-      meaning: 'One благовест stroke: the prayer has been delivered.',
+      meaning: 'One quiet breath: the prayer goes on, unannounced.',
       layer: 'sfx',
     },
     world_change: {
@@ -925,8 +927,6 @@ window.LudusAudioManager = (function () {
     blagovest: 'благовест',
     blagovest_stroke: 'благовест',
     monastery_bell_toll: 'благовест',
-    prayer_delivered: 'благовест',
-    meditation_bell: 'благовест',
     trezvon: 'трезвон',
     trezvon_motif: 'трезвон',
     perezvon: 'перезвон',
@@ -937,8 +937,13 @@ window.LudusAudioManager = (function () {
   function bellAllowed(key, now) {
     const order = BELL_ORDER[key];
     const clock = window.LudusLiturgicalClock;
-    if (!order || !clock) {
+    if (!order) {
       return true;
+    }
+    if (!clock) {
+      // Without the clock the Typikon cannot be asked, so the bell
+      // keeps silent rather than ring on a day of grief.
+      return false;
     }
     const allowed = clock.mayRing(order, now || new Date());
     if (allowed) {

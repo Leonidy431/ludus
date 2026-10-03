@@ -11,6 +11,12 @@
 ## than when it began) together with a new talk with the mentor who
 ## teaches that passion's sign.  Nothing is scored or tallied: the fall
 ## is dropped whole when it is lifted.
+##
+## While a fall lasts every threshold is locked (trial_view returns
+## locked with reason "fall"), so a second fall can never overwrite the
+## first one and its snapshot (HLD_TRIALS_LADDER_2026-10-03, F9).  The
+## ladder of HubCore also asks that the threshold of gate N be passed
+## before gate N+1 opens (chorus decision in the same HLD).
 class_name TrialCore
 extends RefCounted
 
@@ -68,6 +74,11 @@ static func sobriety_of(actions: Dictionary) -> int:
 
 static func _fall_into(data: Dictionary, st: Dictionary, passion_id,
 		actions: Dictionary) -> void:
+	# The first fall stands until it is lifted: its snapshot is what
+	# sobriety and the mentor's talk are measured against, so a second
+	# fall must not quietly reset it.
+	if st.get("fall") != null:
+		return
 	var p := passion_of(data, passion_id)
 	var teacher: String = p.get("teacher", "elder_sergius")
 	st.fall = {"passion": passion_id, "teacher": teacher,
@@ -77,26 +88,31 @@ static func _fall_into(data: Dictionary, st: Dictionary, passion_id,
 
 
 ## The threshold of a gate: open only when the gate itself is open (the
-## ladder of HubCore), waiting after a "return" until a new talk with
-## the mentor, done once passed.
+## ladder of HubCore, which also asks that the previous threshold be
+## passed), waiting after a "return" until a new talk with the mentor,
+## done once passed, and locked for as long as a fall lasts.
 static func trial_view(data: Dictionary, st: Dictionary, gate_id: String,
 		form: Dictionary, actions: Dictionary) -> Dictionary:
 	var trial := trial_for(data, gate_id)
 	if trial.is_empty():
 		return {}
 	var open := false
-	for c in HubCore.evaluate_ladder(form, actions):
+	for c in HubCore.evaluate_ladder(form, actions, st.get("trials", {})):
 		if c.id == gate_id:
 			open = c.open
+	# A fall closes every threshold, not only the deep paths: a choice
+	# made in the dark would be made by the passion, not by the player.
+	var locked: bool = st.get("fall") != null
 	var waiting: bool = st.trial_wait.has(gate_id) \
 		and _met(actions, trial.mentor) <= st.trial_wait[gate_id]
 	var passed: bool = st.trials.get(gate_id, false)
 	var options := []
 	for o in trial.options:
 		options.append({"id": o.id, "text": o.text_ru,
-			"disabled": not open or waiting or passed})
+			"disabled": not open or waiting or passed or locked})
 	return {"trial": trial, "open": open, "passed": passed,
-		"waiting": waiting, "options": options}
+		"waiting": waiting, "locked": locked,
+		"reason": "fall" if locked else "", "options": options}
 
 
 ## Take an option.  Returns {state, outcome, reply, source, passion};

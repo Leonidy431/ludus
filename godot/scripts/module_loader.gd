@@ -21,6 +21,13 @@ const HUB := "res://scenes/hub.tscn"
 const DIVE := "res://scenes/dive.tscn"
 const WITNESS := "res://scenes/witness.tscn"
 const LOCATION := "res://scenes/location.tscn"
+## The lock at arm's length (TABOO 0.024): the scene builds its board,
+## its buoy and its sound by code and loads no model, so the module is
+## the scene file and its scripts alone.  It still goes through this
+## helper, so the way to it is one breath of black and not a cut, and
+## Nav's B brings the player back from it (phase F3 of
+## docs/HLD_CHORUS24_FIXES_2026-10-03.md).
+const LOCK := "res://scenes/lock.tscn"
 
 ## The files each scene loads in _ready: a folder takes all its .glb,
 ## a name with "*" takes what matches it.  The dive loads the lake
@@ -59,6 +66,13 @@ var ahead_path := ""
 var hold_ahead := false
 ## The scene the player is going to, while the fade holds; "" if none.
 var pending := ""
+## The lock the lock scene opens on (an id of godot/data/locks.json),
+## set by go_lock and taken by the scene in its _ready; "" for the
+## scene's own default.
+var lock_id := ""
+## Every path that failed to load, oldest first, so a test and a log
+## can name it; the same line goes to push_error when it happens.
+var failed: Array[String] = []
 ## 0 clear, 1 black.
 var alpha := 0.0
 ## "in" while the black comes, "out" after the change, "" at rest.
@@ -84,12 +98,32 @@ func prefetch(path: String) -> void:
 		# Asked for again before a let-go load finished: it is this
 		# module's once more, not to be dropped.
 		dropping.erase(it)
+		# A new attempt at a file that failed before is reported anew.
+		failed.erase(it)
 		# A path already in the cache (the ROV of the pier in the hub)
 		# is only held, not queued again.
 		if ResourceLoader.has_cached(it):
 			continue
-		ResourceLoader.load_threaded_request(it)
+		var err := ResourceLoader.load_threaded_request(it)
+		if err != OK:
+			_fail(it, "the request was refused (%s)" % error_string(err))
 	modules[path] = {"items": items, "held": {}}
+
+
+## Go over to the lock scene on one lock: the scene reads the id from
+## here in its _ready, so a hub hook needs only this one call.
+func go_lock(id: String) -> PackedScene:
+	if pending == "" or pending == LOCK:
+		lock_id = id
+	return go(LOCK)
+
+
+## The lock id the lock scene was sent to, taken once: a later visit
+## with no id opens the scene's own default again.
+func take_lock_id() -> String:
+	var id := lock_id
+	lock_id = ""
+	return id
 
 
 ## The one module a scene looks ahead to as the player walks: asking
@@ -220,9 +254,24 @@ func _item_progress(m: Dictionary, it: String) -> float:
 		_:
 			# A failed file is counted done: the scene keeps its own
 			# fallback (a blob for a missing model) and the player is
-			# not held in the black for ever.
+			# not held in the black for ever.  It is named, though: a
+			# way over that silently comes to nothing cannot be fixed.
 			m.held[it] = null
+			if st == ResourceLoader.THREAD_LOAD_FAILED:
+				# Taken even so, or the loader keeps the failed task
+				# (and an object of it) until the game quits.
+				ResourceLoader.load_threaded_get(it)
+			_fail(it, "the threaded load failed")
 			return 1.0
+
+
+## Record a file that did not load and say so in the log, once per
+## file and module (the loader is polled every frame).
+func _fail(path: String, why: String) -> void:
+	if path in failed:
+		return
+	failed.append(path)
+	push_error("ModuleLoader: %s: %s" % [why, path])
 
 
 func _held(path: String) -> Resource:
@@ -233,12 +282,18 @@ func _held(path: String) -> Resource:
 ## every module let go, the one entered included, since its nodes now
 ## hold what they use and the one left frees with its nodes (item 4).
 func _switch() -> void:
+	var target := pending
 	var scene := _held(pending) as PackedScene
 	pending = ""
 	phase = "out"
 	since_switch = 0
 	if scene != null:
 		get_tree().change_scene_to_packed(scene)
+	else:
+		# The player stays where he was, and the black lifts; the
+		# error names the scene, so the way over is not lost in silence.
+		push_error("ModuleLoader: the scene could not be loaded, the "
+			+ "way over is called off: " + target)
 	for path in modules.keys():
 		release(path)
 	# The old camera goes with the old scene; the black is put again on

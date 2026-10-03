@@ -32,7 +32,7 @@
   "nodes": [
    {
     "id": "greeting",
-    "voice": "npc",
+    "voice": "own",
     "text": "You walked far to see a man plait baskets. Sit. Wet this palm leaf in the jar first: a dry leaf cracks in the hand. What brings you to my cell?",
     "text_ru": "Далеко же ты шёл, чтобы посмотреть, как человек плетёт корзины. Садись. Сначала намочи этот лист в кувшине: сухой лист ломается в руке. Что привело тебя в мою келью?",
     "meaning": "The mentor receives everyone, whatever their measure; the ascetic way begins in ordinary work and preparation, not in feats. Any branch records the meeting that the Ascetic gate requires.",
@@ -196,7 +196,7 @@
    },
    {
     "id": "fast_bread",
-    "voice": "npc",
+    "voice": "own",
     "text": "Then keep one day with a light hand. Eat at the hour, eat little, and say nothing about it at the market. The path you seek will count that day, the way a weaver counts strands, but it does not pay for it. A fast that is announced is a basket sold before it is woven.",
     "text_ru": "Тогда проведи один день лёгкой рукой. Ешь в свой час, ешь мало и не говори об этом на базаре. Путь, который ты ищешь, засчитает этот день, как плетельщик считает пряди, но не заплатит за него. Пост, о котором объявили, — это корзина, проданная прежде, чем её сплели.",
     "meaning": "The Ascetic gate requires a day of fasting, but the rite is a necessary condition and never a wage in attributes; a fast done for show turns into vainglory (Mt 6:16-18). The small bonus on the branches is for understanding that the fast is hidden, not for fasting.",
@@ -227,7 +227,7 @@
    },
    {
     "id": "noonday_thief",
-    "voice": "npc",
+    "voice": "own",
     "text": "Whoever counts his fast has already been robbed, and so has the one whose heart slips out of the rope. Learn the midday thief. He comes when the sun stands still: you look at the door, then at the sun, then at the door again. The cell seems too narrow, the rope too long, the brothers too far, and every other place seems better than this one. That is not honest tiredness. Tiredness wants sleep; the thief wants somewhere else. When the hand wants to drop the rope and walk off, keep the hand in the rope. The thief leaves the one who does not open the door.",
     "text_ru": "Кто считает свой пост, того уже обокрали; обокрали и того, чьё сердце выскальзывает из верёвки. Узнай полуденного вора. Он приходит, когда солнце стоит на месте: ты смотришь на дверь, потом на солнце, потом снова на дверь. Келья кажется тесной, верёвка — длинной, братья — далёкими, и всякое другое место кажется лучше этого. Это не честная усталость. Усталость хочет спать, а вор хочет куда-нибудь ещё. Когда рука хочет бросить верёвку и уйти, держи руку в верёвке. Вор уходит от того, кто не открывает ему дверь.",
     "meaning": "Discernment cue for the passion of despondency (acedia): restlessness at midday, watching the time, hatred of one's place and work, the wish to be elsewhere. The remedy is patient staying and handiwork, never a holy object used as a weapon.",
@@ -258,7 +258,7 @@
    },
    {
     "id": "no_shortcut",
-    "voice": "npc",
+    "voice": "own",
     "text": "A basket made in one night unravels at the well. Here is one strand. Plait it until evening, and tomorrow tell me what the strand taught you. The one who wants to seem a monk has already sold the basket at the market and has nothing in his hands.",
     "text_ru": "Корзина, сплетённая за одну ночь, расползается у колодца. Вот тебе одна прядь. Плети её до вечера, а завтра скажи мне, чему она тебя научила. Кто хочет казаться монахом, уже продал корзину на базаре, и в руках у него ничего нет.",
     "meaning": "There is no shortcut to virtue; wanting to seem holy is vainglory. The mentor refuses the cunning request without contempt and offers a humble task instead, so the door stays open.",
@@ -315,6 +315,7 @@
   "npcId": "abba_moses",
   "npcName": "Abba Moses the Ethiopian",
   "npcName_ru": "Авва Моисей Мурин",
+  "saint": true,
   "theology": "Repentance and non-judgement: a former robber who learned to watch his own road instead of others', to be troubled yet silent, and to lay down the knife for good. Teaching drawn from the Apophthegmata (alphabetical collection, Moses) and Palladius' Lausiac History 19; tradition also links to him the Abba Moses of Cassian's Conferences I-II, though scholars do not all identify the two. Commemorated 28 August.",
   "idiom": {
    "worldview": "Once I lay in wait for others on the road; now I keep watch only over my own, because the one I robbed most was myself.",
@@ -866,6 +867,7 @@
   "npcId": "ekaterina",
   "npcName": "Catherine of Alexandria",
   "npcName_ru": "Вмц. Екатерина Александрийская",
+  "saint": true,
   "theology": "Wisdom offered to Christ: reason is a road that leads to the Word but does not replace Him (1 Cor 1:20-25; Acts 17:22-28); argument with meekness (1 Pet 3:15); firmness without pride.",
   "idiom": {
    "worldview": "An argument is honest only if it leaves the other person freer than it found him.",
@@ -1552,6 +1554,7 @@
   "npcId": "gregory_dialogist",
   "npcName": "St. Gregory the Dialogist",
   "npcName_ru": "Свт. Григорий Двоеслов",
+  "saint": true,
   "theology": "Pastoral care as the art of arts, the admonition fitted to each soul, and the humility of the shepherd who returns to himself (Pastoral Rule). Miracles are signs for weak faith, like water for newly planted saplings, not a spectacle and never something to fabricate (Homilies on the Gospels, 29; Job 13:7). Authority as service: servant of the servants of God. Commemorated March 12. Portrayed without a nimbus; the dove at his ear is an attribute of listening, never a mechanic.",
   "idiom": {
    "worldview": "A shepherd speaks only after he has listened, fits his word to each sheep, and before he sleeps looks at his own face in the mirror of the Scriptures.",
@@ -1825,6 +1828,7 @@
   "npcId": "gregory_palamas",
   "npcName": "St Gregory Palamas",
   "npcName_ru": "Святитель Григорий Палама",
+  "saint": true,
   "theology": "Hesychasm and the essence/energies distinction: God is unknowable in essence yet truly gives Himself in uncreated energies; theosis is synergy and gift, not a prize for technique or logic.",
   "idiom": {
    "worldview": "God cannot be grasped, yet He shines; the mind that comes home to the heart sees the light it did not make.",
@@ -2405,6 +2409,7 @@
   "npcId": "isaias",
   "npcName": "Isaiah the Prophet",
   "npcName_ru": "Пророк Исаия",
+  "saint": true,
   "theology": "Prophetic purification and sending: the unclean lips are cleansed by a coal given from the altar, not taken by the prophet's hand (Is 6:1-8); strength in returning and quietness (Is 30:15). Confession as receiving, not performing. Prophecy is God's word calling to repentance, never divination.",
   "idiom": {
    "worldview": "A word is true only if the mouth that carries it has first been cleansed and then sent.",
@@ -2697,6 +2702,7 @@
   "npcId": "kassiani",
   "npcName": "Kassia the Hymnographer",
   "npcName_ru": "Кассия песнописица",
+  "saint": true,
   "theology": "Hymnography as repentance in song: learning becomes the prayer of the Church (Erudition serving Faith); the discernment of godly sorrow from the passion of sadness; the sacraments are pointed to from afar, never performed by the game.",
   "idiom": {
    "worldview": "Every word a person owns is either given back to God as song or kept for oneself as vanity; the pen decides which.",
@@ -3318,6 +3324,7 @@
   "npcId": "macrina",
   "npcName": "St Macrina the Younger",
   "npcName_ru": "Прп. Макрина Младшая",
+  "saint": true,
   "theology": "Ascetic community life and humility; education in love through Scripture woven into daily work; the soul and the resurrection of the body (Gregory of Nyssa, Life of Macrina; On the Soul and Resurrection), read within the Creed (art. 11) and the Longer Catechism of St Philaret.",
   "idiom": {
    "worldview": "A house is ordered when the mistress and the servant knead the same dough and the day is measured by prayer and work, not by rank.",
@@ -3619,6 +3626,7 @@
   "npcId": "mary_magdalene",
   "npcName": "Mary Magdalene, Myrrh-bearer",
   "npcName_ru": "Мария Магдалина, мироносица",
+  "saint": true,
   "theology": "Paschal witness: love that came to serve the dead meets the Living and is sent as the first messenger; godly sorrow distinguished from the passion of sadness (2 Cor 7:10). Orthodox tradition: Equal-to-the-Apostles, commemorated 22 July and on the Sunday of the Myrrh-bearing Women (third Sunday of Pascha); delivered from seven demons (Luke 8:2) and not identified with the sinful woman of Luke 7 or with Mary of Bethany.",
   "idiom": {
    "worldview": "Love that went at dawn to serve the dead found the Living, and grief was turned into a message that must be carried.",
@@ -3900,6 +3908,7 @@
   "npcId": "maximos",
   "npcName": "St Maximos the Confessor",
   "npcName_ru": "Прп. Максим Исповедник",
+  "saint": true,
   "theology": "Deification and the logoi of creation; two natural wills in Christ, the human will moving freely in harmony with the divine; confession of faith is not a matter of diplomacy (Ambigua, Ad Thalassium, Disputation with Pyrrhus, Opuscula, Chapters on Love; Relatio motionis).",
   "idiom": {
    "worldview": "The world is a letter written by the one Word, and a letter altered by one word is a forged decree.",
@@ -4508,6 +4517,7 @@
   "npcId": "photius",
   "npcName": "St Photius the Great",
   "npcName_ru": "Святитель Фотий Великий",
+  "saint": true,
   "theology": "Learning subject to the Word: the patriarch-scholar who read everything, guarded the Creed unaltered (procession of the Spirit from the Father), and sent the Gospel to the Slavs in their own tongue.",
   "idiom": {
    "worldview": "Read everything, keep the marrow, mark the error in the margin, and never let the book become your master instead of the Word.",
@@ -5729,6 +5739,7 @@
   "nodes": [
    {
     "id": "gate_watch",
+    "voice": "own",
     "text": "The fire at the gate burns all night. I count who comes by its light, not by the dark behind them. Name your road, deacon.",
     "text_ru": "Костёр у ворот горит всю ночь. Я считаю входящих по его свету, а не по тьме за их спиной. Назови свою дорогу, дьякон.",
     "meaning": "Vigilance is a real virtue of service: a man must see what approaches before he judges it. The meeting opens without any test.",
@@ -5771,6 +5782,7 @@
    },
    {
     "id": "why_no_blade",
+    "voice": "own",
     "text": "A man with no blade at night is either a fool, or a man who trusts another's bowstring. Which are you?",
     "text_ru": "Человек без клинка ночью — либо глупец, либо тот, кто верит чужой тетиве. Кто из них ты?",
     "meaning": "The soldier reads defencelessness as folly or dependence. The deacon's refusal of the sword is not weakness: it is obedience to Christ's word to Peter and to the canon that forbids clergy to bear arms.",
@@ -5796,6 +5808,7 @@
    },
    {
     "id": "watchman_psalm",
+    "voice": "own",
     "text": "In vain? Then why do I stand here? I will tell you why: because a gate without a man is an invitation. Perhaps your song means the watchman should not think the city lives by his eyes alone.",
     "text_ru": "Напрасно? Зачем же я тогда стою? Скажу зачем: ворота без человека — приглашение. Может, твоя песнь о том, что страж не должен думать, будто город живёт одними его глазами.",
     "meaning": "The psalm does not abolish the watch; it removes the watchman's pride. Human labour is real, but the keeping of the city belongs to God.",
@@ -5814,6 +5827,7 @@
    },
    {
     "id": "night_watch",
+    "voice": "own",
     "text": "I watch for the hour before dawn. Then the fire is lowest, and a man's heart is lowest with it. The watchman who dozes in that hour loses all the night had kept for him.",
     "text_ru": "Я жду часа перед рассветом. Тогда огонь ниже всего, и сердце человека вместе с ним. Страж, задремавший в этот час, теряет всё, что ночь ему сберегла.",
     "meaning": "The hour of lowest strength is the hour of despondency. Watchfulness (nepsis) is most needed when the heart is weakest, and the soul waits for the morning as watchmen do.",
@@ -5832,6 +5846,7 @@
    },
    {
     "id": "force_offer",
+    "voice": "own",
     "text": "Torches under the wall. They shout that your mixed house must go. Say one word and my arrows will thin them. When the lead wolf falls, the pack scatters.",
     "text_ru": "Факелы под стеной. Кричат, что ваш смешанный двор должен уйти. Скажи одно слово — и мои стрелы их проредят. Падёт вожак — стая разбежится.",
     "meaning": "This is the temptation of force presented as protection. The men under the wall are people driven by fear and grievance, not wolves. Christ commands love of enemies, and evil is overcome with good: the Church answers a crowd with meekness and truth, not with arrows.",
@@ -5884,6 +5899,7 @@
    },
    {
     "id": "cunning_cost",
+    "voice": "own",
     "text": "Arrows over heads teach a crowd only where to aim next time. The trick buys one night and sells the next ten.",
     "text_ru": "Стрела над головой учит толпу лишь одному — куда целиться в следующий раз. Хитрость покупает одну ночь и продаёт следующие десять.",
     "meaning": "A ruse of fear does not quench anger; it feeds it. Cunning wins an hour and costs the peace, while a soft answer turns wrath away.",
@@ -5901,6 +5917,7 @@
    },
    {
     "id": "anger_cue",
+    "voice": "own",
     "text": "Old riders say: before the arrow leaves, the hand has already left. When the jaw sets hard, when you tell the insult over again at the fire, when you want the gate opened only to strike, that heat is not courage. It is the horse bolting with you on its back.",
     "text_ru": "Старые всадники говорят: прежде стрелы уходит рука. Когда челюсть сжата, когда у костра снова пересказываешь обиду, когда хочешь открыть ворота только чтобы ударить, — этот жар не храбрость. Это конь понёс, а ты у него на спине.",
     "meaning": "This is the discernment cue for the passion of anger. Bodily heat, rumination on the offence (remembrance of wrongs) and the haste to strike come before the deed, and they can be recognised in time. Anger is overcome by meekness and stillness, not by a weapon, holy or otherwise.",
@@ -5929,6 +5946,7 @@
    },
    {
     "id": "soldier_wage",
+    "voice": "own",
     "text": "You stop it by the rein, not by the whip. A priest of yours once told me that your desert preacher said to soldiers: do not extort, do not accuse falsely, be content with your pay. He did not tell them to break the bow. So I keep my gate. And you keep your word, whatever it is you keep at night.",
     "text_ru": "Останавливают поводом, а не плетью. Ваш священник как-то сказал мне: ваш пустынный проповедник велел воинам — никого не обижайте, не клевещите, довольствуйтесь жалованьем. Ломать лук он не велел. Вот я и стерегу ворота. А ты храни своё слово, что бы ты там ни хранил по ночам.",
     "meaning": "Scripture does not condemn the soldier's service as such (the Baptist's counsel, the centurion's faith), but it forbids violence and extortion. The guard keeps his duty and the Church keeps its refusal of the sword; neither is forced onto the other's path.",
@@ -5982,6 +6000,7 @@
   "npcId": "symeon_stylite",
   "npcName": "St Symeon the Stylite",
   "npcName_ru": "Прп. Симеон Столпник",
+  "saint": true,
   "theology": "Ascetic constancy turned into service: the pillar as a place of prayer from which Symeon counselled crowds, reconciled quarrels, and urged justice against usury and oaths; obedience and humility as the test of every ascetic feat; discernment of vainglory. Commemorated September 1.",
   "idiom": {
    "worldview": "Height is for hearing: the farther a man stands from the market, the closer he comes to those who climb to his foot.",
@@ -6902,6 +6921,7 @@
   "nodes": [
    {
     "id": "v_ledger",
+    "voice": "own",
     "text": "Ink first, words after, deacon. Sit where the light falls on the page. Here every bale, every ingot, every sack has its line. What brings you to my table?",
     "text_ru": "Сначала чернила, потом слова, дьякон. Сядь туда, где свет падает на лист. Здесь у каждого тюка, каждого слитка, каждого мешка своя строка. С чем пришёл к моему столу?",
     "meaning": "Honest keeping of accounts is a moral act: truthfulness in small things forms the soul for greater faithfulness.",
@@ -6950,6 +6970,7 @@
    },
    {
     "id": "v_marks",
+    "voice": "own",
     "text": "Three marks in the margin. [doc.] means I saw the thing or the sealed paper. [chron.] means an older book says so. [trad.] means people tell it and I have not seen it. A scribe who forgets his margin makes a rumour look like a seal.",
     "text_ru": "Три пометки на полях. [док.] значит, я видел вещь или бумагу с печатью. [летоп.] значит, так пишет старая книга. [предание] значит, так рассказывают люди, а я не видел. Писец, забывший о полях, выдаёт слух за печать.",
     "meaning": "Truthfulness includes honesty about the grade of one's knowledge; to present hearsay as fact is a form of lying.",
@@ -6979,6 +7000,7 @@
    },
    {
     "id": "v_columns",
+    "voice": "own",
     "text": "Good, you read our letters. Then you see it too: the column of silk adds up, the column of silver is short by one ingot. A column that does not add up is a door left open. We do not shout 'thief'. We walk to the storehouse and count.",
     "text_ru": "Хорошо, ты читаешь наши буквы. Значит, и ты видишь: столбец шёлка сходится, а в столбце серебра не хватает слитка. Несошедшийся столбец — открытая дверь. Мы не кричим «вор». Мы идём в амбар и считаем.",
     "meaning": "Justice begins with patient verification, not with accusation; a hasty judgement is itself a fault.",
@@ -7004,6 +7026,7 @@
    },
    {
     "id": "v_receipt",
+    "voice": "own",
     "text": "Your eye is sharper than my lamp. One date is written in the old hand, the other in fresh ink over a scraped place. The parchment remembers the knife: it can be scraped, but under the fresh ink the old line still shows.",
     "text_ru": "Твой глаз острее моей лампы. Одна дата старой рукой, другая свежими чернилами по выскобленному месту. Пергамент помнит нож: его можно выскоблить, но под свежими чернилами всё равно видна прежняя строка.",
     "meaning": "Falsified records can be discerned by attentive examination; a lie always leaves a trace, and the truth is uncovered by patience.",
@@ -7022,6 +7045,7 @@
    },
    {
     "id": "v_crooked",
+    "voice": "own",
     "text": "(He lays the pen across the inkwell and waits.) A kinder count to the merchant is a crueller count to the one who buys his bread by it. Watch the hand that wants to count twice, deacon, and first of all your own.",
     "text_ru": "(Кладёт перо поперёк чернильницы и ждёт.) Счёт помягче для купца — счёт пожёстче для того, кто по нему покупает хлеб. Смотри на руку, что хочет считать дважды, дьякон, и прежде всего на свою.",
     "meaning": "Discernment cue for avarice: the wish to bend a measure 'just a little' for gain or favour. The cunning player gains a trick but loses the scribe's trust; nothing deeper is opened.",
@@ -7039,6 +7063,7 @@
    },
    {
     "id": "v_weights",
+    "voice": "own",
     "text": "These are the standard weights of the post. Every season I set them against the bishop's weights. The scales weigh the merchant as well as the silk: a man who trusts a light weight has already become lighter himself. You can recognise the passion for silver by one sign: it never says 'enough', it only says 'one more'.",
     "text_ru": "Это эталонные гири фактории. Каждый сезон я сверяю их с гирями епископа. Весы взвешивают купца вместе с шёлком: кто полагается на лёгкую гирю, тот сам уже полегчал. Страсть к серебру узнают по одному признаку: она никогда не говорит «довольно», только «ещё одну».",
     "meaning": "A false balance is an abomination before God; avarice is recognised by insatiability and is healed by mercy and contentment, not by any object. The bishop's weights are a civic standard of measure, not a holy thing.",
@@ -7056,6 +7081,7 @@
    },
    {
     "id": "v_legend",
+    "voice": "own",
     "text": "Sargis wants me to write that an icon wept in our quarter. Three brothers told me that the old cellarer gave his only cloak to a drover in the frost and walked home in his shirt; I will write that with [trad.] and the names of the three. A wept icon that nobody saw I will not write. A lie for God is still a lie; ink dries, a false line does not.",
     "text_ru": "Саргис хочет, чтобы я записал, будто в нашем квартале заплакала икона. Трое братьев рассказали мне, что старый келарь отдал погонщику в мороз свой единственный плащ и шёл домой в одной рубахе. Это я запишу с пометкой [предание] и именами троих. Плачущую икону, которой никто не видел, писать не стану. Ложь ради Бога остаётся ложью: чернила сохнут, ложная строка — нет.",
     "meaning": "Inventing miracles to draw pilgrims is a lie and a form of vainglory and avarice; God is not served by falsehood. True testimony about the life of the brethren is recorded with its witnesses and its degree of certainty, as the Church's own writers named their informants.",

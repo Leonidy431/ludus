@@ -1,0 +1,272 @@
+{
+ "licensed_repos_read": 73,
+ "code": {
+  "time_of_day": {
+   "hits": 31,
+   "repos": 6,
+   "one_per_repo": [
+    {
+     "repo": "FyroxEngine__Fyrox",
+     "path": "fyrox-impl/src/scene/skybox.rs",
+     "licence": "Copyright (c) 2019-present Dmitry Stepanov and Fyrox Engine "
+    },
+    {
+     "repo": "amethyst__amethyst",
+     "path": "amethyst_rendy/src/pass/skybox.rs",
+     "licence": "Copyright 2016 The Amethyst Project Developers"
+    },
+    {
+     "repo": "bevyengine__bevy",
+     "path": "crates/bevy_camera_controller/src/pan_orbit_camera/extensions/independent_skybox.rs",
+     "licence": "Apache License"
+    },
+    {
+     "repo": "magefree__mage",
+     "path": "Mage.Sets/src/mage/cards/s/SkyboxFerry.java",
+     "licence": "MIT License"
+    },
+    {
+     "repo": "panda3d__panda3d",
+     "path": "panda/src/pgraphnodes/ambientLight.h",
+     "licence": "Copyright (c) 2008, Carnegie Mellon University."
+    },
+    {
+     "repo": "wesnoth__wesnoth",
+     "path": "data/lua/wml/store_time_of_day.lua",
+     "licence": "GNU GENERAL PUBLIC LICENSE"
+    }
+   ]
+  },
+  "scatter_placement": {
+   "hits": 69,
+   "repos": 11,
+   "one_per_repo": [
+    {
+     "repo": "00-Evan__shattered-pixel-dungeon",
+     "path": "core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/actors/mobs/MobSpawner.java",
+     "licence": "GNU GENERAL PUBLIC LICENSE"
+    },
+    {
+     "repo": "Anuken__Mindustry",
+     "path": "core/src/mindustry/ai/WaveSpawner.java",
+     "licence": "GNU GENERAL PUBLIC LICENSE"
+    },
+    {
+     "repo": "OpenRA__OpenRA",
+     "path": "OpenRA.Mods.Common/Traits/ActorSpawner.cs",
+     "licence": "GNU GENERAL PUBLIC LICENSE"
+    },
+    {
+     "repo": "bevyengine__bevy",
+     "path": "crates/bevy_ecs/src/bundle/spawner.rs",
+     "licence": "Apache License"
+    },
+    {
+     "repo": "godotengine__godot",
+     "path": "modules/multiplayer/multiplayer_spawner.cpp",
+     "licence": "Format: https://www.debian.org/doc/packaging-manuals/copyrig"
+    },
+    {
+     "repo": "kchapelier__poisson-disk-sampling",
+     "path": "build/poisson-disk-sampling.js",
+     "licence": "The MIT License (MIT)"
+    },
+    {
+     "repo": "magefree__mage",
+     "path": "Mage.Sets/src/mage/cards/e/EldraziSkyspawner.java",
+     "licence": "MIT License"
+    },
+    {
+     "repo": "panda3d__panda3d",
+     "path": "panda/src/physics/linearJitterForce.h",
+     "licence": "Copyright (c) 2008, Carnegie Mellon University."
+    }
+   ]
+  },
+  "layout_generator": {
+   "hits": 230,
+   "repos": 17,
+   "one_per_repo": [
+    {
+     "repo": "Anuken__Mindustry",
+     "path": "core/src/mindustry/editor/MapGenerateDialog.java",
+     "licence": "GNU GENERAL PUBLIC LICENSE"
+    },
+    {
+     "repo": "Azgaar__Fantasy-Map-Generator",
+     "path": "src/generators/heightmap-generator.ts",
+     "licence": "MIT License"
+    },
+    {
+     "repo": "CleverRaven__Cataclysm-DDA",
+     "path": "lang/string_extractor/parsers/mapgen.py",
+     "licence": "Apache License"
+    },
+    {
+     "repo": "Cockatrice__Cockatrice",
+     "path": "cockatrice/src/interface/pixel_map_generator.cpp",
+     "licence": "GNU GENERAL PUBLIC LICENSE"
+    },
+    {
+     "repo": "OpenRA__OpenRA",
+     "path": "OpenRA.Game/Map/MapGenerationArgs.cs",
+     "licence": "GNU GENERAL PUBLIC LICENSE"
+    },
+    {
+     "repo": "Return-To-The-Roots__s25client",
+     "path": "libs/s25main/ingameWindows/iwMapGenerator.cpp",
+     "licence": "GNU GENERAL PUBLIC LICENSE"
+    },
+    {
+     "repo": "bevyengine__bevy",
+     "path": "examples/large_scenes/mipmap_generator/examples/load_gltf.rs",
+     "licence": "Apache License"
+    },
+    {
+     "repo": "crawl__crawl",
+     "path": "crawl-ref/source/dat/dlua/layout/procedural.lua",
+     "licence": "Dungeon Crawl Stone Soup"
+    }
+   ]
+  },
+  "seed_presets": {
+   "hits": 167,
+   "repos": 23,
+   "one_per_repo": [
+    {
+     "repo": "Anuken__Mindustry",
+     "path": "core/src/mindustry/content/SectorPresets.java",
+     "licence": "GNU GENERAL PUBLIC LICENSE"
+    },
+    {
+     "repo": "Azgaar__Fantasy-Map-Generator",
+     "path": "public/modules/ui/style-presets.js",
+     "licence": "MIT License"
+    },
+    {
+     "repo": "Card-Forge__forge",
+     "path": "forge-ai/src/main/java/forge/ai/ability/ControlGainVariantAi.java",
+     "licence": "GNU GENERAL PUBLIC LICENSE"
+    },
+    {
+     "repo": "CleverRaven__Cataclysm-DDA",
+     "path": "src/cata_variant.cpp",
+     "licence": "Apache License"
+    },
+    {
+     "repo": "Cockatrice__Cockatrice",
+     "path": "cockatrice/src/interface/widgets/tabs/api/commander_spellbook/api_response/commander_spellbook_variant_result.cpp",
+     "licence": "GNU GENERAL PUBLIC LICENSE"
+    },
+    {
+     "repo": "OpenRA__OpenRA",
+     "path": "OpenRA.Mods.Common/Traits/Buildings/PlaceBuildingVariants.cs",
+     "licence": "GNU GENERAL PUBLIC LICENSE"
+    },
+    {
+     "repo": "Return-To-The-Roots__s25client",
+     "path": "libs/common/include/variant.h",
+     "licence": "GNU GENERAL PUBLIC LICENSE"
+    },
+    {
+     "repo": "bevyengine__bevy",
+     "path": "crates/bevy_derive/src/enum_variant_meta.rs",
+     "licence": "Apache License"
+    }
+   ]
+  },
+  "validation": {
+   "hits": 363,
+   "repos": 27,
+   "one_per_repo": [
+    {
+     "repo": "00-Evan__shattered-pixel-dungeon",
+     "path": "desktop/src/main/java/com/shatteredpixel/shatteredpixeldungeon/desktop/DesktopLaunchValidator.java",
+     "licence": "GNU GENERAL PUBLIC LICENSE"
+    },
+    {
+     "repo": "Anuken__Mindustry",
+     "path": "core/src/mindustry/net/ValidateException.java",
+     "licence": "GNU GENERAL PUBLIC LICENSE"
+    },
+    {
+     "repo": "BehaviorTree__BehaviorTree.CPP",
+     "path": "tests/gtest_name_validation.cpp",
+     "licence": "The MIT License (MIT)"
+    },
+    {
+     "repo": "Card-Forge__forge",
+     "path": "forge-game/src/main/java/forge/game/combat/AttackConstraints.java",
+     "licence": "GNU GENERAL PUBLIC LICENSE"
+    },
+    {
+     "repo": "CleverRaven__Cataclysm-DDA",
+     "path": "build-scripts/validate_json.py",
+     "licence": "Apache License"
+    },
+    {
+     "repo": "Cockatrice__Cockatrice",
+     "path": "cockatrice/src/interface/layouts/overlap_layout.cpp",
+     "licence": "GNU GENERAL PUBLIC LICENSE"
+    },
+    {
+     "repo": "FyroxEngine__Fyrox",
+     "path": "fyrox-math/src/aabb.rs",
+     "licence": "Copyright (c) 2019-present Dmitry Stepanov and Fyrox Engine "
+    },
+    {
+     "repo": "MonoGame__MonoGame",
+     "path": "MonoGame.Framework.Content.Pipeline/Serialization/Compiler/BoundingBoxWriter.cs",
+     "licence": "﻿Microsoft Public License (Ms-PL)"
+    }
+   ]
+  }
+ },
+ "objects": {
+  "hits": 2149,
+  "repos": 36,
+  "one_per_repo": [
+   {
+    "repo": "Anuken__Mindustry",
+    "path": "core/assets-raw/fontgen/extra/planet.svg",
+    "licence": "GNU GENERAL PUBLIC LICENSE"
+   },
+   {
+    "repo": "Azgaar__Fantasy-Map-Generator",
+    "path": "docs/updates/v1.124.0/screenshots/trade-animation.png",
+    "licence": "MIT License"
+   },
+   {
+    "repo": "BehaviorTree__BehaviorTree.CPP",
+    "path": "animated.svg",
+    "licence": "The MIT License (MIT)"
+   },
+   {
+    "repo": "Card-Forge__forge",
+    "path": "docs/netplay.png",
+    "licence": "GNU GENERAL PUBLIC LICENSE"
+   },
+   {
+    "repo": "Cockatrice__Cockatrice",
+    "path": "cockatrice/themes/Fabric/zones/tablezone-light.png",
+    "licence": "GNU GENERAL PUBLIC LICENSE"
+   },
+   {
+    "repo": "Elttob__Fusion",
+    "path": "docs/assets/home/Animation-Dark.svg",
+    "licence": "MIT License"
+   },
+   {
+    "repo": "FyroxEngine__Fyrox",
+    "path": "editor/resources/material.png",
+    "licence": "Copyright (c) 2019-present Dmitry Stepanov and Fyrox Engine "
+   },
+   {
+    "repo": "MonoGame__MonoGame",
+    "path": "Tests/Assets/ReferenceImages/SpriteBatch/Draw_with_matrix_0_.png",
+    "licence": "﻿Microsoft Public License (Ms-PL)"
+   }
+  ]
+ },
+ "rule": "Read and rewrite code; measure with code_delta.py (>= 35 %). Images only through the runner pipeline. Nothing here was copied."
+}

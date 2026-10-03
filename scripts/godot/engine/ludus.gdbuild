@@ -1,0 +1,19 @@
+{
+ "type": "build_profile",
+ "disabled_build_options": {
+  "disable_navigation_2d": true,
+  "disable_navigation_3d": true,
+  "disable_physics_2d": true
+ },
+ "disabled_classes": [
+  "GPUParticles2D",
+  "GPUParticles3D",
+  "Camera2D",
+  "TileMap",
+  "TileMapLayer",
+  "Polygon2D",
+  "Line2D",
+  "Skeleton2D",
+  "VideoStreamPlayer"
+ ]
+}

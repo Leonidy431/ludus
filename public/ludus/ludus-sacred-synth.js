@@ -1089,13 +1089,8 @@
         wind(tr, rng, 420, 1);
       },
     },
-    monastery_bells: {
-      meaning: 'Distant благовест: the monastery calls to prayer.',
-      seconds: 30, loop: true, peak: 0.55,
-      build: function (tr, rng) {
-        blagovest(tr, rng, 0, 6, 5.0, 0);
-      },
-    },
+    // No bell bed: a looped благовест under the music would ring past
+    // the liturgical clock and over the ison (TABOO 0.35 rules 9, 10).
     hesychasm_flow: Object.assign(isonBed(146.83, 'athonite', 'o', 0.5),
       { meaning: 'Ison breathing the Athonite 5-1-8-1 s cycle.' }),
     theoria_ascending: {
@@ -1207,8 +1202,9 @@
     sand_footsteps: 'sand_steps',
     character_footsteps: 'footsteps',
     monastery_bell_toll: 'blagovest_stroke',
-    prayer_delivered: 'blagovest_stroke',
-    meditation_bell: 'small_bell_stroke',
+    // The player's prayer is answered by one breath, never by a bell
+    // (TABOO 0.2 item 5).
+    prayer_delivered: 'breathing',
     water_flow: 'water',
     character_breathing: 'breathing',
     kneeling_sound: 'kneeling',

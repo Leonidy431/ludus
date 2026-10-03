@@ -46,6 +46,7 @@ from pathlib import Path
 
 import licences
 import props
+import register
 from intake import is_game_object
 from search_index import search
 
@@ -81,7 +82,18 @@ PLAIN_WORDS = {'png', 'svg', 'jpg', 'gif', 'img', 'image', 'images', 'res',
                'with', 'for', 'from', 'into',
                # Sprite-format folders and view words, not things (the
                # 17:51 pass grew rsi, inhand, left, right, generic).
-               'rsi', 'inhand', 'left', 'right', 'generic', 'props'}
+               'rsi', 'inhand', 'left', 'right', 'generic', 'props',
+               # Words of tools and code, not things (the 12:50 pass of
+               # 2026-10-02 grew load, manager, name, out, output and
+               # layer for DEF-040).
+               'load', 'loader', 'manager', 'name', 'names', 'out',
+               'output', 'input', 'layer', 'layers', 'model', 'models',
+               'test', 'tests', 'example', 'examples', 'editor', 'tool',
+               'tools', 'util', 'utils', 'tmp', 'temp', 'file', 'files',
+               'export', 'import', 'preview', 'thumb', 'thumbs', 'index',
+               # The 17:51 pass grew these for DEF-040.
+               'parser', 'report', 'script', 'scripts', 'scene', 'scenes',
+               'panel', 'range', 'relocation', 'raloader', 'remastered'}
 
 # Rule 5: paths that must never enter the pipeline at all.
 DOGMA_STOP = re.compile(
@@ -225,6 +237,28 @@ def rotation():
     rows = [r for r in open_deficits() if r['fill'] in USEFUL_FILLS]
     rows.sort(key=lambda r: r['fill'] != 'raw-material')
     return rows
+
+
+# An object reverted by the eye check stays reverted: the pass log names
+# it either in a "reverted" list of {"object": ...} or in a
+# "reverted_reason" text.  Without this memory the runner shipped the
+# same chalice-like sadness kit (ant_sadness_5338273a79) three times
+# (passes of cycles 89 and 93); the journal is the memory, so it is read.
+REVERTED_ID = re.compile(r'\b(?:ant|obj)_[a-z]+_[0-9a-f]{10}\b')
+
+
+def reverted_objects(cursor):
+    """The names of every object an earlier pass reverted."""
+    out = set()
+    for entry in cursor.get('log', []):
+        rev = entry.get('reverted')
+        if isinstance(rev, list):
+            for r in rev:
+                if isinstance(r, dict) and r.get('object'):
+                    out.add(r['object'])
+        out.update(REVERTED_ID.findall(str(entry.get('reverted_reason',
+                                                     ''))))
+    return out
 
 
 def load_cursor():
@@ -699,7 +733,12 @@ def pipeline(manifest, raw_dir, out_dir, work):
         slots = {m['path']: m['slot'] for m in manifest}
         report = json.loads((out_dir / 'report.json').read_text('utf-8'))
         shipped = set()
+        refused = reverted_objects(load_cursor())
         for rec in report['accepted']:
+            if rec['name'] in refused:
+                print(f'{rec["name"]}: reverted by an earlier eye check, '
+                      'not shipped again')
+                continue
             # Fewer than twelve variants never ships (TABOO 0.1: never
             # stop at eleven); such objects stay in the build for review.
             if rec.get('status') != 'ok':
@@ -721,14 +760,31 @@ def pipeline(manifest, raw_dir, out_dir, work):
                 if line.startswith(('| ant_', '| obj_'))
                 and line.split('|')[1].strip() in shipped]
         existing = NOTICES.read_text('utf-8') if NOTICES.exists() else (
-            '# Third-party raw material register\n\n| Object | Source | '
-            'Commit | Path | Licence | Colour | Shape |\n'
-            '|---|---|---|---|---|---|---|\n')
+            '# Third-party raw material register\n\n'
+            + register.TABLE_HEAD)
         new = [r for r in rows if r not in existing]
-        NOTICES.write_text(existing.rstrip('\n') + '\n'
-                           + '\n'.join(new) + ('\n' if new else ''),
-                           'utf-8')
+        NOTICES.write_text(add_rows(existing, new), 'utf-8')
     return accepted
+
+
+def add_rows(text, rows):
+    """The register with rows added at the end of its first table.
+
+    Appending at the end of the file put rows under later sections
+    (the posoh and location tables) where no head matched them; they
+    belong to the raw-material table, whose head is register.TABLE_HEAD.
+    Nothing already there is rewritten (the register only grows)."""
+    if not rows:
+        return text
+    lines = text.rstrip('\n').split('\n')
+    head = register.TABLE_HEAD.split('\n')[0]
+    if head not in lines:
+        return '\n'.join(lines + [''] + register.TABLE_HEAD.split('\n')
+                         [:2] + rows) + '\n'
+    end = lines.index(head) + 2
+    while end < len(lines) and lines[end].startswith('|'):
+        end += 1
+    return '\n'.join(lines[:end] + rows + lines[end:]) + '\n'
 
 
 if __name__ == '__main__':

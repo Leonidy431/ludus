@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Ованес, торговец тканями, со штукой шёлка и распиской">
+  <title>Ованес, торговец тканями</title>
+  <desc>ФОРМА: армянский купец средних лет с короткой бородой, в шапке-колпаке и долгополом кафтане; на руке штука шёлка, в другой руке расписка с подскобленной датой. ДЕЙСТВИЕ: в споре о тюке шёлка проходит путь от самозащиты к признанию и примирению. ЦЕЛЬ: правда, сказанная самим, мирит лучше, чем выигранный спор (Притч. 18:17; Мф. 5:23-24). Миссия 3.</desc>
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- Арт-канон §9.0: умбра+золото, без нимба. -->
+  <!-- лицо с короткой бородой, колпак -->
+  <circle cx="50" cy="36" r="10.5" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M41 40 Q50 52 59 40" fill="#3a2410" stroke="#c8a56a" stroke-width="1.2"/>
+  <path d="M39 30 Q42 16 50 14 Q58 16 61 30 Z" fill="#a33a2a" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- долгополый кафтан с поясом -->
+  <path d="M50 50 C31 55 27 82 28 122 H72 C73 82 69 55 50 50 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M50 52 V122" stroke="#8a6a34" stroke-width="1.2"/>
+  <path d="M30 88 H70" stroke="#e8c87a" stroke-width="2"/>
+  <!-- штука шёлка на руке: свёрток с полосами -->
+  <g transform="translate(22,66) rotate(-18)">
+    <rect width="26" height="10" rx="5" fill="#c8a56a" stroke="#8a6a34" stroke-width="1.2"/>
+    <path d="M6 0 V10 M13 0 V10 M20 0 V10" stroke="#a33a2a" stroke-width="1"/>
+  </g>
+  <!-- расписка с подскобленной датой -->
+  <path d="M62 70 h14 v18 h-14 Z" fill="#e8d6b6" stroke="#8a6a34" stroke-width="1"/>
+  <path d="M64 74 h10 M64 78 h10 M64 82 h5" stroke="#5a5550" stroke-width="1"/>
+  <path d="M69 82 l5 -2" stroke="#a33a2a" stroke-width="1.2"/>
+</svg>

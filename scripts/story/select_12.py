@@ -74,26 +74,32 @@ PRACTICE_RU = {
     'fast': 'Сохранить сегодняшний пост',
     'secret_deed': 'Сделать доброе тайно',
 }
-# The teaching of each act (MissionCore.ACT_PLAN meaning and source) in
-# the words of the documents; it is the GOAL of the Constitution line.
-GOAL_RU = {
-    'prologue': 'дорога начинается с ухода: странник учится полагаться '
-                'на Бога и на гостеприимство других (Лествица, слово 3)',
-    'trade': 'неверные весы — мерзость, честная мера — первый урок '
-             'караванной дороги (Притч. 11:1)',
-    'spiritual': 'знак в глине и камне чтут за то, на что он указывает; '
-                 'образ не бывает оберегом (Иоанн Дамаскин, '
-                 'слова об иконах)',
-    'hydrology': 'море великое и пространное полно дел премудрости; кто '
-                 'спускается медленно, видит Творца в творении '
-                 '(Пс. 103:24–25)',
-    'diplomacy': 'будь в мире со всеми, насколько это от тебя зависит; '
-                 'слово, держащее мир, взвешивают прежде, чем сказать '
-                 '(Рим. 12:18)',
-    'craft': 'труд рук хранит сердце от уныния; старцы плели верёвку и '
-             'молились (Достопамятные сказания, Антоний Великий, 1)',
-    'narrative': 'тысяча лет как вчерашний день; что хранит вода, '
-                 'хранится для памяти, а не для наживы (Пс. 89:4)',
+# The GOAL of a story's Constitution line is the teaching against its
+# passion, from the step of the Ladder that treats that passion (the
+# same step public/ludus/data/passions.json names in `ladder`).
+# Patrologist of the chorus, 2026-10-03: prejudice «the act's teaching
+# is the story's goal» / counter: missions 73 and 78 fight pride but
+# cited a saying on acedia, and mission 3 fights gluttony but cited
+# step 3 (exile) / why: the goal answers the passion the player meets,
+# so the source and the passion are one; scripts/check_canon.py reads
+# these lines in story-12.json and checks the step against the canon.
+PASSION_GOAL_RU = {
+    'gluttony': 'чрево держат постом, чтобы ум был трезв: пост — мера, '
+                'а не голод (Лествица, слово 14)',
+    'lust': 'чистоту хранят, отворачивая взгляд от посула прежде, чем '
+            'он стал мыслью (Лествица, слово 15)',
+    'avarice': 'кто держится за серебро, тот служит ему; нестяжатель '
+               'свободен, и мера его честна (Лествица, слова 16–17)',
+    'sadness': 'печаль мира губит, а плач о своём деле приносит радость '
+               'и утешение (Лествица, слово 7)',
+    'anger': 'кротость не двигается ни от обиды, ни от похвалы; гнев '
+             'гасят молчанием и прощением (Лествица, слово 8)',
+    'acedia': 'уныние гонит из кельи; терпение остаётся и делает дело '
+              'рук, день за днём (Лествица, слово 13)',
+    'vainglory': 'тщеславие крадёт доброе дело похвалой; доброе делают '
+                 'тайно (Лествица, слово 22)',
+    'pride': 'гордость не принимает совета; смирение слушает наставника '
+             'и не считает своих дел (Лествица, слово 23)',
 }
 # Where the dive of a band is begun when no place shows the object
 # itself: the dive place whose task lies in that band.
@@ -287,7 +293,7 @@ def constitution(w, mid, route):
         PRACTICE_RU[route[1]['practice']].lower(), npc,
         lake[route[3]['object']]['ru']))
     return 'ФОРМА: %s → ДЕЙСТВИЕ: %s → ЦЕЛЬ: %s.' % (
-        '; '.join(names), act, GOAL_RU[m['actId']])
+        '; '.join(names), act, PASSION_GOAL_RU[m['passion']])
 
 
 def select():

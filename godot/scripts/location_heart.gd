@@ -127,6 +127,30 @@ static func open(loc: Dictionary, st: Dictionary,
 	return _open_own(loc, st, ctx)
 
 
+## A talk with one of the people of a story standing beside the heart
+## (StoryCast): the same talk as at a heart or in the hub, opened on the
+## node that speaks of his story, and recorded as a meeting.  person is
+## a row of the plan's cast: {npc, tag, node}.
+static func open_cast(person: Dictionary, st: Dictionary,
+		ctx: Dictionary) -> Dictionary:
+	var npc := str(person.get("npc", ""))
+	var tree: Dictionary = ctx.trees.get(npc, {})
+	if tree.is_empty():
+		return _result({}, st)
+	var p := {"kind": "talk", "choice": 0, "reply": "", "npc": npc,
+		"who": str(person.get("tag", tree.get("npcName_ru", npc))),
+		"node": HubCore.node_of(tree, person.get("node"))}
+	var s := st.duplicate(true)
+	s.actions = HubCore.record_meeting(s.actions, npc)
+	return _result(p, s, "", true)
+
+
+## Whose tree a talk panel walks: the person beside the heart when the
+## panel was opened at him, else the heart's own person.
+static func _npc(p: Dictionary, h: Dictionary) -> String:
+	return str(p.get("npc", h.get("npc", "")))
+
+
 static func _open_own(loc: Dictionary, st: Dictionary,
 		ctx: Dictionary) -> Dictionary:
 	var h: Dictionary = loc.heart
@@ -206,6 +230,8 @@ static func _missing_ru(c: Dictionary, gate: Dictionary) -> String:
 				need.append("поклон «не мне» у лестницы врат")
 			"ladder":
 				need.append("сперва нижняя ступень")
+			"trial":
+				need.append("сперва порог прошлых врат")
 	return ", ".join(need)
 
 
@@ -218,7 +244,7 @@ static func lines(p: Dictionary, loc: Dictionary, st: Dictionary,
 		"mission":
 			return StoryRoute.heart_lines(p, loc, st, ctx)
 		"talk":
-			out = [LocationCore.person_of(h) + ":",
+			out = [str(p.get("who", LocationCore.person_of(h))) + ":",
 				str(p.node.get("text_ru", p.node.get("text", "")))]
 			# As in the hub: the voice and the source of the line, and
 			# what the FORM has not opened yet (DialogueCore).
@@ -276,7 +302,8 @@ static func lines(p: Dictionary, loc: Dictionary, st: Dictionary,
 			elif tv.passed:
 				out += ["Этот порог пройден.", ""]
 			elif not tv.open:
-				var ladder := HubCore.evaluate_ladder(st.form, st.actions)
+				var ladder := HubCore.evaluate_ladder(st.form, st.actions,
+					st.trials.get("trials", {}))
 				var i := TrialCore.GATE_IDS.find(h.id)
 				out += ["Порог ещё закрыт: " + _missing_ru(ladder[i],
 					HubCore.GATES[i]) + ".", ""]
@@ -478,7 +505,7 @@ static func choose(p: Dictionary, loc: Dictionary, st: Dictionary,
 			s.form = res.form
 			if res.next == null:
 				return _result({}, s, "Беседа окончена.", true)
-			q.node = HubCore.node_of(ctx.trees[h.npc], res.next)
+			q.node = HubCore.node_of(ctx.trees[_npc(p, h)], res.next)
 			q.choice = 0
 			return _result(q, s, "", true)
 		"deed":

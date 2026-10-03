@@ -9,7 +9,8 @@
  *   - the liturgical day begins at Vespers (18:00 local), so an evening
  *     already belongs to the next day;
  *   - Pascha by the Julian computus (the Orthodox Paschalion), converted
- *     to the civil (Gregorian) date: +13 days for 1900-2099;
+ *     to the civil (Gregorian) date by the Julian-to-Gregorian offset
+ *     of that year (13 days for 1900-2099, 14 days for 2100-2199);
  *   - the orders each period allows are PERIOD_ORDERS, the
  *     "periodOrders" of the one bell table public/ludus/data/
  *     bell-rules.json (godot/data/bell-rules.json is the same file),
@@ -32,8 +33,18 @@
   const DAY = 86400000;
   const VESPERS_HOUR = 18;
 
+  // Days between the Julian and the Gregorian calendar for a date from
+  // March onwards of the given year.  The gap grows by one in every
+  // century year that is not divisible by 400 (2100, 2200, 2300), so a
+  // fixed +13 would put Pascha 2100 one day early, on a Saturday.
+  // Pascha always falls after the Julian 1 March, so the year alone is
+  // enough here.
+  function julianOffsetDays(year) {
+    return Math.floor(year / 100) - Math.floor(year / 400) - 2;
+  }
+
   // Julian computus (Meeus): Pascha as a Julian calendar date, then
-  // shifted to the civil calendar.  Valid for 1900-2099 (+13 days).
+  // shifted to the civil calendar by the offset of its year.
   function paschaCivil(year) {
     const a = year % 4;
     const b = year % 7;
@@ -43,7 +54,7 @@
     const month = Math.floor((d + e + 114) / 31);
     const day = ((d + e + 114) % 31) + 1;
     const julian = Date.UTC(year, month - 1, day);
-    return new Date(julian + 13 * DAY);
+    return new Date(julian + julianOffsetDays(year) * DAY);
   }
 
   // Fixed great feasts on the civil calendar (Julian date + 13 days).
@@ -136,12 +147,31 @@
     return (PERIOD_ORDERS[key] || PERIOD_ORDERS.ordinary).slice();
   }
 
+  // Great Friday and Great Saturday: no трезвон in either reckoning.
+  const GRIEF = ['great-friday', 'great-saturday'];
+
+  // The civil day of a moment, asked at noon so Vespers does not move it.
+  function civilNoon(now) {
+    const local = new Date(now);
+    return new Date(local.getFullYear(), local.getMonth(), local.getDate(),
+      12, 0, 0);
+  }
+
   function mayRing(order, now) {
+    if (order === 'трезвон') {
+      // After Vespers on Great Saturday the liturgical day is already
+      // Pascha, but the civil day still grieves: both are asked, as the
+      // headset's TypikonCore.trezvon_forbidden does (TABOO 0.35 rule 9).
+      const civil = describe(civilNoon(now));
+      if (GRIEF.includes(civil.period)) {
+        return false;
+      }
+    }
     return allowedOrders(describe(now)).includes(order);
   }
 
-  const api = { paschaCivil, liturgicalDate, describe, allowedOrders,
-    mayRing, VESPERS_HOUR, PERIOD_ORDERS };
+  const api = { paschaCivil, julianOffsetDays, liturgicalDate, describe,
+    allowedOrders, mayRing, VESPERS_HOUR, PERIOD_ORDERS };
   if (typeof module === 'object' && module.exports) {
     module.exports = api;
   }

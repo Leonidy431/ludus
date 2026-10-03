@@ -219,6 +219,11 @@ func _initialize() -> void:
 	mentors.in_hub(self)
 	print("mentors: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# The people of the 12 stories beside the hearts of their places
+	# (StoryCast; docs/HLD_STORY_12_CHARACTERS_2026-10-02.md).  Run before
+	# the module loader's test, whose background loads stay in the cache.
+	await process_frame
+	load("res://tests/test_story_cast.gd").new().run(self)  # Prints its own.
 	# The small acts at the hearts of 26 places (PlaceDeeds, phase L3).
 	before = checks
 	fails = failures
@@ -228,6 +233,35 @@ func _initialize() -> void:
 	load("res://tests/test_storm_calm.gd").new().run(self)
 	print("place deeds: %d checks, %d failures" % [checks - before,
 		failures - fails])
+	# Data packs beside the APK: the English voices first (DataPacks;
+	# docs/decisions/SIZE_STRATEGIES_7_2026-10-02.md).
+	before = checks
+	fails = failures
+	load("res://tests/test_data_packs.gd").new().run(self)
+	load("res://tests/test_xr_session.gd").new().run(self)
+	load("res://tests/test_rights.gd").new().run(self)
+	load("res://tests/test_pack_fetch.gd").new().run(self)
+	load("res://tests/test_pilot.gd").new().run(self)
+	load("res://tests/test_pilot_scene.gd").new().run(self)
+	load("res://tests/test_insights.gd").new().run(self)
+	load("res://tests/test_wow.gd").new().run(self)
+	load("res://tests/test_companion.gd").new().run(self)
+	load("res://tests/test_contract.gd").new().run(self)
+	load("res://tests/test_rov_course.gd").new().run(self)
+	load("res://tests/test_glove_computer.gd").new().run(self)
+	load("res://tests/test_tides.gd").new().run(self)
+	load("res://tests/test_chat.gd").new().run(self)
+	load("res://tests/test_scene_sets.gd").new().run(self)
+	load("res://tests/test_apparatus.gd").new().run(self)
+	load("res://tests/test_volumetric.gd").new().run(self)
+	load("res://tests/test_volumetric_screen.gd").new().run(self)
+	load("res://tests/test_lock.gd").new().run(self)
+	load("res://tests/test_destiny.gd").new().run(self)
+	load("res://tests/test_branches.gd").new().run(self)
+	load("res://tests/test_lock_scene.gd").new().run(self)
+	load("res://tests/test_cosmos.gd").new().run(self)
+	print("data packs: %d checks, %d failures" % [checks - before,
+		failures - fails])
 	# Big modules load in the background (ModuleLoader, TABOO 0.014, S1).
 	before = checks
 	fails = failures
@@ -236,4 +270,20 @@ func _initialize() -> void:
 		failures - fails])
 	load("res://tests/test_story_12.gd").new().run(self)  # Prints its own.
 	load("res://tests/test_story_check.gd").new().run(self)  # Prints too.
+	# Resources held in static caches outlive the rendering and audio
+	# servers when the process ends: the log showed material_set_shader
+	# on a freed material at exit, and CI crashed there (signal 11) after
+	# every check had passed.  The caches let go of them before quit.
+	# The loader keeps the scenes it was asked to load (the pilot, the lock,
+	# the dive); they hold ShaderMaterials too, and the autoload is freed
+	# after the rendering server on the way out.  Let them go first.
+	var loader := root.get_node_or_null("ModuleLoader")
+	if loader != null:
+		for path in loader.modules.keys():
+			loader.release(path)
+	await process_frame
+	await process_frame
+	FishDrawings._shaders.clear()
+	ActCue._cache.clear()
+	PlaceSound._refs.clear()
 	quit(1 if failures else 0)

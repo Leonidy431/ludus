@@ -19129,7 +19129,7 @@ PEP 8 / TSDoc: Кодовая база приведена к высшему ст
 
 
 Leo
-DEEPSEEK_API_KEY=sk-3e12c1dfe0c04d11b90a2e2a079cfffc
+DEEPSEEK_API_KEY=sk-REDACTED-revoke-at-provider
 
 Gemini
 Я успешно завершил реализацию STAGE 4: Post-Truth & Fact-Check Loop и перевел аналитическое ядро на суверенную работу с DeepSeek (Tier 1). Система теперь не просто распознает манипуляции, но и верифицирует реальность, выявляя эмоциональные подмены и дефицит доказательств.

@@ -18,6 +18,11 @@ const FLOW_SHAPES := ["current", "eddy", "intwave", "plume", "langmuir",
 const ZONE_SHAPES := ["ripples", "gravel", "silt", "meadow", "swarm",
 	"fuzz", "shells", "particles", "cloud", "light", "bubbles", "sherds"]
 const REACH_M := 4.0
+## A flat battery: the player watches the vehicle start up on the
+## tether this long, then the black comes in and the slipway follows
+## (TABOO 0.017: a quiet return, no death screen).  The rise itself
+## stays under 10 m/min in DiveCore; only the watching is cut short.
+const RECOVERY_WATCH_SEC := 14.0
 
 var rov := DiveCore.new_rov()
 var placed: Array = []
@@ -93,6 +98,9 @@ var third_person := true
 var view_was := false
 # The manipulator reached out this frame: the tether task needs it.
 var arm_now := false
+# Seconds left to watch the recovery; negative while the battery lives.
+var recovery_left := -1.0
+var recovery_sent := false
 var left_hand: XRController3D
 var right_hand: XRController3D
 var fish_meshes: Array = []
@@ -1286,6 +1294,11 @@ func _interact() -> void:
 		_save_bag()
 		_say(res.text)
 		return
+	# At a holy thing on the floor (the lead bulla) the arm does not
+	# move and nothing is said: the interface goes, as at the khachkar
+	# (TABOO 0.4 rules 1-2; chorus audit 2026-10-03, voice 9).
+	if not hit.is_empty() and RimLight.is_holy(hit.thing):
+		return
 	# The arm reaches whatever it finds: an empty reach is the answer
 	# "nothing here" too.
 	body.reach(t)
@@ -1327,6 +1340,8 @@ func _task_line() -> String:
 
 
 func _dive_task_line() -> String:
+	if game.recovering:
+		return "Заряд кончился. Аппарат выбирают тросом к стапелю."
 	if game.fallen:
 		return "Остановка безопасности: стой на месте %d с." % maxi(0,
 			roundi(DiveCore.SAFETY_STOP_SEC - game.still_for))
@@ -1336,33 +1351,47 @@ func _dive_task_line() -> String:
 	return "Все задачи погружения пройдены."
 
 
+## The battery is flat: the hub starts loading at once (TABOO 0.014),
+## and after a short watch, or at the surface, the player goes back to
+## the slipway through ModuleLoader's fade.  The proof frames stay.
+func _update_recovery(dt: float) -> void:
+	if not game.recovering or recovery_sent or shots_dir != "":
+		return
+	if recovery_left < 0.0:
+		recovery_left = RECOVERY_WATCH_SEC
+		ModuleLoader.prefetch(ModuleLoader.HUB)
+	recovery_left -= dt
+	if recovery_left <= 0.0 or game.recovered:
+		recovery_sent = true
+		_save_bag()
+		_say(DiveCore.RECOVERED_RU)
+		ModuleLoader.go(ModuleLoader.HUB)
+
+
 func _save_bag() -> void:
-	var f := FileAccess.open(SaveSlot.dive(), FileAccess.WRITE)
-	if f:
-		f.store_string(JSON.stringify({"bag": bag, "done": game.done}))
+	SaveSlot.write_json(SaveSlot.dive(), {"bag": bag, "done": game.done})
 
 
 ## The chronicle's choice is written in the hub (hub.json); the dive only
 ## reads it.  Proof frames show the "spare" floor without saving it.
 func _load_chronicle() -> String:
-	var hub_save := SaveSlot.hub()
-	if FileAccess.file_exists(hub_save):
-		var data = JSON.parse_string(FileAccess.get_file_as_string(hub_save))
-		if data is Dictionary:
-			var c := AtlasTraces.write_chronicle(atlas_data,
-				data.get("chronicle"), "")
-			if c != "":
-				return c
+	var data := SaveSlot.read_json(SaveSlot.hub())
+	if not data.is_empty():
+		var c := AtlasTraces.write_chronicle(atlas_data,
+			data.get("chronicle"), "")
+		if c != "":
+			return c
 	return "spare" if shots_dir != "" else ""
 
 
 func _load_bag() -> void:
-	var save := SaveSlot.dive()
-	if FileAccess.file_exists(save):
-		var data = JSON.parse_string(FileAccess.get_file_as_string(save))
-		if data is Dictionary and data.has("bag"):
-			bag.merge(data.bag, true)
-			game.done = data.get("done", [])
+	# A spoiled save falls back to its last good copy; wrong shapes are
+	# skipped, not merged (a merge of a non-Dictionary would stop the run).
+	var data := SaveSlot.read_json(SaveSlot.dive())
+	if data.get("bag") is Dictionary:
+		bag.merge(data.bag, true)
+	if data.get("done") is Array:
+		game.done = data.done
 
 
 # --- XR ---------------------------------------------------------------------
@@ -1453,6 +1482,7 @@ func _process(dt: float) -> void:
 	game = out.game
 	for text in out.say:
 		_say(text)
+	_update_recovery(dt)
 	if shots_dir != "":
 		_shots()
 	var tel := DiveCore.telemetry(rov)

@@ -24,7 +24,7 @@ const BOUNDS := Rect2(-7.0, -8.5, 16.0, 16.0)
 const RU_ATTR := {"wisdom": "Мудрость", "faith": "Вера",
 	"dexterity": "Ловкость", "constitution": "Стойкость",
 	"charisma": "Обаяние", "cunning": "Хитрость", "erudition": "Книжность"}
-const LAMPADA_K := Color(1.0, 0.52, 0.16)   # About 1800 K.
+const LAMPADA_K := LocationCore.LAMPADA_K   # 1800 K, one source.
 const HEARTH_K := Color(1.0, 0.62, 0.3)     # About 2200 K.
 const INSTRUMENT_K := Color(0.95, 0.97, 1.0)  # About 6500 K.
 ## The lampada's glass on the cell wall: the light, and the holy point
@@ -136,6 +136,18 @@ var shot_frame := 0
 
 
 func _ready() -> void:
+	# Symbols the built-in font lacks (arrows, bullets) get a glyph.
+	Glyphs.install()
+	# The rights of what the game is made of, on the west wall: the
+	# engine's MIT notice and the licences of the derived drawings travel
+	# with the player's copy (TABOO 0.1; licence audit 2026-10-03).
+	var rights := RightsPanel.make("ru")
+	rights.position = Vector3(-6.9, 1.6, 2.6)
+	rights.rotation_degrees = Vector3(0, 90, 0)
+	# Drawn only within reading distance, like the things' tags: from the
+	# yard it costs no draw call (the yard is at its budget, Б-1).
+	rights.visibility_range_end = 3.2
+	add_child(rights)
 	trees = JSON.parse_string(FileAccess.get_file_as_string(
 		"res://data/dialogue-trees.json")).trees
 	_load()
@@ -493,6 +505,18 @@ func _build_pier(oak: Color) -> void:
 	add_child(light)
 	things.append({"id": "rov", "kind": "pier",
 		"pos": Vector3(8.4, 0, 0), "ru": "Спустить ROV в озеро"})
+	# The operator's buoy on the pier: its hearing is calibrated on the
+	# acoustic matrix (TABOO 0.024), the lock scene reached through the
+	# loader like every big module (TABOO 0.014; chorus audit 2026-10-03:
+	# the lock was in the APK but no way led to it).
+	# Birch white, the stand's own colour: one material with the stand,
+	# so the static batch draws them together and the yard stays within
+	# its draw-call budget (97, Б-1).
+	var buoy := _box(Vector3(0.36, 0.7, 0.36), Vector3(8.6, 0.35, -1.4),
+		birch)
+	buoy.name = "Buoy"
+	things.append({"id": "buoy", "kind": "buoy",
+		"pos": Vector3(8.6, 0, -1.4), "ru": "Буй: калибровка слуха"})
 
 
 func _build_ladder() -> void:
@@ -630,7 +654,8 @@ func _refresh_boards() -> void:
 	for a in HubCore.ATTRIBUTES:
 		lines.append("%s — %d" % [RU_ATTR[a], int(form[a])])
 	form_board.text = "\n".join(lines)
-	var ladder := HubCore.evaluate_ladder(form, actions)
+	var ladder := HubCore.evaluate_ladder(form, actions,
+		trial_state.get("trials", {}))
 	var out := ["ЛЕСТНИЦА ВРАТ"]
 	for i in ladder.size():
 		var c: Dictionary = ladder[i]
@@ -650,6 +675,8 @@ func _refresh_boards() -> void:
 					need.append("поклон «не мне»")
 				"ladder":
 					need.append("сперва нижняя ступень")
+				"trial":
+					need.append("сперва порог прошлых врат")
 		out.append("%d. %s — %s" % [i + 1, gate.ru,
 			"открыты" if c.open else ", ".join(need)])
 	ladder_board.text = "\n".join(out)
@@ -659,25 +686,23 @@ func _refresh_boards() -> void:
 
 func _save() -> void:
 	# The active slot: the player's own, or the tester's (SaveSlot).
-	var f := FileAccess.open(SaveSlot.hub(), FileAccess.WRITE)
-	if f:
-		f.store_string(JSON.stringify({"form": form, "actions": actions,
-			"trials": trial_state, "passions": passion_record,
-			"chronicle": chronicle, "missions": mission_state,
-			"deeds": place_deeds}))
+	SaveSlot.write_json(SaveSlot.hub(), {"form": form, "actions": actions,
+		"trials": trial_state, "passions": passion_record,
+		"chronicle": chronicle, "missions": mission_state,
+		"deeds": place_deeds})
 
 
 func _load() -> void:
-	var save := SaveSlot.hub()
-	if not FileAccess.file_exists(save):
-		return
-	var data = JSON.parse_string(FileAccess.get_file_as_string(save))
-	if data is Dictionary:
+	# A spoiled save falls back to its last good copy (SaveSlot.read_json).
+	var data = SaveSlot.read_json(SaveSlot.hub())
+	if not data.is_empty():
 		# The small acts of the places (PlaceDeeds): the hub keeps them
 		# through its own save, as it keeps every key a place writes.
 		place_deeds = PlaceDeeds.normalize(data.get("deeds", {}))
 		for a in HubCore.ATTRIBUTES:
-			form[a] = int(data.get("form", {}).get(a, form[a]))
+			var saved_form = data.get("form", {})
+			if saved_form is Dictionary:
+				form[a] = int(saved_form.get(a, form[a]))
 		var act: Dictionary = data.get("actions", {})
 		for k in ["prayerCount", "fastDays", "meditationHours"]:
 			actions[k] = float(act.get(k, 0.0))
@@ -685,6 +710,8 @@ func _load() -> void:
 		actions.lastFastDay = lfd if typeof(lfd) == TYPE_STRING else null
 		actions.met = act.get("met", {})
 		actions.gifts = act.get("gifts", {})
+		var ch = act.get("chosen", {})
+		actions.chosen = ch if ch is Dictionary else {}
 		# The deeds of the rule that missions ask (MissionCore.do_practice).
 		# Only known practices and shapes come back (RuleCore.normalize).
 		actions.practices = RuleCore.normalize({"practices":
@@ -840,6 +867,7 @@ func _nearest() -> Dictionary:
 const AHEAD_M := 4.0
 const AHEAD_KEEP_M := 5.5
 const AHEAD := {"rov": "res://scenes/dive.tscn",
+	"buoy": "res://scenes/lock.tscn",
 	"witness": "res://scenes/witness.tscn",
 	"places": "res://scenes/location.tscn"}
 
@@ -875,11 +903,12 @@ func _interact() -> void:
 		return
 	match th.kind:
 		"mentor":
+			# The meeting counts when the talk is walked to its end, not
+			# at the press (see _choose): a gate's "dialogue" asks for a
+			# conversation, not a touch (chorus audit 2026-10-03).
 			var tree: Dictionary = trees[th.id]
-			actions = HubCore.record_meeting(actions, th.id)
 			talk = {"npc": th.id, "node": HubCore.node_of(tree,
 				tree.startNode), "choice": 0}
-			_save()
 		"rope":
 			_open_rope()
 		"watch":
@@ -892,6 +921,9 @@ func _interact() -> void:
 				return
 			_save()
 			ModuleLoader.go(ModuleLoader.DIVE)
+		"buoy":
+			_save()
+			ModuleLoader.go_lock("buoy_hearing")
 		"road":
 			_road()
 		"atlas":
@@ -929,7 +961,8 @@ func _interact() -> void:
 ## At the ladder: the bow when a gift is ready, else the threshold of
 ## the first open gate not yet crossed, else what is still missing.
 func _ladder() -> void:
-	for c in HubCore.evaluate_ladder(form, actions):
+	for c in HubCore.evaluate_ladder(form, actions,
+		trial_state.get("trials", {})):
 		if c.ready_for_gift:
 			_bow()
 			return
@@ -952,7 +985,8 @@ func _ladder() -> void:
 ## The bow for gates 4-6: "not to me".  It is accepted only when all
 ## else holds, so it cannot skip a step (ludus-actions.js acceptGift).
 func _bow() -> void:
-	for c in HubCore.evaluate_ladder(form, actions):
+	for c in HubCore.evaluate_ladder(form, actions,
+		trial_state.get("trials", {})):
 		if c.ready_for_gift:
 			actions = HubCore.accept_gift(actions, form, c.id)
 			_say("Поклон: «не мне». Свет пришёл сам.")
@@ -980,10 +1014,20 @@ func _select(i: int) -> void:
 	var open := HubCore.open_branches(talk.node, form)
 	if i >= open.size():
 		return
+	# A branch gives its bonus once: the mentor remembers the answer, so
+	# repeating one talk does not grow Wisdom (Constitution: no reward
+	# without a new choice; chorus audit 2026-10-03, voice 2).
+	var key := "%s/%s/%s" % [talk.npc, talk.node.get("id", ""),
+		str(open[i].get("nextNodeId", i))]
 	var res := HubCore.choose(form, open[i])
-	form = res.form
+	if not actions.get("chosen") is Dictionary:
+		actions.chosen = {}
+	if not actions.chosen.has(key):
+		form = res.form
+		actions.chosen[key] = true
 	var tree: Dictionary = trees[talk.npc]
 	if res.next == null:
+		actions = HubCore.record_meeting(actions, talk.npc)
 		talk = {}
 		_say("Беседа окончена.")
 	else:
@@ -1378,6 +1422,11 @@ func _mission_panel_text() -> String:
 		if not StoryRoute.story_of(story, m.id).is_empty():
 			lines += ["Этот путь проходят ногами: доска скажет, куда идти, а шаг делается у сердца места.",
 				""]
+			# The other people the story calls for, and where they stand
+			# (StoryCast; docs/STORY_12_CHARACTERS_2026-10-02.md).
+			var people := StoryCast.people_lines(m.id)
+			if not people.is_empty():
+				lines += people + [""]
 	else:
 		var ms := _mstate()
 		var v := MissionCore.view(mission_data, ms, form, actions)
@@ -1389,6 +1438,9 @@ func _mission_panel_text() -> String:
 			lines += ["%d. %s — шаг %d из %d: %s" % [v.mission.id,
 				v.mission.title, v.index + 1, v.total, v.kind_ru], "",
 				go, ""]
+			var people := StoryCast.people_lines(v.mission.id)
+			if not people.is_empty():
+				lines += people + [""]
 		else:
 			lines += StoryRoute.step_lines(v)
 			if go != "":

@@ -1,0 +1,325 @@
+{
+ "length_s": 90,
+ "title": "АТЛАС ВОДЫ",
+ "series_ru": "Ранее в «Атласе воды»",
+ "when": "every launch after the first (TABOO 0.015 p.1: first launch is the cold open); if the pilot was not finished, the recap is not shown and the game resumes the pilot",
+ "variant_rule": "deterministic: variant = PilotCore.echo(saved pilot stage): captive→captive, virtue→virtue, anything else or no choice saved→unresolved; no randomness",
+ "structure": "цепь читателей (0–22) → дно и цена (22–47) → свой выбор и его рифма в 1374 (47–59) → тишина у кайрака (59–65) → лист и знак (65–85) → титр",
+ "branch_grade": {
+  "virtue": [
+   255,
+   170,
+   90
+  ],
+  "captive": [
+   150,
+   190,
+   255
+  ],
+  "unresolved": null
+ },
+ "branch_rule": "variant → branch of pilot-branches.json: virtue → light (warm, 2200 K), captive → purification (cold, 6500 K), unresolved → middle (no grade)",
+ "fit_rule": "every voice ends ≤ shot end − 0.1 s; build fails",
+ "transitions": "fade to black 0.6–1.2 s or cuts by the world (lamp off, camera blackout, sonar sweep); no camera motion, no yaw, no shake; player's head is never moved",
+ "after": "fade into the courtyard hub; hub is preloaded in the background during the recap (TABOO 0.014)",
+ "shots": [
+  {
+   "t": 0,
+   "id": "open_black",
+   "world": "void",
+   "src": "card",
+   "narration_ru": "",
+   "text_ru": "Ранее в «Атласе воды»",
+   "variant": "all",
+   "ping": true,
+   "sound": "room tone −40 dBFS, один пинг",
+   "hook_ru": ""
+  },
+  {
+   "t": 3,
+   "id": "reader_knight",
+   "world": "past",
+   "src": "prerender:insight_purse_at_the_gate.jpg",
+   "text_ru": "СИС · 1374",
+   "narration_ru": "Рыцарю дали серебро за ворота. Он записал это в дневник.",
+   "variant": "all",
+   "sound": "очаг, камень; без пинга",
+   "hook_ru": "Что он ответил?"
+  },
+  {
+   "t": 9,
+   "id": "reader_scribe",
+   "world": "past",
+   "src": "prerender:insight_ink_first_line.jpg",
+   "text_ru": "ОБИТЕЛЬ НА ОЗЕРЕ · 1375",
+   "narration_ru": "Переписчик обители скопировал его дневник и приписал: «Кто прочтёт…»",
+   "variant": "all",
+   "sound": "перо, лучина",
+   "hook_ru": "Кто прочтёт?"
+  },
+  {
+   "t": 16,
+   "id": "reader_operator",
+   "world": "room",
+   "src": "audit:pilot-02-water.png",
+   "text_ru": "ИССЫК-КУЛЬ · 2026",
+   "narration_ru": "Читает он, шесть веков спустя. К нему пришла вода.",
+   "variant": "all",
+   "sound": "drop_overhead → sonar_below",
+   "hook_ru": "Откуда вода?"
+  },
+  {
+   "t": 22,
+   "id": "lake_walls",
+   "world": "lake",
+   "src": "audit:pilot-03-immersion.png",
+   "fx": {
+    "lift": 2.2
+   },
+   "ping": true,
+   "text_ru": "38 м · 17 °C",
+   "narration_ru": "",
+   "claud_voice": "claud_walls_enter",
+   "claud_ru": "Сонар рисует прямые линии. Камни так не лежат.",
+   "variant": "all",
+   "sound": "lamp_on, sonar_lines",
+   "hook_ru": ""
+  },
+  {
+   "t": 28,
+   "id": "masons",
+   "world": "past",
+   "src": "prerender:insight_hands_of_masons.jpg",
+   "text_ru": "",
+   "narration_ru": "Значит, здесь жили люди: камень клали по шнуру.",
+   "variant": "all",
+   "sound": "шнур, камень",
+   "hook_ru": "Кто строил на дне?"
+  },
+  {
+   "t": 34,
+   "id": "bookmark",
+   "world": "lake",
+   "src": "turn:logbook",
+   "text_ru": "Сеть экспедиции куплена Орденом сегодня в 03:12.",
+   "narration_ru": "",
+   "claud_voice": "claud_bookmark_enter",
+   "claud_ru": "В журнале сети чужая запись. Нашу экспедицию продали сегодня ночью.",
+   "variant": "all",
+   "sound": "console_tick; звук вещи выключен",
+   "hook_ru": "Кто продал?"
+  },
+  {
+   "t": 40,
+   "id": "lure",
+   "world": "lake",
+   "src": "turn:drams",
+   "text_ru": "Координаты — и драмы ваши. Никто не узнает. — ПРИОР",
+   "narration_ru": "",
+   "claud_voice": "claud_lure_enter",
+   "claud_ru": "Предложение: серебро за координаты. Это цена, а не подарок. Решение — твоё.",
+   "variant": "all",
+   "sound": "console_tick",
+   "hook_ru": "Возьмёт ли он?"
+  },
+  {
+   "t": 47.5,
+   "id": "echo_captive_a",
+   "world": "lake",
+   "src": "audit:pilot-05-lure.png",
+   "fx": {
+    "crop": [
+     240,
+     360,
+     880,
+     720
+    ],
+    "sub_top": true
+   },
+   "grade": true,
+   "ping": true,
+   "text_ru": "КООРДИНАТЫ ПЕРЕДАНЫ",
+   "narration_ru": "Он отдал координаты. Серебро осталось лежать в иле.",
+   "variant": "captive",
+   "sound": "drone_pass сверху",
+   "hook_ru": ""
+  },
+  {
+   "t": 53.5,
+   "id": "echo_captive_b",
+   "world": "past",
+   "src": "prerender:insight_gate_opened_inside.jpg",
+   "grade": true,
+   "text_ru": "СИС · 1374",
+   "narration_ru": "Ворота Сиса тоже открыли изнутри — за такое же серебро.",
+   "variant": "captive",
+   "sound": "скрип засова один раз",
+   "hook_ru": "Что Орден сделает с координатами?"
+  },
+  {
+   "t": 47.5,
+   "id": "echo_virtue_a",
+   "world": "lake",
+   "src": "audit:pilot-05-lure.png",
+   "fx": {
+    "crop": [
+     240,
+     360,
+     880,
+     720
+    ],
+    "dim": 0.5,
+    "sub_top": true
+   },
+   "grade": true,
+   "text_ru": "",
+   "narration_ru": "Он отвернулся и выдохнул трижды. Блеск погас.",
+   "variant": "virtue",
+   "sound": "room tone и дыхание −45 dBFS",
+   "hook_ru": ""
+  },
+  {
+   "t": 53.5,
+   "id": "echo_virtue_b",
+   "world": "past",
+   "src": "prerender:insight_bread_in_siege.jpg",
+   "grade": true,
+   "text_ru": "Вы пожалеете. — ПРИОР",
+   "narration_ru": "Рыцарь в осаде тоже не пошёл к воротам. Отдал хлеб соседу.",
+   "variant": "virtue",
+   "sound": "очаг",
+   "hook_ru": "Чем ответит Приор?"
+  },
+  {
+   "t": 47.5,
+   "id": "echo_unresolved_a",
+   "world": "lake",
+   "src": "audit:pilot-05-lure.png",
+   "fx": {
+    "crop": [
+     240,
+     360,
+     880,
+     720
+    ],
+    "sub_top": true
+   },
+   "ping": true,
+   "text_ru": "",
+   "narration_ru": "Он не взял и не отвернулся. Серебро ждёт.",
+   "variant": "unresolved",
+   "sound": "lure_shimmer на минимуме",
+   "hook_ru": ""
+  },
+  {
+   "t": 53.5,
+   "id": "echo_unresolved_b",
+   "world": "past",
+   "src": "prerender:insight_purse_at_the_gate.jpg",
+   "text_ru": "Я подожду. — ПРИОР",
+   "narration_ru": "Рыцарь тоже держал кошель, пока серебро не согрелось.",
+   "variant": "unresolved",
+   "sound": "тишина комнаты",
+   "hook_ru": "Сколько он будет ждать?"
+  },
+  {
+   "t": 59.5,
+   "id": "khachkar_far",
+   "world": "lake",
+   "src": "audit:pilot-06-khachkar.png",
+   "fx": {
+    "place": {
+     "scale": 0.45,
+     "cx": 0.86,
+     "cy": 0.55
+    },
+    "dim": 0.55,
+    "no_push": true,
+    "no_label": true,
+    "fade_out_s": 2.0
+   },
+   "ping": false,
+   "text_ru": "",
+   "narration_ru": "",
+   "variant": "all",
+   "sound": "машина и музыка к −60 dBFS; room tone и дыхание −45 dBFS; Клауд молчит",
+   "hook_ru": ""
+  },
+  {
+   "t": 65.5,
+   "id": "diary_scan",
+   "world": "lake",
+   "src": "turn:diary",
+   "text_ru": "Лета 1375. Сис пал. Иду к братьям на озеро…",
+   "narration_ru": "",
+   "variant": "all",
+   "sound": "scanner_lines",
+   "hook_ru": "Кто писал?"
+  },
+  {
+   "t": 70,
+   "id": "mark_line",
+   "world": "lake",
+   "src": "prerender:insight_same_comet.jpg",
+   "text_ru": "…и знак на руке моей, как звезда с хвостом, не смыва—",
+   "claud_voice": "claud_mark_line_enter",
+   "claud_ru": "Строка обрывается. Это не сканер — край листа истлел.",
+   "narration_ru": "Край срезан ножом.",
+   "voice_at": 4.9,
+   "variant": "all",
+   "sound": "сканер обрывается на полуслове",
+   "hook_ru": "Кто не хотел, чтобы дочитали?"
+  },
+  {
+   "t": 77,
+   "id": "comet_mark",
+   "world": "room",
+   "src": "audit:pilot-08-mark.png",
+   "fx": {
+    "crop": [
+     400,
+     440,
+     720,
+     620
+    ]
+   },
+   "text_ru": "",
+   "narration_ru": "",
+   "claud_voice": "claud_room_drains_mark",
+   "claud_ru": "На твоей руке тот же знак. Вижу. Объяснить не могу.",
+   "variant": "all",
+   "sound": "silence_room: дыхание",
+   "hook_ru": "Чей это знак?"
+  },
+  {
+   "t": 82,
+   "id": "prior_last",
+   "world": "room",
+   "src": "audit:pilot-08-mark.png",
+   "text_ru": "У рыцаря был такой же. Его щит мы нашли первыми. — ПРИОР",
+   "narration_ru": "",
+   "variant": "all",
+   "sound": "console_tick один",
+   "hook_ru": "Где щит?"
+  },
+  {
+   "t": 85,
+   "id": "title",
+   "world": "title",
+   "src": "card",
+   "grade": true,
+   "text_ru": "",
+   "teaser_ru": "Серия 2 — Сис, 1374",
+   "narration_ru": "Следующий лист — в Сисе, за год до падения.",
+   "variant": "all",
+   "sound": "sonar_flute → room tone двора",
+   "hook_ru": "Что было в Сисе?"
+  }
+ ],
+ "skip": {
+  "hold_s": 1.5,
+  "after_s": 3,
+  "input": "hold trigger or grip on either controller; a ring fills around the held hand; release cancels",
+  "on_skip": "0.6 s fade straight to the hub"
+ }
+}

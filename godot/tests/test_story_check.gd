@@ -39,6 +39,7 @@ func _run(t: Object) -> void:
 	var real_dive := _snapshot(SaveSlot.DIVE)
 	var real_marker := FileAccess.file_exists(SaveSlot.MARKER)
 	_slots(t)
+	_atomic(t)
 	_stories(t)
 	_release(t)
 	StoryCheck.leave(PATHS)
@@ -48,6 +49,42 @@ func _run(t: Object) -> void:
 		"the player's dive save is never written by the entry")
 	t._check(FileAccess.file_exists(SaveSlot.MARKER) == real_marker,
 		"the real marker is not touched by the test")
+
+
+## A save is replaced whole (SaveSlot.write_json): the new JSON reads
+## back, no <path>.part is left, and a half-written .part from a crash
+## does not touch the save beside it.
+func _atomic(t: Object) -> void:
+	var path := "user://test_story_check_atomic.json"
+	t._check(SaveSlot.write_json(path, {"a": 1}), "write_json writes")
+	t._check(SaveSlot.write_json(path, {"a": 2, "b": [1, 2]}),
+		"write_json replaces an existing save")
+	var back = JSON.parse_string(FileAccess.get_file_as_string(path))
+	t._check(back is Dictionary and int(back.get("a", 0)) == 2,
+		"the replaced save reads back whole")
+	t._check(not FileAccess.file_exists(path + ".part"),
+		"no .part is left after a write")
+	var torn := FileAccess.open(path + ".part", FileAccess.WRITE)
+	torn.store_string("{\"a\": 3, \"b\": [")
+	torn.close()
+	back = JSON.parse_string(FileAccess.get_file_as_string(path))
+	t._check(back is Dictionary and int(back.get("a", 0)) == 2,
+		"a torn .part from a crash leaves the save as it was")
+	# A save spoiled on disk: the reader falls back to the last good
+	# copy, and the next write does not copy the spoiled file over it.
+	var bad := FileAccess.open(path, FileAccess.WRITE)
+	bad.store_string("{\"a\": ")
+	bad.close()
+	t._check(int(SaveSlot.read_json(path).get("a", 0)) == 1,
+		"a spoiled save reads its last good copy (.bak)")
+	SaveSlot.write_json(path, {"a": 5})
+	var kept = JSON.parse_string(FileAccess.get_file_as_string(path + ".bak"))
+	t._check(kept is Dictionary and int(kept.get("a", 0)) == 1,
+		"a spoiled save never overwrites the last good copy")
+	t._check(SaveSlot.read_json("user://test_story_check_none.json") == {},
+		"no save and no copy read as a fresh start")
+	for f in [path, path + ".part", path + ".bak"]:
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(f))
 
 
 ## The slots: the test files are other files than the player's, and the

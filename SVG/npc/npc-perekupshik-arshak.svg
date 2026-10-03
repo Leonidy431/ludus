@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Аршак, перекупщик базара, с безменом и счётной биркой">
+  <title>Аршак, перекупщик</title>
+  <desc>ФОРМА: перекупщик базара в остроконечной шапке, с безменом в руке и счётной биркой с зарубками; глаза прищурены. ДЕЙСТВИЕ: у рыбачьего костра зовёт поднять сундук апостола со дна и продать за море. ЦЕЛЬ: образ прелести — святое, о котором говорят его ценой; признак распознавания — цена (ТАБУ №0.2 п. 8). Святыни на портрете нет: её не рисуют приманкой. Миссия 88.</desc>
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- Арт-канон §9.0: умбра+золото, без нимба. -->
+  <!-- узкое лицо, прищур, остроконечная шапка -->
+  <ellipse cx="50" cy="38" rx="9" ry="11" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M45 36 h4 M51 36 h4" stroke="#e8c87a" stroke-width="1.2"/>
+  <path d="M41 30 L50 10 L59 30 Z" fill="#3a2410" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- кафтан с кошелём у пояса -->
+  <path d="M50 50 C33 55 29 82 31 120 H69 C71 82 67 55 50 50 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M32 86 H68" stroke="#8a6a34" stroke-width="2"/>
+  <path d="M56 86 q4 10 10 0 Z" fill="#e8c87a" stroke="#8a6a34" stroke-width="1"/>
+  <!-- безмен: коромысло, гиря, крюк -->
+  <path d="M14 62 H46" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M30 56 V62" stroke="#c8a56a" stroke-width="1.5"/>
+  <circle cx="16" cy="68" r="4" fill="#8a6a34" stroke="#c8a56a" stroke-width="1"/>
+  <path d="M16 62 V64 M44 62 V70 q0 4 -3 3" fill="none" stroke="#c8a56a" stroke-width="1.2"/>
+  <!-- счётная бирка с зарубками -->
+  <path d="M70 66 h6 v28 h-6 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1"/>
+  <path d="M70 70 h3 M70 74 h3 M70 78 h3 M70 82 h3 M70 86 h3" stroke="#1a0e04" stroke-width="1"/>
+</svg>

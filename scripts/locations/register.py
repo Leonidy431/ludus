@@ -436,8 +436,11 @@ for _key, _ru in [
     obj(_key, _ru, (0.0, 0.0, 0.0), 'дно озера', 'lake:' + _key)
 obj('atlas-diary', 'Дневник рыцаря в кожаном переплёте', (0.3, 0.05, 0.3),
     'кожа, пергамен', 'atlas:diary', ['book'])
-obj('atlas-amphora', 'Амфора со свитком о литье', (0.3, 0.6, 0.3),
-    'керамика', 'atlas:amphora', ['amphora'])
+# The key and the model keep the old name 'amphora' so the dive and
+# its models still find it; the thing itself is a khum, the clay jar
+# raised from Issyk-Kul (historian of the chorus, 2026-10-03).
+obj('atlas-amphora', 'Хум со свитком о литье бронзы', (0.3, 0.6, 0.3),
+    'керамика', 'atlas:amphora', ['jar', 'jug'])
 obj('atlas-astrolabe', 'Астролябия рыцаря', (0.25, 0.25, 0.03),
     'латунь', 'atlas:astrolabe', ['astrolabe'])
 obj('atlas-shield', 'Щит рыцаря', (0.9, 0.9, 0.1), 'дерево, железо',
@@ -462,7 +465,7 @@ obj('bell', 'Колокол на звоннице', (0.4, 0.4, 0.012), 'брон
     'obj:obj-bell', holy='flat')
 obj('chalice', 'Потир, сделанный для престола', (0.4, 0.4, 0.03),
     'серебро', 'obj:obj-potir', holy='vessel')
-obj('khachkar', 'Хачкар — крест-камень братьев', (1.0, 1.6, 0.3),
+obj('khachkar', 'Кайрак — крест-камень братьев', (1.0, 1.6, 0.3),
     'туф', 'atlas:khachkar', holy='flat')
 
 # How the hint at a heart names a mentor whose name carries a church
@@ -538,10 +541,15 @@ NEW_ACTIONS = {
         'Найти ошибку на доске до первого оттиска',
         'ФОРМА (Эрудиция) → ДЕЙСТВИЕ (сверка доски) → ЦЕЛЬ (ошибка '
         'доски повторится в каждом листе)'),
+    # Historian of the chorus (2026-10-03): prejudice «the knight tells
+    # the cartographer» / counter: the knight never reached Majorca,
+    # and the atlas itself writes "it is said" of the apostle's body /
+    # why: a merchant or a missionary back from the East before 1375
+    # tells what he saw, and the hearsay keeps its honest mark.
     'tell-only-true': (
-        'Рассказать картографу только то, что видел сам',
+        'Рассказать картографу виденное, слышанное — «говорят»',
         'ФОРМА (Эрудиция) → ДЕЙСТВИЕ (свидетельство без прикрас) → ЦЕЛЬ '
-        '(на карте — обитель, а не легенда)'),
+        '(на карте — то, что видели, и честная пометка «говорят»)'),
     'tell-custom-from-faith': (
         'Отделить обычай от веры: напев и одежду принять, веру не '
         'смешивать',
@@ -690,7 +698,7 @@ place('factory', 'Лавка-склад армянской фактории', 't
       ['ledger', 'inkwell', 'silk-bale', 'spice-sack', 'silver-ingot',
        'scales'],
       'Молитву не продают за десятую долю серебра: имение вверено, а не '
-      'своё (свт. Иоанн Златоуст).', 9, 9,
+      'своё (свт. Иоанн Златоуст, Слова о Лазаре, 2).', 9, 9,
       recs=['loc-faktoriya', 'loc-gerat',
             'p0535-vkhod-v-dom-kuptsa-armyanina'])
 place('court-yard', 'Двор, где рассуждают тяжбу о шёлке', 'court',
@@ -1136,11 +1144,14 @@ place('diary-shelf', 'Шельф, где лежит дневник', 'underwater
       ['atlas-diary', 'svaya.shelf.2', 'chironomid.shelf.0'],
       'Дневник поднимают и отдают писцу: сканер читает буквы, а смысл — '
       'человек.', 8, 10, sky='underwater', exists='dive-trace')
-place('amphora-slope', 'Склон с амфорой о литье', 'underwater-slope',
+place('amphora-slope', 'Склон с хумом о литье', 'underwater-slope',
       'underwater', (12, 12, 8), ['A14'], 'trace:amphora', ROV_LAMP,
       ['atlas-amphora', 'terrace.slope.2', 'cherepki.shallows.1'],
-      'Свиток о литье колоколов идёт звонарю: мастера знали, как звенит '
-      'бронза.', 8, 8, sky='underwater', exists='dive-trace')
+      'Свиток о литье бронзы и о голосе била идёт звонарю: мастера '
+      'знали, как звенит металл.', 8, 8, sky='underwater',
+      exists='dive-trace',
+      note='Хум, а не амфора: амфора — тара Средиземноморья. Свиток — '
+           'вымысел серии (узел 14).')
 place('hot-spring', 'Горячий ключ, где омывают больных', 'hot-spring',
       'open', (10, 10, 0), ['M76'], 'talk:tabib/wound_wash',
       (H, 2100, 'костёр у ключа'),
@@ -1436,9 +1447,12 @@ place('map-workshop', 'Мастерская картографа на Майор
       'room', (8, 6, 3.4), ['M87', 'A76'], 'new:tell-only-true',
       (H, 2200, 'окно и лампа'),
       ['portolan', 'inkwell', 'compass', 'parchment', 'world-map'],
-      'Картографу говорят только то, что видели: на карте обитель, а не '
-      'легенда.', 10, 9, sky='indoor',
-      note='Мастерская Крескесов, Пальма, Каталанский атлас 1375 г.')
+      'Купец с Востока до 1375 г. говорит картографу только виденное; '
+      'слышанное — с пометкой «говорят».', 10, 9, sky='indoor',
+      note='Мастерская Крескесов (Авраам и его сын Иегуда), Пальма, '
+           'Каталанский атлас 1375 г.; о мощах Матфея атлас пишет '
+           '«говорят». Рассказчик — купец или миссионер до 1375 г., не '
+           'рыцарь.')
 place('council-hall', 'Совет обителей перед картой', 'council-hall',
       'room', (10, 8, 4), ['M91', 'A65'], 'talk:macrina/teaching',
       (H, 2200, 'светильники совета'),
@@ -1478,14 +1492,15 @@ place('sis-gate', 'Ворота Сиса под треснувшим сводо�
       'Пощадить или обрушить свод — записано один раз; след выбора виден '
       'в озере, милость не награждается очками.', 10, 10, sky='night',
       safety=9, note='Сис пал в 1375 г.; боя в игре нет (узел 60).')
-place('ayas-harbour', 'Гавань Аяса, где ушёл корабль', 'sea-port',
+place('ayas-harbour', 'Гавань Аяса до 1347 г., где ушёл корабль',
+      'sea-port',
       'shore', (16, 10, 0), ['A9'], 'rule:thanksgiving',
       (H, 2200, 'портовый фонарь'),
       ['barrel', 'rope-coil', 'anchor-stone', 'letter'],
-      'Корабль ушёл, а благодарят за всё: озеро впереди — архив, а не '
-      'могила.', 7, 8, sky='dusk',
-      note='Аяс взят мамлюками в 1347 г.; к 1375 г. — уже не киликийская '
-           'гавань (историку).')
+      'Корабль молодого рыцаря ушёл, а благодарят за всё: озеро впереди '
+      '— архив, а не могила.', 7, 8, sky='dusk',
+      note='Аяс разорён мамлюками в 1337 г. и взят в 1347 г.; сцена — '
+           'молодость рыцаря до 1347 г. (узел 9).')
 place('sis-library', 'Сгоревшая библиотека Сиса', 'library-ruin',
       'room', (8, 8, 4), ['A32'], 'passion:sadness',
       (H, 2000, 'дым и угли'), ['scroll-niche', 'archive-chest', 'stone-pile'],

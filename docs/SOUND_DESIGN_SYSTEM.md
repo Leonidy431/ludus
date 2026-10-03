@@ -677,6 +677,7 @@ gainNode.connect(audioContext.destination);
 **Audio Files:**
 - Format: MP3 (lossy, streaming) + OGG (fallback)
 - Bitrate: 256 kbps (dialogue), 128 kbps (ambient)
+- **Примечание 2026-10-02 (вес сборки).** Для шлема голос считается как Ogg Vorbis моно 64 кбит/с: при 256 кбит/с русские голоса 34 деревьев заняли бы около 142 МиБ вместо 35,6 МиБ, а разницы в шлеме не слышно. Музыка — стерео 160 кбит/с, хор а капелла — 192 кбит/с. Расчёт и пороги APK/OBB — `docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md`; окончательно решает слуховая проверка первых дублей в шлеме.
 - Size: Keep individual tracks < 5 MB
 
 ### 8.2 VR Implementation (Meta Quest 3)

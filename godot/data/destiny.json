@@ -1,0 +1,460 @@
+{
+  "doc": "docs/HLD_DESTINY_BRANCHES_FINALES_2026-10-02.md",
+  "rule": "Loot is not things: it is the growth of the person along seven branches (the seven attributes) and the direction of the path toward one of seven finales, closer to paradise or closer to hell. The game shows a direction and judges no one (Mt 7:1); repentance changes the path until the last hour; nothing is random.",
+  "score_range": [
+    -9,
+    9
+  ],
+  "repent_floor_band": -1,
+  "deeds": [
+    {
+      "id": "stage:virtue",
+      "weight": 2,
+      "from": "pilot",
+      "ru": "отвернулся от серебра и выдохнул трижды"
+    },
+    {
+      "id": "stage:stillness",
+      "weight": 1,
+      "from": "pilot",
+      "ru": "остановил взгляд и отвернулся"
+    },
+    {
+      "id": "stage:consent",
+      "weight": -1,
+      "from": "pilot",
+      "ru": "согласился с помыслом"
+    },
+    {
+      "id": "stage:captive",
+      "weight": -2,
+      "from": "pilot",
+      "ru": "передал координаты"
+    },
+    {
+      "id": "drams_left",
+      "weight": 1,
+      "from": "pilot",
+      "ru": "оставил драмы в иле для книги находок"
+    },
+    {
+      "id": "drams_taken",
+      "weight": -1,
+      "from": "pilot",
+      "ru": "взял драмы себе"
+    },
+    {
+      "id": "clue:backup",
+      "weight": 1,
+      "from": "pilot",
+      "ru": "нашёл копию журнала и не скрыл её"
+    },
+    {
+      "id": "contract:release_tagged",
+      "weight": 1,
+      "from": "contract_akula",
+      "ru": "отпустил рыбу с меткой и вернул на глубину"
+    },
+    {
+      "id": "contract:hand_over",
+      "weight": 1,
+      "from": "contract_akula",
+      "ru": "передал вселённого хищника ихтиологам"
+    },
+    {
+      "id": "contract:sell",
+      "weight": -2,
+      "from": "contract_akula",
+      "ru": "продал рыбу и место перекупщику"
+    },
+    {
+      "id": "lock:expedition_safe",
+      "weight": 1,
+      "from": "locks",
+      "ru": "открыл ящик экспедиции для родных пропавших"
+    },
+    {
+      "id": "share_battery",
+      "weight": 2,
+      "from": "season",
+      "ru": "поделился зарядом с соседней экспедицией (узел 38)"
+    },
+    {
+      "id": "return_diary",
+      "weight": 2,
+      "from": "season",
+      "ru": "вернул дневник рыцаря писцу обители (узел 77)"
+    },
+    {
+      "id": "forgive_traitor",
+      "weight": 2,
+      "from": "season",
+      "ru": "простил того, кто продал сеть"
+    },
+    {
+      "id": "name_yourself",
+      "weight": 3,
+      "from": "season",
+      "ru": "назвал себя вслух и стал видим, чтобы свидетельствовать (узел 92 Киберслава)"
+    },
+    {
+      "id": "sell_diary",
+      "weight": -3,
+      "from": "season",
+      "ru": "продал дневник рыцаря Ордену"
+    },
+    {
+      "id": "copy_of_self",
+      "weight": -3,
+      "from": "season",
+      "ru": "согласился на копию себя в протоколе Кащея"
+    },
+    {
+      "id": "abandon_neighbour",
+      "weight": -2,
+      "from": "season",
+      "ru": "оставил соседей без заряда в шторм"
+    },
+    {
+      "id": "repent",
+      "weight": 0,
+      "from": "season",
+      "ru": "вернулся: признал продажу, вернул взятое, попросил прощения",
+      "repent": true
+    }
+  ],
+  "branches": [
+    {
+      "attr": "wisdom",
+      "ru": "Мудрость",
+      "idiom_ru": "путь переписчика: видеть суть за строкой",
+      "nodes": [
+        {
+          "id": "w1",
+          "need": 3,
+          "gives_ru": "рассказчик называет закон мира в инсайте сразу, без второго прохода"
+        },
+        {
+          "id": "w2",
+          "need": 6,
+          "gives_ru": "в дневнике отличает руку рыцаря от правки переписчика"
+        },
+        {
+          "id": "w3",
+          "need": 9,
+          "gives_ru": "интерфейс тускнеет раньше: меньше шума между взглядом и вещью (трезвение)"
+        },
+        {
+          "id": "w4",
+          "need": 12,
+          "gives_ru": "в диалоге с Приором открывается вопрос, на который протокол не отвечает"
+        }
+      ]
+    },
+    {
+      "attr": "faith",
+      "ru": "Вера",
+      "idiom_ru": "путь паломника: верность слову и доверие, а не сила",
+      "nodes": [
+        {
+          "id": "f1",
+          "need": 3,
+          "gives_ru": "братья обители говорят с ним как со своим, потому что он держит слово (глубже диалог, не сила)"
+        },
+        {
+          "id": "f2",
+          "need": 6,
+          "gives_ru": "привратник обители доверяет ему ключ от лодочного сарая"
+        },
+        {
+          "id": "f3",
+          "need": 9,
+          "gives_ru": "писец доверяет ему недописанную приписку"
+        },
+        {
+          "id": "f4",
+          "need": 12,
+          "gives_ru": "в финале привратник открывает ему ворота обители, не спрашивая имени"
+        }
+      ]
+    },
+    {
+      "attr": "dexterity",
+      "ru": "Ловкость",
+      "idiom_ru": "путь мастера: рука помнит",
+      "nodes": [
+        {
+          "id": "d1",
+          "need": 3,
+          "gives_ru": "мягкий захват манипулятора держит хрупкое (дневник, пергамент)"
+        },
+        {
+          "id": "d2",
+          "need": 6,
+          "gives_ru": "калибровка матрицы подсвечивает соседей выбранной фишки"
+        },
+        {
+          "id": "d3",
+          "need": 9,
+          "gives_ru": "аппарат держит место у дна в течении без дрейфа"
+        },
+        {
+          "id": "d4",
+          "need": 12,
+          "gives_ru": "мазок слизи берётся с первого подхода у самой пугливой рыбы"
+        }
+      ]
+    },
+    {
+      "attr": "constitution",
+      "ru": "Выносливость",
+      "idiom_ru": "путь водолаза: терпение глубины",
+      "nodes": [
+        {
+          "id": "c1",
+          "need": 3,
+          "gives_ru": "на причале он дольше держит холодный трос аппарата, не выпуская его"
+        },
+        {
+          "id": "c2",
+          "need": 6,
+          "gives_ru": "заряд аппарата тратится ровнее: можно ждать сумерек у свай"
+        },
+        {
+          "id": "c3",
+          "need": 9,
+          "gives_ru": "холод термоклина не сбивает калибровку приборов"
+        },
+        {
+          "id": "c4",
+          "need": 12,
+          "gives_ru": "медленное всплытие без пропуска остановок даёт время на последний взгляд вниз"
+        }
+      ]
+    },
+    {
+      "attr": "charisma",
+      "ru": "Обаяние",
+      "idiom_ru": "путь берега: люди рядом",
+      "nodes": [
+        {
+          "id": "h1",
+          "need": 3,
+          "gives_ru": "рыбаки рассказывают, где рвутся сети"
+        },
+        {
+          "id": "h2",
+          "need": 6,
+          "gives_ru": "соседняя экспедиция делится картой дна"
+        },
+        {
+          "id": "h3",
+          "need": 9,
+          "gives_ru": "пастух на берегу говорит о тополе братьев (узел 33)"
+        },
+        {
+          "id": "h4",
+          "need": 12,
+          "gives_ru": "родные пропавшей экспедиции приходят на причал в финале"
+        }
+      ]
+    },
+    {
+      "attr": "cunning",
+      "ru": "Хитрость",
+      "idiom_ru": "путь торга: короткая дорога с ценой",
+      "nodes": [
+        {
+          "id": "u1",
+          "need": 3,
+          "gives_ru": "перекупщик называет цену места",
+          "cost_ru": "сам разговор — первый шаг лестницы сребролюбия"
+        },
+        {
+          "id": "u2",
+          "need": 6,
+          "gives_ru": "чужой сейф открывается без ведома хозяина",
+          "cost_ru": "строка в журнале «чужое» и разговор с рыбаками"
+        },
+        {
+          "id": "u3",
+          "need": 9,
+          "gives_ru": "протокол Ордена принимает его за своего",
+          "cost_ru": "Приор начинает ему писать как союзнику"
+        },
+        {
+          "id": "u4",
+          "need": 12,
+          "gives_ru": "в предложении копии «никогда не кончиться» он, знающий торг, видит недописанную цену",
+          "cost_ru": "прелесть рядом: признак — петля и отсутствие тишины; принять её — поступок copy_of_self"
+        }
+      ]
+    },
+    {
+      "attr": "erudition",
+      "ru": "Учёность",
+      "idiom_ru": "путь архива: знать тексты",
+      "nodes": [
+        {
+          "id": "e1",
+          "need": 3,
+          "gives_ru": "сканер читает грабар дневника быстрее (словарь писца, узел 49)"
+        },
+        {
+          "id": "e2",
+          "need": 6,
+          "gives_ru": "по силе эха сразу видна длина рыбы и ошибка легенды"
+        },
+        {
+          "id": "e3",
+          "need": 9,
+          "gives_ru": "Каталанский атлас читается как карта, а не как картинка"
+        },
+        {
+          "id": "e4",
+          "need": 12,
+          "gives_ru": "в архиве обители находится лист, которого нет в протоколе"
+        }
+      ]
+    }
+  ],
+  "finales": [
+    {
+      "id": "endless_copy",
+      "band": -3,
+      "title_ru": "Копия без конца",
+      "scene_ru": "Пульт не гаснет никогда. Оператор говорит с собственной копией в протоколе, и копия отвечает его же словами. Озеро за окном тёмное, людей нет.",
+      "line_ru": "Он хотел никогда не кончиться. Теперь он не кончается — и никого рядом, кому бы сказать об этом.",
+      "light": "6500 K, ровный, без тени",
+      "sound": "гул сервера без комнатного тона; под гулом едва различим тот же далёкий благовест, что во всех финалах",
+      "teaches_ru": "ад — не огонь на экране, а невозможность любить: петля, где некому ответить",
+      "source": "прп. Исаак Сирин, Слова подвижнические: «мучимые в геенне поражаются бичом любви» — рус. изд. Сергиев Посад, 1911, Слово 18; англ. Ascetical Homilies, Holy Transfiguration Monastery, 1984/2011, Homily 28; Ф. М. Достоевский, «Братья Карамазовы», ч. 2, кн. 6, гл. 3, (и) «О аде и адском огне, рассуждение мистическое»: «Страдание о том, что нельзя уже более любить» (литературное свидетельство, не святоотеческий источник); Откр. 3:20",
+      "door_ru": "в последнем кадре в дверь стучат один раз; он не встаёт, но дверь не заперта"
+    },
+    {
+      "id": "bought_place",
+      "band": -2,
+      "title_ru": "Купленное место",
+      "scene_ru": "Чужая лодка стоит у свай, на её борту — его аппарат с чужим номером. Деньги лежат в ящике стола, где раньше лежала флешка. Телефон молчит: рыбаки больше не звонят.",
+      "line_ru": "Он продал рыбу и место. Цена оказалась точной: ровно столько, сколько стоило всё, что он знал.",
+      "light": "6500 K экрана в тёмной комнате",
+      "sound": "тиканье пульта; тот же далёкий благовест по уставу, что во всех финалах, слышен, если стоять неподвижно",
+      "teaches_ru": "сребролюбие покупает вещь и продаёт человека",
+      "source": "1 Тим. 6:10",
+      "door_ru": "на столе лежит письмо рыбаков, ещё не распечатанное — его можно прочесть"
+    },
+    {
+      "id": "warm_water",
+      "band": -1,
+      "title_ru": "Тёплая вода",
+      "scene_ru": "Ничего не продано и ничего не отдано. Дневник лежит в иле, где лежал. Оператор смотрит на воду с берега, и вода ему ничего не говорит.",
+      "line_ru": "Он не предал и не спас. Озеро хранит всё как было, и вода ещё ждёт его.",
+      "light": "серый рассеянный, без источника",
+      "sound": "ровный ветер; тот же далёкий благовест по уставу, что во всех финалах, слышен, если стоять неподвижно",
+      "teaches_ru": "теплохладность: не сделать — тоже выбор; но за упрёком сразу следует зов вернуться",
+      "source": "Откр. 3:15–20",
+      "door_ru": "на берегу лежит его ласт; вода ещё открыта",
+      "repent_scene_ru": "Он вернул взятое и стоит на берегу с ластами в руке. Проданное не вернулось, но он идёт к воде.",
+      "repent_line_ru": "Проданное не вернуть. Но он вернулся сам — и идёт к воде, где лежит дневник."
+    },
+    {
+      "id": "prior_waits",
+      "band": 0,
+      "title_ru": "Две записки",
+      "scene_ru": "Две записки на столе: от Приора и от писца. Обе без ответа. Пульт тикает, лампа горит.",
+      "line_ru": "Он ещё не выбрал. Обе записки ждут, и ни одна не уйдёт сама.",
+      "light": "1900 K лампы и 6500 K пульта поровну",
+      "sound": "тиканье и дыхание; тот же далёкий благовест по уставу, что во всех финалах, слышен, если стоять неподвижно",
+      "teaches_ru": "свобода не кончается, пока жив человек",
+      "source": "Втор. 30:19",
+      "door_ru": "лампа горит; обе записки ещё можно прочесть"
+    },
+    {
+      "id": "witness",
+      "band": 1,
+      "title_ru": "Свидетель",
+      "scene_ru": "Дневник рыцаря лежит на столе скриптория. Писец обители сверяет строку. Оператор сидит на скамье и молчит.",
+      "line_ru": "Он вернул свидетельство туда, где его прочтут. Больше он ничего не взял.",
+      "light": "1900 K лучины скриптория",
+      "sound": "перо по пергаменту, комнатный тон; тот же далёкий благовест по уставу, что во всех финалах, слышен, если стоять неподвижно",
+      "teaches_ru": "правду не присваивают, её возвращают",
+      "source": "Ин. 8:32",
+      "door_ru": "писец оставляет место на полях — для следующего читателя"
+    },
+    {
+      "id": "bread_shared",
+      "band": 2,
+      "title_ru": "Хлеб соседу",
+      "scene_ru": "На причале — две экспедиции у одного костра. Рыбаки, родные пропавших, соседи с заряженным аппаратом. Хлеб ломают на всех.",
+      "line_ru": "Он отдал заряд, рыбу и время. Взамен у него оказались люди.",
+      "light": "2500 K костра",
+      "sound": "голоса людей, вода у причала; тот же далёкий благовест по уставу, что во всех финалах, слышен, если стоять неподвижно",
+      "teaches_ru": "милость делает чужих ближними",
+      "source": "Лк. 10:36–37",
+      "door_ru": "у костра оставлено место"
+    },
+    {
+      "id": "dawn_on_water",
+      "band": 3,
+      "title_ru": "Рассвет на воде",
+      "scene_ru": "Он назвал себя вслух, простил того, кто продал сеть, и отдал всё, что мог. Утро ложится на руку и на воду. Комета-знак не светится. В окне у братьев горит свет.",
+      "line_ru": "На руку и на воду лёг рассвет. Это сделало утро, не машина — и он был не один.",
+      "light": "рассвет, тёплый низкий солнечный свет",
+      "sound": "тишина, дыхание; тот же далёкий благовест по уставу, что во всех финалах, слышен, если стоять неподвижно",
+      "teaches_ru": "жертва и прощение приближают к свету; спасает Бог, человек открывает дверь",
+      "source": "Ин. 15:13; Мф. 5:44; Мф. 6:14; узел 99 «Атласа воды»",
+      "door_ru": "свет у братьев — это не награда, а дом"
+    }
+  ],
+  "finale_i18n": {
+    "endless_copy": {
+      "en": "He wanted never to end. Now he does not end — and there is no one beside him to tell.",
+      "de": "Er wollte niemals enden. Jetzt endet er nicht — und niemand ist da, dem er es sagen könnte.",
+      "fr": "Il voulait ne jamais finir. Maintenant il ne finit pas — et personne près de lui à qui le dire.",
+      "es": "Quiso no terminar nunca. Ahora no termina, y no hay nadie a su lado a quien decírselo.",
+      "it": "Voleva non finire mai. Ora non finisce — e non c'è nessuno accanto a cui dirlo."
+    },
+    "bought_place": {
+      "en": "He sold the fish and the place. The price was exact: just what everything he knew was worth.",
+      "de": "Er verkaufte den Fisch und den Ort. Der Preis war genau: so viel, wie alles wert war, was er wusste.",
+      "fr": "Il a vendu le poisson et le lieu. Le prix était juste : autant que tout ce qu'il savait.",
+      "es": "Vendió el pez y el lugar. El precio fue exacto: lo que valía todo lo que sabía.",
+      "it": "Ha venduto il pesce e il posto. Il prezzo era esatto: quanto valeva tutto ciò che sapeva."
+    },
+    "warm_water": {
+      "en": "He neither betrayed nor saved. The lake keeps all as it was, and the water still waits for him.",
+      "de": "Er hat weder verraten noch gerettet. Der See bewahrt alles, wie es war, und das Wasser wartet noch auf ihn.",
+      "fr": "Il n'a ni trahi ni sauvé. Le lac garde tout tel quel, et l'eau l'attend encore.",
+      "es": "No traicionó ni salvó. El lago lo guarda todo como estaba, y el agua aún lo espera.",
+      "it": "Non ha tradito né salvato. Il lago custodisce tutto com'era, e l'acqua lo aspetta ancora."
+    },
+    "prior_waits": {
+      "en": "He has not chosen yet. Both notes are waiting, and neither will leave on its own.",
+      "de": "Er hat noch nicht gewählt. Beide Zettel warten, und keiner geht von selbst.",
+      "fr": "Il n'a pas encore choisi. Les deux billets attendent, et aucun ne partira seul.",
+      "es": "Aún no ha elegido. Las dos notas esperan, y ninguna se irá sola.",
+      "it": "Non ha ancora scelto. I due biglietti aspettano, e nessuno se ne andrà da solo."
+    },
+    "witness": {
+      "en": "He returned the testimony to where it will be read. He took nothing more.",
+      "de": "Er brachte das Zeugnis dorthin zurück, wo man es lesen wird. Mehr nahm er nicht.",
+      "fr": "Il a rendu le témoignage là où on le lira. Il n'a rien pris de plus.",
+      "es": "Devolvió el testimonio adonde lo leerán. No tomó nada más.",
+      "it": "Ha riportato la testimonianza dove sarà letta. Non ha preso altro."
+    },
+    "bread_shared": {
+      "en": "He gave his charge, the fish and his time. In return, he found he had people.",
+      "de": "Er gab seine Ladung, den Fisch und seine Zeit. Dafür hatte er auf einmal Menschen.",
+      "fr": "Il a donné sa charge, le poisson et son temps. En retour, il s'est trouvé des gens.",
+      "es": "Dio su carga, el pez y su tiempo. A cambio, se encontró con gente.",
+      "it": "Ha dato la carica, il pesce e il suo tempo. In cambio, si è ritrovato delle persone."
+    },
+    "dawn_on_water": {
+      "en": "Dawn lay on his hand and on the water. The morning did it, not the machine — and he was not alone.",
+      "de": "Das Morgenlicht fiel auf seine Hand und aufs Wasser. Der Morgen tat es, nicht die Maschine — und er war nicht allein.",
+      "fr": "L'aube s'est posée sur sa main et sur l'eau. C'est le matin, pas la machine — et il n'était pas seul.",
+      "es": "El alba cayó sobre su mano y sobre el agua. Lo hizo la mañana, no la máquina, y no estaba solo.",
+      "it": "L'alba si posò sulla sua mano e sull'acqua. Fu il mattino, non la macchina — e non era solo."
+    }
+  }
+}

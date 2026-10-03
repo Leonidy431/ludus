@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "note": "Chat inside the Brotherhood (docs/HLD_BROTHERHOOD_CHAT_2026-10-03.md, TABOO 0.031). Players of one organisation talk in short words and radio phrases, like a team chat; there are no outside messengers, no voice, no rewards for talking, and nothing is written to disk. Every phrase carries its meaning for the text version (TABOO 0.39).",
+  "limits": {"max_len": 200, "min_interval_s": 1.5, "artel_cap": 256,
+    "depth_pause_per_10m_s": 0.5},
+  "channels": {
+    "artel": {"name_ru": "Артель", "who": ["master", "novice", "curator"]},
+    "circle": {"name_ru": "Внутренний круг", "who": ["curator"]},
+    "pier": {"name_ru": "Пристань", "who": ["master", "novice", "curator", "guest"]}
+  },
+  "phrases": [
+    {"id": "go", "ru": "Иду.", "en": "Going.", "meaning": "I take the step first; the others may follow."},
+    {"id": "hold", "ru": "Держу.", "en": "Holding.", "meaning": "I keep this place; do not worry about it."},
+    {"id": "wait", "ru": "Ждите.", "en": "Wait.", "meaning": "Not yet; the water must settle."},
+    {"id": "help", "ru": "Нужна рука.", "en": "I need a hand.", "meaning": "A request for help, never a demand."},
+    {"id": "found", "ru": "Нашёл след.", "en": "Found a trace.", "meaning": "A clue is here; come and read it."},
+    {"id": "thanks", "ru": "Спасибо за дело.", "en": "Thanks for the work.", "meaning": "Joy that another finished what was begun (IX.1)."},
+    {"id": "surface", "ru": "Поднимаюсь.", "en": "Surfacing.", "meaning": "Going up no faster than ten metres a minute."},
+    {"id": "how", "ru": "Как ты?", "en": "How are you?", "meaning": "The base protocol of every channel (VI.11)."}
+  ],
+  "contact_patterns": ["http", "www.", "@", "t.me", ".com", ".ru", "telegram", "whatsapp", "discord", "vk.com", "instagram"]
+}

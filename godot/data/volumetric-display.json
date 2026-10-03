@@ -1,0 +1,43 @@
+{
+ "_note": "Volumetric laser screen data (HLD 2026-10-03, phase V1). Colours, grid and the sparse step come from the operator's repo (voxel_mapper.py, commit 2a468ba); the lines are ours.",
+ "source": {"repo": "Leonidy431/laser_buble_monitor_control", "commit": "2a468ba"},
+ "grid": {"x": 100, "y": 100, "z": 100, "sparse_step": 4},
+ "cylinder_m": {"diameter": 0.6, "height": 0.8},
+ "acoustic_khz": 40.0,
+ "laser_nm": 470.0,
+ "salinity_psu": 6.0,
+ "palette": {
+  "temperature": {"range": [0.0, 30.0], "unit": "C",
+   "stops": [[0.0, [30, 60, 220]], [0.5, [60, 200, 120]], [1.0, [220, 50, 40]]]},
+  "dissolved_oxygen": {"range": [0.0, 12.0], "unit": "mg/L",
+   "stops": [[0.0, [200, 30, 30]], [0.5, [230, 200, 40]], [1.0, [40, 200, 90]]]},
+  "turbidity": {"range": [0.0, 50.0], "unit": "NTU",
+   "stops": [[0.0, [30, 60, 220]], [0.5, [60, 200, 120]], [1.0, [220, 50, 40]]]}
+ },
+ "modes": [
+  {"id": "layers", "metric": "temperature", "source": "water_column",
+   "title_ru": "Слои воды"},
+  {"id": "oxygen", "metric": "dissolved_oxygen", "source": "water_column",
+   "title_ru": "Кислород"},
+  {"id": "floor", "metric": "", "source": "point_cloud",
+   "title_ru": "Дно"}
+ ],
+ "holy_silent": true,
+ "holy_beats": ["khachkar"],
+ "narrator": [
+  {"mode": "layers", "bridge_to": "thermocline",
+   "line_ru": "Он смотрит в стеклянный столб: холодная синева внизу, тёплая зелень сверху, и между ними тонкая граница.",
+   "why": "Слои закрывают осмотр воды и ведут к термоклину."},
+  {"mode": "oxygen", "bridge_to": "tether_jerk",
+   "line_ru": "Он переводит экран на кислород. Красного нет нигде, но трос на лодке уже дёрнулся.",
+   "why": "Спокойный столб кислорода открывает рывок троса."},
+  {"mode": "floor", "bridge_to": "bookmark",
+   "line_ru": "Он видит дно точками света: ровный ил, и в нём что-то лежит, острое и правильное.",
+   "why": "Рельеф дна открывает находку у закладки."}
+ ],
+ "claude": [
+  {"mode": "layers", "line_ru": "Синий внизу, зелёный наверху. Резкая смена цвета на пятидесяти метрах и есть термоклин."},
+  {"mode": "oxygen", "line_ru": "Кислород в озере ровный: зелёный на всю глубину. Прибор показывает числа, вывод за тобой."},
+  {"mode": "floor", "line_ru": "Точки сонара. Правильные линии среди ила редко делает вода."}
+ ]
+}

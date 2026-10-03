@@ -14,6 +14,8 @@ const BEFORE := {
 	"act_done": [0.4, 0.14],
 	"dive_lamp": [0.45, 0.05], "dive_take": [0.35, 0.08],
 	"dive_echo": [0.12, 0.03], "dive_layer": [0.2, 0.06],
+	"lock_pick": [0.15, 0.03], "lock_swap": [0.3, 0.05],
+	"lock_open": [0.45, 0.12],
 }
 ## Every scene that touches the hand, and the kinds it must use.
 const USERS := {
@@ -21,6 +23,7 @@ const USERS := {
 	"res://scripts/location.gd": ["\"act_\""],
 	"res://scripts/audio/dive_audio.gd": ["\"dive_lamp\"", "\"dive_take\"",
 		"\"dive_echo\"", "\"dive_layer\""],
+	"res://scripts/lock_scene.gd": ["\"lock_"],
 }
 
 

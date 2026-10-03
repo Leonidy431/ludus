@@ -1,0 +1,1444 @@
+{
+  "doc": "docs/story/BRANCHES_EP1_99_OF_999_2026-10-03.md",
+  "rule": "CLAUDE.md TABOO 0.025: the deeds of episode 1 lead, deterministically through DestinyCore, to one of the seven finales of godot/data/destiny.json, from the light outcome («рай» as image) to the path of purification («чистилище» as the heroes' image; the mechanic is repentance with the door open). No hell, no player death, no randomness; the holy is never a reward, a key or a branch.",
+  "chorus_ru": "нарративный директор, сценарист ветвлений, дизайнер последствий, редактор концовок, катехизатор, Аристотель-скептик; автор и проверяющий разные (ТАБУ №0.37)",
+  "poles": {
+    "light": {
+      "bands": [
+        1,
+        2,
+        3
+      ],
+      "image_ru": "«рай» — в образе: свет, мир, хлеб соседу, рассвет на воде"
+    },
+    "middle": {
+      "bands": [
+        0
+      ],
+      "image_ru": "выбор ещё ждёт: две записки на столе"
+    },
+    "purification": {
+      "bands": [
+        -3,
+        -2,
+        -1
+      ],
+      "image_ru": "«чистилище» — так назвал бы это рыцарь 1375 года; в игре это путь покаяния: цена поступка, долгая вода, ожидание у порога, работа исправления, и дверь не заперта"
+    }
+  },
+  "lights": {
+    "hearth": [
+      1900,
+      2500
+    ],
+    "instrument": [
+      6500,
+      6500
+    ],
+    "daylight": [
+      2000,
+      7000
+    ]
+  },
+  "choice_points": [
+    {
+      "id": "backup_clue",
+      "beat": "water_rises",
+      "body": "crouch_lookup",
+      "status": "in_pilot",
+      "ask_ru": "Присядет ли он под стол, пока вода поднимается?",
+      "options": [
+        {
+          "id": "found",
+          "events": [
+            "clue:backup"
+          ],
+          "deeds": [
+            "clue:backup"
+          ],
+          "consequence_ru": "копия журнала у него: правду о погружении нельзя стереть одним письмом Ордена"
+        },
+        {
+          "id": "missed",
+          "events": [],
+          "deeds": [],
+          "consequence_ru": "флешка остаётся под столом; во второй серии её найдёт другой"
+        }
+      ]
+    },
+    {
+      "id": "lure_ladder",
+      "beat": "lure",
+      "beats": [
+        "lure",
+        "price_rises",
+        "choice_echo"
+      ],
+      "body": "gaze_hold, turn_away, hand_reach, exhale_rope",
+      "status": "in_pilot",
+      "emit": [
+        "drams_left",
+        "drams_taken"
+      ],
+      "ask_ru": "Возьмёт ли он серебро за координаты?",
+      "options": [
+        {
+          "id": "turn_at_prilog",
+          "events": [
+            "stage:stillness",
+            "stage:virtue"
+          ],
+          "deeds": [
+            "stage:stillness",
+            "stage:virtue",
+            "drams_left"
+          ],
+          "echo": "virtue",
+          "consequence_ru": "отвернулся сразу и выдохнул трижды; драмы — писцу в книгу находок"
+        },
+        {
+          "id": "stop_at_converse",
+          "events": [
+            "stage:converse",
+            "stage:stillness",
+            "stage:virtue"
+          ],
+          "deeds": [
+            "stage:stillness",
+            "stage:virtue",
+            "drams_left"
+          ],
+          "echo": "virtue",
+          "consequence_ru": "присмотрелся, но умолк и не стал спорить с ценой"
+        },
+        {
+          "id": "remember_at_consent",
+          "events": [
+            "stage:converse",
+            "stage:consent",
+            "stage:stillness",
+            "stage:virtue"
+          ],
+          "deeds": [
+            "stage:consent",
+            "stage:stillness",
+            "stage:virtue",
+            "drams_left"
+          ],
+          "echo": "virtue",
+          "consequence_ru": "согласился в мыслях, но вспомнил слово наставника и остановился у самой черты"
+        },
+        {
+          "id": "still_without_breaths",
+          "events": [
+            "stage:stillness"
+          ],
+          "deeds": [
+            "stage:stillness"
+          ],
+          "echo": "unresolved",
+          "consequence_ru": "отвернулся, но не успокоил дыхание до конца серии"
+        },
+        {
+          "id": "looked_and_waited",
+          "events": [
+            "stage:converse"
+          ],
+          "deeds": [],
+          "echo": "unresolved",
+          "consequence_ru": "смотрел на блеск и не решил"
+        },
+        {
+          "id": "answered_and_waited",
+          "events": [
+            "stage:converse",
+            "stage:consent"
+          ],
+          "deeds": [
+            "stage:consent"
+          ],
+          "echo": "unresolved",
+          "consequence_ru": "согласился с помыслом, но руку не протянул"
+        },
+        {
+          "id": "take",
+          "events": [
+            "stage:converse",
+            "stage:consent",
+            "stage:captive"
+          ],
+          "deeds": [
+            "stage:consent",
+            "stage:captive",
+            "drams_taken"
+          ],
+          "echo": "captive",
+          "consequence_ru": "рука ближе 0,25 м к серебру: координаты ушли Ордену, драмы у него"
+        }
+      ]
+    },
+    {
+      "id": "name_on_channel",
+      "beat": "choice_echo",
+      "body": "hand_reach",
+      "status": "proposed",
+      "offered_if": {
+        "lure_ladder": [
+          "turn_at_prilog",
+          "stop_at_converse",
+          "remember_at_consent"
+        ]
+      },
+      "ask_ru": "Ответит ли он Приору открыто, подписав журнал своим именем?",
+      "options": [
+        {
+          "id": "sign",
+          "events": [
+            "deed:name_yourself"
+          ],
+          "deeds": [
+            "name_yourself"
+          ],
+          "consequence_ru": "запись о находке уходит экспедиции открыто, с его именем: теперь Орден знает, кто отказал"
+        },
+        {
+          "id": "keep_quiet",
+          "events": [],
+          "deeds": [],
+          "consequence_ru": "журнал без подписи; отказ остаётся тихим"
+        }
+      ]
+    },
+    {
+      "id": "return_taken",
+      "beat": "ascent",
+      "body": "hand_reach",
+      "status": "proposed",
+      "offered_if": {
+        "lure_ladder": [
+          "take"
+        ]
+      },
+      "ask_ru": "Вернёт ли он взятое, пока аппарат ещё у дна?",
+      "options": [
+        {
+          "id": "return",
+          "events": [
+            "deed:repent"
+          ],
+          "deeds": [
+            "repent"
+          ],
+          "consequence_ru": "манипулятор кладёт драмы обратно в ил, а в журнале строка: «координаты передал я»"
+        },
+        {
+          "id": "keep",
+          "events": [],
+          "deeds": [],
+          "consequence_ru": "драмы поднимаются вместе с аппаратом"
+        }
+      ]
+    },
+    {
+      "id": "eternal_copy",
+      "beat": "prior_last",
+      "body": "hand_reach",
+      "status": "proposed",
+      "offered_if": {
+        "lure_ladder": [
+          "take"
+        ],
+        "return_taken": [
+          "keep"
+        ]
+      },
+      "ask_ru": "Нажмёт ли он клавишу, когда Приор предложит хранить его журнал и голос в протоколе всегда?",
+      "options": [
+        {
+          "id": "accept",
+          "events": [
+            "deed:copy_of_self"
+          ],
+          "deeds": [
+            "copy_of_self"
+          ],
+          "consequence_ru": "копия журнала и голоса уходит в протокол Кащея; копия отвечает только его же словами"
+        },
+        {
+          "id": "decline",
+          "events": [],
+          "deeds": [],
+          "consequence_ru": "клавиша не нажата; экран гаснет сам"
+        }
+      ]
+    }
+  ],
+  "finales": [
+    {
+      "id": "dawn_on_water",
+      "pole": "light",
+      "light": {
+        "class": "daylight",
+        "kelvin": 2800,
+        "ru": "низкое рассветное солнце в окне"
+      },
+      "music": {
+        "node": "IX",
+        "sign": 7
+      },
+      "line_ru": "Он отвернулся от серебра и подписал журнал своим именем. Утро легло на воду, и следующую строку уже читает писец.",
+      "bridge_to": "scribe_first",
+      "last_frame_ru": "Вода ушла из комнаты; на подоконнике раскрытый журнал с его подписью, на руку со знаком и на воду ложится рассвет — это делает утро, не машина.",
+      "techniques": [
+        "delayed_echo",
+        "sacrifice_for_stranger",
+        "save_carryover"
+      ],
+      "all_faiths_ru": "Любой человек узнаёт это: правда, сказанная своим именем, стоит дороже серебра, а утро приходит не по заслуге.",
+      "paths": [
+        [
+          "stage:stillness",
+          "stage:virtue",
+          "drams_left",
+          "name_yourself"
+        ],
+        [
+          "clue:backup",
+          "stage:stillness",
+          "stage:virtue",
+          "drams_left",
+          "name_yourself"
+        ]
+      ]
+    },
+    {
+      "id": "bread_shared",
+      "pole": "light",
+      "light": {
+        "class": "hearth",
+        "kelvin": 2500,
+        "ru": "тёплая настольная лампа"
+      },
+      "music": {
+        "node": "VIII",
+        "sign": 2
+      },
+      "line_ru": "Он оставил драмы в иле для книги находок. Приор пообещал, что он пожалеет. А писец уже пишет дальше.",
+      "bridge_to": "scribe_first",
+      "last_frame_ru": "Тёплый круг лампы на столе; в журнале строка «драмы — в книгу находок», на экране пульта остывает последнее сообщение Приора.",
+      "techniques": [
+        "mercy_route",
+        "delayed_echo",
+        "will_remember"
+      ],
+      "all_faiths_ru": "Оставить чужое там, где его найдут те, кому оно принадлежит, — это поймёт и верующий, и агностик.",
+      "paths": [
+        [
+          "stage:stillness",
+          "stage:virtue",
+          "drams_left"
+        ],
+        [
+          "clue:backup",
+          "stage:stillness",
+          "stage:virtue",
+          "drams_left"
+        ],
+        [
+          "stage:consent",
+          "stage:stillness",
+          "stage:virtue",
+          "drams_left",
+          "name_yourself"
+        ]
+      ]
+    },
+    {
+      "id": "witness",
+      "pole": "light",
+      "light": {
+        "class": "hearth",
+        "kelvin": 1900,
+        "ru": "лампа рабочего стола, низкая"
+      },
+      "music": {
+        "node": "II",
+        "sign": 10
+      },
+      "line_ru": "Он не взял серебра и не отдал правды. Копия журнала цела, и кто-нибудь её прочтёт.",
+      "bridge_to": "scribe_first",
+      "last_frame_ru": "Лампа над столом; флешка с надписью «копия журнала» лежит рядом с дневником, оба закрыты, оба целы.",
+      "techniques": [
+        "prior_self_journal",
+        "no_right_answer",
+        "time_skip_shows"
+      ],
+      "all_faiths_ru": "Сохранить свидетельство для того, кто придёт после, — общий долг людей любой веры и без неё.",
+      "paths": [
+        [
+          "stage:consent",
+          "stage:stillness",
+          "stage:virtue",
+          "drams_left"
+        ],
+        [
+          "stage:stillness"
+        ],
+        [
+          "clue:backup"
+        ]
+      ]
+    },
+    {
+      "id": "prior_waits",
+      "pole": "middle",
+      "light": {
+        "class": "hearth",
+        "kelvin": 1900,
+        "mix": {
+          "class": "instrument",
+          "kelvin": 6500
+        },
+        "ru": "лампа и экран пульта поровну"
+      },
+      "music": {
+        "node": "VI",
+        "sign": 3
+      },
+      "line_ru": "Он смотрел на серебро и не решил. Приор написал, что подождёт. Ждать будут оба.",
+      "bridge_to": "prior_waits",
+      "last_frame_ru": "Стол делят два света: тёплая лампа и холодный экран; на экране мигает курсор под сообщением Приора, журнал открыт на пустой строке.",
+      "techniques": [
+        "radio_silence_choice",
+        "delayed_echo",
+        "law_crosses_line"
+      ],
+      "all_faiths_ru": "Нерешённый выбор знаком каждому; серия не судит, она показывает, что ожидание тоже чего-то стоит.",
+      "paths": [
+        [],
+        [
+          "clue:backup",
+          "stage:consent"
+        ]
+      ]
+    },
+    {
+      "id": "warm_water",
+      "pole": "purification",
+      "light": {
+        "class": "daylight",
+        "kelvin": 6500,
+        "ru": "серый рассеянный свет без источника"
+      },
+      "music": {
+        "node": "I",
+        "sign": 7
+      },
+      "line_ru": "Он поднялся, так и не решив, чей он. Вода из комнаты ушла, а в журнале осталась пустая строка.",
+      "bridge_to": "prior_waits",
+      "repent_line_ru": "Он вернул драмы в ил и записал: координаты передал он. Дорога назад длинная, но дверь не заперта.",
+      "repent_bridge_to": "order_first",
+      "last_frame_ru": "Серый свет без тени; мокрый след воды на полу высыхает, журнал лежит открытым — строка ждёт его руки.",
+      "door_ru": "пустая строка журнала ждёт правды; в следующей серии вернуться можно",
+      "techniques": [
+        "open_door_return",
+        "household_ledger",
+        "will_remember"
+      ],
+      "all_faiths_ru": "Признать свою вину и вернуть взятое — путь, который узнают все традиции и совесть неверующего.",
+      "paths": [
+        [
+          "stage:consent"
+        ],
+        [
+          "stage:consent",
+          "stage:captive",
+          "drams_taken",
+          "repent"
+        ],
+        [
+          "clue:backup",
+          "stage:consent",
+          "stage:captive",
+          "drams_taken"
+        ]
+      ]
+    },
+    {
+      "id": "bought_place",
+      "pole": "purification",
+      "light": {
+        "class": "instrument",
+        "kelvin": 6500,
+        "ru": "экран в тёмной комнате"
+      },
+      "music": {
+        "node": "VIII",
+        "sign": 11
+      },
+      "line_ru": "Координаты ушли, драмы лежат в ящике стола. Телефон молчит, и он впервые слышит, как тихо в его комнате.",
+      "bridge_to": "order_first",
+      "last_frame_ru": "Холодный экран в тёмной комнате; ящик стола приоткрыт, в нём серебро; телефон экраном вниз.",
+      "door_ru": "драмы ещё можно вернуть, а правду — записать: путь покаяния открыт до конца",
+      "techniques": [
+        "betrayal_offer",
+        "household_ledger",
+        "open_door_return"
+      ],
+      "all_faiths_ru": "Цена предательства понятна без веры: проданное знание оставляет человека одного.",
+      "paths": [
+        [
+          "stage:consent",
+          "stage:captive",
+          "drams_taken"
+        ],
+        [
+          "clue:backup",
+          "stage:consent",
+          "stage:captive",
+          "drams_taken",
+          "copy_of_self"
+        ]
+      ]
+    },
+    {
+      "id": "endless_copy",
+      "pole": "purification",
+      "light": {
+        "class": "instrument",
+        "kelvin": 6500,
+        "ru": "ровный холодный свет без тени"
+      },
+      "music": {
+        "node": "VII",
+        "sign": 6
+      },
+      "line_ru": "Он согласился остаться в протоколе навсегда. Копия отвечает ему его же словами, а в дверь кто-то стучит.",
+      "bridge_to": "order_first",
+      "last_frame_ru": "Пульт не гаснет; на экране его копия печатает его же фразы; в дверь стучат один раз, и дверь не заперта.",
+      "door_ru": "в дверь стучат; она не заперта — встать и открыть можно и отсюда",
+      "techniques": [
+        "law_crosses_line",
+        "betrayal_offer",
+        "open_door_return"
+      ],
+      "all_faiths_ru": "Жизнь без конца и без другого рядом страшна любому человеку: это петля, где некому ответить.",
+      "paths": [
+        [
+          "stage:consent",
+          "stage:captive",
+          "drams_taken",
+          "copy_of_self"
+        ]
+      ]
+    }
+  ],
+  "craft": {
+    "about": "Top-99 branching techniques for episode 1, chosen by scripts/decisions/branch_craft.py; do not edit.",
+    "doc": "docs/story/BRANCHES_EP1_99_OF_999_2026-10-03.md",
+    "asked": 999,
+    "pool": 895,
+    "marks": [
+      "clarity",
+      "teaching",
+      "body",
+      "replay",
+      "hook",
+      "safety",
+      "cost"
+    ],
+    "chosen": [
+      {
+        "id": "open_door_return@ascent/exhale_rope/purification",
+        "technique": "open_door_return",
+        "title_ru": "дверь возвращения открыта",
+        "phase": "ascent",
+        "body": "exhale_rope",
+        "pole": "purification",
+        "total": 66
+      },
+      {
+        "id": "open_door_return@ascent/hand_reach/purification",
+        "technique": "open_door_return",
+        "title_ru": "дверь возвращения открыта",
+        "phase": "ascent",
+        "body": "hand_reach",
+        "pole": "purification",
+        "total": 66
+      },
+      {
+        "id": "delayed_echo@ascent/turn_away/light",
+        "technique": "delayed_echo",
+        "title_ru": "отсроченное эхо выбора",
+        "phase": "ascent",
+        "body": "turn_away",
+        "pole": "light",
+        "total": 65
+      },
+      {
+        "id": "delayed_echo@lure/crouch_lookup/light",
+        "technique": "delayed_echo",
+        "title_ru": "отсроченное эхо выбора",
+        "phase": "lure",
+        "body": "crouch_lookup",
+        "pole": "light",
+        "total": 65
+      },
+      {
+        "id": "delayed_echo@lure/turn_away/light",
+        "technique": "delayed_echo",
+        "title_ru": "отсроченное эхо выбора",
+        "phase": "lure",
+        "body": "turn_away",
+        "pole": "light",
+        "total": 65
+      },
+      {
+        "id": "mercy_route@ascent/hand_reach/light",
+        "technique": "mercy_route",
+        "title_ru": "путь пощады",
+        "phase": "ascent",
+        "body": "hand_reach",
+        "pole": "light",
+        "total": 65
+      },
+      {
+        "id": "mercy_route@ascent/turn_away/light",
+        "technique": "mercy_route",
+        "title_ru": "путь пощады",
+        "phase": "ascent",
+        "body": "turn_away",
+        "pole": "light",
+        "total": 65
+      },
+      {
+        "id": "mercy_route@lure/hand_reach/light",
+        "technique": "mercy_route",
+        "title_ru": "путь пощады",
+        "phase": "lure",
+        "body": "hand_reach",
+        "pole": "light",
+        "total": 65
+      },
+      {
+        "id": "betrayal_offer@lure/turn_away/middle",
+        "technique": "betrayal_offer",
+        "title_ru": "предложение предать",
+        "phase": "lure",
+        "body": "turn_away",
+        "pole": "middle",
+        "total": 64
+      },
+      {
+        "id": "open_door_return@ascent/stand_still/purification",
+        "technique": "open_door_return",
+        "title_ru": "дверь возвращения открыта",
+        "phase": "ascent",
+        "body": "stand_still",
+        "pole": "purification",
+        "total": 64
+      },
+      {
+        "id": "sacrifice_for_stranger@ascent/hand_reach/light",
+        "technique": "sacrifice_for_stranger",
+        "title_ru": "жертва ради незнакомого",
+        "phase": "ascent",
+        "body": "hand_reach",
+        "pole": "light",
+        "total": 64
+      },
+      {
+        "id": "sacrifice_for_stranger@ascent/turn_away/light",
+        "technique": "sacrifice_for_stranger",
+        "title_ru": "жертва ради незнакомого",
+        "phase": "ascent",
+        "body": "turn_away",
+        "pole": "light",
+        "total": 64
+      },
+      {
+        "id": "sacrifice_for_stranger@lure/hand_reach/light",
+        "technique": "sacrifice_for_stranger",
+        "title_ru": "жертва ради незнакомого",
+        "phase": "lure",
+        "body": "hand_reach",
+        "pole": "light",
+        "total": 64
+      },
+      {
+        "id": "save_carryover@ascent/gaze_hold/light",
+        "technique": "save_carryover",
+        "title_ru": "выбор переходит в следующую серию",
+        "phase": "ascent",
+        "body": "gaze_hold",
+        "pole": "light",
+        "total": 64
+      },
+      {
+        "id": "betrayal_offer@lure/exhale_rope/middle",
+        "technique": "betrayal_offer",
+        "title_ru": "предложение предать",
+        "phase": "lure",
+        "body": "exhale_rope",
+        "pole": "middle",
+        "total": 63
+      },
+      {
+        "id": "betrayal_offer@lure/gaze_hold/middle",
+        "technique": "betrayal_offer",
+        "title_ru": "предложение предать",
+        "phase": "lure",
+        "body": "gaze_hold",
+        "pole": "middle",
+        "total": 63
+      },
+      {
+        "id": "household_ledger@ascent/crouch_lookup/light",
+        "technique": "household_ledger",
+        "title_ru": "цена видна дома",
+        "phase": "ascent",
+        "body": "crouch_lookup",
+        "pole": "light",
+        "total": 63
+      },
+      {
+        "id": "knowledge_is_key@lure/crouch_lookup/light",
+        "technique": "knowledge_is_key",
+        "title_ru": "ключ — знание, а не вещь",
+        "phase": "lure",
+        "body": "crouch_lookup",
+        "pole": "light",
+        "total": 63
+      },
+      {
+        "id": "save_carryover@ascent/gaze_hold/middle",
+        "technique": "save_carryover",
+        "title_ru": "выбор переходит в следующую серию",
+        "phase": "ascent",
+        "body": "gaze_hold",
+        "pole": "middle",
+        "total": 63
+      },
+      {
+        "id": "save_carryover@ascent/stand_still/light",
+        "technique": "save_carryover",
+        "title_ru": "выбор переходит в следующую серию",
+        "phase": "ascent",
+        "body": "stand_still",
+        "pole": "light",
+        "total": 63
+      },
+      {
+        "id": "body_interrupt@lure/exhale_rope/light",
+        "technique": "body_interrupt",
+        "title_ru": "прерывание телом в сцене",
+        "phase": "lure",
+        "body": "exhale_rope",
+        "pole": "light",
+        "total": 62
+      },
+      {
+        "id": "body_interrupt@lure/hand_reach/light",
+        "technique": "body_interrupt",
+        "title_ru": "прерывание телом в сцене",
+        "phase": "lure",
+        "body": "hand_reach",
+        "pole": "light",
+        "total": 62
+      },
+      {
+        "id": "body_interrupt@lure/turn_away/light",
+        "technique": "body_interrupt",
+        "title_ru": "прерывание телом в сцене",
+        "phase": "lure",
+        "body": "turn_away",
+        "pole": "light",
+        "total": 62
+      },
+      {
+        "id": "daily_rule_price@lure/gaze_hold/light",
+        "technique": "daily_rule_price",
+        "title_ru": "будничная процедура с ценой",
+        "phase": "lure",
+        "body": "gaze_hold",
+        "pole": "light",
+        "total": 62
+      },
+      {
+        "id": "daily_rule_price@lure/hand_reach/light",
+        "technique": "daily_rule_price",
+        "title_ru": "будничная процедура с ценой",
+        "phase": "lure",
+        "body": "hand_reach",
+        "pole": "light",
+        "total": 62
+      },
+      {
+        "id": "household_ledger@ascent/crouch_lookup/purification",
+        "technique": "household_ledger",
+        "title_ru": "цена видна дома",
+        "phase": "ascent",
+        "body": "crouch_lookup",
+        "pole": "purification",
+        "total": 62
+      },
+      {
+        "id": "knowledge_is_key@lure/gaze_hold/light",
+        "technique": "knowledge_is_key",
+        "title_ru": "ключ — знание, а не вещь",
+        "phase": "lure",
+        "body": "gaze_hold",
+        "pole": "light",
+        "total": 62
+      },
+      {
+        "id": "law_crosses_line@lure/gaze_hold/middle",
+        "technique": "law_crosses_line",
+        "title_ru": "черта, которую пересекают шаг за шагом",
+        "phase": "lure",
+        "body": "gaze_hold",
+        "pole": "middle",
+        "total": 62
+      },
+      {
+        "id": "law_crosses_line@lure/hand_reach/middle",
+        "technique": "law_crosses_line",
+        "title_ru": "черта, которую пересекают шаг за шагом",
+        "phase": "lure",
+        "body": "hand_reach",
+        "pole": "middle",
+        "total": 62
+      },
+      {
+        "id": "no_right_answer@ascent/hand_reach/light",
+        "technique": "no_right_answer",
+        "title_ru": "нет правильного ответа — есть свидетельство",
+        "phase": "ascent",
+        "body": "hand_reach",
+        "pole": "light",
+        "total": 62
+      },
+      {
+        "id": "small_deeds_path@lure/crouch_lookup/purification",
+        "technique": "small_deeds_path",
+        "title_ru": "путь из суммы мелких поступков",
+        "phase": "lure",
+        "body": "crouch_lookup",
+        "pole": "purification",
+        "total": 62
+      },
+      {
+        "id": "failure_forward@lure/crouch_lookup/purification",
+        "technique": "failure_forward",
+        "title_ru": "провал ведёт дальше",
+        "phase": "lure",
+        "body": "crouch_lookup",
+        "pole": "purification",
+        "total": 61
+      },
+      {
+        "id": "knowledge_is_key@lure/crouch_lookup/middle",
+        "technique": "knowledge_is_key",
+        "title_ru": "ключ — знание, а не вещь",
+        "phase": "lure",
+        "body": "crouch_lookup",
+        "pole": "middle",
+        "total": 61
+      },
+      {
+        "id": "preparation_tally@ascent/hand_reach/purification",
+        "technique": "preparation_tally",
+        "title_ru": "финал собирается из подготовки",
+        "phase": "ascent",
+        "body": "hand_reach",
+        "pole": "purification",
+        "total": 61
+      },
+      {
+        "id": "radio_silence_choice@lure/turn_away/purification",
+        "technique": "radio_silence_choice",
+        "title_ru": "молчание как реплика",
+        "phase": "lure",
+        "body": "turn_away",
+        "pole": "purification",
+        "total": 61
+      },
+      {
+        "id": "small_deeds_path@ascent/crouch_lookup/purification",
+        "technique": "small_deeds_path",
+        "title_ru": "путь из суммы мелких поступков",
+        "phase": "ascent",
+        "body": "crouch_lookup",
+        "pole": "purification",
+        "total": 61
+      },
+      {
+        "id": "will_remember@lure/turn_away/purification",
+        "technique": "will_remember",
+        "title_ru": "«он запомнит это»",
+        "phase": "lure",
+        "body": "turn_away",
+        "pole": "purification",
+        "total": 61
+      },
+      {
+        "id": "daily_rule_price@lure/gaze_hold/middle",
+        "technique": "daily_rule_price",
+        "title_ru": "будничная процедура с ценой",
+        "phase": "lure",
+        "body": "gaze_hold",
+        "pole": "middle",
+        "total": 60
+      },
+      {
+        "id": "household_ledger@ascent/gaze_hold/purification",
+        "technique": "household_ledger",
+        "title_ru": "цена видна дома",
+        "phase": "ascent",
+        "body": "gaze_hold",
+        "pole": "purification",
+        "total": 60
+      },
+      {
+        "id": "law_crosses_line@layer/gaze_hold/middle",
+        "technique": "law_crosses_line",
+        "title_ru": "черта, которую пересекают шаг за шагом",
+        "phase": "layer",
+        "body": "gaze_hold",
+        "pole": "middle",
+        "total": 60
+      },
+      {
+        "id": "limited_time_inquiry@reading/crouch_lookup/purification",
+        "technique": "limited_time_inquiry",
+        "title_ru": "времени на всех не хватит",
+        "phase": "reading",
+        "body": "crouch_lookup",
+        "pole": "purification",
+        "total": 60
+      },
+      {
+        "id": "look_under_over@ascent/crouch_lookup/purification",
+        "technique": "look_under_over",
+        "title_ru": "улика под столом и на потолке",
+        "phase": "ascent",
+        "body": "crouch_lookup",
+        "pole": "purification",
+        "total": 60
+      },
+      {
+        "id": "no_right_answer@ascent/hand_reach/middle",
+        "technique": "no_right_answer",
+        "title_ru": "нет правильного ответа — есть свидетельство",
+        "phase": "ascent",
+        "body": "hand_reach",
+        "pole": "middle",
+        "total": 60
+      },
+      {
+        "id": "no_right_answer@ascent/turn_away/middle",
+        "technique": "no_right_answer",
+        "title_ru": "нет правильного ответа — есть свидетельство",
+        "phase": "ascent",
+        "body": "turn_away",
+        "pole": "middle",
+        "total": 60
+      },
+      {
+        "id": "preparation_tally@ascent/hand_reach/middle",
+        "technique": "preparation_tally",
+        "title_ru": "финал собирается из подготовки",
+        "phase": "ascent",
+        "body": "hand_reach",
+        "pole": "middle",
+        "total": 60
+      },
+      {
+        "id": "radio_silence_choice@ascent/turn_away/purification",
+        "technique": "radio_silence_choice",
+        "title_ru": "молчание как реплика",
+        "phase": "ascent",
+        "body": "turn_away",
+        "pole": "purification",
+        "total": 60
+      },
+      {
+        "id": "small_deeds_path@lure/crouch_lookup/middle",
+        "technique": "small_deeds_path",
+        "title_ru": "путь из суммы мелких поступков",
+        "phase": "lure",
+        "body": "crouch_lookup",
+        "pole": "middle",
+        "total": 60
+      },
+      {
+        "id": "time_skip_shows@ascent/gaze_hold/middle",
+        "technique": "time_skip_shows",
+        "title_ru": "прыжок во времени показывает цену",
+        "phase": "ascent",
+        "body": "gaze_hold",
+        "pole": "middle",
+        "total": 60
+      },
+      {
+        "id": "time_skip_shows@ascent/gaze_hold/purification",
+        "technique": "time_skip_shows",
+        "title_ru": "прыжок во времени показывает цену",
+        "phase": "ascent",
+        "body": "gaze_hold",
+        "pole": "purification",
+        "total": 60
+      },
+      {
+        "id": "time_skip_shows@reading/gaze_hold/purification",
+        "technique": "time_skip_shows",
+        "title_ru": "прыжок во времени показывает цену",
+        "phase": "reading",
+        "body": "gaze_hold",
+        "pole": "purification",
+        "total": 60
+      },
+      {
+        "id": "will_remember@ascent/turn_away/purification",
+        "technique": "will_remember",
+        "title_ru": "«он запомнит это»",
+        "phase": "ascent",
+        "body": "turn_away",
+        "pole": "purification",
+        "total": 60
+      },
+      {
+        "id": "will_remember@lure/turn_away/middle",
+        "technique": "will_remember",
+        "title_ru": "«он запомнит это»",
+        "phase": "lure",
+        "body": "turn_away",
+        "pole": "middle",
+        "total": 60
+      },
+      {
+        "id": "failure_forward@lure/crouch_lookup/middle",
+        "technique": "failure_forward",
+        "title_ru": "провал ведёт дальше",
+        "phase": "lure",
+        "body": "crouch_lookup",
+        "pole": "middle",
+        "total": 59
+      },
+      {
+        "id": "failure_forward@lure/hand_reach/middle",
+        "technique": "failure_forward",
+        "title_ru": "провал ведёт дальше",
+        "phase": "lure",
+        "body": "hand_reach",
+        "pole": "middle",
+        "total": 59
+      },
+      {
+        "id": "limited_time_inquiry@layer/crouch_lookup/purification",
+        "technique": "limited_time_inquiry",
+        "title_ru": "времени на всех не хватит",
+        "phase": "layer",
+        "body": "crouch_lookup",
+        "pole": "purification",
+        "total": 59
+      },
+      {
+        "id": "limited_time_inquiry@reading/gaze_hold/purification",
+        "technique": "limited_time_inquiry",
+        "title_ru": "времени на всех не хватит",
+        "phase": "reading",
+        "body": "gaze_hold",
+        "pole": "purification",
+        "total": 59
+      },
+      {
+        "id": "preparation_tally@ascent/stand_still/purification",
+        "technique": "preparation_tally",
+        "title_ru": "финал собирается из подготовки",
+        "phase": "ascent",
+        "body": "stand_still",
+        "pole": "purification",
+        "total": 59
+      },
+      {
+        "id": "prior_self_journal@ascent/gaze_hold/middle",
+        "technique": "prior_self_journal",
+        "title_ru": "журнал прежнего читателя",
+        "phase": "ascent",
+        "body": "gaze_hold",
+        "pole": "middle",
+        "total": 59
+      },
+      {
+        "id": "prior_self_journal@ascent/raise_to_face/middle",
+        "technique": "prior_self_journal",
+        "title_ru": "журнал прежнего читателя",
+        "phase": "ascent",
+        "body": "raise_to_face",
+        "pole": "middle",
+        "total": 59
+      },
+      {
+        "id": "radio_silence_choice@lure/turn_away/middle",
+        "technique": "radio_silence_choice",
+        "title_ru": "молчание как реплика",
+        "phase": "lure",
+        "body": "turn_away",
+        "pole": "middle",
+        "total": 59
+      },
+      {
+        "id": "characters_can_be_lost@layer/hand_reach/light",
+        "technique": "characters_can_be_lost",
+        "title_ru": "потеря продолжает историю",
+        "phase": "layer",
+        "body": "hand_reach",
+        "pole": "light",
+        "total": 58
+      },
+      {
+        "id": "deduction_book@reading/gaze_hold/light",
+        "technique": "deduction_book",
+        "title_ru": "книга находок с проверкой по трём",
+        "phase": "reading",
+        "body": "gaze_hold",
+        "pole": "light",
+        "total": 58
+      },
+      {
+        "id": "deduction_book@reading/gaze_hold/purification",
+        "technique": "deduction_book",
+        "title_ru": "книга находок с проверкой по трём",
+        "phase": "reading",
+        "body": "gaze_hold",
+        "pole": "purification",
+        "total": 58
+      },
+      {
+        "id": "inner_voices@lure/gaze_hold/light",
+        "technique": "inner_voices",
+        "title_ru": "спор внутренних голосов",
+        "phase": "lure",
+        "body": "gaze_hold",
+        "pole": "light",
+        "total": 58
+      },
+      {
+        "id": "prior_self_journal@cold_open/gaze_hold/light",
+        "technique": "prior_self_journal",
+        "title_ru": "журнал прежнего читателя",
+        "phase": "cold_open",
+        "body": "gaze_hold",
+        "pole": "light",
+        "total": 58
+      },
+      {
+        "id": "ripening_thought@layer/gaze_hold/light",
+        "technique": "ripening_thought",
+        "title_ru": "созревающий помысел",
+        "phase": "layer",
+        "body": "gaze_hold",
+        "pole": "light",
+        "total": 58
+      },
+      {
+        "id": "ripening_thought@layer/gaze_hold/purification",
+        "technique": "ripening_thought",
+        "title_ru": "созревающий помысел",
+        "phase": "layer",
+        "body": "gaze_hold",
+        "pole": "purification",
+        "total": 58
+      },
+      {
+        "id": "room_per_story@reading/hand_reach/light",
+        "technique": "room_per_story",
+        "title_ru": "у каждой вещи своя история",
+        "phase": "reading",
+        "body": "hand_reach",
+        "pole": "light",
+        "total": 58
+      },
+      {
+        "id": "route_on_map@ascent/gaze_hold/light",
+        "technique": "route_on_map",
+        "title_ru": "маршрут, видный на карте",
+        "phase": "ascent",
+        "body": "gaze_hold",
+        "pole": "light",
+        "total": 58
+      },
+      {
+        "id": "stance_accrues@lure/turn_away/light",
+        "technique": "stance_accrues",
+        "title_ru": "позиция копится по репликам",
+        "phase": "lure",
+        "body": "turn_away",
+        "pole": "light",
+        "total": 58
+      },
+      {
+        "id": "what_changes_nature@cold_open/gaze_hold/light",
+        "technique": "what_changes_nature",
+        "title_ru": "вопрос серии, на который отвечает игрок",
+        "phase": "cold_open",
+        "body": "gaze_hold",
+        "pole": "light",
+        "total": 58
+      },
+      {
+        "id": "archive_search@ascent/gaze_hold/light",
+        "technique": "archive_search",
+        "title_ru": "поиск по архиву",
+        "phase": "ascent",
+        "body": "gaze_hold",
+        "pole": "light",
+        "total": 57
+      },
+      {
+        "id": "archive_search@ascent/gaze_hold/purification",
+        "technique": "archive_search",
+        "title_ru": "поиск по архиву",
+        "phase": "ascent",
+        "body": "gaze_hold",
+        "pole": "purification",
+        "total": 57
+      },
+      {
+        "id": "characters_can_be_lost@layer/hand_reach/purification",
+        "technique": "characters_can_be_lost",
+        "title_ru": "потеря продолжает историю",
+        "phase": "layer",
+        "body": "hand_reach",
+        "pole": "purification",
+        "total": 57
+      },
+      {
+        "id": "lesser_evil@lure/turn_away/middle",
+        "technique": "lesser_evil",
+        "title_ru": "меньшее зло",
+        "phase": "lure",
+        "body": "turn_away",
+        "pole": "middle",
+        "total": 57
+      },
+      {
+        "id": "look_under_over@cold_open/crouch_lookup/light",
+        "technique": "look_under_over",
+        "title_ru": "улика под столом и на потолке",
+        "phase": "cold_open",
+        "body": "crouch_lookup",
+        "pole": "light",
+        "total": 57
+      },
+      {
+        "id": "look_under_over@cold_open/crouch_lookup/purification",
+        "technique": "look_under_over",
+        "title_ru": "улика под столом и на потолке",
+        "phase": "cold_open",
+        "body": "crouch_lookup",
+        "pole": "purification",
+        "total": 57
+      },
+      {
+        "id": "ripening_thought@layer/stand_still/light",
+        "technique": "ripening_thought",
+        "title_ru": "созревающий помысел",
+        "phase": "layer",
+        "body": "stand_still",
+        "pole": "light",
+        "total": 57
+      },
+      {
+        "id": "second_reading@ascent/gaze_hold/light",
+        "technique": "second_reading",
+        "title_ru": "второй проход — другой взгляд",
+        "phase": "ascent",
+        "body": "gaze_hold",
+        "pole": "light",
+        "total": 57
+      },
+      {
+        "id": "second_reading@reading/gaze_hold/light",
+        "technique": "second_reading",
+        "title_ru": "второй проход — другой взгляд",
+        "phase": "reading",
+        "body": "gaze_hold",
+        "pole": "light",
+        "total": 57
+      },
+      {
+        "id": "what_changes_nature@cold_open/gaze_hold/purification",
+        "technique": "what_changes_nature",
+        "title_ru": "вопрос серии, на который отвечает игрок",
+        "phase": "cold_open",
+        "body": "gaze_hold",
+        "pole": "purification",
+        "total": 57
+      },
+      {
+        "id": "what_changes_nature@cold_open/stand_still/light",
+        "technique": "what_changes_nature",
+        "title_ru": "вопрос серии, на который отвечает игрок",
+        "phase": "cold_open",
+        "body": "stand_still",
+        "pole": "light",
+        "total": 57
+      },
+      {
+        "id": "world_remembers_replay@ascent/gaze_hold/light",
+        "technique": "world_remembers_replay",
+        "title_ru": "мир помнит прежний проход",
+        "phase": "ascent",
+        "body": "gaze_hold",
+        "pole": "light",
+        "total": 57
+      },
+      {
+        "id": "characters_can_be_lost@layer/hand_reach/middle",
+        "technique": "characters_can_be_lost",
+        "title_ru": "потеря продолжает историю",
+        "phase": "layer",
+        "body": "hand_reach",
+        "pole": "middle",
+        "total": 56
+      },
+      {
+        "id": "contract_inquiry@descent/hand_reach/light",
+        "technique": "contract_inquiry",
+        "title_ru": "контракт-расследование",
+        "phase": "descent",
+        "body": "hand_reach",
+        "pole": "light",
+        "total": 56
+      },
+      {
+        "id": "contract_inquiry@descent/hand_reach/purification",
+        "technique": "contract_inquiry",
+        "title_ru": "контракт-расследование",
+        "phase": "descent",
+        "body": "hand_reach",
+        "pole": "purification",
+        "total": 56
+      },
+      {
+        "id": "deduction_book@reading/gaze_hold/middle",
+        "technique": "deduction_book",
+        "title_ru": "книга находок с проверкой по трём",
+        "phase": "reading",
+        "body": "gaze_hold",
+        "pole": "middle",
+        "total": 56
+      },
+      {
+        "id": "lesser_evil@ascent/turn_away/middle",
+        "technique": "lesser_evil",
+        "title_ru": "меньшее зло",
+        "phase": "ascent",
+        "body": "turn_away",
+        "pole": "middle",
+        "total": 56
+      },
+      {
+        "id": "lesser_evil@lure/hand_reach/middle",
+        "technique": "lesser_evil",
+        "title_ru": "меньшее зло",
+        "phase": "lure",
+        "body": "hand_reach",
+        "pole": "middle",
+        "total": 56
+      },
+      {
+        "id": "narrator_to_disobey@layer/turn_away/light",
+        "technique": "narrator_to_disobey",
+        "title_ru": "рассказчик, которого можно ослушаться",
+        "phase": "layer",
+        "body": "turn_away",
+        "pole": "light",
+        "total": 56
+      },
+      {
+        "id": "room_per_story@cold_open/hand_reach/light",
+        "technique": "room_per_story",
+        "title_ru": "у каждой вещи своя история",
+        "phase": "cold_open",
+        "body": "hand_reach",
+        "pole": "light",
+        "total": 56
+      },
+      {
+        "id": "second_reading@ascent/gaze_hold/middle",
+        "technique": "second_reading",
+        "title_ru": "второй проход — другой взгляд",
+        "phase": "ascent",
+        "body": "gaze_hold",
+        "pole": "middle",
+        "total": 56
+      },
+      {
+        "id": "contract_inquiry@descent/crouch_lookup/light",
+        "technique": "contract_inquiry",
+        "title_ru": "контракт-расследование",
+        "phase": "descent",
+        "body": "crouch_lookup",
+        "pole": "light",
+        "total": 55
+      },
+      {
+        "id": "narrator_to_disobey@descent/turn_away/light",
+        "technique": "narrator_to_disobey",
+        "title_ru": "рассказчик, которого можно ослушаться",
+        "phase": "descent",
+        "body": "turn_away",
+        "pole": "light",
+        "total": 55
+      },
+      {
+        "id": "narrator_to_disobey@descent/turn_away/purification",
+        "technique": "narrator_to_disobey",
+        "title_ru": "рассказчик, которого можно ослушаться",
+        "phase": "descent",
+        "body": "turn_away",
+        "pole": "purification",
+        "total": 55
+      },
+      {
+        "id": "room_per_story@cold_open/hand_reach/purification",
+        "technique": "room_per_story",
+        "title_ru": "у каждой вещи своя история",
+        "phase": "cold_open",
+        "body": "hand_reach",
+        "pole": "purification",
+        "total": 55
+      },
+      {
+        "id": "route_on_map@descent/gaze_hold/light",
+        "technique": "route_on_map",
+        "title_ru": "маршрут, видный на карте",
+        "phase": "descent",
+        "body": "gaze_hold",
+        "pole": "light",
+        "total": 55
+      },
+      {
+        "id": "route_on_map@descent/gaze_hold/purification",
+        "technique": "route_on_map",
+        "title_ru": "маршрут, видный на карте",
+        "phase": "descent",
+        "body": "gaze_hold",
+        "pole": "purification",
+        "total": 55
+      },
+      {
+        "id": "inner_voices@descent/gaze_hold/light",
+        "technique": "inner_voices",
+        "title_ru": "спор внутренних голосов",
+        "phase": "descent",
+        "body": "gaze_hold",
+        "pole": "light",
+        "total": 54
+      }
+    ]
+  }
+}

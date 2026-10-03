@@ -1,0 +1,726 @@
+{
+ "langs": [
+  "en",
+  "de",
+  "fr",
+  "es",
+  "it"
+ ],
+ "narration": {
+  "beats": {
+   "drop": {
+    "en": "A drop strikes his hand. The ceiling is dry. So the water is not coming from above. It is already beneath him.",
+    "de": "Ein Tropfen trifft seine Hand. Die Decke ist trocken. Das Wasser kommt also nicht von oben. Es ist schon unter ihm.",
+    "fr": "Une goutte frappe sa main. Le plafond est sec. L'eau ne vient donc pas d'en haut : elle est déjà sous lui.",
+    "es": "Una gota le golpea la mano. El techo está seco. El agua no viene de arriba: ya está debajo de él.",
+    "it": "Una goccia gli colpisce la mano. Il soffitto è asciutto. L'acqua non viene dall'alto: è già sotto di lui."
+   },
+   "water_rises": {
+    "en": "The water is already at his knees. A sonar knocks from under the floor, patient, like someone who knows the door will open.",
+    "de": "Das Wasser steht schon kniehoch. Unter dem Boden klopft ein Sonar, geduldig, wie einer, der weiß, dass man ihm öffnet.",
+    "fr": "L'eau monte déjà aux genoux. Sous le plancher, un sonar frappe, patient, comme celui qui sait qu'on lui ouvrira.",
+    "es": "El agua ya le llega a las rodillas. Bajo el suelo golpea un sonar, paciente, como quien sabe que le abrirán.",
+    "it": "L'acqua è già alle ginocchia. Da sotto il pavimento bussa un sonar, paziente, come chi sa che gli apriranno."
+   },
+   "immersion": {
+    "en": "Thirty-eight metres, night. A stranger's order outshines the gauges, and the camera faces dark. Here light comes only by one's own hand.",
+    "de": "Achtunddreißig Meter, Nacht. Ein fremder Befehl glüht heller als die Instrumente, vor der Kamera Finsternis. Licht macht man hier selbst.",
+    "fr": "Trente-huit mètres, nuit. Un ordre étranger brille plus que les cadrans ; devant la caméra, le noir. Ici, la lumière s'allume de sa main.",
+    "es": "Treinta y ocho metros, noche. Una orden ajena arde más que los instrumentos; la cámara ve negro. Aquí la luz se enciende con la propia mano.",
+    "it": "Trentotto metri, notte. Un ordine estraneo arde più degli strumenti; la telecamera vede buio. Qui la luce si accende con la propria mano."
+   },
+   "hands_on_stick": {
+    "en": "The beam finds the neck of an amphora. It was not dropped, it was set down. Only those who live nearby are this careful.",
+    "de": "Der Lichtstrahl findet den Hals einer Amphore. Sie fiel nicht, sie wurde hingestellt. So sorgsam ist nur, wer nebenan wohnt.",
+    "fr": "Le faisceau trouve le col d'une amphore. On ne l'a pas fait tomber, on l'a posée. Seuls ceux qui vivent tout près ont ce soin.",
+    "es": "El haz encuentra el cuello de un ánfora. No se cayó: la colocaron. Con tanto cuidado solo obra quien vive cerca.",
+    "it": "Il fascio trova il collo di un'anfora. Non è caduta: l'hanno posata. Tanta cura ha solo chi vive lì vicino."
+   },
+   "walls": {
+    "en": "The sonar draws right angles. Stone does not settle like that; hands lay it so. The wall leads him down, into the cold.",
+    "de": "Das Sonar zeichnet rechte Winkel. So legt sich kein Stein, so legen ihn Hände. Die Mauer führt ihn hinab, in die Kälte.",
+    "fr": "Le sonar trace des angles droits. La pierre ne tombe pas ainsi : ce sont des mains qui la posent. Le mur l'entraîne vers le froid.",
+    "es": "El sonar dibuja ángulos rectos. La piedra no cae así: así la ponen unas manos. El muro lo lleva hacia abajo, al frío.",
+    "it": "Il sonar disegna angoli retti. La pietra non si posa così da sola: la posano mani. Il muro lo porta giù, nel freddo."
+   },
+   "thermocline": {
+    "en": "Fifty metres. The water cools sharply; the boat above falls silent. Only the taut tether sings.",
+    "de": "Fünfzig Meter. Das Wasser kühlt jäh ab, das Boot oben verstummt. Nur das straffe Seil singt.",
+    "fr": "Cinquante mètres. L'eau se refroidit d'un coup, le bateau là-haut se tait. Seul chante le câble tendu.",
+    "es": "Cincuenta metros. El agua se enfría de golpe; la lancha de arriba enmudece. Solo canta el cable tenso.",
+    "it": "Cinquanta metri. L'acqua si raffredda di colpo, la barca in alto tace. Canta solo il cavo teso."
+   },
+   "tether_jerk": {
+    "en": "The tether jerks, the vehicle spins, the left camera goes blind. The reel above is still: someone pulls from another end.",
+    "de": "Das Seil ruckt, das Gerät dreht sich, die linke Kamera erblindet. Die Trommel oben steht: Gezogen wird nicht an seinem Ende.",
+    "fr": "Le câble tire d'un coup, l'engin pivote, la caméra gauche s'aveugle. Le treuil là-haut ne bouge pas : on tire d'un autre bout.",
+    "es": "Tirón del cable: el vehículo gira, la cámara izquierda se ciega. El carrete de arriba está quieto: no tiran de su lado.",
+    "it": "Strattone del cavo: il veicolo gira, la camera sinistra si acceca. Il rullo in alto è fermo: non tirano dal suo capo."
+   },
+   "bookmark": {
+    "en": "A stranger's line in the log: the expedition's network was sold at twelve past three at night. Now his depth has an owner.",
+    "de": "Im Logbuch eine fremde Zeile: Das Netz der Expedition wurde nachts um drei Uhr zwölf verkauft. Jetzt hat seine Tiefe einen Besitzer.",
+    "fr": "Dans le journal, une ligne étrangère : le réseau de l'expédition vendu à trois heures douze. Sa profondeur a désormais un maître.",
+    "es": "En el diario, una línea ajena: la red de la expedición, vendida a las tres y doce de la noche. Ahora su profundidad tiene dueño.",
+    "it": "Nel registro, una riga altrui: la rete della spedizione venduta alle tre e dodici di notte. Ora la sua profondità ha un padrone."
+   },
+   "lure": {
+    "en": "In the silt, at the edge of the beam, silver shines, clean as if left yesterday. Its price is one line of coordinates.",
+    "de": "Im Schlick, am Rand des Lichts, glänzt Silber, sauber wie von gestern. Sein Preis: eine Zeile Koordinaten.",
+    "fr": "Dans la vase, au bord du faisceau, brille de l'argent, propre comme d'hier. Son prix : une ligne de coordonnées.",
+    "es": "En el limo, al borde del haz, brilla plata, limpia como de ayer. Su precio: una línea de coordenadas.",
+    "it": "Nel limo, al bordo del fascio, brilla argento, pulito come di ieri. Il suo prezzo: una riga di coordinate."
+   },
+   "price_rises": {
+    "en": "A stranger's command drags the lamp toward the glint. The price rises while he looks. Only he can look away.",
+    "de": "Ein fremder Befehl zieht die Lampe zum Glanz. Der Preis steigt, während er hinsieht. Wegsehen kann nur er selbst.",
+    "fr": "Une commande étrangère tire la lampe vers l'éclat. Le prix monte tant qu'il regarde. Détourner les yeux, lui seul le peut.",
+    "es": "Una orden ajena arrastra la lámpara hacia el brillo. El precio sube mientras mira. Apartar la vista solo puede él.",
+    "it": "Un comando estraneo trascina la lampada verso il luccichio. Il prezzo sale mentre guarda. Distogliere lo sguardo può solo lui."
+   },
+   "choice_echo": {
+    "en": "The vehicle moves along the wall again. The choice is behind him; its trace is in the log.",
+    "de": "Das Gerät fährt wieder an der Mauer entlang. Die Wahl liegt hinter ihm, ihre Spur im Logbuch.",
+    "fr": "L'engin longe de nouveau le mur. Le choix est derrière lui, sa trace dans le journal.",
+    "es": "El vehículo vuelve a seguir el muro. La elección quedó atrás; su huella, en el diario.",
+    "it": "Il veicolo torna a seguire il muro. La scelta è alle spalle; la sua traccia, nel registro."
+   },
+   "khachkar": {
+    "en": "",
+    "de": "",
+    "fr": "",
+    "es": "",
+    "it": ""
+   },
+   "diary": {
+    "en": "A leather binding. The knight's words, in the hand of a scribe from the monastery. Six centuries the page waited for a reader: him.",
+    "de": "Ein Ledereinband. Die Worte des Ritters, die Schrift eines Schreibers aus dem Kloster. Sechs Jahrhunderte wartete das Blatt auf ihn.",
+    "fr": "Une reliure de cuir. Les mots du chevalier, la main d'un copiste du monastère. Six siècles, la page a attendu son lecteur : lui.",
+    "es": "Una tapa de cuero. Palabras del caballero, letra de un copista del monasterio. Seis siglos esperó la hoja a su lector: a él.",
+    "it": "Una rilegatura di cuoio. Parole del cavaliere, grafia di un copista del monastero. Sei secoli il foglio ha atteso il suo lettore: lui."
+   },
+   "mark_line": {
+    "en": "The line about the mark on the hand breaks off: the page edge was cut with a knife. Someone feared it would be read to the end.",
+    "de": "Die Zeile über das Zeichen auf der Hand bricht ab: Der Blattrand ist mit dem Messer gekappt. Jemand fürchtete, man lese sie zu Ende.",
+    "fr": "La ligne sur la marque de la main s'interrompt : le bord du feuillet est tranché au couteau. On craignait qu'elle soit lue en entier.",
+    "es": "La línea sobre la marca en la mano se corta: el borde de la hoja, cortado a cuchillo. Alguien temía que se leyera entera.",
+    "it": "La riga sul segno della mano si interrompe: il bordo del foglio è tagliato col coltello. Qualcuno temeva che la si leggesse tutta."
+   },
+   "ascent": {
+    "en": "The water grows lighter. He is coming back to people.",
+    "de": "Das Wasser wird heller. Er kehrt zu den Menschen zurück.",
+    "fr": "L'eau s'éclaircit. Il revient vers les hommes.",
+    "es": "El agua se aclara. Vuelve con la gente.",
+    "it": "L'acqua si schiarisce. Torna tra la gente."
+   },
+   "room_drains": {
+    "en": "The water drains into the floor. Silence. He looks down at his hand, slowly, the way one opens someone else's letter.",
+    "de": "Das Wasser versickert im Boden. Stille. Er senkt den Blick auf die Hand, langsam, wie man einen fremden Brief öffnet.",
+    "fr": "L'eau s'en va dans le plancher. Silence. Il baisse les yeux sur sa main, lentement, comme on ouvre la lettre d'un autre.",
+    "es": "El agua se va por el suelo. Silencio. Baja la vista a su mano, despacio, como quien abre una carta ajena.",
+    "it": "L'acqua scende nel pavimento. Silenzio. Abbassa lo sguardo sulla mano, piano, come si apre la lettera di un altro."
+   },
+   "prior_last": {
+    "en": "He does not hide his hand. The Order was on the bottom before him, and knows more about the star with a tail.",
+    "de": "Er versteckt die Hand nicht. Der Orden war vor ihm am Grund und weiß mehr über den Stern mit Schweif.",
+    "fr": "Il ne cache pas sa main. L'Ordre était au fond avant lui, et en sait plus sur l'étoile à queue.",
+    "es": "No esconde la mano. La Orden estuvo en el fondo antes que él, y sabe más de la estrella con cola.",
+    "it": "Non nasconde la mano. L'Ordine era sul fondo prima di lui, e sa di più della stella con la coda."
+   },
+   "title": {
+    "en": "The next page lies deeper: the city of Sis, a year before its fall. Someone else will read it.",
+    "de": "Das nächste Blatt liegt tiefer: die Stadt Sis, ein Jahr vor ihrem Fall. Lesen wird es ein anderer.",
+    "fr": "La page suivante est plus profonde : la ville de Sis, un an avant sa chute. Un autre la lira.",
+    "es": "La siguiente hoja yace más hondo: la ciudad de Sis, un año antes de su caída. La leerá otro.",
+    "it": "Il foglio seguente è più in fondo: la città di Sis, un anno prima della caduta. Lo leggerà un altro."
+   }
+  },
+  "objects": {
+   "Glasses": {
+    "en": "He puts on his glasses, and the room turns sharp. Now he can see that the water is already underfoot.",
+    "de": "Er setzt die Brille auf, und das Zimmer wird scharf. Jetzt sieht man auch, dass das Wasser schon unter den Füßen steht.",
+    "fr": "Il met ses lunettes, et la pièce devient nette. On voit maintenant que l'eau est déjà sous ses pieds.",
+    "es": "Se pone las gafas y la habitación se vuelve nítida. Ahora se ve que el agua ya está bajo sus pies.",
+    "it": "Indossa gli occhiali e la stanza si fa nitida. Ora si vede che l'acqua è già sotto i piedi."
+   },
+   "Logbook": {
+    "en": "His dive log, forty pages in his own hand. Today a new one begins, for whoever reads it after him.",
+    "de": "Sein Tauchlogbuch, vierzig Seiten in seiner Schrift. Heute beginnt eine neue, für den, der sie danach liest.",
+    "fr": "Son journal de plongée, quarante pages de sa main. Aujourd'hui en commence une nouvelle, pour qui la lira après.",
+    "es": "Su diario de inmersiones, cuarenta páginas de su letra. Hoy empieza una nueva, para quien la lea después.",
+    "it": "Il suo registro d'immersione, quaranta pagine di suo pugno. Oggi ne comincia una nuova, per chi la leggerà dopo."
+   },
+   "Souvenir": {
+    "en": "Bazaar clay repeats a shape the beam will soon find on the bottom. The copy on the shelf, the original in the silt.",
+    "de": "Ton vom Basar wiederholt eine Form, die der Lichtstrahl bald am Grund findet. Die Kopie im Regal, das Original im Schlick.",
+    "fr": "L'argile du bazar reprend une forme que le faisceau trouvera bientôt au fond. La copie sur l'étagère, l'original dans la vase.",
+    "es": "El barro del bazar repite una forma que el haz pronto hallará en el fondo. La copia en el estante, el original en el limo.",
+    "it": "L'argilla del bazar ripete una forma che il fascio troverà presto sul fondo. La copia sullo scaffale, l'originale nel limo."
+   },
+   "backup": {
+    "en": "A flash drive under the desk, his handwriting on the tape. He does not remember hiding the copy. So he already feared for the log.",
+    "de": "Ein Speicherstick unterm Tisch, auf dem Band seine Schrift. Wann er die Kopie versteckte, weiß er nicht. Er bangte also schon ums Logbuch.",
+    "fr": "Une clé sous la table, sur le ruban son écriture. Il ne se souvient pas d'avoir caché la copie. Il craignait donc déjà pour le journal.",
+    "es": "Una memoria bajo la mesa, con su letra en la cinta. No recuerda cuándo escondió la copia. Así que ya temía por el diario.",
+    "it": "Una chiavetta sotto il tavolo, sul nastro la sua grafia. Non ricorda quando ha nascosto la copia. Dunque temeva già per il registro."
+   },
+   "stain": {
+    "en": "The stain on the ceiling traces the lake shore. The water came here before, and he did not look up.",
+    "de": "Der Fleck an der Decke zeichnet das Seeufer nach. Das Wasser kam schon früher her, und er sah nicht auf.",
+    "fr": "La tache au plafond dessine la rive du lac. L'eau est déjà venue ici, et il n'a pas levé la tête.",
+    "es": "La mancha del techo repite la orilla del lago. El agua ya vino aquí antes, y él no levantó la cabeza.",
+    "it": "La macchia sul soffitto ricalca la riva del lago. L'acqua era già venuta qui, e lui non alzò la testa."
+   },
+   "Amphora": {
+    "en": "Handles intact, neck to the wall. So one sets a thing by a threshold, not drops it overboard. Where there is a door, there is a wall.",
+    "de": "Henkel heil, der Hals zur Wand. So stellt man etwas an die Schwelle, statt es über Bord zu werfen. Wo ein Eingang ist, ist eine Mauer.",
+    "fr": "Anses intactes, col contre le mur. On pose ainsi au seuil, on ne jette pas par-dessus bord. Là où est l'entrée, il y a un mur.",
+    "es": "Asas intactas, el cuello hacia el muro. Así se deja en un umbral, no se tira por la borda. Donde hay entrada, hay muro.",
+    "it": "Anse intatte, collo verso il muro. Così si posa sulla soglia, non si butta fuori bordo. Dove c'è un ingresso, c'è un muro."
+   },
+   "EchoMug": {
+    "en": "A mug in the silt, like his, only smaller and red with rust. Things lie like a trail, toward the walls.",
+    "de": "Ein Becher im Schlick wie seiner, nur kleiner und rot vor Rost. Die Dinge liegen wie eine Spur, zu den Mauern hin.",
+    "fr": "Une tasse dans la vase, comme la sienne, en plus petit et rouge de rouille. Les objets tracent une piste, vers les murs.",
+    "es": "Una taza en el limo, como la suya, solo que más pequeña y roja de óxido. Las cosas forman un rastro hacia los muros.",
+    "it": "Una tazza nel limo, come la sua, solo più piccola e rossa di ruggine. Le cose fanno una scia, verso i muri."
+   },
+   "EchoCoil": {
+    "en": "A rusted coil of tether, wound just like his own. It holds until someone takes hold of it in the middle.",
+    "de": "Eine rostige Rolle Seil, aufgeschossen wie seine eigene. Sie hält, bis jemand sie in der Mitte packt.",
+    "fr": "Une glène de câble rouillé, lovée comme la sienne. Elle tient, jusqu'à ce qu'on la saisisse par le milieu.",
+    "es": "Un rollo oxidado de cable, enrollado como el suyo. Aguanta hasta que alguien lo agarra por el medio.",
+    "it": "Una matassa di cavo arrugginito, avvolta come la sua. Regge finché qualcuno non la afferra a metà."
+   },
+   "Drams": {
+    "en": "Six centuries of silt blacken silver. This shines as if from yesterday. Such a thing holds you while you look at it.",
+    "de": "Sechs Jahrhunderte Schlick schwärzen Silber. Dieses glänzt wie von gestern. So etwas hält fest, solange man hinsieht.",
+    "fr": "Six siècles de vase noircissent l'argent. Celui-ci brille comme d'hier. Une telle chose retient tant qu'on la regarde.",
+    "es": "Seis siglos de limo ennegrecen la plata. Esta brilla como de ayer. Algo así atrapa mientras se lo mira.",
+    "it": "Sei secoli di limo anneriscono l'argento. Questo brilla come di ieri. Una cosa così trattiene finché la si guarda."
+   },
+   "echo_captive": {
+    "en": "He gave what they asked. The coordinates went up. A stranger's drone hangs silent over his boat.",
+    "de": "Er gab, was verlangt wurde. Die Koordinaten gingen nach oben. Über seinem Boot hängt lautlos eine fremde Drohne.",
+    "fr": "Il a donné ce qu'on demandait. Les coordonnées sont montées. Au-dessus de son bateau plane, muet, un drone étranger.",
+    "es": "Dio lo que le pedían. Las coordenadas subieron. Sobre su lancha cuelga en silencio un dron ajeno.",
+    "it": "Ha dato ciò che chiedevano. Le coordinate sono salite. Sopra la sua barca è sospeso, muto, un drone estraneo."
+   },
+   "echo_virtue": {
+    "en": "He turned away. The glint fades; water and breath remain. The silver will go into the scribe's book of finds.",
+    "de": "Er wandte sich ab. Der Glanz erlischt, es bleiben Wasser und Atem. Das Silber kommt ins Fundbuch des Schreibers.",
+    "fr": "Il s'est détourné. L'éclat s'éteint, restent l'eau et le souffle. L'argent ira au livre des trouvailles du scribe.",
+    "es": "Apartó la vista. El brillo se apaga; quedan el agua y la respiración. La plata irá al libro de hallazgos del escriba.",
+    "it": "Ha distolto lo sguardo. Il luccichio si spegne, restano l'acqua e il respiro. L'argento andrà nel libro dei ritrovamenti dello scriba."
+   },
+   "echo_unresolved": {
+    "en": "He neither took it nor turned away. The Prior writes that he will wait. And the waiting goes into the log.",
+    "de": "Er nahm es nicht und wandte sich nicht ab. Der Prior schreibt, er werde warten. Und das Warten kommt ins Logbuch.",
+    "fr": "Il n'a ni pris ni détourné les yeux. Le Prieur écrit qu'il attendra. Et l'attente entre au journal.",
+    "es": "No lo tomó ni apartó la vista. El Prior escribe que esperará. Y la espera queda en el diario.",
+    "it": "Non ha preso né distolto lo sguardo. Il Priore scrive che aspetterà. E l'attesa finisce nel registro."
+   },
+   "EchoBook": {
+    "en": "A book in the silt has soaked into a brick. Paper does not live here. Only leather could survive.",
+    "de": "Ein Buch im Schlick ist zum Ziegel aufgeweicht. Papier überlebt hier nicht. Nur Leder konnte bestehen.",
+    "fr": "Un livre dans la vase a fondu en brique. Le papier ne vit pas ici. Seul le cuir pouvait tenir.",
+    "es": "Un libro en el limo se ha empapado hasta volverse ladrillo. El papel aquí no vive. Solo el cuero pudo resistir.",
+    "it": "Un libro nel limo si è inzuppato fino a farsi mattone. La carta qui non vive. Poteva resistere solo il cuoio."
+   },
+   "Diary": {
+    "en": "The silt kept the leather: there is no oxygen beneath it. A clasp in a dark crust. It is not leafed through; it is read by light.",
+    "de": "Der Schlick bewahrte das Leder: darunter ist kein Sauerstoff. Eine Schließe in dunkler Kruste. Man blättert nicht, man liest mit Licht.",
+    "fr": "La vase a gardé le cuir : sous elle, pas d'oxygène. Un fermoir dans une croûte sombre. Cela ne se feuillette pas, cela se lit au jour.",
+    "es": "El limo guardó el cuero: debajo no hay oxígeno. Un broche en una costra oscura. Algo así no se hojea: se lee con luz.",
+    "it": "Il limo ha salvato il cuoio: sotto non c'è ossigeno. Un fermaglio in una crosta scura. Non si sfoglia: si legge con la luce."
+   },
+   "Mark": {
+    "en": "A star with a tail, faint. He knows it from the line raised from the bottom. But strangers can bear similar marks too.",
+    "de": "Ein Stern mit Schweif, matt. Er erkennt ihn an der Zeile vom Grund. Doch ähnliche Zeichen tragen auch Fremde.",
+    "fr": "Une étoile à queue, pâle. Il la reconnaît à la ligne remontée du fond. Mais des inconnus portent aussi de tels signes.",
+    "es": "Una estrella con cola, apagada. La reconoce por la línea del fondo. Pero también hay extraños con marcas parecidas.",
+    "it": "Una stella con la coda, opaca. La riconosce dalla riga venuta dal fondo. Ma segni simili li hanno anche gli estranei."
+   }
+  }
+ },
+ "intro": {
+  "open_black": {
+   "en": "",
+   "de": "",
+   "fr": "",
+   "es": "",
+   "it": ""
+  },
+  "room_water": {
+   "en": "A drop fell on his hand. The ceiling was dry. The knocking came from below: a sonar was calling from under the floor.",
+   "de": "Ein Tropfen fiel auf seine Hand. Die Decke war trocken. Es klopfte von unten: Unter dem Boden rief ein Sonar.",
+   "fr": "Une goutte tomba sur sa main. Le plafond était sec. On frappait d'en bas : sous le plancher, un sonar appelait.",
+   "es": "Una gota le cayó en la mano. El techo estaba seco. Golpeaban desde abajo: bajo el suelo llamaba un sonar.",
+   "it": "Una goccia gli cadde sulla mano. Il soffitto era asciutto. Bussavano da sotto: dal pavimento chiamava un sonar."
+  },
+  "lake_wonder": {
+   "en": "Thirty-eight metres. The silt lies in layers, like the pages of a book. The lake throws nothing away.",
+   "de": "Achtunddreißig Meter. Der Schlick liegt in Schichten wie Buchseiten. Der See wirft nichts weg.",
+   "fr": "Trente-huit mètres. La vase repose en couches, comme les pages d'un livre. Le lac ne jette rien.",
+   "es": "Treinta y ocho metros. El limo yace en capas, como las hojas de un libro. El lago no tira nada.",
+   "it": "Trentotto metri. Il limo giace a strati, come le pagine di un libro. Il lago non butta via niente."
+  },
+  "amphora_turn": {
+   "en": "The beam found the neck of an amphora. It had not been dropped, but set down. That is what people who live nearby do.",
+   "de": "Der Lichtstrahl fand den Hals einer Amphore. Sie war nicht gefallen, sondern hingestellt. So machen es die, die nebenan wohnen.",
+   "fr": "Le faisceau trouva le col d'une amphore. On ne l'avait pas fait tomber, on l'avait posée. Ainsi font ceux qui vivent tout près.",
+   "es": "El haz encontró el cuello de un ánfora. No se había caído: la habían colocado. Así lo hacen quienes viven cerca.",
+   "it": "Il fascio trovò il collo di un'anfora. Non era caduta: l'avevano posata. Così fa chi vive lì vicino."
+  },
+  "walls_whole": {
+   "en": "The sonar drew right angles. Stones do not fall like that. People lived here.",
+   "de": "Das Sonar zeichnete rechte Winkel. So liegen keine Steine. Hier lebten Menschen.",
+   "fr": "Le sonar traça des angles droits. Les pierres ne tombent pas ainsi. Des gens vivaient ici.",
+   "es": "El sonar dibujó ángulos rectos. Las piedras no caen así. Aquí vivía gente.",
+   "it": "Il sonar disegnò angoli retti. Le pietre non cadono così. Qui viveva gente."
+  },
+  "thermocline": {
+   "en": "Fifty metres. The noise above went silent. What remained was the hum of the tether and the scribe's line: they sang here.",
+   "de": "Fünfzig Meter. Der Lärm von oben verstummte. Es blieben das Summen des Seils und die Zeile des Schreibers: Hier wurde gesungen.",
+   "fr": "Cinquante mètres. Le bruit d'en haut s'éteignit. Restaient le bourdon du câble et la ligne du scribe : ici, on chantait.",
+   "es": "Cincuenta metros. El ruido de arriba se apagó. Quedaron el zumbido del cable y la línea del escriba: aquí cantaban.",
+   "it": "Cinquanta metri. Il rumore dall'alto si spense. Restarono il ronzio del cavo e la riga dello scriba: qui si cantava."
+  },
+  "tether_bookmark": {
+   "en": "The tether jerked, the left camera went blind. And in the log, a stranger's line turned up.",
+   "de": "Das Seil ruckte, die linke Kamera erblindete. Und im Logbuch fand sich eine fremde Zeile.",
+   "fr": "Le câble tira d'un coup, la caméra gauche s'aveugla. Et dans le journal apparut une ligne étrangère.",
+   "es": "El cable dio un tirón, la cámara izquierda se cegó. Y en el diario apareció una línea ajena.",
+   "it": "Il cavo diede uno strattone, la camera sinistra si accecò. E nel registro comparve una riga altrui."
+  },
+  "drams_lure": {
+   "en": "The Prior wanted coordinates. In exchange, silver gleamed in the silt, too clean for six centuries.",
+   "de": "Der Prior wollte Koordinaten. Dafür glänzte im Schlick Silber, zu sauber für sechs Jahrhunderte.",
+   "fr": "Le Prieur voulait des coordonnées. En échange, de l'argent brillait dans la vase, trop propre pour six siècles.",
+   "es": "El Prior quería coordenadas. A cambio, brillaba plata en el limo, demasiado limpia para seis siglos.",
+   "it": "Il Priore voleva le coordinate. In cambio, nel limo brillava argento, troppo pulito per sei secoli."
+  },
+  "echo_captive_a": {
+   "en": "He gave what they asked. The coordinates were gone.",
+   "de": "Er gab, was verlangt wurde. Die Koordinaten waren fort.",
+   "fr": "Il donna ce qu'on demandait. Les coordonnées partirent.",
+   "es": "Dio lo que le pedían. Las coordenadas se fueron.",
+   "it": "Diede ciò che chiedevano. Le coordinate partirono."
+  },
+  "echo_captive_b": {
+   "en": "A stranger's drone passed silently over the boat.",
+   "de": "Lautlos zog eine fremde Drohne über das Boot.",
+   "fr": "Un drone étranger passa sans bruit au-dessus du bateau.",
+   "es": "Un dron ajeno pasó en silencio sobre la lancha.",
+   "it": "Un drone estraneo passò muto sopra la barca."
+  },
+  "echo_virtue_a": {
+   "en": "He turned away. The glint went out; water and breath remained.",
+   "de": "Er wandte sich ab. Der Glanz erlosch, es blieben Wasser und Atem.",
+   "fr": "Il se détourna. L'éclat s'éteignit, restèrent l'eau et le souffle.",
+   "es": "Apartó la vista. El brillo se apagó; quedaron el agua y la respiración.",
+   "it": "Distolse lo sguardo. Il luccichio si spense, restarono l'acqua e il respiro."
+  },
+  "echo_virtue_b": {
+   "en": "The silver went into the scribe's book of finds.",
+   "de": "Das Silber kam ins Fundbuch des Schreibers.",
+   "fr": "L'argent entra au livre des trouvailles du scribe.",
+   "es": "La plata quedó en el libro de hallazgos del escriba.",
+   "it": "L'argento finì nel libro dei ritrovamenti dello scriba."
+  },
+  "echo_unresolved_a": {
+   "en": "He neither took it nor turned away.",
+   "de": "Er nahm es nicht und wandte sich nicht ab.",
+   "fr": "Il ne prit rien et ne se détourna pas.",
+   "es": "No lo tomó ni apartó la vista.",
+   "it": "Non prese né distolse lo sguardo."
+  },
+  "echo_unresolved_b": {
+   "en": "The Prior wrote that he would wait. And the waiting went into the log.",
+   "de": "Der Prior schrieb, er werde warten. Und das Warten kam ins Logbuch.",
+   "fr": "Le Prieur écrivit qu'il attendrait. Et l'attente entra au journal.",
+   "es": "El Prior escribió que esperaría. Y la espera quedó en el diario.",
+   "it": "Il Priore scrisse che avrebbe aspettato. E l'attesa finì nel registro."
+  },
+  "khachkar_far": {
+   "en": "",
+   "de": "",
+   "fr": "",
+   "es": "",
+   "it": ""
+  },
+  "diary_scan": {
+   "en": "The knight's words, the scribe's hand, and now he is the reader. The page travelled six centuries to reach him.",
+   "de": "Die Worte des Ritters, die Schrift des Schreibers, und nun liest er. Sechs Jahrhunderte war das Blatt zu ihm unterwegs.",
+   "fr": "Les mots du chevalier, la main du copiste, et c'est lui qui lit à présent. La page a mis six siècles à lui parvenir.",
+   "es": "Palabras del caballero, letra del copista, y ahora lee él. La hoja tardó seis siglos en llegar a él.",
+   "it": "Parole del cavaliere, grafia del copista, e ora legge lui. Il foglio ha viaggiato sei secoli per arrivare a lui."
+  },
+  "mark_line": {
+   "en": "The page edge had been cut with a knife. Someone did not want the line read to the end.",
+   "de": "Der Blattrand war mit dem Messer gekappt. Jemand wollte nicht, dass man die Zeile zu Ende las.",
+   "fr": "Le bord du feuillet avait été tranché au couteau. Quelqu'un ne voulait pas qu'on lise la ligne jusqu'au bout.",
+   "es": "El borde de la hoja estaba cortado a cuchillo. Alguien no quería que se leyera la línea entera.",
+   "it": "Il bordo del foglio era tagliato col coltello. Qualcuno non voleva che la riga si leggesse tutta."
+  },
+  "comet_mark": {
+   "en": "The water drained into the floor. He looked at his hand slowly, the way one opens someone else's letter.",
+   "de": "Das Wasser versickerte im Boden. Er sah langsam auf seine Hand, wie man einen fremden Brief öffnet.",
+   "fr": "L'eau s'en alla dans le plancher. Il regarda sa main lentement, comme on ouvre la lettre d'un autre.",
+   "es": "El agua se fue por el suelo. Se miró la mano despacio, como quien abre una carta ajena.",
+   "it": "L'acqua scese nel pavimento. Si guardò la mano piano, come si apre la lettera di un altro."
+  },
+  "prior_last": {
+   "en": "The Order was on the bottom before him. Who will read the next page first?",
+   "de": "Der Orden war vor ihm am Grund. Wer liest das nächste Blatt zuerst?",
+   "fr": "L'Ordre était au fond avant lui. Qui lira le premier la page suivante ?",
+   "es": "La Orden estuvo en el fondo antes que él. ¿Quién leerá primero la siguiente hoja?",
+   "it": "L'Ordine era sul fondo prima di lui. Chi leggerà per primo il foglio seguente?"
+  },
+  "title": {
+   "en": "",
+   "de": "",
+   "fr": "",
+   "es": "",
+   "it": ""
+  },
+  "teaser_sis": {
+   "en": "The next page lies deeper, in the city of Sis, a year before its fall.",
+   "de": "Das nächste Blatt liegt tiefer, in der Stadt Sis, ein Jahr vor ihrem Fall.",
+   "fr": "La page suivante est plus profonde, dans la ville de Sis, un an avant sa chute.",
+   "es": "La siguiente hoja yace más hondo, en la ciudad de Sis, un año antes de su caída.",
+   "it": "Il foglio seguente è più in fondo, nella città di Sis, un anno prima della caduta."
+  }
+ },
+ "screen": {
+  "drop": {
+   "hook": {
+    "en": "Where is the water coming from?",
+    "de": "Woher kommt das Wasser?",
+    "fr": "D'où vient l'eau ?",
+    "es": "¿De dónde viene el agua?",
+    "it": "Da dove viene l'acqua?"
+   }
+  },
+  "water_rises": {
+   "hook": {
+    "en": "What is under the floor?",
+    "de": "Was ist unter dem Boden?",
+    "fr": "Qu'y a-t-il sous le plancher ?",
+    "es": "¿Qué hay bajo el suelo?",
+    "it": "Cosa c'è sotto il pavimento?"
+   }
+  },
+  "immersion": {
+   "message": {
+    "en": "OPERATOR. COORDINATES OF THE FIND. NOW. — THE PRIOR",
+    "de": "OPERATOR. KOORDINATEN DES FUNDES. SOFORT. — DER PRIOR",
+    "fr": "OPÉRATEUR. COORDONNÉES DE LA TROUVAILLE. MAINTENANT. — LE PRIEUR",
+    "es": "OPERADOR. COORDENADAS DEL HALLAZGO. AHORA. — EL PRIOR",
+    "it": "OPERATORE. COORDINATE DEL RITROVAMENTO. SUBITO. — IL PRIORE"
+   },
+   "hook": {
+    "en": "Who is the Prior? What find?",
+    "de": "Wer ist der Prior? Welcher Fund?",
+    "fr": "Qui est le Prieur ? Quelle trouvaille ?",
+    "es": "¿Quién es el Prior? ¿Qué hallazgo?",
+    "it": "Chi è il Priore? Quale ritrovamento?"
+   },
+   "line": {
+    "en": "Dive log. 2026. Operator of the Mangustik. Whoever reads these lines will also read those whom I read.",
+    "de": "Tauchlogbuch. 2026. Operator der Mangustik. Wer diese Zeilen liest, liest auch die, die ich gelesen habe.",
+    "fr": "Journal de plongée. 2026. Opérateur du Mangustik. Qui lira ces lignes lira aussi ceux que j'ai lus.",
+    "es": "Diario de inmersión. 2026. Operador del Mangustik. Quien lea estas líneas leerá también a quienes yo leí.",
+    "it": "Registro d'immersione. 2026. Operatore del Mangustik. Chi leggerà queste righe leggerà anche quelli che ho letto io."
+   }
+  },
+  "hands_on_stick": {
+   "hook": {
+    "en": "What is in the amphora?",
+    "de": "Was ist in der Amphore?",
+    "fr": "Que contient l'amphore ?",
+    "es": "¿Qué hay en el ánfora?",
+    "it": "Cosa c'è nell'anfora?"
+   }
+  },
+  "walls": {
+   "line": {
+    "en": "This is not rock. These are walls.",
+    "de": "Das ist kein Fels. Das sind Mauern.",
+    "fr": "Ce n'est pas de la roche. Ce sont des murs.",
+    "es": "No es roca. Son muros.",
+    "it": "Non è roccia. Sono muri."
+   },
+   "hook": {
+    "en": "Who built on the bottom of a lake?",
+    "de": "Wer baute auf dem Grund eines Sees?",
+    "fr": "Qui a bâti au fond d'un lac ?",
+    "es": "¿Quién construyó en el fondo de un lago?",
+    "it": "Chi ha costruito sul fondo di un lago?"
+   }
+  },
+  "thermocline": {
+   "line": {
+    "en": "they sang here",
+    "de": "hier wurde gesungen",
+    "fr": "ici, on chantait",
+    "es": "aquí cantaban",
+    "it": "qui si cantava"
+   },
+   "hook": {
+    "en": "Who sang here?",
+    "de": "Wer hat hier gesungen?",
+    "fr": "Qui chantait ici ?",
+    "es": "¿Quién cantaba aquí?",
+    "it": "Chi cantava qui?"
+   }
+  },
+  "tether_jerk": {
+   "message": {
+    "en": "TELEMETRY: MISMATCH",
+    "de": "TELEMETRIE: ABWEICHUNG",
+    "fr": "TÉLÉMÉTRIE : ÉCART",
+    "es": "TELEMETRÍA: DISCREPANCIA",
+    "it": "TELEMETRIA: DISCREPANZA"
+   },
+   "hook": {
+    "en": "A failure, or is someone pulling?",
+    "de": "Ein Defekt, oder zieht jemand?",
+    "fr": "Une panne, ou quelqu'un tire ?",
+    "es": "¿Es una avería o alguien tira?",
+    "it": "È un guasto o qualcuno tira?"
+   }
+  },
+  "bookmark": {
+   "line": {
+    "en": "The expedition's network was bought by the Order today at 03:12.",
+    "de": "Das Netz der Expedition wurde heute um 03:12 vom Orden gekauft.",
+    "fr": "Le réseau de l'expédition a été acheté par l'Ordre aujourd'hui à 03:12.",
+    "es": "La red de la expedición fue comprada por la Orden hoy a las 03:12.",
+    "it": "La rete della spedizione è stata acquistata dall'Ordine oggi alle 03:12."
+   },
+   "hook": {
+    "en": "Who sold us?",
+    "de": "Wer hat uns verkauft?",
+    "fr": "Qui nous a vendus ?",
+    "es": "¿Quién nos vendió?",
+    "it": "Chi ci ha venduti?"
+   }
+  },
+  "lure": {
+   "message": {
+    "en": "Coordinates, and the drams are yours. No one will know.",
+    "de": "Die Koordinaten, und die Drams gehören Ihnen. Niemand wird es erfahren.",
+    "fr": "Les coordonnées, et les drams sont à vous. Personne ne le saura.",
+    "es": "Las coordenadas, y los drams son suyos. Nadie lo sabrá.",
+    "it": "Le coordinate, e i dram sono suoi. Nessuno lo saprà."
+   },
+   "hook": {
+    "en": "Will you take it?",
+    "de": "Nimmst du es?",
+    "fr": "Tu le prends ?",
+    "es": "¿Lo tomarás?",
+    "it": "Lo prendi?"
+   }
+  },
+  "price_rises": {
+   "hook": {
+    "en": "How does he know this?",
+    "de": "Woher weiß er das?",
+    "fr": "Comment le sait-il ?",
+    "es": "¿Cómo lo sabe?",
+    "it": "Come fa a saperlo?"
+   }
+  },
+  "choice_echo": {
+   "hook": {
+    "en": "What will the Order do?",
+    "de": "Was wird der Orden tun?",
+    "fr": "Que fera l'Ordre ?",
+    "es": "¿Qué hará la Orden?",
+    "it": "Cosa farà l'Ordine?"
+   },
+   "outcomes": {
+    "captive": {
+     "message": {
+      "en": "COORDINATES SENT",
+      "de": "KOORDINATEN ÜBERMITTELT",
+      "fr": "COORDONNÉES TRANSMISES",
+      "es": "COORDENADAS ENVIADAS",
+      "it": "COORDINATE TRASMESSE"
+     }
+    },
+    "virtue": {
+     "message": {
+      "en": "You will regret this. — THE PRIOR",
+      "de": "Sie werden es bereuen. — DER PRIOR",
+      "fr": "Vous le regretterez. — LE PRIEUR",
+      "es": "Se arrepentirá. — EL PRIOR",
+      "it": "Se ne pentirà. — IL PRIORE"
+     }
+    },
+    "unresolved": {
+     "message": {
+      "en": "I will wait. — THE PRIOR",
+      "de": "Ich werde warten. — DER PRIOR",
+      "fr": "J'attendrai. — LE PRIEUR",
+      "es": "Esperaré. — EL PRIOR",
+      "it": "Aspetterò. — IL PRIORE"
+     }
+    }
+   }
+  },
+  "khachkar": {
+   "hook": {
+    "en": "What can a machine not compute?",
+    "de": "Was kann eine Maschine nicht berechnen?",
+    "fr": "Qu'est-ce qu'une machine ne peut pas calculer ?",
+    "es": "¿Qué no puede calcular una máquina?",
+    "it": "Cosa non può calcolare una macchina?"
+   }
+  },
+  "diary": {
+   "line": {
+    "en": "Copy by the monastery scribe, from the knight's words. In the year 1375. Sis has fallen. I go to the brothers at the lake…",
+    "de": "Abschrift des Klosterschreibers nach den Worten des Ritters. Im Jahre 1375. Sis ist gefallen. Ich gehe zu den Brüdern am See…",
+    "fr": "Copie du scribe du monastère, sous la dictée du chevalier. L'an 1375. Sis est tombée. Je vais vers les frères du lac…",
+    "es": "Copia del escriba del monasterio, de boca del caballero. Año de 1375. Sis ha caído. Voy con los hermanos del lago…",
+    "it": "Copia dello scriba del monastero, dalle parole del cavaliere. Anno 1375. Sis è caduta. Vado dai fratelli sul lago…"
+   },
+   "hook": {
+    "en": "Who wrote it?",
+    "de": "Wer hat das geschrieben?",
+    "fr": "Qui a écrit ?",
+    "es": "¿Quién lo escribió?",
+    "it": "Chi ha scritto?"
+   }
+  },
+  "mark_line": {
+   "line": {
+    "en": "…and the mark on my hand, like a star with a tail, will not wash o—",
+    "de": "…und das Zeichen auf meiner Hand, wie ein Stern mit Schweif, lässt sich nicht abwa—",
+    "fr": "…et la marque sur ma main, comme une étoile à queue, ne s'effa—",
+    "es": "…y la marca en mi mano, como una estrella con cola, no se bo—",
+    "it": "…e il segno sulla mia mano, come una stella con la coda, non si cancel—"
+   },
+   "hook": {
+    "en": "A mark?",
+    "de": "Ein Zeichen?",
+    "fr": "Une marque ?",
+    "es": "¿Una marca?",
+    "it": "Un segno?"
+   }
+  },
+  "ascent": {
+   "hook": {
+    "en": "Will we make it?",
+    "de": "Schaffen wir es?",
+    "fr": "On y arrivera ?",
+    "es": "¿Llegaremos a tiempo?",
+    "it": "Faremo in tempo?"
+   }
+  },
+  "room_drains": {
+   "hook": {
+    "en": "Wait, is that me?",
+    "de": "Bin das etwa ich?",
+    "fr": "C'est… moi ?",
+    "es": "¿Ese soy yo?",
+    "it": "Sono io?"
+   }
+  },
+  "prior_last": {
+   "message": {
+    "en": "The knight had the same one. We found his shield first. — THE PRIOR",
+    "de": "Der Ritter hatte das gleiche. Seinen Schild fanden wir zuerst. — DER PRIOR",
+    "fr": "Le chevalier avait la même. Son bouclier, nous l'avons trouvé les premiers. — LE PRIEUR",
+    "es": "El caballero tenía una igual. Su escudo lo encontramos primero. — EL PRIOR",
+    "it": "Il cavaliere ne aveva uno uguale. Il suo scudo l'abbiamo trovato per primi. — IL PRIORE"
+   },
+   "hook": {
+    "en": "Where is the shield? What does the Order know about the mark?",
+    "de": "Wo ist der Schild? Was weiß der Orden über das Zeichen?",
+    "fr": "Où est le bouclier ? Que sait l'Ordre de la marque ?",
+    "es": "¿Dónde está el escudo? ¿Qué sabe la Orden de la marca?",
+    "it": "Dov'è lo scudo? Cosa sa l'Ordine del segno?"
+   }
+  },
+  "title": {
+   "hook": {
+    "en": "What comes in episode two?",
+    "de": "Was kommt in Folge zwei?",
+    "fr": "Que réserve l'épisode deux ?",
+    "es": "¿Qué trae el episodio dos?",
+    "it": "Cosa c'è nel secondo episodio?"
+   }
+  }
+ },
+ "clues": {
+  "backup": {
+   "line": {
+    "en": "A flash drive taped under the desk: “log copy”. My handwriting. I don't remember taping it.",
+    "de": "Unter dem Tisch klebt ein Speicherstick: „Kopie Logbuch“. Meine Schrift. Ich weiß nicht, wann ich ihn anklebte.",
+    "fr": "Sous la table, une clé scotchée : « copie du journal ». Mon écriture. Je ne me souviens pas de l'avoir collée.",
+    "es": "Bajo la mesa hay una memoria pegada: «copia del diario». Mi letra. No recuerdo cuándo la pegué.",
+    "it": "Sotto il tavolo è attaccata una chiavetta: «copia del registro». La mia grafia. Non ricordo quando l'ho attaccata."
+   }
+  },
+  "stain": {
+   "line": {
+    "en": "The stain on the ceiling has the outline of the lake. The water has been here before.",
+    "de": "Der Fleck an der Decke hat die Umrisse des Sees. Das Wasser war schon hier.",
+    "fr": "La tache au plafond a la forme du lac. L'eau est déjà venue ici.",
+    "es": "La mancha del techo tiene la silueta del lago. El agua ya estuvo aquí.",
+    "it": "La macchia sul soffitto ha il contorno del lago. L'acqua è già stata qui."
+   }
+  }
+ },
+ "examine": {
+  "Logbook": {
+   "line": {
+    "en": "Dive log. Forty pages mine. One is someone else's.",
+    "de": "Tauchlogbuch. Vierzig Seiten von mir. Eine ist fremd.",
+    "fr": "Journal de plongée. Quarante pages de ma main. Une n'est pas de moi.",
+    "es": "Diario de inmersión. Cuarenta páginas mías. Una es ajena.",
+    "it": "Registro d'immersione. Quaranta pagine mie. Una è di un altro."
+   }
+  },
+  "Souvenir": {
+   "line": {
+    "en": "A jug from the bazaar. The glaze is like water by the shore. Bought it, not knowing a real one lies down below.",
+    "de": "Ein Krug vom Basar. Die Glasur wie Wasser am Ufer. Gekauft, ohne zu wissen, dass unten ein echter liegt.",
+    "fr": "Une cruche du bazar. L'émail a la couleur de l'eau près du bord. Achetée sans savoir qu'une vraie gît en bas.",
+    "es": "Un cántaro del bazar. El esmalte, como el agua de la orilla. Lo compré sin saber que abajo yace uno igual, pero auténtico.",
+    "it": "Una brocca del bazar. Lo smalto è come l'acqua a riva. L'ho comprata senza sapere che laggiù ce n'è una uguale, ma vera."
+   }
+  },
+  "Amphora": {
+   "line": {
+    "en": "The neck is plugged with silt, the handles intact. It was laid down with care, the way you set down what you will come back for.",
+    "de": "Der Hals voller Schlick, die Henkel heil. Man legte sie behutsam ab, wie etwas, zu dem man zurückkehren will.",
+    "fr": "Le col bouché par la vase, les anses intactes. On l'a posée avec soin, comme ce qu'on viendra reprendre.",
+    "es": "El cuello tapado de limo, las asas intactas. La dejaron con cuidado, como se deja lo que se volverá a buscar.",
+    "it": "Il collo è chiuso dal limo, le anse intatte. L'hanno posata con cura, come si posa ciò per cui si tornerà."
+   }
+  },
+  "Drams": {
+   "line": {
+    "en": "The silver is clean, no black tarnish. Six centuries in silt do not look like this. Placed recently.",
+    "de": "Das Silber ist sauber, ohne schwarzen Belag. Sechs Jahrhunderte im Schlick sehen anders aus. Erst kürzlich hingelegt.",
+    "fr": "L'argent est propre, sans patine noire. Six siècles dans la vase, ça ne ressemble pas à ça. Posé récemment.",
+    "es": "La plata está limpia, sin pátina negra. Seis siglos en el limo no dejan esto. La pusieron hace poco.",
+    "it": "L'argento è pulito, senza patina nera. Sei secoli nel limo non lo lasciano così. Messo lì da poco."
+   }
+  },
+  "Diary": {
+   "line": {
+    "en": "Leather, a copper clasp in a dark crust. The silt kept the parchment: there is no oxygen beneath it.",
+    "de": "Leder, eine Kupferschließe in dunkler Kruste. Der Schlick bewahrte das Pergament: darunter ist kein Sauerstoff.",
+    "fr": "Cuir, fermoir de cuivre dans une croûte sombre. La vase a gardé le parchemin : dessous, pas d'oxygène.",
+    "es": "Cuero, un broche de cobre en una costra oscura. El limo guardó el pergamino: debajo no hay oxígeno.",
+    "it": "Cuoio, un fermaglio di rame in una crosta scura. Il limo ha salvato la pergamena: sotto non c'è ossigeno."
+   }
+  }
+ },
+ "notes": "Narration: third person, no digits, no abbreviations (flash drive / Speicherstick / clé / memoria / chiavetta instead of USB). Tether = tether/Halteseil|Seil/câble/cable/cavo; silt = silt/Schlick/vase/limo/limo. Numbers spelled out (thirty-eight, fifty, twelve past three, forty, six centuries). Mangustik kept untranslated (masculine 'le/el/il Mangustik', German 'die Mangustik' as a vessel). Prior/Order per brief; the Prior addresses the operator formally (Sie/vous/usted/Lei); hooks address the player informally. On-screen texts keep digits where the Russian does (2026, 03:12, 1375) since they are read, not spoken. Silver 'драмы' rendered as drams/Drams/dram (Armenian coin). Khachkar narration stays empty in all languages. 'здесь пели' kept lowercase as in source. Ad slot is already English and untouched. Extra keys: screen.choice_echo.outcomes (choice outcome messages), clues and examine (first-person on-screen lines, keyed by id). v4: re-translated from the rewritten Russian voice-over (chorus of 24 lenses) and the intro-ep1 narration_ru. Intro lines keep the Russian past tense. 'переписчик' = scribe/Schreiber/copiste/copista/copista; 'писец' stays scribe/Schreiber/scribe/escriba/scriba. Narration objects backup and echo_virtue were unchanged in Russian, so v3 translations are kept. Empty intro shots (open_black, khachkar_far, title) stay empty. screen, clues and examine are copied unchanged from narration_i18n.json."
+}

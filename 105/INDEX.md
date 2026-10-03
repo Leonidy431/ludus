@@ -1,0 +1,858 @@
+# Папка 105 — указатель кода и документации
+
+Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
+
+- файлов кода: 522
+- документов: 269
+- сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
+
+## Папка 105: комплект сборки (4)
+
+- [105/INDEX.md](../105/INDEX.md) 📄 — Папка 105 — указатель кода и документации
+- [105/README.md](../105/README.md) 📄 — Папка 105 — весь код и вся документация сборки для шлема
+- [105/make_105.py](../105/make_105.py) — Folder 105: every piece of code and every document of the headset build.
+- [105/СБОРКА.md](../105/СБОРКА.md) 📄 — Сборка 105 — как собрать игру для шлема: для сборщика, оператора и Claude
+
+## Правила проекта (Конституция и табу) (1)
+
+- [CLAUDE.md](../CLAUDE.md) 📄 — ludus — ядро правил (CLAUDE.md)
+
+## Сборки и проверки CI (YAML) (10)
+
+- [.github/workflows/backend-image.yml](../.github/workflows/backend-image.yml) — Backend 3.0, phase P3 (docs/version-3.0/HLD_BACKEND_3.0_VM8_HOT_MIRROR_2026-10-01.md):
+- [.github/workflows/build-105.yml](../.github/workflows/build-105.yml) — Folder 105: every piece of code and every document of the headset
+- [.github/workflows/deploy.yml](../.github/workflows/deploy.yml) — Deploy the ludus Meta build (public/, Cloud Functions, Firestore rules)
+- [.github/workflows/godot-engine.yml](../.github/workflows/godot-engine.yml) — The headset's own Godot engine: the Android export template built
+- [.github/workflows/godot.yml](../.github/workflows/godot.yml) — Headset build (CLAUDE.md TABOO 0.02; docs/HLD_HEADSET_BUILD_2026-09-30.md).
+- [.github/workflows/pages.yml](../.github/workflows/pages.yml) — Publish the ludus front-end to GitHub Pages so the operator can open it
+- [.github/workflows/prerender.yml](../.github/workflows/prerender.yml) — Our Silicon Graphics (docs/HLD_SWAP_RENDERING_2026-10-02.md): the
+- [.github/workflows/raw-asset-intake.yml](../.github/workflows/raw-asset-intake.yml) — Raw-material intake (CLAUDE.md TABOO 0.1): third-party art from the
+- [.github/workflows/raw-audio-pass.yml](../.github/workflows/raw-audio-pass.yml) — Audio pass over the 99 backlog repos as a git pass (operator,
+- [.github/workflows/raw-osint-cycle.yml](../.github/workflows/raw-osint-cycle.yml) — OSINT pass over the 99 backlog repos every 1.5 hours (CLAUDE.md TABOO
+
+## Игра для шлема: код (GDScript) (95)
+
+- [godot/scripts/apparatus_core.gd](../godot/scripts/apparatus_core.gd) — The operator's own apparatus in the game (CLAUDE.md TABOO 0.022): 41
+- [godot/scripts/atlas_core.gd](../godot/scripts/atlas_core.gd) — "The Water Atlas" read at the lectern of the scriptorium (CLAUDE.md
+- [godot/scripts/atlas_traces.gd](../godot/scripts/atlas_traces.gd) — The knight's traces in the lake and the chronicle's choice (TABOO
+- [godot/scripts/audio/bell_synth.gd](../godot/scripts/audio/bell_synth.gd) — The bells of the far monastery, heard on the path of the witness.
+- [godot/scripts/audio/cosmos_synth.gd](../godot/scripts/audio/cosmos_synth.gd) — The suite «Наука. Любовь. Познание.»: cosmic background music for
+- [godot/scripts/audio/dive_audio.gd](../godot/scripts/audio/dive_audio.gd) — The dive's sound in the scene: feeds DiveSynth into a generator,
+- [godot/scripts/audio/dive_synth.gd](../godot/scripts/audio/dive_synth.gd) — The sound of the dive, sample by sample (HLD_FOLLOWUPS D5, HLD shlema
+- [godot/scripts/audio/ison_synth.gd](../godot/scripts/audio/ison_synth.gd) — The ison of the brethren near a scene kit on the path of the witness.
+- [godot/scripts/audio/place_audio.gd](../godot/scripts/audio/place_audio.gd) — The sound of a place in the scene: the plan of PlaceSound played
+- [godot/scripts/audio/place_sound.gd](../godot/scripts/audio/place_sound.gd) — The sound plan of a place: what is heard in it, where, and how loud
+- [godot/scripts/audio/place_synth.gd](../godot/scripts/audio/place_synth.gd) — The voices of a place's sound plan (PlaceSound), rendered once into
+- [godot/scripts/audio/render_mix.gd](../godot/scripts/audio/render_mix.gd) — Offline render of the dive mix for the loudness check (TABOO 0.4
+- [godot/scripts/audio/typikon.gd](../godot/scripts/audio/typikon.gd) — The Church day, the tone of the week and when the shore bell may ring.
+- [godot/scripts/audio/witness_audio.gd](../godot/scripts/audio/witness_audio.gd) — The sound of the path of the witness (docs/HLD_WITNESS_SOUND_
+- [godot/scripts/branch_core.gd](../godot/scripts/branch_core.gd) — Branches of episode 1 (CLAUDE.md TABOO 0.025, operator 2026-10-03:
+- [godot/scripts/buoy_core.gd](../godot/scripts/buoy_core.gd) — The operator's autonomous buoy, the first techno-artefact to restore
+- [godot/scripts/chat_core.gd](../godot/scripts/chat_core.gd) — The Brotherhood's chat rules (docs/HLD_BROTHERHOOD_CHAT_2026-10-03.md,
+- [godot/scripts/cockpit_core.gd](../godot/scripts/cockpit_core.gd) — The pilot's console: what the cards say and when they warn.
+- [godot/scripts/cockpit_panel.gd](../godot/scripts/cockpit_panel.gd) — The pilot's console drawn as the operator's BlueOS panels: a row of
+- [godot/scripts/cockpit_screens.gd](../godot/scripts/cockpit_screens.gd) — The console's second screen, as DiveGuard's panel has it: the front
+- [godot/scripts/companion_core.gd](../godot/scripts/companion_core.gd) — Claud, the ROV operator's AI companion (operator, 2026-10-03:
+- [godot/scripts/confession_sheet.gd](../godot/scripts/confession_sheet.gd) — The preparation sheet at the corner of repentance on the path of the
+- [godot/scripts/contract_core.gd](../godot/scripts/contract_core.gd) — A contract in the manner of The Witcher (operator, 2026-10-02: the
+- [godot/scripts/data_packs.gd](../godot/scripts/data_packs.gd) — Data packs beside the APK: the English voices first (operator,
+- [godot/scripts/deeds/act_cue.gd](../godot/scripts/deeds/act_cue.gd) — The felt answer to a step of a place's act (PlaceDeeds): touch, sound
+- [godot/scripts/deeds/deeds_a.gd](../godot/scripts/deeds/deeds_a.gd) — Group a of the small acts at the hearts of places: craft (PlaceDeeds;
+- [godot/scripts/deeds/deeds_b.gd](../godot/scripts/deeds/deeds_b.gd) — Group b of the small acts at the hearts of places (PlaceDeeds; the
+- [godot/scripts/deeds/deeds_c.gd](../godot/scripts/deeds/deeds_c.gd) — Group c of the small acts at the hearts of places (PlaceDeeds; the
+- [godot/scripts/deeds/deeds_d.gd](../godot/scripts/deeds/deeds_d.gd) — Group d of the small acts at the hearts of places (PlaceDeeds; the
+- [godot/scripts/deeds/deeds_e.gd](../godot/scripts/deeds/deeds_e.gd) — Group e of the small acts at the hearts of places: storm, Kiberslav and
+- [godot/scripts/deeds/place_deeds.gd](../godot/scripts/deeds/place_deeds.gd) — The small acts at the hearts of 26 places (docs/HLD_L3_PLACE_DEEDS_
+- [godot/scripts/destiny_core.gd](../godot/scripts/destiny_core.gd) — Destiny: the loot of the game is not things but the person (operator,
+- [godot/scripts/dialogue_core.gd](../godot/scripts/dialogue_core.gd) — The rules of a talk with a mentor, ported from the web game's
+- [godot/scripts/dive.gd](../godot/scripts/dive.gd) — The dive scene: the ROV goes down the Issyk-Kul shore.
+- [godot/scripts/dive_batch.gd](../godot/scripts/dive_batch.gd) — Fewer draw calls in the dive (docs/APK_REQUIREMENTS.md, blocker Б-1:
+- [godot/scripts/dive_core.gd](../godot/scripts/dive_core.gd) — The rules of the dive, ported from public/ludus/dive/dive-core.js.
+- [godot/scripts/fish_drawings.gd](../godot/scripts/fish_drawings.gd) — The fish of Issyk-Kul in our own drawing (DEF-056,
+- [godot/scripts/glove_computer.gd](../godot/scripts/glove_computer.gd) — The diver's wrist computer on the left glove: the lines beside the
+- [godot/scripts/glyphs.gd](../godot/scripts/glyphs.gd) — The fallback font for the few symbols the built-in OpenSans lacks
+- [godot/scripts/haptics.gd](../godot/scripts/haptics.gd) — The one table of controller pulses for the whole headset game: the
+- [godot/scripts/hub.gd](../godot/scripts/hub.gd) — The monastery hub: the courtyard of the obitel on the Issyk-Kul shore.
+- [godot/scripts/hub_core.gd](../godot/scripts/hub_core.gd) — The rules of the monastery hub, ported from the web game.
+- [godot/scripts/insight_core.gd](../godot/scripts/insight_core.gd) — Insights: flashbacks to another epoch that come by themselves when
+- [godot/scripts/journal_book.gd](../godot/scripts/journal_book.gd) — The journal of the way in the scriptorium: a birch-bark book on an oak
+- [godot/scripts/journal_core.gd](../godot/scripts/journal_core.gd) — The player's journal of the way, ported from the web game.
+- [godot/scripts/location.gd](../godot/scripts/location.gd) — One location of our plots in the headset (CLAUDE.md TABOO 0.013,
+- [godot/scripts/location_build.gd](../godot/scripts/location_build.gd) — Builds one location from its plan (LocationCore.plan): the shell and
+- [godot/scripts/location_core.gd](../godot/scripts/location_core.gd) — The builder's logic for the 99 locations of our plots (CLAUDE.md
+- [godot/scripts/location_heart.gd](../godot/scripts/location_heart.gd) — The heart of a location: the one practice or action at its centre
+- [godot/scripts/locations_core.gd](../godot/scripts/locations_core.gd) — The 99 locations of our plots (docs/HLD_LOCATIONS_99_2026-09-30.md,
+- [godot/scripts/lock_board.gd](../godot/scripts/lock_board.gd) — The board of a lock in the headset (CLAUDE.md TABOO 0.024, phase Z4 of
+- [godot/scripts/lock_core.gd](../godot/scripts/lock_core.gd) — Locks opened by a calm match-three board (CLAUDE.md TABOO 0.024):
+- [godot/scripts/lock_scene.gd](../godot/scripts/lock_scene.gd) — A lock at arm's length (TABOO 0.024, phases Z4–Z5): the board tilted
+- [godot/scripts/lock_sound.gd](../godot/scripts/lock_sound.gd) — The sound of the lock board (TABOO 0.024, phase Z4b): a relay's dry
+- [godot/scripts/mentors.gd](../godot/scripts/mentors.gd) — The mentors of the dialogue trees in the headset (HLD
+- [godot/scripts/mission_core.gd](../godot/scripts/mission_core.gd) — The campaign of missions, ported from public/ludus/ludus-missions.js
+- [godot/scripts/module_loader.gd](../godot/scripts/module_loader.gd) — Big modules load in the background (autoload "ModuleLoader").
+- [godot/scripts/nav.gd](../godot/scripts/nav.gd) — Moving between the hub and the dive (autoload "Nav").
+- [godot/scripts/obitel_layout.gd](../godot/scripts/obitel_layout.gd) — The obitel's objects in the hub: the K proxies chosen from the honest
+- [godot/scripts/pack_fetch.gd](../godot/scripts/pack_fetch.gd) — The "CD" of TABOO 0.018: packs fetched over the network in the
+- [godot/scripts/passion_core.gd](../godot/scripts/passion_core.gd) — The meeting of a passion on the road, ported from the web game.
+- [godot/scripts/pilot.gd](../godot/scripts/pilot.gd) — Episode 1 "Taboo" in the headset (phase P2 of
+- [godot/scripts/pilot_core.gd](../godot/scripts/pilot_core.gd) — Episode 1 of "The Water Atlas", "Taboo": the first fifteen minutes
+- [godot/scripts/places_lectern.gd](../godot/scripts/places_lectern.gd) — The road of places in the courtyard: a birch-bark board on two oak
+- [godot/scripts/posoh_core.gd](../godot/scripts/posoh_core.gd) — The operator's own hydrophone, "model 1" of the posoh repo, mounted
+- [godot/scripts/rights_panel.gd](../godot/scripts/rights_panel.gd) — The Manuscript of rights in the world: one board that names every
+- [godot/scripts/rim_light.gd](../godot/scripts/rim_light.gd) — Reading things against the water by light, not by paint (operator,
+- [godot/scripts/rope_breath.gd](../godot/scripts/rope_breath.gd) — The soft sound of one's own breath at the lectern of the rope: one
+- [godot/scripts/rope_core.gd](../godot/scripts/rope_core.gd) — The prayer rope as a metronome of the breath
+- [godot/scripts/rov_body.gd](../godot/scripts/rov_body.gd) — The Mangustik's body in the water: the model from the operator's
+- [godot/scripts/rov_course_core.gd](../godot/scripts/rov_course_core.gd) — The ROV pilot course inside the pike-search contract (RovCourseCore).
+- [godot/scripts/rov_lod.gd](../godot/scripts/rov_lod.gd) — The Mangustik with a far-view proxy (blocker Б-2,
+- [godot/scripts/rule_cell.gd](../godot/scripts/rule_cell.gd) — The two practices of the rule that the hub gives a place
+- [godot/scripts/rule_core.gd](../godot/scripts/rule_core.gd) — The rule of prayer, ported from public/ludus/ludus-actions.js
+- [godot/scripts/save_slot.gd](../godot/scripts/save_slot.gd) — Which save the game reads and writes: the player's own, or the tester's.
+- [godot/scripts/scene_sets.gd](../godot/scripts/scene_sets.gd) — The twelve ready sets of one scene (TABOO 0.032, docs/tech/MULTI_ENV_
+- [godot/scripts/scene_sets_trigger.gd](../godot/scripts/scene_sets_trigger.gd) — Walks the twelve sets as the hero walks: after STEP_M metres the next
+- [godot/scripts/screen_feed.gd](../godot/scripts/screen_feed.gd) — The video of the operator's instruments (CLAUDE.md TABOO 0.022): what
+- [godot/scripts/source_labels.gd](../godot/scripts/source_labels.gd) — The Russian form of a source, for the panels of the headset.
+- [godot/scripts/static_batch.gd](../godot/scripts/static_batch.gd) — Static batching of still geometry (docs/APK_REQUIREMENTS.md, Б-1).
+- [godot/scripts/storm_calm.gd](../godot/scripts/storm_calm.gd) — How a place shows that standing still counts while an act asks to
+- [godot/scripts/story_cast.gd](../godot/scripts/story_cast.gd) — The people of the 12 stories in the headset (docs/HLD_STORY_12_
+- [godot/scripts/story_check.gd](../godot/scripts/story_check.gd) — The tester's entry to the 12 stories (debug builds only).
+- [godot/scripts/story_route.gd](../godot/scripts/story_route.gd) — The 12 stories walked on foot (docs/HLD_12_STORIES_HEADSET_2026-10-02.md,
+- [godot/scripts/tides_core.gd](../godot/scripts/tides_core.gd) — The water's daily rhythm around Issyk-Kul and the north Caspian, read
+- [godot/scripts/trial_core.gd](../godot/scripts/trial_core.gd) — The thresholds of the gates and the fall they can lead to, ported
+- [godot/scripts/typikon_core.gd](../godot/scripts/typikon_core.gd) — When the far monastery's bells ring over the path of the witness
+- [godot/scripts/volumetric_core.gd](../godot/scripts/volumetric_core.gd) — The physics and data of the volumetric laser screen (HLD
+- [godot/scripts/volumetric_screen.gd](../godot/scripts/volumetric_screen.gd) — The volumetric laser screen under water (CLAUDE.md TABOO 0.022, phase
+- [godot/scripts/witness.gd](../godot/scripts/witness.gd) — The path of the witness in the headset (docs/HLD_APK_PRIORITY A3).
+- [godot/scripts/witness_batch.gd](../godot/scripts/witness_batch.gd) — Static batching of the path of the witness (docs/APK_REQUIREMENTS.md,
+- [godot/scripts/witness_core.gd](../godot/scripts/witness_core.gd) — The path of the witness: seven scene kits along one path, where the
+- [godot/scripts/wow_core.gd](../godot/scripts/wow_core.gd) — The rising curve of wow in episode 1 (operator, 2026-10-03: «должны
+- [godot/scripts/wow_stage.gd](../godot/scripts/wow_stage.gd) — The pilot's rising wonder on stage: one accent light and one small
+- [godot/scripts/xr_session.gd](../godot/scripts/xr_session.gd) — The headset's session and the game's clock (docs/HLD_CHORUS24_FIXES_
+
+## Игра для шлема: сцены (6)
+
+- [godot/scenes/dive.tscn](../godot/scenes/dive.tscn)
+- [godot/scenes/hub.tscn](../godot/scenes/hub.tscn)
+- [godot/scenes/location.tscn](../godot/scenes/location.tscn)
+- [godot/scenes/lock.tscn](../godot/scenes/lock.tscn)
+- [godot/scenes/pilot.tscn](../godot/scenes/pilot.tscn)
+- [godot/scenes/witness.tscn](../godot/scenes/witness.tscn)
+
+## Игра для шлема: инструменты замера и кадров (18)
+
+- [godot/tools/debug_layers.gd](../godot/tools/debug_layers.gd) — Debug: render the start view with one child of the scene hidden at a
+- [godot/tools/fish_shots.gd](../godot/tools/fish_shots.gd) — Proof frames of the fish of our own drawing (DEF-056) in the dive:
+- [godot/tools/lock_shots.gd](../godot/tools/lock_shots.gd) — Proof frames of a lock board (TABOO 0.024, phase Z4): the board as it
+- [godot/tools/make_pack.gd](../godot/tools/make_pack.gd) — Build a pack (TABOO 0.018) from a folder of sources: every file under
+- [godot/tools/measure_budgets.gd](../godot/tools/measure_budgets.gd) — Runtime budgets of one headset scene (docs/APK_REQUIREMENTS.md).
+- [godot/tools/measure_locations.gd](../godot/tools/measure_locations.gd) — Budgets of the 99 locations (CLAUDE.md TABOO 0.011; docs/HLD_LOCATIONS_
+- [godot/tools/measure_panel_text.gd](../godot/tools/measure_panel_text.gd) — How much text the heart's panel of a place holds, measured with its
+- [godot/tools/measure_transition.gd](../godot/tools/measure_transition.gd) — The way from the courtyard into a big module, measured (CLAUDE.md
+- [godot/tools/pilot_shots.gd](../godot/tools/pilot_shots.gd) — Proof frames of the pilot "Taboo" (TABOO 0.013 item 7, TABOO 0.015):
+- [godot/tools/place_wav_check.py](../godot/tools/place_wav_check.py) — Measure the offline render of the places' sound.
+- [godot/tools/render_cosmos.gd](../godot/tools/render_cosmos.gd) — Offline render of the suite «Наука. Любовь. Познание.» with the same
+- [godot/tools/render_place_audio.gd](../godot/tools/render_place_audio.gd) — Offline render of the places' sound (track A of docs/HLD_APK_
+- [godot/tools/render_witness_audio.gd](../godot/tools/render_witness_audio.gd) — Offline render of the path of the witness for measurement
+- [godot/tools/rov_lod_shots.gd](../godot/tools/rov_lod_shots.gd) — Frames and triangle counts of the Mangustik's level of detail
+- [godot/tools/story_shots.gd](../godot/tools/story_shots.gd) — Frames of the 12 stories for the eye check (TABOO 0.013 item 7; HLD
+- [godot/tools/stress_place_switch.gd](../godot/tools/stress_place_switch.gd) — Switch places fast, again and again, to shake out a crash of the
+- [godot/tools/volumetric_shots.gd](../godot/tools/volumetric_shots.gd) — Proof frames of the volumetric laser screen (docs/HLD_VOLUMETRIC_LASER_
+- [godot/tools/witness_wav_check.py](../godot/tools/witness_wav_check.py) — Measure the offline render of the path of the witness.
+
+## Игра для шлема: тесты (69)
+
+- [godot/tests/confession_walker.gd](../godot/tests/confession_walker.gd) — A stand-in for the witness path in test_confession.gd: the sheet reads
+- [godot/tests/deeds/panel_text.gd](../godot/tests/deeds/panel_text.gd) — The heart's panel of a place as location.gd builds it, measured with
+- [godot/tests/deeds/test_deeds_a.gd](../godot/tests/deeds/test_deeds_a.gd) — Craft tests of group a (scripts/deeds/deeds_a.gd): the right order
+- [godot/tests/deeds/test_deeds_b.gd](../godot/tests/deeds/test_deeds_b.gd) — The craft of the water group (deeds_b.gd): for each act the right
+- [godot/tests/deeds/test_deeds_c.gd](../godot/tests/deeds/test_deeds_c.gd) — Craft tests of group c (community acts, scripts/deeds/deeds_c.gd).
+- [godot/tests/deeds/test_deeds_d.gd](../godot/tests/deeds/test_deeds_d.gd) — The craft of group d of the place acts (road and memory): for each act
+- [godot/tests/deeds/test_deeds_e.gd](../godot/tests/deeds/test_deeds_e.gd) — Craft tests of group e (scripts/deeds/deeds_e.gd): the right order
+- [godot/tests/deeds_graph.gd](../godot/tests/deeds_graph.gd) — The graph of the 26 acts of the place hearts, walked out of their own
+- [godot/tests/export_deeds_graph.gd](../godot/tests/export_deeds_graph.gd) — Writes the walk of the 26 acts for the web build (tests/deeds_graph.gd):
+- [godot/tests/rim_probe.gd](../godot/tests/rim_probe.gd) — The rim light on a real render against its model (RimLight).
+- [godot/tests/run_hub_tests.gd](../godot/tests/run_hub_tests.gd) — Headless tests of the hub: godot --headless --path godot --script
+- [godot/tests/run_tests.gd](../godot/tests/run_tests.gd) — Headless test runner: godot --headless --path godot --script
+- [godot/tests/test_act_cue.gd](../godot/tests/test_act_cue.gd) — The felt answer to a step of a place's act (ActCue).  Called from
+- [godot/tests/test_apparatus.gd](../godot/tests/test_apparatus.gd) — The operator's apparatus (ApparatusCore, ScreenFeed, TABOO 0.022): the
+- [godot/tests/test_atlas.gd](../godot/tests/test_atlas.gd) — The Water Atlas at the lectern (TABOO 0.03).  Called from
+- [godot/tests/test_audio.gd](../godot/tests/test_audio.gd) — Sound of the dive: the rules that can be proved without a headset.
+- [godot/tests/test_biomes.gd](../godot/tests/test_biomes.gd) — Biomes, bubble columns and the thermocline heard
+- [godot/tests/test_branches.gd](../godot/tests/test_branches.gd) — Branches of episode 1 (BranchCore, CLAUDE.md TABOO 0.025): the
+- [godot/tests/test_chat.gd](../godot/tests/test_chat.gd) — The Brotherhood's chat rules (TABOO 0.031, docs/HLD_BROTHERHOOD_CHAT_
+- [godot/tests/test_church_words.gd](../godot/tests/test_church_words.gd) — The church-word stop-list gives the same verdict as the web on one
+- [godot/tests/test_cockpit.gd](../godot/tests/test_cockpit.gd) — The pilot's console (CockpitCore, docs/HLD_MANGUSTIK_COCKPIT M4) and
+- [godot/tests/test_companion.gd](../godot/tests/test_companion.gd) — Claud, the companion (CompanionCore,
+- [godot/tests/test_confession.gd](../godot/tests/test_confession.gd) — The preparation sheet in the headset (ConfessionSheet), the static
+- [godot/tests/test_contract.gd](../godot/tests/test_contract.gd) — The contract "The Shark of Issyk-Kul" (ContractCore): its data keeps
+- [godot/tests/test_cosmos.gd](../godot/tests/test_cosmos.gd) — The suite «Наука. Любовь. Познание.» (CosmosSynth) and the 99 signs
+- [godot/tests/test_data_packs.gd](../godot/tests/test_data_packs.gd) — Data packs beside the APK (DataPacks; docs/decisions/SIZE_STRATEGIES_
+- [godot/tests/test_destiny.gd](../godot/tests/test_destiny.gd) — Destiny (DestinyCore): seven branches on the seven attributes, seven
+- [godot/tests/test_dive_batch.gd](../godot/tests/test_dive_batch.gd) — The dive's batches (DiveBatch, Б-1 in docs/APK_REQUIREMENTS.md).
+- [godot/tests/test_glove_computer.gd](../godot/tests/test_glove_computer.gd) — The wrist computer on the glove (GloveComputer): its numbers come
+- [godot/tests/test_haptics.gd](../godot/tests/test_haptics.gd) — The shared table of controller pulses (Haptics; DEF-008, blind spot
+- [godot/tests/test_insights.gd](../godot/tests/test_insights.gd) — Insights (InsightCore, docs/HLD_INSIGHTS_FLASHBACKS_2026-10-02.md):
+- [godot/tests/test_journal.gd](../godot/tests/test_journal.gd) — The journal of the way (JournalCore): the exported page is the web
+- [godot/tests/test_location_build.gd](../godot/tests/test_location_build.gd) — The 99 locations as the headset builds them (CLAUDE.md TABOO 0.013,
+- [godot/tests/test_location_items.gd](../godot/tests/test_location_items.gd) — The things of the 99 locations that come from the 99 cloned repos
+- [godot/tests/test_locations.gd](../godot/tests/test_locations.gd) — The 99 locations keep the standard of the evening-watch cell (CLAUDE.md
+- [godot/tests/test_lock.gd](../godot/tests/test_lock.gd) — Locks as match-three (LockCore, TABOO 0.024): the data keeps its
+- [godot/tests/test_lock_scene.gd](../godot/tests/test_lock_scene.gd) — The lock at arm's length (lock_scene.gd, TABOO 0.024 Z4–Z5): a pinch
+- [godot/tests/test_mentors.gd](../godot/tests/test_mentors.gd) — The 24 mentors in the headset (HLD_APK_GRAPHICS_SOUND_2026-10-01,
+- [godot/tests/test_mission.gd](../godot/tests/test_mission.gd) — MissionCore against the JS reference (public/ludus/ludus-missions.js):
+- [godot/tests/test_module_loader.gd](../godot/tests/test_module_loader.gd) — Big modules load in the background (ModuleLoader, CLAUDE.md TABOO
+- [godot/tests/test_obitel.gd](../godot/tests/test_obitel.gd) — The obitel's objects in the hub (TABOO 0.07, 0.32).  Called from
+- [godot/tests/test_pack_fetch.gd](../godot/tests/test_pack_fetch.gd) — Packs over the network (PackFetch, TABOO 0.018): a pack is accepted
+- [godot/tests/test_passion.gd](../godot/tests/test_passion.gd) — The meeting of a passion (PassionCore) against the JS reference
+- [godot/tests/test_pilot.gd](../godot/tests/test_pilot.gd) — Episode 1 "Taboo" (PilotCore, TABOO 0.015): the rhythm of a series
+- [godot/tests/test_pilot_scene.gd](../godot/tests/test_pilot_scene.gd) — The pilot scene (phase P2, docs/HLD_20MB_PILOT_2026-10-02.md) played
+- [godot/tests/test_place_deeds.gd](../godot/tests/test_place_deeds.gd) — The small acts at the hearts of 26 places (PlaceDeeds, phase L3 of
+- [godot/tests/test_place_sound.gd](../godot/tests/test_place_sound.gd) — The sound of the 99 places and of the courtyard (track A of docs/
+- [godot/tests/test_posoh.gd](../godot/tests/test_posoh.gd) — The posoh hydrophone (PosohCore, docs/HLD_POSOH_HYDROPHONE_2026-09-30)
+- [godot/tests/test_rights.gd](../godot/tests/test_rights.gd) — The Manuscript of rights in the headset build (HLD CHORUS24 F7,
+- [godot/tests/test_road.gd](../godot/tests/test_road.gd) — The road beyond the wicket (HLD_TETHER_TRIALS_PASSIONS T3): every
+- [godot/tests/test_rope.gd](../godot/tests/test_rope.gd) — The prayer rope as a breath metronome (RopeCore, RopeBreath).  The
+- [godot/tests/test_rov_course.gd](../godot/tests/test_rov_course.gd) — The ROV pilot course in the pike-search contract (RovCourseCore):
+- [godot/tests/test_rov_lod.gd](../godot/tests/test_rov_lod.gd) — The Mangustik's far-view proxy and its switch by distance (RovLod,
+- [godot/tests/test_rule.gd](../godot/tests/test_rule.gd) — RuleCore and the evening watch against the JS reference: every chain
+- [godot/tests/test_scene_sets.gd](../godot/tests/test_scene_sets.gd) — The twelve ready sets (TABOO 0.032): twelve per environment, every
+- [godot/tests/test_source_labels.gd](../godot/tests/test_source_labels.gd) — The Russian labels of the sources (SourceLabels, source-labels-ru.json)
+- [godot/tests/test_static_batch.gd](../godot/tests/test_static_batch.gd) — Static batching of still geometry (StaticBatch, Б-1 in
+- [godot/tests/test_storm_calm.gd](../godot/tests/test_storm_calm.gd) — Waiting out the storm is seen and heard, and a tremor of the hand does
+- [godot/tests/test_story_12.gd](../godot/tests/test_story_12.gd) — The 12 stories walked on foot (StoryRoute, data/story-12.json;
+- [godot/tests/test_story_cast.gd](../godot/tests/test_story_cast.gd) — The people of the 12 stories in the headset (StoryCast,
+- [godot/tests/test_story_check.gd](../godot/tests/test_story_check.gd) — The tester's entry to the 12 stories (StoryCheck, SaveSlot; debug
+- [godot/tests/test_tides.gd](../godot/tests/test_tides.gd) — The baked tides series from the operator's BlueOS module (TABOO 0.029)
+- [godot/tests/test_trial.gd](../godot/tests/test_trial.gd) — TrialCore against the JS reference: every record of
+- [godot/tests/test_volumetric.gd](../godot/tests/test_volumetric.gd) — VolumetricCore against the Python numbers of the operator's repo
+- [godot/tests/test_volumetric_screen.gd](../godot/tests/test_volumetric_screen.gd) — The volumetric laser screen (VolumetricScreen, TABOO 0.022, phase V2):
+- [godot/tests/test_witness.gd](../godot/tests/test_witness.gd) — The path of the witness (docs/HLD_APK_PRIORITY A3): the data of the
+- [godot/tests/test_witness_sound.gd](../godot/tests/test_witness_sound.gd) — The sound of the path of the witness (docs/HLD_WITNESS_SOUND_
+- [godot/tests/test_wow.gd](../godot/tests/test_wow.gd) — The rising curve of wow (WowCore, docs/HLD_WOW_ESCALATION_2026-10-03.md):
+- [godot/tests/test_xr_session.gd](../godot/tests/test_xr_session.gd) — The headset's session (XrSession, docs/HLD_CHORUS24_FIXES_2026-10-03.md
+
+## Игра для шлема: проект и прочее (11)
+
+- [godot/README.md](../godot/README.md) 📄 — Ludus — погружение: сборка для Meta Quest 3 (Godot 4)
+- [godot/export_presets.cfg](../godot/export_presets.cfg)
+- [godot/licenses/Apache-2.0.txt](../godot/licenses/Apache-2.0.txt) 📄
+- [godot/licenses/CC-BY-SA-3.0.txt](../godot/licenses/CC-BY-SA-3.0.txt) 📄
+- [godot/licenses/GPL-2.0.txt](../godot/licenses/GPL-2.0.txt) 📄
+- [godot/licenses/GPL-3.0.txt](../godot/licenses/GPL-3.0.txt) 📄
+- [godot/licenses/MIT-Godot-Engine.txt](../godot/licenses/MIT-Godot-Engine.txt) 📄
+- [godot/licenses/MIT-godot_openxr_vendors.txt](../godot/licenses/MIT-godot_openxr_vendors.txt) 📄
+- [godot/licenses/Meta-OpenXR-SDK-NOTICE.txt](../godot/licenses/Meta-OpenXR-SDK-NOTICE.txt) 📄
+- [godot/openxr_action_map.tres](../godot/openxr_action_map.tres)
+- [godot/project.godot](../godot/project.godot)
+
+## Сборка шлема: бюджеты, движок, прогноз (19)
+
+- [scripts/godot/check_budgets.py](../scripts/godot/check_budgets.py) — Budget gate for the Meta Quest build (docs/APK_REQUIREMENTS.md).
+- [scripts/godot/check_glyphs.py](../scripts/godot/check_glyphs.py) — Glyph coverage of the headset's text: no tofu in Quest or WebXR.
+- [scripts/godot/ci_setup.sh](../scripts/godot/ci_setup.sh) — Install Godot and the export templates the headset build needs
+- [scripts/godot/engine/ludus.gdbuild](../scripts/godot/engine/ludus.gdbuild)
+- [scripts/godot/engine/profile.py](../scripts/godot/engine/profile.py) — The headset engine's build profile: what is cut, and proof it is unused.
+- [scripts/godot/export_antagonist_manifest.js](../scripts/godot/export_antagonist_manifest.js) — Write godot/data/antagonist-manifest.json from the MANIFEST of
+- [scripts/godot/loudness.py](../scripts/godot/loudness.py) — Integrated loudness and true peak of WAV files (ITU-R BS.1770-4).
+- [scripts/godot/make_atlas_fixture.js](../scripts/godot/make_atlas_fixture.js) — Write godot/tests/fixtures/atlas-traces.json from
+- [scripts/godot/make_dialogue_fixture.js](../scripts/godot/make_dialogue_fixture.js) — Write godot/tests/fixtures/dialogue.json from
+- [scripts/godot/make_fixture.js](../scripts/godot/make_fixture.js) — Write godot/tests/fixture.json from the JS dive core, so the GDScript
+- [scripts/godot/make_hub_fixture.js](../scripts/godot/make_hub_fixture.js) — Write godot/tests/hub_fixture.json from public/ludus/ludus-actions.js,
+- [scripts/godot/make_icons.py](../scripts/godot/make_icons.py) — Draw the launcher icons of the headset build (HLD_CHORUS24 phase F2).
+- [scripts/godot/make_journal_fixture.js](../scripts/godot/make_journal_fixture.js) — Write godot/tests/journal_fixture.json from public/ludus/ludus-journal.js
+- [scripts/godot/make_mission_fixture.js](../scripts/godot/make_mission_fixture.js) — Write godot/tests/fixtures/missions.json from public/ludus/ludus-missions.js:
+- [scripts/godot/make_passion_fixture.js](../scripts/godot/make_passion_fixture.js) — Write godot/tests/passion_fixture.json from public/ludus/ludus-passion.js,
+- [scripts/godot/make_rule_fixture.js](../scripts/godot/make_rule_fixture.js) — Write godot/tests/fixtures/rule.json from public/ludus/ludus-actions.js
+- [scripts/godot/make_trial_fixture.js](../scripts/godot/make_trial_fixture.js) — Write godot/tests/trial_fixture.json from public/ludus/ludus-missions.js:
+- [scripts/godot/make_volumetric_fixture.py](../scripts/godot/make_volumetric_fixture.py) — Write godot/tests/fixtures/volumetric_fixture.json for VolumetricCore.
+- [scripts/godot/obb_forecast.py](../scripts/godot/obb_forecast.py) — Forecast of the headset build's weight: when do we need an OBB?
+
+## Выборы из честного пула по 48 параметрам (10)
+
+- [scripts/decisions/branch_craft.py](../scripts/decisions/branch_craft.py) — 99 of an honest pool of branching techniques for episode 1, by 7 marks.
+- [scripts/decisions/convert_2d3d_choice.py](../scripts/decisions/convert_2d3d_choice.py) — Three tools that turn our own 2D art into 3D, from the honest pool.
+- [scripts/decisions/engine_build_choice.py](../scripts/decisions/engine_build_choice.py) — One way to make the headset engine smaller, chosen in the open.
+- [scripts/decisions/pilot_20mb.py](../scripts/decisions/pilot_20mb.py) — What fills the 20 MB the own engine frees: the series pilot first.
+- [scripts/decisions/pilot_details.py](../scripts/decisions/pilot_details.py) — 55 details for the pilot "Taboo", chosen from every variant of 119 seeds.
+- [scripts/decisions/pilot_details_seeds.py](../scripts/decisions/pilot_details_seeds.py) — The 111 seed details of the pilot "Taboo", each from a named craft.
+- [scripts/decisions/prerender_choice.py](../scripts/decisions/prerender_choice.py) — Our Silicon Graphics: the one offline renderer for the close-up swap.
+- [scripts/decisions/size_strategy_choice.py](../scripts/decisions/size_strategy_choice.py) — Seven ways to fit the game in the headset, chosen in the open.
+- [scripts/decisions/stoplist_choice.py](../scripts/decisions/stoplist_choice.py) — One decision for the church-word stop-list, chosen in the open.
+- [scripts/decisions/stream_choice.py](../scripts/decisions/stream_choice.py) — How the heavy data reaches the headset: one way from the honest pool.
+
+## Скрипты проекта: раннер, данные, сюжеты (99)
+
+- [scripts/blueos/sandbox_up.sh](../scripts/blueos/sandbox_up.sh) — Raise BlueOS and the operator's extensions in the session sandbox
+- [scripts/build-campaign-spine.py](../scripts/build-campaign-spine.py) — Build the Issyk-Kul campaign spine from webtypicon2's missions.
+- [scripts/build_rights_manifest.py](../scripts/build_rights_manifest.py) — Build the "Manuscript of rights": the licence register shown in-game.
+- [scripts/check_canon.py](../scripts/check_canon.py) — Check every teaching source against the closed patristic canon.
+- [scripts/check_dialogues.py](../scripts/check_dialogues.py) — Validate the 24 NPC dialogue trees (CLAUDE.md TABOO 0.37 and 0.39).
+- [scripts/ci/check_claude_paths.py](../scripts/ci/check_claude_paths.py) — Check that every repository path named in CLAUDE.md exists.
+- [scripts/ci/check_shared_copies.py](../scripts/ci/check_shared_copies.py) — CI gate: the headset's copies of shared data and derived art.
+- [scripts/export-dialogue-pack.js](../scripts/export-dialogue-pack.js) — Export the seeded dialogue trees as the offline content pack.
+- [scripts/lake/lake_objects.py](../scripts/lake/lake_objects.py) — The lake's objects: a pool of 999 candidates and the best 99 of them.
+- [scripts/loadtest-api-endpoints.sh](../scripts/loadtest-api-endpoints.sh) — Ludus Load Testing Script (gap_028)
+- [scripts/locations/church_words.py](../scripts/locations/church_words.py) — The church-word stop-list, read from its one file.
+- [scripts/locations/locations_99.py](../scripts/locations/locations_99.py) — 99 locations for our plots: the honest pool and the K the headset gets.
+- [scripts/locations/register.py](../scripts/locations/register.py) — The register behind the 99 locations: real things and real places.
+- [scripts/locations/ship_models.py](../scripts/locations/ship_models.py) — Ship the proxies the 99 locations use into the headset build.
+- [scripts/locations/tests/test_church_words.py](../scripts/locations/tests/test_church_words.py) — The generator's stop-list gives the shared corpus's verdict.
+- [scripts/locations/tests/test_locations_99.py](../scripts/locations/tests/test_locations_99.py) — The 99 locations keep the standard of the evening-watch cell.
+- [scripts/logs/archive_6h.py](../scripts/logs/archive_6h.py) — Archive the last 24 hours: the dialogue and the glove renders.
+- [scripts/logs/talk_log.py](../scripts/logs/talk_log.py) — Daily talk log of the work with the operator: docs/logs/talk_log_<date>.md.
+- [scripts/meta3d/build.js](../scripts/meta3d/build.js) — Meta 3D generator (CLAUDE.md TABOO 0.32): every SVG and every text
+- [scripts/meta3d/check_coverage.py](../scripts/meta3d/check_coverage.py) — Fail the build when an SVG or a prompt has no Meta 3D object.
+- [scripts/meta3d/lake_details.py](../scripts/meta3d/lake_details.py) — Detailed procedural proxies of the 99 lake objects and the knight's
+- [scripts/meta3d/lake_fauna.py](../scripts/meta3d/lake_fauna.py) — Fish, birds and small life of Issyk-Kul, drawn from code.
+- [scripts/meta3d/lake_kit.py](../scripts/meta3d/lake_kit.py) — A small geometry kit and a glTF writer for the lake models.
+- [scripts/meta3d/mangustik_rov.py](../scripts/meta3d/mangustik_rov.py) — Build the game's ROV from the operator's own OpenSCAD drawings.
+- [scripts/meta3d/page.js](../scripts/meta3d/page.js) — Browser side of the Meta 3D generator (CLAUDE.md TABOO 0.32).
+- [scripts/meta3d/posoh_hydrophone.py](../scripts/meta3d/posoh_hydrophone.py) — Build the game's hydrophone from the operator's own OpenSCAD drawing.
+- [scripts/meta3d/preview.js](../scripts/meta3d/preview.js) — Render a contact sheet of .glb proxies so a person can check them by
+- [scripts/music/cosmos_preview.py](../scripts/music/cosmos_preview.py) — Build the listening copy and the pictures of the suite
+- [scripts/obitel/obitel_objects.py](../scripts/obitel/obitel_objects.py) — The obitel's objects: the honest pool of proxies and the K the hub shows.
+- [scripts/patent/object_claims.py](../scripts/patent/object_claims.py) — Draft claim sheets for every prompted game object (operator request).
+- [scripts/phase2-deploy-full.sh](../scripts/phase2-deploy-full.sh)
+- [scripts/phase2-deploy.sh](../scripts/phase2-deploy.sh)
+- [scripts/phase3-validation.sh](../scripts/phase3-validation.sh) — Phase 3 Final Validation Script
+- [scripts/prerender/build_closeups.py](../scripts/prerender/build_closeups.py) — The examine videos of episode 1 (TABOO 0.019, 0.020): voice, pack
+- [scripts/prerender/build_intro.py](../scripts/prerender/build_intro.py) — The recap of every next launch, «Ранее в „Атласе воды“», as a
+- [scripts/prerender/insight_variants.py](../scripts/prerender/insight_variants.py) — Twelve variants of each of the twelve insights of episode 1: 144
+- [scripts/prerender/render_insights.py](../scripts/prerender/render_insights.py) — Still frames of the insights (CLAUDE.md TABOO 0.021): one realistic
+- [scripts/prerender/render_items.py](../scripts/prerender/render_items.py) — Close-up stills for the swap on examine (docs/HLD_SWAP_RENDERING_
+- [scripts/raw_assets/antagonist.py](../scripts/raw_assets/antagonist.py) — Antagonist protocol: the eight passions and their twelve variants.
+- [scripts/raw_assets/audio_pass.py](../scripts/raw_assets/audio_pass.py) — Audio pass: sounds from the 99 repos as spectral references only.
+- [scripts/raw_assets/check_delta.py](../scripts/raw_assets/check_delta.py) — CI gate: every shipped derived sprite must prove its 35 % reshaping.
+- [scripts/raw_assets/clone_full.py](../scripts/raw_assets/clone_full.py) — Clone the 99 repositories of backlog with their working files.
+- [scripts/raw_assets/code_delta.py](../scripts/raw_assets/code_delta.py) — Measure how far our code departs from a third-party source module.
+- [scripts/raw_assets/corpus_chunks.py](../scripts/raw_assets/corpus_chunks.py) — Pull the 99 repositories' raw material in chunks of at most 100 MB,
+- [scripts/raw_assets/fish_procedural.py](../scripts/raw_assets/fish_procedural.py) — Our own procedural drawing of the fish of Issyk-Kul (DEF-056).
+- [scripts/raw_assets/form.py](../scripts/raw_assets/form.py) — Alpha-channel form: masks, shape delta, silhouette loss and hitboxes.
+- [scripts/raw_assets/index_repos.py](../scripts/raw_assets/index_repos.py) — Index every repository from backlog without downloading its content.
+- [scripts/raw_assets/intake.py](../scripts/raw_assets/intake.py) — Collect raw image assets from the open-source games listed in backlog.
+- [scripts/raw_assets/journal_merge.py](../scripts/raw_assets/journal_merge.py) — Merge the raw runner's append-only journals without losing a line.
+- [scripts/raw_assets/licences.py](../scripts/raw_assets/licences.py) — The licence of one file of a backlog repo, not only of its repo.
+- [scripts/raw_assets/location_items.py](../scripts/raw_assets/location_items.py) — Things for the 99 locations from the 99 cloned repos (track B).
+- [scripts/raw_assets/location_kit.py](../scripts/raw_assets/location_kit.py) — Twelve recognisable variants of a raw neutral thing for the locations.
+- [scripts/raw_assets/location_mesh.py](../scripts/raw_assets/location_mesh.py) — Twelve recognisable variants of a raw 3D model for the locations.
+- [scripts/raw_assets/neutral_procedural.py](../scripts/raw_assets/neutral_procedural.py) — Our own procedural drawing of the neutral things of the lake (D6).
+- [scripts/raw_assets/neutral_variants.py](../scripts/raw_assets/neutral_variants.py) — Twelve variants for neutral lake objects: age and pose, never passion.
+- [scripts/raw_assets/osint_cycle.py](../scripts/raw_assets/osint_cycle.py) — One OSINT pass over the 99 cloned repos, driven by the game's deficits.
+- [scripts/raw_assets/own_passion.py](../scripts/raw_assets/own_passion.py) — Our own procedural drawing of a passion, for a slot raw material
+- [scripts/raw_assets/passion_fields.py](../scripts/raw_assets/passion_fields.py) — The teaching fields every passion antagonist must carry.
+- [scripts/raw_assets/props.py](../scripts/raw_assets/props.py) — The props store: what the runner finds but the game may not use yet.
+- [scripts/raw_assets/reference.py](../scripts/raw_assets/reference.py) — Real-object profiles for the neutral raw-material slots.
+- [scripts/raw_assets/register.py](../scripts/raw_assets/register.py) — Write the licence register and per-object claim sheets.
+- [scripts/raw_assets/rounds.py](../scripts/raw_assets/rounds.py) — Write the round plan of the deficit runner (CLAUDE.md TABOO 0.15).
+- [scripts/raw_assets/scene_variation_search.py](../scripts/raw_assets/scene_variation_search.py) — Search the 99 cloned repositories for code and objects that serve the
+- [scripts/raw_assets/search_index.py](../scripts/raw_assets/search_index.py) — Search the 99-repo index for raw material that fills a game deficit.
+- [scripts/raw_assets/tests/test_antagonist.py](../scripts/raw_assets/tests/test_antagonist.py) — Tests for the alpha-form rules and the Antagonist protocol.
+- [scripts/raw_assets/tests/test_audio_pass.py](../scripts/raw_assets/tests/test_audio_pass.py) — The audio pass takes sounds only as spectral references.
+- [scripts/raw_assets/tests/test_fish_procedural.py](../scripts/raw_assets/tests/test_fish_procedural.py) — DEF-056: the fish of Issyk-Kul are the project's own drawing.
+- [scripts/raw_assets/tests/test_frame_dedup.py](../scripts/raw_assets/tests/test_frame_dedup.py) — Frames of one animation must not ship as separate antagonists.
+- [scripts/raw_assets/tests/test_journal_merge.py](../scripts/raw_assets/tests/test_journal_merge.py) — The raw runner's journals merge by union, never by text.
+- [scripts/raw_assets/tests/test_location_items.py](../scripts/raw_assets/tests/test_location_items.py) — Track B of the 99 locations: things from the 99 cloned repos.
+- [scripts/raw_assets/tests/test_neutral_procedural.py](../scripts/raw_assets/tests/test_neutral_procedural.py) — D6: the neutral things of the lake are the project's own drawing.
+- [scripts/raw_assets/tests/test_neutral_slots.py](../scripts/raw_assets/tests/test_neutral_slots.py) — Neutral raw-material slots take the thing itself, never antagonists.
+- [scripts/raw_assets/tests/test_neutral_variants.py](../scripts/raw_assets/tests/test_neutral_variants.py) — The neutral family: age and pose, measured, recognisable, repeatable.
+- [scripts/raw_assets/tests/test_own_passion.py](../scripts/raw_assets/tests/test_own_passion.py) — The lust kit is our own procedural drawing, measured like raw material.
+- [scripts/raw_assets/tests/test_passion_fields.py](../scripts/raw_assets/tests/test_passion_fields.py) — Rule 13 (CLAUDE.md TABOO 0.35): an antagonist ships with its teaching.
+- [scripts/raw_assets/tests/test_props.py](../scripts/raw_assets/tests/test_props.py) — The props store takes every non-game hit, and nothing holy.
+- [scripts/raw_assets/tests/test_reference.py](../scripts/raw_assets/tests/test_reference.py) — The runner selects by the real object and grows its keys by twelve.
+- [scripts/raw_assets/tests/test_reverted_memory.py](../scripts/raw_assets/tests/test_reverted_memory.py) — The runner remembers what the eye check reverted (cycle 93 lesson).
+- [scripts/raw_assets/transform.py](../scripts/raw_assets/transform.py) — Transform raw third-party images into Ludus art and measure the change.
+- [scripts/scenes/locations_to_sets.py](../scripts/scenes/locations_to_sets.py) — Bind the twelve-sets technology to every mission's place (TABOO 0.032).
+- [scripts/scenes/multi_env_sets.py](../scripts/scenes/multi_env_sets.py) — Twelve ready sets for one scene (TABOO 0.032, docs/tech/MULTI_ENV_SETS_
+- [scripts/story/atlas_nodes.py](../scripts/story/atlas_nodes.py) — The 99 nodes of "The Water Atlas" as the chorus of five editors left
+- [scripts/story/cast_12.py](../scripts/story/cast_12.py) — Where the people of the 12 stories stand in the headset.
+- [scripts/story/check_branches.py](../scripts/story/check_branches.py) — The chorus's checks of the 144 insight branches of episode 1
+- [scripts/story/entelechy.py](../scripts/story/entelechy.py) — Entelechy 99: the operator's 99 signs-impulses in 9 nodes, and the
+- [scripts/story/insight_branches.py](../scripts/story/insight_branches.py) — The 144 insight variants of episode 1 as branches of the game's
+- [scripts/story/render.py](../scripts/story/render.py) — Build "The Water Atlas" from its one list (atlas_nodes.py).
+- [scripts/story/select_12.py](../scripts/story/select_12.py) — Choose the 12 stories the headset walks on foot (TABOO 0.07).
+- [scripts/test-api-endpoints.sh](../scripts/test-api-endpoints.sh) — Ludus API Endpoint Test Suite
+- [scripts/tests/test_check_canon.py](../scripts/tests/test_check_canon.py) — Negative tests for scripts/check_canon.py.
+- [scripts/tests/test_corpus_chunks.py](../scripts/tests/test_corpus_chunks.py) — Tests of the chunked corpus puller (TABOO 0.033), without a network.
+- [scripts/tests/test_insight_branches.py](../scripts/tests/test_insight_branches.py) — The 144 insight branches pass the chorus's checks without Godot
+- [scripts/tests/test_multi_env_sets.py](../scripts/tests/test_multi_env_sets.py) — Tests of the twelve-sets generator (TABOO 0.032).
+- [scripts/tests/test_talk_log.py](../scripts/tests/test_talk_log.py) — Tests of the talk log collector (scripts/logs/talk_log.py).
+- [scripts/video/insight_variant_sheets.py](../scripts/video/insight_variant_sheets.py) — Contact sheets of the 144 insight variants: one sheet per insight,
+- [scripts/video/insights_reel.py](../scripts/video/insights_reel.py) — The reel of the twelve insights of episode 1, with the suite under it.
+- [scripts/video/insights_variants_reel.py](../scripts/video/insights_variants_reel.py) — Two reels of the 144 insight variants of episode 1, with the suite.
+- [scripts/video/slice_frames.py](../scripts/video/slice_frames.py) — Cut a LOCAL video into pictures, one every N seconds (or per scene).
+- [scripts/voice/build_claud_voice.py](../scripts/voice/build_claud_voice.py) — Build the draft voice of Claud, the ROV operator's AI companion.
+
+## Веб-версия игры (34)
+
+- [public/ludus/deeds/deeds-view.js](../public/ludus/deeds/deeds-view.js) — Ludus: the page of the place acts (public/ludus/deeds/index.html).
+- [public/ludus/deeds/index.html](../public/ludus/deeds/index.html)
+- [public/ludus/dive/dive-atlas.js](../public/ludus/dive/dive-atlas.js) — Ludus: the Water Atlas in the web dive (TABOO 0.03, rules 3-4) and
+- [public/ludus/dive/dive-core.js](../public/ludus/dive/dive-core.js) — Ludus: the core of the dive scene (operator, 2026-09-30: "делай
+- [public/ludus/dive/dive-view.js](../public/ludus/dive/dive-view.js) — Ludus: the web dive, drawn as a section of the shore (the headset has
+- [public/ludus/dive/index.html](../public/ludus/dive/index.html)
+- [public/ludus/idb-schema.ts](../public/ludus/idb-schema.ts) — idb-schema.ts — IndexedDB wrapper for Ludus offline caching
+- [public/ludus/ludus-actions.js](../public/ludus/ludus-actions.js) — Ludus ACTION layer: ritual counters and the three-part gate check.
+- [public/ludus/ludus-antagonist-factory.js](../public/ludus/ludus-antagonist-factory.js) — Ludus: AntagonistFactory, the twelve variants of each passion in play
+- [public/ludus/ludus-audio-manager.js](../public/ludus/ludus-audio-manager.js) — Ludus Audio Manager (Meta Quest 3 browser build).
+- [public/ludus/ludus-church-words.js](../public/ludus/ludus-church-words.js) — Ludus: the church-word stop-list matcher for the web build and the JS
+- [public/ludus/ludus-confession.js](../public/ludus/ludus-confession.js) — Ludus: preparation for confession — a page that is never kept.
+- [public/ludus/ludus-design-system.css](../public/ludus/ludus-design-system.css) — Ludus design system: shared tokens and base components.
+- [public/ludus/ludus-dialogue.css](../public/ludus/ludus-dialogue.css) — Ludus NPC Dialogue Component Styles
+- [public/ludus/ludus-game.css](../public/ludus/ludus-game.css) — Ludus game core styles: auth, profile (FORM), network and gate panels.
+- [public/ludus/ludus-game.js](../public/ludus/ludus-game.js) — Ludus game core: auth, player FORM, reachable NPCs and knowledge gates.
+- [public/ludus/ludus-glas.js](../public/ludus/ludus-glas.js) — Ludus: the tone (глас) of the week and its ison (HLD F2, DEF-012/022;
+- [public/ludus/ludus-journal.js](../public/ludus/ludus-journal.js) — Ludus: the player's journal as a Markdown page they keep (HLD F5,
+- [public/ludus/ludus-lake-view.js](../public/ludus/ludus-lake-view.js) — Ludus: what the ROV sees — a 360-degree view of Issyk-Kul above the
+- [public/ludus/ludus-liturgical-clock.js](../public/ludus/ludus-liturgical-clock.js) — Ludus liturgical clock: which day it is in the Church, and which bell
+- [public/ludus/ludus-missions.js](../public/ludus/ludus-missions.js) — Ludus missions and gate thresholds: the campaign made playable.
+- [public/ludus/ludus-npc-dialogue-manager.js](../public/ludus/ludus-npc-dialogue-manager.js) — Ludus NPC Dialogue Manager
+- [public/ludus/ludus-npc-dialogue-ui.js](../public/ludus/ludus-npc-dialogue-ui.js) — Ludus NPC Dialogue UI Component
+- [public/ludus/ludus-outbox.js](../public/ludus/ludus-outbox.js) — Ludus: the outbox — acts of the rule kept while the network is away
+- [public/ludus/ludus-passion.js](../public/ludus/ludus-passion.js) — Ludus: meeting a passion on the road (HLD F1, DEF-016/017).
+- [public/ludus/ludus-place-deeds.js](../public/ludus/ludus-place-deeds.js) — Ludus: the small acts at the hearts of 26 places, for the web build
+- [public/ludus/ludus-rest.js](../public/ludus/ludus-rest.js) — Ludus: a gentle word to rest (HLD F5, improvement 99; CLAUDE.md TABOO
+- [public/ludus/ludus-sacred-synth.js](../public/ludus/ludus-sacred-synth.js) — Ludus Sacred Synth: zero-asset, deterministic procedural sound.
+- [public/ludus/ludus-source-labels.js](../public/ludus/ludus-source-labels.js) — The Russian form of a source, for the panels of the web game.
+- [public/ludus/ludus-water.js](../public/ludus/ludus-water.js) — Ludus: water physics for the ROV dive (HLD F3; CLAUDE.md TABOO 0.35
+- [public/ludus/optimistic-mutations.ts](../public/ludus/optimistic-mutations.ts) — optimistic-mutations.ts — Client-side mutation queue for Ludus
+- [public/ludus/rov-lake-manager.js](../public/ludus/rov-lake-manager.js) — ROV Lake Manager: live dive telemetry for the Meta Quest 3 build.
+- [public/ludus/rov-lake.css](../public/ludus/rov-lake.css) — ROV Lake panel for the Meta Quest 3 build.
+- [public/ludus/sw.js](../public/ludus/sw.js) — sw.js — Service Worker for Ludus offline support (Meta Quest 3 build).
+
+## Веб: прочее (3)
+
+- [public/index.html](../public/index.html)
+- [public/vr/vr.html](../public/vr/vr.html)
+- [public/vr/vr.js](../public/vr/vr.js) — vr.js — сюжетная панель VR-сцены «Двор Герата» (Путь дьякона).
+
+## Бэкенд (Cloud Functions) (27)
+
+- [functions/jest.config.js](../functions/jest.config.js)
+- [functions/src/api/ludus-actions.ts](../functions/src/api/ludus-actions.ts) — ACTION layer on the backend: ritual counters written to Firestore.
+- [functions/src/api/ludus-dialogue.ts](../functions/src/api/ludus-dialogue.ts) — Ludus Dialogue System Cloud Functions
+- [functions/src/api/ludus-health.ts](../functions/src/api/ludus-health.ts) — Ludus Health Check Endpoint — /api/ludus/health
+- [functions/src/api/ludus-router.ts](../functions/src/api/ludus-router.ts) — Single HTTP entry point for Firebase Hosting's "/api/**" rewrite.
+- [functions/src/api/sku-validator.ts](../functions/src/api/sku-validator.ts) — SKU validator against simony (HLD F5, DEF-021; CLAUDE.md TABOO 0.35
+- [functions/src/index.ts](../functions/src/index.ts) — index.ts — Cloud Functions Entry Point
+- [functions/src/middleware/auth.ts](../functions/src/middleware/auth.ts) — auth.ts — JWT & Firebase Auth Middleware
+- [functions/src/middleware/rateLimit.ts](../functions/src/middleware/rateLimit.ts) — Rate limiting via Firestore document counters.
+- [functions/src/schemas/ludusTypes.ts](../functions/src/schemas/ludusTypes.ts) — ludusTypes.ts — Firestore schema TypeScript interfaces for Ludus game
+- [functions/src/scripts/mirrorSync.ts](../functions/src/scripts/mirrorSync.ts) — Copies the ludus_* Firestore collections into the SQLite hot mirror
+- [functions/src/scripts/seedComprehensiveTestData.ts](../functions/src/scripts/seedComprehensiveTestData.ts) — Comprehensive Test Data Seeding Script
+- [functions/src/scripts/seedDemiurgeData.ts](../functions/src/scripts/seedDemiurgeData.ts) — seedDemiurgeData.ts — Initialize Firestore with Demiurge graph seed data
+- [functions/src/scripts/seedDialogueData.ts](../functions/src/scripts/seedDialogueData.ts) — Seed Dialogue Data Script
+- [functions/src/scripts/seedNpcDialogues24.ts](../functions/src/scripts/seedNpcDialogues24.ts) — Seed the 24 NPC dialogue trees of the chorus of 12 editors
+- [functions/src/server.ts](../functions/src/server.ts) — Own backend 3.0: the same /api/ludus/** routes as the Cloud Function
+- [functions/src/store/firestore-store.ts](../functions/src/store/firestore-store.ts) — Firestore implementation of the storage seam.
+- [functions/src/store/sqlite-store.ts](../functions/src/store/sqlite-store.ts) — SQLite hot mirror of the ludus_* Firestore collections.
+- [functions/src/store/store.ts](../functions/src/store/store.ts) — Storage seam of the Ludus backend (version 3.0, phase P2 of
+- [functions/src/tests/api/ludus-actions.integration.test.ts](../functions/src/tests/api/ludus-actions.integration.test.ts) — The actions endpoint against the Firestore emulator: an operation is
+- [functions/src/tests/api/ludus-actions.test.ts](../functions/src/tests/api/ludus-actions.test.ts) — Server-side ACTION layer.  applyOp is pure, so these tests need no
+- [functions/src/tests/api/ludus-dialogue.integration.test.ts](../functions/src/tests/api/ludus-dialogue.integration.test.ts) — Ludus Dialogue API Integration Tests
+- [functions/src/tests/api/ludus-router.test.ts](../functions/src/tests/api/ludus-router.test.ts) — Router tests.  The handlers are mocked: this suite checks only that a
+- [functions/src/tests/api/server.test.ts](../functions/src/tests/api/server.test.ts) — The container server (backend 3.0, P1) answers over real HTTP and
+- [functions/src/tests/api/sku-validator.test.ts](../functions/src/tests/api/sku-validator.test.ts) — The SKU validator refuses simony and pay-to-win (TABOO 0.35 rule 16).
+- [functions/src/tests/api/store-mirror.test.ts](../functions/src/tests/api/store-mirror.test.ts) — Storage seam, phase P2 of
+- [functions/src/utils/logger.ts](../functions/src/utils/logger.ts) — Ludus Logging Utility
+
+## Тесты веба (node --test) (27)
+
+- [tests/campaign-spine.test.js](../tests/campaign-spine.test.js) — The Issyk-Kul campaign spine (HLD F1, DEF-018), built read-only from
+- [tests/church-words.test.js](../tests/church-words.test.js) — The church-word stop-list: one file, one verdict.  The web copy is the
+- [tests/dive-atlas.test.js](../tests/dive-atlas.test.js) — The Water Atlas and the own drawings in the web dive
+- [tests/dive-biomes.test.js](../tests/dive-biomes.test.js) — Biomes, bubble columns and the thermocline heard in the dive
+- [tests/dive-core.test.js](../tests/dive-core.test.js) — The dive scene's rules (public/ludus/dive/dive-core.js): every lake
+- [tests/godot-confession-sheet.test.js](../tests/godot-confession-sheet.test.js) — The headset sheet (godot/scripts/confession_sheet.gd) asks the same
+- [tests/ludus-actions.test.js](../tests/ludus-actions.test.js) — Tests for the ACTION layer and the three-part gate check
+- [tests/ludus-antagonist-factory.test.js](../tests/ludus-antagonist-factory.test.js) — AntagonistFactory (CLAUDE.md TABOO 0.3 rules 49-60, 95): the queue,
+- [tests/ludus-audio-parity.test.js](../tests/ludus-audio-parity.test.js) — The headset's sound (godot/scripts/audio) is a port of the JS sacred
+- [tests/ludus-confession.test.js](../tests/ludus-confession.test.js) — Static guarantees behind the confession-privacy declaration
+- [tests/ludus-f10-water-bells.test.js](../tests/ludus-f10-water-bells.test.js) — HLD F10 (CH24-24): the web build agrees with the water model and the
+- [tests/ludus-glas.test.js](../tests/ludus-glas.test.js) — The tone of the week (Octoechos) and its ison (TABOO 0.35 rule 10).
+- [tests/ludus-journal.test.js](../tests/ludus-journal.test.js) — The exported journal: the player's own record, no secret count, no
+- [tests/ludus-lake-view.test.js](../tests/ludus-lake-view.test.js) — The view from the ROV: deterministic, fish only in their depth range,
+- [tests/ludus-liturgical-clock.test.js](../tests/ludus-liturgical-clock.test.js) — The liturgical clock (HLD F1, DEF-010/019): Paschalion, the day
+- [tests/ludus-missions.test.js](../tests/ludus-missions.test.js) — Playable missions and gate thresholds (ludus-missions.js,
+- [tests/ludus-outbox.test.js](../tests/ludus-outbox.test.js) — The outbox keeps rule acts while offline and sends them in order
+- [tests/ludus-passion.test.js](../tests/ludus-passion.test.js) — Meeting a passion (HLD F1, DEF-016/017): the ladder of a thought from
+- [tests/ludus-place-deeds.test.js](../tests/ludus-place-deeds.test.js) — The 26 acts of the place hearts on the web page play the headset's own
+- [tests/ludus-rest.test.js](../tests/ludus-rest.test.js) — A word to rest: deterministic, gentle, and stored nowhere (TABOO 0.35
+- [tests/ludus-water.test.js](../tests/ludus-water.test.js) — Water physics (TABOO 0.35 rule 19): the numbers a diver would check.
+- [tests/rights-manifest.test.js](../tests/rights-manifest.test.js) — The Manuscript of rights lists every shipped raw object (TABOO 0.1:
+- [tests/room-tone.test.js](../tests/room-tone.test.js) — Stillness is a mixer state, never digital zero (CLAUDE.md TABOO 0.35
+- [tests/rope-breath.test.js](../tests/rope-breath.test.js) — The prayer rope of the headset keeps the pace of the breath
+- [tests/sacraments-vr.test.js](../tests/sacraments-vr.test.js) — Guarantees for the seven sacrament scenes (docs/SACRAMENTS_VR_SCENES.md,
+- [tests/source-labels.test.js](../tests/source-labels.test.js) — Russian labels of the campaign's sources (data/source-labels-ru.json,
+- [tests/valley-portraits.test.js](../tests/valley-portraits.test.js) — Every person of the valley drawn by ludus-game.js has a portrait.
+
+## Документы решений (3)
+
+- [docs/decisions/ENGINE_BUILD_2026-10-02.md](../docs/decisions/ENGINE_BUILD_2026-10-02.md) 📄 — Решение: движок шлема без лишних библиотек — одна сборка из честного пула по 48 параметрам (2026-10-02)
+- [docs/decisions/SIZE_STRATEGIES_7_2026-10-02.md](../docs/decisions/SIZE_STRATEGIES_7_2026-10-02.md) 📄 — Решение: семь способов уложить игру в шлем — по опыту других разработчиков и 48 параметрам проекта (2026-10-02)
+- [docs/decisions/STOPLIST_SINGLE_SOURCE_2026-10-02.md](../docs/decisions/STOPLIST_SINGLE_SOURCE_2026-10-02.md) 📄 — Решение: стоп-лист церковных слов — один источник (2026-10-02)
+
+## МД-ревью ревизора лимитов APK (19)
+
+- [docs/review/REVIEW_INSIGHTS_2026-10-03.md](../docs/review/REVIEW_INSIGHTS_2026-10-03.md) 📄 — Ревью кадров 12 инсайтов, серия 1 — 2026-10-03
+- [docs/review/REVIEW_INTRO_2026-10-03.md](../docs/review/REVIEW_INTRO_2026-10-03.md) 📄 — Заставка «Ранее в „Атласе воды“» — до и после (2026-10-03)
+- [docs/review/REVIEW_INTRO_CHORUS_2026-10-03.md](../docs/review/REVIEW_INTRO_CHORUS_2026-10-03.md) 📄 — Вердикт
+- [docs/review/МД_РЕВЬЮ_APK_КЕЛЬЯ_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_КЕЛЬЯ_2026-09-30.md) 📄 — МД-ревью APK, Ф1: келья вечернего дозора с предметами обители
+- [docs/review/МД_РЕВЬЮ_APK_ЛЮДИ_СЮЖЕТОВ_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_ЛЮДИ_СЮЖЕТОВ_2026-10-02.md) 📄 — МД-ревью — люди 12 сюжетов (2026-10-02)
+- [docs/review/МД_РЕВЬЮ_APK_РЕКВИЗИТ_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_РЕКВИЗИТ_2026-09-30.md) 📄 — МД-ревью APK, Ф1: склад реквизита (ТАБУ №0.012)
+- [docs/review/МД_РЕВЬЮ_APK_СВИДЕТЕЛЬ_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_СВИДЕТЕЛЬ_2026-09-30.md) 📄 — МД-ревью APK: пакетирование тропы свидетеля
+- [docs/review/МД_РЕВЬЮ_APK_Ф10_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_Ф10_2026-10-02.md) 📄 — МД-ревью Ф10 (2026-10-02): видео осмотра, голос рассказчика, пакет closeups-ep1
+- [docs/review/МД_РЕВЬЮ_APK_Ф11_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_Ф11_2026-10-02.md) 📄 — МД-ревью Ф11 — инсайты-флешбеки пилота (2026-10-02)
+- [docs/review/МД_РЕВЬЮ_APK_Ф12_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_Ф12_2026-10-02.md) 📄 — МД-ревью Ф12 — инсайты v2, аппараты оператора, контракт «Акула», замки «три в ряд» (2026-10-02)
+- [docs/review/МД_РЕВЬЮ_APK_Ф13_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_Ф13_2026-10-02.md) 📄 — МД-ревью Ф13 (2026-10-02)
+- [docs/review/МД_РЕВЬЮ_APK_Ф1_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_Ф1_2026-09-30.md) 📄 — МД-ревью APK, Ф1: сборка шлема на ветке PR 13 и «+20 книг»
+- [docs/review/МД_РЕВЬЮ_APK_Ф2_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_Ф2_2026-09-30.md) 📄 — МД-ревью APK, Ф2: вызовы отрисовки хаба (Б-1)
+- [docs/review/МД_РЕВЬЮ_APK_Ф4_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_Ф4_2026-09-30.md) 📄 — МД-ревью APK Ф4 — вещи 99 мест и исправления по ревью (2026-09-30)
+- [docs/review/МД_РЕВЬЮ_APK_Ф5_2026-10-01.md](../docs/review/МД_РЕВЬЮ_APK_Ф5_2026-10-01.md) 📄 — МД-ревью APK Ф5 — рыбы DEF-056 своим рисунком, трек C (2026-10-01)
+- [docs/review/МД_РЕВЬЮ_APK_Ф6_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_Ф6_2026-10-02.md) 📄 — МД-ревью Ф6 — 12 сюжетов, подгрузка модулей, единый стоп-лист (2026-10-02)
+- [docs/review/МД_РЕВЬЮ_APK_Ф7_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_Ф7_2026-10-02.md) 📄 — МД-ревью Ф7 — люди 12 сюжетов, ограниченные ожидания замера, ключ подписи (2026-10-02)
+- [docs/review/МД_РЕВЬЮ_APK_Ф8_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_Ф8_2026-10-02.md) 📄 — МД-ревью Ф8 (2026-10-02): пилот «Табу», фазы P1–P2 `docs/HLD_20MB_PILOT_2026-10-02.md`
+- [docs/review/МД_РЕВЬЮ_APK_Ф9_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_Ф9_2026-10-02.md) 📄 — МД-ревью Ф9 (2026-10-02): пилот — комната, 55 деталей, гравитация, Pandora V1, очки и пререндер, подкачка пакетов
+
+## Документы по ГОСТ (2)
+
+- [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
+- [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
+
+## Документация проекта (195)
+
+- [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
+- [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
+- [docs/BLINDSPOTS_AUDIT_2026-09-29.md](../docs/BLINDSPOTS_AUDIT_2026-09-29.md) 📄 — Аудит слепых зон: графика, звук, интерфейс — 2026-09-29
+- [docs/BLINDSPOTS_AUDIT_2026-09-30.md](../docs/BLINDSPOTS_AUDIT_2026-09-30.md) 📄 — Аудит слепых зон, 2026-09-30 03:00 UTC (ТАБУ №0.6)
+- [docs/BLINDSPOTS_AUDIT_2026-10-03.md](../docs/BLINDSPOTS_AUDIT_2026-10-03.md) 📄 — Аудит под нагрузкой, 2026-10-03 (ТАБУ №0.6)
+- [docs/BLINDSPOTS_AUDIT_2026-10-03_CHORUS24.md](../docs/BLINDSPOTS_AUDIT_2026-10-03_CHORUS24.md) 📄 — Слепые зоны: хор 24 выпускающих редакторов и гуру геймдева, 2026-10-03
+- [docs/BLINDSPOTS_CODE_BREAKTHROUGH_2026-10-01.md](../docs/BLINDSPOTS_CODE_BREAKTHROUGH_2026-10-01.md) 📄 — Слепые зоны: где код даст прорыв (2026-10-01)
+- [docs/BREAKTHROUGHS_5_2026-09-30.md](../docs/BREAKTHROUGHS_5_2026-09-30.md) 📄 — Пять направлений прорыва — хор гуру игр, 2026-09-30
+- [docs/CHORUS_DECISIONS_PHASE3.md](../docs/CHORUS_DECISIONS_PHASE3.md) 📄 — Chorus Decision Framework — Phase 3 Critical Decisions
+- [docs/CHORUS_LUST_2026-09-30.md](../docs/CHORUS_LUST_2026-09-30.md) 📄 — Хор 12 редакторов: образ страсти блуда (2026-09-30)
+- [docs/CONFESSION_PRIVACY_DECLARATION.md](../docs/CONFESSION_PRIVACY_DECLARATION.md) 📄 — Декларация: подготовка к исповеди — логи уничтожаются
+- [docs/DEFICITS_99_2026-09-29.md](../docs/DEFICITS_99_2026-09-29.md) 📄 — Дефициты игры — хор 12 гуру (2026-09-29)
+- [docs/DEMIURGE_ARCHITECTURE.md](../docs/DEMIURGE_ARCHITECTURE.md) 📄 — Ludus Demiurge Engine — Graph-Based World Simulator
+- [docs/GAME_TAB_INTEGRATION.md](../docs/GAME_TAB_INTEGRATION.md) 📄 — Ludus Game Tab Integration (U1)
+- [docs/HLD_12_STORIES_HEADSET_2026-10-02.md](../docs/HLD_12_STORIES_HEADSET_2026-10-02.md) 📄 — HLD — 12 сюжетов для шлема, подгрузка модулей, прорыв по слепым зонам (2026-10-02)
+- [docs/HLD_20MB_PILOT_2026-10-02.md](../docs/HLD_20MB_PILOT_2026-10-02.md) 📄 — HLD: 20 МБ прорыва — пилот «Табу» в шлем (2026-10-02)
+- [docs/HLD_APK_GRAPHICS_SOUND_2026-10-01.md](../docs/HLD_APK_GRAPHICS_SOUND_2026-10-01.md) 📄 — HLD: графика и звук APK — пять треков (2026-10-01)
+- [docs/HLD_APK_PRIORITY_2026-09-30.md](../docs/HLD_APK_PRIORITY_2026-09-30.md) 📄 — HLD: сборка APK для шлема — приоритет, каждая задача дополняет APK
+- [docs/HLD_APPARATUS_IN_GAME_2026-10-02.md](../docs/HLD_APPARATUS_IN_GAME_2026-10-02.md) 📄 — HLD: аппараты и репо оператора в игре — видео на роботе и на поверхности (2026-10-02)
+- [docs/HLD_ATLAS_OF_WATER_2026-09-30.md](../docs/HLD_ATLAS_OF_WATER_2026-09-30.md) 📄 — HLD: «Атлас воды» — сквозной сюжет, хор пяти, в шлеме
+- [docs/HLD_ATLAS_TRACES_2026-09-30.md](../docs/HLD_ATLAS_TRACES_2026-09-30.md) 📄 — HLD: «Атлас воды» S4 — следы рыцаря на дне, летопись, хачкар
+- [docs/HLD_AUDIO_299_2026-09-30.md](../docs/HLD_AUDIO_299_2026-09-30.md) 📄 — HLD: звуки из 99 репо — спектральные эталоны по трём параметрам
+- [docs/HLD_BELL_RULES_TYPIKON_2026-09-30.md](../docs/HLD_BELL_RULES_TYPIKON_2026-09-30.md) 📄 — HLD: устав звона из Типикона и книги о колоколе (веб и шлем)
+- [docs/HLD_BROTHERHOOD_CHAT_2026-10-03.md](../docs/HLD_BROTHERHOOD_CHAT_2026-10-03.md) 📄 — HLD: чат внутри Братства — командный, как в Counter-Strike (2026-10-03)
+- [docs/HLD_CHORUS24_FIXES_2026-10-03.md](../docs/HLD_CHORUS24_FIXES_2026-10-03.md) 📄 — HLD: доработка по слепым зонам хора 24 (2026-10-03)
+- [docs/HLD_COMPANION_CLAUD_2026-10-03.md](../docs/HLD_COMPANION_CLAUD_2026-10-03.md) 📄 — HLD: ИИ-напарник «Клауд» — голос в гарнитуре оператора ROV (2026-10-03)
+- [docs/HLD_CONTRACT_AKULA_2026-10-02.md](../docs/HLD_CONTRACT_AKULA_2026-10-02.md) 📄 — HLD: контракт «Акула Иссык-Куля» — поймать Мега-щуку (2026-10-02)
+- [docs/HLD_COSMIC_MUSIC_ENTELECHY_2026-10-02.md](../docs/HLD_COSMIC_MUSIC_ENTELECHY_2026-10-02.md) 📄 — HLD: сюита «Наука. Любовь. Познание.» и Энтелехия-99 в Конституции (2026-10-02)
+- [docs/HLD_DEEDS_WEB_PARITY_2026-10-02.md](../docs/HLD_DEEDS_WEB_PARITY_2026-10-02.md) 📄 — HLD — паритет 26 дел мест: шлем и веб (2026-10-02)
+- [docs/HLD_DESTINY_BRANCHES_FINALES_2026-10-02.md](../docs/HLD_DESTINY_BRANCHES_FINALES_2026-10-02.md) 📄 — HLD: «лут» — ветки развития персонажа и семь финалов «ближе к раю или ближе к аду» (2026-10-02)
+- [docs/HLD_DIVE_BIOMES_BUBBLES_2026-09-30.md](../docs/HLD_DIVE_BIOMES_BUBBLES_2026-09-30.md) 📄 — HLD: пять подводных биомов, пузырьковые столбы в ритме дыхания, термоклин видим и слышим
+- [docs/HLD_ENGINE_BUILD_2026-10-02.md](../docs/HLD_ENGINE_BUILD_2026-10-02.md) 📄 — HLD — свой шаблон движка Godot для шлема: без лишних библиотек (2026-10-02)
+- [docs/HLD_EVENING_WATCH_ROPE_2026-09-30.md](../docs/HLD_EVENING_WATCH_ROPE_2026-09-30.md) 📄 — HLD: вечерний дозор над помыслами и вервица-метроном дыхания — в APK
+- [docs/HLD_F12_INSIGHTS_APPARATUS_AKULA_2026-10-02.md](../docs/HLD_F12_INSIGHTS_APPARATUS_AKULA_2026-10-02.md) 📄 — HLD Ф12: инсайты-флешбеки, аппараты оператора, контракт «Акула Иссык-Куля» (2026-10-02)
+- [docs/HLD_FISH_OWN_DRAWING_2026-09-30.md](../docs/HLD_FISH_OWN_DRAWING_2026-09-30.md) 📄 — HLD: DEF-056 — рыбы Иссык-Куля собственным рисунком (трек C, 2026-09-30)
+- [docs/HLD_FOLLOWUPS_2026-09-30.md](../docs/HLD_FOLLOWUPS_2026-09-30.md) 📄 — HLD: доделки после PR 10 — от Pages до хаба и звука в шлеме
+- [docs/HLD_HEADSET_BUILD_2026-09-30.md](../docs/HLD_HEADSET_BUILD_2026-09-30.md) 📄 — HLD: сборка для шлема — Godot 4, сцена погружения первой
+- [docs/HLD_IMPLEMENTATION_F1_F5_2026-09-29.md](../docs/HLD_IMPLEMENTATION_F1_F5_2026-09-29.md) 📄 — HLD внедрения по фазам F1–F5 (Конституция, сюжеты, вердикты Архитектурного Собора)
+- [docs/HLD_INSIGHTS_FLASHBACKS_2026-10-02.md](../docs/HLD_INSIGHTS_FLASHBACKS_2026-10-02.md) 📄 — HLD: инсайты и флешбеки — память эпох, которую вызывает место, порядок, время и тело (2026-10-02)
+- [docs/HLD_JOURNAL_CONFESSION_APK_2026-09-30.md](../docs/HLD_JOURNAL_CONFESSION_APK_2026-09-30.md) 📄 — HLD: журнал пути и листок подготовки в шлеме (Godot)
+- [docs/HLD_L3_PLACE_DEEDS_2026-10-01.md](../docs/HLD_L3_PLACE_DEEDS_2026-10-01.md) 📄 — HLD — L3: логика 26 сердец мест (2026-10-01)
+- [docs/HLD_LAKE_99_DETAILS_2026-09-30.md](../docs/HLD_LAKE_99_DETAILS_2026-09-30.md) 📄 — HLD: мелкие детали 99 объектов озера и пять следов рыцаря (2026-09-30)
+- [docs/HLD_LOCATIONS_99_2026-09-30.md](../docs/HLD_LOCATIONS_99_2026-09-30.md) 📄 — HLD: 99 локаций по нашим сюжетам — основание (2026-09-30)
+- [docs/HLD_LOCATION_ITEMS_2026-09-30.md](../docs/HLD_LOCATION_ITEMS_2026-09-30.md) 📄 — HLD: вещи 99 локаций из 99 склонированных репо — трек B (2026-09-30)
+- [docs/HLD_LOCK_MATCH3_2026-10-02.md](../docs/HLD_LOCK_MATCH3_2026-10-02.md) 📄 — HLD: вскрытие сейфов, кодовых замков и сервера аппарата — казуальная головоломка «три в ряд» (2026-10-02)
+- [docs/HLD_MANGUSTIK_COCKPIT_2026-09-30.md](../docs/HLD_MANGUSTIK_COCKPIT_2026-09-30.md) 📄 — HLD: кокпит и аппарат «Мангустик» в погружении
+- [docs/HLD_MISSIONS_APK_2026-09-30.md](../docs/HLD_MISSIONS_APK_2026-09-30.md) 📄 — HLD: кампания миссий — в APK (доска дороги во дворе)
+- [docs/HLD_OBB_FORECAST_2026-10-02.md](../docs/HLD_OBB_FORECAST_2026-10-02.md) 📄 — HLD — прогноз веса сборки и технология пакета расширения OBB (2026-10-02)
+- [docs/HLD_OBITEL_OBJECTS_2026-09-30.md](../docs/HLD_OBITEL_OBJECTS_2026-09-30.md) 📄 — HLD: вещи обители в хабе шлема — отбор из прокси по ТАБУ №0.07 (2026-09-30)
+- [docs/HLD_PACKS_STREAM_2026-10-02.md](../docs/HLD_PACKS_STREAM_2026-10-02.md) 📄 — HLD: малая установка и подкачка — «жёсткий диск» 128 МиБ и «CD» по сети (2026-10-02)
+- [docs/HLD_PANDORA_SURPASS_2026-10-02.md](../docs/HLD_PANDORA_SURPASS_2026-10-02.md) 📄 — HLD: превзойти The Pandora Directive (1996) — первая серия «Табу» (2026-10-02)
+- [docs/HLD_PILOT_DETAILS_55_2026-10-02.md](../docs/HLD_PILOT_DETAILS_55_2026-10-02.md) 📄 — HLD: 55 деталей пилота «Табу», комната оператора и интерьер страха (2026-10-02)
+- [docs/HLD_POSOH_HYDROPHONE_2026-09-30.md](../docs/HLD_POSOH_HYDROPHONE_2026-09-30.md) 📄 — HLD: гидрофон оператора (posoh «модель 1») на «Мангустике»
+- [docs/HLD_PROPS_STORE_2026-09-30.md](../docs/HLD_PROPS_STORE_2026-09-30.md) 📄 — HLD: склад реквизита — раннер берёт всё, даже не игровое (2026-09-30)
+- [docs/HLD_RZHEVSKY_SERIES2_2026-10-03.md](../docs/HLD_RZHEVSKY_SERIES2_2026-10-03.md) 📄 — HLD: серия 2 «Ржевский и Ложа Трёх Циркулей» (2026-10-03)
+- [docs/HLD_RZHEVSKY_VS_ORDER_2026-10-03.md](../docs/HLD_RZHEVSKY_VS_ORDER_2026-10-03.md) 📄 — HLD: «Поручик Ржевский против Ордена» — юморной квест XIX века, 2D-стиль → 3D (версия 0.2, 2026-10-03, репозиторий ludus)
+- [docs/HLD_SOURCE_LABELS_RU_2026-09-30.md](../docs/HLD_SOURCE_LABELS_RU_2026-09-30.md) 📄 — HLD: русские подписи источников в миссиях (2026-09-30)
+- [docs/HLD_STORY_12_CHARACTERS_2026-10-02.md](../docs/HLD_STORY_12_CHARACTERS_2026-10-02.md) 📄 — HLD — люди 12 сюжетов в шлеме (2026-10-02)
+- [docs/HLD_SWAP_RENDERING_2026-10-02.md](../docs/HLD_SWAP_RENDERING_2026-10-02.md) 📄 — HLD: подмена при осмотре (Swap Rendering) — «очки героя» (2026-10-02)
+- [docs/HLD_TETHER_TRIALS_PASSIONS_2026-09-30.md](../docs/HLD_TETHER_TRIALS_PASSIONS_2026-09-30.md) 📄 — HLD: трос, пороги врат и страсти — в APK
+- [docs/HLD_TRIALS_LADDER_2026-10-03.md](../docs/HLD_TRIALS_LADDER_2026-10-03.md) 📄 — HLD: пороги врат, падение и лестница (F9 хора 24, 2026-10-03)
+- [docs/HLD_VIDEO_TECH_2026-10-02.md](../docs/HLD_VIDEO_TECH_2026-10-02.md) 📄 — HLD: видео в шлеме — что делают другие, что делаем мы, как улучшать по фазам (2026-10-02)
+- [docs/HLD_VOLUMETRIC_LASER_SCREEN_2026-10-03.md](../docs/HLD_VOLUMETRIC_LASER_SCREEN_2026-10-03.md) 📄 — HLD: объёмный лазерный экран в облаке микропузырьков под водой (2026-10-03)
+- [docs/HLD_WEB_DIVE_ATLAS_2026-09-30.md](../docs/HLD_WEB_DIVE_ATLAS_2026-09-30.md) 📄 — HLD: «Атлас воды» и свои рисунки берега в веб-погружении (2026-09-30)
+- [docs/HLD_WITNESS_SOUND_2026-09-30.md](../docs/HLD_WITNESS_SOUND_2026-09-30.md) 📄 — HLD: исон и колокол на тропе свидетеля (шлем, Godot)
+- [docs/HLD_WOW_ESCALATION_2026-10-03.md](../docs/HLD_WOW_ESCALATION_2026-10-03.md) 📄 — HLD: нарастающая кривая вау в пилоте (2026-10-03)
+- [docs/IMPROVEMENTS_99_2026-09-29.md](../docs/IMPROVEMENTS_99_2026-09-29.md) 📄 — 99 улучшений игры — хор 12 гуру (2026-09-29)
+- [docs/INSTALL_GODOT_AND_HEADSET_TESTING.md](../docs/INSTALL_GODOT_AND_HEADSET_TESTING.md) 📄 — Godot для Ludus: как он стоит у Claude и как поставить его оператору для тестов со шлемом
+- [docs/INTEGRATION_TEST_SCENARIOS.md](../docs/INTEGRATION_TEST_SCENARIOS.md) 📄 — Integration Test Scenarios & Coverage Matrix
+- [docs/ISSYK_KUL_FISH.md](../docs/ISSYK_KUL_FISH.md) 📄 — Рыбы и реальный мир Иссык-Куля: список видов, источники, что сверить с ихтиологом
+- [docs/LAKE_OBJECTS_99.md](../docs/LAKE_OBJECTS_99.md) 📄 — 99 objects of the lake and the pool they came from
+- [docs/LOCATIONS_99_SELECTION_2026-09-30.md](../docs/LOCATIONS_99_SELECTION_2026-09-30.md) 📄 — 99 локаций по нашим сюжетам: из N — K (ТАБУ №0.013, №0.07)
+- [docs/LOOP_PROGRESS_2026-09-29.md](../docs/LOOP_PROGRESS_2026-09-29.md) 📄 — Журнал циклов (до 99): HLD F1–F5, матрица, списки, промты
+- [docs/LUDUS_ROV_META_INTEGRATION.md](../docs/LUDUS_ROV_META_INTEGRATION.md) 📄 — Ludus ROV Meta Integration — Complete System Architecture
+- [docs/NPC_DIALOGUES_24_CHORUS.md](../docs/NPC_DIALOGUES_24_CHORUS.md) 📄 — Диалоги 24 NPC — хор 12 редакторов-гуру (ТАБУ №0.37, №0.39)
+- [docs/NPC_DIALOGUE_SYSTEM.md](../docs/NPC_DIALOGUE_SYSTEM.md) 📄 — Ludus NPC Dialogue System — AI Conversations & Character Interactions
+- [docs/OBITEL_OBJECTS_SELECTION_2026-09-30.md](../docs/OBITEL_OBJECTS_SELECTION_2026-09-30.md) 📄 — Объекты обители в шлеме: из N — K (ТАБУ №0.07)
+- [docs/OBJECT_SELECTION_TECHNOLOGY.md](../docs/OBJECT_SELECTION_TECHNOLOGY.md) 📄 — Технология отбора объектов: «из N лучших — K, без выдумки»
+- [docs/OPERATOR_DEBT_2026-10-02.md](../docs/OPERATOR_DEBT_2026-10-02.md) 📄 — Долг оператора — что ждёт решения или действия оператора (2026-10-02)
+- [docs/OPERATOR_LISTS_REWRITTEN_2026-09-29.md](../docs/OPERATOR_LISTS_REWRITTEN_2026-09-29.md) 📄 — Списки оператора, переписанные хором 5 редакторов под Конституцию (2026-09-29)
+- [docs/PATENT_CLAIMS_OBJECTS_1070.md](../docs/PATENT_CLAIMS_OBJECTS_1070.md) 📄 — Формулы на игровые объекты (1070 черновиков)
+- [docs/PATENT_FORMULA_RAW_ASSET_PIPELINE.md](../docs/PATENT_FORMULA_RAW_ASSET_PIPELINE.md) 📄 — Формула изобретения: способ переработки графического сырья для игры
+- [docs/PERFORMANCE_PROFILING_BASELINE.md](../docs/PERFORMANCE_PROFILING_BASELINE.md) 📄 — Performance Profiling Baseline & Targets
+- [docs/PHASE4_PLANNING_CHORUS.md](../docs/PHASE4_PLANNING_CHORUS.md) 📄 — Phase 4-5 Planning — Chorus Decisions for P2 Gaps
+- [docs/PHASE6_FSM_13STATES.md](../docs/PHASE6_FSM_13STATES.md) 📄 — Phase 6: Extended Dive State Machine (13 Operational States)
+- [docs/PHASE_3_OVERVIEW.md](../docs/PHASE_3_OVERVIEW.md) 📄 — Phase 3: Testing & Deployment Overview
+- [docs/PHASE_3_QUICK_START.md](../docs/PHASE_3_QUICK_START.md) 📄 — Phase 3: Quick Start Guide
+- [docs/PRIVACY_POLICY_DRAFT.md](../docs/PRIVACY_POLICY_DRAFT.md) 📄 — Ludus — политика приватности (черновик для Meta Store, Д-21)
+- [docs/PROMPTS_1070_2026-09-29.md](../docs/PROMPTS_1070_2026-09-29.md) 📄 — Промты на создание недостающего — 1070 записей (2026-09-29)
+- [docs/RAW_AUDIO_299_2026-09-30.md](../docs/RAW_AUDIO_299_2026-09-30.md) 📄 — RAW_AUDIO_299 — звуки из 99 репо как спектральные эталоны (2026-09-30)
+- [docs/RAW_D6_HLD_2026-09-30.md](../docs/RAW_D6_HLD_2026-09-30.md) 📄 — HLD: раннер дефицитов по 99 репо и D6 — собственный рисунок нейтральных слотов (2026-09-30)
+- [docs/RAW_RUNNER_ROUNDS.md](../docs/RAW_RUNNER_ROUNDS.md) 📄 — Deficit runner: rounds of one full turn
+- [docs/RESULTS_2026-09-29.md](../docs/RESULTS_2026-09-29.md) 📄 — Результаты 2026-09-29 — сводка для оператора (до коммита в документацию)
+- [docs/ROADMAP_99_CALIBRATION_2026-10-02.md](../docs/ROADMAP_99_CALIBRATION_2026-10-02.md) 📄 — Дорожная карта 99 шагов: «Калибровка акустической матрицы» — головоломка пространственной связи элементов (2026-10-02)
+- [docs/ROV_LAKE_FRONTEND_INTEGRATION.md](../docs/ROV_LAKE_FRONTEND_INTEGRATION.md) 📄 — ROV Lake Tab — Ludus Frontend Integration
+- [docs/RZHEVSKY_REPOS_AND_DIALOGUE_2026-10-03.md](../docs/RZHEVSKY_REPOS_AND_DIALOGUE_2026-10-03.md) 📄 — Ржевский против Ордена: какие репозитории дал оператор, что сделано, переписка (2026-10-03)
+- [docs/RZHEVSKY_RESEARCH_2026-10-03.md](../docs/RZHEVSKY_RESEARCH_2026-10-03.md) 📄 — Квесты, движки, 3D и сценарий «второй серии» — исследование
+- [docs/SACRAMENTS_VR_SCENES.md](../docs/SACRAMENTS_VR_SCENES.md) 📄 — Семь таинств в VR-сцене: свидетель, а не участник
+- [docs/SOUND_DESIGN_SYSTEM.md](../docs/SOUND_DESIGN_SYSTEM.md) 📄 — Ludus Sound Design System — Beautiful Orchestral & Choir Audio
+- [docs/SOUND_THEOLOGY_RULES.md](../docs/SOUND_THEOLOGY_RULES.md) 📄 — Sound Theology Rules
+- [docs/STORYLINES_99_ASSET_MATRIX.md](../docs/STORYLINES_99_ASSET_MATRIX.md) 📄 — 99 сюжетных линий → графика, сценарий, реплики, объекты, box, звук (2026-09-29)
+- [docs/STORY_12_CHARACTERS_2026-10-02.md](../docs/STORY_12_CHARACTERS_2026-10-02.md) 📄 — Люди 12 сюжетов — перепись (2026-10-02)
+- [docs/STORY_12_HEADSET_TEST_2026-10-02.md](../docs/STORY_12_HEADSET_TEST_2026-10-02.md) 📄 — Проверка 12 сюжетов в Quest 3 — инструкция оператору (2026-10-02)
+- [docs/STORY_12_SELECTION_2026-10-02.md](../docs/STORY_12_SELECTION_2026-10-02.md) 📄 — Отбор 12 сюжетов для шлема (2026-10-02)
+- [docs/TECHNOLOGIES.md](../docs/TECHNOLOGIES.md) 📄 — Технологии Ludus — реестр
+- [docs/TECH_INSIGHT_RENDER_144_2026-10-03.md](../docs/TECH_INSIGHT_RENDER_144_2026-10-03.md) 📄 — Технология 144 рендеров инсайтов — ветки развития игры (2026-10-03)
+- [docs/UI_UX_POLISH_COMPLETE.md](../docs/UI_UX_POLISH_COMPLETE.md) 📄 — Ludus UI/UX Polish Complete — Production-Ready Design System
+- [docs/VR_JOYSTICK_DIVECOMPUTER_CONTROL.md](../docs/VR_JOYSTICK_DIVECOMPUTER_CONTROL.md) 📄 — VR Joystick & ROV DiveComputer Control — Meta Quest 3 Integration
+- [docs/VR_SCENE_MIGRATION.md](../docs/VR_SCENE_MIGRATION.md) 📄 — VR scene migration: webtypicon2 `public/game/vr*` → ludus `public/vr/`
+- [docs/audit/2026-09-30/sound-loudness.md](../docs/audit/2026-09-30/sound-loudness.md) 📄 — Звук погружения в Godot: замер громкости (HLD_FOLLOWUPS D5)
+- [docs/hld-fragments/README.md](../docs/hld-fragments/README.md) 📄 — HLD fragments (moved from the repository root, 2026-09-29)
+- [docs/hld-fragments/fragment-01.txt](../docs/hld-fragments/fragment-01.txt) 📄 — 5.3 Event system
+- [docs/hld-fragments/fragment-02.txt](../docs/hld-fragments/fragment-02.txt) 📄 — 4.2 Water column & thermocline
+- [docs/hld-fragments/fragment-03.txt](../docs/hld-fragments/fragment-03.txt) 📄 — 5. Interfaces to later phases
+- [docs/hld-fragments/fragment-04.txt](../docs/hld-fragments/fragment-04.txt) 📄 — 5. СЕРВЕРНАЯ АРХИТЕКТУРА И БЕЗОПАСНОСТЬ
+- [docs/hld-fragments/fragment-05.txt](../docs/hld-fragments/fragment-05.txt) 📄 — 6.3 Filtering, not raw differences
+- [docs/hld-fragments/fragment-06.txt](../docs/hld-fragments/fragment-06.txt) 📄 — 5.10 Scene setup checklist
+- [docs/hld-fragments/fragment-07.txt](../docs/hld-fragments/fragment-07.txt) 📄 — 5. Phase 3 — Interactive Cockpit (Event System)
+- [docs/hld-fragments/fragment-08.txt](../docs/hld-fragments/fragment-08.txt) 📄 — 4. МОДЕЛЬ ДАННЫХ (Profile, schemaVersion = 1)
+- [docs/hld-fragments/fragment-09.txt](../docs/hld-fragments/fragment-09.txt) 📄 — 3. АРХИТЕКТУРА РЕПОЗИТОРИЯ
+- [docs/hld/HLD_PHASE5_DETAILED.md](../docs/hld/HLD_PHASE5_DETAILED.md) 📄 — Phase 5: Dive Computer & Instrument Layer — Detailed HLD
+- [docs/hld/HLD_Roblox.md](../docs/hld/HLD_Roblox.md) 📄 — HLD: Deacon's Path: Issyk-Kul — Roblox GaaS (Luau)
+- [docs/kiberslav/KIBERSLAV_99_NODES_OPERATOR.md](../docs/kiberslav/KIBERSLAV_99_NODES_OPERATOR.md) 📄 — «Киберслав» — 99 узлов оператора (исходник, дословно)
+- [docs/kiberslav/KIBERSLAV_SYNOPSIS_AV_5_EDITORS.md](../docs/kiberslav/KIBERSLAV_SYNOPSIS_AV_5_EDITORS.md) 📄 — «Киберслав» — визуально-аудиальный синопсис (хор 5 редакторов)
+- [docs/kiberslav/STYLE_BIBLE_LUDUS_KIBERSLAV.md](../docs/kiberslav/STYLE_BIBLE_LUDUS_KIBERSLAV.md) 📄 — Стилевая библия Ludus × «Киберслав»: образ, цвет, свет, материал, звук, среда
+- [docs/logs/aider_agent_loop.txt](../docs/logs/aider_agent_loop.txt) 📄
+- [docs/logs/archive/dialogue_2026-10-03_12h.md](../docs/logs/archive/dialogue_2026-10-03_12h.md) 📄 — Dialogue, 2026-10-02 12:16 - 2026-10-03 12:16 UTC
+- [docs/logs/archive/renders_2026-10-03_12h.md](../docs/logs/archive/renders_2026-10-03_12h.md) 📄 — Glove and volumetric-screen renders, up to 2026-10-03 12:16 UTC
+- [docs/logs/talk_log_2026-09-23.md](../docs/logs/talk_log_2026-09-23.md) 📄 — Talk log — 2026-09-23
+- [docs/logs/talk_log_2026-09-27.md](../docs/logs/talk_log_2026-09-27.md) 📄 — Talk log — 2026-09-27
+- [docs/logs/talk_log_2026-09-28.md](../docs/logs/talk_log_2026-09-28.md) 📄 — Talk log — 2026-09-28
+- [docs/logs/talk_log_2026-09-29.md](../docs/logs/talk_log_2026-09-29.md) 📄 — Talk log — 2026-09-29
+- [docs/logs/talk_log_2026-09-30.md](../docs/logs/talk_log_2026-09-30.md) 📄 — Talk log — 2026-09-30
+- [docs/logs/talk_log_2026-10-01.md](../docs/logs/talk_log_2026-10-01.md) 📄 — Talk log — 2026-10-01
+- [docs/logs/talk_log_2026-10-02.md](../docs/logs/talk_log_2026-10-02.md) 📄 — Talk log — 2026-10-02
+- [docs/logs/talk_log_2026-10-03.md](../docs/logs/talk_log_2026-10-03.md) 📄 — Talk log — 2026-10-03
+- [docs/logs/talklog.md](../docs/logs/talklog.md) 📄 — Ludus Development Talklog
+- [docs/missions/rov-pilot-akula/DESIGN_ROV_PILOT_PIKE.md](../docs/missions/rov-pilot-akula/DESIGN_ROV_PILOT_PIKE.md) 📄 — Дизайн-документ миссии: ROV Pilot — поиск щуки (Иссык-Куль)
+- [docs/missions/rov-pilot-akula/README.md](../docs/missions/rov-pilot-akula/README.md) 📄 — Миссия ROV-пилота: поиск щуки (Акула Иссык-Куля)
+- [docs/missions/rov-pilot-akula/ROV_VIDEO_DIVER_SPEC.md](../docs/missions/rov-pilot-akula/ROV_VIDEO_DIVER_SPEC.md) 📄 — Remote Operated Video Diver — Distinctive Specialty Instructor Outline
+- [docs/music/cosmos/README.md](../docs/music/cosmos/README.md) 📄 — Сюита «Наука. Любовь. Познание.»: космическая музыка Ludus
+- [docs/reports/COMPREHENSIVE_GAPS_ANALYSIS.md](../docs/reports/COMPREHENSIVE_GAPS_ANALYSIS.md) 📄 — Ludus Project: Comprehensive Gaps Analysis & Status
+- [docs/reports/COMPREHENSIVE_PROJECT_AUDIT.md](../docs/reports/COMPREHENSIVE_PROJECT_AUDIT.md) 📄 — Ludus: Comprehensive Project Audit & Gap Analysis
+- [docs/reports/OCT_1_MORNING_START.md](../docs/reports/OCT_1_MORNING_START.md) 📄 — Oct 1, 2026 — 06:00 UTC MORNING START GUIDE
+- [docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md](../docs/reports/PHASE_3_DEPLOYMENT_CHECKLIST.md) 📄 — Phase 3: Deployment Checklist
+- [docs/reports/PHASE_3_FINAL_BACKLOG.md](../docs/reports/PHASE_3_FINAL_BACKLOG.md) 📄 — Phase 3: Final Unified Backlog
+- [docs/reports/PHASE_3_MASTER_CHECKLIST.md](../docs/reports/PHASE_3_MASTER_CHECKLIST.md) 📄 — Phase 3: Master Checklist — Oct 1, 2026
+- [docs/reports/PHASE_3_QUEST3_TESTING_CHECKLIST.md](../docs/reports/PHASE_3_QUEST3_TESTING_CHECKLIST.md) 📄 — Phase 3: Quest 3 Real Device Testing Checklist
+- [docs/reports/PHASE_3_QUICK_START.md](../docs/reports/PHASE_3_QUICK_START.md) 📄 — Phase 3: Quick Start Guide (TL;DR)
+- [docs/reports/PHASE_3_TEST_LOG.md](../docs/reports/PHASE_3_TEST_LOG.md) 📄 — Phase 3 Test Execution Log
+- [docs/reports/PROJECT_STATUS_SEP29_2026.md](../docs/reports/PROJECT_STATUS_SEP29_2026.md) 📄 — Ludus Project Status — Sep 29, 2026
+- [docs/reports/SESSION_SUMMARY_SEP29.md](../docs/reports/SESSION_SUMMARY_SEP29.md) 📄 — Session Summary: Sep 29, 2026
+- [docs/research/AUDIENCE_LUDUS_2026-10-02.md](../docs/research/AUDIENCE_LUDUS_2026-10-02.md) 📄 — Ludus «Атлас воды»: для кого мы пишем
+- [docs/research/GODOT_VR_VIDEO_AND_STREAMING.md](../docs/research/GODOT_VR_VIDEO_AND_STREAMING.md) 📄 — Godot в VR/XR: игры, видео, подгрузка контента, XR-стек (исследование, 2026-10-02)
+- [docs/research/VIDEO_IN_HEADSET_GAMES_1996-2026.md](../docs/research/VIDEO_IN_HEADSET_GAMES_1996-2026.md) 📄 — Видео и подгрузка в играх для шлемов, 1995–2026: честный обзор
+- [docs/story/ATLAS_99_NODES_OPERATOR.md](../docs/story/ATLAS_99_NODES_OPERATOR.md) 📄 — «Атлас воды»: исходник оператора (дословно, 2026-09-30)
+- [docs/story/ATLAS_SYNTHESIS_5_EDITORS.md](../docs/story/ATLAS_SYNTHESIS_5_EDITORS.md) 📄 — «Атлас воды»: редакция хора пяти редакторов
+- [docs/story/BRANCHES_EP1_99_OF_999_2026-10-03.md](../docs/story/BRANCHES_EP1_99_OF_999_2026-10-03.md) 📄 — Ветки первой серии: 99 приёмов из честного пула — хор редакторов игр
+- [docs/story/INTRO_SIERRA_ECOQUEST_2026-10-02.md](../docs/story/INTRO_SIERRA_ECOQUEST_2026-10-02.md) 📄 — Заставка «Ранее в „Атласе воды“» — вход в игру (хор, 2026-10-02)
+- [docs/story/LOCK_CALIBRATION_DESIGN_2026-10-02.md](../docs/story/LOCK_CALIBRATION_DESIGN_2026-10-02.md) 📄 — Калибровка акустической матрицы — модуль вскрытия замков: три поправки, графика, промты (2026-10-02)
+- [docs/story/MISSION_AKULA_ISSYK_KUL_2026-10-02.md](../docs/story/MISSION_AKULA_ISSYK_KUL_2026-10-02.md) 📄 — Миссия-контракт «Акула Иссык-Куля» — поймать Мега-щуку (2026-10-02)
+- [docs/story/OPERATOR_APPARATUS_2026-10-02.md](../docs/story/OPERATOR_APPARATUS_2026-10-02.md) 📄 — Аппараты и репо оператора в «Атласе воды» (опись по ТАБУ №0.022)
+- [docs/story/PILOT_EPISODE_1_TABU_2026-10-02.md](../docs/story/PILOT_EPISODE_1_TABU_2026-10-02.md) 📄 — «Атлас воды», серия 1 — «Табу». Пилот: первые 15 минут (Quest 3S)
+- [docs/story/PROMPT_INTRO_SIERRA_ECOQUEST_2026-10-02.md](../docs/story/PROMPT_INTRO_SIERRA_ECOQUEST_2026-10-02.md) 📄 — Промпт заставки и входа в игру: «Атлас воды» в духе Sierra (оммаж EcoQuest) — 2026-10-02
+- [docs/story/chorus-ep1/AKULA_CHORUS_2026-10-02.md](../docs/story/chorus-ep1/AKULA_CHORUS_2026-10-02.md) 📄 — Хор: проверка контракта «Акула Иссык-Куля» (2026-10-02)
+- [docs/story/chorus-ep1/DESTINY_CHORUS_2026-10-02.md](../docs/story/chorus-ep1/DESTINY_CHORUS_2026-10-02.md) 📄 — Хор 12 редакторов-гуру: ветки развития и семь финалов «ближе к раю или ближе к аду» (2026-10-02)
+- [docs/story/chorus-ep1/INSIGHTS_CHORUS_2026-10-02.md](../docs/story/chorus-ep1/INSIGHTS_CHORUS_2026-10-02.md) 📄 — Хор: 12 инсайтов первой серии «Табу» — 2026-10-02
+- [docs/story/chorus-ep1/INSIGHT_BRANCHES_144_2026-10-03.md](../docs/story/chorus-ep1/INSIGHT_BRANCHES_144_2026-10-03.md) 📄 — Инсайты серии 1: 144 варианта как ветки развития игры
+- [docs/story/chorus-ep1/INSIGHT_PROMPTS_2026-10-02.md](../docs/story/chorus-ep1/INSIGHT_PROMPTS_2026-10-02.md) 📄 — Промты кадров 12 инсайтов — хор сценаристов (2026-10-02)
+- [docs/story/chorus-ep1/INSIGHT_VARIANTS_144_2026-10-03.md](../docs/story/chorus-ep1/INSIGHT_VARIANTS_144_2026-10-03.md) 📄 — Инсайты серии 1: 144 варианта — 12 часов дня на каждый (хор, 2026-10-03)
+- [docs/story/chorus-ep1/NARRATION_v4_24_LENSES.md](../docs/story/chorus-ep1/NARRATION_v4_24_LENSES.md) 📄 — Закадровый текст v4 — «Атлас воды · Серия 1 · Табу»
+- [docs/story/qviqa/ORDER_QVIQA_CODEX_2026-10-03.md](../docs/story/qviqa/ORDER_QVIQA_CODEX_2026-10-03.md) 📄 — Кодекс Братства QVIQA — лор, Конституция, контракты, путь, сообщество (2026-10-03)
+- [docs/story/qviqa/QVIQA_PROMPT_OPERATOR_2026-10-03.md](../docs/story/qviqa/QVIQA_PROMPT_OPERATOR_2026-10-03.md) 📄 — Исходник оператора: промпт «Орден QVIQA» (2026-10-03, дословно)
+- [docs/story/rzhevsky/EPISODE2_RZHEVSKY_LODGE_2026-10-03.md](../docs/story/rzhevsky/EPISODE2_RZHEVSKY_LODGE_2026-10-03.md) 📄 — «Ржевский и Ложа Трёх Циркулей» — серия 2 (XIX век, комедия)
+- [docs/story/rzhevsky/STYLE_COMEDY_STUDY_2026-10-03.md](../docs/story/rzhevsky/STYLE_COMEDY_STUDY_2026-10-03.md) 📄 — Разбор движков «Петьки», «ГЭГ», «Братьев Пилотов» и наш комедийный стиль (2026-10-03)
+- [docs/tech/MULTI_ENV_PROMPT_OPERATOR_2026-10-03.md](../docs/tech/MULTI_ENV_PROMPT_OPERATOR_2026-10-03.md) 📄 — Исходник оператора: «Архитектура Мульти-Среда» (2026-10-03, дословно)
+- [docs/tech/MULTI_ENV_SETS_2026-10-03.md](../docs/tech/MULTI_ENV_SETS_2026-10-03.md) 📄 — Технология «Мульти-Среда»: одна сцена — 12 готовых наборов (2026-10-03)
+- [docs/version-3.0/A10_OFFLINE_SYNC.md](../docs/version-3.0/A10_OFFLINE_SYNC.md) 📄 — A10: Offline Sync & Client-Side Caching
+- [docs/version-3.0/API_ERROR_HANDLING_GUIDE.md](../docs/version-3.0/API_ERROR_HANDLING_GUIDE.md) 📄 — API Error Handling & Edge Cases Guide
+- [docs/version-3.0/CLOUD_FUNCTIONS_DIALOGUE_API.md](../docs/version-3.0/CLOUD_FUNCTIONS_DIALOGUE_API.md) 📄 — Ludus Cloud Functions Dialogue API
+- [docs/version-3.0/DEPLOYMENT_PHASE2_3_GUIDE.md](../docs/version-3.0/DEPLOYMENT_PHASE2_3_GUIDE.md) 📄 — Ludus v0.1: Phase 2–3 Deployment Guide
+- [docs/version-3.0/DEPLOYMENT_READINESS_FINAL.md](../docs/version-3.0/DEPLOYMENT_READINESS_FINAL.md) 📄 — Ludus v0.1 — Deployment Readiness Report
+- [docs/version-3.0/DEPLOYMENT_READINESS_V0_1.md](../docs/version-3.0/DEPLOYMENT_READINESS_V0_1.md) 📄 — Ludus Protocol — v0.1 Deployment Readiness Assessment
+- [docs/version-3.0/FRONTEND_BACKEND_INTEGRATION_TESTING.md](../docs/version-3.0/FRONTEND_BACKEND_INTEGRATION_TESTING.md) 📄 — Frontend-Backend Integration Testing Guide
+- [docs/version-3.0/HLD_BACKEND_3.0_VM8_HOT_MIRROR_2026-10-01.md](../docs/version-3.0/HLD_BACKEND_3.0_VM8_HOT_MIRROR_2026-10-01.md) 📄 — HLD: бекенд Ludus версии 3.0 — свой контейнер на VM8 рядом с горячим зеркалом (2026-10-01)
+- [docs/version-3.0/LOCAL_DEV_SETUP.md](../docs/version-3.0/LOCAL_DEV_SETUP.md) 📄 — Local Development Setup — Ludus Project
+- [docs/version-3.0/LUDUS_BACKEND_CONTAINER_DEPLOYMENT.md](../docs/version-3.0/LUDUS_BACKEND_CONTAINER_DEPLOYMENT.md) 📄 — Ludus Backend Container — Standalone Deployment on VM8
+- [docs/version-3.0/PHASE2_CRITICAL_BLOCKERS.md](../docs/version-3.0/PHASE2_CRITICAL_BLOCKERS.md) 📄 — Phase 2 Critical Blockers — Implementation Plan
+- [docs/version-3.0/PHASE2_EXECUTION_CHECKLIST.md](../docs/version-3.0/PHASE2_EXECUTION_CHECKLIST.md) 📄 — Phase 2 Execution Checklist — Firestore Initialization & Critical Blockers
+- [docs/version-3.0/PHASE2_LOCAL_DEPLOYMENT_GUIDE.md](../docs/version-3.0/PHASE2_LOCAL_DEPLOYMENT_GUIDE.md) 📄 — Phase 2: Local Deployment Guide — Execute on Your Machine
+- [docs/version-3.0/PHASE_3_DEPLOYMENT_CHECKLIST.md](../docs/version-3.0/PHASE_3_DEPLOYMENT_CHECKLIST.md) 📄 — Ludus Phase 3: Testing & Deployment Checklist
+- [docs/version-3.0/PRE_DEPLOYMENT_CHECKLIST.md](../docs/version-3.0/PRE_DEPLOYMENT_CHECKLIST.md) 📄 — Ludus v0.1: Pre-Deployment Critical Gaps Checklist
+- [docs/version-3.0/S12_FIRESTORE_AUTH.md](../docs/version-3.0/S12_FIRESTORE_AUTH.md) 📄 — S12: Firestore Auth & Authorization
+- [docs/version-3.0/VM8_BACKEND_CONTAINER_DEPLOYMENT.md](../docs/version-3.0/VM8_BACKEND_CONTAINER_DEPLOYMENT.md) 📄 — VM8 Backend Container Deployment — Ludus Services on panopticon-mirror-vm
+- [docs/СПИСОК_ТЕХНОЛОГИЙ_ПРОЕКТА.md](../docs/СПИСОК_ТЕХНОЛОГИЙ_ПРОЕКТА.md) 📄 — Список технологий проекта Ludus (реестр собственных технических решений)
+
+## Прочее (139)
+
+- [.claude/agents/apk-revisor.md](../.claude/agents/apk-revisor.md) 📄 — Жёсткие правила
+- [CONSTITUTION.md](../CONSTITUTION.md) 📄 — РОЛЬ 1: Lead Game Designer & Principal Luau Engineer (Roblox/LiveOps).
+- [README.md](../README.md) 📄 — ludus
+- [Roblox/src/ReplicatedStorage/Shared/Config.luau](../Roblox/src/ReplicatedStorage/Shared/Config.luau)
+- [Roblox/src/ReplicatedStorage/Shared/Net.luau](../Roblox/src/ReplicatedStorage/Shared/Net.luau)
+- [Roblox/src/ReplicatedStorage/Shared/RelicCatalog.luau](../Roblox/src/ReplicatedStorage/Shared/RelicCatalog.luau)
+- [Roblox/src/ReplicatedStorage/Shared/Types.luau](../Roblox/src/ReplicatedStorage/Shared/Types.luau)
+- [Roblox/src/ServerScriptService/Bootstrap.server.luau](../Roblox/src/ServerScriptService/Bootstrap.server.luau)
+- [Roblox/src/ServerScriptService/Server/AsyncPvpService.luau](../Roblox/src/ServerScriptService/Server/AsyncPvpService.luau)
+- [Roblox/src/ServerScriptService/Server/DailyLudusService.luau](../Roblox/src/ServerScriptService/Server/DailyLudusService.luau)
+- [Roblox/src/ServerScriptService/Server/EconomyService.luau](../Roblox/src/ServerScriptService/Server/EconomyService.luau)
+- [Roblox/src/ServerScriptService/Server/GachaService.luau](../Roblox/src/ServerScriptService/Server/GachaService.luau)
+- [Roblox/src/ServerScriptService/Server/Guard.luau](../Roblox/src/ServerScriptService/Server/Guard.luau)
+- [Roblox/src/ServerScriptService/Server/ProfileStore.luau](../Roblox/src/ServerScriptService/Server/ProfileStore.luau)
+- [Roblox/src/ServerScriptService/Server/ReportService.luau](../Roblox/src/ServerScriptService/Server/ReportService.luau)
+- [Roblox/src/StarterPlayer/StarterPlayerScripts/Client.client.luau](../Roblox/src/StarterPlayer/StarterPlayerScripts/Client.client.luau)
+- [Roblox/src/StarterPlayer/StarterPlayerScripts/UI.luau](../Roblox/src/StarterPlayer/StarterPlayerScripts/UI.luau)
+- [SVG/README.md](../SVG/README.md) 📄 — SVG — собственная графика Ludus (исходники)
+- [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md) 📄 — Third-party raw material register
+- [UnityVR/Assets/Scripts/Cockpit/CockpitButton.cs](../UnityVR/Assets/Scripts/Cockpit/CockpitButton.cs) — <summary>
+- [UnityVR/Assets/Scripts/Cockpit/CockpitCommandSource.cs](../UnityVR/Assets/Scripts/Cockpit/CockpitCommandSource.cs) — <summary>Channels the cockpit can drive on the vehicle command.</summary>
+- [UnityVR/Assets/Scripts/Cockpit/CockpitControl.cs](../UnityVR/Assets/Scripts/Cockpit/CockpitControl.cs) — <summary>
+- [UnityVR/Assets/Scripts/Cockpit/CockpitDial.cs](../UnityVR/Assets/Scripts/Cockpit/CockpitDial.cs) — <summary>
+- [UnityVR/Assets/Scripts/Cockpit/CockpitEvent.cs](../UnityVR/Assets/Scripts/Cockpit/CockpitEvent.cs) — <summary>
+- [UnityVR/Assets/Scripts/Cockpit/CockpitInteraction.cs](../UnityVR/Assets/Scripts/Cockpit/CockpitInteraction.cs) — <summary>
+- [UnityVR/Assets/Scripts/Cockpit/CockpitInteractor.cs](../UnityVR/Assets/Scripts/Cockpit/CockpitInteractor.cs) — <summary>
+- [UnityVR/Assets/Scripts/Cockpit/CockpitLever.cs](../UnityVR/Assets/Scripts/Cockpit/CockpitLever.cs) — <summary>
+- [UnityVR/Assets/Scripts/Cockpit/CockpitManager.cs](../UnityVR/Assets/Scripts/Cockpit/CockpitManager.cs) — <summary>
+- [UnityVR/Assets/Scripts/Cockpit/CockpitToggle.cs](../UnityVR/Assets/Scripts/Cockpit/CockpitToggle.cs) — <summary>
+- [UnityVR/Assets/Scripts/Input/IPlayerInput.cs](../UnityVR/Assets/Scripts/Input/IPlayerInput.cs) — <summary>
+- [UnityVR/Assets/Scripts/Input/InputProvider.cs](../UnityVR/Assets/Scripts/Input/InputProvider.cs) — <summary>
+- [UnityVR/Assets/Scripts/Input/MouseSimulatorInput.cs](../UnityVR/Assets/Scripts/Input/MouseSimulatorInput.cs) — <summary>
+- [UnityVR/Assets/Scripts/Input/OpenXRInput.cs](../UnityVR/Assets/Scripts/Input/OpenXRInput.cs) — <summary>
+- [UnityVR/Assets/Scripts/Instruments/PHASE6_DiveComputerClassifier.cs](../UnityVR/Assets/Scripts/Instruments/PHASE6_DiveComputerClassifier.cs) — <summary>
+- [UnityVR/Assets/Scripts/Ludus/DemiurgeBridge.cs](../UnityVR/Assets/Scripts/Ludus/DemiurgeBridge.cs) — <summary>
+- [UnityVR/Assets/Scripts/Ludus/DemiurgeEdge.cs](../UnityVR/Assets/Scripts/Ludus/DemiurgeEdge.cs) — <summary>
+- [UnityVR/Assets/Scripts/Ludus/DemiurgeNode.cs](../UnityVR/Assets/Scripts/Ludus/DemiurgeNode.cs) — <summary>
+- [UnityVR/Assets/Scripts/Ludus/DemiurgeSimulator.cs](../UnityVR/Assets/Scripts/Ludus/DemiurgeSimulator.cs) — <summary>
+- [UnityVR/Assets/Tests/EditMode/PHASE6_DemiurgeSimulatorTests.cs](../UnityVR/Assets/Tests/EditMode/PHASE6_DemiurgeSimulatorTests.cs) — <summary>
+- [UnityVR/Assets/Tests/EditMode/PHASE6_DiveComputerClassifierTests.cs](../UnityVR/Assets/Tests/EditMode/PHASE6_DiveComputerClassifierTests.cs) — <summary>
+- [UnityVR/Assets/Tests/PlayMode/PHASE6_DemiurgeBridgePlayModeTests.cs](../UnityVR/Assets/Tests/PlayMode/PHASE6_DemiurgeBridgePlayModeTests.cs) — <summary>
+- [UnityVR/HLD_VR.md](../UnityVR/HLD_VR.md) 📄 — HLD: VR Submarine / ROV Simulator — Deacon's Path: Issyk-Kul
+- [clouderc.md](../clouderc.md) 📄
+- [docker-compose.ludus-backend.yml](../docker-compose.ludus-backend.yml) — Ludus Backend Standalone Container
+- [exportfromWebtypicon_repo_all/CLAUDE_game_sections.md](../exportfromWebtypicon_repo_all/CLAUDE_game_sections.md) 📄 — webtypicon2 CLAUDE.md — Game-Related Sections
+- [exportfromWebtypicon_repo_all/README.md](../exportfromWebtypicon_repo_all/README.md) 📄 — Export from webtypicon2 Repository — Game-Related Materials
+- [exportfromWebtypicon_repo_all/docs/LUDUS_PROTOCOL.md](../exportfromWebtypicon_repo_all/docs/LUDUS_PROTOCOL.md) 📄 — Ludus Protocol — Game Development Guide
+- [exportfromWebtypicon_repo_all/docs/STAGE1_HLD.md](../exportfromWebtypicon_repo_all/docs/STAGE1_HLD.md) 📄 — STAGE 1 — High-Level Design
+- [exportfromWebtypicon_repo_all/root_files/TZ.md](../exportfromWebtypicon_repo_all/root_files/TZ.md) 📄 — Техническое задание — WebTypikon
+- [lore/Game_orden_2.txt](../lore/Game_orden_2.txt) 📄 — ЧАСТЬ I. ИНСТРУКЦИИ К ИГРЕ (LUDUS PROTOCOL)
+- [lore/README.md](../lore/README.md) 📄 — Lore sources of the Order (moved from the repository root, 2026-09-29)
+- [lore/game.txt](../lore/game.txt) 📄
+- [lore/game_Orden_full.txt](../lore/game_Orden_full.txt) 📄
+- [lore/game_orden_13.txt](../lore/game_orden_13.txt) 📄
+- [lore/game_orden_3.txt](../lore/game_orden_3.txt) 📄 — ЧАСТЬ I: ДОГМАТИКА СИСТЕМЫ (THE CORE)
+- [lore/game_orden_4.txt](../lore/game_orden_4.txt) 📄 — ЧАСТЬ I: ДОГМАТИКА СИСТЕМЫ (THE CORE)
+- [lore/game_orden_5.txt](../lore/game_orden_5.txt) 📄
+- [lore/game_orden_6.txt](../lore/game_orden_6.txt) 📄
+- [lore/game_orden_7.txt](../lore/game_orden_7.txt) 📄
+- [oculus-knights/UnityVR/Assets/Scripts/Instruments/DiveCockpitBridge.cs](../oculus-knights/UnityVR/Assets/Scripts/Instruments/DiveCockpitBridge.cs) — <summary>
+- [oculus-knights/UnityVR/Assets/Scripts/Physics/CommandWrenchMap.cs](../oculus-knights/UnityVR/Assets/Scripts/Physics/CommandWrenchMap.cs) — <summary>
+- [oculus-knights/UnityVR/Assets/Scripts/Physics/ThrusterAllocator.cs](../oculus-knights/UnityVR/Assets/Scripts/Physics/ThrusterAllocator.cs) — <summary>
+- [oculus-knights/UnityVR/Assets/Tests/EditMode/DiveCockpitBridgeTests.cs](../oculus-knights/UnityVR/Assets/Tests/EditMode/DiveCockpitBridgeTests.cs) — <summary>
+- [rzhevsky/README.md](../rzhevsky/README.md) 📄 — «Ржевский и Ложа Трёх Циркулей» — вторая серия Ludus (единая папка)
+- [rzhevsky/texts/EDITORS_CHORUS_LOG.md](../rzhevsky/texts/EDITORS_CHORUS_LOG.md) 📄 — Журнал хора редакторов: три прохода (2026-10-03)
+- [rzhevsky/texts/OUTLINE_EP2_EP3.md](../rzhevsky/texts/OUTLINE_EP2_EP3.md) 📄 — Эпизоды 2 и 3: «Ржевский против Ордена» и «Ржевский против Ложи» — логлайны, акты, герои, Конституция
+- [third_party/mangustik/SOURCES.md](../third_party/mangustik/SOURCES.md) 📄 — Mangustik: drawings and panel looks (first-party, operator's repos)
+- [third_party/mangustik/dive-buddy/pe_fittings.scad](../third_party/mangustik/dive-buddy/pe_fittings.scad)
+- [third_party/mangustik/dive-buddy/pressure_housing.scad](../third_party/mangustik/dive-buddy/pressure_housing.scad)
+- [third_party/mangustik/panels/diveguard/index.html](../third_party/mangustik/panels/diveguard/index.html)
+- [third_party/mangustik/panels/diveguard/src/App.vue](../third_party/mangustik/panels/diveguard/src/App.vue)
+- [third_party/mangustik/panels/diveguard/src/__tests__/App.spec.ts](../third_party/mangustik/panels/diveguard/src/__tests__/App.spec.ts) — App.vue's onMounted() opens a real WebSocket and polls services/api.ts over HTTP -
+- [third_party/mangustik/panels/diveguard/src/components/AlertNotifier.vue](../third_party/mangustik/panels/diveguard/src/components/AlertNotifier.vue)
+- [third_party/mangustik/panels/diveguard/src/components/CompanionBridgePanel.vue](../third_party/mangustik/panels/diveguard/src/components/CompanionBridgePanel.vue)
+- [third_party/mangustik/panels/diveguard/src/components/DetectionStatus.vue](../third_party/mangustik/panels/diveguard/src/components/DetectionStatus.vue)
+- [third_party/mangustik/panels/diveguard/src/components/DetectionTimeline.vue](../third_party/mangustik/panels/diveguard/src/components/DetectionTimeline.vue)
+- [third_party/mangustik/panels/diveguard/src/components/DiveBuddyPanel.vue](../third_party/mangustik/panels/diveguard/src/components/DiveBuddyPanel.vue)
+- [third_party/mangustik/panels/diveguard/src/components/EnvironmentalParams.vue](../third_party/mangustik/panels/diveguard/src/components/EnvironmentalParams.vue)
+- [third_party/mangustik/panels/diveguard/src/components/Gaz2410Panel.vue](../third_party/mangustik/panels/diveguard/src/components/Gaz2410Panel.vue)
+- [third_party/mangustik/panels/diveguard/src/components/MetricsPanel.vue](../third_party/mangustik/panels/diveguard/src/components/MetricsPanel.vue)
+- [third_party/mangustik/panels/diveguard/src/components/SpectrogramChart.vue](../third_party/mangustik/panels/diveguard/src/components/SpectrogramChart.vue)
+- [third_party/mangustik/panels/diveguard/src/components/SystemStatus.vue](../third_party/mangustik/panels/diveguard/src/components/SystemStatus.vue)
+- [third_party/mangustik/panels/diveguard/src/components/ThreatIndicator.vue](../third_party/mangustik/panels/diveguard/src/components/ThreatIndicator.vue)
+- [third_party/mangustik/panels/diveguard/src/components/ThresholdConfig.vue](../third_party/mangustik/panels/diveguard/src/components/ThresholdConfig.vue)
+- [third_party/mangustik/panels/diveguard/src/components/__tests__/CompanionBridgePanel.spec.ts](../third_party/mangustik/panels/diveguard/src/components/__tests__/CompanionBridgePanel.spec.ts)
+- [third_party/mangustik/panels/diveguard/src/components/__tests__/DiveBuddyPanel.spec.ts](../third_party/mangustik/panels/diveguard/src/components/__tests__/DiveBuddyPanel.spec.ts)
+- [third_party/mangustik/panels/diveguard/src/components/__tests__/Gaz2410Panel.spec.ts](../third_party/mangustik/panels/diveguard/src/components/__tests__/Gaz2410Panel.spec.ts)
+- [third_party/mangustik/panels/diveguard/src/main.ts](../third_party/mangustik/panels/diveguard/src/main.ts)
+- [third_party/mangustik/panels/diveguard/src/services/__tests__/gatewayApi.spec.ts](../third_party/mangustik/panels/diveguard/src/services/__tests__/gatewayApi.spec.ts)
+- [third_party/mangustik/panels/diveguard/src/services/api.ts](../third_party/mangustik/panels/diveguard/src/services/api.ts)
+- [third_party/mangustik/panels/diveguard/src/services/gatewayApi.ts](../third_party/mangustik/panels/diveguard/src/services/gatewayApi.ts) — control-gateway client (CONTROL_INTERFACE_TZ.md Phase 6).
+- [third_party/mangustik/panels/diveguard/src/services/websocket.ts](../third_party/mangustik/panels/diveguard/src/services/websocket.ts) — Timeout if not connected within 5s
+- [third_party/mangustik/panels/diveguard/src/stores/detection.ts](../third_party/mangustik/panels/diveguard/src/stores/detection.ts) — State
+- [third_party/mangustik/panels/diveguard/src/styles/globals.css](../third_party/mangustik/panels/diveguard/src/styles/globals.css)
+- [third_party/mangustik/panels/diveguard/src/vite-env.d.ts](../third_party/mangustik/panels/diveguard/src/vite-env.d.ts) — <reference types="vite/client" />
+- [third_party/mangustik/panels/yacht-blueos/src/app/globals.css](../third_party/mangustik/panels/yacht-blueos/src/app/globals.css) — Sidebar Light Theme */
+- [third_party/mangustik/panels/yacht-blueos/tailwind.config.ts](../third_party/mangustik/panels/yacht-blueos/tailwind.config.ts)
+- [third_party/mangustik/rov-platform/cad/00_full_assembly.scad](../third_party/mangustik/rov-platform/cad/00_full_assembly.scad)
+- [third_party/mangustik/rov-platform/cad/01_main_chassis_frame.scad](../third_party/mangustik/rov-platform/cad/01_main_chassis_frame.scad)
+- [third_party/mangustik/rov-platform/cad/02_main_pressure_hull_port.scad](../third_party/mangustik/rov-platform/cad/02_main_pressure_hull_port.scad)
+- [third_party/mangustik/rov-platform/cad/03_main_pressure_hull_starboard.scad](../third_party/mangustik/rov-platform/cad/03_main_pressure_hull_starboard.scad)
+- [third_party/mangustik/rov-platform/cad/04_auxiliary_sensor_tubes_top.scad](../third_party/mangustik/rov-platform/cad/04_auxiliary_sensor_tubes_top.scad)
+- [third_party/mangustik/rov-platform/cad/05_propulsion_horizontal_module.scad](../third_party/mangustik/rov-platform/cad/05_propulsion_horizontal_module.scad)
+- [third_party/mangustik/rov-platform/cad/06_propulsion_vertical_module.scad](../third_party/mangustik/rov-platform/cad/06_propulsion_vertical_module.scad)
+- [third_party/mangustik/rov-platform/cad/07_buoyancy_and_ballast_system.scad](../third_party/mangustik/rov-platform/cad/07_buoyancy_and_ballast_system.scad)
+- [third_party/mangustik/rov-platform/cad/08_sensor_and_camera_skid_front.scad](../third_party/mangustik/rov-platform/cad/08_sensor_and_camera_skid_front.scad)
+- [third_party/mangustik/rov-platform/cad/09_manipulator_and_tool_interface.scad](../third_party/mangustik/rov-platform/cad/09_manipulator_and_tool_interface.scad)
+- [third_party/mangustik/rov-platform/cad/10_tether_rigging_and_protection_bars.scad](../third_party/mangustik/rov-platform/cad/10_tether_rigging_and_protection_bars.scad)
+- [third_party/mangustik/rov-platform/cad/11_central_control_pdb_module.scad](../third_party/mangustik/rov-platform/cad/11_central_control_pdb_module.scad)
+- [third_party/mangustik/rov-platform/cad/12_fasteners_clamps_dampers.scad](../third_party/mangustik/rov-platform/cad/12_fasteners_clamps_dampers.scad)
+- [third_party/mangustik/rov-platform/cad/PRESSURE_VERIFICATION.md](../third_party/mangustik/rov-platform/cad/PRESSURE_VERIFICATION.md) 📄 — Main pressure hull — closed-form verification
+- [third_party/mangustik/rov-platform/cad/compute_part_masses.py](../third_party/mangustik/rov-platform/cad/compute_part_masses.py) — Compute real part masses from the rendered STL geometry in cad/stl/, for the
+- [third_party/mangustik/rov-platform/cad/variant_5atm_fdm/pressure_hull_5atm.scad](../third_party/mangustik/rov-platform/cad/variant_5atm_fdm/pressure_hull_5atm.scad)
+- [third_party/mangustik/rov-platform/cad/variant_5atm_fdm/standoff_coords.scad](../third_party/mangustik/rov-platform/cad/variant_5atm_fdm/standoff_coords.scad)
+- [third_party/mangustik/welder-module/pipe_parts_d110/README.md](../third_party/mangustik/welder-module/pipe_parts_d110/README.md) 📄 — d110 PE pipe parts kit — 3D models + drawings + assembly
+- [third_party/mangustik/welder-module/pipe_parts_d110/cap_d110.scad](../third_party/mangustik/welder-module/pipe_parts_d110/cap_d110.scad)
+- [third_party/mangustik/welder-module/pipe_parts_d110/connector_d110_camlock.scad](../third_party/mangustik/welder-module/pipe_parts_d110/connector_d110_camlock.scad)
+- [third_party/mangustik/welder-module/pipe_parts_d110/connector_d110_flange.scad](../third_party/mangustik/welder-module/pipe_parts_d110/connector_d110_flange.scad)
+- [third_party/mangustik/welder-module/pipe_parts_d110/coupling_d110.scad](../third_party/mangustik/welder-module/pipe_parts_d110/coupling_d110.scad)
+- [third_party/mangustik/welder-module/pipe_parts_d110/elbow90_d110.scad](../third_party/mangustik/welder-module/pipe_parts_d110/elbow90_d110.scad)
+- [third_party/mangustik/welder-module/pipe_parts_d110/generate_drawings.py](../third_party/mangustik/welder-module/pipe_parts_d110/generate_drawings.py) — Generate GOST-style 2D drawing sheets (SVG) for the d110 pipe parts kit.
+- [third_party/mangustik/welder-module/pipe_parts_d110/housing_d110_assembly.scad](../third_party/mangustik/welder-module/pipe_parts_d110/housing_d110_assembly.scad)
+- [third_party/mangustik/welder-module/pipe_parts_d110/lib_d110.scad](../third_party/mangustik/welder-module/pipe_parts_d110/lib_d110.scad)
+- [third_party/mangustik/welder-module/pipe_parts_d110/pipe_segment_d110.scad](../third_party/mangustik/welder-module/pipe_parts_d110/pipe_segment_d110.scad)
+- [third_party/mangustik/welder-module/pipe_parts_d110/tee_d110.scad](../third_party/mangustik/welder-module/pipe_parts_d110/tee_d110.scad)
+- [third_party/posoh/BOM_SENSORS.md](../third_party/posoh/BOM_SENSORS.md) 📄 — Bill of Materials: Sensor & Component Integration
+- [third_party/posoh/HARDWARE_INTEGRATION.md](../third_party/posoh/HARDWARE_INTEGRATION.md) 📄 — ESP32-S3 + HackRF One Integration & Mounting
+- [third_party/posoh/OPENSCAD_DFM_PROTOCOL.md](../third_party/posoh/OPENSCAD_DFM_PROTOCOL.md) 📄 — Инженерный протокол DFM/DFA + OpenSCAD — Senior Hardware Engineer
+- [third_party/posoh/SOURCES.md](../third_party/posoh/SOURCES.md) 📄 — Posoh: hydrophone drawing and hardware notes (first-party, operator's repo)
+- [third_party/posoh/docs/HARDWARE_BOM.md](../third_party/posoh/docs/HARDWARE_BOM.md) 📄 — Hardware Bill of Materials — Volumetric Ocean Interface
+- [third_party/posoh/hardware/HYDROPHONE_V1.md](../third_party/posoh/hardware/HYDROPHONE_V1.md) 📄 — Hydrophone "Model 1" — Toothbrush Piezo + ESP32
+- [third_party/posoh/hardware/cad/full_assembly.scad](../third_party/posoh/hardware/cad/full_assembly.scad)
+- [third_party/posoh/hardware/cad/hydrophone_v1.scad](../third_party/posoh/hardware/cad/hydrophone_v1.scad)
+- [third_party/posoh/hardware/cad/tube_enclosure_heatsink.scad](../third_party/posoh/hardware/cad/tube_enclosure_heatsink.scad)
+- [third_party/posoh/hardware/cad/z_axis_stack.scad](../third_party/posoh/hardware/cad/z_axis_stack.scad)
+- [third_party/posoh/hardware/thermal/THERMAL_BUDGET.md](../third_party/posoh/hardware/thermal/THERMAL_BUDGET.md) 📄 — Tube Enclosure Thermal Budget — Посох Z-axis Bay
+- [video/insights-variants/README.md](../video/insights-variants/README.md) 📄 — 144 insight variants: videos
+- [video/insights/README.md](../video/insights/README.md) 📄 — Видео: двенадцать инсайтов серии 1
+- [video/intro/README.md](../video/intro/README.md) 📄 — Видео: заставка «Ранее в „Атласе воды“» (90 с, три варианта)

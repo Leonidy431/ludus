@@ -73,7 +73,11 @@ const FAMILY_RU := {"prologue": "Пролог", "trade": "Акт I",
 ## of our own drawing waits for the chorus, TABOO 0.37).
 const OWN := ["lectern"]
 ## The lampada and the instrument light, as the hub has them.
-const LAMPADA_K := Color(1.0, 0.52, 0.16)
+# 1800 K by the project's own kelvin() (Tanner Helland): the old
+# (1.0, 0.52, 0.16) read about 2150 K, inside the hearth's 1900-2500 K,
+# so the holy light and the work light could not be told apart
+# (chorus audit 2026-10-03, voice 19).
+const LAMPADA_K := Color(1.0, 0.496, 0.0)
 const INSTRUMENT_K := Color(0.95, 0.97, 1.0)
 ## Proxies made from the box field of a prompt are stand-in shapes that
 ## may be stretched to the thing's size; drawn and measured models keep
@@ -300,7 +304,7 @@ static func plan(loc: Dictionary, things: Dictionary,
 	for s in slots:
 		if s.holy:
 			holy_at = s.pos
-	return {"id": loc.id, "title": loc.title_ru, "kind": loc.kind,
+	var out := {"id": loc.id, "title": loc.title_ru, "kind": loc.kind,
 		"families": loc.families, "type": sh.type, "w": w, "d": d, "h": h,
 		"heart": heart, "heart_spec": loc.heart, "hint": loc.heart.ru,
 		"person": person_of(loc.heart), "exit": exit, "start": start,
@@ -313,6 +317,10 @@ static func plan(loc: Dictionary, things: Dictionary,
 		"kits_skipped": skipped,
 		"lesson": loc.lesson, "constitution": loc.constitution,
 		"kiberslav": "kiberslav" in loc.families}
+	# The people of the 12 stories who stand here beside the heart
+	# (StoryCast, data/story-cast-12.json), on spots clear of all above.
+	out["cast"] = StoryCast.spots(out, StoryCast.at(str(loc.id)))
+	return out
 
 
 ## How visible the interface should be with the player at pos: 1 far
@@ -645,10 +653,41 @@ static func labels(p: Dictionary) -> Array:
 	var out := [p.title, p.hint, exit_ru(p)]
 	if p.person != "":
 		out.append(p.person)
+	for c in p.get("cast", []):
+		out.append(c.tag)
+		out.append(StoryCast.prompt(c))
 	for s in p.slots:
 		if s.tag:
 			out.append(s.ru)
 	return out
+
+
+## What answers a press in a place: the heart, the way back, and the
+## people of the 12 stories beside the heart (StoryCast), each of whom
+## answers only near himself, so the heart's prompt stays the heart's.
+static func interactables(p: Dictionary) -> Array:
+	var out := [{"id": "heart", "pos": p.heart, "reach": REACH_M,
+			"ru": p.hint},
+		{"id": "exit", "pos": p.exit, "reach": EXIT_REACH_M,
+			"ru": exit_ru(p)}]
+	for c in p.get("cast", []):
+		if c.placed:
+			out.append({"id": "cast:" + str(c.npc), "pos": c.pos,
+				"reach": StoryCast.REACH_M, "ru": StoryCast.prompt(c),
+				"person": c})
+	return out
+
+
+## The nearest of them within its own reach of the player, or {}.
+static func nearest(things: Array, pos: Vector3) -> Dictionary:
+	var best := {}
+	var best_d := INF
+	for th in things:
+		var d := Vector2(th.pos.x - pos.x, th.pos.z - pos.z).length()
+		if d < float(th.reach) and d < best_d:
+			best = th
+			best_d = d
+	return best
 
 
 static func exit_ru(p: Dictionary) -> String:
@@ -673,10 +712,8 @@ static func chosen(tree: SceneTree) -> String:
 # --- The player's saves -------------------------------------------------------
 
 static func _read(path: String) -> Dictionary:
-	if not FileAccess.file_exists(path):
-		return {}
-	var d = JSON.parse_string(FileAccess.get_file_as_string(path))
-	return d if d is Dictionary else {}
+	# A spoiled save falls back to its last good copy (SaveSlot.read_json).
+	return SaveSlot.read_json(path)
 
 
 ## What a place reads of the hub's save, in the same known shapes the
@@ -742,9 +779,7 @@ static func write_state(st: Dictionary, hub_path := "") -> void:
 	data["deeds"] = PlaceDeeds.normalize(st.get("deeds", {}))
 	if typeof(st.chronicle) == TYPE_STRING and st.chronicle != "":
 		data["chronicle"] = st.chronicle
-	var f := FileAccess.open(hub_path, FileAccess.WRITE)
-	if f:
-		f.store_string(JSON.stringify(data))
+	SaveSlot.write_json(hub_path, data)
 
 
 ## The knight's things handed to the scribe go into the dive's save,
@@ -763,6 +798,4 @@ static func write_given(given: Array, dive_path := "") -> void:
 	data["bag"] = bag
 	if not data.has("done"):
 		data["done"] = []
-	var f := FileAccess.open(dive_path, FileAccess.WRITE)
-	if f:
-		f.store_string(JSON.stringify(data))
+	SaveSlot.write_json(dive_path, data)

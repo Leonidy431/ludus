@@ -1,0 +1,364 @@
+{
+  "id": "rov_pilot_course",
+  "title_ru": "Курс пилота аппарата: поиск щуки",
+  "doc": "docs/missions/rov-pilot-akula/README.md",
+  "outline_md": "docs/missions/rov-pilot-akula/ROV_VIDEO_DIVER_SPEC.md",
+  "outline_doc": "docs/missions/rov-pilot-akula/Dist_Spec_Remote_Operated_Video_Diver_final.doc",
+  "contract": "contract_akula",
+  "rule": "What the operator's course outline teaches, the pike-search contract teaches by doing. This is training in a game, not a certification.",
+  "not_certification_ru": "Это обучение в игре, а не сертификация: настоящий курс ведёт живой инструктор в воде.",
+  "lake": {
+    "max_depth_m": 668.0,
+    "thermocline_m": 50.0,
+    "salinity_psu": 6.0
+  },
+  "ascent": {
+    "m_per_min": 10.0,
+    "outline_m_per_min": 18.0,
+    "why_ru": "Восемнадцать метров в минуту — норма для водолаза; аппарат на тросе поднимают не быстрее десяти.",
+    "why": "The outline gives 18 m/min, a diver standard. The tethered vehicle keeps DiveCore 10 m/min: the tether is wound by hand, silt is not lifted, the same number holds in the whole game (TABOO 0.35 rule 19)."
+  },
+  "steps": [
+    {
+      "id": "briefing",
+      "after": "notice",
+      "title_ru": "Брифинг у лодки"
+    },
+    {
+      "id": "predive_check",
+      "after": "notice",
+      "title_ru": "Проверка аппарата"
+    },
+    {
+      "id": "thermocline_check",
+      "after": "notice",
+      "title_ru": "Замер термоклина на спуске"
+    },
+    {
+      "id": "site_map",
+      "after": "sample",
+      "title_ru": "План места у свай"
+    },
+    {
+      "id": "conservation",
+      "after": "choice",
+      "title_ru": "Сбережение места"
+    },
+    {
+      "id": "ascent",
+      "after": "choice",
+      "title_ru": "Подъём"
+    },
+    {
+      "id": "post_dive",
+      "after": "choice",
+      "title_ru": "После спуска"
+    }
+  ],
+  "order": [
+    "notice",
+    "briefing",
+    "predive_check",
+    "thermocline_check",
+    "clues",
+    "identify",
+    "prepare",
+    "encounter",
+    "sample",
+    "site_map",
+    "lab",
+    "choice",
+    "conservation",
+    "ascent",
+    "post_dive",
+    "after"
+  ],
+  "objectives": [
+    {
+      "id": "legal_permit",
+      "title_ru": "Законность работ",
+      "teach_ru": "Прежде чем спустить аппарат, он берёт разрешение заповедника и согласие рыбаков. Без бумаги вода чужая.",
+      "stage": "notice",
+      "check": "The permit card is taken before the first launch; no launch without it.",
+      "source": "Learning objectives 3; Section Three, at surface; Section Four, general 8"
+    },
+    {
+      "id": "diver_safety",
+      "title_ru": "Безопасность людей у аппарата",
+      "teach_ru": "Водолаз не ближе трёх метров к винтам, трос не идёт через человека. Аппарат рискует, человек — нет.",
+      "stage": "briefing",
+      "check": "No thruster command while a person is inside 3 m of the vehicle.",
+      "source": "Course goals 3; Section Three, at surface"
+    },
+    {
+      "id": "conditions_brief",
+      "title_ru": "Оценка условий",
+      "teach_ru": "Он смотрит ветер, волну, муть и дно: ил у свай, камень у мыса, глубина работы — от 25 до 35 метров.",
+      "stage": "briefing",
+      "check": "The briefing card names wind, visibility, bottom type and the depth range of the site.",
+      "source": "Section Four, Dive One A.1, A.5, A.6; Dive Two A.1, A.5, A.6"
+    },
+    {
+      "id": "turn_back_reserve",
+      "title_ru": "Когда заканчивать спуск",
+      "teach_ru": "У аквалангиста — давление в баллоне, у аппарата — заряд. На трети заряда он поворачивает к лодке.",
+      "stage": "briefing",
+      "check": "The ascent is started with at least a third of the battery left.",
+      "source": "Section Four, Dive One A.7; Dive Two A.7"
+    },
+    {
+      "id": "navigation_features",
+      "title_ru": "Навигация в пяти средах",
+      "teach_ru": "Затонувшее судно, лодка с берега, пещера, река, подо льдом: в каждой среде трос и путь назад ведут себя по-своему.",
+      "stage": "briefing",
+      "check": "All five navigation cases of the methods block are read at the briefing.",
+      "source": "Learning objectives 6; Section Three, underwater; Section Four, Dive One A.8; Dive Two B"
+    },
+    {
+      "id": "predive_check",
+      "title_ru": "Проверка аппарата у лодки",
+      "teach_ru": "Трос, уплотнения, винты, свет, заряд, компас: он проверяет всё на берегу. Под водой исправлять поздно.",
+      "stage": "predive_check",
+      "check": "All items of the pre-dive list are ticked before the vehicle goes into the water.",
+      "source": "Learning objectives 5; Section Three, briefing; Section Four, Dive Two B.1-B.2"
+    },
+    {
+      "id": "thermocline_check",
+      "title_ru": "Температура и глубина термоклина",
+      "teach_ru": "Датчик на спуске: тепло, тепло и вдруг холод. Около пятидесяти метров — слой скачка; там звук идёт медленнее.",
+      "stage": "thermocline_check",
+      "check": "The player marks the depth where temperature falls fastest; within 5 m of DiveCore.THERMOCLINE_M.",
+      "source": "Learning objectives 2; Section Four, Dive Two B.5"
+    },
+    {
+      "id": "detection_three",
+      "title_ru": "Три способа найти след на дне",
+      "teach_ru": "Эхом с лодки, магнитометром над илом и камерой галсами. Один прибор врёт, три вместе — свидетели.",
+      "stage": "clues",
+      "check": "At least one clue is found by each of the three detection methods.",
+      "source": "Section Three, underwater; Section Two, course content"
+    },
+    {
+      "id": "side_scan_reading",
+      "title_ru": "Чтение картинки бокового обзора",
+      "teach_ru": "Светлое — твёрдое, отражает; тёмная тень за ним — высота. Длинная тень у свай — сваи, а не рыба.",
+      "stage": "clues",
+      "check": "The player tells piles from a fish on the side-scan picture by the shadow.",
+      "source": "Section Three, at surface; Section Four, general 7"
+    },
+    {
+      "id": "robot_sonar",
+      "title_ru": "Сонар аппарата",
+      "teach_ru": "В мути камера слепа, а веер сонара видит сваи и одну цель между ними. Сначала эхо, потом свет.",
+      "stage": "encounter",
+      "check": "The target is found on the vehicle sonar before the lamp is switched on.",
+      "source": "Section Four, Dive Two B.6"
+    },
+    {
+      "id": "piloting_three",
+      "title_ru": "Три способа пилотирования для поиска",
+      "teach_ru": "Галсы по линиям, спираль вокруг находки, ход по изобате над дном. Он выбирает способ по задаче, а не по привычке.",
+      "stage": "encounter",
+      "check": "Each of the three piloting methods is flown at least once during the mission.",
+      "source": "Learning objectives 1; Section Four, Dive Two B.7"
+    },
+    {
+      "id": "robot_control",
+      "title_ru": "Режимы управления аппаратом",
+      "teach_ru": "Ручной ход, удержание глубины, удержание курса. У свай он держит глубину автоматом, а рукой ведёт только курс.",
+      "stage": "encounter",
+      "check": "Depth hold is on while the vehicle approaches the piles.",
+      "source": "Section Four, Dive One B.4"
+    },
+    {
+      "id": "laser_scale",
+      "title_ru": "Лазерный масштаб",
+      "teach_ru": "Две параллельные точки лазера в десяти сантиметрах: двенадцать таких шагов вдоль рыбы — около метра двадцати.",
+      "stage": "encounter",
+      "check": "The fish length read by the laser pair agrees with the echo length within 10 percent.",
+      "source": "Section Four, Dive One B.3"
+    },
+    {
+      "id": "robot_arm",
+      "title_ru": "Манипулятор",
+      "teach_ru": "Мягкий захват, медленно, без рывка: тампон касается бока, а не жабр. Сильный захват — для камня, не для живого.",
+      "stage": "sample",
+      "check": "The swab is taken with the soft grip at speed under 0.3 m/s.",
+      "source": "Section Four, Dive One B.2"
+    },
+    {
+      "id": "site_map",
+      "title_ru": "План места: две ленты и два транспортира",
+      "teach_ru": "Базовая линия из двух пятиметровых лент; с обоих концов — угол на находку. Где углы сошлись, там и точка.",
+      "stage": "site_map",
+      "check": "At least three objects are placed on the plan by angles from both ends of the base line.",
+      "source": "Learning objectives 4; Section Three, at surface and underwater"
+    },
+    {
+      "id": "legal_finds",
+      "title_ru": "Находка не продаётся",
+      "teach_ru": "Астролябия — свидетель, а не добыча: о ней сообщают и её передают, а место описывают раньше, чем трогают.",
+      "stage": "choice",
+      "check": "The sell choice is marked as a loss of the find in the journal.",
+      "source": "Learning objectives 3"
+    },
+    {
+      "id": "conservation_three",
+      "title_ru": "Три способа сберечь место",
+      "teach_ru": "Оставить на месте и описать, укрыть сеткой и грунтом, оградить от сетей и якорей. Сначала — не навредить.",
+      "stage": "conservation",
+      "check": "All three conservation methods of the methods block are done at the piles.",
+      "source": "Section Three, underwater; Section Four, Dive Two B.3"
+    },
+    {
+      "id": "plastic_mesh",
+      "title_ru": "Пластиковая сетка в рулоне",
+      "teach_ru": "Рулон сетки раскатывают по илу над находкой и пригружают мешками: волна и якорь больше не тронут слой.",
+      "stage": "conservation",
+      "check": "The mesh covers the find and is weighted at its edges.",
+      "source": "Section Three, underwater"
+    },
+    {
+      "id": "ascent",
+      "title_ru": "Подъём",
+      "teach_ru": "Аппарат на тросе поднимают не быстрее десяти метров в минуту: трос не рвётся, ил не взлетает.",
+      "stage": "ascent",
+      "check": "DiveCore.ascent_rate never reports too_fast during the ascent.",
+      "source": "Section Four, Dive One B.6; Dive Two performance requirement"
+    },
+    {
+      "id": "pleasure_minute",
+      "title_ru": "Минута без задачи",
+      "teach_ru": "Перед подъёмом он минуту просто смотрит на стайку чебачка у свай. Озеро — не только рабочее место.",
+      "stage": "ascent",
+      "check": "One minute of hovering without commands is offered; it is never scored.",
+      "source": "Section Four, Dive One B.5"
+    },
+    {
+      "id": "care_of_equipment",
+      "title_ru": "Уход за аппаратом",
+      "teach_ru": "Вода озера солоноватая: аппарат моют пресной, разъёмы сушат, заряд ставят до утра.",
+      "stage": "post_dive",
+      "check": "Rinse, dry connectors and charge are ticked before the vehicle goes to the slipway.",
+      "source": "Section Three, after dive; Section Four, after dive"
+    },
+    {
+      "id": "post_dive",
+      "title_ru": "После спуска",
+      "teach_ru": "Трос сматывают без петель, тем же числом оборотов, что намотали. Повреждения записывают, не прячут.",
+      "stage": "post_dive",
+      "check": "The tether is wound with no kinks left and damage is written down.",
+      "source": "Section Three, after dive; Section Four, after dive"
+    },
+    {
+      "id": "debrief",
+      "title_ru": "Разбор",
+      "teach_ru": "На берегу он говорит, что вышло и что нет, и почему. Ошибку называют, чтобы её не повторил другой.",
+      "stage": "after",
+      "check": "The debrief card lists one success and one error of the dive.",
+      "source": "Section Three, after dive; Section Four, after dive"
+    },
+    {
+      "id": "log_dive",
+      "title_ru": "Журнал спуска",
+      "teach_ru": "Глубина, время, вода, находки, ошибки — в журнал. Писец подписывает, как инструктор подписывает книжку.",
+      "stage": "after",
+      "check": "A journal entry with depth, time, temperature and finds is written.",
+      "source": "Section Three, after dive; Section Four, after dive"
+    }
+  ],
+  "methods": {
+    "piloting": [
+      {
+        "id": "lanes",
+        "title_ru": "Галсы",
+        "how_ru": "Параллельные линии с шагом меньше ширины обзора камеры или сонара, разворот за краем участка, курс держит автомат.",
+        "lake_ru": "У свай на 32 м видимость 2–5 м: шаг галса 3 м при камере, 15–20 м при сонаре-веере."
+      },
+      {
+        "id": "spiral",
+        "title_ru": "Спираль вокруг находки",
+        "how_ru": "От точки находки аппарат уходит по расширяющейся спирали, шаг витка — ширина обзора; так ищут то, что рядом.",
+        "lake_ru": "Вокруг первой зарубки на тросе: спираль до 20 м, трос держат на виду, чтобы не намотать его на сваи."
+      },
+      {
+        "id": "contour",
+        "title_ru": "Ход по изобате",
+        "how_ru": "Аппарат держит постоянную высоту над дном и идёт вдоль одной глубины, как по горизонтали карты.",
+        "lake_ru": "Склон от 25 до 35 м: ход на 1 м над илом, без касания, чтобы не поднять муть."
+      }
+    ],
+    "detection": [
+      {
+        "id": "acoustic",
+        "title_ru": "Эхо и боковой обзор с лодки",
+        "how_ru": "Лодка идёт галсами, эхолот и боковой обзор рисуют дно; твёрдое отражает, тень даёт высоту.",
+        "lake_ru": "Скорость звука выше термоклина около 1480 м/с, ниже — около 1435 м/с; поправку вводят до разметки."
+      },
+      {
+        "id": "magnetic",
+        "title_ru": "Магнитометр",
+        "how_ru": "Прибор тянут над дном и ищут скачок поля: железо, якорь, металл искажает его на несколько нанотесла и больше.",
+        "lake_ru": "Сваи с железными скобами и клад в иле дают аномалию; магнитометр держат вдали от моторов лодки."
+      },
+      {
+        "id": "visual",
+        "title_ru": "Камера галсами и спросить людей",
+        "how_ru": "Камера ведёт галсы над сонарными целями; рассказы рыбаков и архивы говорят, где искать, но не что там.",
+        "lake_ru": "Вода прозрачная у поверхности, у дна муть; рыбак указал сваи — проверили эхом и камерой."
+      }
+    ],
+    "conservation": [
+      {
+        "id": "in_situ",
+        "title_ru": "Оставить на месте и описать",
+        "how_ru": "Сначала план, фото с масштабом и описание; поднимают только то, что иначе погибнет, и только с разрешением.",
+        "lake_ru": "Астролябию описывают на месте, под сваями: поднимать её решает не оператор."
+      },
+      {
+        "id": "cover",
+        "title_ru": "Укрыть сеткой и грунтом",
+        "how_ru": "Рулон пластиковой сетки раскатывают над слоем, пригружают мешками с песком; ил ложится сверху и бережёт находку.",
+        "lake_ru": "Мешки — из местного песка с пляжа, без чужого грунта; сетку крепят так, чтобы не стала ловушкой для рыбы."
+      },
+      {
+        "id": "guard",
+        "title_ru": "Оградить от людей и снастей",
+        "how_ru": "Буй и отметка на карте рыбаков, запрет якорей и сетей над местом, повторный осмотр раз в сезон.",
+        "lake_ru": "Старые сети у свай снимают; рыбакам говорят, где не ставить сеть."
+      }
+    ],
+    "navigation": [
+      {
+        "id": "ship",
+        "title_ru": "Затонувшее судно",
+        "how_ru": "Обход снаружи, трос не через леера и не в проёмы; внутрь — только когда видно путь назад.",
+        "lake_ru": "В игре — сваи затопленной пристани: те же правила, трос не обвивает сваю."
+      },
+      {
+        "id": "shore_boat",
+        "title_ru": "Лодка от берега",
+        "how_ru": "Пульт на берегу или в лодке, трос с поплавками; лодка стоит на якоре или идёт за аппаратом медленно.",
+        "lake_ru": "От причала у свай — лодка на якоре, ветер с гор к вечеру: трос держат с запасом."
+      },
+      {
+        "id": "cave",
+        "title_ru": "Пещера",
+        "how_ru": "Трос — путеводная нить: вход отмечен, каждый поворот считается, назад ведут тем же путём.",
+        "lake_ru": "Проход в пещеру из летописи: аппарат входит, только если трос можно выбрать без петли."
+      },
+      {
+        "id": "river",
+        "title_ru": "Река",
+        "how_ru": "Течение сносит трос дугой; аппарат идёт против течения и спускается по нему медленно.",
+        "lake_ru": "Устья горных рек у озера холодные и мутные: аппарат держат выше струи."
+      },
+      {
+        "id": "under_ice",
+        "title_ru": "Подо льдом",
+        "how_ru": "Одна лунка — один путь назад; трос — единственная дорога, компас сверяют до спуска, у берега.",
+        "lake_ru": "Иссык-Куль зимой не замерзает (кроме мелких заливов); подлёдный спуск — на горных озёрах края."
+      }
+    ]
+  }
+}

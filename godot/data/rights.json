@@ -1,0 +1,321 @@
+{
+ "title": "Manuscript of rights",
+ "title_ru": "Манускрипт прав",
+ "generated_by": "scripts/build_rights_manifest.py",
+ "own": {
+  "name": "Ludus: code, SVG art, dialogues, procedural sound",
+  "licence": "not declared (all rights with the author)",
+  "note": "No LICENSE file in the repository yet; the operator decides.",
+  "name_ru": "Ludus: код, рисунки SVG, диалоги, процедурный звук",
+  "licence_ru": "не объявлена (все права у автора)"
+ },
+ "components": [
+  {
+   "name": "Godot Engine",
+   "version": "4.7.1-stable",
+   "spdx": "MIT",
+   "in_apk": true,
+   "licence_file": "licenses/MIT-Godot-Engine.txt",
+   "note": "Text as Engine.get_license_text() returns it; the engine's third-party parts are listed by Engine.get_copyright_info()."
+  },
+  {
+   "name": "godot_openxr_vendors (OpenXR loaders plugin)",
+   "version": "5.1.0-stable",
+   "spdx": "MIT",
+   "in_apk": true,
+   "licence_file": "licenses/MIT-godot_openxr_vendors.txt"
+  },
+  {
+   "name": "Khronos OpenXR loader (in the vendors plugin)",
+   "version": "with godot_openxr_vendors 5.1.0-stable",
+   "spdx": "Apache-2.0",
+   "in_apk": true,
+   "licence_file": "licenses/Apache-2.0.txt"
+  },
+  {
+   "name": "Meta OpenXR SDK (headers the Meta plugin is built with)",
+   "version": "with godot_openxr_vendors 5.1.0-stable",
+   "spdx": "LicenseRef-Oculus-SDK",
+   "in_apk": true,
+   "licence_file": "licenses/Meta-OpenXR-SDK-NOTICE.txt",
+   "note": "The notice names the Oculus SDK License Agreement by address; its full text is not in the vendors release."
+  }
+ ],
+ "raw_material": [
+  {
+   "object": "ant_acedia_7503efbff8",
+   "slot": "DEF-001",
+   "repo": "https://github.com/Card-Forge/forge",
+   "commit": "647b5eac95",
+   "path": "forge-gui/res/adventure/common/sprites/enemy/undead/ghost.png",
+   "spdx": "GPL-3.0-only",
+   "author": "Forge contributors",
+   "licence_file": "licenses/GPL-3.0.txt",
+   "colour_change": 0.9854,
+   "shape_change": 0.6943
+  },
+  {
+   "object": "ant_anger_3c331cda72",
+   "slot": "DEF-001",
+   "repo": "https://github.com/Card-Forge/forge",
+   "commit": "647b5eac95",
+   "path": "forge-gui/res/adventure/common/sprites/enemy/plant/mushroom_monster.png",
+   "spdx": "GPL-3.0-only",
+   "author": "Forge contributors",
+   "licence_file": "licenses/GPL-3.0.txt",
+   "colour_change": 1.0,
+   "shape_change": 0.4603
+  },
+  {
+   "object": "ant_anger_78b752dfa6",
+   "slot": "DEF-001",
+   "repo": "https://github.com/Card-Forge/forge",
+   "commit": "647b5eac95",
+   "path": "forge-gui/res/adventure/common/sprites/enemy/plant/slimefoot.png",
+   "spdx": "GPL-3.0-only",
+   "author": "Forge contributors",
+   "licence_file": "licenses/GPL-3.0.txt",
+   "colour_change": 0.9961,
+   "shape_change": 0.4935
+  },
+  {
+   "object": "ant_anger_7b0ce4d8c3",
+   "slot": "DEF-001",
+   "repo": "https://github.com/wesnoth/wesnoth",
+   "commit": "7747be0ff7",
+   "path": "data/core/images/units/monsters/deep-tentacle-ranged-defend.png",
+   "spdx": "GPL-2.0-or-later",
+   "author": "The Battle for Wesnoth Project contributors",
+   "licence_file": "licenses/GPL-2.0.txt",
+   "colour_change": 0.9645,
+   "shape_change": 0.3881
+  },
+  {
+   "object": "ant_anger_8c10c90816",
+   "slot": "DEF-001",
+   "repo": "https://github.com/Card-Forge/forge",
+   "commit": "647b5eac95",
+   "path": "forge-gui/res/adventure/common/sprites/enemy/beast/insect/smallworm.png",
+   "spdx": "GPL-3.0-only",
+   "author": "Forge contributors",
+   "licence_file": "licenses/GPL-3.0.txt",
+   "colour_change": 1.0,
+   "shape_change": 0.4808
+  },
+  {
+   "object": "ant_anger_c3857f31c5",
+   "slot": "DEF-001",
+   "repo": "https://github.com/Card-Forge/forge",
+   "commit": "647b5eac95",
+   "path": "forge-gui/res/adventure/common/sprites/enemy/undead/ghost.png",
+   "spdx": "GPL-3.0-only",
+   "author": "Forge contributors",
+   "licence_file": "licenses/GPL-3.0.txt",
+   "colour_change": 0.8946,
+   "shape_change": 0.5045
+  },
+  {
+   "object": "ant_anger_fb79893509",
+   "slot": "DEF-001",
+   "repo": "https://github.com/crawl/crawl",
+   "commit": "7c31f6e797",
+   "path": "crawl-ref/source/rltiles/gui/spells/monster/summon_sin_beast.png",
+   "spdx": "GPL-2.0-or-later",
+   "author": "Dungeon Crawl Stone Soup dev team and contributors (CREDITS.txt)",
+   "licence_file": "licenses/GPL-2.0.txt",
+   "colour_change": 0.9974,
+   "shape_change": 0.5069
+  },
+  {
+   "object": "ant_avarice_055bf3b162",
+   "slot": "DEF-001",
+   "repo": "https://github.com/wesnoth/wesnoth",
+   "commit": "7747be0ff7",
+   "path": "data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-defend1.png",
+   "spdx": "GPL-2.0-or-later",
+   "author": "The Battle for Wesnoth Project contributors",
+   "licence_file": "licenses/GPL-2.0.txt",
+   "colour_change": 1.0,
+   "shape_change": 0.3509
+  },
+  {
+   "object": "ant_avarice_e795010b0e",
+   "slot": "DEF-001",
+   "repo": "https://github.com/wesnoth/wesnoth",
+   "commit": "7747be0ff7",
+   "path": "data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-sword3.png",
+   "spdx": "GPL-2.0-or-later",
+   "author": "The Battle for Wesnoth Project contributors",
+   "licence_file": "licenses/GPL-2.0.txt",
+   "colour_change": 0.9992,
+   "shape_change": 0.4539
+  },
+  {
+   "object": "ant_avarice_eb6a1405af",
+   "slot": "DEF-001",
+   "repo": "https://github.com/crawl/crawl",
+   "commit": "7c31f6e797",
+   "path": "crawl-ref/source/rltiles/UNUSED/monsters/deep_dwarf_death_knight.png",
+   "spdx": "GPL-2.0-or-later",
+   "author": "Dungeon Crawl Stone Soup dev team and contributors (CREDITS.txt)",
+   "licence_file": "licenses/GPL-2.0.txt",
+   "colour_change": 1.0,
+   "shape_change": 0.3558
+  },
+  {
+   "object": "ant_avarice_f14d9c7468",
+   "slot": "DEF-001",
+   "repo": "https://github.com/crawl/crawl",
+   "commit": "7c31f6e797",
+   "path": "crawl-ref/source/rltiles/UNUSED/monsters/ravenous_mimic.png",
+   "spdx": "GPL-2.0-or-later",
+   "author": "Dungeon Crawl Stone Soup dev team and contributors (CREDITS.txt)",
+   "licence_file": "licenses/GPL-2.0.txt",
+   "colour_change": 1.0,
+   "shape_change": 0.4018
+  },
+  {
+   "object": "ant_gluttony_3b98248226",
+   "slot": "DEF-001",
+   "repo": "https://github.com/Card-Forge/forge",
+   "commit": "647b5eac95",
+   "path": "forge-gui/res/adventure/common/sprites/enemy/ooze/giant_slime.png",
+   "spdx": "GPL-3.0-only",
+   "author": "Forge contributors",
+   "licence_file": "licenses/GPL-3.0.txt",
+   "colour_change": 1.0,
+   "shape_change": 0.372
+  },
+  {
+   "object": "ant_pride_4a93e8590a",
+   "slot": "DEF-001",
+   "repo": "https://github.com/Card-Forge/forge",
+   "commit": "647b5eac95",
+   "path": "forge-gui/res/adventure/common/sprites/enemy/aberration/beholder.png",
+   "spdx": "GPL-3.0-only",
+   "author": "Forge contributors",
+   "licence_file": "licenses/GPL-3.0.txt",
+   "colour_change": 0.9972,
+   "shape_change": 0.3513
+  },
+  {
+   "object": "ant_sadness_3f22d4e3ed",
+   "slot": "DEF-001",
+   "repo": "https://github.com/Card-Forge/forge",
+   "commit": "647b5eac95",
+   "path": "forge-gui/res/adventure/common/sprites/enemy/undead/ghost_2.png",
+   "spdx": "GPL-3.0-only",
+   "author": "Forge contributors",
+   "licence_file": "licenses/GPL-3.0.txt",
+   "colour_change": 1.0,
+   "shape_change": 0.3915
+  },
+  {
+   "object": "ant_sadness_5272495b7e",
+   "slot": "DEF-001",
+   "repo": "https://github.com/wesnoth/wesnoth",
+   "commit": "7747be0ff7",
+   "path": "data/core/images/units/monsters/deep-tentacle-melee-defend-2.png",
+   "spdx": "GPL-2.0-or-later",
+   "author": "The Battle for Wesnoth Project contributors",
+   "licence_file": "licenses/GPL-2.0.txt",
+   "colour_change": 0.9944,
+   "shape_change": 0.5173
+  },
+  {
+   "object": "ant_sadness_b6a55c4b0e",
+   "slot": "DEF-001",
+   "repo": "https://github.com/wesnoth/wesnoth",
+   "commit": "7747be0ff7",
+   "path": "data/core/images/units/monsters/deep-tentacle-melee-defend-1.png",
+   "spdx": "GPL-2.0-or-later",
+   "author": "The Battle for Wesnoth Project contributors",
+   "licence_file": "licenses/GPL-2.0.txt",
+   "colour_change": 0.9966,
+   "shape_change": 0.5211
+  },
+  {
+   "object": "ant_sadness_f52ff4a292",
+   "slot": "DEF-001",
+   "repo": "https://github.com/wesnoth/wesnoth",
+   "commit": "7747be0ff7",
+   "path": "data/internal/Rogue_Mage/images/units/rogue-mage/shadow-lord+female-sword2.png",
+   "spdx": "GPL-2.0-or-later",
+   "author": "The Battle for Wesnoth Project contributors",
+   "licence_file": "licenses/GPL-2.0.txt",
+   "colour_change": 0.8232,
+   "shape_change": 0.4434
+  },
+  {
+   "object": "ant_vainglory_12f32bbb0f",
+   "slot": "DEF-001",
+   "repo": "https://github.com/crawl/crawl",
+   "commit": "7c31f6e797",
+   "path": "crawl-ref/source/rltiles/item/misc/misc_phantom_mirror.png",
+   "spdx": "GPL-2.0-or-later",
+   "author": "Dungeon Crawl Stone Soup dev team and contributors (CREDITS.txt)",
+   "licence_file": "licenses/GPL-2.0.txt",
+   "colour_change": 1.0,
+   "shape_change": 0.5665
+  },
+  {
+   "object": "obj_bench_41042cf8fd",
+   "slot": "LOC-court-yard",
+   "repo": "https://github.com/space-wizards/space-station-14",
+   "commit": "d4d4696248",
+   "path": "Resources/Textures/Structures/Furniture/chairs.rsi/wooden-bench.png",
+   "spdx": "CC-BY-SA-3.0",
+   "author": "Space Station 14 contributors (wooden bench by Ko4erga)",
+   "licence_file": "licenses/CC-BY-SA-3.0.txt",
+   "colour_change": 0.6083,
+   "shape_change": 0.3521
+  },
+  {
+   "object": "obj_bridge_log_40b14237a3",
+   "slot": "LOC-mountain-bridge",
+   "repo": "https://github.com/widelands/widelands",
+   "commit": "6c21c892e8",
+   "path": "data/tribes/wares/log/idle_4.png",
+   "spdx": "GPL-2.0-or-later",
+   "author": "The Widelands Development Team (data/txts/AUTHORS.lua)",
+   "licence_file": "licenses/GPL-2.0.txt",
+   "colour_change": 0.3625,
+   "shape_change": 0.3707
+  },
+  {
+   "object": "obj_hourglass_e49ab22431",
+   "slot": "LOC-rock-island",
+   "repo": "https://github.com/Azgaar/Fantasy-Map-Generator",
+   "commit": "77192941fd",
+   "path": "public/charges/hourglass.svg",
+   "spdx": "CC-BY-SA-3.0",
+   "author": "Syryatsu, \"Meuble sablier s'écoulant\", Wikimedia Commons (via Azgaar/Fantasy-Map-Generator)",
+   "licence_file": "licenses/CC-BY-SA-3.0.txt",
+   "colour_change": 0.9527,
+   "shape_change": 0.3524
+  },
+  {
+   "object": "obj_tools_9b09b1f302",
+   "slot": "LOC-forge",
+   "repo": "https://github.com/widelands/widelands",
+   "commit": "6c21c892e8",
+   "path": "data/tribes/wares/hammer/menu.png",
+   "spdx": "GPL-2.0-or-later",
+   "author": "The Widelands Development Team (data/txts/AUTHORS.lua)",
+   "licence_file": "licenses/GPL-2.0.txt",
+   "colour_change": 0.3756,
+   "shape_change": 0.4035
+  }
+ ],
+ "licence_texts": [
+  "licenses/Apache-2.0.txt",
+  "licenses/CC-BY-SA-3.0.txt",
+  "licenses/GPL-2.0.txt",
+  "licenses/GPL-3.0.txt",
+  "licenses/MIT-Godot-Engine.txt",
+  "licenses/MIT-godot_openxr_vendors.txt",
+  "licenses/Meta-OpenXR-SDK-NOTICE.txt"
+ ],
+ "copyleft_note": "GPL and CC BY-SA apply to these pictures whatever the 35 % rule says: authors are named here, the texts ship in licenses/, and the sources are at the repository and commit given.  The final word is the lawyer's.",
+ "copyleft_note_ru": "GPL и CC BY-SA действуют для этих картинок независимо от правила 35 %: авторы названы здесь, тексты лицензий лежат в licenses/, исходники — в указанном репозитории и ревизии.  Последнее слово за юристом."
+}
