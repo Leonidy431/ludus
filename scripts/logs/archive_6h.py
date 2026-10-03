@@ -31,7 +31,8 @@ ROOT = talk_log.ROOT
 OUT = ROOT / 'docs' / 'logs' / 'archive'
 # Where glove renders and their code live (git-tracked paths).
 RENDER_PATTERNS = ('docs/audit/*/volumetric/*', 'docs/audit/*/glove*',
-                   'video/glove*/*', 'video/volumetric*/*')
+                   'video/glove*/*', 'video/volumetric*/*',
+                   'docs/music/cosmos/*')
 CODE_PATTERNS = ('godot/scripts/glove_computer.gd',
                  'godot/scripts/volumetric_*.gd',
                  'godot/tools/volumetric_shots.gd',
