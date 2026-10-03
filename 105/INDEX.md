@@ -2,8 +2,8 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 503
-- документов: 251
+- файлов кода: 509
+- документов: 253
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -30,7 +30,7 @@
 - [.github/workflows/raw-audio-pass.yml](../.github/workflows/raw-audio-pass.yml) — Audio pass over the 99 backlog repos as a git pass (operator,
 - [.github/workflows/raw-osint-cycle.yml](../.github/workflows/raw-osint-cycle.yml) — OSINT pass over the 99 backlog repos every 1.5 hours (CLAUDE.md TABOO
 
-## Игра для шлема: код (GDScript) (93)
+## Игра для шлема: код (GDScript) (95)
 
 - [godot/scripts/apparatus_core.gd](../godot/scripts/apparatus_core.gd) — The operator's own apparatus in the game (CLAUDE.md TABOO 0.022): 41
 - [godot/scripts/atlas_core.gd](../godot/scripts/atlas_core.gd) — "The Water Atlas" read at the lectern of the scriptorium (CLAUDE.md
@@ -107,6 +107,8 @@
 - [godot/scripts/rule_cell.gd](../godot/scripts/rule_cell.gd) — The two practices of the rule that the hub gives a place
 - [godot/scripts/rule_core.gd](../godot/scripts/rule_core.gd) — The rule of prayer, ported from public/ludus/ludus-actions.js
 - [godot/scripts/save_slot.gd](../godot/scripts/save_slot.gd) — Which save the game reads and writes: the player's own, or the tester's.
+- [godot/scripts/scene_sets.gd](../godot/scripts/scene_sets.gd) — The twelve ready sets of one scene (TABOO 0.032, docs/tech/MULTI_ENV_
+- [godot/scripts/scene_sets_trigger.gd](../godot/scripts/scene_sets_trigger.gd) — Walks the twelve sets as the hero walks: after STEP_M metres the next
 - [godot/scripts/screen_feed.gd](../godot/scripts/screen_feed.gd) — The video of the operator's instruments (CLAUDE.md TABOO 0.022): what
 - [godot/scripts/source_labels.gd](../godot/scripts/source_labels.gd) — The Russian form of a source, for the panels of the headset.
 - [godot/scripts/static_batch.gd](../godot/scripts/static_batch.gd) — Static batching of still geometry (docs/APK_REQUIREMENTS.md, Б-1).
@@ -156,7 +158,7 @@
 - [godot/tools/volumetric_shots.gd](../godot/tools/volumetric_shots.gd) — Proof frames of the volumetric laser screen (docs/HLD_VOLUMETRIC_LASER_
 - [godot/tools/witness_wav_check.py](../godot/tools/witness_wav_check.py) — Measure the offline render of the path of the witness.
 
-## Игра для шлема: тесты (68)
+## Игра для шлема: тесты (69)
 
 - [godot/tests/confession_walker.gd](../godot/tests/confession_walker.gd) — A stand-in for the witness path in test_confession.gd: the sheet reads
 - [godot/tests/deeds/panel_text.gd](../godot/tests/deeds/panel_text.gd) — The heart's panel of a place as location.gd builds it, measured with
@@ -212,6 +214,7 @@
 - [godot/tests/test_rov_course.gd](../godot/tests/test_rov_course.gd) — The ROV pilot course in the pike-search contract (RovCourseCore):
 - [godot/tests/test_rov_lod.gd](../godot/tests/test_rov_lod.gd) — The Mangustik's far-view proxy and its switch by distance (RovLod,
 - [godot/tests/test_rule.gd](../godot/tests/test_rule.gd) — RuleCore and the evening watch against the JS reference: every chain
+- [godot/tests/test_scene_sets.gd](../godot/tests/test_scene_sets.gd) — The twelve ready sets (TABOO 0.032): twelve per environment, every
 - [godot/tests/test_source_labels.gd](../godot/tests/test_source_labels.gd) — The Russian labels of the sources (SourceLabels, source-labels-ru.json)
 - [godot/tests/test_static_batch.gd](../godot/tests/test_static_batch.gd) — Static batching of still geometry (StaticBatch, Б-1 in
 - [godot/tests/test_storm_calm.gd](../godot/tests/test_storm_calm.gd) — Waiting out the storm is seen and heard, and a tremor of the hand does
@@ -275,7 +278,7 @@
 - [scripts/decisions/stoplist_choice.py](../scripts/decisions/stoplist_choice.py) — One decision for the church-word stop-list, chosen in the open.
 - [scripts/decisions/stream_choice.py](../scripts/decisions/stream_choice.py) — How the heavy data reaches the headset: one way from the honest pool.
 
-## Скрипты проекта: раннер, данные, сюжеты (84)
+## Скрипты проекта: раннер, данные, сюжеты (87)
 
 - [scripts/blueos/sandbox_up.sh](../scripts/blueos/sandbox_up.sh) — Raise BlueOS and the operator's extensions in the session sandbox
 - [scripts/build-campaign-spine.py](../scripts/build-campaign-spine.py) — Build the Issyk-Kul campaign spine from webtypicon2's missions.
@@ -336,6 +339,7 @@
 - [scripts/raw_assets/reference.py](../scripts/raw_assets/reference.py) — Real-object profiles for the neutral raw-material slots.
 - [scripts/raw_assets/register.py](../scripts/raw_assets/register.py) — Write the licence register and per-object claim sheets.
 - [scripts/raw_assets/rounds.py](../scripts/raw_assets/rounds.py) — Write the round plan of the deficit runner (CLAUDE.md TABOO 0.15).
+- [scripts/raw_assets/scene_variation_search.py](../scripts/raw_assets/scene_variation_search.py) — Search the 99 cloned repositories for code and objects that serve the
 - [scripts/raw_assets/search_index.py](../scripts/raw_assets/search_index.py) — Search the 99-repo index for raw material that fills a game deficit.
 - [scripts/raw_assets/tests/test_antagonist.py](../scripts/raw_assets/tests/test_antagonist.py) — Tests for the alpha-form rules and the Antagonist protocol.
 - [scripts/raw_assets/tests/test_audio_pass.py](../scripts/raw_assets/tests/test_audio_pass.py) — The audio pass takes sounds only as spectral references.
@@ -352,6 +356,7 @@
 - [scripts/raw_assets/tests/test_reference.py](../scripts/raw_assets/tests/test_reference.py) — The runner selects by the real object and grows its keys by twelve.
 - [scripts/raw_assets/tests/test_reverted_memory.py](../scripts/raw_assets/tests/test_reverted_memory.py) — The runner remembers what the eye check reverted (cycle 93 lesson).
 - [scripts/raw_assets/transform.py](../scripts/raw_assets/transform.py) — Transform raw third-party images into Ludus art and measure the change.
+- [scripts/scenes/multi_env_sets.py](../scripts/scenes/multi_env_sets.py) — Twelve ready sets for one scene (TABOO 0.032, docs/tech/MULTI_ENV_SETS_
 - [scripts/story/atlas_nodes.py](../scripts/story/atlas_nodes.py) — The 99 nodes of "The Water Atlas" as the chorus of five editors left
 - [scripts/story/cast_12.py](../scripts/story/cast_12.py) — Where the people of the 12 stories stand in the headset.
 - [scripts/story/entelechy.py](../scripts/story/entelechy.py) — Entelechy 99: the operator's 99 signs-impulses in 9 nodes, and the
@@ -359,6 +364,7 @@
 - [scripts/story/select_12.py](../scripts/story/select_12.py) — Choose the 12 stories the headset walks on foot (TABOO 0.07).
 - [scripts/test-api-endpoints.sh](../scripts/test-api-endpoints.sh) — Ludus API Endpoint Test Suite
 - [scripts/tests/test_check_canon.py](../scripts/tests/test_check_canon.py) — Negative tests for scripts/check_canon.py.
+- [scripts/tests/test_multi_env_sets.py](../scripts/tests/test_multi_env_sets.py) — Tests of the twelve-sets generator (TABOO 0.032).
 - [scripts/video/insights_reel.py](../scripts/video/insights_reel.py) — The reel of the twelve insights of episode 1, with the suite under it.
 - [scripts/voice/build_claud_voice.py](../scripts/voice/build_claud_voice.py) — Build the draft voice of Claud, the ROV operator's AI companion.
 
@@ -498,7 +504,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (181)
+## Документация проекта (183)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -663,6 +669,8 @@
 - [docs/story/chorus-ep1/NARRATION_v4_24_LENSES.md](../docs/story/chorus-ep1/NARRATION_v4_24_LENSES.md) 📄 — Закадровый текст v4 — «Атлас воды · Серия 1 · Табу»
 - [docs/story/qviqa/ORDER_QVIQA_CODEX_2026-10-03.md](../docs/story/qviqa/ORDER_QVIQA_CODEX_2026-10-03.md) 📄 — Кодекс Братства QVIQA — лор, Конституция, контракты, путь, сообщество (2026-10-03)
 - [docs/story/qviqa/QVIQA_PROMPT_OPERATOR_2026-10-03.md](../docs/story/qviqa/QVIQA_PROMPT_OPERATOR_2026-10-03.md) 📄 — Исходник оператора: промпт «Орден QVIQA» (2026-10-03, дословно)
+- [docs/tech/MULTI_ENV_PROMPT_OPERATOR_2026-10-03.md](../docs/tech/MULTI_ENV_PROMPT_OPERATOR_2026-10-03.md) 📄 — Исходник оператора: «Архитектура Мульти-Среда» (2026-10-03, дословно)
+- [docs/tech/MULTI_ENV_SETS_2026-10-03.md](../docs/tech/MULTI_ENV_SETS_2026-10-03.md) 📄 — Технология «Мульти-Среда»: одна сцена — 12 готовых наборов (2026-10-03)
 - [docs/version-3.0/A10_OFFLINE_SYNC.md](../docs/version-3.0/A10_OFFLINE_SYNC.md) 📄 — A10: Offline Sync & Client-Side Caching
 - [docs/version-3.0/API_ERROR_HANDLING_GUIDE.md](../docs/version-3.0/API_ERROR_HANDLING_GUIDE.md) 📄 — API Error Handling & Edge Cases Guide
 - [docs/version-3.0/CLOUD_FUNCTIONS_DIALOGUE_API.md](../docs/version-3.0/CLOUD_FUNCTIONS_DIALOGUE_API.md) 📄 — Ludus Cloud Functions Dialogue API
