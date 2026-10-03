@@ -1337,9 +1337,7 @@ func _dive_task_line() -> String:
 
 
 func _save_bag() -> void:
-	var f := FileAccess.open(SaveSlot.dive(), FileAccess.WRITE)
-	if f:
-		f.store_string(JSON.stringify({"bag": bag, "done": game.done}))
+	SaveSlot.write_json(SaveSlot.dive(), {"bag": bag, "done": game.done})
 
 
 ## The chronicle's choice is written in the hub (hub.json); the dive only

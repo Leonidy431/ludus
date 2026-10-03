@@ -109,11 +109,8 @@ static func enter(mdata: Dictionary, mission_id: int, debug = null,
 	var built := build_state(mdata, mission_id)
 	if not built.ok:
 		return {"ok": false, "reason": built.reason}
-	var f := FileAccess.open(p.hub, FileAccess.WRITE)
-	if f == null:
+	if not SaveSlot.write_json(p.hub, built.save):
 		return {"ok": false, "reason": "файл проверки не записан"}
-	f.store_string(JSON.stringify(built.save))
-	f.close()
 	# Each check starts the dive clean: no pockets from an earlier check.
 	if FileAccess.file_exists(p.dive):
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(p.dive))

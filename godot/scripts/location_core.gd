@@ -777,9 +777,7 @@ static func write_state(st: Dictionary, hub_path := "") -> void:
 	data["deeds"] = PlaceDeeds.normalize(st.get("deeds", {}))
 	if typeof(st.chronicle) == TYPE_STRING and st.chronicle != "":
 		data["chronicle"] = st.chronicle
-	var f := FileAccess.open(hub_path, FileAccess.WRITE)
-	if f:
-		f.store_string(JSON.stringify(data))
+	SaveSlot.write_json(hub_path, data)
 
 
 ## The knight's things handed to the scribe go into the dive's save,
@@ -798,6 +796,4 @@ static func write_given(given: Array, dive_path := "") -> void:
 	data["bag"] = bag
 	if not data.has("done"):
 		data["done"] = []
-	var f := FileAccess.open(dive_path, FileAccess.WRITE)
-	if f:
-		f.store_string(JSON.stringify(data))
+	SaveSlot.write_json(dive_path, data)

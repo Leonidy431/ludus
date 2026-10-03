@@ -659,12 +659,10 @@ func _refresh_boards() -> void:
 
 func _save() -> void:
 	# The active slot: the player's own, or the tester's (SaveSlot).
-	var f := FileAccess.open(SaveSlot.hub(), FileAccess.WRITE)
-	if f:
-		f.store_string(JSON.stringify({"form": form, "actions": actions,
-			"trials": trial_state, "passions": passion_record,
-			"chronicle": chronicle, "missions": mission_state,
-			"deeds": place_deeds}))
+	SaveSlot.write_json(SaveSlot.hub(), {"form": form, "actions": actions,
+		"trials": trial_state, "passions": passion_record,
+		"chronicle": chronicle, "missions": mission_state,
+		"deeds": place_deeds})
 
 
 func _load() -> void:

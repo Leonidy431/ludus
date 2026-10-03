@@ -1572,12 +1572,9 @@ func _music() -> void:
 
 func _finish() -> void:
 	finished = true
-	var f := FileAccess.open(save_path, FileAccess.WRITE)
-	if f:
-		f.store_string(JSON.stringify({"seen": true,
-			"stage": state.get("stage", "prilog"),
-			"episode2": echo.get("episode2", "prior_waits")}))
-		f.close()
+	SaveSlot.write_json(save_path, {"seen": true,
+		"stage": state.get("stage", "prilog"),
+		"episode2": echo.get("episode2", "prior_waits")})
 	if not stay:
 		ModuleLoader.go(ModuleLoader.HUB)
 

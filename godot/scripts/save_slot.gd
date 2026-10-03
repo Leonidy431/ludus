@@ -46,3 +46,19 @@ static func dive(debug = null, marker := MARKER) -> String:
 ## The test slot's files and marker, as StoryCheck writes them.
 static func test_paths() -> Dictionary:
 	return {"hub": TEST_HUB, "dive": TEST_DIVE, "marker": MARKER}
+
+
+## Write a save whole or not at all.  The JSON goes to <path>.part, is
+## closed, then renamed over the save: a rename within one folder is
+## atomic on Android and Linux, so a crash, a dead battery or a second
+## writer mid-write leaves the old save, never half of a new one (a load
+## run of the tests, 2026-10-03, tore user://test-hub.json and read
+## "Parse JSON failed").  Returns whether the save was replaced.
+static func write_json(path: String, data) -> bool:
+	var part := path + ".part"
+	var f := FileAccess.open(part, FileAccess.WRITE)
+	if f == null:
+		return false
+	f.store_string(JSON.stringify(data))
+	f.close()
+	return DirAccess.rename_absolute(part, path) == OK
