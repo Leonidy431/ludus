@@ -12,7 +12,9 @@ The operator (2026-10-03): «расширяй время видео постеп
 * insights-variants-best-ep1.mp4: the chorus's pick of each insight
   (data 'picks'), 6.5 s each, as the original reel.
 
-Frames come from build/insight_variants/<id>/vNN.jpg
+The subtitle of each hour is its branch's voice-over
+(godot/data/pilot-insight-branches.json).  Frames come from
+build/insight_variants/<id>/vNN.jpg
 (scripts/prerender/render_insights.py --all-variants); the layout,
 fonts, cross fade and music are those of scripts/video/insights_reel.py.
 Nothing is random: the same inputs give the same video.
@@ -39,6 +41,7 @@ import insights_reel as reel  # noqa: E402
 ROOT = reel.ROOT
 DATA = ROOT / 'godot' / 'data' / 'pilot-insight-variants.json'
 BASE = ROOT / 'godot' / 'data' / 'pilot-insights.json'
+BRANCHES = ROOT / 'godot' / 'data' / 'pilot-insight-branches.json'
 BUILD = ROOT / 'build' / 'insight_variants'
 W, H, FPS = reel.W, reel.H, reel.FPS
 FIRST_S, GROW_S, BEST_S, DISSOLVE_S = 6.5, 0.8, 6.5, 0.25
@@ -60,7 +63,10 @@ def panel(n, item, var, src):
     d.text((740, 96), 'v%02d · %s · %s, солнце %+.0f°' % (
         var['v'], var['time_of_day'], var['solar_time'], var['sun_elev']),
         font=reel.font(reel.FONT, 18), fill=reel.GREY)
-    y = reel.wrap(d, (740, 160), var['narration_ru'],
+    # The branch's voice-over (the hour's line and the tail that points
+    # to the converging beat), as the subtitle of the frame.
+    text = var.get('voiceover_ru', var['narration_ru'])
+    y = reel.wrap(d, (740, 160), text,
                   reel.font(reel.FONT_I, 30), reel.PAPER, 34, 10)
     d.text((740, y + 24), 'что объясняет:', font=reel.font(reel.FONT, 17),
            fill=reel.AMBER)
@@ -166,6 +172,13 @@ def main(argv):
     args = ap.parse_args(argv)
     data = json.loads(DATA.read_text(encoding='utf-8'))
     base = json.loads(BASE.read_text(encoding='utf-8'))
+    if BRANCHES.exists():
+        voice = {(n['insight'], n['v']): n['voiceover_ru'] for n in
+                 json.loads(BRANCHES.read_text(encoding='utf-8'))['nodes']}
+        for iid, vs in data['variants'].items():
+            for v in vs:
+                v['voiceover_ru'] = voice.get((iid, v['v']),
+                                              v['narration_ru'])
     items = [i for i in base['insights'] if i['id'] in data['variants']]
     title, end = cards('Атлас воды · серия 1 · инсайты в 12 часах дня',
                        'Каждое воспоминание проходит свой день: синий '

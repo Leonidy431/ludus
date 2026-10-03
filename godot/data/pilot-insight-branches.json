@@ -16,7 +16,7 @@
   "bread_in_siege": 2,
   "scribe_lifts_eyes": 4,
   "same_comet": 4,
-  "error_of_a_finger": 11
+  "error_of_a_finger": 12
  },
  "nodes": [
   {
@@ -756,7 +756,7 @@
    "subtitles_ru": [
     "Сумерки на базаре. Он несёт копию, а слова гончара «так лепили всегда» указывают на подлинник. Вода в комнате уже поднимается."
    ],
-   "chorus": "− наклон -2° заметен; в шлеме — на грани / + свет класса часа честный: огонь 2000 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− экспонометр не дошёл до цели (0.12 против 0.17) / + свет класса часа честный: огонь 2000 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
    "git_commit_msg": "feat(story): add narrative branch bazaar_jug and video assets",
    "status": "ready_for_render"
   },
@@ -1952,7 +1952,7 @@
    "subtitles_ru": [
     "Сумерки над кладкой. Шнур еле виден, отвес замер. Чужой его не найдёт, тронуть может только свой. Внизу трос дёрнется — с ближнего конца."
    ],
-   "chorus": "− экспонометр не дошёл до цели (0.00 против 0.17) / + свет класса часа честный: огонь 2000 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2000 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
    "git_commit_msg": "feat(story): add narrative branch hands_of_masons and video assets",
    "status": "ready_for_render"
   },
@@ -2444,10 +2444,10 @@
    "converges_to": "price_rises",
    "frame": "build/insight_variants/purse_at_the_gate/v01.jpg",
    "video_prompt": "A stone window sill in a gate tower of Sis, 1374: a leather purse, seven silver drams with a mounted king spilt from it, an iron gate key lying untouched, a tallow candle stub; light enters through a 3 cm arrow slit as a thin stripe. No person in frame. Time: pre-dawn blue hour, solar 06:28, sun elevation -8 deg. Lighting: no direct sun; sky 10000-12000 K blue ambient; the only warm source is human fire; human fire 2100 K (inside the 1900-2200 K band); never 1800 K. Camera: 36 mm lens, orbit -11 deg around the subject from the reference view, -2 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: the candle flame flickers at 2-3 Hz; the light stripe is still; dust drifts through the stripe. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
-   "voiceover_ru": "Сис, 1374, перед зарёй. Рыцарю сунули кошель драм: царь верхом на монетах. Он держал его, пока серебро не согрелось. Цена растёт, и ответ ждёт на следующем листе.",
+   "voiceover_ru": "Сис, 1374, перед зарёй. Рыцарю сунули кошель драм: царь верхом на монетах. Он держал его, пока серебро не согрелось. А цена тем временем растёт.",
    "subtitles_ru": [
     "Сис, 1374, перед зарёй. Рыцарю сунули кошель драм: царь верхом на монетах. Он держал его, пока серебро не согрелось.",
-    "Цена растёт, и ответ ждёт на следующем листе."
+    "А цена тем временем растёт."
    ],
    "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2100 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
    "git_commit_msg": "feat(story): add narrative branch purse_at_the_gate and video assets",
@@ -2478,10 +2478,9 @@
    "converges_to": "price_rises",
    "frame": "build/insight_variants/purse_at_the_gate/v02.jpg",
    "video_prompt": "A stone window sill in a gate tower of Sis, 1374: a leather purse, seven silver drams with a mounted king spilt from it, an iron gate key lying untouched, a tallow candle stub; light enters through a 3 cm arrow slit as a thin stripe. No person in frame. Time: dawn, solar 06:55, sun elevation -3 deg. Lighting: sun just below the horizon; pink-violet sky glow, soft shadowless light; human fire 2000 K (inside the 1900-2200 K band); never 1800 K. Camera: 45 mm lens, orbit +7 deg around the subject from the reference view, +2 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: the candle flame flickers at 2-3 Hz; the light stripe is still; dust drifts through the stripe. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
-   "voiceover_ru": "Заря в бойнице. Драмы лежат у ключа от ворот. Рыцарь держал серебро, и оно грелось. Ответ — на следующем листе. Цена растёт, и ответ ждёт на следующем листе.",
+   "voiceover_ru": "Заря в бойнице. Драмы лежат у ключа от ворот. Рыцарь держал серебро, и оно грелось. Ответ — на следующем листе. А цена тем временем растёт.",
    "subtitles_ru": [
-    "Заря в бойнице. Драмы лежат у ключа от ворот. Рыцарь держал серебро, и оно грелось. Ответ — на следующем листе.",
-    "Цена растёт, и ответ ждёт на следующем листе."
+    "Заря в бойнице. Драмы лежат у ключа от ворот. Рыцарь держал серебро, и оно грелось. Ответ — на следующем листе. А цена тем временем растёт."
    ],
    "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2000 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
    "git_commit_msg": "feat(story): add narrative branch purse_at_the_gate and video assets",
@@ -2512,9 +2511,9 @@
    "converges_to": "price_rises",
    "frame": "build/insight_variants/purse_at_the_gate/v03.jpg",
    "video_prompt": "A stone window sill in a gate tower of Sis, 1374: a leather purse, seven silver drams with a mounted king spilt from it, an iron gate key lying untouched, a tallow candle stub; light enters through a 3 cm arrow slit as a thin stripe. No person in frame. Time: sunrise, solar 07:22, sun elevation +2 deg. Lighting: sun 2 deg above the horizon at about 2500 K, long raking shadows; human fire 1950 K (inside the 1900-2200 K band); never 1800 K. Camera: 60.8 mm lens, orbit -4 deg around the subject from the reference view, -3 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: the candle flame flickers at 2-3 Hz; the light stripe is still; dust drifts through the stripe. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
-   "voiceover_ru": "Первый луч в щели бойницы. Серебро с конным царём уже тёплое от его руки. Выбор ещё свободен. Цена растёт, и ответ ждёт на следующем листе.",
+   "voiceover_ru": "Первый луч в щели бойницы. Серебро с конным царём уже тёплое от его руки. Выбор ещё свободен. А цена тем временем растёт.",
    "subtitles_ru": [
-    "Первый луч в щели бойницы. Серебро с конным царём уже тёплое от его руки. Выбор ещё свободен. Цена растёт, и ответ ждёт на следующем листе."
+    "Первый луч в щели бойницы. Серебро с конным царём уже тёплое от его руки. Выбор ещё свободен. А цена тем временем растёт."
    ],
    "chorus": "− кошель в тёплом свете читается как головка чеснока / + полоса из бойницы режет монеты и ключ / + свеча тёплым пятном, ключ нетронут",
    "git_commit_msg": "feat(story): add narrative branch purse_at_the_gate and video assets",
@@ -2545,10 +2544,9 @@
    "converges_to": "price_rises",
    "frame": "build/insight_variants/purse_at_the_gate/v04.jpg",
    "video_prompt": "A stone window sill in a gate tower of Sis, 1374: a leather purse, seven silver drams with a mounted king spilt from it, an iron gate key lying untouched, a tallow candle stub; light enters through a 3 cm arrow slit as a thin stripe. No person in frame. Time: morning, solar 08:55, sun elevation +16 deg. Lighting: sun 15-20 deg at about 4100 K, modelled shadows; human fire 2050 K (inside the 1900-2200 K band); never 1800 K. Camera: 40.5 mm lens, orbit +13 deg around the subject from the reference view, +1 deg tilt, roll -3 deg, locked off with a 6% slow push-in. In frame, physics only: the candle flame flickers at 2-3 Hz; the light stripe is still; dust drifts through the stripe. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
-   "voiceover_ru": "Утро в Сисе. Кошель сунули тихо, в тёплую руку. Чем дольше рыцарь держит серебро, тем больше оно его. Цена растёт, и ответ ждёт на следующем листе.",
+   "voiceover_ru": "Утро в Сисе. Кошель сунули тихо, в тёплую руку. Чем дольше рыцарь держит серебро, тем больше оно его. А цена тем временем растёт.",
    "subtitles_ru": [
-    "Утро в Сисе. Кошель сунули тихо, в тёплую руку. Чем дольше рыцарь держит серебро, тем больше оно его.",
-    "Цена растёт, и ответ ждёт на следующем листе."
+    "Утро в Сисе. Кошель сунули тихо, в тёплую руку. Чем дольше рыцарь держит серебро, тем больше оно его. А цена тем временем растёт."
    ],
    "chorus": "− наклон -3° заметен; в шлеме — на грани / + свет класса часа честный: огонь 2050 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
    "git_commit_msg": "feat(story): add narrative branch purse_at_the_gate and video assets",
@@ -2579,10 +2577,9 @@
    "converges_to": "price_rises",
    "frame": "build/insight_variants/purse_at_the_gate/v05.jpg",
    "video_prompt": "A stone window sill in a gate tower of Sis, 1374: a leather purse, seven silver drams with a mounted king spilt from it, an iron gate key lying untouched, a tallow candle stub; light enters through a 3 cm arrow slit as a thin stripe. No person in frame. Time: late morning, solar 10:30, sun elevation +27 deg. Lighting: high sun about 5000 K, even working light; human fire 2150 K (inside the 1900-2200 K band); never 1800 K. Camera: 33.8 mm lens, orbit -15 deg around the subject from the reference view, +3 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: the candle flame flickers at 2-3 Hz; the light stripe is still; dust drifts through the stripe. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
-   "voiceover_ru": "Солнечная полоса режет подоконник. Драмы у ключа. Рыцарь держал их, пока не согрел. Ответ — дальше. Цена растёт, и ответ ждёт на следующем листе.",
+   "voiceover_ru": "Солнечная полоса режет подоконник. Драмы у ключа. Рыцарь держал их, пока не согрел. Ответ — дальше. А цена тем временем растёт.",
    "subtitles_ru": [
-    "Солнечная полоса режет подоконник. Драмы у ключа. Рыцарь держал их, пока не согрел. Ответ — дальше.",
-    "Цена растёт, и ответ ждёт на следующем листе."
+    "Солнечная полоса режет подоконник. Драмы у ключа. Рыцарь держал их, пока не согрел. Ответ — дальше. А цена тем временем растёт."
    ],
    "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2150 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
    "git_commit_msg": "feat(story): add narrative branch purse_at_the_gate and video assets",
@@ -2613,10 +2610,9 @@
    "converges_to": "price_rises",
    "frame": "build/insight_variants/purse_at_the_gate/v06.jpg",
    "video_prompt": "A stone window sill in a gate tower of Sis, 1374: a leather purse, seven silver drams with a mounted king spilt from it, an iron gate key lying untouched, a tallow candle stub; light enters through a 3 cm arrow slit as a thin stripe. No person in frame. Time: solar noon, solar 12:00, sun elevation +30 deg. Lighting: sun at its highest for the date, about 5600 K, short hard shadows; human fire 2200 K (inside the 1900-2200 K band); never 1800 K. Camera: 45 mm lens, orbit +0 deg around the subject from the reference view, +4 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: the candle flame flickers at 2-3 Hz; the light stripe is still; dust drifts through the stripe. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
-   "voiceover_ru": "Полдень, луч в бойнице отвесный. Кошель у ключа от ворот. Цену предлагают тихо; рыцарь ещё не ответил. Цена растёт, и ответ ждёт на следующем листе.",
+   "voiceover_ru": "Полдень, луч в бойнице отвесный. Кошель у ключа от ворот. Цену предлагают тихо; рыцарь ещё не ответил. А цена тем временем растёт.",
    "subtitles_ru": [
-    "Полдень, луч в бойнице отвесный. Кошель у ключа от ворот. Цену предлагают тихо; рыцарь ещё не ответил.",
-    "Цена растёт, и ответ ждёт на следующем листе."
+    "Полдень, луч в бойнице отвесный. Кошель у ключа от ворот. Цену предлагают тихо; рыцарь ещё не ответил. А цена тем временем растёт."
    ],
    "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2200 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
    "git_commit_msg": "feat(story): add narrative branch purse_at_the_gate and video assets",
@@ -2647,10 +2643,9 @@
    "converges_to": "price_rises",
    "frame": "build/insight_variants/purse_at_the_gate/v07.jpg",
    "video_prompt": "A stone window sill in a gate tower of Sis, 1374: a leather purse, seven silver drams with a mounted king spilt from it, an iron gate key lying untouched, a tallow candle stub; light enters through a 3 cm arrow slit as a thin stripe. No person in frame. Time: afternoon, solar 14:30, sun elevation +21 deg. Lighting: sun from the other side at about 5200 K; human fire 2100 K (inside the 1900-2200 K band); never 1800 K. Camera: 51.7 mm lens, orbit +17 deg around the subject from the reference view, -1 deg tilt, roll 3 deg, locked off with a 6% slow push-in. In frame, physics only: the candle flame flickers at 2-3 Hz; the light stripe is still; dust drifts through the stripe. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
-   "voiceover_ru": "День за стенами Сиса. Рыцарь держит драмы с конным царём. Серебро тёплое: оно уже наполовину его. Цена растёт, и ответ ждёт на следующем листе.",
+   "voiceover_ru": "День за стенами Сиса. Рыцарь держит драмы с конным царём. Серебро тёплое: оно уже наполовину его. А цена тем временем растёт.",
    "subtitles_ru": [
-    "День за стенами Сиса. Рыцарь держит драмы с конным царём. Серебро тёплое: оно уже наполовину его.",
-    "Цена растёт, и ответ ждёт на следующем листе."
+    "День за стенами Сиса. Рыцарь держит драмы с конным царём. Серебро тёплое: оно уже наполовину его. А цена тем временем растёт."
    ],
    "chorus": "− наклон +3° заметен; в шлеме — на грани / + свет класса часа честный: огонь 2100 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
    "git_commit_msg": "feat(story): add narrative branch purse_at_the_gate and video assets",
@@ -2681,10 +2676,9 @@
    "converges_to": "price_rises",
    "frame": "build/insight_variants/purse_at_the_gate/v08.jpg",
    "video_prompt": "A stone window sill in a gate tower of Sis, 1374: a leather purse, seven silver drams with a mounted king spilt from it, an iron gate key lying untouched, a tallow candle stub; light enters through a 3 cm arrow slit as a thin stripe. No person in frame. Time: golden hour, solar 15:53, sun elevation +9 deg. Lighting: sun 8-10 deg at about 3100 K, warm grazing light across textures; human fire 1950 K (inside the 1900-2200 K band); never 1800 K. Camera: 67.5 mm lens, orbit -8 deg around the subject from the reference view, -4 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: the candle flame flickers at 2-3 Hz; the light stripe is still; dust drifts through the stripe. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
-   "voiceover_ru": "Вечерний луч на серебре. Кошель сунули молча. Монеты согрелись в руке, а ключ лежит рядом нетронутым. Цена растёт, и ответ ждёт на следующем листе.",
+   "voiceover_ru": "Вечерний луч на серебре. Кошель сунули молча. Монеты согрелись в руке, а ключ лежит рядом нетронутым. А цена тем временем растёт.",
    "subtitles_ru": [
-    "Вечерний луч на серебре. Кошель сунули молча. Монеты согрелись в руке, а ключ лежит рядом нетронутым.",
-    "Цена растёт, и ответ ждёт на следующем листе."
+    "Вечерний луч на серебре. Кошель сунули молча. Монеты согрелись в руке, а ключ лежит рядом нетронутым. А цена тем временем растёт."
    ],
    "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 1950 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
    "git_commit_msg": "feat(story): add narrative branch purse_at_the_gate and video assets",
@@ -2715,10 +2709,9 @@
    "converges_to": "price_rises",
    "frame": "build/insight_variants/purse_at_the_gate/v09.jpg",
    "video_prompt": "A stone window sill in a gate tower of Sis, 1374: a leather purse, seven silver drams with a mounted king spilt from it, an iron gate key lying untouched, a tallow candle stub; light enters through a 3 cm arrow slit as a thin stripe. No person in frame. Time: sunset, solar 16:47, sun elevation +0 deg. Lighting: sun on the horizon at about 2400 K, warm backlight; human fire 1900 K (inside the 1900-2200 K band); never 1800 K. Camera: 38.2 mm lens, orbit +10 deg around the subject from the reference view, -2 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: the candle flame flickers at 2-3 Hz; the light stripe is still; dust drifts through the stripe. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
-   "voiceover_ru": "Закат гаснет в бойнице. Драмы тёплые от его руки. Выбор свободен до конца. Ответ — на следующем листе. Цена растёт, и ответ ждёт на следующем листе.",
+   "voiceover_ru": "Закат гаснет в бойнице. Драмы тёплые от его руки. Выбор свободен до конца. Ответ — на следующем листе. А цена тем временем растёт.",
    "subtitles_ru": [
-    "Закат гаснет в бойнице. Драмы тёплые от его руки. Выбор свободен до конца. Ответ — на следующем листе.",
-    "Цена растёт, и ответ ждёт на следующем листе."
+    "Закат гаснет в бойнице. Драмы тёплые от его руки. Выбор свободен до конца. Ответ — на следующем листе. А цена тем временем растёт."
    ],
    "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 1900 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
    "git_commit_msg": "feat(story): add narrative branch purse_at_the_gate and video assets",
@@ -2749,10 +2742,9 @@
    "converges_to": "price_rises",
    "frame": "build/insight_variants/purse_at_the_gate/v10.jpg",
    "video_prompt": "A stone window sill in a gate tower of Sis, 1374: a leather purse, seven silver drams with a mounted king spilt from it, an iron gate key lying untouched, a tallow candle stub; light enters through a 3 cm arrow slit as a thin stripe. No person in frame. Time: dusk, solar 17:20, sun elevation -6 deg. Lighting: sun gone 5 deg below; blue air, first human fire; human fire 2000 K (inside the 1900-2200 K band); never 1800 K. Camera: 45 mm lens, orbit -18 deg around the subject from the reference view, +2 deg tilt, roll -2 deg, locked off with a 6% slow push-in. In frame, physics only: the candle flame flickers at 2-3 Hz; the light stripe is still; dust drifts through the stripe. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
-   "voiceover_ru": "Сумерки, зажгли сальную свечу. Рыцарь держит кошель, пока серебро не согрелось. Ключ от ворот рядом. Цена растёт, и ответ ждёт на следующем листе.",
+   "voiceover_ru": "Сумерки, зажгли сальную свечу. Рыцарь держит кошель, пока серебро не согрелось. Ключ от ворот рядом. А цена тем временем растёт.",
    "subtitles_ru": [
-    "Сумерки, зажгли сальную свечу. Рыцарь держит кошель, пока серебро не согрелось. Ключ от ворот рядом.",
-    "Цена растёт, и ответ ждёт на следующем листе."
+    "Сумерки, зажгли сальную свечу. Рыцарь держит кошель, пока серебро не согрелось. Ключ от ворот рядом. А цена тем временем растёт."
    ],
    "chorus": "− наклон -2° заметен; в шлеме — на грани / + свет класса часа честный: огонь 2000 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
    "git_commit_msg": "feat(story): add narrative branch purse_at_the_gate and video assets",
@@ -2783,10 +2775,9 @@
    "converges_to": "price_rises",
    "frame": "build/insight_variants/purse_at_the_gate/v11.jpg",
    "video_prompt": "A stone window sill in a gate tower of Sis, 1374: a leather purse, seven silver drams with a mounted king spilt from it, an iron gate key lying untouched, a tallow candle stub; light enters through a 3 cm arrow slit as a thin stripe. No person in frame. Time: night with moon, solar 22:30, sun elevation -65 deg. Lighting: moon 30 deg high rendered at 7500 K by film convention; warm human fire as a small pool; human fire 2050 K (inside the 1900-2200 K band); never 1800 K. Camera: 40.5 mm lens, orbit +4 deg around the subject from the reference view, +3 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: the candle flame flickers at 2-3 Hz; the light stripe is still; dust drifts through the stripe. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
-   "voiceover_ru": "Сис, 1374. Ночью рыцарю сунули кошель драм: царь верхом на монетах. Он держал его, пока серебро не согрелось. Цена растёт, и ответ ждёт на следующем листе.",
+   "voiceover_ru": "Сис, 1374. Ночью рыцарю сунули кошель драм: царь верхом на монетах. Он держал его, пока серебро не согрелось. А цена тем временем растёт.",
    "subtitles_ru": [
-    "Сис, 1374. Ночью рыцарю сунули кошель драм: царь верхом на монетах. Он держал его, пока серебро не согрелось.",
-    "Цена растёт, и ответ ждёт на следующем листе."
+    "Сис, 1374. Ночью рыцарю сунули кошель драм: царь верхом на монетах. Он держал его, пока серебро не согрелось. А цена тем временем растёт."
    ],
    "chorus": "− кошель светлее, чем кожа / + луна в щели и свеча — канон серии / + монеты с конным царём и ключ в одной полосе света",
    "git_commit_msg": "feat(story): add narrative branch purse_at_the_gate and video assets",
@@ -2817,10 +2808,9 @@
    "converges_to": "price_rises",
    "frame": "build/insight_variants/purse_at_the_gate/v12.jpg",
    "video_prompt": "A stone window sill in a gate tower of Sis, 1374: a leather purse, seven silver drams with a mounted king spilt from it, an iron gate key lying untouched, a tallow candle stub; light enters through a 3 cm arrow slit as a thin stripe. No person in frame. Time: deep night, solar 02:45, sun elevation -51 deg. Lighting: no sun, no moon; stars only, and human fire or an instrument screen; human fire 1900 K (inside the 1900-2200 K band); never 1800 K. Camera: 56.2 mm lens, orbit -2 deg around the subject from the reference view, -0 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: the candle flame flickers at 2-3 Hz; the light stripe is still; dust drifts through the stripe. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
-   "voiceover_ru": "Глухая ночь, один огарок. Серебро в руке рыцаря тёплое, как живое. Цену дают тихо. Ответ — на следующем листе. Цена растёт, и ответ ждёт на следующем листе.",
+   "voiceover_ru": "Глухая ночь, один огарок. Серебро в руке рыцаря тёплое, как живое. Цену дают тихо. Ответ — на следующем листе. А цена тем временем растёт.",
    "subtitles_ru": [
-    "Глухая ночь, один огарок. Серебро в руке рыцаря тёплое, как живое. Цену дают тихо. Ответ — на следующем листе.",
-    "Цена растёт, и ответ ждёт на следующем листе."
+    "Глухая ночь, один огарок. Серебро в руке рыцаря тёплое, как живое. Цену дают тихо. Ответ — на следующем листе. А цена тем временем растёт."
    ],
    "chorus": "− ключ уходит в тень / + глухая ночь: только огарок / + серебро бликует теплом — «серебро согрелось»",
    "git_commit_msg": "feat(story): add narrative branch purse_at_the_gate and video assets",
@@ -4525,7 +4515,7 @@
     "Солнце из-за гор. Рыцарь меряет его высоту астролябией, а волна сбивает визир. Ошибка станет картой.",
     "Комната уходит под воду; он запомнит этот берег."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 1950 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− первый прогон: низкая камера легла на астролябию, в кадре только размытая вода (перерисовано: астролябия — часть вещи, а не препятствие) / + розовый восход над хребтом / + латунь крупно, шкала читается",
    "git_commit_msg": "feat(story): add narrative branch error_of_a_finger and video assets",
    "status": "ready_for_render"
   },
@@ -4627,7 +4617,7 @@
     "Полдень, астролябия ловит солнце. Палец ошибки, и путь ушёл к братьям. Прошлое меняет настоящее следами.",
     "Комната уходит под воду; он запомнит этот берег."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2200 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− полуденная латунь пересвечена / + астролябией мерят солнце днём — кадр подтверждает строку / + лодка и уключина читаются целиком",
    "git_commit_msg": "feat(story): add narrative branch error_of_a_finger and video assets",
    "status": "ready_for_render"
   },
@@ -4796,7 +4786,7 @@
     "Ночь в лодке, луна. Качка сбила астролябию на ширину пальца, и рыцарь пристал не к тому берегу, а к братьям.",
     "Комната уходит под воду; он запомнит этот берег."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2050 K, не 1800 K / + выбор хора: смысл строки и свет совпали",
+   "chorus": "− ремень астролябии тонок и теряется / + ночь с луной: окно братьев тёплой точкой у хребта / + латунь в огне лампы, ошибка «на палец» видна в наклоне",
    "git_commit_msg": "feat(story): add narrative branch error_of_a_finger and video assets",
    "status": "ready_for_render"
   },
@@ -4830,7 +4820,7 @@
     "Глухая ночь, звёзды и огонёк у братьев. Рыцарь сбился на палец и пристал к ним. Ошибка стала картой.",
     "Комната уходит под воду; он запомнит этот берег."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 1900 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− окно братьев в дымке мало / + глухая ночь: лампа красит латунь, шкала астролябии читается / + звёзды и тёмный хребет держат «ошибка стала картой»",
    "git_commit_msg": "feat(story): add narrative branch error_of_a_finger and video assets",
    "status": "ready_for_render"
   }

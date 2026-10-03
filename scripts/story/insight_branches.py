@@ -161,7 +161,7 @@ THEMES = {
         'No person in frame.',
         action='the candle flame flickers at 2-3 Hz; the light stripe is '
         'still; dust drifts through the stripe',
-        tail='Цена растёт, и ответ ждёт на следующем листе.'),
+        tail='А цена тем временем растёт.'),
     'gate_opened_inside': dict(
         theme='засов скрипнул один раз', keeper='писец обители',
         subject='The inner side of the city gate of Sis: two oak leaves, '
