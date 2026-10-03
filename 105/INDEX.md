@@ -3,7 +3,7 @@
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
 - файлов кода: 522
-- документов: 263
+- документов: 269
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -517,7 +517,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (192)
+## Документация проекта (195)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -574,6 +574,7 @@
 - [docs/HLD_POSOH_HYDROPHONE_2026-09-30.md](../docs/HLD_POSOH_HYDROPHONE_2026-09-30.md) 📄 — HLD: гидрофон оператора (posoh «модель 1») на «Мангустике»
 - [docs/HLD_PROPS_STORE_2026-09-30.md](../docs/HLD_PROPS_STORE_2026-09-30.md) 📄 — HLD: склад реквизита — раннер берёт всё, даже не игровое (2026-09-30)
 - [docs/HLD_RZHEVSKY_SERIES2_2026-10-03.md](../docs/HLD_RZHEVSKY_SERIES2_2026-10-03.md) 📄 — HLD: серия 2 «Ржевский и Ложа Трёх Циркулей» (2026-10-03)
+- [docs/HLD_RZHEVSKY_VS_ORDER_2026-10-03.md](../docs/HLD_RZHEVSKY_VS_ORDER_2026-10-03.md) 📄 — HLD: «Поручик Ржевский против Ордена» — юморной квест XIX века, 2D-стиль → 3D (версия 0.2, 2026-10-03, репозиторий ludus)
 - [docs/HLD_SOURCE_LABELS_RU_2026-09-30.md](../docs/HLD_SOURCE_LABELS_RU_2026-09-30.md) 📄 — HLD: русские подписи источников в миссиях (2026-09-30)
 - [docs/HLD_STORY_12_CHARACTERS_2026-10-02.md](../docs/HLD_STORY_12_CHARACTERS_2026-10-02.md) 📄 — HLD — люди 12 сюжетов в шлеме (2026-10-02)
 - [docs/HLD_SWAP_RENDERING_2026-10-02.md](../docs/HLD_SWAP_RENDERING_2026-10-02.md) 📄 — HLD: подмена при осмотре (Swap Rendering) — «очки героя» (2026-10-02)
@@ -613,6 +614,8 @@
 - [docs/RESULTS_2026-09-29.md](../docs/RESULTS_2026-09-29.md) 📄 — Результаты 2026-09-29 — сводка для оператора (до коммита в документацию)
 - [docs/ROADMAP_99_CALIBRATION_2026-10-02.md](../docs/ROADMAP_99_CALIBRATION_2026-10-02.md) 📄 — Дорожная карта 99 шагов: «Калибровка акустической матрицы» — головоломка пространственной связи элементов (2026-10-02)
 - [docs/ROV_LAKE_FRONTEND_INTEGRATION.md](../docs/ROV_LAKE_FRONTEND_INTEGRATION.md) 📄 — ROV Lake Tab — Ludus Frontend Integration
+- [docs/RZHEVSKY_REPOS_AND_DIALOGUE_2026-10-03.md](../docs/RZHEVSKY_REPOS_AND_DIALOGUE_2026-10-03.md) 📄 — Ржевский против Ордена: какие репозитории дал оператор, что сделано, переписка (2026-10-03)
+- [docs/RZHEVSKY_RESEARCH_2026-10-03.md](../docs/RZHEVSKY_RESEARCH_2026-10-03.md) 📄 — Квесты, движки, 3D и сценарий «второй серии» — исследование
 - [docs/SACRAMENTS_VR_SCENES.md](../docs/SACRAMENTS_VR_SCENES.md) 📄 — Семь таинств в VR-сцене: свидетель, а не участник
 - [docs/SOUND_DESIGN_SYSTEM.md](../docs/SOUND_DESIGN_SYSTEM.md) 📄 — Ludus Sound Design System — Beautiful Orchestral & Choir Audio
 - [docs/SOUND_THEOLOGY_RULES.md](../docs/SOUND_THEOLOGY_RULES.md) 📄 — Sound Theology Rules
@@ -712,7 +715,7 @@
 - [docs/version-3.0/VM8_BACKEND_CONTAINER_DEPLOYMENT.md](../docs/version-3.0/VM8_BACKEND_CONTAINER_DEPLOYMENT.md) 📄 — VM8 Backend Container Deployment — Ludus Services on panopticon-mirror-vm
 - [docs/СПИСОК_ТЕХНОЛОГИЙ_ПРОЕКТА.md](../docs/СПИСОК_ТЕХНОЛОГИЙ_ПРОЕКТА.md) 📄 — Список технологий проекта Ludus (реестр собственных технических решений)
 
-## Прочее (136)
+## Прочее (139)
 
 - [.claude/agents/apk-revisor.md](../.claude/agents/apk-revisor.md) 📄 — Жёсткие правила
 - [CONSTITUTION.md](../CONSTITUTION.md) 📄 — РОЛЬ 1: Lead Game Designer & Principal Luau Engineer (Roblox/LiveOps).
@@ -777,6 +780,9 @@
 - [oculus-knights/UnityVR/Assets/Scripts/Physics/CommandWrenchMap.cs](../oculus-knights/UnityVR/Assets/Scripts/Physics/CommandWrenchMap.cs) — <summary>
 - [oculus-knights/UnityVR/Assets/Scripts/Physics/ThrusterAllocator.cs](../oculus-knights/UnityVR/Assets/Scripts/Physics/ThrusterAllocator.cs) — <summary>
 - [oculus-knights/UnityVR/Assets/Tests/EditMode/DiveCockpitBridgeTests.cs](../oculus-knights/UnityVR/Assets/Tests/EditMode/DiveCockpitBridgeTests.cs) — <summary>
+- [rzhevsky/README.md](../rzhevsky/README.md) 📄 — «Поручик Ржевский против Ордена»
+- [rzhevsky/texts/EDITORS_CHORUS_LOG.md](../rzhevsky/texts/EDITORS_CHORUS_LOG.md) 📄 — Журнал хора редакторов: три прохода (2026-10-03)
+- [rzhevsky/texts/OUTLINE_EP2_EP3.md](../rzhevsky/texts/OUTLINE_EP2_EP3.md) 📄 — Эпизоды 2 и 3: «Ржевский против Ордена» и «Ржевский против Ложи» — логлайны, акты, герои, Конституция
 - [third_party/mangustik/SOURCES.md](../third_party/mangustik/SOURCES.md) 📄 — Mangustik: drawings and panel looks (first-party, operator's repos)
 - [third_party/mangustik/dive-buddy/pe_fittings.scad](../third_party/mangustik/dive-buddy/pe_fittings.scad)
 - [third_party/mangustik/dive-buddy/pressure_housing.scad](../third_party/mangustik/dive-buddy/pressure_housing.scad)
