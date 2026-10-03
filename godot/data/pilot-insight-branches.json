@@ -4,7 +4,20 @@
  "tech": "docs/TECH_INSIGHT_RENDER_144_2026-10-03.md",
  "select": "the hour of the player's device clock when the insight comes picks the variant: the twelve slots of pilot-insight-variants.json by their solar hour; nothing random, nothing sent",
  "rule": "a branch leaves a journal line and one memory; an answer in the converging beat may add +1 to one attribute; watching or skipping the insight gives nothing; every branch of an insight converges into its bridge_to beat",
- "picks": {},
+ "picks": {
+  "ink_first_line": 4,
+  "bazaar_jug": 8,
+  "tape_at_night": 12,
+  "ford_of_cold": 1,
+  "hands_of_masons": 4,
+  "harbor_of_ayas": 9,
+  "purse_at_the_gate": 11,
+  "gate_opened_inside": 1,
+  "bread_in_siege": 2,
+  "scribe_lifts_eyes": 4,
+  "same_comet": 4,
+  "error_of_a_finger": 11
+ },
  "nodes": [
   {
    "node_id": "v_ink_first_line_01",
@@ -36,7 +49,7 @@
     "Синий час до утрени.",
     "Переписчик дышит на пальцы, чтобы чернила не стыли, и под строкой рыцаря выводит: «Кто прочтёт…» Под водой рукоять возьмёт другая рука."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2100 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− лампа перебивает синий час, окно читается слабо / + холодное окно против тёплой лампы — рифма холода и руки / + лист и мокрая строка в центре",
    "git_commit_msg": "feat(story): add narrative branch ink_first_line and video assets",
    "status": "ready_for_render"
   },
@@ -137,7 +150,7 @@
    "subtitles_ru": [
     "Зимнее утро в обители. Он кончил список рыцаря и, подышав на пальцы, начал своё: «Кто прочтёт…» Под водой рукоять возьмёт другая рука."
    ],
-   "chorus": "− наклон -3° заметен; в шлеме — на грани / + свет класса часа честный: огонь 2050 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− окно у края кадра пересвечено / + утро зимы читается сразу: серый свет окна и лампа / + обе страницы и перо видны, рифма руки цела",
    "git_commit_msg": "feat(story): add narrative branch ink_first_line and video assets",
    "status": "ready_for_render"
   },
@@ -373,7 +386,7 @@
     "Луна в окне, лампа у локтя. Он дует на пальцы и пишет под рыцарем: «Кто прочтёт…» Так эпоха читает эпоху.",
     "Под водой рукоять возьмёт другая рука."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2050 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− вид в окне ночью серый, как днём / + лампа одна держит лист, ночь честная / + строка рассказчика и кадр совпадают: луна в окне, лампа у локтя",
    "git_commit_msg": "feat(story): add narrative branch ink_first_line and video assets",
    "status": "ready_for_render"
   },
@@ -406,7 +419,7 @@
    "subtitles_ru": [
     "Глухая ночь, один огонёк лампы. Он греет пальцы над ним и пишет: «Кто прочтёт…» Память держит рука. Под водой рукоять возьмёт другая рука."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 1900 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− правая страница уходит в тень / + один огонёк — самый тихий кадр серии / + тёплый класс огня 1900 K, не лампада",
    "git_commit_msg": "feat(story): add narrative branch ink_first_line and video assets",
    "status": "ready_for_render"
   },
@@ -440,7 +453,7 @@
     "Каракол до рассвета. Гончар ставит кувшины: «Так лепили всегда». Он возьмёт копию и не спросит, где подлинник.",
     "Вода в комнате уже поднимается."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2100 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− первый фонарь стоял в 30 см от кувшинов и пересветил их (перерисовано: фонарь у края стола, 6 W) / + синий час над рядами читается / + кувшин-герой в центре",
    "git_commit_msg": "feat(story): add narrative branch bazaar_jug and video assets",
    "status": "ready_for_render"
   },
@@ -541,7 +554,7 @@
     "Утро, год назад. Гончар хвалил форму: «Так лепили всегда». Он купил копию и не спросил, чья рука была первой.",
     "Вода в комнате уже поднимается."
    ],
-   "chorus": "− наклон -3° заметен; в шлеме — на грани / + свет класса часа честный: огонь 2050 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− видны края навеса и стоек — макет / + утренние полосы от бахромы ложатся на стол / + вмятина пальца на кувшине различима",
    "git_commit_msg": "feat(story): add narrative branch bazaar_jug and video assets",
    "status": "ready_for_render"
   },
@@ -676,7 +689,7 @@
     "Вечернее солнце в глазури. «Так лепили всегда», — сказал гончар. Форма пережила руку, а он купил только копию.",
     "Вода в комнате уже поднимается."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 1950 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− соседние ряды в пыли почти без деталей / + золотой свет в бирюзовой глазури — лучший цвет серии / + кувшин-герой крупно, копии рядом: копия указывает на подлинник",
    "git_commit_msg": "feat(story): add narrative branch bazaar_jug and video assets",
    "status": "ready_for_render"
   },
@@ -710,7 +723,7 @@
     "Закат, ряды сворачивают. Гончар отдал ему последний кувшин: «Так лепили всегда». Откуда форма, он не спросил.",
     "Вода в комнате уже поднимается."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 1900 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− солнце у горизонта ушло за глинобитные стены, кадр плоский / + тишина конца базарного дня / + честная физика: на закате свет не доходит в переулок",
    "git_commit_msg": "feat(story): add narrative branch bazaar_jug and video assets",
    "status": "ready_for_render"
   },
@@ -842,7 +855,7 @@
    "subtitles_ru": [
     "Пять утра, окно синеет. Скотч трещит. Он клеит копию журнала под стол и прячет её от своих. Вода в комнате уже поднимается."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: экран прибора 6500 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− первый прогон: дневной свет не доходил под стол, все 12 часов выглядели одинаково (перерисовано: окно опущено к полу) / + флешка и две полосы скотча читаются / + огня нет — только свет прибора 6500 K, как велит класс 2026 года",
    "git_commit_msg": "feat(story): add narrative branch tape_at_night and video assets",
    "status": "ready_for_render"
   },
@@ -1207,7 +1220,7 @@
    "subtitles_ru": [
     "Три двенадцать, горит один экран. Скотч трещит на весь дом. Копия под столом. Время пока ничего не значит. Вода в комнате уже поднимается."
    ],
-   "chorus": "− экспонометр не дошёл до цели (0.18 против 0.09) / + свет класса часа честный: экран прибора 6500 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− буква «Н» из двух полос скотча всё ещё читается на расстоянии / + три двенадцать ночи: один экран, комната во тьме / + красный отсвет будильника без цифр — время без счётчика",
    "git_commit_msg": "feat(story): add narrative branch tape_at_night and video assets",
    "status": "ready_for_render"
   },
@@ -1240,7 +1253,7 @@
    "subtitles_ru": [
     "Синий холод перед зарёй. Рыцарь ведёт коня вброд. На середине конь встал, и рыцарь не дышал. Внизу трос дёрнется, как тот порог."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2100 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− камни ближнего берега почти без инея / + синий холод перед зарёй — порог читается телом / + костёр на дальнем берегу — тёплая точка против холода",
    "git_commit_msg": "feat(story): add narrative branch ford_of_cold and video assets",
    "status": "ready_for_render"
   },
@@ -1374,7 +1387,7 @@
    "subtitles_ru": [
     "Иней сошёл с камней. Рыцарь ведёт коня вброд; посреди потока конь стоит, и рыцарь не смеет вдохнуть. Внизу трос дёрнется, как тот порог."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2150 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− при подъёме камеры видна плоская кромка дальней отмели / + полуденная вода прозрачна, пена у камней читается / + хребет с отражением держит глубину",
    "git_commit_msg": "feat(story): add narrative branch ford_of_cold and video assets",
    "status": "ready_for_render"
   },
@@ -1473,7 +1486,7 @@
    "subtitles_ru": [
     "Золото на склонах, в реке стужа. Рыцарь вёл коня к озеру. На середине конь встал, и он не дышал. Внизу трос дёрнется, как тот порог."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 1950 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− первый прогон: камера упёрлась в валун (перерисовано: камера поднимается над препятствием) / + золото на склонах против стужи в реке / + след копыт на дальнем берегу в фокусе",
    "git_commit_msg": "feat(story): add narrative branch ford_of_cold and video assets",
    "status": "ready_for_render"
   },
@@ -1641,7 +1654,7 @@
     "До рассвета братья натянули шнур меж колышков. Ряд камня ляжет по нему. Стена ровна, пока шнур не тронут свои.",
     "Внизу трос дёрнется — с ближнего конца."
    ],
-   "chorus": "− экспонометр не дошёл до цели (0.00 против 0.18) / + свет класса часа честный: огонь 2100 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− первый прогон: чёрный кадр — камера оказалась внутри стены (перерисовано: луч из тела стены не считается препятствием) / + ночной костёр сторожа по рецепту 2100 K / + шнур остаётся единственной прямой в кадре",
    "git_commit_msg": "feat(story): add narrative branch hands_of_masons and video assets",
    "status": "ready_for_render"
   },
@@ -1740,7 +1753,7 @@
    "subtitles_ru": [
     "Утро на стройке обители. Шнур меж колышков, ряд камня ложится по нему. Стена ровна, пока шнур цел. Внизу трос дёрнется — с ближнего конца."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2050 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− камни верхнего ряда одинаково серые / + утро, длинные тени: шнур над рядом виден / + отвес и тренога на втором плане — мера стены",
    "git_commit_msg": "feat(story): add narrative branch hands_of_masons and video assets",
    "status": "ready_for_render"
   },
@@ -2006,7 +2019,7 @@
     "Ночь, у кладки тлеет костёр сторожа. Шнур держит линию в темноте. Ломает прямую только человек изнутри.",
     "Внизу трос дёрнется — с ближнего конца."
    ],
-   "chorus": "− длинный фокус 106.2 мм сжимает план, место теряется / + свет класса часа честный: огонь 1900 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− тренога и шнур еле видны / + костёр сторожа красит кладку тёплым / + ночь честная: работы нет, шнур оставлен натянутым",
    "git_commit_msg": "feat(story): add narrative branch hands_of_masons and video assets",
    "status": "ready_for_render"
   },
@@ -2034,7 +2047,7 @@
    },
    "converges_to": "lure",
    "frame": "build/insight_variants/harbor_of_ayas/v01.jpg",
-   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: pre-dawn blue hour, solar 04:01, sun elevation -7 deg. Lighting: no direct sun; sky 10000-12000 K blue ambient; the only warm source is human fire; human fire 2100 K (inside the 1900-2200 K band); never 1800 K. Camera: 28 mm lens, orbit -18 deg around the subject from the reference view, -2 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
+   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: pre-dawn blue hour, solar 04:01, sun elevation -7 deg. Lighting: no direct sun; sky 10000-12000 K blue ambient; the only warm source is human fire; human fire 2100 K (inside the 1900-2200 K band); never 1800 K. Camera: 28 mm lens, orbit -6 deg around the subject from the reference view, -1 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
    "voiceover_ru": "Аяс до зари. Юный рыцарь бежал к причалу, а свой уже отдал швартов. Трос рвут с ближнего конца. Внизу его уже ждёт приманка.",
    "subtitles_ru": [
     "Аяс до зари. Юный рыцарь бежал к причалу, а свой уже отдал швартов. Трос рвут с ближнего конца. Внизу его уже ждёт приманка."
@@ -2067,12 +2080,12 @@
    },
    "converges_to": "lure",
    "frame": "build/insight_variants/harbor_of_ayas/v02.jpg",
-   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: dawn, solar 04:28, sun elevation -3 deg. Lighting: sun just below the horizon; pink-violet sky glow, soft shadowless light; human fire 2000 K (inside the 1900-2200 K band); never 1800 K. Camera: 35 mm lens, orbit +11 deg around the subject from the reference view, +3 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
+   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: dawn, solar 04:28, sun elevation -3 deg. Lighting: sun just below the horizon; pink-violet sky glow, soft shadowless light; human fire 2000 K (inside the 1900-2200 K band); never 1800 K. Camera: 35 mm lens, orbit +4 deg around the subject from the reference view, +1 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
    "voiceover_ru": "Заря над гаванью Аяса. Свой отдал швартов, и корабль ушёл. Юный рыцарь понял: связь рвут свои, не враги. Внизу его уже ждёт приманка.",
    "subtitles_ru": [
     "Заря над гаванью Аяса. Свой отдал швартов, и корабль ушёл. Юный рыцарь понял: связь рвут свои, не враги. Внизу его уже ждёт приманка."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2000 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− первый прогон: обход вокруг точки в море увёл камеру с причала, тумба и швартов пропали (перерисовано: размах 0,25) / + розовая заря над морем / + ког на горизонте с убранным парусом, без креста реи",
    "git_commit_msg": "feat(story): add narrative branch harbor_of_ayas and video assets",
    "status": "ready_for_render"
   },
@@ -2100,7 +2113,7 @@
    },
    "converges_to": "lure",
    "frame": "build/insight_variants/harbor_of_ayas/v03.jpg",
-   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: sunrise, solar 04:55, sun elevation +2 deg. Lighting: sun 2 deg above the horizon at about 2500 K, long raking shadows; human fire 1950 K (inside the 1900-2200 K band); never 1800 K. Camera: 47.2 mm lens, orbit -6 deg around the subject from the reference view, -5 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
+   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: sunrise, solar 04:55, sun elevation +2 deg. Lighting: sun 2 deg above the horizon at about 2500 K, long raking shadows; human fire 1950 K (inside the 1900-2200 K band); never 1800 K. Camera: 47.2 mm lens, orbit -2 deg around the subject from the reference view, -2 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
    "voiceover_ru": "Солнце из моря, порт Марко Поло. Швартов в воде, корабль уходит. Его отдала рука своего, у причала. Внизу его уже ждёт приманка.",
    "subtitles_ru": [
     "Солнце из моря, порт Марко Поло. Швартов в воде, корабль уходит. Его отдала рука своего, у причала. Внизу его уже ждёт приманка."
@@ -2133,7 +2146,7 @@
    },
    "converges_to": "lure",
    "frame": "build/insight_variants/harbor_of_ayas/v04.jpg",
-   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: morning, solar 06:28, sun elevation +19 deg. Lighting: sun 15-20 deg at about 4100 K, modelled shadows; human fire 2050 K (inside the 1900-2200 K band); never 1800 K. Camera: 31.5 mm lens, orbit +21 deg around the subject from the reference view, +2 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
+   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: morning, solar 06:28, sun elevation +19 deg. Lighting: sun 15-20 deg at about 4100 K, modelled shadows; human fire 2050 K (inside the 1900-2200 K band); never 1800 K. Camera: 31.5 mm lens, orbit +6 deg around the subject from the reference view, +0 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
    "voiceover_ru": "Утро в Аясе, ещё до мамлюков. Юный рыцарь видел, как свой снял швартов. Трос рвут с ближнего конца. Внизу его уже ждёт приманка.",
    "subtitles_ru": [
     "Утро в Аясе, ещё до мамлюков. Юный рыцарь видел, как свой снял швартов. Трос рвут с ближнего конца. Внизу его уже ждёт приманка."
@@ -2166,7 +2179,7 @@
    },
    "converges_to": "lure",
    "frame": "build/insight_variants/harbor_of_ayas/v05.jpg",
-   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: late morning, solar 10:30, sun elevation +66 deg. Lighting: high sun about 5000 K, even working light; human fire 2150 K (inside the 1900-2200 K band); never 1800 K. Camera: 26.2 mm lens, orbit -24 deg around the subject from the reference view, +5 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
+   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: late morning, solar 10:30, sun elevation +66 deg. Lighting: high sun about 5000 K, even working light; human fire 2150 K (inside the 1900-2200 K band); never 1800 K. Camera: 26.2 mm lens, orbit -8 deg around the subject from the reference view, +2 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
    "voiceover_ru": "Гавань в разгаре дня. Канат мокрый у тумбы, корабль на горизонте. Отдал его свой, не враг. Внизу его уже ждёт приманка.",
    "subtitles_ru": [
     "Гавань в разгаре дня. Канат мокрый у тумбы, корабль на горизонте. Отдал его свой, не враг. Внизу его уже ждёт приманка."
@@ -2199,7 +2212,7 @@
    },
    "converges_to": "lure",
    "frame": "build/insight_variants/harbor_of_ayas/v06.jpg",
-   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: solar noon, solar 12:00, sun elevation +77 deg. Lighting: sun at its highest for the date, about 5600 K, short hard shadows; human fire 2200 K (inside the 1900-2200 K band); never 1800 K. Camera: 35 mm lens, orbit +0 deg around the subject from the reference view, +7 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
+   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: solar noon, solar 12:00, sun elevation +77 deg. Lighting: sun at its highest for the date, about 5600 K, short hard shadows; human fire 2200 K (inside the 1900-2200 K band); never 1800 K. Camera: 35 mm lens, orbit +0 deg around the subject from the reference view, +2 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
    "voiceover_ru": "Полдень в Аясе. Швартов лежит на камнях, корабль уже далеко. Юный рыцарь запомнил: рвут свои. Внизу его уже ждёт приманка.",
    "subtitles_ru": [
     "Полдень в Аясе. Швартов лежит на камнях, корабль уже далеко. Юный рыцарь запомнил: рвут свои. Внизу его уже ждёт приманка."
@@ -2232,7 +2245,7 @@
    },
    "converges_to": "lure",
    "frame": "build/insight_variants/harbor_of_ayas/v07.jpg",
-   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: afternoon, solar 14:30, sun elevation +55 deg. Lighting: sun from the other side at about 5200 K; human fire 2100 K (inside the 1900-2200 K band); never 1800 K. Camera: 40.2 mm lens, orbit +27 deg around the subject from the reference view, -2 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
+   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: afternoon, solar 14:30, sun elevation +55 deg. Lighting: sun from the other side at about 5200 K; human fire 2100 K (inside the 1900-2200 K band); never 1800 K. Camera: 40.2 mm lens, orbit +8 deg around the subject from the reference view, -0 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
    "voiceover_ru": "Ветер с моря. Корабль ушёл, у тумбы мокрый трос. Его отдал свой, и юный рыцарь остался на берегу. Внизу его уже ждёт приманка.",
    "subtitles_ru": [
     "Ветер с моря. Корабль ушёл, у тумбы мокрый трос. Его отдал свой, и юный рыцарь остался на берегу. Внизу его уже ждёт приманка."
@@ -2265,7 +2278,7 @@
    },
    "converges_to": "lure",
    "frame": "build/insight_variants/harbor_of_ayas/v08.jpg",
-   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: golden hour, solar 18:20, sun elevation +10 deg. Lighting: sun 8-10 deg at about 3100 K, warm grazing light across textures; human fire 1950 K (inside the 1900-2200 K band); never 1800 K. Camera: 52.5 mm lens, orbit -13 deg around the subject from the reference view, -6 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
+   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: golden hour, solar 18:20, sun elevation +10 deg. Lighting: sun 8-10 deg at about 3100 K, warm grazing light across textures; human fire 1950 K (inside the 1900-2200 K band); never 1800 K. Camera: 52.5 mm lens, orbit -4 deg around the subject from the reference view, -2 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
    "voiceover_ru": "Золотой час в Аясе. Юный рыцарь смотрит вслед кораблю. Швартов отдала своя рука, с ближнего конца. Внизу его уже ждёт приманка.",
    "subtitles_ru": [
     "Золотой час в Аясе. Юный рыцарь смотрит вслед кораблю. Швартов отдала своя рука, с ближнего конца. Внизу его уже ждёт приманка."
@@ -2298,12 +2311,12 @@
    },
    "converges_to": "lure",
    "frame": "build/insight_variants/harbor_of_ayas/v09.jpg",
-   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: sunset, solar 19:14, sun elevation +0 deg. Lighting: sun on the horizon at about 2400 K, warm backlight; human fire 1900 K (inside the 1900-2200 K band); never 1800 K. Camera: 29.8 mm lens, orbit +16 deg around the subject from the reference view, -3 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
+   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: sunset, solar 19:14, sun elevation +0 deg. Lighting: sun on the horizon at about 2400 K, warm backlight; human fire 1900 K (inside the 1900-2200 K band); never 1800 K. Camera: 29.8 mm lens, orbit +5 deg around the subject from the reference view, -1 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
    "voiceover_ru": "Закат над гаванью. Корабль уходит без юного рыцаря. Трос рвут свои, у самого причала. Внизу его уже ждёт приманка.",
    "subtitles_ru": [
     "Закат над гаванью. Корабль уходит без юного рыцаря. Трос рвут свои, у самого причала. Внизу его уже ждёт приманка."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 1900 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− ког мал, читается только силуэтом / + закат над гаванью — швартов в воде на первом плане / + фонарь 1900–2200 K на столбе — тёплая точка ухода",
    "git_commit_msg": "feat(story): add narrative branch harbor_of_ayas and video assets",
    "status": "ready_for_render"
   },
@@ -2331,7 +2344,7 @@
    },
    "converges_to": "lure",
    "frame": "build/insight_variants/harbor_of_ayas/v10.jpg",
-   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: dusk, solar 19:47, sun elevation -5 deg. Lighting: sun gone 5 deg below; blue air, first human fire; human fire 2000 K (inside the 1900-2200 K band); never 1800 K. Camera: 35 mm lens, orbit -29 deg around the subject from the reference view, +2 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
+   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: dusk, solar 19:47, sun elevation -5 deg. Lighting: sun gone 5 deg below; blue air, first human fire; human fire 2000 K (inside the 1900-2200 K band); never 1800 K. Camera: 35 mm lens, orbit -9 deg around the subject from the reference view, +1 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
    "voiceover_ru": "Сумерки, у причала зажгли фонарь. Швартов в воде. Юный рыцарь понял: связь рвут не враги снаружи. Внизу его уже ждёт приманка.",
    "subtitles_ru": [
     "Сумерки, у причала зажгли фонарь. Швартов в воде. Юный рыцарь понял: связь рвут не враги снаружи. Внизу его уже ждёт приманка."
@@ -2364,7 +2377,7 @@
    },
    "converges_to": "lure",
    "frame": "build/insight_variants/harbor_of_ayas/v11.jpg",
-   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: night with moon, solar 22:30, sun elevation -26 deg. Lighting: moon 30 deg high rendered at 7500 K by film convention; warm human fire as a small pool; human fire 2050 K (inside the 1900-2200 K band); never 1800 K. Camera: 31.5 mm lens, orbit +6 deg around the subject from the reference view, +5 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
+   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: night with moon, solar 22:30, sun elevation -26 deg. Lighting: moon 30 deg high rendered at 7500 K by film convention; warm human fire as a small pool; human fire 2050 K (inside the 1900-2200 K band); never 1800 K. Camera: 31.5 mm lens, orbit +2 deg around the subject from the reference view, +2 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
    "voiceover_ru": "Луна над Аясом. Корабль ушёл в ночь без него. Свой отдал швартов, и этот рывок рыцарь узнает через годы. Внизу его уже ждёт приманка.",
    "subtitles_ru": [
     "Луна над Аясом. Корабль ушёл в ночь без него. Свой отдал швартов, и этот рывок рыцарь узнает через годы. Внизу его уже ждёт приманка."
@@ -2397,7 +2410,7 @@
    },
    "converges_to": "lure",
    "frame": "build/insight_variants/harbor_of_ayas/v12.jpg",
-   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: deep night, solar 02:45, sun elevation -18 deg. Lighting: no sun, no moon; stars only, and human fire or an instrument screen; human fire 1900 K (inside the 1900-2200 K band); never 1800 K. Camera: 43.8 mm lens, orbit -3 deg around the subject from the reference view, -1 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
+   "video_prompt": "A medieval stone quay at Ayas: courses of dressed limestone, the lowest wet and dark, an oak bollard with iron bands, a laid hemp mooring rope running over the edge into the sea, a canvas sack, a small horn lantern on a post, a dark cog with a furled sail on the horizon. No person in frame. Time: deep night, solar 02:45, sun elevation -18 deg. Lighting: no sun, no moon; stars only, and human fire or an instrument screen; human fire 1900 K (inside the 1900-2200 K band); never 1800 K. Camera: 43.8 mm lens, orbit -1 deg around the subject from the reference view, -0 deg tilt, roll 0 deg, locked off with a 6% slow push-in. In frame, physics only: small swell laps the wet course; the rope end sways in the water; the cog moves slowly away along the horizon. Exclude: any human face, any saint's face, halo, blood, text overlays, carved cross-stones; nothing holy used as a lure.",
    "voiceover_ru": "Ночь, только фонарь у тумбы. Мокрый трос уходит в чёрную воду. Его отдал свой, с ближнего конца. Внизу его уже ждёт приманка.",
    "subtitles_ru": [
     "Ночь, только фонарь у тумбы. Мокрый трос уходит в чёрную воду. Его отдал свой, с ближнего конца. Внизу его уже ждёт приманка."
@@ -2503,7 +2516,7 @@
    "subtitles_ru": [
     "Первый луч в щели бойницы. Серебро с конным царём уже тёплое от его руки. Выбор ещё свободен. Цена растёт, и ответ ждёт на следующем листе."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 1950 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− кошель в тёплом свете читается как головка чеснока / + полоса из бойницы режет монеты и ключ / + свеча тёплым пятном, ключ нетронут",
    "git_commit_msg": "feat(story): add narrative branch purse_at_the_gate and video assets",
    "status": "ready_for_render"
   },
@@ -2775,7 +2788,7 @@
     "Сис, 1374. Ночью рыцарю сунули кошель драм: царь верхом на монетах. Он держал его, пока серебро не согрелось.",
     "Цена растёт, и ответ ждёт на следующем листе."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2050 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− кошель светлее, чем кожа / + луна в щели и свеча — канон серии / + монеты с конным царём и ключ в одной полосе света",
    "git_commit_msg": "feat(story): add narrative branch purse_at_the_gate and video assets",
    "status": "ready_for_render"
   },
@@ -2809,7 +2822,7 @@
     "Глухая ночь, один огарок. Серебро в руке рыцаря тёплое, как живое. Цену дают тихо. Ответ — на следующем листе.",
     "Цена растёт, и ответ ждёт на следующем листе."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 1900 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− ключ уходит в тень / + глухая ночь: только огарок / + серебро бликует теплом — «серебро согрелось»",
    "git_commit_msg": "feat(story): add narrative branch purse_at_the_gate and video assets",
    "status": "ready_for_render"
   },
@@ -2843,7 +2856,7 @@
     "Синий час у ворот Сиса. Говорят, их отворили изнутри за серебро. Тот человек сперва только смотрел.",
     "Его выбор отзовётся эхом в следующем выборе."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2100 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− монеты на плитах мелки / + синий клин через створку и факел — две эпохи света в одном кадре / + засов у стены и пустые скобы видны",
    "git_commit_msg": "feat(story): add narrative branch gate_opened_inside and video assets",
    "status": "ready_for_render"
   },
@@ -3011,7 +3024,7 @@
     "Полдень, тень ворот коротка. Монеты на плитах. Зло сделал человек, а не судьба: засов скрипнул один раз.",
     "Его выбор отзовётся эхом в следующем выборе."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2200 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− полуденный клин пересвечен / + тень ворот коротка, как в строке / + створка и засов читаются без подсказки",
    "git_commit_msg": "feat(story): add narrative branch gate_opened_inside and video assets",
    "status": "ready_for_render"
   },
@@ -3244,7 +3257,7 @@
     "Синий час на стене Сиса. Рыцарь разломил последний хлеб и отдал половину соседу. У ворот звенело серебро. Он не пошёл.",
     "Его выбор отзовётся эхом в следующем выборе."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2100 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− первый прогон: швы кладки висели в воздухе над бойницей (перерисовано: шов кончается у зубца) / + синий час и жаровня — осада без солнца / + два куска хлеба, больший у пустого места",
    "git_commit_msg": "feat(story): add narrative branch bread_in_siege and video assets",
    "status": "ready_for_render"
   },
@@ -3278,7 +3291,7 @@
     "Заря над осадой. Хлеб разломлен, большая часть подвинута соседу. Внизу звон серебра; рыцарь дышит медленно.",
     "Его выбор отзовётся эхом в следующем выборе."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2000 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2000 K, не 1800 K / + выбор хора: смысл строки и свет совпали",
    "git_commit_msg": "feat(story): add narrative branch bread_in_siege and video assets",
    "status": "ready_for_render"
   },
@@ -3613,7 +3626,7 @@
    "subtitles_ru": [
     "Ночь, только жаровня и факел у ворот. Хлеб пополам, соседу больше. Рыцарь дышит медленно. Его выбор отзовётся эхом в следующем выборе."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 1900 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− хлеб почти не виден в темноте / + жаровня и факел у ворот — ночь осады / + двор ворот внизу виден огнём",
    "git_commit_msg": "feat(story): add narrative branch bread_in_siege and video assets",
    "status": "ready_for_render"
   },
@@ -3714,7 +3727,7 @@
    "subtitles_ru": [
     "Солнце из-за гор, вода засветилась. Переписчик смотрит на озеро. «Кто прочтёт…» осталось без конца. Он сам проведёт черту на своей странице."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 1950 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− лист на переднем плане размыт / + восход над хребтом в окне — свет пришёл сам / + перо на чернильнице читается",
    "git_commit_msg": "feat(story): add narrative branch scribe_lifts_eyes and video assets",
    "status": "ready_for_render"
   },
@@ -3747,7 +3760,7 @@
    "subtitles_ru": [
     "Весеннее утро в келье. Строка рыцаря дописана, своя нет. Он смотрит на озеро, и перо сохнет. Он сам проведёт черту на своей странице."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2050 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− стены кельи серые, без фактуры / + весеннее утро: снег на хребте, озеро в окне / + недописанная строка и перо на краю — дверь для читателя",
    "git_commit_msg": "feat(story): add narrative branch scribe_lifts_eyes and video assets",
    "status": "ready_for_render"
   },
@@ -4014,7 +4027,7 @@
    "subtitles_ru": [
     "Ночь, лампа у листа. Своё «Кто прочтёт…» он так и не кончил. Тишина переписчика ждёт читателя. Он сам проведёт черту на своей странице."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 1900 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− стол почти пропал во тьме / + лампа 1900–2200 K у листа, ночь за окном / + окно с хребтом под звёздами держит место",
    "git_commit_msg": "feat(story): add narrative branch scribe_lifts_eyes and video assets",
    "status": "ready_for_render"
   },
@@ -4047,7 +4060,7 @@
    "subtitles_ru": [
     "Синий свет на листе. Знак-комету переписчик скопировал буква в букву. Поля рядом пусты. Чья это рука, лист молчит. Пора подниматься к людям."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2100 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− край листа и синий фон видны: лист как будто в воздухе / + холодный свет делает чернила чётче / + комета без лучей-звезды, поля у неё пусты",
    "git_commit_msg": "feat(story): add narrative branch same_comet and video assets",
    "status": "ready_for_render"
   },
@@ -4146,7 +4159,7 @@
    "subtitles_ru": [
     "Утро в скриптории. Переписчик спорил с каждой строкой, но не с кометой. Чья она, лист не говорит. Пора подниматься к людям."
    ],
-   "chorus": "− наклон -3° заметен; в шлеме — на грани / + свет класса часа честный: огонь 2050 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− фон за краем листа синий / + утренний ровный свет: каждая пометка на полях читается / + комета точно по центру, рядом пусто",
    "git_commit_msg": "feat(story): add narrative branch same_comet and video assets",
    "status": "ready_for_render"
   },
@@ -4410,7 +4423,7 @@
    "subtitles_ru": [
     "Ночь, огонь свечи. Комета переходит строкой из рук в руки. У знака пусто: переписчик не стал гадать. Пора подниматься к людям."
    ],
-   "chorus": "− длинный фокус 125 мм сжимает план, место теряется / + свет класса часа честный: огонь 1900 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− строки в тени теряют форму / + свеча даёт фактуру пергамента / + комета читается даже в глухую ночь",
    "git_commit_msg": "feat(story): add narrative branch same_comet and video assets",
    "status": "ready_for_render"
   },
@@ -4783,7 +4796,7 @@
     "Ночь в лодке, луна. Качка сбила астролябию на ширину пальца, и рыцарь пристал не к тому берегу, а к братьям.",
     "Комната уходит под воду; он запомнит этот берег."
    ],
-   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2050 K, не 1800 K / + вещь, которую называет рассказчик, в центре внимания",
+   "chorus": "− кадр ровный, но час читается только по свету, не по событию / + свет класса часа честный: огонь 2050 K, не 1800 K / + выбор хора: смысл строки и свет совпали",
    "git_commit_msg": "feat(story): add narrative branch error_of_a_finger and video assets",
    "status": "ready_for_render"
   },

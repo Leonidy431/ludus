@@ -1835,17 +1835,23 @@ def place_camera(sc, var, place):
     # first lift the camera by 3, 6 and 9 degrees to look over it (a
     # pulled-in camera ends up nose to the stone: ford_of_cold v08);
     # only if none is clear, pull it in front of the obstacle.
+    # Last before pulling in, the reference view's own height and then
+    # its own bearing, which are clear by construction (in
+    # error_of_a_finger a low camera was pulled onto the astrolabe).
     pulled = False
-    for lift in (0.0, 3.0, 6.0, 9.0):
-        e = min(math.radians(80), el + math.radians(lift))
-        u = Vector((math.cos(e) * math.cos(az), math.cos(e) * math.sin(az),
+    el0 = math.asin(max(-1.0, min(1.0, v.z / d0)))
+    az0 = math.atan2(v.y, v.x)
+    tries = [(az, min(math.radians(80), el + math.radians(lift)))
+             for lift in (0.0, 3.0, 6.0, 9.0)] + [(az, el0), (az0, el0)]
+    for a, e in tries:
+        u = Vector((math.cos(e) * math.cos(a), math.cos(e) * math.sin(a),
                     math.sin(e)))
         h = hits(sc, aim, u, d, 0.2 * d0)
         if h is None or h >= d:
             break
     else:
-        e = el
-        u = Vector((math.cos(e) * math.cos(az), math.cos(e) * math.sin(az),
+        a, e = az, el
+        u = Vector((math.cos(e) * math.cos(a), math.cos(e) * math.sin(a),
                     math.sin(e)))
         h = hits(sc, aim, u, d, 0.2 * d0)
         d = max(0.05, h - max(0.03, 0.04 * d))
@@ -1864,6 +1870,7 @@ def place_camera(sc, var, place):
             'pitch': round(math.degrees(math.asin(f.z)), 1),
             'roll': c['roll'], 'lens_mm': c['lens_mm'],
             'lifted_deg': round(math.degrees(e - el), 1),
+            'reference_bearing': a != az,
             'pulled_in': pulled}
 
 
