@@ -1,5 +1,5 @@
 {
- "next": 3,
+ "next": 6,
  "log": [
   {
    "time": "2026-09-29T12:43:56.018762+00:00",
@@ -7070,6 +7070,80 @@
      "reason": "third shipment of the kit reverted in cycles 89 and 93 (all 12 variants read as a cup/chalice; a passion must not look like a holy vessel, TABOO 0.2 item 3, 0.35 item 6). The runner did not read its journal; it now skips reverted objects (osint_cycle.reverted_objects, tests/test_reverted_memory.py). Not shipped; register unchanged."
     }
    ]
+  },
+  {
+   "time": "2026-10-03T00:50:32.598576+00:00",
+   "pass_id": "osint-2026-10-03T00:50:32Z",
+   "deficits": [
+    {
+     "id": "DEF-019",
+     "hits": 143,
+     "taken": 0,
+     "refused": {},
+     "to_props": 143,
+     "hits_uncapped": 143,
+     "props_uncapped": 143,
+     "props_uncapped_repos": 26,
+     "added_keywords": [],
+     "keywords_total": 8,
+     "keywords_not_searched": [],
+     "props": {},
+     "props_seen": 127
+    },
+    {
+     "id": "DEF-024",
+     "hits": 200,
+     "taken": 0,
+     "refused": {
+      "font": 1
+     },
+     "to_props": 12,
+     "hits_uncapped": 46128,
+     "props_uncapped": 41260,
+     "props_uncapped_repos": 62,
+     "added_keywords": [],
+     "keywords_total": 98,
+     "keywords_not_searched": [
+      "amulet",
+      "ankh",
+      "cleric",
+      "com",
+      "java",
+      "layer",
+      "layers",
+      "mage",
+      "openra",
+      "shatteredpixel",
+      "shatteredpixeldungeon"
+     ],
+     "props": {},
+     "props_seen": 12
+    },
+    {
+     "id": "DEF-027",
+     "skipped": "audio-pipeline-pending"
+    }
+   ],
+   "props_taken": {},
+   "props_taken_by_index_kind": {},
+   "props_duplicates": 139,
+   "props_errors": 0,
+   "props_refused": {
+    "licence-Defold-1.0": 8,
+    "licence-UNKNOWN": 8
+   },
+   "props_new_bytes": 0,
+   "props_store_files": 1459,
+   "props_store_bytes": 10830629,
+   "props_cache_files_on_disk": 4670,
+   "props_cache_bytes_on_disk": 78045162,
+   "props_cache_missing": 0,
+   "props_cache_unnamed": 3211,
+   "props_register_bytes": 814549,
+   "props_register_growth_bytes": 0,
+   "stage": "done",
+   "accepted_objects": 0,
+   "code_candidates": 187
   }
  ],
  "keywords": {
