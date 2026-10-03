@@ -3,23 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://mg44v7eq51qh"
-path.s3tc="res://.godot/imported/insight_bread_in_siege.jpg-e7fa1afae664290ab303a92abca36dca.s3tc.ctex"
-path.etc2="res://.godot/imported/insight_bread_in_siege.jpg-e7fa1afae664290ab303a92abca36dca.etc2.ctex"
+path="res://.godot/imported/insight_bread_in_siege.jpg-e7fa1afae664290ab303a92abca36dca.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://art/prerender/insight_bread_in_siege.jpg"
-dest_files=["res://.godot/imported/insight_bread_in_siege.jpg-e7fa1afae664290ab303a92abca36dca.s3tc.ctex", "res://.godot/imported/insight_bread_in_siege.jpg-e7fa1afae664290ab303a92abca36dca.etc2.ctex"]
+dest_files=["res://.godot/imported/insight_bread_in_siege.jpg-e7fa1afae664290ab303a92abca36dca.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
-compress/lossy_quality=0.7
+compress/lossy_quality=0.85
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
