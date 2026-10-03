@@ -60,6 +60,11 @@ MIN_CONTRAST = 0.22
 MAX_HORIZON_TILT = 8.0
 
 
+def periods_of(spec):
+    """The hours of this environment: its own list, or the sky's day."""
+    return [tuple(p) for p in spec.get("periods", PERIODS)]
+
+
 def kelvin_rgb(kelvin):
     """Approximate a black body's colour as 0..1 RGB (Tanner Helland)."""
     t = kelvin / 100.0
@@ -193,14 +198,14 @@ def place_items(spec, rng, period):
     """
     placed = {}
     for item in spec["items"]:
-        if item.get("holy"):
+        if item.get("fixed"):
             fx = item["fixed"]
             placed[item["id"]] = {
                 "pos": fx["pos"], "yaw": fx["yaw"], "scale": fx["scale"],
                 "box": item_box(item, fx["pos"], fx["yaw"], fx["scale"]),
                 "palette": 0}
     for item in spec["items"]:
-        if item.get("holy"):
+        if item.get("fixed"):
             continue
         for _ in range(DRAWS):
             rec = draw_item(spec, rng, item, period)
@@ -213,9 +218,16 @@ def place_items(spec, rng, period):
 
 
 def geometry_audit(spec, placed):
-    """TABOO 1..2: boxes only, walls, passages, heart, no overlaps."""
+    """TABOO 1..2: boxes only, walls, passages, heart, no overlaps.
+
+    Items the layout fixes (the holy, things on a wall) are the base
+    design: they are not judged against the room or each other.
+    """
+    fixed = {i["id"] for i in spec["items"] if i.get("fixed")}
     boxes = [(i, r["box"]) for i, r in placed.items()]
     for iid, box in boxes:
+        if iid in fixed:
+            continue
         if not inside(box, spec["room"]):
             return "wall:" + iid
         for zone in spec["no_go"]:
@@ -223,11 +235,12 @@ def geometry_audit(spec, placed):
                 return "passage:" + iid
         hx, _, hz = spec["heart"]["at"]
         cx, cz = (box[0][0] + box[1][0]) / 2, (box[0][2] + box[1][2]) / 2
-        if not spec["items_ids_holy"].get(iid) and math.hypot(
-                cx - hx, cz - hz) < spec["heart"]["clear_m"]:
+        if math.hypot(cx - hx, cz - hz) < spec["heart"]["clear_m"]:
             return "heart:" + iid
     for k, (ia, a) in enumerate(boxes):
         for ib, b in boxes[k + 1:]:
+            if ia in fixed and ib in fixed:
+                continue
             if overlaps(a, b):
                 return "overlap:%s/%s" % (ia, ib)
     return None
@@ -310,8 +323,8 @@ def chorus_check(spec, cand):
 def candidate(spec, seed, n):
     """One shaken candidate (a time, a camera, a light, a layout)."""
     rng = make_rng(spec["id"], seed, n)
-    pi = rng.randrange(len(PERIODS))
-    name, elev, sun_k, level = PERIODS[pi]
+    pi = rng.randrange(len(periods_of(spec)))
+    name, elev, sun_k, level = periods_of(spec)[pi]
     placed = place_items(spec, rng, name)
     if placed is None:
         return None
@@ -347,13 +360,13 @@ def feature(cand):
             sum(moved) / (2.5 * max(len(moved), 1))]
 
 
-def pick_twelve(cands):
+def pick_twelve(cands, periods):
     """Twelve far-apart candidates, chosen the same way every time."""
     feats = [feature(c) for c in cands]
     # First one set for every hour of the day that was accepted, so the
     # walk passes through the whole day; then the farthest candidates.
     chosen = []
-    for name, _, _, _ in PERIODS:
+    for name, _, _, _ in periods:
         pool = [i for i in range(len(cands)) if cands[i]["period"] == name]
         if pool and len(chosen) < SETS:
             chosen.append(min(pool, key=lambda i: json.dumps(feats[i])))
@@ -394,7 +407,7 @@ def build(spec, seed, tries):
     if len(accepted) < SETS:
         raise SystemExit("only %d candidates passed; need %d"
                          % (len(accepted), SETS))
-    sets = pick_twelve(accepted)
+    sets = pick_twelve(accepted, periods_of(spec))
     for i, s in enumerate(sets):
         s["index"] = i
         for rec in s["items"].values():

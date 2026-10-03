@@ -13,6 +13,52 @@ SPEC = json.loads((ROOT / "scripts" / "scenes" / "env_specs"
                    / "evening_cell_sample.json").read_text("utf-8"))
 
 
+BAKED = ROOT / "scripts" / "scenes" / "baked" / "scene-sets-locations.json"
+
+
+class LocationsBakeTest(unittest.TestCase):
+    """Every place of the game has its sets, and the holy is not shaken."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.bake = json.loads(BAKED.read_text("utf-8"))
+        cls.places = json.loads((ROOT / "godot" / "data"
+                                 / "locations-99.json").read_text("utf-8"))
+
+    def test_all_99_places_are_bound(self):
+        self.assertEqual(len(self.bake["envs"]), 99)
+        for env in self.bake["envs"].values():
+            if env["kind"] == "twelve":
+                self.assertEqual(len(env["sets"]), 12)
+
+    def test_holy_places_keep_one_set(self):
+        for loc in self.places["locations"]:
+            env = self.bake["envs"][loc["id"]]
+            if loc.get("holy_place"):
+                self.assertEqual(env["kind"], "holy_one_set")
+                self.assertEqual(len(env["sets"]), 1)
+
+    def test_every_mission_has_places(self):
+        plots = {p for loc in self.places["locations"]
+                 for p in loc.get("plots", [])}
+        self.assertEqual(set(self.bake["missions"]), plots)
+
+    def test_wall_things_never_move(self):
+        for loc in self.places["locations"]:
+            env = self.bake["envs"][loc["id"]]
+            for k, slot in enumerate(loc["slots"]):
+                if slot["mount"] not in gen_free():
+                    iid = "%s#%d" % (slot["object"], k)
+                    for st in env["sets"]:
+                        self.assertEqual(st["items"][iid]["pos"],
+                                         [round(v, 2) for v in slot["pos"]])
+
+
+def gen_free():
+    """The mounts whose things stand free and may be shaken."""
+    return ("floor", "table", "stand", "seabed")
+
+
 class MultiEnvSetsTest(unittest.TestCase):
     """The same spec and seed give the same twelve, and they are sound."""
 
