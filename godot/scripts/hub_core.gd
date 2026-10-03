@@ -134,18 +134,40 @@ static func evaluate(gate: Dictionary, form: Dictionary,
 
 
 ## Gates are a ladder: a higher gate never opens before a lower one.
-static func evaluate_ladder(form: Dictionary, actions: Dictionary) -> Array:
+##
+## When the trial state's "trials" dictionary is given (gate id -> true
+## once its threshold is passed), gate N+1 also waits for the threshold
+## of gate N: a "return" there keeps the next gate closed until the
+## threshold is passed (chorus decision, HLD_TRIALS_LADDER_2026-10-03).
+## Without it (null) the ladder is the three-part check alone, as
+## evaluateLadder(form, actions) in ludus-actions.js.
+static func evaluate_ladder(form: Dictionary, actions: Dictionary,
+		trials = null) -> Array:
 	var blocked := false
+	var trial_due := false
 	var out := []
 	for gate in GATES:
 		var check := evaluate(gate, form, actions)
 		if blocked and check.open:
 			check.open = false
 			check.missing.append("ladder")
+		elif trial_due and check.open:
+			check.open = false
+			check.missing.append("trial")
 		if not check.open:
 			blocked = true
+		trial_due = _threshold_due(gate.id, trials)
 		out.append(check)
 	return out
+
+
+## True when the trial state is given and the threshold of this gate is
+## not yet passed.  A threshold is never counted as points: it is only
+## crossed or not (TABOO 0.35 rule 16).
+static func _threshold_due(gate_id: String, trials) -> bool:
+	if not (trials is Dictionary):
+		return false
+	return not bool(trials.get(gate_id, false))
 
 
 ## The bow for gates 4-6, accepted only when every other condition holds.

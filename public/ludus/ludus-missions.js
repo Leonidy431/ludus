@@ -759,6 +759,12 @@
   }
 
   function fallInto(ctx, st, passionId, actions) {
+    // The first fall stands until it is lifted: its snapshot is what
+    // sobriety and the mentor's talk are measured against, so a second
+    // fall must not quietly reset it.
+    if (st.fall) {
+      return;
+    }
     const p = passionOf(ctx, passionId);
     const teacher = p ? p.teacher : 'elder_sergius';
     const met = actions && actions.met ? num(actions.met[teacher]) : 0;
@@ -960,9 +966,12 @@
       return null;
     }
     const api = ctx.actionsApi;
-    const check = api ? api.evaluateLadder(form, actions)
+    const check = api ? api.evaluateLadder(form, actions, st.trials)
       .find((c) => c.gate.id === gateId) : null;
     const open = Boolean(check && check.open);
+    // A fall closes every threshold, not only the deep paths: a choice
+    // made in the dark would be made by the passion, not by the player.
+    const locked = Boolean(st.fall);
     const met = actions && actions.met ? num(actions.met[trial.mentor]) : 0;
     const waiting = gateId in st.trialWait && met <= st.trialWait[gateId];
     const tree = ctx.trees && ctx.trees.trees[trial.mentor];
@@ -972,9 +981,12 @@
       passed: Boolean(st.trials[gateId]),
       missing: check ? check.missing.map((m) => m.text) : [],
       waiting,
+      locked,
+      reason: locked ? 'fall' : '',
       mentorRu: tree ? tree.npcName_ru : trial.mentor,
       options: trial.options.map((o) => ({ id: o.id, text: o.text_ru,
-        disabled: !open || waiting || Boolean(st.trials[gateId]) })),
+        disabled: !open || waiting || locked
+          || Boolean(st.trials[gateId]) })),
     };
   }
 

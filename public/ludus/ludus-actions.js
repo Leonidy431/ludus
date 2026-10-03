@@ -348,18 +348,30 @@
   }
 
   // Gates are a ladder: a higher gate never opens before a lower one.
-  function evaluateLadder(form, actions) {
+  // When the trials map of the mission state is given (gate id -> true
+  // once its threshold is passed), gate N+1 also waits for the
+  // threshold of gate N: a "return" there keeps the next gate closed
+  // until it is passed (chorus decision, HLD_TRIALS_LADDER_2026-10-03).
+  // Without it the ladder is the three-part check alone.
+  function evaluateLadder(form, actions, trials) {
+    const given = Boolean(trials) && typeof trials === 'object';
     let blocked = false;
+    let trialDue = false;
     return GATES.map((gate) => {
       const check = evaluate(gate, form, actions);
       if (blocked && check.open) {
         check.open = false;
         check.missing.push({ kind: 'ladder',
           text: 'Pass the previous gate first' });
+      } else if (trialDue && check.open) {
+        check.open = false;
+        check.missing.push({ kind: 'trial',
+          text: 'Cross the threshold of the previous gate first' });
       }
       if (!check.open) {
         blocked = true;
       }
+      trialDue = given && !trials[gate.id];
       return check;
     });
   }
