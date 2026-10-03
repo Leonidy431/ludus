@@ -3,7 +3,7 @@
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
 - файлов кода: 522
-- документов: 262
+- документов: 263
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -517,7 +517,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (191)
+## Документация проекта (192)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -690,6 +690,7 @@
 - [docs/story/qviqa/ORDER_QVIQA_CODEX_2026-10-03.md](../docs/story/qviqa/ORDER_QVIQA_CODEX_2026-10-03.md) 📄 — Кодекс Братства QVIQA — лор, Конституция, контракты, путь, сообщество (2026-10-03)
 - [docs/story/qviqa/QVIQA_PROMPT_OPERATOR_2026-10-03.md](../docs/story/qviqa/QVIQA_PROMPT_OPERATOR_2026-10-03.md) 📄 — Исходник оператора: промпт «Орден QVIQA» (2026-10-03, дословно)
 - [docs/story/rzhevsky/EPISODE2_RZHEVSKY_LODGE_2026-10-03.md](../docs/story/rzhevsky/EPISODE2_RZHEVSKY_LODGE_2026-10-03.md) 📄 — «Ржевский и Ложа Трёх Циркулей» — серия 2 (XIX век, комедия)
+- [docs/story/rzhevsky/STYLE_COMEDY_STUDY_2026-10-03.md](../docs/story/rzhevsky/STYLE_COMEDY_STUDY_2026-10-03.md) 📄 — Разбор движков «Петьки», «ГЭГ», «Братьев Пилотов» и наш комедийный стиль (2026-10-03)
 - [docs/tech/MULTI_ENV_PROMPT_OPERATOR_2026-10-03.md](../docs/tech/MULTI_ENV_PROMPT_OPERATOR_2026-10-03.md) 📄 — Исходник оператора: «Архитектура Мульти-Среда» (2026-10-03, дословно)
 - [docs/tech/MULTI_ENV_SETS_2026-10-03.md](../docs/tech/MULTI_ENV_SETS_2026-10-03.md) 📄 — Технология «Мульти-Среда»: одна сцена — 12 готовых наборов (2026-10-03)
 - [docs/version-3.0/A10_OFFLINE_SYNC.md](../docs/version-3.0/A10_OFFLINE_SYNC.md) 📄 — A10: Offline Sync & Client-Side Caching
