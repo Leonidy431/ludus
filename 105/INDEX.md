@@ -2,7 +2,7 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 491
+- файлов кода: 494
 - документов: 241
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
@@ -30,7 +30,7 @@
 - [.github/workflows/raw-audio-pass.yml](../.github/workflows/raw-audio-pass.yml) — Audio pass over the 99 backlog repos as a git pass (operator,
 - [.github/workflows/raw-osint-cycle.yml](../.github/workflows/raw-osint-cycle.yml) — OSINT pass over the 99 backlog repos every 1.5 hours (CLAUDE.md TABOO
 
-## Игра для шлема: код (GDScript) (88)
+## Игра для шлема: код (GDScript) (89)
 
 - [godot/scripts/apparatus_core.gd](../godot/scripts/apparatus_core.gd) — The operator's own apparatus in the game (CLAUDE.md TABOO 0.022): 41
 - [godot/scripts/atlas_core.gd](../godot/scripts/atlas_core.gd) — "The Water Atlas" read at the lectern of the scriptorium (CLAUDE.md
@@ -114,6 +114,7 @@
 - [godot/scripts/trial_core.gd](../godot/scripts/trial_core.gd) — The thresholds of the gates and the fall they can lead to, ported
 - [godot/scripts/typikon_core.gd](../godot/scripts/typikon_core.gd) — When the far monastery's bells ring over the path of the witness
 - [godot/scripts/volumetric_core.gd](../godot/scripts/volumetric_core.gd) — The physics and data of the volumetric laser screen (HLD
+- [godot/scripts/volumetric_screen.gd](../godot/scripts/volumetric_screen.gd) — The volumetric laser screen under water (CLAUDE.md TABOO 0.022, phase
 - [godot/scripts/witness.gd](../godot/scripts/witness.gd) — The path of the witness in the headset (docs/HLD_APK_PRIORITY A3).
 - [godot/scripts/witness_batch.gd](../godot/scripts/witness_batch.gd) — Static batching of the path of the witness (docs/APK_REQUIREMENTS.md,
 - [godot/scripts/witness_core.gd](../godot/scripts/witness_core.gd) — The path of the witness: seven scene kits along one path, where the
@@ -130,7 +131,7 @@
 - [godot/scenes/pilot.tscn](../godot/scenes/pilot.tscn)
 - [godot/scenes/witness.tscn](../godot/scenes/witness.tscn)
 
-## Игра для шлема: инструменты замера и кадров (17)
+## Игра для шлема: инструменты замера и кадров (18)
 
 - [godot/tools/debug_layers.gd](../godot/tools/debug_layers.gd) — Debug: render the start view with one child of the scene hidden at a
 - [godot/tools/fish_shots.gd](../godot/tools/fish_shots.gd) — Proof frames of the fish of our own drawing (DEF-056) in the dive:
@@ -148,9 +149,10 @@
 - [godot/tools/rov_lod_shots.gd](../godot/tools/rov_lod_shots.gd) — Frames and triangle counts of the Mangustik's level of detail
 - [godot/tools/story_shots.gd](../godot/tools/story_shots.gd) — Frames of the 12 stories for the eye check (TABOO 0.013 item 7; HLD
 - [godot/tools/stress_place_switch.gd](../godot/tools/stress_place_switch.gd) — Switch places fast, again and again, to shake out a crash of the
+- [godot/tools/volumetric_shots.gd](../godot/tools/volumetric_shots.gd) — Proof frames of the volumetric laser screen (docs/HLD_VOLUMETRIC_LASER_
 - [godot/tools/witness_wav_check.py](../godot/tools/witness_wav_check.py) — Measure the offline render of the path of the witness.
 
-## Игра для шлема: тесты (63)
+## Игра для шлема: тесты (64)
 
 - [godot/tests/confession_walker.gd](../godot/tests/confession_walker.gd) — A stand-in for the witness path in test_confession.gd: the sheet reads
 - [godot/tests/deeds/panel_text.gd](../godot/tests/deeds/panel_text.gd) — The heart's panel of a place as location.gd builds it, measured with
@@ -211,6 +213,7 @@
 - [godot/tests/test_story_check.gd](../godot/tests/test_story_check.gd) — The tester's entry to the 12 stories (StoryCheck, SaveSlot; debug
 - [godot/tests/test_trial.gd](../godot/tests/test_trial.gd) — TrialCore against the JS reference: every record of
 - [godot/tests/test_volumetric.gd](../godot/tests/test_volumetric.gd) — VolumetricCore against the Python numbers of the operator's repo
+- [godot/tests/test_volumetric_screen.gd](../godot/tests/test_volumetric_screen.gd) — The volumetric laser screen (VolumetricScreen, TABOO 0.022, phase V2):
 - [godot/tests/test_witness.gd](../godot/tests/test_witness.gd) — The path of the witness (docs/HLD_APK_PRIORITY A3): the data of the
 - [godot/tests/test_witness_sound.gd](../godot/tests/test_witness_sound.gd) — The sound of the path of the witness (docs/HLD_WITNESS_SOUND_
 - [godot/tests/test_wow.gd](../godot/tests/test_wow.gd) — The rising curve of wow (WowCore, docs/HLD_WOW_ESCALATION_2026-10-03.md):

@@ -95,6 +95,9 @@ var fired: Array[String] = []
 var effects: Array = []
 ## The rising wonder of the episode (WowStage over WowCore's curve).
 var wow: WowStage
+## The operator's volumetric laser-bubble screen beside the console
+## (docs/HLD_VOLUMETRIC_LASER_SCREEN_2026-10-03.md, TABOO 0.022).
+var volume: VolumetricScreen
 ## The hero's AI «Клауд» (TABOO 0.026): its lines, the ones already
 ## said this run, its line on the right wrist and its draft voice.
 var companion := {}
@@ -297,6 +300,13 @@ func _build_rig() -> void:
 	wow = WowStage.new()
 	wow.position = Vector3(0, 0.9, -1.5)
 	rig.add_child(wow)
+	# The volumetric screen stands at the right of the console, at arm's
+	# length and a little below the eyes: the lake's own data in the
+	# lake, layers, oxygen and the floor in light on bubbles.
+	volume = VolumetricScreen.new()
+	volume.position = Vector3(0.75, 0.85, -1.3)
+	volume.scale = Vector3.ONE * 0.6
+	rig.add_child(volume)
 
 
 func _build_world() -> void:
@@ -1126,6 +1136,7 @@ func _tick(dt: float) -> void:
 		detail_i += 1
 	_effects()
 	wow.update(t, reduced, [left_hand, right_hand])
+	_volume()
 	_panels(dt)
 	if world == "room":
 		_clues(dt)
@@ -1327,6 +1338,23 @@ func open_examine(e: Dictionary) -> void:
 ## voice from the pack (res://narration/<key>.ogg) when recorded.  Each
 ## line once, unless `again` (the examine video repeats its own).  At
 ## the holy the line is empty: the narrator is silent (TABOO 0.020).
+## The volumetric screen follows the beat: the floor's relief by the
+## walls, the water's layers at the thermocline, oxygen by the bookmark;
+## at the kayrak it goes dark with the console (TABOO 0.027), and above
+## water it is not there at all.
+func _volume() -> void:
+	volume.visible = world == "lake"
+	if not volume.visible:
+		return
+	var mode: String = {"walls": "floor", "thermocline": "layers",
+		"tether_jerk": "layers", "bookmark": "oxygen", "lure": "floor",
+		"price_rises": "floor", "choice_echo": "floor"}.get(beat_id, "")
+	if mode != "":
+		volume.set_mode(mode)
+	volume.set_holy(beat_id == "khachkar")
+	volume.update(t, _depth(), reduced)
+
+
 ## An on-screen line in the player's language (PilotCore.ui_text).
 func _ui(path: Array, ru: String) -> String:
 	return PilotCore.ui_text(i18n, path, lang, ru)
