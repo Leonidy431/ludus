@@ -1850,7 +1850,10 @@ def place_camera(sc, var, place):
         if h is None or h >= d:
             break
     else:
-        a, e = az, el
+        # Nothing is clear at the asked distance: come in along the
+        # reference view itself, which is clear at least to its own
+        # distance (a longer lens had put the camera behind the stern
+        # thwart in error_of_a_finger).
         u = Vector((math.cos(e) * math.cos(a), math.cos(e) * math.sin(a),
                     math.sin(e)))
         h = hits(sc, aim, u, d, 0.2 * d0)
