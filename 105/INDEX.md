@@ -3,7 +3,7 @@
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
 - файлов кода: 499
-- документов: 244
+- документов: 245
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -306,7 +306,7 @@
 - [scripts/phase2-deploy.sh](../scripts/phase2-deploy.sh)
 - [scripts/phase3-validation.sh](../scripts/phase3-validation.sh) — Phase 3 Final Validation Script
 - [scripts/prerender/build_closeups.py](../scripts/prerender/build_closeups.py) — The examine videos of episode 1 (TABOO 0.019, 0.020): voice, pack
-- [scripts/prerender/build_intro.py](../scripts/prerender/build_intro.py) — The recap of every next launch, «Ранее в „Атласе воды“», as a
+- [scripts/prerender/build_intro.py](../scripts/prerender/build_intro.py) — The blockbuster intro of every next launch, as a preview video
 - [scripts/prerender/render_insights.py](../scripts/prerender/render_insights.py) — Still frames of the insights (CLAUDE.md TABOO 0.021): one realistic
 - [scripts/prerender/render_items.py](../scripts/prerender/render_items.py) — Close-up stills for the swap on examine (docs/HLD_SWAP_RENDERING_
 - [scripts/raw_assets/antagonist.py](../scripts/raw_assets/antagonist.py) — Antagonist protocol: the eight passions and their twelve variants.
@@ -491,7 +491,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (178)
+## Документация проекта (179)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -646,6 +646,7 @@
 - [docs/story/LOCK_CALIBRATION_DESIGN_2026-10-02.md](../docs/story/LOCK_CALIBRATION_DESIGN_2026-10-02.md) 📄 — Калибровка акустической матрицы — модуль вскрытия замков: три поправки, графика, промты (2026-10-02)
 - [docs/story/MISSION_AKULA_ISSYK_KUL_2026-10-02.md](../docs/story/MISSION_AKULA_ISSYK_KUL_2026-10-02.md) 📄 — Миссия-контракт «Акула Иссык-Куля» — поймать Мега-щуку (2026-10-02)
 - [docs/story/OPERATOR_APPARATUS_2026-10-02.md](../docs/story/OPERATOR_APPARATUS_2026-10-02.md) 📄 — Аппараты и репо оператора в «Атласе воды» (опись по ТАБУ №0.022)
+- [docs/story/ORDER_QVIQA_CODEX_2026-10-03.md](../docs/story/ORDER_QVIQA_CODEX_2026-10-03.md) 📄 — Кодекс Ордена QVIQA — лор, Конституция, контракты, путь, сообщество (2026-10-03)
 - [docs/story/PILOT_EPISODE_1_TABU_2026-10-02.md](../docs/story/PILOT_EPISODE_1_TABU_2026-10-02.md) 📄 — «Атлас воды», серия 1 — «Табу». Пилот: первые 15 минут (Quest 3S)
 - [docs/story/PROMPT_INTRO_SIERRA_ECOQUEST_2026-10-02.md](../docs/story/PROMPT_INTRO_SIERRA_ECOQUEST_2026-10-02.md) 📄 — Промпт заставки и входа в игру: «Атлас воды» в духе Sierra (оммаж EcoQuest) — 2026-10-02
 - [docs/story/chorus-ep1/AKULA_CHORUS_2026-10-02.md](../docs/story/chorus-ep1/AKULA_CHORUS_2026-10-02.md) 📄 — Хор: проверка контракта «Акула Иссык-Куля» (2026-10-02)
