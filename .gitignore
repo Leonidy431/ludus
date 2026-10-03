@@ -40,3 +40,6 @@ __pycache__/
 
 # Agent worktrees are local scratch checkouts, never committed.
 .claude/worktrees/
+
+# local frame dumps from tools/frame_cutter (style references, never committed)
+frames/
