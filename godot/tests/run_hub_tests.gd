@@ -272,6 +272,15 @@ func _initialize() -> void:
 	# servers when the process ends: the log showed material_set_shader
 	# on a freed material at exit, and CI crashed there (signal 11) after
 	# every check had passed.  The caches let go of them before quit.
+	# The loader keeps the scenes it was asked to load (the pilot, the lock,
+	# the dive); they hold ShaderMaterials too, and the autoload is freed
+	# after the rendering server on the way out.  Let them go first.
+	var loader := root.get_node_or_null("ModuleLoader")
+	if loader != null:
+		for path in loader.modules.keys():
+			loader.release(path)
+	await process_frame
+	await process_frame
 	FishDrawings._shaders.clear()
 	ActCue._cache.clear()
 	PlaceSound._refs.clear()
