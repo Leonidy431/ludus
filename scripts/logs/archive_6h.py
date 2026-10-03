@@ -31,8 +31,10 @@ ROOT = talk_log.ROOT
 OUT = ROOT / 'docs' / 'logs' / 'archive'
 # Where glove renders and their code live (git-tracked paths).
 RENDER_PATTERNS = ('docs/audit/*/volumetric/*', 'docs/audit/*/glove*',
-                   'video/glove*/*', 'video/volumetric*/*',
-                   'docs/music/cosmos/*')
+                   'video/glove*/*', 'video/volumetric*/*')
+# Audio never lives in the repository (a test enforces it); built audio
+# is only listed, from the untracked build folder.
+AUDIO_FILES = ('build/music/cosmos/nauka-lyubov-poznanie.mp3',)
 CODE_PATTERNS = ('godot/scripts/glove_computer.gd',
                  'godot/scripts/volumetric_*.gd',
                  'godot/tools/volumetric_shots.gd',
@@ -140,6 +142,13 @@ def write_renders(name, until):
                 path, (ROOT / path).stat().st_size, last_commit(path),
                 sha256(path)[:16]))
         lines.append('')
+    lines += ['## Built audio (not in git)', '',
+              '| file | bytes | sha256 |', '|---|---|---|']
+    for rel in AUDIO_FILES:
+        if (ROOT / rel).exists():
+            lines.append('| `%s` | %d | `%s` |' % (
+                rel, (ROOT / rel).stat().st_size, sha256(rel)[:16]))
+    lines.append('')
     path = OUT / ('renders_%s.md' % name)
     path.write_text('\n'.join(lines), encoding='utf-8')
     return path
