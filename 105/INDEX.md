@@ -2,8 +2,8 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 518
-- документов: 255
+- файлов кода: 519
+- документов: 256
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -278,7 +278,7 @@
 - [scripts/decisions/stoplist_choice.py](../scripts/decisions/stoplist_choice.py) — One decision for the church-word stop-list, chosen in the open.
 - [scripts/decisions/stream_choice.py](../scripts/decisions/stream_choice.py) — How the heavy data reaches the headset: one way from the honest pool.
 
-## Скрипты проекта: раннер, данные, сюжеты (96)
+## Скрипты проекта: раннер, данные, сюжеты (97)
 
 - [scripts/blueos/sandbox_up.sh](../scripts/blueos/sandbox_up.sh) — Raise BlueOS and the operator's extensions in the session sandbox
 - [scripts/build-campaign-spine.py](../scripts/build-campaign-spine.py) — Build the Issyk-Kul campaign spine from webtypicon2's missions.
@@ -372,6 +372,7 @@
 - [scripts/tests/test_corpus_chunks.py](../scripts/tests/test_corpus_chunks.py) — Tests of the chunked corpus puller (TABOO 0.033), without a network.
 - [scripts/tests/test_insight_branches.py](../scripts/tests/test_insight_branches.py) — The 144 insight branches pass the chorus's checks without Godot
 - [scripts/tests/test_multi_env_sets.py](../scripts/tests/test_multi_env_sets.py) — Tests of the twelve-sets generator (TABOO 0.032).
+- [scripts/tests/test_talk_log.py](../scripts/tests/test_talk_log.py) — Tests of the talk log collector (scripts/logs/talk_log.py).
 - [scripts/video/insight_variant_sheets.py](../scripts/video/insight_variant_sheets.py) — Contact sheets of the 144 insight variants: one sheet per insight,
 - [scripts/video/insights_reel.py](../scripts/video/insights_reel.py) — The reel of the twelve insights of episode 1, with the suite under it.
 - [scripts/video/insights_variants_reel.py](../scripts/video/insights_variants_reel.py) — Two reels of the 144 insight variants of episode 1, with the suite.
@@ -513,7 +514,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (185)
+## Документация проекта (186)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -644,6 +645,7 @@
 - [docs/logs/talk_log_2026-09-30.md](../docs/logs/talk_log_2026-09-30.md) 📄 — Talk log — 2026-09-30
 - [docs/logs/talk_log_2026-10-01.md](../docs/logs/talk_log_2026-10-01.md) 📄 — Talk log — 2026-10-01
 - [docs/logs/talk_log_2026-10-02.md](../docs/logs/talk_log_2026-10-02.md) 📄 — Talk log — 2026-10-02
+- [docs/logs/talk_log_2026-10-03.md](../docs/logs/talk_log_2026-10-03.md) 📄 — Talk log — 2026-10-03
 - [docs/logs/talklog.md](../docs/logs/talklog.md) 📄 — Ludus Development Talklog
 - [docs/missions/rov-pilot-akula/DESIGN_ROV_PILOT_PIKE.md](../docs/missions/rov-pilot-akula/DESIGN_ROV_PILOT_PIKE.md) 📄 — Дизайн-документ миссии: ROV Pilot — поиск щуки (Иссык-Куль)
 - [docs/missions/rov-pilot-akula/README.md](../docs/missions/rov-pilot-akula/README.md) 📄 — Миссия ROV-пилота: поиск щуки (Акула Иссык-Куля)
