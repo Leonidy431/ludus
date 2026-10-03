@@ -3,7 +3,7 @@
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
 - файлов кода: 501
-- документов: 245
+- документов: 246
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -308,7 +308,7 @@
 - [scripts/phase2-deploy.sh](../scripts/phase2-deploy.sh)
 - [scripts/phase3-validation.sh](../scripts/phase3-validation.sh) — Phase 3 Final Validation Script
 - [scripts/prerender/build_closeups.py](../scripts/prerender/build_closeups.py) — The examine videos of episode 1 (TABOO 0.019, 0.020): voice, pack
-- [scripts/prerender/build_intro.py](../scripts/prerender/build_intro.py) — The recap of every next launch, «Ранее в „Атласе воды“», as a
+- [scripts/prerender/build_intro.py](../scripts/prerender/build_intro.py) — The blockbuster intro of every next launch, as a preview video
 - [scripts/prerender/render_insights.py](../scripts/prerender/render_insights.py) — Still frames of the insights (CLAUDE.md TABOO 0.021): one realistic
 - [scripts/prerender/render_items.py](../scripts/prerender/render_items.py) — Close-up stills for the swap on examine (docs/HLD_SWAP_RENDERING_
 - [scripts/raw_assets/antagonist.py](../scripts/raw_assets/antagonist.py) — Antagonist protocol: the eight passions and their twelve variants.
@@ -493,7 +493,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (179)
+## Документация проекта (180)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -655,7 +655,8 @@
 - [docs/story/chorus-ep1/INSIGHTS_CHORUS_2026-10-02.md](../docs/story/chorus-ep1/INSIGHTS_CHORUS_2026-10-02.md) 📄 — Хор: 12 инсайтов первой серии «Табу» — 2026-10-02
 - [docs/story/chorus-ep1/INSIGHT_PROMPTS_2026-10-02.md](../docs/story/chorus-ep1/INSIGHT_PROMPTS_2026-10-02.md) 📄 — Промты кадров 12 инсайтов — хор сценаристов (2026-10-02)
 - [docs/story/chorus-ep1/NARRATION_v4_24_LENSES.md](../docs/story/chorus-ep1/NARRATION_v4_24_LENSES.md) 📄 — Закадровый текст v4 — «Атлас воды · Серия 1 · Табу»
-- [docs/story/qviqa/ORDER_QVIQA_CODEX_2026-10-03.md](../docs/story/qviqa/ORDER_QVIQA_CODEX_2026-10-03.md) 📄 — Кодекс Ордена QVIQA — лор, Конституция, контракты, путь, сообщество (2026-10-03)
+- [docs/story/qviqa/ORDER_QVIQA_CODEX_2026-10-03.md](../docs/story/qviqa/ORDER_QVIQA_CODEX_2026-10-03.md) 📄 — Кодекс Братства QVIQA — лор, Конституция, контракты, путь, сообщество (2026-10-03)
+- [docs/story/qviqa/QVIQA_PROMPT_OPERATOR_2026-10-03.md](../docs/story/qviqa/QVIQA_PROMPT_OPERATOR_2026-10-03.md) 📄 — Исходник оператора: промпт «Орден QVIQA» (2026-10-03, дословно)
 - [docs/version-3.0/A10_OFFLINE_SYNC.md](../docs/version-3.0/A10_OFFLINE_SYNC.md) 📄 — A10: Offline Sync & Client-Side Caching
 - [docs/version-3.0/API_ERROR_HANDLING_GUIDE.md](../docs/version-3.0/API_ERROR_HANDLING_GUIDE.md) 📄 — API Error Handling & Edge Cases Guide
 - [docs/version-3.0/CLOUD_FUNCTIONS_DIALOGUE_API.md](../docs/version-3.0/CLOUD_FUNCTIONS_DIALOGUE_API.md) 📄 — Ludus Cloud Functions Dialogue API
