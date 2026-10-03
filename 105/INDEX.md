@@ -2,8 +2,8 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 509
-- документов: 253
+- файлов кода: 515
+- документов: 255
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -278,7 +278,7 @@
 - [scripts/decisions/stoplist_choice.py](../scripts/decisions/stoplist_choice.py) — One decision for the church-word stop-list, chosen in the open.
 - [scripts/decisions/stream_choice.py](../scripts/decisions/stream_choice.py) — How the heavy data reaches the headset: one way from the honest pool.
 
-## Скрипты проекта: раннер, данные, сюжеты (87)
+## Скрипты проекта: раннер, данные, сюжеты (93)
 
 - [scripts/blueos/sandbox_up.sh](../scripts/blueos/sandbox_up.sh) — Raise BlueOS and the operator's extensions in the session sandbox
 - [scripts/build-campaign-spine.py](../scripts/build-campaign-spine.py) — Build the Issyk-Kul campaign spine from webtypicon2's missions.
@@ -314,6 +314,7 @@
 - [scripts/phase3-validation.sh](../scripts/phase3-validation.sh) — Phase 3 Final Validation Script
 - [scripts/prerender/build_closeups.py](../scripts/prerender/build_closeups.py) — The examine videos of episode 1 (TABOO 0.019, 0.020): voice, pack
 - [scripts/prerender/build_intro.py](../scripts/prerender/build_intro.py) — The recap of every next launch, «Ранее в „Атласе воды“», as a
+- [scripts/prerender/insight_variants.py](../scripts/prerender/insight_variants.py) — Twelve variants of each of the twelve insights of episode 1: 144
 - [scripts/prerender/render_insights.py](../scripts/prerender/render_insights.py) — Still frames of the insights (CLAUDE.md TABOO 0.021): one realistic
 - [scripts/prerender/render_items.py](../scripts/prerender/render_items.py) — Close-up stills for the swap on examine (docs/HLD_SWAP_RENDERING_
 - [scripts/raw_assets/antagonist.py](../scripts/raw_assets/antagonist.py) — Antagonist protocol: the eight passions and their twelve variants.
@@ -359,13 +360,18 @@
 - [scripts/scenes/multi_env_sets.py](../scripts/scenes/multi_env_sets.py) — Twelve ready sets for one scene (TABOO 0.032, docs/tech/MULTI_ENV_SETS_
 - [scripts/story/atlas_nodes.py](../scripts/story/atlas_nodes.py) — The 99 nodes of "The Water Atlas" as the chorus of five editors left
 - [scripts/story/cast_12.py](../scripts/story/cast_12.py) — Where the people of the 12 stories stand in the headset.
+- [scripts/story/check_branches.py](../scripts/story/check_branches.py) — The chorus's checks of the 144 insight branches of episode 1
 - [scripts/story/entelechy.py](../scripts/story/entelechy.py) — Entelechy 99: the operator's 99 signs-impulses in 9 nodes, and the
+- [scripts/story/insight_branches.py](../scripts/story/insight_branches.py) — The 144 insight variants of episode 1 as branches of the game's
 - [scripts/story/render.py](../scripts/story/render.py) — Build "The Water Atlas" from its one list (atlas_nodes.py).
 - [scripts/story/select_12.py](../scripts/story/select_12.py) — Choose the 12 stories the headset walks on foot (TABOO 0.07).
 - [scripts/test-api-endpoints.sh](../scripts/test-api-endpoints.sh) — Ludus API Endpoint Test Suite
 - [scripts/tests/test_check_canon.py](../scripts/tests/test_check_canon.py) — Negative tests for scripts/check_canon.py.
+- [scripts/tests/test_insight_branches.py](../scripts/tests/test_insight_branches.py) — The 144 insight branches pass the chorus's checks without Godot
 - [scripts/tests/test_multi_env_sets.py](../scripts/tests/test_multi_env_sets.py) — Tests of the twelve-sets generator (TABOO 0.032).
+- [scripts/video/insight_variant_sheets.py](../scripts/video/insight_variant_sheets.py) — Contact sheets of the 144 insight variants: one sheet per insight,
 - [scripts/video/insights_reel.py](../scripts/video/insights_reel.py) — The reel of the twelve insights of episode 1, with the suite under it.
+- [scripts/video/insights_variants_reel.py](../scripts/video/insights_variants_reel.py) — Two reels of the 144 insight variants of episode 1, with the suite.
 - [scripts/voice/build_claud_voice.py](../scripts/voice/build_claud_voice.py) — Build the draft voice of Claud, the ROV operator's AI companion.
 
 ## Веб-версия игры (34)
@@ -504,7 +510,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (183)
+## Документация проекта (185)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -607,6 +613,7 @@
 - [docs/STORY_12_HEADSET_TEST_2026-10-02.md](../docs/STORY_12_HEADSET_TEST_2026-10-02.md) 📄 — Проверка 12 сюжетов в Quest 3 — инструкция оператору (2026-10-02)
 - [docs/STORY_12_SELECTION_2026-10-02.md](../docs/STORY_12_SELECTION_2026-10-02.md) 📄 — Отбор 12 сюжетов для шлема (2026-10-02)
 - [docs/TECHNOLOGIES.md](../docs/TECHNOLOGIES.md) 📄 — Технологии Ludus — реестр
+- [docs/TECH_INSIGHT_RENDER_144_2026-10-03.md](../docs/TECH_INSIGHT_RENDER_144_2026-10-03.md) 📄 — Технология 144 рендеров инсайтов — ветки развития игры (2026-10-03)
 - [docs/UI_UX_POLISH_COMPLETE.md](../docs/UI_UX_POLISH_COMPLETE.md) 📄 — Ludus UI/UX Polish Complete — Production-Ready Design System
 - [docs/VR_JOYSTICK_DIVECOMPUTER_CONTROL.md](../docs/VR_JOYSTICK_DIVECOMPUTER_CONTROL.md) 📄 — VR Joystick & ROV DiveComputer Control — Meta Quest 3 Integration
 - [docs/VR_SCENE_MIGRATION.md](../docs/VR_SCENE_MIGRATION.md) 📄 — VR scene migration: webtypicon2 `public/game/vr*` → ludus `public/vr/`
@@ -665,6 +672,7 @@
 - [docs/story/chorus-ep1/AKULA_CHORUS_2026-10-02.md](../docs/story/chorus-ep1/AKULA_CHORUS_2026-10-02.md) 📄 — Хор: проверка контракта «Акула Иссык-Куля» (2026-10-02)
 - [docs/story/chorus-ep1/DESTINY_CHORUS_2026-10-02.md](../docs/story/chorus-ep1/DESTINY_CHORUS_2026-10-02.md) 📄 — Хор 12 редакторов-гуру: ветки развития и семь финалов «ближе к раю или ближе к аду» (2026-10-02)
 - [docs/story/chorus-ep1/INSIGHTS_CHORUS_2026-10-02.md](../docs/story/chorus-ep1/INSIGHTS_CHORUS_2026-10-02.md) 📄 — Хор: 12 инсайтов первой серии «Табу» — 2026-10-02
+- [docs/story/chorus-ep1/INSIGHT_BRANCHES_144_2026-10-03.md](../docs/story/chorus-ep1/INSIGHT_BRANCHES_144_2026-10-03.md) 📄 — Инсайты серии 1: 144 варианта как ветки развития игры
 - [docs/story/chorus-ep1/INSIGHT_PROMPTS_2026-10-02.md](../docs/story/chorus-ep1/INSIGHT_PROMPTS_2026-10-02.md) 📄 — Промты кадров 12 инсайтов — хор сценаристов (2026-10-02)
 - [docs/story/chorus-ep1/NARRATION_v4_24_LENSES.md](../docs/story/chorus-ep1/NARRATION_v4_24_LENSES.md) 📄 — Закадровый текст v4 — «Атлас воды · Серия 1 · Табу»
 - [docs/story/qviqa/ORDER_QVIQA_CODEX_2026-10-03.md](../docs/story/qviqa/ORDER_QVIQA_CODEX_2026-10-03.md) 📄 — Кодекс Братства QVIQA — лор, Конституция, контракты, путь, сообщество (2026-10-03)
