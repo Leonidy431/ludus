@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Слепой брат Гевонд с посохом, рука на камнях стены, связка книг за спиной">
+  <title>Слепой брат Гевонд</title>
+  <desc>ФОРМА: старый слепой брат обители в куколе и подряснике, глаза закрыты; левая рука на камнях стены — он знает ступени на ощупь; правой держит посох; за спиной связка книг. ДЕЙСТВИЕ: велит дьякону нести сначала книги, а тех, кто не может идти, раньше казны. ЦЕЛЬ: порядок любви (Лк. 12:32-34); признак худой печали, что мешает нести следующего брата (2 Кор. 7:10; Лествица 7). Без нимба: брат — человек. Миссия 90.</desc>
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- Арт-канон §9.0: умбра+золото, без нимба. -->
+  <!-- кладка стены слева -->
+  <g fill="none" stroke="#3a2410" stroke-width="1.4">
+    <path d="M5 50 H24 M5 66 H24 M5 82 H24 M5 98 H24 M24 40 V112"/>
+    <path d="M14 50 V66 M10 66 V82 M16 82 V98"/>
+  </g>
+  <!-- куколь и старое лицо с закрытыми глазами, седая борода -->
+  <path d="M38 48 Q36 22 52 21 Q68 22 66 48 Z" fill="#0c0602" stroke="#8a6a34" stroke-width="1.5"/>
+  <circle cx="52" cy="37" r="9.5" fill="#2a1808" stroke="#c8a56a" stroke-width="1.8"/>
+  <path d="M46 36 q2 1.5 4 0 M54 36 q2 1.5 4 0" fill="none" stroke="#c8a56a" stroke-width="1.2"/>
+  <path d="M44 42 Q52 62 60 42" fill="#c8b89a" stroke="#8a6a34" stroke-width="1"/>
+  <!-- подрясник -->
+  <path d="M52 50 C35 55 31 82 33 124 H71 C73 82 69 55 52 50 Z" fill="#0c0602" stroke="#c8a56a" stroke-width="2"/>
+  <!-- связка книг за спиной -->
+  <g transform="translate(64,54)">
+    <rect width="14" height="8" fill="#8a6a34" stroke="#c8a56a" stroke-width="1"/>
+    <rect y="8" width="14" height="8" fill="#3a2410" stroke="#c8a56a" stroke-width="1"/>
+    <path d="M7 -2 V18" stroke="#e8c87a" stroke-width="1"/>
+  </g>
+  <!-- рука на стене -->
+  <path d="M36 66 L24 70" stroke="#c8a56a" stroke-width="3" stroke-linecap="round"/>
+  <!-- посох -->
+  <path d="M74 76 V130" stroke="#8a6a34" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M66 82 L74 80" stroke="#c8a56a" stroke-width="3" stroke-linecap="round"/>
+</svg>

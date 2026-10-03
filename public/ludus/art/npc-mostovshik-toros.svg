@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Торос, плотник-мостовщик, с бревном и мотком верёвки">
+  <title>Торос, плотник-мостовщик</title>
+  <desc>Форма: плотник в кожаном переднике и простой шапке, на плече брус, у пояса моток верёвки и тесло, у ног малый пролёт мостика. Действие: ставит мосты и гати на путях миссии, чтобы путник прошёл реку. Цель: труд, облегчающий путь другому, как дела милосердия. Миссия: 73 «Мосты и дороги миссии».</desc>
+  <!-- Арт-канон §9.0: умбра+золото, картуш, без нимбов -->
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- брус на плече -->
+  <rect x="14" y="44" width="62" height="7" transform="rotate(-10 45 47)" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- голова в простой шапке -->
+  <circle cx="50" cy="36" r="11" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M39 33 Q50 21 61 33 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="1.5"/>
+  <!-- окладистая борода -->
+  <path d="M42 42 Q50 56 58 42 Q54 48 50 48 Q46 48 42 42 Z" fill="#c8a56a" opacity=".8"/>
+  <!-- рубаха и кожаный передник -->
+  <path d="M50 52 C31 58 27 82 29 118 H71 C73 82 69 58 50 52 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M38 70 H62 L64 116 H36 Z" fill="#3a2410" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- моток верёвки у пояса -->
+  <g fill="none" stroke="#e8c87a" stroke-width="1.5">
+    <ellipse cx="33" cy="90" rx="6" ry="8"/><ellipse cx="33" cy="90" rx="3" ry="5"/>
+  </g>
+  <!-- тесло за поясом -->
+  <path d="M64 80 V100" stroke="#c8a56a" stroke-width="2.2"/>
+  <path d="M60 80 Q64 76 70 79 L69 82 Q65 81 62 83 Z" fill="#e8c87a" stroke="#8a6a34" stroke-width=".8"/>
+  <!-- малый пролёт мостика у ног -->
+  <path d="M14 126 Q50 116 86 126" fill="none" stroke="#e8c87a" stroke-width="2"/>
+  <g stroke="#c8a56a" stroke-width="1.5"><path d="M24 123 V130 M50 120 V130 M76 123 V130"/></g>
+</svg>

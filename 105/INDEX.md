@@ -2,7 +2,7 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 468
+- файлов кода: 469
 - документов: 226
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
@@ -395,7 +395,7 @@
 - [functions/src/tests/api/store-mirror.test.ts](../functions/src/tests/api/store-mirror.test.ts) — Storage seam, phase P2 of
 - [functions/src/utils/logger.ts](../functions/src/utils/logger.ts) — Ludus Logging Utility
 
-## Тесты веба (node --test) (25)
+## Тесты веба (node --test) (26)
 
 - [tests/campaign-spine.test.js](../tests/campaign-spine.test.js) — The Issyk-Kul campaign spine (HLD F1, DEF-018), built read-only from
 - [tests/church-words.test.js](../tests/church-words.test.js) — The church-word stop-list: one file, one verdict.  The web copy is the
@@ -422,6 +422,7 @@
 - [tests/rope-breath.test.js](../tests/rope-breath.test.js) — The prayer rope of the headset keeps the pace of the breath
 - [tests/sacraments-vr.test.js](../tests/sacraments-vr.test.js) — Guarantees for the seven sacrament scenes (docs/SACRAMENTS_VR_SCENES.md,
 - [tests/source-labels.test.js](../tests/source-labels.test.js) — Russian labels of the campaign's sources (data/source-labels-ru.json,
+- [tests/valley-portraits.test.js](../tests/valley-portraits.test.js) — Every person of the valley drawn by ludus-game.js has a portrait.
 
 ## Документы решений (3)
 

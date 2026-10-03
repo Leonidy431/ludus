@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" role="img" aria-label="Саума, торговец пряностями, с открытой ладонью у мешков с пряностями">
+  <title>Саума, торговец пряностями</title>
+  <desc>ФОРМА: тюрк-христианин долины Чу в войлочной шапке с отворотом и халате; у ног мешки с пряностями, правая ладонь открыта. ДЕЙСТВИЕ: кричал «вор» у колодца, а в разговоре видит свою долю вины и прощает. ЦЕЛЬ: признак гнева, у которого будто бы есть право; бревно в своём глазу (Иак. 1:19-20; Мф. 7:3-5). Миссия 3.</desc>
+  <rect width="100" height="140" fill="#1a0e04"/>
+  <rect x="5" y="5" width="90" height="130" fill="none" stroke="#8a6a34" stroke-width="1.5"/>
+  <!-- Арт-канон §9.0: умбра+золото, без нимба. -->
+  <!-- лицо с усами, шапка с отворотом -->
+  <circle cx="48" cy="36" r="10.5" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M43 41 Q48 44 53 41" fill="none" stroke="#c8a56a" stroke-width="1.4"/>
+  <path d="M36 30 Q38 18 48 17 Q58 18 60 30 Z" fill="#3a2410" stroke="#c8a56a" stroke-width="1.5"/>
+  <path d="M35 30 H61 V34 H35 Z" fill="#c8a56a" stroke="#8a6a34" stroke-width="1"/>
+  <!-- халат с запахом -->
+  <path d="M48 50 C30 55 26 82 28 120 H68 C70 82 66 55 48 50 Z" fill="#2a1808" stroke="#c8a56a" stroke-width="2"/>
+  <path d="M40 54 L56 96" stroke="#e8c87a" stroke-width="1.6"/>
+  <!-- открытая ладонь: прощение, не кулак -->
+  <path d="M66 70 q6 -2 8 -8 m-8 8 q7 0 10 -4 m-10 4 q7 2 9 0" fill="none" stroke="#c8a56a" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M58 76 L66 70" stroke="#c8a56a" stroke-width="3" stroke-linecap="round"/>
+  <!-- мешки с пряностями у ног -->
+  <path d="M68 128 Q66 110 74 106 Q82 110 80 128 Z" fill="#8a6a34" stroke="#c8a56a" stroke-width="1.2"/>
+  <path d="M80 128 Q79 114 86 111 Q92 114 91 128 Z" fill="#a33a2a" stroke="#c8a56a" stroke-width="1.2"/>
+  <circle cx="74" cy="106" r="3" fill="#e8c87a"/>
+</svg>
