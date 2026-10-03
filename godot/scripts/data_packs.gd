@@ -10,21 +10,35 @@
 ## * on the headset, the store's expansion file in /Android/obb/<package>/
 ##   (main.<version>.<package>.obb, the highest version), which is the
 ##   same .pck renamed; by hand it is put there with adb push;
-## * on any device, packs in user://packs/ (voice-en.pck and the like).
+## * on any device, packs in user://packs/ (<id>-<sha8>.pck, as named by
+##   data/packs.json).
 ##
 ## A pack adds files under res:// and never replaces the game's own
-## (replace_files = false).  Nothing is fetched from a network: a pack
-## is there or it is not (TABOO 0.26, 0.02 item 2).  Without the English
-## pack the game runs on the text of the lines, as now: a voice adds to
-## the teaching, the line and its meaning are always there (TABOO 0.39
-## item 6).
+## (replace_files = false).  This module itself opens no connection: the
+## packs in user://packs are fetched over the network by PackFetch, in
+## the background, from the project's own releases (TABOO 0.018).  Here
+## they are only checked and mounted.  At start, before any pack of
+## that folder is mounted, every file is held against the manifest
+## inside the APK (data/packs.json): half downloads, old versions,
+## files the manifest does not name and files whose size or SHA-256
+## does not match are deleted and never mounted (TABOO 0.018 item 5);
+## then the disk limit is kept.  Without a pack the game runs on the
+## text of the lines, as now: a voice adds to the teaching, the line
+## and its meaning are always there (TABOO 0.39 item 6).
 ##
-## Constitution: ФОРМА (what the headset carries beside the APK) →
-## ДЕЙСТВИЕ (mount what is there, at start, without the network) → ЦЕЛЬ
-## (the heroes' voices reach the player in his language, and the game
+## The store's expansion file is not in the manifest: the store or adb
+## puts it there and the system checks it, so it is mounted as it is.
+##
+## Constitution: ФОРМА (what the headset carries beside the APK, named
+## by the manifest) → ДЕЙСТВИЕ (at start, keep and mount only what
+## matches, before any scene) → ЦЕЛЬ (the heroes' voices reach the
+## player in his language, nothing foreign is mounted, and the game
 ## stays whole without them).
 extends Node
 
+## The shared checks of the manifest (static functions only, so no
+## request is ever made from here).
+const Fetch := preload("res://scripts/pack_fetch.gd")
 const PACKAGE := "org.ludus.dive"
 const OBB_DIR := "/sdcard/Android/obb/" + PACKAGE
 const USER_PACKS := "user://packs"
@@ -37,6 +51,9 @@ var mounted: Array[String] = []
 ## Why a pack found was not mounted: path → reason (for the journal of
 ## a tester, never shown as an error to a player).
 var refused: Dictionary = {}
+## Folders already checked and mounted in this session: a second pass
+## could delete a file under a pack that is mounted, so there is none.
+var _prepared := {}
 
 
 func _ready() -> void:
@@ -44,7 +61,8 @@ func _ready() -> void:
 
 
 ## Mount the store's expansion file and the user packs; safe to call
-## again, a pack already mounted is skipped.
+## again: a pack already mounted and a folder already checked are
+## skipped.
 func mount_all() -> void:
 	if OS.get_name() == "Android":
 		var obb := pick_obb(_files(OBB_DIR))
@@ -53,14 +71,25 @@ func mount_all() -> void:
 	mount_dir(USER_PACKS)
 
 
-## Mount every .pck of a folder, in name order (a fixed order, so two
-## packs that add the same path always resolve the same way).
-func mount_dir(dir: String) -> void:
-	var names := _files(dir)
-	names.sort()
-	for n in names:
-		if n.ends_with(".pck"):
-			mount(dir.path_join(n))
+## Check a folder of packs against a manifest (the shipped one when m
+## is empty) and mount what matches, in name order (a fixed order, so
+## two packs that add the same path always resolve the same way).
+## What is deleted and why goes to `refused`.  Must run before any pack
+## of the folder is mounted in this session: Godot cannot unmount, and
+## a deleted file under a mounted pack would break its reads.
+func mount_dir(dir: String, m := {}) -> void:
+	var key := ProjectSettings.globalize_path(dir)
+	if _prepared.has(key):
+		return
+	_prepared[key] = true
+	if m.is_empty():
+		m = Fetch.load_manifest()
+	var r: Dictionary = Fetch.prepare(dir, m, Fetch.DISK_MAX_BYTES)
+	for n in r.removed:
+		refused[ProjectSettings.globalize_path(dir.path_join(n))] = \
+			r.removed[n]
+	for path in r.mount:
+		mount(path)
 
 
 func mount(path: String) -> bool:
