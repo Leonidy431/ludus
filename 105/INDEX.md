@@ -2,8 +2,8 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 520
-- документов: 260
+- файлов кода: 522
+- документов: 262
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -266,9 +266,10 @@
 - [scripts/godot/make_volumetric_fixture.py](../scripts/godot/make_volumetric_fixture.py) — Write godot/tests/fixtures/volumetric_fixture.json for VolumetricCore.
 - [scripts/godot/obb_forecast.py](../scripts/godot/obb_forecast.py) — Forecast of the headset build's weight: when do we need an OBB?
 
-## Выборы из честного пула по 48 параметрам (9)
+## Выборы из честного пула по 48 параметрам (10)
 
 - [scripts/decisions/branch_craft.py](../scripts/decisions/branch_craft.py) — 99 of an honest pool of branching techniques for episode 1, by 7 marks.
+- [scripts/decisions/convert_2d3d_choice.py](../scripts/decisions/convert_2d3d_choice.py) — Three tools that turn our own 2D art into 3D, from the honest pool.
 - [scripts/decisions/engine_build_choice.py](../scripts/decisions/engine_build_choice.py) — One way to make the headset engine smaller, chosen in the open.
 - [scripts/decisions/pilot_20mb.py](../scripts/decisions/pilot_20mb.py) — What fills the 20 MB the own engine frees: the series pilot first.
 - [scripts/decisions/pilot_details.py](../scripts/decisions/pilot_details.py) — 55 details for the pilot "Taboo", chosen from every variant of 119 seeds.
@@ -278,7 +279,7 @@
 - [scripts/decisions/stoplist_choice.py](../scripts/decisions/stoplist_choice.py) — One decision for the church-word stop-list, chosen in the open.
 - [scripts/decisions/stream_choice.py](../scripts/decisions/stream_choice.py) — How the heavy data reaches the headset: one way from the honest pool.
 
-## Скрипты проекта: раннер, данные, сюжеты (98)
+## Скрипты проекта: раннер, данные, сюжеты (99)
 
 - [scripts/blueos/sandbox_up.sh](../scripts/blueos/sandbox_up.sh) — Raise BlueOS and the operator's extensions in the session sandbox
 - [scripts/build-campaign-spine.py](../scripts/build-campaign-spine.py) — Build the Issyk-Kul campaign spine from webtypicon2's missions.
@@ -377,6 +378,7 @@
 - [scripts/video/insight_variant_sheets.py](../scripts/video/insight_variant_sheets.py) — Contact sheets of the 144 insight variants: one sheet per insight,
 - [scripts/video/insights_reel.py](../scripts/video/insights_reel.py) — The reel of the twelve insights of episode 1, with the suite under it.
 - [scripts/video/insights_variants_reel.py](../scripts/video/insights_variants_reel.py) — Two reels of the 144 insight variants of episode 1, with the suite.
+- [scripts/video/slice_frames.py](../scripts/video/slice_frames.py) — Cut a LOCAL video into pictures, one every N seconds (or per scene).
 - [scripts/voice/build_claud_voice.py](../scripts/voice/build_claud_voice.py) — Build the draft voice of Claud, the ROV operator's AI companion.
 
 ## Веб-версия игры (34)
@@ -515,7 +517,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (189)
+## Документация проекта (191)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -571,6 +573,7 @@
 - [docs/HLD_PILOT_DETAILS_55_2026-10-02.md](../docs/HLD_PILOT_DETAILS_55_2026-10-02.md) 📄 — HLD: 55 деталей пилота «Табу», комната оператора и интерьер страха (2026-10-02)
 - [docs/HLD_POSOH_HYDROPHONE_2026-09-30.md](../docs/HLD_POSOH_HYDROPHONE_2026-09-30.md) 📄 — HLD: гидрофон оператора (posoh «модель 1») на «Мангустике»
 - [docs/HLD_PROPS_STORE_2026-09-30.md](../docs/HLD_PROPS_STORE_2026-09-30.md) 📄 — HLD: склад реквизита — раннер берёт всё, даже не игровое (2026-09-30)
+- [docs/HLD_RZHEVSKY_SERIES2_2026-10-03.md](../docs/HLD_RZHEVSKY_SERIES2_2026-10-03.md) 📄 — HLD: серия 2 «Ржевский и Ложа Трёх Циркулей» (2026-10-03)
 - [docs/HLD_SOURCE_LABELS_RU_2026-09-30.md](../docs/HLD_SOURCE_LABELS_RU_2026-09-30.md) 📄 — HLD: русские подписи источников в миссиях (2026-09-30)
 - [docs/HLD_STORY_12_CHARACTERS_2026-10-02.md](../docs/HLD_STORY_12_CHARACTERS_2026-10-02.md) 📄 — HLD — люди 12 сюжетов в шлеме (2026-10-02)
 - [docs/HLD_SWAP_RENDERING_2026-10-02.md](../docs/HLD_SWAP_RENDERING_2026-10-02.md) 📄 — HLD: подмена при осмотре (Swap Rendering) — «очки героя» (2026-10-02)
@@ -686,6 +689,7 @@
 - [docs/story/chorus-ep1/NARRATION_v4_24_LENSES.md](../docs/story/chorus-ep1/NARRATION_v4_24_LENSES.md) 📄 — Закадровый текст v4 — «Атлас воды · Серия 1 · Табу»
 - [docs/story/qviqa/ORDER_QVIQA_CODEX_2026-10-03.md](../docs/story/qviqa/ORDER_QVIQA_CODEX_2026-10-03.md) 📄 — Кодекс Братства QVIQA — лор, Конституция, контракты, путь, сообщество (2026-10-03)
 - [docs/story/qviqa/QVIQA_PROMPT_OPERATOR_2026-10-03.md](../docs/story/qviqa/QVIQA_PROMPT_OPERATOR_2026-10-03.md) 📄 — Исходник оператора: промпт «Орден QVIQA» (2026-10-03, дословно)
+- [docs/story/rzhevsky/EPISODE2_RZHEVSKY_LODGE_2026-10-03.md](../docs/story/rzhevsky/EPISODE2_RZHEVSKY_LODGE_2026-10-03.md) 📄 — «Ржевский и Ложа Трёх Циркулей» — серия 2 (XIX век, комедия)
 - [docs/tech/MULTI_ENV_PROMPT_OPERATOR_2026-10-03.md](../docs/tech/MULTI_ENV_PROMPT_OPERATOR_2026-10-03.md) 📄 — Исходник оператора: «Архитектура Мульти-Среда» (2026-10-03, дословно)
 - [docs/tech/MULTI_ENV_SETS_2026-10-03.md](../docs/tech/MULTI_ENV_SETS_2026-10-03.md) 📄 — Технология «Мульти-Среда»: одна сцена — 12 готовых наборов (2026-10-03)
 - [docs/version-3.0/A10_OFFLINE_SYNC.md](../docs/version-3.0/A10_OFFLINE_SYNC.md) 📄 — A10: Offline Sync & Client-Side Caching
