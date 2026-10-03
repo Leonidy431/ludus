@@ -639,8 +639,8 @@
 - [docs/kiberslav/KIBERSLAV_SYNOPSIS_AV_5_EDITORS.md](../docs/kiberslav/KIBERSLAV_SYNOPSIS_AV_5_EDITORS.md) 📄 — «Киберслав» — визуально-аудиальный синопсис (хор 5 редакторов)
 - [docs/kiberslav/STYLE_BIBLE_LUDUS_KIBERSLAV.md](../docs/kiberslav/STYLE_BIBLE_LUDUS_KIBERSLAV.md) 📄 — Стилевая библия Ludus × «Киберслав»: образ, цвет, свет, материал, звук, среда
 - [docs/logs/aider_agent_loop.txt](../docs/logs/aider_agent_loop.txt) 📄
-- [docs/logs/archive/dialogue_2026-10-03_12h.md](../docs/logs/archive/dialogue_2026-10-03_12h.md) 📄 — Dialogue, 2026-10-02 12:10 - 2026-10-03 12:10 UTC
-- [docs/logs/archive/renders_2026-10-03_12h.md](../docs/logs/archive/renders_2026-10-03_12h.md) 📄 — Glove and volumetric-screen renders, up to 2026-10-03 12:10 UTC
+- [docs/logs/archive/dialogue_2026-10-03_12h.md](../docs/logs/archive/dialogue_2026-10-03_12h.md) 📄 — Dialogue, 2026-10-02 12:12 - 2026-10-03 12:12 UTC
+- [docs/logs/archive/renders_2026-10-03_12h.md](../docs/logs/archive/renders_2026-10-03_12h.md) 📄 — Glove and volumetric-screen renders, up to 2026-10-03 12:12 UTC
 - [docs/logs/talk_log_2026-09-23.md](../docs/logs/talk_log_2026-09-23.md) 📄 — Talk log — 2026-09-23
 - [docs/logs/talk_log_2026-09-27.md](../docs/logs/talk_log_2026-09-27.md) 📄 — Talk log — 2026-09-27
 - [docs/logs/talk_log_2026-09-28.md](../docs/logs/talk_log_2026-09-28.md) 📄 — Talk log — 2026-09-28
