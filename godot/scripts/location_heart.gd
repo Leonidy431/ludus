@@ -230,6 +230,8 @@ static func _missing_ru(c: Dictionary, gate: Dictionary) -> String:
 				need.append("поклон «не мне» у лестницы врат")
 			"ladder":
 				need.append("сперва нижняя ступень")
+			"trial":
+				need.append("сперва порог прошлых врат")
 	return ", ".join(need)
 
 
@@ -300,7 +302,8 @@ static func lines(p: Dictionary, loc: Dictionary, st: Dictionary,
 			elif tv.passed:
 				out += ["Этот порог пройден.", ""]
 			elif not tv.open:
-				var ladder := HubCore.evaluate_ladder(st.form, st.actions)
+				var ladder := HubCore.evaluate_ladder(st.form, st.actions,
+					st.trials.get("trials", {}))
 				var i := TrialCore.GATE_IDS.find(h.id)
 				out += ["Порог ещё закрыт: " + _missing_ru(ladder[i],
 					HubCore.GATES[i]) + ".", ""]

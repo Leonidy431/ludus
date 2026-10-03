@@ -648,7 +648,8 @@ func _refresh_boards() -> void:
 	for a in HubCore.ATTRIBUTES:
 		lines.append("%s — %d" % [RU_ATTR[a], int(form[a])])
 	form_board.text = "\n".join(lines)
-	var ladder := HubCore.evaluate_ladder(form, actions)
+	var ladder := HubCore.evaluate_ladder(form, actions,
+		trial_state.get("trials", {}))
 	var out := ["ЛЕСТНИЦА ВРАТ"]
 	for i in ladder.size():
 		var c: Dictionary = ladder[i]
@@ -668,6 +669,8 @@ func _refresh_boards() -> void:
 					need.append("поклон «не мне»")
 				"ladder":
 					need.append("сперва нижняя ступень")
+				"trial":
+					need.append("сперва порог прошлых врат")
 		out.append("%d. %s — %s" % [i + 1, gate.ru,
 			"открыты" if c.open else ", ".join(need)])
 	ladder_board.text = "\n".join(out)
@@ -952,7 +955,8 @@ func _interact() -> void:
 ## At the ladder: the bow when a gift is ready, else the threshold of
 ## the first open gate not yet crossed, else what is still missing.
 func _ladder() -> void:
-	for c in HubCore.evaluate_ladder(form, actions):
+	for c in HubCore.evaluate_ladder(form, actions,
+		trial_state.get("trials", {})):
 		if c.ready_for_gift:
 			_bow()
 			return
@@ -975,7 +979,8 @@ func _ladder() -> void:
 ## The bow for gates 4-6: "not to me".  It is accepted only when all
 ## else holds, so it cannot skip a step (ludus-actions.js acceptGift).
 func _bow() -> void:
-	for c in HubCore.evaluate_ladder(form, actions):
+	for c in HubCore.evaluate_ladder(form, actions,
+		trial_state.get("trials", {})):
 		if c.ready_for_gift:
 			actions = HubCore.accept_gift(actions, form, c.id)
 			_say("Поклон: «не мне». Свет пришёл сам.")
