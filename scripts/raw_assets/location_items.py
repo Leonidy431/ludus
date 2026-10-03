@@ -50,6 +50,7 @@ Usage:
 import argparse
 import datetime
 import hashlib
+import importlib.util
 import json
 import re
 import subprocess
@@ -187,8 +188,12 @@ def load_locations(path=LOCATIONS):
 
 def register_words():
     """The en keywords of every thing in the locations' register."""
-    sys.path.insert(0, str(ROOT / 'scripts' / 'locations'))
-    import register as reg
+    # Loaded by its path: scripts/raw_assets has a register.py of its
+    # own, and whichever "register" was imported first would win.
+    spec = importlib.util.spec_from_file_location(
+        'locations_register', ROOT / 'scripts' / 'locations' / 'register.py')
+    reg = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(reg)
     return {k: o['en'] for k, o in reg.OBJECTS.items()}
 
 

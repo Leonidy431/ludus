@@ -20,9 +20,13 @@ extends Node3D
 
 var data: Dictionary = {}
 var light: OmniLight3D
-var glints: GPUParticles3D
+var glints: MultiMeshInstance3D
 var current: Dictionary = {}
 var started := -1.0
+## The most glints any level asks (pilot-wow.json rules: <= 256).
+const MAX_GLINTS := 256
+var glint_colour := Color(1, 1, 1, 0.8)
+var glint_seed := 1
 
 
 func _init() -> void:
@@ -33,34 +37,27 @@ func _init() -> void:
 	light.light_energy = 0.0
 	light.shadow_enabled = false
 	add_child(light)
-	glints = GPUParticles3D.new()
-	glints.emitting = false
-	glints.amount = 8
-	glints.lifetime = 2.5
-	glints.randomness = 0.0
-	# Same glints every run: a fixed seed, set per level (Constitution).
-	glints.use_fixed_seed = true
-	glints.fixed_fps = 30
-	glints.visibility_aabb = AABB(Vector3(-1.5, -1.5, -1.5),
-		Vector3(3, 3, 3))
-	var mat := ParticleProcessMaterial.new()
-	mat.emission_shape = ParticleProcessMaterial.EMISSION_SHAPE_SPHERE
-	mat.emission_sphere_radius = 0.8
-	mat.gravity = Vector3(0, 0.03, 0)
-	mat.initial_velocity_min = 0.02
-	mat.initial_velocity_max = 0.06
-	mat.scale_min = 0.6
-	mat.scale_max = 1.0
-	glints.process_material = mat
+	# Glints are a MultiMesh, not GPU particles: the own engine cuts
+	# the particle classes (scripts/godot/engine/profile.py), as the
+	# dive's bubbles do.  Their paths are a hash of the seed, so every run
+	# draws the same swarm (Constitution: nothing random).
+	glints = MultiMeshInstance3D.new()
+	var mm := MultiMesh.new()
+	mm.transform_format = MultiMesh.TRANSFORM_3D
+	mm.use_colors = true
 	var quad := QuadMesh.new()
 	quad.size = Vector2(0.012, 0.012)
 	var m := StandardMaterial3D.new()
 	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	m.billboard_mode = BaseMaterial3D.BILLBOARD_ENABLED
 	m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	m.albedo_color = Color(1, 1, 1, 0.8)
+	m.vertex_color_use_as_albedo = true
 	quad.material = m
-	glints.draw_pass_1 = quad
+	mm.mesh = quad
+	mm.instance_count = MAX_GLINTS
+	mm.visible_instance_count = 0
+	glints.multimesh = mm
+	glints.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	add_child(glints)
 
 
@@ -71,7 +68,7 @@ func update(t: float, reduced: bool, hands: Array) -> Dictionary:
 	if e.is_empty():
 		current = {}
 		light.light_energy = 0.0
-		glints.emitting = false
+		glints.multimesh.visible_instance_count = 0
 		return e
 	if e.get("beat") != current.get("beat"):
 		current = e
@@ -92,7 +89,24 @@ func update(t: float, reduced: bool, hands: Array) -> Dictionary:
 		var top := maxf(float(en[1]), 0.001)
 		f = lerpf(float(en[0]), float(en[1]), k) / top
 	light.light_energy = base * f
+	_move_glints(t - started)
 	return e
+
+
+## Each glint drifts up through a 1.6 m sphere and wraps, its start and
+## speed taken from a hash of its index and the level's seed.
+func _move_glints(age: float) -> void:
+	var mm := glints.multimesh
+	for i in mm.visible_instance_count:
+		var h := hash(i * 7919 + glint_seed * 104729)
+		var x := float(h % 1000) / 1000.0 - 0.5
+		var z := float((h / 1000) % 1000) / 1000.0 - 0.5
+		var y0 := float((h / 1000000) % 1000) / 1000.0
+		var speed := 0.02 + 0.04 * float((h / 7) % 100) / 100.0
+		var y := fposmod(y0 + age * speed, 1.0) - 0.5
+		mm.set_instance_transform(i, Transform3D(Basis(),
+			Vector3(x * 1.6, y * 1.6, z * 1.6)))
+		mm.set_instance_color(i, glint_colour)
 
 
 func _start(e: Dictionary, reduced: bool, hands: Array) -> void:
@@ -103,14 +117,10 @@ func _start(e: Dictionary, reduced: bool, hands: Array) -> void:
 	var kelvin := int(kv[-1]) if kv is Array and not kv.is_empty() \
 		else int(kv)
 	light.light_color = LocationCore.kelvin(kelvin)
-	var n := int(v.get("particles", 0))
-	glints.emitting = n > 0
-	if n > 0:
-		glints.amount = n
-		glints.seed = int(e.get("level", 1))
-		var quad: QuadMesh = glints.draw_pass_1
-		var m: StandardMaterial3D = quad.material
-		m.albedo_color = Color(LocationCore.kelvin(kelvin), 0.8)
+	var n := clampi(int(v.get("particles", 0)), 0, MAX_GLINTS)
+	glints.multimesh.visible_instance_count = n
+	glint_seed = int(e.get("level", 1))
+	glint_colour = Color(LocationCore.kelvin(kelvin), 0.8)
 	var h: Dictionary = e.get("haptic", {})
 	var kind := str(h.get("kind", ""))
 	if kind != "":

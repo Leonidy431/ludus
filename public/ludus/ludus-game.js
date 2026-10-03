@@ -1177,9 +1177,9 @@
   }
 
   // A gate opens as a rite, not as a pop-up (DEF-004): silence first,
-  // then the lamp's light on the gate's icon.  No bell: a gate is a step,
-  // and the bell is never a chime for a step (TABOO 0.2 item 5); the
-  // rite is silence and light only.  The last,
+  // then the lamp's light on the gate's icon, then the call of the bell
+  // as the Typikon allows it (TABOO 0.028: the canons work, veiled).  The
+  // last,
   // apophatic gate has no bell at all: its sound is near-silence (TABOO
   // 0.2 item 6).  Nothing here adds to FORM.
   const GATE_SILENCE_MS = 2000;
@@ -1211,10 +1211,14 @@
         if (still) {
           audio.leaveStillness();
         }
-        // No bell here: an opened gate is the player's step forward,
-        // and a bell is never a chime for a step or a reward (TABOO 0.2
-        // item 5).  The headset's gate is silent too
-        // (godot/tests/test_witness_sound.gd).
+        // The call of the bell after the stillness: a canon kept under a
+        // veil (TABOO 0.028).  It is asked of the Typikon through the
+        // audio manager, so on Great Friday and at the apophatic gate
+        // the rite stays silence and light: the bell is the hour's
+        // call, never a chime of reward (TABOO 0.2 item 5).
+        if (audio && typeof audio.playCue === 'function') {
+          audio.playCue('blagovest').catch(() => {});
+        }
       } catch (error) {
         // A blocked audio context leaves the rite silent, which is
         // still a true rite.

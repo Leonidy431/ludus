@@ -141,12 +141,19 @@ test('evenings of grief: no трезвон after Vespers either', () => {
   assert.equal(C.mayRing('трезвон', new Date('2026-04-12T00:30:00')), true);
 });
 
-test('an opened gate rings no bell (web parity with the headset)', () => {
+test('an opened gate calls the bell only through the Typikon', () => {
+  // TABOO 0.028: the canon is kept, veiled.  The gate asks for the
+  // blagovest, and the audio manager asks the liturgical clock
+  // (bellAllowed), so a day of grief keeps the gate silent.
   const fs = require('node:fs');
-  const src = fs.readFileSync(require('node:path').join(__dirname,
+  const p = require('node:path');
+  const src = fs.readFileSync(p.join(__dirname,
     '../public/ludus/ludus-game.js'), 'utf8');
   const start = src.indexOf('function openGateRitual');
   const body = src.slice(start, src.indexOf('\n  }\n', start));
-  assert.ok(start > 0);
-  assert.ok(!/playCue\(\s*'(blagovest|trezvon|perezvon|perebor)/.test(body));
+  assert.ok(/playCue\(\s*'blagovest'/.test(body));
+  assert.ok(!/playCue\(\s*'(trezvon|perezvon|perebor)'/.test(body));
+  const am = fs.readFileSync(p.join(__dirname,
+    '../public/ludus/ludus-audio-manager.js'), 'utf8');
+  assert.ok(/function bellAllowed/.test(am));
 });
