@@ -2,7 +2,7 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 515
+- файлов кода: 516
 - документов: 255
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
@@ -278,7 +278,7 @@
 - [scripts/decisions/stoplist_choice.py](../scripts/decisions/stoplist_choice.py) — One decision for the church-word stop-list, chosen in the open.
 - [scripts/decisions/stream_choice.py](../scripts/decisions/stream_choice.py) — How the heavy data reaches the headset: one way from the honest pool.
 
-## Скрипты проекта: раннер, данные, сюжеты (93)
+## Скрипты проекта: раннер, данные, сюжеты (94)
 
 - [scripts/blueos/sandbox_up.sh](../scripts/blueos/sandbox_up.sh) — Raise BlueOS and the operator's extensions in the session sandbox
 - [scripts/build-campaign-spine.py](../scripts/build-campaign-spine.py) — Build the Issyk-Kul campaign spine from webtypicon2's missions.
@@ -357,6 +357,7 @@
 - [scripts/raw_assets/tests/test_reference.py](../scripts/raw_assets/tests/test_reference.py) — The runner selects by the real object and grows its keys by twelve.
 - [scripts/raw_assets/tests/test_reverted_memory.py](../scripts/raw_assets/tests/test_reverted_memory.py) — The runner remembers what the eye check reverted (cycle 93 lesson).
 - [scripts/raw_assets/transform.py](../scripts/raw_assets/transform.py) — Transform raw third-party images into Ludus art and measure the change.
+- [scripts/scenes/locations_to_sets.py](../scripts/scenes/locations_to_sets.py) — Bind the twelve-sets technology to every mission's place (TABOO 0.032).
 - [scripts/scenes/multi_env_sets.py](../scripts/scenes/multi_env_sets.py) — Twelve ready sets for one scene (TABOO 0.032, docs/tech/MULTI_ENV_SETS_
 - [scripts/story/atlas_nodes.py](../scripts/story/atlas_nodes.py) — The 99 nodes of "The Water Atlas" as the chorus of five editors left
 - [scripts/story/cast_12.py](../scripts/story/cast_12.py) — Where the people of the 12 stories stand in the headset.
