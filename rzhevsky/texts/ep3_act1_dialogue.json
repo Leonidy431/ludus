@@ -1,0 +1,1244 @@
+{
+ "schema": "ludus.dialogue/1 (DialogueNode: id,npcId,text,audioFile?,branches[],attributeBonuses?; расширения: speaker,sceneId,kind,gate?,actEnd?)",
+ "episode": "ep3",
+ "title": "Ржевский и Ложа Трёх Циркулей — акт I «Приглашение с лиловой печатью»",
+ "startNodeId": "ep3.a1.s1.n01",
+ "attributes": [
+  "wisdom",
+  "faith",
+  "dexterity",
+  "constitution",
+  "charisma",
+  "cunning",
+  "erudition"
+ ],
+ "startingAttributes": {
+  "wisdom": 1,
+  "faith": 2,
+  "dexterity": 3,
+  "constitution": 3,
+  "charisma": 5,
+  "cunning": 3,
+  "erudition": 1
+ },
+ "scenes": [
+  {
+   "sceneId": "ep3.a1.s1",
+   "title": "Застава Заветринска",
+   "location": "Вымышленный город Заветринск, осень 1821",
+   "constitution": "Конституция: ФОРМА (Erudition и Dexterity) → ДЕЙСТВИЕ (прочесть устав и аккуратно переложить кота, а не спорить с шлагбаумом; врата: устав — Erudition, кот — Dexterity) → ЦЕЛЬ (смирение перед правилом, которое справедливо, и ясный взгляд на то, которое пустое)"
+  },
+  {
+   "sceneId": "ep3.a1.s2",
+   "title": "Приёмная Ложи Трёх Циркулей",
+   "location": "Канцелярия вымышленной ложи",
+   "constitution": "Конституция: ФОРМА (Cunning и Wisdom) → ДЕЙСТВИЕ (найти честный выход из круга бумаг, не обманывая; врата: бланк — Erudition, взнос — Cunning, титул — Wisdom) → ЦЕЛЬ (пустой титул смешон, пока им гордятся, и безобиден, когда над ним смеются добрым смехом)"
+  },
+  {
+   "sceneId": "ep3.a1.s3",
+   "title": "Комната Долгого Ожидания и Малый зал",
+   "location": "Зал вымышленной ложи",
+   "constitution": "Конституция: ФОРМА (Constitution и Wisdom) → ДЕЙСТВИЕ (выдержать ожидание без злости, спросить мастера о нём самом, а не о титуле; врата: ожидание — Constitution, вопрос без титула — Wisdom) → ЦЕЛЬ (гордыня лечится не насмешкой, а простым вопросом «кто ты без титула»)"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "ep3.a1.s1.n01",
+   "npcId": "narrator",
+   "speaker": "Рассказчик",
+   "sceneId": "ep3.a1.s1",
+   "kind": "line",
+   "text": "Заветринск, осень 1821 года, когда такие собрания считались делом обыденным. Всё в этой истории выдумано: и город, и Ложа Трёх Циркулей, и её мастера. К настоящим ложам и людям она отношения не имеет — только к пышным словам, которые бывают в любую эпоху.",
+   "audioFile": "audio/dialogue/narrator/ep3.a1.s1.n01.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s1.n02",
+     "id": "ep3.a1.s1.n01.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s1.n02",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep3.a1.s1",
+   "kind": "line",
+   "text": "Ваше благородие, письмо пришло. Печать лиловая, бумага плотная, пахнет чем-то дорогим и страшно важным — вроде нотариуса. Читать вслух?",
+   "audioFile": "audio/dialogue/bublik/ep3.a1.s1.n02.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s1.n03",
+     "id": "ep3.a1.s1.n02.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s1.n03",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep3.a1.s1",
+   "kind": "line",
+   "text": "«Достопочтеннейшему поручику Ржевскому! Ложа Трёх Циркулей, зная Ваше остроумие, приглашает Вас в число кандидатов. Взнос — мелочь, степеней — всего девять, вечная слава — по прейскуранту». Подпись: «Превысокий Аршин Первой Степени Второй Половины».",
+   "audioFile": "audio/dialogue/bublik/ep3.a1.s1.n03.wav",
+   "branches": [
+    {
+     "text": "«Бублик, мне кланяются! Едем немедленно!»",
+     "nextNodeId": "ep3.a1.s1.n04",
+     "id": "ep3.a1.s1.n03.b1"
+    },
+    {
+     "text": "«А это вообще кто? Давай проверим сперва»",
+     "nextNodeId": "ep3.a1.s1.n05",
+     "id": "ep3.a1.s1.n03.b2"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s1.n04",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep3.a1.s1",
+   "kind": "line",
+   "text": "Кланяются, ваше благородие, из любви к вашему кошельку. Но едем: у купца Калачова ярмарка в Заветринске, а ложа, говорят, уже мерит весы.",
+   "audioFile": "audio/dialogue/bublik/ep3.a1.s1.n04.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s1.n06",
+     "id": "ep3.a1.s1.n04.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s1.n05",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep3.a1.s1",
+   "kind": "line",
+   "text": "Вот это по-нашему. Письмо Калачова пришло вместе: «Ложа мерит весы, ярмарка стоит. Выручай». Едем и проверяем.",
+   "audioFile": "audio/dialogue/bublik/ep3.a1.s1.n05.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s1.n06",
+     "id": "ep3.a1.s1.n05.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "wisdom": 1
+   }
+  },
+  {
+   "id": "ep3.a1.s1.n06",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep3.a1.s1",
+   "kind": "line",
+   "text": "Застава. Шлагбаум полосатый, как арбуз, и так же, как арбуз, внутри пустовато. На доске объявлений устав.",
+   "audioFile": "audio/dialogue/bublik/ep3.a1.s1.n06.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s1.n07",
+     "id": "ep3.a1.s1.n06.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s1.n07",
+   "npcId": "pryamikov",
+   "speaker": "Брат-Нивелир Платон Прямиков",
+   "sceneId": "ep3.a1.s1",
+   "kind": "line",
+   "text": "Стоять! Я Брат-Нивелир Платон Прямиков, Главный Хранитель Ровности Въезда. Каждый въезжающий проверяется на ровность. Шляпа — аршином, шаг — нитью, взгляд — отвесом!",
+   "audioFile": "audio/dialogue/pryamikov/ep3.a1.s1.n07.wav",
+   "branches": [
+    {
+     "text": "«Ровность — моё второе имя, а первое — Ржевский!»",
+     "nextNodeId": "ep3.a1.s1.n08",
+     "id": "ep3.a1.s1.n07.b1"
+    },
+    {
+     "text": "Прочесть устав на доске объявлений (Erudition)",
+     "nextNodeId": "ep3.a1.s1.g01",
+     "id": "ep3.a1.s1.n07.b2"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s1.n08",
+   "npcId": "pryamikov",
+   "speaker": "Брат-Нивелир Платон Прямиков",
+   "sceneId": "ep3.a1.s1",
+   "kind": "line",
+   "text": "Имя, друг мой, значения не имеет. Шляпа должна быть ровной. Ваша — набекрень. Это нарушение первой степени.",
+   "audioFile": "audio/dialogue/pryamikov/ep3.a1.s1.n08.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s1.g01",
+     "id": "ep3.a1.s1.n08.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s1.g01",
+   "npcId": "pryamikov",
+   "speaker": "Брат-Нивелир Платон Прямиков",
+   "sceneId": "ep3.a1.s1",
+   "kind": "gate",
+   "text": "Устав Заставы, пункты 1–9. Но пункт 3 мелким шрифтом. (Врата: Erudition 2.)",
+   "audioFile": "audio/dialogue/pryamikov/ep3.a1.s1.g01.wav",
+   "branches": [
+    {
+     "text": "Процитировать пункт 3: «В дождь шляпа не измеряется»",
+     "nextNodeId": "ep3.a1.s1.n09",
+     "attributeCheck": "erudition",
+     "requiredAttributes": {
+      "erudition": 2
+     },
+     "action": "read_charter:p3",
+     "id": "ep3.a1.s1.g01.b1"
+    },
+    {
+     "text": "Попросить Бублика прочесть мелкий шрифт вслух",
+     "nextNodeId": "ep3.a1.s1.soft01",
+     "once": true,
+     "id": "ep3.a1.s1.g01.b2"
+    }
+   ],
+   "gate": {
+    "attribute": "erudition",
+    "min": 2,
+    "action": "read_charter:p3",
+    "constitution": "Конституция: ФОРМА (Erudition) → ДЕЙСТВИЕ (прочесть мелкий шрифт и сослаться на пункт, а не кричать) → ЦЕЛЬ (смирение перед справедливым правилом и ясный взгляд на пустое)"
+   }
+  },
+  {
+   "id": "ep3.a1.s1.soft01",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep3.a1.s1",
+   "kind": "line",
+   "text": "«Пункт три: в дождь шляпа не измеряется, ибо мокрое не ровное». Запомнили, ваше благородие? Буква есть буква.",
+   "audioFile": "audio/dialogue/bublik/ep3.a1.s1.soft01.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s1.g01",
+     "id": "ep3.a1.s1.soft01.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "erudition": 1
+   }
+  },
+  {
+   "id": "ep3.a1.s1.n09",
+   "npcId": "pryamikov",
+   "speaker": "Брат-Нивелир Платон Прямиков",
+   "sceneId": "ep3.a1.s1",
+   "kind": "line",
+   "text": "Ах… пункт три. Забыл. Но дождя же нет. А впрочем… Бублик, лейте воду на шляпу! Хотя нет, это порча имущества. Ладно, проходите, я запишу «условно ровный».",
+   "audioFile": "audio/dialogue/pryamikov/ep3.a1.s1.n09.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s1.n10",
+     "id": "ep3.a1.s1.n09.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "wisdom": 1
+   }
+  },
+  {
+   "id": "ep3.a1.s1.n10",
+   "npcId": "pryamikov",
+   "speaker": "Брат-Нивелир Платон Прямиков",
+   "sceneId": "ep3.a1.s1",
+   "kind": "line",
+   "text": "Остался последний шаг: подпись в журнале. Но журнал лежит под Хранителем Входа.",
+   "audioFile": "audio/dialogue/pryamikov/ep3.a1.s1.n10.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s1.n11",
+     "id": "ep3.a1.s1.n10.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s1.n11",
+   "npcId": "murzik",
+   "speaker": "Кот Мурзик, Хранитель Входа",
+   "sceneId": "ep3.a1.s1",
+   "kind": "line",
+   "text": "(Огромный рыжий кот спит поверх журнала. Один глаз открывается на сантиметр и закрывается. Табличка: «Брат Мурзик, Хранитель Входа. Не будить».)",
+   "audioFile": "audio/dialogue/murzik/ep3.a1.s1.n11.wav",
+   "branches": [
+    {
+     "text": "Громко приказать коту уйти",
+     "nextNodeId": "ep3.a1.s1.n12",
+     "id": "ep3.a1.s1.n11.b1"
+    },
+    {
+     "text": "Осторожно вытащить журнал (Dexterity)",
+     "nextNodeId": "ep3.a1.s1.g02",
+     "id": "ep3.a1.s1.n11.b2"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s1.n12",
+   "npcId": "murzik",
+   "speaker": "Кот Мурзик, Хранитель Входа",
+   "sceneId": "ep3.a1.s1",
+   "kind": "line",
+   "text": "(Кот поворачивается на другой бок и придавливает журнал сильнее. Мурзик не подчиняется приказам, он их принимает к сведению.)",
+   "audioFile": "audio/dialogue/murzik/ep3.a1.s1.n12.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s1.g02",
+     "id": "ep3.a1.s1.n12.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s1.g02",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep3.a1.s1",
+   "kind": "gate",
+   "text": "Тихо, ваше благородие. Рука под журнал, не дыша. (Врата: Dexterity 3.)",
+   "audioFile": "audio/dialogue/bublik/ep3.a1.s1.g02.wav",
+   "branches": [
+    {
+     "text": "Вытянуть журнал, не разбудив кота",
+     "nextNodeId": "ep3.a1.s1.n13",
+     "attributeCheck": "dexterity",
+     "requiredAttributes": {
+      "dexterity": 3
+     },
+     "action": "pull_journal",
+     "id": "ep3.a1.s1.g02.b1"
+    }
+   ],
+   "gate": {
+    "attribute": "dexterity",
+    "min": 3,
+    "action": "pull_journal",
+    "constitution": "Конституция: ФОРМА (Dexterity) → ДЕЙСТВИЕ (вынуть журнал, не разбудив Хранителя) → ЦЕЛЬ (терпение и бережность к малому: сильный не тот, кто шумит)"
+   }
+  },
+  {
+   "id": "ep3.a1.s1.n13",
+   "npcId": "murzik",
+   "speaker": "Кот Мурзик, Хранитель Входа",
+   "sceneId": "ep3.a1.s1",
+   "kind": "line",
+   "text": "(Кот потягивается, ложится на ваш рукав вместо журнала и мурлычет. Это значит «принят».)",
+   "audioFile": "audio/dialogue/murzik/ep3.a1.s1.n13.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s1.n14",
+     "id": "ep3.a1.s1.n13.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "dexterity": 1
+   }
+  },
+  {
+   "id": "ep3.a1.s1.n14",
+   "npcId": "pryamikov",
+   "speaker": "Брат-Нивелир Платон Прямиков",
+   "sceneId": "ep3.a1.s1",
+   "kind": "line",
+   "text": "Кот вас принял — значит, не воры. Мурзик, надо сказать, строже меня. Проходите, в Приёмную налево, не сворачивая, не торопясь, не споря.",
+   "audioFile": "audio/dialogue/pryamikov/ep3.a1.s1.n14.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s1.n15",
+     "id": "ep3.a1.s1.n14.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s1.n15",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep3.a1.s1",
+   "kind": "line",
+   "text": "Ваше благородие, заметили? Правило про шляпу пустое, а правило про кота — самое разумное. Бывают устав и устав.",
+   "audioFile": "audio/dialogue/bublik/ep3.a1.s1.n15.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s2.n01",
+     "id": "ep3.a1.s1.n15.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "wisdom": 1
+   }
+  },
+  {
+   "id": "ep3.a1.s2.n01",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep3.a1.s2",
+   "kind": "line",
+   "text": "Приёмная Ложи Трёх Циркулей. Над дверью три циркуля, под ними табличка «Просьба циркули не уносить» — видно, носили.",
+   "audioFile": "audio/dialogue/bublik/ep3.a1.s2.n01.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s2.n02",
+     "id": "ep3.a1.s2.n01.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s2.n02",
+   "npcId": "reestrov",
+   "speaker": "Секретарь-Оратор Пафнутий Реестров",
+   "sceneId": "ep3.a1.s2",
+   "kind": "line",
+   "text": "Я Секретарь-Оратор Пафнутий Реестров, Хранитель Хранителя Ключа от Шкафа Малой Канцелярии. Прошу не путать со Вторым Хранителем Хранителя Ключа от Шкафа Большой Канцелярии — он ниже на одну букву.",
+   "audioFile": "audio/dialogue/reestrov/ep3.a1.s2.n02.wav",
+   "branches": [
+    {
+     "text": "«Это вы хранитель… чего именно?»",
+     "nextNodeId": "ep3.a1.s2.n03",
+     "id": "ep3.a1.s2.n02.b1"
+    },
+    {
+     "text": "Улыбнуться и поклониться",
+     "nextNodeId": "ep3.a1.s2.n04",
+     "id": "ep3.a1.s2.n02.b2"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s2.n03",
+   "npcId": "reestrov",
+   "speaker": "Секретарь-Оратор Пафнутий Реестров",
+   "sceneId": "ep3.a1.s2",
+   "kind": "line",
+   "text": "Шкафа, милостивый государь! Ключ — от шкафа, а в шкафу лежат ключи от других шкафов. Это называется «глубина».",
+   "audioFile": "audio/dialogue/reestrov/ep3.a1.s2.n03.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s2.n05",
+     "id": "ep3.a1.s2.n03.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "wisdom": 1
+   }
+  },
+  {
+   "id": "ep3.a1.s2.n04",
+   "npcId": "reestrov",
+   "speaker": "Секретарь-Оратор Пафнутий Реестров",
+   "sceneId": "ep3.a1.s2",
+   "kind": "line",
+   "text": "Вот это воспитание! Немногие кланяются Хранителю. Все спрашивают, где касса.",
+   "audioFile": "audio/dialogue/reestrov/ep3.a1.s2.n04.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s2.n05",
+     "id": "ep3.a1.s2.n04.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "charisma": 1
+   }
+  },
+  {
+   "id": "ep3.a1.s2.n05",
+   "npcId": "reestrov",
+   "speaker": "Секретарь-Оратор Пафнутий Реестров",
+   "sceneId": "ep3.a1.s2",
+   "kind": "line",
+   "text": "Для вступления нужен Бланк Приёма номер семь «Об изъявлении желания желать». В нём девятнадцать граф, из них три — «подпись», «подпись подписи» и «печать на подписи подписи».",
+   "audioFile": "audio/dialogue/reestrov/ep3.a1.s2.n05.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s2.g01",
+     "id": "ep3.a1.s2.n05.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s2.g01",
+   "npcId": "reestrov",
+   "speaker": "Секретарь-Оратор Пафнутий Реестров",
+   "sceneId": "ep3.a1.s2",
+   "kind": "gate",
+   "text": "Заполните бланк без помарок. Граф много, но каждая просит одного: ясно написать, кто вы и зачем. (Врата: Erudition 2.)",
+   "audioFile": "audio/dialogue/reestrov/ep3.a1.s2.g01.wav",
+   "branches": [
+    {
+     "text": "Заполнить бланк по графам",
+     "nextNodeId": "ep3.a1.s2.n06",
+     "attributeCheck": "erudition",
+     "requiredAttributes": {
+      "erudition": 2
+     },
+     "action": "fill_form:7",
+     "id": "ep3.a1.s2.g01.b1"
+    },
+    {
+     "text": "Попросить Бублика разъяснить графы",
+     "nextNodeId": "ep3.a1.s2.soft01",
+     "once": true,
+     "id": "ep3.a1.s2.g01.b2"
+    }
+   ],
+   "gate": {
+    "attribute": "erudition",
+    "min": 2,
+    "action": "fill_form:7",
+    "constitution": "Конституция: ФОРМА (Erudition) → ДЕЙСТВИЕ (заполнить бланк внимательно, по графам) → ЦЕЛЬ (порядок как забота, а не как гордыня: форма служит делу)"
+   }
+  },
+  {
+   "id": "ep3.a1.s2.soft01",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep3.a1.s2",
+   "kind": "line",
+   "text": "Графа «подпись подписи» — это когда подпишетесь и ещё раз рядом, ваше благородие. А «печать на подписи подписи» — штамп, если найдёте штамп.",
+   "audioFile": "audio/dialogue/bublik/ep3.a1.s2.soft01.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s2.g01",
+     "id": "ep3.a1.s2.soft01.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "erudition": 1
+   }
+  },
+  {
+   "id": "ep3.a1.s2.n06",
+   "npcId": "reestrov",
+   "speaker": "Секретарь-Оратор Пафнутий Реестров",
+   "sceneId": "ep3.a1.s2",
+   "kind": "line",
+   "text": "Без единой помарки! Редкость. Впрочем, графа «Желание» у вас пуста — значит, вы желаете без слов. Это глубоко. Занесу.",
+   "audioFile": "audio/dialogue/reestrov/ep3.a1.s2.n06.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s2.n07",
+     "id": "ep3.a1.s2.n06.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s2.n07",
+   "npcId": "reestrov",
+   "speaker": "Секретарь-Оратор Пафнутий Реестров",
+   "sceneId": "ep3.a1.s2",
+   "kind": "line",
+   "text": "Теперь взнос. Взнос на взнос: сначала вносится «взнос на внесение взноса», потом сам взнос. Идите к Брату Казначею Харитону Гривенникову.",
+   "audioFile": "audio/dialogue/reestrov/ep3.a1.s2.n07.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s2.n08",
+     "id": "ep3.a1.s2.n07.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s2.n08",
+   "npcId": "grivennikov",
+   "speaker": "Брат Казначей Харитон Гривенников",
+   "sceneId": "ep3.a1.s2",
+   "kind": "line",
+   "text": "Гривенников. Брат Казначей. Всё считаю: и деньги, и шаги, и вздохи посетителей. Вы вздохнули дважды — это двадцать копеек.",
+   "audioFile": "audio/dialogue/grivennikov/ep3.a1.s2.n08.wav",
+   "branches": [
+    {
+     "text": "«Помилуйте, вздох — не товар!»",
+     "nextNodeId": "ep3.a1.s2.n09",
+     "id": "ep3.a1.s2.n08.b1"
+    },
+    {
+     "text": "Спросить, что даёт ложа взамен взноса",
+     "nextNodeId": "ep3.a1.s2.n10",
+     "id": "ep3.a1.s2.n08.b2"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s2.n09",
+   "npcId": "grivennikov",
+   "speaker": "Брат Казначей Харитон Гривенников",
+   "sceneId": "ep3.a1.s2",
+   "kind": "line",
+   "text": "Товар, сударь. Вздох — это воздух, а воздух в нашем помещении ложе принадлежит. По уставу. Дышите экономно: тариф растёт на выдохе.",
+   "audioFile": "audio/dialogue/grivennikov/ep3.a1.s2.n09.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s2.n11",
+     "id": "ep3.a1.s2.n09.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s2.n10",
+   "npcId": "grivennikov",
+   "speaker": "Брат Казначей Харитон Гривенников",
+   "sceneId": "ep3.a1.s2",
+   "kind": "line",
+   "text": "Взамен: девять степеней и право называться Братом. Остальное — в приложении к приложению, а приложение — в шкафу.",
+   "audioFile": "audio/dialogue/grivennikov/ep3.a1.s2.n10.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s2.n11",
+     "id": "ep3.a1.s2.n10.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "wisdom": 1
+   }
+  },
+  {
+   "id": "ep3.a1.s2.n11",
+   "npcId": "grivennikov",
+   "speaker": "Брат Казначей Харитон Гривенников",
+   "sceneId": "ep3.a1.s2",
+   "kind": "line",
+   "text": "Итого: взнос на взнос, взнос, взнос на пышность титула и штраф за вздохи. Сто двенадцать рублей. Могу принять натурой — гороховым супом.",
+   "audioFile": "audio/dialogue/grivennikov/ep3.a1.s2.n11.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s2.g02",
+     "id": "ep3.a1.s2.n11.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s2.g02",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep3.a1.s2",
+   "kind": "gate",
+   "text": "Платить без нужды не будем, ваше благородие. Но и обманывать казначея нельзя: нужно честное предложение. (Врата: Cunning 3.)",
+   "audioFile": "audio/dialogue/bublik/ep3.a1.s2.g02.wav",
+   "branches": [
+    {
+     "text": "Предложить сварить суп для всей приёмной — по-гусарски, честно (Cunning)",
+     "nextNodeId": "ep3.a1.s2.n12",
+     "attributeCheck": "cunning",
+     "requiredAttributes": {
+      "cunning": 3
+     },
+     "action": "offer_fair_trade",
+     "id": "ep3.a1.s2.g02.b1"
+    },
+    {
+     "text": "Подумать вслух с Бубликом",
+     "nextNodeId": "ep3.a1.s2.soft02",
+     "once": true,
+     "id": "ep3.a1.s2.g02.b2"
+    }
+   ],
+   "gate": {
+    "attribute": "cunning",
+    "min": 3,
+    "action": "offer_fair_trade",
+    "constitution": "Конституция: ФОРМА (Cunning) → ДЕЙСТВИЕ (предложить честную сделку: суп без обмана) → ЦЕЛЬ (находчивость служит честности, а не вымогательству)"
+   }
+  },
+  {
+   "id": "ep3.a1.s2.soft02",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep3.a1.s2",
+   "kind": "line",
+   "text": "Казначей любит считать, ваше благородие. Дайте ему ровно то, что можно посчитать: порции. Честно и вкусно.",
+   "audioFile": "audio/dialogue/bublik/ep3.a1.s2.soft02.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s2.g02",
+     "id": "ep3.a1.s2.soft02.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "cunning": 1
+   }
+  },
+  {
+   "id": "ep3.a1.s2.n12",
+   "npcId": "grivennikov",
+   "speaker": "Брат Казначей Харитон Гривенников",
+   "sceneId": "ep3.a1.s2",
+   "kind": "line",
+   "text": "Сорок порций… тридцать копеек за порцию… Выходит дешевле штрафа за вздохи! Принимаю. Но, учтите, горох считаю поштучно.",
+   "audioFile": "audio/dialogue/grivennikov/ep3.a1.s2.n12.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s2.n13",
+     "id": "ep3.a1.s2.n12.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "charisma": 1
+   }
+  },
+  {
+   "id": "ep3.a1.s2.n13",
+   "npcId": "reestrov",
+   "speaker": "Секретарь-Оратор Пафнутий Реестров",
+   "sceneId": "ep3.a1.s2",
+   "kind": "line",
+   "text": "Взнос принят. Теперь присвоение звания. Вы — «Кандидат Нулевой Степени Предварительного Вступления». Громко, не правда ли?",
+   "audioFile": "audio/dialogue/reestrov/ep3.a1.s2.n13.wav",
+   "branches": [
+    {
+     "text": "«Звучит пышно! Я в восторге!»",
+     "nextNodeId": "ep3.a1.s2.n14",
+     "id": "ep3.a1.s2.n13.b1"
+    },
+    {
+     "text": "«А что это означает, по сути?» (Wisdom)",
+     "nextNodeId": "ep3.a1.s2.g03",
+     "id": "ep3.a1.s2.n13.b2"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s2.n14",
+   "npcId": "reestrov",
+   "speaker": "Секретарь-Оратор Пафнутий Реестров",
+   "sceneId": "ep3.a1.s2",
+   "kind": "line",
+   "text": "Вот это настрой! Обычно все спрашивают, что значит. Вы — первый, кто просто радуется. Но на всякий случай объясню.",
+   "audioFile": "audio/dialogue/reestrov/ep3.a1.s2.n14.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s2.g03",
+     "id": "ep3.a1.s2.n14.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s2.g03",
+   "npcId": "reestrov",
+   "speaker": "Секретарь-Оратор Пафнутий Реестров",
+   "sceneId": "ep3.a1.s2",
+   "kind": "gate",
+   "text": "Спросите по сути, и я отвечу. (Врата: Wisdom 2.)",
+   "audioFile": "audio/dialogue/reestrov/ep3.a1.s2.g03.wav",
+   "branches": [
+    {
+     "text": "«Что это означает по сути?»",
+     "nextNodeId": "ep3.a1.s2.n15",
+     "attributeCheck": "wisdom",
+     "requiredAttributes": {
+      "wisdom": 2
+     },
+     "action": "ask_meaning",
+     "id": "ep3.a1.s2.g03.b1"
+    },
+    {
+     "text": "Шепотом спросить Бублика, что тут нужно спросить",
+     "nextNodeId": "ep3.a1.s2.soft03",
+     "once": true,
+     "id": "ep3.a1.s2.g03.b2"
+    }
+   ],
+   "gate": {
+    "attribute": "wisdom",
+    "min": 2,
+    "action": "ask_meaning",
+    "constitution": "Конституция: ФОРМА (Wisdom) → ДЕЙСТВИЕ (спросить, что за титулом на самом деле) → ЦЕЛЬ (пустой титул смешон, пока им гордятся; доброе любопытство сдувает пышность)"
+   }
+  },
+  {
+   "id": "ep3.a1.s2.soft03",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep3.a1.s2",
+   "kind": "line",
+   "text": "Спросите просто: «а по сути?» Пышное слово от этого скромнеет, ваше благородие. Проверено на печатях.",
+   "audioFile": "audio/dialogue/bublik/ep3.a1.s2.soft03.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s2.g03",
+     "id": "ep3.a1.s2.soft03.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "wisdom": 1
+   }
+  },
+  {
+   "id": "ep3.a1.s2.n15",
+   "npcId": "reestrov",
+   "speaker": "Секретарь-Оратор Пафнутий Реестров",
+   "sceneId": "ep3.a1.s2",
+   "kind": "line",
+   "text": "По сути… по сути это значит «ещё не принят, но уже вносит». Мы всех так называем. Красиво, а смысл — в вашем кармане.",
+   "audioFile": "audio/dialogue/reestrov/ep3.a1.s2.n15.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s2.n16",
+     "id": "ep3.a1.s2.n15.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "wisdom": 1
+   }
+  },
+  {
+   "id": "ep3.a1.s2.n16",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep3.a1.s2",
+   "kind": "line",
+   "text": "Видите, ваше благородие: за каждым пышным словом — пустое место, и стоит спросить — оно скромнеет. Вот и вся мудрость.",
+   "audioFile": "audio/dialogue/bublik/ep3.a1.s2.n16.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s2.n17",
+     "id": "ep3.a1.s2.n16.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s2.n17",
+   "npcId": "reestrov",
+   "speaker": "Секретарь-Оратор Пафнутий Реестров",
+   "sceneId": "ep3.a1.s2",
+   "kind": "line",
+   "text": "Вас просят в Комнату Долгого Ожидания. Мастер примет, когда соблаговолит. Соблаговоление в среднем занимает три часа сорок минут.",
+   "audioFile": "audio/dialogue/reestrov/ep3.a1.s2.n17.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s3.n01",
+     "id": "ep3.a1.s2.n17.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s3.n01",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep3.a1.s3",
+   "kind": "line",
+   "text": "Комната Долгого Ожидания: стол, чайник, часы без стрелок и табличка «Размышляйте». Вот в этом, ваше благородие, и есть испытание.",
+   "audioFile": "audio/dialogue/bublik/ep3.a1.s3.n01.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s3.n02",
+     "id": "ep3.a1.s3.n01.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s3.n02",
+   "npcId": "kalachov",
+   "speaker": "Купец Матвей Калачов",
+   "sceneId": "ep3.a1.s3",
+   "kind": "line",
+   "text": "Матвей Калачов, купец. Вы, голубчик, в ложе новенький? Я тут уже три года. Сначала ждал мастера, потом ждал документа, а теперь жду просто, из привычки. Чай вон там.",
+   "audioFile": "audio/dialogue/kalachov/ep3.a1.s3.n02.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s3.n03",
+     "id": "ep3.a1.s3.n02.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s3.n03",
+   "npcId": "kalachov",
+   "speaker": "Купец Матвей Калачов",
+   "sceneId": "ep3.a1.s3",
+   "kind": "line",
+   "text": "Расскажу вам про их затею: мастер Отвесов решил «выровнять» ярмарку: все весы — по ложевому образцу, все аршины — по ложевому аршину. Торговля встала, потому что аршин ложи на два вершка короче.",
+   "audioFile": "audio/dialogue/kalachov/ep3.a1.s3.n03.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s3.n04",
+     "id": "ep3.a1.s3.n03.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s3.n04",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep3.a1.s3",
+   "kind": "line",
+   "text": "Значит, ярмарка стоит не от злобы, а от гордыни: мастер хочет, чтобы мир был по его мерке. Бывает.",
+   "audioFile": "audio/dialogue/bublik/ep3.a1.s3.n04.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s3.g01",
+     "id": "ep3.a1.s3.n04.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s3.g01",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep3.a1.s3",
+   "kind": "gate",
+   "text": "Ждать придётся. Но можно ждать со злостью, а можно с чаем и дыханием. (Врата: Constitution 3.)",
+   "audioFile": "audio/dialogue/bublik/ep3.a1.s3.g01.wav",
+   "branches": [
+    {
+     "text": "Налить чай и ждать спокойно",
+     "nextNodeId": "ep3.a1.s3.n05",
+     "attributeCheck": "constitution",
+     "requiredAttributes": {
+      "constitution": 3
+     },
+     "action": "wait_calmly",
+     "id": "ep3.a1.s3.g01.b1"
+    }
+   ],
+   "gate": {
+    "attribute": "constitution",
+    "min": 3,
+    "action": "wait_calmly",
+    "constitution": "Конституция: ФОРМА (Constitution) → ДЕЙСТВИЕ (переждать без злости, не ломая дверей) → ЦЕЛЬ (выдержка: терпеливое ожидание — тоже труд и милость)"
+   }
+  },
+  {
+   "id": "ep3.a1.s3.n05",
+   "npcId": "kalachov",
+   "speaker": "Купец Матвей Калачов",
+   "sceneId": "ep3.a1.s3",
+   "kind": "line",
+   "text": "Вот, вы выдержали сорок минут. Многие ломают чайник на двадцатой. Чайник у нас один, а Брат Чайник — тот, кто его носит, — давно в отпуске.",
+   "audioFile": "audio/dialogue/kalachov/ep3.a1.s3.n05.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s3.n06",
+     "id": "ep3.a1.s3.n05.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "constitution": 1
+   }
+  },
+  {
+   "id": "ep3.a1.s3.n06",
+   "npcId": "mglin",
+   "speaker": "Мглин (письмо)",
+   "sceneId": "ep3.a1.s3",
+   "kind": "line",
+   "text": "(Письмо, переданное Калачовым.) «Поручик! Я, бывший приор Мглин, теперь держу лавку щекотных перьев. Пишу вам по-дружески: титулы — это те же печати. Страшны, пока веришь. Сдувайте их добрым вопросом. Ваш З. К. Мглин. P.S. Закройте форточку, у меня опять гудит».",
+   "audioFile": "audio/dialogue/mglin/ep3.a1.s3.n06.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s3.n07",
+     "id": "ep3.a1.s3.n06.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "faith": 1
+   }
+  },
+  {
+   "id": "ep3.a1.s3.n07",
+   "npcId": "reestrov",
+   "speaker": "Секретарь-Оратор Пафнутий Реестров",
+   "sceneId": "ep3.a1.s3",
+   "kind": "line",
+   "text": "Мастер готов принять вас в Малом зале. Прошу — не касаться циркулей, не дышать на отвес и не называть мастера по имени.",
+   "audioFile": "audio/dialogue/reestrov/ep3.a1.s3.n07.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s3.n08",
+     "id": "ep3.a1.s3.n07.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s3.n08",
+   "npcId": "otvesov",
+   "speaker": "Великий мастер Прокл Аристархович Отвесов",
+   "sceneId": "ep3.a1.s3",
+   "kind": "line",
+   "text": "Я Превысокий Аршин Первой Степени Второй Половины, Великий мастер Ложи Трёх Циркулей, Хранитель Всеобщего Аршина, Исчислитель Порядка Вещей и Почётный Председатель Собственного Кресла. Преклоните колено, кандидат.",
+   "audioFile": "audio/dialogue/otvesov/ep3.a1.s3.n08.wav",
+   "branches": [
+    {
+     "text": "Поклониться, как положено гусару",
+     "nextNodeId": "ep3.a1.s3.n09",
+     "id": "ep3.a1.s3.n08.b1"
+    },
+    {
+     "text": "Не кланяться, а ответить вопросом",
+     "nextNodeId": "ep3.a1.s3.n10",
+     "id": "ep3.a1.s3.n08.b2"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s3.n09",
+   "npcId": "otvesov",
+   "speaker": "Великий мастер Прокл Аристархович Отвесов",
+   "sceneId": "ep3.a1.s3",
+   "kind": "line",
+   "text": "Поклон принят. Он был на два вершка ниже установленного, но принят. Ложа милостива к тем, кто кланяется.",
+   "audioFile": "audio/dialogue/otvesov/ep3.a1.s3.n09.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s3.n11",
+     "id": "ep3.a1.s3.n09.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s3.n10",
+   "npcId": "otvesov",
+   "speaker": "Великий мастер Прокл Аристархович Отвесов",
+   "sceneId": "ep3.a1.s3",
+   "kind": "line",
+   "text": "Вопросом? Вопросом… Редкий случай. Обычно кандидат отвечает «так точно».",
+   "audioFile": "audio/dialogue/otvesov/ep3.a1.s3.n10.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s3.n11",
+     "id": "ep3.a1.s3.n10.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "cunning": 1
+   }
+  },
+  {
+   "id": "ep3.a1.s3.n11",
+   "npcId": "otvesov",
+   "speaker": "Великий мастер Прокл Аристархович Отвесов",
+   "sceneId": "ep3.a1.s3",
+   "kind": "line",
+   "text": "Сообщаю: мы затеваем Великое Выравнивание. К Новому году мы единым аршином измерим весь Заветринск, и тот, кто не по мерке, будет подтянут или сокращён. Вы, надеюсь, по мерке?",
+   "audioFile": "audio/dialogue/otvesov/ep3.a1.s3.n11.wav",
+   "branches": [
+    {
+     "text": "«Мастер, а какого роста ваше имя?» — спросить по сути",
+     "nextNodeId": "ep3.a1.s3.g02",
+     "id": "ep3.a1.s3.n11.b1"
+    },
+    {
+     "text": "«Я за любой порядок, лишь бы мастеру нравилось»",
+     "nextNodeId": "ep3.a1.s3.n12",
+     "id": "ep3.a1.s3.n11.b2"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s3.n12",
+   "npcId": "otvesov",
+   "speaker": "Великий мастер Прокл Аристархович Отвесов",
+   "sceneId": "ep3.a1.s3",
+   "kind": "line",
+   "text": "Вот это правильный кандидат! Но вы, конечно, лукавите, и я это замечаю. Говорите правду, иначе степень останется на нуле.",
+   "audioFile": "audio/dialogue/otvesov/ep3.a1.s3.n12.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s3.g02",
+     "id": "ep3.a1.s3.n12.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s3.g02",
+   "npcId": "otvesov",
+   "speaker": "Великий мастер Прокл Аристархович Отвесов",
+   "sceneId": "ep3.a1.s3",
+   "kind": "gate",
+   "text": "Мастер ждёт вашего вопроса. Вопрос без титула — вот что страшнее циркуля. (Врата: Wisdom 3.)",
+   "audioFile": "audio/dialogue/otvesov/ep3.a1.s3.g02.wav",
+   "branches": [
+    {
+     "text": "Спросить: «Как вас зовут без титулов, и чего вы боитесь, мастер?»",
+     "nextNodeId": "ep3.a1.s3.n13",
+     "attributeCheck": "wisdom",
+     "requiredAttributes": {
+      "wisdom": 3
+     },
+     "action": "ask_without_title",
+     "id": "ep3.a1.s3.g02.b1"
+    },
+    {
+     "text": "Послушать Калачова ещё раз",
+     "nextNodeId": "ep3.a1.s3.soft01",
+     "once": true,
+     "id": "ep3.a1.s3.g02.b2"
+    },
+    {
+     "text": "Спросить совета у Бублика",
+     "nextNodeId": "ep3.a1.s3.soft04",
+     "once": true,
+     "id": "ep3.a1.s3.g02.b3"
+    }
+   ],
+   "gate": {
+    "attribute": "wisdom",
+    "min": 3,
+    "action": "ask_without_title",
+    "constitution": "Конституция: ФОРМА (Wisdom) → ДЕЙСТВИЕ (спросить мастера просто: как зовут тебя без титулов, что тебе дорого) → ЦЕЛЬ (гордыня лечится вопросом, а не насмешкой: мера человека — милость, а не аршин)"
+   }
+  },
+  {
+   "id": "ep3.a1.s3.soft04",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep3.a1.s3",
+   "kind": "line",
+   "text": "Ваше благородие, он спрятался за титулами, как за стеной. Не стучите по стене — спросите про человека за ней.",
+   "audioFile": "audio/dialogue/bublik/ep3.a1.s3.soft04.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s3.g02",
+     "id": "ep3.a1.s3.soft04.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "wisdom": 1
+   }
+  },
+  {
+   "id": "ep3.a1.s3.soft01",
+   "npcId": "kalachov",
+   "speaker": "Купец Матвей Калачов",
+   "sceneId": "ep3.a1.s3",
+   "kind": "line",
+   "text": "Мастер, он вообще-то человек. Спросите его просто, и он ответит. Говорю по опыту — я три года слушал, как он разговаривает сам с собой.",
+   "audioFile": "audio/dialogue/kalachov/ep3.a1.s3.soft01.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s3.g02",
+     "id": "ep3.a1.s3.soft01.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "wisdom": 1
+   }
+  },
+  {
+   "id": "ep3.a1.s3.n13",
+   "npcId": "otvesov",
+   "speaker": "Великий мастер Прокл Аристархович Отвесов",
+   "sceneId": "ep3.a1.s3",
+   "kind": "line",
+   "text": "…Прокл. Просто Прокл. Меня так в детстве звали, когда я чертил круги палкой на песке и объявлял их государствами. Никто и не спрашивал имя с тех пор, как мне дали титул. Признаться, боюсь, что без титула я не измеряюсь.",
+   "audioFile": "audio/dialogue/otvesov/ep3.a1.s3.n13.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s3.n14",
+     "id": "ep3.a1.s3.n13.b1"
+    }
+   ],
+   "attributeBonuses": {
+    "wisdom": 1,
+    "charisma": 1
+   }
+  },
+  {
+   "id": "ep3.a1.s3.n14",
+   "npcId": "rzhevsky",
+   "speaker": "Поручик Ржевский",
+   "sceneId": "ep3.a1.s3",
+   "kind": "line",
+   "text": "Прокл, а вы знаете, что у человека мера одна: милость? Ей аршин не нужен — она сама видна.",
+   "audioFile": "audio/dialogue/rzhevsky/ep3.a1.s3.n14.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s3.n15",
+     "id": "ep3.a1.s3.n14.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s3.n15",
+   "npcId": "otvesov",
+   "speaker": "Великий мастер Прокл Аристархович Отвесов",
+   "sceneId": "ep3.a1.s3",
+   "kind": "line",
+   "text": "Это, пожалуй, мудрее моего устава. Но Выравнивание уже подписано. Для отмены нужна Ведомость Девяти Печатей… а она в Большом Шкафу.",
+   "audioFile": "audio/dialogue/otvesov/ep3.a1.s3.n15.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s3.n16",
+     "id": "ep3.a1.s3.n15.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s3.n16",
+   "npcId": "bublik",
+   "speaker": "Фёдор Мироныч Бублик",
+   "sceneId": "ep3.a1.s3",
+   "kind": "line",
+   "text": "Ваше благородие, мы только что получили настоящий ключ: мастер не злодей, а запутавшийся человек. Остаётся выяснить, как вытащить Ведомость из шкафа ключей от шкафов.",
+   "audioFile": "audio/dialogue/bublik/ep3.a1.s3.n16.wav",
+   "branches": [
+    {
+     "text": "Далее",
+     "nextNodeId": "ep3.a1.s3.n17",
+     "id": "ep3.a1.s3.n16.b1"
+    }
+   ]
+  },
+  {
+   "id": "ep3.a1.s3.n17",
+   "npcId": "narrator",
+   "speaker": "Рассказчик",
+   "sceneId": "ep3.a1.s3",
+   "kind": "end",
+   "text": "Акт I окончен. Мастер Отвесов назвал себя по имени, ярмарка ещё стоит, а Ведомость Девяти Печатей спрятана в глубинах канцелярии. В Акте II героев ждут Большая Канцелярия, ночь Великого Выравнивания и гонка за подписью — но уже с союзниками.",
+   "audioFile": "audio/dialogue/narrator/ep3.a1.s3.n17.wav",
+   "branches": [],
+   "actEnd": "Акт II: Ведомость Девяти Печатей"
+  }
+ ]
+}
