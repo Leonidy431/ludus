@@ -2,8 +2,8 @@
 
 Создан `python3 105/make_105.py`; проверяется в CI (`--check`). Каждая строка — ссылка на файл в репозитории и строка, которой файл описывает себя сам. Полную папку с копиями файлов и SHA-256 даёт сборка [build-105](../.github/workflows/build-105.yml) (см. [СБОРКА.md](СБОРКА.md)).
 
-- файлов кода: 501
-- документов: 246
+- файлов кода: 503
+- документов: 251
 - сторонний код (свои лицензии) перечислен по папкам в [СБОРКА.md](СБОРКА.md), не по файлам.
 
 ## Папка 105: комплект сборки (4)
@@ -30,7 +30,7 @@
 - [.github/workflows/raw-audio-pass.yml](../.github/workflows/raw-audio-pass.yml) — Audio pass over the 99 backlog repos as a git pass (operator,
 - [.github/workflows/raw-osint-cycle.yml](../.github/workflows/raw-osint-cycle.yml) — OSINT pass over the 99 backlog repos every 1.5 hours (CLAUDE.md TABOO
 
-## Игра для шлема: код (GDScript) (92)
+## Игра для шлема: код (GDScript) (93)
 
 - [godot/scripts/apparatus_core.gd](../godot/scripts/apparatus_core.gd) — The operator's own apparatus in the game (CLAUDE.md TABOO 0.022): 41
 - [godot/scripts/atlas_core.gd](../godot/scripts/atlas_core.gd) — "The Water Atlas" read at the lectern of the scriptorium (CLAUDE.md
@@ -48,6 +48,7 @@
 - [godot/scripts/audio/witness_audio.gd](../godot/scripts/audio/witness_audio.gd) — The sound of the path of the witness (docs/HLD_WITNESS_SOUND_
 - [godot/scripts/branch_core.gd](../godot/scripts/branch_core.gd) — Branches of episode 1 (CLAUDE.md TABOO 0.025, operator 2026-10-03:
 - [godot/scripts/buoy_core.gd](../godot/scripts/buoy_core.gd) — The operator's autonomous buoy, the first techno-artefact to restore
+- [godot/scripts/chat_core.gd](../godot/scripts/chat_core.gd) — The Brotherhood's chat rules (docs/HLD_BROTHERHOOD_CHAT_2026-10-03.md,
 - [godot/scripts/cockpit_core.gd](../godot/scripts/cockpit_core.gd) — The pilot's console: what the cards say and when they warn.
 - [godot/scripts/cockpit_panel.gd](../godot/scripts/cockpit_panel.gd) — The pilot's console drawn as the operator's BlueOS panels: a row of
 - [godot/scripts/cockpit_screens.gd](../godot/scripts/cockpit_screens.gd) — The console's second screen, as DiveGuard's panel has it: the front
@@ -155,7 +156,7 @@
 - [godot/tools/volumetric_shots.gd](../godot/tools/volumetric_shots.gd) — Proof frames of the volumetric laser screen (docs/HLD_VOLUMETRIC_LASER_
 - [godot/tools/witness_wav_check.py](../godot/tools/witness_wav_check.py) — Measure the offline render of the path of the witness.
 
-## Игра для шлема: тесты (67)
+## Игра для шлема: тесты (68)
 
 - [godot/tests/confession_walker.gd](../godot/tests/confession_walker.gd) — A stand-in for the witness path in test_confession.gd: the sheet reads
 - [godot/tests/deeds/panel_text.gd](../godot/tests/deeds/panel_text.gd) — The heart's panel of a place as location.gd builds it, measured with
@@ -175,6 +176,7 @@
 - [godot/tests/test_audio.gd](../godot/tests/test_audio.gd) — Sound of the dive: the rules that can be proved without a headset.
 - [godot/tests/test_biomes.gd](../godot/tests/test_biomes.gd) — Biomes, bubble columns and the thermocline heard
 - [godot/tests/test_branches.gd](../godot/tests/test_branches.gd) — Branches of episode 1 (BranchCore, CLAUDE.md TABOO 0.025): the
+- [godot/tests/test_chat.gd](../godot/tests/test_chat.gd) — The Brotherhood's chat rules (TABOO 0.031, docs/HLD_BROTHERHOOD_CHAT_
 - [godot/tests/test_church_words.gd](../godot/tests/test_church_words.gd) — The church-word stop-list gives the same verdict as the web on one
 - [godot/tests/test_cockpit.gd](../godot/tests/test_cockpit.gd) — The pilot's console (CockpitCore, docs/HLD_MANGUSTIK_COCKPIT M4) and
 - [godot/tests/test_companion.gd](../godot/tests/test_companion.gd) — Claud, the companion (CompanionCore,
@@ -308,7 +310,7 @@
 - [scripts/phase2-deploy.sh](../scripts/phase2-deploy.sh)
 - [scripts/phase3-validation.sh](../scripts/phase3-validation.sh) — Phase 3 Final Validation Script
 - [scripts/prerender/build_closeups.py](../scripts/prerender/build_closeups.py) — The examine videos of episode 1 (TABOO 0.019, 0.020): voice, pack
-- [scripts/prerender/build_intro.py](../scripts/prerender/build_intro.py) — The blockbuster intro of every next launch, as a preview video
+- [scripts/prerender/build_intro.py](../scripts/prerender/build_intro.py) — The recap of every next launch, «Ранее в „Атласе воды“», as a
 - [scripts/prerender/render_insights.py](../scripts/prerender/render_insights.py) — Still frames of the insights (CLAUDE.md TABOO 0.021): one realistic
 - [scripts/prerender/render_items.py](../scripts/prerender/render_items.py) — Close-up stills for the swap on examine (docs/HLD_SWAP_RENDERING_
 - [scripts/raw_assets/antagonist.py](../scripts/raw_assets/antagonist.py) — Antagonist protocol: the eight passions and their twelve variants.
@@ -469,8 +471,11 @@
 - [docs/decisions/SIZE_STRATEGIES_7_2026-10-02.md](../docs/decisions/SIZE_STRATEGIES_7_2026-10-02.md) 📄 — Решение: семь способов уложить игру в шлем — по опыту других разработчиков и 48 параметрам проекта (2026-10-02)
 - [docs/decisions/STOPLIST_SINGLE_SOURCE_2026-10-02.md](../docs/decisions/STOPLIST_SINGLE_SOURCE_2026-10-02.md) 📄 — Решение: стоп-лист церковных слов — один источник (2026-10-02)
 
-## МД-ревью ревизора лимитов APK (16)
+## МД-ревью ревизора лимитов APK (19)
 
+- [docs/review/REVIEW_INSIGHTS_2026-10-03.md](../docs/review/REVIEW_INSIGHTS_2026-10-03.md) 📄 — Ревью кадров 12 инсайтов, серия 1 — 2026-10-03
+- [docs/review/REVIEW_INTRO_2026-10-03.md](../docs/review/REVIEW_INTRO_2026-10-03.md) 📄 — Заставка «Ранее в „Атласе воды“» — до и после (2026-10-03)
+- [docs/review/REVIEW_INTRO_CHORUS_2026-10-03.md](../docs/review/REVIEW_INTRO_CHORUS_2026-10-03.md) 📄 — Вердикт
 - [docs/review/МД_РЕВЬЮ_APK_КЕЛЬЯ_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_КЕЛЬЯ_2026-09-30.md) 📄 — МД-ревью APK, Ф1: келья вечернего дозора с предметами обители
 - [docs/review/МД_РЕВЬЮ_APK_ЛЮДИ_СЮЖЕТОВ_2026-10-02.md](../docs/review/МД_РЕВЬЮ_APK_ЛЮДИ_СЮЖЕТОВ_2026-10-02.md) 📄 — МД-ревью — люди 12 сюжетов (2026-10-02)
 - [docs/review/МД_РЕВЬЮ_APK_РЕКВИЗИТ_2026-09-30.md](../docs/review/МД_РЕВЬЮ_APK_РЕКВИЗИТ_2026-09-30.md) 📄 — МД-ревью APK, Ф1: склад реквизита (ТАБУ №0.012)
@@ -493,7 +498,7 @@
 - [docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md](../docs/gost/ОП_OBB_ПАКЕТ_РАСШИРЕНИЯ_ГОСТ_19.402.md) 📄 — ПАКЕТ РАСШИРЕНИЯ ДАННЫХ ШЛЕМА (OBB) И ПРОГНОЗ ВЕСА СБОРКИ
 - [docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md](../docs/gost/ОП_ДОСТАВКА_НА_ШЛЕМ_GIT_GITHUB_RELEASES_ГОСТ_19.402.md) 📄 — Доставка игры и пакетов на шлем через Git и GitHub Releases
 
-## Документация проекта (180)
+## Документация проекта (181)
 
 - [docs/APK_PARITY.md](../docs/APK_PARITY.md) 📄 — Опись «веб → шлем» (ТАБУ №0.01 п. 5)
 - [docs/APK_REQUIREMENTS.md](../docs/APK_REQUIREMENTS.md) 📄 — Требования к APK для шлема (Meta Quest 3)
@@ -518,6 +523,7 @@
 - [docs/HLD_ATLAS_TRACES_2026-09-30.md](../docs/HLD_ATLAS_TRACES_2026-09-30.md) 📄 — HLD: «Атлас воды» S4 — следы рыцаря на дне, летопись, хачкар
 - [docs/HLD_AUDIO_299_2026-09-30.md](../docs/HLD_AUDIO_299_2026-09-30.md) 📄 — HLD: звуки из 99 репо — спектральные эталоны по трём параметрам
 - [docs/HLD_BELL_RULES_TYPIKON_2026-09-30.md](../docs/HLD_BELL_RULES_TYPIKON_2026-09-30.md) 📄 — HLD: устав звона из Типикона и книги о колоколе (веб и шлем)
+- [docs/HLD_BROTHERHOOD_CHAT_2026-10-03.md](../docs/HLD_BROTHERHOOD_CHAT_2026-10-03.md) 📄 — HLD: чат внутри Братства — командный, как в Counter-Strike (2026-10-03)
 - [docs/HLD_CHORUS24_FIXES_2026-10-03.md](../docs/HLD_CHORUS24_FIXES_2026-10-03.md) 📄 — HLD: доработка по слепым зонам хора 24 (2026-10-03)
 - [docs/HLD_COMPANION_CLAUD_2026-10-03.md](../docs/HLD_COMPANION_CLAUD_2026-10-03.md) 📄 — HLD: ИИ-напарник «Клауд» — голос в гарнитуре оператора ROV (2026-10-03)
 - [docs/HLD_CONTRACT_AKULA_2026-10-02.md](../docs/HLD_CONTRACT_AKULA_2026-10-02.md) 📄 — HLD: контракт «Акула Иссык-Куля» — поймать Мега-щуку (2026-10-02)
@@ -676,7 +682,7 @@
 - [docs/version-3.0/VM8_BACKEND_CONTAINER_DEPLOYMENT.md](../docs/version-3.0/VM8_BACKEND_CONTAINER_DEPLOYMENT.md) 📄 — VM8 Backend Container Deployment — Ludus Services on panopticon-mirror-vm
 - [docs/СПИСОК_ТЕХНОЛОГИЙ_ПРОЕКТА.md](../docs/СПИСОК_ТЕХНОЛОГИЙ_ПРОЕКТА.md) 📄 — Список технологий проекта Ludus (реестр собственных технических решений)
 
-## Прочее (134)
+## Прочее (135)
 
 - [.claude/agents/apk-revisor.md](../.claude/agents/apk-revisor.md) 📄 — Жёсткие правила
 - [CONSTITUTION.md](../CONSTITUTION.md) 📄 — РОЛЬ 1: Lead Game Designer & Principal Luau Engineer (Roblox/LiveOps).
@@ -812,3 +818,4 @@
 - [third_party/posoh/hardware/cad/z_axis_stack.scad](../third_party/posoh/hardware/cad/z_axis_stack.scad)
 - [third_party/posoh/hardware/thermal/THERMAL_BUDGET.md](../third_party/posoh/hardware/thermal/THERMAL_BUDGET.md) 📄 — Tube Enclosure Thermal Budget — Посох Z-axis Bay
 - [video/insights/README.md](../video/insights/README.md) 📄 — Видео: двенадцать инсайтов серии 1
+- [video/intro/README.md](../video/intro/README.md) 📄 — Видео: заставка «Ранее в „Атласе воды“» (90 с, три варианта)
